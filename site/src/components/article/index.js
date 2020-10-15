@@ -1,7 +1,7 @@
 import Intact from 'intact';
 import template from './index.vdt';
 import axios from 'axios';
-import '../../libs/stylus.min';
+import stylusCompile from '../../libs/stylus';
 
 const version = process.version;
 
@@ -83,7 +83,7 @@ export default class extends Intact {
             if (file === 'index.vue') {
                 params.files['src/index.styl'] = {content: stylusContent};
             } else {
-                window.stylus(stylusContent).render((err, content) => {
+                stylusCompile(stylusContent).render((err, content) => {
                     if (err) return console.error(err);
                     params.files['src/index.css'] = {content};
                 });

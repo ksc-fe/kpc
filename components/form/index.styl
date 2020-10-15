@@ -34,8 +34,8 @@
         position absolute
         color $form-item-error-color 
         font-size $form-item-error-font-size 
-        margin $form-item-error-margin
-        line-height 1
+        // margin $form-item-error-margin
+        // line-height 1
         left 0
         right 0
         display flex
@@ -96,7 +96,7 @@
     // size
     for size in small mini
         &.k-{size}
-            .k-form-item
+            .k-form-item:not(:last-of-type)
                 margin lookup('$form-' + size + '-item-margin')
             &.k-inline
                 .k-form-item

@@ -215,9 +215,44 @@ set(data) {
 ```
 
 ```react-methods
-componentDidMount() {
-    // expand all nodes
-    const data = this.state.data;
+constructor(props) {
+    super(props);
+    const data = [
+        {
+            "label": "database",
+            "key": "database",
+            "children": [
+                {
+                    "label": "table1",
+                    "key": "table1",
+                    "children": [
+                        {
+                            "label": "class",
+                            "key": "class"
+                        },
+                        {
+                            "label": "student",
+                            "key": "student"
+                        }
+                    ]
+                },
+                {
+                    "label": "table2",
+                    "key": "table2",
+                    "children": [
+                        {
+                            "label": "id",
+                            "key": "id"
+                        },
+                        {
+                            "label": "name",
+                            "key": "name"
+                        }
+                    ]
+                }
+            ]
+        }
+    ];
     const allKeys = [];
     const loop = (children => {
         if (children) {
@@ -228,10 +263,22 @@ componentDidMount() {
         }
     });
     loop(data);
-    this.setState({
+
+    this.state = {
+        data,
+        leftCheckedKeys: [],
+        rightCheckedKeys: [],
         leftExpandedKeys: allKeys,
         rightExpandedKeys: allKeys,
         leftData: this.deepClone(data),
-    });
+        rightData: []
+    };
+
+    this.enableAdd = this.enableAdd.bind(this);
+    this.enableRemove = this.enableRemove.bind(this);
+    this.onAdd = this.onAdd.bind(this);
+    this.onRemove = this.onRemove.bind(this);
+    this.moveData = this.moveData.bind(this);
+    this.deepClone = this.deepClone.bind(this);
 }
 ```
