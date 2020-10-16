@@ -5,7 +5,7 @@ console.log(
     '\x1b[33m%s\x1b[0m', 
     `If the documents of components has not been built
 please run:
-	npx gulp doc
+	npx gulp doc:prepare
 `
 );
 
