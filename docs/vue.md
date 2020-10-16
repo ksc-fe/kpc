@@ -259,7 +259,7 @@ export default {
     ```vue
     <Button @click.native="click">default</Button>
     ```
-2. 多余的属性不会被自动添加到组件渲染的DOM上，而是被直接忽略
+2. ~~多余的属性不会被自动添加到组件渲染的DOM上，而是被直接忽略~~
 3. 不支持 [Multiple values](https://vuejs.org/v2/guide/class-and-style.html#Multiple-Values) style
     ```vue
     <Button v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></Button>
@@ -282,11 +282,9 @@ export default {
 另外当需要在js中使用`h()`方法创建vNode，然后作为属性传给kpc组件时，需要使用`Intact.normalize()`
 方法将vNode包起来
 
-> 如果是作为子元素`children`，则没有必要`normalize`，因为组件默认会normalize子元素
-
 ```vue
 <template>
-    <Badge :text="text">{{ children }}</Badge>
+    <Badge :text="text" :children="children" />
 </template>
 <script>
 import Intact from 'intact';
@@ -299,10 +297,8 @@ export default {
     data() {
         const h = this.$createElement;
         return {
-            // 作为属性，需要normalize
             text: Intact.normalize(h('i', null, 'test')),
-            // 作为子元素，没有必要normalize
-            children: h('div', null, 'test')
+            children: Intact.normalize(h('div', null, 'test'))
         }
     }
 }
