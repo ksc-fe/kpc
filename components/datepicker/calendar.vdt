@@ -14,7 +14,7 @@ import dayjs from 'dayjs';
 
 const {
     dayClassNames,
-    disabledDate, multiple, onMouseEnterDay,
+    multiple, onMouseEnterDay,
     type, hours, minutes, seconds, 
     disabledHours, disabledMinutes, disabledSeconds,
     _isShowYearPicker, _isSelectTime, _now, _showDate, 
@@ -164,7 +164,7 @@ const isYearOrMonth = self._isYearOrMonth();
                             <ScrollSelect 
                                 data={{ monthArray }}
                                 value={{ showDate.month() }}
-                                disable={{ (v) => self._isDisabledDate(v, 'month')  }}
+                                disable={{ self._isDisabledMonth }}
                                 ev-$change:value={{ self.onChangeMonth }}
                             />
                         </Col>
@@ -174,7 +174,7 @@ const isYearOrMonth = self._isYearOrMonth();
                             <ScrollSelect 
                                 data={{ yearArray }}
                                 value={{ showDate.year() }}
-                                disable={{ (v) => self._isDisabledDate(v, 'year') }}
+                                disable={{ self._isDisabledYear }}
                                 ev-$change:value={{ self.onChangeYear }}
                             />
                         </Col>

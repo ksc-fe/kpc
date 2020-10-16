@@ -207,7 +207,7 @@ export default class Calendar extends Intact {
         if(dateRelative.toDate().getFullYear()) {
             this.set('_showDate', dateRelative)
         }
-       
+
     }
 
     getRelativeNum(num, type) {
@@ -417,19 +417,8 @@ export default class Calendar extends Intact {
         }
     }
 
-    _isDisabledDate(value, _type) {
-        const {maxDate, minDate, disabledDate, type, _isShowYearPicker} = this.get();
-        let date = value;
-        if (_isShowYearPicker && _type) {
-            let _date = this.getShowDate();
-            if (_type === 'year') {
-                _date = _date.year(value);
-            }
-            if (_type === 'month') {
-                _date = _date.month(value);
-            } 
-            date = _date;
-        }
+    _isDisabledDate(date) {
+        const {maxDate, minDate, disabledDate, type} = this.get();
         return maxDate && isGT(date, maxDate) ||
             minDate && isLT(date, minDate) ||
             disabledDate && disabledDate.call(
@@ -437,6 +426,16 @@ export default class Calendar extends Intact {
                 getDateString(date.toDate(), type), // for compatibility
                 date.clone()
             );
+    }
+
+    _isDisabledMonth(month) {
+        const date = this.getShowDate().month(month);
+        return this._isDisabledDate(date);
+    }
+
+    _isDisabledYear(year) {
+        const date = this.getShowDate().year(year);
+        return this._isDisabledDate(date);
     }
 
     _isDisabledTime(date) {

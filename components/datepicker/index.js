@@ -48,6 +48,7 @@ export default class Datepicker extends Intact {
         showFormat: String,
         minDate: [String, Date],
         maxDate: [String, Date],
+        disabledDate: Function,
     };
 
     defaults() {
@@ -69,6 +70,7 @@ export default class Datepicker extends Intact {
             format: undefined,
             valueFormat: undefined,
             showFormat: undefined,
+            disabledDate: undefined,
 
             _value: undefined, // for range
             _rangeEndDate: undefined,

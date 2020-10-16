@@ -16,7 +16,7 @@ import Datepicker from 'kpc/components/datepicker';
     <br /><br />
     <Datepicker disabledDate={{ self.disabledMonth }} type='month' />
     <br /><br />
-    <Datepicker disabledDate={{ self.disabledYear }} type='year' />
+    <Datepicker disabledDate={{ self.disabledYear }} type='year' maxDate="2025" />
 </div>
 ```
 

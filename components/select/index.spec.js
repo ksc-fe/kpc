@@ -242,9 +242,10 @@ describe('Select', () => {
         instance = mount(Demo);
 
         const [
-            basicTrigger, clearAndmultipleTrigger, multipleAndsearchableTrigger, filterableTrigger, allowUnmatchTrigger
+            basicTrigger, clearAndmultipleTrigger, multipleAndsearchableTrigger,
+            filterableTrigger, allowUnmatchTrigger
         ] = instance.element.querySelectorAll('.k-wrapper');
-        
+
         // basic
         basicTrigger.click();
         const dropdown = getElement('.k-select-dropdown');
