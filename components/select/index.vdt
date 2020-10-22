@@ -48,9 +48,9 @@ let hasValue = value != null && (!multiple && value !== '' || multiple && value.
 const isGroup = Array.isArray(self.get('data.0.data'));
 
 const labelObj = scope.labelObj || {
-    // only show value as label when allowUnmatch is true, #40
-    label: allowUnmatch && isStringOrNumber(value) ? value : null,
-    labels: [],
+    // only show value as label when allowUnmatch or loading is true, #40 #529
+    label: (loading || allowUnmatch) && isStringOrNumber(value) ? value : null,
+    labels: loading && multiple && Array.isArray(value) ? value : [],
 };
 let groupIndex = 0;
 let hasData = isGroup;
@@ -284,7 +284,7 @@ const Menu = scope.Menu || (
 );
 
 // if the value is not in options, then set hasValue to false
-if (hasValue && (!allowUnmatch && labelObj.label == null && !labelObj.labels.length)) {
+if (hasValue && (!allowUnmatch && labelObj.label == null && !labelObj.labels.length) && !loading) {
     hasValue = false;
     // if this is a value, but the value does not exist in options
     // we set it to empty, #41
