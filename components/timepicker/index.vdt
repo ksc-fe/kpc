@@ -1,6 +1,7 @@
 import TimePanel from './panel';
 import {_$, getRestProps} from '../utils';
 import {Select, Option} from '../select';
+import Icon from '../icon';
 
 const {
     range, multiple, _options, size,
@@ -23,7 +24,7 @@ const _placeholder = range ?
         Panel={{ TimePanel }}
         showFooter
     >
-        <b:suffix><i class="ion-ios-clock-outline"></i></b:suffix>
+        <b:suffix><Icon class="k-icon-time" /></b:suffix>
         <b:singe-panel>
             <TimePanel
                 value={{ _value }}
@@ -54,6 +55,6 @@ const _placeholder = range ?
         container={{ container }}
         data={{ _options }}
     >
-        <b:suffix><i class="ion-ios-clock-outline"></i></b:suffix>
+        <b:suffix><Icon class="k-icon-time" /></b:suffix>
     </Select>
 </template>

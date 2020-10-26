@@ -1,5 +1,6 @@
 import Input from '../input';
 import {getRestProps} from '../utils';
+import Icon from '../icon';
 
 const {
     editing, value, validate,
@@ -16,10 +17,10 @@ const classNameObj = {
 };
 
 <div {{ ...getRestProps(self) }} class={{ classNameObj }}>
-    <i class="ion-edit k-edit" title={{ tip }}
+    <Icon class="k-icon-edit k-edit" title={{ tip }}
         v-if={{ !disabled && !editing }}
         ev-click={{ self._edit }}
-    ></i>
+    />
     <div class="c-ellipsis">
         {{ !editing ? children :
             <Input size="small" defaultValue={{ value }} 
