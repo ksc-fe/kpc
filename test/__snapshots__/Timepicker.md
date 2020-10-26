@@ -63,7 +63,7 @@
 ```
 
 ```
-"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-clock-outline\"></i></div></div>"
+"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"k-icon k-icon-time\"></i></div></div>"
 ```
 
 ```
@@ -71,7 +71,7 @@
 ```
 
 ```
-"<div class=\"k-main\"><input type=\"hidden\" value=\"00:00:00\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"ion-ios-clock-outline\"></i></span></span>"
+"<div class=\"k-main\"><input type=\"hidden\" value=\"00:00:00\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-icon-time\"></i></span></span>"
 ```
 
 ```
@@ -83,6 +83,6 @@
 ```
 
 ```
-"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i> <i class=\"ion-ios-clock-outline\"></i></div></div>"
+"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"开始时间 ~ 结束时间\" tabindex=\"-1\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i> <i class=\"k-icon k-icon-time\"></i></div></div>"
 ```
 

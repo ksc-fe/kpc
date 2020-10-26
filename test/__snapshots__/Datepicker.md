@@ -9,15 +9,15 @@
 #### `format`
 
 ```
-"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div>"
+"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"k-icon k-icon-calendar\"></i></div></div>"
 ```
 
 ```
-"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div>"
+"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择日期\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"k-icon k-icon-calendar\"></i></div></div>"
 ```
 
 ```
-"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择日期和时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"ion-ios-calendar-outline\"></i></div></div>"
+"<div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择日期和时间\" tabindex=\"-1\"><div class=\"k-suffix\"> <i class=\"k-icon k-icon-calendar\"></i></div></div>"
 ```
 
 #### `can input`
