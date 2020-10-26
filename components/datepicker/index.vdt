@@ -3,6 +3,7 @@ import Tooltip from '../tooltip';
 import {_$, isFunction, getRestProps} from '../utils';
 import Calendar from './calendar';
 import Button from '../button';
+import Icon from '../icon';
 
 const {
     value, clearable, className, style, _isShow,
@@ -125,7 +126,7 @@ const content = <b:content>
     </div>
 </b:content>
 
-const suffix = <b:suffix><i class="ion-ios-calendar-outline"></i></b:suffix>
+const suffix = <b:suffix><Icon class="k-icon-calendar" /></b:suffix>
 
 <div {{ ...getRestProps(self, _events) }} class={{ classNameObj }} style={{ style }}
     tabindex={{ disabled ? '-1' : '0' }}

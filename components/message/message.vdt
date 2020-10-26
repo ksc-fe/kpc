@@ -12,9 +12,10 @@ const {type, content, children, closable, hideIcon} = self.get();
     <div class="k-container">
         <div class={{ {"k-wrapper": true, "k-with-icon": !hideIcon} }}>
             <Icon v-if={{ !hideIcon }} class={{ {
-                "ion-ios-information": type === 'info' || type === 'warning',
-                "ion-ios-checkmark": type === 'success',
-                "ion-ios-close": type === 'danger',
+                "k-icon-information": type === 'info',
+                "k-icon-alert": type === 'warning',
+                "k-icon-truth-circled": type === 'success',
+                "k-icon-fault": type === 'danger',
                 "k-message-icon": true,
             } }} />
             <div v-if={{ typeof content === 'string' || typeof content === 'number' }}

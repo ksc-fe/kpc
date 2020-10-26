@@ -27,6 +27,6 @@ const classNameObj = {
         class="k-with-suffix"
     />
     <Button icon type="none" ev-click={{ self._onClickBtn }} size={{ size }}>
-        <Icon class="ion-ios-search k-search-icon" />
+        <Icon class="k-icon-search k-search-icon" />
     </Button>
 </form>

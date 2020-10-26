@@ -68,10 +68,10 @@ const classNameObj = {
     <div class="k-text" v-else-if={{ isOuterText }}>
         <span v-if={{ status !== 'success' && status !== 'error' }}>{{ percent }}%</span>
         <span v-else-if={{ status === 'success' }}>
-            <Icon class="ion-ios-checkmark-outline" />
+            <Icon class="k-icon-truth" />
         </span>
         <span v-else-if={{ status === 'error' }}>
-            <Icon class="ion-ios-close-outline" />
+            <Icon class="k-icon-fault" />
         </span>
     </div>
 </div>
