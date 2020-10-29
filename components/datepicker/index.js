@@ -181,12 +181,14 @@ export default class Datepicker extends Intact {
         const begin = this.refs.begin;
         const end = this.refs.end;
         if (type === 'begin') {
+            if (!end) return;
             const endShowDate = end.getShowDate().date(1);
             if (v >= endShowDate) {
                 const endShowDate = v.add(1, 'month');
                 end.setShowDate(endShowDate);
             }
         } else {
+            if (!begin) return;
             const beginShowDate = begin.getShowDate().date(1);
             if (v <= beginShowDate) {
                 const beginShowDate = v.subtract(1, 'momth');
