@@ -33,8 +33,6 @@
         pointer-events none
         position absolute
         z-index 1
-        &:hover
-            color $primary-color
     // &.k-with-suffix
     //     .k-clear
     //         margin-right $select-clear-margin-right
@@ -126,6 +124,8 @@
         .k-select-tag
             .k-close:hover
                 color $select-multiple-tag-delete-icon-hover-color
+        .k-clear:hover
+            color $primary-color
     // size
     generate(size)
         font-size lookup('$select-' + size + '-font-size')

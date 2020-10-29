@@ -59,6 +59,38 @@ describe('Select', () => {
         clear2.click();
         expect(instance.get('day')).to.eql('');
         expect(instance.get('days')).to.eql([]);
+        unmount(instance);
+        // clearable shouldn't support when disabled is true
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Select v-model="days" multiple disabled clearable>
+                    <Option value="Monday">星期</Option>
+                    <Option value="Tuesday">星期二</Option>
+                    <Option value="Wednesday">星期三</Option>
+                    <Option value="Thursday">星期四</Option>
+                    <Option value="Friday">星期五</Option>
+                    <Option value="Saturday">星期六</Option>
+                    <Option value="Sunday">星期天</Option>
+                </Select>
+            `;
+            defaults() {
+                return {
+                    days:['Monday', 'Tuesday']
+                }
+            }
+            _init() {
+                this.Select = Select;
+                this.Option = Option;
+            }
+        }
+
+        instance = mount(Demo);
+
+        const clear = instance.element.querySelector('.k-clear');
+        clear.click();
+        expect(instance.get('days')).to.eql(['Monday', 'Tuesday']);
+
     });
 
     it('multiple', () => {
@@ -309,5 +341,43 @@ describe('Select', () => {
         allowUnmatchTrigger.click();
         expect(spy.callCount).to.eql(6);
         expect(spy.calledWith('xxx')).to.eql(true);
+    });
+
+    it('should not set value to null when loading', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Select v-model="day" loading={{ self.get('isLoad') }}>
+                    <Option v-for={{ self.get('data') }} value={{ value.value }}> 
+                        {{ value.label }} 
+                    </Option>
+                </Select>
+            `;
+            defaults() {
+                return {
+                    isLoad: false,
+                    day: 'Monday',
+                    data: [
+                        {label: '星期一', value: 'Monday'},
+                        {label: '星期二', value: 'Tuesday'},
+                        {label: '星期三', value: 'Wednesday'},
+                        {label: '星期四', value: 'Thursday'},
+                        {label: '星期五', value: 'Friday'},
+                        {label: '星期六', value: 'Saturday'},
+                        {label: '星期天', value: 'Sunday'},
+                    ]
+                }
+            }
+            _init() {
+                this.Select = Select;
+                this.Option = Option;
+            }
+        }
+
+        instance = mount(Demo);
+        
+        instance.set({isLoad: true});
+        instance.set({data: []});
+        expect(instance.get('day')).to.eql('Monday');
     });
 });
