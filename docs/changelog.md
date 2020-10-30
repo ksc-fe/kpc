@@ -6,15 +6,16 @@ sidebar: doc
 
 ## v1.4.4
 
-6. `Add` `Input/Select/Datepicker/Timepicker`组件新增`change`事件，该事件只在用户操作组件导致`value`变化时触发 [#382](https://github.com/ksc-fe/kpc/issues/382) [#508](https://github.com/ksc-fe/kpc/issues/508)
+1. `Add` `Input/Select/Datepicker/Timepicker`组件新增`change`事件，该事件只在用户操作组件导致`value`变化时触发 [#382](https://github.com/ksc-fe/kpc/issues/382) [#508](https://github.com/ksc-fe/kpc/issues/508)
 2. `Add` `Select`在`loading`状态下，即使`value`不存在`Option`中，也不会清空`value` [#529](https://github.com/ksc-fe/kpc/issues/529)
 3. `Add` 新增`kpcfont`字体库，替换部分组件图标 [#536](https://github.com/ksc-fe/kpc/issues/536)
-1. `Fix` 修复`Select`当存在`value`时，`clearable`在`disabled`状态下依然生效的问题 [#522](https://github.com/ksc-fe/kpc/issues/522)
-2. `Fix` 修复`Datepicker`某些情况下，通过输入改变日期的过程中会被中断的问题 [#524](https://github.com/ksc-fe/kpc/issues/524)
-3. `Fix` 修复`Datepicker`在`type`为`month`或`year`时，不支持`disabledDate`等属性的问题 [#530](https://github.com/ksc-fe/kpc/issues/530)
-4. `Fix` 修复`TreeSelect`选择的时候会报`checkedKeys`类型不对的警告的问题 [#535](https://github.com/ksc-fe/kpc/issues/535)
-5. `Fix` 修复`Datepicker`在日期范围选择下，弹层不会展示相邻的两个月份的问题 [#540](https://github.com/ksc-fe/kpc/issues/540)
-6. `Fix` 修复`Form`错误信息由于行高`line-height`不够，导致`g/p`等字符展示不全的问题 [#532](https://github.com/ksc-fe/kpc/issues/532)
+4. `Add` `TreeSelect`暴露出`Tree`组件的`uncorrelated & defaultExpandAll`属性 [#542](https://github.com/ksc-fe/kpc/issues/542)
+5. `Fix` 修复`Select`当存在`value`时，`clearable`在`disabled`状态下依然生效的问题 [#522](https://github.com/ksc-fe/kpc/issues/522)
+6. `Fix` 修复`Datepicker`某些情况下，通过输入改变日期的过程中会被中断的问题 [#524](https://github.com/ksc-fe/kpc/issues/524)
+7. `Fix` 修复`Datepicker`在`type`为`month`或`year`时，不支持`disabledDate`等属性的问题 [#530](https://github.com/ksc-fe/kpc/issues/530)
+8. `Fix` 修复`TreeSelect`选择的时候会报`checkedKeys`类型不对的警告的问题 [#535](https://github.com/ksc-fe/kpc/issues/535)
+9. `Fix` 修复`Datepicker`在日期范围选择下，弹层不会展示相邻的两个月份的问题 [#540](https://github.com/ksc-fe/kpc/issues/540)
+10. `Fix` 修复`Form`错误信息由于行高`line-height`不够，导致`g/p`等字符展示不全的问题 [#532](https://github.com/ksc-fe/kpc/issues/532)
 
 __Vue__
 
