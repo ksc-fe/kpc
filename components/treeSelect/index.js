@@ -41,6 +41,8 @@ export default class TreeSelect extends Select {
         },
         checkbox: Boolean,
         load: Function,
+        uncorrelated: Boolean,
+        defaultExpandAll: Boolean,
     };
 
     defaults() {
@@ -50,6 +52,8 @@ export default class TreeSelect extends Select {
             checkbox: false,
             load: undefined,
             filter: undefined,
+            uncorrelated: false,
+            defaultExpandAll: true,
 
             _selectedKeys: [],
             _treeCheckedKeys: [],

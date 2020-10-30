@@ -3,7 +3,8 @@ import {DropdownMenu} from '../dropdown';
 
 const {
     data, value, multiple, checkbox,
-    _treeCheckedKeys, load, filterable
+    _treeCheckedKeys, load, filterable,
+    defaultExpandAll, uncorrelated,
 } = self.get();
 
 self._initLabels();
@@ -20,7 +21,8 @@ const Menu = (
         ev-$change:value={{ self._onChangeShow }}
     >
         <Tree data={{ data }}
-            defaultExpandAll
+            defaultExpandAll={{ defaultExpandAll }}
+            uncorrelated={{ uncorrelated }}
             v-model:selectedKeys="_selectedKeys"
             checkedKeys={{ _treeCheckedKeys }}
             ev-$changed:checkedKeys={{ self._onCheckedKeysChange }}
