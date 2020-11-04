@@ -57,11 +57,11 @@ if (!icon && Array.isArray(children)) {
             // whether the icon is on the left side or right
             if (index === 0) {
                 if (child.tag === Icon || child.className && child.className.indexOf('icon') > -1) {
-                    classNameObj['k-icon-left'] = true;
+                    classNameObj['k-btn-icon-left'] = true;
                 }
             } else if (index === children.length - 1) {
                 if (child.tag === Icon || child.className && child.className.indexOf('icon') > -1) {
-                    classNameObj['k-icon-right'] = true;
+                    classNameObj['k-btn-icon-right'] = true;
                 }
             }
         }
@@ -90,7 +90,7 @@ const loadingIcon = (
     ev-mouseup={{ self._onMouseUp }}
 >
     {{ loading ? 
-        classNameObj['k-icon-right'] ?
+        classNameObj['k-btn-icon-right'] ?
             [children, loadingIcon] :
             [loadingIcon, children] :
         children 

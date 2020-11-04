@@ -101,7 +101,7 @@ sizes = large small mini
         + span
             margin-left $btn-icon-margin-right 
             // vertical-align middle
-    &.k-icon-right
+    &.k-btn-icon-right
         .k-icon
             margin-left $btn-icon-margin-right 
     &.k-btn-icon
@@ -134,7 +134,7 @@ sizes = large small mini
                     background-color palette(lookup('$btn-' + type + '-bg-color'), -2)
                     color palette(lookup('$btn-' + type + '-color'), -2)
                     border-color palette(lookup('$btn-' + type + '-border-color'), -2)
-        &:not(.k-btn-icon):not(.k-icon-left):not(.k-icon-right)
+        &:not(.k-btn-icon):not(.k-btn-icon-left):not(.k-btn-icon-right)
             padding-left s("calc(%s + 1em)", getLeft($btn-padding))
             .icon-loading
                 margin-left -1em
