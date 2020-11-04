@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.4.5
+
+1. `Fix` 修复`Drawer / FormItem`部分样式问题 [#543](https://github.com/ksc-fe/kpc/issues/543)
+
 ## v1.4.4
 
 1. `Add` `Input/Select/Datepicker/Timepicker`组件新增`change`事件，该事件只在用户操作组件导致`value`变化时触发 [#382](https://github.com/ksc-fe/kpc/issues/382) [#508](https://github.com/ksc-fe/kpc/issues/508)
