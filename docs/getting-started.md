@@ -164,7 +164,7 @@ npm install postcss-loader autoprefixer stylus-loader --save-dev
 
 将css加载配置修改为（通过`stylus-loader`的`import`配置，我们可以引入主题文件）：
 
-```js
+```javascript
 const autoprefixer = require('autoprefixer');
 
 module.export = {
@@ -211,6 +211,12 @@ module.export = {
                             sourceMap: false,
                             // 使用import引入主题文件，详见定制主题
                             // 'import': path.resolve(__dirname, 'styles/themes/ksyun/index.styl'),
+
+                            /* 对于stylus-loader@4 */
+                            // stylusOptions: {
+                            //     incluceCss: true,
+                            //     import: ['~kpc-vue/@stylus/styles/themes/ksyun/index.styl'],
+                            // }
                         }
                     }
                 ]

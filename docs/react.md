@@ -211,6 +211,12 @@ module.exports = {
               import: [
                 '~kpc-react/@stylus/styles/themes/ksyun/index.styl',
               ],
+
+              /* 对于stylus-loader@4 */
+              // stylusOptions: {
+              //    incluceCss: true,
+              //    import: ['~kpc-vue/@stylus/styles/themes/ksyun/index.styl'],
+              // }
             },
           },
         ],

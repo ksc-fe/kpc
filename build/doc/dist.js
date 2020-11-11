@@ -53,8 +53,12 @@ function staticize(data) {
     const render = require(path.join(destServer, './render.js')).default;
     const indexFile = path.join(dest, './index.html');
     return fs.readFile(indexFile, 'utf-8').then(contents => {
-        // add index.html
-        data = [...data, {metadata: {}, file: {isDemo: false, relative: ''}}];
+        // add /index.html /docs/resources/index.html
+        data = [
+            ...data,
+            {metadata: {}, file: {isDemo: false, relative: ''}},
+            {metadata: {}, file: {isDemo: false, relative: 'docs/resources'}},
+        ];
         return Promise.all(data.map(({metadata, file}) => {
             if (!metadata.iframe && file.isDemo) return;
 

@@ -89,7 +89,7 @@ kpc-vue需要指向`kpc-vue/@stylus`，下面以内置的主题`ksyun`为例
 
 在项目根目录下创建`vue.config.js`文件，内容如下：
 
-```js
+```javascript
 module.exports = {
     configureWebpack: {
         resolve: {
@@ -107,7 +107,13 @@ module.exports = {
                             options: {
                                 'include css': true,
                                 'resolve url': true,
-                                'import': '~kpc-vue/@stylus/styles/themes/ksyun/index.styl'
+                                'import': '~kpc-vue/@stylus/styles/themes/ksyun/index.styl',
+
+                                /* 对于stylus-loader@4 */
+                                // stylusOptions: {
+                                //     incluceCss: true,
+                                //     import: ['~kpc-vue/@stylus/styles/themes/ksyun/index.styl'],
+                                // }
                             }
                         }
                     ]

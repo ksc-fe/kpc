@@ -14,7 +14,7 @@ sidebar: doc
 
 # 配置`webpack.config.js`
 
-```js
+```javascript
 const path = require('path');
 
 // 其他配置参见快速开始章节，这里略去
@@ -26,6 +26,12 @@ const path = require('path');
         'resolve url': true,
         // 引入自定义主题文件mytheme/index.styl
         import: path.resolve(__dirname, 'styles/mytheme/index.styl')
+
+        /* 对于stylus-loader@4 */
+        // stylusOptions: {
+        //     incluceCss: true,
+        //     import: [path.resolve(__dirname, 'styles/mytheme/index.styl')],
+        // }
     }
 }
 ```
