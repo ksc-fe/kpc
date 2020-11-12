@@ -117,7 +117,7 @@ npm <span class="hljs-keyword">install</span> css-loader <span class="hljs-keywo
 <li>修改<code>webpack.config.js</code></li>
 </ol>
 <p>将css加载配置修改为（通过<code>stylus-loader</code>的<code>import</code>配置，我们可以引入主题文件）：</p>
-<pre><code class="hljs js"><span class="hljs-string">const</span> <span class="hljs-string">autoprefixer</span> <span class="hljs-string">=</span> <span class="hljs-string">require('autoprefixer');</span>
+<pre><code class="hljs javascript"><span class="hljs-string">const</span> <span class="hljs-string">autoprefixer</span> <span class="hljs-string">=</span> <span class="hljs-string">require('autoprefixer');</span>
 
 <span class="hljs-string">module.export</span> <span class="hljs-string">=</span> <span class="hljs-string">{</span>
     <span class="hljs-string">...</span>
@@ -163,6 +163,12 @@ npm <span class="hljs-keyword">install</span> css-loader <span class="hljs-keywo
                             <span class="hljs-attr">sourceMap:</span> <span class="hljs-literal">false</span><span class="hljs-string">,</span>
                             <span class="hljs-string">//</span> <span class="hljs-string">使用import引入主题文件，详见定制主题</span>
                             <span class="hljs-string">//</span> <span class="hljs-attr">'import':</span> <span class="hljs-string">path.resolve(__dirname,</span> <span class="hljs-string">'styles/themes/ksyun/index.styl'</span><span class="hljs-string">),</span>
+
+                            <span class="hljs-string">/*</span> <span class="hljs-string">对于stylus-loader@4</span> <span class="hljs-string">*/</span>
+                            <span class="hljs-string">//</span> <span class="hljs-attr">stylusOptions:</span> <span class="hljs-string">{</span>
+                            <span class="hljs-string">//</span>     <span class="hljs-attr">incluceCss:</span> <span class="hljs-literal">true</span><span class="hljs-string">,</span>
+                            <span class="hljs-string">//</span>     <span class="hljs-attr">import:</span> <span class="hljs-string">['~kpc-vue/@stylus/styles/themes/ksyun/index.styl'],</span>
+                            <span class="hljs-string">//</span> <span class="hljs-string">}</span>
                         <span class="hljs-string">}</span>
                     <span class="hljs-string">}</span>
                 <span class="hljs-string">]</span>
@@ -182,4 +188,4 @@ npm <span class="hljs-keyword">install</span> css-loader <span class="hljs-keywo
         <span class="hljs-string">]</span>
     <span class="hljs-string">}</span>
 <span class="hljs-string">}</span></code></pre>
-</div></div></div></article><div class="table-of-contents"><ul></ul><div class="aside-dot transition" style="display:none"></div></div></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.4130c596963dc743ec49.js"></script></body></html>
+</div></div></div></article><div class="table-of-contents"><ul></ul><div class="aside-dot transition" style="display:none"></div></div></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.204afd50e9347bb4abe5.js"></script></body></html>

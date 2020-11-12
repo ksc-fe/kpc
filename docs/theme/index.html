@@ -7,7 +7,7 @@
 <p>你可以使用<a href="https://kpc-theme.ksyun.com/">在线主题定制工具</a>来制作主题</p>
 </blockquote>
 <p>得益于<code>stylus-loader</code>的<code>import</code>配置，我们可以指定一个主题文件，它会在编译每一个stylus文件时引入它。</p>
-<h1 id='%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1><pre><code class="hljs js">const path = <span class="hljs-keyword">require</span>(<span class="hljs-string">'path'</span>);
+<h1 id='%E9%85%8D%E7%BD%AEwebpack.config.js'>配置<code>webpack.config.js</code></h1><pre><code class="hljs javascript">const path = <span class="hljs-keyword">require</span>(<span class="hljs-string">'path'</span>);
 
 <span class="hljs-comment">// 其他配置参见快速开始章节，这里略去</span>
 <span class="hljs-params">...</span>
@@ -18,6 +18,12 @@
         <span class="hljs-string">'resolve url'</span>: <span class="hljs-literal">true</span>,
         <span class="hljs-comment">// 引入自定义主题文件mytheme/index.styl</span>
         <span class="hljs-keyword">import</span>: path.resolve(__dirname, <span class="hljs-string">'styles/mytheme/index.styl'</span>)
+
+        <span class="hljs-comment">/* 对于stylus-loader@4 */</span>
+        <span class="hljs-comment">// stylusOptions: {</span>
+        <span class="hljs-comment">//     incluceCss: true,</span>
+        <span class="hljs-comment">//     import: [path.resolve(__dirname, 'styles/mytheme/index.styl')],</span>
+        <span class="hljs-comment">// }</span>
     }
 }</code></pre>
 <blockquote>
@@ -74,4 +80,4 @@
 <p>此时，当我们加载<code>Button</code>组件时，上述样式也会加载进来。真正做到按需加载，并且无需额外插件支持。</p>
 <h1 id='%E5%8F%91%E5%B8%83%E4%B8%BB%E9%A2%98'>发布主题</h1><p>我们可以将定义好的主题文件，发布到npm供他人使用。使用者只需要改变<code>stylus-loader</code>中的<code>import</code>配置，指向你发布的主题文件<code>index.styl</code>即可。</p>
 <p>热烈欢迎大家积极发布自己的主题来让kpc丰富多彩起来 <i class="k-icon ion-android-happy"></i></p>
-</div></div></div></article><div class="table-of-contents"><ul></ul><div class="aside-dot transition" style="display:none"></div></div></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.4130c596963dc743ec49.js"></script></body></html>
+</div></div></div></article><div class="table-of-contents"><ul></ul><div class="aside-dot transition" style="display:none"></div></div></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.204afd50e9347bb4abe5.js"></script></body></html>
