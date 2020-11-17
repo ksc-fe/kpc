@@ -69,7 +69,7 @@ export default class Calendar extends Intact {
 
         this.on('$change:_showDate', (c, v) => {
             // if is select year or month, set the _showDate to value
-            if (this._isYearOrMonth()) {
+            if (this._isYearOrMonth() && !this._isDisabledDate(v)) {
                 this.set('value', v);
             }
         });
@@ -193,31 +193,12 @@ export default class Calendar extends Intact {
 
     setRelativeMonth(month) {
         const date = this.getShowDate();
-        const num = this.getRelativeNum(month, 'month');
-        const dateNext = date.add(num, 'month');
-        if(dateNext.toDate().getMonth() + 1) {
-            this.set('_showDate', dateNext)
-        }
+        this.set('_showDate', date.add(month, 'month'));            
     }
 
     setRelativeYear(year) {
         const date = this.getShowDate();
-        const num = this.getRelativeNum(year, 'year');
-        const dateRelative = date.add(num, 'year');
-        if(dateRelative.toDate().getFullYear()) {
-            this.set('_showDate', dateRelative)
-        }
-
-    }
-
-    getRelativeNum(num, type) {
-        const _date = this.getShowDate();
-        let dateRelative = _date.add(num, type);
-        while(this._isDisabledDate(dateRelative)) {
-            num > 0 ? num++ : num--;
-            dateRelative = _date.add(num, type);
-        }
-        return num;
+        this.set('_showDate', date.add(year, 'year'));
     }
 
     setMonth(month) {
