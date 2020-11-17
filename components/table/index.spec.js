@@ -16,6 +16,9 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Intact from 'intact';
 import {Table, TableColumn} from 'kpc/components/table';
 import DraggableTable from '~/components/table/demos/draggable';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import {Icon} from 'kpc/components/icon';
+import Vue from 'vue';
 
 describe('Table', () => {
     let instance;
@@ -415,5 +418,60 @@ describe('Table', () => {
         // destroy one row
         instance.set('data', [{a: 1}]);
         expect(instance.get('checkedKeys')).to.eql([3, 4, 1, 2]);
+    });
+
+    it('should render dropdown in header of fixed table correctly in Vue', async () => {
+        const Demo = {
+            template: `
+                <Table :data="data" style="width: 800px;">
+                    <TableColumn key="a" width="300" fixed="left" />
+                    <TableColumn key="b" width="300">
+                        <template slot="title">
+                            <Dropdown trigger="click" :container="dom => dom.parentElement.closest('.k-table')">
+                                <Icon class="ion-ios-arrow-down" style="margin-left: 100px;" />
+                                <DropdownMenu>
+                                    <DropdownItem>1</DropdownItem>
+                                    <DropdownItem>2</DropdownItem>
+                                    <DropdownItem>3</DropdownItem>
+                                </DropdownMenu>
+                            </Dropdown>
+                        </template>
+                    </TableColumn>
+                    <TableColumn key="c" width="300" fixed="right" />
+                </Table>
+            `,
+            components: {
+                Table,
+                TableColumn,
+                Dropdown,
+                DropdownMenu,
+                DropdownItem,
+                Icon,
+            },
+            data() {
+                return {
+                    data: [
+                        {a: 1, b: 1, c: 1},
+                        {a: 2, b: 2, c: 2},
+                    ],
+                };
+            }
+        };
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+        const app = new Vue({
+            render: h => h('Demo'),
+            components: {
+                Demo
+            }
+        }).$mount(container);
+
+        // should show the first dropdown menu
+        app.$el.querySelector('.k-icon').click();
+        const dropdownMenu = app.$el.querySelectorAll('.k-dropdown-menu')[0];
+        expect(dropdownMenu.style.display).to.eql('');
+
+        app.$destroy();
+        document.body.removeChild(app.$el);
     });
 });

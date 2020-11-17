@@ -8,10 +8,10 @@ import {mount, unmount, dispatchEvent, getElement, getElements, wait} from 'test
 describe('Cascader', () => {
     let instance;
 
-    afterEach(async () => {
-        unmount(instance);
-        await wait(400);
-    });
+    // afterEach(async () => {
+        // unmount(instance);
+        // await wait(400);
+    // });
 
     it('basic test', async () => {
         instance = mount(BasicDemo);
@@ -74,11 +74,11 @@ describe('Cascader', () => {
         expect(dropdown2.innerHTML).to.matchSnapshot();
 
         await wait(1500);
-        expect(dropdown2.innerHTML).to.matchSnapshot(); 
+        expect(dropdown2.innerHTML).to.matchSnapshot();
     });
 
     it('filter', () => {
-        instance = mount(FilterDemo); 
+        instance = mount(FilterDemo);
 
         const input = instance.element.querySelector('.k-inner');
 
