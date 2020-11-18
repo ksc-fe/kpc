@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.4.7
+
+1. `Fix` 修复`Datepicker`设置了`maxDate/minDate`的情况下，切换月份会卡死的问题 [#549](https://github.com/ksc-fe/kpc/issues/549)
+
 ## v1.4.6
 
 1. `Fix` 修复`Button`当存在`Icon`时，会在前面展示方块的样式问题 [#544](https://github.com/ksc-fe/kpc/issues/544)
