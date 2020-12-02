@@ -66,6 +66,7 @@ export default class BaseTable extends Intact {
             _scrollBarWidth: 0,
             _scrollPosition: 'left',
             _hoverIndex: undefined,
+            _curClickRowKey: undefined
         }
     }
 
@@ -663,7 +664,8 @@ export default class BaseTable extends Intact {
         }
     }
 
-    _clickRow(value, index, key, e) {
+    _clickRow(value, index, key, e, spanRowKeys) {
+        this.set('_curClickRowKey', key);
         // if is from checkbox or radio then do nothing
         if (e.target.tagName.toLowerCase() === 'input') return;
         // in chrome of macos, the target is input's parent element
@@ -673,7 +675,7 @@ export default class BaseTable extends Intact {
         if (this.get('disableRow').call(this, value, index)) return;
 
         if (this.get('rowCheckable')) {
-            this._checkUncheckRows([key]);
+            this._checkUncheckRows(Array.isArray(spanRowKeys) ? spanRowKeys : [key]);
         }
 
         if (this.get('rowExpandable')) {
@@ -688,7 +690,7 @@ export default class BaseTable extends Intact {
     }
 
     _checkUncheckRows(keys, isCheck = false, isToggle = true) {
-        const checkType = this.get('checkType');
+        const {checkType, merge} = this.get();
         if (checkType === 'checkbox') {
             let checkedKeys = this.get('checkedKeys'); // .slice(0);
             let shouldSet = false;
@@ -990,7 +992,7 @@ export default class BaseTable extends Intact {
     }
 
     _onChangeChecked(key, value) {
-        this._checkUncheckRows([key], value, false);
+        this._checkUncheckRows( Array.isArray(key)? key : [key], value, false);
     }
 
     _onChangeGroup(key, c, v) {
