@@ -24,6 +24,7 @@ export default class TableColumn extends Intact {
         rows: Number,
         cols: Number,
         invisible: Boolean,
+        exportTitle: String
     };
 
     static events = {
@@ -48,6 +49,7 @@ export default class TableColumn extends Intact {
             rows: undefined,
             cols: undefined,
             invisible: false,
+            exportTitle: undefined,
             // for omiting it by getRestProps
             blockFn: undefined,
 
