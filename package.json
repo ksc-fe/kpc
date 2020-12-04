@@ -109,7 +109,7 @@
     "gulp-typescript": "^5.0.1",
     "gulp-uglify": "^3.0.1",
     "gulp-vdt": "^0.2.1",
-    "highlight.js": "^9.18.1",
+    "highlight.js": "^10.4.1",
     "history": "^4.7.2",
     "html-webpack-plugin": "^4.0.1",
     "istanbul-instrumenter-loader": "^3.0.0",
