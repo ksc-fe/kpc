@@ -5,8 +5,8 @@ order: 22
 
 调用`Table`的`exportTable([data, [filename]])`方法，可以导出当前表格内容成`csv`格式。导出的文本
 默认为当前单元格下的`textContent`内容，当需要自定义导出文本时，我们可以给单元格首个`Element`元素
-添加`data-text`属性来指定。另外如果给当前列设置`ignore`属性，则会忽略该列内容，例如：本例中我们
-忽略”操作“栏内容
+添加`data-text`属性来指定。当需要自定义导出标题时，我们可以给当前列`TableColumn`组件添加`exportTitle`
+属性来指定。另外如果给当前列设置`ignore`属性，则会忽略该列内容，例如：本例中我们忽略”操作“栏内容
 
 1. `data` 要导出的数据，默认为当前表格的数据
 2. `filename` 下载的文件名，默认为`table`
@@ -27,7 +27,7 @@ import {Button} from 'kpc/components/button';
             </b:template>
         </TableColumn>
         <TableColumn title="普通文本" key="b" />
-        <TableColumn title="自定义导出文本" key="c">
+        <TableColumn title="自定义导出文本" key="c" exportTitle="自定义导出标题">
             <b:template params="data">
                 <div data-text={{ '自定义导出文本:' + data.c }}>
                     {{ data.c }}
