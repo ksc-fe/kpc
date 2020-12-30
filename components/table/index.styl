@@ -222,9 +222,11 @@
     // fluid height
     &.k-fluid-height
         .k-table-wrapper
-            height 100%
+            max-height 100%
             display flex
             flex-direction column
+        .k-thead
+            flex-shrink 0
         .k-tbody
             flex 1
 

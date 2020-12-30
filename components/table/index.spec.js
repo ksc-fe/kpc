@@ -168,6 +168,10 @@ describe('Table', () => {
         await wait(100);
         expect(table.element.querySelector('.k-fixed-left .k-tbody').scrollTop).to.eql(10);
         expect(table.element.querySelector('.k-fixed-right .k-tbody').scrollTop).to.eql(10);
+
+        // should change max-height if we set fixHeader to true
+        table.set('fixHeader', true);
+        expect(table.element.outerHTML).to.matchSnapshot();
     });
 
     it('resize', () => {
