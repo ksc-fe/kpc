@@ -7,6 +7,11 @@ order: 7
 属性来定义动态加载的逻辑，组件会将当前展开项的数据当做参数`item`传入，你只需要更新`item`的`children`
 属性即可，该函数的返回值为`Promise`对象
 
+组件默认遇到`children`为`[]`空数组的情况就会去进行异步加载，你可以通过`loaded`属性设为`true`来
+标识该子节点已经加载完成，无需再次加载
+
+> 对于已经加载完成的数据，组件会修改原始数据，往数据上添加`loaded = true`
+
 ```vdt
 import Cascader from 'kpc/components/cascader';
 
@@ -70,11 +75,13 @@ export default class extends Intact {
                             {
                                 value: 'yueyang',
                                 label: '岳阳市',
-                                children: []
+                                children: [],
+                                loaded: true,
                             }
                         ];
                         break;
                     case 'yueyang':
+                        // 该分支不会执行，因为yueyang已经将loaded设为true
                         item.children = [
                             {
                                 value: 'yueyanglou',
