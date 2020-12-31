@@ -23,7 +23,11 @@ const Options = (props) => {
 
     // show loading
     if (!data.length) {
-        return  <i class="ion-load-c icon-loading"></i>
+        if (!props.loaded) {
+            return <i class="ion-load-c icon-loading"></i>
+        } else {
+            return <div class="k-no-data">无数据</div>
+        }
     }
 
     data.forEach((item, index) => {
@@ -77,6 +81,7 @@ const Options = (props) => {
                             v-if={{ // for performance, don't render children if they are hidden or unselected
                                 show || selected
                             }}
+                            loaded={{ item.loaded }}
                         />
                     </DropdownMenu>
                 </Dropdown>
@@ -98,8 +103,12 @@ if (!filterable || !keywords) {
             ev-$change:value={{ self._onChangeShow }}
             key="cascader"
         >
-            <Options v-if={{ data && data.length }} data={{ data }} level={{ 0 }} parentShowed={{ _show }} />
-            <div v-else class="k-no-data">无数据</div>
+            <Options
+                data={{ data }}
+                level={{ 0 }}
+                parentShowed={{ _show }}
+                loaded={{ true }}
+            />
         </DropdownMenu>
     );
 } else {

@@ -87,6 +87,10 @@
 "<div class=\"k-item\">长沙市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder--><div class=\"k-item\">岳阳市<i class=\"k-arrow ion-ios-arrow-right\"></i></div><!--placeholder-->"
 ```
 
+```
+"<div class=\"k-no-data\">无数据</div>"
+```
+
 #### `filter`
 
 ```

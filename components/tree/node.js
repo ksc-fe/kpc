@@ -1,8 +1,9 @@
 let uniqueId = 0;
+const prefix = '__$_';
 
 export default class Node {
     static createNode = function(data, parent, tree, needRecheckNodes) {
-        const key = data.key == null ? uniqueId++ : data.key;
+        const key = data.key == null ? `${prefix}${uniqueId++}` : data.key;
         // if the node has been set to checked
         // we should set its children to checked
         // and recheck the parent to set to checked or indeterminate
@@ -64,7 +65,7 @@ export default class Node {
         this.indeterminate = false;
 
         this.tree._updateCheckedKeys(this);
-        
+
         if (this.tree.get('uncorrelated')) return;
 
         const children = this.children;
@@ -85,7 +86,7 @@ export default class Node {
         if (!parent || parent === this.tree.root) return;
 
         let checkedCount = 0;
-        let count = 0; 
+        let count = 0;
         let indeterminate;
         const children = parent.children;
         for (let i = 0; i < children.length; i++) {

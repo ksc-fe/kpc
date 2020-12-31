@@ -4,6 +4,19 @@ order: 99
 sidebar: doc
 ---
 
+## v1.4.7
+
+1. `Fix` 修复`Datepicker`设置了`maxDate/minDate`的情况下，切换月份会卡死的问题 [#549](https://github.com/ksc-fe/kpc/issues/549)
+
+## v1.4.6
+
+1. `Fix` 修复`Button`当存在`Icon`时，会在前面展示方块的样式问题 [#544](https://github.com/ksc-fe/kpc/issues/544)
+2. `Fix` 修复`Tree`当自定义`key`为`Number`时，可能与内部默认递增`key`存在冲突，导致节点被误判为`root`节点的问题 [#548](https://github.com/ksc-fe/kpc/issues/548)
+
+__Vue__
+
+1. `Fix` 修复`Table`当通过`slot`自定义`title`，如果存在固定列，则`title`中自定义的`Dropdown`菜单渲染会错误的问题 [#547](https://github.com/ksc-fe/kpc/issues/547)
+
 ## v1.4.5
 
 1. `Fix` 修复`Drawer / FormItem`部分样式问题 [#543](https://github.com/ksc-fe/kpc/issues/543)

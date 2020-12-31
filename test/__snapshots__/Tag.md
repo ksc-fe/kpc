@@ -1,0 +1,12 @@
+# `Tag`
+
+#### `should not close tag if we has prevented default`
+
+```
+"<div class=\"k-tag k-closable\">default<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-primary k-closable\">primary<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-success k-closable\">success<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-warning k-closable\">warning<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-danger k-closable\">danger<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-disabled k-closable\">disabled<button class=\"k-btn k-none k-btn-icon k-close k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-closable\">prevent default<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div>"
+```
+
+```
+"<div class=\"k-tag k-primary k-closable\">primary<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-success k-closable\">success<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-warning k-closable\">warning<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-danger k-closable\">danger<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-disabled k-closable\">disabled<button class=\"k-btn k-none k-btn-icon k-close k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-tag k-closable\">prevent default<button class=\"k-btn k-none k-btn-icon k-close\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div>"
+```
+

@@ -415,3 +415,7 @@ export function minMaxStep(value, min, max, step) {
 export function clamp(number, lower, upper) {
     return Math.min(Math.max(number, lower), upper);
 }
+
+export function stopPropagation(e) {
+    e.stopPropagation();
+}

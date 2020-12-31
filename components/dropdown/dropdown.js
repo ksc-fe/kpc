@@ -16,7 +16,7 @@ export default class Dropdown extends Intact {
         const extraProps = {
             className: _className({
                 [className]: className,
-                'k-dropdown-open': isShow, 
+                'k-dropdown-open': isShow,
             }),
         };
         const style = data.get('style');
@@ -24,6 +24,9 @@ export default class Dropdown extends Intact {
             extraProps.style = style;
         }
 
+        // vNode.props = {...vNode.props, ...extraProps};
+        // return vNode;
+        // we need clone it again, even if we have cloned it in _saveOriginalEvents
         return clone(vNode, extraProps);
     }
 
@@ -51,7 +54,7 @@ export default class Dropdown extends Intact {
         let {children, trigger, className, ...rest} = this.get();
         if (Array.isArray(children)) {
             children = children[0];
-        } 
+        }
         if (isTextChildren(children)) {
             children = h('span', rest, children, className);
         }
@@ -92,7 +95,10 @@ export default class Dropdown extends Intact {
         if (hasSaved) {
             props._evHasSaved = true;
         }
-        children.props = {...originProps, ...props};
+        // clone vNode, because the vNode may be used multiple times,
+        // such as in vue slot, #547
+        children = clone(children, props);
+        // children.props = {...originProps, ...props};
         this.set('children', children, {silent: true});
     }
 

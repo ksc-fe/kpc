@@ -1,6 +1,6 @@
 import Button from '../button';
 import MoveWrapper from '../moveWrapper';
-import {_$} from '../utils';
+import {_$, stopPropagation} from '../utils';
 
 const {size, container, hideClose, overlay, value, width, mode} = self.get();
 
@@ -32,6 +32,7 @@ const dialog = (
                     <Button type="none" icon title={{ _$("关闭") }} class="k-close"
                         ev-click={{ self._terminate }}
                         v-if={{ !hideClose && !scope.hideClose }}
+                        ev-mousedown={{ stopPropagation }}
                     >
                         <i class="k-icon ion-ios-close-empty"></i>
                     </Button>
