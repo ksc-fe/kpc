@@ -7,7 +7,8 @@ const PROPS = [
     'checked', 'draggable', 'dragKey',
     // to make scheme compare at last
     'scheme', 'rowKeys', 'rowCheckeds', 
-    'curClickRowKey', 'rowDisableds'
+    'curClickRowKey', 'rowDisableds', 
+    'firstCloumnRowSpans'
 ];
 
 export default class TableRow extends Intact {
@@ -15,10 +16,19 @@ export default class TableRow extends Intact {
     static template = template;
 
     _onClick(e) {
-        const {onClick, value, index, rowKey, checkType, 'ev-click': click} = this.get();
-        const {spanRowKeys} = this.spanColumnsInfo;
-        console.log("click index", index, this.spanColumnsInfo)
-        onClick(value, index, rowKey, e, checkType === 'radio' ? spanRowKeys : undefined);
+        const {onClick, value, index, rowKey, checkType, rowDisableds, onChangeChecked, 'ev-click': click} = this.get();
+        const {spanIndexs, spanRowKeys} = this._getSpanColumnsInfoByIndex();
+        const isCheckedFirstColumn = checkType === 'checkbox' && e.target.dataset.column === 'k-first-column';
+
+        if(!((checkType === 'radio' || isCheckedFirstColumn) && Array.isArray(spanIndexs)) )  {
+            onClick(value, index, rowKey, e);
+        }else {
+            if( spanIndexs.every(idx => rowDisableds[idx]) ) return;
+
+            const enabledSpanRowKeys = spanRowKeys.filter((key,index) => rowDisableds[spanIndexs[index]] === false);
+            onClick(value, index, rowKey, e, enabledSpanRowKeys);
+            if(isCheckedFirstColumn && this._isHalfChecked()) onChangeChecked(enabledSpanRowKeys, true);
+        }
         click && click(e);
     }
 
@@ -58,23 +68,17 @@ export default class TableRow extends Intact {
     }
 
     _onChangeChecked(c, v) {
-        const {onChangeChecked, rowKey, index, curClickRowKey, checkType} = this.get();
+        const {onChangeChecked, checkType, rowDisableds} = this.get();
         
-        if(checkType === 'radio') return onChangeChecked(rowKey, v);
-
         // 由”全选“状态 变成 ”半选“状态
-        // const isHalfChecked =this._getStatus(false, this._isHalfChecked);
-        const isHalfChecked = this._isHalfChecked();
-        if(!v && isHalfChecked) return onChangeChecked(curClickRowKey, v);
+        if(checkType === 'checkbox' && !v && this._isHalfChecked()) return onChangeChecked(undefined, v);
 
-        const {spanRowKeys} = this._getSpanColumnsInfoByIndex(index);
+        const {spanIndexs, spanRowKeys} = this._getSpanColumnsInfoByIndex();
+        if(Array.isArray(spanIndexs)){
+            const enabledSpanRowKeys = spanRowKeys.filter((key,index) => rowDisableds[spanIndexs[index]] === false);
+            return onChangeChecked(enabledSpanRowKeys, v);
+        }
         onChangeChecked(spanRowKeys, v);
-            
-    }
-
-    _create() {
-        const {index} = this.get();
-        this.spanColumnsInfo = this._getSpanColumnsInfoByIndex(index);
     }
 
     _destroy() {
@@ -120,26 +124,26 @@ export default class TableRow extends Intact {
 
     _getStatus(notSpanReturnVal, spanReturnVal){
         const {rowCheckeds, rowDisableds} = this.get();
-        
-        if(!this.spanColumnsInfo) return;
+        const spanColumnsInfo = this._getSpanColumnsInfoByIndex();
+        if(!spanColumnsInfo) return;
 
-        const {spanIndexs} = this.spanColumnsInfo;
+        const {spanIndexs} = spanColumnsInfo;
         if(!Array.isArray(spanIndexs)) return notSpanReturnVal; // 代表没有合并
 
         const enabledSpanIndexs = spanIndexs.filter(idx => rowDisableds[idx] === false);
         const checkedEnabledSpanIndexs = enabledSpanIndexs.filter(idx => rowCheckeds[idx] === true);
-        return spanReturnVal && spanReturnVal(enabledSpanIndexs, checkedEnabledSpanIndexs); // 有合并的返回值
+        return spanReturnVal && spanReturnVal(spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs); // 有合并的返回值
     }
 
     // 全选状态
     _isAllChecked(){
         const {checked} = this.get();
-        return this._getStatus(checked, (enabledSpanIndexs, checkedEnabledSpanIndexs) => checkedEnabledSpanIndexs.length === enabledSpanIndexs.length)
+        return this._getStatus(checked, (spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs) => checkedEnabledSpanIndexs.length === enabledSpanIndexs.length)
     }
 
     // 半选状态
     _isHalfChecked(){
-        return this._getStatus(false, (enabledSpanIndexs, checkedEnabledSpanIndexs) => {
+        return this._getStatus(false, (spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs) => {
             const isHasCheckedRow = checkedEnabledSpanIndexs.length > 0;
             const isCheckedAllSpans = checkedEnabledSpanIndexs.length === enabledSpanIndexs.length;
     
@@ -149,50 +153,12 @@ export default class TableRow extends Intact {
  
     _isDisabled(){
         const {disabled} = this.get();
-        return this._getStatus(disabled, (enabledSpanIndexs) => enabledSpanIndexs.length === 0)
+        return this._getStatus(disabled, (spanIndexs, enabledSpanIndexs) => enabledSpanIndexs.length === 0)
     }
 
-    _getSpanColumnsInfoByIndex(index){
-        const allSpanColumnsInfo = this._allSpanColumnsInfo();
-        return Array.isArray(allSpanColumnsInfo) ? allSpanColumnsInfo[index] : allSpanColumnsInfo;
-    }
-    // 只针对勾选框列  一个勾选框对应合并几列的数据
-    _allSpanColumnsInfo(){
-        const {checkType, rowKey, rowKeys, index, grid} = this.get();
-
-        if(checkType === 'none' || grid.length === 0) return {spanRowKeys: rowKey, spanIndexs: index};
-
-        const rowSpans = [];
-        let prevRowspan = 1;
-        let currentSpanColumnsInfoInCheckedRow = null;
-
-        grid.forEach((rowInGrid, rowIndex) => {
-            const firstColumnSpans = rowInGrid[0];
-            const firstColumnRowspan = firstColumnSpans.rowspan || 1;
-            const endRowIndex = rowIndex + firstColumnRowspan;
-            const spanIndexs = [];
-
-            if(firstColumnRowspan > 1 && prevRowspan===1){
-                // 合并开始行
-                const spanRowKeys = rowKeys.slice(rowIndex, endRowIndex);
-                for(let i = rowIndex; i < endRowIndex; i++){
-                    spanIndexs.push(i);
-                }
-                currentSpanColumnsInfoInCheckedRow = {
-                    spanRowKeys,
-                    spanIndexs
-                }
-            }else if(firstColumnRowspan === 1 && prevRowspan===1){
-                // 不是合并行
-                currentSpanColumnsInfoInCheckedRow = {
-                    spanRowKeys: rowKey,
-                    spanIndexs: rowIndex,
-                }
-            }
-            rowSpans.push(currentSpanColumnsInfoInCheckedRow);
-            prevRowspan = firstColumnRowspan;
-        })
-        return rowSpans;
+    _getSpanColumnsInfoByIndex(){
+        const {checkType, rowKey, index, merge} = this.get();
+        return checkType === 'none' || !merge ? {spanRowKeys: rowKey, spanIndexs: index} : this.spanColumnsInfo[index];
     }
 }
 

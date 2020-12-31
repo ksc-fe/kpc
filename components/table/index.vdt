@@ -21,7 +21,7 @@ const {
     _scrollPosition, _hoverIndex, tooltipPosition,
     _paddingBottom, _isStickyScrollbar, stickScrollbar, loading,
     _isShowLeftRightMiddle, merge, childrenKey, indent,
-    draggable, _dragKey, _curClickRowKey
+    draggable, _dragKey
 } = self.get();
 
 let cols;
@@ -246,6 +246,7 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
     const rowKeys = []; // save all rowKey
     const rowCheckeds = []; // Save the isChecked of all the rows
     const rowDisableds = [];
+    const firstCloumnRowSpans = [];
     let rows;
     if (!data || !data.length) {
         rows = <tr key="table_no_data">
@@ -316,7 +317,7 @@ const TbodyCreator = ({onlyLeft, onlyRight, refContainer, refTable, style}) => {
                     rowKeys={{ rowKeys }}
                     rowCheckeds={{ rowCheckeds }}
                     rowDisableds={{ rowDisableds }}
-                    curClickRowKey={{ _curClickRowKey }}
+                    firstCloumnRowSpans={{ firstCloumnRowSpans }}
                 />
 
                 // add tooltip

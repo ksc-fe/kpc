@@ -12,7 +12,7 @@ const {
     value, onlyLeft, index, merge,
     level, indent, children, grid,
     checked, draggable, dragKey, 
-    rowKeys
+    rowKeys, firstCloumnRowSpans
 } = self.get();
 const normalize = Intact.normalize;
 
@@ -23,10 +23,11 @@ if (merge) {
 
 let columnIndex = -1;
 
-const combinedScheme = checkType !== 'none' ? Object.assign({key:'$check'}, scheme) : scheme;
+const combinedScheme = checkType !== 'none' ? Object.assign({ checkType: {key: '$check'} }, scheme) : scheme;
+self.spanColumnsInfo = firstCloumnRowSpans;
 
 <tr class={{ {[className]: className, 'k-dragging': dragKey === rowKey} }}
-    ev-click={{ !(checkType === 'checkbox' && merge) ? self._onClick : undefined }}
+    ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
     draggable={{ draggable ? true : undefined }}
@@ -58,12 +59,23 @@ const combinedScheme = checkType !== 'none' ? Object.assign({key:'$check'}, sche
                         colspan: aboveCell.colspan,
                     }
                     rowInGrid.push(current);
+
+                    if(columnIndex === 0 && checkType !== 'none'){
+                        firstCloumnRowSpans.push(firstCloumnRowSpans[index - 1])
+                    }
                     return;
                 }
             }
 
             spans = merge.call(self, value, item, index, columnIndex);
             rowInGrid.push(spans);
+            
+            if(columnIndex === 0 && checkType !== 'none'){
+                const firstColumnRowspan = spans.rowspan || 1;
+                const endRowIndex = index + firstColumnRowspan; 
+                const spanColumnsInfo = firstColumnRowspan > 1 ? {spanRowKeys: rowKeys.slice(index, endRowIndex), spanIndexs:  Array.from(new Array(endRowIndex).keys()).slice(index)} : {spanRowKeys: rowKey, spanIndexs: index};
+                firstCloumnRowSpans.push(spanColumnsInfo)
+            }
         }
         let td;
         if (item.template) {
@@ -89,10 +101,11 @@ const combinedScheme = checkType !== 'none' ? Object.assign({key:'$check'}, sche
             }
             td = (i && i === keys.length) ? obj : null;
         }
-
-        if(columnIndex===0 && checkType !== 'none'){
+     
+        if(columnIndex===0 && checkType !== 'none' ){
             return  checkType === 'checkbox' ? <td {{ ...spans }}
-                        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
+                        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }} 
+                        data-column={{ spans && spans.rowspan > 1 ? "k-first-column" : undefined  }}
                     >
                         <Checkbox name="k-table-checkbox"
                             indeterminate={{ self._isHalfChecked() }}
@@ -104,12 +117,14 @@ const combinedScheme = checkType !== 'none' ? Object.assign({key:'$check'}, sche
                         class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
                     >
                         <Radio name="k-table-radio"
-                            value={{ checked }}
+                            value={{ self._isAllChecked() }}
                             ev-$change:value={{ self._onChangeChecked }}
-                            disabled={{ disabled }}
+                            disabled={{ self._isDisabled() }}
                         />
                     </td>
         }else{
+            const isFirstEleColumn = checkType === 'none' ? columnIndex === 0 : columnIndex === 1;
+
             return <td title={{ getTextByChildren(td) || undefined }}
                     data-ignore={{ item.ignore ? '' : undefined }}
                     className={{ {
@@ -119,11 +134,10 @@ const combinedScheme = checkType !== 'none' ? Object.assign({key:'$check'}, sche
                     } }}
                     key={{ schemeKey }}
                     {{ ...spans }}
-                    style={{ {paddingLeft: columnIndex === 0 && level ? level * indent + 'px' : undefined } }}
-                    ev-click={{ checkType === 'checkbox' && merge ? self._onClick : undefined }}
+                    style={{ {paddingLeft: isFirstEleColumn && level ? level * indent + 'px' : undefined } }}
                 >
                     <Button type="none" icon circle size="mini" 
-                        v-if={{ columnIndex === 0 && children }}
+                        v-if={{ isFirstEleColumn && children }}
                         class="k-table-arrow"
                         ev-click={{ self._onToggleSpreadRow }}
                     >
