@@ -6,7 +6,9 @@ const PROPS = [
     'disabled', 'merge', 'level', 'indent', 'children', 'className',
     'checked', 'draggable', 'dragKey',
     // to make scheme compare at last
-    'scheme'
+    'scheme', 'rowKeys', 'rowCheckeds', 
+    'curClickRowKey', 'rowDisableds', 
+    'firstCloumnRowSpans'
 ];
 
 export default class TableRow extends Intact {
@@ -14,8 +16,19 @@ export default class TableRow extends Intact {
     static template = template;
 
     _onClick(e) {
-        const {onClick, value, index, rowKey, 'ev-click': click} = this.get();
-        onClick(value, index, rowKey, e);
+        const {onClick, value, index, rowKey, checkType, rowDisableds, onChangeChecked, 'ev-click': click} = this.get();
+        const {spanIndexs, spanRowKeys} = this._getSpanColumnsInfoByIndex();
+        const isCheckedFirstColumn = checkType === 'checkbox' && e.target.dataset.column === 'k-first-column';
+
+        if(!((checkType === 'radio' || isCheckedFirstColumn) && Array.isArray(spanIndexs)) )  {
+            onClick(value, index, rowKey, e);
+        }else {
+            if( spanIndexs.every(idx => rowDisableds[idx]) ) return;
+
+            const enabledSpanRowKeys = spanRowKeys.filter((key,index) => rowDisableds[spanIndexs[index]] === false);
+            onClick(value, index, rowKey, e, enabledSpanRowKeys);
+            if(isCheckedFirstColumn && this._isHalfChecked()) onChangeChecked(enabledSpanRowKeys, true);
+        }
         click && click(e);
     }
 
@@ -55,8 +68,17 @@ export default class TableRow extends Intact {
     }
 
     _onChangeChecked(c, v) {
-        const {onChangeChecked, rowKey} = this.get();
-        onChangeChecked(rowKey, v);
+        const {onChangeChecked, checkType, rowDisableds} = this.get();
+        
+        // 由”全选“状态 变成 ”半选“状态
+        if(checkType === 'checkbox' && !v && this._isHalfChecked()) return onChangeChecked(undefined, v);
+
+        const {spanIndexs, spanRowKeys} = this._getSpanColumnsInfoByIndex();
+        if(Array.isArray(spanIndexs)){
+            const enabledSpanRowKeys = spanRowKeys.filter((key,index) => rowDisableds[spanIndexs[index]] === false);
+            return onChangeChecked(enabledSpanRowKeys, v);
+        }
+        onChangeChecked(spanRowKeys, v);
     }
 
     _destroy() {
@@ -98,6 +120,45 @@ export default class TableRow extends Intact {
             }
         }
         return super.update(lastVNode, nextVNode, flag);
+    }
+
+    _getStatus(notSpanReturnVal, spanReturnVal){
+        const {rowCheckeds, rowDisableds} = this.get();
+        const spanColumnsInfo = this._getSpanColumnsInfoByIndex();
+        if(!spanColumnsInfo) return;
+
+        const {spanIndexs} = spanColumnsInfo;
+        if(!Array.isArray(spanIndexs)) return notSpanReturnVal; // 代表没有合并
+
+        const enabledSpanIndexs = spanIndexs.filter(idx => rowDisableds[idx] === false);
+        const checkedEnabledSpanIndexs = enabledSpanIndexs.filter(idx => rowCheckeds[idx] === true);
+        return spanReturnVal && spanReturnVal(spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs); // 有合并的返回值
+    }
+
+    // 全选状态
+    _isAllChecked(){
+        const {checked} = this.get();
+        return this._getStatus(checked, (spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs) => checkedEnabledSpanIndexs.length === enabledSpanIndexs.length)
+    }
+
+    // 半选状态
+    _isHalfChecked(){
+        return this._getStatus(false, (spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs) => {
+            const isHasCheckedRow = checkedEnabledSpanIndexs.length > 0;
+            const isCheckedAllSpans = checkedEnabledSpanIndexs.length === enabledSpanIndexs.length;
+    
+            return isCheckedAllSpans ? false : isHasCheckedRow;
+        })
+    }
+ 
+    _isDisabled(){
+        const {disabled} = this.get();
+        return this._getStatus(disabled, (spanIndexs, enabledSpanIndexs) => enabledSpanIndexs.length === 0)
+    }
+
+    _getSpanColumnsInfoByIndex(){
+        const {checkType, rowKey, index, merge} = this.get();
+        return checkType === 'none' || !merge ? {spanRowKeys: rowKey, spanIndexs: index} : this.spanColumnsInfo[index];
     }
 }
 
