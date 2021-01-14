@@ -5,26 +5,14 @@ import {hasOwn} from '../utils';
 const h = Intact.Vdt.miss.h;
 
 function Wrapper(props) {
-    let {key, _context, model, ...rest} = props;
-    if (!key && model) {
-        key = `$fi.${model}`;
-    }
     return h(FormItem, {
-        key, model, _context,
+        ...props,
         ...(
-            model ?
-                {
-                    'ev-$change:value': function(c, v) {
-                        _context.data.set(model, v, {async: false});
-                    },
-                    value: _context.data.get(model),
-                } :
-                hasOwn.call(rest, 'value') ?
-                    // add a model to let FormItem validate this value
-                    {model: '__use_value'} :
-                    undefined
+            hasOwn.call(props, 'value') ?
+                // add a model to let FormItem validate this value
+                {model: '__use_value'} :
+                undefined
         ),
-        ...rest
     });
 }
 

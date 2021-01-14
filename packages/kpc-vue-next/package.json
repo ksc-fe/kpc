@@ -1,0 +1,58 @@
+{
+  "name": "kpc-vue-next",
+  "version": "1.4.8",
+  "description": "KPC components for Vue 3.0.",
+  "keywords": [
+    "component",
+    "intact",
+    "vue",
+    "ui",
+    "components",
+    "library",
+    "king-design",
+    "kpc"
+  ],
+  "author": "Javey <jiawei23716@sina.com>",
+  "homepage": "https://design.ksyun.com",
+  "license": "MIT",
+  "module": "index.js",
+  "main": "dist/kpc.vue.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksc-fe/kpc.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/ksc-fe/kpc/issues"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.9.2",
+    "core-js": "^3.6.4",
+    "dayjs": "^1.8.15",
+    "downloadjs": "^1.4.7",
+    "enquire.js": "^2.1.6",
+    "intact": "^2.5.15",
+    "intact-vue": "^0.5.11",
+    "monaco-editor": "^0.17.1",
+    "mxgraphx": "^4.0.7",
+    "resize-observer-polyfill": "^1.5.0",
+    "tinycolor2": "^1.4.1"
+  },
+  "sideEffects": [
+    "*.css",
+    "*.styl"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@babel/preset-env": "^7.12.11",
+    "@vue/compiler-sfc": "^3.0.5",
+    "babel-loader": "^8.2.2",
+    "vue": "^3.0.5",
+    "vue-loader": "^16.1.2",
+    "vue-style-loader": "^4.1.2"
+  }
+}

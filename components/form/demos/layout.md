@@ -61,17 +61,6 @@ export default class extends Intact {
 }
 ```
 
-```vue-data
-data() {
-    return {
-        model: {
-            checkbox: [],
-        },
-        layout: 'horizontal',
-    }
-},
-```
-
 ```react-methods
 // inject the context by _context
 static childContextTypes = {

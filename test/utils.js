@@ -2,7 +2,7 @@ import Intact from 'intact';
 import {nextFrame as _nextFrame} from '../components/utils';
 
 export function render(Component, props) {
-    const c = new Component(props); 
+    const c = new Component(props);
     c.init();
     c.mount();
     return c;
@@ -20,7 +20,13 @@ export function mount(Component, style, data) {
         container.className = 'example ' + data.index;
     }
     document.body.appendChild(container);
-    const instance = Intact.mount(Component, container);
+    let instance;
+    if (Component.prototype instanceof Intact) {
+        instance = Intact.mount(Component, container);
+    } else {
+        // for vue@3.0
+        instance = Component(container);
+    }
     // scroll to the view
     window.scrollTo(0, document.scrollingElement.scrollHeight - 1080);
     return instance;

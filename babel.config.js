@@ -6,13 +6,13 @@ module.exports = function(api) {
     const config = {
         "presets": [
             ["@babel/preset-env", {
-                "loose": true, 
+                "loose": true,
                 "useBuiltIns": "usage",
                 "corejs": corejs,
                 "modules": process.env.BUILD ? false : "cjs",
                 // "modules": "cjs",
                 // "debug": true
-            }], 
+            }],
             "@babel/preset-react"
         ],
         "plugins": [
@@ -26,7 +26,8 @@ module.exports = function(api) {
     };
 
     if (!process.env.REACT) {
-        config.plugins.push('transform-vue-jsx');
+        // config.plugins.push('transform-vue-jsx');
+        config.plugins.push('@vue/babel-plugin-jsx');
     }
 
     return config;

@@ -77,7 +77,7 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
             _head.push(line);
         }
         head += _head.join('\n');
-        
+
         const {defaults, methods} = parseJS(js, vueData);
         if (defaults) {
             properties = {...properties, ...defaults};
@@ -118,7 +118,7 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
                     ...indent(methods.join('\n')),
                 `},`
             ])
-        ]; 
+        ];
     }
 
     if (vueScript) {
@@ -129,7 +129,7 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     }
 
     return {
-        head, 
+        head,
         template: template.trim().split('\n').map(item => `    ${item}`).join('\n'),
         js: scripts.join('\n'),
     };
@@ -139,7 +139,7 @@ function parseJS(js, vueData) {
     return {
         defaults: vueData ? {} : getDefaults(js),
         methods: getMethods(js),
-    }; 
+    };
 }
 
 const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
@@ -210,13 +210,17 @@ function parseVModel(template, properties) {
             return match;
         } else {
             return `:${name}.sync="${value}"`;
-        } 
+        }
     });
 }
 
 function parseBlock(template) {
+    // template = template.replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
+        // return `<template slot="${name}"` + (params ? ` slot-scope="${params}"` : '');
+    // });
+
     template = template.replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
-        return `<template slot="${name}"` + (params ? ` slot-scope="${params}"` : '');
+        return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
     });
 
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
@@ -251,7 +255,7 @@ function getMethods(js) {
                             return `this[${name}]`;
                         }
                     }
-                ) 
+                )
                 .replace(
                     /this\.set\((['"])?([\d\w]+)["']?,\s*(.*?)\)/g,
                     (nouse, quote, name, value, semiconlon) => {
