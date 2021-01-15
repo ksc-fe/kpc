@@ -34,7 +34,7 @@ export default class DropdownMenu extends Intact {
             of: 'self', // self | parent
             container: undefined,
 
-            // indicate that it is use in Dropdown or alone for lookup dropdown instance in _mount
+            // indicate that it is used in Dropdown or alone for lookup dropdown instance in _mount
             _useInDropdown: false,
         };
     }
