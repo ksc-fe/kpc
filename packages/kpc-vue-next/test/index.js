@@ -5,6 +5,10 @@ import Intact from 'intact';
 
 const req = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*next\.vue$/);
 
+// spec file
+const specContext = require.context('../../../components/', true, /index\.vue-next\.spec\.js/);
+specContext.keys().forEach(specContext);
+
 describe('Unit test for kpc-vue-next', () => {
     let container;
 

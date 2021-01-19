@@ -26,6 +26,7 @@ const createWebpackConfig = function() {
                 .set('~', destData)
                 .set('intact$', resolve('./node_modules/intact-vue/dist/index.js'))
                 .set('kpc-vue-next', root)
+                .set('vue-router', resolve('./node_modules/vue-router/dist/vue-router.esm-bundler.js'))
             .end()
         .end()
         .plugin('vue')

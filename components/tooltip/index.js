@@ -31,7 +31,7 @@ function Wrapper(props, flag) {
             children,
             ...rest,
             className: 'k-tooltip',
-        }), contentVNode]; 
+        }), contentVNode];
     }
     return h(TooltipVueWrapper, {
         children: [h(Tooltip, {
@@ -45,6 +45,8 @@ function Wrapper(props, flag) {
 
 // add blocks declaration for Angular
 Wrapper.blocks = ['content'];
+
+Wrapper.displayName = Tooltip.name;
 
 // for vue Boolean cast
 Wrapper.propTypes = TooltipContent.propTypes;

@@ -1,5 +1,6 @@
 import Intact from 'intact';
 import {nextFrame as _nextFrame} from '../components/utils';
+import {createApp, render as vueRender} from 'vue';
 
 export function render(Component, props) {
     const c = new Component(props);
@@ -115,4 +116,20 @@ export function nextFrame() {
     return new Promise(resolve => {
         _nextFrame(resolve);
     });
+}
+
+export function renderVue(App, hook) {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+    const app = createApp(App);
+
+    hook && hook(app);
+
+    return app.mount(container);
+}
+
+export function unmountVue(vm) {
+    const container = vm.$el.parentElement;
+    vueRender(null, container);
+    document.body.removeChild(container);
 }
