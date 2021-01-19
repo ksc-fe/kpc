@@ -27,11 +27,13 @@ jobs:
     - run: npm i -g codecov
     - run: npm ci
     - run: cd ./packages/kpc-angular && npm ci && cd ../../
+    - run: cd ./packages/kpc-vue-next && yarn --frozen-lockfile && cd ../../
     - run: npx gulp doc:prepare
     - run: npm run build:angular
     - run: npm test
     - run: codecov
       env: 
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+    - run: npm run test:vue-next
     - run: npm run test:react
     - run: npm run test:angular

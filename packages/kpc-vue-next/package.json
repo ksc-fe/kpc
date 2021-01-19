@@ -45,12 +45,7 @@
     "*.styl"
   ],
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
-    "@babel/plugin-proposal-decorators": "^7.12.12",
-    "@babel/preset-env": "^7.12.11",
     "@vue/compiler-sfc": "^3.0.5",
-    "babel-loader": "^8.2.2",
     "vue": "^3.0.5",
     "vue-loader": "^16.1.2",
     "vue-router": "^4.0.3",

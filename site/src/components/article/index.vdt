@@ -23,18 +23,23 @@ import {Tooltip} from 'kpc/components/tooltip';
                         <Tab v-for={{ Demo.data.highlighted }} 
                             value={{ value.filename }}
                         >
-                            {{ value.filename }}
-                            {{ do { 
+                            <span class="filetype">{{ do { 
                                 if (!value.file) {
                                     if (value.language === 'vue') {
-                                        '(Vue)'
+                                        'Vue'
                                     } else if (value.language === 'jsx') {
-                                        '(React)'
+                                        'React'
                                     } else if (value.language === 'ts') {
-                                        '(Angular)'
+                                        'Angular'
+                                    } else {
+                                        value.filename
                                     }
+                                } else if (value.file === 'next.vue') {
+                                    'Vue Next'
+                                } else {
+                                    value.filename
                                 }
-                            } }}
+                            } }}</span>
                         </Tab>
                     </Tabs>
                     <div class="code" innerHTML={{ (Demo.data.highlighted.find(item => {

@@ -2,6 +2,7 @@ import Intact from 'intact';
 import template from './index.vdt';
 import axios from 'axios';
 import stylusCompile from '../../libs/stylus';
+import './index.styl';
 
 const version = process.version;
 
@@ -31,7 +32,7 @@ export default class extends Intact {
                 });
             }
         });
-        
+
         const _contents = contents ? contents.split('<!-- example -->') : [];
 
         this.set({
