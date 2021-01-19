@@ -1,27 +1,59 @@
 const Intact = require('intact');
 const Vdt = Intact.Vdt;
 const {indent, dedent, getDefaults} = require('./utils');
+const {memoize} = require('../utils');
 
-module.exports = function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus) {
-    // console.log(vdt, js, vueScript);
-    const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
-    const result = [
-        `<template>`,
-        obj.template,
-        `</template>`,
-        `<script>`,
-        obj.head + (jsHead ? '\n' + jsHead + '\n' : ''),
-        `export default {`,
-        obj.js,
-        `}`,
-        `</script>`,
-    ];
-    if (hasStylus) {
-        result.push('<style lang="stylus" src="./index.styl"></style>');
-    }
-
-    return result.join('\n');
+exports.toVue2 = function(...args) {
+    return parseToVue2(partialParse(...args));
 }
+
+exports.toVue3 = function(...args) {
+    return parseToVue3(partialParse(...args));
+}
+
+function parseToVue2(template) {
+    template = template.replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
+        return `<template slot="${name}"` + (params ? ` slot-scope="${params}"` : '');
+    });
+
+    return template.replace(/<\/b:[\w\-]+>/g, '</template>');
+}
+
+function parseToVue3(template) {
+    template = template
+        .replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
+            return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
+        })
+        .replace(/kpc-vue/g, 'kpc-vue-next');
+
+    return template.replace(/<\/b:[\w\-]+>/g, '</template>');
+}
+
+const partialParse = memoize(
+    function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus) {
+        // console.log(vdt, js, vueScript);
+        const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
+        const result = [
+            `<template>`,
+            obj.template,
+            `</template>`,
+            `<script>`,
+            obj.head + (jsHead ? '\n' + jsHead + '\n' : ''),
+            `export default {`,
+            obj.js,
+            `}`,
+            `</script>`,
+        ];
+        if (hasStylus) {
+            result.push('<style lang="stylus" src="./index.styl"></style>');
+        }
+
+        return result.join('\n');
+    },
+    function(vdt, js, vueScript, vueTemplate) {
+        return vdt + vueTemplate;
+    }
+);
 
 const importRegExp = /import \{?([\s\S]*?)\}? from .*/g
 function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
@@ -49,7 +81,7 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
         template = parseProperty(template, properties, methods);
         template = parseVModel(template, properties);
         template = parseInterpolation(template, properties, methods);
-        template = parseBlock(template);
+        // template = parseBlock(template);
     }
 
     let scripts = indent([
@@ -212,18 +244,6 @@ function parseVModel(template, properties) {
             return `:${name}.sync="${value}"`;
         }
     });
-}
-
-function parseBlock(template) {
-    // template = template.replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
-        // return `<template slot="${name}"` + (params ? ` slot-scope="${params}"` : '');
-    // });
-
-    template = template.replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
-        return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
-    });
-
-    return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }
 
 function getMethods(js) {

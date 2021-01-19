@@ -132,6 +132,23 @@ export function findRouter(instance) {
         }
     } else if (Component.cid === 'IntactVue') {
         return instance.get('_context').data.$router;
+    } else if (Component.cid === 'IntactVueNext') {
+        // for vue3.0
+        while (instance) {
+            const vueInstance = instance.vueInstance;
+            if (vueInstance) {
+                return vueInstance.$router;
+            }
+            let parentVNode = instance.parentVNode;
+            while (true) {
+                if (!parentVNode) return;
+                if (parentVNode.type === Types.ComponentClass) {
+                    instance = parentVNode.children;
+                    break;
+                }
+                parentVNode = parentVNode.parentVNode;
+            }
+        }
     }
 }
 

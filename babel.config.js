@@ -25,9 +25,10 @@ module.exports = function(api) {
         ]
     };
 
-    if (!process.env.REACT) {
-        // config.plugins.push('transform-vue-jsx');
+    if (process.env.VUE_NEXT) {
         config.plugins.push('@vue/babel-plugin-jsx');
+    } else if (!process.env.REACT) {
+        config.plugins.push('transform-vue-jsx');
     }
 
     return config;

@@ -18,6 +18,7 @@ module.exports = (config) => {
                 .set('kpc', root)
                 .set('kpc-vue', root)
                 .set('kpc-react', root)
+                .set('@', root)
                 .end()
             .symlinks(false)
             .extensions

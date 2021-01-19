@@ -7,6 +7,8 @@ const resolve = (p) => {
     return path.resolve(__dirname, '../', p);
 };
 
+const cache = new Map();
+
 module.exports = {
     resolve,
 
@@ -41,7 +43,7 @@ module.exports = {
     root: resolve('./'),
 
     writeFile(file, content) {
-        return fs.ensureFile(file).then(() => fs.writeFile(file, content)); 
+        return fs.ensureFile(file).then(() => fs.writeFile(file, content));
     },
 
     exec(command) {
@@ -63,4 +65,19 @@ module.exports = {
     },
 
     themes: ['default', 'ksyun'],
+
+    memoize(func, resolver) {
+        const memoized = function(...args) {
+            const key = resolver ? resolver(...args) : args[0];
+            if (cache.has(key)) {
+                return cache.get(key);
+            }
+            const result = func.apply(this, args);
+            cache.set(key, result);
+
+            return result;
+        }
+
+        return memoized;
+    }
 };

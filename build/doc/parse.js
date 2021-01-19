@@ -2,7 +2,7 @@ const fs = require('fs-extra');
 const yaml = require("js-yaml");
 const marked = require('marked');
 const highlight = require("highlight.js");
-const intact2vue = require('./intact2vue');
+const {toVue2, toVue3} = require('./intact2vue');
 const intact2react = require('./intact2react');
 const intact2angular = require('./intact2angular');
 const {root, writeFile} = require('../utils');
@@ -310,6 +310,7 @@ function parseCodes(file, codes) {
     const codeSnippetMap = {
         vueScript: null,
         vueTemplate: null,
+        vueNextTemplate: null,
         vueData: null,
         vueMethods: null,
         reactMethods: null,
@@ -321,7 +322,7 @@ function parseCodes(file, codes) {
     const codeSnippetLangArray = Object.keys(codeSnippetMap).map(key => {
         const lang = key.replace(/([A-Z])/g, c => `-${c.toLowerCase()}`);
         codeSnippetLangMap[lang] = key;
-        return lang; 
+        return lang;
     });
 
     const ignoreMap = {
@@ -405,27 +406,32 @@ function parseCodes(file, codes) {
 
 function generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes) {
     const {
-        vueScript, vueTemplate, vueMethods, vueData,
+        vueScript, vueTemplate, vueNextTemplate, vueMethods, vueData,
         jsHead, reactMethods, angularMethods, angularProperties
     } = codeSnippetMap;
     const {hasStylus, hasVue, hasReact, hasAngular} = hasMap;
 
     if (!hasVue) {
-        const code = {
+        const code3 = {
             language: 'vue',
-            content: intact2vue(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus)
-        }
+            content: toVue3(vdt, js, vueScript, vueNextTemplate, vueMethods, vueData, jsHead, hasStylus),
+            filename: 'next.vue',
+        };
+        const code2 = {
+            language: 'vue',
+            content: toVue2(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus)
+        };
         if (!hasReact) {
-            codes.push(code);
+            codes.push(code3, code2);
         } else {
-            codes.splice(codes.length - 1, 0, code);
+            codes.splice(codes.length - 1, 0, code3, code2);
         }
     }
 
     if (!hasReact) {
         codes.push({
             language: 'jsx',
-            content: intact2react(vdt, js, reactMethods, jsHead, hasStylus), 
+            content: intact2react(vdt, js, reactMethods, jsHead, hasStylus),
         });
     }
 

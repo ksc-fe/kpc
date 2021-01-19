@@ -64,6 +64,7 @@ function Wrapper(props, flag) {
 }
 
 Wrapper.propTypes = Dropdown.propTypes;
+Wrapper.displayName = Dropdown.name;
 
 const _className = Intact.Vdt.utils.className;
 class DropdownVueWrapper extends Intact {

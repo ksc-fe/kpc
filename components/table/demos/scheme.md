@@ -73,6 +73,25 @@ const scheme = {
 </div>
 ```
 
+```vue-next-template
+<div>
+    <Table :scheme="scheme" :data="data" />
+    <Table :data="data">
+        <TableColumn 
+            title='定义该列单元格内容'
+            key='a'
+        >
+            <template v-slot="item">
+                <a>{{ item.a }}</a>
+            </template>
+        </TableColumn>
+        <TableColumn title='key形式' key='b' />
+        <TableColumn title='key为一个路径字符串' key='c.c1' />
+        <TableColumn title='没有这个key，则返回空' key='d.d1' />
+    </Table>
+</div>
+```
+
 ```vue-data
 data() {
     return {

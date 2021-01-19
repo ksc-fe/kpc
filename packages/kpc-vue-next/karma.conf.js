@@ -5,6 +5,7 @@ const {addMonaco} = require('../../build/webpack/monaco');
 const {destData} = require('../../build/doc/webpack');
 const path = require('path');
 const {VueLoaderPlugin} = require('vue-loader');
+const {root} = require('../../build/utils');
 
 console.log(
     '\x1b[33m%s\x1b[0m',
@@ -24,6 +25,7 @@ const createWebpackConfig = function() {
                 .set('vue$', resolve('./node_modules/vue/dist/vue.esm-bundler.js'))
                 .set('~', destData)
                 .set('intact$', resolve('./node_modules/intact-vue/dist/index.js'))
+                .set('kpc-vue-next', root)
             .end()
         .end()
         .plugin('vue')

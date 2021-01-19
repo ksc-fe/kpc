@@ -1,33 +1,25 @@
-import {createApp} from 'vue';
-// import {Button} from '../components/button';
+import {createApp, render} from 'vue';
 import Button from '~/components/button/demos/basic/index.vue';
-import {render, mount, testDemos, unmount, wait, nextFrame} from '../../../test/utils';
+import {mount, testDemos, unmount, wait, nextFrame} from '@/test/utils';
 import Intact from 'intact';
 
-const req = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*index\.vue$/);
+const req = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*next\.vue$/);
 
 describe('Unit test for kpc-vue-next', () => {
-    let demo;
+    let container;
 
-    // afterEach(() => unmount(demo));
+    afterEach(() => {
+        render(null, container);
+        document.body.removeChild(container);
+    });
 
     testDemos(req, async Demo => {
-        demo = mount((container) => {
+        mount((_container) => {
+            container = _container;
             return createApp({
                 template: '<Demo />',
                 components: {Demo}
-            }).mount(container);
+            }).mount(_container);
         });
     });
-
-    // it('test', () => {
-        // const container = document.createElement('div');
-        // document.body.appendChild(container);
-        // createApp({
-            // template: '<Button>test</Button>',
-            // components: {
-                // Button
-            // }
-        // }).mount(container);
-    // });
 });
