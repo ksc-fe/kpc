@@ -1,5 +1,5 @@
 {
-  "name": "kpc-vue-next",
+  "name": "kpc-vue",
   "version": "2.0.0-beta.0",
   "description": "KPC components for Vue 3.0.",
   "keywords": [
@@ -30,7 +30,7 @@
     "url": "git+https://github.com/ksc-fe/kpc.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "prelease-patch": "npm version prepatch --preid beta && npm publish --tag=next"
   },
   "bugs": {
     "url": "https://github.com/ksc-fe/kpc/issues"

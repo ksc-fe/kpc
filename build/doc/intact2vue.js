@@ -24,7 +24,7 @@ function parseToVue3(template) {
         .replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
             return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
         })
-        .replace(/kpc-vue/g, 'kpc-vue-next');
+        // .replace(/kpc-vue/g, 'kpc-vue-next');
 
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }
