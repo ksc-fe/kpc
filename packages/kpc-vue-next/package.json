@@ -1,6 +1,6 @@
 {
   "name": "kpc-vue-next",
-  "version": "1.4.8",
+  "version": "2.0.0-beta.0",
   "description": "KPC components for Vue 3.0.",
   "keywords": [
     "component",
@@ -11,6 +11,14 @@
     "library",
     "king-design",
     "kpc"
+  ],
+  "files": [
+    "@stylus",
+    "components",
+    "i18n",
+    "styles",
+    "index.js",
+    "inheritsLoose.js"
   ],
   "author": "Javey <jiawei23716@sina.com>",
   "homepage": "https://design.ksyun.com",
