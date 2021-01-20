@@ -28,7 +28,7 @@ export const methods = {
     },
 
     email(value) {
-        return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value); 
+        return /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(value);
     },
 
     url(value) {
@@ -82,27 +82,9 @@ export const methods = {
         return decimalPlaces(value) <= decimals && toInt(value) % toInt(param) === 0;
     },
 
-    equalTo(value, item, param) {
-        const equalValue = item.form.get('_context').data.get(param);
-        const equalItem = item.form.getItem(param);
-        if (!equalItem._hasBindEqualToCallback) {
-            item._equalToCallback = () => {
-                item.validateIfDirty();
-            };
-            equalItem.on('$changed:value', item._equalToCallback);
-            equalItem._hasBindEqualToCallback = true;
-
-            // remove listener when destroy or change rules
-            ['$destroyed'/*, '$change:rules'*/].forEach(name => {
-                item.on(name, () => {
-                    equalItem.off('$changed:value', item._equalToCallback);
-                    equalItem._hasBindEqualToCallback = false;
-                });
-            });
-        }
-
-        return value === equalValue;
-    },
+    equal(value, item, param) {
+        return value === param;
+    }
 };
 
 function count(num) {
@@ -151,7 +133,7 @@ export const messages = {
     step(value, item, param) {
         return _$(`请输入步长为 {n} 的数`, {n: param});
     },
-    equalTo: () => _$('两次输入不一致'),
+    equal: () => _$('两次输入不一致'),
 };
 
 export const classNames = {};

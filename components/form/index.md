@@ -19,7 +19,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| model | 指定需要验证的属性名称 | `String` | `undefined` |
+| value | 指定需要验证的数据 | `*` | `undefined` |
 | rules | 指定验证规则 | `Object` | `{}` |
 | messages | 指定验证失败时错误提示文案 | `Object` | `{}` |
 | classNames | 指定验证失败时添加的className | `Object` | `{}` |
@@ -56,7 +56,7 @@ sidebar: doc
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
 | validate | 验证表单所有规则 | - | `Promise`: `.then(valid => {})`，`valid`为`true`验证成功，否则失败 |
-| reset | 重置表单 | - | `undefined` |
+| reset | 重置表单验证状态 | - | `undefined` |
 | getFirstInvalidFormItem | 获取第一条出错的`FormItem` | - | `FormItem` |
 
 # 静态方法

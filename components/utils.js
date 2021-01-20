@@ -436,3 +436,7 @@ export function clamp(number, lower, upper) {
 export function stopPropagation(e) {
     e.stopPropagation();
 }
+
+export function deprecated(msg, link) {
+    console.warn(msg, `See ${link} for more details.`);
+}

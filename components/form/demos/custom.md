@@ -23,7 +23,7 @@ import {Button} from 'kpc/components/button';
 <Form>
     <FormItem label="描述">
         <FormItem v-for={{ self.get('descriptions') }}
-            model={{ `descriptions[${key}]` }}
+            value={{ value }}
             hideLabel
             rules={{ {
                 required: true, 
@@ -106,17 +106,6 @@ remove(index) {
 ```
 
 ```react-methods
-// 注入_context上下文
-static childContextTypes = {
-    _context: () => {}
-}
-
-getChildContext() {
-    return {
-        _context: this
-    }
-}
-
 add() {
     this.setState({descriptions: this.state.descriptions.concat('')});
 }
@@ -138,7 +127,7 @@ Form.addMethod('letter', (value, item, param) => {
             <k-form-item label="标签">
                 <k-form-item
                     *ngFor="let value of descriptions; let i = index; trackBy: trackArray"
-                    model="descriptions[{{ i }}]"
+                    [value]="value"
                     [hideLabel]="true"
                     [rules]="{
                         required: true, 

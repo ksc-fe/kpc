@@ -26,10 +26,10 @@ import {ButtonGroup, Button} from 'kpc/components/button';
             <Button value="mini">mini</Button>
         </ButtonGroup>
     </FormItem>
-    <FormItem label="Input" model="model.input" rules={{ {required: true} }}>
+    <FormItem label="Input" value={{ self.get('model.input') }} rules={{ {required: true} }}>
         <Input v-model="model.input" />
     </FormItem>
-    <FormItem label="Select" model="model.select" 
+    <FormItem label="Select" value={{ self.get("model.select") }}
         rules={{ {required: true} }} 
     >
         <Select v-model="model.select">
@@ -57,19 +57,6 @@ export default class extends Intact {
             layout: 'horizontal',
             size: 'default',
         };
-    }
-}
-```
-
-```react-methods
-// inject the context by _context
-static childContextTypes = {
-    _context: () => {}
-}
-
-getChildContext() {
-    return {
-        _context: this
     }
 }
 ```

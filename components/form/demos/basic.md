@@ -32,35 +32,6 @@ order: 0
 手动调用`Form`的`validate()`方法来验证，该函数为异步函数，返回`true`或`false`来标示验证是否通过。
 另外，验证失败时，可以通过`Form`的`getFirstInvalidFormItem()`方法来获取第一条出错的`FormItem`
 
-> __以下规则仅对使用`model`来指定要验证的属性时才需要关心，建议如下例所示，使用`value`来指定验证的值__
->
-> 验证的字段名`model`必须是当前上下文对象上的直接属性名，在循环中我们必须通过索引来拼接取值路径字符串，
-> 例如：`"item.0.value"`
-> ```vue
-> // @code
-> <!-- 错误的model定义 -->
-> <FormItem v-for="(item, index) in data"
->     model="item.value"
->     :rules="{required: true}" 
->     :key="index"
-> >
->     <Input v-model="item.value" />
-> </FormItem>
-> 
-> <!-- 正确的model定义 -->
-> <FormItem v-for="(item, index) in data"
->     :model="`data.${index}.value`"
->     :rules="{required: true}" 
->     :key="index"
-> >
->     <Input v-model="item.value" />
-> </FormItem>
-> 
-> ```
->
-> React下，需要往子组件注入当前上下文`_context`，因为`FormItem`需要从当前上下文获取待验证的值，
-> 详见下面`index.jsx`示例文件
-
 ```vdt
 import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
@@ -73,10 +44,10 @@ import {Slider} from 'kpc/components/slider';
 import {Datepicker} from 'kpc/components/datepicker';
 
 <Form ev-submit={{ self.submit }} ref="form" labelWidth="200">
-    <FormItem label="Input" model="model.input" rules={{ {required: true} }}>
+    <FormItem label="Input" value={{ self.get('model.input') }} rules={{ {required: true} }}>
         <Input v-model="model.input" />
     </FormItem>
-    <FormItem label="Select" model="model.select" 
+    <FormItem label="Select" value={{ self.get('model.select') }}
         rules={{ {required: true} }} 
         messages={{ {required: '必须选择'} }}
     >
@@ -86,7 +57,7 @@ import {Datepicker} from 'kpc/components/datepicker';
             <Option value="C++">C++</Option>
         </Select>
     </FormItem>
-    <FormItem label="Checkbox" model="model.checkbox" 
+    <FormItem label="Checkbox" value={{ self.get('model.checkbox') }}
         rules={{ {required: true, maxLength: 2} }}
         messages={{ {required: '必须选择'} }}
     >
@@ -94,7 +65,7 @@ import {Datepicker} from 'kpc/components/datepicker';
         <Checkbox trueValue="PHP" v-model="model.checkbox">PHP</Checkbox>
         <Checkbox trueValue="C++" v-model="model.checkbox">C++</Checkbox>
     </FormItem>
-    <FormItem label="Radio" model="model.radio"
+    <FormItem label="Radio" value={{ self.get('model.radio') }}
         rules={{ {required: true} }} 
         messages={{ {required: '必须选择'} }}
     >
@@ -102,7 +73,7 @@ import {Datepicker} from 'kpc/components/datepicker';
         <Radio trueValue="PHP" v-model="model.radio">PHP</Radio>
         <Radio trueValue="C++" v-model="model.radio">C++</Radio>
     </FormItem>
-    <FormItem label="Radio ButtonGroup" model="model.buttonGroup"
+    <FormItem label="Radio ButtonGroup" value={{ self.get("model.buttonGroup") }}
         rules={{ {required: true} }} 
         messages={{ {required: '必须选择'} }}
     >
@@ -112,27 +83,27 @@ import {Datepicker} from 'kpc/components/datepicker';
             <Button value="C++">C++</Button>
         </ButtonGroup>
     </FormItem>
-    <FormItem label="Switch" model="model.switch">
+    <FormItem label="Switch" value={{ self.get("model.switch") }}>
         <Switch v-model="model.switch" />
     </FormItem>
-    <FormItem model="model.slider" rules={{ {required: true, min: 1} }} label="Slider">
+    <FormItem value={{ self.get("model.slider") }} rules={{ {required: true, min: 1} }} label="Slider">
         <Slider v-model="model.slider" isShowInput={{ false }} />
     </FormItem>
-    <FormItem model="model.date" rules={{ {required: true} }} label="Datepicker">
+    <FormItem value={{ self.get("model.date") }} rules={{ {required: true} }} label="Datepicker">
         <Datepicker v-model="model.date" />  
     </FormItem>
-    <FormItem label="Textarea" model="model.textarea"
+    <FormItem label="Textarea" value={{ self.get("model.textarea") }}
         rules={{ {required: true} }}
     >
         <Input type="textarea" v-model="model.textarea" />
     </FormItem>
-    <FormItem label="Password" model="model.password"
+    <FormItem label="Password" value={{ self.get("model.password") }}
         rules={{ {required: true} }}
     >
         <Input type="password" v-model="model.password" />
     </FormItem>
-    <FormItem label="Confirm Password" model="model.confirmPassword"
-        rules={{ {required: true, equalTo: 'model.password'} }}
+    <FormItem label="Confirm Password" value={{ self.get("model.confirmPassword") }}
+        rules={{ {required: true, equal: self.get('model.password')} }}
     >
         <Input type="password" v-model="model.confirmPassword" />
     </FormItem>
@@ -193,6 +164,7 @@ export default class extends Intact {
     }
 
     reset() {
+        this.set('model', {checkbox: []});
         this.refs.form.reset();
         console.log(this.get('model'));
     }
@@ -207,17 +179,4 @@ data() {
         }
     }
 },
-```
-
-```react-methods
-// 注入_context上下文
-static childContextTypes = {
-    _context: () => {}
-}
-
-getChildContext() {
-    return {
-        _context: this
-    }
-}
 ```

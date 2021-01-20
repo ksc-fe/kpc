@@ -215,10 +215,12 @@ export default class FormItem extends Intact {
         /* istanbul ignore if */
         if (this.get('isDirty')) return;
 
+        this.set('isDirty', true);
         // for select, the focusout event triggers before select
         // so we put off validating it
         setTimeout(() => {
-            if (this.destroyed) return;
+            // maybe it has been destoryed or reset
+            if (this.destroyed || !this.get('isDirty')) return;
             this.validate()
         }, 100);
     }

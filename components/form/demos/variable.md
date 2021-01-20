@@ -16,7 +16,7 @@ import {Row, Col} from 'kpc/components/grid';
     <FormItem label="姓名">
         <Row gutter="16">
             <Col span="12">
-                <FormItem hideLabel model="firstName" rules={{ {
+                <FormItem hideLabel value={{ self.get('firstName') }} rules={{ {
                     // 该规则取值，随着lastName的存在与否而改变
                     required: self.get('lastName')
                 } }}> 
@@ -24,7 +24,7 @@ import {Row, Col} from 'kpc/components/grid';
                 </FormItem>
             </Col>
             <Col span="12">
-                <FormItem hideLabel model="lastName" rules={{ {
+                <FormItem hideLabel value={{ self.get("lastName") }} rules={{ {
                     // 该规则取值，随着firstName的存在与否而改变
                     required: self.get('firstName')
                 } }}> 
@@ -42,17 +42,4 @@ import {Row, Col} from 'kpc/components/grid';
         width 100%
         .k-input
             width 100%
-```
-
-```react-methods
-// 注入_context上下文
-static childContextTypes = {
-    _context: () => {}
-}
-
-getChildContext() {
-    return {
-        _context: this
-    }
-}
 ```

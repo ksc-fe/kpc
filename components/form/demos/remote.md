@@ -10,7 +10,7 @@ import {Form, FormItem} from 'kpc/components/form';
 import {Input} from 'kpc/components/input';
 
 <Form ref="form">
-    <FormItem label="用户名" model="userName"
+    <FormItem label="用户名" value={{ self.get('userName') }}
         rules={{ {required: true, userName: self.validateUserName} }}
     >
         <Input v-model="userName" />
@@ -46,19 +46,6 @@ export default class extends Intact {
                 }
             });
         });
-    }
-}
-```
-
-```react-methods
-// 注入_context上下文
-static childContextTypes = {
-    _context: () => {}
-}
-
-getChildContext() {
-    return {
-        _context: this
     }
 }
 ```
