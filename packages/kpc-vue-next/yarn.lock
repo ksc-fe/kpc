@@ -20,6 +20,13 @@
     core-js-pure "^3.0.0"
     regenerator-runtime "^0.13.4"
 
+"@babel/runtime@^7.12.5":
+  version "7.12.5"
+  resolved "https://registry.npmjs.org/@babel/runtime/-/runtime-7.12.5.tgz#410e7e487441e1b360c29be715d870d9b985882e"
+  integrity sha512-plcc+hbExy3McchJCEQG3knOsuh3HH+Prx1P6cLIkET/0dLuQDEnrT+s27Axgc9bqfsmNUNHfscgMUdBpC9xfg==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
 "@babel/types@^7.12.0":
   version "7.12.12"
   resolved "https://registry.npm.taobao.org/@babel/types/download/@babel/types-7.12.12.tgz?cache=0&sync_timestamp=1608730513422&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Ftypes%2Fdownload%2F%40babel%2Ftypes-7.12.12.tgz#4608a6ec313abbd87afa55004d373ad04a96c299"
@@ -273,10 +280,12 @@ indexes-of@^1.0.1:
   resolved "https://registry.npm.taobao.org/indexes-of/download/indexes-of-1.0.1.tgz#f30f716c8e2bd346c7b67d3df3915566a7c05607"
   integrity sha1-8w9xbI4r00bHtn0985FVZqfAVgc=
 
-intact-vue@^0.5.11:
-  version "0.5.11"
-  resolved "https://registry.npm.taobao.org/intact-vue/download/intact-vue-0.5.11.tgz#4a808c7c668c1094445e9f35f27f756cf39dd805"
-  integrity sha1-SoCMfGaMEJREXp818n91bPOd2AU=
+intact-vue@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/intact-vue/-/intact-vue-1.0.0.tgz#c6d2d1fd55124451fbb9e519c1b86f8cdee3641d"
+  integrity sha512-2xXy/vablnIusEnnYRh4ODtOxeU0FoiNXUE9rcd6Q6047pCJ5OyGDnYUYFRge9VdxGKMaGd2g9y5suoyuIkd1Q==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
 
 intact@^2.5.15:
   version "2.5.15"

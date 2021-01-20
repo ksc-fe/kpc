@@ -530,16 +530,16 @@
 "<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form>"
 ```
 
-####   `Form value`
-
-```
-"<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\" style=\"margin-left: 20px;\"><span>重置</span></button></div></div></form>"
-```
-
 ####   `Form variable`
 
 ```
 "<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">姓名</label><div class=\"k-content\"><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></div></div><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></div></div></div></div></div></form>"
+```
+
+####   `Form value`
+
+```
+"<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\" style=\"margin-left: 20px;\"><span>重置</span></button></div></div></form>"
 ```
 
 ## `grid`

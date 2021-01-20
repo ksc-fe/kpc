@@ -624,16 +624,16 @@
 "<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form>"
 ```
 
-####     `Form value`
-
-```
-"<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" style=\"margin-left: 20px\" tabindex=\"0\" type=\"button\"><span>重置</span></button></div></div></form>"
-```
-
 ####     `Form variable`
 
 ```
 "<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">姓名</label><div class=\"k-content\"><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></div></div><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></div></div></div></div></div></form>"
+```
+
+####     `Form value`
+
+```
+"<form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" style=\"margin-left: 20px\" tabindex=\"0\" type=\"button\"><span>重置</span></button></div></div></form>"
 ```
 
 ##   `grid`
@@ -2500,7 +2500,7 @@
 ####     `Form layout`
 
 ```
-"<div><form class=\"k-form k-horizontal k-undefined\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Layout</label><div class=\"k-content\"><div class=\"k-btns\"><button class=\"k-btn k-default k-active\" tabindex=\"0\" type=\"button\"><span>horizontal</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>vertical</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>inline</span><input type=\"radio\" tabindex=\"-1\"></button></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Size</label><div class=\"k-content\"><div class=\"k-btns\"><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>default</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>small</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>mini</span><input type=\"radio\" tabindex=\"-1\"></button></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Input</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Select</label><div class=\"k-content\"><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>Submit</span></button></div></div></form></div>"
+"<div><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Layout</label><div class=\"k-content\"><div class=\"k-btns\"><button class=\"k-btn k-default k-active\" tabindex=\"0\" type=\"button\"><span>horizontal</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>vertical</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>inline</span><input type=\"radio\" tabindex=\"-1\"></button></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Size</label><div class=\"k-content\"><div class=\"k-btns\"><button class=\"k-btn k-default k-active\" tabindex=\"0\" type=\"button\"><span>default</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>small</span><input type=\"radio\" tabindex=\"-1\"></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\"><span>mini</span><input type=\"radio\" tabindex=\"-1\"></button></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Input</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\">Select</label><div class=\"k-content\"><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>Submit</span></button></div></div></form></div>"
 ```
 
 ####     `Form remote`
@@ -2509,16 +2509,16 @@
 "<div><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">用户名</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></form></div>"
 ```
 
-####     `Form value`
-
-```
-"<div><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\" style=\"margin-left: 20px;\"><span>重置</span></button></div></div></form></div>"
-```
-
 ####     `Form variable`
 
 ```
 "<div><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">姓名</label><div class=\"k-content\"><div class=\"k-row k-gutter\" style=\"margin-left: -8px; margin-right: -8px;\"><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></div></div><div class=\"k-col k-12\" style=\"padding-left: 8px; padding-right: 8px;\"><div><div class=\"k-form-item\"><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div></div></div></div></div></div></form></div>"
+```
+
+####     `Form value`
+
+```
+"<div><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Value</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div></div><div class=\"k-form-item\"><label class=\"k-label\"></label><div class=\"k-content\"><button class=\"k-btn k-primary\" tabindex=\"0\" type=\"submit\"><span>提交</span></button><button class=\"k-btn k-default\" tabindex=\"0\" type=\"button\" style=\"margin-left: 20px;\"><span>重置</span></button></div></div></form></div>"
 ```
 
 ##   `grid`

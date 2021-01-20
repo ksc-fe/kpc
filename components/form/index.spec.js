@@ -6,7 +6,6 @@ import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import Intact from 'intact';
 import {Form, FormItem} from 'kpc/components/form';
 import Input from 'kpc/components/input';
-import ValueDemo from '~/components/form/demos/value';
 
 RemoteDemo.prototype.validateUserName = function(value) {
     // mock api
@@ -123,8 +122,8 @@ describe('Form', () => {
             @Intact.template()
             static template = `
                 <Form ref="form">
-                    <FormItem model="value" rules={{ self.get('rules') }} />
-                    <FormItem model="value1" rules={{ self.get('rules1') }} />
+                    <FormItem value={{ self.get('value') }} rules={{ self.get('rules') }} />
+                    <FormItem value={{ self.get('value1') }} rules={{ self.get('rules1') }} />
                 </Form>
             `
             _init() {
@@ -318,22 +317,12 @@ describe('Form', () => {
         instance.set('value', -0.6);
         expect(await form.validate()).to.be.true;
 
-        // equalTo
-        instance.set({rules: {equalTo: 'value1'}, rules1: {equalTo: 'value'}, value: '', value1: ''});
-        const eql = () => {
-            return new Promise(resolve => {
-                setTimeout(() => {
-                    expect(el.innerHTML).to.matchSnapshot();
-                    resolve();
-                }, 400);
-            });
-        };
+        // equal
+        instance.set({rules: {equal: 1}, rules1: {equal: 1}, value: '1', value1: '1'});
         instance.set('value', 1);
-        await eql();
+        expect(await form.validate()).to.be.false;
         instance.set('value1', 1);
-        await eql();
-        instance.set('value1', 2);
-        await eql();
+        expect(await form.validate()).to.be.true;
     });
 
     it('should show icon when text shows ellipsis', async () => {
@@ -341,7 +330,7 @@ describe('Form', () => {
             @Intact.template()
             static template = `
                 <Form ref="form">
-                    <FormItem model="value"
+                    <FormItem value={{ self.get('value') }}
                         rules={{ {
                             required: true,
                             digits: true,
@@ -374,16 +363,5 @@ describe('Form', () => {
         instance.set('value', '');
         await form.validate();
         expect(formItem.refs.error.parentElement.classList.contains('k-ellipsis')).to.be.true;
-    });
-
-    it('validate by value', async () => {
-        instance = mount(ValueDemo);
-        const form = instance.refs.form;
-
-        expect(await form.validate()).to.be.false;
-        instance.set('value', 'test');
-        expect(await form.validate()).to.be.true;
-        instance.set('value', '');
-        expect(await form.validate()).to.be.false;
     });
 });
