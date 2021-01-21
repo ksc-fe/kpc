@@ -1,4 +1,4 @@
-const gulp = require('gulp'); 
+const gulp = require('gulp');
 const tap = require('gulp-tap');
 const {resolve, rm, root} = require('../utils');
 const babel = require('gulp-babel');
@@ -20,9 +20,9 @@ function prepare() {
 
 gulp.task('build:js', () => {
     return gulp.src([
-        './components/**/*.js', 
-        '!./components/**/*.spec.js', 
-        './index.js', 
+        './components/**/*.js',
+        '!./components/**/*.spec.js',
+        './index.js',
         './inheritsLoose.js',
         '!./components/grid/mediaQueryForStylus.js',
     ], {base: './', root})
@@ -64,12 +64,12 @@ gulp.task('build:vdt', () => {
 gulp.task('build:style@stylus', () => {
     return gulp.src(
             [
-                './styles/*', './styles/themes/**/*', 
+                './styles/*', './styles/themes/**/*',
                 './styles/fonts/*.styl', './components/**/*.styl',
                 './components/grid/mediaQueryForStylus.js',
             ],
             {base: './', root}
-        ) 
+        )
         .pipe(gulp.dest(destStylus));
 });
 
@@ -100,7 +100,7 @@ gulp.task('build@packages', gulp.series(
     prepare,
     gulp.parallel(
         'build:js', 'build:vdt',
-        'build:style@stylus', 'build:style@css', 
+        'build:style@stylus', 'build:style@css',
         'build:font', 'build:i18n'
     )
 ));

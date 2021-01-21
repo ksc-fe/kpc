@@ -6,9 +6,13 @@ module.exports = function(api) {
     const config = {
         "presets": [
             ["@babel/preset-env", {
+                // targets: {
+                    // browsers: 'last 2 versions'
+                    // esmodules: true,
+                // },
                 "loose": true,
-                "useBuiltIns": "usage",
-                "corejs": corejs,
+                // "useBuiltIns": "usage",
+                // "corejs": '3.6',
                 "modules": process.env.BUILD ? false : "cjs",
                 // "modules": "cjs",
                 // "debug": true
@@ -16,7 +20,10 @@ module.exports = function(api) {
             "@babel/preset-react"
         ],
         "plugins": [
-            ["@babel/plugin-transform-runtime", {"corejs": corejs}],
+            ["@babel/plugin-transform-runtime", {
+                "corejs": corejs,
+                "useESModules": true
+            }],
             ["@babel/plugin-proposal-decorators", {"legacy": true}],
             "@babel/plugin-proposal-class-properties",
             "@babel/plugin-syntax-dynamic-import",
