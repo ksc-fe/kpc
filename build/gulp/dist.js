@@ -1,4 +1,4 @@
-const gulp = require('gulp'); 
+const gulp = require('gulp');
 const genConfig = require('../webpack');
 const {resolve, handleError, rm, themes} = require('../utils');
 const webpack = require('webpack');
@@ -30,7 +30,19 @@ gulp.task('build:i18n@dist', (done) => {
         }));
 });
 
-const parallelTasks = ['build:i18n@dist'];
+gulp.task('build:vue-next@dist', () => {
+    const config = webpackConfig('default', 'vue');
+    config.output.path(resolve('./packages/kpc-vue-next/dist'));
+    config.resolve.alias.set('intact$', resolve('./packages/kpc-vue-next/node_modules/intact-vue/dist/index.js'));
+    return new Promise((resolve) => {
+        webpack(config.toConfig(),  (err, stats) => {
+            handleError(err, stats);
+            uglify(stats).then(resolve);
+        });
+    });
+});
+
+const parallelTasks = ['build:i18n@dist', 'build:vue-next@dist'];
 frameworks.forEach(type => {
     themes.forEach(theme => {
         // only build theme once for Intact
@@ -48,7 +60,7 @@ const parallelDist = (cb) => gulpMultiProcess(parallelTasks, cb);
 // const parallelDist = gulp.parallel(...parallelTasks);
 
 const copyTasks = [];
-['vue', 'react'].forEach(type => {
+['vue', 'react', 'vue-next'].forEach(type => {
     const name = `copy:${type}@dist`;
     copyTasks.push(name);
     gulp.task(name, () => {
@@ -70,7 +82,7 @@ const shouldUseTmpFile = (type, theme) => type === 'intact' && theme !== 'defaul
 
 function buildDistFile(theme, type) {
     return new Promise(resolve => {
-        webpack(webpackConfig(theme, type), (err, stats) => {
+        webpack(webpackConfig(theme, type).toConfig(), (err, stats) => {
             handleError(err, stats);
             if (shouldUseTmpFile(type, theme)) {
                 return rm(path.resolve(outputPath, `${tmpJsFile}.js`)).then(resolve);
@@ -106,19 +118,19 @@ function webpackConfig(theme = 'default', type = 'intact') {
     }
 
     // add alias
-    const alias = type === 'vue' ? 'intact-vue' : type === 'react' ? 'intact-react' : 'intact'; 
+    const alias = type === 'vue' ? 'intact-vue' : type === 'react' ? 'intact-react' : 'intact';
     config.resolve.alias.set('intact$', alias);
 
     // add externals
-    config.externals(type === 'intact' ? 
+    config.externals(type === 'intact' ?
         {
             intact: {
-                root: 'Intact', 
+                root: 'Intact',
                 commonjs2: 'intact',
                 commonjs: 'intact',
                 amd: 'intact',
             }
-        } : type === 'vue' ? 
+        } : type === 'vue' ?
         {
             vue: {
                 root: 'Vue',
@@ -126,7 +138,7 @@ function webpackConfig(theme = 'default', type = 'intact') {
                 commonjs: 'vue',
                 amd: 'vue',
             }
-        } : 
+        } :
         {
             react: {
                 root: 'React',
@@ -145,7 +157,7 @@ function webpackConfig(theme = 'default', type = 'intact') {
 
     // console.dir(config.toConfig(), {depth: null});
 
-    return config.toConfig();
+    return config;
 }
 
 function initConfig(config) {
@@ -188,15 +200,17 @@ function uglify(stats) {
     }));
 }
 
-function copyDistFileToPackage(type) {
+async function copyDistFileToPackage(type) {
     const path = `./packages/kpc-${type}`;
-    return rm(`${path}/dist`).then(() => {
-        return gulp.src([
-            './dist/fonts/**/*', 
+    if (type !== 'vue-next') {
+        await rm(`${path}/dist`);
+    }
+    await gulp.src(
+        [
+            './dist/fonts/**/*',
             './dist/i18n/**/*',
             `./dist/kpc.${type}.*`,
             './dist/*.css'
-        ], {base: './'})
-        .pipe(gulp.dest(path));
-    });
+        ], {base: './'}
+    ).pipe(gulp.dest(path));
 }

@@ -7,10 +7,10 @@ module.exports = function(api) {
         "presets": [
             ["@babel/preset-env", {
                 // targets: {
-                    // browsers: 'last 2 versions'
+                    // // browsers: 'last 2 versions'
                     // esmodules: true,
                 // },
-                "loose": true,
+                // "loose": true,
                 // "useBuiltIns": "usage",
                 // "corejs": '3.6',
                 "modules": process.env.BUILD ? false : "cjs",
@@ -21,6 +21,7 @@ module.exports = function(api) {
         ],
         "plugins": [
             ["@babel/plugin-transform-runtime", {
+                // "corejs": false,
                 "corejs": corejs,
                 "useESModules": true
             }],

@@ -15,6 +15,7 @@
   "files": [
     "@stylus",
     "components",
+    "dist",
     "i18n",
     "styles",
     "index.js",

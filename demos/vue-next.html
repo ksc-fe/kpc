@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>kpc-demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="/dist/kpc.css" /> 
+</head>
+<body>
+	<div id="app">
+        <div id="vue">
+            <k-radio name="language" true-value="Javascript" v-model="language">Javascript</k-radio>
+            <k-radio name="language" true-value="C++" v-model="language">C++</k-radio>
+            <k-radio name="language" true-value="PHP" v-model="language">PHP</k-radio>
+            {{ language }}
+        </div>
+    </div>
+    <script src="/packages/kpc-vue-next/node_modules/vue/dist/vue.global.js"></script>
+    <script src="/packages/kpc-vue-next/dist/kpc.vue.js"></script>
+
+    <script type="text/javascript">
+        const app = Vue.createApp({
+            data() {
+                return {
+                    list: [{name: 'Javey'}],
+                    language: 'C++',
+                }
+            },
+            methods: {
+                change() {
+                    console.log(arguments);
+                }
+            }
+        });
+        app.use(Kpc);
+        app.mount('#vue');
+    </script>
+</body>
+</html>
