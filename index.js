@@ -3,7 +3,7 @@
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
- * 
+ *
  * Documentation available at
  * https://ksc-fe.github.io/kpc/
  */
@@ -217,10 +217,12 @@ export default function install(Vue) {
             const component = components[key];
             Vue.component(`K${key}`, component);
             // support call method like this.$message.success('test'), #88
+            // support vue2.0 and vue3.0
+            const obj = Vue.prototype || Vue.config.globalProperties;
             if (key === 'Message') {
-                Vue.prototype.$message = component;
+                obj.$message = component;
             } else if (key === 'Dialog') {
-                Vue.prototype.$dialog = component;
+                obj.$dialog = component;
             }
         }
     } else {
