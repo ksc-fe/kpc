@@ -64,18 +64,22 @@ export default class ScrollSelect extends Intact {
                 onWheel(e, ...args);
                 lock = false;
             }, 50);
-        }; 
+        };
     }
 
     _mount() {
         const count = this.get('count');
+        // the element may be hidden, so we must ensure parent visible before we get its height
+        // #568
+        const rollback = ensureVisible(this.element);
         const height = this.element.offsetHeight;
         const itemHeight = this.refs.item.offsetHeight;
-        // const totalHeight = this.refs.wrapper.offsetHeight; 
+        rollback();
+        // const totalHeight = this.refs.wrapper.offsetHeight;
         // for even count, #211
         this._deltaY = -(Math.floor(count / 2) * itemHeight - (height - itemHeight) / 2);
         this.set({
-            _translate: this._deltaY 
+            _translate: this._deltaY
         });
     }
 
@@ -98,7 +102,7 @@ export default class ScrollSelect extends Intact {
         let {data, _value, count} = this.get();
 
         if (typeof data === 'function') {
-            data = data(_value); 
+            data = data(_value);
         }
 
         let index = -1;
@@ -202,6 +206,35 @@ export default class ScrollSelect extends Intact {
         document.removeEventListener('mousemove', this._move);
         document.removeEventListener('mouseup', this._dragEnd);
         clearTimeout(this.timer);
+    }
+}
+
+function ensureVisible(element) {
+    const hiddenParents = [];
+    const oldStyles = [];
+    const styles = {position: 'absolute', visibility: 'hidden', display: 'block'};
+    let parent = element;
+    do {
+        const display = window.getComputedStyle(parent).display;
+        if (display === 'none') {
+            hiddenParents.push(parent);
+            oldStyles.push(parent.getAttribute('style'));
+            for (const style in styles) {
+                parent.style[style] = styles[style];
+            }
+        }
+        parent = parent.parentElement;
+    } while (parent);
+
+    return () => {
+        hiddenParents.forEach((parent, index) => {
+            const style = oldStyles[index];
+            if (style !== null) {
+                parent.setAttribute('style', style);
+            } else {
+                parent.removeAttribute('style');
+            }
+        });
     }
 }
 
