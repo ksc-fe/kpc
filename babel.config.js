@@ -10,7 +10,7 @@ module.exports = function(api) {
                     // // browsers: 'last 2 versions'
                     // esmodules: true,
                 // },
-                // "loose": true,
+                "loose": true,
                 // "useBuiltIns": "usage",
                 // "corejs": '3.6',
                 "modules": process.env.BUILD ? false : "cjs",
@@ -23,7 +23,7 @@ module.exports = function(api) {
             ["@babel/plugin-transform-runtime", {
                 // "corejs": false,
                 "corejs": corejs,
-                "useESModules": true
+                // "useESModules": true
             }],
             ["@babel/plugin-proposal-decorators", {"legacy": true}],
             "@babel/plugin-proposal-class-properties",
