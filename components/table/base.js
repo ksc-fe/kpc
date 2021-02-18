@@ -223,6 +223,11 @@ export default class BaseTable extends Intact {
         return _enabledKeys.length && _enabledKeys.every(key => checkedKeys.includes(key));
     }
 
+    isCheckHalf() {
+        const {checkedKeys, _enabledKeys} = this.get();
+        return _enabledKeys.length && ( _enabledKeys.every(key => checkedKeys.includes(key)) ? false : _enabledKeys.some(key => checkedKeys.includes(key)));
+    }
+
     isChecked(key) {
         const {checkType, checkedKey, checkedKeys} = this.get();
         if (checkType === 'checkbox') {

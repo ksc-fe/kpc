@@ -58,6 +58,7 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
             minWidth={{ 40 }}
         >
             <Checkbox value={{ self.isCheckAll() }}
+                indeterminate={{ self.isCheckHalf() }}
                 ev-click={{ self._toggleCheckAll }}
                 v-if={{ checkType === 'checkbox' }}
             />
