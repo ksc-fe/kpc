@@ -9,6 +9,7 @@ order: 0
 2. `label`展示的文案
 3. `children`如果存在子选项，需要递归地指定该属性
 4. `disabled`禁用该项
+5. `loaded` 子选项已经加载完成，当节点做异步加载时，将不会对该节点调用`load`方法，详见“动态加载数据”
 
 ```vdt
 import Cascader from 'kpc/components/cascader';

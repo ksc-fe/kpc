@@ -3,7 +3,8 @@ title: 关闭按钮
 order: 1
 ---
 
-给组件添加`closable`属性，可以关闭标签，关闭后会触发`close`事件
+给组件添加`closable`属性，可以关闭标签，关闭后会触发`close`事件；如果不想点击
+关闭按钮时自动关闭标签，可以通过`e.preventDefault()`阻止该默认行为
 
 > 如果仅仅指定了`closable`属性，那么组件的开启和关闭是组件内部自己维护的状态，
 > 一旦组件被重新创建，那么又会回到默认开启状态，所以如果你需要维持组件的状态，
@@ -20,6 +21,7 @@ import Tag from 'kpc/components/tag';
         ev-close={{ self.onClose.bind(self, key) }}
     >{{ value }}</Tag>
     <Tag disabled closable>disabled</Tag>
+    <Tag closable ev-close={{ self.preventDefault }}>prevent default</Tag>
 </div>
 ```
 
@@ -41,6 +43,10 @@ export default class extends Intact {
         const tags = this.get('tags').slice(0);
         tags.splice(index, 1);
         this.set('tags', tags);
+    }
+
+    preventDefault(e) {
+        e.preventDefault();
     }
 }
 ```

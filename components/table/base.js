@@ -65,7 +65,7 @@ export default class BaseTable extends Intact {
             _rightWidth: 0,
             _scrollBarWidth: 0,
             _scrollPosition: 'left',
-            _hoverIndex: undefined,
+            _hoverIndex: undefined
         }
     }
 
@@ -79,7 +79,7 @@ export default class BaseTable extends Intact {
         stickScrollbar: [Boolean, String, Number],
         rowKey: Function,
         checkedKeys: Array,
-        checkedKey: [String, Number],
+        checkedKey: [String, Number, Array],
         resizable: Boolean,
         rowCheckable: Boolean,
         rowClassName: Function,
@@ -228,7 +228,7 @@ export default class BaseTable extends Intact {
         if (checkType === 'checkbox') {
             return !!~checkedKeys.indexOf(key);
         } else if (checkType === 'radio') {
-            return checkedKey === key;
+            return Array.isArray(checkedKey) ? checkedKey.indexOf(key) > -1 : checkedKey === key;
         }
         return false
     }
@@ -339,7 +339,9 @@ export default class BaseTable extends Intact {
             const checkedKey = this.get('checkedKey');
             this._breakForEach((value, index) => {
                 const key = rowKey.call(this, value, index);
-                if (key === checkedKey) {
+                if(Array.isArray(checkedKey) && checkedKey.indexOf(key) > -1){
+                    ret.push(value);
+                }else if (checkedKey === key) {
                     ret.push(value);
                     return true;
                 }
@@ -663,7 +665,7 @@ export default class BaseTable extends Intact {
         }
     }
 
-    _clickRow(value, index, key, e) {
+    _clickRow(value, index, key, e, enabledSpanRowKeys) {
         // if is from checkbox or radio then do nothing
         if (e.target.tagName.toLowerCase() === 'input') return;
         // in chrome of macos, the target is input's parent element
@@ -673,7 +675,7 @@ export default class BaseTable extends Intact {
         if (this.get('disableRow').call(this, value, index)) return;
 
         if (this.get('rowCheckable')) {
-            this._checkUncheckRows([key]);
+            this._checkUncheckRows(Array.isArray(enabledSpanRowKeys) ? enabledSpanRowKeys : [key]);
         }
 
         if (this.get('rowExpandable')) {
@@ -688,7 +690,7 @@ export default class BaseTable extends Intact {
     }
 
     _checkUncheckRows(keys, isCheck = false, isToggle = true) {
-        const checkType = this.get('checkType');
+        const {checkType} = this.get();
         if (checkType === 'checkbox') {
             let checkedKeys = this.get('checkedKeys'); // .slice(0);
             let shouldSet = false;
@@ -708,17 +710,20 @@ export default class BaseTable extends Intact {
                 this.set('checkedKeys', checkedKeys);
             }
         } else if (checkType === 'radio') {
+            const checkedKey = this.get('checkedKey');
+            const isCheckedKeyArray = Array.isArray(keys) && keys.length > 1;
             const key = keys[0];
             if (!isToggle) {
+                const isChecked = Array.isArray(checkedKey) && isCheckedKeyArray ? checkedKey.every(i => keys.indexOf(i) > -1 ) : checkedKey === key;
                 // isToggle is false means call this by checkRow & uncheckRow
                 if (isCheck) {
-                    this.set('checkedKey', key);
-                } else if (this.get('checkedKey') === key) {
+                    this.set('checkedKey', isCheckedKeyArray ? keys : key);
+                } else if (isChecked) {
                     // only change it when we uncheck the checked row
                     this.set('checkedKey', undefined);
                 }
             } else {
-                this.set('checkedKey', key);
+                this.set('checkedKey', isCheckedKeyArray ? keys : key);
             }
         }
     }
@@ -990,7 +995,7 @@ export default class BaseTable extends Intact {
     }
 
     _onChangeChecked(key, value) {
-        this._checkUncheckRows([key], value, false);
+        this._checkUncheckRows( Array.isArray(key)? key : [key], value, false);
     }
 
     _onChangeGroup(key, c, v) {

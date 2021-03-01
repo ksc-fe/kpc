@@ -16,6 +16,7 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Intact from 'intact';
 import {Table, TableColumn} from 'kpc/components/table';
 import DraggableTable from '~/components/table/demos/draggable';
+import MergeCellDemo from '~/components/table/demos/mergeCell';
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import {Icon} from 'kpc/components/icon';
 import Vue from 'vue';
@@ -109,6 +110,38 @@ describe('Table', () => {
         expect(rowUnExpandableTable.element.outerHTML).to.matchSnapshot();
     });
 
+    it('merge cells', () => {
+        instance = mount(MergeCellDemo);
+
+        const {__test1: mergeCheckboxTable, __test2: mergeRadioTable} = instance.refs;
+        const [, , tr1, tr2, tr3] = mergeCheckboxTable.element.querySelectorAll('.k-tbody tr');
+        expect(mergeCheckboxTable.get('checkedKeys')).deep.eql([3]);
+        expect(mergeCheckboxTable.element.outerHTML).to.matchSnapshot();
+        tr1.click();
+        expect(mergeCheckboxTable.get('checkedKeys')).deep.eql([3, 2]);
+        expect(mergeCheckboxTable.element.outerHTML).to.matchSnapshot();
+        tr2.click();
+        expect(mergeCheckboxTable.get('checkedKeys')).deep.eql([2]);
+        expect(mergeCheckboxTable.element.outerHTML).to.matchSnapshot();
+        tr2.click();
+        expect(mergeCheckboxTable.get('checkedKeys')).deep.eql([2, 3]);
+        expect(mergeCheckboxTable.element.outerHTML).to.matchSnapshot();
+        tr3.click();
+        expect(mergeCheckboxTable.get('checkedKeys')).deep.eql([2, 3, 4]);
+        expect(mergeCheckboxTable.element.outerHTML).to.matchSnapshot();
+
+       
+        const [ , tr11,  , tr22] = mergeRadioTable.element.querySelectorAll('.k-tbody tr');
+        expect(mergeRadioTable.get('checkedKey')).deep.eql([0, 1]);
+        expect(mergeRadioTable.element.outerHTML).to.matchSnapshot();
+        tr22.click();
+        expect(mergeRadioTable.get('checkedKey')).deep.eql([2, 3, 4]);
+        expect(mergeRadioTable.element.outerHTML).to.matchSnapshot();
+        tr11.click();
+        expect(mergeRadioTable.get('checkedKey')).deep.eql([0, 1]);
+        expect(mergeRadioTable.element.outerHTML).to.matchSnapshot();
+    });
+
     it('sort', () => {
         instance = mount(SortDemo);
 
@@ -168,6 +201,10 @@ describe('Table', () => {
         await wait(100);
         expect(table.element.querySelector('.k-fixed-left .k-tbody').scrollTop).to.eql(10);
         expect(table.element.querySelector('.k-fixed-right .k-tbody').scrollTop).to.eql(10);
+
+        // should change max-height if we set fixHeader to true
+        table.set('fixHeader', true);
+        expect(table.element.outerHTML).to.matchSnapshot();
     });
 
     it('resize', () => {

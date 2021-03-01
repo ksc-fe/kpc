@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v1.4.8
+
+1. `Add` `Table`导出表格时，支持自定义表头 [#469](https://github.com/ksc-fe/kpc/issues/469)
+2. `Add` `Tag`在`closable`状态下，支持通过在`close`事件中调用`e.preventDefault()`来阻止默认关闭标签的行为 [#559](https://github.com/ksc-fe/kpc/issues/559)
+3. `Fix` 修复`Dialog`点击关闭按钮也会拖动弹层的问题 [#551](https://github.com/ksc-fe/kpc/issues/551)
+4. `Fix` 修复`Cascader`当加载的`children`为空数组时，会一直展示`loading`状态的问题 [#556](https://github.com/ksc-fe/kpc/issues/556)
+5. `Fix` 修复`Table`当`fixHeader`设为`true`，固定列高度会超出`15px`（滚动条高度），导致最后一行不能错位的问题 [#558](https://github.com/ksc-fe/kpc/issues/558)
+
 ## v1.4.7
 
 1. `Fix` 修复`Datepicker`设置了`maxDate/minDate`的情况下，切换月份会卡死的问题 [#549](https://github.com/ksc-fe/kpc/issues/549)

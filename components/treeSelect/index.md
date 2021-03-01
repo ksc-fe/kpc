@@ -29,7 +29,7 @@ sidebar: doc
 | data | 要渲染的数据 | `Object` | `undefined` |
 | checkbox | 是否展示复选框 | `Boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | `Function` | `undefined` |
-| defaultExpandAll | 是否默认展开所有节点 | `Boolean` | `false` |
+| defaultExpandAll | 是否默认展开所有节点 | `Boolean` | `true` |
 | uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `Boolean` | `false` |
 
 # 扩展点

@@ -75,6 +75,12 @@ describe('Cascader', () => {
 
         await wait(1500);
         expect(dropdown2.innerHTML).to.matchSnapshot();
+
+        const [item21, item22] = dropdown2.querySelectorAll('.k-item');
+        item22.click();
+        await wait(1);
+        const dropdown3 = getElement('.k-cascader-dropdown');
+        expect(dropdown3.innerHTML).to.matchSnapshot();
     });
 
     it('filter', () => {

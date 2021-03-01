@@ -1,4 +1,4 @@
-import Intact from 'intact'; 
+import Intact from 'intact';
 import Select from '../select';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
@@ -64,8 +64,9 @@ export default class Cascader extends Select {
      * on sub menu showed, load data if children is empty
      */
     async _onSubMenuShow(item) {
-        if (item.children && !item.children.length) {
+        if (item.children && !item.children.length && !item.loaded) {
             await this.get('loadData').call(this, item);
+            item.loaded = true;
             this.update();
         }
     }

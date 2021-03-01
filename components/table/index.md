@@ -20,7 +20,7 @@ sidebar: doc
 | stickScrollbar | 当出现横向滚动条时，设置是否当表格底部没有滚动到视窗中时，将横向滚动条固定在页面底部；取值为`Number`类型时，用来指定距离视窗底部的距离 | `Boolean` &#124; `Number` &#124; `String` | `false` |
 | rowKey | 设置行的key | `Function` | function(value, index) {  return `index`; } |
 | checkedKeys | 通过`key`数组来指定哪些行被选中（针对多选） | `Array` | `[]` |
-| checkedKey | 通过`key`指定哪行被选中（针对单选） | `String` | `undefined` |
+| checkedKey | 通过`key`指定哪行被选中（针对单选） | `String` &#124; `Number` &#124; `Array`  | `undefined` |
 | resizable | 是否可以表头拖动 | `Boolean` | `false` |
 | rowCheckable | 当行可选时，是否点击该行任意区域都可选中 | `Boolean` | `true` |
 | rowClassName | 通过一个函数定义行的`className`，该函数会传入该行数据和索引当做参数，返回的字符串将被设为该行`className` | `Function` | `function(value, index) {  }` |

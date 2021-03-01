@@ -13,7 +13,7 @@ export default class MoveWrapper extends Intact {
 
     defaults() {
         return {
-            autoDestroy: true, 
+            autoDestroy: true,
             container: undefined,
         }
     }
@@ -21,7 +21,8 @@ export default class MoveWrapper extends Intact {
     init(...args) {
         // we must append the element before _mount lifecycles of children are called
         this.mountedQueue.push(this._appendElement);
-        super.init(...args);
+        // super.init(...args);
+        Intact.prototype.init.apply(this, args);
         return this.placeholder = document.createComment("placeholder");
     }
 
@@ -45,10 +46,10 @@ export default class MoveWrapper extends Intact {
     }
 
     /**
-     * @brief override super destroy 
+     * @brief override super destroy
      *
      * MoveWraper component has changed the dom struction.
-     * It is always the top level dom, so we should 
+     * It is always the top level dom, so we should
      * remove it from parent dom. By passing the container
      * to remove function can do this. We can't remove it
      * directly by calling removeChild method, beacause it
@@ -60,7 +61,7 @@ export default class MoveWrapper extends Intact {
         // if (this.destroyed) {
             // return console.warn('destroyed multiple times');
         // }
-        if (this.rendered && 
+        if (this.rendered &&
             (
                 !nextVNode ||
                 !(nextVNode.type & Intact.Vdt.miss.Types.ComponentClassOrInstance) ||
