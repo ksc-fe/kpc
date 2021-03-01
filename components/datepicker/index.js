@@ -189,9 +189,11 @@ export default class Datepicker extends Intact {
             }
         } else {
             if (!begin) return;
-            const beginShowDate = begin.getShowDate().date(1);
+            // get the last day of begin month to compare
+            const nextMonth = begin.getShowDate().add(1, 'month');
+            const beginShowDate = nextMonth.date(0);
             if (v <= beginShowDate) {
-                const beginShowDate = v.subtract(1, 'momth');
+                const beginShowDate = v.subtract(1, 'month');
                 begin.setShowDate(beginShowDate);
             }
         }
@@ -315,7 +317,10 @@ export default class Datepicker extends Intact {
                 if (!this._hasSelectByArrowKey) {
                     this.refs.input.element.click();
                 } else {
-                    this.refs.begin._selectFocusDate();
+                    const begin = this.refs.begin;
+                    const { _isShowYearPicker, _isShowMonthPicker } = begin.get();
+                    const type = _isShowYearPicker ? 'year' : (_isShowMonthPicker ? 'month': 'day');
+                    this.refs.begin._selectFocusDate(type);
                 }
                 break;
             case 9:

@@ -34,38 +34,44 @@ describe('Datepicker', () => {
 
         const now = new Date();
         const year = now.getFullYear();
-        const month = now.getMonth();
         const [yearInput, monthInput] = instance.element.querySelectorAll('.k-input');
 
         // year
         yearInput.click();
         let content = getElement('.k-datepicker-content');
-        const yearDom = content.querySelector('.k-active');
-        const nextYearDom = yearDom.nextElementSibling;
-        const prevYearDom = yearDom.previousElementSibling;
-        nextYearDom.click();
-        expect(instance.get('year') - 1).eql(year);
-        prevYearDom.click();
-        expect(+instance.get('year')).eql(year);
+        const yearBase = Math.floor(year / 10);
 
+        const preBtn = content.querySelector('.k-prev');
+        const nextBtn = content.querySelector('.k-next');
+        // click prev button twice
+        dispatchEvent(preBtn, 'click');
+        dispatchEvent(preBtn, 'click');
+        // click next button twice
+        dispatchEvent(nextBtn, 'click');
+        dispatchEvent(nextBtn, 'click');
+        // click prev button once
+        dispatchEvent(preBtn, 'click');
+        content.querySelector('.k-month-year').click();
+        expect(+instance.get('year')).eql((yearBase-1) * 10 -1);
+        await wait(500);
+        expect(getElement('.k-datepicker-content')).to.be.undefined;
         // month
         monthInput.click();
         content = getElement('.k-datepicker-content');
-        const [col1, col2] = content.querySelectorAll('.k-col');
-        col1.querySelector('.k-active ~ div').click();
-        col2.querySelector('.k-active ~ div').click();
-        const [_year, _month] = instance.get('month').split('-');
-        expect(_year - 1).eql(year);
-        expect(_month - 1).eql((month + 1) % 12);
 
-        // click confirm button
-        const btn = content.querySelector('.k-footer .k-btn');
-        btn.click();
+        const yearBtn = content.querySelector('.k-calendar-wrapper .k-text');
+        yearBtn.click();
+        content.querySelector('.k-today').click();
+
+        content.querySelector('.k-month-year').click();
+        const [_year, _month] = instance.get('month').split('-');
+        expect(+_year).eql(year);
+        expect(+_month).eql(1);
         await wait(500);
         expect(getElement('.k-datepicker-content')).to.be.undefined;
     });
 
-    it('should change year and month', () => {
+    it('should change year and month', async () => {
         instance = mount(BasicDemo);
 
         const input = instance.element.querySelector('.k-input');
@@ -99,22 +105,17 @@ describe('Datepicker', () => {
         // change year and month in year/month panel
         input.click();
         content = getElement('.k-datepicker-content');
-        const yearMonth = content.querySelector('.k-text-wrapper');
-        yearMonth.click();
-        const [col1, col2] = content.querySelectorAll('.k-col');
-        col1.querySelector('.k-active ~ div').click();
-        col2.querySelector('.k-active ~ div').click();
-        yearMonth.click();
-        // select the middle date
+        const yearBtn = content.querySelector('.k-calendar-wrapper .k-text');
+        yearBtn.click();
+        content.querySelector('.k-active').click();
+        content.querySelector('.k-active').click();
+
         dispatchEvent(content.querySelectorAll('.k-day')[17], 'click');
         const curDate1 = new Date(instance.get('date'));
-        const curMonth = curDate1.getMonth();
-        expect(curMonth).be.eql(month);
-        if (curMonth === 0) {
-            expect(curDate1.getFullYear() + 1).be.eql(year);
-        } else {
-            expect(curDate1.getFullYear()).be.eql(year);
-        }
+        curDate1.setFullYear(curDate1.getFullYear() + 1);
+        curDate1.setMonth(curDate1.getMonth() + 1);
+        expect(curDate1.getFullYear()).be.eql(year);
+        expect(curDate1.getMonth()).be.eql(month);
     });
 
     it('should clear value', () => {
@@ -270,25 +271,76 @@ describe('Datepicker', () => {
 
     it('operate by keyboard', () => {
         instance = mount(BasicDemo);
-
-        const now = new Date();
-        now.setDate(1);
         const input = instance.element.querySelector('.k-input');
         input.click();
-        const content = getElement('.k-datepicker-content');
+        let content = getElement('.k-datepicker-content');
+        const now = new Date();
+        const month = now.getMonth();
+        const date = now.getDate();
+        const calendar = content.querySelector('.k-calendar-wrapper');
+
+        // operate in year panel
+        const yearBtn = content.querySelector('.k-calendar-wrapper .k-text');
+        yearBtn.click();
+        
+        const startYear = Math.floor(now.getFullYear() / 10) * 10;
+        // down
+        dispatchEvent(calendar, 'keydown', {keyCode: 40});
+        expect(+content.querySelector('.k-hover').textContent).to.eql(startYear);
+        
+        // up
+        dispatchEvent(calendar, 'keydown', {keyCode: 38});
+        now.setFullYear(startYear - 4);
+        const year = now.getFullYear();
+        expect(+content.querySelector('.k-hover').textContent).to.eql(year);
+        
+        // right
+        dispatchEvent(calendar, 'keydown', {keyCode: 39});
+        expect(+content.querySelector('.k-hover').textContent).to.eql(year + 1);
+        
+        // left
+        dispatchEvent(calendar, 'keydown', {keyCode: 37});
+        expect(+content.querySelector('.k-hover').textContent).to.eql(year);
+        
+        // enter
+        dispatchEvent(calendar, 'keydown', {keyCode: 13});
+        
+        // operate in month panel
+        // down
+        dispatchEvent(calendar, 'keydown', {keyCode: 40});
+        now.setMonth(month + 4);
+        expect(content.querySelector('.k-hover').textContent).to.eql(now.getMonth() + 1 + '月');
+        
+        // up
+        dispatchEvent(calendar, 'keydown', {keyCode: 38});
+        expect(content.querySelector('.k-hover').textContent).to.eql(month + 1 + '月');
+        
+        // right
+        dispatchEvent(calendar, 'keydown', {keyCode: 39});
+        now.setMonth(month + 1);
+        expect(content.querySelector('.k-hover').textContent).to.eql(now.getMonth() + 1 + '月');
+        
+        // left
+        dispatchEvent(calendar, 'keydown', {keyCode: 37});
+        expect(content.querySelector('.k-hover').textContent).to.eql(month + 1 + '月');
+        
+        // enter
+        dispatchEvent(calendar, 'keydown', {keyCode: 13});
+
+        // operate in date panel
         // down
         dispatchEvent(input, 'keydown', {keyCode: 40});
-        expect(content.querySelector('.k-hover').textContent).to.eql('1');
+        now.setDate(date + 7);
+        expect(+content.querySelector('.k-hover').textContent).to.eql(now.getDate());
 
         // up
         dispatchEvent(input, 'keydown', {keyCode: 38});
-        now.setDate(1 - 7);
-        const date = now.getDate();
         expect(+content.querySelector('.k-hover').textContent).to.eql(date);
 
         // right
         dispatchEvent(input, 'keydown', {keyCode: 39});
-        expect(+content.querySelector('.k-hover').textContent).to.eql(date + 1);
+        now.setDate(date + 1);
+        expect(+content.querySelector('.k-hover').textContent).to.eql(now.getDate());
 
         // left
         dispatchEvent(input, 'keydown', {keyCode: 37});
@@ -296,12 +348,10 @@ describe('Datepicker', () => {
 
         // enter
         dispatchEvent(input, 'keydown', {keyCode: 13});
-        expect(+instance.get('date').split('-')[2]).to.eql(date);
-
-        // again
-        input.click();
-        dispatchEvent(input, 'keydown', {keyCode: 40});
-        expect(getElement('.k-datepicker-content').querySelector('.k-hover').textContent).to.eql('1');
+        const [_year, _month, _date] = instance.get('date').split('-');
+        expect(+_year).be.eql(year);
+        expect(+_month).be.eql(month + 1);
+        expect(+_date).be.eql(date);
     });
 
     it('operate by keyboard for range picker', () => {

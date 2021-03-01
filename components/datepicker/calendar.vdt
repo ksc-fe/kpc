@@ -5,7 +5,7 @@ import {Row, Col} from '../grid';
 import {strPad, _$} from '../utils';
 import {
     isEqual, isLT, isGT, getDateString,
-    getTimeString, createDate,
+    getTimeString, createDate, getYearBase,
     yearArray, monthArray
 } from './utils';
 import {Tabs, Tab} from '../tabs';
@@ -17,24 +17,21 @@ const {
     multiple, onMouseEnterDay,
     type, hours, minutes, seconds, 
     disabledHours, disabledMinutes, disabledSeconds,
-    _isShowYearPicker, _isSelectTime, _now, _showDate, 
+    _isShowYearPicker, _isShowMonthPicker, _isShowDatePicker,
+    _isSelectTime, _now, _showDate,
     _focusDate, _id,
 } = self.get();
 
 const {value, values} = self._getRealValue();
 const valueDate = value || _now;
 const showDate = _showDate || valueDate;
+const _showYear = Math.floor(showDate.get('year') / 10);
 
 let yearMonthFormat = _$('yearMonthFormat');
 if (yearMonthFormat === 'yearMonthFormat') {
     yearMonthFormat = 'YYYY MM';
 }
-const format = yearMonthFormat.split(' ');
-const map = {
-    'MM': <span class="k-text">{{ _$(`${showDate.get('month') + 1}月`) }}</span>,
-    'YYYY': <span class="k-text">{{ _$(`{n}年`, {n: showDate.get('year')}) }}</span>
-};
-const panel = type === 'year' ? map.YYYY : format.map(item => map[item]);
+
 const isYearOrMonth = self._isYearOrMonth();
 
 <div 
@@ -54,7 +51,7 @@ const isYearOrMonth = self._isYearOrMonth();
         <Tab value="time">{{ value ? getTimeString(valueDate.toDate()) : '00:00:00' }}</Tab>
     </Tabs>
     <div v-if={{ !_isSelectTime }} class="k-date-picker">
-        <div class="k-month c-clearfix">
+        <div class="k-month-year-btn c-clearfix">
             <div class="k-left-btns">
                 <Button icon type="none" size="small" class="k-prev"
                     tagName="div" tabindex={{ null }} 
@@ -66,7 +63,7 @@ const isYearOrMonth = self._isYearOrMonth();
                 <Button icon type="none" size="small" class="k-prev"
                     tagName="div" tabindex={{ null }} 
                     ev-click={{ self.prevMonth }}
-                    v-if={{ type !== 'year' }}
+                    v-if={{ _isShowDatePicker }}
                 >
                     <Icon class="ion-ios-arrow-left" size="small" />
                 </Button>
@@ -82,29 +79,31 @@ const isYearOrMonth = self._isYearOrMonth();
                 <Button icon type="none" size="small" class="k-next"
                     tagName="div" tabindex={{ null }} 
                     ev-click={{ self.nextMonth }}
-                    v-if={{ type !== 'year' }}
+                    v-if={{ _isShowDatePicker }}
                 >
                     <Icon class="ion-ios-arrow-right" size="small" />
                 </Button>
             </div>
-            <div class="k-text-wrapper"
-                ev-click={{ isYearOrMonth ? undefined : self.showYearPicker }}
-            >
-                <Animate a:show={{ !isYearOrMonth && _isShowYearPicker }}
-                    a:transition="c-fade"
-                    a:tag={{ Icon }}
-                    class="ion-ios-undo"
-                    key="undo"
-                />
-                {{ panel }}
+            <div class="k-text-wrapper">
+                <span class="k-text" 
+                    v-if={{ _isShowYearPicker }}
+                >{{ _$(`{n}年 - {m}年`, {n: _showYear * 10, m: _showYear * 10 + 9}) }}</span>
+                <span v-else>
+                    <span class="k-text"
+                        ev-click={{ self.showYearPicker }}
+                    >{{ _$(`${showDate.get('year')}年`) }}</span>
+                    <span class="k-text" 
+                        ev-click={{ isYearOrMonth ? undefined : self.showMonthPicker }}
+                    >{{ _$(`${showDate.get('month') + 1}月`) }}</span>
+                </span>
             </div>
         </div>
-        <div class="k-weekdays" v-if={{ !_isShowYearPicker }}>
+        <div class="k-weekdays" v-if={{ _isShowDatePicker }}>
             <div class="k-weekday"
                 v-for={{ [_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')] }}
             >{{ value }}</div>
         </div>
-        <div class="k-calendar" v-if={{ !_isShowYearPicker }}
+        <div class="k-calendar" v-if={{ _isShowDatePicker }}
             ev-mouseleave={{ self._onMouseLeaveDays }}
         >
             {{ function() {
@@ -134,11 +133,11 @@ const isYearOrMonth = self._isYearOrMonth();
                                 "k-day": true,
                                 "k-out": isOut,
                                 "k-active": !isOut && values.find(value => {
-                                    return isEqual(value, dayjsDate);
+                                    return isEqual(value, dayjsDate, 'date');
                                 }),
-                                "k-today": isEqual(_now, dayjsDate),
+                                "k-today": isEqual(_now, dayjsDate, 'date'),
                                 "k-disabled": disabled, 
-                                "k-hover": isEqual(_focusDate, dayjsDate),
+                                "k-hover": isEqual(_focusDate, dayjsDate, 'date'),
                                 ...classNames
                             } }}
                             ev-click={{ !disabled && self.select.bind(self, dayjsDate) }}
@@ -155,39 +154,73 @@ const isYearOrMonth = self._isYearOrMonth();
                 return result;
             }() }}
         </div>
-        <Row v-if={{ _isShowYearPicker }} class="k-year-picker">
-            {{ do {
-                const span = type === 'year' ? 24 : 12;
-                const map = {
-                    MM: (
-                        <Col span={{ span }}>
-                            <ScrollSelect 
-                                data={{ monthArray }}
-                                value={{ showDate.month() }}
-                                disable={{ self._isDisabledMonth }}
-                                ev-$change:value={{ self.onChangeMonth }}
-                            />
-                        </Col>
-                    ),
-                    YYYY: (
-                        <Col span={{ span }}>
-                            <ScrollSelect 
-                                data={{ yearArray }}
-                                value={{ showDate.year() }}
-                                disable={{ self._isDisabledYear }}
-                                ev-$change:value={{ self.onChangeYear }}
-                            />
-                        </Col>
-                    )
-                };
 
-                if (type === 'year') {
-                    map.YYYY;
-                } else {
-                    format.map(item => map[item]);
-                }
-            } }}
-        </Row>
+        <div class="k-calendar">
+            <div v-if={{ _isShowMonthPicker }}>
+                {{ function() {
+                    const ret = [];
+                    const start = showDate.toDate();
+                    for (let i = 0; i < 12; i++) {
+                        const _month = i;
+                        const disabled = self._isDisabledMonth(_month);
+                        start.setMonth(_month);
+                        const dayjsDate = dayjs(start);
+                        ret.push(
+                            <div
+                                class={{ {
+                                    "k-month-year": true,
+                                    "k-disabled": disabled,
+                                    "k-active": isEqual(value, dayjsDate, 'month'),
+                                    "k-today": isEqual(_now, dayjsDate, 'month'),
+                                    "k-hover": isEqual(_focusDate, dayjsDate, 'month')
+                                } }}
+                                ev-click={{ !disabled && self.onChangeMonth.bind(self, _month) }}
+                                ev-mouseenter={{ self._onMouseEnter.bind(self, dayjsDate, false) }}
+                            > {{ _month + 1 }}月</div>
+                        )
+                    }
+                    const result = [];
+                    for (let i = 0; i < 3; i++) {
+                        result.push(<div> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
+                    }
+                    return  result;
+                }() }}
+            </div>
+
+            <div v-if={{ _isShowYearPicker }}>
+                {{ function() {
+                    const ret = [];
+                    const start = showDate.toDate();
+                    start.setFullYear(_showYear * 10 - 1);
+                    for (let i = 0; i < 12; i++) {
+                        const dayjsDate = dayjs(start);
+                        const _year = start.getFullYear();
+                        const disabled = self._isDisabledYear(_year);
+                        const isOut = Math.floor(_year / 10) !== _showYear;
+                        ret.push(
+                            <div
+                                class={{ {
+                                    "k-month-year": true,
+                                    "k-disabled": disabled,
+                                    "k-out": isOut,
+                                    "k-active": !isOut && isEqual(value, dayjsDate, 'year'),
+                                    "k-today": isEqual(_now, dayjsDate, 'year'),
+                                    "k-hover": isEqual(_focusDate, dayjsDate, 'year')
+                                } }}
+                                ev-click={{ !disabled && self.onChangeYear.bind(self, _year) }}
+                                ev-mouseenter={{ self._onMouseEnter.bind(self, dayjsDate, isOut) }}
+                            >{{ _year }}</div>
+                        );
+                        start.setFullYear(start.getFullYear() + 1);
+                    }
+                    const result = [];
+                    for (let i = 0; i < 3; i++) {
+                        result.push(<div> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
+                    }
+                    return result;
+                }() }}
+            </div>
+        </div>
     </div>
     <div v-else class="k-time-picker" key="time" ev-wheel={{ self._onWheel }}>
         <b:time-body>
@@ -217,7 +250,6 @@ const isYearOrMonth = self._isYearOrMonth();
                 date={{ scope.date || valueDate }}
                 isDisabledTime={{ self._isDisabledTime }}
             >
-                <b:append>:</b:append>
             </Time>
         </b:time-body>
     </div>

@@ -11,9 +11,9 @@ export function getNowDate() {
     
     return dayjs(now);
 }
-export function isEqual(a, b) {
+export function isEqual(a, b, type) {
     if (a && b) {
-        return a.isSame(b, 'date');
+        return a.isSame(b, type);
     }
     return false;
 }
@@ -98,4 +98,9 @@ export const FORMATS = {
     datetime: 'YYYY-MM-DD HH:mm:ss',
     year: 'YYYY',
     month: 'YYYY-MM',
+}
+
+export function getYearBase (date) {
+    const year = date.year();
+    return Math.floor(year / 10);
 }

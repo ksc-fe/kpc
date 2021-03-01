@@ -30,6 +30,7 @@
         position relative
     .k-day
     .k-weekday
+    .k-month-year
         display inline-block
         height $datepicker-day-width 
         border 1px solid transparent
@@ -38,11 +39,15 @@
     .k-day
         width $datepicker-day-width 
         margin $datepicker-day-margin 
+    .k-month-year
+        width $datepicker-month-width 
+        margin $datepicker-month-margin-top-bottom $datepicker-month-margin-left-right
     .k-weekday
         width $datepicker-weekday-width
         margin $datepicker-weekday-margin 
     .k-day
-        border-radius 50%
+    .k-month-year
+        border-radius $datepicker-day-border-radius
         cursor pointer
         position relative
         // &:hover
@@ -69,7 +74,7 @@
         .k-weekday
             color $datepicker-weekday-color 
 
-    .k-month
+    .k-month-year-btn
         text-align center
         padding $datepicker-month-padding 
         .k-text
@@ -107,7 +112,6 @@
             &:last-of-type
                 margin-left $datepicker-range-gutter
     .k-in-range
-        color $datepicker-range-day-color
         &:after
             content ''
             display inline-block

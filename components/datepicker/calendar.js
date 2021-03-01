@@ -1,7 +1,7 @@
 import Intact from 'intact'; import template from './calendar.vdt';
 import {strPad, range, toggleArray} from '../utils';
 import {
-    getNowDate, getDateString, getTimeString,
+    getNowDate, getDateString, getTimeString, getYearBase,
     isEqual, createDate, isGT, isLT
 } from './utils';
 import dayjs from 'dayjs';
@@ -48,6 +48,8 @@ export default class Calendar extends Intact {
             _showDate: undefined,
             _now: getNowDate(),
             _isShowYearPicker: false,
+            _isShowMonthPicker: false,
+            _isShowDatePicker: false,
             _isSelectTime: false,
             _focusDate: undefined,
             _index: undefined,
@@ -65,13 +67,6 @@ export default class Calendar extends Intact {
         this.on('$receive:value', (c, v) => {
             if (!v && this.get('_showDate')) return;
             this.initShowDate(true);
-        });
-
-        this.on('$change:_showDate', (c, v) => {
-            // if is select year or month, set the _showDate to value
-            if (this._isYearOrMonth() && !this._isDisabledDate(v)) {
-                this.set('value', v);
-            }
         });
     }
 
@@ -92,7 +87,10 @@ export default class Calendar extends Intact {
     }
 
     initPickerType() {
-        this.set('_isShowYearPicker', this._isYearOrMonth());
+        const type = this.get('type');
+        this.set('_isShowDatePicker', !this._isYearOrMonth());
+        this.set('_isShowYearPicker', type === 'year');
+        this.set('_isShowMonthPicker', type === 'month');
     }
 
     initShowDate(silent) {
@@ -184,11 +182,21 @@ export default class Calendar extends Intact {
     }
 
     prevYear() {
-        this.setRelativeYear(-1);
+        let {_isShowYearPicker} = this.get();
+        if (_isShowYearPicker) {
+            this.setRelativeYear(-10);
+        } else {
+            this.setRelativeYear(-1);
+        }
     }
 
     nextYear() {
-        this.setRelativeYear(1);
+        let {_isShowYearPicker} = this.get();
+        if (_isShowYearPicker) {
+            this.setRelativeYear(10);
+        } else {
+            this.setRelativeYear(1);
+        }
     }
 
     setRelativeMonth(month) {
@@ -202,21 +210,43 @@ export default class Calendar extends Intact {
     }
 
     setMonth(month) {
+        const type = this.get('type');
         const date = this.getShowDate();
         this.set('_showDate', date.month(month));
+        if (type === 'month') {
+            this.set('value', date.month(month), {async: true});
+        }
     }
 
     setYear(year) {
+        const type = this.get('type');
         const date = this.getShowDate();
         this.set('_showDate', date.year(year));
+        if (type === 'year') {
+            this.set('value', date.year(year), {async: true});
+        }
     }
 
-    onChangeYear(c, value) {
+    onChangeYear(value) {
         this.setYear(value);
+        const type = this.get('type');
+        if (type === 'year') {
+            this.trigger('hide'); 
+        } else {
+            this.set('_isShowYearPicker', false);
+            this.set('_isShowMonthPicker', true);
+        }
     }
 
-    onChangeMonth(c, value) {
+    onChangeMonth(value) {
         this.setMonth(value);
+        const type = this.get('type');
+        if (type === 'month') {
+            this.trigger('hide');
+        } else {
+            this.set('_isShowMonthPicker', false);
+            this.set('_isShowDatePicker', true);
+        }
     }
 
     getShowDate() {
@@ -233,7 +263,15 @@ export default class Calendar extends Intact {
     }
 
     showYearPicker() {
-        this.set('_isShowYearPicker', !this.get('_isShowYearPicker'));
+        this.set('_isShowYearPicker', true);
+        this.set('_isShowMonthPicker', false)
+        this.set('_isShowDatePicker', false)
+    }
+
+    showMonthPicker() {
+        this.set('_isShowMonthPicker', true)
+        this.set('_isShowDatePicker', false)
+        this.set('_isShowYearPicker', false)
     }
 
     onChangeTime(c, v) {
@@ -296,29 +334,32 @@ export default class Calendar extends Intact {
     }
 
     _onKeydown(e) {
+        const { _isShowYearPicker, _isShowMonthPicker } = this.get();
+        const type = _isShowYearPicker ? 'year' : (_isShowMonthPicker ? 'month': 'day');
         // do nothing if it is time selection
         if (this.get('_isSelectTime')) return;
-
+        const upStep = type === 'day' ? -7 : -4;
+        const downStep = type === 'day' ? 7 : 4;
         switch (e.keyCode) {
             case 38: // up
-                this._focusByOffset(e, -7);
+                this._focusByOffset(e, upStep, type);
                 break;
             case 40: // down
-                this._focusByOffset(e, 7);
+                this._focusByOffset(e, downStep, type);
                 break;
             case 37: // left
-                this._focusByOffset(e, -1);
+                this._focusByOffset(e, -1, type);
                 break;
             case 39: // right
-                this._focusByOffset(e, 1);
+                this._focusByOffset(e, 1, type);
                 break;
             case 13:
-                this._selectFocusDate();
+                this._selectFocusDate(type);
                 break;
         }
     }
 
-    _focusByOffset(e, offset) {
+    _focusByOffset(e, offset, type) {
         e.preventDefault();
 
         let {_focusDate, value, _showDate} = this.get();
@@ -327,20 +368,31 @@ export default class Calendar extends Intact {
         if (!_focusDate) {
             _focusDate = this.getShowDate();
             if (!value || Array.isArray(value)) {
+                if (type === 'month') {
+                    _focusDate = _focusDate.month(0);
+                }
+                if (type === 'year') {
+                    const satartYear =  getYearBase(_focusDate) * 10;
+                    _focusDate = _focusDate.year(satartYear);
+                }
                 isSet = false;
             } else if (!Array.isArray(value)) {
                 _focusDate = value;
             }
         } else {
             if (_showDate) {
-                if (!_focusDate.isSame(_showDate, 'month')) {
+                if (!_focusDate.isSame(_showDate, 'month') && type === 'day') {
                     _focusDate = _showDate.date(1);
+                    isSet = false;
+                }
+                if (!_focusDate.isSame(_showDate, 'year') && type === 'year') {
+                    _focusDate = _showDate.year(getYearBase(_showDate) * 10);
                     isSet = false;
                 }
             }
         }
         if (isSet) {
-            _focusDate = _focusDate.add(offset, 'day');
+            _focusDate = _focusDate.add(offset, type);
         }
 
         this.set({
@@ -350,11 +402,11 @@ export default class Calendar extends Intact {
         this.update();
     }
 
-    _selectFocusDate() {
+    _selectFocusDate(type) {
         const {_focusDate, _isSelectTime} = this.get();
         if (_focusDate && !_isSelectTime) {
             this.trigger('enter:select', this);
-            this.select(_focusDate);
+            type === 'month' ? this.onChangeMonth(_focusDate.month()) : type === 'year' ? this.onChangeYear(_focusDate.year()) : this.select(_focusDate);
         }
     }
 
