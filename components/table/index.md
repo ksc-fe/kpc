@@ -46,7 +46,7 @@ sidebar: doc
 | spreadKeys | 树形表格指定展开的行 | `Array` | `[]` |
 | draggable | 表格行是否可拖动 | `Boolean` | `false` |
 | removeCheckedKeyOnRowDestroyed | 是否在行销毁的时候，也同步删除`checkedKeys`中的值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `true` |
-
+| showIndeterminate | 表格是否展示半选中状态 | `Boolean` | `false` |
 ## TableColumn
 
 除了通过`Table`的`scheme`属性指定表格的结构外，还以通过`TableColumn`来指定，它的属性值跟`scheme`
