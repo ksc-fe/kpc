@@ -17,6 +17,7 @@ import Intact from 'intact';
 import {Table, TableColumn} from 'kpc/components/table';
 import DraggableTable from '~/components/table/demos/draggable';
 import MergeCellDemo from '~/components/table/demos/mergeCell';
+import ShowIndeterminateDemo from '~/components/table/demos/showIndeterminate';
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import {Icon} from 'kpc/components/icon';
 import Vue from 'vue';
@@ -510,5 +511,14 @@ describe('Table', () => {
 
         app.$destroy();
         document.body.removeChild(app.$el);
+    });
+
+    it('showIndeterminate', async () => {
+        instance = mount(ShowIndeterminateDemo);
+
+        instance.set('showIndeterminate', true);
+        expect(instance.element.innerHTML).to.matchSnapshot();
+        instance.set('showIndeterminate', false);
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

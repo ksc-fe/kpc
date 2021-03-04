@@ -54,6 +54,7 @@ export default class BaseTable extends Intact {
             spreadKeys: [],
             draggable: false,
             removeCheckedKeyOnRowDestroyed: true,
+            showIndeterminate: false,
 
             _padding: 0,
             _paddingBottom: 0,
@@ -225,7 +226,12 @@ export default class BaseTable extends Intact {
 
     isCheckHalf() {
         const {checkedKeys, _enabledKeys} = this.get();
-        return _enabledKeys.length && ( _enabledKeys.every(key => checkedKeys.includes(key)) ? false : _enabledKeys.some(key => checkedKeys.includes(key)));
+        return _enabledKeys.length &&
+            (
+                _enabledKeys.every(key => checkedKeys.includes(key))
+                    ? false
+                    : _enabledKeys.some(key => checkedKeys.includes(key))
+            );
     }
 
     isChecked(key) {
