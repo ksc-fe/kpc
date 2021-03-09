@@ -21,7 +21,7 @@ const {
     _scrollPosition, _hoverIndex, tooltipPosition,
     _paddingBottom, _isStickyScrollbar, stickScrollbar, loading,
     _isShowLeftRightMiddle, merge, childrenKey, indent,
-    draggable, _dragKey
+    draggable, _dragKey, showIndeterminate
 } = self.get();
 
 let cols;
@@ -58,6 +58,7 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
             minWidth={{ 40 }}
         >
             <Checkbox value={{ self.isCheckAll() }}
+                indeterminate={{ showIndeterminate ? self.isCheckHalf() : undefined }}
                 ev-click={{ self._toggleCheckAll }}
                 v-if={{ checkType === 'checkbox' }}
             />
