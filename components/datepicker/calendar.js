@@ -88,9 +88,11 @@ export default class Calendar extends Intact {
 
     initPickerType() {
         const type = this.get('type');
-        this.set('_isShowDatePicker', !this._isYearOrMonth());
-        this.set('_isShowYearPicker', type === 'year');
-        this.set('_isShowMonthPicker', type === 'month');
+        this.set({
+            _isShowDatePicker: !this._isYearOrMonth(),
+            _isShowYearPicker: type === 'year',
+            _isShowMonthPicker: type === 'month'
+        });
     }
 
     initShowDate(silent) {
@@ -182,7 +184,7 @@ export default class Calendar extends Intact {
     }
 
     prevYear() {
-        let {_isShowYearPicker} = this.get();
+        const {_isShowYearPicker} = this.get();
         if (_isShowYearPicker) {
             this.setRelativeYear(-10);
         } else {
@@ -191,7 +193,7 @@ export default class Calendar extends Intact {
     }
 
     nextYear() {
-        let {_isShowYearPicker} = this.get();
+        const {_isShowYearPicker} = this.get();
         if (_isShowYearPicker) {
             this.setRelativeYear(10);
         } else {
@@ -233,8 +235,10 @@ export default class Calendar extends Intact {
         if (type === 'year') {
             this.trigger('hide'); 
         } else {
-            this.set('_isShowYearPicker', false);
-            this.set('_isShowMonthPicker', true);
+            this.set({
+                _isShowYearPicker: false,
+                _isShowMonthPicker: true
+            });
         }
     }
 
@@ -244,8 +248,10 @@ export default class Calendar extends Intact {
         if (type === 'month') {
             this.trigger('hide');
         } else {
-            this.set('_isShowMonthPicker', false);
-            this.set('_isShowDatePicker', true);
+            this.set({
+                _isShowMonthPicker: false,
+                _isShowDatePicker: true
+            });
         }
     }
 
@@ -263,15 +269,19 @@ export default class Calendar extends Intact {
     }
 
     showYearPicker() {
-        this.set('_isShowYearPicker', true);
-        this.set('_isShowMonthPicker', false)
-        this.set('_isShowDatePicker', false)
+        this.set({
+            _isShowYearPicker: true,
+            _isShowMonthPicker: false,
+            _isShowDatePicker: false
+        });
     }
 
     showMonthPicker() {
-        this.set('_isShowMonthPicker', true)
-        this.set('_isShowDatePicker', false)
-        this.set('_isShowYearPicker', false)
+        this.set({
+            _isShowMonthPicker: true,
+            _isShowDatePicker: false,
+            _isShowYearPicker: false
+        });
     }
 
     onChangeTime(c, v) {
@@ -370,8 +380,7 @@ export default class Calendar extends Intact {
             if (!value || Array.isArray(value)) {
                 if (type === 'month') {
                     _focusDate = _focusDate.month(0);
-                }
-                if (type === 'year') {
+                } else if (type === 'year') {
                     const satartYear =  getYearBase(_focusDate) * 10;
                     _focusDate = _focusDate.year(satartYear);
                 }
@@ -384,8 +393,7 @@ export default class Calendar extends Intact {
                 if (!_focusDate.isSame(_showDate, 'month') && type === 'day') {
                     _focusDate = _showDate.date(1);
                     isSet = false;
-                }
-                if (!_focusDate.isSame(_showDate, 'year') && type === 'year') {
+                } else if (!_focusDate.isSame(_showDate, 'year') && type === 'year') {
                     _focusDate = _showDate.year(getYearBase(_showDate) * 10);
                     isSet = false;
                 }
@@ -406,7 +414,13 @@ export default class Calendar extends Intact {
         const {_focusDate, _isSelectTime} = this.get();
         if (_focusDate && !_isSelectTime) {
             this.trigger('enter:select', this);
-            type === 'month' ? this.onChangeMonth(_focusDate.month()) : type === 'year' ? this.onChangeYear(_focusDate.year()) : this.select(_focusDate);
+            if (type === 'month') {
+                this.onChangeMonth(_focusDate.month());
+            } else if(type === 'year') {
+                this.onChangeYear(_focusDate.year());
+            } else {
+                this.select(_focusDate);
+            }
         }
     }
 

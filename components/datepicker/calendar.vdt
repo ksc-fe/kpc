@@ -181,7 +181,7 @@ const isYearOrMonth = self._isYearOrMonth();
                     }
                     const result = [];
                     for (let i = 0; i < 3; i++) {
-                        result.push(<div> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
+                        result.push(<div class='k-month-year-row'> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
                     }
                     return  result;
                 }() }}
@@ -215,7 +215,7 @@ const isYearOrMonth = self._isYearOrMonth();
                     }
                     const result = [];
                     for (let i = 0; i < 3; i++) {
-                        result.push(<div> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
+                        result.push(<div class='k-month-year-row'> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
                     }
                     return result;
                 }() }}

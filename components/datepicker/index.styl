@@ -41,10 +41,16 @@
         margin $datepicker-day-margin 
     .k-month-year
         width $datepicker-month-width 
-        margin $datepicker-month-margin-top-bottom $datepicker-month-margin-left-right
     .k-weekday
         width $datepicker-weekday-width
         margin $datepicker-weekday-margin 
+    .k-month-year-row
+        display flex
+        justify-content space-between
+        margin $datepicker-month-row-margin
+        padding $datepicker-month-row-padding
+        &:first-child
+           margin-top $datepicker-month-first-margin-top
     .k-day
     .k-month-year
         border-radius $datepicker-day-border-radius
@@ -76,7 +82,7 @@
 
     .k-month-year-btn
         text-align center
-        padding $datepicker-month-padding 
+        padding $datepicker-month-btn-padding 
         .k-text
             margin $datepicker-month-text-margin 
             line-height $datepicker-month-text-line-height 

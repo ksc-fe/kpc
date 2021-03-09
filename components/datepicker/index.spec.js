@@ -275,6 +275,7 @@ describe('Datepicker', () => {
         input.click();
         let content = getElement('.k-datepicker-content');
         const now = new Date();
+        now.setDate(1);
         const month = now.getMonth();
         const date = now.getDate();
         const calendar = content.querySelector('.k-calendar-wrapper');
