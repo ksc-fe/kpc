@@ -1,21 +1,21 @@
-<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>KPC组件库</title><meta content="KPC, KingDesign, 组件库, 前端框架, Vue, Angular, React, Intact" name="keywords"/><meta content="KPC，支持多框架的前端高质量组件库" name="description"/><link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon"/><link href="//damife.ks3-cn-beijing.ksyun.com/kpc/theme-kpc.1.4.8.css" rel="stylesheet"></head><body><div id="page"><div class="k-app"><div class="main-wrapper document-page blog-page"><div class="header-wrapper header-shadow"><header><div class="king-logo"><a class="logo"></a><a class="king">KPC</a></div><div class="right"><nav><a>资源</a><a>设计</a><a>组件</a><a class="active">Blog</a><a>定制主题</a><div class="border"></div></nav><button class="k-btn k-none k-btn-icon menu-btn" _evHasSaved tabindex="0" type="button"><i class="k-icon ion-navicon k-large" style=""></i></button><!--placeholder--><div class="line"></div><div class="k-select k-with-suffix k-inline k-has-value" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">默认主题</span></div><span class="k-suffix"><span class="k-suffix-icon"><i class="k-arrow ion-arrow-down-b"></i></span></span></div><!--placeholder--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><ul><li><a>KPC设计思路</a><ul class="sub-catalogs"><li><a>目录结构</a></li><li><a>样式</a></li><li class="sub-catalogs"><a>主题定制</a></li><li><a>构建打包</a></li><li class="sub-catalogs"><a>单文件构建版</a></li><li class="sub-catalogs"><a>多文件css构建版</a></li><li class="sub-catalogs"><a>多文件stylus构建版</a></li><li><a>文档生成</a></li><li><a>单元测试</a></li><li class="sub-catalogs"><a>测试工具</a></li><li class="sub-catalogs"><a>demo测试</a></li><li class="sub-catalogs"><a>交互测试</a></li></ul></li></ul><div class="aside-border transition" style=""></div></div></aside><article><h1 id="__top">KPC设计思路</h1><div class="contents"><div class="api"><div><h2 id='%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84'>目录结构</h2><p>整体上看，目录结构涉及组件源码，调试相关，文档展示，单元测试，构建打包等方面，具体如下：</p>
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0"><title>KPC组件库</title><meta content="KPC, KingDesign, 组件库, 前端框架, Vue, Angular, React, Intact" name="keywords"/><meta content="KPC，支持多框架的前端高质量组件库" name="description"/><link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon"/><link href="//damife.ks3-cn-beijing.ksyun.com/kpc/theme-kpc.1.5.0.css" rel="stylesheet"></head><body><div id="page"><div class="k-app"><div class="main-wrapper document-page blog-page"><div class="header-wrapper header-shadow"><header><div class="king-logo"><a class="logo"></a><a class="king">KPC</a></div><div class="right"><nav><a>资源</a><a>设计</a><a>组件</a><a class="active">Blog</a><a>定制主题</a><div class="border"></div></nav><button class="k-btn k-none k-btn-icon menu-btn" _evHasSaved tabindex="0" type="button"><i class="k-icon ion-navicon k-large" style=""></i></button><!--placeholder--><div class="line"></div><div class="k-select k-with-suffix k-inline k-has-value" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" value="kpc" /><span class="k-value c-ellipsis">默认主题</span></div><span class="k-suffix"><span class="k-suffix-icon"><i class="k-icon k-arrow ion-arrow-down-b" style=""></i></span></span></div><!--placeholder--></div></div></header></div><div class="content-wrapper"><aside><div class="aside-wrapper"><ul><li><a>KPC设计思路</a><ul class="sub-catalogs"><li><a>目录结构</a></li><li><a>样式</a></li><li class="sub-catalogs"><a>主题定制</a></li><li><a>构建打包</a></li><li class="sub-catalogs"><a>单文件构建版</a></li><li class="sub-catalogs"><a>多文件css构建版</a></li><li class="sub-catalogs"><a>多文件stylus构建版</a></li><li><a>文档生成</a></li><li><a>单元测试</a></li><li class="sub-catalogs"><a>测试工具</a></li><li class="sub-catalogs"><a>demo测试</a></li><li class="sub-catalogs"><a>交互测试</a></li></ul></li></ul><div class="aside-border transition" style=""></div></div></aside><article><h1 id="__top">KPC设计思路</h1><div class="contents"><div class="api"><div><h2 id='%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84'>目录结构</h2><p>整体上看，目录结构涉及组件源码，调试相关，文档展示，单元测试，构建打包等方面，具体如下：</p>
 <pre><code class="hljs js">.
-├── components <span class="hljs-comment">// 组件源码</span>
-├── styles <span class="hljs-comment">// 全局样式</span>
-├── i18n <span class="hljs-comment">// 国际化</span>
+├── components <span class="hljs-regexp">//</span> 组件源码
+├── styles <span class="hljs-regexp">//</span> 全局样式
+├── i18n <span class="hljs-regexp">//</span> 国际化
 ├
-├── pages <span class="hljs-comment">// 调试页面</span>
-├── app <span class="hljs-comment">// 调试服务启动文件</span>
-├── views <span class="hljs-comment">// 调试服务vdt模板文件</span>
+├── pages <span class="hljs-regexp">//</span> 调试页面
+├── app <span class="hljs-regexp">//</span> 调试服务启动文件
+├── views <span class="hljs-regexp">//</span> 调试服务vdt模板文件
 ├
-├── docs <span class="hljs-comment">// markdown文档</span>
-├── site <span class="hljs-comment">// 文档网站代码</span>
+├── docs <span class="hljs-regexp">//</span> markdown文档
+├── site <span class="hljs-regexp">//</span> 文档网站代码
 ├
-├── test <span class="hljs-comment">// 测试代码</span>
+├── test <span class="hljs-regexp">//</span> 测试代码
 ├
-├── dist <span class="hljs-comment">// 单文件构建目录</span>
-├── <span class="hljs-meta">@css</span> <span class="hljs-comment">// css多文件构建目录</span>
-└── <span class="hljs-meta">@stylus</span> <span class="hljs-comment">// stylus多文件构建目录</span></code></pre>
+├── dist <span class="hljs-regexp">//</span> 单文件构建目录
+├── @css <span class="hljs-regexp">//</span> css多文件构建目录
+└── @stylus <span class="hljs-regexp">//</span> stylus多文件构建目录</code></pre>
 <p>与组件相关的文件，全部放到一起，包括：组件逻辑，模板，样式，单元测试，文档，示例</p>
 <pre><code class="hljs js">components/checkbox
 ├── demos <span class="hljs-comment">// 文档示例</span>
@@ -34,46 +34,46 @@
 </ol>
 <p>变量声明分为两部分：全局声明和组件声明。全局声明用于定义全局的样式，例如：主题色，边框色，字体，尺寸等；组件声明会使用全局声明中定义的变量来定义组件使用的变量，这样既可以做到一改全改，又可以针对组件进行特殊化定制。</p>
 <p>全局声明文件：<code>styles/themes/defaults.styl</code></p>
-<pre><code class="hljs stylus"><span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>
-<span class="hljs-code">             Theme</span>
-<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>*/</span></span>
-use(<span class="hljs-string">'../functions.js'</span>)
-$theme-dir := __dirname()
-$fonts-dir := <span class="hljs-string">'./fonts'</span>;
+<pre><code class="hljs stylus"><span class="hljs-comment">/******************************
+             Theme
+*******************************/</span>
+<span class="hljs-function"><span class="hljs-title">use</span>(<span class="hljs-params">&#x27;../functions.js&#x27;</span>)</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$theme</span>-dir := __dirname()</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$fonts</span>-dir := &#x27;./fonts&#x27;;</span>
 
-<span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>
-<span class="hljs-code">             Colors</span>
-<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>*/</span></span>
+<span class="hljs-comment">/******************************
+             Colors
+*******************************/</span>
 
-$red := #db2828
-$blue := #<span class="hljs-number">0</span>a5eee
-$light-black := #<span class="hljs-number">595959</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$red</span> := #db2828</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$blue</span> := #0a5eee</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$light</span>-black := #595959</span>
 
 
-<span class="hljs-comment"><span class="markdown">/<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>
-<span class="hljs-code">            Page</span>
-<span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span><span class="hljs-strong">*****</span>*/</span></span>
+<span class="hljs-comment">/******************************
+            Page
+*******************************/</span>
 
-$font-family := <span class="hljs-string">'Microsoft YaHei'</span>
-$font-size := <span class="hljs-number">14</span>px 
-$text-color := $light-black 
-$primary-color := $blue
-$disabled-bg-color := #f7f7f7
-$disabled-border-color := #d9d9d9
+<span class="hljs-meta"><span class="hljs-meta-keyword">$font</span>-family := &#x27;Microsoft YaHei&#x27;</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$font</span>-size := 14px </span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$text</span>-color := $light-black </span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$primary</span>-color := $blue</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$disabled</span>-bg-color := #f7f7f7</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$disabled</span>-border-color := #d9d9d9</span>
 
 <span class="hljs-comment">// size</span>
-$<span class="hljs-keyword">default</span>-font-size := <span class="hljs-number">1</span>rem
-$small-height := <span class="hljs-number">30</span>
-$small-font-size := unit(<span class="hljs-number">12</span> / <span class="hljs-number">14</span>, rem)
+<span class="hljs-meta"><span class="hljs-meta-keyword">$default</span>-font-size := 1rem</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$small</span>-height := 30</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$small</span>-font-size := unit(12 / 14, rem)</span>
 
 <span class="hljs-comment">// box-shadow</span>
-$box-shadow := <span class="hljs-number">0</span> <span class="hljs-number">2</span>px <span class="hljs-number">8</span>px <span class="hljs-number">0</span> rgba(<span class="hljs-number">191</span>, <span class="hljs-number">191</span>, <span class="hljs-number">191</span>, <span class="hljs-number">.5</span>)
-$border-radius := unit(<span class="hljs-number">2</span> / <span class="hljs-number">14</span>, rem) 
+<span class="hljs-meta"><span class="hljs-meta-keyword">$box</span>-shadow := 0 2px 8px 0 rgba(191, 191, 191, .5)</span>
+<span class="hljs-meta"><span class="hljs-meta-keyword">$border</span>-radius := unit(2 / 14, rem) </span>
 
 ...
 </code></pre>
 <p>组件声明文件：<code>components/checkbox/variables.styl</code></p>
-<pre><code class="hljs stylus">@require(<span class="hljs-string">'../../styles/themes/default.styl'</span>)
+<pre><code class="hljs stylus">@require(<span class="hljs-string">&#x27;../../styles/themes/default.styl&#x27;</span>)
 
 $checkbox-width := <span class="hljs-keyword">unit</span>(<span class="hljs-number">14</span> / <span class="hljs-number">14</span>, rem) 
 $checkbox-border-<span class="hljs-keyword">color</span> := $dark-border-<span class="hljs-keyword">color</span>
@@ -93,7 +93,7 @@ $checkbox-checked-bg-<span class="hljs-keyword">color</span> := $checkbox-checke
 </ol>
 <p>每一个组件都有个样式文件，该样式文件中样式值都使用前面定义的变量进行定义（除非该定义本不该改变）。</p>
 <p>样式文件：<code>components/checkbox/index.styl</code></p>
-<pre><code class="hljs stylus"><span class="hljs-keyword">@require</span>(<span class="hljs-string">'./variables.styl'</span>);
+<pre><code class="hljs stylus"><span class="hljs-keyword">@require</span>(<span class="hljs-string">&#x27;./variables.styl&#x27;</span>);
 
 <span class="hljs-selector-class">.k-checkbox</span>
     <span class="hljs-attribute">display</span> inline-block
@@ -112,21 +112,21 @@ $checkbox-checked-bg-<span class="hljs-keyword">color</span> := $checkbox-checke
 ...</code></pre>
 <h3 id='%E4%B8%BB%E9%A2%98%E5%AE%9A%E5%88%B6'>主题定制</h3><p>在上面变量声明中，我们使用<code>:=</code>进行赋值，这是<code>stylus</code>的特有语法，意为：如果该变量已被赋值则忽略本次赋值。借助该特性，我们可以在编译时提前引入一个主题文件来改变默认变量定义。借助<code>stylus-loader</code>我们可以为每一个<code>stylus</code>统一引入一个文件，该文件中定义了所有需要重新定义的变量。</p>
 <pre><code class="hljs js">{
-    <span class="hljs-attribute">loader</span>: <span class="hljs-string">'stylus-loader'</span>,
+    <span class="hljs-attribute">loader</span>: <span class="hljs-string">&#x27;stylus-loader&#x27;</span>,
     options: {
         // 引入自定义主题文件mytheme/index.styl
-        import: path.<span class="hljs-built_in">resolve</span>(__dirname, <span class="hljs-string">'styles/mytheme/index.styl'</span>)
+        import: path.<span class="hljs-built_in">resolve</span>(__dirname, <span class="hljs-string">&#x27;styles/mytheme/index.styl&#x27;</span>)
     }
 }</code></pre>
 <p>实际主题定制中，仅仅通过改变变量并不能完成100%的定制需求，当我们需要为组件添加新样式时，仅有的变量便无法满足，因为新增的样式kpc并没有声明相应的变量。所以还需一种方式引入额外样式声明文件。</p>
 <p>例如：<code>Select</code>默认主题并没有定义<code>border-radius</code>，也没有相应的变量声明，此时我们需要在自定义主题中添加<code>border-radius</code>怎么办？</p>
-</div><div><div style="margin-bottom: 16px;"><div class="k-select k-with-suffix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span></div><span class="k-suffix"><span class="k-suffix-icon"><i class="k-arrow ion-arrow-down-b"></i></span></span></div><!--placeholder--></div>
+</div><div><div style="margin-bottom: 16px;"><div class="k-select k-with-suffix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" /><span class="k-placeholder c-ellipsis">请选择</span></div><span class="k-suffix"><span class="k-suffix-icon"><i class="k-icon k-arrow ion-arrow-down-b" style=""></i></span></span></div><!--placeholder--></div>
         You selected: </div><div class="k-select k-with-suffix" style="" tabindex="0"><div class="k-wrapper" tabindex="-1" _evHasSaved><div class="k-main"><input type="hidden" value="" /><span class="k-placeholder c-ellipsis">请选择</span></div><span class="k-suffix"><span class="k-suffix-icon"><i class="k-icon ion-load-c icon-loading" style=""></i></span></span></div><!--placeholder--></div></div><div><p>kpc为每个组件的样式文件<code>index.styl</code>添加了一句代码</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-variable">$theme</span>-dir + <span class="hljs-string">'/select.styl'</span>)</span></span></code></pre>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-variable">$theme</span>-dir + <span class="hljs-string">&#x27;/select.styl&#x27;</span>)</span></span></code></pre>
 <p>这里<code>require</code>方法是自定义的方法，定义在文件<code>styles/functions.js</code>中，它的意思是：当文件存在时就包含该文件。所以我们只需要在<code>$theme-dir</code>定义的文件夹中创建<code>select.styl</code>文件，组件就会默认包含该样式文件。</p>
 <p>这里我们在自定义主题文件中声明<code>$theme-dir</code>指向当前主题所在文件夹，然后在该文件下定义<code>select.styl</code>文件添加样式定义即可。</p>
 <p><code>styles/mytheme/index.styl</code></p>
-<pre><code class="hljs stylus"><span class="hljs-variable">$theme-dir</span> := __dirname(); <span class="hljs-comment">// __dirname也为自定义方法，用于获取当前文件所在的文件夹的绝对路径</span></code></pre>
+<pre><code class="hljs stylus"><span class="hljs-variable">$theme</span>-dir := __dirname(); <span class="hljs-regexp">//</span> __dirname也为自定义方法，用于获取当前文件所在的文件夹的绝对路径</code></pre>
 <p><code>styles/mytheme/select.styl</code></p>
 <pre><code class="hljs stylus">.k-select
     .k-wrapper
@@ -142,9 +142,9 @@ $checkbox-checked-bg-<span class="hljs-keyword">color</span> := $checkbox-checke
 </ol>
 <p>索引文件是编译的入口文件，它会将所有的组件<code>import</code>进来，然后<code>export</code>出去。但是当组件数变得庞大时，手动维护该文件会非常麻烦。kpc采用扫描所有组件文件，自动生成索引文件的方式来维护该文件。</p>
 <p>在每个组件入口文件<code>index.js</code>中，最后一句代码来暴露该组件的接口，例如：<code>components/select/index.js</code></p>
-<pre><code class="hljs js"><span class="hljs-builtin-name">export</span> {Select, Option,<span class="hljs-built_in"> Group </span>as OptionGroup};</code></pre>
+<pre><code class="hljs js">export {<span class="hljs-keyword">Select</span>, <span class="hljs-keyword">Option</span>, <span class="hljs-keyword">Group</span> <span class="hljs-keyword">as</span> OptionGroup};</code></pre>
 <p>构建时，正则匹配该代码，提取组件名称：<code>Select, Option, OptionGroup</code>，然后生成索引代码至<code>components/index.js</code></p>
-<pre><code class="hljs js">import {<span class="hljs-keyword">Select</span>, <span class="hljs-keyword">Option</span>, OptionGroup} <span class="hljs-keyword">from</span> <span class="hljs-string">'./select'</span>;
+<pre><code class="hljs js">import {<span class="hljs-keyword">Select</span>, <span class="hljs-keyword">Option</span>, OptionGroup} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./select&#x27;</span>;
 
 export {
     <span class="hljs-keyword">Select</span>,
@@ -161,21 +161,21 @@ export {
 <li>编译js</li>
 </ol>
 <p><code>js</code>文件需要通过<code>babel</code>编译，但是这里需要进行额外的一步替换操作。因为<code>js</code>源码中的样式加载代码为：</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> Intact <span class="hljs-keyword">from</span> <span class="hljs-string">'intact'</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-keyword">template</span> <span class="hljs-keyword">from</span> <span class="hljs-string">'./index.vdt'</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">'../../styles/kpc.styl'</span>;
-<span class="hljs-keyword">import</span> <span class="hljs-string">'./index.styl'</span>;</code></pre>
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> Intact <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;intact&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-keyword">template</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./index.vdt&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;../../styles/kpc.styl&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./index.styl&#x27;</span>;</code></pre>
 <p>进过<code>balel</code>编译后，会变成</p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> Intact = <span class="hljs-built_in">require</span>(<span class="hljs-string">'intact'</span>);
-<span class="hljs-keyword">var</span> template = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./index.vdt'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'../../styles/kpc.styl'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'./index.styl);</span></code></pre>
+<pre><code class="hljs js"><span class="hljs-keyword">var</span> Intact = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;intact&#x27;</span>);
+<span class="hljs-keyword">var</span> template = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./index.vdt&#x27;</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;../../styles/kpc.styl&#x27;</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;./index.styl);</span></code></pre>
 <p>实际<code>index.styl</code>文件会编译成<code>index.css</code>，所以这里需要将<code>require(&#39;./index.styl&#39;)</code>替换成<code>require(&#39;./index.css&#39;)</code></p>
 <ol start="2">
 <li>编译vdt</li>
 </ol>
 <p>模板<code>index.vdt</code>文件会编译成<code>index.vdt.js</code>文件。而<code>js</code>中引入的<code>vdt</code>文件不用像<code>stylus</code>一样需要替换，依然为：</p>
-<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">'./index.vdt'</span>)</span></span></code></pre>
+<pre><code class="hljs js"><span class="hljs-function"><span class="hljs-title">require</span><span class="hljs-params">(<span class="hljs-string">&#x27;./index.vdt&#x27;</span>)</span></span></code></pre>
 <p>不需要替换的原因是，<code>require</code>方法有一个特性：当不存在<code>./index.vdt</code>时，会去找<code>./index.vdt.js</code>。</p>
 <ol start="3">
 <li>编译stylus</li>
@@ -211,66 +211,66 @@ graph TB
 <span class="hljs-attr">category:</span> <span class="hljs-string">组件</span>
 <span class="hljs-attr">order:</span> <span class="hljs-number">0</span>
 <span class="hljs-attr">sidebar:</span> <span class="hljs-string">doc</span>
-<span class="hljs-meta">---</span>
-
+<span class="hljs-meta">---
+</span>
 <span class="hljs-comment"># 属性</span>
 
 <span class="hljs-comment">## Button</span></code></pre>
 <p>上述<code>markdown</code>文件最终生成文件如下：</p>
 <p><code>index.json</code></p>
 <pre><code class="hljs json">{
-    <span class="hljs-attr">"setting"</span>: {
-        <span class="hljs-attr">"title"</span>: <span class="hljs-string">"按钮"</span>,
-        <span class="hljs-attr">"category"</span>: <span class="hljs-string">"组件"</span>,
-        <span class="hljs-attr">"order"</span>: <span class="hljs-number">0</span>,
-        <span class="hljs-attr">"sidebar"</span>: <span class="hljs-string">"doc"</span>
+    <span class="hljs-attr">&quot;setting&quot;</span>: {
+        <span class="hljs-attr">&quot;title&quot;</span>: <span class="hljs-string">&quot;按钮&quot;</span>,
+        <span class="hljs-attr">&quot;category&quot;</span>: <span class="hljs-string">&quot;组件&quot;</span>,
+        <span class="hljs-attr">&quot;order&quot;</span>: <span class="hljs-number">0</span>,
+        <span class="hljs-attr">&quot;sidebar&quot;</span>: <span class="hljs-string">&quot;doc&quot;</span>
     },
-    <span class="hljs-attr">"contents"</span>: <span class="hljs-string">"&lt;h1 id='header-%E5%B1%9E%E6%80%A7'&gt;属性&lt;/h1&gt;&lt;h2 id='header-Button'&gt;Button&lt;/h2&gt;"</span>
+    <span class="hljs-attr">&quot;contents&quot;</span>: <span class="hljs-string">&quot;&lt;h1 id=&#x27;header-%E5%B1%9E%E6%80%A7&#x27;&gt;属性&lt;/h1&gt;&lt;h2 id=&#x27;header-Button&#x27;&gt;Button&lt;/h2&gt;&quot;</span>
 }</code></pre>
 <p><code>index.js</code></p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> Article <span class="hljs-keyword">from</span> <span class="hljs-string">'~/../src/components/article'</span>;
-<span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">'./index.json'</span>;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> Article <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;~/../src/components/article&#x27;</span>;
+<span class="hljs-keyword">import</span> data <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./index.json&#x27;</span>;
 
-<span class="hljs-keyword">const</span> r = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">'./'</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/demos.*index.js$/</span>);
-<span class="hljs-keyword">const</span> demos = r.keys().<span class="hljs-keyword">map</span>(r);
+<span class="hljs-keyword">const</span> r = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">&#x27;./&#x27;</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/demos.*index.js$/</span>);
+<span class="hljs-keyword">const</span> demos = r.keys().map(r);
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Article</span> {</span>
-    static data = data;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Article</span> </span>{
+    <span class="hljs-keyword">static</span> data = data;
 
-    defaults() {
-        <span class="hljs-keyword">return</span> {...<span class="hljs-keyword">super</span>.defaults(), ...data, demos};
+    <span class="hljs-function"><span class="hljs-title">defaults</span>(<span class="hljs-params"></span>)</span> {
+        <span class="hljs-keyword">return</span> {...super.defaults(), ...data, demos};
     }
 }</code></pre>
 <p>静态化入口文件：<code>index.html</code></p>
 <pre><code class="hljs html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"utf-8"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;utf-8&quot;</span> /&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"/theme-kpc.css"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">&quot;stylesheet&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/theme-kpc.css&quot;</span> /&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"page"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/static/client.js"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;page&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;/static/client.js&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span></code></pre>
 <p>对于demo文件<code>demos/basic.md</code></p>
 <pre><code class="hljs markdown"><span class="hljs-meta">---</span>
 <span class="hljs-attr">title:</span> <span class="hljs-string">按钮类型</span>
 <span class="hljs-attr">order:</span> <span class="hljs-number">0</span>
-<span class="hljs-meta">---</span>
-
+<span class="hljs-meta">---
+</span>
 <span class="hljs-string">有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。</span>
 
 <span class="hljs-string">```vdt</span>
-<span class="hljs-string">import</span> <span class="hljs-string">Button</span> <span class="hljs-string">from</span> <span class="hljs-string">'kpc/components/button'</span><span class="hljs-string">;</span>
+<span class="hljs-string">import</span> <span class="hljs-string">Button</span> <span class="hljs-string">from</span> <span class="hljs-string">&#x27;kpc/components/button&#x27;</span><span class="hljs-string">;</span>
 
 <span class="hljs-string">&lt;div&gt;</span>
     <span class="hljs-string">&lt;Button&gt;default&lt;/Button&gt;</span>
-    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="primary"&gt;primay&lt;/Button&gt;</span>
-    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="warning"&gt;warning&lt;/Button&gt;</span>
-    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="danger"&gt;danger&lt;/Button&gt;</span>
-    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type="none"&gt;none&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type=&quot;primary&quot;&gt;primay&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type=&quot;warning&quot;&gt;warning&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type=&quot;danger&quot;&gt;danger&lt;/Button&gt;</span>
+    <span class="hljs-string">&lt;Button</span> <span class="hljs-string">type=&quot;none&quot;&gt;none&lt;/Button&gt;</span>
 <span class="hljs-string">&lt;/div&gt;</span>
 <span class="hljs-string">```</span>
 
@@ -280,24 +280,24 @@ graph TB
 <span class="hljs-string">```</span></code></pre>
 <p>demo文件最终生成如下文件：</p>
 <p><code>demos/basic/index.js</code></p>
-<pre><code class="hljs js"><span class="hljs-builtin-name">export</span> {default as data} <span class="hljs-keyword">from</span> <span class="hljs-string">'./index.json'</span>;
-import Intact <span class="hljs-keyword">from</span> <span class="hljs-string">'intact'</span>;
-import template <span class="hljs-keyword">from</span> <span class="hljs-string">'./index.vdt'</span>;
-import <span class="hljs-string">'./index.styl'</span>; 
+<pre><code class="hljs js"><span class="hljs-keyword">export</span> {<span class="hljs-keyword">default</span> <span class="hljs-keyword">as</span> data} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./index.json&#x27;</span>;
+<span class="hljs-keyword">import</span> Intact <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;intact&#x27;</span>;
+<span class="hljs-keyword">import</span> template <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./index.vdt&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;./index.styl&#x27;</span>; 
 
-<span class="hljs-builtin-name">export</span><span class="hljs-built_in"> default </span>class extends Intact {
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Intact</span> {</span>
     @Intact.template()
-    static template = template;
+    <span class="hljs-keyword">static</span> template = template;
 }</code></pre>
 <p><code>demos/basic/index.vdt</code></p>
-<pre><code class="hljs vdt"><span class="hljs-keyword">import</span> Button <span class="hljs-keyword">from</span> <span class="hljs-string">'kpc/components/button'</span>;
+<pre><code class="hljs vdt"><span class="hljs-keyword">import</span> Button <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;kpc/components/button&#x27;</span>;
 
 <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">Button</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"primary"</span>&gt;</span>primay<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"warning"</span>&gt;</span>warning<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"danger"</span>&gt;</span>danger<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"none"</span>&gt;</span>none<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;primary&quot;</span>&gt;</span>primay<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;warning&quot;</span>&gt;</span>warning<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;danger&quot;</span>&gt;</span>danger<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;none&quot;</span>&gt;</span>none<span class="hljs-tag">&lt;/<span class="hljs-name">Button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
 <p><code>demos/basic/index.styl</code></p>
 <pre><code class="hljs stylus"><span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.index-14</span>
@@ -305,23 +305,23 @@ import <span class="hljs-string">'./index.styl'</span>;
         <span class="hljs-attribute">margin-right</span> <span class="hljs-number">20px</span></code></pre>
 <p><code>demos/basic/index.json</code></p>
 <pre><code class="hljs json">{
-    "setting": {
-        "title": "按钮类型",
-        "order": 0
+    &quot;setting&quot;: {
+        &quot;title&quot;: &quot;按钮类型&quot;,
+        &quot;order&quot;: 0
     },
-    "contents": "<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>\n",
-    "highlighted": [
+    &quot;contents&quot;: &quot;<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>有如下几种类型：默认按钮，主按钮，警告按钮，危险按钮，文字按钮。<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>\n&quot;,
+    &quot;highlighted&quot;: [
         {
-            "language": "vdt",
-            "content": "<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs</span> <span class="hljs-attr">jsx</span>\"&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> Button <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>from<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>'kpc/components/button'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;\n\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">xml</span>\"&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>div<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>default<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-attr</span>\"&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>\"primary\"<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>primay<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-attr</span>\"&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>\"warning\"<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>warning<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-attr</span>\"&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>\"danger\"<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>danger<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-attr</span>\"&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>\"none\"<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>none<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-tag</span>\"&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-name</span>\"&gt;</span>div<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>"
+            &quot;language&quot;: &quot;vdt&quot;,
+            &quot;content&quot;: &quot;<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs</span> <span class="hljs-attr">jsx</span>\&quot;&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> Button <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>from<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>&#x27;kpc/components/button&#x27;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;\n\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">xml</span>\&quot;&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>div<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;<span class="hljs-name">default</span></span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-attr</span>\&quot;&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>\&quot;primary\&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;<span class="hljs-name">primay</span></span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-attr</span>\&quot;&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>\&quot;warning\&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;<span class="hljs-name">warning</span></span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-attr</span>\&quot;&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>\&quot;danger\&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;<span class="hljs-name">danger</span></span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-attr</span>\&quot;&gt;</span>type<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>=<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>\&quot;none\&quot;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;<span class="hljs-name">none</span></span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>Button<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-tag</span>\&quot;&gt;</span><span class="hljs-symbol">&amp;lt;</span>/<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-name</span>\&quot;&gt;</span>div<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-symbol">&amp;gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>&quot;
         },
         {
-            "language": "styl",
-            "content": "<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs</span> <span class="hljs-attr">styl</span>\"&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-selector-class</span>\"&gt;</span>.k-btn<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-attribute</span>\"&gt;</span>margin-right<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-number</span>\"&gt;</span>20px<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>"
+            &quot;language&quot;: &quot;styl&quot;,
+            &quot;content&quot;: &quot;<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs</span> <span class="hljs-attr">styl</span>\&quot;&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-selector-class</span>\&quot;&gt;</span>.k-btn<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-attribute</span>\&quot;&gt;</span>margin-right<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-number</span>\&quot;&gt;</span>20px<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>&quot;
         },
         {
-            "language": "js",
-            "content": "<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs</span> <span class="hljs-attr">js</span>\"&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> Intact <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>from<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>'intact'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> template <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>from<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>'./index.vdt'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-string</span>\"&gt;</span>'./index.styl'<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>; \n\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>export<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-class</span>\"&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>class<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>extends<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-title</span>\"&gt;</span>Intact<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>{\n    @Intact.template()\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>"<span class="hljs-attr">hljs-keyword</span>\"&gt;</span>static<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> template = template;\n}<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>"
+            &quot;language&quot;: &quot;js&quot;,
+            &quot;content&quot;: &quot;<span class="hljs-tag">&lt;<span class="hljs-name">pre</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">code</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs</span> <span class="hljs-attr">js</span>\&quot;&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> Intact <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>from<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>&#x27;intact&#x27;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> template <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>from<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>&#x27;./index.vdt&#x27;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>;\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-string</span>\&quot;&gt;</span>&#x27;./index.styl&#x27;<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>; \n\n<span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>export<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-class</span>\&quot;&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>class<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>extends<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-title</span>\&quot;&gt;</span>Intact<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>{\n    @Intact.template()\n    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">class</span>=<span class="hljs-string">\</span>&quot;<span class="hljs-attr">hljs-keyword</span>\&quot;&gt;</span>static<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span> template = template;\n}<span class="hljs-tag">&lt;/<span class="hljs-name">code</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">pre</span>&gt;</span>&quot;
         }
     ]
 }</code></pre>
@@ -340,25 +340,25 @@ import <span class="hljs-string">'./index.styl'</span>;
 <li><code>istanbul</code>：测试覆盖率统计</li>
 </ol>
 <h3 id='demo%E6%B5%8B%E8%AF%95'>demo测试</h3><p>测试程序首先会全量加载所有文档生成的示例组件，逐个渲染，第一次通过<code>snapshot</code>生成快照，以后则使用快照与渲染结果进行比较</p>
-<pre><code class="hljs js"><span class="hljs-keyword">import</span> {render} <span class="hljs-keyword">from</span> <span class="hljs-string">'./utils'</span>;
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> {render} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./utils&#x27;</span>;
 
 <span class="hljs-comment">// 加载所有示例组件</span>
-<span class="hljs-keyword">const</span> req = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">'../site/dist/components/'</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/demos\/.*index\.js$/</span>);
+<span class="hljs-keyword">const</span> req = <span class="hljs-built_in">require</span>.context(<span class="hljs-string">&#x27;../site/dist/components/&#x27;</span>, <span class="hljs-literal">true</span>, <span class="hljs-regexp">/demos\/.*index\.js$/</span>);
 
-describe(<span class="hljs-string">'Demos'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+describe(<span class="hljs-string">&#x27;Demos&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
     <span class="hljs-keyword">let</span> demo;
 
-    afterEach(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    afterEach(<span class="hljs-function">() =&gt;</span> {
         demo.destroy();
     });
 
     req.keys().forEach(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> {
-        <span class="hljs-keyword">const</span> paths = item.split(<span class="hljs-string">'/'</span>);
+        <span class="hljs-keyword">const</span> paths = item.split(<span class="hljs-string">&#x27;/&#x27;</span>);
         <span class="hljs-keyword">const</span> name = paths[<span class="hljs-number">1</span>];
         <span class="hljs-keyword">const</span> <span class="hljs-keyword">type</span> = paths[<span class="hljs-number">3</span>];
         <span class="hljs-keyword">const</span> Demo = req(item).default;
 
-        it(<span class="hljs-string">`<span class="hljs-subst">${name[<span class="hljs-number">0</span>].toUpperCase()}</span><span class="hljs-subst">${name.substring(<span class="hljs-number">1</span>)}</span> <span class="hljs-subst">${<span class="hljs-keyword">type</span>}</span>`</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+        it(<span class="hljs-string">`<span class="hljs-subst">${name[<span class="hljs-number">0</span>].toUpperCase()}</span><span class="hljs-subst">${name.substring(<span class="hljs-number">1</span>)}</span> <span class="hljs-subst">${<span class="hljs-keyword">type</span>}</span>`</span>, <span class="hljs-function">() =&gt;</span> {
             demo = render(Demo);
             <span class="hljs-comment">// 比较快照和渲染结果</span>
             expect(demo.element.outerHTML).to.matchSnapshot();
@@ -367,30 +367,30 @@ describe(<span class="hljs-string">'Demos'</span>, <span class="hljs-function"><
 });</code></pre>
 <h3 id='%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95'>交互测试</h3><p>demo测试仅仅能够测试首次渲染的结果，不能测试交互后组件的表现。所以需要单独为每个组件编写测试代码，来测试交互逻辑。这里我们依然可以利用示例组件这一现成的组件来进行测试。</p>
 <p>例如：<code>ButtonGroup</code>的交互逻辑时</p>
-<pre><code class="hljs js">import {dispatchEvent, mount} from 'test/utils';
-<span class="hljs-comment">// 利用示例组件</span>
-import GroupDemo from '~/components/button/demos/group';
+<pre><code class="hljs js"><span class="hljs-keyword">import</span> {dispatchEvent, mount} from <span class="hljs-string">&#x27;test/utils&#x27;</span>;
+// 利用示例组件
+<span class="hljs-keyword">import</span> GroupDemo from <span class="hljs-string">&#x27;~/components/button/demos/group&#x27;</span>;
 
-describe('Button',<span class="hljs-function"> <span class="hljs-params">()</span> =&gt;</span> {
-    <span class="hljs-keyword">let</span> instance;
+describe(<span class="hljs-string">&#x27;Button&#x27;</span>, () =&gt; {
+    <span class="hljs-keyword">let</span> <span class="hljs-keyword">instance</span>;
 
-    after<span class="hljs-constructor">Each(()</span> =&gt; {
-        instance.destroy<span class="hljs-literal">()</span>;
-        document.body.remove<span class="hljs-constructor">Child(<span class="hljs-params">instance</span>.<span class="hljs-params">element</span>)</span>;
+    afterEach(() =&gt; {
+        <span class="hljs-keyword">instance</span>.destroy();
+       <span class="hljs-built_in"> document</span>.body.removeChild(<span class="hljs-keyword">instance</span>.<span class="hljs-type">element</span>);
     });
 
-    it('should change value <span class="hljs-keyword">when</span> click radio buttons',<span class="hljs-function"> <span class="hljs-params">()</span> =&gt;</span> {
-        instance = mount(GroupDemo);
+    it(<span class="hljs-string">&#x27;should change value when click radio buttons&#x27;</span>, () =&gt; {
+        <span class="hljs-keyword">instance</span> = mount(GroupDemo);
 
-        dispatch<span class="hljs-constructor">Event(<span class="hljs-params">instance</span>.<span class="hljs-params">refs</span>.<span class="hljs-params">__radioShanghai</span>.<span class="hljs-params">element</span>, '<span class="hljs-params">click</span>')</span>;
-        expect(instance.get('city')).<span class="hljs-keyword">to</span>.eql('shanghai');
-        dispatch<span class="hljs-constructor">Event(<span class="hljs-params">instance</span>.<span class="hljs-params">refs</span>.<span class="hljs-params">__checkboxShanghai</span>.<span class="hljs-params">element</span>, '<span class="hljs-params">click</span>')</span>;
-        expect(instance.get('cities')).<span class="hljs-keyword">to</span>.eql(<span class="hljs-literal">['<span class="hljs-identifier">shanghai</span>']</span>);
-        dispatch<span class="hljs-constructor">Event(<span class="hljs-params">instance</span>.<span class="hljs-params">refs</span>.<span class="hljs-params">__checkboxShanghai</span>.<span class="hljs-params">element</span>, '<span class="hljs-params">click</span>')</span>;
-        expect(instance.get('cities')).<span class="hljs-keyword">to</span>.eql(<span class="hljs-literal">[]</span>);
+        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__radioShanghai.<span class="hljs-type">element</span>, <span class="hljs-string">&#x27;click&#x27;</span>);
+        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">&#x27;city&#x27;</span>)).<span class="hljs-keyword">to</span>.eql(<span class="hljs-string">&#x27;shanghai&#x27;</span>);
+        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__checkboxShanghai.<span class="hljs-type">element</span>, <span class="hljs-string">&#x27;click&#x27;</span>);
+        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">&#x27;cities&#x27;</span>)).<span class="hljs-keyword">to</span>.eql([<span class="hljs-string">&#x27;shanghai&#x27;</span>]);
+        dispatchEvent(<span class="hljs-keyword">instance</span>.refs.__checkboxShanghai.<span class="hljs-type">element</span>, <span class="hljs-string">&#x27;click&#x27;</span>);
+        expect(<span class="hljs-keyword">instance</span>.get(<span class="hljs-string">&#x27;cities&#x27;</span>)).<span class="hljs-keyword">to</span>.eql([]);
     });
 });</code></pre>
 <blockquote>
 <p>所以demo示例中，可能存在<code>ref=&quot;__test&quot;</code>这样的代码，它们是为单元测试服务的</p>
 </blockquote>
-</div></div></div></article></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.249b87226b950155b74d.js"></script></body></html>
+</div></div></div></article></div></div></div></div><script src="//damife.ks3-cn-beijing.ksyun.com/kpc/static/client.2a5f4ba83061c0b8a664.js"></script></body></html>
