@@ -33,6 +33,7 @@ export default class Select extends Intact {
         hideIcon: Boolean,
         position: Object,
         searchable: Boolean,
+        autoDisableIcon: Boolean,
     };
 
     static events = {
@@ -85,6 +86,7 @@ export default class Select extends Intact {
             hideIcon: false,
             position: {my: 'left top+8', at: 'left bottom'},
             searchable: false,
+            autoDisableIcon: false,
 
             _show: false,
             _activeLabel: undefined,
@@ -119,7 +121,7 @@ export default class Select extends Intact {
 
     _onClear(e) {
         if (this.get('disabled')) return;
-        
+
         e.stopPropagation();
         const clearV = !this._isMultiple()? '':[];
         this.set('value', clearV);

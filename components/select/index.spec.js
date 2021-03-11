@@ -9,6 +9,7 @@ import Tooltip from 'kpc/components/tooltip';
 import Intact from 'intact';
 import {Select, Option} from 'kpc/components/select';
 import SearchableDemo from '~/components/select/demos/searchable';
+import AutoDisableIconDemo from '~/components/select/demos/autoDisableIcon';
 
 describe('Select', () => {
     let instance;
@@ -348,8 +349,8 @@ describe('Select', () => {
             @Intact.template()
             static template = `
                 <Select v-model="day" loading={{ self.get('isLoad') }}>
-                    <Option v-for={{ self.get('data') }} value={{ value.value }}> 
-                        {{ value.label }} 
+                    <Option v-for={{ self.get('data') }} value={{ value.value }}>
+                        {{ value.label }}
                     </Option>
                 </Select>
             `;
@@ -375,9 +376,16 @@ describe('Select', () => {
         }
 
         instance = mount(Demo);
-        
+
         instance.set({isLoad: true});
         instance.set({data: []});
         expect(instance.get('day')).to.eql('Monday');
+    });
+
+    it('should disable arrow icon if no more selections', () => {
+        instance = mount(AutoDisableIconDemo);
+
+        instance.set('day', 'Monday');
+        expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });
