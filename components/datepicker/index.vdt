@@ -93,7 +93,6 @@ const content = <b:content>
                 ev-hide={{ self._hide }}
                 type={{ type }}
                 ref="begin"
-                ev-enter:select={{ self._focus }}
                 maxDate={{ _maxDate }}
                 minDate={{ _minDate }}
                 ev-wheel={{ self._onWheel }}
@@ -118,7 +117,7 @@ const content = <b:content>
             _id="1"
         />
     </div>
-    <div v-if={{ type === 'datetime' || type === 'year' || type === 'month' || scope.showFooter }}
+    <div v-if={{ type === 'datetime' || scope.showFooter }}
         class="k-footer"
     >
         <Button type="primary" size="small"
