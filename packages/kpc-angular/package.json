@@ -1,6 +1,6 @@
 {
   "name": "kpc-angular",
-  "version": "1.4.8",
+  "version": "1.5.0",
   "description": "KPC components for Angular",
   "main": "@css/index.js",
   "repository": {
