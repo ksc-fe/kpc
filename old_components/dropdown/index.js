@@ -38,7 +38,7 @@ function Wrapper(props, flag) {
     }
 
     const dropdown = h(Dropdown, {
-        key: key == null ? key : `${key}.trigger`,
+        key: key == null ? element.key : `${key}.trigger`,
         ref: ref,
         children: [element],
         ...rest

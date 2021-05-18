@@ -3,7 +3,7 @@ const {resolve} = require('../utils');
 const noParse = [
     // 'intact',
     'vue',
-    'tinycolor2', 
+    'tinycolor2',
     'dayjs',
     'downloadjs',
     'mxgraphx',
@@ -16,7 +16,7 @@ module.exports = (config) => {
     config.module
         // .noParse(noParse)
         .rule('babel')
-            .test(/\.jsx?$/)
+            .test(/\.[jt]sx?$/)
             .exclude.add(/node_modules/).end()
             .use('babel')
                 .loader('babel-loader')
@@ -32,10 +32,10 @@ module.exports = (config) => {
                 .end()
             .use('vdt')
                 .loader('vdt-loader')
-                .options({
-                    delimiters: ['{{', '}}'],
-                    skipWhitespace: true,
-                })
+                // .options({
+                    // delimiters: ['{{', '}}'],
+                    // skipWhitespace: true,
+                // })
                 .end()
             .end()
         .rule('stylus')
@@ -50,8 +50,10 @@ module.exports = (config) => {
             .use('stylus')
                 .loader('stylus-loader')
                 .options({
-                    'include css': true,
-                    'resolve url': true,
+                    'stylusOptions': {
+                        'includeCss': true,
+                        'resolveUrl': true,
+                    },
                     'sourceMap': false,
                 })
                 .end()

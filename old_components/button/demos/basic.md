@@ -1,13 +1,12 @@
 ---
 title: 按钮类型
 order: 0
-demo: true
 ---
 
 有如下几种类型：默认按钮，主按钮，次按钮，警告按钮，危险按钮，成功按钮，文字按钮，超链接按钮
 
 ```vdt
-import {Button} from 'kpc';
+import Button from 'kpc/components/button';
 
 <div>
     <Button>default</Button>

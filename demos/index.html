@@ -1,53 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
-    <title>kpc-demo</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
-    <link rel="stylesheet" type="text/css" href="/dist/kpc.css" /> 
-    <!-- <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/kpc@1.0.0-beta.4/dist/kpc.css" />  -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>KPC组件库</title>
+    <meta content="KPC, KingDesign, 组件库, 前端框架, Vue, Angular, React, Intact" name="keywords" />
+    <meta content="KPC，支持多框架的前端高质量组件库" name="description" />
+    <link rel="shortcut icon" href="/imgs/favicon.ico" type="image/x-icon" />
 </head>
 <body>
-	<div id="app">
-        <div id="vue">
-            <k-table check-type="radio" @$change:checked-key="change" :data="list">
-                <k-table-column key="name" title="Name" />
-            </k-table>
-        </div>
-    </div>
-    <!-- <script src="/node_modules/intact/dist/intact.js"></script> -->
-    <script src="/node_modules/vue/dist/vue.js"></script>
-    <!-- <script src="/node_modules/intact-vue/dist/intact.vue.js"></script> -->
-    <script src="/dist/kpc.vue.min.js"></script>
-    <!-- <script src="//cdn.jsdelivr.net/npm/kpc@1.0.0-beta.4/dist/kpc.js"></script> -->
-
-	<!-- <script type="text/javascript"> -->
-        <!-- Kpc.install(); -->
-        <!-- var Page = Intact.extend({ -->
-            <!-- template: '<div><KButton ev-click={self.hello}>Hello World</KButton><KCode height="200px"/></div>', -->
-            <!-- hello: function() { -->
-                <!-- KMessage.success('Welcome to the world of kpc and intact!'); -->
-            <!-- } -->
-        <!-- }); -->
-
-        <!-- Intact.mount(Page, document.getElementById('app')); -->
-    <!-- </script> -->
-    <script type="text/javascript">
-        // Kpc.install.installed = false;
-        Vue.use(Kpc);
-        new Vue({
-            el: '#vue',
-            data: {
-                list: [{name: 'Javey'}]
-            },
-            methods: {
-                change() {
-                    console.log(arguments);
-                }
-            }
-        });
-    </script>
+    <div id="app"></div>
 </body>
 </html>

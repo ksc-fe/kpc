@@ -66,7 +66,7 @@ function handleFiles(files, dest) {
 function parseYaml(contents) {
     let metadata;
     contents = contents.replace(/---\s*[\n\r]+\s*((?:.|\n|\r)*?)[\n\r]+---/, (all, matched) => {
-        metadata = yaml.safeLoad(matched);
+        metadata = yaml.load(matched);
         return "";
     });
 
@@ -181,7 +181,7 @@ function generateDemoFiles(file, code) {
     const filename = getFileName(file, code);
     let {content, language, filename: _filename} = code;
 
-    if (language === 'js' && !_filename) {
+    if (language === 'ts' && !_filename) {
         content = [
             `export {default as data} from './index.json';`,
             content,
@@ -207,7 +207,7 @@ function generateDemoFiles(file, code) {
 }
 
 function generateExampleFiles(file, code, index) {
-    return writeFile(path.join(file.path, `demos/demos${index}/index.js`), code.content);
+    return writeFile(path.join(file.path, `demos/demos${index}/index.ts`), code.content);
 }
 
 function writeJson(file, codes, html, metadata, catalogs) {
@@ -222,7 +222,7 @@ function writeJson(file, codes, html, metadata, catalogs) {
             return {
                 language: item.language,
                 content: `<pre><code class="hljs ${languageMap(item.language)}">` +
-                    highlight.highlight(languageMap(item.language), item.content).value +
+                    highlight.highlight(item.content, {language: languageMap(item.language)}).value +
                 `</code></pre>`,
                 file: item.filename,
             };
@@ -237,13 +237,14 @@ function writeJson(file, codes, html, metadata, catalogs) {
 function writeIndex(file, metadata) {
     const sidebar = metadata.sidebar;
     const content = [
+        `import {Component} from 'intact';`,
         `import Article from '~/../src/components/article';`,
         `import data from './index.json';`,
         sidebar ? `import sidebar from '~/${sidebar}.json';` : undefined,
         ``,
-        `const r = require.context('./', true, /demos.*(index|demo).js$/);`,
+        `const r = require.context('./', true, /demos.*(index|demo).ts/);`,
         `const keys = r.keys();`,
-        `const demos = [];`,
+        `const demos: Component<any>[] = [];`,
         `for (let i = 0; i < keys.length; i++) {`,
         `    const file = keys[i];`,
         `    // if we found demo.js then ignore index.js`,
@@ -254,13 +255,13 @@ function writeIndex(file, metadata) {
         `export default class extends Article {`,
         sidebar ? `    static sidebar = sidebar;` : undefined,
         `    static data = data;`,
-        `    defaults() {`,
-        `        return {...super.defaults(), ...data, demos};`,
+        `    static defaults = {`,
+        `        ...Article.defaults, ...data, demos`,
         `    }`,
         `}`,
     ].join('\n');
 
-    return writeFile(path.join(file.path, 'index.js'), content);
+    return writeFile(path.join(file.path, 'index.ts'), content);
 }
 
 function writeIframe(file, height) {
@@ -286,15 +287,26 @@ function writeIframe(file, height) {
 }
 
 function getFileName(file, code) {
-    if (code.filename) {
-        return path.join(file.path, code.filename);
+    let filename = code.filename;
+    if (!filename) {
+        switch (code.language) {
+            case 'angular':
+                filename = 'angular.ts';
+                break;
+            case 'react':
+                filename = 'react.tsx';
+                break;
+            default:
+                filename = `index.${code.language}`;
+                break;
+        }
     }
-    return path.join(file.path, `index.${code.language}`);
+    return path.join(file.path, filename);
 }
 
 function parseCodes(file, codes) {
     const hasMap = {
-        hasJs: false,
+        hasTs: false,
         hasStylus: false,
         hasVue: false,
         hasReact: false,
@@ -304,7 +316,7 @@ function parseCodes(file, codes) {
         styl: 'hasStylus',
         vue: 'hasVue',
         jsx: 'hasReact',
-        ts: 'hasAngular',
+        angular: 'hasAngular',
     };
 
     const codeSnippetMap = {
@@ -315,7 +327,7 @@ function parseCodes(file, codes) {
         vueMethods: null,
         reactMethods: null,
         angularMethods: null,
-        jsHead: null,
+        tsHead: null,
         angularProperties: null
     };
     const codeSnippetLangMap = {};
@@ -331,7 +343,7 @@ function parseCodes(file, codes) {
         'angular-ignore': 'ts',
     };
 
-    let jsCode;
+    let tsCode;
 
     codes = codes.filter((code, index) => {
         const {language, filename, content, example} = code;
@@ -344,11 +356,11 @@ function parseCodes(file, codes) {
             return true;
         }
 
-        if (language === 'js' && !filename) {
-            hasMap.hasJs = true;
-            jsCode = code;
+        if (language === 'ts' && !filename) {
+            hasMap.hasTs = true;
+            tsCode = code;
             code.content = [
-                `import Intact from 'intact';`,
+                `import {Component} from 'intact';`,
                 `import template from './index.vdt';`,
                 hasMap.hasStylus ? `import './index.styl'; \n` : '',
                 content,
@@ -356,7 +368,7 @@ function parseCodes(file, codes) {
             return true;
         }
 
-        if (~['styl', 'vue', 'jsx', 'ts'].indexOf(language)) {
+        if (~Object.keys(hasLangMap).indexOf(language)) {
             hasMap[hasLangMap[language]] = true;
             return true;
         }
@@ -378,15 +390,14 @@ function parseCodes(file, codes) {
     });
 
     if (file.isDemo) {
-        if (!hasMap.hasJs) {
-            codes.splice(hasMap.hasStylus ? 2 : 1, 0, (jsCode = {
-                language: 'js',
+        if (!hasMap.hasTs) {
+            codes.splice(hasMap.hasStylus ? 2 : 1, 0, (tsCode = {
+                language: 'ts',
                 content: [
-                    `import Intact from 'intact';`,
+                    `import {Component} from 'intact';`,
                     `import template from './index.vdt';`,
                     hasMap.hasStylus ? `import './index.styl'; \n` : '',
-                    `export default class extends Intact {`,
-                    `    @Intact.template()`,
+                    `export default class extends Component {`,
                     `    static template = template;`,
                     `}`,
                 ].join('\n')
@@ -395,31 +406,31 @@ function parseCodes(file, codes) {
 
         // ignore App component
         if (!/\/app\//.test(file.path)) {
-            const js = hasMap.hasJs ? jsCode.content.split('\n').slice(hasMap.hasStylus ? 3 : 2).join('\n') : null;
+            const ts = hasMap.hasTs ? tsCode.content.split('\n').slice(hasMap.hasStylus ? 3 : 2).join('\n') : null;
             const vdt = codes[0].content;
-            generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes);
+            generateOtherCodes(vdt, ts, hasMap, codeSnippetMap, codes);
         }
     }
 
     return codes;
 }
 
-function generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes) {
+function generateOtherCodes(vdt, ts, hasMap, codeSnippetMap, codes) {
     const {
         vueScript, vueTemplate, vueNextTemplate, vueMethods, vueData,
-        jsHead, reactMethods, angularMethods, angularProperties
+        tsHead, reactMethods, angularMethods, angularProperties
     } = codeSnippetMap;
     const {hasStylus, hasVue, hasReact, hasAngular} = hasMap;
 
     if (!hasVue) {
         const code3 = {
             language: 'vue',
-            content: toVue3(vdt, js, vueScript, vueNextTemplate, vueMethods, vueData, jsHead, hasStylus),
+            content: toVue3(vdt, ts, vueScript, vueNextTemplate, vueMethods, vueData, tsHead, hasStylus),
             filename: 'next.vue',
         };
         const code2 = {
             language: 'vue',
-            content: toVue2(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus)
+            content: toVue2(vdt, ts, vueScript, vueTemplate, vueMethods, vueData, tsHead, hasStylus)
         };
         if (!hasReact) {
             codes.push(code3, code2);
@@ -430,24 +441,27 @@ function generateOtherCodes(vdt, js, hasMap, codeSnippetMap, codes) {
 
     if (!hasReact) {
         codes.push({
-            language: 'jsx',
-            content: intact2react(vdt, js, reactMethods, jsHead, hasStylus),
+            language: 'tsx',
+            content: intact2react(vdt, ts, reactMethods, tsHead, hasStylus),
+            filename: 'react.tsx',
         });
     }
 
     if (!hasAngular) {
         codes.push({
-            language: 'ts',
-            content: intact2angular(vdt, js, angularMethods, angularProperties, hasStylus),
+            language: 'angular',
+            content: intact2angular(vdt, ts, angularMethods, angularProperties, hasStylus),
+            filename: 'angular.ts',
         });
     }
 }
 
+const map = {
+    'vue': 'html',
+    'vdt': 'jsx',
+    'angular': 'ts',
+};
 function languageMap(key) {
-    const map = {
-        'vue': 'html',
-        'vdt': 'jsx',
-    };
     return map[key] || key;
 };
 

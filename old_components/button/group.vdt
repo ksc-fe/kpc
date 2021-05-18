@@ -1,0 +1,33 @@
+import Button from './';
+import {getRestProps} from '../utils';
+
+const {
+    className, vertical, 
+    children, value, checkType
+} = self.get();
+
+const classNameObj = {
+    'k-btns': true,
+    'k-vertical': vertical,
+    [className]: className,
+    'k-fluid': fluid,
+};
+
+<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ 
+    checkType !== 'none' ? __u.map(
+        children ? 
+            (Array.isArray(children) ? children : [children]) :
+            children, 
+        vNode => {
+            if (vNode.tag === Button) {
+                vNode.props = {
+                    ...vNode.props, 
+                    _value: value,
+                    _checkType: checkType,
+                }
+                vNode.$ = true;
+            }
+            return vNode;
+        }) : 
+        children
+}}</div>

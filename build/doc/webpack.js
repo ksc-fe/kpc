@@ -44,7 +44,7 @@ exports.webpackConfigClient = (production, theme = 'default') => {
     const config = exports.webpackConfig(production);
     // const manifest = require(path.resolve(dest, 'dll-manifest.json'));
 
-    config.entry(`static/client`).add(resolvePath('./site/src/client.js'));
+    config.entry(`static/client`).add(resolvePath('./site/src/client.ts'));
     config.plugin('html').use(HtmlWebpackPlugin, [{
         template: resolvePath('./site/src/index.html'),
         // dll: manifest.name,
@@ -160,6 +160,44 @@ exports.webpackConfigServer = () => {
 
     removeMonaco(config);
     ignoreCss(config);
+
+    return config;
+};
+
+exports.webpackDemoConfig = () => {
+   const config = genConfig();
+
+    config
+        .entry('main')
+            .add(resolvePath('./demos/index.ts'))
+            .end()
+        .output
+            .path(resolvePath('./.dev'))
+            .filename('[name].js')
+            .publicPath('/')
+            .end()
+        .plugin('progress')
+            .use(webpack.ProgressPlugin)
+            .end()
+        .plugin('html')
+            .use(HtmlWebpackPlugin, [{
+                template: resolvePath('./demos/index.html'),
+            }])
+            .end()
+        .target('web') // https://github.com/webpack/webpack-dev-server/issues/2758
+
+
+    addThreadLoader(config);
+    addStyle(config);
+
+    config.devServer
+        .hot(true)
+        .port(4568)
+        .host('0.0.0.0')
+        .stats('errors-only')
+        .set('liveReload', false)
+        .set('historyApiFallback', true)
+        .contentBase([resolvePath('./demos')]);
 
     return config;
 };

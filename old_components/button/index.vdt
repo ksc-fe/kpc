@@ -1,0 +1,103 @@
+import {isStringOrNumberNotEmpty} from '../utils';
+import Icon from '../icon';
+
+let {
+    type, className, size, icon, circle, ref, key, tabindex,
+    tagName, htmlType, fluid, children, loading, disabled,
+    value, _value, name, tagProps, _checkType, ghost, ...rest
+} = self.get();
+
+const checked = value !== undefined ?
+    _checkType === 'radio' ? 
+        value === _value :  
+        (
+            _checkType === 'checkbox' ? 
+                Array.isArray(_value) && !!~_value.indexOf(value) :
+                false
+        )
+    : false;
+
+const classNameObj = {
+    'k-btn': true,
+    [`k-${type}`]: type,
+    'k-btn-icon': icon,
+    [className]: className, 
+    'k-circle': circle,
+    'k-loading': loading,
+    'k-fluid': fluid,
+    'k-active': checked,
+    'k-disabled': disabled || loading,
+    'k-ghost': ghost,
+};
+// type and size may both be default
+if (size !== 'default') classNameObj[`k-${size}`] = true;
+
+const Button = props => {
+    if (props.href && tagName === 'button') {
+        tagName = 'a';
+    }
+    if (tagName === 'button') {
+        // set type of html button
+        props.type = htmlType;
+    }
+    // disable button when loading
+    /* if (loading) props.disabled = true; */
+    return h(tagName, props, props.children);
+};
+
+// hack for loading transition of width
+if (!icon && Array.isArray(children)) {
+    children.forEach((child, index) => {
+        if (child) {
+            if (child.type === 1 || isStringOrNumberNotEmpty(child)) {
+                // is a text node
+                // wrap text node with span
+                children[index] = <span>{{ child }}</span>
+            }
+            // whether the icon is on the left side or right
+            if (index === 0) {
+                if (child.tag === Icon || child.className && child.className.indexOf('icon') > -1) {
+                    classNameObj['k-btn-icon-left'] = true;
+                }
+            } else if (index === children.length - 1) {
+                if (child.tag === Icon || child.className && child.className.indexOf('icon') > -1) {
+                    classNameObj['k-btn-icon-right'] = true;
+                }
+            }
+        }
+    });
+} else if (isStringOrNumberNotEmpty(children) || children && children.type === 1) {
+    // wrap text node with span
+    children = <span>{{ children }}</span>
+}
+
+/* const loadingSizeMap = { */
+    /* 'large': 'default', */
+    /* 'default': 'small', */
+    /* 'small': 'mini', */
+    /* 'mini': 'mini' */
+/* }; */
+const loadingIcon = (
+    <Icon class="ion-load-c icon-loading" 
+        size={{ size /*loadingSizeMap[size]*/ }}
+        key="k-loading"
+    />
+);
+
+<Button class={{ classNameObj }} {{ ...rest }} {{ ...tagProps }}
+    ev-click={{ self._onClick }}
+    tabindex={{ disabled || loading ? "-1" : tabindex }}
+    ev-mouseup={{ self._onMouseUp }}
+>
+    {{ loading ? 
+        classNameObj['k-btn-icon-right'] ?
+            [children, loadingIcon] :
+            [loadingIcon, children] :
+        children 
+    }}
+    <input type={{ _checkType }} v-if={{ _checkType !== 'none' }}
+        name={{ name }} 
+        checked={{ checked }}
+        tabindex="-1"
+    />
+</Button>

@@ -32,7 +32,7 @@ const nav = [
     }
 ];
 
-<div class={{ {'main-wrapper': true, [scope.className]: scope.className} }}>
+<div class={{ {'main-wrapper': true, [scope.className]: scope.className} }} ref={this.element}>
     <div class="header-wrapper" class={{ {
         'header-wrapper': true, 
         'header-shadow': scope.pageIndex !== 'index'

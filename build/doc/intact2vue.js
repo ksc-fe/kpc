@@ -1,5 +1,5 @@
-const Intact = require('intact');
-const Vdt = Intact.Vdt;
+// const Intact = require('intact');
+// const Vdt = Intact.Vdt;
 const {indent, dedent, getDefaults} = require('./utils');
 const {memoize} = require('../utils');
 

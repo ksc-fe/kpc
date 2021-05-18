@@ -1,0 +1,10 @@
+import {Button, ButtonGroup} from 'kpc/components/button';
+
+<div>
+    <Button>test</Button>
+    <ButtonGroup>
+        <Button size="small"><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small"><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small"><i class="k-icon icon-boot"></i>重启</Button>
+    </ButtonGroup>
+</div>

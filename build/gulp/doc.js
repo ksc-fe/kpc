@@ -44,7 +44,7 @@ gulp.task('doc:watch', () => {
 
 gulp.task('doc:dev', gulp.series(
     'doc:clean:data',
-    'doc:prepare',
+    // 'doc:prepare',
     gulp.parallel('doc:server', 'doc:watch')
 ));
 

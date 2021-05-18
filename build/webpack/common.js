@@ -13,7 +13,7 @@ module.exports = (config) => {
                 .end()
             .alias
                 .set('vue$', 'vue/dist/vue.js')
-                .set('intact$', 'intact-vue')
+                // .set('intact$', 'intact-vue')
                 .set('kpc$', resolve('index.js'))
                 .set('kpc', root)
                 .set('kpc-vue', root)
@@ -22,6 +22,7 @@ module.exports = (config) => {
                 .end()
             .symlinks(false)
             .extensions
+                .add('.ts')
                 .add('.js')
                 .end()
             .end()

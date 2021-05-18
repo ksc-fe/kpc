@@ -7,6 +7,7 @@ require('./packages');
 require('./frameworks');
 require('./doc');
 require('./resources');
+require('./demo');
 
 gulp.task('build', gulp.series(
     'index',
