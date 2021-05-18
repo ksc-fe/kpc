@@ -1,6 +1,8 @@
 import {createVNode as h} from 'intact';
+import {isStringOrNumberNotEmpty} from '../utils';
+import {Icon} from '../icon';
 
-const {
+let {
     type, className, size, icon, circle, ref, key, tabindex,
     tagName, htmlType, fluid, children, loading, disabled,
     name, tagProps, _checkType, ghost, ...rest
@@ -34,6 +36,44 @@ const Button = props => {
     return h(tagName, props);
 }
 
+const isIcon = child => (
+    child.tag === Icon ||
+    child.className && child.className.indexOf('icon') > -1
+);
+
+// hack for loading transition of width
+if (!icon && Array.isArray(children)) {
+    children.forEach((child, index) => {
+        if (child) {
+            if (child.type === 1 || isStringOrNumberNotEmpty(child)) {
+                // is a text node
+                // wrap text node with span
+                children[index] = <span>{child}</span>
+            }
+            // whether the icon is on the left side or right
+            if (index === 0) {
+                if (isIcon(child)) {
+                    classNameObj['k-btn-icon-left'] = true;
+                }
+            } else if (index === children.length - 1) {
+                if (isIcon(child)) {
+                    classNameObj['k-btn-icon-right'] = true;
+                }
+            }
+        }
+    });
+} else if (isStringOrNumberNotEmpty(children) || children && children.type === 1) {
+    // wrap text node with span
+    children = <span>{children}</span>
+}
+
+const loadingIcon = (
+    <Icon class="ion-load-c icon-loading" 
+        size={size /*loadingSizeMap[size]*/}
+        key="k-loading"
+    />
+);
+
 const buttonGroup = this.buttonGroup;
 const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
 
@@ -45,7 +85,12 @@ const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
     ev-click={this.onClick}
     ev-mouseup={this.onMouseUp}
 >
-    {children}
+    {loading ? 
+        classNameObj['k-btn-icon-right'] ?
+            [children, loadingIcon] :
+            [loadingIcon, children] :
+        children 
+    }
     <input type={checkType} v-if={checkType !== 'none'}
         name={name} 
         checked={checked}

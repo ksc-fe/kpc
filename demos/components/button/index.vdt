@@ -1,4 +1,5 @@
 import {Button, ButtonGroup} from 'kpc/components/button';
+import {Icon} from 'kpc/components/icon';
 
 <div>
     <Button>test</Button>
@@ -7,4 +8,16 @@ import {Button, ButtonGroup} from 'kpc/components/button';
         <Button size="small"><i class="k-icon icon-boot"></i>关机</Button>
         <Button size="small"><i class="k-icon icon-boot"></i>重启</Button>
     </ButtonGroup>
+    <ButtonGroup vertical checkType="radio" v-model="type">
+        <Button size="small" value={0}><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small" value={1}><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small" value={2}><i class="k-icon icon-boot"></i>重启</Button>
+    </ButtonGroup>
+    <ButtonGroup checkType="checkbox" v-model="types">
+        <Button size="small" value={0}><i class="k-icon icon-boot"></i>开机</Button>
+        <Button size="small" value={1}><i class="k-icon icon-boot"></i>关机</Button>
+        <Button size="small" value={2}><i class="k-icon icon-boot"></i>重启</Button>
+    </ButtonGroup>
+    <Button size="small" loading><Icon class="ion-ionic" />开机</Button>
+    <Button size="small" loading>开机<Icon class="ion-ionic" /></Button>
 </div>

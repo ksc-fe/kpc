@@ -19,18 +19,18 @@ module.exports = function(api) {
             }],
             // "@babel/preset-react"
         ],
-        // "plugins": [
+        "plugins": [
             // ["@babel/plugin-transform-runtime", {
                 // // "corejs": false,
                 // "corejs": corejs,
                 // // "useESModules": true
             // }],
-            // ["@babel/plugin-proposal-decorators", {"legacy": true}],
+            ["@babel/plugin-proposal-decorators", {"legacy": true}],
             // "@babel/plugin-proposal-class-properties",
             // "@babel/plugin-syntax-dynamic-import",
             // "@babel/plugin-proposal-do-expressions",
             // // "@babel/plugin-transform-proto-to-assign"
-        // ]
+        ]
     };
 
     // if (process.env.VUE_NEXT) {

@@ -3,6 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 import {ButtonGroup} from './group';
+import {bind} from '../utils';
 
 export interface ButtonProps {
     type?: 'default' | 'primary' | 'warning' | 'danger' | 'success' | 'none' | 'secondary' | 'link'
@@ -55,11 +56,11 @@ export default class Button<T extends ButtonProps = ButtonProps> extends Compone
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private buttonGroup: ButtonGroup | undefined = undefined;
+    private buttonGroup: ButtonGroup | null = null;
     private elementRef = createRef<HTMLButtonElement>();
 
     init() {
-        this.buttonGroup = inject('ButtonGroup');
+        this.buttonGroup = inject('ButtonGroup', null);
     }
 
     showLoading() {
@@ -89,7 +90,7 @@ export default class Button<T extends ButtonProps = ButtonProps> extends Compone
                 value === groupValue :  
                 (
                     checkType === 'checkbox' ? 
-                        Array.isArray(groupValue) && !!groupValue.indexOf(value) :
+                        Array.isArray(groupValue) && !!~groupValue.indexOf(value) :
                         false
                 )
             : false;
@@ -114,6 +115,7 @@ export default class Button<T extends ButtonProps = ButtonProps> extends Compone
         this.trigger('click', e);
     }
 
+    @bind
     private onMouseUp(e: MouseEvent): void {
         // when click, blur it to remove the focus style
         this.elementRef.value!.blur();
@@ -122,11 +124,3 @@ export default class Button<T extends ButtonProps = ButtonProps> extends Compone
 }
 
 export {Button, ButtonGroup}
-
-function bind(target: any, key: string, descriptor: TypedPropertyDescriptor<Function>) {
-    let method = descriptor.value!;
-
-    descriptor.value = function() {
-        return method.apply(this, arguments);
-    }
-}

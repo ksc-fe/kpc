@@ -1,5 +1,7 @@
 import {Component, provide, TypeDefs} from 'intact';
 import template from './group.vdt';
+import '../../styles/kpc.styl';
+import './index.styl';
 
 export interface ButtonGroupProps {
     vertical?: boolean
@@ -39,9 +41,9 @@ export default class ButtonGroup<T extends ButtonGroupProps = ButtonGroupProps> 
             } else {
                 value = value.slice(0);
             }
-            const index = value.indexOf(value);
+            const index = value.indexOf(v);
             if (!~index) {
-                value.push(value);
+                value.push(v);
             } else {
                 value.splice(index, 1);
             }
