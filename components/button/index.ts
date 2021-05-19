@@ -1,13 +1,13 @@
 import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'intact';
 import template from './index.vdt';
-import '../../styles/kpc.styl';
-import './index.styl';
+// import '../../styles/kpc.styl';
+// import './index.styl';
 import {ButtonGroup} from './group';
 import {bind} from '../utils';
 
 export interface ButtonProps {
     type?: 'default' | 'primary' | 'warning' | 'danger' | 'success' | 'none' | 'secondary' | 'link'
-    size?: 'default' | 'small' | 'mini'
+    size?: 'large' | 'default' | 'small' | 'mini'
     icon?: boolean
     circle?: boolean
     loading?: boolean
@@ -23,8 +23,8 @@ export interface ButtonProps {
 }
 
 const typeDefs: TypeDefs<ButtonProps> = {
-    type: String,
-    size: String,
+    type: ['default', 'primary', 'warning', 'danger', 'success', 'none', 'secondary', 'link'],
+    size: ['large', 'default', 'small', 'mini'],
     icon: Boolean,
     loading: Boolean,
     disabled: Boolean,

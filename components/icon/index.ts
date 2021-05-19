@@ -1,7 +1,7 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
-import '../../styles/kpc.styl';
-import './index.styl';
+// import '../../styles/kpc.styl';
+// import './index.styl';
 
 export interface IconProps {
     size?: 'large' | 'default' | 'small' | 'mini' | string | number

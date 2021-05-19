@@ -1,6 +1,8 @@
-import {createVNode as h} from 'intact';
 import {isStringOrNumberNotEmpty} from '../utils';
 import {Icon} from '../icon';
+import makeStyles from './styles';
+import theme from '../styles/default';
+import {DynamicButton} from './dynamicButton';
 
 let {
     type, className, size, icon, circle, ref, key, tabindex,
@@ -9,38 +11,15 @@ let {
 } = this.get();
 
 const checked = this.isChecked();
-const classNameObj = {
-    'k-btn': true,
-    [`k-${type}`]: type,
-    'k-btn-icon': icon,
-    [className]: className, 
-    'k-circle': circle,
-    'k-loading': loading,
-    'k-fluid': fluid,
-    'k-active': checked,
-    'k-disabled': disabled || loading,
-    'k-ghost': ghost,
-};
 // type and size may both be default
-if (size !== 'default') classNameObj[`k-${size}`] = true;
-
-const Button = props => {
-    if (props.href && tagName === 'button') {
-        tagName = 'a';
-    }
-    if (tagName === 'button') {
-        // set type of html button
-        props = {...props, type: htmlType};
-    }
-
-    return h(tagName, props);
-}
+/* if (size !== 'default') classNameObj[`k-${size}`] = true; */
 
 const isIcon = child => (
     child.tag === Icon ||
     child.className && child.className.indexOf('icon') > -1
 );
 
+let iconSide;
 // hack for loading transition of width
 if (!icon && Array.isArray(children)) {
     children.forEach((child, index) => {
@@ -53,11 +32,11 @@ if (!icon && Array.isArray(children)) {
             // whether the icon is on the left side or right
             if (index === 0) {
                 if (isIcon(child)) {
-                    classNameObj['k-btn-icon-left'] = true;
+                    iconSide = 'left';
                 }
             } else if (index === children.length - 1) {
                 if (isIcon(child)) {
-                    classNameObj['k-btn-icon-right'] = true;
+                    iconSide = 'right';
                 }
             }
         }
@@ -66,6 +45,12 @@ if (!icon && Array.isArray(children)) {
     // wrap text node with span
     children = <span>{children}</span>
 }
+
+const classNameObj = {
+    'k-btn': true,
+    [className]: className,
+    [makeStyles({...this.get(), checked, iconSide}, theme)]: true,
+};
 
 const loadingIcon = (
     <Icon class="ion-load-c icon-loading" 
@@ -77,7 +62,9 @@ const loadingIcon = (
 const buttonGroup = this.buttonGroup;
 const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
 
-<Button class={classNameObj}
+<DynamicButton 
+    class={classNameObj}
+    tagName={tagName}
     {...rest}
     {...tagProps}
     ref={this.elementRef}
@@ -86,14 +73,15 @@ const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
     ev-mouseup={this.onMouseUp}
 >
     {loading ? 
-        classNameObj['k-btn-icon-right'] ?
+        iconSide === 'right' ?
             [children, loadingIcon] :
             [loadingIcon, children] :
         children 
     }
     <input type={checkType} v-if={checkType !== 'none'}
+        class="k-button-input"
         name={name} 
         checked={checked}
         tabindex="-1"
     />
-</Button>
+</DynamicButton>

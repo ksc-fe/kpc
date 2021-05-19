@@ -1,8 +1,32 @@
 import {Button, ButtonGroup} from 'kpc/components/button';
 import {Icon} from 'kpc/components/icon';
+import {css} from '@emotion/css';
 
 <div>
-    <Button>test</Button>
+    <div 
+        class={css`
+            color: ${true ? 'blue' : 'red'};
+            .label {
+                color: gray;
+            }
+            ${true && 'color: #000;'}
+        `}
+    >
+        <span class="label">test</span>
+    </div>
+    <div 
+        class={{
+            [css`
+                color: red;
+                background: black;
+                &:hover {
+                    color: blue;
+                }
+            `]: true,
+            a: true
+        }}
+    >test</div>
+    <Button ev-click={this.changeTheme}>test</Button>
     <ButtonGroup>
         <Button size="small"><i class="k-icon icon-boot"></i>开机</Button>
         <Button size="small"><i class="k-icon icon-boot"></i>关机</Button>

@@ -1,7 +1,7 @@
 import {Component, provide, TypeDefs} from 'intact';
 import template from './group.vdt';
-import '../../styles/kpc.styl';
-import './index.styl';
+// import '../../styles/kpc.styl';
+// import './index.styl';
 
 export interface ButtonGroupProps {
     vertical?: boolean
