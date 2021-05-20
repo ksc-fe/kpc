@@ -2,19 +2,24 @@ import {isObject} from 'intact-shared';
 import {Theme} from './theme';
 import Chroma from 'chroma-js';
 
-export function deepDefaults<T extends Theme, U extends Theme>(source: T, defaults: U): T & U;
-export function deepDefaults(source: Theme, defaults: Theme): Theme {
-    for (let key in defaults) {
-        const sourceDescriptor = Object.getOwnPropertyDescriptor(source, key);
-        const defaultDescriptor = Object.getOwnPropertyDescriptor(defaults, key);
-        if (defaultDescriptor !== undefined) {
-            if (sourceDescriptor === undefined) {
-                Object.defineProperty(source, key, defaultDescriptor);
-            } else if (isObject(defaultDescriptor.value)) {
-                if (!isObject(defaultDescriptor.value)) {
+export function deepDefaults<T, U>(source: T, defaults: U): T & U;
+export function deepDefaults<T, U, V>(source: T, defaults1: U, defaults2: V): T & U & V;
+export function deepDefaults<T, U, V, W>(source: T, defaults1: U, defaults2: V, defaults3: W): T & U & V & W;
+export function deepDefaults(source: any, ...defaults: any[]): any;
+export function deepDefaults(source: Theme, ...args: Theme[]): Theme {
+    for (const defaults of args) {
+        for (let key in defaults) {
+            const sourceDescriptor = Object.getOwnPropertyDescriptor(source, key);
+            const defaultDescriptor = Object.getOwnPropertyDescriptor(defaults, key);
+            if (defaultDescriptor !== undefined) {
+                if (sourceDescriptor === undefined) {
                     Object.defineProperty(source, key, defaultDescriptor);
-                } else {
-                    deepDefaults(sourceDescriptor.value as Theme, defaultDescriptor.value as Theme);
+                } else if (isObject(defaultDescriptor.value)) {
+                    if (!isObject(defaultDescriptor.value)) {
+                        Object.defineProperty(source, key, defaultDescriptor);
+                    } else {
+                        deepDefaults(sourceDescriptor.value as Theme, defaultDescriptor.value as Theme);
+                    }
                 }
             }
         }

@@ -1,6 +1,6 @@
 import {css, cx} from '@emotion/css';
 import {ButtonProps} from './index';
-import {theme, getValue as $, ThemeValue} from '../styles/theme';
+import {theme, ThemeValue} from '../styles/theme';
 import {deepDefaults, palette}  from '../styles/utils';
 
 type ValueOf<T extends readonly any[]> = T[number]
@@ -28,28 +28,29 @@ const types = ['primary', 'warning', 'danger', 'active', 'success'] as const;
 const sizes = ['large', 'small', 'mini'] as const;
 
 const btnStyles = {
-    color: () => theme.color.text,
+    get color() { return theme.color.text },
     bgColor: '#fff',
-    padding: () => `0 ${$(theme.default.padding)}`,
-    borderColor: () => theme.color.border,
-    borderRadius: () => theme.borderRadius,
-    fontSize: () => theme.default.fontSize,
-    height: () => theme.default.height,
-    hoverBorderColor: () => theme.color.primary,
-    hoverColor: () => theme.color.primary,
+    get padding() { return `0 ${theme.default.padding}` },
+    get borderColor() { return theme.color.border },
+    get borderRadius() { return theme.borderRadius },
+    get fontSize() { return theme.default.fontSize },
+    get height() { return theme.default.height },
+    get hoverBorderColor() { return theme.color.primary },
+    get hoverColor() { return theme.color.primary },
     ghostColor: '#fff',
-    ghostHoverColor: () => palette($(theme.color.primary), -1),
+    get ghostHoverColor() { return palette(theme.color.primary, -1) },
 };
 
+type TypesWithoutActive = Exclude<Types, 'active'>
 const btnTypeStyles = types.reduce((memo, type) => {
     if (type !== 'active') {
         const color = theme.color;
         memo[type] = {
             color: '#fff',
-            bgColor: () => color[type],
-            borderColor: () => color[type],
-            hoverBorderColor: () => palette($(color[type]), -1),
-            ghostColor: () => color[type],
+            get bgColor() { return color[type as TypesWithoutActive] },
+            get borderColor() { return color[type as TypesWithoutActive] },
+            get hoverBorderColor() { return palette(color[type as TypesWithoutActive], -1) },
+            get ghostColor() { return color[type as TypesWithoutActive] },
         };
 
     }
@@ -58,41 +59,43 @@ const btnTypeStyles = types.reduce((memo, type) => {
 }, {} as {[key in Types]: TypeStyles});
 
 const btnActiveStyles: TypeStyles = {
-    color: () => theme.color.primary,
-    bgColor: () => palette($(theme.color.primary), -4),
-    borderColor: () => btnTypeStyles.primary.borderColor,
-    hoverBorderColor: () => btnTypeStyles.primary.hoverBorderColor,
-    ghostColor: () => btnTypeStyles.primary.ghostColor,
+    get color() { return theme.color.primary },
+    get bgColor() { return palette(theme.color.primary, -4) },
+    get borderColor() { return btnTypeStyles.primary.borderColor },
+    get hoverBorderColor() { return btnTypeStyles.primary.hoverBorderColor },
+    get ghostColor() { return btnTypeStyles.primary.ghostColor },
 };
 
 const btnSizeStyles = sizes.reduce((memo, size) => {
     const defaultStyle = theme[size];
     memo[size] = {
-        fontSize: () => defaultStyle.fontSize,
-        height: () => defaultStyle.height,
-        padding: () => `0 ${$(defaultStyle.padding)}`,
+        get fontSize() { return defaultStyle.fontSize },
+        get height() { return defaultStyle.height },
+        get padding() { return `0 ${defaultStyle.padding}` },
     };
 
     return memo; 
 }, {} as {[key in Sizes]: SizeStyles});
 
 const themeWithBtn = deepDefaults(theme, {
-    btn: {
-        ...btnStyles,
-        ...btnTypeStyles,
-        active: btnActiveStyles,
-        secondary: {
-            color: () => theme.color.primary,
-            borderColor: () => theme.color.primary,
-            hoverBgColor: () => palette($(theme.color.primary), -4),
-            activeBgColor: () => palette($(theme.color.primary), -3),
+    btn: deepDefaults(
+        {
+            active: btnActiveStyles,
+            secondary: {
+                get color() { return theme.color.primary },
+                get borderColor() { return theme.color.primary },
+                get hoverBgColor() { return palette(theme.color.primary, -4) },
+                get activeBgColor() { return palette(theme.color.primary, -3) },
+            },
+            link: {
+                get color() { return theme.color.link },
+                get hoverColor() { return theme.color.linkHover },
+            },
         },
-        link: {
-            color: () => theme.color.link,
-            hoverColor: () => theme.color.linkHover,
-        },
-        ...btnSizeStyles,
-    }
+        btnStyles,
+        btnTypeStyles,
+        btnSizeStyles,
+    )
 });
 
 export default function makeStyles(props: ButtonProps & {checked: boolean, iconSide: string}) {
@@ -104,20 +107,20 @@ export default function makeStyles(props: ButtonProps & {checked: boolean, iconS
         makeRootStyles(),
         (isTypes(type) || props.checked) && makeTypeStyles(props.checked ? 'active' : type as Types),
         props.type === 'secondary' && css`
-            color: ${$(secondary.color)};
-            border-color: ${$(secondary.borderColor)};
+            color: ${secondary.color};
+            border-color: ${secondary.borderColor};
             &:hover,
             &:focus {
-                background-color: ${$(secondary.hoverBgColor)};
+                background-color: ${secondary.hoverBgColor};
             }
             &:active {
-                background-color: ${$(secondary.activeBgColor)};
+                background-color: ${secondary.activeBgColor};
             }
         `,
         type === 'link' && css`
-            color: ${$(link.color)};
+            color: ${link.color};
             &:hover {
-                color: ${$(link.hoverColor)};
+                color: ${link.hoverColor};
             }
         `,
         (type === 'link' || type === 'none') && css`
@@ -136,29 +139,29 @@ function makeRootStyles() {
     return css`
         cursor: pointer;
         display: inline-block;
-        height: ${$(btn.height)};
-        padding: ${$(btn.padding)};
+        height: ${btn.height};
+        padding: ${btn.padding};
         outline: none;
         vertical-align: middle;
-        color: ${$(btn.color)};
-        background-color: ${$(btn.bgColor)};
+        color: ${btn.color};
+        background-color: ${btn.bgColor};
         text-align: center;
-        border-radius: ${$(btn.borderRadius)};
-        border: 1px solid ${$(btn.borderColor)};
-        font-size: ${$(btn.fontSize)};
+        border-radius: ${btn.borderRadius};
+        border: 1px solid ${btn.borderColor};
+        font-size: ${btn.fontSize};
         white-space: nowrap;
         transition: all .25s ease-in-out;
         button& > span {
             vertical-align: middle;
-            line-height: calc(${$(btn.height)} - 2px);
+            line-height: calc(${btn.height} - 2px);
         }
         &:hover,
         &:focus {
-            border-color: ${$(btn.hoverBorderColor)};
-            color: ${$(btn.hoverColor)};
+            border-color: ${btn.hoverBorderColor};
+            color: ${btn.hoverColor};
         }
         &:active {
-            background-color: ${palette($(theme.color.primary), -4)};
+            background-color: ${palette(theme.color.primary, -4)};
         }
 
         .k-button-input {
@@ -178,18 +181,18 @@ function makeTypeStyles(type: Types) {
     const typeStyles = themeWithBtn.btn[type];
 
     return css`
-        background-color: ${$(typeStyles.bgColor)};
-        color: ${$(typeStyles.color)};
-        border-color: ${$(typeStyles.borderColor)};
+        background-color: ${typeStyles.bgColor};
+        color: ${typeStyles.color};
+        border-color: ${typeStyles.borderColor};
         &:hover,
         &:focus {
-            background-color: ${$(palette($(typeStyles.bgColor), -1))};
-            border-color: ${$(typeStyles.hoverBorderColor)};
-            color: ${$(typeStyles.color)};
+            background-color: ${palette(typeStyles.bgColor, -1)};
+            border-color: ${typeStyles.hoverBorderColor};
+            color: ${typeStyles.color};
         }
         &:active {
-            background-color: ${$(palette($(typeStyles.bgColor), 1))};
-            border-color: ${$(palette($(typeStyles.borderColor), 1))};
+            background-color: ${palette(typeStyles.bgColor, 1)};
+            border-color: ${palette(typeStyles.borderColor, 1)};
         }
     `;
 }
@@ -198,15 +201,15 @@ function makeSizeStyles(size: Sizes, icon: boolean) {
     const styles = themeWithBtn.btn[size];
 
     return css`
-        font-size: ${$(styles.fontSize)};
-        height: ${$(styles.height)};
-        padding: ${$(styles.padding)};
+        font-size: ${styles.fontSize};
+        height: ${styles.height};
+        padding: ${styles.padding};
         .k-icon {
-            line-height: calc(${$(styles.height)} - 2px);
+            line-height: calc(${styles.height} - 2px);
         }
-        ${icon && `width: ${$(styles.height)}`}
+        ${icon && `width: ${styles.height}`}
         button& > span {
-            line-height: calc(${$(styles.height)} - 2px);
+            line-height: calc(${styles.height} - 2px);
         }
     `;
 }
