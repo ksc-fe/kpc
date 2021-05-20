@@ -1,8 +1,20 @@
 import {palette} from './utils';
+import {isFunction} from 'intact-shared';
 
-export type Theme = {[name: string]: string | number | Theme};
+export type ThemeValue<T> = T | (() => T) | (() => ThemeValue<T>) 
+export type Theme = {[name: string]: ThemeValue<string> | ThemeValue<number> | Theme};
 
-export default {
+export function getValue<T extends string | number>(value: ThemeValue<T>): T {
+    if (isFunction(value)) {
+        value = value();
+        if (isFunction(value)) {
+            return getValue(value);
+        }
+    }
+    return value;
+}
+
+export const theme = {
     large: {
         height: '40px',
         fontSize: '14px',
@@ -36,8 +48,8 @@ export default {
         title: '#333',
         darkBorder: '#b2b2b2',
         placeholder: '#b2b2b2',
-        link: '#0091ea',
-        linkHover: palette('#0091ea', -1), 
+        link: () => theme.color.primary,
+        linkHover: () => palette(getValue(theme.color.primary), -1), 
         disabled: '#ccc',
         disabledBg: '#f2f2f2',
         disabledBorder: '#ccc',

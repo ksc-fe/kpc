@@ -1,20 +1,20 @@
 import {isObject} from 'intact-shared';
-import {Theme} from './default';
+import {Theme} from './theme';
 import Chroma from 'chroma-js';
 
 export function deepDefaults<T extends Theme, U extends Theme>(source: T, defaults: U): T & U;
 export function deepDefaults(source: Theme, defaults: Theme): Theme {
     for (let key in defaults) {
-        const sourceValue= source[key];
-        const defaultValue = defaults[key];
-        if (defaultValue !== undefined) {
-            if (sourceValue === undefined) {
-                source[key] = defaultValue; 
-            } else if (isObject(sourceValue)) {
-                if (!isObject(defaultValue)) {
-                    source[key] = defaultValue;
+        const sourceDescriptor = Object.getOwnPropertyDescriptor(source, key);
+        const defaultDescriptor = Object.getOwnPropertyDescriptor(defaults, key);
+        if (defaultDescriptor !== undefined) {
+            if (sourceDescriptor === undefined) {
+                Object.defineProperty(source, key, defaultDescriptor);
+            } else if (isObject(defaultDescriptor.value)) {
+                if (!isObject(defaultDescriptor.value)) {
+                    Object.defineProperty(source, key, defaultDescriptor);
                 } else {
-                    deepDefaults(sourceValue, defaultValue);
+                    deepDefaults(sourceDescriptor.value as Theme, defaultDescriptor.value as Theme);
                 }
             }
         }

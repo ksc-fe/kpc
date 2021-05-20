@@ -3,34 +3,19 @@ import {Icon} from 'kpc/components/icon';
 import {css} from '@emotion/css';
 
 <div>
-    <div 
-        class={css`
-            color: ${true ? 'blue' : 'red'};
-            .label {
-                color: gray;
-            }
-            ${true && 'color: #000;'}
-        `}
-    >
-        <span class="label">test</span>
-    </div>
-    <div 
-        class={{
-            [css`
-                color: red;
-                background: black;
-                &:hover {
-                    color: blue;
-                }
-            `]: true,
-            a: true
-        }}
-    >test</div>
-    <Button ev-click={this.changeTheme}>test</Button>
+    <Button>default</Button>
+    <Button type="primary">primary</Button>
+    <Button type="secondary">secondary</Button>
+    <Button type="warning">warning</Button>
+    <Button type="danger">danger</Button>
+    <Button type="success">success</Button>
+    <Button type="none">none</Button>
+    <Button type="link">link</Button>
+    <Button ev-click={this.changeTheme} type="primary">test</Button>
     <ButtonGroup>
-        <Button size="small"><i class="k-icon icon-boot"></i>开机</Button>
-        <Button size="small"><i class="k-icon icon-boot"></i>关机</Button>
-        <Button size="small"><i class="k-icon icon-boot"></i>重启</Button>
+        <Button><i class="k-icon icon-boot"></i>开机</Button>
+        <Button><i class="k-icon icon-boot"></i>关机</Button>
+        <Button><i class="k-icon icon-boot"></i>重启</Button>
     </ButtonGroup>
     <ButtonGroup vertical checkType="radio" v-model="type">
         <Button size="small" value={0}><i class="k-icon icon-boot"></i>开机</Button>

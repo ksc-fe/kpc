@@ -1,7 +1,6 @@
 import {isStringOrNumberNotEmpty} from '../utils';
 import {Icon} from '../icon';
 import makeStyles from './styles';
-import theme from '../styles/default';
 import {DynamicButton} from './dynamicButton';
 
 let {
@@ -49,7 +48,7 @@ if (!icon && Array.isArray(children)) {
 const classNameObj = {
     'k-btn': true,
     [className]: className,
-    [makeStyles({...this.get(), checked, iconSide}, theme)]: true,
+    [makeStyles({...this.get(), checked, iconSide})]: true,
 };
 
 const loadingIcon = (
