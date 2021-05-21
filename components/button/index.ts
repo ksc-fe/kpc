@@ -4,6 +4,7 @@ import template from './index.vdt';
 // import './index.styl';
 import {ButtonGroup} from './group';
 import {bind} from '../utils';
+import '../styles/global';
 
 export interface ButtonProps {
     type?: 'default' | 'primary' | 'warning' | 'danger' | 'success' | 'none' | 'secondary' | 'link'

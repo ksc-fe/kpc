@@ -39,6 +39,12 @@ const btnStyles = {
     get hoverColor() { return theme.color.primary },
     ghostColor: '#fff',
     get ghostHoverColor() { return palette(theme.color.primary, -1) },
+
+    // icon
+    icon: {
+        gutter: '5px',
+        fontSize: '16px',
+    }
 };
 
 type TypesWithoutActive = Exclude<Types, 'active'>
@@ -77,8 +83,8 @@ const btnSizeStyles = sizes.reduce((memo, size) => {
     return memo; 
 }, {} as {[key in Sizes]: SizeStyles});
 
-const themeWithBtn = deepDefaults(theme, {
-    btn: deepDefaults(
+const {button} = deepDefaults(theme, {
+    button: deepDefaults(
         {
             active: btnActiveStyles,
             secondary: {
@@ -99,12 +105,13 @@ const themeWithBtn = deepDefaults(theme, {
 });
 
 export default function makeStyles(props: ButtonProps & {checked: boolean, iconSide: string}) {
-    const {secondary, link} = themeWithBtn.btn;
+    const {secondary, link} = button;
     const type = props.type!;
     const size = props.size!;
 
     return cx(
         makeRootStyles(),
+        makeIconStyles(props.iconSide, props.icon!),
         (isTypes(type) || props.checked) && makeTypeStyles(props.checked ? 'active' : type as Types),
         props.type === 'secondary' && css`
             color: ${secondary.color};
@@ -134,31 +141,29 @@ export default function makeStyles(props: ButtonProps & {checked: boolean, iconS
 }
 
 function makeRootStyles() {
-    const btn = themeWithBtn.btn;
-
     return css`
         cursor: pointer;
         display: inline-block;
-        height: ${btn.height};
-        padding: ${btn.padding};
+        height: ${button.height};
+        padding: ${button.padding};
         outline: none;
         vertical-align: middle;
-        color: ${btn.color};
-        background-color: ${btn.bgColor};
+        color: ${button.color};
+        background-color: ${button.bgColor};
         text-align: center;
-        border-radius: ${btn.borderRadius};
-        border: 1px solid ${btn.borderColor};
-        font-size: ${btn.fontSize};
+        border-radius: ${button.borderRadius};
+        border: 1px solid ${button.borderColor};
+        font-size: ${button.fontSize};
         white-space: nowrap;
         transition: all .25s ease-in-out;
         button& > span {
             vertical-align: middle;
-            line-height: calc(${btn.height} - 2px);
+            line-height: calc(${button.height} - 2px);
         }
         &:hover,
         &:focus {
-            border-color: ${btn.hoverBorderColor};
-            color: ${btn.hoverColor};
+            border-color: ${button.hoverBorderColor};
+            color: ${button.hoverColor};
         }
         &:active {
             background-color: ${palette(theme.color.primary, -4)};
@@ -178,7 +183,7 @@ function isTypes(t: any): t is Types {
 } 
 
 function makeTypeStyles(type: Types) {
-    const typeStyles = themeWithBtn.btn[type];
+    const typeStyles = button[type];
 
     return css`
         background-color: ${typeStyles.bgColor};
@@ -198,7 +203,7 @@ function makeTypeStyles(type: Types) {
 }
 
 function makeSizeStyles(size: Sizes, icon: boolean) {
-    const styles = themeWithBtn.btn[size];
+    const styles = button[size];
 
     return css`
         font-size: ${styles.fontSize};
@@ -211,5 +216,30 @@ function makeSizeStyles(size: Sizes, icon: boolean) {
         button& > span {
             line-height: calc(${styles.height} - 2px);
         }
+    `;
+}
+
+function makeIconStyles(iconSide: string, icon: boolean) {
+    return css`
+        .k-icon {
+            vertical-align: middle;
+            line-height: calc(${button.height} - 2px);
+            &:before {
+                font-size: inherit;
+            }
+            + span {
+                margin-left: ${button.icon.gutter};
+            }
+
+            ${iconSide === 'right' && `
+                margin-left: ${button.icon.gutter};
+            `}
+
+            ${icon && 'margin: 0;'}
+        }
+        ${icon && `
+            width: ${button.height};
+            padding: 0;
+        `}
     `;
 }
