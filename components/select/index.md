@@ -28,6 +28,7 @@ sidebar: doc
 | loading | 数据加载状态 | `Boolean` | `false` |
 | position | 定义弹层的位置 | `Object` | `{my: 'left top+8', at: 'left bottom'}` |
 | searchable | 是否将在弹出菜单中展示搜索框 | `Boolean` | `false` |
+| autoDisableIcon | 可以在某些情况下给下拉箭头一个`disabled`状态，来提示用户当前没有更多选择 | `Boolean` | `false` | 
 
 ## Option
 

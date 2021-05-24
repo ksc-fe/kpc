@@ -14,7 +14,7 @@ const {
     placeholder, size, style, name, children,
     fluid, width, allowUnmatch, card, hideIcon,
     container, inline, loading, position,
-    searchable
+    searchable, autoDisableIcon
 } = self.get();
 
 /* istanbul ignore if */
@@ -54,6 +54,15 @@ const labelObj = scope.labelObj || {
 };
 let groupIndex = 0;
 let hasData = isGroup;
+let hasOnlyOneValidOptionAndSelected = null;
+
+const setHasOnlyOneValidOptionAndSelected = active => {
+    if (hasOnlyOneValidOptionAndSelected === null) {
+        hasOnlyOneValidOptionAndSelected = active;
+    } else {
+        hasOnlyOneValidOptionAndSelected = false;
+    }
+}
 
 const allShowedValues = [];
 
@@ -92,6 +101,7 @@ const Options = props => {
                 }
             }
             hasData = true;
+            setHasOnlyOneValidOptionAndSelected(active);
 
             allShowedValues.push(item.value);
         }
@@ -120,6 +130,7 @@ const OptionsVNodes = ({children}) => {
                 'k-active': active,
             });
             hasData = true;
+            setHasOnlyOneValidOptionAndSelected(active);
 
             allShowedValues.push(props.value);
 
@@ -372,7 +383,14 @@ if (hasValue && (!allowUnmatch && labelObj.label == null && !labelObj.labels.len
                 <span class="k-suffix-icon">
                     <b:suffix>
                         <Icon class="ion-load-c icon-loading" v-if={{ loading }} />
-                        <i class="k-arrow ion-arrow-down-b" v-else-if={{ !hideIcon }}></i>
+                        <Icon class="k-arrow ion-arrow-down-b" v-else-if={{ !hideIcon }}
+                            color={{ 
+                                disabled || 
+                                autoDisableIcon && (!hasData || hasOnlyOneValidOptionAndSelected) ? 
+                                    'disabled' :
+                                    null
+                            }}
+                        />
                     </b:suffix>
                 </span>
             </span>

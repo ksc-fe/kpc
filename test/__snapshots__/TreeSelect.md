@@ -13,7 +13,7 @@
 ```
 
 ```
-"<div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"1\"><span class=\"k-values\"><span class=\"k-select-tag\" style=\"\"><span class=\"k-text\">First floor-1</span><i class=\"k-icon ion-ios-close-empty k-close\"></i></span></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
+"<div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"1\"><span class=\"k-values\"><span class=\"k-select-tag\" style=\"\"><span class=\"k-text\">First floor-1</span><i class=\"k-icon ion-ios-close-empty k-close\"></i></span></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
 ```
 
 #### `checkbox`
@@ -23,7 +23,7 @@
 ```
 
 ```
-"<div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
+"<div class=\"k-wrapper k-dropdown-open\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder-->"
 ```
 
 #### `filterable`

@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v1.5.0
+
+1. `Add` `Table`支持`Checkbox/Radio`这一列进行单元格合并 [#527](https://github.com/ksc-fe/kpc/issues/527)
+2. `Add` `Table`全选`Checkbox`支持半选中状态 [#554](https://github.com/ksc-fe/kpc/issues/554)
+3. `Add` `Icon`新增`disabled`颜色 [#574](https://github.com/ksc-fe/kpc/issues/574)
+4. `Add` `Select`新增`autoDisableIcon`属性，在某些情况下禁用下拉箭头来提示用户没有更多选择 [#575](https://github.com/ksc-fe/kpc/issues/575)
+5. `Change` `Datepicker`年月选择面板UI/UE更新 [#541](https://github.com/ksc-fe/kpc/issues/541)
+
 ## v1.4.8
 
 1. `Add` `Table`导出表格时，支持自定义表头 [#469](https://github.com/ksc-fe/kpc/issues/469)

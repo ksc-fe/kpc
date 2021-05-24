@@ -8,8 +8,8 @@
         &.k-{size}
             font-size lookup('$icon-' + size + '-font-size')
 
-    for color in primary warning danger success
+    for color in primary warning danger success disabled
         &.k-color-{color}
-            color lookup('$' + color + '-color')
+            color lookup('$icon-' + color + '-color')
 
 requireTheme('icon')

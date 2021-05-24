@@ -3,7 +3,7 @@ import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
 
-const colors = ['default', 'primary', 'warning', 'danger', 'success'];
+const colors = ['default', 'primary', 'warning', 'danger', 'success', 'disabled'];
 
 export default class Icon extends Intact {
     @Intact.template()
