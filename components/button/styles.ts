@@ -42,7 +42,7 @@ const btnStyles = {
 
     // icon
     icon: {
-        gutter: '5px',
+        gap: '5px',
         fontSize: '16px',
     }
 };
@@ -224,15 +224,15 @@ function makeIconStyles(iconSide: string, icon: boolean) {
         .k-icon {
             vertical-align: middle;
             line-height: calc(${button.height} - 2px);
-            &:before {
-                font-size: inherit;
-            }
+            // &:before {
+                // font-size: inherit;
+            // }
             + span {
-                margin-left: ${button.icon.gutter};
+                margin-left: ${button.icon.gap};
             }
 
             ${iconSide === 'right' && `
-                margin-left: ${button.icon.gutter};
+                margin-left: ${button.icon.gap};
             `}
 
             ${icon && 'margin: 0;'}

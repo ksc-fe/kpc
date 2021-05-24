@@ -4,16 +4,6 @@ import {isFunction} from 'intact-shared';
 export type ThemeValue<T> = T; // | (() => T) | (() => ThemeValue<T>) 
 export type Theme = {[name: string]: ThemeValue<string> | ThemeValue<number> | Theme};
 
-// export function getValue<T extends string | number>(value: ThemeValue<T>): T {
-    // if (isFunction(value)) {
-        // value = value();
-        // if (isFunction(value)) {
-            // return getValue(value);
-        // }
-    // }
-    // return value;
-// }
-
 export const theme = {
     large: {
         height: '40px',

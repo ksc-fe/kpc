@@ -196,7 +196,8 @@
   "sideEffects": [
     "*.css",
     "*.styl",
-    "**/*/styles/global.*"
+    "**/*/styles/global.*",
+    "**/*/styles/fonts/*"
   ],
   "browserslist": [
     "last 2 versions",

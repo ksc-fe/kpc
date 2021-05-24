@@ -52,9 +52,10 @@ const classNameObj = {
 };
 
 const loadingIcon = (
-    <Icon class="ion-load-c icon-loading" 
+    <Icon class="ion-load-c" 
         size={size /*loadingSizeMap[size]*/}
         key="k-loading"
+        rotate
     />
 );
 

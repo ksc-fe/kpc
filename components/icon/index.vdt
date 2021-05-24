@@ -1,24 +1,31 @@
 import {addStyle} from '../utils';
+import makeStyles from './styles';
 
-const {className, style, size, color} = this.get();
-
-const classNameObj = {
-    "k-icon": true,
-    [className]: className,
-};
+const {className, style, size, color, rotate, ...rest} = this.get();
 
 const _style = {};
+let _size;
+let _color;
 if (/^\d+$/.test(size)) {
     _style.fontSize = size + 'px'; 
 } else if (size !== 'default') {
-    classNameObj[`k-${size}`] = true;
+    _size = size;
 }
 if (this.colors.indexOf(color) > -1) {
-    classNameObj[`k-color-${color}`] = color !== 'default';
+    if (color !== 'default') {
+        _color = color;
+    }
 } else if (color) {
     _style.color = color;
 }
 
+const classNameObj = {
+    "k-icon": true,
+    [className]: className,
+    [makeStyles({size: _size, color: _color, rotate})]: true,
+};
+
 <i class={classNameObj}
     style={addStyle(style, _style)}
+    {...rest}
 ></i>

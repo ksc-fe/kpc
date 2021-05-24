@@ -5,3 +5,8 @@ declare module "*.vdt" {
 
     export = template
 }
+
+declare module "*.eot" {}
+declare module "*.ttf" {}
+declare module "*.woff" {}
+declare module "*.svg" {}

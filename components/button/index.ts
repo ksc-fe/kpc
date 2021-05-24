@@ -4,11 +4,12 @@ import template from './index.vdt';
 // import './index.styl';
 import {ButtonGroup} from './group';
 import {bind} from '../utils';
+import {Sizes, Colors} from '../types';
 import '../styles/global';
 
 export interface ButtonProps {
-    type?: 'default' | 'primary' | 'warning' | 'danger' | 'success' | 'none' | 'secondary' | 'link'
-    size?: 'large' | 'default' | 'small' | 'mini'
+    type?: Colors | 'none' | 'secondary' | 'link'
+    size?: Sizes,
     icon?: boolean
     circle?: boolean
     loading?: boolean
