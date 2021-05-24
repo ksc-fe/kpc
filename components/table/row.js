@@ -4,11 +4,9 @@ import template from './row.vdt';
 const PROPS = [
     'value', 'index', 'rowKey', 'checkType', 'onlyRight', 'onlyLeft',
     'disabled', 'merge', 'level', 'indent', 'children', 'className',
-    'checked', 'draggable', 'dragKey',
+    'checked', 'draggable', 'dragKey', 'rowKeys', 'rowCheckeds', 'rowDisableds',
     // to make scheme compare at last
-    'scheme', 'rowKeys', 'rowCheckeds', 
-    'curClickRowKey', 'rowDisableds', 
-    'firstCloumnRowSpans'
+    'scheme', 
 ];
 
 export default class TableRow extends Intact {
@@ -95,9 +93,12 @@ export default class TableRow extends Intact {
             for (let i = 0; i < PROPS.length; i++) {
                 const key = PROPS[i];
                 if (
-                    key === 'scheme' ?
-                        !isSameScheme(lastProps.scheme, nextProps.scheme) :
-                        lastProps[key] !== nextProps[key]
+                    key === 'scheme'?
+                        !isSameScheme(lastProps.scheme, nextProps.scheme) : ( 
+                            key === 'rowKeys' || key === 'rowDisableds' || key === 'rowCheckeds'? 
+                                !isSameRow(lastProps[key], nextProps[key]) :
+                                lastProps[key] !== nextProps[key]
+                        )
                 ) {
                     isSame = false;
                     break;
@@ -105,9 +106,10 @@ export default class TableRow extends Intact {
             }
             if (isSame) {
                 // add last rowInGrid in grid
-                const {merge, grid} = nextProps;
+                const {merge, grid, firstCloumnRowSpans} = nextProps;
                 if (merge) {
                     grid.push(this.rowInGrid);
+                    firstCloumnRowSpans.push(this.spanColumnsInfo)
                 }
                 // update events for Tooltip
                 this.set(nextProps, {silent: true});
@@ -132,18 +134,18 @@ export default class TableRow extends Intact {
 
         const enabledSpanIndexs = spanIndexs.filter(idx => rowDisableds[idx] === false);
         const checkedEnabledSpanIndexs = enabledSpanIndexs.filter(idx => rowCheckeds[idx] === true);
-        return spanReturnVal && spanReturnVal(spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs); // 有合并的返回值
+        return spanReturnVal && spanReturnVal(enabledSpanIndexs, checkedEnabledSpanIndexs); // 有合并的返回值
     }
 
     // 全选状态
     _isAllChecked(){
         const {checked} = this.get();
-        return this._getStatus(checked, (spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs) => checkedEnabledSpanIndexs.length === enabledSpanIndexs.length)
+        return this._getStatus(checked, (enabledSpanIndexs, checkedEnabledSpanIndexs) => checkedEnabledSpanIndexs.length === enabledSpanIndexs.length)
     }
 
     // 半选状态
     _isHalfChecked(){
-        return this._getStatus(false, (spanIndexs, enabledSpanIndexs, checkedEnabledSpanIndexs) => {
+        return this._getStatus(false, (enabledSpanIndexs, checkedEnabledSpanIndexs) => {
             const isHasCheckedRow = checkedEnabledSpanIndexs.length > 0;
             const isCheckedAllSpans = checkedEnabledSpanIndexs.length === enabledSpanIndexs.length;
     
@@ -153,12 +155,12 @@ export default class TableRow extends Intact {
  
     _isDisabled(){
         const {disabled} = this.get();
-        return this._getStatus(disabled, (spanIndexs, enabledSpanIndexs) => enabledSpanIndexs.length === 0)
+        return this._getStatus(disabled, (enabledSpanIndexs) => enabledSpanIndexs.length === 0)
     }
 
     _getSpanColumnsInfoByIndex(){
-        const {checkType, rowKey, index, merge} = this.get();
-        return checkType === 'none' || !merge ? {spanRowKeys: rowKey, spanIndexs: index} : this.spanColumnsInfo[index];
+        const {checkType, rowKey, index, merge, firstCloumnRowSpans} = this.get();
+        return checkType === 'none' || !merge ? {spanRowKeys: rowKey, spanIndexs: index} : firstCloumnRowSpans[index];
     }
 }
 
@@ -183,6 +185,25 @@ function isSameScheme(schemeA, schemeB) {
                 if (valueA[prop] !== valueB[prop]) {
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+function isSameRow(rowA, rowB){
+    if (rowA === rowB) return true;
+    if (rowA && rowB) {
+        let length = rowA.length;
+        if (length !== rowB.length) return false;
+        if(length === 0 ) return true;
+
+        while (length--) {
+            const valueA = rowA[length];
+            const valueB = rowB[length];
+            if(valueA !== valueB) {
+                return false;
             }
         }
         return true;
