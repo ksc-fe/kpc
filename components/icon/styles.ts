@@ -26,7 +26,7 @@ export const sizes = ['large', 'small', 'mini'] as const;
 export default function makeStyles() {
     return css`
         font-size: ${icon.fontSize.default};
-        display: inline-block;
+        // display: inline-block;
         ${sizes.map(size => {
             return css`
                 &.k-${size} {
@@ -41,7 +41,7 @@ export default function makeStyles() {
                 }
             ` 
         })}
-        &.k-rotate {
+        &.k-rotate:before {
             animation: ${rotate} 1s infinite linear;
         }
         &:before {

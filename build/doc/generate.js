@@ -41,6 +41,7 @@ function parseFiles(files) {
         filesPerTask.push(files.slice(i * amount, i === NUMS - 1 ? undefined : (i + 1) * amount));
     }
     return Promise.all(filesPerTask.map(files => {
+        if (!files.length) return;
         const sp = cp.fork(resolvePath('./build/doc/parse.js'));
         return new Promise(resolve => {
             sp.send({files, dest: destData});
