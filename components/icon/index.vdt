@@ -3,27 +3,23 @@ import makeStyles from './styles';
 
 const {className, style, size, color, rotate, ...rest} = this.get();
 
-const _style = {};
-let _size;
-let _color;
-if (/^\d+$/.test(size)) {
-    _style.fontSize = size + 'px'; 
-} else if (size !== 'default') {
-    _size = size;
-}
-if (this.colors.indexOf(color) > -1) {
-    if (color !== 'default') {
-        _color = color;
-    }
-} else if (color) {
-    _style.color = color;
-}
-
 const classNameObj = {
     "k-icon": true,
     [className]: className,
-    [makeStyles({size: _size, color: _color, rotate})]: true,
+    'k-rotate': rotate,
+    [makeStyles()]: true,
 };
+const _style = {};
+if (/^\d+$/.test(size)) {
+    _style.fontSize = size + 'px'; 
+} else if (size !== 'default') {
+    classNameObj[`k-${size}`] = true;
+}
+if (this.colors.indexOf(color) > -1) {
+    classNameObj[`k-${color}`] = color !== 'default';
+} else if (color) {
+    _style.color = color;
+}
 
 <i class={classNameObj}
     style={addStyle(style, _style)}

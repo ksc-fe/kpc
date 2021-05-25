@@ -1,0 +1,34 @@
+import {Row, Col} from 'kpc/components/grid';
+import {Card} from 'kpc/components/card';
+import {Icon} from 'kpc/components/icon';
+
+<t:parent navIndex="resources" class="resource-page">
+    <b:content>
+        <Row gutter="40">
+            <Col lg="8">
+                <Card type="none">
+                    <Icon class="axure" />
+                    <h3>King Design for Axure</h3>
+                    <p>组件库基于Axure 9设计制作</p>
+                    <a class="action" href="https://damife.ks3-cn-beijing.ksyun.com/kpc/KingDesign1.4.1.rplib">下载资源</a>
+                </Card>
+            </Col>
+            <Col lg="8">
+                <Card type="none">
+                    <Icon class="sketch"/>
+                    <h3>King Design for Sketch</h3>
+                    <p>组件库基于Sketch 60设计制作</p>
+                    <a class="action" href="https://damife.ks3-cn-beijing.ksyun.com/kpc/KingDesing-1.4.1.sketch">下载资源</a>
+                </Card>
+            </Col>
+            <Col lg="8">
+                <Card type="none">
+                    <Icon class="vision" />
+                    <h3>King Vision</h3>
+                    <p>金山云视觉库，开源的原创ICON及素材图</p>
+                    <a class="action" href="http://vision.ksyun.com" target="_blank">立即查看</a>
+                </Card>
+            </Col>
+        </Row>
+    </b:content>
+</t:parent>

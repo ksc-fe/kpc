@@ -28,7 +28,11 @@ module.exports = function(api) {
             ["@babel/plugin-proposal-decorators", {"legacy": true}],
             // "@babel/plugin-proposal-class-properties",
             // "@babel/plugin-syntax-dynamic-import",
-            // "@babel/plugin-proposal-do-expressions",
+            "@babel/plugin-proposal-do-expressions",
+            ['@emotion', {
+                sourceMap: false,
+                autoLabel: 'never',
+            }],
             // // "@babel/plugin-transform-proto-to-assign"
         ]
     };

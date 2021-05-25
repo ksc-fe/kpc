@@ -5,9 +5,9 @@ exports.addTheme = (config, theme) => {
         // add theme
         config.module.rules.get('stylus').uses.get('stylus').tap(options => ({
             ...options,
-            import: resolve(`./styles/themes/${theme}/index.styl`),
+            // import: resolve(`./styles/themes/${theme}/index.styl`),
         }));
-    } 
+    }
 
     return config;
 }

@@ -6,7 +6,6 @@ export type RouteItem = Route<RouteResult>
 
 const req = require.context('./components', true, /index\.ts$/);
 const routes = req.keys().map<Route | undefined>(key => {
-    console.log(key);
     if (!key.startsWith('.')) return;
     return {
         path: `/components/${key.slice(2, -9)}`,

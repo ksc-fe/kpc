@@ -6,6 +6,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = (config) => {
     config
         .mode('development')
+        // .mode('production')
         .resolve
             .modules
                 .add(root)
@@ -52,6 +53,7 @@ module.exports = (config) => {
         .plugin('vue')
             .use(VueLoaderPlugin)
             .end()
+        .target('web') // https://github.com/webpack/webpack-dev-server/issues/2758
         // .plugin('clean')
             // .use(CleanWebpackPlugin)
             // .end();

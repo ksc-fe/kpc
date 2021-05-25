@@ -3,7 +3,7 @@ import {Icon} from 'kpc/components/icon';
 import {css} from '@emotion/css';
 
 <div>
-    <Button>default</Button>
+    <Button ev-click={this.benchmarks}>default</Button>
     <Button type="primary">primary</Button>
     <Button type="secondary">secondary</Button>
     <Button type="warning">warning</Button>

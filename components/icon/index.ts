@@ -1,9 +1,7 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
-import {colors} from './styles';
+import {colors, sizes} from './styles';
 import {Sizes} from '../types';
-// import '../../styles/kpc.styl';
-// import './index.styl';
 
 export interface IconProps {
     size?:  Sizes | string | number
@@ -16,7 +14,7 @@ export default class Icon<T extends IconProps = IconProps> extends Component<T> 
     static displayName = 'Icon';
 
     static typeDefs: TypeDefs<IconProps> = {
-        size: ['large', 'default', 'small', 'mini', String, Number],
+        size: [...sizes, 'default', String, Number],
         color: String,
         rotate: Boolean,
     };
@@ -26,7 +24,7 @@ export default class Icon<T extends IconProps = IconProps> extends Component<T> 
         rotate: false,
     }
 
-    private colors = colors; 
+    private colors = [...colors, 'default'];
 }
 
 export {Icon};

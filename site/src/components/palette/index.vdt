@@ -2,16 +2,16 @@ import Input from 'kpc/components/input';
 
 <div class="palette">
     <ul class="c-clearfix">
-		<li v-for={{ self.get('colors') }}
+		<li v-for={this.get('colors')}
             class="color-block"
-            style={{ {background: value, color: key >= 4 ? '#fff' : undefined} }}
+            style={{background: value, color: key >= 4 ? '#fff' : undefined}}
 		>
-            <div class="index">{{ key + 1 }}</div>
-            <div class="value">{{ value }}</div>
+            <div class="index">{key + 1}</div>
+            <div class="value">{value}</div>
         </li>
 	</ul> 
-    <Input ev-change={{ self._changeColor }} 
-        defaultValue={{ self.get('primaryColor') }} 
+    <Input ev-change={this._changeColor} 
+        defaultValue={this.get('primaryColor')} 
         placeholder="请输入正确的颜色值"
     />
 </div>

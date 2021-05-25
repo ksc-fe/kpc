@@ -184,7 +184,6 @@ exports.webpackDemoConfig = () => {
                 template: resolvePath('./demos/index.html'),
             }])
             .end()
-        .target('web') // https://github.com/webpack/webpack-dev-server/issues/2758
 
 
     addThreadLoader(config);

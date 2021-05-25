@@ -1,3 +1,5 @@
+import makeStyles from './groupStyles';
+
 const {className, vertical, children, fluid} = this.get();
 
 const classNameObj = {
@@ -5,6 +7,7 @@ const classNameObj = {
     'k-vertical': vertical,
     'k-fluid': fluid,
     [className]: className,
+    [makeStyles()]: true,
 };
 
 <div class={classNameObj}>{children}</div>

@@ -12,15 +12,15 @@ function changeTheme(newTheme: string, oldTheme: string) {
     localStorage.setItem('theme', newTheme);
 }
 
-if ((process as any).browser) {
-    theme = localStorage.getItem('theme') || 'kpc';
+// if ((process as any).browser) {
+    // theme = localStorage.getItem('theme') || 'kpc';
 
-    if (theme !== 'kpc') {
-        changeTheme(theme, 'kpc');
-    }
-} else {
-    theme = 'kpc';
-}
+    // if (theme !== 'kpc') {
+        // changeTheme(theme, 'kpc');
+    // }
+// } else {
+    // theme = 'kpc';
+// }
 
 export interface LayoutProps {
     theme: string
@@ -46,7 +46,7 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
 
     mounted() {
         this.border = this.element.value!.querySelector('.border');
-        this.updateBorder();
+        // this.updateBorder();
 
         window.scrollTo(0, 0);
     }

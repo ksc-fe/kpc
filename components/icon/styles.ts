@@ -20,20 +20,30 @@ const {icon} = deepDefaults(theme, {
     icon: iconStyles,
 });
 
-export const colors = ['default', 'primary', 'warning', 'danger', 'success'];
+export const colors = ['primary', 'warning', 'danger', 'success'] as const;
+export const sizes = ['large', 'small', 'mini'] as const;
 
-type Props = {
-    size?: Sizes
-    color?: Exclude<Colors, 'default'>
-    rotate: boolean
-}
-
-export default function makeStyles({size, color, rotate: shouldRotate}: Props) {
+export default function makeStyles() {
     return css`
+        font-size: ${icon.fontSize.default};
         display: inline-block;
-        ${size && `font-size: ${icon.fontSize[size]}`};
-        ${color && `color: ${theme.color[color]}`};
-        ${shouldRotate && `animation: ${rotate} 1s infinite linear`};
+        ${sizes.map(size => {
+            return css`
+                &.k-${size} {
+                    font-size: ${icon.fontSize[size]};
+                }
+            `
+        })}
+        ${colors.map(color => {
+            return css`
+                &.k-${color} {
+                    color: ${theme.color[color]};
+                }
+            ` 
+        })}
+        &.k-rotate {
+            animation: ${rotate} 1s infinite linear;
+        }
         &:before {
             font-size: inherit;
         }

@@ -2,10 +2,11 @@ import {Component, createRef} from 'intact';
 import Layout, {LayoutProps} from '../layout';
 import template from './index.vdt';
 import './index.styl';
-import 'kpc/components/table/index.styl';
+// import 'kpc/components/table/index.styl';
 
 // export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/, 'lazy');
-export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
+// export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
+export const req = require.context('~/', true, /^\.\/(components)\/.*index.ts$/);
 
 export interface DocumentProps extends LayoutProps {
     hasRead: string | boolean | null 
@@ -48,7 +49,7 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
 
         this.path = path;
 
-        const Article = (await req(`.${path}/index.js`)).default as any;
+        const Article = (await req(`.${path}/index.ts`)).default as any;
         this.set({Article: Article});
     }
 
@@ -58,21 +59,21 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
             this.set('hasRead', true);
             localStorage.setItem(process.version, '1');
         }
-        this.examples = this.element.value!.querySelectorAll('.example');
     }
 
     mounted() {
         super.mounted();
+        this.examples = this.element.value!.querySelectorAll('.example');
         document.title = this.get('Article.data.setting.title');
         if (this.refs.article) {
             this.set('demos', this.refs.article.get('demos'));
         }
 
-        window.addEventListener('scroll', this.onScroll);
+        // window.addEventListener('scroll', this.onScroll);
     }
 
     beforeUnmount() {
-        window.removeEventListener('scroll', this.onScroll);
+        // window.removeEventListener('scroll', this.onScroll);
     }
 
     private onScroll = () => {

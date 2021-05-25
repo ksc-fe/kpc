@@ -1,0 +1,31 @@
+@require('../../../../components/card/variables.styl')
+@require('../../../../components/grid/variables.styl')
+
+.resource-page
+    background #f1f1f5
+    .content-wrapper
+        overflow-x hidden
+        padding 40px 100px
+        .k-card
+            text-align center
+            transition box-shadow $transition
+            &:hover
+                box-shadow $card-box-shadow
+            p
+                color #999
+        .k-icon
+            background-repeat no-repeat
+            width 100px
+            height 100px
+            display inline-block
+            background-size cover
+        for img in axure sketch vision
+            .{img}
+                background-image url('../../imgs/' + img + '.png')
+
+@media (max-width: $lg-min-width)
+    .resource-page
+        .content-wrapper
+            padding 40px
+            .k-card
+                margin-bottom 40px

@@ -42,3 +42,19 @@ export function palette(color: string, level: number) {
     else
         return color;
 }
+
+export function getLeft(padding: string) {
+    const paddings = padding.split(/\s+/);
+    const length = paddings.length;
+    if (length === 4) {
+        return paddings[3];
+    } else if (length > 1) {
+        return paddings[1];
+    } else {
+        return padding;
+    }
+}
+
+export function darken(color: string, number: number) {
+    return Chroma(color).darken(number).hex()
+}

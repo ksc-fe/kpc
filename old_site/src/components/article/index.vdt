@@ -1,0 +1,70 @@
+import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tooltip} from 'kpc/components/tooltip';
+
+<div class="contents">
+    <div key="demos" v-if={{ self.get('demos').length }}>
+        <h1>示例</h1>
+        {{ self.get('demos').map(Demo => {
+            const highlighted = Demo.data.highlighted;
+            highlighted.sort()
+            return <div class={{ `example ${Demo.data.index}` }}
+                key={{ Demo.data.index }}
+                id={{ Demo.data.index }}
+            >
+                <div class="example-opera">
+                    <Demo.default /> 
+                </div>
+                <div class="example-desc">
+                    <div class="title">{{ Demo.data.setting.title }}</div>
+                    <div class="desc" innerHTML={{ Demo.data.contents }}></div>
+                </div>
+                <div class="example-code">
+                    <Tabs v-model={{ `file${Demo.data.index}` }}>
+                        <Tab v-for={{ Demo.data.highlighted }} 
+                            value={{ value.filename }}
+                        >
+                            <span class="filetype">{{ do { 
+                                if (!value.file) {
+                                    if (value.language === 'vue') {
+                                        'Vue'
+                                    } else if (value.language === 'jsx') {
+                                        'React'
+                                    } else if (value.language === 'ts') {
+                                        'Angular'
+                                    } else {
+                                        value.filename
+                                    }
+                                } else if (value.file === 'next.vue') {
+                                    'Vue Next'
+                                } else {
+                                    value.filename
+                                }
+                            } }}</span>
+                        </Tab>
+                    </Tabs>
+                    <div class="code" innerHTML={{ (Demo.data.highlighted.find(item => {
+                        const file = item.file ? item.file : `index.${item.language}`;
+                        return file === self.get('file' + Demo.data.index);
+                    }) || {}).content }}></div>
+                    <Tooltip content="Open in CodeSandbox"
+                        v-if={{ ['index.vue', 'index.jsx'].indexOf(self.get(`file${Demo.data.index}`)) > -1 }}
+                    >
+                        <i class="ion-android-open open"
+                            ev-click={{ self._open.bind(self, Demo) }}
+                        ></i>
+                    </Tooltip>
+                </div>
+            </div>
+        }) }}
+    </div>
+    <div key="contents" class="api">
+        {{ __u.map(self.get('contents'), (value, index) => {
+            const Example = self.get('examples')[index];
+            return [
+                <div innerHTML={{ value }}></div>,
+                Example ? <Example.default /> : undefined,
+            ];
+        }) }}
+    </div>
+</div>
+

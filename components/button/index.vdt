@@ -10,8 +10,6 @@ let {
 } = this.get();
 
 const checked = this.isChecked();
-// type and size may both be default
-/* if (size !== 'default') classNameObj[`k-${size}`] = true; */
 
 const isIcon = child => (
     child.tag === Icon ||
@@ -47,12 +45,21 @@ if (!icon && Array.isArray(children)) {
 
 const classNameObj = {
     'k-btn': true,
-    [className]: className,
-    [makeStyles({...this.get(), checked, iconSide})]: true,
+    [`k-${type}`]: type !== 'default',
+    [`k-${size}`]: size !== 'default',
+    'k-btn-icon': icon,
+    [className]: className, 
+    'k-circle': circle,
+    'k-loading': loading,
+    'k-fluid': fluid,
+    'k-active': checked,
+    'k-disabled': disabled || loading,
+    'k-ghost': ghost,
+    [makeStyles({iconSide})]: true,
 };
 
 const loadingIcon = (
-    <Icon class="ion-load-c" 
+    <Icon class="ion-load-c k-icon-loading" 
         size={size /*loadingSizeMap[size]*/}
         key="k-loading"
         rotate

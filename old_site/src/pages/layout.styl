@@ -1,0 +1,154 @@
+@import '../styles/variables';
+@import '../styles/highlight.styl';
+
+$headerHeight = headerHeight
+
+html
+body
+    margin 0
+html
+    height 100%
+body
+    min-height 100%
+
+a
+    color #2d8cf0
+    text-decoration none
+    cursor pointer
+h1, h2, h3, h4, h5
+    margin 0
+    font-weight normal
+    color #000
+h1
+    font-size 2em
+h2
+    font-size 1.8em
+h3
+    font-size 1.5em
+code
+    border-radius: 4px;
+    padding 0 5px
+blockquote
+    margin 1em 0 
+    padding 1px 2em
+    background #f8f8f8 border-radius 0 3px 3px 0
+    border-left 2px solid $danger-color
+    position relative
+    line-height 2em
+    &:before
+        content '!'
+        display block
+        position absolute
+        top 50%
+        margin-top -10px
+        width 20px
+        height 20px
+        border-radius 100%
+        text-align center
+        background $danger-color
+        color #fff
+        line-height 20px
+        left -11px
+#page
+.main-wrapper
+    min-height 100vh
+.main-wrapper
+    // padding-top headerHeight + 15px 
+    padding-top $headerHeight
+
+.header-shadow
+    // box-shadow 0 2px 5px rgba(0, 0, 0, .08)
+    border-bottom 1px solid #e5e5e5
+.header-wrapper
+    height $headerHeight 
+    line-height @height 
+    //box-shadow 0 2px 5px rgba(0, 0, 0, .08)
+    background #fff
+    position fixed
+    width 100%
+    top 0
+    z-index 9999
+    header
+        width 100%
+        height 87px
+        //border 1px solid red
+        margin 0 auto
+        transition width $transition
+        .king-logo
+            display inline-block
+            line-height 87px
+            .logo
+                display inline-block
+                margin 24px 8px 0 32px
+                width 39px
+                height 39px
+                font-size 24px
+                color #333
+                background-image url("../imgs/logo.png")
+                background-size contain
+            .king
+                font-size 24px
+                position absolute
+        .right
+            float right
+        nav
+            position relative
+            display inline-block
+            font-size 14px
+            span
+                padding 0 10px
+                margin 0 5px
+                cursor pointer
+                &.active
+                    color linkColor
+                    border-bottom 2px solid linkColor
+            a
+                display inline-block
+                padding 0 20px
+                color #333
+                &.active
+                    color linkColor
+                    // border-bottom 2px solid linkColor
+        .line
+            display inline
+            margin 0 10px
+            border-right 1px solid #CCCCCC
+            vertical-align middle
+    .k-select
+        margin-right 20px
+        line-height 1.5
+    .label
+        font-size 12px
+    .border
+        position absolute
+        bottom 1px 
+        border-bottom 2px solid linkColor
+    .menu-btn
+        display none
+.transition
+    transition all 350ms cubic-bezier(.55, 0, .1, 1)
+.blue
+    color blue 
+.red
+    color red 
+.yellow 
+    color yellow 
+
+@media (max-width: 768px) 
+    .header-wrapper
+        header
+            .king-logo
+                .logo
+                    margin-left 15px
+                .king
+                    display none
+            nav
+                display none
+        .k-select
+            margin-right 15px
+        .menu-btn
+            display inline-block
+        .nav-menu-list
+            width 200px
+            .active
+                color $primary-color

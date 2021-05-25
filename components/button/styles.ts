@@ -1,7 +1,7 @@
 import {css, cx} from '@emotion/css';
 import {ButtonProps} from './index';
 import {theme, ThemeValue} from '../styles/theme';
-import {deepDefaults, palette}  from '../styles/utils';
+import {deepDefaults, palette, getLeft}  from '../styles/utils';
 
 type ValueOf<T extends readonly any[]> = T[number]
 
@@ -23,7 +23,7 @@ type SizeStyles = {
     padding: ThemeValue<string>
 }
 
-const types = ['primary', 'warning', 'danger', 'active', 'success'] as const;
+export const types = ['primary', 'warning', 'danger', 'active', 'success'] as const;
 
 const sizes = ['large', 'small', 'mini'] as const;
 
@@ -37,14 +37,28 @@ const btnStyles = {
     get height() { return theme.default.height },
     get hoverBorderColor() { return theme.color.primary },
     get hoverColor() { return theme.color.primary },
-    ghostColor: '#fff',
-    get ghostHoverColor() { return palette(theme.color.primary, -1) },
+
+    // ghost
+    ghost: {
+        color: '#fff',
+        get hoverColor() { return palette(theme.color.primary, -1) },
+        borderColor: '#fff',
+        get hoverBorderColor() { return palette(theme.color.primary, -1) },
+    },
 
     // icon
     icon: {
         gap: '5px',
         fontSize: '16px',
-    }
+    },
+
+    // disabled
+    disabled: {
+        get color() { return theme.color.disabled },
+        get bgColor() { return theme.color.disabledBg },
+        get borderColor() { return theme.color.disabledBorder },
+        get ghostBorderColor() { return theme.color.disabled },
+    },
 };
 
 type TypesWithoutActive = Exclude<Types, 'active'>
@@ -104,142 +118,259 @@ const {button} = deepDefaults(theme, {
     )
 });
 
-export default function makeStyles(props: ButtonProps & {checked: boolean, iconSide: string}) {
+export {button};
+
+export default function makeStyles({iconSide}: {iconSide?: string}) {
     const {secondary, link} = button;
-    const type = props.type!;
-    const size = props.size!;
 
     return cx(
-        makeRootStyles(),
-        makeIconStyles(props.iconSide, props.icon!),
-        (isTypes(type) || props.checked) && makeTypeStyles(props.checked ? 'active' : type as Types),
-        props.type === 'secondary' && css`
-            color: ${secondary.color};
-            border-color: ${secondary.borderColor};
+        // extract static styles to individual css method for performance
+        css`
+            cursor: pointer;
+            display: inline-block;
+            height: ${button.height};
+            padding: ${button.padding};
+            outline: none;
+            vertical-align: middle;
+            color: ${button.color};
+            background-color: ${button.bgColor};
+            text-align: center;
+            border-radius: ${button.borderRadius};
+            border: 1px solid ${button.borderColor};
+            font-size: ${button.fontSize};
+            white-space: nowrap;
+            transition: all .25s ease-in-out;
+            button& > span {
+                vertical-align: middle;
+                line-height: calc(${button.height} - 2px);
+            }
             &:hover,
             &:focus {
-                background-color: ${secondary.hoverBgColor};
+                border-color: ${button.hoverBorderColor};
+                color: ${button.hoverColor};
             }
             &:active {
-                background-color: ${secondary.activeBgColor};
+                background-color: ${palette(theme.color.primary, -4)};
+            }
+
+            .k-button-input {
+                position: absolute;
+                opacity: 0;
+                width: 0;
+                height: 0;
+            }
+
+            // types
+            ${types.map(type => {
+                const typeStyles = button[type];
+
+                return css`
+                    &.k-${type} {
+                        background-color: ${typeStyles.bgColor};
+                        color: ${typeStyles.color};
+                        border-color: ${typeStyles.borderColor};
+                        &:hover,
+                        &:focus {
+                            background-color: ${palette(typeStyles.bgColor, -1)};
+                            border-color: ${typeStyles.hoverBorderColor};
+                            color: ${typeStyles.color};
+                        }
+                        &:active {
+                            background-color: ${palette(typeStyles.bgColor, 1)};
+                            border-color: ${palette(typeStyles.borderColor, 1)};
+                        }
+                    }
+                `;
+            })}
+
+            // secondary type
+            &.k-secondary {
+                color: ${secondary.color};
+                border-color: ${secondary.borderColor};
+                &:hover,
+                &:focus {
+                    background-color: ${secondary.hoverBgColor};
+                }
+                &:active {
+                    background-color: ${secondary.activeBgColor};
+                }
+            }
+
+            &.k-link {
+                color: ${link.color};
+                &:hover {
+                    color: ${link.hoverColor};
+                }
+            }
+
+            // disabled
+            &.k-disabled {
+                &, &:hover {
+                    color: ${button.disabled.color};
+                    background-color: ${button.disabled.bgColor};
+                    border-color: ${button.disabled.borderColor};
+                    cursor: not-allowed
+                }
+            }
+
+            &.k-none,
+            &.k-link {
+                &, &:hover {
+                    border: none;
+                    background-color: transparent;
+                }
+                &.k-active {
+                    color: ${theme.color.primary};
+                }
+            }
+
+            ${sizes.map(size => {
+                const styles = button[size];
+
+                return css`
+                    &.k-${size} {
+                        font-size: ${styles.fontSize};
+                        height: ${styles.height};
+                        padding: ${styles.padding};
+                        .k-icon {
+                            line-height: calc(${styles.height} - 2px);
+                        }
+                        &.k-btn-icon {
+                            width: ${styles.height};
+                        }
+                        button& > span {
+                            line-height: calc(${styles.height} - 2px);
+                        }
+                    }
+                `;
+            })}
+
+            // icon
+            .k-icon {
+                vertical-align: middle;
+                line-height: calc(${button.height} - 2px);
+            }
+            &.k-btn-icon {
+                width: ${button.height};
+                padding: 0;
+                .k-icon {
+                    margin: 0
+                }
+            }
+
+            // fluid
+            &.k-fluid {
+                width: 100%;
+                padding: 0;
+            }
+
+            // shape
+            &.k-circle {
+                border-radius: calc(${button.large.height} / 2);
+            }
+
+            // loading
+            &.k-loading {
+                &, &:hover {
+                    background-color: ${palette(button.bgColor, -2)};
+                    color: ${palette(button.color, -2)};
+                    border-color: ${palette(button.borderColor, -2)};
+                }
+                .k-icon:not(.k-icon-loading) {
+                    display: none;
+                }
+                ${types.map(type => {
+                    const styles = button[type];
+                    return css`
+                        &.k-${type} {
+                            &, &:hover {
+                                background-color: ${palette(styles.bgColor, -2)};
+                                color: ${palette(styles.color, -2)};
+                                border-color: ${palette(styles.borderColor, -2)};
+                            }
+                        }
+                    `
+                })}
+            }
+
+            // let non-button element vertical align middle
+            &:not(button) {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            // ghost
+            &.k-ghost {
+                background: transparent;
+                color: ${button.ghost.color};
+                border-color: ${button.ghost.borderColor};
+                &:hover,
+                &:active {
+                    background: transparent;
+                }
+                &:hover {
+                    color: ${button.ghost.hoverColor};
+                    border-color: ${button.ghost.hoverBorderColor};
+                }
+                &:active {
+                    color: ${theme.color.primary};
+                    border-color: ${theme.color.primary};
+                }
+                ${types.map(type => {
+                    const {ghostColor, borderColor} = button[type];
+                    return css`
+                        &.k-${type} {
+                            color: ${ghostColor};
+                            border-color: ${borderColor};
+                            &:hover {
+                                color: ${palette(ghostColor, -1)};
+                                border-color: ${palette(ghostColor, -1)};
+                            }
+                            &:active {
+                                color: ${palette(ghostColor, 1)};
+                                border-color: ${palette(ghostColor, 1)};
+                            }
+                        }
+                    `
+                })}
+                // disabled
+                &.k-disabled {
+                    &, &:hover {
+                        color: ${button.disabled.color};
+                        border-color: ${button.disabled.ghostBorderColor};
+                        background-color: transparent;
+                    }
+                }
             }
         `,
-        type === 'link' && css`
-            color: ${link.color};
-            &:hover {
-                color: ${link.hoverColor};
-            }
-        `,
-        (type === 'link' || type === 'none') && css`
-            &, &:hover {
-                border: none;
-                background-color: transparent;
-            }
-        `,
-        size !== 'default' && makeSizeStyles(size, props.icon!),
-    );
-}
 
-function makeRootStyles() {
-    return css`
-        cursor: pointer;
-        display: inline-block;
-        height: ${button.height};
-        padding: ${button.padding};
-        outline: none;
-        vertical-align: middle;
-        color: ${button.color};
-        background-color: ${button.bgColor};
-        text-align: center;
-        border-radius: ${button.borderRadius};
-        border: 1px solid ${button.borderColor};
-        font-size: ${button.fontSize};
-        white-space: nowrap;
-        transition: all .25s ease-in-out;
-        button& > span {
-            vertical-align: middle;
-            line-height: calc(${button.height} - 2px);
-        }
-        &:hover,
-        &:focus {
-            border-color: ${button.hoverBorderColor};
-            color: ${button.hoverColor};
-        }
-        &:active {
-            background-color: ${palette(theme.color.primary, -4)};
-        }
+        // dynamic styles
+        css`
+            .k-icon {
+                ${iconSide === 'right' ? 
+                    `margin-left: ${button.icon.gap};` :
+                    `margin-right: ${button.icon.gap};`
+                }
+            } 
 
-        .k-button-input {
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-    `;
-}
-
-function isTypes(t: any): t is Types {
-    return types.indexOf(t) > -1;
-} 
-
-function makeTypeStyles(type: Types) {
-    const typeStyles = button[type];
-
-    return css`
-        background-color: ${typeStyles.bgColor};
-        color: ${typeStyles.color};
-        border-color: ${typeStyles.borderColor};
-        &:hover,
-        &:focus {
-            background-color: ${palette(typeStyles.bgColor, -1)};
-            border-color: ${typeStyles.hoverBorderColor};
-            color: ${typeStyles.color};
-        }
-        &:active {
-            background-color: ${palette(typeStyles.bgColor, 1)};
-            border-color: ${palette(typeStyles.borderColor, 1)};
-        }
-    `;
-}
-
-function makeSizeStyles(size: Sizes, icon: boolean) {
-    const styles = button[size];
-
-    return css`
-        font-size: ${styles.fontSize};
-        height: ${styles.height};
-        padding: ${styles.padding};
-        .k-icon {
-            line-height: calc(${styles.height} - 2px);
-        }
-        ${icon && `width: ${styles.height}`}
-        button& > span {
-            line-height: calc(${styles.height} - 2px);
-        }
-    `;
-}
-
-function makeIconStyles(iconSide: string, icon: boolean) {
-    return css`
-        .k-icon {
-            vertical-align: middle;
-            line-height: calc(${button.height} - 2px);
-            // &:before {
-                // font-size: inherit;
-            // }
-            + span {
-                margin-left: ${button.icon.gap};
-            }
-
-            ${iconSide === 'right' && `
-                margin-left: ${button.icon.gap};
+            ${!iconSide && `
+                &.k-loading {
+                    &:not(.k-btn-icon) {
+                        padding-left: calc(${getLeft(button.padding)} + 1em);
+                        .k-icon-loading {
+                            margin-left: -1em;
+                        }
+                        ${sizes.map(size => {
+                            return css`
+                                &.k-${size} {
+                                    padding-left: calc(${getLeft(button[size].padding)} + 1em);
+                                }
+                            `
+                        })}
+                    }
+                }
             `}
-
-            ${icon && 'margin: 0;'}
-        }
-        ${icon && `
-            width: ${button.height};
-            padding: 0;
-        `}
-    `;
+        `
+    );
 }

@@ -1,53 +1,53 @@
 import Button from 'components/button';
-import Link from 'components/link';
-import Badge from 'components/badge';
+/* import Link from 'components/link'; */
+/* import Badge from 'components/badge'; */
 
-const Article = self.get('Article');
+const Article = this.get('Article');
 
 let currentNav = {};
-let demos = self.get('demos') || [];
+let demos = this.get('demos') || [];
 
 function Catalog(props) {
     let isEmpty = true;
 
-    const lis = __u.map(props.value, (value) => {
+    const lis = props.value.forEach((value) => {
         if (!value.disabled) isEmpty = false;
         return <li
-            class={{ {
+            class={{
                 active: (() => {
-                    const path = self.path.slice(1);
+                    const path = this.path.slice(1);
                     if (path === value.path) {
                         currentNav = value;
                         return true;
                     }
                 })()
-            } }}
-            v-if={{ !value.disabled }}
+            }}
+            v-if={!value.disabled}
         >
-            <Link href={{ `/${value.path}/` }}>
-                {{ do {
+            <a href={`/${value.path}/`}>
+                {(() => {
                     const matches = value.path.match(/components\/([^\/]+)/);
                     if (matches) {
                         const name = matches[1];
-                        [
+                        return [
                             name[0].toUpperCase() + name.substring(1),
-                            <span>{{ value.title }}</span>
+                            <span>{value.title}</span>
                         ];
                     } else {
                         if (value.title === '更新日志') {
-                            <Badge disabled={{ !!self.get('hasRead') }}>{{ value.title }}</Badge>
+                            return <Badge disabled={!!this.get('hasRead')}>{value.title}</Badge>
                         } else {
-                            value.title;
+                            return value.title;
                         }
                     }
-                } }}
-            </Link>
+                })()}
+            </a>
         </li>
     });
     if (isEmpty) return;
     return <div class="catalog-section">
-        <h5 v-if={{ props.key !== undefined }}>{{ props.key }}</h5>
-        <ul>{{ lis }}</ul>
+        <h5 v-if={props.key !== undefined}>{props.key}</h5>
+        <ul>{lis}</ul>
     </div>
 }
 
@@ -74,49 +74,20 @@ if (sidebar) {
     }
 }
 
-<t:parent navIndex="document" class="document-page fixed-aside" {{ ...scope }}>
+<t:super navIndex="document" class="document-page fixed-aside" {...$props}>
     <b:content>
-        <aside class={{ {expanded: self.get('expanded')} }}>
-            <div class="aside-wrapper">
-                <Catalog key={{ value.key }} value={{ value.value }} v-for={{ _sidebar }} />
-                <div class="aside-border transition"></div>
-            </div>
-            <Button icon
-                ev-click={{ self.set.bind(self, 'expanded', !self.get('expanded')) }}
-            >
-                <i class="k-icon ion-android-menu"></i>
-            </Button>
-        </aside>
         <article>
             <div class="article-head">
-                <div class="title">{{ currentNav.title }}</div>
+                <div class="title">{currentNav.title}</div>
                 <div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" 
-                        href={{ `https://github.com/ksc-fe/kpc/blob/master/${currentNav.path}` }}
+                        href={`https://github.com/ksc-fe/kpc/blob/master/${currentNav.path}`}
                     >github</a>
                     上修正该文档
                 </div>
             </div>
             <Article ref="article" />
         </article>
-        <div class="table-of-contents" v-if={{ demos }}
-            ref="tableContents"
-        >
-            <ul>
-                <li v-if={{ demos.length > 0 }} class="aside-border-nav"></li>
-                <li v-for={{ demos }}
-                    class={{ {
-                        "c-ellipsis-dot": true,
-                        'active': self.get('activeExample') == value.data.index
-                    } }}
-                    ev-click={{ self._scrollToView.bind(self, value) }}
-                >
-                    {{ value.data.setting.title }}
-                </li>
-            </ul>
-            <div v-if={{ false }} class="aside-border transition" style={{ self.get('borderStyle') }}></div>
-            <div class="aside-dot transition" style={{ self.get('borderStyle') || 'display:none' }}></div>
-        </div>
     </b:content>
-</t:parent>
+</t:super>

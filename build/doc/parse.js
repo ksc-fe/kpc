@@ -247,6 +247,7 @@ function writeIndex(file, metadata) {
         `const demos: Component<any>[] = [];`,
         `for (let i = 0; i < keys.length; i++) {`,
         `    const file = keys[i];`,
+        `    if (!file.startsWith('.')) continue;`,
         `    // if we found demo.js then ignore index.js`,
         `    if (/demo\.js$/.test(file)) i++;`,
         `    demos.push(r(file));`,

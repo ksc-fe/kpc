@@ -18,6 +18,7 @@ gulp.task('doc:prepare', () => {
 
 gulp.task('doc:server', () => {
     const config = webpackConfigDevServer().toConfig();
+    // console.dir(config);
     const compiler = webpack(config);
     const server = new WebpackDevServer(compiler, config.devServer);
     const {port, host} = config.devServer;
@@ -44,7 +45,7 @@ gulp.task('doc:watch', () => {
 
 gulp.task('doc:dev', gulp.series(
     'doc:clean:data',
-    // 'doc:prepare',
+    'doc:prepare',
     gulp.parallel('doc:server', 'doc:watch')
 ));
 
