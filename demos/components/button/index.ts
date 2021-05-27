@@ -1,7 +1,7 @@
 import {Component} from 'intact';
 import template from './index.vdt';
 import {bind} from '../../../components/utils';
-import {theme} from '../../../components/styles/theme';
+import {theme} from '../../../styles/theme';
 import {css} from '@emotion/css';
 
 export default class extends Component {

@@ -2,11 +2,12 @@ import Input from './';
 import Icon from '../icon';
 import Button from '../button';
 import {getRestProps} from '../utils';
+import makeStyles from './searchStyles';
 
 const {
-    className, _open, 
-    placeholder, value, type, size
-} = self.get();
+    className, placeholder, value, type, size,
+     _open, 
+} = this.get();
 
 const classNameObj = {
     'k-search': true,
@@ -14,19 +15,24 @@ const classNameObj = {
     'k-open': _open,
     'k-hide': !_open,
     [`k-${type}`]: type !== 'default',
+    [makeStyles()]: true,
 };
 
-<form {...getRestProps(this)} class={classNameObj} ev-submit={this.onSubmit}>
+<form {...getRestProps(this)} 
+    class={classNameObj}
+    ev-submit={this.onSubmit}
+    ref={this.elementRef}
+>
     <Input clearable
-        ref="input" 
+        ref={this.inputRef}
         placeholder={_open ? placeholder : undefined}
         value={_open ? value : undefined}
-        ev-$change:value={self._onChangeValue}
+        ev-$change:value={this.onChangeValue}
         readonly={!_open}
         size={size}
         class="k-with-suffix"
     />
-    <Button icon type="none" ev-click={self._onClickBtn} size={size}>
+    <Button icon type="none" ev-click={this.onClickBtn} size={size}>
         <Icon class="k-icon-search k-search-icon" />
     </Button>
 </form>

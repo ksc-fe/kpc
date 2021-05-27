@@ -2,26 +2,27 @@ import {Component, TypeDefs, createRef, watch, nextTick, onMounted, RefObject} f
 import {Sizes} from '../types';
 import template from './index.vdt';
 import {bind} from '../utils';
+export * from './search';
 
 export interface InputProps {
-    type: string
-    value: string | number
-    defaultValue: string | number
-    placeholder: string
-    readonly: boolean
-    clearable: boolean
-    disabled: boolean
-    size: Sizes
-    rows: string | number
-    autoWidth: boolean
-    fluid: boolean
-    width: number | string
-    stackClearIcon: boolean
-    frozenOnInput: boolean
+    type?: string
+    value?: string | number
+    defaultValue?: string | number
+    placeholder?: string
+    readonly?: boolean
+    clearable?: boolean
+    disabled?: boolean
+    size?: Sizes
+    rows?: string | number
+    autoWidth?: boolean
+    fluid?: boolean
+    width?: number | string
+    stackClearIcon?: boolean
+    frozenOnInput?: boolean
 
-    _width: number
-    _inputing: boolean
-    _originalValue: string | number
+    _width?: number
+    _inputing?: boolean
+    _originalValue?: string | number
 }
 
 const typeDefs: Required<TypeDefs<InputProps>> = {
@@ -86,6 +87,10 @@ export default class Input<T extends InputProps = InputProps> extends Component<
         this.inputRef.value!.blur();
     }
 
+    select() {
+        selectInput(this.inputRef.value!);
+    }
+
     @bind
     private clear(e: MouseEvent) {
         this.set('value', '');
@@ -112,6 +117,16 @@ export default class Input<T extends InputProps = InputProps> extends Component<
         const value = (e.target as HTMLInputElement).value;
         this.set({value, _originalValue: value});
         this.trigger('input', e);
+    }
+}
+
+function selectInput(input: HTMLInputElement) {
+    if (input.select) {
+        input.select();
+    } else if (input.setSelectionRange) {
+        // mobile safari
+        input.focus();
+        input.setSelectionRange(0, input.value.length);
     }
 }
 

@@ -1,95 +1,83 @@
-import {Component, TypeDefs} from 'intact';
+import {Component, TypeDefs, createRef} from 'intact';
 import template from './search.vdt';
-import {Sizes, sizes} from '../styles/utils';
+import {Sizes, sizes} from '../../styles/utils';
+import {_$} from '../../i18n';
+import {bind} from '../utils';
+import {useDocumentClick} from '../hooks';
 
 export interface SearchProps {
     placeholder?: string
-    value?: string | number
-    type: 'default' | 'line'
-    size: Sizes
+    value?: string
+    type?: 'default' | 'line'
+    size?: Sizes
+
+    _open?: boolean
 }
 
 const typeDefs: Required<TypeDefs<SearchProps>> = {
     placeholder: String,
-    value: [String, Number],
+    value: String,
     type: ['default', 'line'],
     size: sizes,
+
+    _open: null,
 };
 
 const defaults: Partial<SearchProps> = {
-    get placeholder() { return _$('请输入关键字') }
+    get placeholder() { return _$('请输入关键字') },
+    value: '',
+    type: 'default',
+    size: 'default',
+
+    _open: false,
 }
 
-export default class Search extends Component {
+export default class Search<T extends SearchProps = SearchProps> extends Component<T> {
     static template = template;
+    static typeDefs = typeDefs;
+    static defaults = defaults;
 
-    static propTypes = {
-        placeholder: String,
-        value: String,
-        type: ['default', 'line'],
-        size: ['large', 'default', 'small', 'mini'],
-    };
+    private elementRef = createRef<HTMLDivElement>();
+    private inputRef = createRef<HTMLInputElement>();
 
-    static events = {
-        submit: true,
-    };
-
-    defaults() {
-        return {
-            placeholder: _$('请输入关键字'),
-            value: '',
-            type: 'default',
-            size: 'default',
-
-            _open: false,
-        };
+    init() {
+        useDocumentClick(this.elementRef, this.hide.bind(this));
     }
 
-    _mount() {
-        document.addEventListener('click', this._onDocumentClick);
-    }
-
-    _onDocumentClick(e) {
-        const target = e.target;
-        const elem = this.element;
-        if (target === elem || elem.contains(target)) return;
-
-        this._hide();
-    }
-
-    _open() {
+    open() {
         this.set('_open', true);
-        this.refs.input.select();
+        this.inputRef.value!.select();
     }
 
-    _hide() {
+    hide() {
         this.set('_open', false);
     }
 
-    _onClickBtn() {
+    @bind
+    onClickBtn() {
         // if the box is open, then submit the form
         if (this.get('_open')) {
-            this._submit();
+            this.submit();
         } else {
-            this._open();
+            this.open();
         }
     }
 
-    _onChangeValue(c, v) {
+    @bind
+    onChangeValue(v: SearchProps['value']) {
         if (!this.get('_open')) return;
         this.set('value', v);
     }
 
-    _onSubmit(e) {
+    @bind
+    onSubmit(e: Event) {
         e.preventDefault();
-        this._submit();
+        this.submit();
     }
 
-    _submit() {
-        this.trigger('submit', this.get('value').trim());
-    }
-
-    _destroy() {
-        document.removeEventListener('click', this._onDocumentClick);
+    submit() {
+        this.trigger('submit', this.get('value')!.trim());
     }
 }
+
+export {Search};

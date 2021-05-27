@@ -77,6 +77,7 @@ const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
     tabindex={disabled || loading ? '-1' : tabindex}
     ev-click={this.onClick}
     ev-mouseup={this.onMouseUp}
+    htmlType={htmlType}
 >
     {loading ? 
         iconSide === 'right' ?

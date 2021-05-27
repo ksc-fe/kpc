@@ -46,6 +46,8 @@ const {input} = deepDefaults(theme, {
     )
 });
 
+export {input};
+
 export default function makeStyles() {
     return css`
         display: inline-block;

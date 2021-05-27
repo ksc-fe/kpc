@@ -7,13 +7,13 @@ export type DynamicButtonProps = {
     type?: string
 }
 
-export const DynamicButton: ComponentFunction<DynamicButtonProps> = ({tagName, ...props}) => {
+export const DynamicButton: ComponentFunction<DynamicButtonProps> = ({tagName, htmlType, ...props}) => {
     if (props.href && tagName === 'button') {
         tagName = 'a';
     }
     if (tagName === 'button') {
         // set type of html button
-        props = {...props, type: props.htmlType};
+        props = {...props, type: htmlType};
     }
 
     return h(tagName, props);
