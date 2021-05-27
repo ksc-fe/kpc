@@ -58,3 +58,6 @@ export function getLeft(padding: string) {
 export function darken(color: string, number: number) {
     return Chroma(color).darken(number).hex()
 }
+
+export type Sizes = 'large' | 'default' | 'small' | 'mini';
+export const sizes: Sizes[] = ['large', 'default', 'small', 'mini'];

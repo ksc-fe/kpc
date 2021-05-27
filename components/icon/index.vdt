@@ -1,7 +1,7 @@
-import {addStyle} from '../utils';
+import {addStyle, getRestProps} from '../utils';
 import makeStyles from './styles';
 
-const {className, style, size, color, rotate, ...rest} = this.get();
+const {className, style, size, color, rotate} = this.get();
 
 const classNameObj = {
     "k-icon": true,
@@ -23,5 +23,5 @@ if (this.colors.indexOf(color) > -1) {
 
 <i class={classNameObj}
     style={addStyle(style, _style)}
-    {...rest}
+    {...getRestProps(this)}
 ></i>

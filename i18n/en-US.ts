@@ -112,6 +112,6 @@ const i18n = {
 
 export default i18n; 
 
-if (typeof global.Kpc !== 'undefined') {
-    Kpc.utils.localize(i18n);
+if (typeof (global as any).Kpc !== 'undefined') {
+    (global as any).Kpc.localize(i18n);
 }

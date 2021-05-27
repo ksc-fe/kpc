@@ -48,4 +48,6 @@ export const theme = {
     boxShadow: '0 0 4px 0 rgba(0, 0, 0, .3)',
     fontSize: '12px',
     lineHeight: 1.5,
+
+    transition: '.25s ease-in-out',
 }

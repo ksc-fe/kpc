@@ -8,7 +8,7 @@
  * https://ksc-fe.github.io/kpc/
  */
 
-import {_$, localize} from './components/utils';
+export {_$, localize} from './i18n';
 
 /* generate start */
 
@@ -209,7 +209,7 @@ export const version = '1.4.8';
 
 /* generate end */
 
-export default function install(Vue) {
+export function install(Vue) {
     if (install.installed) return;
 
     if (Vue) {
@@ -232,5 +232,3 @@ export default function install(Vue) {
     }
     install.installed = true;
 }
-
-export {_$, localize, install};

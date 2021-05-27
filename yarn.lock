@@ -2097,6 +2097,18 @@
   resolved "https://registry.nlark.com/@types/json-schema/download/@types/json-schema-7.0.7.tgz#98a993516c859eb0d5c4c8f098317a9ea68db9ad"
   integrity sha1-mKmTUWyFnrDVxMjwmDF6nqaNua0=
 
+"@types/lodash.get@^4.4.6":
+  version "4.4.6"
+  resolved "https://registry.nlark.com/@types/lodash.get/download/@types/lodash.get-4.4.6.tgz?cache=0&sync_timestamp=1621242049406&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Flodash.get%2Fdownload%2F%40types%2Flodash.get-4.4.6.tgz#0c7ac56243dae0f9f09ab6f75b29471e2e777240"
+  integrity sha1-DHrFYkPa4Pnwmrb3WylHHi53ckA=
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  version "4.14.170"
+  resolved "https://registry.nlark.com/@types/lodash/download/@types/lodash-4.14.170.tgz?cache=0&sync_timestamp=1621593293742&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Flodash%2Fdownload%2F%40types%2Flodash-4.14.170.tgz#0d67711d4bf7f4ca5147e9091b847479b87925d6"
+  integrity sha1-DWdxHUv39MpRR+kJG4R0ebh5JdY=
+
 "@types/marked@^2.0.2":
   version "2.0.2"
   resolved "https://registry.nlark.com/@types/marked/download/@types/marked-2.0.2.tgz#33a15106383f6e42cd6bdd38093e6b19904e29e1"

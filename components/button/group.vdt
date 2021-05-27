@@ -1,3 +1,4 @@
+import {getRestProps} from '../utils';
 import makeStyles from './groupStyles';
 
 const {className, vertical, children, fluid} = this.get();
@@ -10,4 +11,4 @@ const classNameObj = {
     [makeStyles()]: true,
 };
 
-<div class={classNameObj}>{children}</div>
+<div class={classNameObj} {...getRestProps(this)}>{children}</div>

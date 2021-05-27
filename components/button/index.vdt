@@ -1,4 +1,4 @@
-import {isStringOrNumberNotEmpty} from '../utils';
+import {isStringOrNumberNotEmpty, getRestProps} from '../utils';
 import {Icon} from '../icon';
 import makeStyles from './styles';
 import {DynamicButton} from './dynamicButton';
@@ -6,7 +6,7 @@ import {DynamicButton} from './dynamicButton';
 let {
     type, className, size, icon, circle, ref, key, tabindex,
     tagName, htmlType, fluid, children, loading, disabled,
-    name, tagProps, _checkType, ghost, ...rest
+    name, ghost
 } = this.get();
 
 const checked = this.isChecked();
@@ -72,8 +72,7 @@ const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
 <DynamicButton 
     class={classNameObj}
     tagName={tagName}
-    {...rest}
-    {...tagProps}
+    {...getRestProps(this)}
     ref={this.elementRef}
     tabindex={disabled || loading ? '-1' : tabindex}
     ev-click={this.onClick}

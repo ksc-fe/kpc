@@ -1,11 +1,12 @@
 import {css, cx} from '@emotion/css';
-import {theme, ThemeValue} from '../styles/theme';
-import {deepDefaults, palette}  from '../styles/utils';
+import {theme, ThemeValue} from '../../styles/theme';
+import {deepDefaults, palette}  from '../../styles/utils';
 import {IconProps} from './index';
 import {Sizes, Colors} from '../types';
-import {rotate} from '../styles/keyframes';
-import '../styles/fonts/iconfont';
-import '../styles/fonts/ionicons';
+import {rotate} from '../../styles/keyframes';
+import '../../styles/fonts/iconfont';
+import '../../styles/fonts/ionicons';
+import '../../styles/global';
 
 const iconStyles = {
     fontSize: {

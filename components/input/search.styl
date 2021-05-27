@@ -1,0 +1,32 @@
+@require('./variables.styl')
+
+.k-search
+    position relative
+    display inline-block
+    .k-input
+        transition width $transition
+    .k-btn
+        position absolute
+        top 0
+        right 0
+        z-index 1
+    .k-suffix
+        margin-right $search-input-suffix-margin-right 
+
+    // hide
+    &.k-hide
+        .k-input
+            width $input-default-height
+        .k-inner
+            padding 0 !important
+        for size in large small mini
+            .k-input.k-{size}
+                width lookup('$input-' + size + '-height')
+
+    // line
+    &.k-line
+        .k-inner
+            border-width 0 
+        &.k-open
+            .k-inner
+                border-bottom-width 1px

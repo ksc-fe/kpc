@@ -1,7 +1,5 @@
 import {Component, provide, TypeDefs} from 'intact';
 import template from './group.vdt';
-// import '../../styles/kpc.styl';
-// import './index.styl';
 
 export interface ButtonGroupProps {
     vertical?: boolean
@@ -10,8 +8,9 @@ export interface ButtonGroupProps {
     fluid?: boolean
 }
 
-const typeDefs: TypeDefs<ButtonGroupProps> = {
+const typeDefs: Required<TypeDefs<ButtonGroupProps>> = {
     vertical: Boolean,
+    value: null,
     fluid: Boolean,
     checkType: ['none', 'radio', 'checkbox']
 };

@@ -1,3 +1,6 @@
+import {Component, VNode} from 'intact';
+import {EMPTY_OBJ, isStringOrNumber} from 'intact-shared';
+
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
     return {
@@ -39,7 +42,54 @@ export function kebabCase(word: string) {
     return _cache[word];
 }
 
+export function isTextChildren(o: any): boolean {
+    if (isStringOrNumber(o)) return true;
+    if (Array.isArray(o)) {
+        return o.every(item => isTextChildren(item));
+    }
+    return isTextVNode(o);
+}
+
+export function isTextVNode(o: VNode): boolean {
+    return o && o.type === 1;
+}
+
+// for detect if it is a text node in Angular
+export function isTextBlock(o: any): boolean {
+    return isTextChildren(o) || o && o.tag && o.tag.$id === 'AngularBlockWrapper' && o.props.isText;
+}
+
 export function isStringOrNumberNotEmpty(o: any): o is string | number {
     const type = typeof o;
     return type === 'string' && !/^\s+$/.test(o) || type === 'number';
+}
+
+export function getRestProps<T>(component: Component<T>, props = component.get()) {
+    const Ctor = component.constructor as typeof Component;
+    const typeDefs = Ctor.typeDefs || EMPTY_OBJ;
+    const events = (Ctor as any).events || EMPTY_OBJ;
+    const ret: Partial<T> = {};
+
+    for (const key in props) {
+        switch (key) {
+            case 'key':
+            case 'ref':
+            case 'className':
+            case 'children':
+                continue;
+            default:
+                if (
+                    key[0] === '$' ||
+                    key in typeDefs ||
+                    key.substr(3) in events ||
+                    key.substr(0, 4) === 'ev-$'
+                ) {
+                    continue;
+                }
+                ret[key as keyof T] = props[key as keyof T];
+                break;
+        }
+    }
+
+    return ret;
 }

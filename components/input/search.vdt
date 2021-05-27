@@ -1,0 +1,32 @@
+import Input from './';
+import Icon from '../icon';
+import Button from '../button';
+import {getRestProps} from '../utils';
+
+const {
+    className, _open, 
+    placeholder, value, type, size
+} = self.get();
+
+const classNameObj = {
+    'k-search': true,
+    [className]: className,
+    'k-open': _open,
+    'k-hide': !_open,
+    [`k-${type}`]: type !== 'default',
+};
+
+<form {...getRestProps(this)} class={classNameObj} ev-submit={this.onSubmit}>
+    <Input clearable
+        ref="input" 
+        placeholder={_open ? placeholder : undefined}
+        value={_open ? value : undefined}
+        ev-$change:value={self._onChangeValue}
+        readonly={!_open}
+        size={size}
+        class="k-with-suffix"
+    />
+    <Button icon type="none" ev-click={self._onClickBtn} size={size}>
+        <Icon class="k-icon-search k-search-icon" />
+    </Button>
+</form>

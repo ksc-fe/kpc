@@ -13,7 +13,7 @@ export default class Icon<T extends IconProps = IconProps> extends Component<T> 
     static template = template;
     static displayName = 'Icon';
 
-    static typeDefs: TypeDefs<IconProps> = {
+    static typeDefs: Required<TypeDefs<IconProps>> = {
         size: [...sizes, 'default', String, Number],
         color: String,
         rotate: Boolean,

@@ -1,7 +1,8 @@
 import {css} from '@emotion/css';
-import {deepDefaults, darken} from '../styles/utils';
+import {deepDefaults, darken} from '../../styles/utils';
 import {types, button} from './styles';
-import {theme} from '../styles/theme';
+import {theme} from '../../styles/theme';
+import '../../styles/global';
 
 const {buttonGroup} = deepDefaults(theme, {
     buttonGroup: {

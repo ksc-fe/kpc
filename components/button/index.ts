@@ -1,11 +1,8 @@
 import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'intact';
 import template from './index.vdt';
-// import '../../styles/kpc.styl';
-// import './index.styl';
 import {ButtonGroup} from './group';
 import {bind} from '../utils';
 import {Sizes, Colors} from '../types';
-import '../styles/global';
 
 export interface ButtonProps {
     type?: Colors | 'none' | 'secondary' | 'link'
@@ -17,23 +14,23 @@ export interface ButtonProps {
     fluid?: boolean
     htmlType?: string
     tagName?: string | ComponentConstructor
-    tagProps?: Record<string, any> 
     value?: any
     name?: string
     tabindex?: string | number
     ghost?: boolean
 }
 
-const typeDefs: TypeDefs<ButtonProps> = {
+const typeDefs: Required<TypeDefs<ButtonProps>> = {
     type: ['default', 'primary', 'warning', 'danger', 'success', 'none', 'secondary', 'link'],
     size: ['large', 'default', 'small', 'mini'],
     icon: Boolean,
+    circle: Boolean,
     loading: Boolean,
     disabled: Boolean,
     fluid: Boolean,
     htmlType: String,
     tagName: [String, Function],
-    tagProps: Object,
+    value: null,
     name: String,
     tabindex: [String, Number],
     ghost: Boolean,

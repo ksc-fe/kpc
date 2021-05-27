@@ -1,7 +1,8 @@
 import {css, cx} from '@emotion/css';
 import {ButtonProps} from './index';
-import {theme, ThemeValue} from '../styles/theme';
-import {deepDefaults, palette, getLeft}  from '../styles/utils';
+import {theme, ThemeValue} from '../../styles/theme';
+import {deepDefaults, palette, getLeft}  from '../../styles/utils';
+import '../../styles/global';
 
 type ValueOf<T extends readonly any[]> = T[number]
 
