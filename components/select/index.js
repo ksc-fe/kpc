@@ -4,7 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Option from './option';
 import Group from './group';
-import {selectInput, _$, isStringOrNumber, toggleArray} from '../utils';
+import {selectInput, _$, isStringOrNumber, toggleArray, getTextByChildren} from '../utils';
 import {dispatchEvent} from '../datepicker/utils';
 
 const {isEqual} = Intact.utils;
@@ -293,6 +293,29 @@ export default class Select extends Intact {
         }
 
         return {active, valid};
+    }
+
+    handlerGroupProps (children) {
+        const {filterable, keywords, filter, searchable} = this.get();
+        let valid = false;
+        if (!filterable && !searchable) {
+            valid = true;
+        } else {
+            valid = children.some(item => {
+                let props = item.props;
+                if (item.tag === Group) {
+                    return this.handlerGroupProps(props.children);
+                } else {
+                    const label = props.label || getTextByChildren(props.children);
+                    props = {
+                        ...props,
+                        label
+                    }
+                    return filter.call(this, keywords, props);
+                }
+            })
+        }
+        return valid;
     }
 
     /**
