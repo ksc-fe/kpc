@@ -41,6 +41,15 @@ const {input} = deepDefaults(theme, {
                 get paddingGap() { return styles.padding },
             }
 
+            if (size === 'large') {
+                // use default padding for large size
+                Object.defineProperty(memo.large, 'paddingGap', {
+                    get() {
+                        return theme.default.padding;
+                    }
+                });
+            }
+
             return memo;
         }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
     )

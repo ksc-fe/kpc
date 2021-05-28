@@ -6,7 +6,7 @@ import '../../styles/global';
 
 const {search} = deepDefaults(theme, {
     search: {
-        
+        suffixMarginRight: '15px' 
     }
 });
 
@@ -24,7 +24,7 @@ export default function makeStyles() {
             z-index: 1;
         }
         .k-input-suffix {
-            margin-right: 15px;
+            margin-right: ${search.suffixMarginRight};
         }
 
         // hide
