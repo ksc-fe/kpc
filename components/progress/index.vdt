@@ -1,10 +1,10 @@
 import Icon from '../icon';
-import {getRestProps} from '../utils';
+import {getRestProps, isFunction} from '../utils';
 
 const {
     type, className, percent, _status: status, size,
     isOuterText, isInnerText, strokeWidth,
-    children
+    children, color
 } = self.get();
 
 const classNameObj = {
@@ -15,10 +15,22 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
 }
 
+const getColor = (color) => {
+    if (!color) return '';
+    if (isFunction(color)) {
+        return color.call(self, percent);
+    } else if (Array.isArray(color)) {
+        const item = color.find((v) => v.percent === percent);
+        return item ? item.color : '';
+    } else {
+        return color;
+    }
+}
+
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-container" v-if={{ type === 'bar' }}>
         <div  class="k-content">
-            <div class="k-bg" style={{ {width: percent + '%'} }}>
+            <div class="k-bg" style={{ {width: percent + '%', backgroundColor: getColor(color) }}}>
                 <div class="k-inner-text" v-if={{ isInnerText }}>
                     {{ percent }} %
                 </div>

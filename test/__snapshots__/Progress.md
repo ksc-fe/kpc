@@ -26,3 +26,21 @@
         </div></div></div><div class=\"k-btns\"><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>+</span></button><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>-</span></button></div></div>"
 ```
 
+#### `should custom colors`
+
+```
+"<div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(255, 152, 0);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(156, 214, 251);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(209, 253, 213);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-btns\"><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>+</span></button><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>-</span></button></div></div>"
+```
+
+```
+"<div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 50%; background-color: rgb(255, 152, 0);\"></div></div></div><div class=\"k-text\"><span>50%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 50%; background-color: rgb(96, 194, 255);\"></div></div></div><div class=\"k-text\"><span>50%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 50%; background-color: rgb(209, 253, 213);\"></div></div></div><div class=\"k-text\"><span>50%</span></div></div><div class=\"k-btns\"><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>+</span></button><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>-</span></button></div></div>"
+```
+
+```
+"<div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 75%; background-color: rgb(255, 152, 0);\"></div></div></div><div class=\"k-text\"><span>75%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 75%; background-color: rgb(50, 172, 247);\"></div></div></div><div class=\"k-text\"><span>75%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 75%; background-color: rgb(54, 179, 66);\"></div></div></div><div class=\"k-text\"><span>75%</span></div></div><div class=\"k-btns\"><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>+</span></button><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>-</span></button></div></div>"
+```
+
+```
+"<div><div class=\"k-progress k-bar k-success\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%; background-color: rgb(255, 152, 0);\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon k-icon-truth\"></i></span></div></div><div class=\"k-progress k-bar k-success\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%; background-color: rgb(0, 145, 234);\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon k-icon-truth\"></i></span></div></div><div class=\"k-progress k-bar k-success\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 100%; background-color: rgb(54, 179, 66);\"></div></div></div><div class=\"k-text\"><span><i class=\"k-icon k-icon-truth\"></i></span></div></div><div class=\"k-btns\"><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>+</span></button><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>-</span></button></div></div>"
+```
+

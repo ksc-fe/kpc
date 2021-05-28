@@ -23,6 +23,7 @@ export default class Progress extends Intact{
         isInnerText: Boolean,
         status: ['active', 'success', 'error', 'normal', 'warning'],
         strokeWidth: Number,
+        color: [String, Function, Array]
     }
 
     defaults() {
@@ -34,7 +35,7 @@ export default class Progress extends Intact{
             isInnerText: false,
             status: 'active',
             strokeWidth: 4,
-
+            color: undefined,
             _status: 'active',
         };
     }
