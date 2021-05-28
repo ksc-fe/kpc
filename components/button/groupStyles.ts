@@ -7,16 +7,16 @@ import '../../styles/global';
 const {buttonGroup} = deepDefaults(theme, {
     buttonGroup: {
         primary: {
-            get borderColor() { return darken(button.primary.borderColor, 0.2) }
+            get borderColor() { return darken(button.primary.borderColor, 3) }
         },
         warning: {
-            get borderColor() { return darken(button.warning.borderColor, 0.2) },
+            get borderColor() { return darken(button.warning.borderColor, 3) },
         },
         danger: {
-            get borderColor() { return darken(button.danger.borderColor, 0.2) },
+            get borderColor() { return darken(button.danger.borderColor, 3) },
         },
         success: {
-            get borderColor() { return darken(button.success.borderColor, 0.2) },
+            get borderColor() { return darken(button.success.borderColor, 3) },
         },
     }
 });

@@ -2156,6 +2156,11 @@
   resolved "https://registry.nlark.com/@types/scheduler/download/@types/scheduler-0.16.1.tgz?cache=0&sync_timestamp=1621242614055&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fscheduler%2Fdownload%2F%40types%2Fscheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha1-GIRSBehv8AOFF6q3oYpiprn3EnU=
 
+"@types/tinycolor2@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.nlark.com/@types/tinycolor2/download/@types/tinycolor2-1.4.2.tgz?cache=0&sync_timestamp=1621243803280&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Ftinycolor2%2Fdownload%2F%40types%2Ftinycolor2-1.4.2.tgz#721ca5c5d1a2988b4a886e35c2ffc5735b6afbdf"
+  integrity sha1-chylxdGimItKiG41wv/Fc1tq+98=
+
 "@types/webpack-env@^1.16.0":
   version "1.16.0"
   resolved "https://registry.nlark.com/@types/webpack-env/download/@types/webpack-env-1.16.0.tgz#8c0a9435dfa7b3b1be76562f3070efb3f92637b4"

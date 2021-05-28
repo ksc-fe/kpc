@@ -1,6 +1,6 @@
 import {isObject} from 'intact-shared';
 import {Theme} from './theme';
-import Chroma from 'chroma-js';
+import tinycolor from 'tinycolor2';
 
 export function deepDefaults<T, U>(source: T, defaults: U): T & U;
 export function deepDefaults<T, U, V>(source: T, defaults1: U, defaults2: V): T & U & V;
@@ -29,16 +29,16 @@ export function deepDefaults(source: Theme, ...args: Theme[]): Theme {
 }
 
 export function palette(color: string, level: number) {
-    const [h, s, b] = Chroma(color).hsv();
+    const {h, s, v} = tinycolor(color).toHsv();
     const deS = s < 0.1 ? 0 : (s - 0.1) / 4;
     const inS = (1 - s) / 4;
-    const deB = (1 - b) / 4;
-    const inB = b <= 0.4 ? 0 : (b - 0.4) / 4;
+    const deV = (1 - v) / 4;
+    const inV = v <= 0.4 ? 0 : (v - 0.4) / 4;
 
     if (level < 0 && level >= -4)
-        return Chroma.hsv(h + level, s + level * deS, b - level * deB).hex();
+        return tinycolor({h: h + level, s: s + level * deS, v: v - level * deV}).toHexString();
     else if (level > 0 && level <= 4)
-        return Chroma.hsv(h + level, s + level * inS, b - level * inB).hex();
+        return tinycolor({h: h + level, s: s + level * inS, v: v - level * inV}).toHexString();
     else
         return color;
 }
@@ -56,7 +56,7 @@ export function getLeft(padding: string) {
 }
 
 export function darken(color: string, number: number) {
-    return Chroma(color).darken(number).hex()
+    return tinycolor(color).darken(number).toHexString()
 }
 
 export type Sizes = 'large' | 'default' | 'small' | 'mini';
