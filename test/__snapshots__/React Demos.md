@@ -822,6 +822,12 @@
 "<div><div class=\"k-progress k-circle k-active\"><svg class=\"k-canvas\" viewBox=\"0 0 120 120\"><circle class=\"k-meter\" cx=\"60\" cy=\"60\" r=\"58\" stroke-width=\"4\"></circle><circle class=\"k-value\" cx=\"60\" cy=\"60\" r=\"58\" stroke-dashoffset=\"182.212373908208\" stroke-dasharray=\"364.424747816416\" stroke-width=\"4\"></circle><circle class=\"k-animate\" cx=\"60\" cy=\"60\" r=\"58\" stroke-width=\"4\" stroke-dasharray=\"364.424747816416\" stroke-dashoffset=\"364.424747816416\"><animate attributeName=\"stroke-dashoffset\" begin=\"0s\" dur=\"2s\" repeatCount=\"indefinite\" from=\"364.424747816416\" to=\"182.212373908208\"></animate><animate attributeName=\"opacity\" begin=\"0s\" dur=\"2s\" repeatCount=\"indefinite\" from=\"0.2\" to=\"0\"></animate></circle></svg><div class=\"k-text\"><span>50%</span></div></div></div>"
 ```
 
+####   `Progress customColor`
+
+```
+"<div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(255, 152, 0);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(156, 214, 251);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(209, 253, 213);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-btns\"><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>+</span></button><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>-</span></button></div></div>"
+```
+
 ####   `Progress innerText`
 
 ```
@@ -957,7 +963,7 @@
 ####   `Select filterable`
 
 ```
-"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-values\"><div class=\"k-input k-auto-width\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\" style=\"width: 100px;\"><div class=\"k-fake\">请选择</div></div></div></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
+"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-values\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
 ```
 
 ####   `Select format`
@@ -987,7 +993,7 @@
 ####   `Select remote`
 
 ```
-"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-values\"><div class=\"k-input k-auto-width\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\" style=\"width: 100px;\"><div class=\"k-fake\">请选择</div></div></div></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
+"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-values\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择\"></div></div></span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div>"
 ```
 
 ####   `Select searchable`
@@ -1495,7 +1501,7 @@
 ####   `Timepicker step`
 
 ```
-"<div><div class=\"k-select k-datepicker time k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-icon-time\"></i></span></span></div><!--placeholder--></div>You selected: <br><br><div class=\"k-select k-datepicker k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-values\"><div class=\"k-input k-auto-width\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\" style=\"width: 100px;\"><div class=\"k-fake\">请选择时间</div></div></div></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><span class=\"k-suffix-icon\"><i class=\"k-icon k-icon-time\"></i></span></span></div><!--placeholder--></div>You selected: </div>"
+"<div><div class=\"k-select k-datepicker time k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><div class=\"k-input k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\"></div></div></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-icon-time\"></i></span></span></div><!--placeholder--></div>You selected: <br><br><div class=\"k-select k-datepicker k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-values\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请选择时间\"></div></div></span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><span class=\"k-suffix-icon\"><i class=\"k-icon k-icon-time\"></i></span></span></div><!--placeholder--></div>You selected: </div>"
 ```
 
 ####   `Timepicker stepRange`
