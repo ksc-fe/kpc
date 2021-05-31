@@ -3,7 +3,7 @@ import template from './search.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {_$} from '../../i18n';
 import {bind} from '../utils';
-import {useDocumentClick} from '../hooks';
+import {useDocumentClick} from '../../hooks/useDocumentClick';
 
 export interface SearchProps {
     placeholder?: string

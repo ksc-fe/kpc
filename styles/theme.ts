@@ -49,5 +49,8 @@ export const theme = {
     fontSize: '12px',
     lineHeight: 1.5,
 
+    maxZIndex: 9999,
+    midZIndex: 999,
+
     transition: '.25s ease-in-out',
 }

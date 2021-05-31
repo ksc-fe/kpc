@@ -17,3 +17,4 @@ export function useDocumentClick(ref: RefObject<Element>, callback: Function) {
         document.removeEventListener('click', onDocumentClick);
     });
 }
+

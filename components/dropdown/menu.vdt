@@ -1,0 +1,28 @@
+/* import MoveWrapper from '../moveWrapper'; */
+import {Transition} from 'intact';
+import makeStyles from './menuStyles';
+
+const {value, trigger, transition, container} = this.dropdown.get();
+const {children, className} = this.get();
+
+const classNameObj = {
+    'k-dropdown-menu': true,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+<Transition 
+    show={value}
+    name={transition}
+    appear={true}
+>
+    <div
+        class={classNameObj}
+        ev-mouseenter={this.onMouseEnter}
+        ev-mouseleave={trigger === 'hover' ? this.onMouseLeave : null}
+        ev-mousedown={this.onMouseDown}
+        ref={this.elementRef}
+    >
+        <b:children>{children}</b:children>
+    </div>
+</Transition>

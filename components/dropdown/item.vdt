@@ -1,0 +1,22 @@
+import {getRestProps} from '../utils';
+import makeStyles from './itemStyles';
+
+const {
+    children, disabled, className, 
+    _isFocus, hideOnSelect
+} = this.get();
+
+const classNameObj = {
+    'k-dropdown-item': true,
+    'k-disabled': disabled,
+    [className]: className,
+    'k-hover': _isFocus,
+    [makeStyles()]: true,
+}
+
+<div {...getRestProps(this)}
+    class={classNameObj}
+    ev-click={this.onClick}
+    ev-mouseenter={this.onMouseEnter}
+    ev-mouseleave={this.onMouseLeave}
+>{children}</div>

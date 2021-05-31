@@ -1,0 +1,10 @@
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+
+<Dropdown>
+    <div>trigger</div> 
+    <DropdownMenu>
+        <DropdownItem>item 1</DropdownItem>
+        <DropdownItem disabled>item 2</DropdownItem>
+        <DropdownItem>item 2</DropdownItem>
+    </DropdownMenu>
+</Dropdown>
