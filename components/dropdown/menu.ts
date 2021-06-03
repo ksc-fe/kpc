@@ -1,23 +1,31 @@
-import {Component, TypeDefs, inject, createRef, onUnmounted} from 'intact';
+import {Component, TypeDefs, provide, inject, createRef, onUnmounted} from 'intact';
 import template from './menu.vdt';
 import {bind} from '../utils';
-import {Dropdown} from './dropdown';
+import {Dropdown, DROPDOWN} from './dropdown';
 import {useTransition} from './useTransition';
 import {useMenuKeyboard} from './useKeyboard';
 
 export interface DropdownMenuProps { }
 
+export const DROPDOWN_MENU = 'DropdownMenu';
+
 export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> extends Component<T> {
     static template = template;
 
     public elementRef = createRef<HTMLDivElement>();
-    private dropdown: Dropdown | null = null;
+    public lock: ((v: boolean) => void) | null = null;
+    public focusByIndex: ((index: number) => void) | null = null;
+    public dropdown: Dropdown | null = null;
     private transition: ReturnType<typeof useTransition> | null = null;
 
     init() {
-        const dropdown = this.dropdown = inject('Dropdown')!;
+        provide(DROPDOWN_MENU, this);
+        const dropdown = this.dropdown = inject(DROPDOWN)!;
         this.transition = useTransition(() => dropdown.position());
-        useKeyboardForDropdownMenu(dropdown);
+
+        const [lock, focusByIndex] = useKeyboardForDropdownMenu(dropdown);
+        this.lock = lock;
+        this.focusByIndex = focusByIndex;
     }
 
     @bind
@@ -35,13 +43,25 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
 }
 
 function useKeyboardForDropdownMenu(dropdown: Dropdown) {
-    const [addKeydown, removeKeydown] = useMenuKeyboard();
+    const parentDropdownMenu = inject<DropdownMenu | null>(DROPDOWN_MENU, null);
+    const [[addKeydown, removeKeydown, lock], focusByIndex] = useMenuKeyboard();
+    const onShow = () => {
+        addKeydown();
+        // lock parent dropdown menu, prevent it from operating by keyboard
+        parentDropdownMenu && parentDropdownMenu.lock!(true);
+    };
+    const onHide = () => {
+        removeKeydown();
+        parentDropdownMenu && parentDropdownMenu.lock!(false);
+    };
 
-    dropdown.on('show', addKeydown);
-    dropdown.on('hide', removeKeydown);
+    dropdown.on('show', onShow);
+    dropdown.on('hide', onHide);
 
     onUnmounted(() => {
-        dropdown.off('show', addKeydown);
-        dropdown.off('hide', removeKeydown);
-    })
+        dropdown.off('show', onShow);
+        dropdown.off('hide', onHide);
+    });
+
+    return [lock, focusByIndex] as const;
 }

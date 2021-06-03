@@ -7,6 +7,7 @@ import {
     normalizeChildren,
     directClone,
     provide,
+    inject,
     findDomFromVNode,
 } from 'intact';
 import template from './index.vdt';
@@ -20,6 +21,9 @@ import {useDocumentClick} from '../../hooks/useDocumentClick';
 export type Position = Options 
 
 type DropdownChildren = [VNode, VNodeComponentClass<DropdownMenu>];
+
+export const DROPDOWN = 'Dropdown';
+export const ROOT_DROPDOWN = 'RootDropdown';
 
 export interface DropdownProps {
     trigger?: 'hover' | 'click' | 'contextmenu'
@@ -93,10 +97,19 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
     private timer: number | undefined = undefined;
     private triggerProps: any = null;
     public menuVNode: VNodeComponentClass<DropdownMenu> | null = null;
+    public dropdown: Dropdown | null = null;
 
     init() {
-        provide('Dropdown', this);
+        provide(DROPDOWN, this);
+        this.dropdown = inject<Dropdown | null>(DROPDOWN, null);
+
         useDocumentClickForDropdown(this);
+
+        // is root dropdown or not
+        // const rootDropdown = inject(ROOT_DROPDOWN, null);
+        // if (!rootDropdown) {
+            // provide(ROOT_DROPDOWN, this);
+        // }
 
         this.watch('value', (value) => {
             if (value) {

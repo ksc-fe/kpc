@@ -5,9 +5,9 @@ export type Listener = (fn: () => void) => () => void;
 export type Options = {
     down: Handler
     up: Handler
-    right?: Handler
-    left?: Handler
-    enter?: Handler
+    right: Handler
+    left: Handler
+    enter: Handler
 }
 
 export function useKeyboard(options: Options) {
@@ -25,17 +25,17 @@ export function useKeyboard(options: Options) {
                 options.up(e);
                 break;
             // right
-            // case 39:
-                // options.right(e);
-                // break;
-            // // left
-            // case 37:
-                // options.left(e);
-                // break;
-            // // enter
-            // case 13:
-                // options.enter(e);
-                // break;
+            case 39:
+                options.right(e);
+                break;
+            // left
+            case 37:
+                options.left(e);
+                break;
+            // enter
+            case 13:
+                options.enter(e);
+                break;
         }
     };
 
@@ -43,5 +43,5 @@ export function useKeyboard(options: Options) {
     const addEventListener = () => document.addEventListener('keydown', onKeydown);
     onUnmounted(removeEventListener);
 
-    return [addEventListener, removeEventListener, (v: boolean) => locked = v];
+    return [addEventListener, removeEventListener, (v: boolean) => locked = v] as const;
 }

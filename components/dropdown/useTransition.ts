@@ -22,12 +22,12 @@ export function useTransition(getFeedback: () => Feedback) {
         removeTransitionClass(el, enterFromClass);
 
         whenTransitionEnds(el, () => {
-            onEnterrCancelld(el);
+            onEnterCancelled(el);
             done();
         });
     }
 
-    function onEnterrCancelld(el: TransitionElement) {
+    function onEnterCancelled(el: TransitionElement) {
         removeTransitionClass(el, `${transition}-enter-active`);
     }
 
@@ -46,7 +46,7 @@ export function useTransition(getFeedback: () => Feedback) {
         removeTransitionClass(el, `${transition}-leave-active`);
     }
 
-    return {onEnter, onEnterrCancelld, onLeave, onLeaveCancelled};
+    return {onEnter, onEnterCancelled, onLeave, onLeaveCancelled};
 }
 
 function getTransition(feedback: Feedback) {

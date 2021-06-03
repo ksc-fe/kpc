@@ -2,12 +2,15 @@ import {useInstance, findDomFromVNode, provide, inject, Component} from 'intact'
 import {useRecordParent, useRecordItem} from '../../hooks/useRecordComponent';
 import {useKeyboard} from '../../hooks/useKeyboard';
 
-type ItemOnFocusUnfocus = {
-    focus: () => void;
-    unFocus: () => void;
+type ItemEvents = {
+    onFocusin: () => void;
+    onFocusout: () => void;
+    onShowMenu: () => void;
+    onHideMenu: () => void;
+    onSelect: () => void;
 }
 
-enum Direction {
+export enum Direction {
     Up,
     Down
 }
@@ -21,7 +24,7 @@ const RECORD_FOCUS = 'RecordFocus';
 const MENU_KEYBOARD = 'MenuKeyboard';
 
 export function useMenuKeyboard() {
-    const itemOnFocusUnfocus = useRecordParent<ItemOnFocusUnfocus>(RECORD_FOCUS);
+    const itemEvents = useRecordParent<ItemEvents>(RECORD_FOCUS);
     const items = useRecordParent();
     const instance = useInstance();
     let focusIndex = -1;
@@ -36,7 +39,7 @@ export function useMenuKeyboard() {
         focusByIndex(focusIndex - 1, Direction.Up);
     };
 
-    const focusByIndex = (index: number, direction: Direction) => {
+    const focusByIndex = (index: number, direction?: Direction) => {
         const max = items.length - 1;
         index = fixIndex(index, max);
 
@@ -57,7 +60,7 @@ export function useMenuKeyboard() {
     const focusItem = (index: number) => {
         focusIndex = index;
 
-        itemOnFocusUnfocus[index].focus();
+        itemEvents[index].onFocusin();
 
         const item = items[index];
         const el = findDomFromVNode(item.$vNode!, true) as Element;
@@ -75,8 +78,17 @@ export function useMenuKeyboard() {
     };
 
     const unFocusItem = (oldIndex: number) => {
-        itemOnFocusUnfocus[oldIndex].unFocus();
+        itemEvents[oldIndex].onFocusout();
     };
+
+    const makeEventCall = (name: keyof ItemEvents) => {
+        return (e: KeyboardEvent) => {
+            if (focusIndex < 0) return; 
+            e.preventDefault();
+
+            itemEvents[focusIndex][name]();
+        }
+    }
 
     provide<MenuKeyboardMethods>(MENU_KEYBOARD, {
         reset,
@@ -86,17 +98,20 @@ export function useMenuKeyboard() {
         }
     });
 
-    return useKeyboard({
-        down: next,
-        up: prev,
-    });
+    return [
+        useKeyboard({
+            down: next,
+            up: prev,
+            right: makeEventCall('onShowMenu'),
+            left: makeEventCall('onHideMenu'),
+            enter: makeEventCall('onSelect'),
+        }),
+        focusByIndex
+    ] as const;
 }
 
-export function useItemKeyboard(focus: () => void, unFocus: () => void) {
-    useRecordItem<ItemOnFocusUnfocus>(RECORD_FOCUS, {
-        focus,
-        unFocus,
-    });
+export function useItemKeyboard(itemEvents: ItemEvents) {
+    useRecordItem<ItemEvents>(RECORD_FOCUS, itemEvents);
     useRecordItem();
 
     return inject<MenuKeyboardMethods>(MENU_KEYBOARD)!;
