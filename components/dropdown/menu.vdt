@@ -2,7 +2,7 @@
 import {Transition} from 'intact';
 import makeStyles from './menuStyles';
 
-const {value, trigger, transition, container} = this.dropdown.get();
+const {value, trigger, container} = this.dropdown.get();
 const {children, className} = this.get();
 
 const classNameObj = {
@@ -12,9 +12,9 @@ const classNameObj = {
 };
 
 <Transition 
+    css={false}
     show={value}
-    name={transition}
-    appear={true}
+    {...this.transition}
 >
     <div
         class={classNameObj}

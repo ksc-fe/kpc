@@ -60,7 +60,7 @@ type RuleData = {
     elem: Options['of']
 }
 
-type Feedback = {
+export type Feedback = {
     target: FeedbackElement 
     element: FeedbackElement 
     horizontal: Horizontal
@@ -68,7 +68,7 @@ type Feedback = {
     important: 'vertical' | 'horizontal'
 }
 
-type FeedbackElement = {
+export type FeedbackElement = {
     element: Options['of']
     left: number
     top: number

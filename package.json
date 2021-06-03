@@ -187,7 +187,7 @@
     "dayjs": "^1.8.15",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
-    "intact": "^3.0.0-beta.6",
+    "intact": "^3.0.0-beta.7",
     "intact-react": "^1.1.30",
     "intact-vue": "^1.0.0",
     "monaco-editor": "^0.24.0",

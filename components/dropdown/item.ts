@@ -1,7 +1,7 @@
 import {Component, TypeDefs} from 'intact';
 import template from './item.vdt';
 import {bind} from '../utils';
-import {useItemKeyboard} from './useKeyboard';
+import {useItemKeyboard, MenuKeyboardMethods} from './useKeyboard';
 
 export interface DropdownItemProps {
     disabled: boolean
@@ -29,11 +29,17 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    private reset: MenuKeyboardMethods['reset'] | null = null;
+    private focus: MenuKeyboardMethods['focus'] | null = null;
+
     init() {
-        useItemKeyboard(
+        const {reset, focus} = useItemKeyboard(
             () => this.set('_isFocus', true),
             () => this.set('_isFocus', false)
         );
+
+        this.reset = reset;
+        this.focus = focus;
     }
 
     @bind
@@ -47,11 +53,13 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
     private onMouseEnter(e: MouseEvent) {
         this.trigger('mouseenter', e);
         if (this.get('disabled')) return;
+
+        this.focus!(this);
     }
 
     @bind
     private onMouseLeave(e: MouseEvent) {
         this.trigger('mouseleave', e);
-        if (this.get('disabled')) return;
+        this.reset!();
     }
 }

@@ -1,20 +1,20 @@
 import {onUnmounted} from 'intact';
 
 export type Handler = (e: KeyboardEvent) => void;
-export type Listener = (fn: () => void) => void;
+export type Listener = (fn: () => void) => () => void;
 export type Options = {
     down: Handler
     up: Handler
     right?: Handler
     left?: Handler
     enter?: Handler
-
-    onAdd: Listener
-    onRemove: Listener
 }
 
 export function useKeyboard(options: Options) {
+    let locked = false;
     const onKeydown = (e: KeyboardEvent) => {
+        if (locked) return;
+
         switch (e.keyCode) {
             // down
             case 40:
@@ -40,8 +40,8 @@ export function useKeyboard(options: Options) {
     };
 
     const removeEventListener = () => document.removeEventListener('keydown', onKeydown);
-
-    options.onAdd(() => document.addEventListener('keydown', onKeydown));
-    options.onRemove(removeEventListener);
+    const addEventListener = () => document.addEventListener('keydown', onKeydown);
     onUnmounted(removeEventListener);
+
+    return [addEventListener, removeEventListener, (v: boolean) => locked = v];
 }

@@ -1,5 +1,12 @@
-import {injectGlobal} from '@emotion/css';
+import {injectGlobal, css} from '@emotion/css';
 import {theme} from './theme';
+
+const slideDirections = {
+    down: 'center top 0',
+    up: 'center bottom 0',
+    left: 'right center 0',
+    right: 'left center 0',
+};
 
 injectGlobal`
     html {
@@ -11,16 +18,20 @@ injectGlobal`
     }
 
     // animation
-    .k-slidedown-enter-from,
-    .k-slidedown-leave-to {
-        transform-origin: center top 0;
-        opacity: 0;
-        transform: scaleY(.8);
-    }
-    .k-slidedown-enter-active,
-    .k-slidedown-leave-active {
-        transform-origin: center top 0;
-        transition: opacity ${theme.transition}, transform ${theme.transition};
-        pointer-events: none;
-    }
+    ${Object.keys(slideDirections).map(direction => {
+        return `
+            .k-slide${direction}-enter-from,
+            .k-slide${direction}-leave-to {
+                transform-origin: ${slideDirections[direction as keyof typeof slideDirections]};
+                opacity: 0;
+                transform: ${direction === 'down' || direction === 'up' ? `scaleY(.8)` : 'scaleX(.8)'};
+            }
+            .k-slide${direction}-enter-active,
+            .k-slide${direction}-leave-active {
+                transform-origin: ${slideDirections[direction as keyof typeof slideDirections]};
+                transition: opacity ${theme.transition}, transform ${theme.transition};
+                pointer-events: none;
+            }
+        `
+    }).join('')}
 `;
