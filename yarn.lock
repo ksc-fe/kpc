@@ -7525,10 +7525,10 @@ intact-react@^1.1.30:
   resolved "https://registry.nlark.com/intact-react/download/intact-react-1.1.31.tgz#8dc06e8df8d91e6753585fa8c4af4ee7537663ab"
   integrity sha1-jcBujfjZHmdTWF+oxK9O51N2Y6s=
 
-intact-shared@^3.0.0-beta.6:
-  version "3.0.0-beta.6"
-  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.0-beta.6.tgz#b9421ef5b17832c98043b2b80c990e1e9a2f4afc"
-  integrity sha512-epeSf+c5xlZJFnbEGj4OK4vKwnq8fX8zkFJZC4Jq2FSaslJTmnYPHfxkm75LTaCCfjmL9i+BI8OvZPJZCzLeQw==
+intact-shared@^3.0.0-beta.7:
+  version "3.0.0-beta.7"
+  resolved "https://registry.nlark.com/intact-shared/download/intact-shared-3.0.0-beta.7.tgz#b9e7bf57322da7d29f1e2771da6202ccd90d8060"
+  integrity sha1-uee/VzItp9KfHidx2mICzNkNgGA=
 
 intact-vue@^1.0.0:
   version "1.0.0"
@@ -7538,15 +7538,15 @@ intact-vue@^1.0.0:
     "@babel/runtime" "^7.12.5"
 
 intact@^3.0.0-beta.6:
-  version "3.0.0-beta.6"
-  resolved "https://registry.npmjs.org/intact/-/intact-3.0.0-beta.6.tgz#7f712b5df28fb84e35160dee3b702bceb3428814"
-  integrity sha512-OUTwmh/MGMf+O6NRQ8gqWESQywQ5sdTHxhCK1arhDMYPFijtJp4JL+D1bi8tLoDAsYqYJtyKQpL/UjIqeggD3g==
+  version "3.0.0-beta.7"
+  resolved "https://registry.nlark.com/intact/download/intact-3.0.0-beta.7.tgz#f8921c68b20148d2694811182867b497859d78c6"
+  integrity sha1-+JIcaLIBSNJpSBEYKGe0l4WdeMY=
   dependencies:
-    intact-shared "^3.0.0-beta.6"
-    misstime "^3.0.0-beta.6"
+    intact-shared "^3.0.0-beta.7"
+    misstime "^3.0.0-beta.7"
     tslib "^2.2.0"
-    vdt "^3.0.0-beta.6"
-    vdt-compiler "^3.0.0-beta.6"
+    vdt "^3.0.0-beta.7"
+    vdt-compiler "^3.0.0-beta.7"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9383,12 +9383,12 @@ minizlib@^2.0.0, minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
-misstime@^3.0.0-beta.6:
-  version "3.0.0-beta.6"
-  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.0-beta.6.tgz#04b135c600aa940ecb6b9347c0c5babe97510be5"
-  integrity sha512-idJ+cwBVDEPF/sXz2MNo5mXkPHd8kka2DsKlO5ZBpRFDq9OPOABF45ITtdq1jfIVj6uH3mjPKweRfN2epnen6Q==
+misstime@^3.0.0-beta.7:
+  version "3.0.0-beta.7"
+  resolved "https://registry.nlark.com/misstime/download/misstime-3.0.0-beta.7.tgz#3159d1193d788c9c050778b73f3249bff82e8a5d"
+  integrity sha1-MVnRGT14jJwFB3i3PzJJv/guil0=
   dependencies:
-    intact-shared "^3.0.0-beta.6"
+    intact-shared "^3.0.0-beta.7"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13645,13 +13645,13 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vdt-compiler@^3.0.0-beta.6:
-  version "3.0.0-beta.6"
-  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.0-beta.6.tgz#c30c910f76f3bc26699031829cc2fbc6892c4ec2"
-  integrity sha512-UglyBFX2jbXBKcG7ri5T3ZU8IHGBHpOOme9m/5/+YnFrvT3K8VtofOflgLeYebpunGWqNhTcnlOHV2I2q5dmww==
+vdt-compiler@^3.0.0-beta.7:
+  version "3.0.0-beta.7"
+  resolved "https://registry.nlark.com/vdt-compiler/download/vdt-compiler-3.0.0-beta.7.tgz#7dd730420773eff0ee5fd958db01cb575c41f738"
+  integrity sha1-fdcwQgdz7/DuX9lY2wHLV1xB9zg=
   dependencies:
-    intact-shared "^3.0.0-beta.6"
-    misstime "^3.0.0-beta.6"
+    intact-shared "^3.0.0-beta.7"
+    misstime "^3.0.0-beta.7"
     tslib "^2.2.0"
 
 vdt-loader@^3.0.0-beta.1:
@@ -13663,13 +13663,13 @@ vdt-loader@^3.0.0-beta.1:
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-vdt@^3.0.0-beta.6:
-  version "3.0.0-beta.6"
-  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.0-beta.6.tgz#03089a36d7cdc26520a6ed2d9291b2cfe26afeac"
-  integrity sha512-2hqrg1wrTUKM3fPh7rYDtIqwNHX8Jlv1WOMqBc0pq65LCy9Gj//grkltAHCLJEoEoFx+MS1dXbTb7drfCQ3zRQ==
+vdt@^3.0.0-beta.7:
+  version "3.0.0-beta.7"
+  resolved "https://registry.nlark.com/vdt/download/vdt-3.0.0-beta.7.tgz#baa457b4c1a939800ec6215e07221fd2261177bf"
+  integrity sha1-uqRXtMGpOYAOxiFeByIf0iYRd78=
   dependencies:
-    intact-shared "^3.0.0-beta.6"
-    misstime "^3.0.0-beta.6"
+    intact-shared "^3.0.0-beta.7"
+    misstime "^3.0.0-beta.7"
     tslib "^2.2.0"
 
 vendors@^1.0.3:

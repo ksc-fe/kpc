@@ -5,34 +5,26 @@ import '../../styles/global';
 
 const {radio} = deepDefaults(theme, {
     radio: {
-        get radio_width() {
-            return '14rem';
-        },
-        get radio_border_color() {
+        radioWidth: '14rem',
+        get radioBorderColor() {
             return theme.color.darkBorder;
         },
-        get radio_bg_color() {
-            return '#fff';
-        },
-        get radio_text_margin_left() {
-            return '8em';
-        },
-        get radio_inner_width() {
-            return '8rem';
-        },
-        get radio_checked_color() {
+        radioBgColor: '#fff',
+        radioTextMarginLeft: '8em',
+        radioInnerWidth: '8rem',
+        get radioCheckedColor() {
             return theme.color.primary;
         },
-        get radio_disabled_color() {
+        get radioDisabledColor() {
             return theme.color.disabled;
         },
-        get radio_disabled_border_color() {
+        get radioDisabledBorderColor() {
             return theme.color.disabledBorder;
         },
-        get radio_disabled_bg_color() {
+        get radioDisabledBgColor() {
             return theme.color.disabledBg;
         },
-        get radio_disabled_inner_color() {
+        get radioDisabledInnerColor() {
             return theme.color.disabled;
         },
         get transition() {
@@ -50,28 +42,28 @@ export default function makeStyles() {
         vertical-align: middle;
         .k-wrapper {
             display: inline-block;
-            width: ${radio.radio_width};
-            height: ${radio.radio_width};
+            width: ${radio.radioWidth};
+            height: ${radio.radioWidth};
             vertical-align: middle;
-            border: 1px solid ${radio.radio_border_color};
+            border: 1px solid ${radio.radioBorderColor};
             border-radius: 50%;
             transition: all ${radio.transition} ;
             position: relative;
-            background: ${radio.radio_bg_color};
+            background: ${radio.radioBgColor};
             flex: 0 0 auto;
             // inner
             &:before {
                 content: "";
                 display: block;
                 position: absolute;
-                width: ${radio.radio_inner_width};
-                height: ${radio.radio_inner_width};
+                width: ${radio.radioInnerWidth};
+                height: ${radio.radioInnerWidth};
                 top: 50%;
                 left: 50%;
-                margin-left: s('-%s', ${radio.radio_inner_width} / 2);
-                margin-top: @margin-left;
+                margin-left: s('-%s', ${radio.radioInnerWidth} / 2);
+                margin-top: s('-%s', ${radio.radioInnerWidth} / 2);
                 border-radius: 50%;
-                background-color: ${radio.radio_checked_color};
+                background-color: ${radio.radioCheckedColor};
                 transform: scale(0);
                 transition: all ${radio.transition};
             }    
@@ -86,13 +78,13 @@ export default function makeStyles() {
         .k-text {
             vertical-align: middle;
             display: inline-block;
-            margin-left: ${radio.radio_text_margin_left};
+            margin-left: ${radio.radioTextMarginLeft};
             flex: 0 1 auto;
         }
         // checked
         &.k-checked {
             .k-wrapper {
-                border-color: ${radio.radio_checked_color};
+                border-color: ${radio.radioCheckedColor};
                 &:before {
                     transform: scale(1);
                 }    
@@ -102,18 +94,18 @@ export default function makeStyles() {
         &:focus {
             outline: none;
             .k-wrapper {
-                border-color: ${radio.radio_checked_color};
+                border-color: ${radio.radioCheckedColor};
             }    
         }    
         // disabled
         &.k-disabled {
-            color: ${radio.radio_disabled_color};
+            color: ${radio.radioDisabledColor};
             cursor: not-allowed;
             .k-wrapper {
-                border-color: ${radio.radio_disabled_border_color};
-                background: ${radio.radio_disabled_bg_color};
+                border-color: ${radio.radioDisabledBorderColor};
+                background: ${radio.radioDisabledBgColor};
                 &:before {
-                    background: ${radio.radio_disabled_inner_color};
+                    background: ${radio.radioDisabledInnerColor};
                 }    
             }        
         }            

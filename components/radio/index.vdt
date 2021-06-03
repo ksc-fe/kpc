@@ -34,24 +34,24 @@ const events = [
 
 <label class={ classNameObj } style={ style }
     tabindex={ disabled ? "-1" : "0" }
-    ev-keypress={ this._onKeypress }
+    ev-keypress={ this.onKeypress }
     { ...events }
     title={ title }
-    ev-click={ this._fixClick }
+    ev-click={ this.fixClick }
 >
     <span class="k-wrapper">
         <input type="radio" disabled={ disabled }
             value={ trueValue }
             tabindex="-1"
             { ...getRestProps(this, rest) }
-            ref="input"
+            createRef="input"
             checked={ value === trueValue }
             ev-click={ 
                 // (e) => {
-                    // _setCheckboxModel(this, 'value', trueValue, false, e, $this);
+                    // setCheckboxModel(this, 'value', trueValue, false, e, $this);
                     // evClick && evClick(e);
                 // } 
-                this._onClick
+                this.onClick
             }
         />
     </span>
