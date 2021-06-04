@@ -16,7 +16,7 @@ import {EMPTY_OBJ, isFunction} from 'intact-shared';
 import {Options, position, Feedback} from '../position';
 import {cx} from '@emotion/css';
 import {DropdownMenu} from './menu';
-import {useDocumentClick} from '../../hooks/useDocumentClick';
+import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
 
 export type Position = Options 
 
@@ -205,7 +205,16 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
 
 function useDocumentClickForDropdown(dropdown: Dropdown) {
     const elementRef = () => dropdown.menuVNode!.children!.elementRef;
-    const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, () => {
+    const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, (e) => {
+        // ingore mousedown and move mouse to outside
+        if (dropdown.menuVNode!.children!.mousedownRef!.value) return;
+        // if click an trigger and the trigger type is hover, ignore it
+        if (dropdown.get('trigger') === 'hover') {
+            const triggerDom = findDomFromVNode(dropdown.$lastInput!, true) as Element;
+            const target = e.target as Element;
+            if (containsOrEqual(triggerDom, target)) return;
+        }
+
         dropdown.hide(true);
     }, true);
 

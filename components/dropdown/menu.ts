@@ -1,9 +1,10 @@
-import {Component, TypeDefs, provide, inject, createRef, onUnmounted} from 'intact';
+import {Component, TypeDefs, provide, inject, createRef, onUnmounted, RefObject} from 'intact';
 import template from './menu.vdt';
 import {bind} from '../utils';
 import {Dropdown, DROPDOWN} from './dropdown';
 import {useTransition} from './useTransition';
 import {useMenuKeyboard} from './useKeyboard';
+import {useMouseOutsidable} from './useMouseOutsidable';
 
 export interface DropdownMenuProps { }
 
@@ -16,20 +17,28 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
     public lock: ((v: boolean) => void) | null = null;
     public focusByIndex: ((index: number) => void) | null = null;
     public dropdown: Dropdown | null = null;
+    public mouseOutsidableBegin: (() => void) | null = null;
+    public mousedownRef: RefObject<boolean> | null = null;
+
     private transition: ReturnType<typeof useTransition> | null = null;
 
     init() {
         provide(DROPDOWN_MENU, this);
+
         const dropdown = this.dropdown = inject(DROPDOWN)!;
         this.transition = useTransition(() => dropdown.position());
 
         const [lock, focusByIndex] = useKeyboardForDropdownMenu(dropdown);
         this.lock = lock;
         this.focusByIndex = focusByIndex;
+
+        const [mouseOutsidableBegin, mosuedownRef] = useMouseOutsidable();
+        this.mouseOutsidableBegin = mouseOutsidableBegin;
+        this.mousedownRef = mosuedownRef;
     }
 
-    @bind
     // no matter what the trigger is, we should show menu when enter into it.
+    @bind
     private onMouseEnter(e: MouseEvent) {
         this.dropdown!.show();
         this.trigger('mouseenter', e);
@@ -39,6 +48,12 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
     private onMouseLeave(e: MouseEvent) {
         this.dropdown!.hide();
         this.trigger('mouseleave', e);
+    }
+
+    @bind
+    private onMouseDown(e: MouseEvent) {
+        this.mouseOutsidableBegin!();
+        this.trigger('mousedown', e);
     }
 }
 
