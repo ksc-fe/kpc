@@ -1,0 +1,59 @@
+import {getRestProps} from '../utils';
+import makeStyles from './radioStyles';
+
+const {
+    className, disabled, trueValue, style,
+    children, value, ref, key, title, ...rest
+} = this.get();
+
+const classNameObj = {
+    'k-radio': true,
+    'k-disabled': disabled,
+    'k-checked': this.isChecked(),
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+// let evClick;
+const events = [
+    'ev-click', 'ev-change',
+    'ev-mouseenter', 'ev-mouseleave'
+].reduce((memo, name) => {
+    if (rest[name]) {
+        if (name === 'ev-click' || name === 'ev-change') {
+            // don't bind click to label, otherwise it will trigger click event twice
+            // don't bind change to input, use click instead of, #448
+            // evClick = rest[name];
+        } else {
+            memo[name] = rest[name];
+        }
+        delete rest[name];
+    }
+    return memo;
+}, {});
+
+<label class={ classNameObj } style={ style }
+    tabindex={ disabled ? "-1" : "0" }
+    ev-keypress={ this.onKeypress }
+    { ...events }
+    title={ title }
+    ev-click={ this.fixClick }
+>
+    <span class="k-wrapper">
+        <input type="radio" disabled={ disabled }
+            value={ trueValue }
+            tabindex="-1"
+            { ...getRestProps(this, rest) }
+            ref={this.elementRef}
+            checked={ value === trueValue }
+            ev-click={ 
+                // (e) => {
+                    // setCheckboxModel(this, 'value', trueValue, false, e, $this);
+                    // evClick && evClick(e);
+                // } 
+                this.onClick
+            }
+        />
+    </span>
+    <span class="k-text" v-if={ children }>{ children }</span>
+</label>
