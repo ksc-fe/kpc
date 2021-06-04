@@ -34,7 +34,7 @@ export default class Radio<T extends RadioProps = RadioProps> extends Component<
     @bind
     private onKeypress(e: KeyboardEvent): void {
         if (e.keyCode === 13) {
-            this.refs.input.click();
+            this.elementRef.value!.click();
         }
     }
 
