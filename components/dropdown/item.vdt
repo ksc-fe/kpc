@@ -2,8 +2,9 @@ import {getRestProps} from '../utils';
 import makeStyles from './itemStyles';
 
 const {
-    children, disabled, className, 
-    _isFocus, hideOnSelect
+    children, disabled, className, hideOnSelect,
+
+    _isFocus
 } = this.get();
 
 const classNameObj = {

@@ -1,31 +1,45 @@
-import {Component, getCurrentInstance, onUnmounted, RefObject, findDomFromVNode} from 'intact';
-import {useRecordParent, useRecordItem, ComponentSupportRecord} from '../../hooks/useRecordComponent';
-import {useKeyboard} from '../../hooks/useKeybord';
+import {useInstance, findDomFromVNode, provide, inject, Component} from 'intact';
+import {useRecordParent, useRecordItem} from '../../hooks/useRecordComponent';
+import {useKeyboard} from '../../hooks/useKeyboard';
 
-interface ComponentUseMenuKeyboard extends ComponentSupportRecord<ComponentUseItemKeyboard> {
-    focusIndex: number
+type ItemEvents = {
+    onFocusin: () => void;
+    onFocusout: () => void;
+    onShowMenu: () => void;
+    onHideMenu: () => void;
+    onSelect: () => void;
 }
 
-interface ComponentUseItemKeyboard extends Component {
-    focus: () => void;
-    unFocus: () => void;
+export enum Direction {
+    Up,
+    Down
 }
 
-export function useMenuKeyboard(add: (add: Function) => void, remove: (remove: Function) => void) {
-    const instance = getCurrentInstance() as ComponentUseMenuKeyboard;
+export type MenuKeyboardMethods = {
+    reset: () => void;
+    focus: (item: Component) => void;
+}
+
+const RECORD_FOCUS = 'RecordFocus';
+const MENU_KEYBOARD = 'MenuKeyboard';
+
+export function useMenuKeyboard() {
+    const itemEvents = useRecordParent<ItemEvents>(RECORD_FOCUS);
+    const items = useRecordParent();
+    const instance = useInstance();
+    let focusIndex = -1;
 
     const next = (e: KeyboardEvent) => {
         e.preventDefault();
-        focus(instance.focusIndex + 1, 'down');
+        focusByIndex(focusIndex + 1, Direction.Down);
     };
 
     const prev = (e: KeyboardEvent) => {
         e.preventDefault();
-        focus(instance.focusIndex - 1, 'up');
+        focusByIndex(focusIndex - 1, Direction.Up);
     };
 
-    const focus = (index: number, direction: 'down' | 'up') => {
-        const items = instance.items;
+    const focusByIndex = (index: number, direction?: Direction) => {
         const max = items.length - 1;
         index = fixIndex(index, max);
 
@@ -33,39 +47,74 @@ export function useMenuKeyboard(add: (add: Function) => void, remove: (remove: F
 
         let i = 0;
         while (i <= max && items[index] && items[index].get('disabled')) {
-            index = fixIndex(direction === 'down' ? index + 1 : index - 1, max);
+            index = fixIndex(direction === Direction.Down ? index + 1 : index - 1, max);
             i++;
         }
 
         // all items are disabled
         if (i > max) return;
 
-        instance.focusIndex = index;
+        focusItem(index);
+    };
 
-        items[index].focus();
+    const focusItem = (index: number) => {
+        focusIndex = index;
+
+        itemEvents[index].onFocusin();
+
+        const item = items[index];
+        const el = findDomFromVNode(item.$vNode!, true) as Element;
+        const menuEl = findDomFromVNode(instance!.$vNode!, false) as Element;
+        scrollToView(el, menuEl);
     };
 
     const reset = () => {
-        const oldIndex = instance.focusIndex;
-        const items = instance.items;
+        const oldIndex = focusIndex;
 
         if (oldIndex > -1 && items[oldIndex]) {
-            items[oldIndex].unFocus();
-            instance.focusIndex = -1;
+            unFocusItem(oldIndex);
+            focusIndex = -1;
         }
     };
 
-    instance.focusIndex = -1;
+    const unFocusItem = (oldIndex: number) => {
+        itemEvents[oldIndex].onFocusout();
+    };
 
-    useRecordParent();
+    const makeEventCall = (name: keyof ItemEvents) => {
+        return (e: KeyboardEvent) => {
+            if (focusIndex < 0) return; 
+            e.preventDefault();
 
-    useKeyboard({
-        down: next,
-        up: prev,
+            itemEvents[focusIndex][name]();
+        }
+    }
 
-        onAdd: add,
-        onRemove: remove,
+    provide<MenuKeyboardMethods>(MENU_KEYBOARD, {
+        reset,
+        focus: (item: Component) => {
+            const index = items.indexOf(item);
+            focusItem(index);
+        }
     });
+
+    return [
+        useKeyboard({
+            down: next,
+            up: prev,
+            right: makeEventCall('onShowMenu'),
+            left: makeEventCall('onHideMenu'),
+            enter: makeEventCall('onSelect'),
+        }),
+        focusByIndex
+    ] as const;
+}
+
+export function useItemKeyboard(itemEvents: ItemEvents) {
+    useRecordItem<ItemEvents>(RECORD_FOCUS, itemEvents);
+    useRecordItem();
+
+    return inject<MenuKeyboardMethods>(MENU_KEYBOARD)!;
 }
 
 function fixIndex(index: number, max: number) {
@@ -77,28 +126,18 @@ function fixIndex(index: number, max: number) {
     return index;
 }
 
-export function useItemKeyboard(focus: () => void, unFocus: () => void) {
-    const instance = getCurrentInstance() as ComponentUseItemKeyboard;
-    const parent = useRecordItem();
+function scrollToView(el: Element, menuEl: Element) {
+    const elRect = el.getBoundingClientRect();
+    const pEl = getScrollParent(el.parentElement!, menuEl);
+    const pElRect = pEl.getBoundingClientRect();
+    const bottomOverflowDistance = elRect.bottom - pElRect.bottom;
+    const topOverflowDistance = elRect.top - pElRect.top;
 
-    instance.focus = () => {
-        focus();
-        const el = findDomFromVNode(instance.$vNode!, true) as Element;
-        const elRect = el.getBoundingClientRect();
-        const menuEl = findDomFromVNode(parent.$vNode!, true) as Element;
-        const pEl = getScrollParent(el.parentElement!, menuEl);
-        const pElRect = pEl.getBoundingClientRect();
-        const bottomOverflowDistance = elRect.bottom - pElRect.bottom;
-        const topOverflowDistance = elRect.top - pElRect.top;
-
-        if (bottomOverflowDistance > 0) {
-            pEl.scrollTop += bottomOverflowDistance;
-        } else if (topOverflowDistance < 0) {
-            pEl.scrollTop += topOverflowDistance;
-        }
-    };
-
-    instance.unFocus = unFocus;
+    if (bottomOverflowDistance > 0) {
+        pEl.scrollTop += bottomOverflowDistance;
+    } else if (topOverflowDistance < 0) {
+        pEl.scrollTop += topOverflowDistance;
+    }
 }
 
 function getScrollParent(node: Element, breakEl: Element): Element {

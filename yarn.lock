@@ -7527,8 +7527,8 @@ intact-react@^1.1.30:
 
 intact-shared@^3.0.0-beta.7:
   version "3.0.0-beta.7"
-  resolved "https://registry.nlark.com/intact-shared/download/intact-shared-3.0.0-beta.7.tgz#b9e7bf57322da7d29f1e2771da6202ccd90d8060"
-  integrity sha1-uee/VzItp9KfHidx2mICzNkNgGA=
+  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.0-beta.7.tgz#b9e7bf57322da7d29f1e2771da6202ccd90d8060"
+  integrity sha512-rg1pQmnWocspjMUWiizp8YNLOX1Fz2raNRhCf52eiUfq2+7thkP+8BSeMLlmEWkxzJoTpfQ7nhAfX/n9MuBcmg==
 
 intact-vue@^1.0.0:
   version "1.0.0"
@@ -7537,10 +7537,11 @@ intact-vue@^1.0.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-intact@^3.0.0-beta.6:
+
+intact@^3.0.0-beta.7:
   version "3.0.0-beta.7"
-  resolved "https://registry.nlark.com/intact/download/intact-3.0.0-beta.7.tgz#f8921c68b20148d2694811182867b497859d78c6"
-  integrity sha1-+JIcaLIBSNJpSBEYKGe0l4WdeMY=
+  resolved "https://registry.npmjs.org/intact/-/intact-3.0.0-beta.7.tgz#f8921c68b20148d2694811182867b497859d78c6"
+  integrity sha512-gymA4nfxq4WNNiq8Fc5ARZvZebxIQxJ+1JhD+XAfFgKHm1Hy6pGZWMFn/3lhL4RyTUAS1mDxvwfen8yBKECePA==
   dependencies:
     intact-shared "^3.0.0-beta.7"
     misstime "^3.0.0-beta.7"
@@ -9385,8 +9386,8 @@ minizlib@^2.0.0, minizlib@^2.1.1:
 
 misstime@^3.0.0-beta.7:
   version "3.0.0-beta.7"
-  resolved "https://registry.nlark.com/misstime/download/misstime-3.0.0-beta.7.tgz#3159d1193d788c9c050778b73f3249bff82e8a5d"
-  integrity sha1-MVnRGT14jJwFB3i3PzJJv/guil0=
+  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.0-beta.7.tgz#3159d1193d788c9c050778b73f3249bff82e8a5d"
+  integrity sha512-WrkG02Oy3ShsP7rRHt44wBF9xgPK7AuDcfRNWK4971Rj/855zzNXf5PM0GjwfAIdXIXKoo8gxZTBpkea/0lm/g==
   dependencies:
     intact-shared "^3.0.0-beta.7"
 
@@ -13647,8 +13648,8 @@ vary@^1, vary@~1.1.2:
 
 vdt-compiler@^3.0.0-beta.7:
   version "3.0.0-beta.7"
-  resolved "https://registry.nlark.com/vdt-compiler/download/vdt-compiler-3.0.0-beta.7.tgz#7dd730420773eff0ee5fd958db01cb575c41f738"
-  integrity sha1-fdcwQgdz7/DuX9lY2wHLV1xB9zg=
+  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.0-beta.7.tgz#7dd730420773eff0ee5fd958db01cb575c41f738"
+  integrity sha512-PptHKbX58l11MUn1riWcqc62Ok5j0/35Z3XXaqgTnFXeJoGaoFhcyUiDmL3kTp8WDpvgxiFqKgmMSFcnS6/1bQ==
   dependencies:
     intact-shared "^3.0.0-beta.7"
     misstime "^3.0.0-beta.7"
@@ -13665,8 +13666,8 @@ vdt-loader@^3.0.0-beta.1:
 
 vdt@^3.0.0-beta.7:
   version "3.0.0-beta.7"
-  resolved "https://registry.nlark.com/vdt/download/vdt-3.0.0-beta.7.tgz#baa457b4c1a939800ec6215e07221fd2261177bf"
-  integrity sha1-uqRXtMGpOYAOxiFeByIf0iYRd78=
+  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.0-beta.7.tgz#baa457b4c1a939800ec6215e07221fd2261177bf"
+  integrity sha512-tuzvZGgRnAH5QlVhZfpmIOTPCVC2PbHJVwwvFDpFvYfcK9ilMTCvm8aSGPugm4kA4mN9LvvjWEzpT1Zk5dYZMw==
   dependencies:
     intact-shared "^3.0.0-beta.7"
     misstime "^3.0.0-beta.7"

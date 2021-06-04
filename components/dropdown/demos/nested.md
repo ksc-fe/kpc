@@ -1,5 +1,14 @@
+---
+title: 嵌套菜单
+order: 4
+---
+
+`Dropdown`可以嵌套使用，实现级联菜单。子菜单需要指定展示的位置`position`。
+我们还可以通过`trigger`单独子菜单触发方式。
+
+```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import {Button} from 'kpc/components/button';
+import Button from 'kpc/components/button';
 import Icon from 'kpc/components/icon';
 
 <div>
@@ -52,15 +61,20 @@ import Icon from 'kpc/components/icon';
             <DropdownItem>item 3</DropdownItem>
         </DropdownMenu>
     </Dropdown>
-
-    <Dropdown trigger="click">
-        <Button type="primary">
-            click
-        </Button>
-        <DropdownMenu>
-            <DropdownItem>item 1</DropdownItem>
-            <DropdownItem disabled>item 2</DropdownItem>
-            <DropdownItem>item 2</DropdownItem>
-        </DropdownMenu>
-    </Dropdown>
 </div>
+```
+
+```styl
+/.k-dropdown-menu
+    .ion-ios-arrow-right
+        float right
+        height 32px
+        &:before
+            font-size inherit
+.k-icon
+    display inline-block
+    transition transform .25s ease-in-out
+.k-dropdown-open
+    .k-icon
+        transform rotate(180deg)
+```

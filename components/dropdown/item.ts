@@ -1,7 +1,9 @@
-import {Component, TypeDefs} from 'intact';
+import {Component, TypeDefs, inject} from 'intact';
 import template from './item.vdt';
 import {bind} from '../utils';
-import {useItemKeyboard} from './useKeyboard';
+import {useItemKeyboard, MenuKeyboardMethods} from './useKeyboard';
+import {Dropdown, DROPDOWN} from './dropdown';
+import {DropdownMenu, DROPDOWN_MENU} from './menu';
 
 export interface DropdownItemProps {
     disabled: boolean
@@ -19,7 +21,7 @@ const typeDefs: Required<TypeDefs<DropdownItemProps>> = {
 
 const defaults: Partial<DropdownItemProps> = {
     disabled: false,
-    hideOnSelect: false,
+    hideOnSelect: true,
 
     _isFocus: false,
 }
@@ -29,11 +31,37 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    private reset: MenuKeyboardMethods['reset'] | null = null;
+    private focus: MenuKeyboardMethods['focus'] | null = null;
+    private dropdown: Dropdown | null = null;
+
     init() {
-        useItemKeyboard(
-            () => this.set('_isFocus', true),
-            () => this.set('_isFocus', false)
-        );
+        this.dropdown = inject<Dropdown>(DROPDOWN)!;
+        const {reset, focus} = useKeyboardForDropdownItem(this); 
+
+        this.reset = reset;
+        this.focus = focus;
+    }
+
+    select() {
+        if (this.hasSubMenu()) return;
+
+        if (this.get('hideOnSelect')) {
+            // hide all dropdowns
+            let dropdown = this.dropdown;
+            do { dropdown!.hide(true); }
+            while (dropdown = dropdown!.dropdown);
+        }
+
+        this.trigger('select');
+    }
+
+    hasSubMenu() {
+        // TODO: wrapped by Tooltip
+        const parent = this.$parent;
+        if (parent instanceof Dropdown) {
+            return parent
+        }
     }
 
     @bind
@@ -41,17 +69,44 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
         if (this.get('disabled')) return;
 
         this.trigger('click', e);
+        this.select();
     }
 
     @bind
     private onMouseEnter(e: MouseEvent) {
         this.trigger('mouseenter', e);
         if (this.get('disabled')) return;
+
+        this.focus!(this);
     }
 
     @bind
     private onMouseLeave(e: MouseEvent) {
         this.trigger('mouseleave', e);
-        if (this.get('disabled')) return;
+        this.reset!();
     }
+}
+
+function useKeyboardForDropdownItem(dropdownItem: DropdownItem) {
+    const dropdownMenu = inject<DropdownMenu>(DROPDOWN_MENU)!;
+    const parent = dropdownItem.hasSubMenu();
+    const showMenu = () => {
+        if (parent) {
+            parent.show();
+            parent.menuVNode!.children!.focusByIndex!(0);
+        }
+    }
+
+    return useItemKeyboard({
+        onFocusin: () => dropdownItem.set('_isFocus', true),
+        onFocusout: () => dropdownItem.set('_isFocus', false),
+        onShowMenu: showMenu,
+        onHideMenu: () => {
+            dropdownMenu.dropdown!.hide(true); 
+        },
+        onSelect: () => {
+            showMenu();
+            dropdownItem.select();
+        },
+    });
 }
