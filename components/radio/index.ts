@@ -25,6 +25,8 @@ export default class Radio<T extends RadioProps = RadioProps> extends Component<
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    private elementRef = createRef<HTMLInputElement>();
+
     private isChecked(): boolean {
         return this.get('value') === this.get('trueValue');
     }

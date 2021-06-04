@@ -60,8 +60,8 @@ export default function makeStyles() {
                 height: ${radio.radioInnerWidth};
                 top: 50%;
                 left: 50%;
-                margin-left: s('-%s', ${radio.radioInnerWidth} / 2);
-                margin-top: s('-%s', ${radio.radioInnerWidth} / 2);
+                margin-left: calc(${radio.radioInnerWidth} / 2);
+                margin-top: calc(${radio.radioInnerWidth} / 2);
                 border-radius: 50%;
                 background-color: ${radio.radioCheckedColor};
                 transform: scale(0);

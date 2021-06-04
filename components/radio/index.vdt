@@ -44,7 +44,7 @@ const events = [
             value={ trueValue }
             tabindex="-1"
             { ...getRestProps(this, rest) }
-            createRef="input"
+            ref={this.elementRef}
             checked={ value === trueValue }
             ev-click={ 
                 // (e) => {
