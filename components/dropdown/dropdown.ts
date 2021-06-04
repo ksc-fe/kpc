@@ -17,6 +17,7 @@ import {Options, position, Feedback} from '../position';
 import {cx} from '@emotion/css';
 import {DropdownMenu} from './menu';
 import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
+import {Portal} from '../portal';
 
 export type Position = Options 
 
@@ -91,13 +92,15 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
 
         this.menuVNode = menu;
 
-        return [clonedTrigger, menu];
+        // wrap the root dropdown menu to Portal to render into body
+        return [clonedTrigger, !this.rootDropdown ? h(Portal, {children: menu}) : menu];
     };
 
     private timer: number | undefined = undefined;
     private triggerProps: any = null;
     public menuVNode: VNodeComponentClass<DropdownMenu> | null = null;
     public dropdown: Dropdown | null = null;
+    public rootDropdown: Dropdown | null = null;
 
     init() {
         provide(DROPDOWN, this);
@@ -106,10 +109,10 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         useDocumentClickForDropdown(this);
 
         // is root dropdown or not
-        // const rootDropdown = inject(ROOT_DROPDOWN, null);
-        // if (!rootDropdown) {
-            // provide(ROOT_DROPDOWN, this);
-        // }
+        const rootDropdown = this.rootDropdown = inject(ROOT_DROPDOWN, null);
+        if (!rootDropdown) {
+            provide(ROOT_DROPDOWN, this);
+        }
 
         this.watch('value', (value) => {
             if (value) {
