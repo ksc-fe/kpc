@@ -1,0 +1,5 @@
+import {Tooltip} from 'kpc/components/tooltip';
+
+<Tooltip content="hello">
+    hover the text
+</Tooltip>

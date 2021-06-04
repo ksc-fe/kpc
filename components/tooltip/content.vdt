@@ -1,0 +1,7 @@
+const {children} = this.get();
+
+<t:super transition={{name: 'k-fade', onEnter: this.onEnter}}>
+    <b:children>
+        {children}
+    </b:children>
+</t:super>

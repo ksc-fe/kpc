@@ -39,7 +39,7 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
 
     // no matter what the trigger is, we should show menu when enter into it.
     @bind
-    private onMouseEnter(e: MouseEvent) {
+    protected onMouseEnter(e: MouseEvent) {
         this.dropdown!.show();
         this.trigger('mouseenter', e);
     }

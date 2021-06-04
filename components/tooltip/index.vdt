@@ -1,0 +1,30 @@
+import Tooltip from './tooltip';
+import TooltipContent from './content';
+import {Button} from '../button';
+import makeStyles from './styles';
+
+const {className, children, content, showArrow, confirm} = this.get();
+
+const classNameObj = {
+    'k-tooltip-content': true,
+    [makeStyles()]: true,
+}
+
+<Tooltip value={true}>
+    {children}
+    <TooltipContent class={classNameObj}>
+        <i v-if={showArrow}
+            class={{
+                "k-arrow": true,
+            }}
+            ref="arrow"
+        ></i>
+        {content}
+        <div class="k-buttons" v-if={confirm}>
+            <b:buttons>
+                <Button ev-click={this._cancel} size="small">{this.get('cancelText')}</Button>
+                <Button type="primary" ev-click={this._ok} size="small">{this.get('okText')}</Button>
+            </b:buttons>
+        </div>
+    </TooltipContent>
+</Tooltip>

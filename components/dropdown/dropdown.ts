@@ -9,15 +9,16 @@ import {
     provide,
     inject,
     findDomFromVNode,
+    createVNode,
 } from 'intact';
 import template from './index.vdt';
-import {bind} from '../utils';
+import {bind, isTextChildren} from '../utils';
 import {EMPTY_OBJ, isFunction} from 'intact-shared';
 import {Options, position, Feedback} from '../position';
 import {cx} from '@emotion/css';
 import {DropdownMenu} from './menu';
 import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
-import {Portal} from '../portal';
+import {Portal, PortalProps} from '../portal';
 
 export type Position = Options 
 
@@ -32,7 +33,7 @@ export interface DropdownProps {
     value?: boolean
     position?: Position
     of?: 'self' | 'parent' | Event
-    container?: string | Function
+    container?: PortalProps['container']
 }
 
 const typeDefs: Required<TypeDefs<DropdownProps>> = {
@@ -60,12 +61,14 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         const children = this.get('children');
         if (process.env.NODE_ENV !== 'production') {
             if (!Array.isArray(children) || children.length !== 2) {
-                throw new Error('Dropdown must receive two children, one is a trigger and another one is DropdownMenu');
+                throw new Error(
+                    'Dropdown must receive two children, ' + 
+                    'one is a trigger and another one is DropdownMenu'
+                );
             }
         }
 
         const [trigger, menu] = children as DropdownChildren;
-        const triggerProps = this.triggerProps = trigger.props || EMPTY_OBJ;
         const triggerType = this.get('trigger');
         const props: Record<string, Function> = {};
 
@@ -79,7 +82,10 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
             props['ev-contextmenu'] = this.onContextMenu;
         }
 
-        const clonedTrigger = directClone(trigger);
+        const clonedTrigger = isTextChildren(trigger) ? 
+            createVNode('span', null, trigger) :
+            directClone(trigger);
+        const triggerProps = this.triggerProps = trigger.props || EMPTY_OBJ;
         // add a className for opening status
         let className = trigger.className || triggerProps.className;
         className = cx({
@@ -92,8 +98,13 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
 
         this.menuVNode = menu;
 
-        // wrap the root dropdown menu to Portal to render into body
-        return [clonedTrigger, !this.rootDropdown ? h(Portal, {children: menu}) : menu];
+        return [
+            clonedTrigger,
+            // wrap the root dropdown menu to Portal to render into body
+            !this.rootDropdown ?
+                h(Portal, {children: menu, container: this.get('container')}) :
+                menu
+        ];
     };
 
     private timer: number | undefined = undefined;

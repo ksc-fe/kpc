@@ -1,4 +1,3 @@
-/* import MoveWrapper from '../moveWrapper'; */
 import {Transition} from 'intact';
 import makeStyles from './menuStyles';
 
@@ -11,10 +10,11 @@ const classNameObj = {
     [makeStyles()]: true,
 };
 
+const transition = $props.transition || {css: false, ...this.transition};
+
 <Transition 
-    css={false}
     show={value}
-    {...this.transition}
+    {...transition}
 >
     <div
         class={classNameObj}

@@ -34,4 +34,12 @@ injectGlobal`
             }
         `
     }).join('')}
+    .k-fade-enter-from,
+    .k-fade-leave-to {
+        opacity: 0 !important;
+    }
+    .k-fade-enter-active,
+    .k-fade-leave-active {
+        transition: opacity ${theme.transition};
+    }
 `;
