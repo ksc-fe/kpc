@@ -7,7 +7,8 @@ import {
     createTextVNode,
     mount,
     removeVNodeDom,
-    patch
+    patch,
+    remove,
 } from 'intact';
 import {isString} from 'intact-shared';
 
@@ -57,20 +58,28 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         // update container if it has changed
         const lastProps = lastVNode.props!;
         const nextProps = nextVNode.props!;
+        const lastContainer = this.container!;
         if (lastProps.container !== nextProps.container) {
             this.initContainer(nextProps.container, parentDom, anchor);
         }
+        const nextContainer = this.container!;
 
-        patch(
-            lastProps.children as VNode,
-            nextProps.children as VNode,
-            this.container!,
-            this,
-            this.$SVG,
-            anchor,
-            mountedQueue,
-            false
-        );
+        if (lastContainer === nextContainer) {
+            patch(
+                lastProps.children as VNode,
+                nextProps.children as VNode,
+                nextContainer,
+                this,
+                this.$SVG,
+                anchor,
+                mountedQueue,
+                false,
+            );
+        } else {
+            remove(lastProps.children as VNode, lastContainer);
+            mount(nextProps.children as VNode, nextContainer, this, this.$SVG, anchor, mountedQueue);
+        }
+
         super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
     }
 

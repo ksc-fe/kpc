@@ -36,7 +36,7 @@ export interface DropdownProps {
     container?: PortalProps['container']
 }
 
-const typeDefs: Required<TypeDefs<DropdownProps>> = {
+export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     trigger: ['hover', 'click', 'contextmenu'],
     disabled: Boolean,
     value: Boolean,
@@ -46,7 +46,7 @@ const typeDefs: Required<TypeDefs<DropdownProps>> = {
     container: [String, Function],
 };
 
-const defaults: Partial<DropdownProps> = {
+export const defaults: Partial<DropdownProps> = {
     trigger: 'hover',
     disabled: false,
     value: false,
@@ -128,7 +128,6 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         this.watch('value', (value) => {
             if (value) {
                 this.trigger('show');
-                // this.position();
             } else {
                 this.trigger('hide');
             }

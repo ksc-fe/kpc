@@ -7,13 +7,15 @@ const {children, className} = this.get();
 const classNameObj = {
     'k-dropdown-menu': true,
     [className]: className,
+    [$props.className]: $props.className,
     [makeStyles()]: true,
 };
 
 const transition = $props.transition || {css: false, ...this.transition};
 
 <Transition 
-    show={value}
+    show={'value' in $props ? $props.value : value}
+    appear={true}
     {...transition}
 >
     <div
