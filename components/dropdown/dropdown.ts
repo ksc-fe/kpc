@@ -140,6 +140,13 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
                 }
             }, {presented: true});
         });
+
+        // if disabled, always set value to false
+        this.watch('disabled', disabled => {
+            if (disabled) {
+                this.set('value', false);
+            }
+        });
     }
 
     show() {

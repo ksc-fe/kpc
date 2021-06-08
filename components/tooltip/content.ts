@@ -59,22 +59,25 @@ export default class TooltipContent<T extends TooltipContentProps = TooltipConte
 
     @bind
     protected onMouseEnter(e: MouseEvent) {
-        if (this.dropdown!.get('hoverable')) {
-            this.dropdown!.show();
+        const dropdown = this.dropdown!; 
+        if (dropdown.get('hoverable')) {
+            dropdown!.show();
         }
-        this.trigger('mouseenter', e);
+        dropdown.trigger('mouseenter', e);
     }
 
     @bind
     private ok() {
-        this.dropdown!.hide(true);
-        this.trigger('ok');
+        const dropdown = this.dropdown!; 
+        dropdown.hide(true);
+        dropdown.trigger('ok');
     }
 
     @bind
     private cancel() {
-        this.dropdown!.hide(true);
-        this.trigger('cancel');
+        const dropdown = this.dropdown!; 
+        dropdown.hide(true);
+        dropdown.trigger('cancel');
     }
 }
 

@@ -24,11 +24,10 @@ import Button from 'kpc/components/button';
 </div>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+// import Message from 'kpc/components/message';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
     ok() {

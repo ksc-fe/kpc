@@ -18,7 +18,7 @@ import {ButtonGroup, Button} from 'kpc/components/button';
         <Button>click</Button>
     </Tooltip>
     <Tooltip hoverable content="the text can be hovered">
-        <Button>can hover</Button>
+        <Button>hoverable</Button>
     </Tooltip>
 </ButtonGroup>
 ```

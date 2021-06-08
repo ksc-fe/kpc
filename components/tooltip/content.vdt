@@ -5,7 +5,7 @@ const {
     showArrow, confirm, className,
     theme, hoverable, trigger,
     value, cancelText, okText,
-    size, disabled,
+    size,
 } = this.dropdown.get();
 const {
     children,
@@ -21,7 +21,7 @@ const classNameObj = {
 };
 
 <t:super
-    value={value && !disabled && !this.isEmptyChildren}
+    value={value && !this.isEmptyChildren}
     transition={{name: 'k-fade', onEnter: this.onEnter}}
     class={classNameObj}
 >

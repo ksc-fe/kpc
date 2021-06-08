@@ -1,7 +1,7 @@
 import {Transition} from 'intact';
 import makeStyles from './menuStyles';
 
-const {value, trigger, container, disabled} = this.dropdown.get();
+const {value, trigger, container} = this.dropdown.get();
 const {children, className} = this.get();
 
 const classNameObj = {
@@ -14,7 +14,7 @@ const classNameObj = {
 const transition = $props.transition || {css: false, ...this.transition};
 
 <Transition 
-    show={'value' in $props ? $props.value : value && !disabled}
+    show={'value' in $props ? $props.value : value}
     appear={true}
     {...transition}
 >

@@ -12,7 +12,7 @@ order: 5
 import Tooltip from 'kpc/components/tooltip';
 
 <div style={{position: 'relative'}}>
-    <Tooltip content="hello xxxx" always value={true} canHover 
+    <Tooltip content="hello" always value={true} canHover 
         container={dom => dom.parentElement}
     >
         always show this tootip 
