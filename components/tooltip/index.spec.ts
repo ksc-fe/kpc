@@ -12,24 +12,24 @@ import Radio from 'kpc/components/radio';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Tooltip', () => {
-    let instance;
+    let instance: Component | null;
 
-    // afterEach((done) => {
-        // if (instance) {
-            // unmount(instance);
-            // instance = null;
-        // }
-        // setTimeout(done, 500);
-    // });
+    afterEach((done) => {
+        if (instance) {
+            unmount(instance);
+            instance = null;
+        }
+        setTimeout(done, 500);
+    });
 
     it('should show and hide content correctly', async () => {
         instance = mount(BasicDemo);
 
-        const element = findDomFromVNode(instance.$lastInput);
-        const [first, , second, , disabled] = element.querySelectorAll('span');
+        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
+        const [first, , second, , disabled] = Array.from<HTMLElement>(element.querySelectorAll('span'));
         dispatchEvent(first, 'mouseenter');
         await wait(0);
-        let content = getElement('.k-tooltip-content');
+        let content = getElement('.k-tooltip-content')!;
         expect(content.textContent).eql('hello');
 
         // should not show
@@ -47,7 +47,7 @@ describe('Tooltip', () => {
         // should hide
         dispatchEvent(first, 'mouseleave');
         await wait(300);
-        content = getElement('.k-tooltip-content');
+        content = getElement('.k-tooltip-content')!;
         expect(content).be.undefined;
     });
 
@@ -98,15 +98,15 @@ describe('Tooltip', () => {
     it('should trigger correctly', async () => {
         instance = mount(TriggerDemo);
 
-        const element = findDomFromVNode(instance.$lastInput);
-        const [hover, click, canHover] = element.querySelectorAll('.k-btn');
+        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
+        const [hover, click, canHover] = Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
         click.click();
         await wait();
-        let content = getElement('.k-tooltip-content');
+        let content = getElement('.k-tooltip-content')!;
         expect(content.textContent).to.matchSnapshot();
 
         // should not hide
-        content.click();
+        (content as HTMLElement).click();
         await wait();
         let content1 = getElement('.k-tooltip-content');
         expect(content).eql(content1);
@@ -121,13 +121,13 @@ describe('Tooltip', () => {
     it('should hoverable', async () => {
         instance = mount(TriggerDemo);
 
-        const element = findDomFromVNode(instance.$lastInput);
-        const [, , canHover] = element.querySelectorAll('.k-btn');
+        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
+        const [, , canHover] = Array.from(element.querySelectorAll('.k-btn'));
         dispatchEvent(canHover, 'mouseenter');
         await wait();
         dispatchEvent(canHover, 'mouseleave');
         await wait();
-        const content = getElement('.k-tooltip-content');
+        const content = getElement('.k-tooltip-content')!;
         dispatchEvent(content, 'mouseenter');
         await wait(300);
         const content1 = getElement('.k-tooltip-content');
@@ -159,20 +159,20 @@ describe('Tooltip', () => {
         instance.refs.__test.on('cancel', cancelCb);
         instance.refs.__test.on('ok', okCb);
 
-        const element = findDomFromVNode(instance.$lastInput);
+        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         dispatchEvent(element.children[0], 'click');
         await wait();
-        let content = getElement('.k-tooltip-content');
-        // expect(content.querySelector('.k-tooltip-buttons').outerHTML).to.matchSnapshot();
+        let content = getElement('.k-tooltip-content')!;
+        expect((content.querySelector('.k-tooltip-buttons') as HTMLElement).outerHTML).to.matchSnapshot();
 
-        content.querySelector('.k-btn').click();
+        (content.querySelector('.k-btn') as HTMLElement).click();
         await wait(300);
         expect(content.style.display).eql('none');
 
-        dispatchEvent(element.children[0], 'click');
+        dispatchEvent(element.firstElementChild!, 'click');
         await wait(0);
-        content = getElement('.k-tooltip-content');
-        const [, btn] = content.querySelectorAll('.k-btn');
+        content = getElement('.k-tooltip-content')!;
+        const [, btn] = Array.from<HTMLElement>(content.querySelectorAll('.k-btn'));
         btn.click();
 
         await wait(300);
@@ -184,15 +184,15 @@ describe('Tooltip', () => {
     it('should always show tooltip', async () => {
         instance = mount(AlwaysDemo);
 
-        const element = findDomFromVNode(instance.$lastInput);
-        const content = getElement('.k-tooltip-content');
+        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
+        const content = getElement('.k-tooltip-content')!;
         expect(content.textContent).eql('hello');
 
         document.body.click();
         await wait(300);
         expect(getElement('.k-tooltip-content')).eql(content);
 
-        element.querySelector('span').click();
+        (element.querySelector('span') as HTMLElement).click();
         await wait(300);
         expect(getElement('.k-tooltip-content')).eql(content);
 
@@ -287,9 +287,7 @@ describe('Tooltip', () => {
                 </div>
             `;
             static defaults = {disabled: false};
-            init() {
-                this.Tooltip = Tooltip;
-            }
+            Tooltip = Tooltip;
         }
 
         instance = mount(Demo);
@@ -297,7 +295,7 @@ describe('Tooltip', () => {
         dispatchEvent(instance.refs.test, 'mouseenter');
         await wait();
         let content = getElement('.k-tooltip-content');
-        expect(content.textContent).eql('hello');
+        expect(content!.textContent).eql('hello');
 
         instance.set('disabled', true);
         await wait(300);
@@ -310,35 +308,34 @@ describe('Tooltip', () => {
         expect(content).eql(undefined);
     });
 
-    // it('should not detect collison when target is not in viewport', async () => {
-        // class Demo extends Intact {
-            // @Intact.template()
-            // static template = `
-                // <div>
-                    // <Tooltip v-model="show"content="hello">
-                        // <div ref="test">test</div>
-                    // </Tooltip>
-                // </div>
-            // `;
-            // defaults() {
-                // this.Tooltip = Tooltip;
-                // return {show: false};
-            // }
-            // _mount() {
-                // const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                // this.element.parentNode.style.height = `${windowHeight * 2}px`;
-            // }
-        // }
+    it('should not detect collison when target is not in viewport', async () => {
+        class Demo extends Component {
+            static template = `
+                const Tooltip = this.Tooltip;
+                <div>
+                    <Tooltip v-model="show" content="hello">
+                        <div ref="test">test</div>
+                    </Tooltip>
+                </div>
+            `;
+            static defaults = {show: false};
+            Tooltip = Tooltip;
+            mounted() {
+                const element = findDomFromVNode(this.$lastInput!, true) as Element;
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                (element.parentNode as HTMLElement).style.height = `${windowHeight * 2}px`;
+            }
+        }
 
-        // instance = mount(Demo);
+        instance = mount(Demo);
 
-        // await wait(500);
-        // window.scrollTo(0, 10000);
+        await wait(500);
+        window.scrollTo(0, 10000);
 
-        // instance.set('show', true);
+        instance.set('show', true);
 
-        // await wait(500);
-        // const content = getElement('.k-tooltip-content');
-        // expect(content.getBoundingClientRect().top < 0).to.be.true;
-    // });
+        await wait(500);
+        const content = getElement('.k-tooltip-content')!;
+        expect(content.getBoundingClientRect().top < 0).to.be.true;
+    });
 });

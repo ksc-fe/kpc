@@ -2117,6 +2117,11 @@
   resolved "https://registry.nlark.com/@types/minimist/download/@types/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha1-KD9mn/dte4Jg34q3pCYsyD2YglY=
 
+"@types/mocha@^8.2.2":
+  version "8.2.2"
+  resolved "https://registry.nlark.com/@types/mocha/download/@types/mocha-8.2.2.tgz?cache=0&sync_timestamp=1621241882739&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fmocha%2Fdownload%2F%40types%2Fmocha-8.2.2.tgz#91daa226eb8c2ff261e6a8cbf8c7304641e095e0"
+  integrity sha1-kdqiJuuML/Jh5qjL+McwRkHgleA=
+
 "@types/node@*", "@types/node@>=10.0.0":
   version "15.3.0"
   resolved "https://registry.nlark.com/@types/node/download/@types/node-15.3.0.tgz?cache=0&sync_timestamp=1621357684669&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-15.3.0.tgz#d6fed7d6bc6854306da3dea1af9f874b00783e26"

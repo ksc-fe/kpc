@@ -35,7 +35,7 @@ export const defaults: Partial<TooltipProps> = {
     ...dropdownDefaults,
     showArrow: true,
     theme: 'dark',
-    position: {my: 'center bottom-10', at: 'center top'},
+    position: {my: 'center bottom-10', at: 'center top', collision: 'flipfit'},
     hoverable: false,
     always: false,
     confirm: false,

@@ -9,9 +9,11 @@ please run:
 `
 );
 
+const isDebug = !process.env.UPDATE && !process.env.CI
+
 module.exports = function (config) {
     config.set({
-        browsers: process.env.UPDATE || process.env.CI ? ['MyChromeHeadless'] : undefined,
+        browsers: !isDebug ? ['MyChromeHeadless'] : undefined,
         customLaunchers: {
             'MyChromeHeadless': {
                 base: 'ChromeHeadless',
@@ -50,6 +52,6 @@ module.exports = function (config) {
         },
         logLevel: config.LOG_INFO,
         // webpack doesn't watch files when singeRun is true. https://github.com/ryanclark/karma-webpack/issues/448
-        // singleRun: true,
+        singleRun: !isDebug,
     });
 };

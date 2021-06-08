@@ -21,8 +21,6 @@ export default function Tooltip(props: Props<TooltipProps, BaseTooltip>) {
         children: content
     });
 
-    console.log(rest);
-
     return h(BaseTooltip, {
         children: [children, contentVNode],
         ...rest,

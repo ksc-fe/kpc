@@ -1,4 +1,4 @@
-import {render, ComponentConstructor, Component, createVNode as h} from 'intact';
+import {render, ComponentConstructor, Component, createVNode as h, findDomFromVNode} from 'intact';
 // import {nextFrame as _nextFrame} from '../components/utils';
 // import {createApp, render as vueRender} from 'vue';
 
@@ -9,7 +9,7 @@ import {render, ComponentConstructor, Component, createVNode as h} from 'intact'
     // return c;
 // }
 
-export function mount(Component: ComponentConstructor, style: any, data: any) {
+export function mount(Component: ComponentConstructor, style?: Record<string, string>, data?: Record<string, string>) {
     const container = document.createElement('div');
     container.setAttribute('style', "width: 800px; height: 1080px; overflow: auto");
     if (style) {
@@ -35,14 +35,16 @@ export function mount(Component: ComponentConstructor, style: any, data: any) {
     return instance!;
 }
 
-export function unmount(instance: any) {
-    if (instance && !instance.destroyed) {
-        instance.destroy();
-        document.body.removeChild(instance.element.parentElement);
+export function unmount(instance: Component) {
+    if (instance && !instance.$unmounted) {
+        const element = findDomFromVNode(instance.$lastInput!, true);
+        const container = element!.parentElement!;
+        render(null, container);
+        document.body.removeChild(container);
     }
 }
 
-export function dispatchEvent(target: HTMLElement, eventName: string, options: object) {
+export function dispatchEvent(target: Element, eventName: string, options?: Record<string, string>) {
     let event: Event;
     if (document.createEvent) {
         event = document.createEvent('Event');
@@ -61,7 +63,7 @@ export function getElement(query: string) {
     const elements = document.querySelectorAll(query);
     for (let i = elements.length - 1; i > -1; i--) {
         if ((elements[i] as HTMLElement).style.display !== 'none') {
-            return elements[i];
+            return elements[i] as HTMLElement;
         }
     }
 }
