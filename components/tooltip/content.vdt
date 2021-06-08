@@ -5,6 +5,7 @@ const {
     showArrow, confirm, className,
     theme, hoverable, trigger,
     value, cancelText, okText,
+    size, disabled,
 } = this.dropdown.get();
 const {
     children,
@@ -13,13 +14,14 @@ const {
 
 const classNameObj = {
     'k-tooltip-content': true,
-    [`k-${theme}`]: true,
     'k-hoverable': hoverable || trigger === 'click',
+    [`k-${theme}`]: true,
+    [`k-${size}`]: size !== 'default',
     [makeStyles()]: true,
 };
 
 <t:super
-    value={value && !this.isEmptyChildren}
+    value={value && !disabled && !this.isEmptyChildren}
     transition={{name: 'k-fade', onEnter: this.onEnter}}
     class={classNameObj}
 >
@@ -34,8 +36,8 @@ const classNameObj = {
         ></i>
         <div class="k-tooltip-buttons" v-if={confirm}>
             <b:buttons>
-                <Button ev-click={this._cancel} size="small">{cancelText}</Button>
-                <Button type="primary" ev-click={this._ok} size="small">{okText}</Button>
+                <Button type="primary" ev-click={this.ok} size="small">{okText}</Button>
+                <Button ev-click={this.cancel} size="small">{cancelText}</Button>
             </b:buttons>
         </div>
     </b:children>

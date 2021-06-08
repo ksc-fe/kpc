@@ -64,6 +64,18 @@ export default class TooltipContent<T extends TooltipContentProps = TooltipConte
         }
         this.trigger('mouseenter', e);
     }
+
+    @bind
+    private ok() {
+        this.dropdown!.hide(true);
+        this.trigger('ok');
+    }
+
+    @bind
+    private cancel() {
+        this.dropdown!.hide(true);
+        this.trigger('cancel');
+    }
 }
 
 function isEmptyChildren(vNodes: Children): boolean {

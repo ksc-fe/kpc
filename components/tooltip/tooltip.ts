@@ -16,6 +16,7 @@ export interface TooltipProps extends DropdownProps {
     confirm?: boolean
     okText?: string
     cancelText?: string
+    size: 'small' | 'default'
 }
 
 export const typeDefs: Required<TypeDefs<TooltipProps>> = {
@@ -27,6 +28,7 @@ export const typeDefs: Required<TypeDefs<TooltipProps>> = {
     confirm: Boolean,
     okText: String,
     cancelText: String,
+    size: ['small', 'default']
 };
 
 export const defaults: Partial<TooltipProps> = {
@@ -39,6 +41,7 @@ export const defaults: Partial<TooltipProps> = {
     confirm: false,
     get okText() { return _$('确定') },
     get cancelText() { return _$('取消') },
+    size: 'default',
 }
 
 export default class Tooltip<T extends TooltipProps = TooltipProps> extends Dropdown<T> {

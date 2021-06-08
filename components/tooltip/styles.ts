@@ -18,7 +18,7 @@ const {tooltip} = deepDefaults(theme, {
         },
 
         // confirm
-        comfirm: {
+        confirm: {
             gaps: '8px',
         },
 
@@ -154,6 +154,19 @@ export default function makeStyles() {
                     }
                 `
             })}
+
+            // confirm
+            .k-tooltip-buttons {
+                padding-top: ${tooltip.confirm.gaps};
+                .k-btn:last-of-type {
+                    margin-left: ${tooltip.confirm.gaps};
+                }
+            }
+
+            // size
+            &.k-small {
+                padding: ${tooltip.smallPadding};
+            }
         }
     `
 }
