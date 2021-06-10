@@ -19,5 +19,5 @@ const classNameObj = {
 
 <div {...getRestProps(this)} class={classNameObj}>
     {children}
-    <sup class="k-text" v-if={!disabled}>{text}</sup>
+    <sup class="k-badge-text" v-if={!disabled}>{text}</sup>
 </div>

@@ -7,7 +7,7 @@ const {badge} = deepDefaults(theme, {
     badge: {
         width: '8px',
         get height() { return badge.width },
-        bgColor: '#db2828',
+        bgColor: '#ff4133',
     
         // has-text
         textHeight: '16px',
@@ -23,7 +23,7 @@ export default function makeStyles() {
         display: inline-block;
         position: relative;
         vertical-align: middle;
-        > .k-text {
+        > .k-badge-text {
             display: inline-block;
             position: absolute;
             width: ${badge.width};
@@ -33,11 +33,13 @@ export default function makeStyles() {
             right: 0;
             transform: translate(50%, -50%);
             background: ${badge.bgColor};
+            font-size: 75%;
+            vertical-align: baseline;
         }
             
         // has-text
         &.k-has-text
-            > .k-text {
+            > .k-badge-text {
                 width: auto;
                 height: ${badge.textHeight};
                 line-height: ${badge.textHeight};
@@ -48,7 +50,7 @@ export default function makeStyles() {
                 
         // alone
         &.k-alone
-            > .k-text {
+            > .k-badge-text {
                 position: static;
                 transform: none;
             }            
