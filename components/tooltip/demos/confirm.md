@@ -31,11 +31,11 @@ export default class extends Component {
     static template = template;
 
     ok() {
-        Message.success('Clicked ok!');
+        // Message.success('Clicked ok!');
     }
 
     cancel() {
-        Message.info('Clicked cancel!');
+        // Message.info('Clicked cancel!');
     }
 }
 ```
