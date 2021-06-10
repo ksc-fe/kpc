@@ -14,10 +14,12 @@ export function useRecordItem<T = Component>(
     key: string = RECORD_COMPONENT,
     item: any = useInstance()
 ) {
-    const items = inject<T[]>(key)!;
+    const items = inject<T[]>(key);
 
-    onMounted(() => items.push(item));
-    onUnmounted(() => items.splice(items.indexOf(item), 1));
+    if (items) {
+        onMounted(() => items.push(item));
+        onUnmounted(() => items.splice(items.indexOf(item), 1));
+    }
 
     return items;
 }

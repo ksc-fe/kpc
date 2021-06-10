@@ -9,8 +9,9 @@ import {render, ComponentConstructor, Component, createVNode as h, findDomFromVN
     // return c;
 // }
 
-export function mount(Component: ComponentConstructor, style?: Record<string, string>, data?: Record<string, string>) {
-    const container = document.createElement('div');
+let container: HTMLDivElement | null = null;
+export function mount<T extends Component>(Component: ComponentConstructor<T>, style?: Record<string, string>, data?: Record<string, string>) {
+    container = document.createElement('div');
     container.setAttribute('style', "width: 800px; height: 1080px; overflow: auto");
     if (style) {
         for (let key in style) {
@@ -21,8 +22,8 @@ export function mount(Component: ComponentConstructor, style?: Record<string, st
         container.className = 'example ' + data.index;
     }
     document.body.appendChild(container);
-    let instance: Component;
-    render(h(Component, {ref: (i: Component) => instance = i}), container);
+    let instance: T;
+    render(h(Component, {ref: (i: T) => instance = i} as any), container);
     // if (Component.prototype instanceof Component) {
         // instance = Intact.mount(Component, container);
         // render(h(Component), container);
@@ -35,12 +36,11 @@ export function mount(Component: ComponentConstructor, style?: Record<string, st
     return instance!;
 }
 
-export function unmount(instance: Component) {
-    if (instance && !instance.$unmounted) {
-        const element = findDomFromVNode(instance.$lastInput!, true);
-        const container = element!.parentElement!;
+export function unmount() {
+    if (container) {
         render(null, container);
         document.body.removeChild(container);
+        container = null;
     }
 }
 
