@@ -256,9 +256,9 @@ function writeIndex(file, metadata) {
         `export default class extends Article {`,
         sidebar ? `    static sidebar = sidebar;` : undefined,
         `    static data = data;`,
-        `    static defaults = {`,
+        `    static defaults = () => ({`,
         `        ...Article.defaults, ...data, demos`,
-        `    }`,
+        `    });`,
         `}`,
     ].join('\n');
 

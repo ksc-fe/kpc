@@ -23,14 +23,14 @@ const typeDefs: Required<TypeDefs<SearchProps>> = {
     _open: null,
 };
 
-const defaults: Partial<SearchProps> = {
+const defaults = (): Partial<SearchProps> => ({
     get placeholder() { return _$('请输入关键字') },
     value: '',
     type: 'default',
     size: 'default',
 
     _open: false,
-}
+});
 
 export default class Search<T extends SearchProps = SearchProps> extends Component<T> {
     static template = template;

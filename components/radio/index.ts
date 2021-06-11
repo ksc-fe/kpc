@@ -14,11 +14,11 @@ const typeDefs: Required<TypeDefs<RadioProps>> = {
     trueValue: Boolean,
 };
 
-const defaults: Partial<RadioProps> = {
+const defaults = (): Partial<RadioProps> => ({
     disabled: false,
     value: false,
     trueValue: true,
-} 
+});
 
 export default class Radio<T extends RadioProps = RadioProps> extends Component<T> {
     static template = template;

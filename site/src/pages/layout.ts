@@ -29,10 +29,10 @@ export interface LayoutProps {
 
 export default class Layout<T extends LayoutProps = LayoutProps> extends Component<T> {
     static template = template;
-    static defaults: Partial<LayoutProps> = {
+    static defaults = (): Partial<LayoutProps> => ({
         theme: theme,
         version: 'v1.1.1'
-    }
+    });
 
     private border: HTMLElement | null = null;
     protected element = createRef<HTMLDivElement>();

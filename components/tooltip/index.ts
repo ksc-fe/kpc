@@ -1,12 +1,12 @@
 import {Props, createVNode as h, Children} from 'intact';
 import {
-    default as BaseTooltip,
+    Tooltip as BaseTooltip,
     TooltipProps as BaseTooltipProps
 } from './tooltip';
-import TooltipContent from './content';
+import {TooltipContent} from './content';
 import {noop} from 'intact-shared';
 
-export interface TooltipProps extends BaseTooltip {
+export interface TooltipProps extends BaseTooltipProps {
     content: Children 
 }
 

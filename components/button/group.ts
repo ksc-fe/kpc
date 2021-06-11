@@ -15,11 +15,11 @@ const typeDefs: Required<TypeDefs<ButtonGroupProps>> = {
     checkType: ['none', 'radio', 'checkbox']
 };
 
-const defaults: Partial<ButtonGroupProps> = {
+const defaults = (): Partial<ButtonGroupProps> => ({
     vertical: false,
     checkType: 'none',
     fluid: false,
-};
+});
 
 export default class ButtonGroup<T extends ButtonGroupProps = ButtonGroupProps> extends Component<T> {
     static template = template;

@@ -46,15 +46,15 @@ export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     container: [String, Function],
 };
 
-export const defaults: Partial<DropdownProps> = {
+export const defaults = (): Partial<DropdownProps> => ({
     trigger: 'hover',
     disabled: false,
     value: false,
     position: {},
     of: 'self',
-};
+});
 
-export class Dropdown<T extends DropdownProps = DropdownProps> extends Component<DropdownProps> {
+export class Dropdown<T extends DropdownProps = DropdownProps> extends Component<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
     static template = function(this: Dropdown) {

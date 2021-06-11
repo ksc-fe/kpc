@@ -76,9 +76,9 @@ Form.addMethod('letter', (value, param) => {
 
 export default class extends Component<{descriptions: string[]}> {
     static template = template;
-    static defaults = {
+    static defaults = () => ({
         descriptions: ['', '']
-    };
+    });
 
     add() {
         this.set('descriptions', this.get('descriptions').concat(''));

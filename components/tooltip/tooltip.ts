@@ -31,20 +31,20 @@ export const typeDefs: Required<TypeDefs<TooltipProps>> = {
     size: ['small', 'default']
 };
 
-export const defaults: Partial<TooltipProps> = {
-    ...dropdownDefaults,
+export const defaults = (): Partial<TooltipProps> => ({
+    ...dropdownDefaults(),
     showArrow: true,
     theme: 'dark',
     position: {my: 'center bottom-10', at: 'center top', collision: 'flipfit'},
     hoverable: false,
     always: false,
     confirm: false,
-    get okText() { return _$('确定') },
-    get cancelText() { return _$('取消') },
+    okText: _$('确定'),
+    cancelText: _$('取消'),
     size: 'default',
-}
+});
 
-export default class Tooltip<T extends TooltipProps = TooltipProps> extends Dropdown<T> {
+export class Tooltip<T extends TooltipProps = TooltipProps> extends Dropdown<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 

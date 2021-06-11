@@ -2,13 +2,16 @@ import {createRef, nextTick, Children, VNode} from 'intact';
 import {DropdownMenu} from '../dropdown';
 import template from './content.vdt';
 import {bind, clamp} from '../utils';
+import {Tooltip} from './tooltip';
 
 export interface TooltipContentProps {
     _arrow?: string
 }
 
-export default class TooltipContent<T extends TooltipContentProps = TooltipContentProps> extends DropdownMenu<T> {
+export class TooltipContent<T extends TooltipContentProps = TooltipContentProps> extends DropdownMenu<T> {
     static template = template;
+
+    public dropdown: Tooltip | null = null;
 
     private arrowRef = createRef<HTMLElement>();
     private isEmptyChildren: boolean = true;

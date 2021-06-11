@@ -19,12 +19,12 @@ const typeDefs: Required<TypeDefs<DropdownItemProps>> = {
     _isFocus: null
 }
 
-const defaults: Partial<DropdownItemProps> = {
+const defaults = (): Partial<DropdownItemProps> => ({
     disabled: false,
     hideOnSelect: true,
 
     _isFocus: false,
-}
+});
 
 export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> extends Component<T> {
     static template = template;

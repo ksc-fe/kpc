@@ -47,7 +47,7 @@ const typeDefs: Required<TypeDefs<FormItemProps>> = {
     _message: null,
 };
 
-const defaults: Partial<FormItemProps> = {
+const defaults = (): Partial<FormItemProps> => ({
     isDirty: false,
     messages: {},
     classNames: {},
@@ -56,7 +56,7 @@ const defaults: Partial<FormItemProps> = {
     fluid: false,
 
     _ellipsis: false,
-};
+});
 
 export class FormItem<T extends FormItemProps = FormItemProps> extends Component<T> {
     static template = template;

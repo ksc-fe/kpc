@@ -19,10 +19,10 @@ export default class Icon<T extends IconProps = IconProps> extends Component<T> 
         rotate: Boolean,
     };
 
-    static defaults: Partial<IconProps> = {
+    static defaults = (): Partial<IconProps> => ({
         size: 'default',
         rotate: false,
-    }
+    });
 
     private colors = [...colors, 'default'];
 }
