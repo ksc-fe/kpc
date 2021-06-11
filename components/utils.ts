@@ -97,3 +97,7 @@ export function getRestProps<T>(component: Component<T>, props = component.get()
 export function clamp(number: number, lower: number, upper: number) {
     return Math.min(Math.max(number, lower), upper);
 }
+
+export function stopPropagation(e: Event) {
+    e.stopPropagation();
+}
