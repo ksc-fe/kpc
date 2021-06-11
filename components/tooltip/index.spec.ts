@@ -12,18 +12,13 @@ import Radio from 'kpc/components/radio';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 
 describe('Tooltip', () => {
-    let instance: Component | null;
-
     afterEach((done) => {
-        if (instance) {
-            unmount(instance);
-            instance = null;
-        }
+        unmount();
         setTimeout(done, 500);
     });
 
     it('should show and hide content correctly', async () => {
-        instance = mount(BasicDemo);
+        const instance = mount(BasicDemo);
 
         const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const [first, , second, , disabled] = Array.from<HTMLElement>(element.querySelectorAll('span'));
@@ -96,7 +91,7 @@ describe('Tooltip', () => {
     // });
 
     it('should trigger correctly', async () => {
-        instance = mount(TriggerDemo);
+        const instance = mount(TriggerDemo);
 
         const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const [hover, click, canHover] = Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
@@ -119,7 +114,7 @@ describe('Tooltip', () => {
     });
 
     it('should hoverable', async () => {
-        instance = mount(TriggerDemo);
+        const instance = mount(TriggerDemo);
 
         const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const [, , canHover] = Array.from(element.querySelectorAll('.k-btn'));
@@ -151,7 +146,7 @@ describe('Tooltip', () => {
     // });
 
     it('should handle confirm tooltip corectly', async () => {
-        instance = mount(ConfirmDemo);
+        const instance = mount(ConfirmDemo);
 
         const cancelCb = sinon.spy();
         const okCb = sinon.spy();
@@ -182,7 +177,7 @@ describe('Tooltip', () => {
     });
 
     it('should always show tooltip', async () => {
-        instance = mount(AlwaysDemo);
+        const instance = mount(AlwaysDemo);
 
         const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const content = getElement('.k-tooltip-content')!;
@@ -275,7 +270,7 @@ describe('Tooltip', () => {
     // });
 
     it('should hide layer when we have disabled Tooltip and also hide on next update', async () => {
-        class Demo extends Component {
+        class Demo extends Component<{disabled: boolean}> {
             static template = `
                 const Tooltip = this.Tooltip;
                 <div>
@@ -290,26 +285,26 @@ describe('Tooltip', () => {
             Tooltip = Tooltip;
         }
 
-        instance = mount(Demo);
+        const i = mount(Demo);
 
-        dispatchEvent(instance.refs.test, 'mouseenter');
+        dispatchEvent(i.refs.test, 'mouseenter');
         await wait();
         let content = getElement('.k-tooltip-content');
         expect(content!.textContent).eql('hello');
 
-        instance.set('disabled', true);
+        i.set('disabled', true);
         await wait(300);
         content = getElement('.k-tooltip-content');
         expect(content).eql(undefined);
 
-        instance.set('disabled', false);
+        i.set('disabled', false);
         await wait()
         content = getElement('.k-tooltip-content');
         expect(content).eql(undefined);
     });
 
     it('should not detect collison when target is not in viewport', async () => {
-        class Demo extends Component {
+        class Demo extends Component<{show: boolean}> {
             static template = `
                 const Tooltip = this.Tooltip;
                 <div>
@@ -327,12 +322,12 @@ describe('Tooltip', () => {
             }
         }
 
-        instance = mount(Demo);
+        const i = mount(Demo);
 
         await wait(500);
         window.scrollTo(0, 10000);
 
-        instance.set('show', true);
+        i.set('show', true);
 
         await wait(500);
         const content = getElement('.k-tooltip-content')!;

@@ -1,0 +1,71 @@
+import {getRestProps} from '../utils';
+import {Tooltip} from '../tooltip';
+import {Icon} from '../icon';
+import {Transition} from 'intact';
+import {makeItemStyles} from './styles';
+
+const {
+    className, children, label,
+    isDirty, hideLabel, htmlFor,
+    errorClassName, rules, fluid, 
+
+    _ellipsis, _isValid, _message
+} = this.get();
+
+const classNameObj = {
+    'k-form-item': true,
+    'k-invalid': isDirty && _isValid === false,
+    'k-valid': isDirty && _isValid === true,
+    [className]: className,
+    'k-fluid': fluid,
+    [makeItemStyles()]: true,
+};
+
+const starOnRequired = this.form && this.form.get('starOnRequired');
+const labelWidth = this.form && this.form.get('labelWidth');
+let labelStyle;
+if (labelWidth != null) {
+    if (/^\d+$/.test(labelWidth)) {
+        labelStyle = {width: labelWidth + 'px'};
+    } else {
+        labelStyle = {width: labelWidth};
+    }
+}
+
+<div {...getRestProps(this)}
+    class={classNameObj}
+    ev-change={this.onChange}
+    ev-focusout={this.onFocusout}
+>
+    <label for={htmlFor} class="k-form-label" v-if={!hideLabel}
+        style={labelStyle}
+    >
+        <span class="k-form-star" v-if={starOnRequired && rules && rules.required}>*</span>
+        <b:label>{label}</b:label>
+    </label>
+    <div class="k-form-content">
+        <b:content>{children}</b:content>
+        <Transition key="error" name="k-fade" >
+            <div v-if={_isValid === false}
+                class={{
+                    "k-form-error": true,
+                    [errorClassName]: errorClassName,
+                    'k-ellipsis': _ellipsis
+                }}
+            >
+                <div class="k-error-message c-ellipsis" ref={this.errorRef}>
+                    {_message}
+                </div>
+                <Tooltip hoverable position="bottom">
+                    <Icon class="ion-ios-information-outline k-form-error-more" size="small" />
+                    <b:content>
+                        {_message}
+                    </b:content>
+                </Tooltip>
+            </div>
+        </Transition>
+    </div>
+    <div class="k-form-append" v-if={$blocks.append}>
+        <b:append /> 
+    </div>
+</div>

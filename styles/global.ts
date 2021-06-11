@@ -42,4 +42,10 @@ injectGlobal`
     .k-fade-leave-active {
         transition: opacity ${theme.transition};
     }
+
+    .c-ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 `;

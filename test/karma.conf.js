@@ -1,5 +1,6 @@
 const {webpackConfig} = require('./webpack');
 const path = require('path');
+const os = require('os');
 
 console.log(
     '\x1b[33m%s\x1b[0m',
@@ -10,6 +11,12 @@ please run:
 );
 
 const isDebug = !process.env.UPDATE && !process.env.CI
+
+// for get font files
+// https://github.com/ryanclark/karma-webpack/issues/498#issuecomment-790040818
+const output = {
+    path: path.join(os.tmpdir(), '_karma_webpack_') + Math.floor(Math.random() * 1000000),
+};
 
 module.exports = function (config) {
     config.set({
@@ -25,12 +32,17 @@ module.exports = function (config) {
         files: [
             './index.ts',
             '**/__snapshots__/**/*.md',
+            {
+                pattern: `${output.path}/**/*`,
+                watched: false,
+                included: false,
+            }
         ],
         preprocessors: {
             './index.ts': ['webpack', 'sourcemap'],
             '**/__snapshots__/**/*.md': ['snapshot'],
         },
-        webpack: webpackConfig().toConfig(),
+        webpack: {...webpackConfig().toConfig(), output},
         coverageIstanbulReporter: {
             reports: [ 'html', 'lcovonly', 'text-summary' ],
             dir: path.join(__dirname, 'coverage'),
