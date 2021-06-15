@@ -9,6 +9,7 @@ import {bind} from '../utils';
 import {isFunction} from 'intact-shared';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {useDraggable} from './useDraggable';
+import {useEscClosable} from './useEscClosable';
 
 export interface DialogProps {
     title?: string
@@ -78,6 +79,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
 
     init() {
         useShowHideEvents();
+        useEscClosable();
         this.outsidable = useMouseOutsidable(); 
         this.drag = useDraggable();
     }
@@ -90,6 +92,8 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     private onEnter() {
         if (this.get('overlay')) {
             this.wrapperRef.value!.style.display = 'block';
+            onOpen();
+
         }
         this.center();
     }
@@ -98,6 +102,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     private onAfterLeave() {
         if (this.get('overlay')) {
             this.wrapperRef.value!.style.display = 'none';
+            onClosed();
         }
     }
 
@@ -118,6 +123,16 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         });
     }
 
+    /**
+     * @brief
+     * only be called by self when user clicks close button,
+     * presses ESC or clicks overlay
+     */
+    @bind
+    public terminate() {
+        this.btnCallback('terminate');
+    }
+
     @bind
     private ok() {
         this.btnCallback('ok');
@@ -127,17 +142,6 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     private cancel() {
         this.btnCallback('cancel');
     }
-
-    /**
-     * @brief
-     * only be called by self when user clicks close button,
-     * presses ESC or clicks overlay
-     */
-    @bind
-    private terminate() {
-        this.btnCallback('terminate');
-    }
-
     private btnCallback(type: 'ok' | 'cancel' | 'terminate') {
         const callback = this.get(type);
         if (isFunction(callback)) {
@@ -154,6 +158,36 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
             if (this.get('closable')) {
                 this.terminate();
             }
+        }
+    }
+}
+
+let amount = 0;
+let originalStyle: string | null = null;
+
+function onOpen() {
+    const body = document.body;
+    if (!amount) {
+        const bodyStyle = body.style;
+        originalStyle = body.getAttribute('style');
+        bodyStyle.overflow = 'hidden';
+
+        const scrollBarWidth = shouldFixBody();
+        if (scrollBarWidth) {
+            bodyStyle.paddingRight = `${scrollBarWidth}px`;
+        }
+    }
+    amount++;
+}
+
+function onClosed() {
+    const body = document.body;
+    amount--; 
+    if (!amount) {
+        if (originalStyle) {
+            body.setAttribute('style', originalStyle);
+        } else {
+            body.removeAttribute('style');
         }
     }
 }
