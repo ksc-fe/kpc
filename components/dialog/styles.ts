@@ -61,68 +61,44 @@ const {dialog} = deepDefaults(theme, {
     } 
 });
 
-export default function makeStyles() {
+export function makeDialogStyles() {
     return css`
         position: absolute;
-        z-index: ${theme.maxZIndex};
-        top: 0;
-        left: 0;
-        width: 100%;
+        width: ${dialog.width};
+        border-radius: ${dialog.borderRadius};
+        background: ${dialog.bgColor};
+        font-size: ${dialog.fontSize};
+        color: ${dialog.color};
         box-shadow: ${dialog.boxShadow};
-        .k-dialog-overlay,
-        .k-dialog-entity {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }    
-        .k-dialog-overlay {
-            background: #000;
-            opacity: 0.5;
-        }
-        .k-dialog-entity {
-            overflow: auto;
-            display: none;
+        max-width: 100%;
+
+        // drag
+        &.k-dragging {
+            cursor: move;
+            user-select: none;
         }
 
-        .k-dialog {
-            position: absolute;
-            width: ${dialog.width};
-            border-radius: ${dialog.borderRadius};
-            background: ${dialog.bgColor};
-            font-size: ${dialog.fontSize};
-            color: ${dialog.color};
-            max-width: 100%;
-
-            // drag
-            &.k-dragging {
-                cursor: move;
-                user-select: none;
-            }
-
-            // transition
-            &.transition-enter-active,
-            &.transition-leave-active,
-            &.transition-appear-active, {
-                transition: all ${theme.transition}
-            }
-            &.transition-enter-from,
-            &.transition-leave-to,
-            &.transition-appear-from {
-                transform: ${dialog.transform};
-                opacity: 0;
-            }
-
-            // size
-            ${(['large', 'small', 'mini'] as const).map(size => {
-                return css`
-                    &.k-${size} {
-                        width: ${dialog[`${size}Width` as const]}
-                    }
-                `
-            })}
+        // transition
+        &.transition-enter-active,
+        &.transition-leave-active,
+        &.transition-appear-active {
+            transition: all ${theme.transition}
         }
+        &.transition-enter-from,
+        &.transition-leave-to,
+        &.transition-appear-from {
+            transform: ${dialog.transform};
+            opacity: 0;
+        }
+
+        // size
+        ${(['large', 'small', 'mini'] as const).map(size => {
+            return css`
+                &.k-${size} {
+                    width: ${dialog[`${size}Width` as const]}
+                }
+            `
+        })}
 
         // header
         .k-dialog-header {
@@ -161,5 +137,19 @@ export default function makeStyles() {
                 margin-left: ${dialog.footer.btnGap};
             }
         }
+    `;
+}
+
+export function makeWrapperStyles() {
+    return css`
+        position: fixed;
+        z-index: ${theme.maxZIndex};
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        display: none;
+        background: rgba(0, 0, 0, .5);
     `;
 }

@@ -5,7 +5,7 @@
 import {onUnmounted, createRef} from 'intact';
 
 export function useMouseOutsidable() {
-    let mousedownRef = createRef<boolean>();
+    const mousedownRef = createRef<boolean>();
     let timer: number;
 
     function onMouseDown() {

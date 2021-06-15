@@ -7,6 +7,8 @@ import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {position, scrollbarWidth} from '../position';
 import {bind} from '../utils';
 import {isFunction} from 'intact-shared';
+import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
+import {useDraggable} from './useDraggable';
 
 export interface DialogProps {
     title?: string
@@ -26,8 +28,6 @@ export interface DialogProps {
     escClosable?: boolean
     width?: string | number
     mode?: 'destroy' | 'hide'
-
-    _dragging: boolean
 }
 
 const typeDefs: Required<TypeDefs<DialogProps>> = {
@@ -48,8 +48,6 @@ const typeDefs: Required<TypeDefs<DialogProps>> = {
     escClosable: Boolean,
     width: [String, Number],
     mode: ['destroy', 'hide'],
-
-    _dragging: null,
 };
 
 const defaults = (): Partial<DialogProps> => ({
@@ -64,9 +62,7 @@ const defaults = (): Partial<DialogProps> => ({
     overlay: true,
     closable: true,
     escClosable: true,
-    mode: 'destroy',
-
-    _dragging: false,
+    mode: 'hide',
 });
 
 export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
@@ -74,11 +70,16 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private dialogRef = createRef<HTMLDivElement>();
-    private entityRef = createRef<HTMLDivElement>();
+    public dialogRef = createRef<HTMLDivElement>();
+    public wrapperRef = createRef<HTMLDivElement>();
+
+    private outsidable: ReturnType<typeof useMouseOutsidable> | null = null;
+    private drag: ReturnType<typeof useDraggable> | null = null;
 
     init() {
         useShowHideEvents();
+        this.outsidable = useMouseOutsidable(); 
+        this.drag = useDraggable();
     }
 
     close() {
@@ -88,7 +89,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     @bind
     private onEnter() {
         if (this.get('overlay')) {
-            this.entityRef.value!.style.display = 'block';
+            this.wrapperRef.value!.style.display = 'block';
         }
         this.center();
     }
@@ -96,7 +97,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     @bind
     private onAfterLeave() {
         if (this.get('overlay')) {
-            this.entityRef.value!.style.display = 'none';
+            this.wrapperRef.value!.style.display = 'none';
         }
     }
 
@@ -127,13 +128,32 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         this.btnCallback('cancel');
     }
 
-    private btnCallback(type: 'ok' | 'cancel') {
+    /**
+     * @brief
+     * only be called by self when user clicks close button,
+     * presses ESC or clicks overlay
+     */
+    @bind
+    private terminate() {
+        this.btnCallback('terminate');
+    }
+
+    private btnCallback(type: 'ok' | 'cancel' | 'terminate') {
         const callback = this.get(type);
         if (isFunction(callback)) {
             callback();
         } else {
             this.trigger(type);
             this.close();
+        }
+    }
+
+    @bind
+    private onClickWrapper(e: MouseEvent) {
+        if (e.target === this.wrapperRef.value && !this.outsidable![1].value) {
+            if (this.get('closable')) {
+                this.terminate();
+            }
         }
     }
 }

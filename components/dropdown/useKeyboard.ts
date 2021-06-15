@@ -1,6 +1,7 @@
 import {useInstance, findDomFromVNode, provide, inject, Component} from 'intact';
 import {useRecordParent, useRecordItem} from '../../hooks/useRecordComponent';
 import {useKeyboard} from '../../hooks/useKeyboard';
+import {useState} from '../../hooks/useState';
 
 type ItemEvents = {
     onFocusin: () => void;
@@ -17,15 +18,17 @@ export enum Direction {
 
 export type MenuKeyboardMethods = {
     reset: () => void;
-    focus: (item: Component) => void;
+    focus: (item: ItemComponent) => void;
 }
+
+type ItemComponent = Component<{disabled: boolean}>
 
 const RECORD_FOCUS = 'RecordFocus';
 const MENU_KEYBOARD = 'MenuKeyboard';
 
 export function useMenuKeyboard() {
     const itemEvents = useRecordParent<ItemEvents>(RECORD_FOCUS);
-    const items = useRecordParent();
+    const items = useRecordParent<ItemComponent>();
     const instance = useInstance();
     let focusIndex = -1;
 
@@ -92,7 +95,7 @@ export function useMenuKeyboard() {
 
     provide<MenuKeyboardMethods>(MENU_KEYBOARD, {
         reset,
-        focus: (item: Component) => {
+        focus: item => {
             const index = items.indexOf(item);
             focusItem(index);
         }
@@ -110,11 +113,20 @@ export function useMenuKeyboard() {
     ] as const;
 }
 
-export function useItemKeyboard(itemEvents: ItemEvents) {
-    useRecordItem<ItemEvents>(RECORD_FOCUS, itemEvents);
+export function useItemKeyboard(itemEvents: Omit<ItemEvents, 'onFocusin' | 'onFocusout'>) {
+    const isFocus = useState(false);
+    useRecordItem<ItemEvents>(RECORD_FOCUS, {
+        ...itemEvents,
+        onFocusin() {
+            isFocus.set(true);
+        },
+        onFocusout() {
+            isFocus.set(false);
+        }
+    });
     useRecordItem();
 
-    return inject<MenuKeyboardMethods>(MENU_KEYBOARD)!;
+    return {...inject<MenuKeyboardMethods>(MENU_KEYBOARD)!, isFocus};
 }
 
 function fixIndex(index: number, max: number) {
