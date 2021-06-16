@@ -1,27 +1,23 @@
-import {onMounted, onUnmounted, provide, inject, getCurrentInstance, Component} from 'intact';
+import {onMounted, onUnmounted, provide, inject, useInstance, Component} from 'intact';
 
-export interface ComponentSupportRecord<T extends Component = Component> extends Component {
-    items: T[]
-};
 const RECORD_COMPONENT = 'RecordComponent';
 
-export function useRecordParent() {
-    const instance = getCurrentInstance() as ComponentSupportRecord;
-    provide(RECORD_COMPONENT, instance);
-    instance!.items = [];
+export function useRecordParent<T = Component>(key: string = RECORD_COMPONENT) {
+    const items: T[] = [];
+    provide(key, items);
+    return items;
 }
 
-export function useRecordItem() {
-    const parent = inject<ComponentSupportRecord>(RECORD_COMPONENT)!;
-    const instance = getCurrentInstance();
-    onMounted(() => {
-        parent.items.push(instance!);
-    });
+export function useRecordItem<T extends Component = Component>(key?: string) : T[];
+export function useRecordItem<T>(key?: string, item?: T): T[];
+export function useRecordItem<T = Component>(
+    key: string = RECORD_COMPONENT,
+    item: any = useInstance()
+) {
+    const items = inject<T[]>(key)!;
 
-    onUnmounted(() => {
-        const items = parent.items;
-        items.splice(items.indexOf(instance!), 1);
-    });
+    onMounted(() => items.push(item));
+    onUnmounted(() => items.splice(items.indexOf(item), 1));
 
-    return parent;
+    return items;
 }
