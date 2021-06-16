@@ -3,18 +3,16 @@ import {deepDefaults, darken} from '../../styles/utils';
 import {theme} from '../../styles/theme';
 import '../../styles/global';
 
-const {bread} = deepDefaults(theme, {
-    bread: {
-        get breadcrumbFontSize() {
-            return '.875rem';
-        },
-        get breadcrumbColor() {
+const {breadcrumb} = deepDefaults(theme, {
+    breadcrumb: {
+        fontSize: '.875rem',
+        get color() {
             return theme.color.text;
         },
-        breadcrumbHoverColor: '#4183c4',
-        breadcrumbSeparatorMargin: '0 .5rem',
-        breadcrumbActiveFontWeight: 'bold',
-        get breadcrumbActiveColor() {
+        hoverColor: '#4183c4',
+        separatorMargin: '0 .5rem',
+        activeFontWeight: 'bold',
+        get activeColor() {
             return theme.color.text;
         }
     }
@@ -24,29 +22,29 @@ export default function makeStyles() {
     return cx(
         css`
         .k-breadcrumb {
-            font-size: ${bread.breadcrumbFontSize};
+            font-size: ${breadcrumb.fontSize};
 
             .k-item {
                 display: inline-block;
                 ${
-                    bread.breadcrumbActiveFontWeight != 'normal' ? 
+                    breadcrumb.activeFontWeight != 'normal' ? 
                     css`
                     &:last-of-type .k-item-link {
-                        font-weight: ${bread.breadcrumbActiveFontWeight};
+                        font-weight: ${breadcrumb.activeFontWeight};
                     }
-                    ` : bread.breadcrumbActiveColor != bread.breadcrumbColor ? 
+                    ` : breadcrumb.activeColor != breadcrumb.color ? 
                     css`
                     &:last-of-type .k-item-link {
-                        color: ${bread.breadcrumbActiveColor};
+                        color: ${breadcrumb.activeColor};
                     }
                     ` : ''
                 }
             
                 .k-item-link {
-                    color: ${bread.breadcrumbColor};
+                    color: ${breadcrumb.color};
                 }
                 .k-item-link:hover {
-                    color: ${bread.breadcrumbHoverColor};
+                    color: ${breadcrumb.hoverColor};
                 }
             }
             .k-item:last-of-type {
@@ -54,12 +52,12 @@ export default function makeStyles() {
                     display: none;
                 }
                 .k-item-link:hover {
-                    color: ${bread.breadcrumbColor};
+                    color: ${breadcrumb.color};
                 }
             }
 
             .separator {
-                margin: ${bread.breadcrumbSeparatorMargin};
+                margin: ${breadcrumb.separatorMargin};
             }
         }`
     );

@@ -10,7 +10,7 @@ const classNameObj = {
 };
 
 const _children = children ? (Array.isArray(children) ? children : [children]) : children;
-let separatorNode = <b:separator>{ separator }</b:separator>;
+let separatorNode = <b:separator>{separator}</b:separator>;
 let vNodes = [];
 for (let i = 0; i < _children.length; i++) {
     vNodes.push(_children[i]);
