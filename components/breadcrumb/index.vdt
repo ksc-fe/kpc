@@ -18,7 +18,7 @@ for (let i = 0; i < _children.length; i++) {
         vNodes.push(separatorNode);
     }
     else if (i != _children.length - 1) {
-        vNodes.push(<span style="margin: 0 0.5rem"> > </span>);
+        vNodes.push(<span style="margin: 0 8px">></span>);
     }
 }
 

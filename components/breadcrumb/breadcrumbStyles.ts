@@ -5,12 +5,12 @@ import '../../styles/global';
 
 const {breadcrumb} = deepDefaults(theme, {
     breadcrumb: {
-        fontSize: '.875rem',
+        fontSize: '14px',
         get color() {
             return theme.color.text;
         },
         hoverColor: '#4183c4',
-        separatorMargin: '0 .5rem',
+        separatorMargin: '0 16px',
         activeFontWeight: 'bold',
         get activeColor() {
             return theme.color.text;
