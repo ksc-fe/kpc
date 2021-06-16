@@ -48,9 +48,6 @@ export default function makeStyles() {
                 .k-item-link:hover {
                     color: ${bread.breadcrumbHoverColor};
                 }
-                .k-separator {
-                    margin: ${bread.breadcrumbSeparatorMargin};
-                }
             }
             .k-item:last-of-type {
                 .k-separator {
@@ -59,6 +56,10 @@ export default function makeStyles() {
                 .k-item-link:hover {
                     color: ${bread.breadcrumbColor};
                 }
+            }
+
+            .separator {
+                margin: ${bread.breadcrumbSeparatorMargin};
             }
         }`
     );

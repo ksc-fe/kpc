@@ -15,7 +15,7 @@ const typeDefs: Required<TypeDefs<breadItemProps>> = {
 
 const defaults: Partial<breadItemProps> = {
     to: undefined,
-    separator: '>'
+    separator: undefined
 } 
 
 export default class BreadcrumbItem<T extends breadItemProps = breadItemProps> extends Component<T> {
@@ -33,7 +33,7 @@ export default class BreadcrumbItem<T extends breadItemProps = breadItemProps> e
     @bind
     private onClick(): void  {
         const to = this.get('to');
-        
+
         if (to) {
             const $router = BreadcrumbItem.$router;
             if ($router && !isExternalLink(to)) {

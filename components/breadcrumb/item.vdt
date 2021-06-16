@@ -1,7 +1,7 @@
 import {getRestProps} from '../utils';
 import makeStyles from './breadcrumbStyles';
 
-const {to, separator, children, className, isLast} = this.get();
+const {to, separator, children, className} = this.get();
 const classNameObj = {
     'k-item': true,
     [className]: className,
@@ -11,7 +11,4 @@ const classNameObj = {
 <div class={ classNameObj } { ...getRestProps(this) }>
     <a v-if={ to } ev-click={ this.onClick } class="k-item-link">{ children }</a>
     <span v-else class="k-item-link">{ children }</span>
-    <span class="k-separator">
-        <b:separator>{ separator }</b:separator>
-    </span>
 </div>
