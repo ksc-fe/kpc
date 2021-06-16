@@ -1,0 +1,18 @@
+import {getRestProps} from '../utils';
+import BreadcrumbItem from './item';
+import makeStyles from './breadcrumbStyles';
+
+const {children, separator, className} = this.get();
+
+const classNameObj = {
+    'k-breadcrumb': true,
+    [className]: className,
+};
+
+const _children = children ? (Array.isArray(children) ? children : [children]) : children;
+
+<div class={ makeStyles() }>
+    <div class={ classNameObj } { ...getRestProps(this) }>
+        { _children }
+    </div>
+</div>
