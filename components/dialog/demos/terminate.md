@@ -24,15 +24,18 @@ import {Dialog} from 'kpc/components/dialog';
 
 ```ts
 import {Dialog} from 'kpc/components/dialog';
+import {bind} from 'kpc/components/utils';
 
 export default class extends Component {
     static template = template;
 
+    @bind
     onClick() {
         this.set('show', true);
     }
 
-    private terminate() {
+    @bind
+    terminate() {
         Dialog.confirm({
             content: 'Are you sure you want to close the dialog?'
         }).then(() => {

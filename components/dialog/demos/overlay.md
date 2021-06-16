@@ -19,9 +19,12 @@ import {Input} from 'kpc/components/input';
 ```
 
 ```ts
+import {bind} from 'kpc/components/utils';
+
 export default class extends Component {
     static template = template;
 
+    @bind
     onClick() {
         this.set('show', true);
     }
