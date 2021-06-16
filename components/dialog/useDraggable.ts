@@ -27,25 +27,26 @@ export function useDraggable() {
             areaWidth = Math.max(body.scrollWidth, html.scrollWidth);
             areaHeight = Math.max(body.scrollHeight, html.scrollHeight);
         } else {
-            areaWidth = body.offsetWidth;
-            areaHeight = body.offsetHeight;
+            areaWidth = html.offsetWidth;
+            areaHeight = html.offsetHeight;
         }
     }
 
     function onMove(e: MouseEvent) {
         const style = component.dialogRef.value!.style;
+        let _areaWidth = areaWidth;
         if (component.get('overlay')) {
             // detect the wrapper has scrollbar or not
             const wrapper = component.wrapperRef.value!;
             if (wrapper.scrollHeight > wrapper.offsetHeight) {
                 const scrollBarWidth = scrollbarWidth();
-                areaWidth -= scrollBarWidth;
+                _areaWidth -= scrollBarWidth;
             }
         }
 
         const left = Math.min(
             Math.max(x + e.clientX, 0),
-            Math.max(areaWidth - width, 0)
+            Math.max(_areaWidth - width, 0)
         );
         const top = Math.min(
             Math.max(y + e.clientY, 0),

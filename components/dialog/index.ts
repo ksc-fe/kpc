@@ -1,15 +1,18 @@
-import {Component, TypeDefs, createRef} from 'intact';
+import {Component, TypeDefs, createRef, createVNode, VNodeComponentClass, callAll, remove} from 'intact';
 import template from './index.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {Container} from '../portal';
 import {_$} from '../../i18n';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
-import {position, scrollbarWidth} from '../position';
+import {position} from '../position';
 import {bind} from '../utils';
 import {isFunction} from 'intact-shared';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {useDraggable} from './useDraggable';
 import {useEscClosable} from './useEscClosable';
+import {onOpen, onClosed} from './fixBody';
+import {addStaticMethods} from './staticMethods';
+import {SHOW, HIDE} from './constants';
 
 export interface DialogProps {
     title?: string
@@ -76,16 +79,83 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
 
     private outsidable: ReturnType<typeof useMouseOutsidable> | null = null;
     private drag: ReturnType<typeof useDraggable> | null = null;
+    private useAsComponent = false;
 
     init() {
-        useShowHideEvents();
+        useShowHideEvents(SHOW, HIDE);
         useEscClosable();
         this.outsidable = useMouseOutsidable(); 
         this.drag = useDraggable();
+
+        if (this.$vNode) {
+            this.useAsComponent = true;
+        }
+    }
+
+    show(props: T | null) {
+        return new Promise(resolve => {
+            if (this.get('value')) return;
+
+            const show = () => this.set('value', true);
+
+            if (this.useAsComponent) {
+                return show();
+            }
+
+            // use as intance
+            const mountedQueue = this.$mountedQueue = [];
+            this.$init(props); 
+            const vNode = this.$vNode = createVNode(Dialog) as VNodeComponentClass<any>;
+            vNode.children = this;
+            this.$render(null, vNode, document.body, null, mountedQueue);
+            callAll(mountedQueue);
+
+            if (this.$inited) {
+                show();
+            } else {
+                this.on('$inited', show);
+            }
+        });
     }
 
     close() {
         this.set('value', false);
+    }
+
+    showLoading() {
+        this.set('loading', true);
+    }
+
+    hideLoading() {
+        this.set('loading', false);
+    }
+
+    disableOk() {
+        this.set('disabledOk', true);
+    }
+
+    enableOk() {
+        this.set('disabledOk', false);
+    }
+
+    /**
+     * @brief
+     * only be called by self when user clicks close button,
+     * presses ESC or clicks overlay
+     */
+    @bind
+    terminate() {
+        this.btnCallback('terminate');
+    }
+
+    @bind
+    ok() {
+        this.btnCallback('ok');
+    }
+
+    @bind
+    cancel() {
+        this.btnCallback('cancel');
     }
 
     @bind
@@ -102,6 +172,15 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     private onAfterLeave() {
         if (this.get('overlay')) {
             this.wrapperRef.value!.style.display = 'none';
+            onClosed();
+        }
+        if (!this.useAsComponent) {
+            remove(this.$vNode!, document.body);
+        }
+    }
+
+    beforeUnmount() {
+        if (this.get('value')) {
             onClosed();
         }
     }
@@ -123,25 +202,6 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         });
     }
 
-    /**
-     * @brief
-     * only be called by self when user clicks close button,
-     * presses ESC or clicks overlay
-     */
-    @bind
-    public terminate() {
-        this.btnCallback('terminate');
-    }
-
-    @bind
-    private ok() {
-        this.btnCallback('ok');
-    }
-
-    @bind
-    private cancel() {
-        this.btnCallback('cancel');
-    }
     private btnCallback(type: 'ok' | 'cancel' | 'terminate') {
         const callback = this.get(type);
         if (isFunction(callback)) {
@@ -162,38 +222,4 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     }
 }
 
-let amount = 0;
-let originalStyle: string | null = null;
-
-function onOpen() {
-    const body = document.body;
-    if (!amount) {
-        const bodyStyle = body.style;
-        originalStyle = body.getAttribute('style');
-        bodyStyle.overflow = 'hidden';
-
-        const scrollBarWidth = shouldFixBody();
-        if (scrollBarWidth) {
-            bodyStyle.paddingRight = `${scrollBarWidth}px`;
-        }
-    }
-    amount++;
-}
-
-function onClosed() {
-    const body = document.body;
-    amount--; 
-    if (!amount) {
-        if (originalStyle) {
-            body.setAttribute('style', originalStyle);
-        } else {
-            body.removeAttribute('style');
-        }
-    }
-}
-
-function shouldFixBody() {
-    if (document.body.scrollHeight > (window.innerHeight || document.documentElement.clientHeight)) {
-        return scrollbarWidth();
-    }
-}
+addStaticMethods(Dialog);

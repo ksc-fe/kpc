@@ -18,13 +18,14 @@ const isHide = mode === 'hide';
 const classNameObj = {
    "k-dialog": true, 
     'k-dragging': this.drag.dragging.value,
+    [$props.className]: $props.className,
     [`k-${size}`]: size !== 'default',
     [makeDialogStyles()]: true,
 };
 const dialog = (
     <Transition
         show={value}
-        appear={true}
+        appear={value}
         key="dialog"
         onEnter={this.onEnter}
         onAfterLeave={this.onAfterLeave}
@@ -75,7 +76,7 @@ const dialog = (
 <Portal container={container}>
     <Transition 
         show={overlay ? value : false} 
-        appear
+        appear={value}
         name="k-fade"
         v-if={overlay}
     >

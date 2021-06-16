@@ -34,6 +34,7 @@ const {dialog} = deepDefaults(theme, {
         footer: {
             padding: `20px 0`,
             btnGap: `12px`,
+            border: `1px solid #eaeaea`,
         },
 
         // transition
@@ -82,7 +83,8 @@ export function makeDialogStyles() {
         &.transition-enter-active,
         &.transition-leave-active,
         &.transition-appear-active {
-            transition: all ${theme.transition}
+            // transition: transform ${theme.transition}, opacity ${theme.transition};
+            transition: all ${theme.transition};
         }
         &.transition-enter-from,
         &.transition-leave-to,
@@ -105,13 +107,13 @@ export function makeDialogStyles() {
             padding: 0 ${dialog.padding};
             margin: ${dialog.margin};
             border-bottom: ${dialog.header.border} ;
-            position: relative;
-        }
-        .k-dialog-title {
             height: ${dialog.header.height};
             line-height: ${dialog.header.height};
             font-size: ${dialog.header.fontSize};
             color: ${dialog.header.color};
+            position: relative;
+        }
+        .k-dialog-title {
             display: inline-block;
         }
         .k-dialog-close {
@@ -133,6 +135,7 @@ export function makeDialogStyles() {
             text-align: right;
             padding: ${dialog.footer.padding};
             margin: ${dialog.margin};
+            border-top: ${dialog.footer.border};
             .k-btn {
                 margin-left: ${dialog.footer.btnGap};
             }
@@ -152,4 +155,70 @@ export function makeWrapperStyles() {
         display: none;
         background: rgba(0, 0, 0, .5);
     `;
+}
+
+export function makeAlertStyles() {
+    return css`
+        &.k-alert-dialog {
+            .k-dialog-body {
+                margin-top: ${dialog.alert.bodyMarginTop};
+                padding: ${dialog.alert.padding};
+                text-align: center;
+                position: relative;
+                z-index: 1;
+            }
+            .k-dialog-header,
+            .k-dialog-footer {
+                border: none;
+            }
+            .k-dialog-tip-icon {
+                margin-bottom: ${dialog.alert.tipIconMarginBottom};
+                .k-icon {
+                    font-size: ${dialog.alert.tipIconFontSize};
+                    line-height: ${dialog.alert.tipIconLineHeight};
+                }
+            }
+            ${(['success', 'warning', 'error', 'confirm'] as const).map(type => {
+                const color = type === 'error' ?
+                    theme.color.danger :
+                        type === 'confirm' ?
+                            theme.color.primary :
+                            theme.color[type];
+                return css`
+                    &.k-${type} {
+                        .k-dialog-tip-icon {
+                            color: ${color};
+                        }
+                    }
+                `
+            })}
+            &:not(.k-confirm) {
+                .k-dialog-cancel {
+                    display: none;
+                }
+            }
+
+            // with title
+            &.k-with-title {
+                .k-dialog-body {
+                    margin-top: ${dialog.alert.titleBodyMarginTop};
+                    text-align: left;
+                }
+                .k-dialog-tip-icon {
+                    float: left;
+                    .k-icon {
+                        font-size: ${dialog.alert.titleTipIconFontSize};
+                    }
+                }
+                .k-alert-dialog-wrapper {
+                    overflow: hidden;
+                    padding-left: ${dialog.alert.wrapperPaddingLeft};
+                }
+                .k-alert-dialog-title {
+                    line-height: ${dialog.alert.tipIconLineHeight};
+                    font-size: ${dialog.alert.titleFontSize};
+                }
+            }
+        }
+    ` 
 }
