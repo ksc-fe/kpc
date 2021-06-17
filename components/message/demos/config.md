@@ -1,10 +1,10 @@
 ---
-title: 基础用法
-order: 0
+title: 隐藏Icon或关闭按钮
+order: 1.1
 ---
 
-使用`Message`提供的静态方法，展示提示。包括：`info`, `error`, `warning`, `success`。
-提示默认会在5s后自动关闭
+静态方法还可以使用对象作为参数，对象格式见API说明，通过该方式，我们可以做到隐藏关闭按钮或者
+隐藏前面的`Icon`
 
 ```vdt
 import {ButtonGroup, Button} from 'kpc/components/button';
@@ -23,7 +23,12 @@ export default class extends Component {
     static template = template;
 
     showMessage(type) {
-        Message[type](type);
+        Message[type]({
+            content: type,
+            duration: 3000,
+            closable: false,
+            hideIcon: true,
+        });
     }
 }
 ```

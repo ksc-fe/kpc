@@ -1,23 +1,30 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults} from '../../styles/utils';
+import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const {message} = deepDefaults(theme, {
     message: {
         top: `10px`,
         transform: `translateY(-10px)`,
-        bgColor: '#fff',
+        get bgColor() { return theme.color.bg },
         get borderRadius() { return theme.borderRadius },
         gap: `10px`,
-        get boxShadow() { return theme.boxShadow },
-        padding: `10px`,
-        closeFontSize: `24px`,
+        boxShadow: 'none',
+        padding: `7px 33px 8px 8px`,
+        closeFontSize: `26px`,
+        fontSize: '12px',
+        get color() { return theme.color.ghost },
+        minWidth: '400px',
+        maxWidth: '700px',
+        minHeight: '32px',
+        textAlign: 'left',
+        get border() { return `1px solid ${theme.color.border}` },
 
         icon: {
-            get color() { return theme.color.primary },
-            fontSize: `18px`,
-            left: `10px`,
+            color: `inherit`,
+            fontSize: `14px`,
+            left: `16px`,
             top: `8px`,
         },
     }
@@ -37,6 +44,8 @@ export function makeMessageStyles() {
     return css`
         text-align: center;
         width: 100%;
+        font-size: ${message.fontSize};
+        color: ${message.color};
         .k-message-container {
             display: inline-block;
             box-shadow: ${message.boxShadow};
@@ -44,6 +53,12 @@ export function makeMessageStyles() {
             border-radius: ${message.borderRadius};
             margin-bottom: ${message.gap};
             pointer-events: all;
+            min-width: ${message.minWidth};
+            max-width: ${message.maxWidth};
+            position: relative;
+            text-align: ${message.textAlign};
+            border: ${message.border};
+            min-height: ${message.minHeight};
         }
         .k-message-wrapper {
             position: relative;
@@ -61,6 +76,9 @@ export function makeMessageStyles() {
         }
         .k-message-close {
             vertical-align: middle;
+            position: absolute;
+            right: 0;
+            top: 0;
             .k-icon {
                 font-size: ${message.closeFontSize};
             }
@@ -72,10 +90,21 @@ export function makeMessageStyles() {
             color: ${message.icon.color};
             font-size: ${message.icon.fontSize};
         }
-        ${(['danger', 'success', 'warning'] as const).map(type => {
+        ${(['error', 'success', 'warning'] as const).map(type => {
+            const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
-                &.k-${type} .k-message-icon {
-                    color: ${theme.color[type]}
+                &.k-${type} {
+                    .k-message-container {
+                        color: ${color};
+                        border-color: ${color};
+                        background: ${palette(color, -4)};
+                    }
+                    .k-message-close {
+                        color: ${color};
+                        &:hover {
+                            color: ${palette(color, 1)}
+                        }
+                    }
                 }
             `
         })}

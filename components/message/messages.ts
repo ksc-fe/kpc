@@ -12,12 +12,14 @@ export class Messages extends Component {
         this.forceUpdate();
     }
 
-    delete(message: VNodeComponentClass<Message>) {
+    delete(key: number | string) {
         const messages = this.messages;
-        const index = messages.indexOf(message);
-        if (~index) {
-            messages.splice(index, 1);
-            this.forceUpdate();
+        const index = messages.findIndex(message => message.key === key);
+        if (process.env.NODE_ENV !== 'production' && !~index) {
+            throw new Error('You are removing a message that does not exist.');
         }
+
+        messages.splice(index, 1);
+        this.forceUpdate();
     }
 }

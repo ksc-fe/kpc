@@ -3,8 +3,8 @@ import {makeMessagesStyles} from './styles';
 
 <div class={{"k-messages": true, [makeMessagesStyles()]: true}}>
     <TransitionGroup>
-        <Transition v-for={this.messages} v-for-value="Message" key={Message.key}>
-            {Message}
-        </Transition>
+        <template v-for={this.messages} key={$value.key}>
+            {$value}
+        </template>
     </TransitionGroup>
 </div>
