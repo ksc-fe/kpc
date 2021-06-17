@@ -1,23 +1,21 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
-import BreadcrumbItem from './item';
+export * from './item';
 
-export interface breadProps {
-    separator?: String
+export interface BreadcrumbProps {
+    separator?: string
 }
 
-const typeDefs: Required<TypeDefs<breadProps>> = {
+const typeDefs: Required<TypeDefs<BreadcrumbProps>> = {
     separator: String,
 };
 
-const defaults: Partial<breadProps> = {
-    separator: undefined,
-} 
+const defaults = (): Partial<BreadcrumbProps> => ({
+    separator: '>'
+});
 
-export default class Breadcrumb<T extends breadProps = breadProps> extends Component<T> {
+export class Breadcrumb<T extends BreadcrumbProps = BreadcrumbProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 }
-
-export {Breadcrumb, BreadcrumbItem};

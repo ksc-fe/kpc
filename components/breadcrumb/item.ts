@@ -3,25 +3,17 @@ import {bind} from '../utils';
 import template from './item.vdt';
 import {findRouter, isExternalLink} from '../utils';
 
-export interface breadItemProps {
-    to?: String,
-    separator?: String
+export interface BreadcrumbItemProps {
+    to?: string,
 }
 
-const typeDefs: Required<TypeDefs<breadItemProps>> = {
+const typeDefs: Required<TypeDefs<BreadcrumbItemProps>> = {
     to: String,
-    separator: String
 };
 
-const defaults: Partial<breadItemProps> = {
-    to: undefined,
-    separator: undefined
-} 
-
-export default class BreadcrumbItem<T extends breadItemProps = breadItemProps> extends Component<T> {
+export class BreadcrumbItem<T extends BreadcrumbItemProps = BreadcrumbItemProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
-    static defaults = defaults;
 
     static $router: Array<String> = [];
 
@@ -37,9 +29,9 @@ export default class BreadcrumbItem<T extends breadItemProps = breadItemProps> e
         if (to) {
             const $router = BreadcrumbItem.$router;
             if ($router && !isExternalLink(to)) {
-                $router.push(<string>to);
+                $router.push(to!);
             } else {
-                window.location.href = <string>to;
+                window.location.href = to!;
             }
         }
     }
