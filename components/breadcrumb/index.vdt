@@ -1,0 +1,29 @@
+import {getRestProps} from '../utils';
+import BreadcrumbItem from './item';
+import makeStyles from './breadcrumbStyles';
+
+const {children, separator, className} = this.get();
+
+const classNameObj = {
+    'k-breadcrumb': true,
+    [className]: className,
+};
+
+const _children = children ? (Array.isArray(children) ? children : [children]) : children;
+let separatorNode = <b:separator>{separator}</b:separator>;
+let vNodes = [];
+for (let i = 0; i < _children.length; i++) {
+    vNodes.push(_children[i]);
+    if (separatorNode && i != _children.length - 1) {
+        vNodes.push(separatorNode);
+    }
+    else if (i != _children.length - 1) {
+        vNodes.push(<span style="margin: 0 8px">></span>);
+    }
+}
+
+<div class={ makeStyles() }>
+    <div class={ classNameObj } { ...getRestProps(this) }>
+        { vNodes }
+    </div>
+</div>
