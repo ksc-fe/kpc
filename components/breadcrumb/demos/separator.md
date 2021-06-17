@@ -21,6 +21,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
     <BreadcrumbItem>
         <i class="ion-planet"></i> item 3
     </BreadcrumbItem>
+    aaa
 </Breadcrumb>
 ```
 

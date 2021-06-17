@@ -1,5 +1,5 @@
-import {Component, VNode} from 'intact';
-import {EMPTY_OBJ, isStringOrNumber} from 'intact-shared';
+import {Component, VNode, Children, NormalizedChildren} from 'intact';
+import {EMPTY_OBJ, isStringOrNumber, isNullOrUndefined, isInvalid} from 'intact-shared';
 
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
@@ -168,3 +168,32 @@ export function clamp(number: number, lower: number, upper: number) {
 export function stopPropagation(e: Event) {
     e.stopPropagation();
 }
+
+type ValidVNode = VNode | string | number;
+export function mapChildren<T>(children: Children, callback: (vNode: ValidVNode, index: number) => T) {
+    if (isInvalid(children)) return children;
+
+    const results: T[] = [];
+    loopChildren(children, callback, results, {value: 0});
+
+    return results;
+}
+
+function loopChildren<T>(
+    children: ValidVNode | NormalizedChildren[] | Children[],
+    callback: (vNode: ValidVNode, index: number) => T,
+    results: T[],
+    index: {value: number},
+) {
+    if (Array.isArray(children)) {
+        for (let i = 0; i < children.length; i++) {
+            const vNode = children[i];
+            if (isInvalid(vNode)) continue;
+            loopChildren(vNode, callback, results, index);
+        }
+    } else {
+        results.push(callback(children, index.value));
+        index.value++;
+    }
+}
+// mapChildren(['a', null, 'b', ['c', 'd', ['e', null,  'f'], 'g'], 'h'], (a, b) => console.log(a, b));

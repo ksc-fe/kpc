@@ -1,5 +1,5 @@
-import {getRestProps} from '../utils';
-import BreadcrumbItem from './item';
+import {getRestProps, mapChildren} from '../utils';
+import {BreadcrumbItem} from './item';
 import makeStyles from './styles';
 
 const {children, separator, className} = this.get();
@@ -10,18 +10,27 @@ const classNameObj = {
     [makeStyles()]: true,
 };
 
-const _children = children ? (Array.isArray(children) ? children : [children]) : children;
 const separatorVNode = (
     <span class="k-breadcrumb-separator">
         <b:separator>{separator}</b:separator>
     </span>
 );
 const vNodes = [];
-for (let i = 0; i < _children.length; i++) {
-    vNodes.push(_children[i]);
-    if (i !== _children.length - 1) {
+let lastIndex = -1;
+let separatorAmount = 0;
+mapChildren(children, (vNode, index) => {
+    vNodes.push(vNode);
+    if (vNode.tag === BreadcrumbItem) {
+        lastIndex = index;
+        separatorAmount++;
         vNodes.push(separatorVNode);
     }
+});
+// remove the last BreadcrumbItem's separator,
+// because it may have other vNodes follow the last BreadcrumbItem.
+// we splice array like bellow to remove it
+if (lastIndex > -1) {
+    vNodes.splice(lastIndex + separatorAmount, 1);
 }
 
 <div class={classNameObj} {...getRestProps(this)}>
