@@ -160,3 +160,7 @@ export function isExternalLink(to) {
     if (typeof to !== 'string') return false;
     return externalLinkReg.test(to);
 }
+
+export function clamp(number: number, lower: number, upper: number) {
+    return Math.min(Math.max(number, lower), upper);
+}

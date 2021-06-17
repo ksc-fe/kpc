@@ -2018,6 +2018,11 @@
   resolved "https://registry.npm.taobao.org/@trysound/sax/download/@trysound/sax-0.1.1.tgz#3348564048e7a2d7398c935d466c0414ebb6a669"
   integrity sha1-M0hWQEjnotc5jJNdRmwEFOu2pmk=
 
+"@types/chai@^4.2.18":
+  version "4.2.18"
+  resolved "https://registry.nlark.com/@types/chai/download/@types/chai-4.2.18.tgz?cache=0&sync_timestamp=1621240725104&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fchai%2Fdownload%2F%40types%2Fchai-4.2.18.tgz#0c8e298dbff8205e2266606c1ea5fbdba29b46e4"
+  integrity sha1-DI4pjb/4IF4iZmBsHqX726KbRuQ=
+
 "@types/chroma-js@^2.1.3":
   version "2.1.3"
   resolved "https://registry.nlark.com/@types/chroma-js/download/@types/chroma-js-2.1.3.tgz#0b03d737ff28fad10eb884e0c6cedd5ffdc4ba0a"
@@ -2111,6 +2116,11 @@
   version "1.2.1"
   resolved "https://registry.nlark.com/@types/minimist/download/@types/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha1-KD9mn/dte4Jg34q3pCYsyD2YglY=
+
+"@types/mocha@^8.2.2":
+  version "8.2.2"
+  resolved "https://registry.nlark.com/@types/mocha/download/@types/mocha-8.2.2.tgz?cache=0&sync_timestamp=1621241882739&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fmocha%2Fdownload%2F%40types%2Fmocha-8.2.2.tgz#91daa226eb8c2ff261e6a8cbf8c7304641e095e0"
+  integrity sha1-kdqiJuuML/Jh5qjL+McwRkHgleA=
 
 "@types/node@*", "@types/node@>=10.0.0":
   version "15.3.0"
@@ -7525,10 +7535,10 @@ intact-react@^1.1.30:
   resolved "https://registry.nlark.com/intact-react/download/intact-react-1.1.31.tgz#8dc06e8df8d91e6753585fa8c4af4ee7537663ab"
   integrity sha1-jcBujfjZHmdTWF+oxK9O51N2Y6s=
 
-intact-shared@^3.0.0-beta.7:
-  version "3.0.0-beta.7"
-  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.0-beta.7.tgz#b9e7bf57322da7d29f1e2771da6202ccd90d8060"
-  integrity sha512-rg1pQmnWocspjMUWiizp8YNLOX1Fz2raNRhCf52eiUfq2+7thkP+8BSeMLlmEWkxzJoTpfQ7nhAfX/n9MuBcmg==
+intact-shared@^3.0.0-beta.8:
+  version "3.0.0-beta.8"
+  resolved "https://registry.nlark.com/intact-shared/download/intact-shared-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135059001&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fintact-shared%2Fdownload%2Fintact-shared-3.0.0-beta.8.tgz#4db8017c75849a2862731d127f8cb84b1c05f5f1"
+  integrity sha1-TbgBfHWEmihicx0Sf4y4SxwF9fE=
 
 intact-vue@^1.0.0:
   version "1.0.0"
@@ -7537,17 +7547,16 @@ intact-vue@^1.0.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-
-intact@^3.0.0-beta.7:
-  version "3.0.0-beta.7"
-  resolved "https://registry.npmjs.org/intact/-/intact-3.0.0-beta.7.tgz#f8921c68b20148d2694811182867b497859d78c6"
-  integrity sha512-gymA4nfxq4WNNiq8Fc5ARZvZebxIQxJ+1JhD+XAfFgKHm1Hy6pGZWMFn/3lhL4RyTUAS1mDxvwfen8yBKECePA==
+intact@^3.0.0-beta.8:
+  version "3.0.0-beta.8"
+  resolved "https://registry.nlark.com/intact/download/intact-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135078303&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fintact%2Fdownload%2Fintact-3.0.0-beta.8.tgz#5dea1aec13187f877b73cee6350d6831787ba835"
+  integrity sha1-Xeoa7BMYf4d7c87mNQ1oMXh7qDU=
   dependencies:
-    intact-shared "^3.0.0-beta.7"
-    misstime "^3.0.0-beta.7"
+    intact-shared "^3.0.0-beta.8"
+    misstime "^3.0.0-beta.8"
     tslib "^2.2.0"
-    vdt "^3.0.0-beta.7"
-    vdt-compiler "^3.0.0-beta.7"
+    vdt "^3.0.0-beta.8"
+    vdt-compiler "^3.0.0-beta.8"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9384,12 +9393,12 @@ minizlib@^2.0.0, minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
-misstime@^3.0.0-beta.7:
-  version "3.0.0-beta.7"
-  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.0-beta.7.tgz#3159d1193d788c9c050778b73f3249bff82e8a5d"
-  integrity sha512-WrkG02Oy3ShsP7rRHt44wBF9xgPK7AuDcfRNWK4971Rj/855zzNXf5PM0GjwfAIdXIXKoo8gxZTBpkea/0lm/g==
+misstime@^3.0.0-beta.8:
+  version "3.0.0-beta.8"
+  resolved "https://registry.nlark.com/misstime/download/misstime-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135062967&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmisstime%2Fdownload%2Fmisstime-3.0.0-beta.8.tgz#5a2e75bd5b42784e8c61eb2bf1edc27e3a69f12d"
+  integrity sha1-Wi51vVtCeE6MYesr8e3Cfjpp8S0=
   dependencies:
-    intact-shared "^3.0.0-beta.7"
+    intact-shared "^3.0.0-beta.8"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13646,13 +13655,13 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vdt-compiler@^3.0.0-beta.7:
-  version "3.0.0-beta.7"
-  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.0-beta.7.tgz#7dd730420773eff0ee5fd958db01cb575c41f738"
-  integrity sha512-PptHKbX58l11MUn1riWcqc62Ok5j0/35Z3XXaqgTnFXeJoGaoFhcyUiDmL3kTp8WDpvgxiFqKgmMSFcnS6/1bQ==
+vdt-compiler@^3.0.0-beta.8:
+  version "3.0.0-beta.8"
+  resolved "https://registry.nlark.com/vdt-compiler/download/vdt-compiler-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135068249&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvdt-compiler%2Fdownload%2Fvdt-compiler-3.0.0-beta.8.tgz#e9f53ff62318a93bbee1d378ea7c12f0006bca58"
+  integrity sha1-6fU/9iMYqTu+4dN46nwS8ABrylg=
   dependencies:
-    intact-shared "^3.0.0-beta.7"
-    misstime "^3.0.0-beta.7"
+    intact-shared "^3.0.0-beta.8"
+    misstime "^3.0.0-beta.8"
     tslib "^2.2.0"
 
 vdt-loader@^3.0.0-beta.1:
@@ -13664,13 +13673,13 @@ vdt-loader@^3.0.0-beta.1:
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-vdt@^3.0.0-beta.7:
-  version "3.0.0-beta.7"
-  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.0-beta.7.tgz#baa457b4c1a939800ec6215e07221fd2261177bf"
-  integrity sha512-tuzvZGgRnAH5QlVhZfpmIOTPCVC2PbHJVwwvFDpFvYfcK9ilMTCvm8aSGPugm4kA4mN9LvvjWEzpT1Zk5dYZMw==
+vdt@^3.0.0-beta.8:
+  version "3.0.0-beta.8"
+  resolved "https://registry.nlark.com/vdt/download/vdt-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135068002&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvdt%2Fdownload%2Fvdt-3.0.0-beta.8.tgz#40f743670768cd2c53609cb12b00d671d615eb6e"
+  integrity sha1-QPdDZwdozSxTYJyxKwDWcdYV624=
   dependencies:
-    intact-shared "^3.0.0-beta.7"
-    misstime "^3.0.0-beta.7"
+    intact-shared "^3.0.0-beta.8"
+    misstime "^3.0.0-beta.8"
     tslib "^2.2.0"
 
 vendors@^1.0.3:

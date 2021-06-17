@@ -1,4 +1,3 @@
-/* import MoveWrapper from '../moveWrapper'; */
 import {Transition} from 'intact';
 import makeStyles from './menuStyles';
 
@@ -8,13 +7,16 @@ const {children, className} = this.get();
 const classNameObj = {
     'k-dropdown-menu': true,
     [className]: className,
+    [$props.className]: $props.className,
     [makeStyles()]: true,
 };
 
+const transition = $props.transition || {css: false, ...this.transition};
+
 <Transition 
-    css={false}
-    show={value}
-    {...this.transition}
+    show={'value' in $props ? $props.value : value}
+    appear={true}
+    {...transition}
 >
     <div
         class={classNameObj}

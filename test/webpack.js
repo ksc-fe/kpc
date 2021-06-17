@@ -35,9 +35,10 @@ exports.webpackConfig = () => {
         .resolve
             .alias
                 .set('~', destData)
+                .set('intact$', 'intact/dist/index.esm.js')
                 .end()
             .end()
-        .devtool('#inline-source-map')
+        .devtool('inline-source-map')
 
     addConfig(config);
 
@@ -48,7 +49,7 @@ exports.webpackConfigReact = () => {
     const config = genConfig();
 
     config.resolve.alias.set('~', destData).set('intact$', 'intact-react');
-    config.devtool('#inline-source-map');
+    config.devtool('inline-source-map');
 
     addConfig(config);
 
@@ -56,7 +57,7 @@ exports.webpackConfigReact = () => {
 }
 
 function addConfig(config) {
-    addThread(config);
-    addStyle(config);
-    addMonaco(config);
+    // addThread(config);
+    // addStyle(config);
+    // addMonaco(config);
 }
