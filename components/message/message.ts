@@ -44,7 +44,11 @@ export class Message<T extends MessageProps = MessageProps> extends Component<T>
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    static notice(content: Children | Partial<MessageProps>, duration: number = 5000, type: MessageProps['type'] ='info') {
+    static notice(
+        content: Children | Partial<MessageProps>,
+        duration: number = 5000,
+        type: MessageProps['type'] ='info'
+    ) {
         if (!messages) {
             const container = document.createElement('div');
             document.body.append(container);
