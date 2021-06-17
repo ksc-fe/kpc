@@ -25,17 +25,17 @@ import Button from 'kpc/components/button';
 ```
 
 ```ts
-// import Message from 'kpc/components/message';
+import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;
 
     ok() {
-        // Message.success('Clicked ok!');
+        Message.success('Clicked ok!');
     }
 
     cancel() {
-        // Message.info('Clicked cancel!');
+        Message.info('Clicked cancel!');
     }
 }
 ```

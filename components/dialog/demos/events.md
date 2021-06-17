@@ -22,7 +22,7 @@ import {Dialog} from 'kpc/components/dialog';
 ```
 
 ```ts
-// import Message from 'kpc/components/message';
+import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;

@@ -34,6 +34,7 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 
 ```ts
 import {Dialog} from 'kpc/components/dialog';
+import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;
@@ -42,9 +43,9 @@ export default class extends Component {
         Dialog[type]({
             content: type,
         }).then(() => {
-            console.log('clicked ok button');
+            Message.info('clicked ok button');
         }, () => {
-            console.log('clicked cancel button');
+            Message.info('clicked cancel button');
         });
     }
 
@@ -53,9 +54,9 @@ export default class extends Component {
             title: type[0].toUpperCase() + type.substring(1),
             content: type + ' dialog',
         }).then(() => {
-            console.log('clicked ok button');
+            Message.log('clicked ok button');
         }, () => {
-            console.log('clicked cancel button');
+            Message.log('clicked cancel button');
         });
     }
 }

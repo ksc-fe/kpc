@@ -31,7 +31,7 @@ import {Button} from 'kpc/components/button';
 
 ```ts
 import {bind} from 'kpc/components/utils';
-// import Message from 'kpc/components/message';
+import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;
@@ -59,7 +59,7 @@ export default class extends Component {
             }, () => {
                 // if error, don't close dialog
                 this.refs.dialog.hideLoading();
-                // Message.error('error occured');
+                Message.error('error occured');
             });
         }
     }

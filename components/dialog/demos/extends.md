@@ -48,7 +48,7 @@ import {Button} from 'kpc/components/button';
 import Dialog from './dialog';
 import {bind} from 'kpc/components/utils';
 import {mount} from 'intact';
-// import Message from 'kpc/components/message';
+import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;

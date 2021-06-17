@@ -19,13 +19,13 @@ import {Search} from 'kpc/components/input';
 ```
 
 ```ts
-// import Message from 'kpc/components/message';
+import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;
 
     search(keywords) {
-        // Message.success('Search by keywords: ' + keywords);
+        Message.success('Search by keywords: ' + keywords);
     }
 }
 ```

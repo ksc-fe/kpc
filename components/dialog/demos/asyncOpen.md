@@ -61,7 +61,7 @@ import Button from 'kpc/components/button';
 ```ts
 import Dialog from './dialog';
 import {bind} from 'kpc/components/utils';
-// import Message from 'kpc/components/message';
+import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;
