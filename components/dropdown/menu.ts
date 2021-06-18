@@ -17,8 +17,6 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
     public lock: ((v: boolean) => void) | null = null;
     public focusByIndex: ((index: number) => void) | null = null;
     public dropdown: Dropdown | null = null;
-    public mouseOutsidableBegin: (() => void) | null = null;
-    public mousedownRef: RefObject<boolean> | null = null;
 
     private transition: ReturnType<typeof useTransition> | null = null;
 
@@ -32,9 +30,7 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
         this.lock = lock;
         this.focusByIndex = focusByIndex;
 
-        const [mouseOutsidableBegin, mosuedownRef] = useMouseOutsidable();
-        this.mouseOutsidableBegin = mouseOutsidableBegin;
-        this.mousedownRef = mosuedownRef;
+        useMouseOutsidable(this.elementRef);
     }
 
     // no matter what the trigger is, we should show menu when enter into it.
@@ -50,12 +46,6 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
         const dropdown = this.dropdown!; 
         dropdown.hide();
         dropdown.trigger('mouseleave', e);
-    }
-
-    @bind
-    private onMouseDown(e: MouseEvent) {
-        this.mouseOutsidableBegin!();
-        this.dropdown!.trigger('mousedown', e);
     }
 }
 

@@ -34,7 +34,6 @@ const dialog = (
             class={classNameObj}
             ref={this.dialogRef}
             style={{width: typeof width === 'number' ? `${width}px` : width}}
-            ev-mousedown={this.outsidable[0]}
         >
             <b:content>
                 <div class="k-dialog-header"

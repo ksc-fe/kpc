@@ -21,7 +21,7 @@ import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 
 export type Position = Options 
 
-type DropdownChildren = [VNode, VNodeComponentClass<DropdownMenu>];
+type DropdownChildren = [VNode, VNode];
 
 export const DROPDOWN = 'Dropdown';
 export const ROOT_DROPDOWN = 'RootDropdown';
@@ -108,7 +108,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
 
     private timer: number | undefined = undefined;
     private triggerProps: any = null;
-    public menuVNode: VNodeComponentClass<DropdownMenu> | null = null;
+    public menuVNode: VNode | null = null;
     public dropdown: Dropdown | null = null;
     public rootDropdown: Dropdown | null = null;
 
@@ -175,7 +175,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         }
 
         let feedback: Feedback;
-        position(this.menuVNode!.children!.elementRef.value!, {
+        position(findDomFromVNode(this.menuVNode!, true) as HTMLElement, {
             my: 'left top+8',
             at: 'left bottom',
             ...this.get('position'),
@@ -217,10 +217,8 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
 }
 
 function useDocumentClickForDropdown(dropdown: Dropdown) {
-    const elementRef = () => dropdown.menuVNode!.children!.elementRef;
+    const elementRef = () => findDomFromVNode(dropdown.menuVNode!, true) as Element;
     const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, (e) => {
-        // ingore mousedown and move mouse to outside
-        if (dropdown.menuVNode!.children!.mousedownRef!.value) return;
         // if click an trigger and the trigger type is hover, ignore it
         if (dropdown.get('trigger') === 'hover') {
             const triggerDom = findDomFromVNode(dropdown.$lastInput!, true) as Element;

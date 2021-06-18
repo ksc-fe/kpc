@@ -28,7 +28,7 @@ mapChildren(children, (vNode, index) => {
 });
 // remove the last BreadcrumbItem's separator,
 // because it may have other vNodes follow the last BreadcrumbItem.
-// we splice array like bellow to remove it
+// we record the last separator's index and splice array like bellow to remove it
 if (lastIndex > -1) {
     vNodes.splice(lastIndex + separatorAmount, 1);
 }
