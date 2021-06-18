@@ -28,19 +28,26 @@ export function deepDefaults(source: Theme, ...args: Theme[]): Theme {
     return source;
 }
 
+const cache: Record<string, string> = {};
 export function palette(color: string, level: number) {
+    const key = color + '@' + level;
+    if (cache[key]) return cache[key];
+
     const {h, s, v} = tinycolor(color).toHsv();
     const deS = s < 0.1 ? 0 : (s - 0.1) / 4;
     const inS = (1 - s) / 4;
     const deV = (1 - v) / 4;
     const inV = v <= 0.4 ? 0 : (v - 0.4) / 4;
 
+    let ret;
     if (level < 0 && level >= -4)
-        return tinycolor({h: h + level, s: s + level * deS, v: v - level * deV}).toHexString();
+        ret = tinycolor({h: h + level, s: s + level * deS, v: v - level * deV}).toHexString();
     else if (level > 0 && level <= 4)
-        return tinycolor({h: h + level, s: s + level * inS, v: v - level * inV}).toHexString();
+        ret = tinycolor({h: h + level, s: s + level * inS, v: v - level * inV}).toHexString();
     else
-        return color;
+        ret =color;
+
+    return (cache[key] = ret);
 }
 
 export function getLeft(padding: string) {

@@ -8,6 +8,5 @@ order: 5
 ```vdt
 import Input from 'kpc/components/input';
 
-
 <Input placeholder="auto width" autoWidth />
 ```

@@ -1,0 +1,90 @@
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {Portal} from '../portal';
+import {_$} from '../../i18n';
+import {Transition} from 'intact';
+import {getRestProps, stopPropagation} from '../utils';
+import {makeDialogStyles, makeWrapperStyles} from './styles';
+
+const {
+    size, container, hideClose,
+    overlay, value, width,
+    mode, className, cancelText,
+    okText, loading, disabledOk,
+    title, children,
+} = this.get();
+
+const isHide = mode === 'hide';
+const classNameObj = {
+   "k-dialog": true, 
+    'k-dragging': this.drag.dragging.value,
+    [$props.className]: $props.className,
+    [`k-${size}`]: size !== 'default',
+    [makeDialogStyles()]: true,
+};
+const dialog = (
+    <Transition
+        show={value}
+        appear={value}
+        key="dialog"
+        onEnter={this.onEnter}
+        onAfterLeave={this.onAfterLeave}
+    >
+        <div v-if={isHide ? true : value}
+            class={classNameObj}
+            ref={this.dialogRef}
+            style={{width: typeof width === 'number' ? `${width}px` : width}}
+            ev-mousedown={this.outsidable[0]}
+        >
+            <b:content>
+                <div class="k-dialog-header"
+                    ev-mousedown={this.drag.start}
+                >
+                    <b:header>
+                        <span class="k-dialog-title">{title}</span>
+                    </b:header>
+                    <Button type="none" icon title={_$("关闭")} class="k-dialog-close"
+                        ev-click={this.terminate}
+                        v-if={!hideClose && !$props.hideClose}
+                        ev-mousedown={stopPropagation}
+                    >
+                        <Icon class="ion-ios-close-empty" />
+                    </Button>
+                </div>
+                <div class="k-dialog-body"><b:body>{children}</b:body></div>
+                <b:footer-wrapper>
+                    <div class="c-clearfix k-dialog-footer">
+                        <b:footer>
+                            <Button class="k-dialog-ok" 
+                                type="primary"
+                                ev-click={this.ok} 
+                                loading={loading}
+                                disabled={disabledOk}
+                            >{okText}</Button>
+                            <Button class="k-dialog-cancel" 
+                                type="secondary"
+                                ev-click={this.cancel}
+                            >{cancelText}</Button>
+                        </b:footer>
+                    </div>
+                </b:footer-wrapper>
+            </b:content>
+        </div>
+    </Transition>
+);
+
+<Portal container={container}>
+    <Transition 
+        show={overlay ? value : false} 
+        appear={value}
+        name="k-fade"
+        v-if={overlay}
+    >
+        <div class={{"k-dialog-wrapper": true, [makeWrapperStyles()]: true}}
+            key="wrapper" 
+            ref={this.wrapperRef}
+            ev-click={this.onClickWrapper}
+        >{dialog}</div>
+    </Transition>
+    <template v-else>{dialog}</template>
+</Portal>

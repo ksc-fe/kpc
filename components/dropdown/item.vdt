@@ -3,15 +3,13 @@ import makeStyles from './itemStyles';
 
 const {
     children, disabled, className, hideOnSelect,
-
-    _isFocus
 } = this.get();
 
 const classNameObj = {
     'k-dropdown-item': true,
     'k-disabled': disabled,
     [className]: className,
-    'k-hover': _isFocus,
+    'k-hover': this.keyboard.isFocus.value,
     [makeStyles()]: true,
 }
 

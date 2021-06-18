@@ -9,12 +9,19 @@ import {
     removeVNodeDom,
     patch,
     remove,
+    TypeDefs,
 } from 'intact';
 import {isString} from 'intact-shared';
 
 export interface PortalProps {
-    container?: string | ((parentDom: Element, anchor: IntactDom | null) => Element)
+    container?: Container
 }
+
+export type Container = string | ((parentDom: Element, anchor: IntactDom | null) => Element)
+
+const typeDefs: Required<TypeDefs<PortalProps>> = {
+    container: [String, Function],
+};
 
 export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     static template(this: Portal) {
@@ -23,6 +30,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         }
         return createCommentVNode('portal');
     }
+    static typeDefs = typeDefs;
 
     private container: Element | null = null;
 

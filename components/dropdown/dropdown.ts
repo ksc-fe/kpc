@@ -4,14 +4,12 @@ import {
     createVNode as h,
     VNode,
     VNodeComponentClass,
-    normalizeChildren,
     directClone,
     provide,
     inject,
     findDomFromVNode,
     createVNode,
 } from 'intact';
-import template from './index.vdt';
 import {bind, isTextChildren} from '../utils';
 import {EMPTY_OBJ, isFunction} from 'intact-shared';
 import {Options, position, Feedback} from '../position';
@@ -19,6 +17,7 @@ import {cx} from '@emotion/css';
 import {DropdownMenu} from './menu';
 import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
 import {Portal, PortalProps} from '../portal';
+import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 
 export type Position = Options 
 
@@ -46,15 +45,15 @@ export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     container: [String, Function],
 };
 
-export const defaults: Partial<DropdownProps> = {
+export const defaults = (): Partial<DropdownProps> => ({
     trigger: 'hover',
     disabled: false,
     value: false,
     position: {},
     of: 'self',
-};
+});
 
-export class Dropdown<T extends DropdownProps = DropdownProps> extends Component<DropdownProps> {
+export class Dropdown<T extends DropdownProps = DropdownProps> extends Component<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
     static template = function(this: Dropdown) {
@@ -125,13 +124,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
             provide(ROOT_DROPDOWN, this);
         }
 
-        this.watch('value', (value) => {
-            if (value) {
-                this.trigger('show');
-            } else {
-                this.trigger('hide');
-            }
-        }, {presented: true});
+        useShowHideEvents();
 
         (['of', 'position'] as const).forEach(item => {
             this.watch(item, () => {

@@ -46,7 +46,7 @@ const typeDefs: Required<TypeDefs<InputProps>> = {
     _originalValue: null,
 }
 
-const defaults: Partial<InputProps> = {
+const defaults = (): Partial<InputProps> => ({
     type: 'text', // text | textarea
     readonly: false,
     clearable: false,
@@ -57,7 +57,7 @@ const defaults: Partial<InputProps> = {
     fluid: false,
     stackClearIcon: false,
     frozenOnInput: false,
-}
+});
 
 export default class Input<T extends InputProps = InputProps> extends Component<T> {
     static template = template;

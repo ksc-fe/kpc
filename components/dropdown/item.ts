@@ -8,39 +8,29 @@ import {DropdownMenu, DROPDOWN_MENU} from './menu';
 export interface DropdownItemProps {
     disabled: boolean
     hideOnSelect: boolean
-
-    _isFocus: boolean
 }
 
 const typeDefs: Required<TypeDefs<DropdownItemProps>> = {
     disabled: Boolean,
     hideOnSelect: Boolean,
-
-    _isFocus: null
 }
 
-const defaults: Partial<DropdownItemProps> = {
+const defaults = (): Partial<DropdownItemProps> => ({
     disabled: false,
     hideOnSelect: true,
-
-    _isFocus: false,
-}
+});
 
 export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private reset: MenuKeyboardMethods['reset'] | null = null;
-    private focus: MenuKeyboardMethods['focus'] | null = null;
     private dropdown: Dropdown | null = null;
+    private keyboard: ReturnType<typeof useKeyboardForDropdownItem> | null = null;
 
     init() {
         this.dropdown = inject<Dropdown>(DROPDOWN)!;
-        const {reset, focus} = useKeyboardForDropdownItem(this); 
-
-        this.reset = reset;
-        this.focus = focus;
+        this.keyboard = useKeyboardForDropdownItem(this); 
     }
 
     select() {
@@ -77,13 +67,13 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
         this.trigger('mouseenter', e);
         if (this.get('disabled')) return;
 
-        this.focus!(this);
+        this.keyboard!.focus(this);
     }
 
     @bind
     private onMouseLeave(e: MouseEvent) {
         this.trigger('mouseleave', e);
-        this.reset!();
+        this.keyboard!.reset();
     }
 }
 
@@ -98,8 +88,6 @@ function useKeyboardForDropdownItem(dropdownItem: DropdownItem) {
     }
 
     return useItemKeyboard({
-        onFocusin: () => dropdownItem.set('_isFocus', true),
-        onFocusout: () => dropdownItem.set('_isFocus', false),
         onShowMenu: showMenu,
         onHideMenu: () => {
             dropdownMenu.dropdown!.hide(true); 

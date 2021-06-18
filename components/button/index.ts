@@ -36,7 +36,7 @@ const typeDefs: Required<TypeDefs<ButtonProps>> = {
     ghost: Boolean,
 };
 
-const defaults: Partial<ButtonProps> = {
+const defaults = (): Partial<ButtonProps> => ({
     type: 'default',
     size: 'default',
     icon: false,
@@ -48,7 +48,7 @@ const defaults: Partial<ButtonProps> = {
     tagName: 'button',
     tabindex: '0',
     ghost: false,
-} 
+}); 
 
 export default class Button<T extends ButtonProps = ButtonProps> extends Component<T> {
     static template = template;

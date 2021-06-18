@@ -4,7 +4,7 @@ import {bind} from '../utils';
 import {Dropdown, DROPDOWN} from './dropdown';
 import {useTransition} from './useTransition';
 import {useMenuKeyboard} from './useKeyboard';
-import {useMouseOutsidable} from './useMouseOutsidable';
+import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 
 export interface DropdownMenuProps { }
 

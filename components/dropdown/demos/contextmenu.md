@@ -33,23 +33,3 @@ import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
     text-align center
     line-height 100px
 ```
-
-```vue-methods
-_showMenu(event) {
-    event.preventDefault();
-    this.show = true;
-    this.event = event;
-}
-```
-
-```react-methods
-_showMenu(event) {
-    // https://reactjs.org/docs/events.html#event-pooling
-    event.persist();
-    event.preventDefault();
-    this.set({
-        show: true,
-        event: event,
-    });
-}
-```

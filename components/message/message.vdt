@@ -1,0 +1,43 @@
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {getRestProps} from '../utils';
+import {makeMessageStyles} from './styles';
+
+const {type, content, children, closable, hideIcon} = this.get();
+
+const classNameObj = {
+    "k-message": true,
+    [`k-${type}`]: type !== 'info',
+    [makeMessageStyles()]: true,
+};
+
+<div {...getRestProps(this)}
+    class={classNameObj}
+    ev-mouseenter={this.delayClose.onMouseEnter}
+    ev-mouseleave={this.delayClose.onMouseLeave}
+>
+    <div class="k-message-container">
+        <div class={{"k-message-wrapper": true, "k-with-icon": !hideIcon}}>
+            <Icon v-if={!hideIcon} class={{
+                "k-icon-information": type === 'info',
+                "k-icon-alert": type === 'warning',
+                "k-icon-truth-circled": type === 'success',
+                "k-icon-fault": type === 'error',
+                "k-message-icon": true,
+            }} />
+            <div v-if={typeof content === 'string' || typeof content === 'number'}
+                class="k-message-content" innerHTML={content}
+            ></div>
+            <div v-else class="k-message-content">{children}</div>
+        </div>
+        <Button 
+            v-if={closable}
+            type="none"
+            icon
+            class="k-message-close"
+            ev-click={this.close}
+        >
+            <Icon class="ion-ios-close-empty" />
+        </Button>
+    </div>
+</div>

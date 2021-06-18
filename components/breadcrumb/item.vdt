@@ -1,0 +1,12 @@
+import {getRestProps} from '../utils';
+
+const {to, children, className} = this.get();
+const classNameObj = {
+    'k-breadcrumb-item': true,
+    [className]: className,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <a v-if={to} ev-click={this.onClick} class="k-breadcrumb-link">{children}</a>
+    <span v-else class="k-breadcrumb-link">{children}</span>
+</div>

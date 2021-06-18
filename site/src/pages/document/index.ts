@@ -31,12 +31,12 @@ type ActiveHeader = {
 
 export default class Document<T extends DocumentProps = DocumentProps> extends Layout<T> {
     static template = template;
-    static defaults: Partial<DocumentProps> = {
-        ...Layout.defaults,
+    static defaults = (): Partial<DocumentProps> => ({
+        ...Layout.defaults(),
         hasRead: null,
         expanded: false,
         path: '',
-    }
+    });
    
     private path: string | null = null;
     private examples: NodeListOf<HTMLDivElement> | null = null;

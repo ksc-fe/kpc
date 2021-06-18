@@ -61,9 +61,9 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```ts
 export default class extends Component {
     static template = template;
-    static defaults = {
+    static defaults = () => ({
         city: 'beijing',
         cities: [],
-    };
+    });
 }
 ```

@@ -19,11 +19,11 @@ const typeDefs: Required<TypeDefs<FormProps>> = {
     size: ['default', 'small', 'mini'],
 }
 
-const defaults: Partial<FormProps> = {
+const defaults = (): Partial<FormProps> => ({
     layout: 'horizontal',
     starOnRequired: false,
     size: 'default',
-}
+});
 
 export const FORM = 'Form';
 export const RECORD_KEY = 'FormRecord';
