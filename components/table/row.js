@@ -9,6 +9,8 @@ const PROPS = [
     'scheme', 
 ];
 
+const {isEqual} = Intact.utils;
+
 export default class TableRow extends Intact {
     @Intact.template()
     static template = template;
@@ -96,7 +98,7 @@ export default class TableRow extends Intact {
                     key === 'scheme'?
                         !isSameScheme(lastProps.scheme, nextProps.scheme) : ( 
                             key === 'rowKeys' || key === 'rowDisableds' || key === 'rowCheckeds'? 
-                                !isSameRow(lastProps[key], nextProps[key]) :
+                                !isEqual(lastProps[key], nextProps[key]) :
                                 lastProps[key] !== nextProps[key]
                         )
                 ) {
@@ -185,25 +187,6 @@ function isSameScheme(schemeA, schemeB) {
                 if (valueA[prop] !== valueB[prop]) {
                     return false;
                 }
-            }
-        }
-        return true;
-    }
-    return false;
-}
-
-function isSameRow(rowA, rowB){
-    if (rowA === rowB) return true;
-    if (rowA && rowB) {
-        let length = rowA.length;
-        if (length !== rowB.length) return false;
-        if(length === 0 ) return true;
-
-        while (length--) {
-            const valueA = rowA[length];
-            const valueB = rowB[length];
-            if(valueA !== valueB) {
-                return false;
             }
         }
         return true;
