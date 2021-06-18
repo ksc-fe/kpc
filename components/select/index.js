@@ -295,7 +295,7 @@ export default class Select extends Intact {
         return {active, valid};
     }
 
-    handlerGroupProps (children) {
+    handleGroupProps (children) {
         const {filterable, keywords, filter, searchable} = this.get();
         let valid = false;
         if (!filterable && !searchable) {
@@ -304,7 +304,7 @@ export default class Select extends Intact {
             valid = children.some(item => {
                 let props = item.props;
                 if (item.tag === Group) {
-                    return this.handlerGroupProps(props.children);
+                    return this.handleGroupProps(props.children);
                 } else {
                     const label = props.label || getTextByChildren(props.children);
                     props = {
