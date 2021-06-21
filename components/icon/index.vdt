@@ -1,13 +1,13 @@
 import {addStyle, getRestProps} from '../utils';
 import makeStyles from './styles';
 
-const {className, style, size, color, rotate} = this.get();
+const {className, style, size, color, rotate, hoverable} = this.get();
 
 const classNameObj = {
-    "k-icon": true,
-    [className]: className,
+    'k-icon': true,
     'k-rotate': rotate,
-    [makeStyles()]: true,
+    'k-hoverable': hoverable,
+    [className]: className,
 };
 const _style = {};
 if (/^\d+$/.test(size)) {
@@ -17,8 +17,10 @@ if (/^\d+$/.test(size)) {
 }
 if (this.colors.indexOf(color) > -1) {
     classNameObj[`k-${color}`] = color !== 'default';
+    classNameObj[makeStyles()] = true;
 } else if (color) {
     _style.color = color;
+    classNameObj[makeStyles(color)] = true;
 }
 
 <i class={classNameObj}
