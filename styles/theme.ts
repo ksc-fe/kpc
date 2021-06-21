@@ -52,5 +52,5 @@ export const theme = {
     maxZIndex: 9999,
     midZIndex: 999,
 
-    transition: '25s ease-in-out',
+    transition: '.25s ease-in-out',
 }

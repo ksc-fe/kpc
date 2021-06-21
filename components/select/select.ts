@@ -1,12 +1,12 @@
-import {Component, provide, createRef, findDomFromVNode, Children} from 'intact';
+import {Component, provide, createRef, findDomFromVNode, Children, VNodeComponentClass, VNode} from 'intact';
 import template from './select.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {SELECT, RECORD_OPTIONS} from './constants';
-import {bind} from '../utils';
+import {bind, findChildren} from '../utils';
 import {Dropdown} from '../dropdown';
 import {useRecordParent} from '../../hooks/useRecordComponent';
 import {isNullOrUndefined} from 'intact-shared';
-import type {Option} from './option';
+import {Option} from './option';
 
 export interface SelectProps {
     value: any
@@ -38,16 +38,16 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
     }
 
     private getLabel() {
-        const {value, multiple} = this.get();
+        const {value, multiple, children} = this.get();
 
         if (isNullOrUndefined(value)) return;
 
         if (!multiple) {
-            return getLabel(this.options, value);
+            return getLabel(children, value);
         } else {
             const labels: Children[] = [];
             value.forEach((value: any) => {
-                const label = getLabel(this.options, value);
+                const label = getLabel(children, value);
                 if (!isNullOrUndefined(label)) {
                     labels.push(label);
                 }
@@ -75,15 +75,22 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
     }
 }
 
-function getLabel(options: Option[], value: any) {
-    for (let i = 0; i < options.length; i++) {
-        const option = options[i];
-        if (option.get('value') === value) {
-            const label = option.get('label');
-            if (isNullOrUndefined(label)) {
-                return option.get('children');
+function getLabel(children: Children, value: any) {
+    let label: Children = null;
+    findChildren(children, (vNode) => {
+        if ((vNode as VNodeComponentClass).tag === Option) {
+            const props = (vNode as VNodeComponentClass).props;
+            if (isNullOrUndefined(props)) return false;
+            if (props.value === value) {
+                label = props.label;
+                if (isNullOrUndefined(label)) {
+                    label = props.children;
+                }
+                return true;
             }
-            return label;
         }
-    }
+        return false;
+    });
+
+    return label;
 }
