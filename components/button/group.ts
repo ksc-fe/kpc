@@ -1,5 +1,6 @@
 import {Component, provide, TypeDefs} from 'intact';
 import template from './group.vdt';
+import {toggleArray} from '../utils';
 
 export interface ButtonGroupProps {
     vertical?: boolean
@@ -35,17 +36,7 @@ export default class ButtonGroup<T extends ButtonGroupProps = ButtonGroupProps> 
         if (checkType === 'radio') {
             this.set('value', v);
         } else if (checkType === 'checkbox') {
-            if (!Array.isArray(value)) {
-                value = [];
-            } else {
-                value = value.slice(0);
-            }
-            const index = value.indexOf(v);
-            if (!~index) {
-                value.push(v);
-            } else {
-                value.splice(index, 1);
-            }
+            value = toggleArray(value, v);
             this.set('value', value);
         }
     }

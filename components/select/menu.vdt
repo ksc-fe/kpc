@@ -1,0 +1,22 @@
+import {DropdownMenu} from '../dropdown';
+import {_$} from '../../i18n';
+import {makeMenuStyles} from './styles';
+
+const {card, searchable, children, className} = this.get();
+
+const classNameObj = {
+    'k-select-menu': true,
+    'k-card': card,
+    'k-searchable': searchable,
+    [className]: className,
+    [makeMenuStyles()]: true,
+}
+
+<DropdownMenu class={classNameObj}>
+    <template v-if={children}>
+        {children}
+    </template>
+    <div v-else class="k-select-empty">
+        {_$('无数据')}
+    </div>
+</DropdownMenu>

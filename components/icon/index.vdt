@@ -21,6 +21,8 @@ if (this.colors.indexOf(color) > -1) {
 } else if (color) {
     _style.color = color;
     classNameObj[makeStyles(color)] = true;
+} else {
+    classNameObj[makeStyles()] = true;
 }
 
 <i class={classNameObj}

@@ -15,7 +15,6 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
 
     public elementRef = createRef<HTMLDivElement>();
     public lock: ((v: boolean) => void) | null = null;
-    public focusByIndex: ((index: number) => void) | null = null;
     public dropdown: Dropdown | null = null;
 
     private transition: ReturnType<typeof useTransition> | null = null;
@@ -26,9 +25,7 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
         const dropdown = this.dropdown = inject(DROPDOWN)!;
         this.transition = useTransition(() => dropdown.position());
 
-        const [lock, focusByIndex] = useKeyboardForDropdownMenu(dropdown);
-        this.lock = lock;
-        this.focusByIndex = focusByIndex;
+        this.lock = useKeyboardForDropdownMenu(dropdown);
 
         useMouseOutsidable(this.elementRef);
     }
@@ -51,24 +48,28 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
 
 function useKeyboardForDropdownMenu(dropdown: Dropdown) {
     const parentDropdownMenu = inject<DropdownMenu | null>(DROPDOWN_MENU, null);
-    const [[addKeydown, removeKeydown, lock], focusByIndex] = useMenuKeyboard();
+    const [[addKeydown, removeKeydown, lock], focusByIndex, reset] = useMenuKeyboard();
     const onShow = () => {
         addKeydown();
         // lock parent dropdown menu, prevent it from operating by keyboard
         parentDropdownMenu && parentDropdownMenu.lock!(true);
     };
     const onHide = () => {
+        reset();
         removeKeydown();
         parentDropdownMenu && parentDropdownMenu.lock!(false);
     };
+    const focus = () => focusByIndex(0);
 
     dropdown.on('show', onShow);
     dropdown.on('hide', onHide);
+    dropdown.on('shouldFocus', focus);
 
     onUnmounted(() => {
         dropdown.off('show', onShow);
         dropdown.off('hide', onHide);
+        dropdown.off('shouldFocus', focus);
     });
 
-    return [lock, focusByIndex] as const;
+    return lock;
 }

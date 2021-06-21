@@ -106,17 +106,20 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         ];
     };
 
-    private timer: number | undefined = undefined;
-    private triggerProps: any = null;
     public menuVNode: VNode | null = null;
     public dropdown: Dropdown | null = null;
     public rootDropdown: Dropdown | null = null;
+    public showedDropdown: Dropdown | null = null;
+
+    private timer: number | undefined = undefined;
+    private triggerProps: any = null;
 
     init() {
         provide(DROPDOWN, this);
         this.dropdown = inject<Dropdown | null>(DROPDOWN, null);
 
         useDocumentClickForDropdown(this);
+        useHideLastMenuOnShow(this);
 
         // is root dropdown or not
         const rootDropdown = this.rootDropdown = inject(ROOT_DROPDOWN, null);
@@ -142,11 +145,15 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         });
     }
 
-    show() {
+    show(shouldFocus: boolean = false) {
         if (this.get('disabled')) return;
 
         clearTimeout(this.timer);
         this.set('value', true);
+
+        if (shouldFocus) {
+            this.trigger('shouldFocus');
+        }
     }
 
     hide(immediately: boolean = false) {
@@ -231,4 +238,17 @@ function useDocumentClickForDropdown(dropdown: Dropdown) {
 
     dropdown.on('show', addDocumentClick);
     dropdown.on('hide', removeDocumentClick);
+}
+
+function useHideLastMenuOnShow(dropdown: Dropdown) {
+    const parentDropdown = dropdown.dropdown;
+    dropdown.on('show', () => {
+        if (parentDropdown) {
+            const showed = parentDropdown.showedDropdown;
+            if (showed && showed !== dropdown) {
+                showed.hide(true);
+            }
+            parentDropdown.showedDropdown = dropdown;
+        }
+    });
 }

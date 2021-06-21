@@ -82,8 +82,7 @@ function useKeyboardForDropdownItem(dropdownItem: DropdownItem) {
     const parent = dropdownItem.hasSubMenu();
     const showMenu = () => {
         if (parent) {
-            parent.show();
-            parent.menuVNode!.children!.focusByIndex!(0);
+            parent.show(true);
         }
     }
 
