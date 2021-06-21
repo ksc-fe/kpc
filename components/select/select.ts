@@ -73,6 +73,12 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         const entity = findDomFromVNode(this.$lastInput!, true) as HTMLElement; 
         menuElement.style.minWidth = `${entity.offsetWidth}px`;
     }
+
+    @bind
+    private clear(e: MouseEvent) {
+        e.stopPropagation();
+        this.set('value', this.get('multiple') ? [] : '');
+    }
 }
 
 function getLabel(children: Children, value: any) {

@@ -172,33 +172,6 @@ export function stopPropagation(e: Event) {
 export type ValidVNode = VNode | string | number;
 export type MapCallback<T> = (vNode: ValidVNode, index: number) => T;
 
-// export function mapChildren<T>(children: Children, callback: MapCallback<T>) {
-    // if (isInvalid(children)) return children;
-
-    // const results: T[] = [];
-    // loopChildren(children, callback, results, {value: 0});
-
-    // return results;
-// }
-
-// function loopChildren<T>(
-    // children: ValidVNode | NormalizedChildren[] | Children[],
-    // callback: MapCallback<T>,
-    // results: T[],
-    // index: {value: number},
-// ) {
-    // if (Array.isArray(children)) {
-        // for (let i = 0; i < children.length; i++) {
-            // const vNode = children[i];
-            // if (isInvalid(vNode)) continue;
-            // loopChildren(vNode, callback, results, index);
-        // }
-    // } else {
-        // results.push(callback(children, index.value));
-        // index.value++;
-    // }
-// }
-
 export function findChildren(children: Children, callback: MapCallback<boolean>) {
     if (isInvalid(children)) return;
 

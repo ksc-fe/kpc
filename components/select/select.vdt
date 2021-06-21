@@ -27,10 +27,7 @@ const _placeholder = isNullOrUndefined(placeholder) ?
     (allowUnmatch && filterable) ? _$('请输入或选择') : _$('请选择') :
     placeholder;
 
-let hasValue = !isNullOrUndefined(value);
-if (multiple && hasValue) {
-    hasValue = value.length > 0; 
-}
+let hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
 const label = this.getLabel();
 
 <Dropdown
@@ -109,9 +106,9 @@ const label = this.getLabel();
             </TransitionGroup>
         </div>
         <span class="k-select-suffix" v-if={!hideIcon || clearable || loading || $blocks.suffix}>
-            <Icon v-if={clearable}
+            <Icon v-if={clearable && !disabled}
                 class={{"k-select-clear ion-ios-close": true, "k-show": hasValue}}
-                ev-click={this._onClear}
+                ev-click={this.clear}
                 hoverable
             />
             <span class="k-select-suffix-icon">

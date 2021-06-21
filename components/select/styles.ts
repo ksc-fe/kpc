@@ -166,16 +166,14 @@ export default function makeStyles() {
             .k-select-clear.k-show {
                 opacity: 1;
                 pointer-events: all;
+                + .k-select-suffix-icon {
+                    opacity: 0;
+                }
             }
         }
         .k-select-suffix-icon {
             display: inline-block;
             transition: opacity ${theme.transition};
-        }
-        &.k-clearable:hover {
-            .k-select-clear.k-show + .k-select-suffix-icon {
-                opacity: 0;
-            }
         }
 
         // filterable
