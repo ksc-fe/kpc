@@ -6,8 +6,8 @@ order: 0
 给子元素展示红点
 
 ```vdt
-import Badge from 'kpc/components/badge';
-import Button from 'kpc/components/button';
+import {Badge} from 'kpc/components/badge';
+import {Button} from 'kpc/components/button';
 
 <div>
     <Badge>Message</Badge>

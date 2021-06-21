@@ -1,5 +1,5 @@
 import {getRestProps} from '../utils';
-import Column from './column';
+import {CardColumn} from './column';
 import makeStyles from './styles';
 
 const {
@@ -11,7 +11,7 @@ let hasColumn = false;
 if (children && children.length) {
     for (let i = 0; i < children.length; i++) {
         const vNode = children[i];
-        if (vNode && vNode.tag === Column) {
+        if (vNode && vNode.tag === CardColumn) {
             hasColumn = true;
             break;
         }

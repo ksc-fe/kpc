@@ -6,8 +6,8 @@ order: 2
 不管是哪种展示类型，只要添加`disabled`属性，就不展示徽标
 
 ```vdt
-import Badge from 'kpc/components/badge';
-import Button from 'kpc/components/button';
+import {Badge} from 'kpc/components/badge';
+import {Button} from 'kpc/components/button';
 
 <div>
     <Badge disabled>Message</Badge>

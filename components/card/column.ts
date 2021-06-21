@@ -1,21 +1,21 @@
 import {Component, TypeDefs} from 'intact';
 import template from './column.vdt';
 
-export interface ColumnProps {
+export interface CardColumnProps {
     width?: string
     center?: boolean
 }
 
-const typeDefs: Required<TypeDefs<ColumnProps>> = {
+const typeDefs: Required<TypeDefs<CardColumnProps>> = {
     width: String,
     center: Boolean
 };
 
-const defaults: Partial<ColumnProps> = {
+const defaults = (): Partial<CardColumnProps> => ({
     center: false
-} 
+})
 
-export default class Column<T extends ColumnProps = ColumnProps> extends Component<T> {
+export class CardColumn<T extends CardColumnProps = CardColumnProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

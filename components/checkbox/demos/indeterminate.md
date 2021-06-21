@@ -6,7 +6,7 @@ order: 2
 通过`indeterminate`属性可以控制`Checkbox`的半选中状态
 
 ```vdt
-import Checkbox from 'kpc/components/checkbox';
+import {Checkbox} from 'kpc/components/checkbox';
 
 const length = this.get('languages').length;
 
@@ -36,11 +36,11 @@ import {bind} from 'kpc/components/utils';
 export default class extends Component {
     static template = template;
 
-    static defaults = {
+    static defaults = () => ({
         // 必须初始化为数组
         languages: [],
         options: ['Javascript', 'C++', 'PHP'],
-    }
+    });
 
     @bind
     _toggleSelectAll(checked, oldChecked) {

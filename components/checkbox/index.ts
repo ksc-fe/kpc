@@ -15,22 +15,21 @@ export interface CheckboxProps {
 const typeDefs: Required<TypeDefs<CheckboxProps>> = {
     disabled: Boolean, 
     name: String,
-    // TODO: 确认任意类型的写法
-    value: [String, Number, Boolean, Array, Object, Date, Function, Symbol], 
-    trueValue: [String, Number, Boolean, Array, Object, Date, Function, Symbol], 
-    falseValue: [String, Number, Boolean, Array, Object, Date, Function, Symbol], 
+    value: null, 
+    trueValue: null, 
+    falseValue: null, 
     indeterminate: Boolean,
 };
 
-const defaults: Partial<CheckboxProps> = {
+const defaults = (): Partial<CheckboxProps> => ({
     disabled: false,
     value: false,
     trueValue: true,
     falseValue: false,
     indeterminate: false,
-} 
+})
 
-export default class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component<T> {
+export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -93,5 +92,3 @@ export default class Checkbox<T extends CheckboxProps = CheckboxProps> extends C
         }
     }
 }
-
-export {Checkbox}

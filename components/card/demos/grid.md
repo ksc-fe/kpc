@@ -8,7 +8,7 @@ order: 3
 
 ```vdt
 import {Card, CardColumn} from 'kpc/components/card';
-import Icon from 'kpc/components/icon';
+import {Icon} from 'kpc/components/icon';
 
 <div>
     <Card>

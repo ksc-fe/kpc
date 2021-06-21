@@ -7,8 +7,8 @@ order: 0
 超过该数字，后面添加加号`+`
 
 ```vdt
-import Badge from 'kpc/components/badge';
-import Button from 'kpc/components/button';
+import {Badge} from 'kpc/components/badge';
+import {Button} from 'kpc/components/button';
 
 <div>
     <Badge text="new">Message</Badge>
