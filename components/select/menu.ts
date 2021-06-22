@@ -27,16 +27,17 @@ export class SelectMenu<T extends SelectMenuProps = SelectMenuProps> extends Com
 
     filter(props: any) {
         let {filterable, keywords, filter, searchable} = this.select!.get();
+
+        if (!filterable && !searchable) return true;
+
         if (isNullOrUndefined(props.label)) {
             props = {...props, label: getTextByChildren(props.children)};
         }
         if (isNullOrUndefined(filter)) {
             filter = defaultFilter;
         }
-        if (!filterable && !searchable || filter(keywords, props)) {
-            return true;
-        }
-        return false;
+
+        return filter(keywords, props);
     }
 }
 
