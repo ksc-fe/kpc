@@ -169,31 +169,58 @@ export function stopPropagation(e: Event) {
     e.stopPropagation();
 }
 
-type ValidVNode = VNode | string | number;
-export function mapChildren<T>(children: Children, callback: (vNode: ValidVNode, index: number) => T) {
-    if (isInvalid(children)) return children;
+export type ValidVNode = VNode | string | number;
+export type MapCallback<T> = (vNode: ValidVNode, index: number) => T;
 
+export function findChildren(children: Children, callback: MapCallback<boolean>) {
+    if (isInvalid(children)) return;
+
+    let index = 0;
+    const loop = (children: ValidVNode | NormalizedChildren[] | Children[]) => {
+        if (Array.isArray(children)) {
+            for (let i = 0; i < children.length; i++) {
+                const vNode = children[i];
+                if (isInvalid(vNode)) continue;
+                if (loop(vNode)) {
+                    break;
+                }
+            }
+        } else {
+            return callback(children, index++);
+        }
+    }
+
+    loop(children);
+}
+
+export function mapChildren<T>(children: Children, callback: MapCallback<T>) {
     const results: T[] = [];
-    loopChildren(children, callback, results, {value: 0});
-
+    findChildren(children, (vNode, index) => {
+        results.push(callback(vNode, index));
+        return false;
+    });
     return results;
 }
 
-function loopChildren<T>(
-    children: ValidVNode | NormalizedChildren[] | Children[],
-    callback: (vNode: ValidVNode, index: number) => T,
-    results: T[],
-    index: {value: number},
-) {
-    if (Array.isArray(children)) {
-        for (let i = 0; i < children.length; i++) {
-            const vNode = children[i];
-            if (isInvalid(vNode)) continue;
-            loopChildren(vNode, callback, results, index);
-        }
-    } else {
-        results.push(callback(children, index.value));
-        index.value++;
-    }
+export function eachChildren(children: Children, callback: MapCallback<void>) {
+    findChildren(children, (vNode, index) => {
+        callback(vNode, index);
+        return false;
+    });
 }
 // mapChildren(['a', null, 'b', ['c', 'd', ['e', null,  'f'], 'g'], 'h'], (a, b) => console.log(a, b));
+
+export function toggleArray(arr: any[] | null | undefined, value: any) {
+    if (!Array.isArray(arr)) {
+        return [value];
+    } else {
+        arr = arr.slice(0);
+        const index = arr.indexOf(value);
+        if (~index) {
+            arr.splice(index, 1);
+        } else {
+            arr.push(value);
+        }
+        return arr;
+    }
+}

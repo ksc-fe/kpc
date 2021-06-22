@@ -7,6 +7,7 @@ export interface IconProps {
     size?:  Sizes | string | number
     color?: string
     rotate?: boolean
+    hoverable?: boolean,
 }
 
 export default class Icon<T extends IconProps = IconProps> extends Component<T> {
@@ -17,11 +18,13 @@ export default class Icon<T extends IconProps = IconProps> extends Component<T> 
         size: [...sizes, 'default', String, Number],
         color: String,
         rotate: Boolean,
+        hoverable: Boolean,
     };
 
     static defaults = (): Partial<IconProps> => ({
         size: 'default',
         rotate: false,
+        hoverable: false,
     });
 
     private colors = [...colors, 'default'];

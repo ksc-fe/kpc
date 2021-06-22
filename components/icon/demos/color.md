@@ -16,6 +16,15 @@ import Icon from 'kpc/components/icon';
         size="large"
         color={$value}
     />
+    <br />
+    <br />
+    <Icon 
+        v-for={['default', 'primary', 'warning', 'danger', 'success', 'red', '#0000ea', 'rgb(183, 18, 193)']}
+        class="ion-happy-outline" 
+        size="large"
+        color={$value}
+        hoverable
+    />
 </div>
 ```
 

@@ -62,6 +62,16 @@ export function getLeft(padding: string) {
     }
 }
 
+export function getRight(padding: string) {
+    const paddings = padding.split(/\s+/);
+    const length = paddings.length;
+    if (length > 1) {
+        return paddings[1];
+    } else {
+        return padding;
+    }
+}
+
 export function darken(color: string, number: number) {
     return tinycolor(color).darken(number).toHexString()
 }

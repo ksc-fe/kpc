@@ -109,7 +109,8 @@ export function useMenuKeyboard() {
             left: makeEventCall('onHideMenu'),
             enter: makeEventCall('onSelect'),
         }),
-        focusByIndex
+        focusByIndex,
+        reset,
     ] as const;
 }
 

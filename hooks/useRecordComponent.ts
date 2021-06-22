@@ -17,7 +17,8 @@ export function useRecordItem<T = Component>(
     const items = inject<T[]>(key);
 
     if (items) {
-        onMounted(() => items.push(item));
+        // onMounted(() => items.push(item));
+        items.push(item);
         onUnmounted(() => items.splice(items.indexOf(item), 1));
     }
 

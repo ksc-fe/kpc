@@ -11,6 +11,13 @@ const classNameObj = {
     [makeMessageStyles()]: true,
 };
 
+const iconMap = {
+    info: 'information',
+    warning: 'alert',
+    success: 'truth-circled',
+    error: 'fault',
+};
+
 <div {...getRestProps(this)}
     class={classNameObj}
     ev-mouseenter={this.delayClose.onMouseEnter}
@@ -18,13 +25,12 @@ const classNameObj = {
 >
     <div class="k-message-container">
         <div class={{"k-message-wrapper": true, "k-with-icon": !hideIcon}}>
-            <Icon v-if={!hideIcon} class={{
-                "k-icon-information": type === 'info',
-                "k-icon-alert": type === 'warning',
-                "k-icon-truth-circled": type === 'success',
-                "k-icon-fault": type === 'error',
-                "k-message-icon": true,
-            }} />
+            <Icon v-if={!hideIcon} 
+                class={{
+                    [`k-icon-${iconMap[type] || iconMap.info}`]: true,
+                    "k-message-icon": true,
+                }}
+            />
             <div v-if={typeof content === 'string' || typeof content === 'number'}
                 class="k-message-content" innerHTML={content}
             ></div>

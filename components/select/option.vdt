@@ -1,0 +1,18 @@
+import {DropdownItem} from '../dropdown';
+import {isNullOrUndefined} from 'intact-shared';
+
+const {children, className, disabled, label} = this.get();
+
+const classNameObj = {
+    'k-select-option': true,
+    [className]: className,
+    'k-active': this.isActive(),
+};
+
+<DropdownItem
+    class={classNameObj}
+    ev-select={this.onSelect}
+    disabled={disabled}
+>
+    {isNullOrUndefined(label) ? children : label}
+</DropdownItem>

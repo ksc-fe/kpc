@@ -42,6 +42,12 @@ injectGlobal`
     .k-fade-leave-active {
         transition: opacity ${theme.transition};
     }
+    .k-fade-leave-active {
+        position: absolute;
+    }
+    .k-fade-move {
+        transition: transform ${theme.transition};
+    }
 
     .c-ellipsis {
         white-space: nowrap;
