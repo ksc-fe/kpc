@@ -2,6 +2,7 @@ import {DropdownItem} from '../dropdown';
 import {isNullOrUndefined} from 'intact-shared';
 
 const {children, className, disabled, label} = this.get();
+const {multiple} = this.select.get();
 
 const classNameObj = {
     'k-select-option': true,
@@ -13,6 +14,7 @@ const classNameObj = {
     class={classNameObj}
     ev-select={this.onSelect}
     disabled={disabled}
+    hideOnSelect={!multiple}
 >
     {isNullOrUndefined(label) ? children : label}
 </DropdownItem>

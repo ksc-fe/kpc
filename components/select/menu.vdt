@@ -1,8 +1,11 @@
 import {DropdownMenu} from '../dropdown';
 import {_$} from '../../i18n';
 import {makeMenuStyles} from './styles';
+import {eachChildren} from '../utils';
+import {Option} from './option';
 
 const {card, searchable, children, className} = this.get();
+const {keywords, filter} = this.select.get();
 
 const classNameObj = {
     'k-select-menu': true,
@@ -12,9 +15,20 @@ const classNameObj = {
     [makeMenuStyles()]: true,
 }
 
+const _children = [];
+eachChildren(children, vNode => {
+    if (vNode.tag === Option) {
+        if (this.filter(vNode.props)) {
+            _children.push(vNode); 
+        }
+    } else {
+        _children.push(vNode);
+    }
+});
+
 <DropdownMenu class={classNameObj}>
-    <template v-if={children}>
-        {children}
+    <template v-if={_children.length}>
+        {_children}
     </template>
     <div v-else class="k-select-empty">
         {_$('无数据')}

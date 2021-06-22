@@ -7,13 +7,16 @@ import makeStyles from './styles';
 import {SelectMenu} from './menu';
 import {Dropdown} from '../dropdown';
 import {getRestProps} from '../utils';
+import {Option} from './option';
 
 const {
     value, multiple, filterable,
     loading, disabled, name,
     keywords, size, hideIcon,
     clearable, placeholder, allowUnmatch,
-    className, children,
+    className, children, creatable,
+
+    _show,
 } = this.get();
 
 const classNameObj = {
@@ -28,15 +31,30 @@ const _placeholder = isNullOrUndefined(placeholder) ?
     placeholder;
 
 let hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
-const label = this.getLabel();
+
+let ExtraOption;
+if (creatable) {
+    if (keywords) {
+        ExtraOption = <Option value={keywords} label={keywords} created />
+    }
+}
+const menu = (
+    <SelectMenu>
+        {ExtraOption}
+        {children}
+    </SelectMenu>
+);
+
+const label = this.getLabel(menu);
 
 <Dropdown
     trigger="click"
-    ev-show={this.setWidth}
+    ev-show={this.onShow}
     ref={this.dropdownRef}
     disabled={disabled}
+    ev-$change:value={this.onDropdownChangeShow}
 >
-    <div {...getRestProps(this)} class={classNameObj} ev-click={this.onClick} tabindex="0">
+    <div {...getRestProps(this)} class={classNameObj} tabindex="0">
         <div class="k-select-prefix" v-if={$blocks.prefix}>
             <b:prefix />
         </div>
@@ -44,15 +62,15 @@ const label = this.getLabel();
             <TransitionGroup name="k-fade">
                 <input type="hidden" value={value} name={name} key="hidden-input" />
                 <Input v-if={!multiple && filterable}
-                    value={keywords == null ? label : keywords}
-                    ev-input={this._onSearch}
-                    ev-focus={this._selectInput}
+                    value={_show ? keywords : label}
+                    ev-input={this.onSearch}
                     disabled={disabled}
-                    placeholder={_placeholder}
-                    ref="input"
+                    placeholder={label || _placeholder}
+                    ref={this.inputRef}
                     size={size}
                     fluid
                     key="input"
+                    readonly={!_show}
                 />
                 <div class="k-select-placeholder c-ellipsis"
                     v-else-if={!filterable && !hasValue}
@@ -63,46 +81,46 @@ const label = this.getLabel();
                         {label}
                     </b:value>
                 </div>
-                <template v-else>
-                    <div
-                        class={{
-                            "k-select-values": true,
-                            "k-with-values": $blocks.values,
-                        }}
-                        key="values"
-                    >
-                        <TransitionGroup name="k-fade">
-                            <template>
-                                <b:values params={[value, label]}>
-                                    <div class="k-select-tag" 
-                                        v-for={label} 
-                                        key={value[$key]}
-                                    >
-                                        <span class="k-select-text">
-                                            <b:value params={[value[$key], $value]}>
-                                                {$value}
-                                            </b:value>
-                                        </span>
-                                        <Icon class="ion-ios-close k-select-close"
-                                            ev-click={this.delete.bind(this, $key)}
-                                            hoverable={!disabled}
-                                        />
-                                    </div>
-                                </b:values>
-                            </template>
-                        </TransitionGroup>
-                    </div>
+                <div v-else
+                    class={{
+                        "k-select-values": true,
+                        "k-with-values": $blocks.values,
+                    }}
+                    key="values"
+                >
+                    <TransitionGroup name="k-fade">
+                        <template>
+                            <b:values params={[value, label]}>
+                                <div class="k-select-tag" 
+                                    v-for={label} 
+                                    key={value[$key]}
+                                >
+                                    <span class="k-select-text">
+                                        <b:value params={[value[$key], $value]}>
+                                            {$value}
+                                        </b:value>
+                                    </span>
+                                    <Icon class="ion-ios-close k-select-close"
+                                        ev-click={this.delete.bind(this, $key)}
+                                        hoverable={!disabled}
+                                    />
+                                </div>
+                            </b:values>
+                        </template>
+                    </TransitionGroup>
                     <Input v-if={filterable}
+                        class="k-select-input"
                         value={keywords}
-                        ev-input={this._onSearch}
+                        ev-input={this.onSearch}
                         disabled={disabled}
                         placeholder={!hasValue ? _placeholder : ''}
-                        ref="input"
+                        ref={this.inputRef}
                         autoWidth
                         size={size}
                         key="filter"
+                        readonly={!_show}
                     />
-                </template>
+                </div>
             </TransitionGroup>
         </div>
         <span class="k-select-suffix" v-if={!hideIcon || clearable || loading || $blocks.suffix}>
@@ -119,7 +137,5 @@ const label = this.getLabel();
             </span>
         </span>
     </div> 
-    <SelectMenu>
-        {children}
-    </SelectMenu>
+    {menu}
 </Dropdown>

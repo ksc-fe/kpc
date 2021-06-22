@@ -224,3 +224,20 @@ export function toggleArray(arr: any[] | null | undefined, value: any) {
         return arr;
     }
 }
+
+export function getTextByChildren(children: Children) {
+    let ret = '';
+    if (isInvalid(children)) return ret;
+
+    if (Array.isArray(children)) {
+        children.forEach(vNode => {
+            ret += getTextByChildren(vNode);
+        });
+    } else if (isStringOrNumber(children)) {
+        ret += children;
+    } else if (isTextVNode(children)) {
+        ret += children.children;
+    }
+
+    return ret.trim();
+}

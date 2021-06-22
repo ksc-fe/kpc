@@ -177,6 +177,11 @@ export default function makeStyles() {
         }
 
         // filterable
+        .k-input-inner {
+            border: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
 
         .k-select-arrow {
             display: inline-block;
@@ -227,6 +232,9 @@ export default function makeStyles() {
             margin-left: ${select.tag.delete.gap};
             font-size: ${select.tag.delete.fontSize};
             color: ${select.tag.delete.color};
+        }
+        .k-select-input {
+            margin-right: ${getRight(select.tag.margin)};
         }
 
         // size
