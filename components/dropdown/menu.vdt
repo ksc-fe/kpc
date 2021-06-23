@@ -1,6 +1,5 @@
 import {Transition} from 'intact';
 import makeStyles from './menuStyles';
-import {Keyboard} from './keyboard';
 
 const {value, trigger, container} = this.dropdown.get();
 const {children, className} = this.get();
@@ -26,9 +25,7 @@ const transition = $props.transition || {css: false, ...this.transition};
         ref={this.elementRef}
     >
         <b:children>
-            <Keyboard menuRef={this.elementRef}>
-                {children}
-            </Keyboard>
+            {children}
         </b:children>
     </div>
 </Transition>

@@ -1,4 +1,4 @@
-import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor} from 'intact';
+import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor, isText} from 'intact';
 import {EMPTY_OBJ, isStringOrNumber, isNullOrUndefined, isInvalid} from 'intact-shared';
 
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
@@ -51,7 +51,7 @@ export function isTextChildren(o: any): boolean {
 }
 
 export function isTextVNode(o: VNode): boolean {
-    return o && o.type === 1;
+    return o && isText(o);
 }
 
 // for detect if it is a text node in Angular

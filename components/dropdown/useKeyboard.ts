@@ -1,11 +1,28 @@
-import {useInstance, findDomFromVNode, provide, inject, Component, Children, VNodeComponentClass} from 'intact';
+import {
+    onMounted,
+    onUpdated,
+    useInstance,
+    findDomFromVNode,
+    provide,
+    inject,
+    Component,
+    Children,
+    VNodeComponentClass,
+    isComponentClass,
+    isComponentFunction,
+    hasVNodeChildren,
+    hasMultipleChildren,
+    VNode,
+} from 'intact';
 import {useRecordParent, useRecordItem} from '../../hooks/useRecordComponent';
 import {useKeyboard} from '../../hooks/useKeyboard';
 import {useState} from '../../hooks/useState';
 import {eachChildren, isComponentVNode} from '../utils';
 import {DropdownItem} from './item';
+import {isStringOrNumber} from 'intact-shared';
+import {DropdownMenu} from './menu';
 
-type ItemEvents = {
+interface ItemEvents {
     onFocusin: () => void;
     onFocusout: () => void;
     onShowMenu: () => void;
@@ -20,28 +37,54 @@ export enum Direction {
 
 export type MenuKeyboardMethods = {
     reset: () => void;
-    focus: (item: ItemComponent) => void;
+    focus: (item: DropdownItem) => void;
 }
 
 type ItemComponent = Component<{disabled: boolean}>
 
-const RECORD_FOCUS = 'RecordFocus';
+const ITEM_EVENTS = 'ItemEvents';
 const MENU_KEYBOARD = 'MenuKeyboard';
 
 export function useMenuKeyboard() {
-    // const itemEvents = useRecordParent<ItemEvents>(RECORD_FOCUS);
-    // const items = useRecordParent<ItemComponent>();
-    const items: VNodeComponentClass<DropdownItem>[] = [];
-    const instance = useInstance();
+    const items: DropdownItem[] = [];
+    const itemEvents = useRecordParent<DropdownItem, ItemEvents>(ITEM_EVENTS, true);
+    const instance = useInstance()!;
     let focusIndex = -1;
 
-    function collect(children: Children) {
-        eachChildren(children, vNode => {
+    function collect() {
+        if (focusIndex > -1) {
+            reset();
+        }
+
+        items.length = 0;
+
+        const children = instance.$lastInput!;
+        const loop = (vNode: VNode) => {
             if (isComponentVNode(vNode, DropdownItem)) {
-                items.push(vNode);
+                items.push(vNode.children!);
+            } else {
+                const children = vNode.children;
+                if (isComponentClass(vNode)) {
+                    if (!isComponentVNode(vNode, DropdownMenu)) {
+                        loop((children as Component).$lastInput!);
+                    }
+                } else if (isComponentFunction(vNode)) {
+                    loop(children as VNode);
+                } else if (hasVNodeChildren(vNode)) {
+                    loop(children as VNode);
+                } else if (hasMultipleChildren(vNode)) {
+                    (children as VNode[]).forEach(loop);
+                }
             }
-        });
+        }
+
+        loop(children);
+
+        return children;
     }
+
+    onMounted(collect);
+    onUpdated(collect);
 
     function next(e: KeyboardEvent) {
         e.preventDefault();
@@ -59,8 +102,9 @@ export function useMenuKeyboard() {
 
         reset();
 
+        const item = items[index];
         let i = 0;
-        while (i <= max && items[index] && items[index].get('disabled')) {
+        while (i <= max && item && item.get('disabled')) {
             index = fixIndex(direction === Direction.Down ? index + 1 : index - 1, max);
             i++;
         }
@@ -68,47 +112,44 @@ export function useMenuKeyboard() {
         // all items are disabled
         if (i > max) return;
 
-        focusItem(index);
+        focusIndex = index;
+        focusItem(item);
     }
 
-    const focusItem = (index: number) => {
-        focusIndex = index;
+    function focusItem(item: DropdownItem) {
+        itemEvents.get(item)!.onFocusin();
 
-        itemEvents[index].onFocusin();
-
-        const item = items[index];
-        const el = findDomFromVNode(item.$vNode!, true) as Element;
+        const el = findDomFromVNode(item.$lastInput!, true) as Element;
         const menuEl = findDomFromVNode(instance!.$vNode!, false) as Element;
         scrollToView(el, menuEl);
-    };
+    }
 
-    const reset = () => {
-        const oldIndex = focusIndex;
+    function reset() {
+        const item = items[focusIndex];
 
-        if (oldIndex > -1 && items[oldIndex]) {
-            unFocusItem(oldIndex);
+        if (focusIndex > -1 && item) {
+            itemEvents.get(item)!.onFocusout();
             focusIndex = -1;
         }
-    };
+    }
 
-    const unFocusItem = (index: number) => {
-        itemEvents[index].onFocusout();
-    };
-
-    const makeEventCall = (name: keyof ItemEvents) => {
+    function makeEventCall(name: keyof ItemEvents) {
         return (e: KeyboardEvent) => {
             if (focusIndex < 0) return; 
             e.preventDefault();
 
-            itemEvents[focusIndex][name]();
+            itemEvents.get(items[focusIndex])![name]();
         }
     }
 
     provide<MenuKeyboardMethods>(MENU_KEYBOARD, {
         reset,
-        focus: item => {
+        focus: (item: DropdownItem) => {
+            // reset();
             const index = items.indexOf(item);
-            focusItem(index);
+            if (index === -1) debugger
+            focusIndex = index;
+            focusItem(item);
         }
     });
 
@@ -127,18 +168,33 @@ export function useMenuKeyboard() {
 
 export function useItemKeyboard(itemEvents: Omit<ItemEvents, 'onFocusin' | 'onFocusout'>) {
     const isFocus = useState(false);
-    useRecordItem<ItemEvents>(RECORD_FOCUS, {
+    const methods = inject<MenuKeyboardMethods>(MENU_KEYBOARD)!;
+    const instance = useInstance() as DropdownItem;
+
+    useRecordItem<DropdownItem, ItemEvents>(ITEM_EVENTS, instance, {
         ...itemEvents,
         onFocusin() {
             isFocus.set(true);
         },
         onFocusout() {
             isFocus.set(false);
-        }
+        },
     });
-    useRecordItem();
 
-    return {...inject<MenuKeyboardMethods>(MENU_KEYBOARD)!, isFocus};
+    return {
+        onMouseEnter(e: MouseEvent) {
+            instance.trigger('mouseenter', e);
+            if (instance.get('disabled')) return;
+            methods.focus(instance);
+        },
+
+        onMouseLeave(e: MouseEvent) {
+            instance.trigger('mouseleave', e);
+            methods.reset();
+        },
+
+        isFocus,
+    }
 }
 
 function fixIndex(index: number, max: number) {
