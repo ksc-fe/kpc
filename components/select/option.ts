@@ -9,14 +9,12 @@ export interface OptionProps {
     value: any
     label?: string
     disabled?: boolean
-    created?: boolean
 }
 
 const typeDefs: Required<TypeDefs<OptionProps>> = {
     value: null,
     label: String,
     disabled: Boolean,
-    created: Boolean,
 };
 
 export class Option<T extends OptionProps = OptionProps> extends Component<T> {
@@ -27,7 +25,7 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
 
     init() {
         this.select = inject(SELECT)!;
-        useRecordItem(RECORD_OPTIONS);
+        // useRecordItem(RECORD_OPTIONS);
     }
 
     @bind
@@ -42,16 +40,7 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
             let values = select.get('value');
             values = toggleArray(values, value);
             select.set('value', values);
-
-            // focus the input if filterable
-            select.focusInput();
         }
-
-        // if (!select.get('creatable')) {
-            // select.resetSearch();
-        // } else if (this.get('created')) {
-            // select.set('keywords', value);
-        // }
     }
 
     private isActive() {

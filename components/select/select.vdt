@@ -20,7 +20,7 @@ const {
 } = this.get();
 
 const keywords = this.filterable.keywords.value;
-const onSearch = this.filterable.onSearch;
+const {onSearch, inputRef} = this.filterable;
 
 const classNameObj = {
     'k-select': true,
@@ -35,21 +35,22 @@ const _placeholder = isNullOrUndefined(placeholder) ?
 
 let hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
 
+const options = this.filterable.filter(children);
 const menu = (
     <SelectMenu>
-        {this.filterable.getCreatedVNode()}
-        {this.filterable.filter(children)}
+        {this.filterable.getCreatedVNode(options)}
+        {options}
     </SelectMenu>
 );
 
-const label = this.getLabel(menu);
+const label = this.getLabel();
 
 <Dropdown
     trigger="click"
     ev-show={this.onShow}
     ref={this.dropdownRef}
     disabled={disabled}
-    ev-$change:value={this.onDropdownChangeShow}
+    v-model="_show"
 >
     <div {...getRestProps(this)} class={classNameObj} tabindex="0">
         <div class="k-select-prefix" v-if={$blocks.prefix}>
@@ -63,7 +64,7 @@ const label = this.getLabel(menu);
                     ev-input={onSearch}
                     disabled={disabled}
                     placeholder={label || _placeholder}
-                    ref={this.inputRef}
+                    ref={inputRef}
                     size={size}
                     fluid
                     key="input"
@@ -111,7 +112,7 @@ const label = this.getLabel(menu);
                         ev-input={onSearch}
                         disabled={disabled}
                         placeholder={!hasValue ? _placeholder : ''}
-                        ref={this.inputRef}
+                        ref={inputRef}
                         autoWidth
                         size={size}
                         key="filter"

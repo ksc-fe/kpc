@@ -20,7 +20,7 @@ export default function makeStyles() {
     return css`
         padding: ${dropdownItem.padding};
         cursor: pointer;
-        white-sapce: nowrap;
+        white-space: nowrap;
         height: ${dropdownItem.height};
         line-height: ${dropdownItem.height};
         &.k-hover {

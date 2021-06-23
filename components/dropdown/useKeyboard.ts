@@ -1,7 +1,9 @@
-import {useInstance, findDomFromVNode, provide, inject, Component} from 'intact';
+import {useInstance, findDomFromVNode, provide, inject, Component, Children, VNodeComponentClass} from 'intact';
 import {useRecordParent, useRecordItem} from '../../hooks/useRecordComponent';
 import {useKeyboard} from '../../hooks/useKeyboard';
 import {useState} from '../../hooks/useState';
+import {eachChildren, isComponentVNode} from '../utils';
+import {DropdownItem} from './item';
 
 type ItemEvents = {
     onFocusin: () => void;
@@ -27,22 +29,31 @@ const RECORD_FOCUS = 'RecordFocus';
 const MENU_KEYBOARD = 'MenuKeyboard';
 
 export function useMenuKeyboard() {
-    const itemEvents = useRecordParent<ItemEvents>(RECORD_FOCUS);
-    const items = useRecordParent<ItemComponent>();
+    // const itemEvents = useRecordParent<ItemEvents>(RECORD_FOCUS);
+    // const items = useRecordParent<ItemComponent>();
+    const items: VNodeComponentClass<DropdownItem>[] = [];
     const instance = useInstance();
     let focusIndex = -1;
 
-    const next = (e: KeyboardEvent) => {
+    function collect(children: Children) {
+        eachChildren(children, vNode => {
+            if (isComponentVNode(vNode, DropdownItem)) {
+                items.push(vNode);
+            }
+        });
+    }
+
+    function next(e: KeyboardEvent) {
         e.preventDefault();
         focusByIndex(focusIndex + 1, Direction.Down);
-    };
+    }
 
-    const prev = (e: KeyboardEvent) => {
+    function prev(e: KeyboardEvent) {
         e.preventDefault();
         focusByIndex(focusIndex - 1, Direction.Up);
-    };
+    }
 
-    const focusByIndex = (index: number, direction?: Direction) => {
+    function focusByIndex(index: number, direction?: Direction) {
         const max = items.length - 1;
         index = fixIndex(index, max);
 
@@ -58,7 +69,7 @@ export function useMenuKeyboard() {
         if (i > max) return;
 
         focusItem(index);
-    };
+    }
 
     const focusItem = (index: number) => {
         focusIndex = index;
@@ -80,8 +91,8 @@ export function useMenuKeyboard() {
         }
     };
 
-    const unFocusItem = (oldIndex: number) => {
-        itemEvents[oldIndex].onFocusout();
+    const unFocusItem = (index: number) => {
+        itemEvents[index].onFocusout();
     };
 
     const makeEventCall = (name: keyof ItemEvents) => {

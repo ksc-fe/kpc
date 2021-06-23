@@ -69,12 +69,11 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
     public dropdownRef = createRef<Dropdown>(); 
     public filterable: ReturnType<typeof useFilterable> | null = null;
 
-    private inputRef = createRef<Input>();
-    private options: Option[] = [];
+    // private options: Option[] = [];
 
     init() {
         provide(SELECT, this);
-        this.options = useRecordParent(RECORD_OPTIONS);
+        // this.options = useRecordParent(RECORD_OPTIONS);
         this.filterable = useFilterable();
 
         this.watch('value', this.position, {presented: true});
@@ -88,15 +87,8 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         }
     }
 
-    focusInput() {
-        if (this.get('filterable')) {
-            this.inputRef.value!.focus();
-        }
-    }
-
-    private getLabel(menuVNode: VNodeComponentClass) {
-        const {value, multiple, creatable} = this.get();
-        const children = menuVNode.props!.children;
+    private getLabel() {
+        const {value, multiple, children} = this.get();
 
         if (isNullOrUndefined(value)) return;
 
@@ -123,8 +115,6 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         const value = (this.get('value') as any[]).slice(0);
         value.splice(index, 1);
         this.set('value', value);
-
-        this.focusInput();
     }
 
     @bind
@@ -132,23 +122,6 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         const menuElement = findDomFromVNode(this.dropdownRef.value!.menuVNode!, true) as HTMLElement;
         const entity = findDomFromVNode(this.$lastInput!, true) as HTMLElement; 
         menuElement.style.minWidth = `${entity.offsetWidth}px`;
-
-        this.focusInput();
-    }
-
-    @bind
-    private onDropdownChangeShow(show: boolean) {
-        this.set('_show', show);
-        if (show) {
-            // if (this.get('keywords') !== this.get('value')) {
-                // this.resetSearch();
-                this.filterable!.resetSearch();
-            // }
-        }
-        // const {keywords, creatable} = this.get();
-        // if (creatable && !isNullOrUndefined(keywords)) {
-            // this.set('value', keywords);
-        // }
     }
 
     @bind

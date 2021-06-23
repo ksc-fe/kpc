@@ -1,50 +1,55 @@
-import {useInstance, nextTick, createVNode as h, Children, VNode, VNodeComponentClass} from 'intact';
+import {
+    useInstance,
+    nextTick,
+    createVNode as h,
+    Children,
+    VNode,
+    VNodeComponentClass,
+    directClone,
+    createRef
+} from 'intact';
 import {useState} from '../../hooks/useState';
 import type {Select, SelectProps} from './select';
 import {Option} from './option';
 import {isNullOrUndefined, EMPTY_OBJ, isStringOrNumber} from 'intact-shared';
 import {getTextByChildren, mapChildren} from '../utils';
+import type {Input} from '../input';
 
 export function useFilterable() {
-    const keywords = useState('');
-    const children = useState<Children>(null);
     const component = useInstance() as Select;
-    const createdVNode = useState<VNode | null>(null);
-
-    let oldChildren: Children = null;
-    component.on('$receive:children', (children) => {
-        oldChildren = children;
-    });
+    const keywords = useState('');
+    const inputRef = createRef<Input>();
 
     function onSearch(e: InputEvent) {
         const value = (e.target as HTMLInputElement).value.trim();
 
-        // if (component.get('creatable')) {
-            // // children.set([h(Option, {value, label: value}), component.get('children')]);
-            // const vNode = h(Option, {value, label: value});
-            // component.set<{children: Children}>('children', [vNode, oldChildren]);
-        // }
-
         keywords.set(value);
 
         const dropdown = component.dropdownRef.value!;
-        // always show menu on searching
-        // dropdown.show(true);
         // the position may be flip, and the select input height may change height too,
         // so we should reset the position
         nextTick(() => {
+            dropdown.focusFirst();
             dropdown.position();
         });
     }
 
-    function resetSearch() {
-        keywords.set('');
-    }
-
-    function getCreatedVNode() {
-        const {creatable, filterable, keywords} = component.get();
-        if (creatable && filterable && keywords) {
-            return h(Option, {value: keywords, label: keywords});
+    function getCreatedVNode(children: (VNode | string | number)[]) {
+        const {creatable, filterable} = component.get();
+        const _keywords = keywords.value;
+        if (creatable && filterable && _keywords) {
+            if (!children.find(vNode => {
+                if ((vNode as VNode).tag === Option) {
+                    const props = (vNode as VNode).props;
+                    if (isNullOrUndefined(props)) return false;
+                    if (props.value === _keywords || props.label.trim() === _keywords) {
+                        return true;
+                    }
+                }
+                return false;
+            })) {
+                return h(Option, {value: _keywords, label: _keywords});
+            }
         }
     }
 
@@ -53,10 +58,23 @@ export function useFilterable() {
 
         if (!filterable && !searchable) return children;
 
+        if (isNullOrUndefined(filter)) {
+            filter = defaultFilter;
+        }
+
         const _children: (VNode | string | number)[] = [];
         mapChildren(children, vNode => {
             if ((vNode as VNode).tag === Option) {
-                if (filterOption(vNode as VNodeComponentClass<Option>, filter, keywords.value)) {
+                const props = (vNode as VNode).props;
+                if (isNullOrUndefined(props)) return;
+
+                vNode = directClone(vNode as VNode);
+
+                if (isNullOrUndefined(props.label)) {
+                    vNode.props = {...props, label: getTextByChildren(props.children)};
+                }
+
+                if (filter!(keywords.value, vNode.props)) {
                     _children.push(vNode);
                 }
             } else {
@@ -67,21 +85,34 @@ export function useFilterable() {
         return _children;
     }
 
-    return {onSearch, resetSearch, getCreatedVNode, keywords, filter};
-}
-
-function filterOption(vNode: VNodeComponentClass<Option>, filter: SelectProps['filter'], keywords: string) {
-    let props = vNode.props;
-    if (isNullOrUndefined(props)) return false;
-
-    if (isNullOrUndefined(props.label)) {
-        props = {...props, label: getTextByChildren(props.children)};
-    }
-    if (isNullOrUndefined(filter)) {
-        filter = defaultFilter;
+    function resetKeywords() {
+        keywords.set('');
     }
 
-    return filter(keywords, props);
+    // if menu showed and value changed on multiple mode
+    // focus the input
+    function focusInput() {
+        if (component.get('filterable')) {
+            inputRef.value!.focus();
+        }
+    }
+    component.on('$changed:_show', show => {
+        if (show) {
+            focusInput();
+            resetKeywords();
+        } else if (component.get('multiple')) {
+            resetKeywords();
+        }
+    });
+    component.on('$changed:value', () => {
+        const {multiple, filterable} = component.get();
+        if (multiple && filterable) {
+            focusInput();
+            resetKeywords();
+        }
+    });
+
+    return {onSearch, getCreatedVNode, keywords, filter, inputRef};
 }
 
 function defaultFilter(keywords: string, props: any): boolean {

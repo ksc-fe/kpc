@@ -1,4 +1,4 @@
-import {Component, VNode, Children, NormalizedChildren} from 'intact';
+import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor} from 'intact';
 import {EMPTY_OBJ, isStringOrNumber, isNullOrUndefined, isInvalid} from 'intact-shared';
 
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
@@ -250,3 +250,6 @@ export function isEmptyChildren(o: Children): boolean {
     return isEmptyString(o) || Array.isArray(o) && o.every(item => isEmptyChildren(item));
 }
 
+export function isComponentVNode<T extends ComponentConstructor>(o: any, tag: T): o is VNodeComponentClass<any> {
+    return o.tag === tag; 
+}
