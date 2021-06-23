@@ -1,4 +1,5 @@
 import {
+    onBeforeUpdate,
     onMounted,
     onUpdated,
     useInstance,
@@ -52,10 +53,6 @@ export function useMenuKeyboard() {
     let focusIndex = -1;
 
     function collect() {
-        if (focusIndex > -1) {
-            reset();
-        }
-
         items.length = 0;
 
         const children = instance.$lastInput!;
@@ -84,6 +81,7 @@ export function useMenuKeyboard() {
     }
 
     onMounted(collect);
+    onBeforeUpdate(reset);
     onUpdated(collect);
 
     function next(e: KeyboardEvent) {

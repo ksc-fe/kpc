@@ -9,6 +9,7 @@ import {
     inject,
     findDomFromVNode,
     createVNode,
+    nextTick,
 } from 'intact';
 import {bind, isTextChildren} from '../utils';
 import {EMPTY_OBJ, isFunction} from 'intact-shared';
@@ -152,7 +153,9 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         this.set('value', true);
 
         if (shouldFocus) {
-            this.focusFirst();
+            nextTick(() => {
+                this.focusFirst();
+            });
         }
     }
 
