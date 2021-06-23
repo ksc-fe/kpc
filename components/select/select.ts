@@ -13,12 +13,13 @@ import {
 import template from './select.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {SELECT, RECORD_OPTIONS} from './constants';
-import {bind, findChildren} from '../utils';
+import {bind, findChildren, isEmptyString} from '../utils';
 import {Dropdown} from '../dropdown';
 import {useRecordParent} from '../../hooks/useRecordComponent';
 import {isNullOrUndefined} from 'intact-shared';
 import {Option} from './option';
 import type {Input} from '../input';
+import {useFilterable} from './useFilterable';
 
 export interface SelectProps {
     value?: any
@@ -31,7 +32,7 @@ export interface SelectProps {
     size?: Sizes
     hideIcon?: boolean
     clearable?: boolean
-    filter?: (keywords: string | undefined | null, props: any) => boolean 
+    filter?: (keywords: string, props: any) => boolean 
     searchable?: boolean
     creatable: boolean
 
@@ -66,12 +67,15 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
     static defaults = defaults;
 
     public dropdownRef = createRef<Dropdown>(); 
+    public filterable: ReturnType<typeof useFilterable> | null = null;
+
     private inputRef = createRef<Input>();
     private options: Option[] = [];
 
     init() {
         provide(SELECT, this);
         this.options = useRecordParent(RECORD_OPTIONS);
+        this.filterable = useFilterable();
 
         this.watch('value', this.position, {presented: true});
     }
@@ -82,10 +86,6 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         if (dropdown.get('value')) {
             dropdown.position();
         }
-    }
-
-    resetSearch() {
-        this.set('keywords', undefined);
     }
 
     focusInput() {
@@ -140,9 +140,10 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
     private onDropdownChangeShow(show: boolean) {
         this.set('_show', show);
         if (show) {
-            if (this.get('keywords') !== this.get('value')) {
-                this.resetSearch();
-            }
+            // if (this.get('keywords') !== this.get('value')) {
+                // this.resetSearch();
+                this.filterable!.resetSearch();
+            // }
         }
         // const {keywords, creatable} = this.get();
         // if (creatable && !isNullOrUndefined(keywords)) {
@@ -154,23 +155,6 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
     private clear(e: MouseEvent) {
         e.stopPropagation();
         this.set('value', this.get('multiple') ? [] : '');
-    }
-
-    @bind
-    private onSearch(e: InputEvent) {
-        const value = (e.target as HTMLInputElement).value.trim();
-        if (this.get('creatable')) {
-            // this.children = [h(Option, {value, label: value}), this.get('children')];
-        }
-        this.set('keywords', value); 
-        // const dropdown = this.dropdownRef.value!;
-        // always show menu on searching
-        // dropdown.show(true);
-        // the position may be flip, and the select input height may change height too,
-        // so we should reset the position
-        nextTick(() => {
-            this.position();
-        });
     }
 }
 
@@ -191,5 +175,5 @@ function getLabel(children: Children, value: any) {
         return false;
     });
 
-    return label;
+    return isEmptyString(label) ? value : label;
 }

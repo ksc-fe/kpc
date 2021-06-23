@@ -47,11 +47,11 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
             select.focusInput();
         }
 
-        if (!select.get('creatable')) {
-            select.resetSearch();
-        } else if (this.get('created')) {
-            select.set('keywords', value);
-        }
+        // if (!select.get('creatable')) {
+            // select.resetSearch();
+        // } else if (this.get('created')) {
+            // select.set('keywords', value);
+        // }
     }
 
     private isActive() {

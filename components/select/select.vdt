@@ -12,12 +12,15 @@ import {Option} from './option';
 const {
     value, multiple, filterable,
     loading, disabled, name,
-    keywords, size, hideIcon,
+    size, hideIcon,
     clearable, placeholder, allowUnmatch,
     className, children, creatable,
 
     _show,
 } = this.get();
+
+const keywords = this.filterable.keywords.value;
+const onSearch = this.filterable.onSearch;
 
 const classNameObj = {
     'k-select': true,
@@ -32,16 +35,10 @@ const _placeholder = isNullOrUndefined(placeholder) ?
 
 let hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
 
-let ExtraOption;
-if (creatable) {
-    if (keywords) {
-        ExtraOption = <Option value={keywords} label={keywords} created />
-    }
-}
 const menu = (
     <SelectMenu>
-        {ExtraOption}
-        {children}
+        {this.filterable.getCreatedVNode()}
+        {this.filterable.filter(children)}
     </SelectMenu>
 );
 
@@ -63,7 +60,7 @@ const label = this.getLabel(menu);
                 <input type="hidden" value={value} name={name} key="hidden-input" />
                 <Input v-if={!multiple && filterable}
                     value={_show ? keywords : label}
-                    ev-input={this.onSearch}
+                    ev-input={onSearch}
                     disabled={disabled}
                     placeholder={label || _placeholder}
                     ref={this.inputRef}
@@ -111,7 +108,7 @@ const label = this.getLabel(menu);
                     <Input v-if={filterable}
                         class="k-select-input"
                         value={keywords}
-                        ev-input={this.onSearch}
+                        ev-input={onSearch}
                         disabled={disabled}
                         placeholder={!hasValue ? _placeholder : ''}
                         ref={this.inputRef}

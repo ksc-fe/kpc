@@ -241,3 +241,12 @@ export function getTextByChildren(children: Children) {
 
     return ret.trim();
 }
+
+export function isEmptyString(o: any): boolean {
+    return isNullOrUndefined(o) || o === ''; 
+}
+
+export function isEmptyChildren(o: Children): boolean {
+    return isEmptyString(o) || Array.isArray(o) && o.every(item => isEmptyChildren(item));
+}
+
