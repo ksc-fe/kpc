@@ -54,14 +54,12 @@ export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component
                 if (index === -1) {
                     value.push(trueValue);
                 }
-            }
-            else {
+            }else {
                 if (index > -1) {
                     value.splice(index, 1);
                 }
             }
-        }
-        else {
+        }else {
             value = checked ? trueValue : falseValue;
         }
         this.set('value', value);
