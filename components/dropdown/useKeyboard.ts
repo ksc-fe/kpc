@@ -166,7 +166,7 @@ export function useMenuKeyboard() {
 
 export function useItemKeyboard(itemEvents: Omit<ItemEvents, 'onFocusin' | 'onFocusout'>) {
     const isFocus = useState(false);
-    const methods = inject<MenuKeyboardMethods>(MENU_KEYBOARD)!;
+    const keyboard = inject<MenuKeyboardMethods>(MENU_KEYBOARD)!;
     const instance = useInstance() as DropdownItem;
 
     useRecordItem<DropdownItem, ItemEvents>(ITEM_EVENTS, instance, {
@@ -183,12 +183,12 @@ export function useItemKeyboard(itemEvents: Omit<ItemEvents, 'onFocusin' | 'onFo
         onMouseEnter(e: MouseEvent) {
             instance.trigger('mouseenter', e);
             if (instance.get('disabled')) return;
-            methods.focus(instance);
+            keyboard.focus(instance);
         },
 
         onMouseLeave(e: MouseEvent) {
             instance.trigger('mouseleave', e);
-            methods.reset();
+            keyboard.reset();
         },
 
         isFocus,
