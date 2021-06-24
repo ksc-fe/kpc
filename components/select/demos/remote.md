@@ -3,13 +3,13 @@ title: 远程搜索
 order: 4.1
 ---
 
-监听`$change:keywords`事件，可以在关键词变化时进行远程搜索，此时需要将过滤函数设为`() => true`
+监听`input`事件，可以在关键词变化时进行远程搜索，此时需要将过滤函数设为`() => true`
 让它不要真正去过滤结果。
 
 ```vdt
 import {Select, Option} from 'kpc/components/select';
 
-<Select multiple filterable filter={() => true} ev-$change:keywords={this.search}>
+<Select multiple filterable filter={() => true} ev-input={this.search}>
     <Option v-for={this.get('users')} 
         value={$value.login.username}
     >{$value.name.first} {$value.name.last}</Option>
@@ -33,8 +33,8 @@ export default class extends Component {
     }
 
     @bind
-    search(keywords) {
-        console.log(keywords);
+    search(e) {
+        const keywords = e.target.value.trim();
 
         if (!keywords) return;
 

@@ -1,10 +1,12 @@
 import {DropdownMenu} from '../dropdown';
 import {_$} from '../../i18n';
 import {makeMenuStyles} from './styles';
-import {isEmptyChildren} from '../utils';
-import {Option} from './option';
+import {isEmptyChildren, eachChildren} from '../utils';
+import {OptionGroup} from './group';
+import {noop, isFunction} from 'intact-shared';
 
-const {card, searchable, children, className} = this.get();
+let {children, className} = this.get();
+const {card, searchable} = this.select.get();
 
 const classNameObj = {
     'k-select-menu': true,
@@ -12,6 +14,18 @@ const classNameObj = {
     'k-searchable': searchable,
     [className]: className,
     [makeMenuStyles()]: true,
+}
+
+if (card) {
+    const {labels, group} = this.card.process(children);
+    children = (
+        <div>
+            <div v-for={labels}>
+                {isFunction($value) /* is <b:label> block */ ? $value(noop) : $value}
+            </div>
+            {group}
+        </div>
+    );
 }
 
 <DropdownMenu class={classNameObj}>

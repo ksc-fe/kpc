@@ -1,5 +1,6 @@
 import {DropdownItem} from '../dropdown';
 import {isNullOrUndefined} from 'intact-shared';
+import {isEmptyChildren} from '../utils';
 
 const {children, className, disabled, label} = this.get();
 const {multiple} = this.select.get();
@@ -16,5 +17,5 @@ const classNameObj = {
     disabled={disabled}
     hideOnSelect={!multiple}
 >
-    {isNullOrUndefined(label) ? children : label}
+    {isEmptyChildren(children) ? label : children}
 </DropdownItem>

@@ -12,19 +12,21 @@ import {Option} from './option';
 const {
     value, multiple, filterable,
     loading, disabled, name,
-    size, hideIcon,
+    size, hideIcon, fluid,
     clearable, placeholder, allowUnmatch,
     className, children, creatable,
+    inline,
 
     _show,
 } = this.get();
 
-const keywords = this.filterable.keywords.value;
-const {onSearch, inputRef} = this.filterable;
 
 const classNameObj = {
     'k-select': true,
     'k-disabled': disabled,
+    [`k-${size}`]: size !== 'default',
+    'k-fluid': fluid,
+    'k-inline': inline,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -35,15 +37,21 @@ const _placeholder = isNullOrUndefined(placeholder) ?
 
 let hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
 
-const options = this.filterable.filter(children);
+const {onSearch, inputRef, getCreatedVNode, filter} = this.filterable;
+const keywords = this.filterable.keywords.value;
+const options = filter(children);
+
 const menu = (
-    <SelectMenu>
-        {this.filterable.getCreatedVNode(options)}
-        {options}
+    <SelectMenu class={className}>
+        <template>
+            <b:menu>
+                {getCreatedVNode(options)}{options}
+            </b:menu>
+        </template>
     </SelectMenu>
 );
 
-const label = this.getLabel();
+const label = this.label.getLabel();
 
 <Dropdown
     trigger="click"

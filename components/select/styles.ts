@@ -24,6 +24,7 @@ const {select} = deepDefaults(theme, {
             get iconColor() { return theme.color.placeholder },
             get activeColor() { return theme.color.primary },
             get borderRadius() { return theme.borderRadius },
+            suffixGap: '10px',
 
             clearGap: `8px`,
             get placeholderColor() { return theme.color.placeholder },
@@ -144,6 +145,9 @@ export default function makeStyles() {
         .k-select-suffix {
             color: ${select.iconColor};
         }
+        .k-select-suffix {
+            margin-left: ${select.suffixGap};
+        }
 
         .k-select-placeholder {
             color: ${select.placeholderColor};
@@ -244,9 +248,6 @@ export default function makeStyles() {
                 font-size: ${styles.fontSize};
                 min-height: ${styles.height};
                 padding: ${styles.padding};
-                .k-select-suffix {
-                    right: 10px;
-                }
             `;
             if (size === 'default') return className;
             return css`
@@ -255,6 +256,18 @@ export default function makeStyles() {
                 }
             `
         })}
+
+        // inline
+        &.k-inline {
+            width: auto;
+            border: none;
+            min-height: 0;
+            background: transparent;
+            .k-select-placeholder,
+            .k-select-value {
+                line-height: inherit;
+            }
+        }
     `;
 }
 
@@ -277,4 +290,13 @@ export function makeMenuStyles() {
             }
         }
     `;
+}
+
+export function makeGroupStyles() {
+    return css`
+        .k-select-group-label {
+            color: ${select.group.labelColor};
+            padding: ${select.group.labelPadding};
+        }
+    `
 }

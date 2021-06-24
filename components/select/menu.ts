@@ -1,21 +1,22 @@
-import {Component, TypeDefs, inject} from 'intact';
+import {Component, TypeDefs, inject, Children, Blocks} from 'intact';
 import template from './menu.vdt';
 import {SELECT} from './constants';
 import type {Select} from './select';
 import {isNullOrUndefined, isStringOrNumber, EMPTY_OBJ} from 'intact-shared';
-import {getTextByChildren} from '../utils';
+import {getTextByChildren, eachChildren} from '../utils';
+import {useCard} from './useCard';
 
-export interface SelectMenuProps {
-    card?: boolean
-    searchable?: boolean
-}
-
-const typeDefs: Required<TypeDefs<SelectMenuProps>> = {
-    card: Boolean,
-    searchable: Boolean,
-};
-
-export class SelectMenu<T extends SelectMenuProps = SelectMenuProps> extends Component<T> {
+export class SelectMenu extends Component {
     static template = template;
-    static typeDefs = typeDefs;
+
+    private select: Select | null = null;
+    private card: ReturnType<typeof useCard> | null = null;
+    
+    init() {
+        const select = this.select = inject(SELECT)!;
+
+        if (select.get('card')) {
+            this.card = useCard(select.label!.activeIndex);
+        }
+    }
 }

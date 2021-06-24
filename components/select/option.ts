@@ -1,7 +1,7 @@
 import {Component, TypeDefs, inject} from 'intact';
 import template from './option.vdt';
 import {bind, toggleArray} from '../utils';
-import {SELECT, RECORD_OPTIONS} from './constants';
+import {SELECT} from './constants';
 import type {Select} from './select';
 import {useRecordItem} from '../../hooks/useRecordComponent';
 
@@ -25,7 +25,6 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
 
     init() {
         this.select = inject(SELECT)!;
-        // useRecordItem(RECORD_OPTIONS);
     }
 
     @bind

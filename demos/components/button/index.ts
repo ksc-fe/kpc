@@ -14,16 +14,44 @@ export default class extends Component {
     }
 
     benchmarks() {
+        class A {
+            hello() {
+                // let sum = 0;
+                // for (let i = 0; i < 1000; i++) {
+                    // sum += i;
+                // }
+            }
+        }
+
+        class B {
+            hello: Function;
+            constructor() {
+                this.hello = () => {
+                    // let sum = 0;
+                    // for (let i = 0; i < 1000; i++) {
+                        // sum += i;
+                    // }
+                }
+            }
+        }
         console.time('a');
-        for (let i = 0; i < 10; i++) {
-            makeStyles1(i);
-        } 
+        // for (let i = 0; i < 10; i++) {
+            // makeStyles1(i);
+        // } 
+        for (let i = 0; i < 1000000; i++) {
+            const a = new A();
+            a.hello();
+        }
         console.timeEnd('a');
 
         console.time('b');
-        for (let i = 0; i < 10; i++) {
-            makeStyles2(i);
-        } 
+        // for (let i = 0; i < 10; i++) {
+            // makeStyles2(i);
+        // } 
+        for (let i = 0; i < 1000000; i++) {
+            const b = new B();
+            b.hello();
+        }
         console.timeEnd('b');
 
     }

@@ -1,0 +1,17 @@
+import {makeGroupStyles} from './styles';
+
+const {children, label, className, key, ref, ...rest} = this.get();
+const {card} = this.select.get();
+
+const classNameObj = {
+    "k-select-group": true,
+    [className]: className,
+    [makeGroupStyles()]: true,
+}
+
+<div class={classNameObj} {...rest}>
+    <div class="k-select-group-label" v-if={!card}>
+        <b:label>{label}</b:label>
+    </div>
+    {children}
+</div>

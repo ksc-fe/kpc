@@ -16,10 +16,11 @@ import {SELECT, RECORD_OPTIONS} from './constants';
 import {bind, findChildren, isEmptyString} from '../utils';
 import {Dropdown} from '../dropdown';
 import {useRecordParent} from '../../hooks/useRecordComponent';
-import {isNullOrUndefined} from 'intact-shared';
+import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
 import {Option} from './option';
 import type {Input} from '../input';
 import {useFilterable} from './useFilterable';
+import {useLabel} from './useLabel';
 
 export interface SelectProps {
     value?: any
@@ -28,15 +29,18 @@ export interface SelectProps {
     loading?: boolean
     disabled?: boolean
     name?: string
-    keywords?: string
     size?: Sizes
     hideIcon?: boolean
     clearable?: boolean
     filter?: (keywords: string, props: any) => boolean 
     searchable?: boolean
-    creatable: boolean
+    creatable?: boolean
+    labelMap?: Map<any, Children> 
+    card?: boolean
+    fluid?: boolean
+    inline?: boolean
 
-    _show: boolean
+    _show?: boolean
 }
 
 const typeDefs: Required<TypeDefs<SelectProps>> = {
@@ -46,19 +50,23 @@ const typeDefs: Required<TypeDefs<SelectProps>> = {
     loading: Boolean,
     disabled: Boolean,
     name: String,
-    keywords: String,
     size: sizes,
     hideIcon: Boolean,
     clearable: Boolean,
     filter: Function,
     searchable: Boolean,
     creatable: Boolean,
+    labelMap: Map,
+    card: Boolean,
+    fluid: Boolean,
+    inline: Boolean,
 
     _show: null,
 };
 
 const defaults = (): Partial<SelectProps> => ({
     size: 'default',
+    labelMap: new Map(),
 });
 
 export class Select<T extends SelectProps = SelectProps> extends Component<T> {
@@ -68,13 +76,12 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
 
     public dropdownRef = createRef<Dropdown>(); 
     public filterable: ReturnType<typeof useFilterable> | null = null;
-
-    // private options: Option[] = [];
+    public label: ReturnType<typeof useLabel> | null = null;
 
     init() {
         provide(SELECT, this);
-        // this.options = useRecordParent(RECORD_OPTIONS);
         this.filterable = useFilterable();
+        this.label = useLabel();
 
         this.watch('value', this.position, {presented: true});
     }
@@ -87,24 +94,12 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         }
     }
 
-    private getLabel() {
-        const {value, multiple, children} = this.get();
+    show() {
+        this.set('_show', true);
+    }
 
-        if (isNullOrUndefined(value)) return;
-
-        if (!multiple) {
-            return getLabel(children, value);
-        } else {
-            const labels: Children[] = [];
-            value.forEach((value: any) => {
-                const label = getLabel(children, value);
-                if (!isNullOrUndefined(label)) {
-                    labels.push(label);
-                }
-            });
-
-            return labels;
-        }
+    hide() {
+        this.set('_show', false);
     }
 
     private delete(index: number, e: MouseEvent) {
@@ -129,24 +124,4 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         e.stopPropagation();
         this.set('value', this.get('multiple') ? [] : '');
     }
-}
-
-function getLabel(children: Children, value: any) {
-    let label: Children = null;
-    findChildren(children, (vNode) => {
-        if ((vNode as VNodeComponentClass).tag === Option) {
-            const props = (vNode as VNodeComponentClass).props;
-            if (isNullOrUndefined(props)) return false;
-            if (props.value === value) {
-                label = props.label;
-                if (isNullOrUndefined(label)) {
-                    label = props.children;
-                }
-                return true;
-            }
-        }
-        return false;
-    });
-
-    return isEmptyString(label) ? value : label;
 }
