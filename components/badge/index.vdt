@@ -1,0 +1,23 @@
+import {getRestProps} from '../utils';
+import makeStyles from './styles';
+
+let {
+    className, children, text, disabled, max
+} = this.get();
+
+if (typeof text === 'number' && max && text > max) {
+    text = `${max}+`;
+}
+
+const classNameObj = {
+    'k-badge': true,
+    [className]: className,
+    'k-has-text': text != null,
+    'k-alone': !children,
+    [makeStyles()]: true,
+};
+
+<div {...getRestProps(this)} class={classNameObj}>
+    {children}
+    <sup class="k-badge-text" v-if={!disabled}>{text}</sup>
+</div>
