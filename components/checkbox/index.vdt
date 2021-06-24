@@ -1,0 +1,62 @@
+import {getRestProps} from '../utils';
+import makeStyles from './styles';
+
+const {
+    className, disabled, falseValue, 
+    children, value, trueValue, style,
+    name, indeterminate, title, ...rest
+} = this.get();
+
+const isChecked = this.isChecked();
+
+const classNameObj = {
+    'k-checkbox': true,
+    'k-disabled': disabled,
+    'k-checked': isChecked,
+    'k-indeterminate': indeterminate,
+    [className]: className,
+    [makeStyles()]: true
+};
+
+const events = [
+    'ev-click', 'ev-change',
+    'ev-mouseenter', 'ev-mouseleave'
+].reduce((memo, name) => {
+    if (rest[name]) {
+        if (name === 'ev-click' || name === 'ev-change') {
+            // do not bind click to label, otherwise it will trigger click event twice
+            // don't bind change to input, use click instead of, #448
+            // evClick = rest[name];
+        } else {
+            memo[name] = rest[name];
+        }
+        delete rest[name];
+    }
+    return memo;
+}, {});
+
+<label 
+    class={classNameObj}
+    style={style} 
+    tabindex={disabled ? null : "0"}
+    title={title}
+    ev-click={this.onClick}
+    ev-keypress={this.onKeypress}
+    {...events}
+>
+    <span class="k-checkbox-wrapper">
+        <input
+            type="checkbox" 
+            checked={isChecked}
+            value={trueValue}
+            v-model-true={trueValue}
+            v-model-false={falseValue}
+            disabled={disabled}
+            tabindex="-1"
+            ref={this.inputRef}
+            name={name}
+            {...getRestProps(this, rest)}
+        />
+    </span>
+    <span class="k-checkbox-text" v-if={children}>{children}</span>
+</label>
