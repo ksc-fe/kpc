@@ -4,9 +4,12 @@ import {makeMenuStyles} from './styles';
 import {isEmptyChildren, eachChildren} from '../utils';
 import {OptionGroup} from './group';
 import {noop, isFunction} from 'intact-shared';
+import {Input} from '../input';
+import {Button} from '../button';
+import {Icon} from '../icon';
 
 let {children, className} = this.get();
-const {card, searchable} = this.select.get();
+const {card, searchable, multiple} = this.select.get();
 
 const classNameObj = {
     'k-select-menu': true,
@@ -28,11 +31,47 @@ if (card) {
     );
 }
 
+if (isEmptyChildren(children)) {
+    children = (
+        <div v-else class="k-select-empty">
+            {_$('无数据')}
+        </div>
+    );
+}
+
+if (searchable) {
+    children = (
+        <template>
+            <div class="k-select-header">
+                <Input fluid size="small" placeholder={_$('请输入关键字')}
+                    ev-input={this.select.filterable.onSearch}
+                    clearable
+                >
+                    <b:suffix><Icon class="ion-ios-search" /></b:suffix>
+                </Input>
+                <div class="k-select-op" v-if={multiple}>
+                    <Button type="link" size="small"
+                        ev-click={this.selectAll}
+                    >{_$('全选')}</Button>  
+                    <Button type="link" size="small"
+                        ev-click={this.toggleSelect}
+                    >{_$('反选')}</Button>  
+                    <Button type="link" size="small"
+                        ev-click={this.unselectAll}
+                    >{_$('清空')}</Button>  
+                </div>
+            </div>
+            <div class="k-select-body">
+                {children}
+            </div>
+            <div class="k-select-footer" v-if={multiple}>
+                <Button type="primary" size="small" ev-click={this.confirm}>{_$('确定')}</Button>
+                <Button size="small" ev-click={this.select.hide}>{_$('取消')}</Button>
+            </div>
+        </template>
+    );
+}
+
 <DropdownMenu class={classNameObj}>
-    <template v-if={!isEmptyChildren(children)}>
-        {children}
-    </template>
-    <div v-else class="k-select-empty">
-        {_$('无数据')}
-    </div>
+    {children}
 </DropdownMenu>

@@ -98,6 +98,7 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         this.set('_show', true);
     }
 
+    @bind
     hide() {
         this.set('_show', false);
     }

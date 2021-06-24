@@ -1,14 +1,17 @@
+import {Transition} from 'intact';
 import {DropdownItem} from '../dropdown';
 import {isNullOrUndefined} from 'intact-shared';
 import {isEmptyChildren} from '../utils';
+import {Icon} from '../icon';
 
 const {children, className, disabled, label} = this.get();
 const {multiple} = this.select.get();
 
+const isActive = this.isActive();
 const classNameObj = {
     'k-select-option': true,
     [className]: className,
-    'k-active': this.isActive(),
+    'k-active': isActive,
 };
 
 <DropdownItem
@@ -18,4 +21,9 @@ const classNameObj = {
     hideOnSelect={!multiple}
 >
     {isEmptyChildren(children) ? label : children}
+    <Transition name="k-scale">
+        <Icon v-if={multiple && isActive}
+            class="k-select-checkmark ion-ios-checkmark-empty"
+        />
+    </Transition>
 </DropdownItem>

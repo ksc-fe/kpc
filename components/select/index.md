@@ -66,6 +66,7 @@ sidebar: doc
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
+| show | 展开菜单 | - | `undefined` |
 | hide | 隐藏菜单 | - | `undefined` |
 
 # 事件

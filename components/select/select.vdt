@@ -40,17 +40,6 @@ let hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !==
 const {onSearch, inputRef, getCreatedVNode, filter} = this.filterable;
 const keywords = this.filterable.keywords.value;
 const options = filter(children);
-
-const menu = (
-    <SelectMenu class={className}>
-        <template>
-            <b:menu>
-                {getCreatedVNode(options)}{options}
-            </b:menu>
-        </template>
-    </SelectMenu>
-);
-
 const label = this.label.getLabel();
 
 <Dropdown
@@ -143,5 +132,11 @@ const label = this.label.getLabel();
             </span>
         </span>
     </div> 
-    {menu}
+    <SelectMenu class={className}>
+        <template>
+            <b:menu>
+                {getCreatedVNode(options)}{options}
+            </b:menu>
+        </template>
+    </SelectMenu>
 </Dropdown>

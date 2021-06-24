@@ -1,6 +1,7 @@
 import {makeGroupStyles} from './styles';
+import {getRestProps} from '../utils';
 
-const {children, label, className, key, ref, ...rest} = this.get();
+const {children, label, className} = this.get();
 const {card} = this.select.get();
 
 const classNameObj = {
@@ -9,7 +10,7 @@ const classNameObj = {
     [makeGroupStyles()]: true,
 }
 
-<div class={classNameObj} {...rest}>
+<div {...getRestProps(this)} class={classNameObj}>
     <div class="k-select-group-label" v-if={!card}>
         <b:label>{label}</b:label>
     </div>

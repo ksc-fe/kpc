@@ -160,7 +160,7 @@ export default function makeStyles() {
         // clearable
         .k-select-clear {
             opacity: 0;
-            transition: opacity ${theme.transition};
+            transition: opacity ${theme.transition}, color ${theme.transition} !important;
             pointer-events: none;
             position: absolute;
             z-index: 1;
@@ -272,6 +272,8 @@ export default function makeStyles() {
 }
 
 export function makeMenuStyles() {
+    const searchable = select.searchable;
+    
     return css`
         min-width: auto;
         max-height: ${select.menuMaxHeight};
@@ -288,6 +290,48 @@ export function makeMenuStyles() {
             &.k-active {
                 color: ${select.activeColor};
             }
+        }
+
+        // searchable
+        &.k-searchable {
+            max-height: none;
+            padding: ${searchable.padding};
+            .k-select-option {
+                padding: ${searchable.optionPadding};
+            }
+        }
+        .k-select-header {
+            display: flex;
+            padding: ${searchable.header.padding};
+            border-bottom: ${searchable.border};
+            margin-bottom: ${searchable.header.gap};
+        }
+        .k-select-op {
+            white-space: nowrap;
+            .k-btn {
+                padding: ${searchable.header.btnPadding};
+                margin-left: ${searchable.header.btnGap};
+            }
+        }
+        .k-select-body {
+            max-height: ${select.menuMaxHeight};
+            overflow: auto;
+        }
+        .k-select-footer {
+            border-top: ${searchable.border};
+            padding: ${searchable.footer.padding};
+            text-align: right;
+            margin-top: ${searchable.footer.gap};
+            .k-btn {
+                margin-left: ${searchable.footer.btnGap};
+            }
+        }
+
+        // multiple checkmark
+        .k-select-checkmark {
+            float: right;
+            height: 100%;
+            font-size: ${select.multiple.checkmark.fontSize};
         }
     `;
 }

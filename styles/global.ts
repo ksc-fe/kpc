@@ -49,6 +49,15 @@ injectGlobal`
         transition: transform ${theme.transition};
     }
 
+    .k-scale-enter-from,
+    .k-scale-leave-to {
+        transform: scale(0);
+    }
+    .k-scale-enter-active,
+    .k-scale-leave-active {
+        transition: transform ${theme.transition};
+    }
+
     .c-ellipsis {
         white-space: nowrap;
         overflow: hidden;
