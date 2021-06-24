@@ -163,7 +163,7 @@ const OptionsVNodes = ({children}) => {
             let props = vNode.props;
             // if none of childern meet the filter, the group label will not be displayed
             // #579
-            if (!self.handlerGroupProps(props.children, vNode)) {
+            if (!self.handleGroupProps(props.children, vNode)) {
                 return hc('', vNode.key);
             }
             hasData = true;
