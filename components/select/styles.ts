@@ -25,6 +25,7 @@ const {select} = deepDefaults(theme, {
             get activeColor() { return theme.color.primary },
             get borderRadius() { return theme.borderRadius },
             suffixGap: '10px',
+            disabledArrowColor: '#e5e5e5',
 
             clearGap: `8px`,
             get placeholderColor() { return theme.color.placeholder },
@@ -190,6 +191,9 @@ export default function makeStyles() {
         .k-select-arrow {
             display: inline-block;
             transition: transform ${theme.transition};
+            &.k-disabled {
+                color: ${select.disabledArrowColor};
+            }
         }
 
         // show

@@ -36,7 +36,7 @@ if (searchable && multiple) {
 
 <DropdownItem
     class={classNameObj}
-    ev-select={this.onSelect}
+    ev-select={searchable && multiple ? null : this.onSelect}
     disabled={disabled}
     hideOnSelect={!multiple}
 >

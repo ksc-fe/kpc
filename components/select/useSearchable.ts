@@ -1,4 +1,4 @@
-import {useInstance, Children, onMounted, onUpdated} from 'intact';
+import {useInstance, Children} from 'intact';
 import type {SelectMenu} from './menu';
 import {useState} from '../../hooks/useState';
 import {isNullOrUndefined} from 'intact-shared';
@@ -13,21 +13,19 @@ export function useSearchable() {
     const menu = useInstance() as SelectMenu;
     const select = menu.select!;
     const checkedKeys = useState<any[]>([]);
-    let values: any[] = [];
 
     function selectAll() {
-        checkedKeys.set(addKeys(select.get('value'), values));
+        checkedKeys.set(addKeys(checkedKeys.value, menu.get('values')));
     }
 
     function unselectAll() {
-        checkedKeys.set(removeKeys(select.get('value'), values));
+        checkedKeys.set(removeKeys(checkedKeys.value, menu.get('values')));
     }
 
     function toggleSelect() {
-        const value = select.get('value');
         const checked: any[] = [];
         const unchecked: any[] = [];
-        values.forEach(item => {
+        menu.get('values').forEach(item => {
             if (checkedKeys.value.indexOf(item) > -1) {
                 checked.push(item);
             } else {
@@ -35,26 +33,12 @@ export function useSearchable() {
             }
         });
 
-        checkedKeys.set(removeKeys(addKeys(value, unchecked), checked));
+        checkedKeys.set(removeKeys(addKeys(checkedKeys.value, unchecked), checked));
     }
 
     function confirm() {
         select.set('value', checkedKeys.value);
         select.hide();
-    }
-
-    function getAllShowedValues() {
-        values = [];
-        const loop = (children: Children) => {
-            eachChildren(children, vNode => {
-                if (isComponentVNode(vNode, Option)) {
-                    values.push((vNode.props! as OptionProps).value); 
-                } else if (isComponentVNode(vNode, OptionGroup)) {
-                    loop(vNode.props!.children);
-                }
-            });
-        }
-        loop(menu.get('children'));
     }
 
     function initCheckedKeys() {
@@ -64,9 +48,6 @@ export function useSearchable() {
 
     select.watch('value', initCheckedKeys);
     select.on('hide', initCheckedKeys)
-
-    onMounted(getAllShowedValues);
-    onUpdated(getAllShowedValues);
 
     return {checkedKeys, selectAll, unselectAll, toggleSelect, confirm};
 }

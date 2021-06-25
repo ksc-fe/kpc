@@ -13,11 +13,12 @@ import {
 import template from './select.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {SELECT, RECORD_OPTIONS} from './constants';
-import {bind, findChildren, isEmptyString} from '../utils';
+import {bind, eachChildren, isComponentVNode} from '../utils';
 import {Dropdown} from '../dropdown';
 import {useRecordParent} from '../../hooks/useRecordComponent';
 import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
-import {Option} from './option';
+import {Option, OptionProps} from './option';
+import {OptionGroup, OptionGroupProps} from './group';
 import type {Input} from '../input';
 import {useFilterable} from './useFilterable';
 import {useLabel} from './useLabel';
@@ -40,6 +41,7 @@ export interface SelectProps {
     card?: boolean
     fluid?: boolean
     inline?: boolean
+    autoDisableArrow: boolean
 
     _show?: boolean
 }
@@ -61,6 +63,7 @@ const typeDefs: Required<TypeDefs<SelectProps>> = {
     card: Boolean,
     fluid: Boolean,
     inline: Boolean,
+    autoDisableArrow: Boolean,
 
     _show: null,
 };
@@ -97,6 +100,7 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         }
     }
 
+    @bind
     show() {
         this.set('_show', true);
     }
@@ -114,6 +118,23 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
         const value = (this.get('value') as any[]).slice(0);
         value.splice(index, 1);
         this.set('value', value);
+    }
+
+    private getAllShowedValues(children: Children) {
+        const values: any[] = [];
+        const loop = (children: Children) => {
+            eachChildren(children, vNode => {
+                if (isComponentVNode(vNode, Option)) {
+                    values.push((vNode.props! as OptionProps).value); 
+                } else if (isComponentVNode(vNode, OptionGroup)) {
+                    loop(vNode.props!.children);
+                }
+            });
+        }
+
+        loop(children);
+
+        return values;
     }
 
     @bind

@@ -1,10 +1,10 @@
-import {Component, TypeDefs, useInstance, Children, Blocks, createRef, RefObject} from 'intact';
+import {Component, TypeDefs, useInstance, Children, Blocks, createRef, NonNullableRefObject} from 'intact';
 import {eachChildren, isComponentVNode} from '../utils';
 import {EMPTY_OBJ} from 'intact-shared';
 import {OptionGroup} from './group';
 
 // TODO
-export function useCard(defaultActiveIndex: RefObject<number>) {
+export function useCard(defaultActiveIndex: NonNullableRefObject<number[]>) {
     const children = useInstance()!.get('children');
 
     function process(children: Children) {
@@ -17,7 +17,7 @@ export function useCard(defaultActiveIndex: RefObject<number>) {
                 const label = (props.$blocks || EMPTY_OBJ).label || props.label;
                 groupLabels.push(label); 
                 
-                if (index === (defaultActiveIndex.value || 0)) {
+                if (index === (defaultActiveIndex.value[0] || 0)) {
                     _children.push(vNode);
                 }
                 index++;

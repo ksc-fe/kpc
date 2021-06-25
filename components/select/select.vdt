@@ -6,7 +6,7 @@ import {_$} from '../../i18n';
 import makeStyles from './styles';
 import {SelectMenu} from './menu';
 import {Dropdown} from '../dropdown';
-import {getRestProps} from '../utils';
+import {getRestProps, isEmptyChildren} from '../utils';
 import {Option} from './option';
 
 const {
@@ -15,11 +15,10 @@ const {
     size, hideIcon, fluid,
     clearable, placeholder, allowUnmatch,
     className, children, creatable,
-    inline,
+    inline, autoDisableArrow,
 
     _show,
 } = this.get();
-
 
 const classNameObj = {
     'k-select': true,
@@ -35,11 +34,12 @@ const _placeholder = isNullOrUndefined(placeholder) ?
     (allowUnmatch && filterable) ? _$('请输入或选择') : _$('请选择') :
     placeholder;
 
-let hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
+const hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
 
 const {onSearch, inputRef, getCreatedVNode, filter} = this.filterable;
 const keywords = this.filterable.keywords.value;
 const options = filter(children);
+const allShowedValues = this.getAllShowedValues(options);
 const label = this.label.getLabel();
 
 <Dropdown
@@ -127,12 +127,23 @@ const label = this.label.getLabel();
             <span class="k-select-suffix-icon">
                 <b:suffix>
                     <Icon class="ion-load-c" rotate v-if={loading} />
-                    <Icon class="k-select-arrow ion-ios-arrow-down" v-else-if={!hideIcon} />
+                    <Icon v-else-if={!hideIcon}
+                        class={{
+                            "k-select-arrow ion-ios-arrow-down": true,
+                            'k-disabled': disabled ||
+                                autoDisableArrow && (
+                                    isEmptyChildren(options) ||
+                                    allShowedValues.length === 1 &&
+                                    !multiple &&
+                                    allShowedValues[0] === value
+                                ),
+                        }}
+                    />
                 </b:suffix>
             </span>
         </span>
     </div> 
-    <SelectMenu class={className}>
+    <SelectMenu class={className} values={allShowedValues}>
         <template>
             <b:menu>
                 {getCreatedVNode(options)}{options}

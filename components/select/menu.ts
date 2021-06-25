@@ -7,7 +7,7 @@ import {getTextByChildren, eachChildren} from '../utils';
 import {useCard} from './useCard';
 import {useSearchable} from './useSearchable';
 
-export class SelectMenu extends Component {
+export class SelectMenu extends Component<{values: any[]}> {
     static template = template;
 
     public select: Select | null = null;
@@ -17,7 +17,7 @@ export class SelectMenu extends Component {
     init() {
         const select = this.select = inject(SELECT)!;
 
-        this.card = useCard(select.label!.activeIndex);
+        this.card = useCard(select.label!.activeIndices);
         this.searchable = useSearchable();
     }
 }

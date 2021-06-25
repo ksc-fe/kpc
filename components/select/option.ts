@@ -44,7 +44,7 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
         }
     }
 
-    private isActive() {
+    private isActive(): boolean {
         const {value: currentValue, multiple} = this.select!.get();
         const value = this.get('value');
 

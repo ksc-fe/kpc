@@ -7,7 +7,7 @@ import type {Select, SelectProps} from './select';
 
 export function useLabel() {
     const instance = useInstance() as Select;
-    const activeIndex = createRef<number>();
+    const activeIndices = createRef<number[]>([]);
 
     function getLabel() {
         const {value, multiple, children} = instance.get();
@@ -32,6 +32,7 @@ export function useLabel() {
     function findLabel(children: Children, value: any) {
         let label: Children = null;
         let index = 0;
+        activeIndices.value = [];
         const loop = (children: Children) => {
             return findChildren(children, (vNode) => {
                 if (isComponentVNode(vNode, Option)) {
@@ -46,7 +47,7 @@ export function useLabel() {
                     }
                 } else if (isComponentVNode(vNode, OptionGroup)) {
                     if (loop((vNode.props || EMPTY_OBJ).children)) {
-                        activeIndex.value = index;
+                        activeIndices.value.push(index);
                         return true;
                     }
                     index++;
@@ -93,5 +94,5 @@ export function useLabel() {
  
     instance.watch('value', cleanMap, {inited: true});
 
-    return {getLabel, activeIndex};
+    return {getLabel, activeIndices};
 }
