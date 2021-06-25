@@ -7,6 +7,7 @@ import {noop, isFunction} from 'intact-shared';
 import {Input} from '../input';
 import {Button} from '../button';
 import {Icon} from '../icon';
+import {context} from './useSearchable';
 
 let {children, className} = this.get();
 const {card, searchable, multiple} = this.select.get();
@@ -40,24 +41,28 @@ if (isEmptyChildren(children)) {
 }
 
 if (searchable) {
+    const {selectAll, toggleSelect, unselectAll, confirm, checkedKeys} = this.searchable;
+    const {Provider} = context;
+
     children = (
-        <template>
+        <Provider value={checkedKeys}>
             <div class="k-select-header">
                 <Input fluid size="small" placeholder={_$('请输入关键字')}
-                    ev-input={this.select.filterable.onSearch}
+                    value={this.select.filterable.keywords.value}
+                    ev-$change:value={this.select.filterable.onSearch}
                     clearable
                 >
                     <b:suffix><Icon class="ion-ios-search" /></b:suffix>
                 </Input>
                 <div class="k-select-op" v-if={multiple}>
                     <Button type="link" size="small"
-                        ev-click={this.selectAll}
+                        ev-click={selectAll}
                     >{_$('全选')}</Button>  
                     <Button type="link" size="small"
-                        ev-click={this.toggleSelect}
-                    >{_$('反选')}</Button>  
+                        ev-click={toggleSelect}
+                    >{_$('反选')}</Button> 
                     <Button type="link" size="small"
-                        ev-click={this.unselectAll}
+                        ev-click={unselectAll}
                     >{_$('清空')}</Button>  
                 </div>
             </div>
@@ -65,10 +70,10 @@ if (searchable) {
                 {children}
             </div>
             <div class="k-select-footer" v-if={multiple}>
-                <Button type="primary" size="small" ev-click={this.confirm}>{_$('确定')}</Button>
+                <Button type="primary" size="small" ev-click={confirm}>{_$('确定')}</Button>
                 <Button size="small" ev-click={this.select.hide}>{_$('取消')}</Button>
             </div>
-        </template>
+        </Provider>
     );
 }
 

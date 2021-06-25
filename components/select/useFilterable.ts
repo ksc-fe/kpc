@@ -6,13 +6,15 @@ import {
     VNode,
     VNodeComponentClass,
     directClone,
-    createRef
+    createRef,
+    Props,
 } from 'intact';
 import {useState} from '../../hooks/useState';
 import type {Select, SelectProps} from './select';
-import {Option} from './option';
+import {Option, OptionProps} from './option';
+import {OptionGroup, OptionGroupProps} from './group';
 import {isNullOrUndefined, EMPTY_OBJ, isStringOrNumber} from 'intact-shared';
-import {getTextByChildren, mapChildren} from '../utils';
+import {getTextByChildren, mapChildren, isComponentVNode} from '../utils';
 import type {Input} from '../input';
 
 export function useFilterable() {
@@ -20,8 +22,8 @@ export function useFilterable() {
     const keywords = useState('');
     const inputRef = createRef<Input>();
 
-    function onSearch(e: InputEvent) {
-        const value = (e.target as HTMLInputElement).value.trim();
+    function onSearch(value: string) {
+        value = value.trim();
 
         keywords.set(value);
 
@@ -39,6 +41,7 @@ export function useFilterable() {
         const _keywords = keywords.value;
         if (creatable && filterable && _keywords) {
             if (!children.find(vNode => {
+                // TODO: create Option for OptionGroup
                 if ((vNode as VNode).tag === Option) {
                     const props = (vNode as VNode).props;
                     if (isNullOrUndefined(props)) return false;
@@ -62,27 +65,42 @@ export function useFilterable() {
             filter = defaultFilter;
         }
 
-        const _children: (VNode | string | number)[] = [];
-        mapChildren(children, vNode => {
-            if ((vNode as VNode).tag === Option) {
-                const props = (vNode as VNode).props;
-                if (isNullOrUndefined(props)) return;
+        const loop = (children: Children) => {
+            const _children: (VNode | string | number)[] = [];
+            mapChildren(children, vNode => {
+                if (isComponentVNode(vNode, Option)) {
+                    const props = vNode.props as Props<OptionProps>;
+                    if (isNullOrUndefined(props)) return;
 
-                vNode = directClone(vNode as VNode);
+                    vNode = directClone(vNode as VNode);
 
-                if (isNullOrUndefined(props.label)) {
-                    vNode.props = {...props, label: getTextByChildren(props.children)};
-                }
+                    if (isNullOrUndefined(props.label)) {
+                        vNode.props = {...props, label: getTextByChildren(props.children)};
+                    }
 
-                if (filter!(keywords.value, vNode.props)) {
+                    if (filter!(keywords.value, vNode.props)) {
+                        _children.push(vNode);
+                    }
+                } else if (isComponentVNode(vNode, OptionGroup)) {
+                    const props = vNode.props;
+                    if (isNullOrUndefined(props)) return;
+
+                    const children = loop(props.children);
+                    if (!children.length) return;
+
+                    vNode = directClone(vNode);
+                    vNode.props = {...props, children};
+
+                    _children.push(vNode);
+                } else {
                     _children.push(vNode);
                 }
-            } else {
-                _children.push(vNode);
-            }
-        });
+            });
 
-        return _children;
+            return _children;
+        }
+
+        return loop(children);
     }
 
     function resetKeywords() {

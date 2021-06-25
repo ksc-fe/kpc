@@ -81,7 +81,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     private useAsComponent = false;
 
     init() {
-        useShowHideEvents(SHOW, HIDE);
+        useShowHideEvents('value', SHOW, HIDE);
         useEscClosable();
         useMouseOutsidable(this.dialogRef); 
         this.drag = useDraggable();

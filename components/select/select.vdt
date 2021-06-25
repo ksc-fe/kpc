@@ -58,7 +58,7 @@ const label = this.label.getLabel();
                 <input type="hidden" value={value} name={name} key="hidden-input" />
                 <Input v-if={!multiple && filterable}
                     value={_show ? keywords : label}
-                    ev-input={onSearch}
+                    ev-$change:value={onSearch}
                     disabled={disabled}
                     placeholder={label || _placeholder}
                     ref={inputRef}
@@ -106,7 +106,7 @@ const label = this.label.getLabel();
                     <Input v-if={filterable}
                         class="k-select-input"
                         value={keywords}
-                        ev-input={onSearch}
+                        ev-$change:value={onSearch}
                         disabled={disabled}
                         placeholder={!hasValue ? _placeholder : ''}
                         ref={inputRef}

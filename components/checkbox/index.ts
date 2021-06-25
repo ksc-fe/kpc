@@ -27,7 +27,7 @@ const defaults = (): Partial<CheckboxProps> => ({
     trueValue: true,
     falseValue: false,
     indeterminate: false,
-})
+});
 
 export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component<T> {
     static template = template;

@@ -5,18 +5,19 @@ import type {Select} from './select';
 import {isNullOrUndefined, isStringOrNumber, EMPTY_OBJ} from 'intact-shared';
 import {getTextByChildren, eachChildren} from '../utils';
 import {useCard} from './useCard';
+import {useSearchable} from './useSearchable';
 
 export class SelectMenu extends Component {
     static template = template;
 
-    private select: Select | null = null;
+    public select: Select | null = null;
     private card: ReturnType<typeof useCard> | null = null;
+    private searchable: ReturnType<typeof useSearchable> | null = null;
     
     init() {
         const select = this.select = inject(SELECT)!;
 
-        if (select.get('card')) {
-            this.card = useCard(select.label!.activeIndex);
-        }
+        this.card = useCard(select.label!.activeIndex);
+        this.searchable = useSearchable();
     }
 }

@@ -10,7 +10,7 @@ order: 6
 import {Select, Option, OptionGroup} from 'kpc/components/select';
 
 <div>
-    <Select v-model="day">
+    <Select v-model="day" filterable>
         <OptionGroup label="工作日">
             <Option value="Monday">星期一</Option>
             <Option value="Tuesday">星期二</Option>
@@ -23,7 +23,7 @@ import {Select, Option, OptionGroup} from 'kpc/components/select';
             <Option value="Sunday">星期天</Option>
         </OptionGroup>
     </Select>
-    <Select v-model="day" card>
+    <Select v-model="day" card filterable>
         <OptionGroup label="工作日">
             <Option value="Monday">星期一</Option>
             <Option value="Tuesday">星期二</Option>

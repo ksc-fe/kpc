@@ -21,6 +21,7 @@ import {Option} from './option';
 import type {Input} from '../input';
 import {useFilterable} from './useFilterable';
 import {useLabel} from './useLabel';
+import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 
 export interface SelectProps {
     value?: any
@@ -80,6 +81,8 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
 
     init() {
         provide(SELECT, this);
+        useShowHideEvents('_show');
+
         this.filterable = useFilterable();
         this.label = useLabel();
 

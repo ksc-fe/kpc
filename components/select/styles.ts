@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults, sizes, Sizes, getRight} from '../../styles/utils';
+import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
 
 type SizeStyles = {
@@ -325,6 +325,11 @@ export function makeMenuStyles() {
             .k-btn {
                 margin-left: ${searchable.footer.btnGap};
             }
+        }
+        .k-select-checkbox {
+            display: block;
+            margin: 0 -${getRight(searchable.optionPadding)} 0 -${getLeft(searchable.optionPadding)};
+            padding: ${searchable.optionPadding};
         }
 
         // multiple checkmark

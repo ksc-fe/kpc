@@ -12,7 +12,9 @@ export interface OptionProps {
 }
 
 const typeDefs: Required<TypeDefs<OptionProps>> = {
-    value: null,
+    value: {
+        required: true,
+    },
     label: String,
     disabled: Boolean,
 };
