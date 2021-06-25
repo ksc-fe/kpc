@@ -282,6 +282,9 @@ export function makeMenuStyles() {
         min-width: auto;
         max-height: ${select.menuMaxHeight};
         overflow: auto;
+        &:not([class*="-active"]) {
+            transition: left ${theme.transition}, top ${theme.transition};
+        }
         .k-select-empty {
             padding: ${select.empty.padding};
             color: ${select.empty.color};
