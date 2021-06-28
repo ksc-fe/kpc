@@ -23,101 +23,62 @@ import type {Input} from '../input';
 import {useFilterable} from './useFilterable';
 import {useLabel} from './useLabel';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
+import {BaseSelect, BaseSelectProps} from './base';
+import {_$} from '../../i18n';
 
-export interface SelectProps {
-    value?: any
-    multiple?: boolean
-    filterable?: boolean
-    loading?: boolean
-    disabled?: boolean
-    name?: string
-    size?: Sizes
-    hideIcon?: boolean
-    clearable?: boolean
+export interface SelectProps extends BaseSelectProps {
     filter?: (keywords: string, props: any) => boolean 
     searchable?: boolean
     creatable?: boolean
     labelMap?: Map<any, Children> 
     card?: boolean
-    fluid?: boolean
-    inline?: boolean
     autoDisableArrow: boolean
 
     _show?: boolean
 }
 
 const typeDefs: Required<TypeDefs<SelectProps>> = {
-    value: null,
-    multiple: Boolean,
-    filterable: Boolean,
-    loading: Boolean,
-    disabled: Boolean,
-    name: String,
-    size: sizes,
-    hideIcon: Boolean,
-    clearable: Boolean,
+    ...BaseSelect.typeDefs,
     filter: Function,
     searchable: Boolean,
     creatable: Boolean,
     labelMap: Map,
     card: Boolean,
-    fluid: Boolean,
-    inline: Boolean,
     autoDisableArrow: Boolean,
 
     _show: null,
 };
 
 const defaults = (): Partial<SelectProps> => ({
-    size: 'default',
+    ...BaseSelect.defaults(),
     labelMap: new Map(),
 });
 
-export class Select<T extends SelectProps = SelectProps> extends Component<T> {
+export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    public dropdownRef = createRef<Dropdown>(); 
     public filterable: ReturnType<typeof useFilterable> | null = null;
     public label: ReturnType<typeof useLabel> | null = null;
 
     init() {
-        provide(SELECT, this);
-        useShowHideEvents('_show');
-
+        super.init();
         this.filterable = useFilterable();
         this.label = useLabel();
-
-        this.watch('value', this.position, {presented: true});
+        this.watch('_show', this.setWidth, {presented: true});
     }
 
-    @bind
-    position() {
-        const dropdown = this.dropdownRef.value!;
-        if (dropdown.get('value')) {
-            dropdown.position();
-        }
+    protected getPlaceholder() {
+        const {placeholder, creatable, filterable} = this.get();
+
+        return isNullOrUndefined(placeholder) ?
+            creatable && filterable ? _$('请输入或选择') : _$('请选择') :
+            placeholder;
     }
 
-    @bind
-    show() {
-        this.set('_show', true);
-    }
-
-    @bind
-    hide() {
-        this.set('_show', false);
-    }
-
-    private delete(index: number, e: MouseEvent) {
-        if (this.get('disabled')) return;
-
-        e.stopPropagation();
-
-        const value = (this.get('value') as any[]).slice(0);
-        value.splice(index, 1);
-        this.set('value', value);
+    protected getLabel() {
+        return this.label!.getLabel();
     }
 
     private getAllShowedValues(children: Children) {
@@ -138,15 +99,11 @@ export class Select<T extends SelectProps = SelectProps> extends Component<T> {
     }
 
     @bind
-    private onShow() {
+    private setWidth(v: boolean | undefined) {
+        if (!v) return;
+
         const menuElement = findDomFromVNode(this.dropdownRef.value!.menuVNode!, true) as HTMLElement;
         const entity = findDomFromVNode(this.$lastInput!, true) as HTMLElement; 
         menuElement.style.minWidth = `${entity.offsetWidth}px`;
-    }
-
-    @bind
-    private clear(e: MouseEvent) {
-        e.stopPropagation();
-        this.set('value', this.get('multiple') ? [] : '');
     }
 }
