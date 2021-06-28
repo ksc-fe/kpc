@@ -13,7 +13,7 @@ const {checkbox} = deepDefaults(theme, {
         
         // text
         text: {
-            marginLeft: '8px',
+            gap: '8px',
         },
 
         // checked
@@ -94,7 +94,7 @@ export default function makeStyles() {
         }
         .k-checkbox-text {
             vertical-align: middle;
-            margin-left: ${checkbox.text.marginLeft};
+            margin-left: ${checkbox.text.gap};
             display: inline-block;
             flex: 0 1 auto;
         }

@@ -54,14 +54,12 @@ export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component
                 if (index === -1) {
                     value.push(trueValue);
                 }
-            }
-            else {
+            } else {
                 if (index > -1) {
                     value.splice(index, 1);
                 }
             }
-        }
-        else {
+        } else {
             value = checked ? trueValue : falseValue;
         }
         this.set('value', value);
@@ -78,7 +76,7 @@ export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component
         const {disabled} = this.get();
         if (disabled) {
             this.trigger('click');
-        }else {
+        } else {
             this.setCheckboxModel(e);
             this.trigger('click', e);
             this.trigger('change', this.get('value'), e);
@@ -88,7 +86,7 @@ export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component
     @bind
     private onKeypress(e: KeyboardEvent){
         if (e.keyCode === 13 || e.key === 'Enter') {
-            this.inputRef.value?.click();
+            this.inputRef.value!.click();
         }
     }
 }
