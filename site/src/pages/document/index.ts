@@ -65,9 +65,9 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
         super.mounted();
         this.examples = this.element.value!.querySelectorAll('.example');
         document.title = this.get('Article.data.setting.title');
-        if (this.refs.article) {
-            this.set('demos', this.refs.article.get('demos'));
-        }
+        // if (this.refs.article) {
+            // this.set('demos', this.refs.article.get('demos'));
+        // }
 
         // window.addEventListener('scroll', this.onScroll);
     }

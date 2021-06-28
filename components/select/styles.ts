@@ -152,6 +152,7 @@ export default function makeStyles() {
 
         .k-select-placeholder {
             color: ${select.placeholderColor};
+            user-select: none;
         }
 
         &.k-fluid {
