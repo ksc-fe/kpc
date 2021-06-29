@@ -1,13 +1,12 @@
-import {Component, TypeDefs, Children} from 'intact';
+import {TypeDefs, Children, provide} from 'intact';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 import {Container} from '../portal';
+import {BaseSelect, BaseSelectProps} from '../select/base';
+import {DATEPICKER} from './constants';
 
-export interface DatepickerProps {
+export interface DatepickerProps extends BaseSelectProps {
     value: Value | Value[]
-    clearable: boolean
-    disabled: boolean
-    size: Sizes
     type: 'date' | 'datetime' | 'year' | 'month'
     range: boolean
     // transition: string
@@ -16,7 +15,6 @@ export interface DatepickerProps {
     disableHours: boolean
     disableMinutes: boolean
     disableSeconds: boolean
-    multiple: boolean
     format: string
     valueFormat: string
     showFormat: string
@@ -31,10 +29,8 @@ type Value = string | Date | number;
 type Shortcut = Function
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
+    ...BaseSelect.typeDefs,
     value: [String, Array, Date, Number],
-    clearable: Boolean,
-    disabled: Boolean,
-    size: sizes,
     type: ['date', 'datetime', 'year', 'month'],
     range: Boolean,
     // transition: String,
@@ -43,7 +39,6 @@ const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     disableHours: Boolean,
     disableMinutes: Boolean,
     disableSeconds: Boolean,
-    multiple: Boolean,
     format: String,
     valueFormat: String,
     showFormat: String,
@@ -53,12 +48,25 @@ const typeDefs: Required<TypeDefs<DatepickerProps>> = {
 };
 
 const defaults = (): Partial<DatepickerProps> => ({
-    size: 'default',
+    ...BaseSelect.defaults(),
     type: 'date'
 });
 
-export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Component<T> {
+export class Datepicker<T extends DatepickerProps = DatepickerProps> extends BaseSelect<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    init() {
+        super.init();
+        provide(DATEPICKER, this);
+    }
+
+    protected getPlaceholder() {
+        return 'test';
+    }
+
+    protected getLabel() {
+        return 'label';
+    }
 }

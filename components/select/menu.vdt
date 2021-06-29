@@ -42,14 +42,15 @@ if (isEmptyChildren(children)) {
 
 if (searchable) {
     const {selectAll, toggleSelect, unselectAll, confirm, checkedKeys} = this.searchable;
+    const {onInput, keywords} = this.select.input;
     const {Provider} = context;
 
     children = (
         <Provider value={checkedKeys}>
             <div class="k-select-header">
                 <Input fluid size="small" placeholder={_$('请输入关键字')}
-                    value={this.select.filterable.keywords.value}
-                    ev-$change:value={this.select.filterable.onSearch}
+                    value={keywords.value}
+                    ev-$change:value={onInput}
                     clearable
                 >
                     <b:suffix><Icon class="ion-ios-search" /></b:suffix>

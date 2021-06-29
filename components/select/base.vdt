@@ -11,7 +11,7 @@ const {
     loading, disabled, name,
     size, hideIcon, fluid,
     clearable, filterable,
-    className, children,
+    className,
     inline,
 
     _show,
@@ -30,7 +30,7 @@ const classNameObj = {
 const placeholder = this.getPlaceholder();
 const label = this.getLabel();
 const hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
-const {onSearch, inputRef, keywords: {value: keywords}} = this.filterable;
+const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 
 <Dropdown
     trigger="click"
@@ -47,7 +47,7 @@ const {onSearch, inputRef, keywords: {value: keywords}} = this.filterable;
                 <input type="hidden" value={value} name={name} key="hidden-input" />
                 <Input v-if={!multiple && filterable}
                     value={_show ? keywords : label}
-                    ev-$change:value={onSearch}
+                    ev-$change:value={onInput}
                     disabled={disabled}
                     placeholder={label || placeholder}
                     ref={inputRef}
@@ -95,7 +95,7 @@ const {onSearch, inputRef, keywords: {value: keywords}} = this.filterable;
                     <Input v-if={filterable}
                         class="k-select-input"
                         value={keywords}
-                        ev-$change:value={onSearch}
+                        ev-$change:value={onInput}
                         disabled={disabled}
                         placeholder={!hasValue ? placeholder : ''}
                         ref={inputRef}

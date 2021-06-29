@@ -1,28 +1,15 @@
 import {
-    Component,
-    provide,
-    createRef,
     findDomFromVNode,
     Children,
-    VNodeComponentClass,
-    VNode,
     TypeDefs,
-    nextTick,
-    createVNode as h,
 } from 'intact';
 import template from './select.vdt';
-import {Sizes, sizes} from '../../styles/utils';
-import {SELECT, RECORD_OPTIONS} from './constants';
 import {bind, eachChildren, isComponentVNode} from '../utils';
-import {Dropdown} from '../dropdown';
-import {useRecordParent} from '../../hooks/useRecordComponent';
-import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
+import {isNullOrUndefined} from 'intact-shared';
 import {Option, OptionProps} from './option';
-import {OptionGroup, OptionGroupProps} from './group';
-import type {Input} from '../input';
+import {OptionGroup} from './group';
 import {useFilterable} from './useFilterable';
 import {useLabel} from './useLabel';
-import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {BaseSelect, BaseSelectProps} from './base';
 import {_$} from '../../i18n';
 
@@ -33,6 +20,8 @@ export interface SelectProps extends BaseSelectProps {
     labelMap?: Map<any, Children> 
     card?: boolean
     autoDisableArrow: boolean
+    // TODO
+    // unmatchable: boolean
 
     _show?: boolean
 }
@@ -64,7 +53,7 @@ export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
 
     init() {
         super.init();
-        this.filterable = useFilterable();
+        this.filterable = useFilterable(this.input!.keywords);
         this.label = useLabel();
         this.watch('_show', this.setWidth, {presented: true});
     }

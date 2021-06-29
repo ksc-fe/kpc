@@ -2,13 +2,8 @@ import {
     Component,
     provide,
     createRef,
-    findDomFromVNode,
     Children,
-    VNodeComponentClass,
-    VNode,
     TypeDefs,
-    nextTick,
-    createVNode as h,
     RefObject,
 } from 'intact';
 import template from './base.vdt';
@@ -19,6 +14,7 @@ import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {bind} from '../utils';
 import {Dropdown} from '../dropdown';
 import {State} from '../../hooks/useState';
+import {useInput} from './useInput';
 
 export interface BaseSelectProps {
     value?: any
@@ -35,12 +31,6 @@ export interface BaseSelectProps {
     placeholder?: Children
 
     _show?: boolean
-}
-
-type Filterable = {
-    onSearch: (value: string) => void,
-    inputRef: RefObject<Input>,
-    keywords: State<string>
 }
 
 const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
@@ -70,11 +60,12 @@ export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> ex
     static defaults = defaults;
 
     public dropdownRef = createRef<Dropdown>(); 
-    public filterable: Filterable | null = null;
+    public input: ReturnType<typeof useInput> | null = null;
 
     init() {
         provide(SELECT, this);
         useShowHideEvents('_show');
+        this.input = useInput();
 
         this.watch('value', this.position, {presented: true});
     }

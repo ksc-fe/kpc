@@ -258,3 +258,18 @@ export function isEmptyChildren(o: Children): boolean {
 export function isComponentVNode<T extends ComponentConstructor>(o: any, tag: T): o is VNodeComponentClass<any> {
     return o.tag === tag; 
 }
+
+export function range(start: number, end: number) {
+    return Array.apply(null, {length: end - start + 1} as any)
+        .map((v, i) => i + start);
+}
+
+export function strPad(str: number | string, length: number, pad: string = '0') {
+    str = str.toString();
+    const l = str.length;
+    if (l < length) {
+        str = new Array(length - l + 1).join(pad) + str;
+    }
+    return str;
+}
+

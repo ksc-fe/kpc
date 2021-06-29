@@ -1,0 +1,93 @@
+import {Transition} from 'intact';
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {_$} from '../../i18n';
+import {makeCalendarStyles} from './styles';
+import {getNowDate} from './helpers';
+
+const {type} = this.get();
+const isYearOrMonth = type === 'year' || type === 'month';
+const classNameObj = {
+    'k-datepicker-calendar': true,
+    [makeCalendarStyles()]: true,
+};
+const now = getNowDate();
+const getItems = data => {
+    return <div v-for={data}
+        class={{
+            "k-calendar-item": true,
+            "k-exceed": $value.isExceed,
+            "k-active": $value.isActive,
+            "k-today": $value.isToday,
+            "k-disabled": $value.isDisabled, 
+            "k-hover": $value.isHover,
+        }}
+    >
+        <div class="k-value">{$value.value}</div>
+    </div>
+};
+
+<div class={classNameObj}>
+    <div class="k-datepicker-month">
+        <div class="k-left-btns">
+            <Button icon type="none" size="small" class="k-prev"
+                tagName="div"
+                ev-click={this.prevYear}
+            >
+                <Icon class="ion-ios-arrow-left" size="small" />
+                <Icon class="ion-ios-arrow-left" size="small" />
+            </Button>
+            <Button icon type="none" size="small" class="k-prev"
+                tagName="div"
+                ev-click={this.prevMonth}
+                v-if={!isYearOrMonth}
+            >
+                <Icon class="ion-ios-arrow-left" size="small" />
+            </Button>
+        </div>
+        <div class="k-month-values"
+            ev-click={this.showYearPicker}
+        >
+            <template v-if={type !== 'year'}>
+                <span v-for={this.showDate.getDateString()}
+                     class="k-month-value" 
+                >{$value}</span>
+            </template>
+            <span v-else class="k-month-value">
+                {(() => {
+                    const [start, end] = this.years.getYearRange();
+                    return _$('{start}年 - {end}年', {start, end});
+                })()} 
+            </span>
+        </div>
+        <div class="k-right-btns">
+            <Button icon type="none" size="small" class="k-next"
+                tagName="div"
+                ev-click={this.nextYear}
+            >
+                <Icon class="ion-ios-arrow-right" size="small" />
+                <Icon class="ion-ios-arrow-right" size="small" />
+            </Button>
+            <Button icon type="none" size="small" class="k-next"
+                tagName="div"
+                ev-click={this.nextMonth}
+                v-if={!isYearOrMonth}
+            >
+                <Icon class="ion-ios-arrow-right" size="small" />
+            </Button>
+        </div>
+    </div>
+    <template v-if={!isYearOrMonth}>
+        <div class="k-weekdays">
+            <div class="k-weekday"
+                v-for={[_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')]}
+            >{$value}</div>
+        </div>
+        <div class="k-days" ev-mouseleave={this._onMouseLeaveDays}>
+            {getItems(this.days.getDays(now))}
+        </div>
+    </template>
+    <div v-else class="k-years">
+        {getItems(this.years.getYears(now))}
+    </div>
+</div>

@@ -9,7 +9,7 @@ import {
     createRef,
     Props,
 } from 'intact';
-import {useState} from '../../hooks/useState';
+import {useState, State} from '../../hooks/useState';
 import type {Select, SelectProps} from './select';
 import {Option, OptionProps} from './option';
 import {OptionGroup, OptionGroupProps} from './group';
@@ -17,24 +17,8 @@ import {isNullOrUndefined, EMPTY_OBJ, isStringOrNumber} from 'intact-shared';
 import {getTextByChildren, mapChildren, isComponentVNode} from '../utils';
 import type {Input} from '../input';
 
-export function useFilterable() {
+export function useFilterable(keywords: State<string>) {
     const component = useInstance() as Select;
-    const keywords = useState('');
-    const inputRef = createRef<Input>();
-
-    function onSearch(value: string) {
-        value = value.trim();
-
-        keywords.set(value);
-
-        const dropdown = component.dropdownRef.value!;
-        // the position may be flip, and the select input height may change height too,
-        // so we should reset the position
-        nextTick(() => {
-            dropdown.focusFirst();
-            dropdown.position();
-        });
-    }
 
     function getCreatedVNode(children: (VNode | string | number)[]) {
         const {creatable, filterable} = component.get();
@@ -103,34 +87,7 @@ export function useFilterable() {
         return loop(children);
     }
 
-    function resetKeywords() {
-        keywords.set('');
-    }
-
-    // if menu showed and value changed on multiple mode
-    // focus the input
-    function focusInput() {
-        if (component.get('filterable')) {
-            inputRef.value!.focus();
-        }
-    }
-    component.on('$changed:_show', show => {
-        if (show) {
-            focusInput();
-            resetKeywords();
-        } else if (component.get('multiple')) {
-            resetKeywords();
-        }
-    });
-    component.on('$changed:value', () => {
-        const {multiple, filterable} = component.get();
-        if (multiple && filterable) {
-            focusInput();
-            resetKeywords();
-        }
-    });
-
-    return {onSearch, getCreatedVNode, keywords, filter, inputRef};
+    return {getCreatedVNode, filter};
 }
 
 function defaultFilter(keywords: string, props: any): boolean {

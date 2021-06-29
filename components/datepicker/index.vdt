@@ -1,0 +1,10 @@
+import {DropdownMenu} from '../dropdown';
+import {DatepickerCalendar} from './calendar';
+
+<t:super>
+    <b:base-menu>
+        <DropdownMenu class="k-datepicker-panel">
+            <DatepickerCalendar />
+        </DropdownMenu>
+    </b:base-menu>
+</t:super>
