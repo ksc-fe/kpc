@@ -87,6 +87,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         this.drag = useDraggable();
 
         if (this.$vNode) {
+            // TODO
             this.useAsComponent = true;
         }
     }

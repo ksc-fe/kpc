@@ -15,7 +15,6 @@ export function useYears(showDate: State<Dayjs>) {
     }
 
     function getYears(now: Dayjs) {
-        const {value} = instance.get();
         const years = [];
 
         const start = showDate.value.toDate();
@@ -29,11 +28,12 @@ export function useYears(showDate: State<Dayjs>) {
 
             years.push({
                 isExceed,
-                isActive: !isExceed && dayjsDate.isSame(value, 'year'),
+                isActive: !isExceed && isEqual(dayjsDate, showDate.value, 'year'),
                 isToday: dayjsDate.isSame(now, 'year'),
                 isDisabled: isDisabledDate(dayjsDate),
-                isHover: focusYear.value && dayjsDate.isSame(focusYear.value, 'year'),
-                value: year,
+                isHover: isEqual(dayjsDate, focusYear.value, 'year'),
+                label: year,
+                value: dayjsDate,
             });
 
             start.setFullYear(year + 1);
@@ -46,5 +46,10 @@ export function useYears(showDate: State<Dayjs>) {
         return false;
     }
 
-    return {getYearRange, getYears};
+    function onClick(date: Dayjs) {
+        showDate.set(date);
+        instance.set('type', 'month');
+    }
+
+    return {getYearRange, getYears, onClick};
 }

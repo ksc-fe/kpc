@@ -6,13 +6,14 @@ import {makeCalendarStyles} from './styles';
 import {getNowDate} from './helpers';
 
 const {type} = this.get();
-const isYearOrMonth = type === 'year' || type === 'month';
+const isYear = type === 'year';
+const isYearOrMonth = isYear || type === 'month';
 const classNameObj = {
     'k-datepicker-calendar': true,
     [makeCalendarStyles()]: true,
 };
 const now = getNowDate();
-const getItems = data => {
+const getItems = (data, onClick) => {
     return <div v-for={data}
         class={{
             "k-calendar-item": true,
@@ -22,24 +23,33 @@ const getItems = data => {
             "k-disabled": $value.isDisabled, 
             "k-hover": $value.isHover,
         }}
+        ev-click={
+            !$value.isDisabled ? e => {
+                e._ignore = true;
+                onClick($value.value);
+            } : null
+        }
     >
-        <div class="k-value">{$value.value}</div>
+        <div class="k-value">{$value.label}</div>
     </div>
 };
+
+const {getDays, onClick: onClickDay} = this.days;
+const {getDateString, prevMonth, nextMonth, prevYear, nextYear, prevTenYears, nextTenYears} = this.showDate;
 
 <div class={classNameObj}>
     <div class="k-datepicker-month">
         <div class="k-left-btns">
             <Button icon type="none" size="small" class="k-prev"
                 tagName="div"
-                ev-click={this.prevYear}
+                ev-click={isYear ? prevTenYears : prevYear}
             >
                 <Icon class="ion-ios-arrow-left" size="small" />
                 <Icon class="ion-ios-arrow-left" size="small" />
             </Button>
             <Button icon type="none" size="small" class="k-prev"
                 tagName="div"
-                ev-click={this.prevMonth}
+                ev-click={prevMonth}
                 v-if={!isYearOrMonth}
             >
                 <Icon class="ion-ios-arrow-left" size="small" />
@@ -48,10 +58,10 @@ const getItems = data => {
         <div class="k-month-values"
             ev-click={this.showYearPicker}
         >
-            <template v-if={type !== 'year'}>
-                <span v-for={this.showDate.getDateString()}
+            <template v-if={!isYear}>
+                <span v-for={getDateString()}
                      class="k-month-value" 
-                >{$value}</span>
+                >{$value.value}</span>
             </template>
             <span v-else class="k-month-value">
                 {(() => {
@@ -63,14 +73,14 @@ const getItems = data => {
         <div class="k-right-btns">
             <Button icon type="none" size="small" class="k-next"
                 tagName="div"
-                ev-click={this.nextYear}
+                ev-click={isYear ? nextTenYears : nextYear}
             >
                 <Icon class="ion-ios-arrow-right" size="small" />
                 <Icon class="ion-ios-arrow-right" size="small" />
             </Button>
             <Button icon type="none" size="small" class="k-next"
                 tagName="div"
-                ev-click={this.nextMonth}
+                ev-click={nextMonth}
                 v-if={!isYearOrMonth}
             >
                 <Icon class="ion-ios-arrow-right" size="small" />
@@ -84,10 +94,13 @@ const getItems = data => {
             >{$value}</div>
         </div>
         <div class="k-days" ev-mouseleave={this._onMouseLeaveDays}>
-            {getItems(this.days.getDays(now))}
+            {getItems(getDays(now), onClickDay)}
         </div>
     </template>
+    <div v-else-if={isYear} class="k-years">
+        {getItems(this.years.getYears(now), this.years.onClick)}
+    </div>
     <div v-else class="k-years">
-        {getItems(this.years.getYears(now))}
+        {getItems(this.months.getMonths(now), this.months.onClick)}
     </div>
 </div>

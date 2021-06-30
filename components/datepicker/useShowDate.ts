@@ -10,14 +10,6 @@ export function useShowDate() {
     const showDate = useState<Dayjs>(getNowDate());
 
     function getDateString() {
-        // if (isYearOrMonth) {
-            // const year = Math.floor(showDate.value.get('year') / 10);
-            // return [_$('{n}年 - {m}年', {
-                // n: year * 10,
-                // m: year * 10 + 9,
-            // })];
-        // }
-
         const map = {
             MM: _$(`${showDate.value.get('month') + 1}月`),
             YYYY: _$(`{n}年`, {n: showDate.value.get('year')}),
@@ -29,8 +21,49 @@ export function useShowDate() {
         }
         const format = yearMonthFormat.split(' ') as (keyof typeof map)[];
 
-        return format.map(item => map[item]);
+        return format.map(item => ({type: item, value: map[item]}));
     }
 
-    return {date: showDate, getDateString};
+    function setRelativeMonth(month: number) {
+        showDate.set(showDate.value.add(month, 'month'));
+    }
+
+    function setRelativeYear(year: number) {
+        showDate.set(showDate.value.add(year, 'year'));
+    }
+
+    function prevMonth() {
+        setRelativeMonth(-1);
+    }
+
+    function nextMonth() {
+        setRelativeMonth(1);
+    }
+
+    function prevYear() {
+        setRelativeYear(-1);
+    }
+
+    function nextYear() {
+        setRelativeYear(1);
+    }
+
+    function nextTenYears() {
+        setRelativeYear(10);
+    }
+
+    function prevTenYears() {
+        setRelativeYear(-10);
+    }
+
+    return {
+        date: showDate,
+        getDateString,
+        prevMonth,
+        nextMonth,
+        prevYear,
+        nextYear,
+        nextTenYears,
+        prevTenYears,
+    };
 }

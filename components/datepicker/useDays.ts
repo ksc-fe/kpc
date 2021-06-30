@@ -11,7 +11,6 @@ export function useDays(showDate: State<Dayjs>) {
     function getDays(now: Dayjs) {
         const {value} = instance.get();
         const days = [];
-
         // dayjs is immutable, so we convert to native Date
         const start = showDate.value.toDate();
         const month = start.getMonth();
@@ -32,8 +31,10 @@ export function useDays(showDate: State<Dayjs>) {
                 isToday: isEqual(now, dayjsDate),
                 isDisabled: isDisabledDate(dayjsDate),
                 isHover: isEqual(focusDate.value, dayjsDate),
-                value: _date,
+                label: _date,
+                value: dayjsDate,
             });
+
             start.setDate(start.getDate() + 1);
         }
 
@@ -44,5 +45,12 @@ export function useDays(showDate: State<Dayjs>) {
         return false;
     }
 
-    return {getDays, showDate};
+    function onClick(value: Dayjs) {
+        instance.set('value', value);
+    }
+
+    return {
+        getDays,
+        onClick,
+    };
 }

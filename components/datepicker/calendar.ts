@@ -11,10 +11,11 @@ import {useShowDate} from './useShowDate';
 import {bind} from '../utils';
 import {useYears} from './useYears';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
+import {useMonths} from './useMonths';
 
 export interface DatepickerCalendarProps {
-    value: Dayjs
-    type: 'date' | 'year' | 'month'
+    value?: Dayjs
+    type?: 'date' | 'year' | 'month'
 }
 
 const defaults = (): Partial<DatepickerCalendarProps> => ({
@@ -27,20 +28,14 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
 
     // public datepicker: Datepicker | null = null;
 
-    private days: ReturnType<typeof useDays> | null = null;
-    private showDate: ReturnType<typeof useShowDate> | null = null;
-    private years: ReturnType<typeof useYears> | null = null;
-
-    init() {
-        // this.datepicker = inject(DATEPICKER)!;
-        const {date} = this.showDate = useShowDate();
-        this.days = useDays(date);
-        this.years = useYears(date);
-    }
+    private showDate = useShowDate();
+    private days = useDays(this.showDate.date);
+    private years = useYears(this.showDate.date);
+    private months = useMonths(this.showDate.date);
 
     @bind
-    showYearPicker(e: MouseEvent) {
-        (e as IgnoreClickEvent)._ignore = true;
+    showYearPicker(e: IgnoreClickEvent) {
+        e._ignore = true;
         this.set('type', 'year');
     }
 }

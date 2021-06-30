@@ -8,8 +8,9 @@ const {datepicker} = deepDefaults(theme, {
         width: `300px`,
         padding: `16px 16px 4px`,
 
-        day: {
+        item: {
             margin: `7px`,
+            height: `24px`,
             get hoverBgColor() { return theme.color.bg },
             get exceedColor() { return theme.color.disabled },
             get todayBorder() { return `1px solid ${theme.color.border}` },
@@ -66,6 +67,9 @@ export function makeCalendarStyles() {
         .k-month-value {
             margin: 0 ${datepicker.month.valueGap};
             line-height: ${theme.small.height};
+            &:hover {
+                color: ${theme.color.primary};
+            }
         },
         .k-weekdays {
             display: flex;
@@ -78,33 +82,33 @@ export function makeCalendarStyles() {
         }
         .k-calendar-item {
             text-align: center;
-            margin: ${datepicker.day.margin};
+            margin: ${datepicker.item.margin};
             aspect-ratio: 1;
             display: flex;
             align-items: center;
             cursor: pointer;
             position: relative;
-            border-radius: ${datepicker.day.borderRadius};
+            border-radius: ${datepicker.item.borderRadius};
             &:hover {
-                background: ${datepicker.day.hoverBgColor};
+                background: ${datepicker.item.hoverBgColor};
             }
             &.k-exceed {
-                color: ${datepicker.day.exceedColor};
+                color: ${datepicker.item.exceedColor};
             }
             &.k-today {
-                border: ${datepicker.day.todayBorder};
+                border: ${datepicker.item.todayBorder};
             }
             &.k-active {
-                background: ${datepicker.day.active.bgColor};
-                color: ${datepicker.day.active.color};
+                background: ${datepicker.item.active.bgColor};
+                color: ${datepicker.item.active.color};
                 &.k-today {
-                    border-color: ${datepicker.day.active.todayBorderColor};
+                    border-color: ${datepicker.item.active.todayBorderColor};
                 }
             }
             &.k-disabled {
-                color: ${datepicker.day.disabled.color};
+                color: ${datepicker.item.disabled.color};
                 cursor: not-allowed;
-                background: ${datepicker.day.disabled.hoverBgColor};
+                background: ${datepicker.item.disabled.hoverBgColor};
             }
             .k-value {
                 flex: 1;

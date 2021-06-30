@@ -1,10 +1,15 @@
 import {DropdownMenu} from '../dropdown';
 import {DatepickerCalendar} from './calendar';
 
+const {value} = this.get();
+
 <t:super>
     <b:base-menu>
         <DropdownMenu class="k-datepicker-panel">
-            <DatepickerCalendar />
+            <DatepickerCalendar
+                value={this.value.value.value}
+                ev-$change:value={this.value.setValue}
+            />
         </DropdownMenu>
     </b:base-menu>
 </t:super>

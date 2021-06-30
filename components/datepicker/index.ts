@@ -4,6 +4,10 @@ import {sizes, Sizes} from '../../styles/utils';
 import {Container} from '../portal';
 import {BaseSelect, BaseSelectProps} from '../select/base';
 import {DATEPICKER} from './constants';
+import dayjs, {Dayjs} from 'dayjs';
+import {useValue} from './useValue';
+import {isNullOrUndefined} from 'intact-shared'
+import {_$} from '../../i18n';
 
 export interface DatepickerProps extends BaseSelectProps {
     value: Value | Value[]
@@ -23,7 +27,7 @@ export interface DatepickerProps extends BaseSelectProps {
     disabledDate: (v: Value) => boolean
 }
 
-type Value = string | Date | number;
+export type Value = string | Date | number | Dayjs;
 
 // TODO
 type Shortcut = Function
@@ -57,16 +61,31 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    private value = useValue();
+
     init() {
         super.init();
         provide(DATEPICKER, this);
     }
 
     protected getPlaceholder() {
-        return 'test';
+        const {placeholder, type, range} = this.get();
+
+        if (!isNullOrUndefined(placeholder)) return placeholder;
+
+        switch (type) {
+            case 'datetime':
+                return range ? _$('开始时间 ~ 结束时间') : _$('请选择日期和时间');
+            case 'year':
+                return _$('请选择年份');
+            case 'month':
+                return _$('请选择月份');
+            default:
+                return range ? _$('开始日期 ~ 结束日期') : _$('请选择日期');
+        }
     }
 
     protected getLabel() {
-        return 'label';
+        return this.value.format();
     }
 }

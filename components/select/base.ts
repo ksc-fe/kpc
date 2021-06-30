@@ -29,6 +29,9 @@ export interface BaseSelectProps {
     fluid?: boolean
     inline?: boolean
     placeholder?: Children
+    format?: string
+    valueFormat?: string
+    showFormat?: string
 
     _show?: boolean
 }
@@ -46,8 +49,11 @@ const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
     fluid: Boolean,
     inline: Boolean,
     placeholder: [String, Number],
+    format: String,
+    valueFormat: String,
+    showFormat: String,
 
-    _show: null,
+    _show: Boolean,
 };
 
 const defaults = (): Partial<BaseSelectProps> => ({

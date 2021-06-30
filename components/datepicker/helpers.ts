@@ -1,4 +1,4 @@
-import dayjs, {Dayjs} from 'dayjs';
+import dayjs, {Dayjs, OpUnitType} from 'dayjs';
 import {strPad, range} from '../utils';
 import {_$} from '../../i18n';
 
@@ -17,26 +17,38 @@ export function clearTime(date: Date) {
     date.setMilliseconds(0);
 }
 
-export function isEqual(a: Dayjs | null, b: Dayjs | null) {
+export function isEqual(
+    a: Dayjs | undefined | null,
+    b: Dayjs | undefined | null,
+    type: OpUnitType = 'date'
+) {
     if (a && b) {
-        return a.isSame(b, 'date');
+        return a.isSame(b, type);
     }
     return false;
 }
 
-export function isLT(a: Dayjs | null, b: Dayjs | null) {
+export function isLT(
+    a: Dayjs | undefined | null,
+    b: Dayjs | undefined | null,
+    type: OpUnitType = 'date'
+) {
     if (a && b) {
-        return a.isBefore(b, 'date');
+        return a.isBefore(b, type);
     }
 
     return false;
 }
 
-export function isGT(a: Dayjs | null, b: Dayjs | null) {
-    return isLT(b, a);        
+export function isGT(
+    a: Dayjs | undefined | null,
+    b: Dayjs | undefined | null,
+    type: OpUnitType = 'date'
+) {
+    return isLT(b, a, type);
 }
 
-export function getDateString(date: Date, type) {
+export function getDateString(date: Date, type: string) {
     const year = date.getFullYear();
     if (type === 'year') {
         return year;
