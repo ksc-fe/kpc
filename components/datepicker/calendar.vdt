@@ -35,7 +35,7 @@ const getItems = (data, onClick) => {
 };
 
 const {getDays, onClick: onClickDay} = this.days;
-const {getDateString, prevMonth, nextMonth, prevYear, nextYear, prevTenYears, nextTenYears} = this.showDate;
+const {getDateLabel, prevMonth, nextMonth, prevYear, nextYear, prevTenYears, nextTenYears} = this.showDate;
 
 <div class={classNameObj}>
     <div class="k-datepicker-month">
@@ -55,19 +55,15 @@ const {getDateString, prevMonth, nextMonth, prevYear, nextYear, prevTenYears, ne
                 <Icon class="ion-ios-arrow-left" size="small" />
             </Button>
         </div>
-        <div class="k-month-values"
-            ev-click={this.showYearPicker}
-        >
+        <div class="k-month-values">
             <template v-if={!isYear}>
-                <span v-for={getDateString()}
+                <span v-for={getDateLabel()}
                      class="k-month-value" 
+                     ev-click={$value.onClick}
                 >{$value.value}</span>
             </template>
             <span v-else class="k-month-value">
-                {(() => {
-                    const [start, end] = this.years.getYearRange();
-                    return _$('{start}年 - {end}年', {start, end});
-                })()} 
+                {this.years.getYearLabel()} 
             </span>
         </div>
         <div class="k-right-btns">

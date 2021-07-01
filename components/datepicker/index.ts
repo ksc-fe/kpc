@@ -8,23 +8,28 @@ import dayjs, {Dayjs} from 'dayjs';
 import {useValue} from './useValue';
 import {isNullOrUndefined} from 'intact-shared'
 import {_$} from '../../i18n';
+import {bind} from '../utils';
+import {State} from '../../hooks/useState';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+import {useDisabled} from './useDisabled';
+import {useFormats} from './useFormats';
 
 export interface DatepickerProps extends BaseSelectProps {
-    value: Value | Value[]
-    type: 'date' | 'datetime' | 'year' | 'month'
-    range: boolean
-    // transition: string
-    shortcuts: Shortcut[]
-    container: Container
-    disableHours: boolean
-    disableMinutes: boolean
-    disableSeconds: boolean
-    format: string
-    valueFormat: string
-    showFormat: string
-    minDate: Value,
-    maxDate: Value,
-    disabledDate: (v: Value) => boolean
+    value?: Value | Value[]
+    type?: 'date' | 'datetime' | 'year' | 'month'
+    range?: boolean
+    shortcuts?: Shortcut[]
+    container?: Container
+    disableHours?: boolean
+    disableMinutes?: boolean
+    disableSeconds?: boolean
+    format?: string
+    valueFormat?: string
+    showFormat?: string
+    minDate?: Value
+    maxDate?: Value
+    disabledDate?: (v: Value) => boolean
+    filterable?: true
 }
 
 export type Value = string | Date | number | Dayjs;
@@ -34,10 +39,9 @@ type Shortcut = Function
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BaseSelect.typeDefs,
-    value: [String, Array, Date, Number],
+    value: [String, Array, Date, Number, Dayjs],
     type: ['date', 'datetime', 'year', 'month'],
     range: Boolean,
-    // transition: String,
     shortcuts: Array,
     container: [Function, String],
     disableHours: Boolean,
@@ -46,22 +50,27 @@ const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     format: String,
     valueFormat: String,
     showFormat: String,
-    minDate: [String, Date, Number],
-    maxDate: [String, Date, Number],
+    minDate: [String, Date, Number, Dayjs],
+    maxDate: [String, Date, Number, Dayjs],
     disabledDate: Function,
 };
 
 const defaults = (): Partial<DatepickerProps> => ({
     ...BaseSelect.defaults(),
-    type: 'date'
+    type: 'date',
+    filterable: true,
 });
+
+dayjs.extend(customParseFormat);
 
 export class Datepicker<T extends DatepickerProps = DatepickerProps> extends BaseSelect<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private value = useValue();
+    private formats = useFormats();
+    public isDisabled = useDisabled(this.formats);
+    private value = useValue(this.formats, this.isDisabled);
 
     init() {
         super.init();
@@ -87,5 +96,10 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
 
     protected getLabel() {
         return this.value.format();
+    }
+
+    @bind
+    protected resetKeywords(keywords: State<string>) {
+        keywords.set(this.get('value') as string || '')
     }
 }

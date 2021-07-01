@@ -4,7 +4,7 @@ import {clearTime, isEqual, getNowDate} from './helpers';
 import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
 
-export function useDays(showDate: State<Dayjs>) {
+export function useDays(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolean) {
     const instance = useInstance() as DatepickerCalendar;
     const focusDate = useState<Dayjs | null>(null);
 
@@ -29,7 +29,7 @@ export function useDays(showDate: State<Dayjs>) {
                 isExceed,
                 isActive: !isExceed && isEqual(value, dayjsDate),
                 isToday: isEqual(now, dayjsDate),
-                isDisabled: isDisabledDate(dayjsDate),
+                isDisabled: isDisabled(dayjsDate),
                 isHover: isEqual(focusDate.value, dayjsDate),
                 label: _date,
                 value: dayjsDate,
@@ -39,10 +39,6 @@ export function useDays(showDate: State<Dayjs>) {
         }
 
         return days;
-    }
-
-    function isDisabledDate(date: Dayjs) {
-        return false;
     }
 
     function onClick(value: Dayjs) {

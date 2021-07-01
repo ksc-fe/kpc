@@ -26,16 +26,10 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
     static template = template;
     static defaults = defaults;
 
-    // public datepicker: Datepicker | null = null;
+    public datepicker: Datepicker = inject(DATEPICKER)!;
 
     private showDate = useShowDate();
-    private days = useDays(this.showDate.date);
+    private days = useDays(this.showDate.date, this.datepicker.isDisabled);
     private years = useYears(this.showDate.date);
     private months = useMonths(this.showDate.date);
-
-    @bind
-    showYearPicker(e: IgnoreClickEvent) {
-        e._ignore = true;
-        this.set('type', 'year');
-    }
 }

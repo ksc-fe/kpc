@@ -1,12 +1,22 @@
 import {useInstance} from 'intact';
-import {useState} from '../../hooks/useState';
+import {useState, watchState} from '../../hooks/useState';
 import dayjs, {Dayjs} from 'dayjs';
 import type {Datepicker, Value} from './index';
 import {isString} from 'intact-shared';
 import {FORMATS} from './helpers';
+import type {useFormats} from './useFormats';
+import type {useDisabled} from './useDisabled';
 
-export function useValue() {
-    const value = useState<Dayjs | Dayjs[] | null>(null);
+export function useValue(
+    {
+        createDateByValueFormat,
+        createDateByShowFormat,
+        getShowString,
+        getValueString,
+    }: ReturnType<typeof useFormats>,
+    isDisabled: ReturnType<typeof useDisabled>
+) {
+    const value = useState<Dayjs | null>(null);
     const instance = useInstance() as Datepicker;
 
     instance.on('$receive:value', v => {
@@ -16,32 +26,18 @@ export function useValue() {
             if (!v.length) hasValue = false;
             v = v.map(v => {
                 if (!v) hasValue = false;
-                return createDate(v); 
+                return createDateByValueFormat(v); 
             });
         } else if (v) {
-            v = createDate(v);
+            v = createDateByValueFormat(v);
         } else {
             hasValue = false;
         }
 
         if (hasValue) {
-            value.set(v as Dayjs | Dayjs[]);
+            value.set(v as Dayjs);
         }
     });
-
-    function createDate(value: Value) {
-        return dayjs(value, isString(value) ? getValueFormat() : undefined);
-    }
-
-    function getValueFormat() {
-        const {format, valueFormat, type} = instance.get();
-        return valueFormat || format || FORMATS[type];
-    }
-
-    function getShowFormat() {
-        const {format, showFormat, type} = instance.get();
-        return showFormat || format || FORMATS[type];
-    }
 
     function format() {
         const {range} = instance.get();
@@ -49,25 +45,42 @@ export function useValue() {
         if (Array.isArray(_value)) {
             // do not show if has not selected
             if (range && _value.length !== 2) return;
-            const values = _value.map(v => v.format(getShowFormat()));
+            const values = _value.map(getShowString);
             if (range) {
                 return values.join(' ~ ');
             }
             return values.join(', ');
         } else if (_value) {
-            return _value.format(getShowFormat());
+            return getShowString(_value);
         }
     }
 
-    function createDateByShowFormat(value: string) {
-
-    }
-
-    function setValue(v: Dayjs) {
-        value.set(v);
-        instance.set('value', v.format(getValueFormat()));
+    function onSelect(v: Dayjs) {
+        setValue(v);
         instance.hide();
     }
 
-    return {value, format, setValue};
+    function setValue(v: Dayjs) {
+        if (value.value && v.isSame(value.value)) return;
+        value.set(v);
+    }
+
+    function isValidDate(date: Dayjs) {
+        return date.isValid() && !isDisabled(date);
+    }
+
+    watchState(value, v => {
+        const valueStr = v ? getValueString(v) : '';
+        instance.set('value', valueStr);
+        instance.input.keywords.set(valueStr);
+    });
+
+    watchState(instance.input.keywords, v => {
+        const date = createDateByShowFormat(v);
+        if (isValidDate(date)) {
+            setValue(date);
+        }
+    });
+
+    return {value, format, onSelect};
 }

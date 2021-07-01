@@ -9,7 +9,7 @@ import {
     createRef,
     Props,
 } from 'intact';
-import {useState} from '../../hooks/useState';
+import {useState, State} from '../../hooks/useState';
 import type {Select, SelectProps} from './select';
 import {Option, OptionProps} from './option';
 import {OptionGroup, OptionGroupProps} from './group';
@@ -17,7 +17,7 @@ import {isNullOrUndefined, EMPTY_OBJ, isStringOrNumber} from 'intact-shared';
 import {getTextByChildren, mapChildren, isComponentVNode} from '../utils';
 import type {Input} from '../input';
 
-export function useInput() {
+export function useInput(resetKeywords: (keywords: State<string>) => void) {
     const component = useInstance() as Select;
     const keywords = useState('');
     const inputRef = createRef<Input>();
@@ -34,10 +34,6 @@ export function useInput() {
         });
     }
 
-    function resetKeywords() {
-        keywords.set('');
-    }
-
     // if menu showed and value changed on multiple mode
     // focus the input
     function focusInput() {
@@ -49,16 +45,16 @@ export function useInput() {
     component.on('$changed:_show', show => {
         if (show) {
             focusInput();
-            resetKeywords();
+            resetKeywords(keywords);
         } else if (component.get('multiple')) {
-            resetKeywords();
+            resetKeywords(keywords);
         }
     });
     component.on('$changed:value', () => {
         const {multiple, filterable} = component.get();
         if (multiple && filterable) {
             focusInput();
-            resetKeywords();
+            resetKeywords(keywords);
         }
     });
 

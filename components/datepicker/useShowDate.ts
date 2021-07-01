@@ -4,12 +4,20 @@ import {useState, State} from '../../hooks/useState';
 import {clearTime, isEqual, getNowDate} from './helpers';
 import dayjs, {Dayjs} from 'dayjs';
 import {_$} from '../../i18n';
+import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
+import {isNullOrUndefined} from 'intact-shared';
 
 export function useShowDate() {
     const instance = useInstance() as DatepickerCalendar;
     const showDate = useState<Dayjs>(getNowDate());
 
-    function getDateString() {
+    instance.on('$receive:value', v => {
+        if (!isNullOrUndefined(v)) {
+            showDate.set(v);
+        }
+    });
+
+    function getDateLabel() {
         const map = {
             MM: _$(`${showDate.value.get('month') + 1}月`),
             YYYY: _$(`{n}年`, {n: showDate.value.get('year')}),
@@ -21,7 +29,13 @@ export function useShowDate() {
         }
         const format = yearMonthFormat.split(' ') as (keyof typeof map)[];
 
-        return format.map(item => ({type: item, value: map[item]}));
+        return format.map(item => ({
+            value: map[item],
+            onClick(e: IgnoreClickEvent) {
+                e._ignore = true;
+                instance.set('type', item === 'YYYY' ? 'year' : 'month');
+            }
+        }));
     }
 
     function setRelativeMonth(month: number) {
@@ -58,7 +72,7 @@ export function useShowDate() {
 
     return {
         date: showDate,
-        getDateString,
+        getDateLabel,
         prevMonth,
         nextMonth,
         prevYear,

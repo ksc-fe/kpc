@@ -3,6 +3,7 @@ import dayjs, {Dayjs} from 'dayjs';
 import {clearTime, isEqual, getNowDate} from './helpers';
 import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
+import {_$} from '../../i18n';
 
 export function useYears(showDate: State<Dayjs>) {
     const instance = useInstance() as DatepickerCalendar;
@@ -12,6 +13,11 @@ export function useYears(showDate: State<Dayjs>) {
         const startYear = Math.floor(showDate.value.get('year') / 10) * 10;
 
         return [startYear, startYear + 9];
+    }
+
+    function getYearLabel() {
+        const [start, end] = getYearRange();
+        return _$('{start}年 - {end}年', {start, end});
     }
 
     function getYears(now: Dayjs) {
@@ -51,5 +57,5 @@ export function useYears(showDate: State<Dayjs>) {
         instance.set('type', 'month');
     }
 
-    return {getYearRange, getYears, onClick};
+    return {getYearRange, getYearLabel, getYears, onClick};
 }

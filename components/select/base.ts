@@ -66,12 +66,12 @@ export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> ex
     static defaults = defaults;
 
     public dropdownRef = createRef<Dropdown>(); 
-    public input: ReturnType<typeof useInput> | null = null;
+    public input = useInput(this.resetKeywords);
 
     init() {
         provide(SELECT, this);
         useShowHideEvents('_show');
-        this.input = useInput();
+        // this.input = useInput();
 
         this.watch('value', this.position, {presented: true});
     }
@@ -95,6 +95,10 @@ export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> ex
     @bind
     hide() {
         this.set('_show', false);
+    }
+
+    protected resetKeywords(keywords: State<string>) {
+        keywords.set('');
     }
 
     private delete(index: number, e: MouseEvent) {
