@@ -3,15 +3,29 @@ import {EMPTY_OBJ, isStringOrNumber, isNullOrUndefined, isInvalid} from 'intact-
 
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
+    // In IE11 calling Object.defineProperty has a side-effect of evaluating the
+    // getter for the property which is being replaced. This causes infinite
+    // recursion and an "Out of stack space" error.
+    let definingProperty = false;
+
     return {
         configurable: true,
         get(this: T): T {
+            if (
+                definingProperty ||
+                this.hasOwnProperty(key) /* has bound, for invoking super bound method */
+            ) {
+                return method;
+            }
+
             const value = method.bind(this);
+            definingProperty = true;
             Object.defineProperty(this, key, {
                 value,
                 configurable: true,
                 writable: true,
             });
+            definingProperty = false;
 
             return value;
         }

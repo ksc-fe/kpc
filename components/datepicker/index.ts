@@ -43,7 +43,7 @@ export enum PanelTypes {
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BaseSelect.typeDefs,
-    value: [String, Array, Date, Number, Dayjs],
+    value: [String, Array, Date, Number, dayjs.Dayjs],
     type: ['date', 'datetime', 'year', 'month'],
     range: Boolean,
     shortcuts: Array,
@@ -54,8 +54,8 @@ const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     format: String,
     valueFormat: String,
     showFormat: String,
-    minDate: [String, Date, Number, Dayjs],
-    maxDate: [String, Date, Number, Dayjs],
+    minDate: [String, Date, Number, dayjs.Dayjs],
+    maxDate: [String, Date, Number, dayjs.Dayjs],
     disabledDate: Function,
 };
 
@@ -111,5 +111,14 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     protected resetKeywords(keywords: State<string>) {
         const {multiple} = this.get();
         keywords.set(multiple ? '' : this.get('value') as string || '')
+    }
+
+    @bind
+    protected clear(e: MouseEvent) {
+        super.clear(e);
+        if (this.get('type') === 'datetime') {
+            // reset the state to let user re-select
+            this.changePanel(PanelTypes.Date);
+        }
     }
 }

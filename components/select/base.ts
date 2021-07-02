@@ -112,7 +112,7 @@ export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> ex
     }
 
     @bind
-    private clear(e: MouseEvent) {
+    protected clear(e: MouseEvent) {
         e.stopPropagation();
         this.set('value', this.get('multiple') ? [] : '');
     }

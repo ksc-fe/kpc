@@ -28,7 +28,7 @@ export function useFormats() {
     }
 
     function createDateByShowFormat(value: string) {
-        return dayjs(value, getShowFormat());
+        return dayjs(value, getShowFormat(), true); // strict parsing 
     }
 
     function getShowString(value: Dayjs) {
@@ -40,6 +40,8 @@ export function useFormats() {
     }
 
     return {
+        getValueFormat,
+        getShowFormat,
         createDateByValueFormat,
         createDateByShowFormat,
         getShowString,

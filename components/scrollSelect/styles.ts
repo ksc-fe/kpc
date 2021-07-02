@@ -46,6 +46,7 @@ export default function makeStyles() {
 
         &.k-disabled {
             .k-scroll-select-item {
+                cursor: not-allowed;
                 color: ${scrollSelect.item.disabledColor};
             }
         }

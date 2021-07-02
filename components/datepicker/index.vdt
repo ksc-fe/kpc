@@ -8,7 +8,7 @@ import {_$} from '../../i18n';
 import {makePanelStyles} from './styles';
 
 const {type} = this.get();
-const {value: {value}, onSelect} = this.value;
+const {value: {value}, onSelect, onConfirm, onChangeTime} = this.value;
 const classNameObj = {
     'k-datepicker-panel': true,
     [makePanelStyles()]: true,
@@ -23,12 +23,15 @@ const classNameObj = {
                 ev-$change:value={onSelect}
             />
             <DatepickerTime
+                value={value}
+                ev-$change:value={onChangeTime}
+                format={this.formats.getValueFormat()}
                 v-else
             />
             <div v-if={type === 'datetime'} class="k-datepicker-footer">
                 <Button type="primary" size="small"
                     disabled={!value}
-                    ev-click={this.confirm}
+                    ev-click={onConfirm}
                 >{_$('确定')}</Button>
             </div>
         </DropdownMenu>

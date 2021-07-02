@@ -38,16 +38,10 @@ export class ScrollSelect<T extends ScrollSelectProps = ScrollSelectProps> exten
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private list: ReturnType<typeof useList> | null = null;
-    private translate: ReturnType<typeof useTranslate> | null = null;
-    private mouseEvents: ReturnType<typeof useMouseEvents> | null = null;
-
-    init() {
-        this.list = useList();
-        this.translate = useTranslate();
-        this.mouseEvents = useMouseEvents(
-            this.translate.translate,
-            this.list,
-        );
-    }
+    private list = useList();
+    private translate = useTranslate();
+    private mouseEvents = useMouseEvents(
+        this.translate.translate,
+        this.list,
+    );
 }
