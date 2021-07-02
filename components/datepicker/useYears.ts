@@ -50,7 +50,11 @@ export function useYears(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boole
 
     function onClick(date: Dayjs) {
         showDate.set(date);
-        instance.set('type', 'month');
+        if (instance.datepicker.get('type') !== 'year') {
+            instance.set('type', 'month');
+        } else {
+            instance.set('value', date);
+        }
     }
 
     return {getYearRange, getYearLabel, getYears, onClick};

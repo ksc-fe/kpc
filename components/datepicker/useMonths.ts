@@ -35,7 +35,12 @@ export function useMonths(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => bool
 
     function onClick(date: Dayjs) {
         showDate.set(date);
-        instance.set('type', 'date');
+        const datepickerType = instance.datepicker.get('type');
+        if (datepickerType !== 'month' && datepickerType !== 'year') {
+            instance.set('type', 'date');
+        } else {
+            instance.set('value', date);
+        }
     }
 
     return {getMonths, onClick};

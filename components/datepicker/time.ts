@@ -29,10 +29,6 @@ export class DatepickerTime extends Component<DatepickerTimeProps> {
                 s: v.second(),
             });
         });
-
-        this.on('$receive:format', v => {
-            console.log(v);
-        });
     }
 
     @bind
@@ -59,6 +55,7 @@ export class DatepickerTime extends Component<DatepickerTimeProps> {
 const hourRegExp = /h/i
 const secondRegExp = /s/
 const minuteRegExp = /m/
+
 function useDisable(instance: DatepickerTime) {
     const disableSeconds = useState(false);
     const disableMinutes = useState(false);

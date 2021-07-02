@@ -35,7 +35,12 @@ const getItems = (data, onClick) => {
 };
 
 const {getDays, onClick: onClickDay} = this.days;
-const {getDateLabel, prevMonth, nextMonth, prevYear, nextYear, prevTenYears, nextTenYears} = this.showDate;
+const {
+    getDateLabel,
+    prevMonth, nextMonth,
+    prevYear, nextYear,
+    prevTenYears, nextTenYears
+} = this.showDate;
 
 <div class={classNameObj}>
     <div class="k-datepicker-month">

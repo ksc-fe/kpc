@@ -21,9 +21,10 @@ const classNameObj = {
                 v-if={this.panelType.value === PanelTypes.Date}
                 value={value}
                 ev-$change:value={onSelect}
+                type={type === 'datetime' ? 'date' : type}
             />
             <DatepickerTime
-                value={value}
+                value={Array.isArray(value) ? value[value.length - 1] : value}
                 ev-$change:value={onChangeTime}
                 format={this.formats.getValueFormat()}
                 v-else

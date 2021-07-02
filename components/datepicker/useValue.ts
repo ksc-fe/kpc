@@ -1,5 +1,5 @@
 import {useInstance} from 'intact';
-import {useState, watchState} from '../../hooks/useState';
+import {useState, watchState, State} from '../../hooks/useState';
 import dayjs, {Dayjs} from 'dayjs';
 import {Datepicker, Value, DatepickerProps, PanelTypes} from './index';
 import {isNullOrUndefined} from 'intact-shared';
@@ -30,6 +30,13 @@ export function useValue(
         value.set(valueDayjs);
         // should update keywords
         updateValue(valueDayjs);
+    });
+
+    watchState(instance.input.keywords, v => {
+        const date = createDateByShowFormat(v);
+        if (isValidDate(date)) {
+            setValue(date, true);
+        }
     });
 
     function convertToDayjs(v: DatepickerProps['value']): StateValue | null {
@@ -111,22 +118,26 @@ export function useValue(
 
     function onConfirm() {
         updateValue(value.value!);
-        instance.hide();
+        if (!instance.get('multiple')) {
+            instance.hide();
+        } else {
+            instance.changePanel(PanelTypes.Date);
+        }
     }
 
     function isValidDate(date: Dayjs) {
         return date.isValid() && !isDisabled(date);
     }
 
-    watchState(instance.input.keywords, v => {
-        const date = createDateByShowFormat(v);
-        if (isValidDate(date)) {
-            setValue(date, true);
-        }
-    });
-
     function onChangeTime(date: Dayjs) {
-        value.set(date);
+        const {multiple} = instance.get();
+        if (multiple) {
+            const values = (value.value as Dayjs[]).slice();
+            values.splice(values.length - 1, 1, date);
+            value.set(values);
+        } else {
+            value.set(date);
+        }
     }
 
     return {value, format, onSelect, onConfirm, onChangeTime};
