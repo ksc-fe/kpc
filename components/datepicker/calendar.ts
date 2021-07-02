@@ -14,7 +14,7 @@ import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import {useMonths} from './useMonths';
 
 export interface DatepickerCalendarProps {
-    value?: Dayjs
+    value?: Dayjs | Dayjs[]
     type?: 'date' | 'year' | 'month'
 }
 
@@ -30,6 +30,13 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
 
     private showDate = useShowDate();
     private days = useDays(this.showDate.date, this.datepicker.isDisabled);
-    private years = useYears(this.showDate.date);
-    private months = useMonths(this.showDate.date);
+    private years = useYears(this.showDate.date, this.datepicker.isDisabled);
+    private months = useMonths(this.showDate.date, this.datepicker.isDisabled);
+
+    isActive(date: Dayjs, type: DatepickerCalendarProps['type']) {
+        const value = this.get('value');
+        return Array.isArray(value) ?
+            value.find(v => isEqual(v, date)) :
+            isEqual(value, date);
+    }
 }

@@ -48,7 +48,7 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
 
 function useKeyboardForDropdownMenu(dropdown: Dropdown) {
     const parentDropdownMenu = inject<DropdownMenu | null>(DROPDOWN_MENU, null);
-    const [[addKeydown, removeKeydown, lock], focusByIndex, reset, collect] = useMenuKeyboard();
+    const [[addKeydown, removeKeydown, lock], focusByIndex, reset] = useMenuKeyboard();
     const onShow = () => {
         addKeydown();
         // lock parent dropdown menu, prevent it from operating by keyboard
@@ -71,5 +71,5 @@ function useKeyboardForDropdownMenu(dropdown: Dropdown) {
         dropdown.off('shouldFocus', focus);
     });
 
-    return {lock, collect};
+    return {lock};
 }

@@ -38,14 +38,23 @@ const {datepicker} = deepDefaults(theme, {
             fontSize: `14px`,
             valueGap: `3px`,
         },
+
+        footer: {
+            border: `1px solid #e5e5e5`,
+            padding: `8px 16px`,
+        }
     }
 });
 
-// export function makePanelStyles() {
-    // return css`
-        // padding: ${datepicker.padding};
-    // `
-// }
+export function makePanelStyles() {
+    return css`
+        .k-datepicker-footer {
+            border-top: ${datepicker.footer.border};
+            padding: ${datepicker.footer.padding};
+            text-align: right;
+        }
+    `
+}
 
 export function makeCalendarStyles() {
     return css`
@@ -123,4 +132,17 @@ export function makeCalendarStyles() {
             grid-template-columns: repeat(4, 1fr);
         }
     `
+}
+
+export function makeTimeStyles() {
+    return css`
+        display: flex;
+        padding: ${datepicker.padding};
+        width: ${datepicker.width};
+        position: relative;
+        .k-scroll-select {
+            flex: 1;
+            height: 305px;
+        }
+    `;
 }

@@ -1,0 +1,20 @@
+import {ScrollSelect} from '../scrollSelect';
+import {hours, minutes, seconds} from './constants';
+import {makeTimeStyles} from './styles';
+
+const classNameObj = {
+    'k-datepicker-time': true,
+    [makeTimeStyles()]: true,
+}
+
+<div class={classNameObj}>
+    <ScrollSelect
+        data={hours}
+    />
+    <ScrollSelect
+        data={minutes}
+    />
+    <ScrollSelect
+        data={seconds}
+    />
+</div>

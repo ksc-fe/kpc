@@ -1,8 +1,14 @@
 import {useInstance} from 'intact';
 import dayjs, {Dayjs} from 'dayjs';
 import {isString} from 'intact-shared';
-import {FORMATS} from './helpers';
 import type {Datepicker, Value} from './index';
+
+const FORMATS = {
+    date: 'YYYY-MM-DD',
+    datetime: 'YYYY-MM-DD HH:mm:ss',
+    year: 'YYYY',
+    month: 'YYYY-MM',
+};
 
 export function useFormats() {
     const instance = useInstance() as Datepicker;

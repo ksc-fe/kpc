@@ -12,6 +12,9 @@ export function useShowDate() {
     const showDate = useState<Dayjs>(getNowDate());
 
     instance.on('$receive:value', v => {
+        if (Array.isArray(v)) {
+            v = v[v.length - 1];
+        }
         if (!isNullOrUndefined(v)) {
             showDate.set(v);
         }

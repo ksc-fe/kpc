@@ -5,7 +5,7 @@ import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
 import {_$} from '../../i18n';
 
-export function useMonths(showDate: State<Dayjs>) {
+export function useMonths(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolean) {
     const instance = useInstance() as DatepickerCalendar;
     const focusMonth = useState<Dayjs | null>(null);
 
@@ -19,9 +19,9 @@ export function useMonths(showDate: State<Dayjs>) {
             const dayjsDate = dayjs(start);
 
             ret.push({
-                isActive: isEqual(dayjsDate, showDate.value, 'month'),
+                isActive: instance.isActive(dayjsDate, 'month'),
                 isToday: dayjsDate.isSame(now, 'month'),
-                isDisabled: isDisabledDate(dayjsDate),
+                isDisabled: isDisabled(dayjsDate),
                 isHover: isEqual(dayjsDate, focusMonth.value, 'month'),
                 label: _$(i + 1 + '月'),
                 value: dayjsDate,
@@ -31,10 +31,6 @@ export function useMonths(showDate: State<Dayjs>) {
         }
 
         return ret;
-    }
-
-    function isDisabledDate(date: Dayjs) {
-        return false;
     }
 
     function onClick(date: Dayjs) {

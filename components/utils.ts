@@ -273,3 +273,13 @@ export function strPad(str: number | string, length: number, pad: string = '0') 
     return str;
 }
 
+type EqualArrayValue = any | EqualArrayValue[]
+export function isEqualArray(a: EqualArrayValue, b: EqualArrayValue): boolean {
+    if (a === b) return true;
+    if (Array.isArray(a) && Array.isArray(b)) {
+        if (a.length !== b.length) return false;
+        return a.every((value, index) => isEqualArray(value, b[index]));
+    }
+    return false;
+}
+

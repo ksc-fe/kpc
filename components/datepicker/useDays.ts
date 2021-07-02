@@ -9,7 +9,6 @@ export function useDays(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolea
     const focusDate = useState<Dayjs | null>(null);
 
     function getDays(now: Dayjs) {
-        const {value} = instance.get();
         const days = [];
         // dayjs is immutable, so we convert to native Date
         const start = showDate.value.toDate();
@@ -27,7 +26,7 @@ export function useDays(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolea
 
             days.push({
                 isExceed,
-                isActive: !isExceed && isEqual(value, dayjsDate),
+                isActive: !isExceed && instance.isActive(dayjsDate, 'date'),
                 isToday: isEqual(now, dayjsDate),
                 isDisabled: isDisabled(dayjsDate),
                 isHover: isEqual(focusDate.value, dayjsDate),

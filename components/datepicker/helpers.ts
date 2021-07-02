@@ -48,31 +48,31 @@ export function isGT(
     return isLT(b, a, type);
 }
 
-export function getDateString(date: Date, type: string) {
-    const year = date.getFullYear();
-    if (type === 'year') {
-        return year;
-    }
-    const month = `${year}-${strPad(date.getMonth() + 1, 2)}`;
-    if (type === 'month') {
-        return month;
-    }
-    const _date = `${month}-${strPad(date.getDate(), 2)}`;
+// export function getDateString(date: Date, type: string) {
+    // const year = date.getFullYear();
+    // if (type === 'year') {
+        // return year;
+    // }
+    // const month = `${year}-${strPad(date.getMonth() + 1, 2)}`;
+    // if (type === 'month') {
+        // return month;
+    // }
+    // const _date = `${month}-${strPad(date.getDate(), 2)}`;
 
-    if (type !== 'datetime') {
-        return _date;
-    }
+    // if (type !== 'datetime') {
+        // return _date;
+    // }
 
-    return `${_date} ${getTimeString(date)}`;
-}
+    // return `${_date} ${getTimeString(date)}`;
+// }
 
-export function getTimeString(date: Date) {
-    return [
-        strPad(date.getHours(), 2),
-        strPad(date.getMinutes(), 2),
-        strPad(date.getSeconds(), 2)
-    ].join(':');
-}
+// export function getTimeString(date: Date) {
+    // return [
+        // strPad(date.getHours(), 2),
+        // strPad(date.getMinutes(), 2),
+        // strPad(date.getSeconds(), 2)
+    // ].join(':');
+// }
 
 // export function dispatchEvent(target, eventName, options) {
     // let event;
@@ -103,19 +103,12 @@ export function createDate(date: string) {
     return new Date(date);
 }
 
-export const monthArray = range(0, 11).map(i => {
-    return {label: _$(`${i + 1}月`), value: i};
-});
+// export const monthArray = range(0, 11).map(i => {
+    // return {label: _$(`${i + 1}月`), value: i};
+// });
 
-export const yearArray = (value: number) => {
-    return range(value - 5, value + 5);
-};
+// export const yearArray = (value: number) => {
+    // return range(value - 5, value + 5);
+// };
 
-export const FORMATS = {
-    date: 'YYYY-MM-DD',
-    datetime: 'YYYY-MM-DD HH:mm:ss',
-    year: 'YYYY',
-    month: 'YYYY-MM',
-};
 
-// export const is

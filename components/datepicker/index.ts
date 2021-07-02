@@ -9,13 +9,13 @@ import {useValue} from './useValue';
 import {isNullOrUndefined} from 'intact-shared'
 import {_$} from '../../i18n';
 import {bind} from '../utils';
-import {State} from '../../hooks/useState';
+import {State, useState} from '../../hooks/useState';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import {useDisabled} from './useDisabled';
 import {useFormats} from './useFormats';
 
 export interface DatepickerProps extends BaseSelectProps {
-    value?: Value | Value[]
+    value?: Value | Value[] | [Value, Value][] | null
     type?: 'date' | 'datetime' | 'year' | 'month'
     range?: boolean
     shortcuts?: Shortcut[]
@@ -29,13 +29,17 @@ export interface DatepickerProps extends BaseSelectProps {
     minDate?: Value
     maxDate?: Value
     disabledDate?: (v: Value) => boolean
-    filterable?: true
 }
 
 export type Value = string | Date | number | Dayjs;
 
 // TODO
 type Shortcut = Function
+
+export enum PanelTypes {
+    Date,
+    Time
+} 
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BaseSelect.typeDefs,
@@ -71,10 +75,15 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     private formats = useFormats();
     public isDisabled = useDisabled(this.formats);
     private value = useValue(this.formats, this.isDisabled);
+    private panelType = useState<PanelTypes>(PanelTypes.Date);
 
     init() {
         super.init();
         provide(DATEPICKER, this);
+    }
+
+    changePanel(type: PanelTypes) {
+        this.panelType.set(type);
     }
 
     protected getPlaceholder() {
@@ -100,6 +109,7 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
 
     @bind
     protected resetKeywords(keywords: State<string>) {
-        keywords.set(this.get('value') as string || '')
+        const {multiple} = this.get();
+        keywords.set(multiple ? '' : this.get('value') as string || '')
     }
 }
