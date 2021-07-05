@@ -1,15 +1,14 @@
-import {useInstance, RefObject} from 'intact';
+import {useInstance} from 'intact';
 import {useState, watchState, State} from '../../hooks/useState';
 import dayjs, {Dayjs} from 'dayjs';
-import {Datepicker, Value, DatepickerProps} from './index';
+import {Datepicker, Value, DatepickerProps, PanelTypes} from './index';
 import {isNullOrUndefined} from 'intact-shared';
 import {isEqual} from './helpers';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {isEqualArray} from '../utils';
-import {DatepickerPanel, PanelTypes} from './panel';
 
-export type StateValue = Dayjs | Dayjs[] | [Dayjs, Dayjs][]
+type StateValue = Dayjs | Dayjs[] | [Dayjs, Dayjs][]
 type StringValue = string | string[] | [string, string][]
 
 export function useValue(
@@ -19,8 +18,7 @@ export function useValue(
         getShowString,
         getValueString,
     }: ReturnType<typeof useFormats>,
-    isDisabled: ReturnType<typeof useDisabled>,
-    panelRef: RefObject<DatepickerPanel>,
+    isDisabled: ReturnType<typeof useDisabled>
 ) {
     const value = useState<StateValue | null>(null);
     const instance = useInstance() as Datepicker;
@@ -37,7 +35,7 @@ export function useValue(
     watchState(instance.input.keywords, v => {
         const date = createDateByShowFormat(v);
         if (isValidDate(date)) {
-            // panelRef.value!.value.setValue(date);
+            setValue(date, true);
         }
     });
 
@@ -75,6 +73,20 @@ export function useValue(
         }
     }
 
+    function onSelect(v: Dayjs) {
+        const {multiple, type} = instance.get();
+
+        if (type === 'datetime') {
+            setValue(v, false);
+            instance.changePanel(PanelTypes.Time);
+        } else {
+            setValue(v, true);
+            if (!multiple) {
+                instance.hide();
+            }
+        }
+    }
+
     function setValue(v: Dayjs, isUpdateValue: boolean) {
         const {multiple} = instance.get();
         let _value: StateValue = v;
@@ -109,7 +121,7 @@ export function useValue(
         if (!instance.get('multiple')) {
             instance.hide();
         } else {
-            panelRef.value!.changePanel(PanelTypes.Date);
+            instance.changePanel(PanelTypes.Date);
         }
     }
 
@@ -128,17 +140,5 @@ export function useValue(
         }
     }
 
-    function onChangeValue(v: StateValue) {
-        const {type, multiple} = instance.get();
-
-        value.set(v);
-        if (type !== 'datetime') {
-            updateValue(v);
-            if (!multiple) {
-                instance.hide();
-            }
-        }
-    }
-
-    return {value, format, onConfirm, onChangeTime, onChangeValue};
+    return {value, format, onSelect, onConfirm, onChangeTime};
 }

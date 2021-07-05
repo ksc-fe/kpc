@@ -48,9 +48,6 @@ const {datepicker} = deepDefaults(theme, {
 
 export function makePanelStyles() {
     return css`
-        .k-datepicker-panels {
-            display: flex;
-        }
         .k-datepicker-footer {
             border-top: ${datepicker.footer.border};
             padding: ${datepicker.footer.padding};

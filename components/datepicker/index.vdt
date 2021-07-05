@@ -6,10 +6,9 @@ import {PanelTypes} from './index';
 import {Button} from '../button';
 import {_$} from '../../i18n';
 import {makePanelStyles} from './styles';
-import {DatepickerPanel} from './panel';
 
-const {type, range} = this.get();
-const {value: {value}, onSelect, onConfirm, onChangeValue} = this.value;
+const {type} = this.get();
+const {value: {value}, onSelect, onConfirm, onChangeTime} = this.value;
 const classNameObj = {
     'k-datepicker-panel': true,
     [makePanelStyles()]: true,
@@ -18,21 +17,18 @@ const classNameObj = {
 <t:super>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
-            <div class="k-datepicker-panels">
-                <DatepickerPanel
-                    value={value}
-                    format={this.formats.getValueFormat()}
-                    ev-$change:value={onChangeValue}
-                    ref={this.panelRef}
-                />
-                <DatepickerPanel
-                    v-if={range}
-                    value={value}
-                    format={this.formats.getValueFormat()}
-                    ev-$change:value={onChangeValue}
-                    ref={this.panelRef}
-                />
-            </div>
+            <DatepickerCalendar
+                v-if={this.panelType.value === PanelTypes.Date}
+                value={value}
+                ev-$change:value={onSelect}
+                type={type === 'datetime' ? 'date' : type}
+            />
+            <DatepickerTime
+                value={Array.isArray(value) ? value[value.length - 1] : value}
+                ev-$change:value={onChangeTime}
+                format={this.formats.getValueFormat()}
+                v-else
+            />
             <div v-if={type === 'datetime'} class="k-datepicker-footer">
                 <Button type="primary" size="small"
                     disabled={!value}
