@@ -1,4 +1,4 @@
-import {TypeDefs, Children, provide} from 'intact';
+import {TypeDefs, Children, provide, createRef} from 'intact';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 import {Container} from '../portal';
@@ -13,6 +13,7 @@ import {State, useState} from '../../hooks/useState';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import {useDisabled} from './useDisabled';
 import {useFormats} from './useFormats';
+import {DatepickerPanel, PanelTypes} from './panel';
 
 export interface DatepickerProps extends BaseSelectProps {
     value?: Value | Value[] | [Value, Value][] | null
@@ -35,11 +36,6 @@ export type Value = string | Date | number | Dayjs;
 
 // TODO
 type Shortcut = Function
-
-export enum PanelTypes {
-    Date,
-    Time
-} 
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BaseSelect.typeDefs,
@@ -72,18 +68,15 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private formats = useFormats();
+    public formats = useFormats();
     public isDisabled = useDisabled(this.formats);
-    private value = useValue(this.formats, this.isDisabled);
+    public panelRef = createRef<DatepickerPanel>();
+    private value = useValue(this.formats, this.isDisabled, this.panelRef);
     private panelType = useState<PanelTypes>(PanelTypes.Date);
 
     init() {
         super.init();
         provide(DATEPICKER, this);
-    }
-
-    changePanel(type: PanelTypes) {
-        this.panelType.set(type);
     }
 
     protected getPlaceholder() {
@@ -118,7 +111,7 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
         super.clear(e);
         if (this.get('type') === 'datetime') {
             // reset the state to let user re-select
-            this.changePanel(PanelTypes.Date);
+            this.panelRef.value!.changePanel(PanelTypes.Date);
         }
     }
 }
