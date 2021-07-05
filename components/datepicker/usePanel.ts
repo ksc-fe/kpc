@@ -16,9 +16,17 @@ export function usePanel() {
     const endPanel = useState<PanelTypes>(PanelTypes.Date);
 
     function changePanel(type: PanelTypes, flag: PanelFlags = PanelFlags.Start) {
-        const panel = flag === PanelFlags.Start ? startPanel : endPanel;
-        panel.set(type);
+        getPanel(flag).set(type);
     }
 
-    return {startPanel, endPanel, changePanel};
+    function getPanel(flag: PanelFlags) {
+        return flag === PanelFlags.Start ? startPanel : endPanel;
+    }
+
+    function reset() {
+        startPanel.set(PanelTypes.Date);
+        endPanel.set(PanelTypes.Date);
+    }
+
+    return {startPanel, endPanel, changePanel, getPanel, reset};
 }

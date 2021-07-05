@@ -14,20 +14,20 @@ const classNameObj = {
     [makePanelStyles()]: true,
 };
 
-const {startPanel, endPanel} = this.panel;
-const getPanel = (flag) => {
-    const panel = flag === PanelFlags.Start ? startPanel : endPanel; 
+const {startPanel, endPanel, getPanel} = this.panel;
+const generatePanel = (flag) => {
+    const panel = getPanel(flag);
     return (
         <template>
             <DatepickerCalendar
                 v-if={panel.value === PanelTypes.Date}
                 value={value}
-                ev-$change:value={onChangeDate}
+                ev-$change:value={(v) => onChangeDate(v, flag)}
                 type={type === 'datetime' ? 'date' : type}
             />
             <DatepickerTime
-                value={Array.isArray(value) ? value[value.length - 1] : value}
-                ev-$change:value={onChangeTime}
+                value={Array.isArray(value) ? value[flag] : value}
+                ev-$change:value={v => onChangeTime(v, flag)}
                 format={this.formats.getValueFormat()}
                 v-else
             />
@@ -39,8 +39,8 @@ const getPanel = (flag) => {
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class="k-datepicker-calendars">
-                {getPanel(PanelFlags.Start)}
-                {range ? getPanel(PanelFlags.End) : null} 
+                {generatePanel(PanelFlags.Start)}
+                {range ? generatePanel(PanelFlags.End) : null} 
             </div>
             <div v-if={type === 'datetime'} class="k-datepicker-footer">
                 <Button type="primary" size="small"

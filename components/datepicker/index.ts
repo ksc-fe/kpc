@@ -114,7 +114,7 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
         super.clear(e);
         if (this.get('type') === 'datetime') {
             // reset the state to let user re-select
-            this.panel.changePanel(PanelTypes.Date);
+            this.panel.reset();
         }
     }
 }

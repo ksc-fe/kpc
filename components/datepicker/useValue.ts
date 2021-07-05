@@ -81,22 +81,6 @@ export function useValue(
         }
     }
 
-    function onChangeDate(v: Dayjs) {
-        const {multiple, type, range} = instance.get();
-
-        if (type === 'datetime') {
-            setValue(v, false);
-            panel.changePanel(PanelTypes.Time);
-        } else {
-            setValue(v, true);
-            if (!multiple) {
-                if (!range || (value.value as [Dayjs, Dayjs?]).length === 2) {
-                    instance.hide();
-                }
-            }
-        }
-    }
-
     function setValue(v: StateValueItem, isUpdateValue: boolean) {
         const {multiple, range} = instance.get();
         let _value: StateValue = v;
@@ -149,11 +133,31 @@ export function useValue(
         return date.isValid() && !isDisabled(date);
     }
 
-    function onChangeTime(date: Dayjs) {
-        const {multiple} = instance.get();
+    function onChangeDate(v: Dayjs, flag: PanelFlags) {
+        const {multiple, type, range} = instance.get();
+
+        if (type === 'datetime') {
+            setValue(v, false);
+            panel.changePanel(PanelTypes.Time, flag);
+        } else {
+            setValue(v, true);
+            if (!multiple) {
+                if (!range || (value.value as [Dayjs, Dayjs?]).length === 2) {
+                    instance.hide();
+                }
+            }
+        }
+    }
+
+    function onChangeTime(date: Dayjs, flag: PanelFlags) {
+        const {multiple, range} = instance.get();
         if (multiple) {
             const values = (value.value as Dayjs[]).slice();
-            values.splice(values.length - 1, 1, date);
+            values[values.length - 1] = date;
+            value.set(values);
+        } else if (range) {
+            const values = (value.value as [Dayjs, Dayjs]).slice();
+            values[flag] = date;
             value.set(values);
         } else {
             value.set(date);
@@ -161,20 +165,4 @@ export function useValue(
     }
 
     return {value, format, onChangeDate, onConfirm, onChangeTime};
-}
-
-function useRange(setValue: (date: StateValueItem, isUpdateValue: boolean) => void) {
-    const rangeValues = useState<[Dayjs, Dayjs | null] | null>(null);
-
-    function onChangeDate(date: Dayjs) {
-        if (!rangeValues.value) {
-            rangeValues.set([date, null]);
-        } else {
-            rangeValues.value[1] = date;
-            setValue(rangeValues.value as [Dayjs, Dayjs], true);
-            rangeValues.set(null);
-        } 
-    }
-
-    return {onChangeDate, rangeValues}
 }
