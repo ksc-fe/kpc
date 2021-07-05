@@ -102,6 +102,7 @@ export function useValue(
             } else {
                 _value = _value.slice() as [Dayjs];
                 _value[1] = v;
+                (_value as [Dayjs, Dayjs]).sort((a, b) => a.isAfter(b) ? 1 : -1);
             }
         }
 
@@ -122,10 +123,9 @@ export function useValue(
 
     function onConfirm() {
         updateValue();
+        panel.reset();
         if (!instance.get('multiple')) {
             instance.hide();
-        } else {
-            panel.changePanel(PanelTypes.Date);
         }
     }
 
