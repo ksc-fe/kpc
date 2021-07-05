@@ -30,6 +30,7 @@ export function useDays(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolea
                 isToday: isEqual(now, dayjsDate),
                 isDisabled: isDisabled(dayjsDate),
                 isHover: isEqual(focusDate.value, dayjsDate),
+                isInRange: !isExceed && instance.isInRange(dayjsDate, 'date'),
                 label: _date,
                 value: dayjsDate,
             });

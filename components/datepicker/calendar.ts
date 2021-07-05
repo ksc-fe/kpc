@@ -1,7 +1,7 @@
 import {Component, inject} from 'intact';
 import template from './calendar.vdt';
 import dayjs, {Dayjs} from 'dayjs';
-import {clearTime, isEqual, getNowDate} from './helpers';
+import {clearTime, isEqual, getNowDate, isGT, isLT} from './helpers';
 import {useDays} from './useDays';
 import {useState} from '../../hooks/useState';
 import {_$} from '../../i18n';
@@ -12,10 +12,12 @@ import {bind} from '../utils';
 import {useYears} from './useYears';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import {useMonths} from './useMonths';
+import {StateValue, StateValueItem} from './useValue';
 
 export interface DatepickerCalendarProps {
-    value?: Dayjs | Dayjs[]
+    value?: StateValue
     type?: 'date' | 'year' | 'month'
+    rangeValues?: [Dayjs, Dayjs | null] | null
 }
 
 const defaults = (): Partial<DatepickerCalendarProps> => ({
@@ -34,9 +36,30 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
     private months = useMonths(this.showDate.date, this.datepicker.isDisabled);
 
     isActive(date: Dayjs, type: DatepickerCalendarProps['type']) {
-        const value = this.get('value');
-        return Array.isArray(value) ?
-            value.find(v => isEqual(v, date)) :
-            isEqual(value, date);
+        const isActive = (values: StateValue | undefined): boolean => {
+            return Array.isArray(values) ?
+                !!(values as StateValueItem[]).find(v => isActive(v)) :
+                isEqual(values, date, type);
+        };
+        return isActive(this.get('value'));
+    }
+
+    isInRange(date: Dayjs, type: DatepickerCalendarProps['type']) {
+        const {range, multiple} = this.datepicker.get();
+        const {value} = this.get();
+
+        if (range) {
+            if (!value) {
+                return false;
+            }
+            const [start, end] = (value as [Dayjs, Dayjs?]);
+            if (start) {
+                if (end) {
+                    return isGT(date, start, type) && isLT(date, end, type);
+                }
+            }
+        }
+
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 import dayjs, {Dayjs, OpUnitType} from 'dayjs';
 import {strPad, range} from '../utils';
 import {_$} from '../../i18n';
+import {StateValueItem} from './useValue';
 
 export function getNowDate() {
     // only date without time
@@ -48,47 +49,6 @@ export function isGT(
     return isLT(b, a, type);
 }
 
-// export function getDateString(date: Date, type: string) {
-    // const year = date.getFullYear();
-    // if (type === 'year') {
-        // return year;
-    // }
-    // const month = `${year}-${strPad(date.getMonth() + 1, 2)}`;
-    // if (type === 'month') {
-        // return month;
-    // }
-    // const _date = `${month}-${strPad(date.getDate(), 2)}`;
-
-    // if (type !== 'datetime') {
-        // return _date;
-    // }
-
-    // return `${_date} ${getTimeString(date)}`;
-// }
-
-// export function getTimeString(date: Date) {
-    // return [
-        // strPad(date.getHours(), 2),
-        // strPad(date.getMinutes(), 2),
-        // strPad(date.getSeconds(), 2)
-    // ].join(':');
-// }
-
-// export function dispatchEvent(target, eventName, options) {
-    // let event;
-    // if (document.createEvent) {
-        // event = document.createEvent('Event');
-        // event.initEvent(eventName, true, true);
-    // } else if (document.createEventObject) {
-        // event = document.createEventObject();
-        // return target.fireEvent(`on${eventName}`, event);
-    // } else if (typeof CustomEvent !== 'undefined') {
-        // event = new CustomEvent(eventName);
-    // }
-    // Object.assign(event, options);
-    // target.dispatchEvent(event);
-// }
-
 export function createDate(date: string) {
     if (typeof date === 'string') {
         const [dateString, timeString] = date.split(' ');
@@ -103,12 +63,15 @@ export function createDate(date: string) {
     return new Date(date);
 }
 
-// export const monthArray = range(0, 11).map(i => {
-    // return {label: _$(`${i + 1}月`), value: i};
-// });
-
-// export const yearArray = (value: number) => {
-    // return range(value - 5, value + 5);
-// };
-
+export function findValueIndex(values: StateValueItem[], value: StateValueItem) {
+    return values.findIndex(item => {
+        if (Array.isArray(item)) {
+            // is multipe range values
+            return item[0] === (value as [Dayjs, Dayjs])[0] && 
+                item[1] === (value as [Dayjs, Dayjs])[1];
+        } else {
+            isEqual(value as Dayjs, item)
+        }
+    });
+}
 

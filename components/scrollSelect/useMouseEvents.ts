@@ -82,7 +82,7 @@ export function useMouseEvents(
             if (instance.$unmounted) return;
             onWheel(e);
             lock = false;
-        }, 50);
+        }, 0);
     };
 
     function onClick(item: any, index: number) {

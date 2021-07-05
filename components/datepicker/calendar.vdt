@@ -22,6 +22,7 @@ const getItems = (data, onClick) => {
             "k-today": $value.isToday,
             "k-disabled": $value.isDisabled, 
             "k-hover": $value.isHover,
+            "k-in-range": $value.isInRange,
         }}
         ev-click={
             !$value.isDisabled ? e => {

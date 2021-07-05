@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
+import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const {datepicker} = deepDefaults(theme, {
@@ -9,7 +9,7 @@ const {datepicker} = deepDefaults(theme, {
         padding: `16px 16px 4px`,
 
         item: {
-            margin: `7px`,
+            gutter: `7px`,
             height: `24px`,
             get hoverBgColor() { return theme.color.bg },
             get exceedColor() { return theme.color.disabled },
@@ -25,6 +25,10 @@ const {datepicker} = deepDefaults(theme, {
             disabled: {
                 color: '#ccc',
                 hoverBgColor: 'none',
+            },
+
+            range: {
+                get bgColor() { return palette(datepicker.item.active.bgColor, -4) },
             }
         },
 
@@ -48,6 +52,9 @@ const {datepicker} = deepDefaults(theme, {
 
 export function makePanelStyles() {
     return css`
+        .k-datepicker-calendars {
+            display: flex;
+        }
         .k-datepicker-footer {
             border-top: ${datepicker.footer.border};
             padding: ${datepicker.footer.padding};
@@ -91,7 +98,7 @@ export function makeCalendarStyles() {
         }
         .k-calendar-item {
             text-align: center;
-            margin: ${datepicker.item.margin};
+            margin: ${datepicker.item.gutter};
             aspect-ratio: 1;
             display: flex;
             align-items: center;
@@ -118,6 +125,18 @@ export function makeCalendarStyles() {
                 color: ${datepicker.item.disabled.color};
                 cursor: not-allowed;
                 background: ${datepicker.item.disabled.hoverBgColor};
+            }
+            &.k-in-range:after {
+                content: '';
+                display: block;
+                position: absolute;
+                box-sizing: content-box;
+                background: ${datepicker.item.range.bgColor};
+                width: 100%;
+                height: 100%;
+                left: -${datepicker.item.gutter};
+                padding: 0 ${datepicker.item.gutter};
+                z-index: -1;
             }
             .k-value {
                 flex: 1;

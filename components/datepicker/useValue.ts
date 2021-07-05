@@ -1,14 +1,19 @@
 import {useInstance} from 'intact';
 import {useState, watchState, State} from '../../hooks/useState';
 import dayjs, {Dayjs} from 'dayjs';
-import {Datepicker, Value, DatepickerProps, PanelTypes} from './index';
+import {Datepicker, Value, DatepickerProps} from './index';
 import {isNullOrUndefined} from 'intact-shared';
-import {isEqual} from './helpers';
+import {isEqual, findValueIndex} from './helpers';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {isEqualArray} from '../utils';
+import {PanelTypes, PanelFlags, usePanel} from './usePanel';
 
-type StateValue = Dayjs | Dayjs[] | [Dayjs, Dayjs][]
+export type StateValueItem = Dayjs | [Dayjs, Dayjs?]
+export type StateValue = StateValueItem | StateValueItem[]
+
+type DayjsValueItem = Required<StateValueItem>
+type DayjsValue = DayjsValueItem | DayjsValueItem[]
 type StringValue = string | string[] | [string, string][]
 
 export function useValue(
@@ -18,7 +23,8 @@ export function useValue(
         getShowString,
         getValueString,
     }: ReturnType<typeof useFormats>,
-    isDisabled: ReturnType<typeof useDisabled>
+    isDisabled: ReturnType<typeof useDisabled>,
+    panel: ReturnType<typeof usePanel>,
 ) {
     const value = useState<StateValue | null>(null);
     const instance = useInstance() as Datepicker;
@@ -29,7 +35,7 @@ export function useValue(
         valueDayjs = convertToDayjs(newValue);
         value.set(valueDayjs);
         // should update keywords
-        updateValue(valueDayjs);
+        updateValue();
     });
 
     watchState(instance.input.keywords, v => {
@@ -47,7 +53,7 @@ export function useValue(
         return createDateByValueFormat(v);
     }
 
-    function convertToValueString(v: StateValue | null): StringValue | null {
+    function convertToValueString(v: DayjsValue | null): StringValue | null {
         if (!v) return null;
         if (Array.isArray(v)) {
             return v.map(convertToValueString) as StringValue;
@@ -64,6 +70,8 @@ export function useValue(
                     // (_value as [Dayjs, Dayjs][]).map(values => {
                         // if ()
                     // })
+                } else {
+                    return (valueDayjs as [Dayjs, Dayjs]).map(getShowString).join(' ~ ');
                 }
             } else {
                 return (valueDayjs as Dayjs[]).map(getShowString);
@@ -73,55 +81,67 @@ export function useValue(
         }
     }
 
-    function onSelect(v: Dayjs) {
-        const {multiple, type} = instance.get();
+    function onChangeDate(v: Dayjs) {
+        const {multiple, type, range} = instance.get();
 
         if (type === 'datetime') {
             setValue(v, false);
-            instance.changePanel(PanelTypes.Time);
+            panel.changePanel(PanelTypes.Time);
         } else {
             setValue(v, true);
             if (!multiple) {
-                instance.hide();
+                if (!range || (value.value as [Dayjs, Dayjs?]).length === 2) {
+                    instance.hide();
+                }
             }
         }
     }
 
-    function setValue(v: Dayjs, isUpdateValue: boolean) {
-        const {multiple} = instance.get();
+    function setValue(v: StateValueItem, isUpdateValue: boolean) {
+        const {multiple, range} = instance.get();
         let _value: StateValue = v;
         if (multiple) {
-            _value = value.value as Dayjs[];
+            _value = value.value as StateValueItem[];
             _value = !_value ? [] : _value.slice();
 
-            const index = _value.findIndex(item => isEqual(v, item));
+            const index = findValueIndex(_value, v);
             if (index > -1) {
                 _value.splice(index, 1);
             } else {
                 _value.push(v);
+            }
+        } else if (range) {
+            _value = value.value as StateValueItem[];
+            if (!_value || _value.length === 2) {
+                _value = [v];
+                isUpdateValue = false;
+            } else {
+                _value = _value.slice() as [Dayjs];
+                _value[1] = v;
             }
         }
 
         value.set(_value);
 
         if (isUpdateValue) {
-            updateValue(_value);
+            updateValue();
         }
     }
 
-    function updateValue(value: StateValue | null) {
-        const {multiple} = instance.get();
-        const valueStr = convertToValueString(value); 
+    function updateValue() {
+        const {multiple, range} = instance.get();
+        const _value = value.value as DayjsValue | null;
+        const valueStr = convertToValueString(_value); 
         instance.set('value', valueStr);
-        instance.input.keywords.set(multiple ? '' : valueStr as string);
+        instance.resetKeywords(instance.input.keywords);
     }
 
     function onConfirm() {
-        updateValue(value.value!);
+        updateValue();
         if (!instance.get('multiple')) {
             instance.hide();
         } else {
-            instance.changePanel(PanelTypes.Date);
+            panel.changePanel(PanelTypes.Date);
         }
     }
 
@@ -140,5 +160,21 @@ export function useValue(
         }
     }
 
-    return {value, format, onSelect, onConfirm, onChangeTime};
+    return {value, format, onChangeDate, onConfirm, onChangeTime};
+}
+
+function useRange(setValue: (date: StateValueItem, isUpdateValue: boolean) => void) {
+    const rangeValues = useState<[Dayjs, Dayjs | null] | null>(null);
+
+    function onChangeDate(date: Dayjs) {
+        if (!rangeValues.value) {
+            rangeValues.set([date, null]);
+        } else {
+            rangeValues.value[1] = date;
+            setValue(rangeValues.value as [Dayjs, Dayjs], true);
+            rangeValues.set(null);
+        } 
+    }
+
+    return {onChangeDate, rangeValues}
 }
