@@ -4,8 +4,9 @@ import {clearTime, isEqual, getNowDate} from './helpers';
 import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
 import {_$} from '../../i18n';
+import type {useStatus} from './useStatus';
 
-export function useMonths(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolean) {
+export function useMonths(showDate: State<Dayjs>, status: ReturnType<typeof useStatus>) {
     const instance = useInstance() as DatepickerCalendar;
     const focusMonth = useState<Dayjs | null>(null);
 
@@ -19,11 +20,11 @@ export function useMonths(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => bool
             const dayjsDate = dayjs(start);
 
             ret.push({
-                isActive: instance.isActive(dayjsDate, 'month'),
+                isActive: status.isActive(dayjsDate, 'month'),
                 isToday: dayjsDate.isSame(now, 'month'),
-                isDisabled: isDisabled(dayjsDate),
+                isDisabled: status.isDisabled(dayjsDate),
                 isHover: isEqual(dayjsDate, focusMonth.value, 'month'),
-                isInRange: instance.isInRange(dayjsDate, 'month'),
+                isInRange: status.isInRange(dayjsDate, 'month'),
                 label: _$(i + 1 + '月'),
                 value: dayjsDate,
             });

@@ -36,7 +36,7 @@ export function mount<T extends Component>(Component: ComponentConstructor<T>, s
 
     const element = findDomFromVNode(instance!.$lastInput!, true) as HTMLElement;
 
-    return [instance!, element];
+    return [instance!, element] as const;
 }
 
 export function unmount() {

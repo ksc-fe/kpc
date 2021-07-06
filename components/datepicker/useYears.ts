@@ -4,8 +4,9 @@ import {clearTime, isEqual, getNowDate} from './helpers';
 import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
 import {_$} from '../../i18n';
+import type {useStatus} from './useStatus';
 
-export function useYears(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolean) {
+export function useYears(showDate: State<Dayjs>, status: ReturnType<typeof useStatus>) {
     const instance = useInstance() as DatepickerCalendar;
     const focusYear = useState<Dayjs | null>(null);
 
@@ -34,11 +35,11 @@ export function useYears(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boole
 
             years.push({
                 isExceed,
-                isActive: !isExceed && instance.isActive(dayjsDate, 'year'),
+                isActive: !isExceed && status.isActive(dayjsDate, 'year'),
                 isToday: dayjsDate.isSame(now, 'year'),
-                isDisabled: isDisabled(dayjsDate),
+                isDisabled: status.isDisabled(dayjsDate),
                 isHover: isEqual(dayjsDate, focusYear.value, 'year'),
-                isInRange: !isExceed && instance.isInRange(dayjsDate, 'year'),
+                isInRange: !isExceed && status.isInRange(dayjsDate, 'year'),
                 label: year,
                 value: dayjsDate,
             });

@@ -3,8 +3,9 @@ import dayjs, {Dayjs} from 'dayjs';
 import {clearTime, isEqual, getNowDate} from './helpers';
 import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
+import type {useStatus} from './useStatus';
 
-export function useDays(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolean) {
+export function useDays(showDate: State<Dayjs>, status: ReturnType<typeof useStatus>) {
     const instance = useInstance() as DatepickerCalendar;
     const focusDate = useState<Dayjs | null>(null);
 
@@ -26,11 +27,11 @@ export function useDays(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boolea
 
             days.push({
                 isExceed,
-                isActive: !isExceed && instance.isActive(dayjsDate, 'date'),
+                isActive: !isExceed && status.isActive(dayjsDate, 'date'),
                 isToday: isEqual(now, dayjsDate),
-                isDisabled: isDisabled(dayjsDate),
+                isDisabled: status.isDisabled(dayjsDate),
                 isHover: isEqual(focusDate.value, dayjsDate),
-                isInRange: !isExceed && instance.isInRange(dayjsDate, 'date'),
+                isInRange: !isExceed && status.isInRange(dayjsDate, 'date'),
                 label: _date,
                 value: dayjsDate,
             });
