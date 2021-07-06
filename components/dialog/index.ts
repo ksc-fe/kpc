@@ -77,14 +77,13 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     public dialogRef = createRef<HTMLDivElement>();
     public wrapperRef = createRef<HTMLDivElement>();
 
-    private drag: ReturnType<typeof useDraggable> | null = null;
+    private drag = useDraggable();
     private useAsComponent = false;
 
     init() {
         useShowHideEvents('value', SHOW, HIDE);
         useEscClosable();
         useMouseOutsidable(this.dialogRef); 
-        this.drag = useDraggable();
 
         if (this.$vNode) {
             // TODO
@@ -175,7 +174,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
             onClosed();
         }
         if (!this.useAsComponent) {
-            remove(this.$vNode!, document.body);
+            remove(this.$vNode!, document.body, false);
         }
     }
 

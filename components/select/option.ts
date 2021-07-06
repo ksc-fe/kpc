@@ -23,11 +23,7 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
 
-    private select: Select | null = null;
-
-    init() {
-        this.select = inject(SELECT)!;
-    }
+    private select: Select = inject(SELECT)!;
 
     @bind
     private onSelect() {

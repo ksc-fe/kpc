@@ -34,11 +34,10 @@ export class Form extends Component {
     static defaults = defaults;
     static addMethod = addMethod;
 
-    private items: FormItem[] = [];
+    private items = useRecordParent<FormItem>(RECORD_KEY);
 
     init() {
         provide(FORM, this);
-        this.items = useRecordParent<FormItem>(RECORD_KEY);
     }
 
     validate() {

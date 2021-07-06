@@ -48,13 +48,11 @@ export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    public filterable: ReturnType<typeof useFilterable> | null = null;
-    public label: ReturnType<typeof useLabel> | null = null;
+    public filterable =  useFilterable(this.input.keywords);
+    public label = useLabel();
 
     init() {
         super.init();
-        this.filterable = useFilterable(this.input!.keywords);
-        this.label = useLabel();
         this.watch('_show', this.setWidth, {presented: true});
     }
 

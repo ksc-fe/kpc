@@ -76,14 +76,10 @@ export class Message<T extends MessageProps = MessageProps> extends Component<T>
         Message.notice(content, duration, 'warning');
     }
 
-    private delayClose: ReturnType<typeof useDelayClose> | null = null;
-
-    init() {
-        this.delayClose = useDelayClose(
-            this.close,
-            this.get('duration')!
-        );
-    }
+    private delayClose = useDelayClose(
+        this.close,
+        this.get('duration')!
+    );
 
     @bind
     close() {

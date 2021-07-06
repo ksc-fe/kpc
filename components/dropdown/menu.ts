@@ -14,19 +14,13 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
     static template = template;
 
     public elementRef = createRef<HTMLDivElement>();
-    public dropdown: Dropdown | null = null;
-    public keyboard: ReturnType<typeof useKeyboardForDropdownMenu> | null = null;
+    public dropdown: Dropdown = inject(DROPDOWN)!;
+    public keyboard = useKeyboardForDropdownMenu(this.dropdown);
 
-    private transition: ReturnType<typeof useTransition> | null = null;
+    private transition = useKeyboardForDropdownMenu(this.dropdown);
 
     init() {
         provide(DROPDOWN_MENU, this);
-
-        const dropdown = this.dropdown = inject(DROPDOWN)!;
-        this.transition = useTransition(() => dropdown.position());
-
-        this.keyboard = useKeyboardForDropdownMenu(dropdown);
-
         useMouseOutsidable(this.elementRef);
     }
 
