@@ -52,11 +52,18 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
             if (!value) {
                 return false;
             }
-            const [start, end] = (value as [Dayjs, Dayjs?]);
-            if (start) {
-                if (end) {
-                    return isGT(date, start, type) && isLT(date, end, type);
+            const isInRange = ([start, end]: [Dayjs, Dayjs?]): boolean => {
+                if (start) {
+                    if (end) {
+                        return isGT(date, start, type) && isLT(date, end, type);
+                    }
                 }
+                return false;
+            };
+            if (multiple) {
+                return (value as [Dayjs, Dayjs?][]).some(isInRange);
+            } else {
+                return isInRange(value as [Dayjs, Dayjs?]);
             }
         }
 

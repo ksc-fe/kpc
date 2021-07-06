@@ -1,5 +1,6 @@
 import {useInstance} from 'intact';
 import {useState} from '../../hooks/useState';
+import {Datepicker} from './index';
 
 export enum PanelTypes {
     Date,
@@ -12,6 +13,7 @@ export enum PanelFlags {
 }
 
 export function usePanel() {
+    const instance = useInstance() as Datepicker;
     const startPanel = useState<PanelTypes>(PanelTypes.Date);
     const endPanel = useState<PanelTypes>(PanelTypes.Date);
 
@@ -27,6 +29,8 @@ export function usePanel() {
         startPanel.set(PanelTypes.Date);
         endPanel.set(PanelTypes.Date);
     }
+
+    instance.on('show', reset);
 
     return {startPanel, endPanel, changePanel, getPanel, reset};
 }

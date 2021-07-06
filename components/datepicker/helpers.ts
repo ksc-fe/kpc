@@ -67,11 +67,10 @@ export function findValueIndex(values: StateValueItem[], value: StateValueItem) 
     return values.findIndex(item => {
         if (Array.isArray(item)) {
             // is multipe range values
-            return item[0] === (value as [Dayjs, Dayjs])[0] && 
-                item[1] === (value as [Dayjs, Dayjs])[1];
+            const [start, end] = value as [Dayjs, Dayjs];
+            return isEqual(item[0], start) && isEqual(item[1], end);
         } else {
-            isEqual(value as Dayjs, item)
+            return isEqual(value as Dayjs, item);
         }
     });
 }
-

@@ -41,7 +41,7 @@ export function useValue(
     watchState(instance.input.keywords, v => {
         const date = createDateByShowFormat(v);
         if (isValidDate(date)) {
-            setValue(date, true);
+            // setValue(date, true);
         }
     });
 
@@ -66,10 +66,9 @@ export function useValue(
         if (Array.isArray(valueDayjs)) {
             if (range) {
                 if (multiple) {
-                    // TODO
-                    // (_value as [Dayjs, Dayjs][]).map(values => {
-                        // if ()
-                    // })
+                    return (valueDayjs as [Dayjs, Dayjs][]).map(days => {
+                        return days.map(getShowString).join(' ~ ');
+                    });
                 } else {
                     return (valueDayjs as [Dayjs, Dayjs]).map(getShowString).join(' ~ ');
                 }
@@ -81,34 +80,44 @@ export function useValue(
         }
     }
 
-    function setValue(v: StateValueItem, isUpdateValue: boolean) {
-        const {multiple, range} = instance.get();
-        let _value: StateValue = v;
-        if (multiple) {
-            _value = value.value as StateValueItem[];
-            _value = !_value ? [] : _value.slice();
+    function setSingleDate(v: StateValueItem) {
+        const {type, range}  = instance.get();
+        value.set(v);
+        if (type !== 'datetime' && (!range || (v as [Dayjs, Dayjs]).length === 2)) {
+            updateValue();
+        }
+    }
 
+    function addMultipeDate(v: StateValueItem) {
+        const {type, range} = instance.get();
+        let _value = value.value as StateValueItem[];
+        _value = !_value ? [] : _value.slice();
+
+        let shouldUpdateValue = true;
+
+        // pop the last value firstly, because it only has start value
+        let hasPop = false;
+        if (range && (v as [Dayjs, Dayjs]).length === 2) {
+            _value.pop();
+            hasPop = true;
+        }
+        if (type !== 'datetime' && (!range || hasPop)) {
+            // if select the date/year/month, then toggle the value
             const index = findValueIndex(_value, v);
             if (index > -1) {
                 _value.splice(index, 1);
             } else {
                 _value.push(v);
             }
-        } else if (range) {
-            _value = value.value as StateValueItem[];
-            if (!_value || _value.length === 2) {
-                _value = [v];
-                isUpdateValue = false;
-            } else {
-                _value = _value.slice() as [Dayjs];
-                _value[1] = v;
-                (_value as [Dayjs, Dayjs]).sort((a, b) => a.isAfter(b) ? 1 : -1);
-            }
+        } else {
+            // select the datetime, only push the value,
+            // and unique the array on click confrim button
+            _value.push(v); 
+            shouldUpdateValue = false;
         }
 
         value.set(_value);
-
-        if (isUpdateValue) {
+        if (shouldUpdateValue) {
             updateValue();
         }
     }
@@ -122,11 +131,34 @@ export function useValue(
     }
 
     function onConfirm() {
-        updateValue();
-        panel.reset();
+        // unique
         if (!instance.get('multiple')) {
             instance.hide();
+        } else {
+            unique();
+            panel.reset();
         }
+        updateValue();
+    }
+
+    function unique() {
+        const _value = value.value as StateValueItem[];
+        const map: Record<string, true> = {};
+        const results: StateValueItem[] = [];
+        _value.forEach(value => {
+            let key: string;
+            if (Array.isArray(value)) {
+                key = (value as Dayjs[]).map(getValueString).join(' ~ ');
+            } else {
+                key = getValueString(value);
+            }
+            if (!map[key]) {
+                map[key] = true;
+                results.push(value);
+            }
+        });
+
+        value.set(results);
     }
 
     function isValidDate(date: Dayjs) {
@@ -135,25 +167,43 @@ export function useValue(
 
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
-
-        if (type === 'datetime') {
-            setValue(v, false);
-            panel.changePanel(PanelTypes.Time, flag);
-        } else {
-            setValue(v, true);
-            if (!multiple) {
-                if (!range || (value.value as [Dayjs, Dayjs?]).length === 2) {
-                    instance.hide();
-                }
+        let _value: StateValueItem = v;
+        if (range) {
+            let oldValue = value.value;
+            if (oldValue && multiple) {
+                oldValue = (oldValue as [Dayjs, Dayjs?][])[(oldValue as [Dayjs, Dayjs?][]).length - 1];
             }
+            if (!oldValue || !(oldValue as Dayjs[]).length || (oldValue as Dayjs[]).length === 2) {
+                _value  = [v];
+            } else {
+                _value = [(oldValue as [Dayjs])[0], v];
+                (_value as [Dayjs, Dayjs]).sort((a, b) => a.isAfter(b) ? 1 : -1);
+            }
+        }
+
+        if (multiple) {
+            addMultipeDate(_value);
+        } else {
+            setSingleDate(_value);
+        }
+        if (type === 'datetime') {
+            panel.changePanel(PanelTypes.Time, flag);
+        } else if (!multiple && (!range || (_value as [Dayjs, Dayjs]).length === 2)) {
+            instance.hide();
         }
     }
 
     function onChangeTime(date: Dayjs, flag: PanelFlags) {
         const {multiple, range} = instance.get();
         if (multiple) {
-            const values = (value.value as Dayjs[]).slice();
-            values[values.length - 1] = date;
+            const values = (value.value as StateValueItem[]).slice();
+            const lastIndex = values.length - 1;
+            let _value: StateValueItem = date;
+            if (range) {
+                _value = (values[lastIndex] as [Dayjs, Dayjs]).slice() as [Dayjs, Dayjs];
+                (_value as [Dayjs, Dayjs])[flag] = date;
+            }
+            values[lastIndex] = _value;
             value.set(values);
         } else if (range) {
             const values = (value.value as [Dayjs, Dayjs]).slice();
@@ -164,5 +214,19 @@ export function useValue(
         }
     }
 
-    return {value, format, onChangeDate, onConfirm, onChangeTime};
+    function getTimeValue(flag: PanelFlags) {
+        const {range, multiple} = instance.get();
+        let _value = value.value;
+        if (!_value) return null;
+        if (multiple) {
+            _value = (_value as StateValueItem[])[(_value as StateValueItem[]).length - 1]; 
+        }
+        if (!_value) return null;
+        if (range) {
+            return (_value as [Dayjs, Dayjs?])[flag];
+        }
+        return _value as Dayjs;
+    }
+
+    return {value, format, onChangeDate, onConfirm, onChangeTime, getTimeValue};
 }

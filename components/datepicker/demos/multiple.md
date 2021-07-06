@@ -14,5 +14,18 @@ import {Datepicker} from 'kpc/components/datepicker';
     <br /><br />
     <Datepicker multiple v-model="datetime" type="datetime" />
     You selected: {JSON.stringify(this.get('datetime'))}
+    <br /><br />
+    <Datepicker multiple v-model="year" type="year" />
+    You selected: {JSON.stringify(this.get('year'))}
+    <br /><br />
+    <Datepicker multiple v-model="month" type="month" />
+    You selected: {JSON.stringify(this.get('month'))}
+    <br /><br />
+    <Datepicker multiple range v-model="dateRange" />
+    You selected: {JSON.stringify(this.get('dateRange'))}
+    <br /><br />
+    <Datepicker multiple range v-model="datetimeRange" type="datetime" />
+    You selected: {JSON.stringify(this.get('datetimeRange'))}
+    <br /><br />
 </div>
 ```

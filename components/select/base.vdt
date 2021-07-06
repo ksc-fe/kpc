@@ -77,7 +77,7 @@ const {onInput, inputRef, keywords: {value: keywords}} = this.input;
                             <b:values params={[value, label]}>
                                 <div class="k-select-tag" 
                                     v-for={label} 
-                                    key={value[$key]}
+                                    key={$value}
                                 >
                                     <span class="k-select-text">
                                         <b:value params={[value[$key], $value]}>

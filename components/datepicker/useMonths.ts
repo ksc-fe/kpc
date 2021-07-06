@@ -23,6 +23,7 @@ export function useMonths(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => bool
                 isToday: dayjsDate.isSame(now, 'month'),
                 isDisabled: isDisabled(dayjsDate),
                 isHover: isEqual(dayjsDate, focusMonth.value, 'month'),
+                isInRange: instance.isInRange(dayjsDate, 'month'),
                 label: _$(i + 1 + '月'),
                 value: dayjsDate,
             });

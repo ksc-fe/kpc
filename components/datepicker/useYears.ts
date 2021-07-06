@@ -38,6 +38,7 @@ export function useYears(showDate: State<Dayjs>, isDisabled: (v: Dayjs) => boole
                 isToday: dayjsDate.isSame(now, 'year'),
                 isDisabled: isDisabled(dayjsDate),
                 isHover: isEqual(dayjsDate, focusYear.value, 'year'),
+                isInRange: !isExceed && instance.isInRange(dayjsDate, 'year'),
                 label: year,
                 value: dayjsDate,
             });

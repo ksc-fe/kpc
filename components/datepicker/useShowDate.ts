@@ -15,6 +15,9 @@ export function useShowDate() {
         if (Array.isArray(v)) {
             v = v[v.length - 1];
         }
+        if (Array.isArray(v)) {
+            v = v[v.length - 1];
+        }
         if (!isNullOrUndefined(v)) {
             showDate.set(v);
         }

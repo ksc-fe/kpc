@@ -3,9 +3,10 @@ import template from './time.vdt';
 import {Dayjs} from 'dayjs';
 import {useState} from '../../hooks/useState';
 import {bind} from '../utils';
+import {getNowDate} from './helpers';
 
 export interface DatepickerTimeProps {
-    value: Dayjs
+    value?: Dayjs
     format: string
 }
 
@@ -15,6 +16,12 @@ type Value = {
     s: number,
 }
 
+const defaultValue: Value = {
+    h: 0,
+    m: 0,
+    s: 0,
+};
+
 export class DatepickerTime extends Component<DatepickerTimeProps> {
     static template = template;
 
@@ -23,11 +30,14 @@ export class DatepickerTime extends Component<DatepickerTimeProps> {
 
     init() {
         this.watch('value', v => {
-            this.value.set({
-                h: v.hour(),
-                m: v.minute(),
-                s: v.second(),
-            });
+            this.value.set(v ?
+                {
+                    h: v.hour(),
+                    m: v.minute(),
+                    s: v.second(),
+                } : 
+                defaultValue
+            );
         });
     }
 
@@ -47,7 +57,7 @@ export class DatepickerTime extends Component<DatepickerTimeProps> {
     }
 
     private changeValue(v: number, type: keyof Value) {
-        const value = this.get('value');
+        const value = this.get('value') || getNowDate();
         this.set('value', value.set(type, v));
     }
 }
