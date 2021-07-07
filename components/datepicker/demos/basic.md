@@ -9,7 +9,7 @@ order: 0
 import {Datepicker} from 'kpc/components/datepicker';
 
 <div>
-    <Datepicker v-model="date" ref="__demo"/>
+    <Datepicker v-model="date" ref="__demo" value="2018-01-01" />
     <Datepicker disabled value="2018-01-01"/>
 </div>
 ```

@@ -6,6 +6,7 @@ import {Button} from '../button';
 import {_$} from '../../i18n';
 import {makePanelStyles} from './styles';
 import {PanelTypes, PanelFlags} from './usePanel';
+import {last} from './helpers';
 
 const {type, range, multiple} = this.get();
 const {
@@ -16,6 +17,7 @@ const {
     onChangeDateForRange,
     getTimeValue,
 } = this.value;
+const lastValue = last(value);
 const classNameObj = {
     'k-datepicker-content': true,
     [makePanelStyles()]: true,
@@ -29,7 +31,7 @@ const generatePanel = (flag) => {
             <DatepickerCalendar
                 v-if={panel.value === PanelTypes.Date}
                 value={value}
-                ev-$change:value={(v) => onChangeDate(v, flag)}
+                ev-change={(v) => onChangeDate(v, flag)}
                 type={type === 'datetime' ? 'date' : type}
             />
             <DatepickerTime
@@ -52,8 +54,8 @@ const generatePanel = (flag) => {
             <div v-if={type === 'datetime'} class="k-datepicker-footer">
                 <Button type="primary" size="small"
                     disabled={
-                        !value ||
-                        range && (!multiple ? value.length < 2  : (value[value.length - 1] || []).length < 2) ||
+                        !lastValue ||
+                        range && lastValue.length < 2 ||
                         startPanel.value === PanelTypes.Date &&
                         endPanel.value === PanelTypes.Date
                     }

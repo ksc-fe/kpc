@@ -15,7 +15,7 @@ import {StateValue} from './useValue';
 import {useStatus} from './useStatus';
 
 export interface DatepickerCalendarProps {
-    value?: StateValue
+    value: StateValue
     type?: 'date' | 'year' | 'month'
     rangeValues?: [Dayjs, Dayjs | null] | null
 }

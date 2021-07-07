@@ -55,7 +55,7 @@ export function useYears(showDate: State<Dayjs>, status: ReturnType<typeof useSt
         if (instance.datepicker.get('type') !== 'year') {
             instance.set('type', 'month');
         } else {
-            instance.set('value', date);
+            instance.trigger('change', date);
         }
     }
 

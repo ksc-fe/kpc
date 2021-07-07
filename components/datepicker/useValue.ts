@@ -3,18 +3,23 @@ import {useState, watchState, State} from '../../hooks/useState';
 import dayjs, {Dayjs} from 'dayjs';
 import {Datepicker, Value, DatepickerProps} from './index';
 import {isNullOrUndefined} from 'intact-shared';
-import {isEqual, findValueIndex} from './helpers';
+import {isEqual, findValueIndex, last} from './helpers';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {isEqualArray} from '../utils';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
 
-export type StateValueItem = Dayjs | [Dayjs, Dayjs?]
-export type StateValue = StateValueItem | StateValueItem[]
+// export type StateValueItem = Dayjs | [Dayjs, Dayjs?]
+// export type StateValue = StateValueItem | StateValueItem[]
+export type StateValueRange = [Dayjs, Dayjs?];
+export type StateValueItem = Dayjs | StateValueRange;
+export type StateValue = StateValueItem[]
 
-type DayjsValueItem = Required<StateValueItem>
-type DayjsValue = DayjsValueItem | DayjsValueItem[]
-type StringValue = string | string[] | [string, string][]
+// type DayjsValueItem = Required<StateValueItem>
+// type DayjsValue = DayjsValueItem | DayjsValueItem[]
+type StringValue = string | string[] | [string, string] | [string, string][]
+type DayjsValueItem = Dayjs | [Dayjs, Dayjs]
+type DayjsValue = DayjsValueItem[]
 
 export function useValue(
     {
@@ -26,14 +31,15 @@ export function useValue(
     isDisabled: ReturnType<typeof useDisabled>,
     panel: ReturnType<typeof usePanel>,
 ) {
-    const value = useState<StateValue | null>(null);
+    // Normalize the value to multipe values, no matter it's multipe or not
+    const value = useState<StateValue>([]);
     const instance = useInstance() as Datepicker;
-    let valueDayjs: StateValue | null = null;
+    let dayjsValue: DayjsValue = [];
 
     instance.watch('value', (newValue, oldValue) => {
         if (isEqualArray(newValue, oldValue)) return;
-        valueDayjs = convertToDayjs(newValue);
-        value.set(valueDayjs);
+        dayjsValue = convertToDayjs(newValue);
+        value.set(dayjsValue);
         // should update keywords
         updateValue();
     });
@@ -45,44 +51,55 @@ export function useValue(
         }
     });
 
-    function convertToDayjs(v: DatepickerProps['value']): StateValue | null {
-        if (!v) return null;
-        if (Array.isArray(v)) {
-            return v.map(convertToDayjs) as StateValue;
-        }
-        return createDateByValueFormat(v);
-    }
+    function convertToDayjs(v: DatepickerProps['value']): DayjsValue {
+        if (!v) return [];
 
-    function convertToValueString(v: DayjsValue | null): StringValue | null {
-        if (!v) return null;
-        if (Array.isArray(v)) {
-            return v.map(convertToValueString) as StringValue;
+        const {multiple} = instance.get();
+        if (!multiple) {
+            v = [v as Value];
         }
-        return getValueString(v);
-    }
-
-    function format() {
-        const {range, multiple} = instance.get();
-        if (Array.isArray(valueDayjs)) {
-            if (range) {
-                if (multiple) {
-                    return (valueDayjs as [Dayjs, Dayjs][]).map(days => {
-                        return days.map(getShowString).join(' ~ ');
-                    });
-                } else {
-                    return (valueDayjs as [Dayjs, Dayjs]).map(getShowString).join(' ~ ');
-                }
-            } else {
-                return (valueDayjs as Dayjs[]).map(getShowString);
+        return (v as (Value | [Value, Value])[]).map(value => {
+            if (Array.isArray(value)) {
+                // range
+                return value.map(createDateByValueFormat);
             }
-        } else if (valueDayjs) {
-            return getShowString(valueDayjs);
+            return createDateByValueFormat(value);
+        }) as DayjsValue;
+    }
+
+    function convertToValueString(v: DayjsValue): StringValue | null {
+        if (!v.length) return null;
+
+        const results = v.map(value => {
+            if (Array.isArray(value)) {
+                return value.map(getValueString);
+            }
+            return getValueString(value);
+        });
+
+        if (!instance.get('multiple')) {
+            return results[0];
         }
+        return results as StringValue;
+    }
+
+    function format(): string | string[] {
+        const results = dayjsValue.map(value => {
+            if (Array.isArray(value)) {
+                return value.map(getShowString).join(' ~ ');
+            }
+            return getShowString(value);
+        });
+
+        if (!instance.get('multiple')) {
+            return results[0];
+        }
+        return results;
     }
 
     function setSingleDate(v: StateValueItem) {
         const {type, range}  = instance.get();
-        value.set(v);
+        value.set([v]);
         if (type !== 'datetime' && (!range || (v as [Dayjs, Dayjs]).length === 2)) {
             updateValue();
         }
@@ -123,8 +140,7 @@ export function useValue(
     }
 
     function updateValue() {
-        const {multiple, range} = instance.get();
-        const _value = value.value as DayjsValue | null;
+        const _value = value.value as DayjsValue;
         const valueStr = convertToValueString(_value); 
         instance.set('value', valueStr);
         instance.resetKeywords(instance.input.keywords);
@@ -142,9 +158,9 @@ export function useValue(
     }
 
     function unique() {
-        const _value = value.value as StateValueItem[];
+        const _value = value.value;
         const map: Record<string, true> = {};
-        const results: StateValueItem[] = [];
+        const results: StateValue = [];
         _value.forEach(value => {
             let key: string;
             if (Array.isArray(value)) {
@@ -168,15 +184,13 @@ export function useValue(
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
         let _value: StateValueItem = v;
+
         if (range) {
-            let oldValue = value.value;
-            if (oldValue && multiple) {
-                oldValue = (oldValue as [Dayjs, Dayjs?][])[(oldValue as [Dayjs, Dayjs?][]).length - 1];
-            }
-            if (!oldValue || !(oldValue as Dayjs[]).length || (oldValue as Dayjs[]).length === 2) {
-                _value  = [v];
+            const oldValue = last(value.value as [Dayjs, Dayjs?][]);
+            if (!oldValue || oldValue.length === 2) {
+                _value = [v];
             } else {
-                _value = [(oldValue as [Dayjs])[0], v];
+                _value = [oldValue[0], v];
                 (_value as [Dayjs, Dayjs]).sort((a, b) => a.isAfter(b) ? 1 : -1);
             }
         }
@@ -188,44 +202,37 @@ export function useValue(
         }
         if (type === 'datetime') {
             panel.changePanel(PanelTypes.Time, flag);
-        } else if (!multiple && (!range || (_value as [Dayjs, Dayjs]).length === 2)) {
+        } else if (!multiple && (!range || (_value as [Dayjs, Dayjs?]).length === 2)) {
             instance.hide();
         }
     }
 
     function onChangeTime(date: Dayjs, flag: PanelFlags) {
-        const {multiple, range} = instance.get();
-        if (multiple) {
-            const values = (value.value as StateValueItem[]).slice();
-            const lastIndex = values.length - 1;
-            let _value: StateValueItem = date;
-            if (range) {
-                _value = (values[lastIndex] as [Dayjs, Dayjs]).slice() as [Dayjs, Dayjs];
-                (_value as [Dayjs, Dayjs])[flag] = date;
-            }
-            values[lastIndex] = _value;
-            value.set(values);
-        } else if (range) {
-            const values = (value.value as [Dayjs, Dayjs]).slice();
-            values[flag] = date;
-            value.set(values);
-        } else {
-            value.set(date);
+        const {range} = instance.get();
+        const values = value.value.slice();
+        const lastIndex = values.length - 1;
+        let _value: StateValueItem = date;
+
+        if (range) {
+            _value = (values as [Dayjs, Dayjs][])[lastIndex].slice() as [Dayjs, Dayjs];
+            _value[flag] = date;
         }
+
+        values[lastIndex] = _value;
+        value.set(values);
     }
 
-    function getTimeValue(flag: PanelFlags) {
-        const {range, multiple} = instance.get();
-        let _value = value.value;
-        if (!_value) return null;
-        if (multiple) {
-            _value = (_value as StateValueItem[])[(_value as StateValueItem[]).length - 1]; 
-        }
-        if (!_value) return null;
+    function getTimeValue(flag: PanelFlags): Dayjs | null | undefined {
+        const _value = value.value;
+        if (!_value.length) return null;
+
+        const {range} = instance.get();
+        const lastValue = last(_value);
+
         if (range) {
-            return (_value as [Dayjs, Dayjs?])[flag];
+            return (lastValue as [Dayjs, Dayjs?])[flag];
         }
-        return _value as Dayjs;
+        return lastValue as Dayjs;
     }
 
     return {value, format, onChangeDate, onConfirm, onChangeTime, getTimeValue};

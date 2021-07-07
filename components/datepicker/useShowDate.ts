@@ -1,7 +1,7 @@
 import {useInstance} from 'intact';
 import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
-import {clearTime, isEqual, getNowDate} from './helpers';
+import {clearTime, isEqual, getNowDate, last} from './helpers';
 import dayjs, {Dayjs} from 'dayjs';
 import {_$} from '../../i18n';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
@@ -12,14 +12,13 @@ export function useShowDate() {
     const showDate = useState<Dayjs>(getNowDate());
 
     instance.on('$receive:value', v => {
-        if (Array.isArray(v)) {
-            v = v[v.length - 1];
-        }
-        if (Array.isArray(v)) {
-            v = v[v.length - 1];
-        }
-        if (!isNullOrUndefined(v)) {
-            showDate.set(v);
+        const lastValue = last(v);
+        const value = Array.isArray(lastValue) ?
+            last(lastValue) :
+            lastValue as Dayjs | undefined;
+
+        if (value) {
+            showDate.set(value);
         }
     });
 

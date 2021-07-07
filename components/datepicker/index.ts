@@ -16,7 +16,7 @@ import {useFormats} from './useFormats';
 import {usePanel, PanelTypes} from './usePanel';
 
 export interface DatepickerProps extends BaseSelectProps {
-    value?: Value | Value[] | [Value, Value][] | null
+    value?: Value | Value[] | [Value, Value] | [Value, Value][] | null
     type?: 'date' | 'datetime' | 'year' | 'month'
     range?: boolean
     shortcuts?: Shortcut[]

@@ -10,7 +10,7 @@ export function useStatus() {
     const instance = useInstance() as DatepickerCalendar;
     
     function isActive(date: Dayjs, type: DatepickerCalendarProps['type']) {
-        const isActive = (values: StateValue | undefined): boolean => {
+        const isActive = (values: StateValueItem | StateValueItem[] | undefined): boolean => {
             return Array.isArray(values) ?
                 !!(values as StateValueItem[]).find(v => isActive(v)) :
                 isEqual(values, date, type);
@@ -27,19 +27,12 @@ export function useStatus() {
             if (!value) {
                 return false;
             }
-            const isInRange = ([start, end]: [Dayjs, Dayjs?]): boolean => {
-                if (start) {
-                    if (end) {
-                        return isGT(date, start, type) && isLT(date, end, type);
-                    }
+            return (value as [Dayjs, Dayjs?][]).some(([start, end]: [Dayjs, Dayjs?]): boolean => {
+                if (start && end) {
+                    return isGT(date, start, type) && isLT(date, end, type);
                 }
                 return false;
-            };
-            if (multiple) {
-                return (value as [Dayjs, Dayjs?][]).some(isInRange);
-            } else {
-                return isInRange(value as [Dayjs, Dayjs?]);
-            }
+            });
         }
 
         return false;
