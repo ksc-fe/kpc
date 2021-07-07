@@ -5,9 +5,12 @@ import type {DatepickerCalendar} from './calendar';
 import {useState, State} from '../../hooks/useState';
 import type {useStatus} from './useStatus';
 
-export function useDays(showDate: State<Dayjs>, status: ReturnType<typeof useStatus>) {
+export function useDays(
+    showDate: State<Dayjs>,
+    status: ReturnType<typeof useStatus>,
+    focusDate: State<Dayjs | null>
+) {
     const instance = useInstance() as DatepickerCalendar;
-    const focusDate = useState<Dayjs | null>(null);
 
     function getDays(now: Dayjs) {
         const days = [];

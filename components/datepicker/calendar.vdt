@@ -5,7 +5,7 @@ import {_$} from '../../i18n';
 import {makeCalendarStyles} from './styles';
 import {getNowDate} from './helpers';
 
-const {type} = this.get();
+const type = this.type.value;
 const isYear = type === 'year';
 const isYearOrMonth = isYear || type === 'month';
 const classNameObj = {
@@ -13,6 +13,7 @@ const classNameObj = {
     [makeCalendarStyles()]: true,
 };
 const now = getNowDate();
+const {focusDate, reset: resetFocusDate} = this.datepicker.focusDate;
 const getItems = (data, onClick) => {
     return <div v-for={data}
         class={{
@@ -30,6 +31,7 @@ const getItems = (data, onClick) => {
                 onClick($value.value);
             } : null
         }
+        ev-mouseenter={() => focusDate.set($value.value)}
     >
         <div class="k-value">{$value.label}</div>
     </div>
@@ -95,14 +97,14 @@ const {
                 v-for={[_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')]}
             >{$value}</div>
         </div>
-        <div class="k-days" ev-mouseleave={this._onMouseLeaveDays}>
+        <div class="k-days" ev-mouseleave={resetFocusDate}>
             {getItems(getDays(now), onClickDay)}
         </div>
     </template>
-    <div v-else-if={isYear} class="k-years">
-        {getItems(this.years.getYears(now), this.years.onClick)}
-    </div>
-    <div v-else class="k-years">
-        {getItems(this.months.getMonths(now), this.months.onClick)}
+    <div v-else class="k-years" ev-mouseleave={resetFocusDate}>
+        {isYear ?
+            getItems(this.years.getYears(now), this.years.onClick) :
+            getItems(this.months.getMonths(now), this.months.onClick)
+        }
     </div>
 </div>

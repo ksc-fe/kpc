@@ -31,8 +31,8 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
         }
 
         let tmp;
-        if 
-            (value &&
+        if (
+            value &&
             !value.isSame(showDate.value, 'month') &&
             // ignore if it is in another panel
             (tmp = anotherPanel.value) &&
@@ -79,7 +79,7 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
             value: map[item],
             onClick(e: IgnoreClickEvent) {
                 e._ignore = true;
-                instance.set('type', item === 'YYYY' ? 'year' : 'month');
+                instance.type.set(item === 'YYYY' ? 'year' : 'month');
             }
         }));
     }

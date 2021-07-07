@@ -14,6 +14,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat';
 import {useDisabled} from './useDisabled';
 import {useFormats} from './useFormats';
 import {usePanel, PanelTypes} from './usePanel';
+import {useFocusDate} from './useFocusDate';
 
 export interface DatepickerProps extends BaseSelectProps {
     value?: Value | Value[] | [Value, Value] | [Value, Value][] | null
@@ -71,6 +72,7 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     public formats = useFormats();
     public isDisabled = useDisabled(this.formats);
     public panel = usePanel();
+    public focusDate = useFocusDate();
     private value = useValue(this.formats, this.isDisabled, this.panel);
 
     init() {

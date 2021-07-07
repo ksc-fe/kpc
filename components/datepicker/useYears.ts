@@ -6,9 +6,12 @@ import {useState, State} from '../../hooks/useState';
 import {_$} from '../../i18n';
 import type {useStatus} from './useStatus';
 
-export function useYears(showDate: State<Dayjs>, status: ReturnType<typeof useStatus>) {
+export function useYears(
+    showDate: State<Dayjs>,
+    status: ReturnType<typeof useStatus>,
+    focusDate: State<Dayjs | null>
+) {
     const instance = useInstance() as DatepickerCalendar;
-    const focusYear = useState<Dayjs | null>(null);
 
     function getYearRange() {
         const startYear = Math.floor(showDate.value.get('year') / 10) * 10;
@@ -38,7 +41,7 @@ export function useYears(showDate: State<Dayjs>, status: ReturnType<typeof useSt
                 isActive: !isExceed && status.isActive(dayjsDate, 'year'),
                 isToday: dayjsDate.isSame(now, 'year'),
                 isDisabled: status.isDisabled(dayjsDate),
-                isHover: isEqual(dayjsDate, focusYear.value, 'year'),
+                isHover: isEqual(dayjsDate, focusDate.value, 'year'),
                 isInRange: !isExceed && status.isInRange(dayjsDate, 'year'),
                 label: year,
                 value: dayjsDate,
@@ -53,7 +56,7 @@ export function useYears(showDate: State<Dayjs>, status: ReturnType<typeof useSt
     function onClick(date: Dayjs) {
         showDate.set(date);
         if (instance.datepicker.get('type') !== 'year') {
-            instance.set('type', 'month');
+            instance.type.set('month');
         } else {
             instance.triggerChange(date);
         }

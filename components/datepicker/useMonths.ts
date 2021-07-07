@@ -6,9 +6,12 @@ import {useState, State} from '../../hooks/useState';
 import {_$} from '../../i18n';
 import type {useStatus} from './useStatus';
 
-export function useMonths(showDate: State<Dayjs>, status: ReturnType<typeof useStatus>) {
+export function useMonths(
+    showDate: State<Dayjs>, 
+    status: ReturnType<typeof useStatus>,
+    focusDate: State<Dayjs | null>
+) {
     const instance = useInstance() as DatepickerCalendar;
-    const focusMonth = useState<Dayjs | null>(null);
 
     function getMonths(now: Dayjs) {
         const ret = [];
@@ -23,7 +26,7 @@ export function useMonths(showDate: State<Dayjs>, status: ReturnType<typeof useS
                 isActive: status.isActive(dayjsDate, 'month'),
                 isToday: dayjsDate.isSame(now, 'month'),
                 isDisabled: status.isDisabled(dayjsDate),
-                isHover: isEqual(dayjsDate, focusMonth.value, 'month'),
+                isHover: isEqual(dayjsDate, focusDate.value, 'month'),
                 isInRange: status.isInRange(dayjsDate, 'month'),
                 label: _$(i + 1 + '月'),
                 value: dayjsDate,
@@ -39,7 +42,7 @@ export function useMonths(showDate: State<Dayjs>, status: ReturnType<typeof useS
         showDate.set(date);
         const datepickerType = instance.datepicker.get('type');
         if (datepickerType !== 'month' && datepickerType !== 'year') {
-            instance.set('type', 'date');
+            instance.type.set('date');
         } else {
             instance.triggerChange(date);
         }

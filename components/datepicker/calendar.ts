@@ -14,6 +14,7 @@ import {useMonths} from './useMonths';
 import {StateValue} from './useValue';
 import {useStatus} from './useStatus';
 import {PanelFlags} from './usePanel';
+import {useKeyboards} from './useKeyboards';
 
 export interface DatepickerCalendarProps {
     value: StateValue
@@ -29,16 +30,26 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
     static template = template;
     static defaults = defaults;
 
+    public type = useType(this);
     public datepicker: Datepicker = inject(DATEPICKER)!;
-
     public showDate = useShowDate(this.datepicker.panel);
-    private status = useStatus();
-    private days = useDays(this.showDate.date, this.status);
-    private years = useYears(this.showDate.date, this.status);
-    private months = useMonths(this.showDate.date, this.status);
+
+    private status = useStatus(this.datepicker.focusDate.focusDate);
+    private days = useDays(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    private years = useYears(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    private months = useMonths(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
 
     @bind
     triggerChange(value: Dayjs) {
         this.trigger('change', value, this.get('flag'));
     } 
+}
+
+function useType(instance: DatepickerCalendar) {
+    const type = useState<Required<DatepickerCalendarProps['type']>>('date');
+    instance.on('$receive:type', v => {
+        type.set(v);
+    });
+
+    return type;
 }
