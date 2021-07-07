@@ -17,7 +17,7 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
     public dropdown: Dropdown = inject(DROPDOWN)!;
     public keyboard = useKeyboardForDropdownMenu(this.dropdown);
 
-    private transition = useKeyboardForDropdownMenu(this.dropdown);
+    private transition = useTransition(() => this.dropdown.position());
 
     init() {
         provide(DROPDOWN_MENU, this);
