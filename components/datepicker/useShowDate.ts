@@ -1,24 +1,65 @@
 import {useInstance} from 'intact';
 import type {DatepickerCalendar} from './calendar';
-import {useState, State} from '../../hooks/useState';
+import {useState, State, watchState} from '../../hooks/useState';
 import {clearTime, isEqual, getNowDate, last} from './helpers';
 import dayjs, {Dayjs} from 'dayjs';
 import {_$} from '../../i18n';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import {isNullOrUndefined} from 'intact-shared';
+import {PanelFlags, usePanel} from './usePanel';
 
-export function useShowDate() {
+export function useShowDate(panel: ReturnType<typeof usePanel>) {
     const instance = useInstance() as DatepickerCalendar;
-    const showDate = useState<Dayjs>(getNowDate());
+    const {flag} = instance.get();
+    let date = getNowDate();
+    if (flag === PanelFlags.End) {
+        date = date.add(1, 'month');
+    }
+    const showDate = useState<Dayjs>(date);
+    const anotherPanel = flag === PanelFlags.Start ? panel.endRef : panel.startRef;
 
     instance.on('$receive:value', v => {
         const lastValue = last(v);
-        const value = Array.isArray(lastValue) ?
-            last(lastValue) :
-            lastValue as Dayjs | undefined;
+        let value: Dayjs | undefined;
+        if (Array.isArray(lastValue)) {
+            if (lastValue.length !== 2) return;
+            // range
+            const flag = instance.get('flag');
+            value = lastValue[flag];
+        } else {
+            value = lastValue;
+        }
 
-        if (value) {
+        let tmp;
+        if 
+            (value &&
+            !value.isSame(showDate.value, 'month') &&
+            // ignore if it is in another panel
+            (tmp = anotherPanel.value) &&
+            !value.isSame(tmp.showDate.date.value, 'month')
+        ) {
             showDate.set(value);
+        }
+    });
+    
+    // ensure the start panel's date is before the end panel's
+    watchState(showDate, v => {
+        if (flag === PanelFlags.Start) {
+            const endPanel = anotherPanel.value;
+            if (endPanel) {
+                const endShowDate = endPanel.showDate.date.value.date(1);
+                if (v.isAfter(endShowDate, 'date') || v.isSame(endShowDate, 'date')) {
+                    endPanel.showDate.nextMonth();
+                }
+            }
+        } else {
+            const startPanel = anotherPanel.value!;
+            let startShowDate = startPanel.showDate.date.value;
+            // set to the last date
+            startShowDate = startShowDate.add(1, 'month').add(-1, 'date');
+            if (v.isBefore(startShowDate, 'date') || v.isSame(startShowDate, 'date')) {
+                startPanel.showDate.prevMonth();
+            }
         }
     });
 

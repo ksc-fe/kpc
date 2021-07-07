@@ -23,7 +23,7 @@ const classNameObj = {
     [makePanelStyles()]: true,
 };
 
-const {startPanel, endPanel, getPanel} = this.panel;
+const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel;
 const generatePanel = (flag) => {
     const panel = getPanel(flag);
     return (
@@ -31,8 +31,10 @@ const generatePanel = (flag) => {
             <DatepickerCalendar
                 v-if={panel.value === PanelTypes.Date}
                 value={value}
-                ev-change={(v) => onChangeDate(v, flag)}
+                ev-change={onChangeDate}
                 type={type === 'datetime' ? 'date' : type}
+                flag={flag}
+                ref={flag === PanelFlags.Start ? startRef : endRef}
             />
             <DatepickerTime
                 value={getTimeValue(flag)}

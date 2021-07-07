@@ -13,11 +13,12 @@ import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import {useMonths} from './useMonths';
 import {StateValue} from './useValue';
 import {useStatus} from './useStatus';
+import {PanelFlags} from './usePanel';
 
 export interface DatepickerCalendarProps {
     value: StateValue
     type?: 'date' | 'year' | 'month'
-    rangeValues?: [Dayjs, Dayjs | null] | null
+    flag: PanelFlags
 }
 
 const defaults = (): Partial<DatepickerCalendarProps> => ({
@@ -30,9 +31,14 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
 
     public datepicker: Datepicker = inject(DATEPICKER)!;
 
-    private showDate = useShowDate();
+    public showDate = useShowDate(this.datepicker.panel);
     private status = useStatus();
     private days = useDays(this.showDate.date, this.status);
     private years = useYears(this.showDate.date, this.status);
     private months = useMonths(this.showDate.date, this.status);
+
+    @bind
+    triggerChange(value: Dayjs) {
+        this.trigger('change', value, this.get('flag'));
+    } 
 }

@@ -42,12 +42,8 @@ export function useDays(showDate: State<Dayjs>, status: ReturnType<typeof useSta
         return days;
     }
 
-    function onClick(value: Dayjs) {
-        instance.trigger('change', value);
-    }
-
     return {
         getDays,
-        onClick,
+        onClick: instance.triggerChange,
     };
 }
