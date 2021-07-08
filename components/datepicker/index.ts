@@ -1,6 +1,5 @@
-import {TypeDefs, Children, provide} from 'intact';
+import {TypeDefs, provide} from 'intact';
 import template from './index.vdt';
-import {sizes, Sizes} from '../../styles/utils';
 import {Container} from '../portal';
 import {BaseSelect, BaseSelectProps} from '../select/base';
 import {DATEPICKER} from './constants';
@@ -9,13 +8,15 @@ import {useValue} from './useValue';
 import {isNullOrUndefined} from 'intact-shared'
 import {_$} from '../../i18n';
 import {bind} from '../utils';
-import {State, useState} from '../../hooks/useState';
+import {State} from '../../hooks/useState';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import {useDisabled} from './useDisabled';
 import {useFormats} from './useFormats';
-import {usePanel, PanelTypes} from './usePanel';
+import {usePanel} from './usePanel';
 import {useFocusDate} from './useFocusDate';
 import {useKeyboards} from './useKeyboards';
+import {Shortcut} from './shortcuts';
+export * as shortcuts from './shortcuts';
 
 export interface DatepickerProps extends BaseSelectProps {
     value?: Value | Value[] | [Value, Value] | [Value, Value][] | null
@@ -35,9 +36,6 @@ export interface DatepickerProps extends BaseSelectProps {
 }
 
 export type Value = string | Date | number | Dayjs;
-
-// TODO
-type Shortcut = Function
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BaseSelect.typeDefs,
@@ -119,6 +117,16 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
         if (this.get('type') === 'datetime') {
             // reset the state to let user re-select
             this.panel.reset();
+        }
+    }
+
+    @bind
+    private setByShortcut(shortcut: Shortcut) {
+        const {setValue, convertToDayjs} = this.value;
+        const {multiple} = this.get();
+        setValue(convertToDayjs(shortcut.value())[0], true);
+        if (!multiple) {
+            this.hide();
         }
     }
 }

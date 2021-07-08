@@ -1,12 +1,8 @@
 import {useInstance, RefObject} from 'intact';
 import {DatepickerCalendar} from './calendar';
-import {Datepicker} from './';
-import {useState, State} from '../../hooks/useState';
+import {State} from '../../hooks/useState';
 import {Dayjs} from 'dayjs';
 import {useKeyboard} from '../../hooks/useKeyboard';
-import type {useDays} from './useDays';
-import type {useMonths} from './useMonths';
-import type {useYears} from './useYears';
 
 enum Direction {
     Up,
@@ -38,15 +34,15 @@ export function useKeyboards(
             focus(e, Direction.Left);
         },
 
-        enter(e: KeyboardEvent) {
-            onSelect(focusDate.value);
+        enter() {
+            select(focusDate.value);
         },
     });
 
     instance.on('show', add);
     instance.on('hide', remove);
 
-    function onSelect(date: Dayjs | null) {
+    function select(date: Dayjs | null) {
         if (!date) return;
 
         const calendar = panelRef.value;

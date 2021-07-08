@@ -1,6 +1,6 @@
 import {Component, inject} from 'intact';
 import template from './calendar.vdt';
-import dayjs, {Dayjs} from 'dayjs';
+import {Dayjs} from 'dayjs';
 import {useDays} from './useDays';
 import {useState} from '../../hooks/useState';
 import {_$} from '../../i18n';
@@ -9,12 +9,10 @@ import type {Datepicker} from './index';
 import {useShowDate} from './useShowDate';
 import {bind} from '../utils';
 import {useYears} from './useYears';
-import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import {useMonths} from './useMonths';
 import {StateValue} from './useValue';
 import {useStatus} from './useStatus';
 import {PanelFlags} from './usePanel';
-import {useKeyboards} from './useKeyboards';
 
 export interface DatepickerCalendarProps {
     value: StateValue

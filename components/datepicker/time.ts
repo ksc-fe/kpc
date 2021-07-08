@@ -1,4 +1,4 @@
-import {Component, TypeDefs} from 'intact';
+import {Component} from 'intact';
 import template from './time.vdt';
 import {Dayjs} from 'dayjs';
 import {useState} from '../../hooks/useState';

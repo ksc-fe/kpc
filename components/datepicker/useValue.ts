@@ -1,9 +1,8 @@
 import {useInstance} from 'intact';
-import {useState, watchState, State} from '../../hooks/useState';
-import dayjs, {Dayjs} from 'dayjs';
+import {useState, watchState} from '../../hooks/useState';
+import {Dayjs} from 'dayjs';
 import {Datepicker, Value, DatepickerProps} from './index';
-import {isNullOrUndefined} from 'intact-shared';
-import {isEqual, findValueIndex, last} from './helpers';
+import {findValueIndex, last} from './helpers';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {isEqualArray} from '../utils';
@@ -67,7 +66,7 @@ export function useValue(
     });
 
     function convertToDayjs(v: DatepickerProps['value']): DayjsValue {
-        if (!v || !(v as Value[]).length) return [];
+        if (!v || Array.isArray(v) && !v.length) return [];
 
         const {multiple} = instance.get();
         if (!multiple) {
@@ -110,10 +109,10 @@ export function useValue(
         return results;
     }
 
-    function setSingleDate(v: StateValueItem) {
+    function setSingleDate(v: StateValueItem, fromInput: boolean) {
         const {type, range}  = instance.get();
         value.set([v]);
-        if (type !== 'datetime' && (!range || (v as StateValueRange).length === 2)) {
+        if (fromInput || type !== 'datetime' && (!range || (v as StateValueRange).length === 2)) {
             updateValue();
         }
     }
@@ -158,7 +157,7 @@ export function useValue(
         if (multiple) {
             addMultipeDate(v, fromInput);
         } else {
-            setSingleDate(v);
+            setSingleDate(v, fromInput);
         }
     }
 
@@ -255,5 +254,14 @@ export function useValue(
         return lastValue as Dayjs;
     }
 
-    return {value, format, onChangeDate, onConfirm, onChangeTime, getTimeValue};
+    return {
+        value,
+        format,
+        onChangeDate,
+        onConfirm,
+        onChangeTime,
+        getTimeValue,
+        setValue,
+        convertToDayjs,
+    };
 }

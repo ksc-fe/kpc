@@ -1,3 +1,4 @@
+import {linkEvent} from 'intact';
 import {DropdownMenu} from '../dropdown';
 import {DatepickerCalendar} from './calendar';
 import {DatepickerTime} from './time';
@@ -7,8 +8,9 @@ import {_$} from '../../i18n';
 import {makePanelStyles} from './styles';
 import {PanelTypes, PanelFlags} from './usePanel';
 import {last} from './helpers';
+import {isFunction} from 'intact-shared';
 
-const {type, range, multiple} = this.get();
+const {type, range, multiple, shortcuts} = this.get();
 const {
     value: {value},
     onChangeDate,
@@ -49,20 +51,30 @@ const generatePanel = (flag) => {
 <t:super>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
-            <div class="k-datepicker-calendars">
-                {generatePanel(PanelFlags.Start)}
-                {range ? generatePanel(PanelFlags.End) : null} 
+            <div class="k-datepicker-shortcuts" v-if={shortcuts && shortcuts.length}>
+                <div v-for={shortcuts}
+                    class="k-datepicker-shortcut"
+                    ev-click={linkEvent($value, this.setByShortcut)}
+                >
+                    {isFunction($value.label) ? $value.label() : $value.label}
+                </div>
             </div>
-            <div v-if={type === 'datetime'} class="k-datepicker-footer">
-                <Button type="primary" size="small"
-                    disabled={
-                        !lastValue ||
-                        range && lastValue.length < 2 ||
-                        startPanel.value === PanelTypes.Date &&
-                        endPanel.value === PanelTypes.Date
-                    }
-                    ev-click={onConfirm}
-                >{_$('确定')}</Button>
+            <div class="k-datepicker-wrapper">
+                <div class="k-datepicker-calendars">
+                    {generatePanel(PanelFlags.Start)}
+                    {range ? generatePanel(PanelFlags.End) : null} 
+                </div>
+                <div v-if={type === 'datetime'} class="k-datepicker-footer">
+                    <Button type="primary" size="small"
+                        disabled={
+                            !lastValue ||
+                            range && lastValue.length < 2 ||
+                            startPanel.value === PanelTypes.Date &&
+                            endPanel.value === PanelTypes.Date
+                        }
+                        ev-click={onConfirm}
+                    >{_$('确定')}</Button>
+                </div>
             </div>
         </DropdownMenu>
     </b:base-menu>

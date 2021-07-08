@@ -1,11 +1,10 @@
 import {useInstance} from 'intact';
 import type {DatepickerCalendar} from './calendar';
-import {useState, State, watchState} from '../../hooks/useState';
-import {clearTime, isEqual, getNowDate, last} from './helpers';
-import dayjs, {Dayjs} from 'dayjs';
+import {useState, watchState} from '../../hooks/useState';
+import {getNowDate, last} from './helpers';
+import {Dayjs} from 'dayjs';
 import {_$} from '../../i18n';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
-import {isNullOrUndefined} from 'intact-shared';
 import {PanelFlags, usePanel} from './usePanel';
 
 export function useShowDate(panel: ReturnType<typeof usePanel>) {
@@ -30,14 +29,16 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
             value = lastValue;
         }
 
-        let tmp;
+        let another;
         if (
             value &&
             !value.isSame(showDate.value, 'month') &&
             // ignore if it is in another panel
-            (tmp = anotherPanel.value) &&
-            !value.isSame(tmp.showDate.date.value, 'month')
-        ) {
+            (
+                !(another = anotherPanel.value) ||
+                !value.isSame(another.showDate.date.value, 'month')
+            )
+         ){
             showDate.set(value);
         }
     });

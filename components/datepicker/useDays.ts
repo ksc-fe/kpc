@@ -1,8 +1,8 @@
 import {useInstance} from 'intact';
 import dayjs, {Dayjs} from 'dayjs';
-import {clearTime, isEqual, getNowDate} from './helpers';
+import {clearTime, isEqual} from './helpers';
 import type {DatepickerCalendar} from './calendar';
-import {useState, State} from '../../hooks/useState';
+import {State} from '../../hooks/useState';
 import type {useStatus} from './useStatus';
 
 export function useDays(

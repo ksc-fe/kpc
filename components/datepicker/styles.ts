@@ -46,12 +46,37 @@ const {datepicker} = deepDefaults(theme, {
         footer: {
             border: `1px solid #e5e5e5`,
             padding: `8px 16px`,
+        },
+
+        shortcuts: {
+            width: '100px',
+            padding: '12px 0',
+            shortcut: {
+                get hoverBgcolor() { return theme.color.bg },
+                height: '32px',
+                padding: '0 16px',
+            }
         }
     }
 });
 
 export function makePanelStyles() {
     return css`
+        display: flex;
+        .k-datepicker-shortcuts {
+            width: ${datepicker.shortcuts.width};
+            padding: ${datepicker.shortcuts.padding};
+            border-right: ${datepicker.footer.border};
+        }
+        .k-datepicker-shortcut {
+            height: ${datepicker.shortcuts.shortcut.height};
+            line-height: ${datepicker.shortcuts.shortcut.height};
+            padding: ${datepicker.shortcuts.shortcut.padding};
+            cursor: pointer;
+            &:hover {
+                background: ${datepicker.shortcuts.shortcut.hoverBgcolor};
+            }
+        }
         .k-datepicker-calendars {
             display: flex;
         }

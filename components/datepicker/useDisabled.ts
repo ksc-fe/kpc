@@ -1,6 +1,6 @@
 import {useInstance} from 'intact';
-import {useState, watchState, State} from '../../hooks/useState';
-import dayjs, {Dayjs} from 'dayjs';
+import {useState, State} from '../../hooks/useState';
+import {Dayjs} from 'dayjs';
 import type {Datepicker, Value} from './index';
 import {isNullOrUndefined} from 'intact-shared';
 import {isGT, isLT} from './helpers';
