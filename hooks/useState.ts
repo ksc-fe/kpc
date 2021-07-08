@@ -8,13 +8,21 @@ export type State<T> = {
     listeners: Listener<T>[] | null,
 }
 
-export function useState<T>(value: T) {
+export function useState<T>(value: T, isEqual?: (a: T, b: T) => boolean) {
     const instance = useInstance()!;
     const state: State<T> = {
         value,
         set(value: T) {
             const oldValue = state.value;
-            if (oldValue === value) return;
+            if (isEqual) {
+                if (isEqual(oldValue, value)) {
+                    // @ts-ignore
+                    state.value = value;
+                    return;
+                }
+            } else {
+                if (oldValue === value) return;
+            }
             // @ts-ignore
             state.value = value;
             instance.forceUpdate();

@@ -1,4 +1,4 @@
-import {VNode} from 'intact';
+import {VNode, VNodeComponentClass} from 'intact';
 import type {Dialog, DialogProps} from './index';
 import template from './alert.vdt';
 
@@ -23,7 +23,7 @@ export function addStaticMethods(Component: typeof Dialog) {
 
     function show(options: AlertDialogProps = {}) {
         return new Promise<void>((resolve, reject) => {
-            const dialog = new AlertDialog();
+            const dialog = new AlertDialog(options, null as unknown as VNodeComponentClass<any>, false, [], null);
             dialog.show(options);
             dialog.on('ok', () => {
                 resolve();

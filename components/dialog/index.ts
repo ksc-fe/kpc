@@ -102,7 +102,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
             }
 
             // use as intance
-            const mountedQueue = this.$mountedQueue = [];
+            const mountedQueue = this.$mountedQueue;
             this.$init(props); 
             const vNode = this.$vNode = createVNode(Dialog) as VNodeComponentClass<any>;
             vNode.children = this;

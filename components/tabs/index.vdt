@@ -1,0 +1,49 @@
+import {Button} from '../button';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+
+const {className, children, vertical, size, type} = this.get();
+const {
+    isScroll, left, enablePrev, enableNext,
+    prev, next, scrollRef, wrapperRef
+} = this.scroll;
+const classNameObj = {
+    'k-tabs': true,
+    [`k-${size}`]: size,
+    'k-vertical': vertical,
+    'k-tabs-card': type === 'no-border-card',
+    [`k-tabs-${type}`]: type !== 'default',
+    [`k-is-scroll`]: isScroll.value,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <Button class="k-tabs-prev" type="none" icon
+        v-if={isScroll.value}
+        key="prev" 
+        size={size}
+        disabled={!enablePrev.value}
+        ev-click={prev}
+    >
+        <i class="ion-ios-arrow-left"></i>
+    </Button>
+    <div class="k-tabs-scroll c-clearfix" ref={scrollRef}>
+        <div class="k-tabs-wrapper"
+            ref={wrapperRef}
+            style={{transform: `translateX(${left.value}px)`}}
+        >
+            {children}
+            <div class="k-tabs-active-bar" style={this.activeBar.value}></div>
+        </div>
+    </div>
+    <Button class="k-tabs-next" type="none" icon
+        v-if={isScroll.value}
+        key="next" 
+        size={size}
+        disabled={!enableNext.value}
+        ev-click={next}
+    >
+        <i class="ion-ios-arrow-right"></i>
+    </Button>
+</div>
