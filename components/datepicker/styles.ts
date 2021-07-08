@@ -105,7 +105,7 @@ export function makeCalendarStyles() {
             cursor: pointer;
             position: relative;
             border-radius: ${datepicker.item.borderRadius};
-            &:hover {
+            &.k-hover {
                 background: ${datepicker.item.hoverBgColor};
             }
             &.k-exceed {

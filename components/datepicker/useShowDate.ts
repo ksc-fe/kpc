@@ -56,7 +56,7 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
             const startPanel = anotherPanel.value!;
             let startShowDate = startPanel.showDate.date.value;
             // set to the last date
-            startShowDate = startShowDate.add(1, 'month').add(-1, 'date');
+            startShowDate = startShowDate.add(1, 'month').add(-1, 'day');
             if (v.isBefore(startShowDate, 'date') || v.isSame(startShowDate, 'date')) {
                 startPanel.showDate.prevMonth();
             }

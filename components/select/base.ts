@@ -125,6 +125,7 @@ export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> ex
                 this.show();
                 break;
             case 9: // tab
+            case 27: // esc
                 this.hide();
                 break;
         }

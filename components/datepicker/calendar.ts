@@ -33,11 +33,10 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
     public type = useType(this);
     public datepicker: Datepicker = inject(DATEPICKER)!;
     public showDate = useShowDate(this.datepicker.panel);
-
-    private status = useStatus(this.datepicker.focusDate.focusDate);
-    private days = useDays(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
-    private years = useYears(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
-    private months = useMonths(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    public status = useStatus(this.datepicker.focusDate.focusDate);
+    public days = useDays(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    public years = useYears(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    public months = useMonths(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
 
     @bind
     triggerChange(value: Dayjs) {

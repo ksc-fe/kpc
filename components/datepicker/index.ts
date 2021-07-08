@@ -15,6 +15,7 @@ import {useDisabled} from './useDisabled';
 import {useFormats} from './useFormats';
 import {usePanel, PanelTypes} from './usePanel';
 import {useFocusDate} from './useFocusDate';
+import {useKeyboards} from './useKeyboards';
 
 export interface DatepickerProps extends BaseSelectProps {
     value?: Value | Value[] | [Value, Value] | [Value, Value][] | null
@@ -78,6 +79,7 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     init() {
         super.init();
         provide(DATEPICKER, this);
+        useKeyboards(this.panel.startRef, this.focusDate.focusDate);
     }
 
     protected getPlaceholder() {
