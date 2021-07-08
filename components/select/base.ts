@@ -116,4 +116,17 @@ export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> ex
         e.stopPropagation();
         this.set('value', this.get('multiple') ? [] : '');
     }
+
+    @bind
+    private onKeypress(e: KeyboardEvent) {
+        this.trigger('keypress', e);
+        switch (e.keyCode) {
+            case 13: // enter
+                this.show();
+                break;
+            case 9: // tab
+                this.hide();
+                break;
+        }
+    }
 }

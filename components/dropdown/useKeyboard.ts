@@ -81,8 +81,16 @@ export function useMenuKeyboard() {
     }
 
     onMounted(collect);
-    onBeforeUpdate(reset);
-    onUpdated(collect);
+    let oldFocusIndex: number;
+    onBeforeUpdate(() => {
+        oldFocusIndex = focusIndex;
+        reset();
+    });
+    onUpdated(() => {
+        collect();
+        if (oldFocusIndex < 0) return;
+        focusByIndex(oldFocusIndex, Direction.Up);
+    });
 
     function next(e: KeyboardEvent) {
         e.preventDefault();
@@ -100,10 +108,11 @@ export function useMenuKeyboard() {
 
         reset();
 
-        const item = items[index];
+        let item = items[index];
         let i = 0;
         while (i <= max && item && item.get('disabled')) {
             index = fixIndex(direction === Direction.Down ? index + 1 : index - 1, max);
+            item = items[index];
             i++;
         }
 

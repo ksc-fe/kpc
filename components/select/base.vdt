@@ -38,7 +38,9 @@ const {onInput, inputRef, keywords: {value: keywords}} = this.input;
     disabled={disabled}
     v-model="_show"
 >
-    <div {...getRestProps(this)} class={classNameObj} tabindex="0">
+    <div {...getRestProps(this)} class={classNameObj} tabindex="0"
+        ev-keydown={this.onKeypress}
+    >
         <div class="k-select-prefix" v-if={$blocks.prefix}>
             <b:prefix />
         </div>

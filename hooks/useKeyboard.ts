@@ -8,6 +8,7 @@ export type Options = {
     right: Handler
     left: Handler
     enter: Handler
+    default?: Handler
 }
 
 export function useKeyboard(options: Options) {
@@ -35,6 +36,9 @@ export function useKeyboard(options: Options) {
             // enter
             case 13:
                 options.enter(e);
+                break;
+            default:
+                options.default && options.default(e);
                 break;
         }
     };
