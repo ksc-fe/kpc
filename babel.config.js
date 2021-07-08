@@ -26,13 +26,14 @@ module.exports = function(api) {
                 // // "useESModules": true
             // }],
             ["@babel/plugin-proposal-decorators", {"legacy": true}],
-            // "@babel/plugin-proposal-class-properties",
             // "@babel/plugin-syntax-dynamic-import",
             "@babel/plugin-proposal-do-expressions",
             ['@emotion', {
                 sourceMap: false,
                 autoLabel: 'never',
             }],
+            // "@babel/plugin-proposal-class-properties",
+            // "@babel/plugin-transform-classes",
             // // "@babel/plugin-transform-proto-to-assign"
         ]
     };

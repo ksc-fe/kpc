@@ -441,19 +441,19 @@ function generateOtherCodes(vdt, ts, hasMap, codeSnippetMap, codes) {
     }
 
     if (!hasReact) {
-        codes.push({
-            language: 'tsx',
-            content: intact2react(vdt, ts, reactMethods, tsHead, hasStylus),
-            filename: 'react.tsx',
-        });
+        // codes.push({
+            // language: 'tsx',
+            // content: intact2react(vdt, ts, reactMethods, tsHead, hasStylus),
+            // filename: 'react.tsx',
+        // });
     }
 
     if (!hasAngular) {
-        codes.push({
-            language: 'angular',
-            content: intact2angular(vdt, ts, angularMethods, angularProperties, hasStylus),
-            filename: 'angular.ts',
-        });
+        // codes.push({
+            // language: 'angular',
+            // content: intact2angular(vdt, ts, angularMethods, angularProperties, hasStylus),
+            // filename: 'angular.ts',
+        // });
     }
 }
 

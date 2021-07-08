@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults, sizes, Sizes, getRight} from '../../styles/utils';
+import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
 
 type SizeStyles = {
@@ -24,6 +24,8 @@ const {select} = deepDefaults(theme, {
             get iconColor() { return theme.color.placeholder },
             get activeColor() { return theme.color.primary },
             get borderRadius() { return theme.borderRadius },
+            suffixGap: '10px',
+            disabledArrowColor: '#e5e5e5',
 
             clearGap: `8px`,
             get placeholderColor() { return theme.color.placeholder },
@@ -144,9 +146,13 @@ export default function makeStyles() {
         .k-select-suffix {
             color: ${select.iconColor};
         }
+        .k-select-suffix {
+            margin-left: ${select.suffixGap};
+        }
 
         .k-select-placeholder {
             color: ${select.placeholderColor};
+            user-select: none;
         }
 
         &.k-fluid {
@@ -156,7 +162,7 @@ export default function makeStyles() {
         // clearable
         .k-select-clear {
             opacity: 0;
-            transition: opacity ${theme.transition};
+            transition: opacity ${theme.transition}, color ${theme.transition} !important;
             pointer-events: none;
             position: absolute;
             z-index: 1;
@@ -177,10 +183,18 @@ export default function makeStyles() {
         }
 
         // filterable
+        .k-input-inner {
+            border: none !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
+        }
 
         .k-select-arrow {
             display: inline-block;
             transition: transform ${theme.transition};
+            &.k-disabled {
+                color: ${select.disabledArrowColor};
+            }
         }
 
         // show
@@ -228,6 +242,9 @@ export default function makeStyles() {
             font-size: ${select.tag.delete.fontSize};
             color: ${select.tag.delete.color};
         }
+        .k-select-input {
+            margin-right: ${getRight(select.tag.margin)};
+        }
 
         // size
         ${sizes.map(size => {
@@ -236,9 +253,6 @@ export default function makeStyles() {
                 font-size: ${styles.fontSize};
                 min-height: ${styles.height};
                 padding: ${styles.padding};
-                .k-select-suffix {
-                    right: 10px;
-                }
             `;
             if (size === 'default') return className;
             return css`
@@ -247,14 +261,31 @@ export default function makeStyles() {
                 }
             `
         })}
+
+        // inline
+        &.k-inline {
+            width: auto;
+            border: none;
+            min-height: 0;
+            background: transparent;
+            .k-select-placeholder,
+            .k-select-value {
+                line-height: inherit;
+            }
+        }
     `;
 }
 
 export function makeMenuStyles() {
+    const searchable = select.searchable;
+    
     return css`
         min-width: auto;
         max-height: ${select.menuMaxHeight};
         overflow: auto;
+        &:not([class*="-active"]) {
+            transition: left ${theme.transition}, top ${theme.transition};
+        }
         .k-select-empty {
             padding: ${select.empty.padding};
             color: ${select.empty.color};
@@ -268,5 +299,61 @@ export function makeMenuStyles() {
                 color: ${select.activeColor};
             }
         }
+
+        // searchable
+        &.k-searchable {
+            max-height: none;
+            padding: ${searchable.padding};
+            .k-select-option {
+                padding: ${searchable.optionPadding};
+            }
+        }
+        .k-select-header {
+            display: flex;
+            padding: ${searchable.header.padding};
+            border-bottom: ${searchable.border};
+            margin-bottom: ${searchable.header.gap};
+        }
+        .k-select-op {
+            white-space: nowrap;
+            .k-btn {
+                padding: ${searchable.header.btnPadding};
+                margin-left: ${searchable.header.btnGap};
+            }
+        }
+        .k-select-body {
+            max-height: ${select.menuMaxHeight};
+            overflow: auto;
+        }
+        .k-select-footer {
+            border-top: ${searchable.border};
+            padding: ${searchable.footer.padding};
+            text-align: right;
+            margin-top: ${searchable.footer.gap};
+            .k-btn {
+                margin-left: ${searchable.footer.btnGap};
+            }
+        }
+        .k-select-checkbox {
+            display: block;
+            margin: 0 -${getRight(searchable.optionPadding)} 0 -${getLeft(searchable.optionPadding)};
+            padding: ${searchable.optionPadding};
+        }
+
+        // multiple checkmark
+        .k-select-checkmark {
+            float: right;
+            height: 100%;
+            font-size: ${select.multiple.checkmark.fontSize};
+        }
     `;
+}
+
+export function makeGroupStyles() {
+    return css`
+        .k-select-group-label {
+            color: ${select.group.labelColor};
+            padding: ${select.group.labelPadding};
+        }
+    `
 }

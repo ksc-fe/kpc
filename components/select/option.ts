@@ -1,18 +1,20 @@
 import {Component, TypeDefs, inject} from 'intact';
 import template from './option.vdt';
 import {bind, toggleArray} from '../utils';
-import {SELECT, RECORD_OPTIONS} from './constants';
+import {SELECT} from './constants';
 import type {Select} from './select';
 import {useRecordItem} from '../../hooks/useRecordComponent';
 
 export interface OptionProps {
     value: any
-    label: string
-    disabled: boolean
+    label?: string
+    disabled?: boolean
 }
 
 const typeDefs: Required<TypeDefs<OptionProps>> = {
-    value: null,
+    value: {
+        required: true,
+    },
     label: String,
     disabled: Boolean,
 };
@@ -21,12 +23,7 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
 
-    private select: Select | null = null;
-
-    init() {
-        this.select = inject(SELECT)!;
-        useRecordItem(RECORD_OPTIONS);
-    }
+    private select: Select = inject(SELECT)!;
 
     @bind
     private onSelect() {
@@ -43,7 +40,7 @@ export class Option<T extends OptionProps = OptionProps> extends Component<T> {
         }
     }
 
-    private isActive() {
+    private isActive(): boolean {
         const {value: currentValue, multiple} = this.select!.get();
         const value = this.get('value');
 

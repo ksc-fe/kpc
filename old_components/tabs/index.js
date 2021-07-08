@@ -3,7 +3,7 @@ import Tab from './tab';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
-import ResizeObserver from 'resize-observer-polyfill'; 
+import ResizeObserver from 'resize-observer-polyfill';
 import {nextFrame, findRouter} from '../utils';
 
 export default class Tabs extends Intact {
@@ -50,7 +50,7 @@ export default class Tabs extends Intact {
             }
         }
         // if exits 'to', we don't change the value,
-        // while let the page to change it by pass value prop
+        // but let the page to change it by pass value prop
         if (!item.to) {
             this.set('value', item.value);
         } else if (this.$router) {
@@ -66,7 +66,7 @@ export default class Tabs extends Intact {
 
         this.on('$changed:value', () => {
             // we scroll active tab to view next frame
-            // because the _scroll property updates after it 
+            // because the _scroll property updates after it
             nextFrame(() => {
                 if (this.destroyed) return;
                 this._scrollActiveToView();
@@ -75,7 +75,7 @@ export default class Tabs extends Intact {
 
         // resize
         const ro = this.ro = new ResizeObserver(() => {
-            this._refreshScroll(); 
+            this._refreshScroll();
         });
         ro.observe(this.element);
 
@@ -112,7 +112,7 @@ export default class Tabs extends Intact {
         }
         this.set({_left, _prev, _next});
     }
-    
+
     _update(lastVNode, nextVNode) {
         this._setActiveBarStyle();
         this._refreshScroll();
@@ -134,7 +134,7 @@ export default class Tabs extends Intact {
             }
         }
     }
-    
+
     _scrollActiveToView() {
         const {vertical} = this.get();
         if (vertical) return;
@@ -151,7 +151,7 @@ export default class Tabs extends Intact {
             if (_left + x <= 0) {
                 _left = -x;
             } else if (x + activeRect.width + _left > scrollRect.width) {
-                _left = -x - activeRect.width + scrollRect.width; 
+                _left = -x - activeRect.width + scrollRect.width;
             }
             this.set({_left});
         } else {

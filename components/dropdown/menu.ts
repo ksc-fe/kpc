@@ -14,19 +14,13 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
     static template = template;
 
     public elementRef = createRef<HTMLDivElement>();
-    public lock: ((v: boolean) => void) | null = null;
-    public dropdown: Dropdown | null = null;
+    public dropdown: Dropdown = inject(DROPDOWN)!;
+    public keyboard = useKeyboardForDropdownMenu(this.dropdown);
 
-    private transition: ReturnType<typeof useTransition> | null = null;
+    private transition = useTransition(() => this.dropdown.position());
 
     init() {
         provide(DROPDOWN_MENU, this);
-
-        const dropdown = this.dropdown = inject(DROPDOWN)!;
-        this.transition = useTransition(() => dropdown.position());
-
-        this.lock = useKeyboardForDropdownMenu(dropdown);
-
         useMouseOutsidable(this.elementRef);
     }
 
@@ -52,12 +46,12 @@ function useKeyboardForDropdownMenu(dropdown: Dropdown) {
     const onShow = () => {
         addKeydown();
         // lock parent dropdown menu, prevent it from operating by keyboard
-        parentDropdownMenu && parentDropdownMenu.lock!(true);
+        parentDropdownMenu && parentDropdownMenu.keyboard!.lock(true);
     };
     const onHide = () => {
         reset();
         removeKeydown();
-        parentDropdownMenu && parentDropdownMenu.lock!(false);
+        parentDropdownMenu && parentDropdownMenu.keyboard!.lock(false);
     };
     const focus = () => focusByIndex(0);
 
@@ -71,5 +65,5 @@ function useKeyboardForDropdownMenu(dropdown: Dropdown) {
         dropdown.off('shouldFocus', focus);
     });
 
-    return lock;
+    return {lock};
 }

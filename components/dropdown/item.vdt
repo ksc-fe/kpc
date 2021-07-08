@@ -3,6 +3,8 @@ import makeStyles from './itemStyles';
 
 const {
     children, disabled, className, hideOnSelect,
+
+    _isFocus,
 } = this.get();
 
 const classNameObj = {
@@ -16,6 +18,6 @@ const classNameObj = {
 <div {...getRestProps(this)}
     class={classNameObj}
     ev-click={this.onClick}
-    ev-mouseenter={this.onMouseEnter}
-    ev-mouseleave={this.onMouseLeave}
+    ev-mouseenter={this.keyboard.onMouseEnter}
+    ev-mouseleave={this.keyboard.onMouseLeave}
 >{children}</div>

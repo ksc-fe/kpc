@@ -63,12 +63,11 @@ export class FormItem<T extends FormItemProps = FormItemProps> extends Component
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private form: Form | null = null;
+    private form: Form | null = inject(FORM, null);
     private promise: PromiseWithCancelled | null = null;
     private errorRef = createRef<HTMLDivElement>();
 
     init() {
-        this.form = inject(FORM, null);
         useRecordItem(RECORD_KEY);
 
         this.on('$receive:value', this.validateIfDirty);

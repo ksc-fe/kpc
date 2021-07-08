@@ -45,7 +45,7 @@ export function palette(color: string, level: number) {
     else if (level > 0 && level <= 4)
         ret = tinycolor({h: h + level, s: s + level * inS, v: v - level * inV}).toHexString();
     else
-        ret =color;
+        ret = color;
 
     return (cache[key] = ret);
 }

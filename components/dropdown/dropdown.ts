@@ -9,6 +9,7 @@ import {
     inject,
     findDomFromVNode,
     createVNode,
+    nextTick,
 } from 'intact';
 import {bind, isTextChildren} from '../utils';
 import {EMPTY_OBJ, isFunction} from 'intact-shared';
@@ -152,7 +153,9 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         this.set('value', true);
 
         if (shouldFocus) {
-            this.trigger('shouldFocus');
+            nextTick(() => {
+                this.focusFirst();
+            });
         }
     }
 
@@ -167,6 +170,10 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
                 this.set('value', false);
             }, 200);
         }
+    }
+
+    focusFirst() {
+        this.trigger('shouldFocus');
     }
 
     @bind
@@ -202,7 +209,8 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         this.show();
     }
 
-    @bind onContextMenu(e: MouseEvent) {
+    @bind 
+    private onContextMenu(e: MouseEvent) {
         this.callOriginalCallback('ev-contextmenu', e);
 
         e.preventDefault();

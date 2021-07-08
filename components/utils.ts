@@ -1,17 +1,31 @@
-import {Component, VNode, Children, NormalizedChildren} from 'intact';
+import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor, isText} from 'intact';
 import {EMPTY_OBJ, isStringOrNumber, isNullOrUndefined, isInvalid} from 'intact-shared';
 
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
+    // In IE11 calling Object.defineProperty has a side-effect of evaluating the
+    // getter for the property which is being replaced. This causes infinite
+    // recursion and an "Out of stack space" error.
+    let definingProperty = false;
+
     return {
         configurable: true,
         get(this: T): T {
+            if (
+                definingProperty ||
+                this.hasOwnProperty(key) /* has bound, for invoking super bound method */
+            ) {
+                return method;
+            }
+
             const value = method.bind(this);
+            definingProperty = true;
             Object.defineProperty(this, key, {
                 value,
                 configurable: true,
                 writable: true,
             });
+            definingProperty = false;
 
             return value;
         }
@@ -51,7 +65,7 @@ export function isTextChildren(o: any): boolean {
 }
 
 export function isTextVNode(o: VNode): boolean {
-    return o && o.type === 1;
+    return o && isText(o);
 }
 
 // for detect if it is a text node in Angular
@@ -172,25 +186,30 @@ export function stopPropagation(e: Event) {
 export type ValidVNode = VNode | string | number;
 export type MapCallback<T> = (vNode: ValidVNode, index: number) => T;
 
-export function findChildren(children: Children, callback: MapCallback<boolean>) {
-    if (isInvalid(children)) return;
+export function findChildren(children: Children, callback: MapCallback<boolean>): ValidVNode | undefined {
+    let found: ValidVNode | undefined = undefined;
 
-    let index = 0;
+    if (isInvalid(children)) return found;
+
+    let index = -1;
     const loop = (children: ValidVNode | NormalizedChildren[] | Children[]) => {
         if (Array.isArray(children)) {
             for (let i = 0; i < children.length; i++) {
                 const vNode = children[i];
                 if (isInvalid(vNode)) continue;
                 if (loop(vNode)) {
+                    found = vNode as ValidVNode;
                     break;
                 }
             }
         } else {
-            return callback(children, index++);
+            return callback(children, ++index);
         }
     }
 
     loop(children);
+
+    return found;
 }
 
 export function mapChildren<T>(children: Children, callback: MapCallback<T>) {
@@ -224,3 +243,57 @@ export function toggleArray(arr: any[] | null | undefined, value: any) {
         return arr;
     }
 }
+
+export function getTextByChildren(children: Children) {
+    let ret = '';
+    if (isInvalid(children)) return ret;
+
+    if (Array.isArray(children)) {
+        children.forEach(vNode => {
+            ret += getTextByChildren(vNode);
+        });
+    } else if (isStringOrNumber(children)) {
+        ret += children;
+    } else if (isTextVNode(children)) {
+        ret += children.children;
+    }
+
+    return ret.trim();
+}
+
+export function isEmptyString(o: any): boolean {
+    return isNullOrUndefined(o) || o === ''; 
+}
+
+export function isEmptyChildren(o: Children): boolean {
+    return isEmptyString(o) || Array.isArray(o) && o.every(item => isEmptyChildren(item));
+}
+
+export function isComponentVNode<T extends ComponentConstructor>(o: any, tag: T): o is VNodeComponentClass<any> {
+    return o.tag === tag; 
+}
+
+export function range(start: number, end: number) {
+    return Array.apply(null, {length: end - start + 1} as any)
+        .map((v, i) => i + start);
+}
+
+export function strPad(str: number | string, length: number, pad: string = '0') {
+    str = str.toString();
+    const l = str.length;
+    if (l < length) {
+        str = new Array(length - l + 1).join(pad) + str;
+    }
+    return str;
+}
+
+type EqualArrayValue = any | EqualArrayValue[]
+export function isEqualArray(a: EqualArrayValue, b: EqualArrayValue): boolean {
+    if (a === b) return true;
+    if (Array.isArray(a) && Array.isArray(b)) {
+        if (a.length !== b.length) return false;
+        return a.every((value, index) => isEqualArray(value, b[index]));
+    }
+    return false;
+}
+

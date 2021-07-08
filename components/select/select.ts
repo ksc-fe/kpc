@@ -1,102 +1,96 @@
-import {Component, provide, createRef, findDomFromVNode, Children, VNodeComponentClass, VNode} from 'intact';
+import {
+    findDomFromVNode,
+    Children,
+    TypeDefs,
+} from 'intact';
 import template from './select.vdt';
-import {Sizes, sizes} from '../../styles/utils';
-import {SELECT, RECORD_OPTIONS} from './constants';
-import {bind, findChildren} from '../utils';
-import {Dropdown} from '../dropdown';
-import {useRecordParent} from '../../hooks/useRecordComponent';
+import {bind, eachChildren, isComponentVNode} from '../utils';
 import {isNullOrUndefined} from 'intact-shared';
-import {Option} from './option';
+import {Option, OptionProps} from './option';
+import {OptionGroup} from './group';
+import {useFilterable} from './useFilterable';
+import {useLabel} from './useLabel';
+import {BaseSelect, BaseSelectProps} from './base';
+import {_$} from '../../i18n';
 
-export interface SelectProps {
-    value: any
-    multiple: boolean
-    filterable: boolean
-    loading: boolean
-    disabled: boolean
-    name: string
-    keywords: string
-    size: Sizes
-    hideIcon: boolean
-    clearable: boolean
+export interface SelectProps extends BaseSelectProps {
+    filter?: (keywords: string, props: any) => boolean 
+    searchable?: boolean
+    creatable?: boolean
+    labelMap?: Map<any, Children> 
+    card?: boolean
+    autoDisableArrow: boolean
+    // TODO
+    // unmatchable: boolean
+
+    _show?: boolean
 }
 
-export class Select<T extends SelectProps = SelectProps> extends Component<T> {
-    static template = template;
+const typeDefs: Required<TypeDefs<SelectProps>> = {
+    ...BaseSelect.typeDefs,
+    filter: Function,
+    searchable: Boolean,
+    creatable: Boolean,
+    labelMap: Map,
+    card: Boolean,
+    autoDisableArrow: Boolean,
 
-    private dropdownRef = createRef<Dropdown>(); 
-    private options: Option[] = [];
+    _show: null,
+};
+
+const defaults = (): Partial<SelectProps> => ({
+    ...BaseSelect.defaults(),
+    labelMap: new Map(),
+});
+
+export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
+    static template = template;
+    static typeDefs = typeDefs;
+    static defaults = defaults;
+
+    public filterable =  useFilterable(this.input.keywords);
+    public label = useLabel();
 
     init() {
-        provide(SELECT, this);
-        this.options = useRecordParent(RECORD_OPTIONS);
+        super.init();
+        this.watch('_show', this.setWidth, {presented: true});
     }
 
-    @bind
-    private onClick(e: MouseEvent) {
-        this.trigger('click', e);
+    protected getPlaceholder() {
+        const {placeholder, creatable, filterable} = this.get();
+
+        return isNullOrUndefined(placeholder) ?
+            creatable && filterable ? _$('请输入或选择') : _$('请选择') :
+            placeholder;
     }
 
-    private getLabel() {
-        const {value, multiple, children} = this.get();
+    protected getLabel() {
+        return this.label!.getLabel();
+    }
 
-        if (isNullOrUndefined(value)) return;
-
-        if (!multiple) {
-            return getLabel(children, value);
-        } else {
-            const labels: Children[] = [];
-            value.forEach((value: any) => {
-                const label = getLabel(children, value);
-                if (!isNullOrUndefined(label)) {
-                    labels.push(label);
+    private getAllShowedValues(children: Children) {
+        const values: any[] = [];
+        const loop = (children: Children) => {
+            eachChildren(children, vNode => {
+                if (isComponentVNode(vNode, Option)) {
+                    values.push((vNode.props! as OptionProps).value); 
+                } else if (isComponentVNode(vNode, OptionGroup)) {
+                    loop(vNode.props!.children);
                 }
             });
-
-            return labels;
         }
-    }
 
-    private delete(index: number, e: MouseEvent) {
-        if (this.get('disabled')) return;
+        loop(children);
 
-        e.stopPropagation();
-
-        const value = (this.get('value') as any[]).slice(0);
-        value.splice(index, 1);
-        this.set('value', value);
+        return values;
     }
 
     @bind
-    private setWidth() {
+    private setWidth(v: boolean | undefined) {
+        if (!v) return;
+
         const menuElement = findDomFromVNode(this.dropdownRef.value!.menuVNode!, true) as HTMLElement;
         const entity = findDomFromVNode(this.$lastInput!, true) as HTMLElement; 
         menuElement.style.minWidth = `${entity.offsetWidth}px`;
     }
-
-    @bind
-    private clear(e: MouseEvent) {
-        e.stopPropagation();
-        this.set('value', this.get('multiple') ? [] : '');
-    }
-}
-
-function getLabel(children: Children, value: any) {
-    let label: Children = null;
-    findChildren(children, (vNode) => {
-        if ((vNode as VNodeComponentClass).tag === Option) {
-            const props = (vNode as VNodeComponentClass).props;
-            if (isNullOrUndefined(props)) return false;
-            if (props.value === value) {
-                label = props.label;
-                if (isNullOrUndefined(label)) {
-                    label = props.children;
-                }
-                return true;
-            }
-        }
-        return false;
-    });
-
-    return label;
 }

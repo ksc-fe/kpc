@@ -20,6 +20,7 @@ module.exports = (config) => {
                 .set('kpc-vue', root)
                 .set('kpc-react', root)
                 .set('@', root)
+                .set('dayjs', 'dayjs/esm')
                 .end()
             .symlinks(false)
             .extensions

@@ -77,16 +77,16 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     public dialogRef = createRef<HTMLDivElement>();
     public wrapperRef = createRef<HTMLDivElement>();
 
-    private drag: ReturnType<typeof useDraggable> | null = null;
+    private drag = useDraggable();
     private useAsComponent = false;
 
     init() {
-        useShowHideEvents(SHOW, HIDE);
+        useShowHideEvents('value', SHOW, HIDE);
         useEscClosable();
         useMouseOutsidable(this.dialogRef); 
-        this.drag = useDraggable();
 
         if (this.$vNode) {
+            // TODO
             this.useAsComponent = true;
         }
     }
@@ -102,7 +102,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
             }
 
             // use as intance
-            const mountedQueue = this.$mountedQueue = [];
+            const mountedQueue = this.$mountedQueue;
             this.$init(props); 
             const vNode = this.$vNode = createVNode(Dialog) as VNodeComponentClass<any>;
             vNode.children = this;
@@ -174,7 +174,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
             onClosed();
         }
         if (!this.useAsComponent) {
-            remove(this.$vNode!, document.body);
+            remove(this.$vNode!, document.body, false);
         }
     }
 

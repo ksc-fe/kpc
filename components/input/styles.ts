@@ -16,6 +16,7 @@ const {input} = deepDefaults(theme, {
             get focusBorder() { return `1px solid ${theme.color.primary}` },
             get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
             get borderRadius() { return theme.borderRadius },
+            get placeholderColor() { return theme.color.placeholder },
 
             // clearable
             get clearIconColor() { return theme.color.placeholder },
@@ -84,6 +85,9 @@ export default function makeStyles() {
             &:focus {
                 border: ${input.focusBorder};
                 z-index: 1;
+            }
+            &::placeholder {
+                color: ${input.placeholderColor};
             }
         }
 
