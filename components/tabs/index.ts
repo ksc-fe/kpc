@@ -39,7 +39,6 @@ export class Tabs extends Component<TabsProps> {
 
     init() {
         provide(TABS, this);
-        this.scroll = useScroll();
     }
 
     public async changeTab(tabProps: TabProps) {
@@ -59,9 +58,9 @@ export class Tabs extends Component<TabsProps> {
         }
     }
     
-    // public remove(value: any) {
-        // this.trigger('remove', value);
-    // }
+    public remove(value: any) {
+        this.trigger('remove', value);
+    }
 }
 
 export * from './tab';

@@ -35,7 +35,7 @@ export class Tab extends Component<TabProps> {
 
     @bind
     private remove(e: MouseEvent) {
-        // e.stopPropagation();
-        // this.tabs.remove(this.get('value'));
+        e.stopPropagation();
+        this.tabs.remove(this.get('value'));
     }
 }
