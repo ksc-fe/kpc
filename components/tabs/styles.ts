@@ -92,6 +92,7 @@ export function makeStyles() {
             margin-right: -${tabs.closeGutter};
             margin-left: ${tabs.closeGutter};
             position: relative;
+            top: -1px;
         }
 
         // active-bar
@@ -254,7 +255,7 @@ export function makeStyles() {
             .k-tabs-next {
                 position: absolute;
                 top: 0;
-                width: ${tabs.navigatorWidth};
+                width: ${tabs.navigatorWidth} !important;
             }
             .k-tabs-prev {
                 left: 0;
@@ -275,10 +276,10 @@ export function makeStyles() {
                     .k-tab {
                         font-size: ${styles.fontSize};
                         height: ${styles.height};
-                        line-height: calc(${styles.height} - 2px);
+                        line-height: ${styles.height};
                         padding: ${styles.padding};
                     }
-                    .k-tab-close {
+                    .k-tab-close .k-icon {
                         font-size: ${styles.closeFontSize};
                     }
                 }

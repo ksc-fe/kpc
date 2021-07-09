@@ -28,7 +28,7 @@ const classNameObj = {
     >
         <i class="ion-ios-arrow-left"></i>
     </Button>
-    <div class="k-tabs-scroll c-clearfix" ref={scrollRef}>
+    <div class="k-tabs-scroll c-clearfix" ref={i => { debugger;scrollRef.value = i}}>
         <div class="k-tabs-wrapper"
             ref={wrapperRef}
             style={{transform: `translateX(${left.value}px)`}}

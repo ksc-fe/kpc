@@ -39,9 +39,10 @@ export class Tabs extends Component<TabsProps> {
 
     init() {
         provide(TABS, this);
+        this.scroll = useScroll();
     }
 
-    async changeTab(tabProps: TabProps) {
+    public async changeTab(tabProps: TabProps) {
         const {beforeChange} = this.get();
         if (beforeChange) {
             const ret = await beforeChange(tabProps.value);
@@ -57,6 +58,10 @@ export class Tabs extends Component<TabsProps> {
             window.location.href = tabProps.to as string;
         }
     }
+    
+    // public remove(value: any) {
+        // this.trigger('remove', value);
+    // }
 }
 
 export * from './tab';

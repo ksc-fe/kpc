@@ -24,12 +24,18 @@ export class Tab extends Component<TabProps> {
     private tabs = inject<Tabs>(TABS)!
 
     @bind
-    onClick(e: MouseEvent) {
+    private onClick(e: MouseEvent) {
         if (this.get('disabled')) {
             e.preventDefault();
         } else {
             this.tabs.changeTab(this.get());
             this.trigger('click', e);
         }
+    }
+
+    @bind
+    private remove(e: MouseEvent) {
+        // e.stopPropagation();
+        // this.tabs.remove(this.get('value'));
     }
 }
