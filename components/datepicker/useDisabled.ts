@@ -5,6 +5,7 @@ import type {Datepicker, Value} from './index';
 import {isNullOrUndefined} from 'intact-shared';
 import {isGT, isLT} from './helpers';
 import type {useFormats} from './useFormats';
+import {PanelFlags} from './usePanel';
 
 export function useDisabled({createDateByValueFormat}: ReturnType<typeof useFormats>) {
     const instance = useInstance() as Datepicker;
@@ -26,10 +27,10 @@ export function useDisabled({createDateByValueFormat}: ReturnType<typeof useForm
         convertToDayjs(minDate, v);
     });
 
-    function isDisabled(value: Dayjs) {
+    function isDisabled(value: Dayjs, type: 'date' | 'year' | 'month' | 'second' = 'date') {
         const {disabledDate} = instance.get();
-        return isGT(value, maxDate.value) ||
-            isLT(value, minDate.value) ||
+        return isGT(value, maxDate.value, type) ||
+            isLT(value, minDate.value, type) ||
             !!disabledDate && disabledDate(value);
     }
 

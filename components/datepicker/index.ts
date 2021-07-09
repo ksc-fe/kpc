@@ -72,7 +72,7 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     public isDisabled = useDisabled(this.formats);
     public panel = usePanel();
     public focusDate = useFocusDate();
-    private value = useValue(this.formats, this.isDisabled, this.panel);
+    public value = useValue(this.formats, this.isDisabled, this.panel);
 
     init() {
         super.init();

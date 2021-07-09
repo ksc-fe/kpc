@@ -32,7 +32,7 @@ export function useList() {
     }
 
     function setValue(v: any, generate: boolean) {
-        const oldValue = value.value;
+        const oldValue = instance.get('value');
         value.set(v);
         if (oldValue !== v) {
             const {disable} = instance.get();
@@ -49,6 +49,7 @@ export function useList() {
     ['data', 'count'].forEach(item => {
         instance.on(`$receive:${item}`, generateList);
     });
+    instance.on('$receive:disable', () => setValue(value.value, true));
 
     return {value, data: list, setValue};
 }

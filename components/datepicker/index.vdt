@@ -61,10 +61,11 @@ const generatePanel = (flag) => {
                 ref={flag === PanelFlags.Start ? startRef : endRef}
             />
             <DatepickerTime
+                v-else
                 value={timeValue}
                 ev-$change:value={v => onChangeTime(v, flag)}
                 format={this.formats.getValueFormat()}
-                v-else
+                flag={flag}
             />
         </div>
     );

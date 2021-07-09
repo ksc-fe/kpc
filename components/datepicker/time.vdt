@@ -3,7 +3,7 @@ import {hours, minutes, seconds} from './constants';
 import {makeTimeStyles} from './styles';
 
 const value = this.value.value;
-const {disableHours, disableMinutes, disableSeconds} = this.disabled;
+const {disableHours, disableMinutes, disableSeconds, disableItem} = this.disabled;
 const classNameObj = {
     'k-datepicker-time': true,
     [makeTimeStyles()]: true,
@@ -15,17 +15,20 @@ const classNameObj = {
         value={value.h}
         ev-$change:value={this.changeHour}
         disabled={disableHours.value}
+        disable={v => disableItem(v, 'h')}
     />
     <ScrollSelect
         data={minutes}
         value={value.m}
         ev-$change:value={this.changeMinute}
         disabled={disableMinutes.value}
+        disable={v => disableItem(v, 'm')}
     />
     <ScrollSelect
         data={seconds}
         value={value.s}
         ev-$change:value={this.changeSecond}
         disabled={disableSeconds.value}
+        disable={v => disableItem(v, 's')}
     />
 </div>
