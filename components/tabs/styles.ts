@@ -102,7 +102,7 @@ export function makeStyles() {
             left: 0;
             height: ${tabs.highlight.height};
             background: ${tabs.highlight.bgColor};
-            bottom: 0; 
+            bottom: calc(-${tabs.highlight.height} / 2); 
         }
 
         // vertical
@@ -118,7 +118,7 @@ export function makeStyles() {
             .k-tabs-active-bar {
                 left: auto;
                 top: 0;
-                right: 0; 
+                right: calc(-${tabs.highlight.height} / 2); 
                 width: ${tabs.highlight.height};
                 height: auto;
             }
