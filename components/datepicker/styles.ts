@@ -80,6 +80,20 @@ export function makePanelStyles() {
         .k-datepicker-calendars {
             display: flex;
         }
+        .k-datepicker-calendar-wrapper {
+            &:nth-child(2) {
+                border-left: ${datepicker.footer.border};
+            }
+            .k-tabs {
+                border: none;
+                .k-tabs-wrapper {
+                    float: none;
+                }
+                .k-tab {
+                    width: 50%;
+                }
+            }
+        }
         .k-datepicker-footer {
             border-top: ${datepicker.footer.border};
             padding: ${datepicker.footer.padding};

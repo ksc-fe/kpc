@@ -9,6 +9,7 @@ import {makePanelStyles} from './styles';
 import {PanelTypes, PanelFlags} from './usePanel';
 import {last} from './helpers';
 import {isFunction} from 'intact-shared';
+import {Tabs, Tab} from '../tabs';
 
 const {type, range, multiple, shortcuts} = this.get();
 const {
@@ -28,8 +29,29 @@ const classNameObj = {
 const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel;
 const generatePanel = (flag) => {
     const panel = getPanel(flag);
+    const timeValue = getTimeValue(flag);
     return (
-        <template>
+        <div class="k-datepicker-calendar-wrapper">
+            {(() => {
+                if (type === 'datetime') {
+                    let dateString = '0000-00-00';
+                    let timeString = '00:00:00';
+                    if (timeValue) {
+                        const valueString = this.formats.getShowString(timeValue).split(/\s+/);
+                        dateString = valueString[0];
+                        timeString = valueString[1];
+                    }
+                    return (
+                        <Tabs type="border-card"
+                            value={panel.value}
+                            ev-$change:value={panel.set}
+                        >
+                            <Tab value={PanelTypes.Date}>{dateString}</Tab>
+                            <Tab value={PanelTypes.Time} disabled={!timeValue} >{timeString}</Tab>
+                        </Tabs>
+                    );
+                }
+            })()}
             <DatepickerCalendar
                 v-if={panel.value === PanelTypes.Date}
                 value={value}
@@ -39,12 +61,12 @@ const generatePanel = (flag) => {
                 ref={flag === PanelFlags.Start ? startRef : endRef}
             />
             <DatepickerTime
-                value={getTimeValue(flag)}
+                value={timeValue}
                 ev-$change:value={v => onChangeTime(v, flag)}
                 format={this.formats.getValueFormat()}
                 v-else
             />
-        </template>
+        </div>
     );
 };
 
