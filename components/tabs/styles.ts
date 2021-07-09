@@ -188,6 +188,7 @@ export function makeStyles() {
                 border-bottom: ${tabs.border};
                 .k-tabs-active-bar {
                     width: auto;
+                    height: 0;
                     left: 0;
                     bottom: 0;
                     right: 0;

@@ -91,7 +91,7 @@ function useDisable(instance: DatepickerTime, datepicker: Datepicker) {
             const anotherDatetime = datepicker.value.getTimeValue(
                 flag === PanelFlags.Start ? PanelFlags.End : PanelFlags.Start
             );
-            if (!anotherDatetime) return true;
+            if (!anotherDatetime) return false;
             if (flag === PanelFlags.Start) {
                 return value.isAfter(anotherDatetime, 'second');
             } else {

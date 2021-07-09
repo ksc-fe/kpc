@@ -2,10 +2,10 @@ import {useInstance} from 'intact';
 import {useState, watchState} from '../../hooks/useState';
 import {Dayjs} from 'dayjs';
 import {Datepicker, Value, DatepickerProps} from './index';
-import {findValueIndex, last} from './helpers';
+import {findValueIndex} from './helpers';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
-import {isEqualArray} from '../utils';
+import {isEqualArray, last} from '../utils';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
 
 export type StateValueRange = [Dayjs, Dayjs?];
