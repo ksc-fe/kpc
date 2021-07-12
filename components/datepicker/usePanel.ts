@@ -13,10 +13,10 @@ export enum PanelFlags {
     End
 }
 
-export function usePanel() {
+export function usePanel(type: PanelTypes = PanelTypes.Date) {
     const instance = useInstance() as Datepicker;
-    const startPanel = useState<PanelTypes>(PanelTypes.Date);
-    const endPanel = useState<PanelTypes>(PanelTypes.Date);
+    const startPanel = useState<PanelTypes>(type);
+    const endPanel = useState<PanelTypes>(type);
     const startRef = createRef<DatepickerCalendar>();
     const endRef = createRef<DatepickerCalendar>();
 
@@ -29,8 +29,8 @@ export function usePanel() {
     }
 
     function reset() {
-        startPanel.set(PanelTypes.Date);
-        endPanel.set(PanelTypes.Date);
+        startPanel.set(type);
+        endPanel.set(type);
     }
 
     instance.on('show', reset);

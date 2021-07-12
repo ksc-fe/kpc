@@ -13,14 +13,7 @@ import {Timepicker} from 'kpc/components/timepicker';
     <Timepicker v-model="time" min="01:34:56" max="15:02:59" />
     You selected: {this.get('time')}
     <br /><br />
+    <Timepicker v-model="timeArray" multiple clearable />
+    You selected: {JSON.stringify(this.get('timeArray'))}
 </div>
-```
-
-```ts
-export default class extends Component {
-    static template = template;
-    static defaults() {
-        return {time: '2021-07-09 10:01:02'}
-    }
-}
 ```

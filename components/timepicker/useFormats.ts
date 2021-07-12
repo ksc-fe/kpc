@@ -3,11 +3,7 @@ import dayjs, {Dayjs} from '../datepicker/dayjs';
 import {isString} from 'intact-shared';
 import type {Timepicker} from './index';
 import type {Value} from '../datepicker';
-
-const YEAR_FORMAT = 'YYYY-MM-DD ';
-const TIME_FORMAT = 'HH:mm:ss';
-const PREFIX = dayjs().format(YEAR_FORMAT);
-console.log(PREFIX);
+import {YEAR_FORMAT, TIME_FORMAT, PREFIX} from './constants';
 
 export function useFormats() {
     const instance = useInstance() as Timepicker;

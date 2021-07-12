@@ -25,8 +25,8 @@ export interface DatepickerProps extends BaseSelectProps {
     format?: string
     valueFormat?: string
     showFormat?: string
-    minDate?: Value
-    maxDate?: Value
+    min?: Value
+    max?: Value
     disabledDate?: (v: Value) => boolean
 }
 
@@ -41,8 +41,8 @@ const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     format: String,
     valueFormat: String,
     showFormat: String,
-    minDate: [String, Date, Number, dayjs.Dayjs],
-    maxDate: [String, Date, Number, dayjs.Dayjs],
+    min: [String, Date, Number, dayjs.Dayjs],
+    max: [String, Date, Number, dayjs.Dayjs],
     disabledDate: Function,
 };
 
@@ -58,10 +58,10 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
     static defaults = defaults;
 
     public formats = useFormats();
-    public isDisabled = useDisabled(this.formats);
+    public disabled = useDisabled(this.formats);
     public panel = usePanel();
     public focusDate = useFocusDate();
-    public value = useValue(this.formats, this.isDisabled, this.panel);
+    public value = useValue(this.formats, this.disabled, this.panel);
 
     init() {
         super.init();

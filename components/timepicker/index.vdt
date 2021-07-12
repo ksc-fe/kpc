@@ -30,6 +30,7 @@ const generatePanel = flag => {
                 ev-$change:value={v => onChangeTime(v, flag)}
                 format={this.formats.getValueFormat()}
                 flag={flag}
+                isDisabledTime={this.disabled.isDisabledTime}
             />
         </div>
     );
@@ -45,7 +46,7 @@ const generatePanel = flag => {
                 </div>
                 <div class="k-datepicker-footer">
                     <Button type="primary" size="small"
-                        disabled={!lastValue || range && lastValue.length < 2}
+                        disabled={this.disabled.isDisabledConfirm()}
                         ev-click={onConfirm}
                     >{_$('确定')}</Button>
                 </div>

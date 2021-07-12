@@ -24,7 +24,7 @@ export function useValue(
         getShowString,
         getValueString,
     }: ReturnType<typeof useFormats>,
-    isDisabled: ReturnType<typeof useDisabled>,
+    {isDisabled}: ReturnType<typeof useDisabled>,
     panel: ReturnType<typeof usePanel>,
 ) {
     // Normalize the value to multipe values, no matter it's multipe or not
@@ -124,7 +124,7 @@ export function useValue(
 
         let shouldUpdateValue = true;
 
-        // pop the last value firstly, because it only has start value
+        // pop the last value firstly, because it only has start date 
         let hasPop = false;
         if (!fromInput && range && (v as StateValueRange).length === 2) {
             _value.pop();

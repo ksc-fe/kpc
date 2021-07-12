@@ -6,22 +6,50 @@ import {_$} from '../../i18n';
 import {bind} from '../utils';
 import dayjs, {Dayjs} from '../datepicker/dayjs';
 import {useFormats} from './useFormats';
-import {useValue} from '../datepicker/useValue';
+import {useValue} from './useValue';
 import {useDisabled} from '../datepicker/useDisabled';
 import {usePanel} from '../datepicker/usePanel';
 import {State} from '../../hooks/useState';
-import {Datepicker, DatepickerProps} from '../datepicker';
+import {PanelTypes} from '../datepicker/usePanel';
 
-export interface TimepickerProps extends DatepickerProps {
+export interface TimepickerProps extends BaseSelectProps {
+    value: string | [string, string] | string[] | [string, string][]
+    range: boolean
+    format?: string
+    valueFormat?: string
+    showFormat?: string
+    min?: string 
+    max?: string 
+    disabledDate?: (v: string) => boolean
 }
 
-export class Timepicker extends Datepicker {
+const typeDefs: Required<TypeDefs<TimepickerProps>> = {
+    ...BaseSelect.typeDefs,
+    value: [String, Array],
+    range: Boolean,
+    format: String,
+    valueFormat: String,
+    showFormat: String,
+    min: String,
+    max: String,
+    disabledDate: Function,
+}
+
+const defaults = (): Partial<TimepickerProps> => ({
+    ...BaseSelect.defaults(),
+    type: 'datetime',
+    filterable: true,
+});
+
+export class Timepicker extends BaseSelect<TimepickerProps> {
     static template = template; 
+    static typeDefs = typeDefs;
+    static defaults = defaults;
 
     public formats = useFormats();
-    // public isDisabled = useDisabled(this.formats);
-    // public panel = usePanel();
-    // public value = useValue(this.formats, this.isDisabled, this.panel);
+    public disabled = useDisabled(this.formats);
+    public panel = usePanel(PanelTypes.Time);
+    public value = useValue(this.formats, this.disabled, this.panel);
 
     protected getPlaceholder() {
         const {placeholder, range} = this.get();

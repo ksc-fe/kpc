@@ -12,6 +12,7 @@ export interface DatepickerTimeProps {
     value: Dayjs | undefined 
     format: string
     flag: PanelFlags
+    isDisabledTime: (v: Dayjs, flag: PanelFlags) => boolean
 }
 
 type Value = {
@@ -30,7 +31,7 @@ export class DatepickerTime extends Component<DatepickerTimeProps> {
     static template = template;
 
     public value = useState<Value | null>(null);
-    public disabled = useDisable(this, inject(DATEPICKER) as Datepicker);
+    public disabled = useDisable(this);
 
     init() {
         this.watch('value', v => {
@@ -70,7 +71,7 @@ const hourRegExp = /h/i
 const secondRegExp = /s/
 const minuteRegExp = /m/
 
-function useDisable(instance: DatepickerTime, datepicker: Datepicker) {
+function useDisable(instance: DatepickerTime) {
     const disableSeconds = useState(false);
     const disableMinutes = useState(false);
     const disableHours = useState(false);
@@ -82,25 +83,11 @@ function useDisable(instance: DatepickerTime, datepicker: Datepicker) {
     });
 
     function disableItem(v: number, type: keyof Value): boolean {
-        return false;
-        let value = instance.get('value') ;
+        let {value, isDisabledTime, flag} = instance.get() ;
         if (!value) return false;
         value = value.set(type, v);
-        if (!datepicker.isDisabled(value, 'second')) {
-            if (!datepicker.get('range')) return false;
-            // compare the start and the end datetime 
-            const flag = instance.get('flag');
-            const anotherDatetime = datepicker.value.getTimeValue(
-                flag === PanelFlags.Start ? PanelFlags.End : PanelFlags.Start
-            );
-            if (!anotherDatetime) return false;
-            if (flag === PanelFlags.Start) {
-                return value.isAfter(anotherDatetime, 'second');
-            } else {
-                return value.isBefore(anotherDatetime, 'second');
-            }
-        }
-        return true;
+
+        return isDisabledTime(value, flag); 
     }
 
     return {disableSeconds, disableMinutes, disableHours, disableItem};
