@@ -15,6 +15,7 @@ import {bind} from '../utils';
 import {Dropdown} from '../dropdown';
 import {State} from '../../hooks/useState';
 import {useInput} from './useInput';
+import {Container} from '../portal';
 
 export interface BaseSelectProps {
     value?: any
@@ -29,9 +30,7 @@ export interface BaseSelectProps {
     fluid?: boolean
     inline?: boolean
     placeholder?: Children
-    format?: string
-    valueFormat?: string
-    showFormat?: string
+    container?: Container
 
     _show?: boolean
 }
@@ -49,9 +48,7 @@ const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
     fluid: Boolean,
     inline: Boolean,
     placeholder: [String, Number],
-    format: String,
-    valueFormat: String,
-    showFormat: String,
+    container: [Function, String],
 
     _show: Boolean,
 };

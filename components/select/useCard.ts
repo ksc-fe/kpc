@@ -4,7 +4,6 @@ import {EMPTY_OBJ} from 'intact-shared';
 import {OptionGroup} from './group';
 import {useState} from '../../hooks/useState';
 
-// TODO
 export function useCard(defaultActiveIndex: NonNullableRefObject<number[]>) {
     const children = useInstance()!.get('children');
     const activeIndex = useState<number>(last(defaultActiveIndex.value) || 0);

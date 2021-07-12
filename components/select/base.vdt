@@ -11,7 +11,7 @@ const {
     loading, disabled, name,
     size, hideIcon, fluid,
     clearable, filterable,
-    className,
+    className, container,
     inline,
 
     _show,
@@ -36,6 +36,7 @@ const {onInput, inputRef, keywords: {value: keywords}} = this.input;
     trigger="click"
     ref={this.dropdownRef}
     disabled={disabled}
+    container={container}
     v-model="_show"
 >
     <div {...getRestProps(this)} class={classNameObj} tabindex="0"

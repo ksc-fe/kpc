@@ -9,7 +9,7 @@ import type {Datepicker} from './index';
 import {PanelFlags} from './usePanel';
 
 export interface DatepickerTimeProps {
-    value?: Dayjs
+    value: Dayjs | undefined 
     format: string
     flag: PanelFlags
 }
@@ -82,10 +82,12 @@ function useDisable(instance: DatepickerTime, datepicker: Datepicker) {
     });
 
     function disableItem(v: number, type: keyof Value): boolean {
+        return false;
         let value = instance.get('value') ;
         if (!value) return false;
         value = value.set(type, v);
         if (!datepicker.isDisabled(value, 'second')) {
+            if (!datepicker.get('range')) return false;
             // compare the start and the end datetime 
             const flag = instance.get('flag');
             const anotherDatetime = datepicker.value.getTimeValue(

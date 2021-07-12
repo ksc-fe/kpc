@@ -1,0 +1,58 @@
+import {Icon} from '../icon';
+import {DropdownMenu} from '../dropdown';
+import {makePanelStyles} from '../datepicker/styles';
+import {DatepickerTime} from '../datepicker/time';
+import {_$} from '../../i18n';
+import {Button} from '../button';
+import {PanelFlags} from '../datepicker/usePanel';
+import {last} from '../datepicker/helpers';
+
+const {range, multiple} = this.get();
+const {
+    value: {value},
+    onConfirm,
+    onChangeTime,
+    getTimeValue,
+} = this.value;
+const lastValue = last(value);
+const classNameObj = {
+    'k-time-content': true,
+    [makePanelStyles()]: true,
+};
+
+/* const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel; */
+const generatePanel = flag => {
+    const timeValue = getTimeValue(flag); 
+    return (
+        <div class="k-datepicker-calendar-wrapper">
+            <DatepickerTime
+                value={timeValue}
+                ev-$change:value={v => onChangeTime(v, flag)}
+                format={this.formats.getValueFormat()}
+                flag={flag}
+            />
+        </div>
+    );
+}
+
+<t:super>
+    <b:base-menu>
+        <DropdownMenu class={classNameObj}>
+            <div class="k-datepicker-wrapper">
+                <div class="k-datepicker-calendars">
+                    {generatePanel(PanelFlags.Start)}
+                    {range ? generatePanel(PanelFlags.End) : null} 
+                </div>
+                <div class="k-datepicker-footer">
+                    <Button type="primary" size="small"
+                        disabled={!lastValue || range && lastValue.length < 2}
+                        ev-click={onConfirm}
+                    >{_$('确定')}</Button>
+                </div>
+            </div>
+        </DropdownMenu>
+    </b:base-menu>
+    <b:suffix>
+        <Icon class="k-icon-time" />
+    </b:suffix>
+</t:super>

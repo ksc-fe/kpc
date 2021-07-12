@@ -1,21 +1,20 @@
 import {TypeDefs, provide} from 'intact';
 import template from './index.vdt';
-import {Container} from '../portal';
 import {BaseSelect, BaseSelectProps} from '../select/base';
 import {DATEPICKER} from './constants';
-import dayjs, {Dayjs} from 'dayjs';
+import dayjs, {Dayjs} from './dayjs';
 import {useValue} from './useValue';
 import {isNullOrUndefined} from 'intact-shared'
 import {_$} from '../../i18n';
 import {bind} from '../utils';
 import {State} from '../../hooks/useState';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
 import {useDisabled} from './useDisabled';
 import {useFormats} from './useFormats';
 import {usePanel} from './usePanel';
 import {useFocusDate} from './useFocusDate';
 import {useKeyboards} from './useKeyboards';
 import {Shortcut} from './shortcuts';
+
 export * as shortcuts from './shortcuts';
 
 export interface DatepickerProps extends BaseSelectProps {
@@ -23,10 +22,6 @@ export interface DatepickerProps extends BaseSelectProps {
     type?: 'date' | 'datetime' | 'year' | 'month'
     range?: boolean
     shortcuts?: Shortcut[]
-    container?: Container
-    disableHours?: boolean
-    disableMinutes?: boolean
-    disableSeconds?: boolean
     format?: string
     valueFormat?: string
     showFormat?: string
@@ -43,10 +38,6 @@ const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     type: ['date', 'datetime', 'year', 'month'],
     range: Boolean,
     shortcuts: Array,
-    container: [Function, String],
-    disableHours: Boolean,
-    disableMinutes: Boolean,
-    disableSeconds: Boolean,
     format: String,
     valueFormat: String,
     showFormat: String,
@@ -60,8 +51,6 @@ const defaults = (): Partial<DatepickerProps> => ({
     type: 'date',
     filterable: true,
 });
-
-dayjs.extend(customParseFormat);
 
 export class Datepicker<T extends DatepickerProps = DatepickerProps> extends BaseSelect<T> {
     static template = template;
