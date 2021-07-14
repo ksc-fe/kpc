@@ -26,7 +26,7 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
             const flag = instance.get('flag');
             value = lastValue[flag];
         } else {
-            value = lastValue;
+            value = lastValue as Dayjs | undefined;
         }
 
         let another;

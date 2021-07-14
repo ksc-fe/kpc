@@ -1,7 +1,8 @@
 import {useInstance} from 'intact';
-import dayjs, {Dayjs} from 'dayjs';
+import dayjs, {Dayjs} from './dayjs';
 import {isString} from 'intact-shared';
-import type {Datepicker, Value} from './index';
+import type {Datepicker} from './index';
+import {Value} from './basepicker';
 
 const FORMATS = {
     date: 'YYYY-MM-DD',

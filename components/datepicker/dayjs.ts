@@ -1,7 +1,7 @@
-import dayjs, {Dayjs} from 'dayjs';
+import dayjs, {Dayjs, OpUnitType} from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 dayjs.extend(customParseFormat);
 
 export default dayjs;
-export type {Dayjs};
+export type {Dayjs, OpUnitType};

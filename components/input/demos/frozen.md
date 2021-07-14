@@ -25,14 +25,18 @@ import {Input} from 'kpc/components/input';
 
 ```ts
 import tinycolor from 'tinycolor2';
+import {bind} from 'kpc/components/utils';
 
 export default class extends Component {
     static template = template;
 
-    static defaults = {
-        value: '#ddd'
+    static defaults() {
+        return {
+            value: '#ddd'
+        };
     }
 
+    @bind
     onInput(e: InputEvent) {
         const value = e.target.value.trim();
         const color = tinycolor(value);

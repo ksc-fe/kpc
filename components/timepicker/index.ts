@@ -1,6 +1,6 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
-import {BaseSelect, BaseSelectProps} from '../select/base';
+import {BasePicker, BasePickerProps} from '../datepicker/basepicker';
 import {isNullOrUndefined} from 'intact-shared'
 import {_$} from '../../i18n';
 import {bind} from '../utils';
@@ -12,39 +12,21 @@ import {usePanel} from '../datepicker/usePanel';
 import {State} from '../../hooks/useState';
 import {PanelTypes} from '../datepicker/usePanel';
 
-export interface TimepickerProps extends BaseSelectProps {
-    value: string | [string, string] | string[] | [string, string][]
-    range: boolean
-    format?: string
-    valueFormat?: string
-    showFormat?: string
-    min?: string 
-    max?: string 
-    disabledDate?: (v: string) => boolean
+export interface TimepickerProps extends BasePickerProps<string> {
+    step: string
 }
 
 const typeDefs: Required<TypeDefs<TimepickerProps>> = {
-    ...BaseSelect.typeDefs,
+    ...BasePicker.typeDefs,
     value: [String, Array],
-    range: Boolean,
-    format: String,
-    valueFormat: String,
-    showFormat: String,
     min: String,
     max: String,
-    disabledDate: Function,
+    step: String,
 }
 
-const defaults = (): Partial<TimepickerProps> => ({
-    ...BaseSelect.defaults(),
-    type: 'datetime',
-    filterable: true,
-});
-
-export class Timepicker extends BaseSelect<TimepickerProps> {
+export class Timepicker extends BasePicker<TimepickerProps> {
     static template = template; 
     static typeDefs = typeDefs;
-    static defaults = defaults;
 
     public formats = useFormats();
     public disabled = useDisabled(this.formats);
@@ -62,15 +44,4 @@ export class Timepicker extends BaseSelect<TimepickerProps> {
     protected getLabel() {
         return this.value.format();
     }
-
-    @bind
-    public resetKeywords(keywords: State<string>) {
-        const {multiple, range, value} = this.get();
-        keywords.set(
-            multiple ?  '' : !range ?
-                value as string || '' :
-                (value as [string, string] || []).join(' ~ ')
-        );
-    }
-
 }

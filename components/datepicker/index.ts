@@ -14,45 +14,27 @@ import {usePanel} from './usePanel';
 import {useFocusDate} from './useFocusDate';
 import {useKeyboards} from './useKeyboards';
 import {Shortcut} from './shortcuts';
+import {BasePicker, BasePickerProps, Value} from './basepicker';
 
 export * as shortcuts from './shortcuts';
 
-export interface DatepickerProps extends BaseSelectProps {
-    value?: Value | Value[] | [Value, Value] | [Value, Value][] | null
+export interface DatepickerProps extends BasePickerProps<Value> {
     type?: 'date' | 'datetime' | 'year' | 'month'
-    range?: boolean
     shortcuts?: Shortcut[]
-    format?: string
-    valueFormat?: string
-    showFormat?: string
-    min?: Value
-    max?: Value
-    disabledDate?: (v: Value) => boolean
 }
 
-export type Value = string | Date | number | Dayjs;
-
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
-    ...BaseSelect.typeDefs,
-    value: [String, Array, Date, Number, dayjs.Dayjs],
+    ...BasePicker.typeDefs,
     type: ['date', 'datetime', 'year', 'month'],
-    range: Boolean,
     shortcuts: Array,
-    format: String,
-    valueFormat: String,
-    showFormat: String,
-    min: [String, Date, Number, dayjs.Dayjs],
-    max: [String, Date, Number, dayjs.Dayjs],
-    disabledDate: Function,
 };
 
 const defaults = (): Partial<DatepickerProps> => ({
-    ...BaseSelect.defaults(),
+    ...BasePicker.defaults(),
     type: 'date',
-    filterable: true,
 });
 
-export class Datepicker<T extends DatepickerProps = DatepickerProps> extends BaseSelect<T> {
+export class Datepicker<T extends DatepickerProps = DatepickerProps> extends BasePicker<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -88,16 +70,6 @@ export class Datepicker<T extends DatepickerProps = DatepickerProps> extends Bas
 
     protected getLabel() {
         return this.value.format();
-    }
-
-    @bind
-    public resetKeywords(keywords: State<string>) {
-        const {multiple, range, value} = this.get();
-        keywords.set(
-            multiple ?  '' : !range ?
-                value as string || '' :
-                (value as [string, string] || []).join(' ~ ')
-        );
     }
 
     @bind

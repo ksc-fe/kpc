@@ -94,7 +94,7 @@ export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> ex
         this.set('_show', false);
     }
 
-    protected resetKeywords(keywords: State<string>) {
+    public resetKeywords(keywords: State<string>) {
         keywords.set('');
     }
 

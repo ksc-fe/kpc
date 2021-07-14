@@ -1,11 +1,12 @@
 import {useInstance} from 'intact';
 import {useState, State} from '../../hooks/useState';
 import {Dayjs} from 'dayjs';
-import type {Datepicker, Value} from './index';
+import type {Datepicker} from './index';
 import {isNullOrUndefined} from 'intact-shared';
 import {isGT, isLT, last} from './helpers';
 import type {useFormats} from './useFormats';
 import {PanelFlags, PanelTypes} from './usePanel';
+import {Value} from './basepicker';
 
 export function useDisabled({createDateByValueFormat}: ReturnType<typeof useFormats>) {
     const instance = useInstance() as Datepicker;
@@ -79,5 +80,5 @@ export function useDisabled({createDateByValueFormat}: ReturnType<typeof useForm
         return false;
     }
 
-    return {isDisabled, isDisabledTime, isDisabledConfirm};
+    return {isDisabled, isDisabledTime, isDisabledConfirm, maxDate, minDate};
 }
