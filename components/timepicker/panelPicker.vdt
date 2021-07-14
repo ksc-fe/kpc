@@ -1,42 +1,60 @@
 import {Icon} from '../icon';
 import {DropdownMenu} from '../dropdown';
-import {makePanelStyles} from '../datepicker/styles';
+import {makePanelStyles} from './styles';
 import {DatepickerTime} from '../datepicker/time';
 import {_$} from '../../i18n';
 import {Button} from '../button';
 import {PanelFlags} from '../datepicker/usePanel';
 import {last} from '../datepicker/helpers';
+import {ScrollSelect} from '../scrollSelect';
 
-const {range, multiple} = this.get();
+const {className, range, multiple} = this.get();
 const {
     value: {value},
     onConfirm,
     onChangeTime,
+    onChangeTimeByStep,
     getTimeValue,
 } = this.value;
 const lastValue = last(value);
 const classNameObj = {
     'k-time-content': true,
+    'k-range': range,
+    [className]: className,
     [makePanelStyles()]: true,
 };
+const options = this.step.options.value;
+const {isDisabledTime, isDisabledTimeByStep, isDisabledConfirm} = this.disabled;
+const {getValueFormat, getValueString} = this.formats;
 
-/* const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel; */
 const generatePanel = flag => {
     const timeValue = getTimeValue(flag); 
     return (
         <div class="k-datepicker-calendar-wrapper">
+            <div v-if={range} class="k-timepicker-title">
+                {flag === PanelFlags.Start ? _$('开始时间') : _$('结束时间')}
+            </div>
             <DatepickerTime
+                v-if={!options}
                 value={timeValue}
                 ev-$change:value={v => onChangeTime(v, flag)}
-                format={this.formats.getValueFormat()}
+                format={getValueFormat()}
                 flag={flag}
-                isDisabledTime={this.disabled.isDisabledTime}
+                isDisabledTime={isDisabledTime}
             />
+            <div class="k-datepicker-time" v-else>
+                <ScrollSelect
+                    value={timeValue ? getValueString(timeValue) : timeValue}
+                    ev-$change:value={v => onChangeTimeByStep(v, flag)}
+                    data={options}
+                    disable={v => isDisabledTimeByStep(v, flag)}
+                />
+            </div>
         </div>
     );
-}
+};
 
-<t:super>
+<t:super class="k-timepicker">
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class="k-datepicker-wrapper">
@@ -46,7 +64,7 @@ const generatePanel = flag => {
                 </div>
                 <div class="k-datepicker-footer">
                     <Button type="primary" size="small"
-                        disabled={this.disabled.isDisabledConfirm()}
+                        disabled={isDisabledConfirm()}
                         ev-click={onConfirm}
                     >{_$('确定')}</Button>
                 </div>

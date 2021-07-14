@@ -2,8 +2,8 @@ import {useInstance} from 'intact';
 import dayjs, {Dayjs} from '../datepicker/dayjs';
 import {isString} from 'intact-shared';
 import type {Timepicker} from './index';
-import type {Value} from '../datepicker';
-import {YEAR_FORMAT, TIME_FORMAT, PREFIX} from './constants';
+import type {Value} from '../datepicker/basepicker';
+import {YEAR_FORMAT, TIME_FORMAT, PREFIX} from './constants'
 
 export function useFormats() {
     const instance = useInstance() as Timepicker;

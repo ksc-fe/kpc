@@ -10,7 +10,7 @@ import {PanelTypes, PanelFlags} from './usePanel';
 import {isFunction} from 'intact-shared';
 import {Tabs, Tab} from '../tabs';
 
-const {type, range, multiple, shortcuts} = this.get();
+const {className, type, range, multiple, shortcuts} = this.get();
 const {
     value: {value},
     onChangeDate,
@@ -21,6 +21,7 @@ const {
 } = this.value;
 const classNameObj = {
     'k-datepicker-content': true,
+    [className]: className,
     [makePanelStyles()]: true,
 };
 
@@ -71,7 +72,7 @@ const generatePanel = (flag) => {
     );
 };
 
-<t:super>
+<t:super class="k-datepicker">
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class="k-datepicker-shortcuts" v-if={shortcuts && shortcuts.length}>

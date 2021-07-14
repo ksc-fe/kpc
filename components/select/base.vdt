@@ -24,6 +24,7 @@ const classNameObj = {
     'k-fluid': fluid,
     'k-inline': inline,
     [className]: className,
+    [$props.className]: $props.className,
     [makeStyles()]: true,
 };
 

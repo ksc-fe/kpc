@@ -1,19 +1,24 @@
 import {useInstance} from 'intact';
-import type {Timepicker} from './';
+import type {PanelPicker} from './panelPicker';
 import type {useFormats} from './useFormats';
 import {last} from '../utils';
-import {useValue as useValueBase, StateValueItem, DayjsValueItem} from '../datepicker/basepicker';
+import {
+    useValue as useValueBase,
+    StateValueItem,
+    DayjsValueItem
+} from '../datepicker/basepicker';
 import type {useDisabled} from '../datepicker/useDisabled';
 import type {usePanel} from '../datepicker/usePanel';
 import {NOW} from './constants';
+import {PanelFlags} from '../datepicker/usePanel';
 
 export function useValue(
     formats: ReturnType<typeof useFormats>,
     disabled: ReturnType<typeof useDisabled>,
     panel: ReturnType<typeof usePanel>,
 ) {
-    const instance = useInstance() as Timepicker;
-    const {value, getDayjsValue, setValue, ...rest} = useValueBase(
+    const instance = useInstance() as PanelPicker;
+    const {value, getDayjsValue, setValue, onChangeTime, ...rest} = useValueBase(
         formats,
         disabled,
         panel,
@@ -42,5 +47,10 @@ export function useValue(
         return instance.get('range') ? [NOW, NOW] : NOW;
     }
 
-    return {value, setValue, getDayjsValue,  ...rest};
+    function onChangeTimeByStep(v: string, flag: PanelFlags) {
+        const date = formats.createDateByValueFormat(v);
+        onChangeTime(date, flag);
+    }
+
+    return {value, setValue, getDayjsValue, onChangeTime, onChangeTimeByStep, ...rest};
 }
