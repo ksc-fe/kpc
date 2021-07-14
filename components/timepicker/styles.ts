@@ -7,7 +7,6 @@ import {datepicker, makePanelStyles as makePanelStylesBase} from '../datepicker/
 const {timepicker} = deepDefaults(theme, {
     timepicker: {
         get border() { return datepicker.border; },
-        get width() { return datepicker.width },
         padding: `16px`,
         scrollHeight: `160px`,
 
