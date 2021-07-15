@@ -1,0 +1,22 @@
+import {getRestProps, addStyle} from '../utils';
+import {makeStyles} from './styles';
+
+const {children, className, style} = this.get();
+const {style: _style, containerStyle} = this.style;
+
+const classNameObj = {
+    'k-affix': true,
+    'k-fixed': _style.value,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj}
+    {...getRestProps(this)}
+    style={addStyle(style, containerStyle.value)}
+    ref={this.elementRef}
+>
+    <div style={_style.value}>
+        {children}
+    </div>
+</div>
