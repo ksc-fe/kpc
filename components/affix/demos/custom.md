@@ -15,10 +15,10 @@ import {Button} from 'kpc/components/button';
 
 <div ref="node">
     <Affix top={150} shouldFix={this._shouldFix}>
-        <Button type="primary">fix at 150px from the top while scroll top 100px</Button>
+        <Button type="primary">fix at 150px from the top when scroll top 100px</Button>
     </Affix>
     <Affix bottom={0} exclude={this._exclude} ref="__test">
-        <Button type="primary">fix at the bottom only while this demo is in viewport</Button>
+        <Button type="primary">fix at the bottom only when this demo is in viewport</Button>
     </Affix>
 </div>
 ```

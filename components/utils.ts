@@ -269,7 +269,9 @@ export function isEmptyChildren(o: Children): boolean {
     return isEmptyString(o) || Array.isArray(o) && o.every(item => isEmptyChildren(item));
 }
 
-export function isComponentVNode<T extends ComponentConstructor>(o: any, tag: T): o is VNodeComponentClass<any> {
+export function isComponentVNode<T extends ComponentConstructor>(o: any, tag: T):
+    o is VNodeComponentClass<T extends ComponentConstructor<infer P> ? P : never> 
+{
     return o.tag === tag; 
 }
 
