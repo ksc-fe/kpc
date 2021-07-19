@@ -1,13 +1,15 @@
 import {eachChildren} from '../utils';
 import {TableColumn} from './column';
 import {makeStyles} from './styles';
-import {isStringOrNumber} from 'intact-shared';
+import {isStringOrNumber, isNull} from 'intact-shared';
 import {getClassAndStyleForFixed} from './useFixedColumns';
+import {Affix} from '../affix';
 
 const {data, children, className, fixHeader} = this.get();
 const {getColumns} = this.columns;
 const columns = getColumns();
 const {onScroll, scrollPosition, hasFixed} = this.fixedColumns;
+const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.sticky;
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
@@ -21,18 +23,31 @@ const style = isStringOrNumber(fixHeader) ?
     {maxHeight: `${fixHeader}px`} :
     null;
 
-<div class={classNameObj}>
-    <div class="k-table-wrapper" style={style} ev-scroll={onScroll}>
+const colgroup = (
+    <colgroup>
+        <col v-for={columns} 
+            width={$value.props.width}
+            class={{[$value.props.className]: $value.props.className}}
+        />
+    </colgroup>
+);
+const thead = <thead><tr>{columns}</tr></thead>
+
+<div class={classNameObj} ref={elementRef}>
+    <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>
+        <Affix v-if={!isNull(stickHeader.value)}
+            top={stickHeader.value}
+            exclude={excludeStickHeader}
+            class="k-table-affix-header"
+        >
+            <table ref={headRef}>
+                <template>{colgroup}</template>
+                <template>{thead}</template>
+            </table>
+        </Affix>
         <table>
-            <colgroup>
-                <col v-for={columns} 
-                    width={$value.props.width}
-                    class={{[$value.props.className]: $value.props.className}}
-                />
-            </colgroup>
-            <thead>
-                <tr>{columns}</tr>
-            </thead>
+            <template>{colgroup}</template>
+            <template v-if={isNull(stickHeader.value)}>{thead}</template>
             <tbody>
                 <tr v-for={data}>
                     <td v-for={columns} v-for-value="column"

@@ -129,5 +129,15 @@ export function makeStyles() {
                 padding-bottom: 1px;
             }
         }
+
+        // sticky header
+        .k-table-affix-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            .k-affix-wrapper {
+                overflow: hidden;
+            }
+        }
     `;
 }

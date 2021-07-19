@@ -9,7 +9,7 @@ export interface AffixProps {
     shouldFix?: (data: ShouldFixParam) => boolean
 }
 
-type ExcludeParam = {
+export type ExcludeParam = {
     offsetTop?: number,
     offsetBottom?: number,
     top: number,
@@ -18,7 +18,7 @@ type ExcludeParam = {
     height: number,
 }
 
-type ShouldFixParam = {
+export type ShouldFixParam = {
     offsetTop?: number,
     offsetBottom?: number,
     viewportHeight?: number
