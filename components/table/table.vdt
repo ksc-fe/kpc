@@ -2,14 +2,17 @@ import {eachChildren} from '../utils';
 import {TableColumn} from './column';
 import {makeStyles} from './styles';
 import {isStringOrNumber} from 'intact-shared';
-import {getClassAndStyleForFixed} from './useColumns';
+import {getClassAndStyleForFixed} from './useFixedColumns';
 
 const {data, children, className, fixHeader} = this.get();
-const {schemes, columns} = this.columns();
-
+const {getColumns} = this.columns;
+const columns = getColumns();
+const {onScroll, scrollPosition, hasFixed} = this.fixedColumns;
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
+    [`k-scroll-${scrollPosition.value}`]: true,
+    'k-fix-columns': hasFixed.value,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -19,12 +22,12 @@ const style = isStringOrNumber(fixHeader) ?
     null;
 
 <div class={classNameObj}>
-    <div class="k-table-wrapper" style={style}>
+    <div class="k-table-wrapper" style={style} ev-scroll={onScroll}>
         <table>
             <colgroup>
-                <col v-for={schemes} 
-                    width={$value.width}
-                    class={{[$value.className]: $value.className}}
+                <col v-for={columns} 
+                    width={$value.props.width}
+                    class={{[$value.props.className]: $value.props.className}}
                 />
             </colgroup>
             <thead>
@@ -32,10 +35,10 @@ const style = isStringOrNumber(fixHeader) ?
             </thead>
             <tbody>
                 <tr v-for={data}>
-                    <td v-for={schemes} v-for-value="scheme"
-                        {...getClassAndStyleForFixed(scheme)}
+                    <td v-for={columns} v-for-value="column"
+                        {...getClassAndStyleForFixed(column.props)}
                     >
-                        {$value[scheme.key]}
+                        {$value[column.key]}
                     </td>
                 </tr>
             </tbody>
