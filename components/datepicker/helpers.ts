@@ -1,7 +1,7 @@
 import dayjs, {Dayjs, OpUnitType} from 'dayjs';
 import {strPad, range} from '../utils';
 import {_$} from '../../i18n';
-import {StateValueItem} from './useValue';
+import {StateValueItem} from './basepicker';
 
 export function getNowDate() {
     // only date without time
@@ -63,14 +63,14 @@ export function createDate(date: string) {
     return new Date(date);
 }
 
-export function findValueIndex(values: StateValueItem[], value: StateValueItem) {
+export function findValueIndex(values: StateValueItem[], value: StateValueItem, type: OpUnitType) {
     return values.findIndex(item => {
         if (Array.isArray(item)) {
             // is multipe range values
             const [start, end] = value as [Dayjs, Dayjs];
-            return isEqual(item[0], start) && isEqual(item[1], end);
+            return isEqual(item[0], start, type) && isEqual(item[1], end, type);
         } else {
-            return isEqual(value as Dayjs, item);
+            return isEqual(value as Dayjs, item, type);
         }
     });
 }

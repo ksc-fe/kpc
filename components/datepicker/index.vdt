@@ -7,10 +7,10 @@ import {Button} from '../button';
 import {_$} from '../../i18n';
 import {makePanelStyles} from './styles';
 import {PanelTypes, PanelFlags} from './usePanel';
-import {last} from './helpers';
 import {isFunction} from 'intact-shared';
+import {Tabs, Tab} from '../tabs';
 
-const {type, range, multiple, shortcuts} = this.get();
+const {className, type, range, multiple, shortcuts} = this.get();
 const {
     value: {value},
     onChangeDate,
@@ -19,17 +19,39 @@ const {
     onChangeDateForRange,
     getTimeValue,
 } = this.value;
-const lastValue = last(value);
 const classNameObj = {
     'k-datepicker-content': true,
+    [className]: className,
     [makePanelStyles()]: true,
 };
 
+const {isDisabledTime, isDisabledConfirm} = this.disabled;
 const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel;
 const generatePanel = (flag) => {
     const panel = getPanel(flag);
+    const timeValue = getTimeValue(flag);
     return (
-        <template>
+        <div class="k-datepicker-calendar-wrapper">
+            {(() => {
+                if (type === 'datetime') {
+                    let dateString = '0000-00-00';
+                    let timeString = '00:00:00';
+                    if (timeValue) {
+                        const valueString = this.formats.getShowString(timeValue).split(/\s+/);
+                        dateString = valueString[0];
+                        timeString = valueString[1];
+                    }
+                    return (
+                        <Tabs type="border-card"
+                            value={panel.value}
+                            ev-$change:value={panel.set}
+                        >
+                            <Tab value={PanelTypes.Date}>{dateString}</Tab>
+                            <Tab value={PanelTypes.Time} disabled={!timeValue} >{timeString}</Tab>
+                        </Tabs>
+                    );
+                }
+            })()}
             <DatepickerCalendar
                 v-if={panel.value === PanelTypes.Date}
                 value={value}
@@ -39,16 +61,18 @@ const generatePanel = (flag) => {
                 ref={flag === PanelFlags.Start ? startRef : endRef}
             />
             <DatepickerTime
-                value={getTimeValue(flag)}
+                v-else
+                value={timeValue}
                 ev-$change:value={v => onChangeTime(v, flag)}
                 format={this.formats.getValueFormat()}
-                v-else
+                flag={flag}
+                isDisabledTime={isDisabledTime}
             />
-        </template>
+        </div>
     );
 };
 
-<t:super>
+<t:super class="k-datepicker">
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class="k-datepicker-shortcuts" v-if={shortcuts && shortcuts.length}>
@@ -66,12 +90,7 @@ const generatePanel = (flag) => {
                 </div>
                 <div v-if={type === 'datetime'} class="k-datepicker-footer">
                     <Button type="primary" size="small"
-                        disabled={
-                            !lastValue ||
-                            range && lastValue.length < 2 ||
-                            startPanel.value === PanelTypes.Date &&
-                            endPanel.value === PanelTypes.Date
-                        }
+                        disabled={isDisabledConfirm()}
                         ev-click={onConfirm}
                     >{_$('确定')}</Button>
                 </div>

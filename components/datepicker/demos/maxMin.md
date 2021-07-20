@@ -3,29 +3,29 @@ title: 最大和最小日期
 order: 2
 ---
 
-通过`maxDate`和`minDate`可以给组件指定最大和最小选择日期。
+通过`max`和`min`可以给组件指定最大和最小选择日期。
 
 ```vdt
 import {Datepicker} from 'kpc/components/datepicker';
 
 <div>
     <Datepicker v-model="from" placeholder="开始日期"
-        maxDate={this.get('to')}
-        minDate={new Date()}
+        max={this.get('to')}
+        min={new Date()}
     /> ~
     <Datepicker v-model="to" placeholder="结束日期"
-        minDate={this.get('from')}
+        min={this.get('from')}
     />
     <br />
     <br />
     <Datepicker v-model="fromTime" placeholder="开始时间"
         type="datetime"
-        maxDate={this.get('toTime') || new Date()}
+        max={this.get('toTime') || new Date()}
     /> ~
     <Datepicker v-model="toTime" placeholder="结束时间"
         type="datetime"
-        minDate={this.get('fromTime')}
-        maxDate={new Date()}
+        min={this.get('fromTime')}
+        max={new Date()}
     />
 </div>
 ```

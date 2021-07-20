@@ -43,7 +43,7 @@ import {Select, Option, OptionGroup} from 'kpc/components/select';
 ```styl
 .k-select
     margin-right 10px
-/.k-select-dropdown
+/.k-select-menu
     .ion-wineglass
         margin-right 8px
     .k-tab

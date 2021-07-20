@@ -7,6 +7,7 @@ const {datepicker} = deepDefaults(theme, {
     datepicker: {
         width: `300px`,
         padding: `16px 16px 4px`,
+        border: `1px solid #e5e5e5`,
 
         item: {
             gutter: `7px`,
@@ -33,7 +34,6 @@ const {datepicker} = deepDefaults(theme, {
         },
 
         weekday: {
-            border: `1px solid #e5e5e5`,
             padding: `10px 0`
         },
 
@@ -44,7 +44,6 @@ const {datepicker} = deepDefaults(theme, {
         },
 
         footer: {
-            border: `1px solid #e5e5e5`,
             padding: `8px 16px`,
         },
 
@@ -60,13 +59,15 @@ const {datepicker} = deepDefaults(theme, {
     }
 });
 
+export {datepicker};
+
 export function makePanelStyles() {
     return css`
         display: flex;
         .k-datepicker-shortcuts {
             width: ${datepicker.shortcuts.width};
             padding: ${datepicker.shortcuts.padding};
-            border-right: ${datepicker.footer.border};
+            border-right: ${datepicker.border};
         }
         .k-datepicker-shortcut {
             height: ${datepicker.shortcuts.shortcut.height};
@@ -80,8 +81,22 @@ export function makePanelStyles() {
         .k-datepicker-calendars {
             display: flex;
         }
+        .k-datepicker-calendar-wrapper {
+            &:nth-child(2) {
+                border-left: ${datepicker.border};
+            }
+            .k-tabs {
+                border: none;
+                .k-tabs-wrapper {
+                    float: none;
+                }
+                .k-tab {
+                    width: 50%;
+                }
+            }
+        }
         .k-datepicker-footer {
-            border-top: ${datepicker.footer.border};
+            border-top: ${datepicker.border};
             padding: ${datepicker.footer.padding};
             text-align: right;
         }
@@ -114,7 +129,7 @@ export function makeCalendarStyles() {
         },
         .k-weekdays {
             display: flex;
-            border-bottom: ${datepicker.weekday.border};
+            border-bottom: ${datepicker.border};
             padding: ${datepicker.weekday.padding};
         }
         .k-weekday {

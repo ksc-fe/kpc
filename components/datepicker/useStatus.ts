@@ -37,5 +37,5 @@ export function useStatus(focusDate: State<Dayjs | null>) {
         return false;
     }
 
-    return {isActive, isInRange, isDisabled: instance.datepicker.isDisabled};
+    return {isActive, isInRange, isDisabled: instance.datepicker.disabled.isDisabled};
 }

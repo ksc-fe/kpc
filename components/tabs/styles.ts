@@ -92,6 +92,7 @@ export function makeStyles() {
             margin-right: -${tabs.closeGutter};
             margin-left: ${tabs.closeGutter};
             position: relative;
+            top: -1px;
         }
 
         // active-bar
@@ -101,7 +102,7 @@ export function makeStyles() {
             left: 0;
             height: ${tabs.highlight.height};
             background: ${tabs.highlight.bgColor};
-            bottom: 0; 
+            bottom: calc(-${tabs.highlight.height} / 2); 
         }
 
         // vertical
@@ -117,7 +118,7 @@ export function makeStyles() {
             .k-tabs-active-bar {
                 left: auto;
                 top: 0;
-                right: 0; 
+                right: calc(-${tabs.highlight.height} / 2); 
                 width: ${tabs.highlight.height};
                 height: auto;
             }
@@ -187,6 +188,7 @@ export function makeStyles() {
                 border-bottom: ${tabs.border};
                 .k-tabs-active-bar {
                     width: auto;
+                    height: 0;
                     left: 0;
                     bottom: 0;
                     right: 0;
@@ -254,7 +256,7 @@ export function makeStyles() {
             .k-tabs-next {
                 position: absolute;
                 top: 0;
-                width: ${tabs.navigatorWidth};
+                width: ${tabs.navigatorWidth} !important;
             }
             .k-tabs-prev {
                 left: 0;
@@ -275,10 +277,10 @@ export function makeStyles() {
                     .k-tab {
                         font-size: ${styles.fontSize};
                         height: ${styles.height};
-                        line-height: calc(${styles.height} - 2px);
+                        line-height: ${styles.height};
                         padding: ${styles.padding};
                     }
-                    .k-tab-close {
+                    .k-tab-close .k-icon {
                         font-size: ${styles.closeFontSize};
                     }
                 }

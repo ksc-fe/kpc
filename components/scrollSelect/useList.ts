@@ -35,19 +35,30 @@ export function useList() {
         const oldValue = value.value;
         value.set(v);
         if (oldValue !== v) {
-            const {disable} = instance.get();
-            if (!disable || !disable(v)) {
-                instance.set('value', v);
-            }
-            if (generate) {
-                generateList();
-            }
+            updateValue(v, generate);
+        }
+    }
+
+    function updateValue(v: any, generate: boolean) {
+        const {disable} = instance.get();
+        if (!disable || !disable(v)) {
+            instance.set('value', v);
+        }
+        if (generate) {
+            generateList();
         }
     }
 
     instance.on('$receive:value', v => setValue(v, true));
     ['data', 'count'].forEach(item => {
         instance.on(`$receive:${item}`, generateList);
+    });
+    instance.on('$receive:disable', () => {
+        const oldValue = instance.get('value');
+        const _value = value.value;
+        if (_value !== oldValue) {
+            updateValue(_value, true);
+        }
     });
 
     return {value, data: list, setValue};

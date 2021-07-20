@@ -1,13 +1,18 @@
-import {Component} from 'intact';
+import {Component, inject} from 'intact';
 import template from './time.vdt';
 import {Dayjs} from 'dayjs';
 import {useState} from '../../hooks/useState';
 import {bind} from '../utils';
 import {getNowDate} from './helpers';
+import {DATEPICKER} from './constants';
+import type {Datepicker} from './index';
+import {PanelFlags} from './usePanel';
 
 export interface DatepickerTimeProps {
-    value?: Dayjs
+    value: Dayjs | undefined 
     format: string
+    flag: PanelFlags
+    isDisabledTime: (v: Dayjs, flag: PanelFlags) => boolean
 }
 
 type Value = {
@@ -77,5 +82,13 @@ function useDisable(instance: DatepickerTime) {
         disableHours.set(!hourRegExp.test(format));
     });
 
-    return {disableSeconds, disableMinutes, disableHours};
+    function disableItem(v: number, type: keyof Value): boolean {
+        let {value, isDisabledTime, flag} = instance.get() ;
+        if (!value) return false;
+        value = value.set(type, v);
+
+        return isDisabledTime(value, flag); 
+    }
+
+    return {disableSeconds, disableMinutes, disableHours, disableItem};
 }

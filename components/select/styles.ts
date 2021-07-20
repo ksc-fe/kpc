@@ -47,7 +47,6 @@ const {select} = deepDefaults(theme, {
                 height: `160px`,
                 get itemHoverColor() { return theme.color.primary },
                 itemHoverBgColor: `transparent`,
-                tabPadding: `0 16px`,
             },
 
             // multiple
@@ -297,6 +296,23 @@ export function makeMenuStyles() {
             text-overflow: ellipsis;
             &.k-active {
                 color: ${select.activeColor};
+            }
+        }
+
+        // card
+        &.k-card {
+            display: flex;
+            height: ${select.card.height};
+            .k-tabs {
+                border: none;
+            }
+            .k-select-group {
+                flex: 1;
+                overflow: auto;
+            }
+            .k-select-option.k-hover {
+                background: ${select.card.itemHoverBgColor};
+                color: ${select.card.itemHoverColor};
             }
         }
 

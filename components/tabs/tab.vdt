@@ -1,4 +1,5 @@
 import {Button} from '../button';
+import {Icon} from '../icon';
 import {getRestProps} from '../utils';
 import {isNullOrUndefined} from 'intact-shared';
 
@@ -23,8 +24,8 @@ const classNameObj = {
         size="mini"
         class="k-tab-close"
         v-if={isNullOrUndefined(closable) ? this.tabs.get('closable') : closable}
-        ev-click={this._remove}
+        ev-click={this.remove}
     >
-        <i class="k-icon ion-ios-close-empty" />
+        <Icon class="ion-ios-close-empty" />
     </Button>
 </div>

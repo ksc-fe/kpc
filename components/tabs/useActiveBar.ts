@@ -16,7 +16,7 @@ export function useActiveBar() {
         const element = findDomFromVNode(instance.$lastInput!, true) as HTMLElement;
         const activeTab = element.querySelector('.k-tab.k-active') as HTMLElement | null;
 
-        if (!activeTab) return;
+        if (!activeTab) return styles.set(null);
         
         const vertical = instance.get('vertical');
         if (!vertical) {
