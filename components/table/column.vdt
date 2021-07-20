@@ -1,4 +1,4 @@
-import {getClassAndStyleForFixed} from './useColumns';
+import {getClassAndStyleForFixed} from './useFixedColumns';
 
 const {title, className, fixed} = this.get();
 

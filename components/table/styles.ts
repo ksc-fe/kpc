@@ -50,11 +50,12 @@ export function makeStyles() {
             text-align: ${table.thead.textAlign};
             font-size: ${table.thead.fontSize};
             font-weight: ${table.thead.fontWeight};
+            position: sticky;
+            top: 0;
+            z-index: 2;
             tr {
                 height: ${table.thead.height};
             }
-            position: sticky;
-            top: 0;
         }
         th {
             padding: ${table.thead.padding};
@@ -114,6 +115,29 @@ export function makeStyles() {
         .k-fixed-right.k-shadow:after {
             box-shadow: ${table.fixRightShadow};
             left: -10px;
+        }
+        &.k-scroll-left .k-fixed-left.k-shadow:after {
+            box-shadow: none;
+        }
+        &.k-scroll-right .k-fixed-right.k-shadow:after {
+            box-shadow: none;
+        }
+        &.k-fix-columns {
+            .k-table-wrapper {
+                // We must the the padding, otherwise it will show vertical scrollbar
+                // event if the height has not overflow. Why?
+                padding-bottom: 1px;
+            }
+        }
+
+        // sticky header
+        .k-table-affix-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            .k-affix-wrapper {
+                overflow: hidden;
+            }
         }
     `;
 }

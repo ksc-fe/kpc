@@ -16,7 +16,7 @@ const classNameObj = {
     style={addStyle(style, containerStyle.value)}
     ref={this.elementRef}
 >
-    <div style={_style.value}>
+    <div style={_style.value} class="k-affix-wrapper">
         {children}
     </div>
 </div>
