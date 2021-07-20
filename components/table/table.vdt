@@ -4,12 +4,16 @@ import {makeStyles} from './styles';
 import {isStringOrNumber, isNull} from 'intact-shared';
 import {getClassAndStyleForFixed} from './useFixedColumns';
 import {Affix} from '../affix';
+import {TableRow} from './row';
+import {Checkbox} from '../checkbox';
 
-const {data, children, className, fixHeader} = this.get();
+const {
+    data, children, className, fixHeader,
+    checkType, rowKey
+} = this.get();
 const {getColumns} = this.columns;
-const columns = getColumns();
-const {onScroll, scrollPosition, hasFixed} = this.fixedColumns;
-const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.sticky;
+const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
+const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.stickyHeader;
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
@@ -18,20 +22,56 @@ const classNameObj = {
     [className]: className,
     [makeStyles()]: true,
 };
-
+const columns = getColumns();
 const style = isStringOrNumber(fixHeader) ? 
     {maxHeight: `${fixHeader}px`} :
     null;
 
 const colgroup = (
     <colgroup>
+        <col v-if={checkType !== 'none'} width="40" />
         <col v-for={columns} 
             width={$value.props.width}
             class={{[$value.props.className]: $value.props.className}}
         />
     </colgroup>
 );
-const thead = <thead><tr>{columns}</tr></thead>
+
+const hasFixedLeft = getHasFixedLeft();
+const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
+const thead = (
+    <thead>
+        <tr>
+            <th v-if={checkType !== 'none'}
+                {...getClassAndStyleForFixed({
+                    fixed: hasFixedLeft ? 'left' : false,
+                    offset: 0,
+                })} 
+            >
+                <Checkbox v-if={checkType === 'checkbox'}
+                    value={isAllChecked()} 
+                    ev-$change:value={toggleCheckedAll}
+                />
+            </th>
+            {columns}
+        </tr>
+    </thead>
+);
+
+let key;
+const tbody = (
+    <tbody>
+        <TableRow v-for={data}
+            key={key = rowKey($value, $key)}
+            columns={columns}
+            data={$value}
+            checkType={checkType}
+            hasFixedLeft={hasFixedLeft}
+            onClick={this.clickRow}
+            checked={isChecked(key)}
+        />
+    </tbody>
+);
 
 <div class={classNameObj} ref={elementRef}>
     <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>
@@ -48,15 +88,7 @@ const thead = <thead><tr>{columns}</tr></thead>
         <table>
             <template>{colgroup}</template>
             <template v-if={isNull(stickHeader.value)}>{thead}</template>
-            <tbody>
-                <tr v-for={data}>
-                    <td v-for={columns} v-for-value="column"
-                        {...getClassAndStyleForFixed(column.props)}
-                    >
-                        {$value[column.key]}
-                    </td>
-                </tr>
-            </tbody>
+            <template>{tbody}</template>
         </table>
     </div>
 </div>

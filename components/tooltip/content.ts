@@ -11,8 +11,6 @@ export interface TooltipContentProps {
 export class TooltipContent<T extends TooltipContentProps = TooltipContentProps> extends DropdownMenu<T> {
     static template = template;
 
-    // public dropdown: Tooltip;
-
     private arrowRef = createRef<HTMLElement>();
     private isEmptyChildren: boolean = true;
 

@@ -9,11 +9,11 @@ order: 0
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
 
-const data = [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}];
+const data = [{a: 'Cell 1-1', b: 'Cell 1-2'}, {a: 'Cell 2-1', b: 'Cell 2-2'}];
 
 <Table data={data} resizable>
-    <TableColumn key="a" title="表头1" />
-    <TableColumn key="b" title="表头2" />
+    <TableColumn key="a" title="Title 1" />
+    <TableColumn key="b" title="Title 2" />
 </Table>
 ```
 
@@ -25,8 +25,7 @@ const data = [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}];
 ```vue-data
 data() {
     return {
-        scheme: {a: '表头1', b: '表头2'},
-        data: [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}],
+        data: [{a: 'Cell 1-1', b: 'Cell 1-2'}, {a: 'Cell 2-1', b: 'Cell 2-2'}]
     }
 },
 ```
