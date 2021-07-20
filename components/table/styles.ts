@@ -26,7 +26,10 @@ const {table} = deepDefaults(theme, {
         tbody: {
             get hoverBgcolor() { return theme.color.bg },
             padding: `11px 5px 11px 12px`,
-        }
+        },
+
+        // stripe
+        stripeBgColor: '#f9f9fc',
     }
 });
 
@@ -82,7 +85,7 @@ export function makeStyles() {
                     background: ${table.tbody.hoverBgcolor};
                 }
                 &:last-of-type td {
-                    border: none;
+                    border-bottom: none;
                 }
             }
         }
@@ -137,6 +140,31 @@ export function makeStyles() {
             left: 0;
             .k-affix-wrapper {
                 overflow: hidden;
+            }
+        }
+
+        // type
+        &.k-border,
+        &.k-grid {
+            .k-table-wrapper {
+                border-left: ${table.border};
+                border-right: ${table.border};
+            }
+        }
+        &.k-grid {
+            td:not(:last-of-type),
+            th:not(:last-of-type) {
+                border-right: ${table.border};
+            }
+            th:before {
+                display: none;
+            }
+        }
+
+        // stripe
+        &.k-stripe {
+            tr:nth-child(even):not(:hover) td {
+                background: ${table.stripeBgColor};
             }
         }
     `;

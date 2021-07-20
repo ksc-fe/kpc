@@ -9,7 +9,7 @@ import {Checkbox} from '../checkbox';
 
 const {
     data, children, className, fixHeader,
-    checkType, rowKey
+    checkType, rowKey, type, stripe, rowClassName,
 } = this.get();
 const {getColumns} = this.columns;
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -19,6 +19,8 @@ const classNameObj = {
     'k-fix-header': fixHeader,
     [`k-scroll-${scrollPosition.value}`]: true,
     'k-fix-columns': hasFixed.value,
+    [`k-${type}`]: type && type !== 'default',
+    'k-stripe': stripe,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -72,6 +74,7 @@ const tbody = (
             checked={isChecked(key)}
             index={$key}
             disabled={isDisabledKey(key)}
+            className={rowClassName && rowClassName($value, $key, key)}
         />
     </tbody>
 );

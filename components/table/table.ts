@@ -16,6 +16,9 @@ export interface TableProps {
     rowKey?: (value: any, index: number) => TableRowKey
     rowCheckable?: boolean
     disableRow?: (value: any, index: number, key: TableRowKey) => boolean
+    type?: 'default' | 'border' | 'grid'
+    stripe?: boolean
+    rowClassName?: (value: any, index: number, key: TableRowKey) => string | undefined
 }
 
 export type TableRowKey = string | number;
@@ -29,6 +32,9 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     rowKey: Function,
     rowCheckable: Boolean,
     disableRow: Function,
+    type: ['default', 'border', 'grid'],
+    stripe: Boolean,
+    rowClassName: Function,
 };
 
 const defaults = (): Partial<TableProps> => ({

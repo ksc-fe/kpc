@@ -3,10 +3,14 @@ import {noop} from 'intact-shared';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 
-const {columns, data, checkType, hasFixedLeft, checked, disabled} = this.get();
+const {
+    columns, data, checkType, hasFixedLeft,
+    checked, disabled, className,
+} = this.get();
 const classNameObj = {
     'k-disabled': disabled,
     'k-checked': checked,
+    [className]: className,
 };
 
 const createCheckTypeVNode = (children) => {
