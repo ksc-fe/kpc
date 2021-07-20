@@ -1,0 +1,40 @@
+import {getClassAndStyleForFixed} from './useFixedColumns';
+import {noop} from 'intact-shared';
+import {Checkbox} from '../checkbox';
+import {Radio} from '../radio';
+
+const {columns, data, checkType, hasFixedLeft, checked} = this.get();
+
+const createCheckTypeVNode = (children) => {
+    return <td
+        {...getClassAndStyleForFixed({
+            fixed: hasFixedLeft ? 'left' : false,
+            offset: 0
+        })}
+    >{children}</td>
+}
+const checkTypeVNode = checkType === 'checkbox' ?
+    createCheckTypeVNode(<Checkbox value={checked} />) :
+    checkType === 'radio' ?
+        createCheckTypeVNode(<Radio value={checked} />) :
+        null;
+
+<tr ev-click={this.onClick}>
+    {checkTypeVNode}
+    <td v-for={columns} v-for-value="column"
+        {...getClassAndStyleForFixed(column.props)}
+    >
+        {(() => {
+            const props = column.props;
+            const blocks = props.$blocks; 
+            if (blocks) {
+                const template = blocks.template || blocks.default;
+                if (template) {
+                    return template(noop, data);
+                }
+            }
+            return data[props.key];
+        })()}
+    </td>
+</tr>
+

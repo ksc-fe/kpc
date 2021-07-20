@@ -1,0 +1,7 @@
+import {getClassAndStyleForFixed} from './useFixedColumns';
+
+const {title, className, fixed} = this.get();
+
+<th {...getClassAndStyleForFixed(this.get())}>
+    {title}
+</th>

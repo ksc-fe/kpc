@@ -49,9 +49,8 @@ describe('Form', () => {
     // });
 
     it('custom rules', async () => {
-        const instance = mount(CustomDemo);
+        const [instance, element] = mount(CustomDemo);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as HTMLElement;
         const [input, input1] = Array.from<HTMLElement>(element.querySelectorAll('input'));
         instance.set<{'descriptions.0': string}>('descriptions.0', '1');
         dispatchEvent(input, 'focusout');
@@ -84,9 +83,8 @@ describe('Form', () => {
 
     it('validate asynchronously', async function() {
         this.timeout(0);
-        const i = mount(RemoteDemo);
+        const [i, element] = mount(RemoteDemo);
 
-        const element = findDomFromVNode(i.$lastInput!, true) as HTMLElement;
         const form = i.refs.form;
         i.set('userName', 'a');
         await wait();
@@ -104,8 +102,7 @@ describe('Form', () => {
     });
 
     it('should trigger submit event if form is valid', async () => {
-        const i = mount(RemoteDemo);
-        const element = findDomFromVNode(i.$lastInput!, true) as HTMLElement;
+        const [i, element] = mount(RemoteDemo);
         const form = i.refs.form;
         const cb = sinon.spy();
 
@@ -138,9 +135,8 @@ describe('Form', () => {
             private FormItem = FormItem;
         }
 
-        const i = mount(Demo);
+        const [i, el] = mount(Demo);
         const form = i.refs.form;
-        const el = findDomFromVNode(i.$lastInput!, true) as HTMLElement;
         await form.validate();
 
         // required
@@ -425,7 +421,7 @@ describe('Form', () => {
             FormItem = FormItem;
             Input = Input;
         }
-        const instance = mount(Demo);
+        const [instance] = mount(Demo);
 
         const {form, formItem} = instance.refs;
         await form.validate();

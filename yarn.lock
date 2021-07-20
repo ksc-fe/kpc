@@ -7535,10 +7535,10 @@ intact-react@^1.1.30:
   resolved "https://registry.nlark.com/intact-react/download/intact-react-1.1.31.tgz#8dc06e8df8d91e6753585fa8c4af4ee7537663ab"
   integrity sha1-jcBujfjZHmdTWF+oxK9O51N2Y6s=
 
-intact-shared@^3.0.0-beta.8:
-  version "3.0.0-beta.8"
-  resolved "https://registry.nlark.com/intact-shared/download/intact-shared-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135059001&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fintact-shared%2Fdownload%2Fintact-shared-3.0.0-beta.8.tgz#4db8017c75849a2862731d127f8cb84b1c05f5f1"
-  integrity sha1-TbgBfHWEmihicx0Sf4y4SxwF9fE=
+intact-shared@^3.0.0-beta.10:
+  version "3.0.0-beta.10"
+  resolved "https://registry.nlark.com/intact-shared/download/intact-shared-3.0.0-beta.10.tgz#1af5400f5b15865110b63e44dda415265f8fafa2"
+  integrity sha1-GvVAD1sVhlEQtj5E3aQVJl+Pr6I=
 
 intact-vue@^1.0.0:
   version "1.0.0"
@@ -7547,16 +7547,16 @@ intact-vue@^1.0.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-intact@^3.0.0-beta.8:
-  version "3.0.0-beta.8"
-  resolved "https://registry.nlark.com/intact/download/intact-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135078303&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fintact%2Fdownload%2Fintact-3.0.0-beta.8.tgz#5dea1aec13187f877b73cee6350d6831787ba835"
-  integrity sha1-Xeoa7BMYf4d7c87mNQ1oMXh7qDU=
+intact@^3.0.0-beta.10:
+  version "3.0.0-beta.10"
+  resolved "https://registry.nlark.com/intact/download/intact-3.0.0-beta.10.tgz#553bef409acd03993d02fd34240b621f0aad8e6f"
+  integrity sha1-VTvvQJrNA5k9Av00JAtiHwqtjm8=
   dependencies:
-    intact-shared "^3.0.0-beta.8"
-    misstime "^3.0.0-beta.8"
+    intact-shared "^3.0.0-beta.10"
+    misstime "^3.0.0-beta.10"
     tslib "^2.2.0"
-    vdt "^3.0.0-beta.8"
-    vdt-compiler "^3.0.0-beta.8"
+    vdt "^3.0.0-beta.10"
+    vdt-compiler "^3.0.0-beta.10"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9393,12 +9393,12 @@ minizlib@^2.0.0, minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
-misstime@^3.0.0-beta.8:
-  version "3.0.0-beta.8"
-  resolved "https://registry.nlark.com/misstime/download/misstime-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135062967&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fmisstime%2Fdownload%2Fmisstime-3.0.0-beta.8.tgz#5a2e75bd5b42784e8c61eb2bf1edc27e3a69f12d"
-  integrity sha1-Wi51vVtCeE6MYesr8e3Cfjpp8S0=
+misstime@^3.0.0-beta.10:
+  version "3.0.0-beta.10"
+  resolved "https://registry.nlark.com/misstime/download/misstime-3.0.0-beta.10.tgz#1d058b62cd64b294c06cafcfc0515337a02d8568"
+  integrity sha1-HQWLYs1kspTAbK/PwFFTN6AthWg=
   dependencies:
-    intact-shared "^3.0.0-beta.8"
+    intact-shared "^3.0.0-beta.10"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13655,13 +13655,13 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vdt-compiler@^3.0.0-beta.8:
-  version "3.0.0-beta.8"
-  resolved "https://registry.nlark.com/vdt-compiler/download/vdt-compiler-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135068249&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvdt-compiler%2Fdownload%2Fvdt-compiler-3.0.0-beta.8.tgz#e9f53ff62318a93bbee1d378ea7c12f0006bca58"
-  integrity sha1-6fU/9iMYqTu+4dN46nwS8ABrylg=
+vdt-compiler@^3.0.0-beta.10:
+  version "3.0.0-beta.10"
+  resolved "https://registry.nlark.com/vdt-compiler/download/vdt-compiler-3.0.0-beta.10.tgz#594ec2e0cd29613664fc50c97f68c3affb4b8b70"
+  integrity sha1-WU7C4M0pYTZk/FDJf2jDr/tLi3A=
   dependencies:
-    intact-shared "^3.0.0-beta.8"
-    misstime "^3.0.0-beta.8"
+    intact-shared "^3.0.0-beta.10"
+    misstime "^3.0.0-beta.10"
     tslib "^2.2.0"
 
 vdt-loader@^3.0.0-beta.1:
@@ -13673,13 +13673,13 @@ vdt-loader@^3.0.0-beta.1:
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-vdt@^3.0.0-beta.8:
-  version "3.0.0-beta.8"
-  resolved "https://registry.nlark.com/vdt/download/vdt-3.0.0-beta.8.tgz?cache=0&sync_timestamp=1623135068002&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fvdt%2Fdownload%2Fvdt-3.0.0-beta.8.tgz#40f743670768cd2c53609cb12b00d671d615eb6e"
-  integrity sha1-QPdDZwdozSxTYJyxKwDWcdYV624=
+vdt@^3.0.0-beta.10:
+  version "3.0.0-beta.10"
+  resolved "https://registry.nlark.com/vdt/download/vdt-3.0.0-beta.10.tgz#22fc61f36ded36be08d82d8efe582cfeea1bf410"
+  integrity sha1-Ivxh823tNr4I2C2O/lgs/uob9BA=
   dependencies:
-    intact-shared "^3.0.0-beta.8"
-    misstime "^3.0.0-beta.8"
+    intact-shared "^3.0.0-beta.10"
+    misstime "^3.0.0-beta.10"
     tslib "^2.2.0"
 
 vendors@^1.0.3:

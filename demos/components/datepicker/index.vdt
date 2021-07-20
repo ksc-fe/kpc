@@ -1,0 +1,6 @@
+import {Datepicker} from 'kpc/components/datepicker';
+
+<div>
+    <Datepicker v-model="days" multiple />
+</div>
+

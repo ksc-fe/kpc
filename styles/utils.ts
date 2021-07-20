@@ -45,7 +45,7 @@ export function palette(color: string, level: number) {
     else if (level > 0 && level <= 4)
         ret = tinycolor({h: h + level, s: s + level * inS, v: v - level * inV}).toHexString();
     else
-        ret =color;
+        ret = color;
 
     return (cache[key] = ret);
 }
@@ -56,6 +56,16 @@ export function getLeft(padding: string) {
     if (length === 4) {
         return paddings[3];
     } else if (length > 1) {
+        return paddings[1];
+    } else {
+        return padding;
+    }
+}
+
+export function getRight(padding: string) {
+    const paddings = padding.split(/\s+/);
+    const length = paddings.length;
+    if (length > 1) {
         return paddings[1];
     } else {
         return padding;

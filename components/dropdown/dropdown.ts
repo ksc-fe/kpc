@@ -9,6 +9,7 @@ import {
     inject,
     findDomFromVNode,
     createVNode,
+    nextTick,
 } from 'intact';
 import {bind, isTextChildren} from '../utils';
 import {EMPTY_OBJ, isFunction} from 'intact-shared';
@@ -21,7 +22,7 @@ import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 
 export type Position = Options 
 
-type DropdownChildren = [VNode, VNodeComponentClass<DropdownMenu>];
+type DropdownChildren = [VNode, VNode];
 
 export const DROPDOWN = 'Dropdown';
 export const ROOT_DROPDOWN = 'RootDropdown';
@@ -106,17 +107,20 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         ];
     };
 
-    private timer: number | undefined = undefined;
-    private triggerProps: any = null;
-    public menuVNode: VNodeComponentClass<DropdownMenu> | null = null;
+    public menuVNode: VNode | null = null;
     public dropdown: Dropdown | null = null;
     public rootDropdown: Dropdown | null = null;
+    public showedDropdown: Dropdown | null = null;
+
+    private timer: number | undefined = undefined;
+    private triggerProps: any = null;
 
     init() {
         provide(DROPDOWN, this);
         this.dropdown = inject<Dropdown | null>(DROPDOWN, null);
 
         useDocumentClickForDropdown(this);
+        useHideLastMenuOnShow(this);
 
         // is root dropdown or not
         const rootDropdown = this.rootDropdown = inject(ROOT_DROPDOWN, null);
@@ -142,11 +146,17 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         });
     }
 
-    show() {
+    show(shouldFocus: boolean = false) {
         if (this.get('disabled')) return;
 
         clearTimeout(this.timer);
         this.set('value', true);
+
+        if (shouldFocus) {
+            nextTick(() => {
+                this.focusFirst();
+            });
+        }
     }
 
     hide(immediately: boolean = false) {
@@ -162,6 +172,10 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         }
     }
 
+    focusFirst() {
+        this.trigger('shouldFocus');
+    }
+
     @bind
     position() {
         let ofElement: HTMLElement | MouseEvent | undefined; 
@@ -175,7 +189,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         }
 
         let feedback: Feedback;
-        position(this.menuVNode!.children!.elementRef.value!, {
+        position(findDomFromVNode(this.menuVNode!, true) as HTMLElement, {
             my: 'left top+8',
             at: 'left bottom',
             ...this.get('position'),
@@ -195,7 +209,8 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         this.show();
     }
 
-    @bind onContextMenu(e: MouseEvent) {
+    @bind 
+    private onContextMenu(e: MouseEvent) {
         this.callOriginalCallback('ev-contextmenu', e);
 
         e.preventDefault();
@@ -217,10 +232,8 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
 }
 
 function useDocumentClickForDropdown(dropdown: Dropdown) {
-    const elementRef = () => dropdown.menuVNode!.children!.elementRef;
+    const elementRef = () => findDomFromVNode(dropdown.menuVNode!, true) as Element;
     const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, (e) => {
-        // ingore mousedown and move mouse to outside
-        if (dropdown.menuVNode!.children!.mousedownRef!.value) return;
         // if click an trigger and the trigger type is hover, ignore it
         if (dropdown.get('trigger') === 'hover') {
             const triggerDom = findDomFromVNode(dropdown.$lastInput!, true) as Element;
@@ -233,4 +246,17 @@ function useDocumentClickForDropdown(dropdown: Dropdown) {
 
     dropdown.on('show', addDocumentClick);
     dropdown.on('hide', removeDocumentClick);
+}
+
+function useHideLastMenuOnShow(dropdown: Dropdown) {
+    const parentDropdown = dropdown.dropdown;
+    dropdown.on('show', () => {
+        if (parentDropdown) {
+            const showed = parentDropdown.showedDropdown;
+            if (showed && showed !== dropdown) {
+                showed.hide(true);
+            }
+            parentDropdown.showedDropdown = dropdown;
+        }
+    });
 }

@@ -1,18 +1,23 @@
-import {Component, TypeDefs, inject} from 'intact';
+import {Component, TypeDefs, inject, VNodeComponentClass} from 'intact';
 import template from './item.vdt';
 import {bind} from '../utils';
 import {useItemKeyboard, MenuKeyboardMethods} from './useKeyboard';
 import {Dropdown, DROPDOWN} from './dropdown';
 import {DropdownMenu, DROPDOWN_MENU} from './menu';
+import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 
 export interface DropdownItemProps {
     disabled: boolean
     hideOnSelect: boolean
+
+    _isFocus: boolean
 }
 
 const typeDefs: Required<TypeDefs<DropdownItemProps>> = {
     disabled: Boolean,
     hideOnSelect: Boolean,
+
+    _isFocus: null,
 }
 
 const defaults = (): Partial<DropdownItemProps> => ({
@@ -25,16 +30,21 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    public parentDropdown?: Dropdown;
+
     private dropdown: Dropdown | null = null;
     private keyboard: ReturnType<typeof useKeyboardForDropdownItem> | null = null;
+    private dropdownMenu: DropdownMenu | null = null;
 
     init() {
         this.dropdown = inject<Dropdown>(DROPDOWN)!;
-        this.keyboard = useKeyboardForDropdownItem(this); 
+        this.parentDropdown = this.hasSubMenu();
+        this.dropdownMenu = inject<DropdownMenu>(DROPDOWN_MENU)!;
+        this.keyboard = useKeyboardForDropdownItem(this);
     }
 
     select() {
-        if (this.hasSubMenu()) return;
+        if (this.parentDropdown) return;
 
         if (this.get('hideOnSelect')) {
             // hide all dropdowns
@@ -58,32 +68,21 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
     private onClick(e: MouseEvent) {
         if (this.get('disabled')) return;
 
+        // Some cases, the item may been removed after click immediately
+        // and the menu will hide, because it cann't detect it contains
+        // the removed item.
+        // Set the ignore flag to prevent menu from hidding
+        (e as IgnoreClickEvent)._ignore = true;
         this.trigger('click', e);
         this.select();
     }
-
-    @bind
-    private onMouseEnter(e: MouseEvent) {
-        this.trigger('mouseenter', e);
-        if (this.get('disabled')) return;
-
-        this.keyboard!.focus(this);
-    }
-
-    @bind
-    private onMouseLeave(e: MouseEvent) {
-        this.trigger('mouseleave', e);
-        this.keyboard!.reset();
-    }
 }
 
-function useKeyboardForDropdownItem(dropdownItem: DropdownItem) {
+function useKeyboardForDropdownItem(instance: DropdownItem) {
     const dropdownMenu = inject<DropdownMenu>(DROPDOWN_MENU)!;
-    const parent = dropdownItem.hasSubMenu();
     const showMenu = () => {
-        if (parent) {
-            parent.show();
-            parent.menuVNode!.children!.focusByIndex!(0);
+        if (instance.parentDropdown) {
+            instance.parentDropdown.show(true);
         }
     }
 
@@ -94,7 +93,7 @@ function useKeyboardForDropdownItem(dropdownItem: DropdownItem) {
         },
         onSelect: () => {
             showMenu();
-            dropdownItem.select();
+            instance.select();
         },
     });
 }

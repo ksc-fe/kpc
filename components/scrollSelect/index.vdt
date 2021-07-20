@@ -1,0 +1,38 @@
+import makeStyles from './styles';
+import {getRestProps} from '../utils';
+
+const {value, disabled, disable} = this.get();
+
+const classNameObj = {
+    'k-scroll-select': true, 
+    'k-dragging': this.mouseEvents.dragging.value,
+    'k-disabled': disabled,
+    [makeStyles()]: true,
+}
+
+const {onStart, onWheel, onClick} = this.mouseEvents;
+
+<div {...getRestProps(this)} class={classNameObj}>
+    <div class="k-scroll-select-wrapper"
+        style={{
+            transform: `translateY(${this.translate.translate.value}px)`,
+            marginTop: `${this.mouseEvents.marginTop.value}px`,
+        }}
+        ev-mousedown={!disabled ? onStart : null}
+        ev-wheel={!disabled ? onWheel : null}
+    >
+        <div
+            class={{
+                "k-scroll-select-item": true,
+                "k-active": $value.value === value,
+                "k-disabled": disabled || disable && disable.call(this, $value.value), 
+            }}
+            v-for={this.list.data.value}
+            ev-click={!disabled ? onClick.bind(this, $value, $key) : null}
+        >{$value.label}</div>
+    </div>
+    <div class="k-scroll-select-append" v-if={$blocks.append}>
+        <b:append />
+    </div>
+    <div class="k-scroll-select-border"></div>
+</div>

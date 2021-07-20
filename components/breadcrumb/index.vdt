@@ -1,29 +1,38 @@
-import {getRestProps} from '../utils';
-import BreadcrumbItem from './item';
-import makeStyles from './breadcrumbStyles';
+import {getRestProps, mapChildren} from '../utils';
+import {BreadcrumbItem} from './item';
+import makeStyles from './styles';
 
 const {children, separator, className} = this.get();
 
 const classNameObj = {
     'k-breadcrumb': true,
     [className]: className,
+    [makeStyles()]: true,
 };
 
-const _children = children ? (Array.isArray(children) ? children : [children]) : children;
-let separatorNode = <b:separator>{separator}</b:separator>;
-let vNodes = [];
-for (let i = 0; i < _children.length; i++) {
-    vNodes.push(_children[i]);
-    if (separatorNode && i != _children.length - 1) {
-        vNodes.push(separatorNode);
+const separatorVNode = (
+    <span class="k-breadcrumb-separator">
+        <b:separator>{separator}</b:separator>
+    </span>
+);
+const vNodes = [];
+let lastIndex = -1;
+let separatorAmount = 0;
+mapChildren(children, (vNode, index) => {
+    vNodes.push(vNode);
+    if (vNode.tag === BreadcrumbItem) {
+        lastIndex = index;
+        separatorAmount++;
+        vNodes.push(separatorVNode);
     }
-    else if (i != _children.length - 1) {
-        vNodes.push(<span style="margin: 0 8px">></span>);
-    }
+});
+// remove the last BreadcrumbItem's separator,
+// because it may have other vNodes follow the last BreadcrumbItem.
+// we record the last separator's index and splice array like bellow to remove it
+if (lastIndex > -1) {
+    vNodes.splice(lastIndex + separatorAmount, 1);
 }
 
-<div class={ makeStyles() }>
-    <div class={ classNameObj } { ...getRestProps(this) }>
-        { vNodes }
-    </div>
+<div class={classNameObj} {...getRestProps(this)}>
+    {vNodes}
 </div>

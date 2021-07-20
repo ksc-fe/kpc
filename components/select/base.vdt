@@ -1,0 +1,138 @@
+import {TransitionGroup} from 'intact';
+import {Input} from '../input';
+import {Icon} from '../icon';
+import {isNullOrUndefined} from 'intact-shared';
+import makeStyles from './styles';
+import {Dropdown} from '../dropdown';
+import {getRestProps} from '../utils';
+
+const {
+    value, multiple,
+    loading, disabled, name,
+    size, hideIcon, fluid,
+    clearable, filterable,
+    className, container,
+    inline,
+
+    _show,
+} = this.get();
+
+const classNameObj = {
+    'k-select': true,
+    'k-disabled': disabled,
+    [`k-${size}`]: size !== 'default',
+    'k-fluid': fluid,
+    'k-inline': inline,
+    [className]: className,
+    [$props.className]: $props.className,
+    [makeStyles()]: true,
+};
+
+const placeholder = this.getPlaceholder();
+const label = this.getLabel();
+const hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
+const {onInput, inputRef, keywords: {value: keywords}} = this.input;
+
+<Dropdown
+    trigger="click"
+    ref={this.dropdownRef}
+    disabled={disabled}
+    container={container}
+    v-model="_show"
+>
+    <div {...getRestProps(this)} class={classNameObj} tabindex="0"
+        ev-keydown={this.onKeypress}
+    >
+        <div class="k-select-prefix" v-if={$blocks.prefix}>
+            <b:prefix />
+        </div>
+        <div class="k-select-main">
+            <TransitionGroup name="k-fade">
+                <input type="hidden" value={value} name={name} key="hidden-input" />
+                <Input v-if={!multiple && filterable}
+                    value={_show ? keywords : label}
+                    ev-$change:value={onInput}
+                    disabled={disabled}
+                    placeholder={label || placeholder}
+                    ref={inputRef}
+                    size={size}
+                    fluid
+                    key="input"
+                    readonly={!_show}
+                />
+                <div class="k-select-placeholder c-ellipsis"
+                    v-else-if={!filterable && !hasValue}
+                    key="placeholder"
+                >{placeholder}</div>
+                <div class="k-select-value c-ellipsis" v-else-if={!multiple} key="value">
+                    <b:value params={[value, label]}>
+                        {label}
+                    </b:value>
+                </div>
+                <div v-else
+                    class={{
+                        "k-select-values": true,
+                        "k-with-values": $blocks.values,
+                    }}
+                    key="values"
+                >
+                    <TransitionGroup name="k-fade">
+                        <template>
+                            <b:values params={[value, label]}>
+                                <div class="k-select-tag" 
+                                    v-for={label} 
+                                    key={$value}
+                                >
+                                    <span class="k-select-text">
+                                        <b:value params={[value[$key], $value]}>
+                                            {$value}
+                                        </b:value>
+                                    </span>
+                                    <Icon class="ion-ios-close k-select-close"
+                                        ev-click={this.delete.bind(this, $key)}
+                                        hoverable={!disabled}
+                                    />
+                                </div>
+                            </b:values>
+                        </template>
+                    </TransitionGroup>
+                    <Input v-if={filterable}
+                        class="k-select-input"
+                        value={keywords}
+                        ev-$change:value={onInput}
+                        disabled={disabled}
+                        placeholder={!hasValue ? placeholder : ''}
+                        ref={inputRef}
+                        autoWidth
+                        size={size}
+                        key="filter"
+                        readonly={!_show}
+                    />
+                </div>
+            </TransitionGroup>
+        </div>
+        <span class="k-select-suffix" v-if={!hideIcon || clearable || loading || $blocks.suffix}>
+            <Icon v-if={clearable && !disabled}
+                class={{"k-select-clear ion-ios-close": true, "k-show": hasValue}}
+                ev-click={this.clear}
+                hoverable
+            />
+            <span class="k-select-suffix-icon">
+                <b:suffix>
+                    <Icon class="ion-load-c" rotate v-if={loading} />
+                    <Icon v-else-if={!hideIcon}
+                        class={{
+                            "k-select-arrow ion-ios-arrow-down": true,
+                            'k-disabled': $props.isDisableArrow 
+                        }}
+                    />
+                </b:suffix>
+            </span>
+        </span>
+    </div> 
+    <template>
+        <b:base-menu>
+            <div>should be implemeted</div>
+        </b:base-menu>
+    </template>
+</Dropdown>

@@ -24,9 +24,10 @@ const {icon} = deepDefaults(theme, {
 export const colors = ['primary', 'warning', 'danger', 'success'] as const;
 export const sizes = ['large', 'small', 'mini'] as const;
 
-export default function makeStyles() {
+export default function makeStyles(color?: string) {
     return css`
         font-size: ${icon.fontSize.default};
+        line-height: 1;
         // display: inline-block;
         ${sizes.map(size => {
             return css`
@@ -36,9 +37,13 @@ export default function makeStyles() {
             `
         })}
         ${colors.map(color => {
+            const _color = theme.color[color];
             return css`
                 &.k-${color} {
-                    color: ${theme.color[color]};
+                    color: ${_color};
+                    &.k-hoverable:hover {
+                        color: ${palette(_color, -2)};
+                    }
                 }
             ` 
         })}
@@ -47,6 +52,20 @@ export default function makeStyles() {
         }
         &:before {
             font-size: inherit;
+        }
+
+        // hoverable
+        &.k-hoverable {
+            cursor: pointer;
+            transition: color ${theme.transition};
+            &:hover {
+                color: ${theme.color.primary};
+            }
+            ${color && `
+                &:hover {
+                    color: ${palette(color, -2)} !important;
+                }
+            `}
         }
     `;
 }

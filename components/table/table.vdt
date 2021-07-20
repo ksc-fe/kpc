@@ -1,0 +1,94 @@
+import {eachChildren} from '../utils';
+import {TableColumn} from './column';
+import {makeStyles} from './styles';
+import {isStringOrNumber, isNull} from 'intact-shared';
+import {getClassAndStyleForFixed} from './useFixedColumns';
+import {Affix} from '../affix';
+import {TableRow} from './row';
+import {Checkbox} from '../checkbox';
+
+const {
+    data, children, className, fixHeader,
+    checkType, rowKey
+} = this.get();
+const {getColumns} = this.columns;
+const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
+const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.stickyHeader;
+const classNameObj = {
+    'k-table': true,
+    'k-fix-header': fixHeader,
+    [`k-scroll-${scrollPosition.value}`]: true,
+    'k-fix-columns': hasFixed.value,
+    [className]: className,
+    [makeStyles()]: true,
+};
+const columns = getColumns();
+const style = isStringOrNumber(fixHeader) ? 
+    {maxHeight: `${fixHeader}px`} :
+    null;
+
+const colgroup = (
+    <colgroup>
+        <col v-if={checkType !== 'none'} width="40" />
+        <col v-for={columns} 
+            width={$value.props.width}
+            class={{[$value.props.className]: $value.props.className}}
+        />
+    </colgroup>
+);
+
+const hasFixedLeft = getHasFixedLeft();
+const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
+const thead = (
+    <thead>
+        <tr>
+            <th v-if={checkType !== 'none'}
+                {...getClassAndStyleForFixed({
+                    fixed: hasFixedLeft ? 'left' : false,
+                    offset: 0,
+                })} 
+            >
+                <Checkbox v-if={checkType === 'checkbox'}
+                    value={isAllChecked()} 
+                    ev-$change:value={toggleCheckedAll}
+                />
+            </th>
+            {columns}
+        </tr>
+    </thead>
+);
+
+let key;
+const tbody = (
+    <tbody>
+        <TableRow v-for={data}
+            key={key = rowKey($value, $key)}
+            columns={columns}
+            data={$value}
+            checkType={checkType}
+            hasFixedLeft={hasFixedLeft}
+            onClick={this.clickRow}
+            checked={isChecked(key)}
+        />
+    </tbody>
+);
+
+<div class={classNameObj} ref={elementRef}>
+    <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>
+        <Affix v-if={!isNull(stickHeader.value)}
+            top={stickHeader.value}
+            exclude={excludeStickHeader}
+            class="k-table-affix-header"
+        >
+            <table ref={headRef}>
+                <template>{colgroup}</template>
+                <template>{thead}</template>
+            </table>
+        </Affix>
+        <table>
+            <template>{colgroup}</template>
+            <template v-if={isNull(stickHeader.value)}>{thead}</template>
+            <template>{tbody}</template>
+        </table>
+    </div>
+</div>

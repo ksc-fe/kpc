@@ -33,7 +33,10 @@ export function mount<T extends Component>(Component: ComponentConstructor<T>, s
     // }
     // scroll to the view
     window.scrollTo(0, document.scrollingElement!.scrollHeight - 1080);
-    return instance!;
+
+    const element = findDomFromVNode(instance!.$lastInput!, true) as HTMLElement;
+
+    return [instance!, element] as const;
 }
 
 export function unmount() {

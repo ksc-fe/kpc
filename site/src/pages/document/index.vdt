@@ -5,7 +5,7 @@ import Button from 'components/button';
 const Article = this.get('Article');
 
 let currentNav = {};
-let demos = this.get('demos') || [];
+/* let demos = this.get('demos') || []; */
 
 function Catalog(props) {
     let isEmpty = true;

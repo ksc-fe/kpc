@@ -22,9 +22,10 @@ const transition = $props.transition || {css: false, ...this.transition};
         class={classNameObj}
         ev-mouseenter={this.onMouseEnter}
         ev-mouseleave={trigger === 'hover' ? this.onMouseLeave : null}
-        ev-mousedown={this.onMouseDown}
         ref={this.elementRef}
     >
-        <b:children>{children}</b:children>
+        <b:children>
+            {children}
+        </b:children>
     </div>
 </Transition>

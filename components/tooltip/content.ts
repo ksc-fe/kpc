@@ -11,8 +11,6 @@ export interface TooltipContentProps {
 export class TooltipContent<T extends TooltipContentProps = TooltipContentProps> extends DropdownMenu<T> {
     static template = template;
 
-    public dropdown: Tooltip | null = null;
-
     private arrowRef = createRef<HTMLElement>();
     private isEmptyChildren: boolean = true;
 
@@ -28,7 +26,7 @@ export class TooltipContent<T extends TooltipContentProps = TooltipContentProps>
     onEnter() {
         const feedback = this.dropdown!.position();
 
-        if (!this.dropdown!.get('showArrow')) return;
+        if (!(this.dropdown as Tooltip).get('showArrow')) return;
 
         this.set('_arrow', feedback[feedback.important]);
         nextTick(() => {
@@ -62,7 +60,7 @@ export class TooltipContent<T extends TooltipContentProps = TooltipContentProps>
 
     @bind
     protected onMouseEnter(e: MouseEvent) {
-        const dropdown = this.dropdown!; 
+        const dropdown = this.dropdown as Tooltip; 
         if (dropdown.get('hoverable')) {
             dropdown!.show();
         }

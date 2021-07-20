@@ -8,10 +8,18 @@ const slideDirections = {
     right: 'left center 0',
 };
 
+// TODO: update global when theme changed
 injectGlobal`
     html {
         box-sizing: border-box;
         font-family: -apple-system,BlinkMacSystemFont,SF Pro SC,SF Pro Text,Helvetica Neue,Helvetica,PingFang SC,Segoe UI,Roboto,Hiragino Sans GB,arial,microsoft yahei ui,Microsoft YaHei,SimSun,sans-serif;
+    }
+    body {
+        font-size: ${theme.fontSize};
+        line-height: ${theme.lineHeight};
+        margin: 0;
+        padding: 0;
+        color: ${theme.color.text};
     }
     *, *:before, *:after {
         box-sizing: inherit;
@@ -41,6 +49,21 @@ injectGlobal`
     .k-fade-enter-active,
     .k-fade-leave-active {
         transition: opacity ${theme.transition};
+    }
+    .k-fade-leave-active {
+        position: absolute;
+    }
+    .k-fade-move {
+        transition: transform ${theme.transition};
+    }
+
+    .k-scale-enter-from,
+    .k-scale-leave-to {
+        transform: scale(0);
+    }
+    .k-scale-enter-active,
+    .k-scale-leave-active {
+        transition: transform ${theme.transition};
     }
 
     .c-ellipsis {

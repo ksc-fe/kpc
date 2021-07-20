@@ -318,7 +318,7 @@ export default class Datepicker extends Intact {
                     this.refs.begin._selectFocusDate();
                 }
                 break;
-            case 9:
+            case 9: // tab
                 this.refs.calendar.hide();
                 break;
             case 38:

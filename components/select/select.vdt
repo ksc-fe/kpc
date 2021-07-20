@@ -1,0 +1,27 @@
+import {SelectMenu} from './menu';
+import {isEmptyChildren} from '../utils';
+
+const {className, children, autoDisableArrow, disabled, multiple, value} = this.get();
+const {getCreatedVNode, filter} = this.filterable;
+const options = filter(children);
+const allShowedValues = this.getAllShowedValues(options);
+
+const isDisableArrow =  disabled ||
+    autoDisableArrow && (
+        isEmptyChildren(options) ||
+        allShowedValues.length === 1 &&
+        !multiple &&
+        allShowedValues[0] === value
+    );
+
+<t:super isDisableArrow={isDisableArrow}>
+    <b:base-menu>
+        <SelectMenu class={className} values={allShowedValues}>
+            <template>
+                <b:menu>
+                    {getCreatedVNode(options)}{options}
+                </b:menu>
+            </template>
+        </SelectMenu>
+    </b:base-menu>
+</t:super>
