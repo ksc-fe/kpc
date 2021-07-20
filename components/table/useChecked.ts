@@ -4,10 +4,8 @@ import type {Table, TableRowKey} from './';
 import {toggleArray} from '../utils';
 import {useReceive} from '../../hooks/useReceive';
 
-export function useChecked() {
+export function useChecked(getEnableKeys: () => TableRowKey[]) {
     const instance = useInstance() as Table;
-    let enabledKeys: TableRowKey[] = [];
-    let disabledKeys: TableRowKey[] = [];
 
     function isChecked(key: string | number) {
         const {checkedKeys} = instance.get(); 
@@ -25,27 +23,11 @@ export function useChecked() {
 
     function isAllChecked() {
         const {checkedKeys} = instance.get();
+        const enabledKeys = getEnableKeys();
 
         return enabledKeys.length &&
             checkedKeys &&
             enabledKeys.every(key => checkedKeys.includes(key));
-    }
-
-    function setDisabledKeys() {
-        const {disableRow, rowKey, data} = instance.get(); 
-
-        enabledKeys = [];
-        disabledKeys = [];
-        if (data) {
-            data.forEach((item, index) => {
-                const key = rowKey!(item, index);
-                if (disableRow && disableRow(item, index)) {
-                    disabledKeys.push(key);
-                } else {
-                    enabledKeys.push(key);
-                }
-            });
-        }
     }
 
     function toggleCheckedAll(v: boolean) {
@@ -58,6 +40,7 @@ export function useChecked() {
      */
     function getCheckedAllOrUncheckedAllKeys(isChecked: boolean) {
         const checkedKeys = instance.get('checkedKeys');
+        const enabledKeys = getEnableKeys();
         if (!checkedKeys) {
             if (isChecked) {
                 return enabledKeys.slice();
@@ -82,9 +65,7 @@ export function useChecked() {
         return results;
     }
 
-    useReceive<Table>(['data', 'disableRow'], setDisabledKeys);
-
-    instance.on('click:row', (data: any, key: string | number) => {
+    instance.on('click:row', (data: any, index: number, key: string | number) => {
         if (instance.get('rowCheckable')) {
             toggleChecked(key);
         }

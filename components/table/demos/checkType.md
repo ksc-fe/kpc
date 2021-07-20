@@ -34,7 +34,7 @@ export default class extends Component {
         return {
             data1: [{a: 'checkbox 1'}, {a: 'checkbox 2'}],
             data2: [{a: 'radio 1'}, {a: 'radio 2'}],
-            data3: [{a: 'uncheckable 1'}, {a: 'uncheckable 2'}],
+            data3: [{a: 'no check 1'}, {a: 'no check 2'}],
         }
     }
 }

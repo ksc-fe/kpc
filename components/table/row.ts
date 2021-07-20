@@ -10,8 +10,10 @@ export interface TableRowProps {
     columns: VNodeComponentClass<TableColumn>[]
     checkType: TableProps['checkType'] 
     hasFixedLeft: boolean
-    onClick: (data: any, key: string | number) => void
+    onClick: (data: any, index: number, key: string | number) => void
     checked: boolean
+    index: number
+    disabled: boolean
 }
 
 export class TableRow extends Component<TableRowProps> {
@@ -28,6 +30,8 @@ export class TableRow extends Component<TableRowProps> {
         let isSame = true;
         let key: keyof TableRowProps;
         for (key in lastProps) {
+            // ignore index
+            if (key === 'index') continue;
             if (lastProps[key] !== nextProps[key]) {
                 isSame = false;
                 break;
@@ -41,7 +45,9 @@ export class TableRow extends Component<TableRowProps> {
 
     @bind
     onClick() {
-        const {key, data, onClick} = this.get();
-        onClick(data, key);
+        const {index, key, data, onClick, disabled} = this.get();
+        if (!disabled)  {
+            onClick(data, index, key);
+        }
     }
 }

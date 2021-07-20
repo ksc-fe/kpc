@@ -3,7 +3,11 @@ import {noop} from 'intact-shared';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 
-const {columns, data, checkType, hasFixedLeft, checked} = this.get();
+const {columns, data, checkType, hasFixedLeft, checked, disabled} = this.get();
+const classNameObj = {
+    'k-disabled': disabled,
+    'k-checked': checked,
+};
 
 const createCheckTypeVNode = (children) => {
     return <td
@@ -14,12 +18,12 @@ const createCheckTypeVNode = (children) => {
     >{children}</td>
 }
 const checkTypeVNode = checkType === 'checkbox' ?
-    createCheckTypeVNode(<Checkbox value={checked} />) :
+    createCheckTypeVNode(<Checkbox value={checked} disabled={disabled} />) :
     checkType === 'radio' ?
-        createCheckTypeVNode(<Radio value={checked} />) :
+        createCheckTypeVNode(<Radio value={checked} disabled={disabled} />) :
         null;
 
-<tr ev-click={this.onClick}>
+<tr ev-click={this.onClick} class={classNameObj}>
     {checkTypeVNode}
     <td v-for={columns} v-for-value="column"
         {...getClassAndStyleForFixed(column.props)}

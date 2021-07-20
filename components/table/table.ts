@@ -5,6 +5,7 @@ import {useFixedColumns} from './useFixedColumns';
 import {useStickyHeader} from './useStickyHeader';
 import {bind} from '../utils';
 import {useChecked} from './useChecked';
+import {useDisableRow} from './useDisableRow';
 
 export interface TableProps {
     data?: any[]
@@ -14,7 +15,7 @@ export interface TableProps {
     checkedKeys?: (string | number)[]
     rowKey?: (value: any, index: number) => TableRowKey
     rowCheckable?: boolean
-    disableRow?: (value: any, index: number) => boolean
+    disableRow?: (value: any, index: number, key: TableRowKey) => boolean
 }
 
 export type TableRowKey = string | number;
@@ -44,10 +45,11 @@ export class Table extends Component<TableProps> {
     private columns = useColumns();
     private fixedColumns = useFixedColumns(this.columns.getColumns);
     private stickyHeader = useStickyHeader();
-    private checked = useChecked();
+    private disableRow = useDisableRow();
+    private checked = useChecked(this.disableRow.getEnableKeys);
 
     @bind
-    private clickRow(data: any, key: string | number) {
-        this.trigger('click:row', data, key);
+    private clickRow(data: any, index: number, key: string | number) {
+        this.trigger('click:row', data, index, key);
     }
 }
