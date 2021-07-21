@@ -6,6 +6,7 @@ import {useStickyHeader} from './useStickyHeader';
 import {bind} from '../utils';
 import {useChecked} from './useChecked';
 import {useDisableRow} from './useDisableRow';
+import {useSortable} from './useSortable';
 
 export interface TableProps {
     data?: any[]
@@ -19,9 +20,15 @@ export interface TableProps {
     type?: 'default' | 'border' | 'grid'
     stripe?: boolean
     rowClassName?: (value: any, index: number, key: TableRowKey) => string | undefined
+    group?: Record<string, any> 
+    sort?: TableSortValue 
 }
 
 export type TableRowKey = string | number;
+export type TableSortValue = {
+    key?: string
+    type?: 'desc' | 'asc'
+}
 
 const typeDefs: Required<TypeDefs<TableProps>> = {
     data: Array,
@@ -35,6 +42,8 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     type: ['default', 'border', 'grid'],
     stripe: Boolean,
     rowClassName: Function,
+    group: Object,
+    sort: Object,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -53,6 +62,7 @@ export class Table extends Component<TableProps> {
     private stickyHeader = useStickyHeader();
     private disableRow = useDisableRow();
     private checked = useChecked(this.disableRow.getEnableKeys);
+    private sortable = useSortable();
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {

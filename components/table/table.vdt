@@ -7,11 +7,12 @@ import {Affix} from '../affix';
 import {TableRow} from './row';
 import {Checkbox} from '../checkbox';
 import {context} from './useGroup';
+import {context as sortableContext} from './useSortable';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
-    rowClassName, group,
+    rowClassName, group, sort,
 } = this.get();
 const {getColumns} = this.columns;
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -44,6 +45,7 @@ const colgroup = (
 const hasFixedLeft = getHasFixedLeft();
 const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
 const Provider = context.Provider;
+const SortableProvider = sortableContext.Provider;
 const thead = (
     <thead>
         <tr>
@@ -59,7 +61,9 @@ const thead = (
                 />
             </th>
             <Provider value={{group, onChange: this.onChangeGroup}}>
-                {columns}
+                <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
+                    {columns}
+                </SortableProvider>
             </Provider>
         </tr>
     </thead>

@@ -39,6 +39,14 @@ const {table} = deepDefaults(theme, {
             color: `#a6a6a6`,
             get menuMaxHeight() { return select.menuMaxHeight },
             get activeColor() { return theme.color.primary },
+        },
+
+        // sort
+        sort: {
+            iconHeight: `7px`,
+            gap: `10px`,
+            color: `#a6a6a6`,
+            disabledColor: `#ddd`,
         }
     }
 });
@@ -215,6 +223,24 @@ export function makeStyles() {
             .k-radio {
                 position: relative;
                 top: -1px;
+            }
+        }
+
+        // sortable
+        .k-column-sortable {
+            cursor: pointer;
+        }
+        .k-column-sort {
+            .k-icon {
+                display: block;
+                height: ${table.sort.iconHeight};
+                line-height: ${table.sort.iconHeight};
+                margin-left: ${table.sort.gap};
+                color: ${table.sort.color};
+            }
+            &.k-asc .k-icon.k-desc,
+            &.k-desc .k-icon.k-asc {
+                color: ${table.sort.disabledColor};
             }
         }
     `;
