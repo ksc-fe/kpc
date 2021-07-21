@@ -1,7 +1,49 @@
 import {getClassAndStyleForFixed} from './useFixedColumns';
+import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {Checkbox} from '../checkbox';
+import {makeGroupMenuStyles} from './styles';
+import {isStringOrNumber, get} from 'intact-shared';
+import {context} from './useGroup';
 
-const {title, className, fixed} = this.get();
+const {title, className, fixed, group, multiple, key} = this.get();
+const {onSelect, isChecked, getGroupText} = this.group;
+const Consumer = context.Consumer;
 
-<th {...getClassAndStyleForFixed(this.get())}>
-    {title}
-</th>
+<Consumer>
+    {({group: currentGroup, onChange}) => {
+        const groupValue = currentGroup && currentGroup[key];
+        const groupText = getGroupText(groupValue);
+
+        let checked;
+        return <th {...getClassAndStyleForFixed(this.get())}
+            title={isStringOrNumber(title) ? title + (groupText || '') : null}
+        >
+            <div class="k-table-title">
+                <div class="k-table-title-text c-ellipsis">
+                    <span>{title}</span>
+                    {groupText}
+                </div>
+                <Dropdown v-if={group}
+                    position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
+                    key="dropdown"
+                >
+                    <Button icon size="mini" class="k-table-group">
+                        <Icon class="ion-android-arrow-dropdown" />
+                    </Button>
+                    <DropdownMenu class={{"k-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
+                        <DropdownItem v-for={group}
+                            ev-select={() => onSelect($value.value, groupValue, onChange)}
+                            hideOnSelect={!multiple}
+                            class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                        >
+                            <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
+                            <span v-else>{$value.label}</span>
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
+        </th>
+    }}
+</Consumer>

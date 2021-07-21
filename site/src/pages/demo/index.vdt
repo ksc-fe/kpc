@@ -1,5 +1,5 @@
-const Demo = self.get('Demo');
+const Demo = this.get('Demo');
 
-<div class={{ `example ${Demo.data.index}` }}>
+<div class={`example ${Demo.data.index}`}>
     <Demo.default />
 </div>

@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import {select} from '../select/styles';
 
 const {table} = deepDefaults(theme, {
     table: {
@@ -30,6 +31,15 @@ const {table} = deepDefaults(theme, {
 
         // stripe
         stripeBgColor: '#f9f9fc',
+
+        // group
+        group: {
+            width: `14px`,
+            gap: `10px`,
+            color: `#a6a6a6`,
+            get menuMaxHeight() { return select.menuMaxHeight },
+            get activeColor() { return theme.color.primary },
+        }
     }
 });
 
@@ -49,6 +59,7 @@ export function makeStyles() {
             table-layout: fixed;
         }
 
+        // thead
         thead {
             text-align: ${table.thead.textAlign};
             font-size: ${table.thead.fontSize};
@@ -78,7 +89,16 @@ export function makeStyles() {
             }
             border-bottom: ${table.border};
         }
+        .k-table-title {
+            display: inline-flex;
+            align-items: center;
+            max-width: 100%;
+        }
+        .k-table-title-text {
+            flex: 1;
+        }
 
+        // tbody
         tbody {
             tr {
                 &:hover td {
@@ -167,5 +187,45 @@ export function makeStyles() {
                 background: ${table.stripeBgColor};
             }
         }
+
+        // group
+        .k-table-group {
+            width: ${table.group.width} !important;
+            height: ${table.group.width} !important;
+            margin-left: ${table.group.gap};
+            position: relative;
+            color: ${table.group.color};
+            &:hover {
+                color: ${theme.color.primary};
+            }
+            .k-icon {
+                position: absolute;
+                top: -1px;
+                left: 2px;
+                transition: transform ${theme.transition};
+            }
+            &.k-dropdown-open .k-icon {
+                transform: rotate(180deg);
+            }
+        } 
+
+        // force checkbox / radio vertical align middle
+        .k-table-check {
+            .k-checkbox,
+            .k-radio {
+                position: relative;
+                top: -1px;
+            }
+        }
     `;
+}
+
+export function makeGroupMenuStyles() {
+    return css`
+        max-height: ${table.group.menuMaxHeight};
+        overflow: auto;
+        .k-dropdown-item.k-active {
+            color: ${table.group.activeColor};
+        }
+    `
 }

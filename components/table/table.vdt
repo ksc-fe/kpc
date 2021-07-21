@@ -6,10 +6,12 @@ import {getClassAndStyleForFixed} from './useFixedColumns';
 import {Affix} from '../affix';
 import {TableRow} from './row';
 import {Checkbox} from '../checkbox';
+import {context} from './useGroup';
 
 const {
     data, children, className, fixHeader,
-    checkType, rowKey, type, stripe, rowClassName,
+    checkType, rowKey, type, stripe,
+    rowClassName, group,
 } = this.get();
 const {getColumns} = this.columns;
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -41,6 +43,7 @@ const colgroup = (
 
 const hasFixedLeft = getHasFixedLeft();
 const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
+const Provider = context.Provider;
 const thead = (
     <thead>
         <tr>
@@ -55,7 +58,9 @@ const thead = (
                     ev-$change:value={toggleCheckedAll}
                 />
             </th>
-            {columns}
+            <Provider value={{group, onChange: this.onChangeGroup}}>
+                {columns}
+            </Provider>
         </tr>
     </thead>
 );

@@ -125,6 +125,8 @@ const {select} = deepDefaults(theme, {
     )
 });
 
+export {select};
+
 export default function makeStyles() {
     return css`
         display: inline-flex;
@@ -350,10 +352,11 @@ export function makeMenuStyles() {
                 margin-left: ${searchable.footer.btnGap};
             }
         }
-        .k-select-checkbox {
-            display: block;
-            margin: 0 -${getRight(searchable.optionPadding)} 0 -${getLeft(searchable.optionPadding)};
-            padding: ${searchable.optionPadding};
+        .k-select-option {
+            .k-checkbox {
+                margin: 0 -${getRight(searchable.optionPadding)} 0 -${getLeft(searchable.optionPadding)};
+                padding: ${searchable.optionPadding};
+            }
         }
 
         // multiple checkmark

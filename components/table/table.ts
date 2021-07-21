@@ -58,4 +58,9 @@ export class Table extends Component<TableProps> {
     private clickRow(data: any, index: number, key: string | number) {
         this.trigger('click:row', data, index, key);
     }
+    
+    @bind
+    private onChangeGroup(key: string, value: any) {
+        this.set(`group.${key}`, value);
+    }
 }
