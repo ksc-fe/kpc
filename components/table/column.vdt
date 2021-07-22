@@ -7,6 +7,7 @@ import {makeGroupMenuStyles} from './styles';
 import {isStringOrNumber, get} from 'intact-shared';
 import {context} from './useGroup';
 import {context as sortableContext} from './useSortable';
+import {linkEvent} from 'intact';
 
 const {title, fixed, group, multiple, key, sortable} = this.get();
 const {onSelect, isChecked, getGroupText} = this.group;
@@ -32,11 +33,11 @@ const classNameObj = {
                 return <th className={classNameObj}
                     style={style}
                     title={isStringOrNumber(title) ? title + (groupText || '') : null}
-                    ev-click={() => onChangeSort(key)}
+                    ev-click={linkEvent(key, onChangeSort)}
                 >
                     <div class="k-table-title">
                         <div class="k-table-title-text c-ellipsis">
-                            <span>{title}</span>
+                            <b:title>{title}</b:title>
                             {groupText}
                         </div>
                         <Dropdown v-if={group}
