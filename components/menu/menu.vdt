@@ -1,0 +1,47 @@
+import {directClone} from 'intact';
+import Item from './item';
+import {DropdownMenu} from '../dropdown';
+import {mapChildren, isStringOrNumberNotEmpty, getRestProps} from '../utils';
+import makeStyles from './menuStyles';
+
+const {
+    children, className, collapse, dot,
+    theme, type, size,
+} = this.get();
+
+const classNameObj = {
+    'k-menu': true,
+    [className]: className,
+    [`k-${theme}`]: !this.rootMenu && theme,
+    [`k-${size}`]: !this.rootMenu && size && size !== 'default',
+    'k-collapsed': collapse,
+    [`k-${type}`]: type,
+    [makeStyles()]: true,
+};
+
+const header = (
+    <div class="k-menu-header" v-if={$blocks.header}>
+        {
+            mapChildren(<b:header />, vNode => {
+                if (vNode.type & 1 || isStringOrNumberNotEmpty(vNode)) {
+                    return <span>{vNode}</span>;
+                } else {
+                    return vNode;
+                }
+            })
+        }
+    </div>
+);
+
+<template>
+    <div v-if={!this.isDropdownMenu()}
+        {...getRestProps(this)}
+        class={classNameObj}
+    >{header}{children}</div>
+    <DropdownMenu 
+        v-else 
+        class={{'k-menu': true, 
+                [`k-${this.rootMenu.get('theme') || 'dark'}`]: true,
+                [makeStyles()]: true}}
+    >{header}{children}</DropdownMenu>
+</template>
