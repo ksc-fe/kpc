@@ -249,6 +249,11 @@ export function makeStyles() {
         .k-table-spin.k-overlay {
             z-index: 2;
         }
+
+        // empty
+        .k-table-empty {
+            text-align: center;
+        }
     `;
 }
 

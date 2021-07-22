@@ -10,6 +10,7 @@ import {context} from './useGroup';
 import {context as sortableContext} from './useSortable';
 import {Spin} from '../spin';
 import {Transition} from 'intact';
+import {_$} from '../../i18n';
 
 const {
     data, children, className, fixHeader,
@@ -43,6 +44,7 @@ const colgroup = (
         />
     </colgroup>
 );
+const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
 const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
@@ -60,6 +62,7 @@ const thead = (
                 <Checkbox v-if={checkType === 'checkbox'}
                     value={isAllChecked()} 
                     ev-$change:value={toggleCheckedAll}
+                    disabled={!hasData}
                 />
             </th>
             <Provider value={{group, onChange: this.onChangeGroup}}>
@@ -75,18 +78,25 @@ const {isDisabledKey} = this.disableRow;
 let key;
 const tbody = (
     <tbody>
-        <TableRow v-for={data}
-            key={key = rowKey($value, $key)}
-            columns={columns}
-            data={$value}
-            checkType={checkType}
-            hasFixedLeft={hasFixedLeft}
-            onClick={this.clickRow}
-            checked={isChecked(key)}
-            index={$key}
-            disabled={isDisabledKey(key)}
-            className={rowClassName && rowClassName($value, $key, key)}
-        />
+        <tr v-if={!hasData} key="table-empty">
+            <td colspan={columns.length + (checkType !== 'none' ? 1 : 0)} class="k-table-empty">
+                <b:empty>{_$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~')}</b:empty>
+            </td>
+        </tr>
+        <template v-else>
+            <TableRow v-for={data}
+                key={key = rowKey($value, $key)}
+                columns={columns}
+                data={$value}
+                checkType={checkType}
+                hasFixedLeft={hasFixedLeft}
+                onClick={this.clickRow}
+                checked={isChecked(key)}
+                index={$key}
+                disabled={isDisabledKey(key)}
+                className={rowClassName && rowClassName($value, $key, key)}
+            />
+        </template>
     </tbody>
 );
 
