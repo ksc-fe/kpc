@@ -66,6 +66,20 @@ injectGlobal`
         transition: transform ${theme.transition};
     }
 
+    .k-expand-enter-from,
+    .k-expand-leave-to {
+        opacity: 0;
+        overflow: hidden;
+    }
+    .k-expand-enter-active,
+    .k-expand-leave-active {
+        transition: all ${theme.transition};
+        overflow: hidden;
+    }
+    .k-expand-move {
+        transition: transform ${theme.transition};
+    }
+
     .c-ellipsis {
         white-space: nowrap;
         overflow: hidden;

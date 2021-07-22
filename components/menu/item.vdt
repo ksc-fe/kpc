@@ -1,0 +1,89 @@
+import {directClone, Transition} from 'intact';
+import {Dropdown, DropdownItem} from '../dropdown';
+import {Tooltip} from '../tooltip';
+import {Icon} from '../icon';
+import {Menu} from './menu';
+import makeStyles from './itemStyles';
+import {
+    mapChildren, expandAnimationCallbacks, 
+    isStringOrNumberNotEmpty, getRestProps
+} from '../utils';
+
+const {theme, type} = this.rootMenu.get();
+const {children, key, className, dot, disabled, _show} = this.get();
+const {isHighlighted} = this.highlight;
+
+let subMenuVNode;
+let tooltipContents = [];
+const titleVNodes = mapChildren(children, vNode => {
+    if (vNode.tag === Menu) {
+        subMenuVNode = vNode;
+    } else if (vNode.type & 1 || isStringOrNumberNotEmpty(vNode)) {
+        tooltipContents.push(vNode);
+        return <span>{vNode}</span>;
+    } else {
+        return vNode;
+    }
+});
+
+const isExpanded = subMenuVNode && this.rootMenu.isExpanded(key);
+if (isExpanded) {
+    this.parentMenu._expandedKeys.add(key);
+}
+
+const classNameObj = {
+    'k-menu-item': true,
+    [className]: className,
+    'k-expanded': isExpanded, 
+    'k-disabled': disabled,
+    'k-active':  this.rootMenu.isSelected(key),
+    'k-hover': this.isFirstFloorChildren && Menu.showAsDropdown(this.rootMenu),
+    'k-show': this.show.value,
+    'k-highlighted': isHighlighted(key),
+    [makeStyles()]: true,
+};
+
+const position = type !== 'horizontal' || !this.isFirstFloorChildren 
+    ? {my: 'left top', at: 'right+5 top'} 
+    : {my: 'left top', at: 'left bottom+5'};
+
+const title = (
+    <div class="k-menu-title" ev-click={this.onClick.bind(this, subMenuVNode)}>
+        <Icon class="k-menu-dot ion-record" v-if={dot} />
+        {titleVNodes}
+        <i class="k-menu-arrow ion-ios-arrow-down" v-if={subMenuVNode}></i>
+    </div>
+);
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <template v-if={!Menu.showAsDropdown(this.rootMenu)}>
+        {title}
+        <Transition 
+            key="subMenu"
+            show={isExpanded}
+            {...expandAnimationCallbacks}
+        >
+            <template v-if={subMenuVNode}>{subMenuVNode}</template>
+        </Transition>
+    </template>
+
+    <template v-else-if={!subMenuVNode}>
+        <Tooltip 
+            v-if={this.isFirstFloorChildren && type !== 'horizontal'}
+            position={{my: 'left+10 center', at: 'right center'}}
+        >
+            {title}
+            <b:content>{tooltipContents}</b:content> 
+        </Tooltip>
+        <template v-else>{title}</template>
+    </template>
+
+    <Dropdown 
+        v-else 
+        position={position} 
+        ev-$change:value={this.onDropdownShowChange}
+    >
+        <template>{title}</template>
+        <template>{subMenuVNode}</template>
+    </Dropdown>
+</div>
