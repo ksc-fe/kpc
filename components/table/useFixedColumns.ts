@@ -23,7 +23,7 @@ export function useFixedColumns(getColumns: () => VNodeComponentClass<TableColum
     let hasFixedRight = false;
 
     function init() {
-        offset = 0;
+        offset = instance.get('checkType') !== 'none' ? 40 : 0;
         lastLeftFixedIndex = -1;
         firstRightFixedIndex = -1;
     }
@@ -95,7 +95,7 @@ export function useFixedColumns(getColumns: () => VNodeComponentClass<TableColum
 
     instance.on('$receive:children', handleFixedColumns);
 
-    return {scrollPosition, onScroll, hasFixed};
+    return {scrollPosition, onScroll, hasFixed, getHasFixedLeft: () => hasFixedLeft};
 }
 
 export function getClassAndStyleForFixed({className, fixed, shadow, offset}: Props<TableColumnProps>) {

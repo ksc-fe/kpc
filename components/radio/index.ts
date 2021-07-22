@@ -4,14 +4,14 @@ import template from './index.vdt';
 
 export interface RadioProps {
     disabled?: boolean
-    value?: boolean
-    trueValue?: boolean
+    value?: any 
+    trueValue?: any 
 }
 
 const typeDefs: Required<TypeDefs<RadioProps>> = {
     disabled: Boolean,
-    value: Boolean,
-    trueValue: Boolean,
+    value: null,
+    trueValue: null,
 };
 
 const defaults = (): Partial<RadioProps> => ({

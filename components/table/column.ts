@@ -1,13 +1,13 @@
 import {Component, TypeDefs, Children} from 'intact';
 import template from './column.vdt';
+import {useGroup} from './useGroup';
 
 export interface TableColumnProps {
     key: string
     title?: Children
     sortable?: boolean
     width?: string | number
-    group?: any[]
-    groupValue?: any
+    group?: TableColumnGroupItem[]
     multiple?: boolean
     ignore?: boolean
     fixed?: 'left' | 'right'
@@ -15,6 +15,11 @@ export interface TableColumnProps {
     exportTitle?: string
     shadow?: boolean
     offset?: number
+}
+
+export type TableColumnGroupItem = {
+    label: Children
+    value: any
 }
 
 const typeDefs: Required<TypeDefs<TableColumnProps>> = {
@@ -26,7 +31,6 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     sortable: Boolean,
     width: [String, Number],
     group: Array,
-    groupValue: null,
     multiple: Boolean,
     ignore: Boolean,
     fixed: ['left', 'right'],
@@ -39,4 +43,6 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
 export class TableColumn extends Component<TableColumnProps> {
     static template = template;
     static typeDefs = typeDefs;
+
+    private group = useGroup();
 }

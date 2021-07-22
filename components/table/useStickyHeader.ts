@@ -4,7 +4,7 @@ import {useState} from '../../hooks/useState';
 import type {Table} from './';
 import {isStringOrNumber, isNull} from 'intact-shared';
 
-export function useSticky() {
+export function useStickyHeader() {
     const instance = useInstance() as Table;
     const elementRef = createRef<HTMLElement>();
     const scrollRef = createRef<HTMLElement>();
@@ -16,6 +16,7 @@ export function useSticky() {
         return bottom <= offsetTop!;
     }
 
+    // when the scroll element scroll, scroll the sticky header too 
     function onScroll() {
         if (isNull(stickHeader.value)) return;
 
@@ -25,13 +26,7 @@ export function useSticky() {
     }
 
     instance.on('$receive:stickHeader', v => {
-        if (v === true) {
-            stickHeader.set(0);
-        } else if (isStringOrNumber(v)) {
-            stickHeader.set(Number(v));
-        } else {
-            stickHeader.set(null);
-        }
+        stickHeader.set(v === true ? 0 : isStringOrNumber(v) ? +v : null);
     });
 
     onMounted(() => {

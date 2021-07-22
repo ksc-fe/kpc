@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults} from '../../styles/utils';
+import {deepDefaults, getLeft, getRight} from '../../styles/utils';
 import '../../styles/global';
 import {dropdownMenu} from './menuStyles';
 
@@ -38,6 +38,22 @@ export default function makeStyles() {
             background: ${dropdownItem.disabledBgColor};
             color: ${dropdownItem.disabledColor};
             cursor: not-allowed;
+        }
+
+        // checkbox / radio
+        .k-checkbox,
+        .k-radio {
+            display: block;
+            margin: 0 -${getRight(dropdownItem.padding)} 0 -${getLeft(dropdownItem.padding)};
+            padding: ${dropdownItem.padding};
+        }
+        .k-checkbox-wrapper,
+        .k-radio-wrapper {
+            vertical-align: text-bottom;
+        }
+        .k-checkbox-text,
+        .k-radio-text {
+            vertical-align: baseline;
         }
     `
 }

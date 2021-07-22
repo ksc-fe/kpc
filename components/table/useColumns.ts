@@ -1,16 +1,17 @@
-import {useInstance, VNodeComponentClass, Props, directClone} from 'intact';
+import {useInstance, VNodeComponentClass, Props, directClone, createVNode as h} from 'intact';
 import {eachChildren, isComponentVNode} from '../utils';
 import {TableColumn, TableColumnProps} from './column';
 import {useState} from '../../hooks/useState';
+import type {Table} from './table';
 
 export function useColumns() {
-    const instance = useInstance()!;
+    const instance = useInstance() as Table;
     let columns: VNodeComponentClass<TableColumn>[] = [];
 
     instance.on('$receive:children', handleChildren);
 
     function handleChildren() {
-        const children = instance.get('children');
+        const {children, checkType} = instance.get();
 
         columns = [];
 

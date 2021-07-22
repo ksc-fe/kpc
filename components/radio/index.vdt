@@ -1,5 +1,5 @@
 import {getRestProps} from '../utils';
-import makeStyles from './radioStyles';
+import makeStyles from './styles';
 
 const {
     className, disabled, trueValue, style,
@@ -39,7 +39,7 @@ const events = [
     title={ title }
     ev-click={ this.fixClick }
 >
-    <span class="k-wrapper">
+    <span class="k-radio-wrapper">
         <input type="radio" disabled={ disabled }
             value={ trueValue }
             tabindex="-1"
@@ -55,5 +55,5 @@ const events = [
             }
         />
     </span>
-    <span class="k-text" v-if={ children }>{ children }</span>
+    <span class="k-radio-text" v-if={ children }>{ children }</span>
 </label>

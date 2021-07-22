@@ -1,0 +1,56 @@
+import {getClassAndStyleForFixed} from './useFixedColumns';
+import {noop} from 'intact-shared';
+import {Checkbox} from '../checkbox';
+import {Radio} from '../radio';
+import {getTextByChildren} from '../utils';
+
+const {
+    columns, data, checkType, hasFixedLeft,
+    checked, disabled, className,
+} = this.get();
+const classNameObj = {
+    'k-disabled': disabled,
+    'k-checked': checked,
+    [className]: className,
+};
+
+const createCheckTypeVNode = (children) => {
+    return <td
+        {...getClassAndStyleForFixed({
+            fixed: hasFixedLeft ? 'left' : false,
+            offset: 0,
+            className: 'k-table-check'
+        })}
+    >{children}</td>
+}
+const checkTypeVNode = checkType === 'checkbox' ?
+    createCheckTypeVNode(<Checkbox value={checked} disabled={disabled} />) :
+    checkType === 'radio' ?
+        createCheckTypeVNode(<Radio value={checked} disabled={disabled} />) :
+        null;
+
+<tr ev-click={this.onClick} class={classNameObj}>
+    {checkTypeVNode}
+    <template>
+        {columns.map(column => {
+            const props = column.props;
+            const blocks = props.$blocks; 
+            let children = data[props.key];
+            if (blocks) {
+                const template = blocks.template || blocks.default;
+                if (template) {
+                    children = template(noop, data);
+                }
+            }
+
+            return (
+                <td {...getClassAndStyleForFixed(column.props)}
+                    title={getTextByChildren(children)}
+                >
+                    {children}
+                </td>
+            );
+        })}
+    </template>
+</tr>
+

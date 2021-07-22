@@ -24,7 +24,6 @@ if (searchable && multiple) {
         <Consumer>
             {value => (
                 <Checkbox
-                    class="k-select-checkbox"
                     value={value.value}
                     ev-$change:value={value.set}
                     trueValue={this.get('value')}
