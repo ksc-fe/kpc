@@ -22,6 +22,7 @@ export interface TableProps {
     rowClassName?: (value: any, index: number, key: TableRowKey) => string | undefined
     group?: Record<string, any> 
     sort?: TableSortValue 
+    loading?: boolean
 }
 
 export type TableRowKey = string | number;
@@ -44,6 +45,7 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     rowClassName: Function,
     group: Object,
     sort: Object,
+    loading: Boolean,
 };
 
 const defaults = (): Partial<TableProps> => ({

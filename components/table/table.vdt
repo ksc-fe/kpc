@@ -8,11 +8,13 @@ import {TableRow} from './row';
 import {Checkbox} from '../checkbox';
 import {context} from './useGroup';
 import {context as sortableContext} from './useSortable';
+import {Spin} from '../spin';
+import {Transition} from 'intact';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
-    rowClassName, group, sort,
+    rowClassName, group, sort, loading,
 } = this.get();
 const {getColumns} = this.columns;
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -106,4 +108,7 @@ const tbody = (
             <template>{tbody}</template>
         </table>
     </div>
+    <Transition name="k-fade">
+        <Spin v-if={loading} overlay size="small" class="k-table-spin" />
+    </Transition>
 </div>

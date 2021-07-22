@@ -56,6 +56,7 @@ export function makeStyles() {
         font-size: ${table.fontSize};
         color: ${table.color};
         border-top: ${table.border};
+        position: relative;
         .k-table-wrapper {
             border-bottom: ${table.border};
             overflow: auto;
@@ -242,6 +243,11 @@ export function makeStyles() {
             &.k-desc .k-icon.k-asc {
                 color: ${table.sort.disabledColor};
             }
+        }
+
+        // loading
+        .k-table-spin.k-overlay {
+            z-index: 2;
         }
     `;
 }

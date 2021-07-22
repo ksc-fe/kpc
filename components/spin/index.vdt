@@ -23,9 +23,7 @@ const canvas = (
     </div>
 );
 
-<Transition name="k-fade">
-    <div class={classNameObj} {...getRestProps(this)}>
-        <div class="k-spin-wrapper" v-if={overlay}>{canvas}</div>
-        <template v-else>{canvas}</template>
-    </div>
-</Transition>
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-spin-wrapper" v-if={overlay}>{canvas}</div>
+    <template v-else>{canvas}</template>
+</div>
