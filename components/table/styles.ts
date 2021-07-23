@@ -122,6 +122,7 @@ export function makeStyles() {
             padding: ${table.tbody.padding};
             border-bottom: ${table.border};
             background: ${table.bgColor};
+            word-wrap: break-word;
             // overflow: hidden;
             // text-overflow: ellipsis;
         }
