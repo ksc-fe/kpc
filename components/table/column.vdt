@@ -8,65 +8,74 @@ import {isStringOrNumber, get} from 'intact-shared';
 import {context} from './useGroup';
 import {context as sortableContext} from './useSortable';
 import {linkEvent} from 'intact';
+import {context as tableContext} from './useColumns';
 
-const {title, fixed, group, multiple, key, sortable} = this.get();
+const {title, fixed, group, multiple, key, sortable, cols, rows} = this.get();
 const {onSelect, isChecked, getGroupText} = this.group;
 const Consumer = context.Consumer;
 const SortableConsumer = sortableContext.Consumer;
+const TableConsumer = tableContext.Consumer;
 
-const {className, style} = getClassAndStyleForFixed(this.get());
-const classNameObj = {
-    'k-column-sortable': sortable,
-    [className]: className,
-}
+<TableConsumer>
+    {checkType => {
+        const {className, style} = getClassAndStyleForFixed(this.get(), checkType);
+        const classNameObj = {
+            'k-column-sortable': sortable,
+            [className]: className,
+        }
 
-<Consumer>
-    {({group: currentGroup, onChange}) => {
-        const groupValue = currentGroup && currentGroup[key];
-        const groupText = getGroupText(groupValue);
+        return <Consumer>
+            {({group: currentGroup, onChange}) => {
+                const groupValue = currentGroup && currentGroup[key];
+                const groupText = getGroupText(groupValue);
 
-        return <SortableConsumer>
-            {({sort, onChange: onChangeSort}) => {
-                const type = sort && sort.key === key && sort.type;
+                return <SortableConsumer>
+                    {({sort, onChange: onChangeSort}) => {
+                        const type = sort && sort.key === key && sort.type;
 
-                let checked;
-                return <th className={classNameObj}
-                    style={style}
-                    title={isStringOrNumber(title) ? title + (groupText || '') : null}
-                    ev-click={linkEvent(key, onChangeSort)}
-                >
-                    <div class="k-table-title">
-                        <div class="k-table-title-text c-ellipsis">
-                            <b:title>{title}</b:title>
-                            {groupText}
-                        </div>
-                        <Dropdown v-if={group}
-                            position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
-                            key="dropdown"
+                        let checked;
+                        return <th className={classNameObj}
+                            style={style}
+                            title={isStringOrNumber(title) ? title + (groupText || '') : null}
+                            ev-click={linkEvent(key, onChangeSort)}
+                            colspan={cols}
+                            rowspan={rows}
                         >
-                            <Button icon size="mini" class="k-table-group">
-                                <Icon class="ion-android-arrow-dropdown" />
-                            </Button>
-                            <DropdownMenu class={{"k-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
-                                <DropdownItem v-for={group}
-                                    ev-select={() => onSelect($value.value, groupValue, onChange)}
-                                    hideOnSelect={!multiple}
-                                    class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                            <div class="k-table-title">
+                                <div class="k-table-title-text c-ellipsis">
+                                    <b:title>{title}</b:title>
+                                    {groupText}
+                                </div>
+                                <Dropdown v-if={group}
+                                    position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
+                                    key="dropdown"
                                 >
-                                    <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
-                                    <span v-else>{$value.label}</span>
-                                </DropdownItem>
-                            </DropdownMenu>
-                        </Dropdown>
-                        <div v-if={sortable}
-                            class={{'k-column-sort': true, [`k-${type}`]: type}}
-                        >
-                            <Icon class="ion-android-arrow-dropup k-asc" />
-                            <Icon class="ion-android-arrow-dropdown k-desc" />
-                        </div>
-                    </div>
-                </th>
+                                    <Button icon size="mini" class="k-table-group">
+                                        <Icon class="ion-android-arrow-dropdown" />
+                                    </Button>
+                                    <DropdownMenu class={{"k-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
+                                        <DropdownItem v-for={group}
+                                            ev-select={() => onSelect($value.value, groupValue, onChange)}
+                                            hideOnSelect={!multiple}
+                                            class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                                        >
+                                            <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
+                                            <span v-else>{$value.label}</span>
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                                <div v-if={sortable}
+                                    class={{'k-column-sort': true, [`k-${type}`]: type}}
+                                >
+                                    <Icon class="ion-android-arrow-dropup k-asc" />
+                                    <Icon class="ion-android-arrow-dropdown k-desc" />
+                                </div>
+                            </div>
+                        </th>
+                    }}
+                </SortableConsumer>
             }}
-        </SortableConsumer>
+        </Consumer>
     }}
-</Consumer>
+</TableConsumer>
+

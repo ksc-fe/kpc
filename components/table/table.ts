@@ -60,8 +60,8 @@ export class Table extends Component<TableProps> {
     static defaults = defaults;
 
     private columns = useColumns();
-    private fixedColumns = useFixedColumns(this.columns.getColumns);
     private stickyHeader = useStickyHeader();
+    private fixedColumns = useFixedColumns(this.columns.getColumns, this.stickyHeader.scrollRef);
     private disableRow = useDisableRow();
     private checked = useChecked(this.disableRow.getEnableKeys);
     private sortable = useSortable();

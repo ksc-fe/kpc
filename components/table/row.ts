@@ -1,13 +1,13 @@
-import {Component, TypeDefs, createRef, VNodeComponentClass} from 'intact';
+import {Component, TypeDefs, createRef, VNodeComponentClass, Props} from 'intact';
 import template from './row.vdt';
-import type {TableColumn} from './column';
+import type {TableColumnProps} from './column';
 import type {TableProps} from './table';
 import {bind} from '../utils';
 
 export interface TableRowProps {
     key: string | number
     data: any
-    columns: VNodeComponentClass<TableColumn>[]
+    cols: Props<TableColumnProps>[]
     checkType: TableProps['checkType'] 
     hasFixedLeft: boolean
     onClick: (data: any, index: number, key: string | number) => void

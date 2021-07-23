@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Children} from 'intact';
+import {Component, TypeDefs, Children, VNodeComponentClass} from 'intact';
 import template from './column.vdt';
 import {useGroup} from './useGroup';
 
@@ -13,8 +13,12 @@ export interface TableColumnProps {
     fixed?: 'left' | 'right'
     align?: 'left' | 'center' | 'right'
     exportTitle?: string
-    shadow?: boolean
-    offset?: number
+
+    // passed by Table
+    offset: number
+    cols: number
+    rows: number
+    prevVNode: VNodeComponentClass<TableColumn> | null
 }
 
 export type TableColumnGroupItem = {
@@ -36,8 +40,11 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     fixed: ['left', 'right'],
     align: ['left', 'center', 'right'],
     exportTitle: String,
-    shadow: Boolean,
-    offset: Number,
+
+    offset: null,
+    cols: null,
+    rows: null,
+    prevVNode: null,
 };
 
 export class TableColumn extends Component<TableColumnProps> {

@@ -122,6 +122,8 @@ export function makeStyles() {
             padding: ${table.tbody.padding};
             border-bottom: ${table.border};
             background: ${table.bgColor};
+            // overflow: hidden;
+            // text-overflow: ellipsis;
         }
 
         // fixed
@@ -129,37 +131,39 @@ export function makeStyles() {
         .k-fixed-right {
             position: sticky;
             z-index: 1;
-            &.k-shadow:after {
+            &:after {
                 content: '';
                 display: block;
                 transition: box-shadow ${theme.transition};
                 position: absolute;
                 top: 0;
-                bottom: -1px;
+                bottom: 0px;
                 width: 10px;
                 pointer-events: none;
             }
         }
-        .k-fixed-left.k-shadow:after {
-            box-shadow: ${table.fixLeftShadow};
-            right: -10px;
+        .k-fixed-left:after {
+            right: -11px;
         }
-        .k-fixed-right.k-shadow:after {
+        .k-fixed-right:after {
+            left: -11px;
+        }
+        &.k-scroll-left .k-fixed-right:after {
             box-shadow: ${table.fixRightShadow};
-            left: -10px;
         }
-        &.k-scroll-left .k-fixed-left.k-shadow:after {
-            box-shadow: none;
+        &.k-scroll-right .k-fixed-left:after {
+            box-shadow: ${table.fixLeftShadow};
         }
-        &.k-scroll-right .k-fixed-right.k-shadow:after {
-            box-shadow: none;
-        }
-        &.k-fix-columns {
-            .k-table-wrapper {
-                // We must the the padding, otherwise it will show vertical scrollbar
-                // event if the height has not overflow. Why?
-                padding-bottom: 1px;
+        &.k-scroll-middle {
+            .k-fixed-left:after {
+                box-shadow: ${table.fixLeftShadow};
             }
+            .k-fixed-right:after {
+                box-shadow: ${table.fixRightShadow};
+            }
+        }
+        .k-fixed-right + .k-fixed-right:after {
+            display: none;
         }
 
         // sticky header

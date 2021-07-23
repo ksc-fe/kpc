@@ -11,13 +11,14 @@ import {context as sortableContext} from './useSortable';
 import {Spin} from '../spin';
 import {Transition} from 'intact';
 import {_$} from '../../i18n';
+import {context as tableContext} from './useColumns';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
     rowClassName, group, sort, loading,
 } = this.get();
-const {getColumns} = this.columns;
+const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
 const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.stickyHeader;
 const classNameObj = {
@@ -30,7 +31,6 @@ const classNameObj = {
     [className]: className,
     [makeStyles()]: true,
 };
-const columns = getColumns();
 const style = isStringOrNumber(fixHeader) ? 
     {maxHeight: `${fixHeader}px`} :
     null;
@@ -38,9 +38,9 @@ const style = isStringOrNumber(fixHeader) ?
 const colgroup = (
     <colgroup>
         <col v-if={checkType !== 'none'} width="40" />
-        <col v-for={columns} 
-            width={$value.props.width}
-            class={{[$value.props.className]: $value.props.className}}
+        <col v-for={cols} 
+            width={$value.width}
+            class={{[$value.className]: $value.className}}
         />
     </colgroup>
 );
@@ -50,28 +50,32 @@ const hasFixedLeft = getHasFixedLeft();
 const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
 const Provider = context.Provider;
 const SortableProvider = sortableContext.Provider;
+const TableProivder = tableContext.Provider;
 const thead = (
-    <thead>
-        <tr>
-            <th v-if={checkType !== 'none'}
-                {...getClassAndStyleForFixed({
-                    fixed: hasFixedLeft ? 'left' : false,
-                    offset: 0,
-                })} 
-            >
-                <Checkbox v-if={checkType === 'checkbox'}
-                    value={isAllChecked()} 
-                    ev-$change:value={toggleCheckedAll}
-                    disabled={!hasData}
-                />
-            </th>
-            <Provider value={{group, onChange: this.onChangeGroup}}>
-                <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
-                    {columns}
-                </SortableProvider>
-            </Provider>
-        </tr>
-    </thead>
+    <TableProivder value={checkType}>
+        <Provider value={{group, onChange: this.onChangeGroup}}>
+            <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
+                <thead>
+                    <tr v-for={columns}>
+                        <th v-if={$key === 0 && checkType !== 'none'}
+                            {...getClassAndStyleForFixed({
+                                fixed: hasFixedLeft ? 'left' : false,
+                                offset: 0,
+                            })} 
+                            rowspan={maxRows}
+                        >
+                            <Checkbox v-if={checkType === 'checkbox'}
+                                value={isAllChecked()} 
+                                ev-$change:value={toggleCheckedAll}
+                                disabled={!hasData}
+                            />
+                        </th>
+                        {$value}
+                    </tr>
+                </thead>
+            </SortableProvider>
+        </Provider>
+    </TableProivder>
 );
 
 const {isDisabledKey} = this.disableRow;
@@ -79,14 +83,14 @@ let key;
 const tbody = (
     <tbody>
         <tr v-if={!hasData} key="table-empty">
-            <td colspan={columns.length + (checkType !== 'none' ? 1 : 0)} class="k-table-empty">
+            <td colspan={maxCols + (checkType !== 'none' ? 1 : 0)} class="k-table-empty">
                 <b:empty>{_$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~')}</b:empty>
             </td>
         </tr>
         <template v-else>
             <TableRow v-for={data}
                 key={key = rowKey($value, $key)}
-                columns={columns}
+                cols={cols}
                 data={$value}
                 checkType={checkType}
                 hasFixedLeft={hasFixedLeft}
