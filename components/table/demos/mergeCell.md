@@ -27,7 +27,7 @@ import {Table, TableColumn} from 'kpc/components/table';
     >
         <TableColumn title="Weekday" key='weekday' fixed="left" />
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="Time" key="forenoonTime" fixed="left" />
+            <TableColumn title="Time" key="forenoonTime" />
             <TableColumn title="Class 1" key='class1' />
             <TableColumn title="Class 2" key='class2' />
             <TableColumn title="Class 3" key='class3' />
@@ -48,9 +48,9 @@ import {Table, TableColumn} from 'kpc/components/table';
         merge={this.merge}
         ref="__test2"
     >
-        <TableColumn title="Weekday" key='weekday' fixed="left" width="150"/>
+        <TableColumn title="Weekday" key='weekday' fixed="left" />
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="Time" key="forenoonTime" fixed="left" />
+            <TableColumn title="Time" key="forenoonTime" />
             <TableColumn title="Class 1" key='class1' />
             <TableColumn title="Class 2" key='class2' />
             <TableColumn title="Class 3" key='class3' />
@@ -158,19 +158,26 @@ export default class extends Component {
 
     @bind
     merge(row, column, rowIndex, columnIndex) {
+        if (columnIndex === 0) {
+            // is check column
+            if (rowIndex === 0) {
+                return {
+                    rowspan: 2,
+                    colspan: 1,
+                }
+            }
+
+            if (rowIndex === 2) {
+                return {
+                    rowspan: 3,
+                    colspan: 1,
+                }
+            }
+
+            return;
+        }
+
         const data = this.get('data');
-        if (columnIndex === 0 && rowIndex === 0){
-            return {
-                rowspan: 2,
-                colspan: 1,
-            }
-        }
-        if (columnIndex=== 0 && rowIndex === 2) {
-            return {
-                rowspan: 3,
-                colspan: 1,
-            }
-        }
         if (column.key === 'forenoonTime' || column.key === 'afternoonTime') {
             return {
                 rowspan: data.length,

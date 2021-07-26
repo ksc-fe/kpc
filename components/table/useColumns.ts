@@ -104,6 +104,10 @@ export function useColumns() {
         return columns;
     }
 
+    function getCols() {
+        return cols;
+    }
+
     function getData() {
         return {
             columns,

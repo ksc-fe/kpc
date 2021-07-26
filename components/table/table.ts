@@ -1,4 +1,4 @@
-import {Component, TypeDefs} from 'intact';
+import {Component, TypeDefs, Props} from 'intact';
 import template from './table.vdt';
 import {useColumns} from './useColumns';
 import {useFixedColumns} from './useFixedColumns';
@@ -7,6 +7,8 @@ import {bind} from '../utils';
 import {useChecked} from './useChecked';
 import {useDisableRow} from './useDisableRow';
 import {useSortable} from './useSortable';
+import type {TableColumnProps} from './column';
+import {Merge} from './useMerge';
 
 export interface TableProps {
     data?: any[]
@@ -23,6 +25,7 @@ export interface TableProps {
     group?: Record<string, any> 
     sort?: TableSortValue 
     loading?: boolean
+    merge?: Merge
 }
 
 export type TableRowKey = string | number;
@@ -46,6 +49,7 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     group: Object,
     sort: Object,
     loading: Boolean,
+    merge: Function,
 };
 
 const defaults = (): Partial<TableProps> => ({

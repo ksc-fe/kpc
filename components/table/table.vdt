@@ -17,6 +17,7 @@ const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
     rowClassName, group, sort, loading,
+    merge,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -24,7 +25,7 @@ const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.s
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
-    [`k-scroll-${scrollPosition.value}`]: true,
+    [`k-scroll-${scrollPosition.value}`]: scrollPosition.value,
     'k-fix-columns': hasFixed.value,
     [`k-${type}`]: type && type !== 'default',
     'k-stripe': stripe,
@@ -50,9 +51,9 @@ const hasFixedLeft = getHasFixedLeft();
 const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
 const Provider = context.Provider;
 const SortableProvider = sortableContext.Provider;
-const TableProivder = tableContext.Provider;
+const TableProvider = tableContext.Provider;
 const thead = (
-    <TableProivder value={checkType}>
+    <TableProvider value={checkType}>
         <Provider value={{group, onChange: this.onChangeGroup}}>
             <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
                 <thead>
@@ -75,10 +76,11 @@ const thead = (
                 </thead>
             </SortableProvider>
         </Provider>
-    </TableProivder>
+    </TableProvider>
 );
 
 const {isDisabledKey} = this.disableRow;
+const grid = [];
 let key;
 const tbody = (
     <tbody>
@@ -99,6 +101,8 @@ const tbody = (
                 index={$key}
                 disabled={isDisabledKey(key)}
                 className={rowClassName && rowClassName($value, $key, key)}
+                merge={merge}
+                grid={grid}
             />
         </template>
     </tbody>
