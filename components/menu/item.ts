@@ -1,5 +1,5 @@
 import {Component, TypeDefs, inject, provide, VNode} from 'intact';
-import {ROOT_MENU, MENU, Menu,MenuProps} from './menu'
+import {ROOT_MENU, MENU, Menu, MenuProps} from './menu'
 import {Dropdown, DropdownMenu} from '../dropdown';
 import template from './item.vdt';
 import {bind, findRouter, isExternalLink} from '../utils';
