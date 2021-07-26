@@ -80,7 +80,6 @@ const thead = (
 );
 
 const {isDisabledKey} = this.disableRow;
-const grid = [];
 let key;
 const tbody = (
     <tbody>
@@ -102,7 +101,7 @@ const tbody = (
                 disabled={isDisabledKey(key)}
                 className={rowClassName && rowClassName($value, $key, key)}
                 merge={merge}
-                grid={grid}
+                grid={this.merge.getGrid()}
             />
         </template>
     </tbody>

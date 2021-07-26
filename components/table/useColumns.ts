@@ -117,5 +117,5 @@ export function useColumns() {
         }
     }
 
-    return {getColumns, getData} 
+    return {getColumns, getCols, getData} 
 }

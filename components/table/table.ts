@@ -8,7 +8,7 @@ import {useChecked} from './useChecked';
 import {useDisableRow} from './useDisableRow';
 import {useSortable} from './useSortable';
 import type {TableColumnProps} from './column';
-import {Merge} from './useMerge';
+import {useMerge, TableMerge} from './useMerge';
 
 export interface TableProps {
     data?: any[]
@@ -25,7 +25,7 @@ export interface TableProps {
     group?: Record<string, any> 
     sort?: TableSortValue 
     loading?: boolean
-    merge?: Merge
+    merge?: TableMerge
 }
 
 export type TableRowKey = string | number;
@@ -69,6 +69,7 @@ export class Table extends Component<TableProps> {
     private disableRow = useDisableRow();
     private checked = useChecked(this.disableRow.getEnableKeys);
     private sortable = useSortable();
+    private merge = useMerge(this.columns.getCols);
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {

@@ -1,8 +1,9 @@
 import {Component, TypeDefs, createRef, VNodeComponentClass, Props} from 'intact';
 import template from './row.vdt';
 import type {TableColumnProps} from './column';
-import type {TableProps, TableMerge, TableGrid, TableMergeConfig} from './table';
+import type {TableProps} from './table';
 import {bind} from '../utils';
+import type {TableGrid} from './useMerge';
 
 export interface TableRowProps {
     key: string | number
@@ -14,14 +15,11 @@ export interface TableRowProps {
     checked: boolean
     index: number
     disabled: boolean
-    merge?: TableMerge
     grid: TableGrid
 }
 
 export class TableRow extends Component<TableRowProps> {
     static template = template;
-
-    private currentRow: TableMergeConfig[] = [];
 
     $update(
         lastVNode: VNodeComponentClass<TableRow>,
@@ -34,7 +32,7 @@ export class TableRow extends Component<TableRowProps> {
         let isSame = true;
         let key: keyof TableRowProps;
         for (key in lastProps) {
-            // ignore index / grid
+            // ignore index
             if (key === 'index' || key === 'grid') continue;
             if (lastProps[key] !== nextProps[key]) {
                 isSame = false;
@@ -44,13 +42,7 @@ export class TableRow extends Component<TableRowProps> {
 
         if (!isSame) {
             (super.$update as any)(lastVNode, nextVNode, ...rest);
-        } else {
-            // add last currentRow to grid
-            const {merge, grid} = nextProps;
-            if (merge) {
-                grid.push(this.currentRow);
-            }
-        }
+        } 
     }
 
     @bind

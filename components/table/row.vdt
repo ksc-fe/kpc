@@ -15,44 +15,13 @@ const classNameObj = {
     [className]: className,
 };
 
-const currentRow = this.currentRow = [];
-grid.push(currentRow);
-
-const shouldRenderAndGetSpans = merge ?
-    (columnIndex, props) => {
-        const prevCell = currentRow[columnIndex - 1];
-        if (prevCell && prevCell.colspan > 1) {
-            const spans = {
-                rowspan: prevCell.rowspan,
-                colspan: prevCell.colspan - 1,
-            };
-            currentRow.push(spans);
-            return false;
-        }
-
-        if (rowIndex > 0) {
-            const prevRow = grid[rowIndex - 1];
-            const aboveCell = prevRow[columnIndex]; 
-            if (aboveCell && aboveCell.rowspan > 1) {
-                const spans = {
-                    rowspan: aboveCell.rowspan - 1,
-                    colspan: aboveCell.colspan
-                };
-                currentRow.push(spans);
-                return false;
-            }
-        }
-
-        const spans = merge(data, props, rowIndex, columnIndex);
-        currentRow.push(spans);
-
-        return spans;
-    } :
-    noop
+const getGridItem = (columnIndex) => {
+    return grid[rowIndex]?.[columnIndex] || {render: true, spans: null};
+};
 
 const createCheckTypeVNode = (children) => {
-    const spans = shouldRenderAndGetSpans(0, null); 
-    if (spans === false) return;
+    const {render, spans} = getGridItem(0);
+    if (!render) return;
     return <td
         {...getClassAndStyleForFixed({
             fixed: hasFixedLeft ? 'left' : false,
@@ -83,8 +52,8 @@ const columnOffset = checkType !== 'none' ? 1 : 0;
                 }
             }
 
-            const spans = shouldRenderAndGetSpans(columnIndex + columnOffset, props);
-            if (spans === false) return;
+            const {render, spans} = getGridItem(columnIndex + columnOffset);
+            if (!render) return;
 
             return (
                 <td {...getClassAndStyleForFixed(props, checkType)}
