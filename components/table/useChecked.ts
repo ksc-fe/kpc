@@ -138,7 +138,7 @@ export function useChecked(
                     }
                 }
             });
-            console.log(allStatus);
+            // console.log(allStatus);
         }
     }
 

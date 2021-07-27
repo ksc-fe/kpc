@@ -9,13 +9,14 @@ import {useDisableRow} from './useDisableRow';
 import {useSortable} from './useSortable';
 import type {TableColumnProps} from './column';
 import {useMerge, TableMerge} from './useMerge';
+import {useExpandable} from './useExpandable';
 
 export interface TableProps {
     data?: any[]
     fixHeader?: boolean | string | number 
     stickHeader?: boolean | string | number
     checkType?: 'checkbox' | 'radio' | 'none'
-    checkedKeys?: (string | number)[]
+    checkedKeys?: TableRowKey[]
     rowKey?: (value: any, index: number) => TableRowKey
     rowCheckable?: boolean
     disableRow?: (value: any, index: number, key: TableRowKey) => boolean
@@ -26,6 +27,7 @@ export interface TableProps {
     sort?: TableSortValue 
     loading?: boolean
     merge?: TableMerge
+    expandedKeys?: TableRowKey[]
 }
 
 export type TableRowKey = string | number;
@@ -50,6 +52,7 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     sort: Object,
     loading: Boolean,
     merge: Function,
+    expandedKeys: Array,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -78,6 +81,7 @@ export class Table extends Component<TableProps> {
         this.merge.getGrid,
     );
     private sortable = useSortable();
+    private expandable = useExpandable();
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {

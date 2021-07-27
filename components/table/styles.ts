@@ -259,6 +259,19 @@ export function makeStyles() {
         .k-table-empty {
             text-align: center;
         }
+
+        // expand
+        tr.k-expand {
+            td {
+                padding: 0;
+                background: #fdfcff;
+            }
+            &:not(.k-expanded) {
+                td {
+                    border: none;
+                }
+            }
+        }
     `;
 }
 
