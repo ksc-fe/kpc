@@ -146,6 +146,9 @@ export default function makeStyles() {
                     border-color: ${checkbox.disabled.innerColor};
                 }
             }
+            input {
+                cursor: not-allowed;
+            }
         }
     `;
 }

@@ -4,6 +4,7 @@ import {useState, State} from '../../hooks/useState';
 import {useDraggable} from '../../hooks/useDraggable';
 import {getInitMeta, getItemHeight} from './useTranslate';
 import type {useList} from './useList';
+import {throttle} from '../utils';
 
 export function useMouseEvents(
     translate: State<number>,
@@ -72,18 +73,7 @@ export function useMouseEvents(
     }
 
     // throttle onWheel
-    let lock = false;
-    let timer: number;
-    const _onWheel = (e: WheelEvent) => {
-        e.preventDefault();
-        if (lock) return;
-        lock = true;
-        timer = window.setTimeout(() => {
-            if (instance.$unmounted) return;
-            onWheel(e);
-            lock = false;
-        }, 0);
-    };
+    const _onWheel = throttle(onWheel, 0, e => e.preventDefault());
 
     function onClick(item: any, index: number) {
         // if _dragged, do not trigger click event, #123

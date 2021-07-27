@@ -22,6 +22,7 @@ export interface TableProps {
     rowClassName?: (value: any, index: number, key: TableRowKey) => string | undefined
     group?: Record<string, any> 
     sort?: TableSortValue 
+    loading?: boolean
 }
 
 export type TableRowKey = string | number;
@@ -44,6 +45,7 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     rowClassName: Function,
     group: Object,
     sort: Object,
+    loading: Boolean,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -58,8 +60,8 @@ export class Table extends Component<TableProps> {
     static defaults = defaults;
 
     private columns = useColumns();
-    private fixedColumns = useFixedColumns(this.columns.getColumns);
     private stickyHeader = useStickyHeader();
+    private fixedColumns = useFixedColumns(this.columns.getColumns, this.stickyHeader.scrollRef);
     private disableRow = useDisableRow();
     private checked = useChecked(this.disableRow.getEnableKeys);
     private sortable = useSortable();

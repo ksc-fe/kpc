@@ -303,6 +303,20 @@ export function last<T>(arr: T[]): T | undefined {
     return arr[arr.length - 1];
 }
 
+export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg: T) => void) {
+    let lock = false;
+    let timer: number;
+    return (arg: T) => {
+        if (doAlways) doAlways(arg);
+        if (lock) return;
+        lock = true;
+        timer = window.setTimeout(() => {
+            fn(arg);
+            lock = false;
+        }, time);
+    };
+}
+
 // TODO: modify
 export const expandAnimationCallbacks = {
     'name': 'k-expand',

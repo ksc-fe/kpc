@@ -5,7 +5,7 @@ import {Radio} from '../radio';
 import {getTextByChildren} from '../utils';
 
 const {
-    columns, data, checkType, hasFixedLeft,
+    cols, data, checkType, hasFixedLeft,
     checked, disabled, className,
 } = this.get();
 const classNameObj = {
@@ -32,8 +32,7 @@ const checkTypeVNode = checkType === 'checkbox' ?
 <tr ev-click={this.onClick} class={classNameObj}>
     {checkTypeVNode}
     <template>
-        {columns.map(column => {
-            const props = column.props;
+        {cols.map(props => {
             const blocks = props.$blocks; 
             let children = data[props.key];
             if (blocks) {
@@ -44,7 +43,7 @@ const checkTypeVNode = checkType === 'checkbox' ?
             }
 
             return (
-                <td {...getClassAndStyleForFixed(column.props)}
+                <td {...getClassAndStyleForFixed(props, checkType)}
                     title={getTextByChildren(children)}
                 >
                     {children}
