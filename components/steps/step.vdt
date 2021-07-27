@@ -1,0 +1,36 @@
+import {getRestProps, addStyle} from '../utils';
+import makeStyles from './stepStyles';
+
+const {children, title, index, width, className, style} = this.get();
+const {value, status} = this.steps.get();
+const selected = value === index;
+const error = selected && status === 'error';
+
+const classNameObj = {
+    'k-step': true,
+    'k-active': selected,
+    'k-done': value > index,
+    'k-error': error,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+<div {...getRestProps(this)} 
+    class={classNameObj}
+    style={addStyle(style, {width})} 
+    ev-click={this.onChangeIndex}
+>
+    <div class="k-step-tail"></div>
+    <div class="k-step-wrapper">
+        <div class="k-step-head">
+            <div class="k-step-inner">
+                <i class="k-step-icon ion-ios-close-empty" v-if={error}></i>
+                <span v-else>{index + 1}</span>
+            </div>
+        </div>
+        <div class="k-step-main">
+            <div class="k-step-title">{title}</div>
+            <div class="k-step-content">{children}</div>
+        </div>
+    </div>
+</div>
