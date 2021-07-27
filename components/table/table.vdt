@@ -48,7 +48,7 @@ const colgroup = (
 const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
-const {isAllChecked, toggleCheckedAll} = this.checked;
+const {isAllChecked, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
 const Provider = context.Provider;
 const SortableProvider = sortableContext.Provider;
 const TableProvider = tableContext.Provider;
@@ -80,7 +80,7 @@ const thead = (
 );
 
 const {getAllKeys} = this.disableRow;
-const {getGrid, getAllStatus, onChangeChecked} = this.merge;
+const {getGrid} = this.merge;
 const allStatus = getAllStatus();
 const allKeys = getAllKeys();
 const tbody = (

@@ -65,16 +65,19 @@ export class Table extends Component<TableProps> {
 
     private columns = useColumns();
     private stickyHeader = useStickyHeader();
-    private fixedColumns = useFixedColumns(this.columns.getColumns, this.stickyHeader.scrollRef);
+    private fixedColumns = useFixedColumns(
+        this.columns.getColumns,
+        this.stickyHeader.scrollRef
+    );
     private disableRow = useDisableRow();
-    private checked = useChecked(this.disableRow.getEnableKeys);
-    private sortable = useSortable();
-    private merge = useMerge(
-        this.columns.getCols,
-        this.checked.isChecked,
+    private merge = useMerge(this.columns.getCols);
+    private checked = useChecked(
+        this.disableRow.getEnableKeys,
         this.disableRow.getAllKeys,
         this.disableRow.isDisabledKey,
+        this.merge.getGrid,
     );
+    private sortable = useSortable();
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {

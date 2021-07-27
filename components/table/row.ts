@@ -59,7 +59,6 @@ export class TableRow extends Component<TableRowProps> {
 
     @bind
     onChangeChecked(v: boolean) {
-        console.log(v); 
         this.trigger('changeChecked', this.get('index'), v);
     }
 }
