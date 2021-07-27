@@ -48,7 +48,7 @@ const colgroup = (
 const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
-const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
+const {isAllChecked, toggleCheckedAll} = this.checked;
 const Provider = context.Provider;
 const SortableProvider = sortableContext.Provider;
 const TableProvider = tableContext.Provider;
@@ -79,8 +79,10 @@ const thead = (
     </TableProvider>
 );
 
-const {isDisabledKey} = this.disableRow;
-let key;
+const {getAllKeys} = this.disableRow;
+const {getGrid, getAllStatus, onChangeChecked} = this.merge;
+const allStatus = getAllStatus();
+const allKeys = getAllKeys();
 const tbody = (
     <tbody>
         <tr v-if={!hasData} key="table-empty">
@@ -89,20 +91,27 @@ const tbody = (
             </td>
         </tr>
         <template v-else>
-            <TableRow v-for={data}
-                key={key = rowKey($value, $key)}
-                cols={cols}
-                data={$value}
-                checkType={checkType}
-                hasFixedLeft={hasFixedLeft}
-                onClick={this.clickRow}
-                checked={isChecked(key)}
-                index={$key}
-                disabled={isDisabledKey(key)}
-                className={rowClassName && rowClassName($value, $key, key)}
-                merge={merge}
-                grid={this.merge.getGrid()}
-            />
+            {data.map((value, index) => {
+                const status = allStatus[index];
+                const key = allKeys[index];
+                return <TableRow
+                    key={key}
+                    cols={cols}
+                    data={value}
+                    checkType={checkType}
+                    hasFixedLeft={hasFixedLeft}
+                    onClick={this.clickRow}
+                    checked={status.checked}
+                    indeterminate={status.indeterminate}
+                    index={index}
+                    disabled={status.disabled}
+                    allDisabled={status.allDisabled}
+                    className={rowClassName && rowClassName(value, index, key)}
+                    merge={merge}
+                    grid={getGrid()}
+                    ev-changeChecked={onChangeChecked}
+                />
+            })}
         </template>
     </tbody>
 );

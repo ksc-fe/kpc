@@ -69,7 +69,12 @@ export class Table extends Component<TableProps> {
     private disableRow = useDisableRow();
     private checked = useChecked(this.disableRow.getEnableKeys);
     private sortable = useSortable();
-    private merge = useMerge(this.columns.getCols);
+    private merge = useMerge(
+        this.columns.getCols,
+        this.checked.isChecked,
+        this.disableRow.getAllKeys,
+        this.disableRow.isDisabledKey,
+    );
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {

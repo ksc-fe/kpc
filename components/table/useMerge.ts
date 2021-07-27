@@ -1,5 +1,5 @@
 import {useInstance, Props} from 'intact';
-import type {Table} from './table';
+import type {Table, TableRowKey} from './table';
 import type {TableColumnProps} from './column';
 
 export type TableMerge = (
@@ -21,9 +21,22 @@ export type TableGridItem = {
 
 export type TableGrid = TableGridItem[][];
 
-export function useMerge(getCols: () => Props<TableColumnProps>[]) {
+type RowStatus = {
+    checked: boolean
+    indeterminate: boolean
+    disabled: boolean
+    allDisabled: boolean
+}
+
+export function useMerge(
+    getCols: () => Props<TableColumnProps>[],
+    isChecked: (key: TableRowKey) => boolean,
+    getAllKeys: () => TableRowKey[],
+    isDisabledKey: (key: TableRowKey) => boolean,
+) {
     const instance = useInstance() as Table;
     let grid: TableGrid = [];
+    let allStatus: RowStatus[] = [];
 
     function handleSpans() {
         grid = [];
@@ -92,11 +105,120 @@ export function useMerge(getCols: () => Props<TableColumnProps>[]) {
         });
     }
 
+    function updateAllCheckedStatus() {
+        allStatus = [];
+
+        const {data, rowKey, checkType, merge} = instance.get();
+
+        if (!data || !data.length) return;
+
+        const allKeys = getAllKeys();
+        allKeys.forEach((key) => {
+            const disabled = isDisabledKey(key);
+            allStatus.push({
+                checked: isChecked(key),
+                indeterminate: false,
+                disabled, 
+                allDisabled: disabled, 
+            });
+        });
+
+        if (merge && checkType !== 'none') {
+            data.forEach((data, rowIndex) => {
+                const {spans, render} = grid[rowIndex][0];
+                let rowspan;
+                if (render && spans && (rowspan = spans.rowspan!) > 1) {
+                    let enabledCheckedCount = 0;
+                    let disabledCheckedCount = 0;
+                    let disabledCount = 0;
+                    for (let i = rowIndex; i < rowspan + rowIndex; i++) {
+                        const status = allStatus[i];
+                        if (isDisabledKey(allKeys[i])) {
+                            disabledCount++;
+                            if (status.checked) {
+                                disabledCheckedCount++;
+                            }
+                        } else if (status.checked) {
+                            enabledCheckedCount++;
+                        }
+                    }
+
+                    const status = allStatus[rowIndex];
+                    if (disabledCount === rowspan) {
+                        // all rows are disabled
+                        status.allDisabled = true;
+                        if (disabledCheckedCount === rowspan) {
+                            status.checked = true;
+                        } else if (disabledCheckedCount > 0) {
+                            status.indeterminate = true;
+                        }
+                    } else {
+                        status.allDisabled = false;
+                        if (enabledCheckedCount + disabledCount === rowspan) {
+                            status.checked = true;
+                        } else if (enabledCheckedCount > 0) {
+                            status.indeterminate = true;
+                        }
+                    }
+                }
+            });
+            console.log(allStatus);
+        }
+    }
+
+    function onChangeChecked(rowIndex: number, v: boolean) {
+        // should check or uncheck all grouped rows
+        const checkType = instance.get('checkType');
+        const checkedKeys = (instance.get('checkedKeys') || []).slice();
+        const {spans} = grid[rowIndex][0];
+        const allKeys = getAllKeys();
+        let rowspan;
+
+        // if is radio check, remove all enabled keys
+        if (checkType === 'radio') {
+            for (let i = 0; i < checkedKeys.length; i++) {
+                const key = checkedKeys[i];
+                if (isDisabledKey(key)) continue;
+                checkedKeys.splice(i, 1);
+                i--;
+            }
+        }
+
+        if (spans && (rowspan = spans.rowspan!) > 1) {
+            for (let i = rowIndex; i < rowspan + rowIndex; i++) {
+                const status = allStatus[i];
+                const key = allKeys[i];
+                if (!status.disabled) {
+                    const index = checkedKeys.indexOf(key);
+                    if (v) {
+                        if (index === -1) {
+                            // if checked, but it is not in checkedKeys, add it,
+                            // ohterwise do nothing
+                            checkedKeys.push(key);
+                        }
+                    } else {
+                        if (index > -1) {
+                            checkedKeys.splice(index, 1);
+                        }
+                    }
+                }
+            } 
+        }
+
+        instance.set('checkedKeys', checkedKeys);
+    }
+
     function getGrid() {
         return grid;
     }
 
-    instance.on('$receive:children', handleSpans);
+    function getAllStatus() {
+        return allStatus;
+    }
 
-    return {getGrid};
+    instance.on('$receive:children', handleSpans);
+    instance.on('$receive:children', updateAllCheckedStatus);
+    instance.on('$change:checkedKeys', updateAllCheckedStatus);
+
+    return {getGrid, getAllStatus, onChangeChecked};
 }

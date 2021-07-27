@@ -13,8 +13,10 @@ export interface TableRowProps {
     hasFixedLeft: boolean
     onClick: (data: any, index: number, key: string | number) => void
     checked: boolean
+    indeterminate: boolean
     index: number
     disabled: boolean
+    allDisabled: boolean
     grid: TableGrid
 }
 
@@ -46,10 +48,18 @@ export class TableRow extends Component<TableRowProps> {
     }
 
     @bind
-    onClick() {
+    onClick(e: MouseEvent) {
+        if ((e.target as HTMLElement).tagName === 'INPUT') return;
+
         const {index, key, data, onClick, disabled} = this.get();
         if (!disabled)  {
             onClick(data, index, key);
         }
+    }
+
+    @bind
+    onChangeChecked(v: boolean) {
+        console.log(v); 
+        this.trigger('changeChecked', this.get('index'), v);
     }
 }
