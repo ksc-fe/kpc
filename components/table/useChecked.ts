@@ -22,10 +22,7 @@ export function useChecked(
     let allStatus: RowStatus[] = [];
 
     function isChecked(key: TableRowKey) {
-        const {checkedKeys} = instance.get(); 
-
-        if (!checkedKeys) return false;
-        return !!~checkedKeys.indexOf(key);
+        return inArray(instance.get('checkedKeys'), key);
     }
 
     function toggleChecked(key: TableRowKey, rowIndex: number) {
@@ -206,4 +203,9 @@ export function useChecked(
     });
 
     return {isChecked, isAllChecked, toggleCheckedAll, getAllStatus, onChangeChecked};
+}
+
+export function inArray(arr: any[] | undefined, v: any) {
+    if (!arr) return false;
+    return arr.indexOf(v) > -1;
 }
