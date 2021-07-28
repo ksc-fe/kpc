@@ -1,30 +1,31 @@
 import {useInstance, onBeforeMount, onBeforeUpdate} from 'intact';
 import type {Table, TableRowKey} from './table';
+import type {useTree} from './useTree';
 
-export function useDisableRow() {
+export function useDisableRow(
+    loopData: ReturnType<typeof useTree>['loopData'],
+) {
     const instance = useInstance() as Table;
     let enabledKeys: TableRowKey[] = [];
     let disabledKeys: TableRowKey[] = [];
     let allKeys: TableRowKey[] = [];
 
     function setDisabledKeys() {
-        const {rowKey, data} = instance.get(); 
+        const {rowKey} = instance.get(); 
 
         enabledKeys = [];
         disabledKeys = [];
         allKeys = [];
 
-        if (data) {
-            data.forEach((item, index) => {
-                const key = rowKey!(item, index);
-                if (isDisabled(item, index, key)) {
-                    disabledKeys.push(key);
-                } else {
-                    enabledKeys.push(key);
-                }
-                allKeys.push(key);
-            });
-        }
+        loopData((item, index) => {
+            const key = rowKey!(item, index);
+            if (isDisabled(item, index, key)) {
+                disabledKeys.push(key);
+            } else {
+                enabledKeys.push(key);
+            }
+            allKeys.push(key);
+        });
     }
 
     function isDisabled(data: any, index: number, key: TableRowKey) {

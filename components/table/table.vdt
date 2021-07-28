@@ -18,7 +18,7 @@ const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
     rowClassName, group, sort, loading,
-    merge,
+    merge, childrenKey, indent,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -88,6 +88,7 @@ const allKeys = getAllKeys();
 const colCount = maxCols + (checkType !== 'none' ? 1 : 0);
 const {isExpanded} = this.expandable;
 const {isSelected} = this.selected;
+const {loopData, isSpreaded, toggleSpreadRow} = this.tree;
 const tbody = (
     <tbody>
         <tr v-if={!hasData} key="table-empty">
@@ -96,47 +97,62 @@ const tbody = (
             </td>
         </tr>
         <template v-else>
-            {data.map((value, index) => {
-                const status = allStatus[index];
-                const key = allKeys[index];
-                const row = <TableRow
-                    key={key}
-                    cols={cols}
-                    data={value}
-                    checkType={checkType}
-                    hasFixedLeft={hasFixedLeft}
-                    onClick={this.clickRow}
-                    checked={status.checked}
-                    indeterminate={status.indeterminate}
-                    index={index}
-                    disabled={status.disabled}
-                    allDisabled={status.allDisabled}
-                    className={rowClassName && rowClassName(value, index, key)}
-                    merge={merge}
-                    grid={getGrid()}
-                    ev-changeChecked={onChangeChecked}
-                    selected={isSelected(key)}
-                />
+            {(() => {
+                const rows = [];
+                loopData((value, index, level, hidden) => {
+                    const status = allStatus[index];
+                    const key = allKeys[index];
+                    const spreaded = isSpreaded(key);
+                    const hasChildren = !!childrenKey && Array.isArray(value[childrenKey]);
+                    const indentSize = indent ? indent * level : 0; 
 
-                if ($blocks.expand) {
-                    const expanded = isExpanded(key);
-                    return [
-                        row,
-                        <tr class={{"k-expand": true, 'k-expanded': expanded}}
-                            key={`${key}.$expand`}
-                        >
-                            <td colspan={colCount}>
-                                <Transition {...expandAnimationCallbacks}>
-                                    <div v-if={expanded} class="k-table-expand">
-                                        <b:expand params={[value, index]} />
-                                    </div>
-                                </Transition>
-                            </td>
-                        </tr>
-                    ]
-                }
-                return row;
-            })}
+                    const row = <TableRow
+                        key={key}
+                        cols={cols}
+                        data={value}
+                        checkType={checkType}
+                        hasFixedLeft={hasFixedLeft}
+                        onClick={this.clickRow}
+                        checked={status.checked}
+                        indeterminate={status.indeterminate}
+                        index={index}
+                        disabled={status.disabled}
+                        allDisabled={status.allDisabled}
+                        className={rowClassName && rowClassName(value, index, key)}
+                        merge={merge}
+                        grid={getGrid()}
+                        onChangeChecked={onChangeChecked}
+                        selected={isSelected(key)}
+                        spreaded={spreaded}
+                        hidden={hidden}
+                        hasChildren={hasChildren}
+                        indent={indentSize}
+                        onToggleSpreadRow={toggleSpreadRow}
+                    />
+
+                    rows.push(row);
+                    if ($blocks.expand) {
+                        const expanded = isExpanded(key);
+                        rows.push(
+                            <tr class={{"k-expand": true, 'k-expanded': expanded}}
+                                key={`${key}.$expand`}
+                            >
+                                <td colspan={colCount}>
+                                    <Transition {...expandAnimationCallbacks}>
+                                        <div v-if={expanded} class="k-table-expand">
+                                            <b:expand params={[value, index]} />
+                                        </div>
+                                    </Transition>
+                                </td>
+                            </tr>
+                        );
+                    }
+
+                    return hidden || !spreaded;
+                });
+
+                return rows;
+            })()}
         </template>
     </tbody>
 );

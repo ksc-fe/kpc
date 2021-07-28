@@ -4,6 +4,7 @@ import type {Table, TableRowKey} from './';
 import {toggleArray} from '../utils';
 import {useReceive} from '../../hooks/useReceive';
 import type {TableGrid} from './useMerge';
+import type {useTree} from './useTree';
 
 type RowStatus = {
     checked: boolean
@@ -16,7 +17,8 @@ export function useChecked(
     getEnableKeys: () => TableRowKey[],
     getAllKeys: () => TableRowKey[],
     isDisabledKey: (key: TableRowKey) => boolean,
-    getGrid: () => TableGrid
+    getGrid: () => TableGrid,
+    loopData: ReturnType<typeof useTree>['loopData'],
 ) {
     const instance = useInstance() as Table;
     let allStatus: RowStatus[] = [];
@@ -97,7 +99,7 @@ export function useChecked(
 
         const grid = getGrid();
         if (merge && checkType !== 'none') {
-            data.forEach((data, rowIndex) => {
+            loopData((data, rowIndex) => {
                 const {spans, render} = grid[rowIndex][0];
                 let rowspan;
                 if (render && spans && (rowspan = spans.rowspan!) > 1) {

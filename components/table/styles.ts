@@ -51,6 +51,11 @@ const {table} = deepDefaults(theme, {
 
         expandBgColor: '#fdfcff',
         get selectedBgColor() { return palette(theme.color.primary, -4) },
+
+        // tree
+        arrow: {
+            gap: `4px`,
+        },
     }
 });
 
@@ -281,8 +286,25 @@ export function makeStyles() {
             border-top: ${table.border};
         }
 
+        // select
         tbody tr.k-selected td {
             background: ${table.selectedBgColor};
+        }
+
+        // tree
+        tr.k-hidden {
+            display: none;
+        }
+        .k-table-arrow {
+            margin-right: ${table.arrow.gap};
+            transition: transform ${theme.transition};
+            position: relative;
+            top: -1px;
+        }
+        tr.k-spreaded {
+            .k-table-arrow {
+                transform: rotate(90deg);
+            }
         }
     `;
 }

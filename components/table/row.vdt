@@ -4,17 +4,22 @@ import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 import {getTextByChildren} from '../utils';
 import {get} from 'intact-shared';
+import {Button} from '../button';
+import {Icon} from '../icon';
 
 const {
     cols, data, checkType, hasFixedLeft,
     checked, disabled, className, merge,
     grid, index: rowIndex, indeterminate,
-    allDisabled, selected,
+    allDisabled, selected, hidden, spreaded,
+    hasChildren, indent,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
     'k-checked': checked,
     'k-selected': selected,
+    'k-hidden': hidden,
+    'k-spreaded': spreaded,
     [className]: className,
 };
 
@@ -72,7 +77,15 @@ const columnOffset = checkType !== 'none' ? 1 : 0;
                 <td {...getClassAndStyleForFixed(props, checkType)}
                     title={getTextByChildren(children)}
                     {...spans}
+                    style={!columnIndex && indent ? {paddingLeft: `${indent}px`} : null}
                 >
+                    <Button v-if={!columnIndex && hasChildren}
+                        type="none" icon circle size="mini"
+                        class="k-table-arrow"
+                        ev-click={this.onClickArrow}
+                    >
+                        <Icon class="ion-ios-arrow-right" size="small" />
+                    </Button>
                     {children}
                 </td>
             );

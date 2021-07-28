@@ -11,6 +11,7 @@ import type {TableColumnProps} from './column';
 import {useMerge, TableMerge} from './useMerge';
 import {useExpandable} from './useExpandable';
 import {useSelected} from './useSelected';
+import {useTree} from './useTree';
 
 export interface TableProps {
     data?: any[]
@@ -32,6 +33,9 @@ export interface TableProps {
     rowExpandable?: boolean
     selectedKeys?: TableRowKey[]
     rowSelectable?: boolean | 'single' | 'multiple'
+    childrenKey?: string
+    indent?: number
+    spreadKeys?: TableRowKey[]
 }
 
 export type TableRowKey = string | number;
@@ -60,6 +64,9 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     rowExpandable: Boolean,
     selectedKeys: Array,
     rowSelectable: [Boolean, 'single', 'multiple'],
+    childrenKey: String,
+    indent: Number,
+    spreadKeys: Array,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -67,6 +74,8 @@ const defaults = (): Partial<TableProps> => ({
     rowKey(value, index) { return index; },
     rowCheckable: true,
     rowExpandable: true,
+    childrenKey: 'children',
+    indent: 32,
 });
 
 export class Table extends Component<TableProps> {
@@ -74,19 +83,21 @@ export class Table extends Component<TableProps> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    private tree = useTree();
     private columns = useColumns();
     private stickyHeader = useStickyHeader();
     private fixedColumns = useFixedColumns(
         this.columns.getColumns,
         this.stickyHeader.scrollRef
     );
-    private disableRow = useDisableRow();
+    private disableRow = useDisableRow(this.tree.loopData);
     private merge = useMerge(this.columns.getCols);
     private checked = useChecked(
         this.disableRow.getEnableKeys,
         this.disableRow.getAllKeys,
         this.disableRow.isDisabledKey,
         this.merge.getGrid,
+        this.tree.loopData,
     );
     private sortable = useSortable();
     private expandable = useExpandable();
