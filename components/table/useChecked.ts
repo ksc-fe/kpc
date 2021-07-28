@@ -205,7 +205,7 @@ export function useChecked(
     return {isChecked, isAllChecked, toggleCheckedAll, getAllStatus, onChangeChecked};
 }
 
-export function inArray(arr: any[] | undefined, v: any) {
+export function inArray<T>(arr: T[] | undefined, v: T) {
     if (!arr) return false;
     return arr.indexOf(v) > -1;
 }

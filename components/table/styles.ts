@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults} from '../../styles/utils';
+import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 import {select} from '../select/styles';
 
@@ -47,7 +47,10 @@ const {table} = deepDefaults(theme, {
             gap: `10px`,
             color: `#a6a6a6`,
             disabledColor: `#ddd`,
-        }
+        },
+
+        expandBgColor: '#fdfcff',
+        get selectedBgColor() { return palette(theme.color.primary, -4) },
     }
 });
 
@@ -276,6 +279,10 @@ export function makeStyles() {
         }
         .k-table-expand {
             border-top: ${table.border};
+        }
+
+        tbody tr.k-selected td {
+            background: ${table.selectedBgColor};
         }
     `;
 }

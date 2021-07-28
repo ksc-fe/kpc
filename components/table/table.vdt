@@ -87,6 +87,7 @@ const allStatus = getAllStatus();
 const allKeys = getAllKeys();
 const colCount = maxCols + (checkType !== 'none' ? 1 : 0);
 const {isExpanded} = this.expandable;
+const {isSelected} = this.selected;
 const tbody = (
     <tbody>
         <tr v-if={!hasData} key="table-empty">
@@ -114,6 +115,7 @@ const tbody = (
                     merge={merge}
                     grid={getGrid()}
                     ev-changeChecked={onChangeChecked}
+                    selected={isSelected(key)}
                 />
 
                 if ($blocks.expand) {

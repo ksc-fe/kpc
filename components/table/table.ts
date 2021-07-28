@@ -10,6 +10,7 @@ import {useSortable} from './useSortable';
 import type {TableColumnProps} from './column';
 import {useMerge, TableMerge} from './useMerge';
 import {useExpandable} from './useExpandable';
+import {useSelected} from './useSelected';
 
 export interface TableProps {
     data?: any[]
@@ -29,6 +30,8 @@ export interface TableProps {
     merge?: TableMerge
     expandedKeys?: TableRowKey[]
     rowExpandable?: boolean
+    selectedKeys?: TableRowKey[]
+    rowSelectable?: boolean | 'single' | 'multiple'
 }
 
 export type TableRowKey = string | number;
@@ -55,6 +58,8 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     merge: Function,
     expandedKeys: Array,
     rowExpandable: Boolean,
+    selectedKeys: Array,
+    rowSelectable: [Boolean, 'single', 'multiple'],
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -85,6 +90,7 @@ export class Table extends Component<TableProps> {
     );
     private sortable = useSortable();
     private expandable = useExpandable();
+    private selected = useSelected();
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {

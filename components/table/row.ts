@@ -18,6 +18,7 @@ export interface TableRowProps {
     disabled: boolean
     allDisabled: boolean
     grid: TableGrid
+    selected: boolean
 }
 
 export class TableRow extends Component<TableRowProps> {

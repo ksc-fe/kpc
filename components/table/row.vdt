@@ -9,11 +9,12 @@ const {
     cols, data, checkType, hasFixedLeft,
     checked, disabled, className, merge,
     grid, index: rowIndex, indeterminate,
-    allDisabled,
+    allDisabled, selected,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
     'k-checked': checked,
+    'k-selected': selected,
     [className]: className,
 };
 
