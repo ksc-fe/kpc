@@ -125,10 +125,8 @@ const tbody = (
                         >
                             <td colspan={colCount}>
                                 <Transition {...expandAnimationCallbacks}>
-                                    <div v-if={expanded}>
-                                        <div class="k-table-expand">
-                                            <b:expand params={[value, index]} />
-                                        </div>
+                                    <div v-if={expanded} class="k-table-expand">
+                                        <b:expand params={[value, index]} />
                                     </div>
                                 </Transition>
                             </td>

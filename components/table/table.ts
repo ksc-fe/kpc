@@ -28,6 +28,7 @@ export interface TableProps {
     loading?: boolean
     merge?: TableMerge
     expandedKeys?: TableRowKey[]
+    rowExpandable?: boolean
 }
 
 export type TableRowKey = string | number;
@@ -53,12 +54,14 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     loading: Boolean,
     merge: Function,
     expandedKeys: Array,
+    rowExpandable: Boolean,
 };
 
 const defaults = (): Partial<TableProps> => ({
     checkType: 'checkbox',
     rowKey(value, index) { return index; },
     rowCheckable: true,
+    rowExpandable: true,
 });
 
 export class Table extends Component<TableProps> {

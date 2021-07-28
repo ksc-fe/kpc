@@ -21,7 +21,7 @@ import {Table, TableColumn} from 'kpc/components/table';
         ref="__test1"
     >
         <b:expand args="[data, index]">
-            <div>Email: {data.email}</div>
+            <div class="expand">Email: {data.email}</div>
         </b:expand>
         <TableColumn title="点击整行展开内容" key="name" />
     </Table>
@@ -34,7 +34,7 @@ import {Table, TableColumn} from 'kpc/components/table';
         ref="__test2"
     >
         <b:expand args="[data, index]">
-            <div>Email: {data.email}</div>
+            <div class="expand">Email: {data.email}</div>
         </b:expand>
         <TableColumn title="点击+，展开内容" key="name">
             <b:template args="[data, index]">
@@ -47,7 +47,7 @@ import {Table, TableColumn} from 'kpc/components/table';
                         }}
                         ev-click={this.toggleExpand.bind(this, data, index)}
                     ></i>
-                    {data.name}
+                    <span class="name">{data.name}</span>
                 </div>
             </b:template>
         </TableColumn>
@@ -63,6 +63,10 @@ import {Table, TableColumn} from 'kpc/components/table';
     vertical-align middle
     margin-right 10px
     cursor pointer
+.name
+    vertical-align middle
+.expand
+    padding 16px
 ```
 
 ```ts
