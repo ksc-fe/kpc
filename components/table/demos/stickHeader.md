@@ -18,12 +18,12 @@ import {Table, TableColumn} from 'kpc/components/table';
     {name: 'Kanily', sex: 'female'}
 ]} stickHeader="87" resizable>
     <TableColumn title="姓名" key="name">
-        <b:template args="data">
+        <b:template args="[data]">
             {data.name}
         </b:template>
     </TableColumn>
     <TableColumn title="性别" key="sex">
-        <b:template args="data">
+        <b:template args="[data]">
             {data.sex}
         </b:template>
     </TableColumn>

@@ -103,6 +103,35 @@ export class Table extends Component<TableProps> {
     private expandable = useExpandable();
     private selected = useSelected();
 
+    public getCheckedData() {
+        return this.getData('checkedKeys');
+    }
+
+    public getSelectedData() {
+        return this.getData('selectedKeys');
+    }
+
+    private getData(type: 'selectedKeys' | 'checkedKeys') {
+        const keys = this.get(type);
+        const ret: any[] = [];
+
+        if (!keys) return ret;
+
+        const allKeys = this.disableRow.getAllKeys();
+        const checkedKeysMap: Record<TableRowKey, true> = {};
+        keys.forEach(item => {
+            checkedKeysMap[item] = true;
+        });
+        this.tree.loopData((value, index) => {
+            const key = allKeys[index];
+            if (checkedKeysMap[key]) {
+                ret.push(value);
+            }
+        });
+
+        return ret;
+    }
+
     @bind
     private clickRow(data: any, index: number, key: string | number) {
         this.trigger('click:row', data, index, key);
