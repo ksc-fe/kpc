@@ -5,12 +5,15 @@ export function useDisableRow() {
     const instance = useInstance() as Table;
     let enabledKeys: TableRowKey[] = [];
     let disabledKeys: TableRowKey[] = [];
+    let allKeys: TableRowKey[] = [];
 
     function setDisabledKeys() {
         const {rowKey, data} = instance.get(); 
 
         enabledKeys = [];
         disabledKeys = [];
+        allKeys = [];
+
         if (data) {
             data.forEach((item, index) => {
                 const key = rowKey!(item, index);
@@ -19,6 +22,7 @@ export function useDisableRow() {
                 } else {
                     enabledKeys.push(key);
                 }
+                allKeys.push(key);
             });
         }
     }
@@ -37,8 +41,13 @@ export function useDisableRow() {
         return enabledKeys;
     }
 
-    onBeforeMount(setDisabledKeys);
-    onBeforeUpdate(setDisabledKeys);
+    function getAllKeys() {
+        return allKeys;
+    }
 
-    return {isDisabled, getEnableKeys, isDisabledKey};
+    instance.on('$receive:children', setDisabledKeys);
+    // onBeforeMount(setDisabledKeys);
+    // onBeforeUpdate(setDisabledKeys);
+
+    return {isDisabled, getEnableKeys, isDisabledKey, getAllKeys};
 }

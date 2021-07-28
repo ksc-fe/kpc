@@ -8,26 +8,30 @@ import {TableRow} from './row';
 import {Checkbox} from '../checkbox';
 import {context} from './useGroup';
 import {context as sortableContext} from './useSortable';
+import {Spin} from '../spin';
+import {Transition} from 'intact';
+import {_$} from '../../i18n';
+import {context as tableContext} from './useColumns';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
-    rowClassName, group, sort,
+    rowClassName, group, sort, loading,
+    merge,
 } = this.get();
-const {getColumns} = this.columns;
+const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
 const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.stickyHeader;
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
-    [`k-scroll-${scrollPosition.value}`]: true,
+    [`k-scroll-${scrollPosition.value}`]: scrollPosition.value,
     'k-fix-columns': hasFixed.value,
     [`k-${type}`]: type && type !== 'default',
     'k-stripe': stripe,
     [className]: className,
     [makeStyles()]: true,
 };
-const columns = getColumns();
 const style = isStringOrNumber(fixHeader) ? 
     {maxHeight: `${fixHeader}px`} :
     null;
@@ -35,56 +39,101 @@ const style = isStringOrNumber(fixHeader) ?
 const colgroup = (
     <colgroup>
         <col v-if={checkType !== 'none'} width="40" />
-        <col v-for={columns} 
-            width={$value.props.width}
-            class={{[$value.props.className]: $value.props.className}}
+        <col v-for={cols} 
+            width={$value.width}
+            class={{[$value.className]: $value.className}}
         />
     </colgroup>
 );
+const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
-const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
+const {isAllChecked, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
 const Provider = context.Provider;
 const SortableProvider = sortableContext.Provider;
+const TableProvider = tableContext.Provider;
 const thead = (
-    <thead>
-        <tr>
-            <th v-if={checkType !== 'none'}
-                {...getClassAndStyleForFixed({
-                    fixed: hasFixedLeft ? 'left' : false,
-                    offset: 0,
-                })} 
-            >
-                <Checkbox v-if={checkType === 'checkbox'}
-                    value={isAllChecked()} 
-                    ev-$change:value={toggleCheckedAll}
-                />
-            </th>
-            <Provider value={{group, onChange: this.onChangeGroup}}>
-                <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
-                    {columns}
-                </SortableProvider>
-            </Provider>
-        </tr>
-    </thead>
+    <TableProvider value={checkType}>
+        <Provider value={{group, onChange: this.onChangeGroup}}>
+            <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
+                <thead>
+                    <tr v-for={columns}>
+                        <th v-if={$key === 0 && checkType !== 'none'}
+                            {...getClassAndStyleForFixed({
+                                fixed: hasFixedLeft ? 'left' : false,
+                                offset: 0,
+                            })} 
+                            rowspan={maxRows}
+                        >
+                            <Checkbox v-if={checkType === 'checkbox'}
+                                value={isAllChecked()} 
+                                ev-$change:value={toggleCheckedAll}
+                                disabled={!hasData}
+                            />
+                        </th>
+                        {$value}
+                    </tr>
+                </thead>
+            </SortableProvider>
+        </Provider>
+    </TableProvider>
 );
 
-const {isDisabledKey} = this.disableRow;
-let key;
+const {getAllKeys} = this.disableRow;
+const {getGrid} = this.merge;
+const allStatus = getAllStatus();
+const allKeys = getAllKeys();
+const colCount = maxCols + (checkType !== 'none' ? 1 : 0);
+const {isExpanded} = this.expandable;
 const tbody = (
     <tbody>
-        <TableRow v-for={data}
-            key={key = rowKey($value, $key)}
-            columns={columns}
-            data={$value}
-            checkType={checkType}
-            hasFixedLeft={hasFixedLeft}
-            onClick={this.clickRow}
-            checked={isChecked(key)}
-            index={$key}
-            disabled={isDisabledKey(key)}
-            className={rowClassName && rowClassName($value, $key, key)}
-        />
+        <tr v-if={!hasData} key="table-empty">
+            <td colspan={colCount} class="k-table-empty">
+                <b:empty>{_$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~')}</b:empty>
+            </td>
+        </tr>
+        <template v-else>
+            {data.map((value, index) => {
+                const status = allStatus[index];
+                const key = allKeys[index];
+                const row = <TableRow
+                    key={key}
+                    cols={cols}
+                    data={value}
+                    checkType={checkType}
+                    hasFixedLeft={hasFixedLeft}
+                    onClick={this.clickRow}
+                    checked={status.checked}
+                    indeterminate={status.indeterminate}
+                    index={index}
+                    disabled={status.disabled}
+                    allDisabled={status.allDisabled}
+                    className={rowClassName && rowClassName(value, index, key)}
+                    merge={merge}
+                    grid={getGrid()}
+                    ev-changeChecked={onChangeChecked}
+                />
+
+                if ($blocks.expand) {
+                    const expanded = isExpanded(key);
+                    return [
+                        row,
+                        <tr class={{"k-expand": true, 'k-expanded': expanded}}
+                            key={`${key}.$expand`}
+                        >
+                            <td colspan={colCount}>
+                                <Transition>
+                                    <div v-if={expanded}>
+                                        <b:expand params={[value, index]} />
+                                    </div>
+                                </Transition>
+                            </td>
+                        </tr>
+                    ]
+                }
+                return row;
+            })}
+        </template>
     </tbody>
 );
 
@@ -106,4 +155,7 @@ const tbody = (
             <template>{tbody}</template>
         </table>
     </div>
+    <Transition name="k-fade">
+        <Spin v-if={loading} overlay size="small" class="k-table-spin" />
+    </Transition>
 </div>

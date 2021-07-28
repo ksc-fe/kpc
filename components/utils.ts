@@ -333,3 +333,17 @@ export const expandAnimationCallbacks = {
         el._height = null;
     },
 };
+
+export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg: T) => void) {
+    let lock = false;
+    let timer: number;
+    return (arg: T) => {
+        if (doAlways) doAlways(arg);
+        if (lock) return;
+        lock = true;
+        timer = window.setTimeout(() => {
+            fn(arg);
+            lock = false;
+        }, time);
+    };
+}

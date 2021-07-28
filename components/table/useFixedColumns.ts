@@ -1,7 +1,10 @@
-import {useInstance, VNodeComponentClass, Props, directClone} from 'intact';
+import {useInstance, VNodeComponentClass, Props, directClone, onMounted, onUnmounted, RefObject} from 'intact';
 import {TableColumn, TableColumnProps} from './column';
 import {useState} from '../../hooks/useState';
 import {cx} from '@emotion/css';
+import type {TableProps} from './table';
+import {isNullOrUndefined, isString, error} from 'intact-shared';
+import {throttle} from '../utils';
 
 type ScrollPosition = 'left' | 'middle' | 'right';
 type FixedInfo = {
@@ -9,68 +12,65 @@ type FixedInfo = {
     hasFixedRight: boolean
 };
 
-export function useFixedColumns(getColumns: () => VNodeComponentClass<TableColumn>[]) {
+export function useFixedColumns(
+    getColumns: () => VNodeComponentClass<TableColumn>[][],
+    scrollRef: RefObject<HTMLElement>,
+) {
     const instance = useInstance()!;
 
-    const scrollPosition = useState<ScrollPosition>('left');
+    const scrollPosition = useState<ScrollPosition | null>(null);
     const hasFixed = useState<boolean>(false);
     let scrollLeft = 0;
 
-    let offset = 0;
-    let lastLeftFixedIndex = -1;
-    let firstRightFixedIndex = -1;
     let hasFixedLeft = false;
     let hasFixedRight = false;
-
-    function init() {
-        offset = instance.get('checkType') !== 'none' ? 40 : 0;
-        lastLeftFixedIndex = -1;
-        firstRightFixedIndex = -1;
-    }
 
     function handleFixedColumns() {
         const columns = getColumns();
 
-        init();
-        columns.forEach((vNode, index) => {
-            const props = vNode.props!;
-            const scheme = {
-                ...props,
-                shadow: false,
-                offset: 0,
-            };
-            vNode.props = scheme;
+        hasFixedLeft = false;
+        hasFixedRight = false;
 
-            const fixed = props.fixed;
-            if (fixed === 'left') {
-                scheme.offset = offset;
-                offset += props.width as number; 
-                lastLeftFixedIndex = index;
-            } else if (fixed === 'right') {
-                scheme.shadow = true;
-                firstRightFixedIndex = index;
-            }
-        });
-
-        hasFixedLeft = lastLeftFixedIndex > -1;
-        hasFixedRight = firstRightFixedIndex > -1;
-
-        // mark the last fixed left column as shadow
-        if (hasFixedLeft) {
-            (columns[lastLeftFixedIndex].props as TableColumnProps).shadow = true;
-        }
-
-        // calculate the offset of fixed right columns
-        if (hasFixedRight) {
+        columns.forEach((columns, row) => {
             let offset = 0;
-            for (let i = columns.length - 1; i >= firstRightFixedIndex; i--) {
-                const scheme = columns[i].props as TableColumnProps;
-                if (scheme.fixed === 'right') {
-                    scheme.offset = offset;
-                    offset += scheme.width as number;
+            columns.forEach((vNode, col) => {
+                const props = vNode.props as Props<TableColumnProps>;
+                props.offset = 0;
+
+                const fixed = props.fixed;
+                if (fixed === 'left') {
+                    let value = 0;
+                    let prevVNode = props.prevVNode;
+                    while (prevVNode) {
+                        const props = prevVNode.props!;
+                        if (props.fixed === 'left') {
+                            if (process.env.NODE_ENV !== 'production') {
+                                validateWidth(props);
+                            }
+                            value += parseInt(props.width as string, 10) || 0;
+                        }
+                        prevVNode = props.prevVNode;
+                    }
+                    props.offset = value;
+                    hasFixedLeft = true;
+                } else if (fixed === 'right') {
+                    let value = 0;
+                    let lastVNode = columns[columns.length - 1];
+                    while (vNode !== lastVNode) {
+                        const props = lastVNode.props!; 
+                        if (props.fixed === 'right') {
+                            if (process.env.NODE_ENV !== 'production') {
+                                validateWidth(props);
+                            }
+                            value += parseInt(props.width as string, 10) || 0;
+                        }
+                        lastVNode = props.prevVNode!;
+                    }
+                    props.offset = value;
+                    hasFixedRight = true;
                 }
-            }
-        }
+            });
+        });
 
         hasFixed.set(hasFixedLeft || hasFixedRight);
     }
@@ -93,19 +93,51 @@ export function useFixedColumns(getColumns: () => VNodeComponentClass<TableColum
         }
     }
 
+    function updateScrollPositionOnResize() {
+        const scrollDom = scrollRef.value!;     
+        if (scrollDom.scrollWidth - scrollDom.offsetWidth <= 0) {
+            scrollPosition.set(null);
+        } else {
+            scrollPosition.set('left');
+        }
+    }
+
     instance.on('$receive:children', handleFixedColumns);
+
+    const throttleUpdate = throttle(() => {
+        if (instance.$unmounted) return;
+        updateScrollPositionOnResize();
+    }, 100);
+
+    onMounted(() => {
+        updateScrollPositionOnResize();
+        window.addEventListener('resize', throttleUpdate);
+    });
+
+    onUnmounted(() => {
+        window.removeEventListener('resize', throttleUpdate);
+    });
 
     return {scrollPosition, onScroll, hasFixed, getHasFixedLeft: () => hasFixedLeft};
 }
 
-export function getClassAndStyleForFixed({className, fixed, shadow, offset}: Props<TableColumnProps>) {
+export function getClassAndStyleForFixed(
+    {className, fixed, offset}: Props<TableColumnProps>,
+    checkType?: TableProps['checkType'],
+) {
+    const extraOffset = checkType && checkType !== 'none' && fixed === 'left' ? 40 : 0;
     return {
         className: cx({
             [className as string]: !!className,
             [`k-fixed-${fixed}`]: !!fixed,
-            'k-shadow': shadow,
         }),
-        style: fixed ? {[fixed]: `${offset}px`} : null,
+        style: fixed ? {[fixed]: `${offset + extraOffset}px`} : null,
     };
 }
 
+
+function validateWidth({width, key}: TableColumnProps) {
+    if (isNullOrUndefined(width) || isString(width) && !/\d+(px)?/.test(width)) {
+        error(`The width must be specified with 'px' when the column has fixed. <TableColumn key="${key}" />`);
+    }
+}

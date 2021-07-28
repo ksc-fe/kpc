@@ -38,3 +38,4 @@ export function useStickyHeader() {
 
     return {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef};
 }
+

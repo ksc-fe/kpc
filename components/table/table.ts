@@ -1,4 +1,4 @@
-import {Component, TypeDefs} from 'intact';
+import {Component, TypeDefs, Props} from 'intact';
 import template from './table.vdt';
 import {useColumns} from './useColumns';
 import {useFixedColumns} from './useFixedColumns';
@@ -7,13 +7,16 @@ import {bind} from '../utils';
 import {useChecked} from './useChecked';
 import {useDisableRow} from './useDisableRow';
 import {useSortable} from './useSortable';
+import type {TableColumnProps} from './column';
+import {useMerge, TableMerge} from './useMerge';
+import {useExpandable} from './useExpandable';
 
 export interface TableProps {
     data?: any[]
     fixHeader?: boolean | string | number 
     stickHeader?: boolean | string | number
     checkType?: 'checkbox' | 'radio' | 'none'
-    checkedKeys?: (string | number)[]
+    checkedKeys?: TableRowKey[]
     rowKey?: (value: any, index: number) => TableRowKey
     rowCheckable?: boolean
     disableRow?: (value: any, index: number, key: TableRowKey) => boolean
@@ -22,6 +25,9 @@ export interface TableProps {
     rowClassName?: (value: any, index: number, key: TableRowKey) => string | undefined
     group?: Record<string, any> 
     sort?: TableSortValue 
+    loading?: boolean
+    merge?: TableMerge
+    expandedKeys?: TableRowKey[]
 }
 
 export type TableRowKey = string | number;
@@ -44,6 +50,9 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     rowClassName: Function,
     group: Object,
     sort: Object,
+    loading: Boolean,
+    merge: Function,
+    expandedKeys: Array,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -58,11 +67,21 @@ export class Table extends Component<TableProps> {
     static defaults = defaults;
 
     private columns = useColumns();
-    private fixedColumns = useFixedColumns(this.columns.getColumns);
     private stickyHeader = useStickyHeader();
+    private fixedColumns = useFixedColumns(
+        this.columns.getColumns,
+        this.stickyHeader.scrollRef
+    );
     private disableRow = useDisableRow();
-    private checked = useChecked(this.disableRow.getEnableKeys);
+    private merge = useMerge(this.columns.getCols);
+    private checked = useChecked(
+        this.disableRow.getEnableKeys,
+        this.disableRow.getAllKeys,
+        this.disableRow.isDisabledKey,
+        this.merge.getGrid,
+    );
     private sortable = useSortable();
+    private expandable = useExpandable();
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {

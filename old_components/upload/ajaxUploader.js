@@ -22,6 +22,7 @@ export function request(options) {
     }
 
     xhr.onerror = (e) => options.onError(getError(options, xhr));
+    // FIXME: should check onSuccess in onload
     if (options.onSuccess) {
         xhr.onload = () => {
             if (xhr.status < 200 || xhr.status >= 300) {
@@ -49,7 +50,7 @@ export function request(options) {
     xhr.send(formData);
 
     return {
-        abort() { 
+        abort() {
             xhr.abort();
         }
     };

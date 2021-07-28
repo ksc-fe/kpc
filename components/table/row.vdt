@@ -3,10 +3,13 @@ import {noop} from 'intact-shared';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 import {getTextByChildren} from '../utils';
+import {get} from 'intact-shared';
 
 const {
-    columns, data, checkType, hasFixedLeft,
-    checked, disabled, className,
+    cols, data, checkType, hasFixedLeft,
+    checked, disabled, className, merge,
+    grid, index: rowIndex, indeterminate,
+    allDisabled,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
@@ -14,38 +17,60 @@ const classNameObj = {
     [className]: className,
 };
 
+const getGridItem = (columnIndex) => {
+    return grid[rowIndex]?.[columnIndex] || {render: true, spans: null};
+};
+
 const createCheckTypeVNode = (children) => {
+    const {render, spans} = getGridItem(0);
+    if (!render) return;
     return <td
         {...getClassAndStyleForFixed({
             fixed: hasFixedLeft ? 'left' : false,
             offset: 0,
             className: 'k-table-check'
         })}
+        {...spans}
     >{children}</td>
 }
 const checkTypeVNode = checkType === 'checkbox' ?
-    createCheckTypeVNode(<Checkbox value={checked} disabled={disabled} />) :
+    createCheckTypeVNode(
+        <Checkbox 
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            indeterminate={indeterminate}
+            ev-$change:value={this.onChangeChecked}
+        />) :
     checkType === 'radio' ?
-        createCheckTypeVNode(<Radio value={checked} disabled={disabled} />) :
+        createCheckTypeVNode(<Radio
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            ev-$change:value={this.onChangeChecked}
+        />) :
         null;
+
+const columnOffset = checkType !== 'none' ? 1 : 0;
 
 <tr ev-click={this.onClick} class={classNameObj}>
     {checkTypeVNode}
     <template>
-        {columns.map(column => {
-            const props = column.props;
+        {cols.map((props, columnIndex) => {
             const blocks = props.$blocks; 
-            let children = data[props.key];
+            let children = get(data, props.key);
             if (blocks) {
                 const template = blocks.template || blocks.default;
                 if (template) {
-                    children = template(noop, data);
+                    children = template(noop, [data, rowIndex]);
                 }
             }
 
+            const {render, spans} = getGridItem(columnIndex + columnOffset);
+            if (!render) return;
+
             return (
-                <td {...getClassAndStyleForFixed(column.props)}
+                <td {...getClassAndStyleForFixed(props, checkType)}
                     title={getTextByChildren(children)}
+                    {...spans}
                 >
                     {children}
                 </td>
