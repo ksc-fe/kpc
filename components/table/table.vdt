@@ -12,6 +12,7 @@ import {Spin} from '../spin';
 import {Transition} from 'intact';
 import {_$} from '../../i18n';
 import {context as tableContext} from './useColumns';
+import {expandAnimationCallbacks} from '../utils';
 
 const {
     data, children, className, fixHeader,
@@ -29,6 +30,7 @@ const classNameObj = {
     'k-fix-columns': hasFixed.value,
     [`k-${type}`]: type && type !== 'default',
     'k-stripe': stripe,
+    'k-with-expand': $blocks.expand,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -122,9 +124,11 @@ const tbody = (
                             key={`${key}.$expand`}
                         >
                             <td colspan={colCount}>
-                                <Transition>
+                                <Transition {...expandAnimationCallbacks}>
                                     <div v-if={expanded}>
-                                        <b:expand params={[value, index]} />
+                                        <div class="k-table-expand">
+                                            <b:expand params={[value, index]} />
+                                        </div>
                                     </div>
                                 </Transition>
                             </td>

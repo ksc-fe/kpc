@@ -266,11 +266,16 @@ export function makeStyles() {
                 padding: 0;
                 background: #fdfcff;
             }
-            &:not(.k-expanded) {
+        }
+        &.k-with-expand {
+            tr:not(.k-expand) {
                 td {
-                    border: none;
+                    border-bottom: none;
                 }
             }
+        }
+        .k-table-expand {
+            border-top: ${table.border};
         }
     `;
 }
