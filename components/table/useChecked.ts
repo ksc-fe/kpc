@@ -180,17 +180,6 @@ export function useChecked(
         instance.set('checkedKeys', checkedKeys);
     }
 
-    function addOrRemove(keys: TableRowKey[], key: TableRowKey, isAdd: boolean) {
-        const index = keys.indexOf(key);
-        if (isAdd) {
-            if (index === -1) {
-                keys.push(key);
-            }
-        } else if (index > -1) {
-            keys.splice(index, 1);
-        }
-    }
-
     function getAllStatus() {
         return allStatus;
     }
@@ -210,4 +199,15 @@ export function useChecked(
 export function inArray<T>(arr: T[] | undefined, v: T) {
     if (!arr) return false;
     return arr.indexOf(v) > -1;
+}
+
+export function addOrRemove(keys: TableRowKey[], key: TableRowKey, isAdd: boolean) {
+    const index = keys.indexOf(key);
+    if (isAdd) {
+        if (index === -1) {
+            keys.push(key);
+        }
+    } else if (index > -1) {
+        keys.splice(index, 1);
+    }
 }

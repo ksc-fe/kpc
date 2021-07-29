@@ -13,6 +13,7 @@ import {useExpandable} from './useExpandable';
 import {useSelected} from './useSelected';
 import {useTree} from './useTree';
 import {TooltipProps, Tooltip} from '../tooltip/tooltip';
+import {useRestRowStatus} from './useRestRowStatus';
 
 export interface TableProps {
     data?: any[]
@@ -39,6 +40,7 @@ export interface TableProps {
     spreadKeys?: TableRowKey[]
     tooltipPosition?: TooltipProps['position']
     tooltipContainer?: TooltipProps['container']
+    keepStatus?: boolean
 }
 
 export type TableRowKey = string | number;
@@ -72,6 +74,7 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     spreadKeys: Array,
     tooltipPosition: Tooltip.typeDefs.position,
     tooltipContainer: Tooltip.typeDefs.container,
+    keepStatus: Boolean,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -107,6 +110,7 @@ export class Table extends Component<TableProps> {
     private sortable = useSortable();
     private expandable = useExpandable();
     private selected = useSelected();
+    private resetRowStatus = useRestRowStatus();
 
     public getCheckedData() {
         return this.getData('checkedKeys');

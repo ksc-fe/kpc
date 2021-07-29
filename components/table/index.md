@@ -44,7 +44,7 @@ sidebar: doc
 | indent | 树形表格指定子元素缩进宽度 | `Number` | `32` |
 | spreadKeys | 树形表格指定展开的行 | `Array` | `[]` |
 | draggable | 表格行是否可拖动 | `Boolean` | `false` |
-| removeCheckedKeyOnRowDestroyed | 是否在行销毁的时候，也同步删除`checkedKeys`中的值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `true` |
+| keepStatus | 是否在行销毁的时候，保持该行在`checkedKeys` &#124; `selectedKeys` &#124; `spreadKeys` &#124; `expandedKeys`中的`key`值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `false` |
 
 ## TableColumn
 

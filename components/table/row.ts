@@ -25,6 +25,7 @@ export interface TableRowProps {
     hasChildren: boolean
     indent: number
     onToggleSpreadRow: (key: TableRowKey) => void
+    onBeforeUnmount: (key: TableRowKey) => void
 }
 
 export class TableRow extends Component<TableRowProps> {
@@ -89,5 +90,9 @@ export class TableRow extends Component<TableRowProps> {
         // for tooltip
         const mouseLeave = this.get<Function | undefined>('ev-mouseleave');
         mouseLeave && mouseLeave(e);
+    }
+
+    beforeUnmount() {
+        this.get('onBeforeUnmount')(this.get('key'));
     }
 }
