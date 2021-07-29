@@ -13,6 +13,12 @@ type RowStatus = {
     allDisabled: boolean
 }
 
+export enum AllCheckedStatus {
+    All,
+    Indeterminate,
+    None
+}
+
 export function useChecked(
     getEnableKeys: () => TableRowKey[],
     getAllKeys: () => TableRowKey[],
@@ -44,13 +50,18 @@ export function useChecked(
         }
     }
 
-    function isAllChecked() {
+    function getAllCheckedStatus() {
         const {checkedKeys} = instance.get();
         const enabledKeys = getEnableKeys();
 
-        return enabledKeys.length &&
-            checkedKeys &&
-            enabledKeys.every(key => checkedKeys.includes(key));
+        if (enabledKeys.length && checkedKeys) {
+            if (enabledKeys.every(key => checkedKeys.includes(key))) {
+                return AllCheckedStatus.All;
+            } else if (enabledKeys.some(key => checkedKeys.includes(key))) {
+                return AllCheckedStatus.Indeterminate;
+            }
+        }
+        return AllCheckedStatus.None;
     }
 
     function toggleCheckedAll(v: boolean) {
@@ -193,7 +204,7 @@ export function useChecked(
         }
     });
 
-    return {isChecked, isAllChecked, toggleCheckedAll, getAllStatus, onChangeChecked};
+    return {isChecked, getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked};
 }
 
 export function inArray<T>(arr: T[] | undefined, v: T) {

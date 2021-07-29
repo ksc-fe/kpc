@@ -41,6 +41,7 @@ export interface TableProps {
     tooltipPosition?: TooltipProps['position']
     tooltipContainer?: TooltipProps['container']
     keepStatus?: boolean
+    showIndeterminate?: boolean
 }
 
 export type TableRowKey = string | number;
@@ -75,6 +76,7 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     tooltipPosition: Tooltip.typeDefs.position,
     tooltipContainer: Tooltip.typeDefs.container,
     keepStatus: Boolean,
+    showIndeterminate: Boolean,
 };
 
 const defaults = (): Partial<TableProps> => ({

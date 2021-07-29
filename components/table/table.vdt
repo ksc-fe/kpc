@@ -14,13 +14,14 @@ import {_$} from '../../i18n';
 import {context as tableContext} from './useColumns';
 import {expandAnimationCallbacks} from '../utils';
 import {Tooltip} from '../tooltip';
+import {AllCheckedStatus} from './useChecked';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
     rowClassName, group, sort, loading,
     merge, childrenKey, indent, tooltipPosition,
-    tooltipContainer,
+    tooltipContainer, showIndeterminate,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -52,10 +53,11 @@ const colgroup = (
 const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
-const {isAllChecked, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
+const {getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
 const Provider = context.Provider;
 const SortableProvider = sortableContext.Provider;
 const TableProvider = tableContext.Provider;
+const allCheckedStatus = getAllCheckedStatus(); 
 const thead = (
     <TableProvider value={checkType}>
         <Provider value={{group, onChange: this.onChangeGroup}}>
@@ -70,7 +72,8 @@ const thead = (
                             rowspan={maxRows}
                         >
                             <Checkbox v-if={checkType === 'checkbox'}
-                                value={isAllChecked()} 
+                                value={allCheckedStatus === AllCheckedStatus.All}
+                                indeterminate={showIndeterminate && allCheckedStatus == AllCheckedStatus.Indeterminate}
                                 ev-$change:value={toggleCheckedAll}
                                 disabled={!hasData}
                             />
