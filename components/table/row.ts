@@ -76,4 +76,18 @@ export class TableRow extends Component<TableRowProps> {
         const {onToggleSpreadRow, key} = this.get();
         onToggleSpreadRow(key);
     }
+
+    @bind
+    onMouseEnter(e: MouseEvent) {
+        // for tooltip
+        const mouseEnter = this.get<Function | undefined>('ev-mouseenter');
+        mouseEnter && mouseEnter(e);
+    }
+
+    @bind
+    onMouseLeave(e: MouseEvent) {
+        // for tooltip
+        const mouseLeave = this.get<Function | undefined>('ev-mouseleave');
+        mouseLeave && mouseLeave(e);
+    }
 }

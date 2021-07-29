@@ -12,7 +12,7 @@ const {
     checked, disabled, className, merge,
     grid, index: rowIndex, indeterminate,
     allDisabled, selected, hidden, spreaded,
-    hasChildren, indent,
+    hasChildren, indent, key,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
@@ -57,7 +57,12 @@ const checkTypeVNode = checkType === 'checkbox' ?
 
 const columnOffset = checkType !== 'none' ? 1 : 0;
 
-<tr ev-click={this.onClick} class={classNameObj}>
+<tr ev-click={this.onClick}
+    class={classNameObj}
+    data-key={key}
+    ev-mouseenter={this.onMouseEnter}
+    ev-mouseleave={this.onMouseLeave}
+>
     {checkTypeVNode}
     <template>
         {cols.map((props, columnIndex) => {

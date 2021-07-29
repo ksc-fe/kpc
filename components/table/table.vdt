@@ -13,12 +13,14 @@ import {Transition} from 'intact';
 import {_$} from '../../i18n';
 import {context as tableContext} from './useColumns';
 import {expandAnimationCallbacks} from '../utils';
+import {Tooltip} from '../tooltip';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
     rowClassName, group, sort, loading,
-    merge, childrenKey, indent,
+    merge, childrenKey, indent, tooltipPosition,
+    tooltipContainer,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -109,7 +111,7 @@ const tbody = (
                 const hasChildren = !!childrenKey && Array.isArray(value[childrenKey]);
                 const indentSize = indent ? indent * level : 0; 
 
-                const row = <TableRow
+                let row = <TableRow
                     key={key}
                     cols={cols}
                     data={value}
@@ -132,6 +134,16 @@ const tbody = (
                     indent={indentSize}
                     onToggleSpreadRow={toggleSpreadRow}
                 />
+
+                if ($blocks.tooltip) {
+                    const content = <b:tooltip params={[value, index]} />;
+                    row = (
+                        <Tooltip key={key} position={tooltipPosition} container={tooltipContainer}>
+                            <template>{row}</template>
+                            <b:content>{content}</b:content>
+                        </Tooltip>
+                    );
+                }
 
                 rows.push(row);
                 if ($blocks.expand) {

@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Props} from 'intact';
+import {Component, TypeDefs, Props, createRef} from 'intact';
 import template from './table.vdt';
 import {useColumns} from './useColumns';
 import {useFixedColumns} from './useFixedColumns';
@@ -12,6 +12,7 @@ import {useMerge, TableMerge} from './useMerge';
 import {useExpandable} from './useExpandable';
 import {useSelected} from './useSelected';
 import {useTree} from './useTree';
+import {TooltipProps, Tooltip} from '../tooltip/tooltip';
 
 export interface TableProps {
     data?: any[]
@@ -36,6 +37,8 @@ export interface TableProps {
     childrenKey?: string
     indent?: number
     spreadKeys?: TableRowKey[]
+    tooltipPosition?: TooltipProps['position']
+    tooltipContainer?: TooltipProps['container']
 }
 
 export type TableRowKey = string | number;
@@ -67,6 +70,8 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     childrenKey: String,
     indent: Number,
     spreadKeys: Array,
+    tooltipPosition: Tooltip.typeDefs.position,
+    tooltipContainer: Tooltip.typeDefs.container,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -109,6 +114,39 @@ export class Table extends Component<TableProps> {
 
     public getSelectedData() {
         return this.getData('selectedKeys');
+    }
+
+    public scrollToRowByIndex(index: number) {
+        return this.scrollToRowByKey(this.disableRow.getEnableKeys()[index]);
+    }
+
+    public scrollToRowByKey(key: TableRowKey) {
+        return new Promise<void>(resolve => {
+            const scrollElement = this.stickyHeader.scrollRef.value!;
+            const tr = scrollElement.querySelector(`tr[data-key="${key}"]`) as HTMLElement | null;
+
+            if (!tr) return resolve();
+
+            // we can not use scrollIntoView with smooth, because it can only operate one element
+            // at the same time
+            // elem.scrollIntoView({behavior: 'smooth'});
+            const headerHeight = (scrollElement.querySelector('thead') as HTMLElement).offsetHeight;
+            let scrollTop = scrollElement.scrollTop;
+            const offsetTop = tr.offsetTop + 1 - headerHeight;
+            const top = offsetTop - scrollTop;
+            const topOneFrame = top / 60 / (100 / 1000);
+            const step = () => {
+                scrollTop = Math[topOneFrame < 0 ? 'max' : 'min'](scrollTop + topOneFrame, offsetTop);
+                scrollElement.scrollTop = scrollTop;
+                if (!this.$unmounted && scrollTop !== offsetTop) {
+                    requestAnimationFrame(step);
+                } else {
+                    resolve();
+                }
+            };
+
+            requestAnimationFrame(step);
+        });
     }
 
     private getData(type: 'selectedKeys' | 'checkedKeys') {
