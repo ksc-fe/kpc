@@ -13,6 +13,7 @@ export interface TableColumnProps {
     fixed?: 'left' | 'right'
     align?: 'left' | 'center' | 'right'
     exportTitle?: string
+    exportCell?: (data: any, index: number) => string
 
     // passed by Table
     offset: number
@@ -40,6 +41,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     fixed: ['left', 'right'],
     align: ['left', 'center', 'right'],
     exportTitle: String,
+    exportCell: Function,
 
     offset: null,
     cols: null,

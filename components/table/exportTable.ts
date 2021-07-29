@@ -1,7 +1,7 @@
 import {findDomFromVNode, createVNode as h, mount, ComponentClass} from 'intact';
 import type {useColumns} from './useColumns';
 import {loopDataWithChildrenKey} from './useTree';
-import {get, noop} from 'intact-shared';
+import {get, noop, isNullOrUndefined} from 'intact-shared';
 import type {TableProps} from './table';
 
 export async function exportTable(
@@ -18,14 +18,13 @@ export async function exportTable(
     // head
     columns.forEach(column => {
         const rows: string[] = [];
+        // TODO: support grouped header
         column.forEach(vNode => {
-            // mount(vNode, null, this, false, null, []);
             const props = vNode.props!;
             if (props.ignore) return;
 
             const dom = findDomFromVNode(vNode, true) as HTMLElement;
-            const text = dom.textContent;
-            rows.push(escapeCSV(text!.trim()));
+            pushTextContext(rows, dom, props.exportTitle);
         });
         collection.push(rows.join(','));
     });
@@ -49,8 +48,9 @@ export async function exportTable(
                 }
                 const td = h('td', null, children);
                 mount(td, null, parentComponet, false, null, []);
-                const text = td.dom!.textContent;
-                rows.push(escapeCSV(text!.trim()));
+                const exportCell = col.exportCell;
+                const content = exportCell && exportCell(data, index);
+                pushTextContext(rows, td.dom as HTMLElement, content);
             });
             collection.push(rows.join(','));
         },
@@ -65,6 +65,8 @@ export async function exportTable(
     );
 }
 
-function escapeCSV(text: string) {
-    return '"' + String(text).replace(/"/g, '""') + '"';
+function pushTextContext(rows: string[], dom: HTMLElement, content: string | undefined) {
+    let text = isNullOrUndefined(content) ? dom!.textContent : content;
+    text = '"' + String(text!.trim()).replace(/"/g, '""') + '"';
+    rows.push(text);
 }

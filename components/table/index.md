@@ -65,6 +65,8 @@ sidebar: doc
 | className | 给当前列添加className | `String` &#124; `Object` | `undefined` |
 | ignore | 是否忽略当前列的导出 | `Boolean` | `false` |
 | align | 当前列对齐方式 | `"left"` &#124; `"center"` &#124; `"right"` | `undefined` |
+| exportTitle | 自定义导出的标题 | `String` | `undefined` |
+| exportCell | 自定义导出的单元格内容 | `(data: any, index: number) => string` | `undefined` |
 
 # 扩展点
 
