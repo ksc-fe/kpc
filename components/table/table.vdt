@@ -12,11 +12,16 @@ import {Spin} from '../spin';
 import {Transition} from 'intact';
 import {_$} from '../../i18n';
 import {context as tableContext} from './useColumns';
+import {expandAnimationCallbacks} from '../utils';
+import {Tooltip} from '../tooltip';
+import {AllCheckedStatus} from './useChecked';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
     rowClassName, group, sort, loading,
+    merge, childrenKey, indent, tooltipPosition,
+    tooltipContainer, showIndeterminate,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -24,10 +29,11 @@ const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.s
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
-    [`k-scroll-${scrollPosition.value}`]: true,
+    [`k-scroll-${scrollPosition.value}`]: scrollPosition.value,
     'k-fix-columns': hasFixed.value,
     [`k-${type}`]: type && type !== 'default',
     'k-stripe': stripe,
+    'k-with-expand': $blocks.expand,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -47,12 +53,13 @@ const colgroup = (
 const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
-const {isChecked, isAllChecked, toggleCheckedAll} = this.checked;
+const {getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
 const Provider = context.Provider;
 const SortableProvider = sortableContext.Provider;
-const TableProivder = tableContext.Provider;
+const TableProvider = tableContext.Provider;
+const allCheckedStatus = getAllCheckedStatus(); 
 const thead = (
-    <TableProivder value={checkType}>
+    <TableProvider value={checkType}>
         <Provider value={{group, onChange: this.onChangeGroup}}>
             <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
                 <thead>
@@ -65,7 +72,8 @@ const thead = (
                             rowspan={maxRows}
                         >
                             <Checkbox v-if={checkType === 'checkbox'}
-                                value={isAllChecked()} 
+                                value={allCheckedStatus === AllCheckedStatus.All}
+                                indeterminate={showIndeterminate && allCheckedStatus == AllCheckedStatus.Indeterminate}
                                 ev-$change:value={toggleCheckedAll}
                                 disabled={!hasData}
                             />
@@ -75,33 +83,97 @@ const thead = (
                 </thead>
             </SortableProvider>
         </Provider>
-    </TableProivder>
+    </TableProvider>
 );
 
-const {isDisabledKey} = this.disableRow;
-let key;
+const {getAllKeys} = this.disableRow;
+const {getGrid} = this.merge;
+const allStatus = getAllStatus();
+const allKeys = getAllKeys();
+const colCount = maxCols + (checkType !== 'none' ? 1 : 0);
+const {isExpanded} = this.expandable;
+const {isSelected} = this.selected;
+const {loopData, isSpreaded, toggleSpreadRow} = this.tree;
 const tbody = (
-    <tbody>
-        <tr v-if={!hasData} key="table-empty">
-            <td colspan={maxCols + (checkType !== 'none' ? 1 : 0)} class="k-table-empty">
-                <b:empty>{_$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~')}</b:empty>
-            </td>
-        </tr>
-        <template v-else>
-            <TableRow v-for={data}
-                key={key = rowKey($value, $key)}
-                cols={cols}
-                data={$value}
-                checkType={checkType}
-                hasFixedLeft={hasFixedLeft}
-                onClick={this.clickRow}
-                checked={isChecked(key)}
-                index={$key}
-                disabled={isDisabledKey(key)}
-                className={rowClassName && rowClassName($value, $key, key)}
-            />
-        </template>
-    </tbody>
+    // for performance, no normalize
+    // <tbody>
+    _$ce(2, 'tbody', !hasData ?
+        [
+            <tr key="table-empty">
+                <td colspan={colCount} class="k-table-empty">
+                    <b:empty>{_$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~')}</b:empty>
+                </td>
+            </tr>
+        ] :
+        (() => {
+            const rows = [];
+            loopData((value, index, level, hidden) => {
+                const status = allStatus[index];
+                const key = allKeys[index];
+                const spreaded = isSpreaded(key);
+                const hasChildren = !!childrenKey && Array.isArray(value[childrenKey]);
+                const indentSize = indent ? indent * level : 0; 
+
+                let row = <TableRow
+                    key={key}
+                    cols={cols}
+                    data={value}
+                    checkType={checkType}
+                    hasFixedLeft={hasFixedLeft}
+                    onClick={this.clickRow}
+                    checked={status.checked}
+                    indeterminate={status.indeterminate}
+                    index={index}
+                    disabled={status.disabled}
+                    allDisabled={status.allDisabled}
+                    className={rowClassName && rowClassName(value, index, key)}
+                    merge={merge}
+                    grid={getGrid()}
+                    onChangeChecked={onChangeChecked}
+                    selected={isSelected(key)}
+                    spreaded={spreaded}
+                    hidden={hidden}
+                    hasChildren={hasChildren}
+                    indent={indentSize}
+                    onToggleSpreadRow={toggleSpreadRow}
+                    onBeforeUnmounted={this.resetRowStatus.onBeforeUnmounted}
+                />
+
+                if ($blocks.tooltip) {
+                    const content = <b:tooltip params={[value, index]} />;
+                    row = (
+                        <Tooltip key={key} position={tooltipPosition} container={tooltipContainer}>
+                            <template>{row}</template>
+                            <b:content>{content}</b:content>
+                        </Tooltip>
+                    );
+                }
+
+                rows.push(row);
+                if ($blocks.expand) {
+                    const expanded = isExpanded(key);
+                    rows.push(
+                        <tr class={{"k-expand": true, 'k-expanded': expanded}}
+                            key={`${key}.$expand`}
+                        >
+                            <td colspan={colCount}>
+                                <Transition {...expandAnimationCallbacks}>
+                                    <div v-if={expanded} class="k-table-expand">
+                                        <b:expand params={[value, index]} />
+                                    </div>
+                                </Transition>
+                            </td>
+                        </tr>
+                    );
+                }
+
+                return hidden || !spreaded;
+            });
+
+            return rows;
+        })()
+    , 8 /* HasKeyedChildren */)
+    // </tbody>
 );
 
 <div class={classNameObj} ref={elementRef}>

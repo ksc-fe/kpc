@@ -104,6 +104,10 @@ export function useColumns() {
         return columns;
     }
 
+    function getCols() {
+        return cols;
+    }
+
     function getData() {
         return {
             columns,
@@ -113,5 +117,5 @@ export function useColumns() {
         }
     }
 
-    return {getColumns, getData} 
+    return {getColumns, getCols, getData} 
 }

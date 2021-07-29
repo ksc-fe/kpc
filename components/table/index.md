@@ -39,11 +39,12 @@ sidebar: doc
 | storeWidth | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `String` | `undefined` |
 | merge | 指定表格单元格合并逻辑 | `Function` | `undefined` |
 | tooltipPosition | 行提示的位置 | `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` &#124; `Object` | `"top"` |
+| tooltipContainer | 指定弹出提示内容追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 | childrenKey | 树形表格指定子元素键名 | `String` | `"children"` |
 | indent | 树形表格指定子元素缩进宽度 | `Number` | `32` |
 | spreadKeys | 树形表格指定展开的行 | `Array` | `[]` |
 | draggable | 表格行是否可拖动 | `Boolean` | `false` |
-| removeCheckedKeyOnRowDestroyed | 是否在行销毁的时候，也同步删除`checkedKeys`中的值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `true` |
+| keepStatus | 是否在行销毁的时候，保持该行在`checkedKeys` &#124; `selectedKeys` &#124; `spreadKeys` &#124; `expandedKeys`中的`key`值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `false` |
 
 ## TableColumn
 

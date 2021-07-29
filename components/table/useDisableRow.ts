@@ -1,26 +1,31 @@
 import {useInstance, onBeforeMount, onBeforeUpdate} from 'intact';
 import type {Table, TableRowKey} from './table';
+import type {useTree} from './useTree';
 
-export function useDisableRow() {
+export function useDisableRow(
+    loopData: ReturnType<typeof useTree>['loopData'],
+) {
     const instance = useInstance() as Table;
     let enabledKeys: TableRowKey[] = [];
     let disabledKeys: TableRowKey[] = [];
+    let allKeys: TableRowKey[] = [];
 
     function setDisabledKeys() {
-        const {rowKey, data} = instance.get(); 
+        const {rowKey} = instance.get(); 
 
         enabledKeys = [];
         disabledKeys = [];
-        if (data) {
-            data.forEach((item, index) => {
-                const key = rowKey!(item, index);
-                if (isDisabled(item, index, key)) {
-                    disabledKeys.push(key);
-                } else {
-                    enabledKeys.push(key);
-                }
-            });
-        }
+        allKeys = [];
+
+        loopData((item, index) => {
+            const key = rowKey!(item, index);
+            if (isDisabled(item, index, key)) {
+                disabledKeys.push(key);
+            } else {
+                enabledKeys.push(key);
+            }
+            allKeys.push(key);
+        });
     }
 
     function isDisabled(data: any, index: number, key: TableRowKey) {
@@ -37,8 +42,13 @@ export function useDisableRow() {
         return enabledKeys;
     }
 
-    onBeforeMount(setDisabledKeys);
-    onBeforeUpdate(setDisabledKeys);
+    function getAllKeys() {
+        return allKeys;
+    }
 
-    return {isDisabled, getEnableKeys, isDisabledKey};
+    instance.on('$receive:children', setDisabledKeys);
+    // onBeforeMount(setDisabledKeys);
+    // onBeforeUpdate(setDisabledKeys);
+
+    return {isDisabled, getEnableKeys, isDisabledKey, getAllKeys};
 }

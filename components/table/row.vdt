@@ -3,49 +3,94 @@ import {noop} from 'intact-shared';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 import {getTextByChildren} from '../utils';
+import {get} from 'intact-shared';
+import {Button} from '../button';
+import {Icon} from '../icon';
 
 const {
     cols, data, checkType, hasFixedLeft,
-    checked, disabled, className,
+    checked, disabled, className, merge,
+    grid, index: rowIndex, indeterminate,
+    allDisabled, selected, hidden, spreaded,
+    hasChildren, indent, key,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
     'k-checked': checked,
+    'k-selected': selected,
+    'k-hidden': hidden,
+    'k-spreaded': spreaded,
     [className]: className,
 };
 
+const getGridItem = (columnIndex) => {
+    return grid[rowIndex]?.[columnIndex] || {render: true, spans: null};
+};
+
 const createCheckTypeVNode = (children) => {
+    const {render, spans} = getGridItem(0);
+    if (!render) return;
     return <td
         {...getClassAndStyleForFixed({
             fixed: hasFixedLeft ? 'left' : false,
             offset: 0,
             className: 'k-table-check'
         })}
+        {...spans}
     >{children}</td>
 }
 const checkTypeVNode = checkType === 'checkbox' ?
-    createCheckTypeVNode(<Checkbox value={checked} disabled={disabled} />) :
+    createCheckTypeVNode(
+        <Checkbox 
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            indeterminate={indeterminate}
+            ev-$change:value={this.onChangeChecked}
+        />) :
     checkType === 'radio' ?
-        createCheckTypeVNode(<Radio value={checked} disabled={disabled} />) :
+        createCheckTypeVNode(<Radio
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            ev-$change:value={this.onChangeChecked}
+        />) :
         null;
 
-<tr ev-click={this.onClick} class={classNameObj}>
+const columnOffset = checkType !== 'none' ? 1 : 0;
+
+<tr ev-click={this.onClick}
+    class={classNameObj}
+    data-key={key}
+    ev-mouseenter={this.onMouseEnter}
+    ev-mouseleave={this.onMouseLeave}
+>
     {checkTypeVNode}
     <template>
-        {cols.map(props => {
+        {cols.map((props, columnIndex) => {
             const blocks = props.$blocks; 
-            let children = data[props.key];
+            let children = get(data, props.key);
             if (blocks) {
                 const template = blocks.template || blocks.default;
                 if (template) {
-                    children = template(noop, data);
+                    children = template(noop, [data, rowIndex]);
                 }
             }
+
+            const {render, spans} = getGridItem(columnIndex + columnOffset);
+            if (!render) return;
 
             return (
                 <td {...getClassAndStyleForFixed(props, checkType)}
                     title={getTextByChildren(children)}
+                    {...spans}
+                    style={!columnIndex && indent ? {paddingLeft: `${indent}px`} : null}
                 >
+                    <Button v-if={!columnIndex && hasChildren}
+                        type="none" icon circle size="mini"
+                        class="k-table-arrow"
+                        ev-click={this.onClickArrow}
+                    >
+                        <Icon class="ion-ios-arrow-right" size="small" />
+                    </Button>
                     {children}
                 </td>
             );

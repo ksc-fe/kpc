@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults} from '../../styles/utils';
+import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 import {select} from '../select/styles';
 
@@ -47,7 +47,15 @@ const {table} = deepDefaults(theme, {
             gap: `10px`,
             color: `#a6a6a6`,
             disabledColor: `#ddd`,
-        }
+        },
+
+        expandBgColor: '#fdfcff',
+        get selectedBgColor() { return palette(theme.color.primary, -4) },
+
+        // tree
+        arrow: {
+            gap: `4px`,
+        },
     }
 });
 
@@ -258,6 +266,45 @@ export function makeStyles() {
         // empty
         .k-table-empty {
             text-align: center;
+        }
+
+        // expand
+        tr.k-expand {
+            td {
+                padding: 0;
+                background: #fdfcff;
+            }
+        }
+        &.k-with-expand {
+            tr:not(.k-expand) {
+                td {
+                    border-bottom: none;
+                }
+            }
+        }
+        .k-table-expand {
+            border-top: ${table.border};
+        }
+
+        // select
+        tbody tr.k-selected td {
+            background: ${table.selectedBgColor};
+        }
+
+        // tree
+        tr.k-hidden {
+            display: none;
+        }
+        .k-table-arrow {
+            margin-right: ${table.arrow.gap};
+            transition: transform ${theme.transition};
+            position: relative;
+            top: -1px;
+        }
+        tr.k-spreaded {
+            .k-table-arrow {
+                transform: rotate(90deg);
+            }
         }
     `;
 }

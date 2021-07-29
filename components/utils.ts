@@ -303,6 +303,30 @@ export function last<T>(arr: T[]): T | undefined {
     return arr[arr.length - 1];
 }
 
+export const expandAnimationCallbacks = {
+    'name': 'k-expand',
+    'onLeave': (el: HTMLElement) => {
+        const height = el.clientHeight;
+        el.style.height = `${height}px`;
+        requestAnimationFrame(() => {
+            el.style.height = `0px`;
+        });
+    },
+    'onAfterLeave': (el: HTMLElement) => {
+        el.style.height = '';
+    },
+    'onEnter': (el: HTMLElement) => {
+        const height = el.clientHeight;
+        el.style.height = `0px`;
+        requestAnimationFrame(() => {
+            el.style.height = `${height}px`;
+        });
+    },
+    'onAfterEnter': (el: HTMLElement) => {
+        el.style.height = '';
+    },
+};
+
 export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg: T) => void) {
     let lock = false;
     let timer: number;
@@ -316,34 +340,3 @@ export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg:
         }, time);
     };
 }
-
-// TODO: modify
-export const expandAnimationCallbacks = {
-    'name': 'k-expand',
-    'onBeforeLeave': (el: HTMLElement) => {
-        el._height || (el._height = el.clientHeight + 'px');
-        el.style.height = el._height;
-    },
-    'onLeave': (el: HTMLElement) => {
-        el.style.height = 0;
-    },
-    'onAfterLeave': (el: HTMLElement) => {
-        // 保持动画的连贯性，可能在leave动画被enter动画cancel
-        // 此时el._height存在，不要在start中去获取，否则会重绘
-        // 导致多个动画时，动画时长不一致
-        el.style.height = '';
-        el._height = null;
-    },
-    'onBeforeEnter': (el: HTMLElement) => {
-        // el.style.display = 'block';
-        // el._height || (el._height = el.clientHeight + 'px');
-        el.style.height = 0;
-    },
-    'onEnter': (el: HTMLElement) => {
-        el.style.height = '160px'; //el._height;
-    },
-    'onAfterEnter': (el: HTMLElement) => {
-        el.style.height = '';
-        el._height = null;
-    },
-};

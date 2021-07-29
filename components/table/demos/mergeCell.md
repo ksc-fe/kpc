@@ -11,7 +11,11 @@ order: 15
 3. `rowIndex` 当前行索引
 4. `columnIndex` 当前列索引
 
-> 合并多选框时，可以通过`checkedKeys`来设置选中行，多选框是支持半选状态的；合并单选框时，与合并多选框不同的是，单选框是不支持半选状态的，只要一行被选中，那么整个合并行都会被选中，可以通过`checkedKey`来设置选中的合并行，但是`checkedKey`的值必须为合并的可选行的`key`组成的数组，否则不生效。注意：禁选行和选中行默认没有给出高亮，如果需要请自行设置高亮。
+> 合并多选框时，可以通过`checkedKeys`来设置选中行，多选框是支持半选状态的；
+> 合并单选框时，与合并多选框不同的是，单选框是不支持半选状态的，只要一行被选中，
+> 那么整个合并行都会被选中
+> 
+> 注意：禁选行和选中行默认没有给出高亮，如果需要请自行设置高亮。
 
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
@@ -23,11 +27,12 @@ import {Table, TableColumn} from 'kpc/components/table';
         type="grid"
         resizable
         merge={this.merge}
+        disableRow={this.disableRow}
         ref="__test1"
     >
         <TableColumn title="Weekday" key='weekday' fixed="left" />
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="Time" key="forenoonTime" fixed="left" />
+            <TableColumn title="Time" key="forenoonTime" />
             <TableColumn title="Class 1" key='class1' />
             <TableColumn title="Class 2" key='class2' />
             <TableColumn title="Class 3" key='class3' />
@@ -42,15 +47,16 @@ import {Table, TableColumn} from 'kpc/components/table';
     </Table>
     <Table data={this.get('data')}
         checkType="radio"
-        checkedKey={[0, 1]} 
+        checkedKeys={[0, 1]} 
         type="grid"
         resizable
         merge={this.merge}
+        disableRow={this.disableRow}
         ref="__test2"
     >
-        <TableColumn title="Weekday" key='weekday' fixed="left" width="150"/>
+        <TableColumn title="Weekday" key='weekday' fixed="left" />
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="Time" key="forenoonTime" fixed="left" />
+            <TableColumn title="Time" key="forenoonTime" />
             <TableColumn title="Class 1" key='class1' />
             <TableColumn title="Class 2" key='class2' />
             <TableColumn title="Class 3" key='class3' />
@@ -69,6 +75,10 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```styl
 .k-table
     margin-bottom 20px
+    tr.k-checked td
+        background antiquewhite
+    tr.k-disabled td
+        background #eaeaea
 ```
 
 ```ts
@@ -158,19 +168,26 @@ export default class extends Component {
 
     @bind
     merge(row, column, rowIndex, columnIndex) {
+        if (columnIndex === 0) {
+            // is check column
+            if (rowIndex === 0) {
+                return {
+                    rowspan: 2,
+                    colspan: 1,
+                }
+            }
+
+            if (rowIndex === 2) {
+                return {
+                    rowspan: 3,
+                    colspan: 1,
+                }
+            }
+
+            return;
+        }
+
         const data = this.get('data');
-        if (columnIndex === 0 && rowIndex === 0){
-            return {
-                rowspan: 2,
-                colspan: 1,
-            }
-        }
-        if (columnIndex=== 0 && rowIndex === 2) {
-            return {
-                rowspan: 3,
-                colspan: 1,
-            }
-        }
         if (column.key === 'forenoonTime' || column.key === 'afternoonTime') {
             return {
                 rowspan: data.length,
@@ -191,6 +208,11 @@ export default class extends Component {
         }
 
         return {colspan};
+    }
+
+    @bind
+    disableRow(data: any, index: number) {
+        return index === 1 || index === 5;
     }
 }
 ```

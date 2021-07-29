@@ -37,7 +37,7 @@ const TableConsumer = tableContext.Consumer;
                         return <th className={classNameObj}
                             style={style}
                             title={isStringOrNumber(title) ? title + (groupText || '') : null}
-                            ev-click={linkEvent(key, onChangeSort)}
+                            ev-click={sortable ? linkEvent(key, onChangeSort) : null}
                             colspan={cols}
                             rowspan={rows}
                         >
