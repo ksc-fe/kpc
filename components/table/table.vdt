@@ -136,7 +136,7 @@ const tbody = (
                     hasChildren={hasChildren}
                     indent={indentSize}
                     onToggleSpreadRow={toggleSpreadRow}
-                    onBeforeUnmounted={this.resetRowStatus.onBeforeUnmounted}
+                    onBeforeUnmount={this.resetRowStatus.onRowBeforeUnmount}
                 />
 
                 if ($blocks.tooltip) {

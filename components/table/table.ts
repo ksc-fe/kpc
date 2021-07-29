@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Props, createRef} from 'intact';
+import {Component, TypeDefs, Props, createRef, mount, findDomFromVNode} from 'intact';
 import template from './table.vdt';
 import {useColumns} from './useColumns';
 import {useFixedColumns} from './useFixedColumns';
@@ -14,6 +14,7 @@ import {useSelected} from './useSelected';
 import {useTree} from './useTree';
 import {TooltipProps, Tooltip} from '../tooltip/tooltip';
 import {useRestRowStatus} from './useRestRowStatus';
+import {exportTable} from './exportTable';
 
 export interface TableProps {
     data?: any[]
@@ -153,6 +154,10 @@ export class Table extends Component<TableProps> {
 
             requestAnimationFrame(step);
         });
+    }
+
+    public async exportTable(data: any[] | undefined = this.get('data'), filename = 'table') {
+        await exportTable(this.columns.getData, data, filename, this, filename); 
     }
 
     private getData(type: 'selectedKeys' | 'checkedKeys') {

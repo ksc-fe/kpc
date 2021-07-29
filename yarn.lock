@@ -2043,6 +2043,11 @@
   resolved "https://registry.nlark.com/@types/cors/download/@types/cors-2.8.10.tgz#61cc8469849e5bcdd0c7044122265c39cec10cf4"
   integrity sha1-YcyEaYSeW83QxwRBIiZcOc7BDPQ=
 
+"@types/downloadjs@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.nlark.com/@types/downloadjs/download/@types/downloadjs-1.4.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fdownloadjs%2Fdownload%2F%40types%2Fdownloadjs-1.4.2.tgz#6734e60840cd8df3f0f8937c80e67efe7de6f886"
+  integrity sha1-ZzTmCEDNjfPw+JN8gOZ+/n3m+IY=
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.0"
   resolved "https://registry.nlark.com/@types/eslint-scope/download/@types/eslint-scope-3.7.0.tgz?cache=0&sync_timestamp=1621241082629&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Feslint-scope%2Fdownload%2F%40types%2Feslint-scope-3.7.0.tgz#4792816e31119ebd506902a482caec4951fabd86"
