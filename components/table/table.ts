@@ -15,6 +15,7 @@ import {useTree} from './useTree';
 import {TooltipProps, Tooltip} from '../tooltip/tooltip';
 import {useRestRowStatus} from './useRestRowStatus';
 import {exportTable} from './exportTable';
+import {useResizable} from './useResizable';
 
 export interface TableProps {
     data?: any[]
@@ -43,6 +44,8 @@ export interface TableProps {
     tooltipContainer?: TooltipProps['container']
     keepStatus?: boolean
     showIndeterminate?: boolean
+    resizable?: boolean
+    minColWidth?: number
 }
 
 export type TableRowKey = string | number;
@@ -78,6 +81,8 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     tooltipContainer: Tooltip.typeDefs.container,
     keepStatus: Boolean,
     showIndeterminate: Boolean,
+    resizable: Boolean,
+    minColWidth: Number,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -87,6 +92,7 @@ const defaults = (): Partial<TableProps> => ({
     rowExpandable: true,
     childrenKey: 'children',
     indent: 32,
+    minColWidth: 40,
 });
 
 export class Table extends Component<TableProps> {
@@ -97,9 +103,11 @@ export class Table extends Component<TableProps> {
     private tree = useTree();
     private columns = useColumns();
     private stickyHeader = useStickyHeader();
+    private resizable = useResizable(this.stickyHeader.scrollRef);
     private fixedColumns = useFixedColumns(
         this.columns.getColumns,
-        this.stickyHeader.scrollRef
+        this.stickyHeader.scrollRef,
+        this.resizable.widthMap,
     );
     private disableRow = useDisableRow(this.tree.loopData);
     private merge = useMerge(this.columns.getCols);

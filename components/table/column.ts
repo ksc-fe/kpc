@@ -14,6 +14,7 @@ export interface TableColumnProps {
     align?: 'left' | 'center' | 'right'
     exportTitle?: string
     exportCell?: (data: any, index: number) => string
+    minWidth?: number
 
     // passed by Table
     offset: number
@@ -42,6 +43,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     align: ['left', 'center', 'right'],
     exportTitle: String,
     exportCell: Function,
+    minWidth: Number,
 
     offset: null,
     cols: null,

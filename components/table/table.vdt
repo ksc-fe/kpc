@@ -6,22 +6,23 @@ import {getClassAndStyleForFixed} from './useFixedColumns';
 import {Affix} from '../affix';
 import {TableRow} from './row';
 import {Checkbox} from '../checkbox';
-import {context} from './useGroup';
-import {context as sortableContext} from './useSortable';
+import {context as GroupContext} from './useGroup';
+import {context as SortableContext} from './useSortable';
 import {Spin} from '../spin';
 import {Transition} from 'intact';
 import {_$} from '../../i18n';
-import {context as tableContext} from './useColumns';
+import {context as TableContext} from './useColumns';
 import {expandAnimationCallbacks} from '../utils';
 import {Tooltip} from '../tooltip';
 import {AllCheckedStatus} from './useChecked';
+import {context as ResizableContext} from './useResizable';
 
 const {
     data, children, className, fixHeader,
     checkType, rowKey, type, stripe,
     rowClassName, group, sort, loading,
     merge, childrenKey, indent, tooltipPosition,
-    tooltipContainer, showIndeterminate,
+    tooltipContainer, showIndeterminate, resizable,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {onScroll, scrollPosition, hasFixed, getHasFixedLeft} = this.fixedColumns;
@@ -41,11 +42,14 @@ const style = isStringOrNumber(fixHeader) ?
     {maxHeight: `${fixHeader}px`} :
     null;
 
+const {getWidth, start: onStart, tableRef, tableWidth} = this.resizable;
+
 const colgroup = (
     <colgroup>
         <col v-if={checkType !== 'none'} width="40" />
         <col v-for={cols} 
             width={$value.width}
+            style={{width: getWidth($value.key)}}
             class={{[$value.className]: $value.className}}
         />
     </colgroup>
@@ -54,36 +58,35 @@ const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
 const {getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
-const Provider = context.Provider;
-const SortableProvider = sortableContext.Provider;
-const TableProvider = tableContext.Provider;
 const allCheckedStatus = getAllCheckedStatus(); 
 const thead = (
-    <TableProvider value={checkType}>
-        <Provider value={{group, onChange: this.onChangeGroup}}>
-            <SortableProvider value={{sort, onChange: this.sortable.onChange}}>
-                <thead>
-                    <tr v-for={columns}>
-                        <th v-if={$key === 0 && checkType !== 'none'}
-                            {...getClassAndStyleForFixed({
-                                fixed: hasFixedLeft ? 'left' : false,
-                                offset: 0,
-                            })} 
-                            rowspan={maxRows}
-                        >
-                            <Checkbox v-if={checkType === 'checkbox'}
-                                value={allCheckedStatus === AllCheckedStatus.All}
-                                indeterminate={showIndeterminate && allCheckedStatus == AllCheckedStatus.Indeterminate}
-                                ev-$change:value={toggleCheckedAll}
-                                disabled={!hasData}
-                            />
-                        </th>
-                        {$value}
-                    </tr>
-                </thead>
-            </SortableProvider>
-        </Provider>
-    </TableProvider>
+    <TableContext.Provider value={checkType}>
+        <GroupContext.Provider value={{group, onChange: this.onChangeGroup}}>
+            <SortableContext.Provider value={{sort, onChange: this.sortable.onChange}}>
+                <ResizableContext.Provider value={{resizable, onStart}}>
+                    <thead>
+                        <tr v-for={columns}>
+                            <th v-if={$key === 0 && checkType !== 'none'}
+                                {...getClassAndStyleForFixed({
+                                    fixed: hasFixedLeft ? 'left' : false,
+                                    offset: 0,
+                                })} 
+                                rowspan={maxRows}
+                            >
+                                <Checkbox v-if={checkType === 'checkbox'}
+                                    value={allCheckedStatus === AllCheckedStatus.All}
+                                    indeterminate={showIndeterminate && allCheckedStatus == AllCheckedStatus.Indeterminate}
+                                    ev-$change:value={toggleCheckedAll}
+                                    disabled={!hasData}
+                                />
+                            </th>
+                            {$value}
+                        </tr>
+                    </thead>
+                </ResizableContext.Provider>
+            </SortableContext.Provider>
+        </GroupContext.Provider>
+    </TableContext.Provider>
 );
 
 const {getAllKeys} = this.disableRow;
@@ -176,6 +179,7 @@ const tbody = (
     // </tbody>
 );
 
+const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
 <div class={classNameObj} ref={elementRef}>
     <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>
         <Affix v-if={!isNull(stickHeader.value)}
@@ -183,12 +187,12 @@ const tbody = (
             exclude={excludeStickHeader}
             class="k-table-affix-header"
         >
-            <table ref={headRef}>
+            <table ref={headRef} style={{width: tableWidthPx}}>
                 <template>{colgroup}</template>
                 <template>{thead}</template>
             </table>
         </Affix>
-        <table>
+        <table ref={tableRef} style={{width: tableWidthPx}}>
             <template>{colgroup}</template>
             <template v-if={isNull(stickHeader.value)}>{thead}</template>
             <template>{tbody}</template>

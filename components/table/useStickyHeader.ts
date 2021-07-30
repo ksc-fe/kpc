@@ -16,7 +16,7 @@ export function useStickyHeader() {
         return bottom <= offsetTop!;
     }
 
-    // when the scroll element scroll, scroll the sticky header too 
+    // when the scroll element scroll horizontally, scroll the sticky header too 
     function onScroll() {
         if (isNull(stickHeader.value)) return;
 

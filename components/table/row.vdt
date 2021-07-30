@@ -78,11 +78,16 @@ const columnOffset = checkType !== 'none' ? 1 : 0;
             const {render, spans} = getGridItem(columnIndex + columnOffset);
             if (!render) return;
 
+            let {className, style} = getClassAndStyleForFixed(props, checkType);
+            if (!columnIndex && indent) {
+                style || (style = {});
+                style.paddingLeft = `${indent}px`;
+            }
             return (
-                <td {...getClassAndStyleForFixed(props, checkType)}
+                <td className={className}
+                    style={style}
                     title={getTextByChildren(children)}
                     {...spans}
-                    style={!columnIndex && indent ? {paddingLeft: `${indent}px`} : null}
                 >
                     <Button v-if={!columnIndex && hasChildren}
                         type="none" icon circle size="mini"

@@ -2,9 +2,10 @@ import {useInstance, VNodeComponentClass, Props, directClone, onMounted, onUnmou
 import {TableColumn, TableColumnProps} from './column';
 import {useState} from '../../hooks/useState';
 import {cx} from '@emotion/css';
-import type {TableProps} from './table';
+import type {TableProps, TableRowKey} from './table';
 import {isNullOrUndefined, isString, error} from 'intact-shared';
 import {throttle} from '../utils';
+import {State, watchState} from '../../hooks/useState';
 
 type ScrollPosition = 'left' | 'middle' | 'right';
 type FixedInfo = {
@@ -15,6 +16,7 @@ type FixedInfo = {
 export function useFixedColumns(
     getColumns: () => VNodeComponentClass<TableColumn>[][],
     scrollRef: RefObject<HTMLElement>,
+    widthMap: State<Record<TableRowKey, number>>, 
 ) {
     const instance = useInstance()!;
 
@@ -47,7 +49,7 @@ export function useFixedColumns(
                             if (process.env.NODE_ENV !== 'production') {
                                 validateWidth(props);
                             }
-                            value += parseInt(props.width as string, 10) || 0;
+                            value += widthMap.value[props.key] || parseInt(props.width as string, 10) || 0;
                         }
                         prevVNode = props.prevVNode;
                     }
@@ -62,7 +64,7 @@ export function useFixedColumns(
                             if (process.env.NODE_ENV !== 'production') {
                                 validateWidth(props);
                             }
-                            value += parseInt(props.width as string, 10) || 0;
+                            value += widthMap.value[props.key] || parseInt(props.width as string, 10) || 0;
                         }
                         lastVNode = props.prevVNode!;
                     }
@@ -103,6 +105,7 @@ export function useFixedColumns(
     }
 
     instance.on('$receive:children', handleFixedColumns);
+    // watchState(widthMap, handleFixedColumns);
 
     const throttleUpdate = throttle(() => {
         if (instance.$unmounted) return;
