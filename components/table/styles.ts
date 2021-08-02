@@ -56,6 +56,9 @@ const {table} = deepDefaults(theme, {
         arrow: {
             gap: `4px`,
         },
+
+        resizeWidth: `5px`,
+        draggingOpacity: `.4`,
     }
 });
 
@@ -305,6 +308,20 @@ export function makeStyles() {
             .k-table-arrow {
                 transform: rotate(90deg);
             }
+        }
+
+        .k-table-resize {
+            height: 100%;
+            width: ${table.resizeWidth};
+            position: absolute;
+            top: 0;
+            left: -1px;
+            cursor: ew-resize;
+        }
+
+        // draggable
+        tr.k-dragging {
+            opacity: ${table.draggingOpacity};
         }
     `;
 }

@@ -1,4 +1,4 @@
-import {useInstance, onBeforeMount, onBeforeUpdate} from 'intact';
+import {useInstance} from 'intact';
 import type {Table, TableRowKey} from './table';
 import type {useTree} from './useTree';
 
@@ -47,8 +47,8 @@ export function useDisableRow(
     }
 
     instance.on('$receive:children', setDisabledKeys);
-    // onBeforeMount(setDisabledKeys);
-    // onBeforeUpdate(setDisabledKeys);
+    // for draggable
+    instance.on('$change:data', setDisabledKeys);
 
     return {isDisabled, getEnableKeys, isDisabledKey, getAllKeys};
 }

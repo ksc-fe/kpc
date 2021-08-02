@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Props, createRef} from 'intact';
+import {Component, TypeDefs, Props, createRef, mount, findDomFromVNode} from 'intact';
 import template from './table.vdt';
 import {useColumns} from './useColumns';
 import {useFixedColumns} from './useFixedColumns';
@@ -14,6 +14,9 @@ import {useSelected} from './useSelected';
 import {useTree} from './useTree';
 import {TooltipProps, Tooltip} from '../tooltip/tooltip';
 import {useRestRowStatus} from './useRestRowStatus';
+import {exportTable} from './exportTable';
+import {useResizable} from './useResizable';
+import {useDraggable} from './useDraggable';
 
 export interface TableProps {
     data?: any[]
@@ -42,6 +45,9 @@ export interface TableProps {
     tooltipContainer?: TooltipProps['container']
     keepStatus?: boolean
     showIndeterminate?: boolean
+    resizable?: boolean
+    minColWidth?: number
+    widthStoreKey?: string
 }
 
 export type TableRowKey = string | number;
@@ -77,6 +83,9 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     tooltipContainer: Tooltip.typeDefs.container,
     keepStatus: Boolean,
     showIndeterminate: Boolean,
+    resizable: Boolean,
+    minColWidth: Number,
+    widthStoreKey: String,
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -86,6 +95,7 @@ const defaults = (): Partial<TableProps> => ({
     rowExpandable: true,
     childrenKey: 'children',
     indent: 32,
+    minColWidth: 40,
 });
 
 export class Table extends Component<TableProps> {
@@ -96,9 +106,11 @@ export class Table extends Component<TableProps> {
     private tree = useTree();
     private columns = useColumns();
     private stickyHeader = useStickyHeader();
+    private resizable = useResizable(this.stickyHeader.scrollRef);
     private fixedColumns = useFixedColumns(
         this.columns.getColumns,
-        this.stickyHeader.scrollRef
+        this.stickyHeader.scrollRef,
+        this.resizable.widthMap,
     );
     private disableRow = useDisableRow(this.tree.loopData);
     private merge = useMerge(this.columns.getCols);
@@ -113,6 +125,7 @@ export class Table extends Component<TableProps> {
     private expandable = useExpandable();
     private selected = useSelected();
     private resetRowStatus = useRestRowStatus();
+    private draggable = useDraggable();
 
     public getCheckedData() {
         return this.getData('checkedKeys');
@@ -153,6 +166,10 @@ export class Table extends Component<TableProps> {
 
             requestAnimationFrame(step);
         });
+    }
+
+    public async exportTable(data: any[] | undefined = this.get('data'), filename = 'table') {
+        await exportTable(this.columns.getData, data, filename, this, filename); 
     }
 
     private getData(type: 'selectedKeys' | 'checkedKeys') {

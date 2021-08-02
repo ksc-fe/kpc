@@ -13,9 +13,11 @@ export interface TableColumnProps {
     fixed?: 'left' | 'right'
     align?: 'left' | 'center' | 'right'
     exportTitle?: string
+    exportCell?: (data: any, index: number) => string
+    minWidth?: number
 
     // passed by Table
-    offset: number
+    // offset: number
     cols: number
     rows: number
     prevVNode: VNodeComponentClass<TableColumn> | null
@@ -40,8 +42,10 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     fixed: ['left', 'right'],
     align: ['left', 'center', 'right'],
     exportTitle: String,
+    exportCell: Function,
+    minWidth: Number,
 
-    offset: null,
+    // offset: null,
     cols: null,
     rows: null,
     prevVNode: null,

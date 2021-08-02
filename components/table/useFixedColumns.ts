@@ -1,10 +1,21 @@
-import {useInstance, VNodeComponentClass, Props, directClone, onMounted, onUnmounted, RefObject} from 'intact';
+import {
+    useInstance,
+    VNodeComponentClass,
+    Props,
+    directClone,
+    onMounted,
+    onUnmounted,
+    RefObject,
+    Key,
+} from 'intact';
 import {TableColumn, TableColumnProps} from './column';
 import {useState} from '../../hooks/useState';
 import {cx} from '@emotion/css';
-import type {TableProps} from './table';
+import type {TableProps, TableRowKey} from './table';
 import {isNullOrUndefined, isString, error} from 'intact-shared';
 import {throttle} from '../utils';
+import {State, watchState} from '../../hooks/useState';
+import {createContext} from '../context';
 
 type ScrollPosition = 'left' | 'middle' | 'right';
 type FixedInfo = {
@@ -12,30 +23,35 @@ type FixedInfo = {
     hasFixedRight: boolean
 };
 
+export const context = createContext();
+
 export function useFixedColumns(
     getColumns: () => VNodeComponentClass<TableColumn>[][],
     scrollRef: RefObject<HTMLElement>,
+    widthMap: State<Record<TableRowKey, number>>, 
 ) {
     const instance = useInstance()!;
 
     const scrollPosition = useState<ScrollPosition | null>(null);
     const hasFixed = useState<boolean>(false);
     let scrollLeft = 0;
-
     let hasFixedLeft = false;
     let hasFixedRight = false;
+    let offsetMap: Record<Key, number> = {};
 
     function handleFixedColumns() {
         const columns = getColumns();
 
         hasFixedLeft = false;
         hasFixedRight = false;
+        offsetMap = {};
 
         columns.forEach((columns, row) => {
             let offset = 0;
             columns.forEach((vNode, col) => {
                 const props = vNode.props as Props<TableColumnProps>;
-                props.offset = 0;
+                const key = props.key;
+                offsetMap[key] = 0;
 
                 const fixed = props.fixed;
                 if (fixed === 'left') {
@@ -47,11 +63,11 @@ export function useFixedColumns(
                             if (process.env.NODE_ENV !== 'production') {
                                 validateWidth(props);
                             }
-                            value += parseInt(props.width as string, 10) || 0;
+                            value += widthMap.value[props.key] || parseInt(props.width as string, 10) || 0;
                         }
                         prevVNode = props.prevVNode;
                     }
-                    props.offset = value;
+                    offsetMap[key] = value;
                     hasFixedLeft = true;
                 } else if (fixed === 'right') {
                     let value = 0;
@@ -62,11 +78,11 @@ export function useFixedColumns(
                             if (process.env.NODE_ENV !== 'production') {
                                 validateWidth(props);
                             }
-                            value += parseInt(props.width as string, 10) || 0;
+                            value += widthMap.value[props.key] || parseInt(props.width as string, 10) || 0;
                         }
                         lastVNode = props.prevVNode!;
                     }
-                    props.offset = value;
+                    offsetMap[key] = value;
                     hasFixedRight = true;
                 }
             });
@@ -103,6 +119,7 @@ export function useFixedColumns(
     }
 
     instance.on('$receive:children', handleFixedColumns);
+    watchState(widthMap, handleFixedColumns);
 
     const throttleUpdate = throttle(() => {
         if (instance.$unmounted) return;
@@ -118,11 +135,18 @@ export function useFixedColumns(
         window.removeEventListener('resize', throttleUpdate);
     });
 
-    return {scrollPosition, onScroll, hasFixed, getHasFixedLeft: () => hasFixedLeft};
+    return {
+        scrollPosition,
+        onScroll,
+        hasFixed,
+        getHasFixedLeft: () => hasFixedLeft,
+        getOffsetMap: () => offsetMap,
+    };
 }
 
 export function getClassAndStyleForFixed(
-    {className, fixed, offset}: Props<TableColumnProps>,
+    {className, fixed}: Props<TableColumnProps>,
+    offset: number,
     checkType?: TableProps['checkType'],
 ) {
     const extraOffset = checkType && checkType !== 'none' && fixed === 'left' ? 40 : 0;

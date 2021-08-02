@@ -36,7 +36,7 @@ sidebar: doc
 | selectedKeys | 当`rowSelectable`取值为非`false`时，指定哪些行高亮 | `Array` | `[]` |
 | defaultWidth | 指定表格初始化宽度，可以指定百分比，像素值必须带上单位`px` | `String` | `undefined` |
 | defaultWidthMap | 指定表格初始化每列列宽，该值为`Object`，`key`对应为每列的`key`，`value`为每列列宽像素值，不带单位`px`，不能指定百分比。它的优先级高于`TableColumn`中的`width`定义 | `Object` | `{}` |
-| storeWidth | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `String` | `undefined` |
+| widthStoreKey | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `String` | `undefined` |
 | merge | 指定表格单元格合并逻辑 | `Function` | `undefined` |
 | tooltipPosition | 行提示的位置 | `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` &#124; `Object` | `"top"` |
 | tooltipContainer | 指定弹出提示内容追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
@@ -65,6 +65,8 @@ sidebar: doc
 | className | 给当前列添加className | `String` &#124; `Object` | `undefined` |
 | ignore | 是否忽略当前列的导出 | `Boolean` | `false` |
 | align | 当前列对齐方式 | `"left"` &#124; `"center"` &#124; `"right"` | `undefined` |
+| exportTitle | 自定义导出的标题 | `String` | `undefined` |
+| exportCell | 自定义导出的单元格内容 | `(data: any, index: number) => string` | `undefined` |
 
 # 扩展点
 

@@ -1,18 +1,16 @@
 import {getClassAndStyleForFixed} from './useFixedColumns';
-import {noop} from 'intact-shared';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
-import {getTextByChildren} from '../utils';
-import {get} from 'intact-shared';
-import {Button} from '../button';
-import {Icon} from '../icon';
+import {TableCell} from './cell';
+import {createElementVNode, className as cx} from 'intact';
 
 const {
     cols, data, checkType, hasFixedLeft,
     checked, disabled, className, merge,
     grid, index: rowIndex, indeterminate,
     allDisabled, selected, hidden, spreaded,
-    hasChildren, indent, key,
+    hasChildren, indent, key, offsetMap,
+    draggable, draggingKey,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
@@ -20,6 +18,7 @@ const classNameObj = {
     'k-selected': selected,
     'k-hidden': hidden,
     'k-spreaded': spreaded,
+    'k-dragging': draggingKey === key,
     [className]: className,
 };
 
@@ -27,74 +26,78 @@ const getGridItem = (columnIndex) => {
     return grid[rowIndex]?.[columnIndex] || {render: true, spans: null};
 };
 
-const createCheckTypeVNode = (children) => {
+const vNodes = [];
+
+const pushCheckTypeVNode = (children) => {
     const {render, spans} = getGridItem(0);
     if (!render) return;
-    return <td
-        {...getClassAndStyleForFixed({
-            fixed: hasFixedLeft ? 'left' : false,
-            offset: 0,
-            className: 'k-table-check'
-        })}
-        {...spans}
-    >{children}</td>
-}
-const checkTypeVNode = checkType === 'checkbox' ?
-    createCheckTypeVNode(
+
+    vNodes.push(
+        <td key="$checktype"
+            {...getClassAndStyleForFixed({
+                fixed: hasFixedLeft ? 'left' : false,
+                className: 'k-table-check'
+            }, 0)}
+            {...spans}
+        >{children}</td>
+    )
+};
+
+if (checkType === 'checkbox') {
+    pushCheckTypeVNode(
         <Checkbox 
             value={indeterminate ? false : checked}
             disabled={allDisabled}
             indeterminate={indeterminate}
             ev-$change:value={this.onChangeChecked}
-        />) :
-    checkType === 'radio' ?
-        createCheckTypeVNode(<Radio
+        />
+    );
+} else if (checkType === 'radio') {
+    pushCheckTypeVNode(
+        <Radio
             value={indeterminate ? false : checked}
             disabled={allDisabled}
             ev-$change:value={this.onChangeChecked}
-        />) :
-        null;
+        />
+    );
+}
 
-const columnOffset = checkType !== 'none' ? 1 : 0;
+const columnIndexOffset = checkType !== 'none' ? 1 : 0;
+cols.forEach((props, columnIndex) => {
+    const {render, spans} = getGridItem(columnIndex + columnIndexOffset);
+    if (!render) return;
 
-<tr ev-click={this.onClick}
-    class={classNameObj}
-    data-key={key}
-    ev-mouseenter={this.onMouseEnter}
-    ev-mouseleave={this.onMouseLeave}
->
-    {checkTypeVNode}
-    <template>
-        {cols.map((props, columnIndex) => {
-            const blocks = props.$blocks; 
-            let children = get(data, props.key);
-            if (blocks) {
-                const template = blocks.template || blocks.default;
-                if (template) {
-                    children = template(noop, [data, rowIndex]);
-                }
-            }
+    const columnKey = props.key;
 
-            const {render, spans} = getGridItem(columnIndex + columnOffset);
-            if (!render) return;
+    vNodes.push(
+        <TableCell
+            props={props}
+            columnIndex={columnIndex}
+            rowIndex={rowIndex}
+            data={data}
+            offset={offsetMap[columnKey]}
+            checkType={checkType}
+            indent={indent}
+            grid={grid}
+            colspan={spans ? spans.colspan : undefined}
+            rowspan={spans ? spans.rowspan : undefined}
+            onClickArrow={this.onClickArrow}
+            hasChildren={hasChildren}
+            key={columnKey}
+        />
+    );
+});
 
-            return (
-                <td {...getClassAndStyleForFixed(props, checkType)}
-                    title={getTextByChildren(children)}
-                    {...spans}
-                    style={!columnIndex && indent ? {paddingLeft: `${indent}px`} : null}
-                >
-                    <Button v-if={!columnIndex && hasChildren}
-                        type="none" icon circle size="mini"
-                        class="k-table-arrow"
-                        ev-click={this.onClickArrow}
-                    >
-                        <Icon class="ion-ios-arrow-right" size="small" />
-                    </Button>
-                    {children}
-                </td>
-            );
-        })}
-    </template>
-</tr>
-
+// for performance, no normalize
+<template>
+    {createElementVNode(2, 'tr', vNodes, 8 /* HasKeyedChildren */, cx(classNameObj), {
+        'data-key': key,
+        'ev-mouseenter': this.onMouseEnter,
+        'ev-mouseleave': this.onMouseLeave,
+        'ev-click': this.onClick,
+        'ev-dragstart': this.onRowDragStart,
+        'ev-dragover': this.onRowDragOver,
+        'ev-dragend': this.onRowDragEnd,
+        'draggable': draggable ? true : null,
+    })}
+</template>
