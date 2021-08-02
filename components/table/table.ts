@@ -46,6 +46,7 @@ export interface TableProps {
     showIndeterminate?: boolean
     resizable?: boolean
     minColWidth?: number
+    widthStoreKey?: string
 }
 
 export type TableRowKey = string | number;
@@ -83,6 +84,7 @@ const typeDefs: Required<TypeDefs<TableProps>> = {
     showIndeterminate: Boolean,
     resizable: Boolean,
     minColWidth: Number,
+    widthStoreKey: String,
 };
 
 const defaults = (): Partial<TableProps> => ({

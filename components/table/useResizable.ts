@@ -9,11 +9,32 @@ export const context = createContext();
 
 type ColumnVNode = VNodeComponentClass<TableColumn>
 
+const hasLocalStorage = typeof localStorage !== 'undefined';
+
 export function useResizable(scrollRef: RefObject<HTMLElement>) {
     const instance = useInstance() as Table;
     const tableRef = createRef<HTMLElement>();
     const widthMap = useState<Record<TableRowKey, number>>({}); 
     const tableWidth = useState<number | null>(null);
+
+    // if exist widthStoreKey, we get the default width from localStorage
+    const {widthStoreKey} = instance.get();
+    if (widthStoreKey && hasLocalStorage) {
+        const data = localStorage.getItem(widthStoreKey);
+        if (data) {
+            try {
+                const {map, width} = JSON.parse(data);
+                if (map) {
+                    widthMap.set(map);
+                }
+                if (width) {
+                    tableWidth.set(width);
+                }
+            } catch (e) {
+
+            }
+        }
+    }
 
     let containerWidth: number;
     let x: number;
@@ -24,7 +45,6 @@ export function useResizable(scrollRef: RefObject<HTMLElement>) {
     let minWidth: number;
 
     function onStart(e: MouseEvent) {
-        console.log(e);
         containerWidth = scrollRef.value!.clientWidth;
         x = e.clientX;
 
@@ -71,8 +91,15 @@ export function useResizable(scrollRef: RefObject<HTMLElement>) {
     }
 
     function onEnd() {
-
-    }
+        // store width if has widthStoreKey
+        const {widthStoreKey} = instance.get();
+        if (widthStoreKey) {
+            localStorage.setItem(widthStoreKey, JSON.stringify({
+                map: widthMap.value,
+                width: tableWidth.value,
+            }));
+        }
+    } 
 
     function getWidth(key: TableRowKey) {
         const width = widthMap.value[key];
