@@ -17,7 +17,7 @@ export interface TableColumnProps {
     minWidth?: number
 
     // passed by Table
-    offset: number
+    // offset: number
     cols: number
     rows: number
     prevVNode: VNodeComponentClass<TableColumn> | null
@@ -45,7 +45,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     exportCell: Function,
     minWidth: Number,
 
-    offset: null,
+    // offset: null,
     cols: null,
     rows: null,
     prevVNode: null,

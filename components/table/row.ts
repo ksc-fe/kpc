@@ -1,4 +1,4 @@
-import {Component, TypeDefs, createRef, VNodeComponentClass, Props} from 'intact';
+import {Component, TypeDefs, createRef, VNodeComponentClass, Props, Key} from 'intact';
 import template from './row.vdt';
 import type {TableColumnProps} from './column';
 import type {TableProps, TableRowKey} from './table';
@@ -26,6 +26,7 @@ export interface TableRowProps {
     indent: number
     onToggleSpreadRow: (key: TableRowKey) => void
     onBeforeUnmount: (key: TableRowKey) => void
+    offsetMap: Record<Key, number>
 }
 
 export class TableRow extends Component<TableRowProps> {

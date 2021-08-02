@@ -1,0 +1,42 @@
+import {getClassAndStyleForFixed} from './useFixedColumns';
+import {get, noop} from 'intact-shared';
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {getTextByChildren} from '../utils';
+
+const {
+    props, rowIndex, columnIndex, offset,
+    data, checkType, indent, grid,
+    colspan, rowspan, onClickArrow, hasChildren,
+} = this.get();
+
+const blocks = props.$blocks; 
+let children = get(data, props.key);
+if (blocks) {
+    const template = blocks.template || blocks.default;
+    if (template) {
+        children = template(noop, [data, rowIndex]);
+    }
+}
+
+let {className, style} = getClassAndStyleForFixed(props, offset, checkType);
+if (columnIndex === 0 && indent) {
+    style || (style = {});
+    style.paddingLeft = `${indent}px`;
+}
+
+<td className={className}
+    style={style}
+    title={getTextByChildren(children)}
+    rowspan={rowspan}
+    colspan={colspan}
+>
+    <Button v-if={columnIndex === 0 && hasChildren}
+        type="none" icon circle size="mini"
+        class="k-table-arrow"
+        ev-click={onClickArrow}
+    >
+        <Icon class="ion-ios-arrow-right" size="small" />
+    </Button>
+    {children}
+</td>

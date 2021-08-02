@@ -10,6 +10,7 @@ import {context as SortableContext} from './useSortable';
 import {linkEvent} from 'intact';
 import {context as TableContext} from './useColumns';
 import {context as ResizableContext} from './useResizable';
+import {context as FixedColumnsContext} from './useFixedColumns';
 
 const {title, fixed, group, multiple, key, sortable, cols, rows} = this.get();
 const {onSelect, isChecked, getGroupText} = this.group;
@@ -22,63 +23,67 @@ const {onSelect, isChecked, getGroupText} = this.group;
                     {({sort, onChange: onChangeSort}) => {
                         return <ResizableContext.Consumer>
                             {({resizable, onStart}) => {
-                                const {className, style} = getClassAndStyleForFixed(this.get(), checkType);
-                                const classNameObj = {
-                                    'k-column-sortable': sortable,
-                                    [className]: className,
-                                }
+                                return <FixedColumnsContext.Consumer>
+                                    {(offsetMap) => {
+                                        const {className, style} = getClassAndStyleForFixed(this.get(), offsetMap[key], checkType);
+                                        const classNameObj = {
+                                            'k-column-sortable': sortable,
+                                            [className]: className,
+                                        }
 
-                                const groupValue = currentGroup && currentGroup[key];
-                                const groupText = getGroupText(groupValue);
+                                        const groupValue = currentGroup && currentGroup[key];
+                                        const groupText = getGroupText(groupValue);
 
-                                const type = sort && sort.key === key && sort.type;
+                                        const type = sort && sort.key === key && sort.type;
 
-                                let checked;
-                                return <th className={classNameObj}
-                                    style={style}
-                                    title={isStringOrNumber(title) ? title + (groupText || '') : null}
-                                    ev-click={sortable ? linkEvent(key, onChangeSort) : null}
-                                    colspan={cols}
-                                    rowspan={rows}
-                                >
-                                    <div v-if={resizable && this.$vNode.props.prevVNode}
-                                        class="k-table-resize"
-                                        ev-mousedown={e => {
-                                            e._vNode = this.$vNode;
-                                            onStart(e);
-                                        }} 
-                                    />
-                                    <div class="k-table-title">
-                                        <div class="k-table-title-text c-ellipsis">
-                                            <b:title>{title}</b:title>
-                                            {groupText}
-                                        </div>
-                                        <Dropdown v-if={group}
-                                            position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
-                                            key="dropdown"
+                                        let checked;
+                                        return <th className={classNameObj}
+                                            style={style}
+                                            title={isStringOrNumber(title) ? title + (groupText || '') : null}
+                                            ev-click={sortable ? linkEvent(key, onChangeSort) : null}
+                                            colspan={cols}
+                                            rowspan={rows}
                                         >
-                                            <Button icon size="mini" class="k-table-group">
-                                                <Icon class="ion-android-arrow-dropdown" />
-                                            </Button>
-                                            <DropdownMenu class={{"k-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
-                                                <DropdownItem v-for={group}
-                                                    ev-select={() => onSelect($value.value, groupValue, onChange)}
-                                                    hideOnSelect={!multiple}
-                                                    class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                                            <div v-if={resizable && this.$vNode.props.prevVNode}
+                                                class="k-table-resize"
+                                                ev-mousedown={e => {
+                                                    e._vNode = this.$vNode;
+                                                    onStart(e);
+                                                }} 
+                                            />
+                                            <div class="k-table-title">
+                                                <div class="k-table-title-text c-ellipsis">
+                                                    <b:title>{title}</b:title>
+                                                    {groupText}
+                                                </div>
+                                                <Dropdown v-if={group}
+                                                    position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
+                                                    key="dropdown"
                                                 >
-                                                    <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
-                                                    <span v-else>{$value.label}</span>
-                                                </DropdownItem>
-                                            </DropdownMenu>
-                                        </Dropdown>
-                                        <div v-if={sortable}
-                                            class={{'k-column-sort': true, [`k-${type}`]: type}}
-                                        >
-                                            <Icon class="ion-android-arrow-dropup k-asc" />
-                                            <Icon class="ion-android-arrow-dropdown k-desc" />
-                                        </div>
-                                    </div>
-                                </th>
+                                                    <Button icon size="mini" class="k-table-group">
+                                                        <Icon class="ion-android-arrow-dropdown" />
+                                                    </Button>
+                                                    <DropdownMenu class={{"k-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
+                                                        <DropdownItem v-for={group}
+                                                            ev-select={() => onSelect($value.value, groupValue, onChange)}
+                                                            hideOnSelect={!multiple}
+                                                            class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                                                        >
+                                                            <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
+                                                            <span v-else>{$value.label}</span>
+                                                        </DropdownItem>
+                                                    </DropdownMenu>
+                                                </Dropdown>
+                                                <div v-if={sortable}
+                                                    class={{'k-column-sort': true, [`k-${type}`]: type}}
+                                                >
+                                                    <Icon class="ion-android-arrow-dropup k-asc" />
+                                                    <Icon class="ion-android-arrow-dropdown k-desc" />
+                                                </div>
+                                            </div>
+                                        </th>
+                                    }}
+                                </FixedColumnsContext.Consumer>
                             }}
                         </ResizableContext.Consumer>
                     }}
