@@ -58,6 +58,7 @@ const {table} = deepDefaults(theme, {
         },
 
         resizeWidth: `5px`,
+        draggingOpacity: `.4`,
     }
 });
 
@@ -316,6 +317,11 @@ export function makeStyles() {
             top: 0;
             left: -1px;
             cursor: ew-resize;
+        }
+
+        // draggable
+        tr.k-dragging {
+            opacity: ${table.draggingOpacity};
         }
     `;
 }

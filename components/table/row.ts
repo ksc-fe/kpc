@@ -27,7 +27,15 @@ export interface TableRowProps {
     onToggleSpreadRow: (key: TableRowKey) => void
     onBeforeUnmount: (key: TableRowKey) => void
     offsetMap: Record<Key, number>
+
+    draggable: boolean
+    draggingKey: TableRowKey | null
+    onRowDragStart: DragCallback
+    onRowDragOver: DragCallback
+    onRowDragEnd: DragCallback
 }
+
+type DragCallback = (e: MouseEvent, tableRow: TableRow) => void
 
 export class TableRow extends Component<TableRowProps> {
     static template = template;
@@ -53,6 +61,9 @@ export class TableRow extends Component<TableRowProps> {
 
         if (!isSame) {
             (super.$update as any)(lastVNode, nextVNode, ...rest);
+        } else {
+            // should update index
+            this.set(nextProps, {silent: true});
         } 
     }
 
@@ -91,6 +102,21 @@ export class TableRow extends Component<TableRowProps> {
         // for tooltip
         const mouseLeave = this.get<Function | undefined>('ev-mouseleave');
         mouseLeave && mouseLeave(e);
+    }
+
+    @bind
+    onRowDragStart(e: MouseEvent) {
+        this.get('onRowDragStart')(e, this);
+    }
+
+    @bind
+    onRowDragOver(e: MouseEvent) {
+        this.get('onRowDragOver')(e, this);
+    }
+
+    @bind
+    onRowDragEnd(e: MouseEvent) {
+        this.get('onRowDragEnd')(e, this);
     }
 
     beforeUnmount() {

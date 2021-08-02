@@ -50,7 +50,7 @@ injectGlobal`
     .k-fade-leave-active {
         transition: opacity ${theme.transition};
     }
-    .k-fade-leave-active {
+    .k-fade-leave-active:not(tr) {
         position: absolute;
     }
     .k-fade-move {

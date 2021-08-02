@@ -10,6 +10,7 @@ const {
     grid, index: rowIndex, indeterminate,
     allDisabled, selected, hidden, spreaded,
     hasChildren, indent, key, offsetMap,
+    draggable, draggingKey,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
@@ -17,6 +18,7 @@ const classNameObj = {
     'k-selected': selected,
     'k-hidden': hidden,
     'k-spreaded': spreaded,
+    'k-dragging': draggingKey === key,
     [className]: className,
 };
 
@@ -93,5 +95,9 @@ cols.forEach((props, columnIndex) => {
         'ev-mouseenter': this.onMouseEnter,
         'ev-mouseleave': this.onMouseLeave,
         'ev-click': this.onClick,
+        'ev-dragstart': this.onRowDragStart,
+        'ev-dragover': this.onRowDragOver,
+        'ev-dragend': this.onRowDragEnd,
+        'draggable': draggable ? true : null,
     })}
 </template>

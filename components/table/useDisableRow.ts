@@ -47,6 +47,8 @@ export function useDisableRow(
     }
 
     instance.on('$receive:children', setDisabledKeys);
+    // for draggable
+    instance.on('$change:data', setDisabledKeys);
     // onBeforeMount(setDisabledKeys);
     // onBeforeUpdate(setDisabledKeys);
 

@@ -16,6 +16,7 @@ import {TooltipProps, Tooltip} from '../tooltip/tooltip';
 import {useRestRowStatus} from './useRestRowStatus';
 import {exportTable} from './exportTable';
 import {useResizable} from './useResizable';
+import {useDraggable} from './useDraggable';
 
 export interface TableProps {
     data?: any[]
@@ -124,6 +125,7 @@ export class Table extends Component<TableProps> {
     private expandable = useExpandable();
     private selected = useSelected();
     private resetRowStatus = useRestRowStatus();
+    private draggable = useDraggable();
 
     public getCheckedData() {
         return this.getData('checkedKeys');

@@ -197,6 +197,8 @@ export function useChecked(
 
     instance.on('$receive:children', updateAllCheckedStatus);
     instance.on('$change:checkedKeys', updateAllCheckedStatus);
+    // for draggable
+    instance.on('$change:data', updateAllCheckedStatus);
 
     instance.on('click:row', (data: any, index: number, key: TableRowKey) => {
         if (instance.get('rowCheckable')) {
