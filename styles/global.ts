@@ -73,7 +73,7 @@ injectGlobal`
     }
     .k-expand-enter-active,
     .k-expand-leave-active {
-        transition: all ${theme.transition};
+        transition: all ${theme.transition} !important;
         overflow: hidden;
     }
     .k-expand-move {
