@@ -340,3 +340,9 @@ export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg:
         }, time);
     };
 }
+
+export function nextFrame(fn: () => void) {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(fn);
+    });
+}

@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults, palette, sizes} from '../../styles/utils';
+import {deepDefaults, sizes} from '../../styles/utils';
 import '../../styles/global';
 
 const {switch: kswitch} = deepDefaults(theme, {
@@ -188,5 +188,40 @@ export function makeStyles() {
                 background: ${kswitch.disabledBgColor};
             }
         }
+
+        &:not(.k-checked) {
+            .k-switch-bar,
+            .k-switch-wrapper {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
     `;    
 }
+
+// function toArray(...args: Record<string, any>[]) {
+    // const ret: any[][] = [[]];
+    // const keys: Set<string> = new Set();
+    // args.forEach(obj => {
+        // for (let key in obj) {
+            // keys.add(key);
+        // }
+        // ret.push([]);
+    // });
+
+    // keys.forEach(key => {
+        // ret[0].push(key);
+        // args.forEach((obj, index) => {
+            // const values = ret[index + 1];
+            // if (obj.hasOwnProperty(key)) {
+                // values.push(obj[key]);
+            // } else {
+                // values.push(null);
+            // }
+        // })
+    // });
+
+    // return ret;
+// }
+
+// console.log(toArray({a: 1, b: 2}, {a: 1, c: 3}));
