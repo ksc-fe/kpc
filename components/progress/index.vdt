@@ -17,43 +17,43 @@ const classNameObj = {
     [makeStyles()]: true,
 }
 
-<div class={{ classNameObj }} {{ ...getRestProps(this) }}>
-    <div class="k-progress-container" v-if={{ type === 'bar' }}>
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-progress-container" v-if={type === 'bar'}>
         <div  class="k-progress-content">
-            <div class="k-progress-bg" style={{ {width: percent + '%'} }}>
-                <div class="k-progress-inner-text" v-if={{ isInnerText }}>
-                    {{ percent }} %
+            <div class="k-progress-bg" style={{width: percent + '%'}}>
+                <div class="k-progress-inner-text" v-if={isInnerText}>
+                    {percent} %
                 </div>
             </div>
         </div>
     </div>
-    <svg class="k-progress-canvas" viewBox="0 0 120 120" v-if={{ type === 'circle' }}>
-        {{ do {
+    <svg class="k-progress-canvas" viewBox="0 0 120 120" v-if={type === 'circle'}>
+        { do {
             const r = (120 - strokeWidth) / 2;
             const circumference = 2 * Math.PI * r;
 
             [
-                <circle class="k-progress-meter" cx="60" cy="60" r={{ r }}
-                    stroke-width={{ strokeWidth }}
+                <circle class="k-progress-meter" cx="60" cy="60" r={r}
+                    stroke-width={strokeWidth}
                 />,
-                <circle class="k-progress-value" cx="60" cy="60" r={{ r }}
-                    stroke-dashoffset={{ circumference * (1 - percent / 100) }}
-                    stroke-dasharray={{ circumference }}
-                    stroke-width={{ strokeWidth }}
+                <circle class="k-progress-value" cx="60" cy="60" r={r}
+                    stroke-dashoffset={circumference * (1 - percent / 100)}
+                    stroke-dasharray={circumference}
+                    stroke-width={strokeWidth}
                 />,
-                <circle class="k-progress-animate" cx="60" cy="60" r={{ r }}
-                    stroke-width={{ strokeWidth }}
-                    stroke-dasharray={{ circumference }}
-                    stroke-dashoffset={{ circumference }}
-                    v-if={{ status === 'active' }}
+                <circle class="k-progress-animate" cx="60" cy="60" r={r}
+                    stroke-width={strokeWidth}
+                    stroke-dasharray={circumference}
+                    stroke-dashoffset={circumference}
+                    v-if={status === 'active'}
                 >
                     <animate
                         attributeName="stroke-dashoffset"
                         begin="0s"
                         dur="2s"
                         repeatCount="indefinite"
-                        from={{circumference}}
-                        to={{ circumference * (1 - percent / 100)}}
+                        from={circumference}
+                        to={circumference * (1 - percent / 100)}
                     ></animate>
                     <animate attributeName="opacity"
                         begin="0s"
@@ -64,15 +64,15 @@ const classNameObj = {
                     ></animate>
                 </circle>
             ]
-        } }}
+        } }
     </svg>
-    <div class="k-progress-text" v-if={{ children }}>{{ children }}</div>
-    <div class="k-progress-text" v-else-if={{ isOuterText }}>
-        <span v-if={{ status !== 'success' && status !== 'error' }}>{{ percent }}%</span>
-        <span v-else-if={{ status === 'success' }}>
+    <div class="k-progress-text" v-if={children}>{children}</div>
+    <div class="k-progress-text" v-else-if={isOuterText}>
+        <span v-if={status !== 'success' && status !== 'error'}>{percent}%</span>
+        <span v-else-if={status === 'success'}>
             <Icon class="k-icon-truth" />
         </span>
-        <span v-else-if={{ status === 'error' }}>
+        <span v-else-if={status === 'error'}>
             <Icon class="k-icon-fault" />
         </span>
     </div>

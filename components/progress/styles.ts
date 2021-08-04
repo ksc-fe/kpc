@@ -77,7 +77,7 @@ export default function makeStyles() {
         &.k-bar {
             display: flex;
             align-items: center;
-            .k-container {
+            .k-progress-container {
                 height: ${progress.bar.height};
                 border-radius: ${progress.bar.height};
                 background-color: ${progress.stokeColor.color};
@@ -87,7 +87,7 @@ export default function makeStyles() {
                 font-size: ${progress.bar.innerText.fontSize};
                 flex: 1;
             }
-            .k-content {
+            .k-progress-content {
                 position: relative;
                 left: 0;
                 top: 0;
@@ -96,14 +96,14 @@ export default function makeStyles() {
                 height: 100%;
                 border-radius: ${progress.bar.height};
             }
-            .k-bg {
+            .k-progress-bg {
                 background-color: ${progress.stokeColor.normal};
                 height: 100%;
                 border-radius: ${progress.bar.height};
                 transition: ${progress.animation.transition};
                 position: relative;
             }
-            .k-inner-text {
+            .k-progress-inner-text {
                 display: inline-block;
                 vertical-align: middle;
                 color: #ffffff;
@@ -115,7 +115,7 @@ export default function makeStyles() {
             
             // status
             &.k-success {
-                .k-bg {
+                .k-progress-bg {
                     background: ${progress.stokeColor.success};
                 }
                 .k-icon {
@@ -123,7 +123,7 @@ export default function makeStyles() {
                 }
             }
             &.k-error {
-                .k-bg {
+                .k-progress-bg {
                     background: ${progress.stokeColor.error};
                 }
                 .k-icon {
@@ -131,35 +131,36 @@ export default function makeStyles() {
                 }
             }
             &.k-warning {
-                .k-bg {
+                .k-progress-bg {
                     background: ${progress.stokeColor.warning};
                 }
             }
             &.k-active {
-                .k-bg {
-                    &:before
-                    content: "";
-                    position: absolute;
-                    top: 0;
-                    bottom: 0;
-                    right: 0;
-                    left: 0;
-                    background-color: #fff;
-                    animation: ${progressBarAnimation} 2s ease infinite;
-                    border-radius: ${progress.bar.height};
+                .k-progress-bg {
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        right: 0;
+                        left: 0;
+                        background-color: #fff;
+                        animation: ${progressBarAnimation} 2s ease infinite;
+                        border-radius: ${progress.bar.height};
+                    }
                 }
             }
             ${sizes.map(size => {
                 return css`
                     &.k-${size} {
                         font-size: ${progress.bar[size].fontSize};
-                        .k-container {
-                            height ${progress.bar[size].height};
+                        .k-progress-container {
+                            height: ${progress.bar[size].height};
                         }
                     }
                 `
             })}
-            .k-text {
+            .k-progress-text {
                 margin-left: ${progress.bar.textMarginLeft};
                 width: ${progress.bar.textWidth};
             }
@@ -170,26 +171,27 @@ export default function makeStyles() {
             width: ${progress.circle.width};
             height: ${progress.circle.width};
             font-size: ${progress.circle.fontSize};
-            .k-canvas
+            .k-progress-canvas {
                 transform: rotate(-90deg);
-            .k-meter
-            .k-value
-            .k-animate {
+            };
+            .k-progress-meter,
+            .k-progress-value,
+            .k-progress-animate {
                 fill: none;
             };
-            .k-meter {
+            .k-progress-meter {
                 stroke: ${progress.stokeColor.color};
             };
-            .k-value {
-                stroke ${progress.stokeColor.normal};
+            .k-progress-value {
+                stroke: ${progress.stokeColor.normal};
                 stroke-linecap: round;
                 transition: ${progress.animation.transition};
             };
-            .k-animate {
+            .k-progress-animate {
                 stroke: #fff;
                 stroke-linecap: round;
             };
-            .k-text {
+            .k-progress-text {
                 position: absolute;
                 top: 50%;
                 text-align: center;
@@ -199,12 +201,12 @@ export default function makeStyles() {
 
             // status 
             &.k-success {
-                .k-value {
+                .k-progress-value {
                     stroke ${progress.stokeColor.success};
                 }
             };
             &.k-error {
-                .k-value {
+                .k-progress-value {
                     stroke ${progress.stokeColor.error};
                 }
             };
