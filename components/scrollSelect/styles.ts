@@ -25,6 +25,8 @@ const {scrollSelect} = deepDefaults(theme, {
     }
 });
 
+export {scrollSelect};
+
 export default function makeStyles() {
     return css`
         text-align: center;
