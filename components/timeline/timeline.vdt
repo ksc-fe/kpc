@@ -1,9 +1,7 @@
 import {getRestProps} from '../utils';
-import makeStyles from './timelineStyles';
+import {makeStyles} from './styles';
 
-let {
-    className, children
-} = this.get();
+const {className, children} = this.get();
 
 const classNameObj = {
     'k-timeline': true,

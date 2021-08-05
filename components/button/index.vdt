@@ -1,6 +1,6 @@
 import {isStringOrNumberNotEmpty, getRestProps} from '../utils';
 import {Icon} from '../icon';
-import makeStyles from './styles';
+import {makeButtonStyles} from './styles';
 import {DynamicButton} from './dynamicButton';
 
 let {
@@ -55,7 +55,7 @@ const classNameObj = {
     'k-active': checked,
     'k-disabled': disabled || loading,
     'k-ghost': ghost,
-    [makeStyles({iconSide})]: true,
+    [makeButtonStyles({iconSide})]: true,
 };
 
 const loadingIcon = (

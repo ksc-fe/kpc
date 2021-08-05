@@ -1,16 +1,14 @@
 import {getRestProps} from '../utils';
-import makeStyles from './itemStyles';
+import {makeItemStyles} from './styles';
 
-const {
-    className, children, type, size
-} = this.get();
+const {className, children, type, size} = this.get();
 
 const classNameObj = {
     'k-timeline-item': true,
     [className]: className,
     [`k-${type}`]: true,
     [`k-${size}`]: size !== 'default',
-    [makeStyles()]: true,
+    [makeItemStyles()]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>

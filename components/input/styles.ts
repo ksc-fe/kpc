@@ -33,6 +33,12 @@ const {input} = deepDefaults(theme, {
             get disabledBorderColor() { return theme.color.disabledBorder },
             get disabledColor() { return theme.color.disabled },
             get disabledBgColor() { return theme.color.disabledBg },
+
+            // search input
+            search: {
+                suffixMarginRight: '15px' 
+            }
+
         },
         sizes.reduce((memo, size) => {
             const styles = theme[size];
@@ -56,9 +62,7 @@ const {input} = deepDefaults(theme, {
     )
 });
 
-export {input};
-
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         display: inline-block;
         width: ${input.width};
@@ -280,6 +284,55 @@ export default function makeStyles() {
             width: auto;
             .k-input-inner {
                 box-sizing: content-box;
+            }
+        }
+    `
+}
+
+export function makeSearchStyles() {
+    return css`
+        position: relative;
+        display: inline-block;
+        .k-input {
+            transition: width ${theme.transition};
+        }
+        .k-btn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 1;
+        }
+        .k-input-suffix {
+            margin-right: ${input.search.suffixMarginRight};
+        }
+
+        // hide
+        &.k-hide {
+            .k-input {
+                width: ${input.default.height};
+            }
+            .k-input-inner {
+                padding: 0 !important;
+            }
+            ${sizes.map(size => {
+                if (size == 'default') return;
+                return css`
+                    .k-input.k-${size} {
+                        width: ${input[size].height};
+                    }
+                `
+            })}
+        }
+
+        // line
+        &.k-line {
+            .k-input-inner {
+                border-width: 0;
+            }
+            &.k-open {
+                .k-input-inner {
+                    border-bottom-width: 1px;
+                }
             }
         }
     `

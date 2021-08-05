@@ -31,21 +31,18 @@ const typeStyles = types.reduce((memo, type) => {
     return memo;
 }, {} as {[key in Types]: TypeStyles});
 
-
-const {timelineItem} = deepDefaults(theme, {
-    timelineItem: deepDefaults(
+const {timeline} = deepDefaults(theme, {
+    timeline: deepDefaults(
         {
+            fontSize: '12px',
             padding: '0 0 16px 24px',
             get lineBorder() { return `1px solid ${theme.color.border}` },
 
             indicator: {
                 width: '16px',
-            }
-        },
-        typeStyles,
+            },
 
-        // sizeStyles
-        {
+            // sizeStyles
             large:{
                 width: '13px'
             },
@@ -58,70 +55,74 @@ const {timelineItem} = deepDefaults(theme, {
             mini:{
                 width: '5px'
             }
-        }
+        },
+        typeStyles,
     )
 });
 
-export {timelineItem};
+export function makeStyles() {
+    return css`
+        font-size: ${timeline.fontSize};    
+        padding-top: calc(${theme.lineHeight}em / 2);
+    `;
+}
 
-export default function makeStyles() {
+export function makeItemStyles() {
     return css`
         position: relative;
-        padding: ${timelineItem.padding};
+        padding: ${timeline.padding};
        
-        >.k-timeline-indicator {
-            width: ${timelineItem.indicator.width};
+        .k-timeline-indicator {
+            width: ${timeline.indicator.width};
             position: absolute;
             left: 0;
             top: 0;
             height: 100%;
             text-align: center;
-            .k-timeline-dot {
-                position: relative;
-                z-index: 1;
-                transform: translateY(-50%);
-            }
-               
-            .k-timeline-circle {
-                position: relative;
-                background: ${theme.color.primary};
-                border-radius: 50%;
-                left: 50%;
-            }
-               
-            .k-timeline-line {
-                position: absolute;
-                height: 100%;
-                border-left: ${timelineItem.lineBorder};
-                top: 0;
-                left: 50%;
-            }
-                
         }
-        > .k-timeline-content {
+        .k-timeline-dot {
+            position: relative;
+            z-index: 1;
+            transform: translateY(-50%);
+        }
+           
+        .k-timeline-circle {
+            position: relative;
+            background: ${theme.color.primary};
+            border-radius: 50%;
+            left: 50%;
+        }
+           
+        .k-timeline-line {
+            position: absolute;
+            height: 100%;
+            border-left: ${timeline.lineBorder};
+            top: 0;
+            left: 50%;
+        }
+
+        .k-timeline-content {
             position: relative;
             top: calc(-0.5 * ${theme.lineHeight}em);
         }
      
         &:last-of-type {
-            > .k-timeline-indicator {
-                .k-timeline-line {
-                    display: none;
-                }
+            .k-timeline-line {
+                display: none;
             }
         }
 
         // types
         ${types.map(type => {
-            const typeStyles = timelineItem[type];
+            const typeStyles = timeline[type];
 
             return css`
                 &.k-${type} {
-                    > .k-timeline-indicator {
+                    .k-timeline-indicator {
                         color: ${typeStyles.color};
-                        .k-timeline-circle {
-                            background: ${typeStyles.color};
-                        }
+                    }
+                    .k-timeline-circle {
+                        background: ${typeStyles.color};
                     }
                 }
             `;
@@ -129,16 +130,14 @@ export default function makeStyles() {
 
         // sizes
         ${sizes.map(size => {
-            const styles = timelineItem[size];
+            const styles = timeline[size];
             const sizeClassName = css`
-                > .k-timeline-indicator {
-                    .k-timeline-circle {
-                        width: ${styles.width};
-                        height: ${styles.width};
-                        // when we use translateX(-50%) the line can not position at center of dot
-                        margin-left: calc(-0.5 * ${styles.width});
-                    }
-                }     
+                .k-timeline-circle {
+                    width: ${styles.width};
+                    height: ${styles.width};
+                    // when we use translateX(-50%) the line can not position at center of dot
+                    margin-left: calc(-0.5 * ${styles.width});
+                }
             `;
             if (size === 'default') return sizeClassName;
 
@@ -150,3 +149,4 @@ export default function makeStyles() {
         })}
     `;
 };
+

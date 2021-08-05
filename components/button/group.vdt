@@ -1,5 +1,5 @@
 import {getRestProps} from '../utils';
-import makeStyles from './groupStyles';
+import {makeButtonGroupStyles} from './styles';
 
 const {className, vertical, children, fluid} = this.get();
 
@@ -8,7 +8,7 @@ const classNameObj = {
     'k-vertical': vertical,
     'k-fluid': fluid,
     [className]: className,
-    [makeStyles()]: true,
+    [makeButtonGroupStyles()]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>{children}</div>

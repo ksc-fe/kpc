@@ -10,33 +10,31 @@ const {card} = deepDefaults(theme, {
         boxShadow: '0 0 20px 0 rgba(0, 0, 0, .06)',
         headerHeight: '48px',
         headerFontSize: '14px',
-        bgColor: '#fff'
+        bgColor: '#fff',
     },
 });
 
-export {card};
-
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         border-radius: ${theme.borderRadius};
         background: ${card.bgColor};
-        > .k-card-header {
+        .k-card-header {
             height: ${card.headerHeight};
             line-height: ${card.headerHeight};
             padding: 0 ${card.padding};
-            > .k-card-title {
-                font-size: ${card.headerFontSize};
-                display: inline-block;
-            }
-            > .k-card-extra {
-                float: right;
-                height: 100%;
-                display: flex;
-                align-items: center;
-            }
         }
-            
-        > .k-card-body {
+        .k-card-title {
+            font-size: ${card.headerFontSize};
+            display: inline-block;
+        }
+        .k-card-extra {
+            float: right;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .k-card-body {
             padding: 0 ${card.padding} ${card.padding};
         }
 
@@ -49,28 +47,42 @@ export default function makeStyles() {
         }
         &.k-border {
             border: ${card.border};
-            > .k-card-header {
+            .k-card-header {
                 border-bottom: ${card.border};
             }
-            > .k-card-body {
+            .k-card-body {
                 padding-top: ${card.padding};
             }
         }
         &.k-no-header {
-            > .k-card-body {
+            .k-card-body {
                 padding-top: ${card.padding};
             }
         }  
     
         // grid
-        &.k-card-grid
-            > .k-card-body {
+        &.k-card-grid {
+            .k-card-body {
                 display: flex;
                 padding: 0;
             }
-            &.k-border
+            &.k-border {
                 .k-card-column:not(:last-of-type) {
                     border-right: ${card.border};
                 }
+            }
+        }
+
+        .k-card-column {
+            display: flex;
+            align-items: center;
+            padding: ${card.padding}; 
+            &.k-fluid {
+                flex: 1;
+            }
+            &.k-center {
+                justify-content: center;
+            }
+        }
     `;
 }

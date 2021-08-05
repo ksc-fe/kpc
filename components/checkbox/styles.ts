@@ -45,8 +45,6 @@ const {checkbox} = deepDefaults(theme, {
     },
 });
 
-export {checkbox};
-
 export default function makeStyles() {
     return css`
         display: inline-flex;

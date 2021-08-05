@@ -2,7 +2,6 @@ import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
-import {select} from '../select/styles';
 
 const {table} = deepDefaults(theme, {
     table: {
@@ -37,7 +36,7 @@ const {table} = deepDefaults(theme, {
             width: `14px`,
             gap: `10px`,
             color: `#a6a6a6`,
-            get menuMaxHeight() { return select.menuMaxHeight },
+            menuMaxHeight: '200px',
             get activeColor() { return theme.color.primary },
         },
 
