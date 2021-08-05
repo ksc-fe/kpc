@@ -4,11 +4,12 @@ import {Component, ComponentConstructor} from 'intact';
 export type RouteResult = {Page: ComponentConstructor};
 export type RouteItem = Route<RouteResult>
 
-const req = require.context('./components', true, /index\.ts$/);
+const req = require.context('./', true, /index\.ts$/);
 const routes = req.keys().map<Route | undefined>(key => {
     if (!key.startsWith('.')) return;
+    const path = key.slice(1, -9);
     return {
-        path: `/components/${key.slice(2, -9)}`,
+        path: key.slice(1, -9),
         action: () => ({Page: req(key).default}),
     };
 }).filter((item): item is Route => !!item);
@@ -16,7 +17,7 @@ const routes = req.keys().map<Route | undefined>(key => {
 export default new Router([
     {
         path: '/',
-        action: () => ({Page: req('./button/index.ts').default}),
+        action: () => ({Page: req('./components/button/index.ts').default}),
     },
     ...routes
 ]);

@@ -134,7 +134,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             outline: none;
             vertical-align: middle;
             color: ${button.color};
-            background-color: ${button.bgColor};
+            background: ${button.bgColor};
             text-align: center;
             border-radius: ${button.borderRadius};
             border: 1px solid ${button.borderColor};
@@ -151,7 +151,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                 color: ${button.hoverColor};
             }
             &:active {
-                background-color: ${palette(theme.color.primary, -4)};
+                background: ${palette(theme.color.primary, -4)};
             }
 
             .k-button-input {
@@ -167,17 +167,17 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
 
                 return css`
                     &.k-${type} {
-                        background-color: ${typeStyles.bgColor};
+                        background: ${typeStyles.bgColor};
                         color: ${typeStyles.color};
                         border-color: ${typeStyles.borderColor};
                         &:hover,
                         &:focus {
-                            background-color: ${palette(typeStyles.bgColor, -1)};
+                            background: ${palette(typeStyles.bgColor, -1)};
                             border-color: ${typeStyles.hoverBorderColor};
                             color: ${typeStyles.color};
                         }
                         &:active {
-                            background-color: ${palette(typeStyles.bgColor, 1)};
+                            background: ${palette(typeStyles.bgColor, 1)};
                             border-color: ${palette(typeStyles.borderColor, 1)};
                         }
                     }
@@ -190,10 +190,10 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                 border-color: ${secondary.borderColor};
                 &:hover,
                 &:focus {
-                    background-color: ${secondary.hoverBgColor};
+                    background: ${secondary.hoverBgColor};
                 }
                 &:active {
-                    background-color: ${secondary.activeBgColor};
+                    background: ${secondary.activeBgColor};
                 }
             }
 
@@ -208,7 +208,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             &.k-disabled {
                 &, &:hover {
                     color: ${button.disabled.color};
-                    background-color: ${button.disabled.bgColor};
+                    background: ${button.disabled.bgColor};
                     border-color: ${button.disabled.borderColor};
                     cursor: not-allowed
                 }
@@ -218,7 +218,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             &.k-link {
                 &, &:hover {
                     border: none;
-                    background-color: transparent;
+                    background: transparent;
                 }
                 &.k-active {
                     color: ${theme.color.primary};
@@ -273,7 +273,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             // loading
             &.k-loading {
                 &, &:hover {
-                    background-color: ${palette(button.bgColor, -2)};
+                    background: ${palette(button.bgColor, -2)};
                     color: ${palette(button.color, -2)};
                     border-color: ${palette(button.borderColor, -2)};
                 }
@@ -285,7 +285,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                     return css`
                         &.k-${type} {
                             &, &:hover {
-                                background-color: ${palette(styles.bgColor, -2)};
+                                background: ${palette(styles.bgColor, -2)};
                                 color: ${palette(styles.color, -2)};
                                 border-color: ${palette(styles.borderColor, -2)};
                             }
@@ -340,7 +340,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                     &, &:hover {
                         color: ${button.disabled.color};
                         border-color: ${button.disabled.ghostBorderColor};
-                        background-color: transparent;
+                        background: transparent;
                     }
                 }
             }

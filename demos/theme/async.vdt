@@ -1,0 +1,3 @@
+import {Input} from 'kpc/components/input';
+
+<Input />
