@@ -14,7 +14,24 @@ const myTheme = {
         disabled: 'rgba(0, 0, 0, 0.26)',
         border: 'rgba(0, 0, 0, 0.12)',
     },
-    borderRadius: '4px',
+    borderRadius: '32px',
+    table: {
+        border: '1px solid #f0f0f0',
+        thead: {
+            bgColor: '#fafafa',
+            height: '40px',
+            delimiterHeight: '22px',
+            delimiterColor: '#0000000f',
+            padding: '16px',
+        },
+        tbody: {
+            padding: '16px',
+            hoverBgcolor: '#fafafa',
+        }
+    },
+    checkbox: {
+        borderRadius: `2px`,
+    },
     // input: {
         // width: '400px',
     // }

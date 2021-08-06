@@ -1,0 +1,15 @@
+import A from './a';
+import bTemplate from './b.vdt';
+
+<template>
+    <A ref={this.aRef} value="from demo" ev-$change:count={this.onChangeCount}>
+        <b:test>
+            aaaa
+            {$super()}
+            bbbbb
+            {this.a}
+        </b:test>
+    </A>
+    <t:bTemplate name="jjjj" />
+    {this.get('value')}
+</template>

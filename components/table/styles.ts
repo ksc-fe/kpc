@@ -20,6 +20,8 @@ const {table} = deepDefaults(theme, {
             fontWeight: `bold`,
             textAlign: 'left',
             height: `30px`,
+            delimiterHeight: '12px',
+            delimiterColor: '#bfbfbf',
         },
 
         // tbody 
@@ -96,12 +98,13 @@ export function makeStyles() {
             background: ${table.thead.bgColor};
             &:before {
                 content: '';
-                height: 12px;
+                height: ${table.thead.delimiterHeight};
                 position: absolute;
-                background-color: #bfbfbf;
+                background-color: ${table.thead.delimiterColor};
                 width: 1px;
                 left: 1px;
-                top: 9px;
+                top: 50%;
+                transform: translateY(-50%);
             }
             &:first-of-type:before {
                 display: none;
