@@ -22,6 +22,8 @@ sidebar: doc
 | always | 当展示气泡时，是否一直展示 | `Boolean` | `false` |
 | animate | 滑块的移动是否使用缓动动画 | `Boolean` | `true` |
 | tooltipProps | 设置`Tooltip`的所有属性 | `Object` | `undefined` |
+| spinnerPrefix | 定义输入框展示的值的前缀 | `String` | `undefined` |
+| spinnerSuffix | 定义输入框展示的值的后缀 | `String` | `undefined` |
 
 # 扩展点
 
