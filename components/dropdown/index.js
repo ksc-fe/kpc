@@ -28,7 +28,7 @@ function Wrapper(props, flag) {
         element = children[i];
         if (!isEmptyString(element)) {
             break;
-        } 
+        }
     }
     for (i = i + 1; i < length; i++) {
         menu = children[i];
@@ -38,13 +38,13 @@ function Wrapper(props, flag) {
     }
 
     const dropdown = h(Dropdown, {
-        key: key == null ? key : `${key}.trigger`,
+        key: key == null ? element.key : `${key}.trigger`,
         ref: ref,
-        children: [element], 
+        children: [element],
         ...rest
     });
     menu.props = {
-        position, 
+        position,
         // indicate that it is use in Dropdown or alone for lookup dropdown instance in _mount
         _useInDropdown: true,
         ...rest,

@@ -10,6 +10,7 @@ import {Button} from 'kpc/components/button';
 import {mount, unmount, dispatchEvent} from 'test/utils';
 import LayoutDemo from '~/components/diagram/demos/layout';
 import mx from './mxgraph';
+import Vue from 'vue';
 
 const {mxClient} = mx;
 const downName = mxClient.IS_POINTER ? 'pointerdown' : 'mousedown';
@@ -379,6 +380,28 @@ describe('Diagram', () => {
         expect(instance.element.innerHTML).to.matchSnapshot();
         instance.set('type', 'sharp');
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should render with v-if in Vue', () => {
+        const Test = {
+            template: `
+                <Diagram>
+                    <DDiamond v-if="true"><div>test</div></DDiamond>
+                    <DDiamond v-if="false"><div>test</div></DDiamond>
+                </Diagram>
+            `,
+            components: {
+                Diagram, DDiamond,
+            }
+        };
+
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const app = new Vue({
+            render: h => h('Test'),
+            components: {Test},
+        }).$mount(container);
     });
 });
 
