@@ -362,7 +362,7 @@ describe('Table', () => {
         const test = async (rows) => {
             await wait(200);
             elements.forEach(el => {
-                expect(el.scrollTop).to.eql(height * rows + rows);
+                expect(el.scrollTop).to.eql(height * rows + 1);
             });
         };
 

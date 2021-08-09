@@ -30,6 +30,8 @@ export default class Slider extends Intact {
             always: false,
             animate: true,
             tooltipProps: undefined,
+            spinnerPrefix: undefined,
+            spinnerSuffix: undefined,
 
             _sliderValue: 0,
             _inputValue: 0,
@@ -55,6 +57,8 @@ export default class Slider extends Intact {
         always: Boolean,
         animate: Boolean,
         tooltipProps: Object,
+        spinnerPrefix: String,
+        spinnerSuffix: String,
     };
 
     static events = {
