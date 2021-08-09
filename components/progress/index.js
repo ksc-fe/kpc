@@ -59,7 +59,7 @@ export default class Progress extends Intact{
         if (!color) return '';
         const percent = this.get('percent');
         if (isFunction(color)) {
-            return color.call(self, percent);
+            return color.call(this, percent);
         } else if (Array.isArray(color)) {
             const item = color.find((v) => v.percent === percent);
             return item ? item.color : '';
