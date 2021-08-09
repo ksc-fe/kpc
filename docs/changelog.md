@@ -4,6 +4,26 @@ order: 99
 sidebar: doc
 ---
 
+## v1.5.1
+
+1. `Add` `Message`当内容不存在时，指定最小高度 [#583](https://github.com/ksc-fe/kpc/issues/583)
+2. `Add` `Progress`支持自定义进度条颜色 [#581](https://github.com/ksc-fe/kpc/issues/581)
+3. `Add` `Slider`当展示输入框`Spinner`时，支持定义`Spinner`的前后缀 [#582](https://github.com/ksc-fe/kpc/issues/582)
+4. `Fix` 修复`Select`在分组的情况下，如果该分组下搜索结果为空，依然展示分组名的问题 [#579](https://github.com/ksc-fe/kpc/issues/579)
+5. `Fix` 修复`Select`在`multiple & filterable`情况下，输入框输入会超出组件最大宽度的问题 [#580](https://github.com/ksc-fe/kpc/issues/580)
+6. `Fix` 修复`Select`在`multipe & filterable & allowUnmatch`情况下，`value`展示不对的问题 [#585](https://github.com/ksc-fe/kpc/issues/585)
+7. `Fix` 修复`Table`在`v1.5.0`引入的性能问题 [#584](https://github.com/ksc-fe/kpc/issues/584)
+8. `Fix` 修复`Table`在`draggable`为`false`的情况下，依然可以通过某些特殊操作拖动行进行排序的问题 [#592](https://github.com/ksc-fe/kpc/issues/592)
+9. `Fix` 修复`Table`在存在固定列的情况下，展开行位置不对的问题 [#652](https://github.com/ksc-fe/kpc/issues/652)
+
+__Vue__
+
+1. `Fix` 修复`Diagram`在`Vue`下如果`preserveWhitespace`为`true`会报警告的问题 [#591](https://github.com/ksc-fe/kpc/issues/591)
+
+__React__
+
+1. `Fix` 修复`Dropdown`在指定了`key`的情况下，依然会报`key`不存在的警告的问题 [#589](https://github.com/ksc-fe/kpc/issues/589)
+
 ## v1.5.0
 
 1. `Add` `Table`支持`Checkbox/Radio`这一列进行单元格合并 [#527](https://github.com/ksc-fe/kpc/issues/527)
