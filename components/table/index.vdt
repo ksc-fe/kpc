@@ -44,7 +44,10 @@ const TheadCreator = ({onlyLeft, onlyRight, refContainer, style}) => {
     const tableColumns = [];
 
     cols = [];
+    currentVNode = undefined;
     _scheme = {};
+    maxCols = 0;
+    maxRows = 0;
 
     let checkVNode;
     if (checkType === 'checkbox' || checkType === 'radio') {
