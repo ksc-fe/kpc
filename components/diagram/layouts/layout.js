@@ -5,7 +5,10 @@ import {DShape} from '../shapes/shape';
 export class DLayout extends Intact {
     static template = function(data, Vdt) {
         const children = mapChildren(data.get('children'), vNode => {
-            if (vNode.tag && vNode.tag.prototype instanceof DShape) {
+            const tag = vNode.tag;
+            if (!tag) return null; // it may be a empty text, ignore it.
+
+            if (tag && tag.prototype instanceof DShape) {
                 vNode.props = {
                     ...vNode.props,
                     _diagram: data.get('_diagram'),
@@ -14,7 +17,7 @@ export class DLayout extends Intact {
                 };
             } else {
                 /* istanbul ignore next */
-                Intact.utils.error(new Error(`DLayout can only contain DShape, but ${vNode.tag} found.`));
+                Intact.utils.error(new Error(`DLayout can only contain DShape, but ${tag} found.`));
             }
             return vNode;
         });

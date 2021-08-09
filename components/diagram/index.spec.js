@@ -382,16 +382,27 @@ describe('Diagram', () => {
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 
-    it('should render with v-if in Vue', () => {
+    it('should ignore empty text when render DLayout', () => {
+        const error = console.error;
+        const spy = sinon.spy();
+        console.error = (...args) => {
+            error.apply(console, args);
+            spy();
+        };
+
         const Test = {
             template: `
                 <Diagram>
-                    <DDiamond v-if="true"><div>test</div></DDiamond>
-                    <DDiamond v-if="false"><div>test</div></DDiamond>
+                    <DRectangle>
+                        <DStackLayout>
+                            <DDiamond><div>test</div></DDiamond>
+                            <DDiamond><div>test</div></DDiamond>
+                        </DStackLayout>
+                    </DRectangle>
                 </Diagram>
             `,
             components: {
-                Diagram, DDiamond,
+                Diagram, DDiamond, DRectangle, DStackLayout,
             }
         };
 
@@ -402,6 +413,8 @@ describe('Diagram', () => {
             render: h => h('Test'),
             components: {Test},
         }).$mount(container);
+
+        expect(spy.callCount).to.equal(0);
     });
 });
 
