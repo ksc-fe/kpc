@@ -172,7 +172,7 @@ export default class Select extends Intact {
         if (!value) {
             this._onBlur();
             if (this.get('searchable') && this.get('multiple')) {
-                // set the _checkedKeys to value
+                // set the _checkedKeys by value
                 this.set('_checkedKeys', this.get('value') || []);
             }
         }
@@ -186,11 +186,17 @@ export default class Select extends Intact {
      * in this case, we do nothing, otherwise we reset it
      */
     _onBlur() {
-        const {keywords, allowUnmatch} = this.get();
+        const {keywords, allowUnmatch, multiple} = this.get();
         if (allowUnmatch && keywords != null) {
-            this.set({
-                value: keywords,
-            });
+            if (!multiple) {
+                this.set({
+                    value: keywords,
+                });
+            } else {
+                let values = this.get('value');
+                values = toggleArray(values, keywords);
+                this.set('value', values);
+            }
         }
 
         // this.timer = setTimeout(() => {
