@@ -50,7 +50,7 @@ const isGroup = Array.isArray(self.get('data.0.data'));
 const labelObj = scope.labelObj || {
     // only show value as label when allowUnmatch or loading is true, #40 #529
     label: (loading || allowUnmatch) && isStringOrNumber(value) ? value : null,
-    labels: (loading || allowUnmatch) && multiple && Array.isArray(value) ? value : [],
+    labels: (loading || allowUnmatch) && Array.isArray(value) ? value.slice() : [],
 };
 let groupIndex = 0;
 let hasData = isGroup;

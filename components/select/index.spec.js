@@ -14,10 +14,10 @@ import AutoDisableIconDemo from '~/components/select/demos/autoDisableIcon';
 describe('Select', () => {
     let instance;
 
-    afterEach((done) => {
-        unmount(instance);
-        setTimeout(done, 400);
-    });
+    // afterEach((done) => {
+        // unmount(instance);
+        // setTimeout(done, 400);
+    // });
 
     it('should select value correctly', () => {
         instance = mount(BasicDemo);
