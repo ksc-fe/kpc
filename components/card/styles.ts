@@ -1,4 +1,4 @@
-import {css, cx} from '@emotion/css';
+import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
 import {deepDefaults}  from '../../styles/utils';
 import '../../styles/global';
