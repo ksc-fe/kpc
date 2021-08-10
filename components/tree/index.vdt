@@ -1,0 +1,61 @@
+import {Transition} from 'intact';
+import {Checkbox} from '../checkbox';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {Icon} from '../icon';
+
+const {className, checkbox} = this.get();
+const expandedKeys = this.expanded.get();
+const toggleExpanded = this.expanded.toggle;
+const toggleChecked = this.checked.toggle;
+const treeNodes = (nodes) => {
+    return nodes.map(node => {
+        if (!node.filter) return; 
+
+        const key = node.key;
+        const expanded = expandedKeys.has(key);
+        const data = node.data;
+        const disabled = data.disabled;
+        const classNameObj = {
+            'k-tree-node': true,
+            'k-expanded': expanded,
+            'k-disabled': disabled,
+        };
+
+        return (
+            <div key={key} class={classNameObj}>
+                <div class={{'k-tree-label': true, 'k-tree-leaf': !node.children}}>
+                    <Icon class="k-tree-icon ion-android-arrow-dropdown" 
+                        v-if={node.children && node.loaded !== false}
+                        ev-click={() => toggleExpanded(node, expanded)}
+                    />
+                    <Checkbox v-if={checkbox} 
+                        value={node.checked}
+                        disabled={disabled}
+                        indeterminate={node.indeterminate}
+                        ev-$change:value={() => toggleChecked(node)}
+                        class="k-tree-checkbox"
+                    />
+                    <b:label params={[data, node]}>
+                        <div class="k-tree-text">{data.label}</div>
+                    </b:label>
+                </div>
+                <Transition v-if={expanded && node.children}>
+                    <div class="k-tree">
+                        {treeNodes(node.children)}
+                    </div>
+                </Transition>
+            </div>
+        );
+    });
+};
+
+const classNameObj = {
+    'k-tree': true,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    {treeNodes(this.nodes.getNodes())}
+</div>
