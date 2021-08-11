@@ -1,0 +1,35 @@
+import Button from '../button';
+import Icon from 'kpc/components/icon';
+import {getRestProps} from '../utils';
+import makeStyles from './tagStyles';
+
+const {
+    className, children, type,
+    disabled, closable, closed, size
+} = this.get();
+
+if (closed) return;
+
+const classNameObj = {
+    'k-tag': true,
+    [className]: className,
+    [`k-${type}`]: type !== 'default',
+    [`k-${size}`]: size !== 'default',
+    'k-disabled': disabled,
+    'k-closable': closable,
+    [makeStyles()]: true,
+};
+
+<div class={ classNameObj }>
+    <template>
+        <b:body>{ children }</b:body>
+    </template>
+    <Button v-if={closable} 
+        type="none" 
+        disabled={ disabled }
+        size={ size }
+        ev-click={ this.onClose }
+        class="close">
+        <Icon class="icon ion-ios-close-empty"/>
+    </Button>
+</div>
