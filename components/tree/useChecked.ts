@@ -2,7 +2,7 @@ import {useInstance, Key} from 'intact';
 import {useState} from '../../hooks/useState';
 import {useReceive} from '../../hooks/useReceive';
 import type {Tree} from './';
-import type {Node} from './useNodes';
+import type {Node, DataItem} from './useNodes';
 
 export function useChecked(getNodes: () => Node[]) {
     const instance = useInstance() as Tree;
@@ -55,9 +55,6 @@ export function useChecked(getNodes: () => Node[]) {
     }
 
     function toggle(node: Node) {
-        // e.preventDefault();
-        // e.stopPropagation();
-
         const uncorrelated = instance.get('uncorrelated');
         updateDownward(node, !node.checked);
         updateUpward(node.parent);
@@ -113,5 +110,23 @@ export function useChecked(getNodes: () => Node[]) {
         updateUpward(node.parent);
     }
 
-    return {toggle};
+    function getCheckedData(leafOnly: boolean) {
+        const data: DataItem[] = [];
+        const loop = (nodes: Node[]) => {
+            for (let i = 0; i < nodes.length; i++) {
+                const node = nodes[i];
+                if (node.checked && (!leafOnly || !node.children)) {
+                    data.push(node.data);
+                }
+                if (node.children) {
+                    loop(node.children);
+                }
+            }
+        };
+        loop(getNodes());
+
+        return data;
+    }
+
+    return {toggle, getCheckedData};
 }

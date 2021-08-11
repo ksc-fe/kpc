@@ -1,8 +1,8 @@
-import {useInstance, Key} from 'intact';
+import {useInstance, Key, onBeforeMount} from 'intact';
 import type {Tree} from './';
 import type {Node} from './useNodes';
 
-export function useExpanded() {
+export function useExpanded(getNodes: () => Node[]) {
     const instance = useInstance() as Tree;
     let expandedKeys: Set<Key> = new Set();
 
@@ -10,12 +10,21 @@ export function useExpanded() {
         expandedKeys = new Set(v);
     });
 
-    async function toggle(node: Node, expanded: boolean) {
+    onBeforeMount(() => {
+        if (instance.get('defaultExpandAll')) {
+            expandAll();
+        }
+    });
+
+    async function toggle(node: Node) {
         const {load} = instance.get();
+        const key = node.key;
+        const expanded = expandedKeys.has(key); 
+
         if (load && !expanded && !node.loaded) {
             node.loaded = false;
             instance.forceUpdate();
-            const children = await load(node); 
+            await load(node); 
             node.loaded = true;
         }
 
@@ -24,6 +33,24 @@ export function useExpanded() {
         } else {
             expandedKeys.add(node.key);
         }
+
+        instance.set('expandedKeys', Array.from(expandedKeys));
+    }
+
+    function expandAll() {
+        const {load} = instance.get();
+        const loop = (nodes: Node[]) => {
+            for (let i = 0; i < nodes.length; i++) {
+                const node = nodes[i];
+                if (!load || node.loaded) {
+                    expandedKeys.add(node.key);
+                }
+                if (node.children) {
+                    loop(node.children);
+                }
+            }
+        };
+        loop(getNodes());
 
         instance.set('expandedKeys', Array.from(expandedKeys));
     }

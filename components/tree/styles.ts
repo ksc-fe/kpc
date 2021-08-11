@@ -11,16 +11,17 @@ const {tree} = deepDefaults(theme, {
         get disabledColor() { return theme.color.disabled },
 
         textPadding: `0 3px`,
-        indent: '16px',
+        marginLeft: '10px',
+        paddingLeft: '6px',
         iconWidth: '21px',
         get iconColor() { return theme.color.placeholder },
         checkboxGap: `8px`,
         get leafIndent() { return tree.iconWidth },
+        get borderRadius() { return theme.borderRadius },
 
         // selected
         selected: {
-            get borderRadius() { return theme.borderRadius },
-            get bgColor() { return palette(theme.color.primary, -3) },
+            get bgColor() { return palette(theme.color.primary, -4) },
         },
 
         // draggable
@@ -28,6 +29,8 @@ const {tree} = deepDefaults(theme, {
             get border() { return `1px solid ${theme.color.primary}` },
             get bgColor() { return theme.color.bg },
         },
+
+        get line() { return `1px dashed ${theme.color.border}` },
     }
 });
 
@@ -38,16 +41,17 @@ export function makeStyles() {
         position: relative;
         .k-tree-label {
             position: relative;
+            display: flex;
+            align-items: center;
         }
         .k-tree-icon,
         .k-tree-text {
             cursor: pointer; 
         }
         .k-tree-text {
-            display: inline-block;
-            vertical-align: middle;
-            transition: background ${theme.transition};
             padding: ${tree.textPadding};
+            border-radius: ${tree.borderRadius};
+            flex: 1;
         }
 
         .k-tree-leaf {
@@ -55,10 +59,8 @@ export function makeStyles() {
         }
 
         .k-tree-icon {
-            display: inline-block;
             width: ${tree.iconWidth};
             text-align: center;
-            vertical-align: middle;
             color: ${tree.iconColor};
             transform: rotate(-90deg);
             transition: transform ${theme.transition};
@@ -68,15 +70,22 @@ export function makeStyles() {
             margin-right: ${tree.checkboxGap};
         }
 
+        // selectable
+        &.k-selectable {
+            .k-tree-node {
+                &.k-selected {
+                    > .k-tree-label .k-tree-text {
+                        background: ${tree.selected.bgColor} !important;
+                    }
+                }
+            }
+        }
+
         .k-tree-node {
             &:not(.k-disabled) {
                 > .k-tree-label .k-tree-text:hover {
-                    color: ${tree.hoverColor};
+                    background: ${theme.color.bg};
                 }
-            }
-            .k-tree {
-                padding-left: ${tree.indent};
-                overflow: hidden;
             }
             &.k-expanded {
                 > .k-tree-label .k-tree-icon {
@@ -92,16 +101,19 @@ export function makeStyles() {
                 }
             }
 
-            &.k-selected {
-                > .k-tree-label .k-tree-text {
-                    background: ${tree.selected.bgColor};
-                    border-radius: ${tree.selected.borderRadius};
-                }
-            }
-
             &.k-dragging {
                 background: ${tree.dragging.bgColor};
             }
+        }
+
+        .k-tree {
+            margin-left: ${tree.marginLeft};
+            padding-left: ${tree.paddingLeft};
+        }
+
+        // showLine
+        &.k-line .k-tree {
+            border-left: ${tree.line} 
         }
     `;
 }

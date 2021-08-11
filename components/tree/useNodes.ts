@@ -11,7 +11,6 @@ export type DataItem = {
     children?: DataItem[]
 }
 
-let uniqueId = 0;
 const prefix = '__$_';
 
 export function useNodes() {
@@ -19,7 +18,7 @@ export function useNodes() {
     let nodes: Node[] = [];
 
     instance.on('$receive:data', data => {
-        nodes = createNodes(data, null);
+        nodes = createNodes(data, null, prefix);
     });
 
     return {getNodes: () => nodes}
@@ -29,7 +28,7 @@ export class Node {
     public checked = false;
     public indeterminate = false;
     public children: Node[] | null = null;
-    public loaded: boolean;
+    public loaded: boolean | null | undefined;
     public filter = true;
 
     constructor(
@@ -37,30 +36,31 @@ export class Node {
         public parent: Node | null,
         public key: Key,
     ) {
-        let loaded = data.loaded;
-        if (isNullOrUndefined(loaded)) {
-            const children = data.children;
-            loaded = !!(children && children.length);
-        }
-        this.loaded = loaded;
+        this.loaded = isNullOrUndefined(data.loaded) && 
+            data.children && 
+            data.children.length ?
+                true : 
+                data.loaded;
     }
 }
 
-function createNode(data: DataItem, parent: Node | null) {
-    const key = data.key == null ? `${prefix}${uniqueId++}` : data.key;
+function createNode(data: DataItem, parent: Node | null, prefix: string, reference: {index: number}) {
+    const key = isNullOrUndefined(data.key) ? `${prefix}${reference.index++}` : data.key;
     const node = new Node(data, parent, key);
 
     if (data.children) {
-        node.children = createNodes(data.children, node);
+        const subPrefix = isNullOrUndefined(data.key) ? `${key}.` : `${prefix}${reference.index}.`;
+        node.children = createNodes(data.children, node, subPrefix);
     }
 
     return node;
 }
 
-function createNodes(data: DataItem[] | undefined, parent: Node | null) {
+function createNodes(data: DataItem[] | undefined, parent: Node | null, prefix: string) {
     if (isNullOrUndefined(data)) return [];
 
+    const reference = {index: 0};
     return data.map(data => {
-        return createNode(data, parent);
+        return createNode(data, parent, prefix, reference);
     });
 }

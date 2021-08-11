@@ -20,8 +20,14 @@ export function useDocumentClick(
         callback(e);
     };
 
-    const add = () => document.addEventListener('click', onDocumentClick);
-    const remove = () => document.removeEventListener('click', onDocumentClick);
+    const add = () => {
+        document.addEventListener('click', onDocumentClick);
+        document.addEventListener('contextmenu', onDocumentClick);
+    };
+    const remove = () => {
+        document.removeEventListener('click', onDocumentClick);
+        document.removeEventListener('contextmenu', onDocumentClick);
+    };
 
     if (!manual) {
         onMounted(add);
