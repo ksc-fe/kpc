@@ -36,7 +36,7 @@ export default class Tag<T extends TagProps = TagProps> extends Component<T> {
     };
 
     @bind
-    private onClose(e: MouseEvent): void {
+    private onClose(e: MouseEvent): void {console.log('onClose',e.target);
         e.stopPropagation();
         this.trigger('close', e);
         if (!e.defaultPrevented) {

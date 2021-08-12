@@ -2,6 +2,7 @@ import Button from '../button';
 import Icon from 'kpc/components/icon';
 import {getRestProps} from '../utils';
 import makeStyles from './tagStyles';
+import {TransitionGroup} from 'intact';
 
 const {
     className, children, type,
@@ -21,15 +22,17 @@ const classNameObj = {
 };
 
 <div class={ classNameObj }>
-    <template>
-        <b:body>{ children }</b:body>
-    </template>
-    <Button v-if={closable} 
-        type="none" 
-        disabled={ disabled }
-        size={ size }
-        ev-click={ this.onClose }
-        class="close">
-        <Icon class="icon ion-ios-close-empty"/>
-    </Button>
+    <TransitionGroup name="k-fade">
+        <template>
+            <b:body>{ children }</b:body>
+        </template>
+        <Button v-if={closable} 
+            type="none" 
+            disabled={ disabled }
+            size={ size }
+            ev-click={ this.onClose }
+            class="close">
+            <Icon class="icon ion-ios-close-empty"/>
+        </Button>
+    </TransitionGroup>    
 </div>
