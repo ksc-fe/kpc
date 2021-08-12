@@ -6,7 +6,7 @@ order: 4
 组件默认会展示当前百分比，我们可以给组件添加子元素展示任意内容
 
 ```vdt
-import Progress from 'kpc/components/progress';
+import {Progress} from 'kpc/components/progress';
 import {ButtonGroup, Button} from 'kpc/components/button';
 
 <div>

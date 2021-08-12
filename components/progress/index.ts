@@ -1,5 +1,6 @@
-import {Component, TypeDefs, createRef, watch, nextTick, onMounted, RefObject} from 'intact';
+import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
+import {useState} from '../../hooks/useState';
 
 function fixPercent(percent:number | string) : number  {
     let _percent = Number(percent);
@@ -16,63 +17,64 @@ export interface ProgressProps {
     type?: Type,
     percent?: number | string,
     size?: Sizes,
-    isOuterText?: boolean,
-    isInnerText?: boolean,
+    showOuterText?: boolean,
+    showInnerText?: boolean,
     status?: Status,
     strokeWidth?: number,
-
-    _status?: Status
 };
 
 const typeDefs: Required<TypeDefs<ProgressProps>>  = {
     type: ['bar', 'circle'],
     percent: [Number, String],
     size: ['default', 'small', 'mini'],
-    isOuterText: Boolean,
-    isInnerText: Boolean,
+    showOuterText: Boolean,
+    showInnerText: Boolean,
     status: ['active', 'success', 'error', 'normal', 'warning'],
     strokeWidth: Number,
-    _status: ['active', 'success', 'error', 'normal', 'warning']
 };
 
 const defaults = (): Partial<ProgressProps> => ({
-    type: 'bar', // bar circle
+    type: 'bar',
     percent: 0, // 0~100
-    size: 'default', // small mini
-    isOuterText: true,
-    isInnerText: false,
+    size: 'default',
+    showOuterText: true,
+    showInnerText: false,
     status: 'active',
     strokeWidth: 4,
-
-    _status: 'active'
 });
 
-export default class Progress<T extends ProgressProps = ProgressProps> extends Component<T> {
+export class Progress<T extends ProgressProps = ProgressProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    init() {
-        this.on('$receive:percent', (percent: number | string) => {
-            this.set('percent', fixPercent(percent));
-            this.setStatus();
-        });
-        this.on('$receive:status', () => {
-            this.setStatus();
-        }); 
-
-    }
-
-    private setStatus(){
-        let {status, percent} = this.get();
-            if (percent === 100 && status !== 'error')  {
-                status = 'success';
-            }
-        this.set('_status', status);
-    }
+    public status = useStatus(this);
 }
 
-export {Progress};
+function useStatus (instance: Progress) {
+    const status = useState<Required<ProgressProps['status']>>('active');
+
+    instance.on('$receive:status', (v) => {
+        status.set(getStatus(instance));
+    }); 
+
+    instance.on('$receive:percent', (percent: number | string) => {
+        instance.set('percent', fixPercent(percent));
+        status.set(getStatus(instance));
+    }); 
+
+    return status;
+}
+
+function getStatus (instance: Progress) {
+    let {status, percent} = instance.get();
+    if (Number(percent) === 100 && status !== 'error')  {
+        return 'success'
+    }
+    return status;
+}
+
+
 
 
 

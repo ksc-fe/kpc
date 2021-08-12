@@ -37,8 +37,10 @@ const procesStyles = {
         textMarginLeft: '16px',
         innerText: {
             fontSize: '12px',
-            margin: '1px 3px',
-            paddingRight: '10px'
+            gap: {
+                left: '3px',
+                right: '10px'
+            }
         },
         small: {
             height: '10px',
@@ -107,10 +109,10 @@ export default function makeStyles() {
                 display: inline-block;
                 vertical-align: middle;
                 color: #ffffff;
-                margin: ${progress.bar.innerText.margin};
+                line-height: ${progress.bar.height};
                 width: 100%;
                 text-align: right;
-                padding-right: ${progress.bar.innerText.paddingRight};
+                padding: 0 ${progress.bar.innerText.gap.right} 0 ${progress.bar.innerText.gap.left};
             }
             
             // status
@@ -118,7 +120,7 @@ export default function makeStyles() {
                 .k-progress-bg {
                     background: ${progress.stokeColor.success};
                 }
-                .k-icon {
+                .k-progress-icon {
                     color: ${progress.stokeColor.success};
                 }
             }
@@ -126,7 +128,7 @@ export default function makeStyles() {
                 .k-progress-bg {
                     background: ${progress.stokeColor.error};
                 }
-                .k-icon {
+                .k-progress-icon {
                     color: ${progress.stokeColor.error};
                 }
             }
@@ -202,12 +204,12 @@ export default function makeStyles() {
             // status 
             &.k-success {
                 .k-progress-value {
-                    stroke ${progress.stokeColor.success};
+                    stroke: ${progress.stokeColor.success};
                 }
             };
             &.k-error {
                 .k-progress-value {
-                    stroke ${progress.stokeColor.error};
+                    stroke: ${progress.stokeColor.error};
                 }
             };
             ${sizes.map(size => {

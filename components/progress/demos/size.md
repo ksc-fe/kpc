@@ -6,7 +6,7 @@ order: 2
 通过`size`来指定尺寸：`default` `small` `mini`
 
 ```vdt
-import Progress from 'kpc/components/progress';
+import {Progress} from 'kpc/components/progress';
 
 <div>
     <Progress percent="50" />
