@@ -306,7 +306,6 @@ export function last<T>(arr: T[]): T | undefined {
 export const expandAnimationCallbacks = {
     'name': 'k-expand',
     'onLeave': (el: HTMLElement) => {
-        console.log('onLeave');
         const height = el.clientHeight;
         el.style.height = `${height}px`;
         nextFrame(() => {
@@ -314,11 +313,7 @@ export const expandAnimationCallbacks = {
         });
     },
     'onAfterLeave': (el: HTMLElement) => {
-        console.log('onAfterLeave');
         el.style.height = '';
-    },
-    'onLeaveCancelled': () => {
-        console.log('onLeaveCancelled');
     },
     'onBeforeEnter': (el: HTMLElement) => {
         // we should set the enter el's height to 0
@@ -326,7 +321,6 @@ export const expandAnimationCallbacks = {
         el.style.height = `0px`;
     },
     'onEnter': (el: HTMLElement) => {
-        console.log('onEnter');
         el.style.height = '';
         const height = el.clientHeight;
         el.style.height = `0px`;
@@ -338,9 +332,6 @@ export const expandAnimationCallbacks = {
         console.log('onAfterEnter');
         el.style.height = '';
     },
-    'onEnterCancelled': () => {
-        console.log('onEnterCancelled');
-    }
 };
 
 export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg: T) => void) {
