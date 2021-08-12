@@ -17,7 +17,7 @@ export function useNodes() {
     const instance = useInstance() as Tree;
     let nodes: Node[] = [];
 
-    instance.on('$receive:data', data => {
+    instance.watch('data', data => {
         nodes = createNodes(data, null, prefix);
     });
 

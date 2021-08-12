@@ -3,13 +3,15 @@ import {Checkbox} from '../checkbox';
 import {getRestProps, expandAnimationCallbacks} from '../utils';
 import {makeStyles} from './styles';
 import {Icon} from '../icon';
+import {Mode} from './useDraggable';
 
-const {className, checkbox, showLine, selectable} = this.get();
+const {className, checkbox, showLine, selectable, draggable} = this.get();
 const expandedKeys = this.expanded.get();
 const toggleExpanded = this.expanded.toggle;
 const toggleChecked = this.checked.toggle;
 const selectedKeys = this.selected.get();
 const toggleSelected = this.selected.toggle;
+const {onDragStart, onDragOver, onDragEnd, draggingKey, overKey, mode} = this.draggable;
 const treeNodes = (nodes) => {
     return nodes.map((node, index) => {
         if (!node.filter) return; 
@@ -24,17 +26,39 @@ const treeNodes = (nodes) => {
             'k-expanded': expanded,
             'k-disabled': disabled,
             'k-selected': selected,
+            'k-dragging': key === draggingKey.value,
         };
+        const labelClassNameObj = {
+            'k-tree-label': true,
+            'k-tree-leaf': !node.children,
+        };
+        if (key === overKey.value) {
+            switch (mode.value) {
+                case Mode.Before:
+                    labelClassNameObj['k-before'] = true;
+                    break;
+                case Mode.After:
+                    labelClassNameObj['k-after'] = true;
+                    break;
+                case Mode.Inner:
+                    labelClassNameObj['k-inner'] = true;
+                    break;
+            }
+        }
 
         return (
-            <div key={key} class={classNameObj}>
-                <div class={{'k-tree-label': true, 'k-tree-leaf': !node.children}}>
+            <div key={key} class={classNameObj}
+                draggable={draggable ? true : null}
+                ev-dragstart={draggable && linkEvent(node, onDragStart)}
+                ev-dragover={draggable && linkEvent(node, onDragOver)}
+                ev-dragend={draggable && onDragEnd}
+            >
+                <div class={labelClassNameObj}>
                     <Icon class="k-tree-icon ion-android-arrow-dropdown" 
                         v-if={node.children && node.loaded !== false}
                         ev-click={() => toggleExpanded(node)}
                     />
-                    <Icon class="k-tree-icon ion-load-c"
-                        rotate
+                    <Icon class="k-tree-icon ion-load-c" rotate
                         v-if={node.loaded === false}
                     />
                     <Checkbox v-if={checkbox} 
@@ -54,7 +78,7 @@ const treeNodes = (nodes) => {
                 </div>
                 <Transition {...expandAnimationCallbacks}>
                     <div class="k-tree" v-if={expanded && node.children}>
-                        <TransitionGroup {...expandAnimationCallbacks} move={false}>
+                        <TransitionGroup {...expandAnimationCallbacks} move={true}>
                             {treeNodes(node.children)}
                         </TransitionGroup>
                     </div>
@@ -73,7 +97,7 @@ const classNameObj = {
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <TransitionGroup {...expandAnimationCallbacks} move={false}>
+    <TransitionGroup {...expandAnimationCallbacks} move={true}>
         {treeNodes(this.nodes.getNodes())}
     </TransitionGroup>
 </div>

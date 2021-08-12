@@ -43,6 +43,27 @@ export function makeStyles() {
             position: relative;
             display: flex;
             align-items: center;
+            // dragging
+            &.k-before,
+            &.k-after {
+                &:before {
+                    position: absolute;
+                    content: '';
+                    display: block;
+                    border-top: ${tree.dragging.border};
+                    width: 100%;
+                    left: 0;
+                }
+            }
+            &.k-before:before {
+                top: 0;
+            }
+            &.k-after:before {
+                bottom: 0;
+            }
+            &.k-inner {
+                background: ${tree.selected.bgColor};
+            }
         }
         .k-tree-icon,
         .k-tree-text {
@@ -82,6 +103,7 @@ export function makeStyles() {
         }
 
         .k-tree-node {
+            background: #fff;
             &:not(.k-disabled) {
                 > .k-tree-label .k-tree-text:hover {
                     background: ${theme.color.bg};
@@ -103,6 +125,7 @@ export function makeStyles() {
 
             &.k-dragging {
                 background: ${tree.dragging.bgColor};
+                opacity: 0.4;
             }
         }
 

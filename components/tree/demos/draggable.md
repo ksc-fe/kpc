@@ -18,7 +18,7 @@ import {Input} from 'kpc/components/input';
     allowDrop={this.allowDrop}
     ev-denydrag={this.onDenyDrag}
     ev-denydrop={this.onDenyDrop}
-    data={this.get('data')}
+    v-model:data='data'
     v-model:expandedKeys="expandedKeys"
 />
 ```
