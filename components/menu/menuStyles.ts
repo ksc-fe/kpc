@@ -62,19 +62,14 @@ export default function makeStyles() {
         .k-menu {
             width: auto;
             background: ${menu.sub.bgColor};
-            .k-menu-item {
-                > .k-menu-title {
-                    padding-left: ${menuItem.paddingLeft};
-                }
+            .k-menu-title {
+                padding-left: ${menuItem.paddingLeft};
             }
             .k-menu {
-                .k-menu-item {
-                    > .k-menu-title {
-                        padding-left: calc(${menuItem.paddingLeft} + ${menuItem.icon.left} * 2);
-                    }
-                }   
+                .k-menu-title {
+                    padding-left: calc(${menuItem.paddingLeft} + ${menuItem.icon.left} * 2);
+                }
             }
-                   
         }
 
         .k-icon {
@@ -113,7 +108,7 @@ export default function makeStyles() {
                 border-bottom: ${menu.light.headerBorderBottom};
             }
             .k-menu-item {
-                > .k-menu-title {
+                .k-menu-title {
                     color: ${menuItem.light.color}; 
                     &:hover {
                         color: ${menuItem.light.hoverColor};
@@ -156,14 +151,14 @@ export default function makeStyles() {
 
 
         // collapse
-        .k-menu-item > .k-menu-title span,
+        .k-menu-item .k-menu-title span,
         .k-menu-header :not(.k-icon) {
             transition: opacity ${theme.transition};
         }
         &.k-collapsed {
             width: calc(${menuItem.icon.left} * 2 + ${menuItem.icon.width});
             .k-menu-item
-                > .k-menu-title {
+                .k-menu-title {
                     span,
                     .k-menu-arrow {
                         opacity: 0;
@@ -177,7 +172,7 @@ export default function makeStyles() {
      
         &.k-horizontal.k-collapsed {
             .k-menu-item
-                > .k-menu-title {
+                k-menu-title {
                     span,
                     .k-menu-arrow {
                         display: none;
@@ -203,7 +198,7 @@ export default function makeStyles() {
                     line-height: ${menuItem.height};
                 }
             }
-            > .k-menu-item {
+            .k-menu-item {
                 display: inline-block;
                 vertical-align: middle;
             }
@@ -223,7 +218,7 @@ export default function makeStyles() {
             width: auto;
             min-width: ${menu.dropdown.minWidth};
             .k-menu-item {
-                > .k-menu-title {
+                .k-menu-title {
                     padding: 0 ${getRight(menuItem.padding)};
                     .k-menu-arrow {
                         transform: rotate(-90deg);

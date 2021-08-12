@@ -55,7 +55,7 @@ export class MenuItem<T extends MenuItemProps = MenuItemProps> extends Component
         // the top ancestor dropdown menu can not hide
         // so we override the method here
         this.on('select', () => {
-            if (!this.isFirstFloorChildren && this.rootMenu.get('hideOnSelect')) {
+            if (!this.isFirstFloorChildren) {
                 // hide all dropdowns
                 let ancestor;
                 let parent: Menu<MenuProps> | null = this.parentMenu;

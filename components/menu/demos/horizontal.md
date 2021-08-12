@@ -7,6 +7,7 @@ order: 3
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
+import {Switch} from 'kpc/components/switch';
 import {Icon} from 'kpc/components/icon';
 
 <div>
@@ -31,5 +32,13 @@ import {Icon} from 'kpc/components/icon';
         <MenuItem key="4"><Icon class="ion-gear-b" />menu 4</MenuItem>
     </Menu>
     <br /><br />
+    <Switch 
+        on="light"
+        off="dark"
+        v-model="theme"
+        width="60"
+        trueValue="light"
+        falseValue="dark"
+    />
 </div>
 ```

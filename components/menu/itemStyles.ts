@@ -39,7 +39,7 @@ export {menuItem};
 
 export default function makeStyles() {
     return css`
-        > .k-menu-title {
+        .k-menu-title {
             padding: ${menuItem.padding};
             cursor: pointer;
             height: ${menuItem.height};
