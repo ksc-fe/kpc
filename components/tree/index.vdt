@@ -1,0 +1,79 @@
+import {Transition, TransitionGroup, linkEvent} from 'intact';
+import {Checkbox} from '../checkbox';
+import {getRestProps, expandAnimationCallbacks} from '../utils';
+import {makeStyles} from './styles';
+import {Icon} from '../icon';
+
+const {className, checkbox, showLine, selectable} = this.get();
+const expandedKeys = this.expanded.get();
+const toggleExpanded = this.expanded.toggle;
+const toggleChecked = this.checked.toggle;
+const selectedKeys = this.selected.get();
+const toggleSelected = this.selected.toggle;
+const treeNodes = (nodes) => {
+    return nodes.map((node, index) => {
+        if (!node.filter) return; 
+
+        const key = node.key;
+        const expanded = expandedKeys.has(key);
+        const data = node.data;
+        const disabled = data.disabled;
+        const selected = selectable && selectedKeys.has(key);
+        const classNameObj = {
+            'k-tree-node': true,
+            'k-expanded': expanded,
+            'k-disabled': disabled,
+            'k-selected': selected,
+        };
+
+        return (
+            <div key={key} class={classNameObj}>
+                <div class={{'k-tree-label': true, 'k-tree-leaf': !node.children}}>
+                    <Icon class="k-tree-icon ion-android-arrow-dropdown" 
+                        v-if={node.children && node.loaded !== false}
+                        ev-click={() => toggleExpanded(node)}
+                    />
+                    <Icon class="k-tree-icon ion-load-c"
+                        rotate
+                        v-if={node.loaded === false}
+                    />
+                    <Checkbox v-if={checkbox} 
+                        value={node.checked}
+                        disabled={disabled}
+                        indeterminate={node.indeterminate}
+                        ev-$change:value={() => toggleChecked(node)}
+                        class="k-tree-checkbox"
+                    />
+                    <div class="k-tree-text"
+                        ev-click={linkEvent(node, this.onClick)}
+                    >
+                        <b:label params={[data, node, index]}>
+                            {data.label}
+                        </b:label>
+                    </div>
+                </div>
+                <Transition {...expandAnimationCallbacks}>
+                    <div class="k-tree" v-if={expanded && node.children}>
+                        <TransitionGroup {...expandAnimationCallbacks} move={false}>
+                            {treeNodes(node.children)}
+                        </TransitionGroup>
+                    </div>
+                </Transition>
+            </div>
+        );
+    });
+};
+
+const classNameObj = {
+    'k-tree': true,
+    'k-line': true,
+    'k-selectable': selectable,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <TransitionGroup {...expandAnimationCallbacks} move={false}>
+        {treeNodes(this.nodes.getNodes())}
+    </TransitionGroup>
+</div>

@@ -198,30 +198,3 @@ export function makeStyles() {
         }
     `;    
 }
-
-// function toArray(...args: Record<string, any>[]) {
-    // const ret: any[][] = [[]];
-    // const keys: Set<string> = new Set();
-    // args.forEach(obj => {
-        // for (let key in obj) {
-            // keys.add(key);
-        // }
-        // ret.push([]);
-    // });
-
-    // keys.forEach(key => {
-        // ret[0].push(key);
-        // args.forEach((obj, index) => {
-            // const values = ret[index + 1];
-            // if (obj.hasOwnProperty(key)) {
-                // values.push(obj[key]);
-            // } else {
-                // values.push(null);
-            // }
-        // })
-    // });
-
-    // return ret;
-// }
-
-// console.log(toArray({a: 1, b: 2}, {a: 1, c: 3}));
