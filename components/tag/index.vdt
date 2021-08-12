@@ -22,7 +22,7 @@ const classNameObj = {
 };
 
 <div class={ classNameObj }>
-    <TransitionGroup name="k-fade">
+    <TransitionGroup name="c-fade">
         <template>
             <b:body>{ children }</b:body>
         </template>
