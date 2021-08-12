@@ -2,7 +2,6 @@ import {css, cx} from '@emotion/css';
 import {theme} from '../../styles/theme';
 import {deepDefaults}  from '../../styles/utils';
 import '../../styles/global';
-import {step} from './stepStyles';
 
 const {steps} = deepDefaults(theme, {
     steps: {
@@ -10,6 +9,20 @@ const {steps} = deepDefaults(theme, {
         get bgColor() { return theme.color.bg }, 
         gutter: '10px',
         gapTop: '-2px',
+
+        // head
+        head: {
+            innerWidth: '16px',
+            get innerBorder() { return `1px solid ${theme.color.placeholder}` },
+            iconFontSize: '24px',
+            paddingRight: '10px',
+        },
+
+        main: {
+            get color() { return theme.color.text }, 
+            get titlePaddingRight() { return steps.head.paddingRight },
+            contentFontSize: '12px',
+        },
 
         // done
         done: {
@@ -67,6 +80,29 @@ export {steps};
 
 const stepStatus = ['done', 'active', 'error'] as const; 
 
+export function makeStepStyles() {
+    return css`
+        position: relative; 
+        flex: 1;
+        .k-step-icon:before {
+            font-size: ${steps.head.iconFontSize};
+        }
+        .k-step-title {
+            display: inline-block;
+            padding-right: ${steps.main.titlePaddingRight};
+            white-space: nowrap;
+        }
+        .k-step-content {
+            font-size: ${steps.main.contentFontSize};
+            white-space: nowrap;
+        }
+        .k-step-inner,
+        .k-step-main {
+            transition: all ${theme.transition};
+        }
+    `;
+}
+
 export default function makeStyles() {
     return css`
         display: flex;
@@ -74,21 +110,21 @@ export default function makeStyles() {
         &.k-default,
         &.k-line {
             .k-step-head {
-                padding-right: ${step.head.paddingRight};
-                .k-step-inner {
-                    width: ${step.head.innerWidth};
-                    height: ${step.head.innerWidth}; 
-                    line-height: calc(${step.head.innerWidth} - 2px);
-                    border-radius: 50%;
-                    text-align: center;
-                    border: ${step.head.innerBorder};
-                }
+                padding-right: ${steps.head.paddingRight};
+            }
+            .k-step-inner {
+                width: ${steps.head.innerWidth};
+                height: ${steps.head.innerWidth}; 
+                line-height: calc(${steps.head.innerWidth} - 2px);
+                border-radius: 50%;
+                text-align: center;
+                border: ${steps.head.innerBorder};
             }
             .k-step-icon:before {
-                line-height: calc(${step.head.innerWidth} - 2px);
+                line-height: calc(${steps.head.innerWidth} - 2px);
             }
             .k-step-main {
-                color: ${step.main.color}; 
+                color: ${steps.main.color}; 
             }
             .k-step-tail {
                 position: absolute;
@@ -125,13 +161,9 @@ export default function makeStyles() {
             overflow: hidden;
             .k-step-head,
             .k-step-main,
-            .k-step-content {
+            .k-step-content,
+            .k-step-inner {
                 display: inline-block;
-            }
-            .k-step-head {
-                .k-step-inner {
-                    display: inline-block;
-                }
             }
             .k-step {
                 white-space: nowrap;
@@ -161,7 +193,7 @@ export default function makeStyles() {
                 }
                 &:after {
                     border-left-color: ${steps.bgColor};
-                    left: calc(-1 * ${step.head.paddingRight});
+                    left: calc(-1 * ${steps.head.paddingRight});
                 }
                 &:before {
                     border-left-color: ${steps.line.bgColor};
@@ -197,12 +229,6 @@ export default function makeStyles() {
                 position: relative;
                 display: flex;
                 padding: 0;
-                .k-step-inner {
-                    width: ${steps.line.innerWidth};
-                    height: ${steps.line.innerWidth};
-                    line-height: ${steps.line.innerLineHeight};
-                    font-size: ${steps.line.innerFontSize};
-                }
                 &:before,
                 &:after {
                     content: '';
@@ -214,11 +240,17 @@ export default function makeStyles() {
                     position: relative;
                 }
             }
+            .k-step-inner {
+                width: ${steps.line.innerWidth};
+                height: ${steps.line.innerWidth};
+                line-height: ${steps.line.innerLineHeight};
+                font-size: ${steps.line.innerFontSize};
+            }
             .k-step-main {
                 position: relative;
             }
             .k-step-title {
-                line-height: ${step.head.innerWidth};
+                line-height: ${steps.head.innerWidth};
                 background: ${steps.line.bgColor};
                 font-size: ${steps.line.titleFontSize};
                 padding: 0;
@@ -229,8 +261,8 @@ export default function makeStyles() {
             }
             .k-step-tail {
                 left: 0;
-                right: ${step.head.paddingRight}; 
-                top: calc(${step.head.innerWidth} / 2);
+                right: ${steps.head.paddingRight}; 
+                top: calc(${steps.head.innerWidth} / 2);
                 height: 1px;
                 background: ${steps.line.tailBgColor};
             }

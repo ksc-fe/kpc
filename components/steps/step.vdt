@@ -1,5 +1,5 @@
 import {getRestProps, addStyle} from '../utils';
-import makeStyles from './stepStyles';
+import {makeStepStyles} from './styles';
 
 const {children, title, index, width, className, style} = this.get();
 const {value, status} = this.steps.get();
@@ -12,7 +12,7 @@ const classNameObj = {
     'k-done': value > index,
     'k-error': error,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStepStyles()]: true,
 };
 
 <div {...getRestProps(this)} 
