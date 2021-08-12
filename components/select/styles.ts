@@ -125,8 +125,6 @@ const {select} = deepDefaults(theme, {
     )
 });
 
-export {select};
-
 export default function makeStyles() {
     return css`
         display: inline-flex;

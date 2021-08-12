@@ -1,5 +1,4 @@
 import {addStyle, getRestProps} from '../utils';
-import makeStyles from './columnStyles';
 
 const {children, className, width, style, center} = this.get();
 
@@ -13,7 +12,6 @@ const classNameObj = {
     'k-fluid': !width,
     'k-center': center,
     [className]: className,
-    [makeStyles()]: true,
 }
 
 <div 

@@ -1,12 +1,15 @@
-import {Component, provide, inject, createRef, RefObject, Props} from 'intact';
+import {Component, provide, inject, createRef, RefObject, Props, ComponentConstructor} from 'intact';
 import {isNullOrUndefined} from 'intact-shared';
 
 interface ProviderProps<T> {
     value?: T 
 }
 
+type ProviderConstructor<T> = ComponentConstructor<Component<ProviderProps<T>>> 
+type ConsumerConstructor = ComponentConstructor<Component<{}>> 
+
 let id = 0;
-export function createContext<T = any>(defaultValue?: T) {
+export function createContext<T = any>(defaultValue?: T): {Provider: ProviderConstructor<T>, Consumer: ConsumerConstructor} {
     const injectionKey = `$Context-${id++}`;
 
     class Provider extends Component<ProviderProps<T>> {

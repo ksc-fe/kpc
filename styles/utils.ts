@@ -15,11 +15,38 @@ export function deepDefaults(source: Theme, ...args: Theme[]): Theme {
                 if (sourceDescriptor === undefined) {
                     Object.defineProperty(source, key, defaultDescriptor);
                 } else if (isObject(defaultDescriptor.value)) {
-                    if (!isObject(defaultDescriptor.value)) {
+                    if (!isObject(sourceDescriptor.value)) {
                         Object.defineProperty(source, key, defaultDescriptor);
                     } else {
                         deepDefaults(sourceDescriptor.value as Theme, defaultDescriptor.value as Theme);
                     }
+                }
+            }
+        }
+    }
+
+    return source;
+}
+
+export function deepExtends<T, U>(source: T, defaults: U): T & U;
+export function deepExtends<T, U, V>(source: T, defaults1: U, defaults2: V): T & U & V;
+export function deepExtends<T, U, V, W>(source: T, defaults1: U, defaults2: V, defaults3: W): T & U & V & W;
+export function deepExtends(source: any, ...defaults: any[]): any;
+export function deepExtends(source: Theme, ...args: Theme[]): Theme {
+    for (const defaults of args) {
+        for (let key in defaults) {
+            const sourceDescriptor = Object.getOwnPropertyDescriptor(source, key);
+            const defaultDescriptor = Object.getOwnPropertyDescriptor(defaults, key);
+            if (defaultDescriptor !== undefined) {
+                if (sourceDescriptor === undefined || !isObject(sourceDescriptor.value)) {
+                    if (!isObject(defaultDescriptor.value)) {
+                        Object.defineProperty(source, key, defaultDescriptor);
+                    } else {
+                        source[key] = {};
+                        deepExtends(source[key], defaultDescriptor.value);
+                    }
+                } else if (isObject(defaultDescriptor.value)) {
+                    deepExtends(sourceDescriptor.value as Theme, defaultDescriptor.value as Theme);
                 }
             }
         }

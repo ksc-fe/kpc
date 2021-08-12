@@ -95,9 +95,9 @@ cols.forEach((props, columnIndex) => {
         'ev-mouseenter': this.onMouseEnter,
         'ev-mouseleave': this.onMouseLeave,
         'ev-click': this.onClick,
-        'ev-dragstart': this.onRowDragStart,
-        'ev-dragover': this.onRowDragOver,
-        'ev-dragend': this.onRowDragEnd,
+        'ev-dragstart': draggable ? this.onRowDragStart : null,
+        'ev-dragover': draggable ? this.onRowDragOver : null,
+        'ev-dragend': draggable ? this.onRowDragEnd : null,
         'draggable': draggable ? true : null,
     })}
 </template>

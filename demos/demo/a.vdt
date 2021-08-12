@@ -1,0 +1,7 @@
+<div ev-click={this.onClick}>
+    <b:test>xxxx</b:test>
+    {this.get('value')}
+    <div>
+        {this.get('count')}
+    </div>
+</div>

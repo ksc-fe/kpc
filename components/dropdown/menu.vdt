@@ -1,5 +1,5 @@
 import {Transition} from 'intact';
-import makeStyles from './menuStyles';
+import {makeMenuStyles} from './styles';
 
 const {value, trigger, container} = this.dropdown.get();
 const {children, className} = this.get();
@@ -8,7 +8,7 @@ const classNameObj = {
     'k-dropdown-menu': true,
     [className]: className,
     [$props.className]: $props.className,
-    [makeStyles()]: true,
+    [makeMenuStyles()]: true,
 };
 
 const transition = $props.transition || {css: false, ...this.transition};

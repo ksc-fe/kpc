@@ -1,0 +1,23 @@
+import {Transition} from 'intact';
+import {getRestProps} from '../utils';
+import {makeItemStyles} from './styles';
+
+const {className, children, value, cloned} = this.get();
+const parent = this.$parent;
+const active = parent.isActive(value);
+const classNameObj = {
+    'k-carousel-item': true,
+    [className]: className,
+    'k-active': active,
+    'k-cloned': cloned,
+    [makeItemStyles()]: true,
+};
+const isSlide = parent.get('effect') === 'slide';
+
+<Transition show={active || isSlide} name="k-carousel-fade">
+    <div class={classNameObj} {...getRestProps(this)}>
+        <template>
+            <b:children>{children}</b:children>
+        </template>
+    </div>
+</Transition>

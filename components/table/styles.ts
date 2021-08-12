@@ -2,7 +2,6 @@ import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
-import {select} from '../select/styles';
 
 const {table} = deepDefaults(theme, {
     table: {
@@ -21,6 +20,8 @@ const {table} = deepDefaults(theme, {
             fontWeight: `bold`,
             textAlign: 'left',
             height: `30px`,
+            delimiterHeight: '12px',
+            delimiterColor: '#bfbfbf',
         },
 
         // tbody 
@@ -37,7 +38,7 @@ const {table} = deepDefaults(theme, {
             width: `14px`,
             gap: `10px`,
             color: `#a6a6a6`,
-            get menuMaxHeight() { return select.menuMaxHeight },
+            menuMaxHeight: '200px',
             get activeColor() { return theme.color.primary },
         },
 
@@ -97,12 +98,13 @@ export function makeStyles() {
             background: ${table.thead.bgColor};
             &:before {
                 content: '';
-                height: 12px;
+                height: ${table.thead.delimiterHeight};
                 position: absolute;
-                background-color: #bfbfbf;
+                background-color: ${table.thead.delimiterColor};
                 width: 1px;
                 left: 1px;
-                top: 9px;
+                top: 50%;
+                transform: translateY(-50%);
             }
             &:first-of-type:before {
                 display: none;

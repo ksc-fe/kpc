@@ -1,7 +1,7 @@
 import {css, cx} from '@emotion/css';
 import {ButtonProps} from './index';
 import {theme, ThemeValue} from '../../styles/theme';
-import {deepDefaults, palette, getLeft}  from '../../styles/utils';
+import {deepDefaults, palette, getLeft, darken}  from '../../styles/utils';
 import '../../styles/global';
 
 type ValueOf<T extends readonly any[]> = T[number]
@@ -112,6 +112,22 @@ const {button} = deepDefaults(theme, {
                 get color() { return theme.color.link },
                 get hoverColor() { return theme.color.linkHover },
             },
+
+            // ButtonGroup
+            group: {
+                primary: {
+                    get borderColor() { return darken(button.primary.borderColor, 3) }
+                },
+                warning: {
+                    get borderColor() { return darken(button.warning.borderColor, 3) },
+                },
+                danger: {
+                    get borderColor() { return darken(button.danger.borderColor, 3) },
+                },
+                success: {
+                    get borderColor() { return darken(button.success.borderColor, 3) },
+                },
+            }
         },
         btnStyles,
         btnTypeStyles,
@@ -119,9 +135,7 @@ const {button} = deepDefaults(theme, {
     )
 });
 
-export {button};
-
-export default function makeStyles({iconSide}: {iconSide?: string}) {
+export function makeButtonStyles({iconSide}: {iconSide?: string}) {
     const {secondary, link} = button;
 
     return cx(
@@ -134,7 +148,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             outline: none;
             vertical-align: middle;
             color: ${button.color};
-            background-color: ${button.bgColor};
+            background: ${button.bgColor};
             text-align: center;
             border-radius: ${button.borderRadius};
             border: 1px solid ${button.borderColor};
@@ -151,7 +165,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                 color: ${button.hoverColor};
             }
             &:active {
-                background-color: ${palette(theme.color.primary, -4)};
+                background: ${palette(theme.color.primary, -4)};
             }
 
             .k-button-input {
@@ -167,17 +181,17 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
 
                 return css`
                     &.k-${type} {
-                        background-color: ${typeStyles.bgColor};
+                        background: ${typeStyles.bgColor};
                         color: ${typeStyles.color};
                         border-color: ${typeStyles.borderColor};
                         &:hover,
                         &:focus {
-                            background-color: ${palette(typeStyles.bgColor, -1)};
+                            background: ${palette(typeStyles.bgColor, -1)};
                             border-color: ${typeStyles.hoverBorderColor};
                             color: ${typeStyles.color};
                         }
                         &:active {
-                            background-color: ${palette(typeStyles.bgColor, 1)};
+                            background: ${palette(typeStyles.bgColor, 1)};
                             border-color: ${palette(typeStyles.borderColor, 1)};
                         }
                     }
@@ -190,10 +204,10 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                 border-color: ${secondary.borderColor};
                 &:hover,
                 &:focus {
-                    background-color: ${secondary.hoverBgColor};
+                    background: ${secondary.hoverBgColor};
                 }
                 &:active {
-                    background-color: ${secondary.activeBgColor};
+                    background: ${secondary.activeBgColor};
                 }
             }
 
@@ -208,7 +222,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             &.k-disabled {
                 &, &:hover {
                     color: ${button.disabled.color};
-                    background-color: ${button.disabled.bgColor};
+                    background: ${button.disabled.bgColor};
                     border-color: ${button.disabled.borderColor};
                     cursor: not-allowed
                 }
@@ -218,7 +232,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             &.k-link {
                 &, &:hover {
                     border: none;
-                    background-color: transparent;
+                    background: transparent;
                 }
                 &.k-active {
                     color: ${theme.color.primary};
@@ -273,7 +287,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             // loading
             &.k-loading {
                 &, &:hover {
-                    background-color: ${palette(button.bgColor, -2)};
+                    background: ${palette(button.bgColor, -2)};
                     color: ${palette(button.color, -2)};
                     border-color: ${palette(button.borderColor, -2)};
                 }
@@ -285,7 +299,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                     return css`
                         &.k-${type} {
                             &, &:hover {
-                                background-color: ${palette(styles.bgColor, -2)};
+                                background: ${palette(styles.bgColor, -2)};
                                 color: ${palette(styles.color, -2)};
                                 border-color: ${palette(styles.borderColor, -2)};
                             }
@@ -340,7 +354,7 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
                     &, &:hover {
                         color: ${button.disabled.color};
                         border-color: ${button.disabled.ghostBorderColor};
-                        background-color: transparent;
+                        background: transparent;
                     }
                 }
             }
@@ -374,4 +388,100 @@ export default function makeStyles({iconSide}: {iconSide?: string}) {
             `}
         `
     );
+}
+
+export function makeButtonGroupStyles() {
+    return css`
+        display: inline-block;
+        vertical-align: middle;
+        .k-btn {
+            margin: 0;
+            vertical-align: middle;
+            &:hover,
+            &:focus,
+            &.k-active {
+                z-index: 1;
+                position: relative;
+            }
+        }
+
+        // fluid
+        &.k-fluid {
+            width: 100%;
+        }
+
+        // horizontal
+        &:not(.k-vertical) {
+            > .k-btn {
+                &:not(:first-child) {
+                    margin-left: -1px;
+                    &:not(:last-child) {
+                        border-radius: 0;
+                    }
+                }
+                &:not(:only-child):first-child {
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &:not(:only-child):last-child {
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+                ${types.map(type => {
+                    if (type === 'active') return;
+                    const {borderColor} = button.group[type];
+                    return css`
+                        &.k-${type}:not(:first-child) {
+                            border-left-color: ${borderColor};
+                        }
+                        &.k-${type}:not(:last-child) {
+                            border-right-color: ${borderColor};
+                        }
+                    `;
+                })}
+            }
+            &.k-fluid {
+                display: flex;
+                > .k-btn {
+                    flex: 1;
+                }
+            }
+        }
+            
+        // vertical
+        &.k-vertical {
+            > .k-btn {
+                display: block;
+                &:not(.k-btn-icon) {
+                    width: 100%;
+                }
+                &:not(:first-child) {
+                    margin-top: -1px;
+                    &:not(:last-child) {
+                        border-radius: 0;
+                    }
+                }
+                &:not(:only-child):first-child {
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                }
+                &:not(:only-child):last-child {
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                }
+                ${types.map(type => {
+                    if (type === 'active') return;
+                    const {borderColor} = button.group[type];
+                    return css`
+                        &.k-${type}:not(:first-child) {
+                            border-top-color: ${borderColor};
+                        }
+                        &.k-${type}:not(:last-child) {
+                            border-bottom-color: ${borderColor};
+                        }
+                    `;
+                })}
+            }
+        }
+    `;
 }
