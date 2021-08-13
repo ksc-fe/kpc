@@ -28,6 +28,7 @@ const {tree} = deepDefaults(theme, {
         dragging: {
             get border() { return `1px solid ${theme.color.primary}` },
             get bgColor() { return theme.color.bg },
+            // get bgColor() { return palette(theme.color.warning, -4) },
         },
 
         get line() { return `1px dashed ${theme.color.border}` },
@@ -43,6 +44,27 @@ export function makeStyles() {
             position: relative;
             display: flex;
             align-items: center;
+            // dragging
+            &.k-before,
+            &.k-after {
+                &:before {
+                    position: absolute;
+                    content: '';
+                    display: block;
+                    border-top: ${tree.dragging.border};
+                    width: 100%;
+                    left: 0;
+                }
+            }
+            &.k-before:before {
+                top: 0;
+            }
+            &.k-after:before {
+                bottom: 0;
+            }
+            &.k-inner {
+                background: ${tree.selected.bgColor};
+            }
         }
         .k-tree-icon,
         .k-tree-text {
@@ -82,6 +104,7 @@ export function makeStyles() {
         }
 
         .k-tree-node {
+            background: #fff;
             &:not(.k-disabled) {
                 > .k-tree-label .k-tree-text:hover {
                     background: ${theme.color.bg};
@@ -103,6 +126,10 @@ export function makeStyles() {
 
             &.k-dragging {
                 background: ${tree.dragging.bgColor};
+                // opacity: 0.4;
+                .k-tree-node {
+                    background: ${tree.dragging.bgColor};
+                }
             }
         }
 

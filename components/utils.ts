@@ -308,21 +308,28 @@ export const expandAnimationCallbacks = {
     'onLeave': (el: HTMLElement) => {
         const height = el.clientHeight;
         el.style.height = `${height}px`;
-        requestAnimationFrame(() => {
+        nextFrame(() => {
             el.style.height = `0px`;
         });
     },
     'onAfterLeave': (el: HTMLElement) => {
         el.style.height = '';
     },
+    'onBeforeEnter': (el: HTMLElement) => {
+        // we should set the enter el's height to 0
+        // otherwise it will affect the movable el's position 
+        el.style.height = `0px`;
+    },
     'onEnter': (el: HTMLElement) => {
+        el.style.height = '';
         const height = el.clientHeight;
         el.style.height = `0px`;
-        requestAnimationFrame(() => {
+        nextFrame(() => {
             el.style.height = `${height}px`;
         });
     },
     'onAfterEnter': (el: HTMLElement) => {
+        console.log('onAfterEnter');
         el.style.height = '';
     },
 };

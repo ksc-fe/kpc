@@ -1,11 +1,12 @@
 import {Component, Key, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {DataItem, useNodes, Node} from './useNodes';
+import {bind} from 'kpc/components/utils';
 import {useChecked} from './useChecked';
 import {useExpanded} from './useExpanded';
 import {useSelected} from './useSelected';
 import {useFilter} from './useFilter';
-import {bind} from 'kpc/components/utils';
+import {useDraggable} from './useDraggable';
 
 export interface TreeProps {
     data?: DataItem[]
@@ -20,6 +21,9 @@ export interface TreeProps {
     checkbox?: boolean
     load?: (node: Node) => DataItem[] | Promise<DataItem[]>
     showLine?: boolean
+    draggable?: boolean
+    allowDrag?: (node: Node) => boolean 
+    allowDrop?: (node: Node) => boolean 
 }
 
 type Filter = (data: DataItem, node: Node) => boolean;
@@ -37,6 +41,9 @@ const typeDefs: Required<TypeDefs<TreeProps>> = {
     checkbox: Boolean,
     load: Function,
     showLine: Boolean,
+    draggable: Boolean,
+    allowDrag: Function,
+    allowDrop: Function,
 };
 
 const defaults = (): Partial<TreeProps> => ({
@@ -53,6 +60,7 @@ export class Tree extends Component<TreeProps> {
     private expanded = useExpanded(this.nodes.getNodes);
     private selected = useSelected(this.nodes.getNodes);
     private filter = useFilter(this.nodes.getNodes, this.expanded.get);
+    private draggable = useDraggable();
 
     public getCheckedData(leafOnly: boolean = false) {
         return this.checked.getCheckedData(leafOnly);
