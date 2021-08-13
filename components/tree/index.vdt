@@ -56,7 +56,11 @@ const treeNodes = (nodes) => {
                 <div class={labelClassNameObj}>
                     <Icon class="k-tree-icon ion-android-arrow-dropdown" 
                         v-if={node.children && node.loaded !== false}
-                        ev-click={() => toggleExpanded(node)}
+                        ev-click={(e) => {
+                            // may be in dropdownMenu, e.g. TreeSelect
+                            e._ignore = true;
+                            toggleExpanded(node);
+                        }}
                     />
                     <Icon class="k-tree-icon ion-load-c" rotate
                         v-if={node.loaded === false}
@@ -68,7 +72,7 @@ const treeNodes = (nodes) => {
                         ev-$change:value={() => toggleChecked(node)}
                         class="k-tree-checkbox"
                     />
-                    <div class="k-tree-text"
+                    <div class="k-tree-text c-ellipsis"
                         ev-click={linkEvent(node, this.onClick)}
                     >
                         <b:label params={[data, node, index]}>
@@ -90,7 +94,7 @@ const treeNodes = (nodes) => {
 
 const classNameObj = {
     'k-tree': true,
-    'k-line': true,
+    'k-line': showLine,
     'k-selectable': selectable,
     [className]: className,
     [makeStyles()]: true,

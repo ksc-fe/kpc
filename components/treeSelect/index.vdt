@@ -1,0 +1,40 @@
+import {DropdownMenu} from '../dropdown';
+import {Tree} from '../tree';
+import {makeStyles} from './styles';
+
+const {
+    data, uncorrelated, load, showLine,
+    defaultExpandAll, checkbox, multiple,
+} = this.get();
+
+const {
+    selectedKeys, checkedKeys, treeRef, 
+    onChangeCheckedKeys, onChangeSelectedKeys,
+} = this.value;
+
+<t:super>
+    <b:base-menu>
+        <DropdownMenu class={{
+            'k-tree-select-menu': true,
+            [makeStyles()]: true,
+        }}>
+            <Tree 
+                ref={treeRef}
+                data={data}
+
+                selectedKeys={selectedKeys.value}
+                ev-$change:selectedKeys={onChangeSelectedKeys}
+
+                checkedKeys={checkedKeys.value}
+                ev-$change:checkedKeys={onChangeCheckedKeys}
+
+                defaultExpandAll={defaultExpandAll}
+                uncorrelated={uncorrelated}
+                checkbox={checkbox}
+                multiple={multiple}
+                selectable={!checkbox}
+                load={load}
+            /> 
+        </DropdownMenu>
+    </b:base-menu>
+</t:super>

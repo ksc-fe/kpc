@@ -12,6 +12,7 @@ import {useFilterable} from './useFilterable';
 import {useLabel} from './useLabel';
 import {BaseSelect, BaseSelectProps} from './base';
 import {_$} from '../../i18n';
+import {useEqualWidth} from './useEqualWidth';
 
 export interface SelectProps extends BaseSelectProps {
     filter?: (keywords: string, props: any) => boolean 
@@ -22,8 +23,6 @@ export interface SelectProps extends BaseSelectProps {
     autoDisableArrow: boolean
     // TODO
     // unmatchable: boolean
-
-    _show?: boolean
 }
 
 const typeDefs: Required<TypeDefs<SelectProps>> = {
@@ -34,8 +33,6 @@ const typeDefs: Required<TypeDefs<SelectProps>> = {
     labelMap: Map,
     card: Boolean,
     autoDisableArrow: Boolean,
-
-    _show: null,
 };
 
 const defaults = (): Partial<SelectProps> => ({
@@ -53,7 +50,7 @@ export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
 
     init() {
         super.init();
-        this.watch('_show', this.setWidth, {presented: true});
+        useEqualWidth();
     }
 
     protected getPlaceholder() {
@@ -83,14 +80,5 @@ export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
         loop(children);
 
         return values;
-    }
-
-    @bind
-    private setWidth(v: boolean | undefined) {
-        if (!v) return;
-
-        const menuElement = findDomFromVNode(this.dropdownRef.value!.menuVNode!, true) as HTMLElement;
-        const entity = findDomFromVNode(this.$lastInput!, true) as HTMLElement; 
-        menuElement.style.minWidth = `${entity.offsetWidth}px`;
     }
 }

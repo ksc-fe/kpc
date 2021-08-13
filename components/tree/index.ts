@@ -48,6 +48,7 @@ const typeDefs: Required<TypeDefs<TreeProps>> = {
 
 const defaults = (): Partial<TreeProps> => ({
     selectable: true,
+    showLine: true,
 });
 
 export class Tree extends Component<TreeProps> {
@@ -80,6 +81,10 @@ export class Tree extends Component<TreeProps> {
         const expandedKeys = this.expanded.get();
         expandedKeys.delete(key);
         this.set('expandedKeys', Array.from(expandedKeys));
+    }
+
+    public getNodes() {
+        return this.nodes.getNodes();
     }
 
     @bind

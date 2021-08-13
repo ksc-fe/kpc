@@ -10,7 +10,7 @@ import {useShowDate} from './useShowDate';
 import {bind} from '../utils';
 import {useYears} from './useYears';
 import {useMonths} from './useMonths';
-import {StateValue} from './useValue';
+import {StateValue} from './basepicker';
 import {useStatus} from './useStatus';
 import {PanelFlags} from './usePanel';
 
