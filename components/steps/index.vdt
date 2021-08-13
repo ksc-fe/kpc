@@ -1,6 +1,7 @@
 import {getRestProps, mapChildren} from '../utils';
 import {Step} from './step';
 import makeStyles from './styles';
+import {context as ClickableContext} from './useClickable';
 
 const {
     children, className, value,
@@ -26,9 +27,8 @@ let steps = (Array.isArray(children) ? children : [children]).filter(vNode => {
 });
 
 // add width
-steps = steps.map(vNode => {
-    vNode.props.width = (100 / stepIndex) + '%'; 
-    return vNode;
-});
+const width = (100 / stepIndex) + '%'; 
 
-<div class={classNameObj} {...getRestProps(this)}>{steps}</div>
+<ClickableContext.Provider value={{value, status, width, onChange: this.clickable.onChangeIndex}}>
+    <div class={classNameObj} {...getRestProps(this)}>{steps}</div>
+</ClickableContext.Provider>

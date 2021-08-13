@@ -1,5 +1,6 @@
-import {Component, TypeDefs, provide} from 'intact';
+import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
+import {useClickable} from './useClickable';
 export * from './step';
 
 export interface StepsProps {
@@ -30,7 +31,5 @@ export class Steps<T extends StepsProps = StepsProps> extends Component<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    init() {
-        provide(STEPS, this);
-    }
+    private clickable = useClickable();
 }
