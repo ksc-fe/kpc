@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {deepDefaults, darken} from '../../styles/utils';
+import {deepDefaults} from '../../styles/utils';
 import {theme} from '../../styles/theme';
 import '../../styles/global';
 
