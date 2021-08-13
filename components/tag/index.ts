@@ -1,4 +1,4 @@
-import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'intact';
+import {Component, TypeDefs} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
 
@@ -20,9 +20,6 @@ const typeDefs: Required<TypeDefs<TagProps>> = {
 
 const defaults = (): Partial<TagProps> => ({
     type: 'default',
-    closable: false,
-    closed: false,
-    disabled: false,
     size: 'default',
 });
 
@@ -30,10 +27,6 @@ export default class Tag<T extends TagProps = TagProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
-
-    static events = {
-        close: true,
-    };
 
     @bind
     private onClose(e: MouseEvent): void {
