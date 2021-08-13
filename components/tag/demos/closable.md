@@ -14,13 +14,14 @@ order: 1
 import Tag from 'kpc/components/tag';
 
 <div>
-    <Tag v-for={ ['default', 'primary', 'success', 'warning', 'danger'] }
-        key={ $value }
-        type={ $value }
+    <Tag v-for={this.get('tags')}
+        key={$value}
+        type={$value}
+        ev-close={this.onClose($key)}
         closable
-    >{ $value }</Tag>
+    >{$value}</Tag>
     <Tag disabled closable>disabled</Tag>
-    <Tag closable ev-close={ this.preventDefault }>prevent default</Tag>
+    <Tag closable ev-close={this.preventDefault}>prevent default</Tag>
 </div>
 ```
 
@@ -30,24 +31,25 @@ import Tag from 'kpc/components/tag';
 ```
 
 ```js
-// export default class extends Intact {
-//     @Intact.template()
-//     static template = template;
+import {Component} from 'intact';
 
-//     defaults() {
-//         return {tags: ['default', 'primary', 'success', 'warning', 'danger']};
-//     }
+export default class extends Component {
+    static template = template;
+    static defaults = () => ({
+        tags: ['default', 'primary', 'success', 'warning', 'danger']
+    });
 
-//     onClose(index) {
-//         const tags = this.get('tags').slice(0);
-//         tags.splice(index, 1);
-//         this.set('tags', tags);
-//     }
+    @bind
+    onClose(index) {
+        const tags = this.get('tags').slice(0);
+        tags.splice(index, 1);
+        this.set('tags', tags);
+    }
 
-//     preventDefault(e) {
-//         e.preventDefault();
-//     }
-// }
+    preventDefault(e) {
+        e.preventDefault();
+    }
+}
 ```
 
 ```vue-methods

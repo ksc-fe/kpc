@@ -9,20 +9,20 @@ order: 2
 import Tag from 'kpc/components/tag';
 
 <div>
-    <Tag v-for={ ['large', 'default', 'small', 'mini'] }
-        size={ $value }
+    <Tag v-for={['large', 'default', 'small', 'mini']}
+        size={$value}
     >{ $value }</Tag>
     <br /><br />
-    <Tag v-for={ [['large', 'primary'], ['default', 'warning'], ['small', 'success'], ['mini', 'danger']] }
-        size={ $value[0] }
-        type={ $value[1] }
+    <Tag v-for={[['large', 'primary'], ['default', 'warning'], ['small', 'success'], ['mini', 'danger']]}
+        size={$value[0]}
+        type={$value[1]}
     >{ $value[0] }</Tag>
     <br /><br />
-    <Tag v-for={ ['large', 'default', 'small', 'mini'] }
+    <Tag v-for={['large', 'default', 'small', 'mini']}
         type="primary"
-        size={ $value }
+        size={$value}
         closable
-    >{ $value }</Tag>
+    >{$value}</Tag>
 </div>
 ```
 

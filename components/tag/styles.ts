@@ -1,10 +1,9 @@
 import {css} from '@emotion/css';
-import {deepDefaults} from '../../styles/utils';
+import {deepDefaults, sizes, palette} from '../../styles/utils';
 import {theme} from '../../styles/theme';
 import '../../styles/global';
 
 const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
-const sizes = ['large', 'small', 'mini'] as const;
 
 const {tag} = deepDefaults(theme, {
     tag: {
@@ -16,25 +15,21 @@ const {tag} = deepDefaults(theme, {
         padding: '7px 20px',
         closablePaddingRight: '32px',
         closeIconFontSize: '26px',
-        typeColor: {
-            get primary() { 
-                return theme.color.primary;
-            },
-            get warning() { 
-                return theme.color.warning;
-            },
-            get danger() { 
-                return theme.color.danger;
-            },
-            get success() { 
-                return theme.color.success;
-            }
+        primary: {
+            get color() { return theme.color.primary },
+            get bgColor() { return palette(theme.color.primary, -4)}
         },
-        typeBgColor: {
-            primary: '#e5f1ff',
-            warning: '#fff2e5',
-            danger: '#ffe5e7',
-            success: '#f2ffe5'
+        warning: {
+            get color() { return theme.color.warning },
+            get bgColor() { return palette(theme.color.warning, -4)}
+        },
+        danger: {
+            get color() { return theme.color.danger },
+            get bgColor() { return palette(theme.color.danger, -4)}
+        },
+        success: {
+            get color() { return theme.color.success },
+            get bgColor() { return palette(theme.color.success, -4)}
         },
         get disabledColor() {
             return theme.color.disabled;
@@ -45,22 +40,20 @@ const {tag} = deepDefaults(theme, {
         get disabledBgColor() {
             return theme.color.disabledBg;
         },
-        size: {
-            large: {
-                padding: '7px 25px',
-                fontSize: '16px',
-                closablePaddingRight: '36px'
-            },
-            small: {
-                padding: '5px 15px',
-                fontSize: '12px',
-                closablePaddingRight: '26px',
-            },
-            mini: {
-                padding: '3px 10px',
-                fontSize: '12px',
-                closablePaddingRight: '22px',
-            }
+        large: {
+            padding: '7px 25px',
+            fontSize: '16px',
+            closablePaddingRight: '36px'
+        },
+        small: {
+            padding: '5px 15px',
+            fontSize: '12px',
+            closablePaddingRight: '26px',
+        },
+        mini: {
+            padding: '3px 10px',
+            fontSize: '12px',
+            closablePaddingRight: '22px',
         }
     }
 });
@@ -75,7 +68,7 @@ export default function makeStyles() {
         font-size: ${tag.fontSize};
         color: ${tag.color};
 
-        &.k-tag-closable {
+        &.k-closable {
             padding-right: ${tag.closablePaddingRight};
         }
         .k-tag-close {
@@ -84,15 +77,15 @@ export default function makeStyles() {
             top: 0;
             bottom: 0;
             margin: auto;
-            .k-tag-icon {
-                font-size: ${tag.closeIconFontSize};
-            }
+        }
+        .k-tag-icon {
+            font-size: ${tag.closeIconFontSize};
         }
 
-        ${types.map(type => {
-            if (type == 'disabled') {
+        ${types.map(t => {
+            if (t == 'disabled') {
                 return css`
-                    &.k-${type} {
+                    &.k-${t} {
                         color: ${tag.disabledColor};
                         border-color: ${tag.disabledBorderColor};
                         background: ${tag.disabledBgColor};
@@ -103,27 +96,29 @@ export default function makeStyles() {
             }
             else {
                 return css`
-                    &.k-${type} {
-                        color: ${tag.typeColor[type]};
-                        border-color: ${tag.typeColor[type]};
-                        background: ${tag.typeBgColor[type]};
+                    &.k-${t} {
+                        color: ${tag[t].color};
+                        border-color: ${tag[t].color};
+                        background: ${tag[t].bgColor};
 
-                        .k-tag-close { color: ${tag.typeColor[type]}; }
+                        .k-tag-close { color: ${tag[t].color}; }
                     }
                 `;
             }
         })}
 
         ${sizes.map(s => {
-            return css `
-            &.k-${s} {
-                font-size: ${tag.size[s].fontSize};
-                padding: ${tag.size[s].padding};
-                &.k-tag-closable {
-                    padding-right: ${tag.size[s].closablePaddingRight};
+            if (s != 'default') {
+                return css `
+                &.k-${s} {
+                    font-size: ${tag[s].fontSize};
+                    padding: ${tag[s].padding};
+                    &.k-closable {
+                        padding-right: ${tag[s].closablePaddingRight};
+                    }
                 }
+                `;
             }
-            `;
         })}
     `;
 }

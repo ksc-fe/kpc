@@ -9,9 +9,9 @@ order: 0
 import Tag from 'kpc/components/tag';
 
 <div>
-    <Tag v-for={ ['default', 'primary', 'success', 'warning', 'danger'] }
-        type={ $value }
-    >{ $value }</Tag>
+    <Tag v-for={['default', 'primary', 'success', 'warning', 'danger']}
+        type={$value}
+    >{$value}</Tag>
     <Tag disabled>disabled</Tag>
 </div>
 ```

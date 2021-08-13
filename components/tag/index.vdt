@@ -9,15 +9,13 @@ const {
     disabled, closable, closed, size
 } = this.get();
 
-if (closed) return;
-
 const classNameObj = {
     'k-tag': true,
     [className]: className,
     [`k-${type}`]: type !== 'default',
     [`k-${size}`]: size !== 'default',
     'k-disabled': disabled,
-    'k-tag-closable': closable,
+    'k-closable': closable,
     [makeStyles()]: true,
 };
 

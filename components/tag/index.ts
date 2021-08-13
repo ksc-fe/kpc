@@ -1,9 +1,10 @@
 import {Component, TypeDefs} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
+import {sizes} from '../../styles/utils';
 
 export interface TagProps {
-    type: string,
+    type: 'default' | 'primary' | 'danger' | 'success' | 'warning',
     closable: boolean,
     closed: boolean,
     disabled: boolean,
@@ -15,7 +16,7 @@ const typeDefs: Required<TypeDefs<TagProps>> = {
     closable: Boolean,
     closed: Boolean,
     disabled: Boolean,
-    size: ['large', 'default', 'small', 'mini']
+    size: sizes
 };
 
 const defaults = (): Partial<TagProps> => ({
@@ -32,9 +33,6 @@ export default class Tag<T extends TagProps = TagProps> extends Component<T> {
     private onClose(e: MouseEvent): void {
         e.stopPropagation();
         this.trigger('close', e);
-        if (!e.defaultPrevented) {
-            this.set('closed', true);
-        }
     }
 }
 
