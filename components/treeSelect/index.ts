@@ -4,20 +4,21 @@ import {BaseSelect, BaseSelectProps} from '../select/base';
 import {useEqualWidth} from '../select/useEqualWidth';
 import {TreeProps} from '../tree';
 import {_$} from '../../i18n';
-import {isNullOrUndefined} from 'intact-shared';
+import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
 import type {DataItem} from '../tree/useNodes';
 import {useReceive} from '../../hooks/useReceive';
 import {useValue} from './useValue';
+import {bind} from '../utils';
 
 export interface TreeSelectProps extends BaseSelectProps {
     value?: Key | Key[],
     data?: TreeProps['data']
-    filter?: TreeProps['filter']
     uncorrelated?: TreeProps['uncorrelated'] 
     load?: TreeProps['load']
     showLine?: TreeProps['showLine']
     defaultExpandAll?: TreeProps['defaultExpandAll']
     checkbox?: TreeProps['checkbox']
+    filter?: (keywords: string, data: DataItem) => boolean
 }
 
 const typeDefs: Required<TypeDefs<TreeSelectProps>> = {
@@ -97,5 +98,20 @@ export class TreeSelect extends BaseSelect<TreeSelectProps> {
         loop(data);
 
         return label;
+    }
+
+    @bind
+    private filter(data: DataItem) {
+        let keywords = this.input.keywords.value;
+        if (!keywords) return true;
+
+        const {filter} = this.get();
+        if (filter) return filter(keywords, data);
+
+        keywords = keywords.toLowerCase();
+
+        return isStringOrNumber(data.label) && 
+            String(data.label).toLowerCase().includes(keywords) ||
+            String(data.key).toLowerCase().includes(keywords);
     }
 }

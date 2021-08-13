@@ -1,6 +1,6 @@
 import {Transition, TransitionGroup, linkEvent} from 'intact';
 import {Checkbox} from '../checkbox';
-import {getRestProps, expandAnimationCallbacks} from '../utils';
+import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 import {Icon} from '../icon';
 import {Mode} from './useDraggable';
@@ -80,9 +80,9 @@ const treeNodes = (nodes) => {
                         </b:label>
                     </div>
                 </div>
-                <Transition {...expandAnimationCallbacks}>
+                <Transition {...this.transition}>
                     <div class="k-tree" v-if={expanded && node.children}>
-                        <TransitionGroup {...expandAnimationCallbacks} move={true}>
+                        <TransitionGroup {...this.transition}>
                             {treeNodes(node.children)}
                         </TransitionGroup>
                     </div>
@@ -101,7 +101,7 @@ const classNameObj = {
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <TransitionGroup {...expandAnimationCallbacks} move={true}>
+    <TransitionGroup {...this.transition}>
         {treeNodes(this.nodes.getNodes())}
     </TransitionGroup>
 </div>

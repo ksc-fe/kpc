@@ -5,6 +5,7 @@ import {makeStyles} from './styles';
 const {
     data, uncorrelated, load, showLine,
     defaultExpandAll, checkbox, multiple,
+    filterable,
 } = this.get();
 
 const {
@@ -34,6 +35,9 @@ const {
                 multiple={multiple}
                 selectable={!checkbox}
                 load={load}
+                filter={filterable ? this.filter : null}
+
+                ev-transitionEnd={this.position}
             /> 
         </DropdownMenu>
     </b:base-menu>

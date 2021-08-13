@@ -7,6 +7,7 @@ import {useExpanded} from './useExpanded';
 import {useSelected} from './useSelected';
 import {useFilter} from './useFilter';
 import {useDraggable} from './useDraggable';
+import {useTransitionEvent} from './useTransitionEvent';
 
 export interface TreeProps {
     data?: DataItem[]
@@ -62,6 +63,7 @@ export class Tree extends Component<TreeProps> {
     private selected = useSelected(this.nodes.getNodes);
     private filter = useFilter(this.nodes.getNodes, this.expanded.get);
     private draggable = useDraggable();
+    private transition = useTransitionEvent();
 
     public getCheckedData(leafOnly: boolean = false) {
         return this.checked.getCheckedData(leafOnly);
