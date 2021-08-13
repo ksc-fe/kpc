@@ -24,8 +24,6 @@ const defaults = (): Partial<StepsProps> => ({
     clickable: false
 })
 
-export const STEPS = 'Steps';
-
 export class Steps<T extends StepsProps = StepsProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
