@@ -24,7 +24,7 @@ const defaults = (): Partial<TagProps> => ({
     size: 'default',
 });
 
-export default class Tag<T extends TagProps = TagProps> extends Component<T> {
+export class Tag<T extends TagProps = TagProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -35,5 +35,3 @@ export default class Tag<T extends TagProps = TagProps> extends Component<T> {
         this.trigger('close', e);
     }
 }
-
-export {Tag};

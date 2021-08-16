@@ -11,17 +11,16 @@ order: 1
 > 需要自己维护`closed`属性，或者通过`v-if`来控制组件
 
 ```vdt
-import Tag from 'kpc/components/tag';
+import {Tag} from 'kpc/components/tag';
 
 <div>
     <Tag v-for={this.get('tags')}
         key={$value}
         type={$value}
-        ev-close={this.onClose($key)}
+        ev-close={() => this.onClose($key)}
         closable
     >{$value}</Tag>
     <Tag disabled closable>disabled</Tag>
-    <Tag closable ev-close={this.preventDefault}>prevent default</Tag>
 </div>
 ```
 
@@ -30,24 +29,22 @@ import Tag from 'kpc/components/tag';
     margin-right 16px
 ```
 
-```js
-import {Component} from 'intact';
+```ts
+import {bind} from 'kpc/components/utils';
 
 export default class extends Component {
     static template = template;
-    static defaults = () => ({
-        tags: ['default', 'primary', 'success', 'warning', 'danger']
-    });
+    static defaults() {
+        return {
+            tags: ['default', 'primary', 'success', 'warning', 'danger']
+        }
+    }
 
     @bind
     onClose(index) {
-        const tags = this.get('tags').slice(0);
+        let tags = this.get('tags').slice(0);
         tags.splice(index, 1);
         this.set('tags', tags);
-    }
-
-    preventDefault(e) {
-        e.preventDefault();
     }
 }
 ```
