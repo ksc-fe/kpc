@@ -1,7 +1,7 @@
 import {useInstance, createRef, onMounted, onUpdated, onUnmounted} from 'intact';
 import {useState} from '../../hooks/useState';
 import type {Tabs} from './';
-import ResizeObserver from 'resize-observer-polyfill';
+import {useResizeObserver} from '../../hooks/useResizeObserver';
 
 export function useScroll() {
     const instance = useInstance() as Tabs;
@@ -12,18 +12,9 @@ export function useScroll() {
     const enablePrev = useState<boolean>(false);
     const enableNext = useState<boolean>(false);
 
-    let ro: ResizeObserver;
-    onMounted(() => {
-        refresh();
-        ro = new ResizeObserver(() => {
-            refresh();
-        });
-        ro.observe(scrollRef.value!);
-    });
+    onMounted(refresh);
     onUpdated(refresh);
-    onUnmounted(() => {
-        ro.disconnect();
-    });
+    useResizeObserver(scrollRef, refresh);
 
     instance.watch('value', scrollActiveToView, {presented: true});
 

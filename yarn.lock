@@ -9475,17 +9475,17 @@ moment-mini@^2.22.1:
   resolved "https://registry.npm.taobao.org/moment-mini/download/moment-mini-2.24.0.tgz#fa68d98f7fe93ae65bf1262f6abb5fb6983d8d18"
   integrity sha1-+mjZj3/pOuZb8SYvartftpg9jRg=
 
-monaco-editor-webpack-plugin@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.nlark.com/monaco-editor-webpack-plugin/download/monaco-editor-webpack-plugin-3.1.0.tgz#972efc47a91b3bf3bd977885684a3180eb8f341b"
-  integrity sha1-ly78R6kbO/O9l3iFaEoxgOuPNBs=
+monaco-editor-webpack-plugin@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.nlark.com/monaco-editor-webpack-plugin/download/monaco-editor-webpack-plugin-4.1.1.tgz#b44127910c8f4a29bde72859a1c4107c2960a939"
+  integrity sha1-tEEnkQyPSim95yhZocQQfClgqTk=
   dependencies:
     loader-utils "^2.0.0"
 
-monaco-editor@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.nlark.com/monaco-editor/download/monaco-editor-0.24.0.tgz#990b55096bcc95d08d8d28e55264c6eb17707269"
-  integrity sha1-mQtVCWvMldCNjSjlUmTG6xdwcmk=
+monaco-editor@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.nlark.com/monaco-editor/download/monaco-editor-0.26.1.tgz#62bb5f658bc95379f8abb64b147632bd1c019d73"
+  integrity sha1-YrtfZYvJU3n4q7ZLFHYyvRwBnXM=
 
 ms@2.0.0:
   version "2.0.0"
