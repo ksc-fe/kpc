@@ -1,5 +1,11 @@
 import {useInstance} from 'intact';
-import {useValue as useValueBase, StateValueItem, StateValueRange, DayjsValueItem, DayjsValueRange} from './basepicker';
+import {
+    useValue as useValueBase,
+    StateValueItem,
+    StateValueRange,
+    DayjsValueItem,
+    DayjsValueRange
+} from './basepicker';
 import {Dayjs} from 'dayjs';
 import {Datepicker} from './index';
 import type {useFormats} from './useFormats';

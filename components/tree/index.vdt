@@ -1,6 +1,6 @@
 import {Transition, TransitionGroup, linkEvent} from 'intact';
 import {Checkbox} from '../checkbox';
-import {getRestProps, expandAnimationCallbacks} from '../utils';
+import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 import {Icon} from '../icon';
 import {Mode} from './useDraggable';
@@ -56,7 +56,11 @@ const treeNodes = (nodes) => {
                 <div class={labelClassNameObj}>
                     <Icon class="k-tree-icon ion-android-arrow-dropdown" 
                         v-if={node.children && node.loaded !== false}
-                        ev-click={() => toggleExpanded(node)}
+                        ev-click={(e) => {
+                            // may be in dropdownMenu, e.g. TreeSelect
+                            e._ignore = true;
+                            toggleExpanded(node);
+                        }}
                     />
                     <Icon class="k-tree-icon ion-load-c" rotate
                         v-if={node.loaded === false}
@@ -68,7 +72,7 @@ const treeNodes = (nodes) => {
                         ev-$change:value={() => toggleChecked(node)}
                         class="k-tree-checkbox"
                     />
-                    <div class="k-tree-text"
+                    <div class="k-tree-text c-ellipsis"
                         ev-click={linkEvent(node, this.onClick)}
                     >
                         <b:label params={[data, node, index]}>
@@ -76,9 +80,9 @@ const treeNodes = (nodes) => {
                         </b:label>
                     </div>
                 </div>
-                <Transition {...expandAnimationCallbacks}>
+                <Transition {...this.transition}>
                     <div class="k-tree" v-if={expanded && node.children}>
-                        <TransitionGroup {...expandAnimationCallbacks} move={true}>
+                        <TransitionGroup {...this.transition}>
                             {treeNodes(node.children)}
                         </TransitionGroup>
                     </div>
@@ -90,14 +94,14 @@ const treeNodes = (nodes) => {
 
 const classNameObj = {
     'k-tree': true,
-    'k-line': true,
+    'k-line': showLine,
     'k-selectable': selectable,
     [className]: className,
     [makeStyles()]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <TransitionGroup {...expandAnimationCallbacks} move={true}>
+    <TransitionGroup {...this.transition}>
         {treeNodes(this.nodes.getNodes())}
     </TransitionGroup>
 </div>

@@ -32,6 +32,8 @@ export function useTransition(getFeedback: () => Feedback) {
     }
 
     function onLeave(el: TransitionElement, done: Function) {
+        // maybe the position has changed, so we re-get it
+        transition = getTransition(getFeedback());
         addTransitionClass(el, `${transition}-leave-to`);
         addTransitionClass(el, `${transition}-leave-active`);
 

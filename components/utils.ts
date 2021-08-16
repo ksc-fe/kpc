@@ -329,7 +329,6 @@ export const expandAnimationCallbacks = {
         });
     },
     'onAfterEnter': (el: HTMLElement) => {
-        console.log('onAfterEnter');
         el.style.height = '';
     },
 };
