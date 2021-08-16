@@ -2,7 +2,7 @@ import Input from './';
 import Icon from '../icon';
 import Button from '../button';
 import {getRestProps} from '../utils';
-import makeStyles from './searchStyles';
+import {makeSearchStyles} from './styles';
 
 const {
     className, placeholder, value, type, size,
@@ -15,7 +15,7 @@ const classNameObj = {
     'k-open': _open,
     'k-hide': !_open,
     [`k-${type}`]: type !== 'default',
-    [makeStyles()]: true,
+    [makeSearchStyles()]: true,
 };
 
 <form {...getRestProps(this)} 

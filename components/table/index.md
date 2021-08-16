@@ -14,13 +14,11 @@ sidebar: doc
 | data | 表格数据 | `Array` | `[]` |
 | scheme |  定义表格结构：表头，单元格内容 | `Object` | `{}` |
 | checkType | 当行可选择时，定义选择的类型: 单选 `"radio"` , 复选 `"checkbox"`, 不可选`"none"` | `"checkbox"` &#124; `"radio"` &#124; `"none"` | `"checkbox"` |
-| noDataTemplate | 当没有数据的时候展示的内容 | `String` &#124; `vNode` | `"/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~"` |
 | fixHeader | 表头固定，给定需要固定高度的具体数值，当超出改值时，展示滚动条 | `Boolean` &#124; `Number` &#124; `String` | `false` |
 | stickHeader | 表头吸顶，给定需要吸顶的高度，表格滚动超出该高度时，将表头固定在顶部 | `Boolean` &#124; `Number` &#124; `String` | `false` |
 | stickScrollbar | 当出现横向滚动条时，设置是否当表格底部没有滚动到视窗中时，将横向滚动条固定在页面底部；取值为`Number`类型时，用来指定距离视窗底部的距离 | `Boolean` &#124; `Number` &#124; `String` | `false` |
 | rowKey | 设置行的key | `Function` | function(value, index) {  return `index`; } |
-| checkedKeys | 通过`key`数组来指定哪些行被选中（针对多选） | `Array` | `[]` |
-| checkedKey | 通过`key`指定哪行被选中（针对单选） | `String` &#124; `Number` &#124; `Array`  | `undefined` |
+| checkedKeys | 通过`key`数组来指定哪些行被选中 | `Array` | `[]` |
 | resizable | 是否可以表头拖动 | `Boolean` | `false` |
 | rowCheckable | 当行可选时，是否点击该行任意区域都可选中 | `Boolean` | `true` |
 | rowClassName | 通过一个函数定义行的`className`，该函数会传入该行数据和索引当做参数，返回的字符串将被设为该行`className` | `Function` | `function(value, index) {  }` |
@@ -38,14 +36,15 @@ sidebar: doc
 | selectedKeys | 当`rowSelectable`取值为非`false`时，指定哪些行高亮 | `Array` | `[]` |
 | defaultWidth | 指定表格初始化宽度，可以指定百分比，像素值必须带上单位`px` | `String` | `undefined` |
 | defaultWidthMap | 指定表格初始化每列列宽，该值为`Object`，`key`对应为每列的`key`，`value`为每列列宽像素值，不带单位`px`，不能指定百分比。它的优先级高于`TableColumn`中的`width`定义 | `Object` | `{}` |
-| storeWidth | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `String` | `undefined` |
+| widthStoreKey | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `String` | `undefined` |
 | merge | 指定表格单元格合并逻辑 | `Function` | `undefined` |
 | tooltipPosition | 行提示的位置 | `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` &#124; `Object` | `"top"` |
+| tooltipContainer | 指定弹出提示内容追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
 | childrenKey | 树形表格指定子元素键名 | `String` | `"children"` |
 | indent | 树形表格指定子元素缩进宽度 | `Number` | `32` |
 | spreadKeys | 树形表格指定展开的行 | `Array` | `[]` |
 | draggable | 表格行是否可拖动 | `Boolean` | `false` |
-| removeCheckedKeyOnRowDestroyed | 是否在行销毁的时候，也同步删除`checkedKeys`中的值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `true` |
+| keepStatus | 是否在行销毁的时候，保持该行在`checkedKeys` &#124; `selectedKeys` &#124; `spreadKeys` &#124; `expandedKeys`中的`key`值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `Boolean` | `false` |
 
 ## TableColumn
 
@@ -66,6 +65,8 @@ sidebar: doc
 | className | 给当前列添加className | `String` &#124; `Object` | `undefined` |
 | ignore | 是否忽略当前列的导出 | `Boolean` | `false` |
 | align | 当前列对齐方式 | `"left"` &#124; `"center"` &#124; `"right"` | `undefined` |
+| exportTitle | 自定义导出的标题 | `String` | `undefined` |
+| exportCell | 自定义导出的单元格内容 | `(data: any, index: number) => string` | `undefined` |
 
 # 扩展点
 
@@ -73,7 +74,7 @@ sidebar: doc
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| no-data | 自定义无数据展示模板 | - |
+| empty | 自定义无数据展示模板 | - |
 | expand | 指定行展开后要展示的模板内容 | `data, index` |
 | tooltip | 行提示内容 | `data, index` |
 

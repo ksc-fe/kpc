@@ -99,7 +99,10 @@ export default function makeStyles() {
                 &:before {
                     background: ${radio.disabled.innerColor};
                 }    
-            }        
+            }
+            input {
+                cursor: not-allowed;
+            }
         }            
     `;
 }

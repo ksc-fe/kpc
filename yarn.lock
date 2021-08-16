@@ -2043,6 +2043,16 @@
   resolved "https://registry.nlark.com/@types/cors/download/@types/cors-2.8.10.tgz#61cc8469849e5bcdd0c7044122265c39cec10cf4"
   integrity sha1-YcyEaYSeW83QxwRBIiZcOc7BDPQ=
 
+"@types/downloadjs@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.nlark.com/@types/downloadjs/download/@types/downloadjs-1.4.2.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fdownloadjs%2Fdownload%2F%40types%2Fdownloadjs-1.4.2.tgz#6734e60840cd8df3f0f8937c80e67efe7de6f886"
+  integrity sha1-ZzTmCEDNjfPw+JN8gOZ+/n3m+IY=
+
+"@types/enquire.js@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.nlark.com/@types/enquire.js/download/@types/enquire.js-2.1.3.tgz#d2af28b7dba810916517975cbe970435da775163"
+  integrity sha1-0q8ot9uoEJFlF5dcvpcENdp3UWM=
+
 "@types/eslint-scope@^3.7.0":
   version "3.7.0"
   resolved "https://registry.nlark.com/@types/eslint-scope/download/@types/eslint-scope-3.7.0.tgz?cache=0&sync_timestamp=1621241082629&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Feslint-scope%2Fdownload%2F%40types%2Feslint-scope-3.7.0.tgz#4792816e31119ebd506902a482caec4951fabd86"
@@ -7535,10 +7545,10 @@ intact-react@^1.1.30:
   resolved "https://registry.nlark.com/intact-react/download/intact-react-1.1.31.tgz#8dc06e8df8d91e6753585fa8c4af4ee7537663ab"
   integrity sha1-jcBujfjZHmdTWF+oxK9O51N2Y6s=
 
-intact-shared@^3.0.0-beta.10:
-  version "3.0.0-beta.10"
-  resolved "https://registry.nlark.com/intact-shared/download/intact-shared-3.0.0-beta.10.tgz#1af5400f5b15865110b63e44dda415265f8fafa2"
-  integrity sha1-GvVAD1sVhlEQtj5E3aQVJl+Pr6I=
+intact-shared@^3.0.0-beta.11:
+  version "3.0.0-beta.11"
+  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.0-beta.11.tgz#adb14f02b5addb41087578493a66843dfee4c834"
+  integrity sha512-XXtcHy/AT9w7lmIbQGb9mh4lLnvnIlAyhBlOuSyjYCPs3udCrQJg3SqP1KbGMU7GJ0X0uGy4YOK/QqCb+80XGA==
 
 intact-vue@^1.0.0:
   version "1.0.0"
@@ -7547,16 +7557,16 @@ intact-vue@^1.0.0:
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-intact@^3.0.0-beta.10:
-  version "3.0.0-beta.10"
-  resolved "https://registry.nlark.com/intact/download/intact-3.0.0-beta.10.tgz#553bef409acd03993d02fd34240b621f0aad8e6f"
-  integrity sha1-VTvvQJrNA5k9Av00JAtiHwqtjm8=
+intact@^3.0.0-beta.11:
+  version "3.0.0-beta.11"
+  resolved "https://registry.npmjs.org/intact/-/intact-3.0.0-beta.11.tgz#af16c99695314e3dc3fe99843ea722fc18811d79"
+  integrity sha512-dmKPkh1SAKyJmzvGZrG1S0Y4Vp1ljjSAHCBWB54EQwo9E/ac4Rn0jBhhz4V+avtYL1Dlmi/51DVAjuIJqdKR6g==
   dependencies:
-    intact-shared "^3.0.0-beta.10"
-    misstime "^3.0.0-beta.10"
+    intact-shared "^3.0.0-beta.11"
+    misstime "^3.0.0-beta.11"
     tslib "^2.2.0"
-    vdt "^3.0.0-beta.10"
-    vdt-compiler "^3.0.0-beta.10"
+    vdt "^3.0.0-beta.11"
+    vdt-compiler "^3.0.0-beta.11"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9393,12 +9403,12 @@ minizlib@^2.0.0, minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
-misstime@^3.0.0-beta.10:
-  version "3.0.0-beta.10"
-  resolved "https://registry.nlark.com/misstime/download/misstime-3.0.0-beta.10.tgz#1d058b62cd64b294c06cafcfc0515337a02d8568"
-  integrity sha1-HQWLYs1kspTAbK/PwFFTN6AthWg=
+misstime@^3.0.0-beta.11:
+  version "3.0.0-beta.11"
+  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.0-beta.11.tgz#8354b845d6810aeea45c4a3923fab8da08f5f493"
+  integrity sha512-jGtr0novXa5ehVlYXUnqa9jm8QyBoQ9ddSDingSk+Hfj/nadKvV6Bd8mECHVuZ84KRx6Uv5zDNSSc0XyfFS7ZQ==
   dependencies:
-    intact-shared "^3.0.0-beta.10"
+    intact-shared "^3.0.0-beta.11"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -9470,17 +9480,17 @@ moment-mini@^2.22.1:
   resolved "https://registry.npm.taobao.org/moment-mini/download/moment-mini-2.24.0.tgz#fa68d98f7fe93ae65bf1262f6abb5fb6983d8d18"
   integrity sha1-+mjZj3/pOuZb8SYvartftpg9jRg=
 
-monaco-editor-webpack-plugin@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.nlark.com/monaco-editor-webpack-plugin/download/monaco-editor-webpack-plugin-3.1.0.tgz#972efc47a91b3bf3bd977885684a3180eb8f341b"
-  integrity sha1-ly78R6kbO/O9l3iFaEoxgOuPNBs=
+monaco-editor-webpack-plugin@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.nlark.com/monaco-editor-webpack-plugin/download/monaco-editor-webpack-plugin-4.1.1.tgz#b44127910c8f4a29bde72859a1c4107c2960a939"
+  integrity sha1-tEEnkQyPSim95yhZocQQfClgqTk=
   dependencies:
     loader-utils "^2.0.0"
 
-monaco-editor@^0.24.0:
-  version "0.24.0"
-  resolved "https://registry.nlark.com/monaco-editor/download/monaco-editor-0.24.0.tgz#990b55096bcc95d08d8d28e55264c6eb17707269"
-  integrity sha1-mQtVCWvMldCNjSjlUmTG6xdwcmk=
+monaco-editor@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.nlark.com/monaco-editor/download/monaco-editor-0.26.1.tgz#62bb5f658bc95379f8abb64b147632bd1c019d73"
+  integrity sha1-YrtfZYvJU3n4q7ZLFHYyvRwBnXM=
 
 ms@2.0.0:
   version "2.0.0"
@@ -13655,13 +13665,13 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.npm.taobao.org/vary/download/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vdt-compiler@^3.0.0-beta.10:
-  version "3.0.0-beta.10"
-  resolved "https://registry.nlark.com/vdt-compiler/download/vdt-compiler-3.0.0-beta.10.tgz#594ec2e0cd29613664fc50c97f68c3affb4b8b70"
-  integrity sha1-WU7C4M0pYTZk/FDJf2jDr/tLi3A=
+vdt-compiler@^3.0.0-beta.11:
+  version "3.0.0-beta.11"
+  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.0-beta.11.tgz#d9af19b15778c756089ab2ef9163e57c10c71332"
+  integrity sha512-L09SHF7fmyS/tPxwHOlbbZ9bDFLhWrkKs95O8Dyz6ocCMRm1NkoZBPJZtqyCSFrNYUisWgcKtCTZlqyYaO+BqQ==
   dependencies:
-    intact-shared "^3.0.0-beta.10"
-    misstime "^3.0.0-beta.10"
+    intact-shared "^3.0.0-beta.11"
+    misstime "^3.0.0-beta.11"
     tslib "^2.2.0"
 
 vdt-loader@^3.0.0-beta.1:
@@ -13673,13 +13683,13 @@ vdt-loader@^3.0.0-beta.1:
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-vdt@^3.0.0-beta.10:
-  version "3.0.0-beta.10"
-  resolved "https://registry.nlark.com/vdt/download/vdt-3.0.0-beta.10.tgz#22fc61f36ded36be08d82d8efe582cfeea1bf410"
-  integrity sha1-Ivxh823tNr4I2C2O/lgs/uob9BA=
+vdt@^3.0.0-beta.11:
+  version "3.0.0-beta.11"
+  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.0-beta.11.tgz#768f38d1998385efb2141c6cb01739b53c3a3f07"
+  integrity sha512-K5M1veABaMSe1JaFIEIJJ9WRRFBAGPD5JZBRV9hKWnPYpuK21vi/dOURLhu6KmcmVBMlWs62VFjtYWCEE6cpkQ==
   dependencies:
-    intact-shared "^3.0.0-beta.10"
-    misstime "^3.0.0-beta.10"
+    intact-shared "^3.0.0-beta.11"
+    misstime "^3.0.0-beta.11"
     tslib "^2.2.0"
 
 vendors@^1.0.3:

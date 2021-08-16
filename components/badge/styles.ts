@@ -16,8 +16,6 @@ const {badge} = deepDefaults(theme, {
     },
 });
 
-export {badge};
-
 export default function makeStyles() {
     return css`
         display: inline-block;

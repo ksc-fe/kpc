@@ -1,6 +1,6 @@
 import {getRestProps} from '../utils';
 import {CardColumn} from './column';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 
 const {
     children, className, title, type

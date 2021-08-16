@@ -1,0 +1,93 @@
+import {makeStyles} from './styles';
+import {addStyle, getRestProps} from '../utils';
+
+let {
+    className, style, name, on,
+    off, value, trueValue, falseValue,
+    width, height, size, disabled,
+} = this.get();
+
+const {start, dragging, barRef, barWidth} = this.draggable;
+
+const classNameObj = {
+    'k-switch': true,
+    [className]: className,
+    'k-checked': value === trueValue, 
+    [`k-${size}`]: true,
+    'k-disabled': disabled,
+    'k-dragging': dragging.value,
+    [makeStyles()]: true,
+};
+
+
+let onStyle;
+let offStyle;
+let barStyle;
+if (width || height) {
+    const _style = {};
+    onStyle = {};
+    offStyle = {};
+    if (width) {
+        _style.width = `${width}px`;
+        onStyle.width = _style.width;
+        offStyle.width = _style.width;
+    }
+    if (height) {
+        _style.height = `${height}px`;
+
+        Object.assign(onStyle, {
+            height: _style.height,
+            lineHeight: _style.height,
+            padding: `0 ${_style.height} 0 ${height / 3}px`,
+        });
+
+        Object.assign(offStyle, {
+            height: _style.height,
+            lineHeight: _style.height,
+            padding: `0 ${height / 3}px 0 ${_style.height}`,
+        });
+
+        barStyle = {
+            width: value === trueValue ? '100%' : `${height}px`,
+        }
+    }
+    style = addStyle(style, _style);
+}
+
+if (barWidth.value) {
+    barStyle = addStyle(barStyle, {width: barWidth.value + 'px'});
+}
+
+<div class={classNameObj} 
+    {...getRestProps(this)}
+    style={style} 
+    ev-click={this.onClick}
+    tabindex={disabled ? "-1" : "0"}
+    ev-keypress={this.onKeypress}
+    ref={this.elementRef}
+>
+    <input type="checkbox"
+        name={name} 
+        disabled={disabled}
+        v-model="value" 
+        v-model-true={trueValue}
+        v-model-false={falseValue}
+        tabindex="-1"
+    /> 
+    <div class="k-switch-off" v-if={off || $blocks.off} style={offStyle}>
+        <b:off>{off}</b:off>
+    </div>
+    <div class="k-switch-bar" ref={barRef} style={barStyle}>
+        <div class="k-switch-on" v-if={on || $blocks.on} style={onStyle}>
+            <b:on>{on}</b:on>
+        </div>
+        <div class="k-switch-wrapper">
+            <div class="k-switch-handle"
+                ev-click={this.onClickOnHandle}
+                ev-mousedown={start}
+            >
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,40 +1,103 @@
 import {getClassAndStyleForFixed} from './useFixedColumns';
-import {noop} from 'intact-shared';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
+import {TableCell} from './cell';
+import {createElementVNode, className as cx} from 'intact';
 
-const {columns, data, checkType, hasFixedLeft, checked} = this.get();
+const {
+    cols, data, checkType, hasFixedLeft,
+    checked, disabled, className, merge,
+    grid, index: rowIndex, indeterminate,
+    allDisabled, selected, hidden, spreaded,
+    hasChildren, indent, key, offsetMap,
+    draggable, draggingKey,
+} = this.get();
+const classNameObj = {
+    'k-disabled': disabled,
+    'k-checked': checked,
+    'k-selected': selected,
+    'k-hidden': hidden,
+    'k-spreaded': spreaded,
+    'k-dragging': draggingKey === key,
+    [className]: className,
+};
 
-const createCheckTypeVNode = (children) => {
-    return <td
-        {...getClassAndStyleForFixed({
-            fixed: hasFixedLeft ? 'left' : false,
-            offset: 0
-        })}
-    >{children}</td>
+const getGridItem = (columnIndex) => {
+    return grid[rowIndex]?.[columnIndex] || {render: true, spans: null};
+};
+
+const vNodes = [];
+
+const pushCheckTypeVNode = (children) => {
+    const {render, spans} = getGridItem(0);
+    if (!render) return;
+
+    vNodes.push(
+        <td key="$checktype"
+            {...getClassAndStyleForFixed({
+                fixed: hasFixedLeft ? 'left' : false,
+                className: 'k-table-check'
+            }, 0)}
+            {...spans}
+        >{children}</td>
+    )
+};
+
+if (checkType === 'checkbox') {
+    pushCheckTypeVNode(
+        <Checkbox 
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            indeterminate={indeterminate}
+            ev-$change:value={this.onChangeChecked}
+        />
+    );
+} else if (checkType === 'radio') {
+    pushCheckTypeVNode(
+        <Radio
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            ev-$change:value={this.onChangeChecked}
+        />
+    );
 }
-const checkTypeVNode = checkType === 'checkbox' ?
-    createCheckTypeVNode(<Checkbox value={checked} />) :
-    checkType === 'radio' ?
-        createCheckTypeVNode(<Radio value={checked} />) :
-        null;
 
-<tr ev-click={this.onClick}>
-    {checkTypeVNode}
-    <td v-for={columns} v-for-value="column"
-        {...getClassAndStyleForFixed(column.props)}
-    >
-        {(() => {
-            const props = column.props;
-            const blocks = props.$blocks; 
-            if (blocks) {
-                const template = blocks.template || blocks.default;
-                if (template) {
-                    return template(noop, data);
-                }
-            }
-            return data[props.key];
-        })()}
-    </td>
-</tr>
+const columnIndexOffset = checkType !== 'none' ? 1 : 0;
+cols.forEach((props, columnIndex) => {
+    const {render, spans} = getGridItem(columnIndex + columnIndexOffset);
+    if (!render) return;
 
+    const columnKey = props.key;
+
+    vNodes.push(
+        <TableCell
+            props={props}
+            columnIndex={columnIndex}
+            rowIndex={rowIndex}
+            data={data}
+            offset={offsetMap[columnKey]}
+            checkType={checkType}
+            indent={indent}
+            grid={grid}
+            colspan={spans ? spans.colspan : undefined}
+            rowspan={spans ? spans.rowspan : undefined}
+            onClickArrow={this.onClickArrow}
+            hasChildren={hasChildren}
+            key={columnKey}
+        />
+    );
+});
+
+// for performance, no normalize
+<template>
+    {createElementVNode(2, 'tr', vNodes, 8 /* HasKeyedChildren */, cx(classNameObj), {
+        'data-key': key,
+        'ev-mouseenter': this.onMouseEnter,
+        'ev-mouseleave': this.onMouseLeave,
+        'ev-click': this.onClick,
+        'ev-dragstart': draggable ? this.onRowDragStart : null,
+        'ev-dragover': draggable ? this.onRowDragOver : null,
+        'ev-dragend': draggable ? this.onRowDragEnd : null,
+        'draggable': draggable ? true : null,
+    })}
+</template>

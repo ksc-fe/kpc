@@ -302,3 +302,53 @@ export function isEqualArray(a: EqualArrayValue, b: EqualArrayValue): boolean {
 export function last<T>(arr: T[]): T | undefined {
     return arr[arr.length - 1];
 }
+
+export const expandAnimationCallbacks = {
+    'name': 'k-expand',
+    'onLeave': (el: HTMLElement) => {
+        const height = el.clientHeight;
+        el.style.height = `${height}px`;
+        nextFrame(() => {
+            el.style.height = `0px`;
+        });
+    },
+    'onAfterLeave': (el: HTMLElement) => {
+        el.style.height = '';
+    },
+    'onBeforeEnter': (el: HTMLElement) => {
+        // we should set the enter el's height to 0
+        // otherwise it will affect the movable el's position 
+        el.style.height = `0px`;
+    },
+    'onEnter': (el: HTMLElement) => {
+        el.style.height = '';
+        const height = el.clientHeight;
+        el.style.height = `0px`;
+        nextFrame(() => {
+            el.style.height = `${height}px`;
+        });
+    },
+    'onAfterEnter': (el: HTMLElement) => {
+        el.style.height = '';
+    },
+};
+
+export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg: T) => void) {
+    let lock = false;
+    let timer: number;
+    return (arg: T) => {
+        if (doAlways) doAlways(arg);
+        if (lock) return;
+        lock = true;
+        timer = window.setTimeout(() => {
+            fn(arg);
+            lock = false;
+        }, time);
+    };
+}
+
+export function nextFrame(fn: () => void) {
+    requestAnimationFrame(() => {
+        requestAnimationFrame(fn);
+    });
+}

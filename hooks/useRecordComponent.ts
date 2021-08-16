@@ -28,9 +28,6 @@ export function useRecordItem<T, V>(
                 (items as Map<T, V>).set(item, value);
             }
         });
-        // items.push(item);
-        onMounted(() => {
-        });
 
         onUnmounted(() => {
             if (value === undefined) {

@@ -1,20 +1,31 @@
-import {Component, TypeDefs, Children} from 'intact';
+import {Component, TypeDefs, Children, VNodeComponentClass} from 'intact';
 import template from './column.vdt';
+import {useGroup} from './useGroup';
 
 export interface TableColumnProps {
     key: string
     title?: Children
     sortable?: boolean
     width?: string | number
-    group?: any[]
-    groupValue?: any
+    group?: TableColumnGroupItem[]
     multiple?: boolean
     ignore?: boolean
     fixed?: 'left' | 'right'
     align?: 'left' | 'center' | 'right'
     exportTitle?: string
-    shadow?: boolean
-    offset?: number
+    exportCell?: (data: any, index: number) => string
+    minWidth?: number
+
+    // passed by Table
+    // offset: number
+    cols: number
+    rows: number
+    prevVNode: VNodeComponentClass<TableColumn> | null
+}
+
+export type TableColumnGroupItem = {
+    label: Children
+    value: any
 }
 
 const typeDefs: Required<TypeDefs<TableColumnProps>> = {
@@ -26,17 +37,23 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     sortable: Boolean,
     width: [String, Number],
     group: Array,
-    groupValue: null,
     multiple: Boolean,
     ignore: Boolean,
     fixed: ['left', 'right'],
     align: ['left', 'center', 'right'],
     exportTitle: String,
-    shadow: Boolean,
-    offset: Number,
+    exportCell: Function,
+    minWidth: Number,
+
+    // offset: null,
+    cols: null,
+    rows: null,
+    prevVNode: null,
 };
 
 export class TableColumn extends Component<TableColumnProps> {
     static template = template;
     static typeDefs = typeDefs;
+
+    private group = useGroup();
 }

@@ -45,8 +45,6 @@ const {checkbox} = deepDefaults(theme, {
     },
 });
 
-export {checkbox};
-
 export default function makeStyles() {
     return css`
         display: inline-flex;
@@ -145,6 +143,9 @@ export default function makeStyles() {
                 &:before {
                     border-color: ${checkbox.disabled.innerColor};
                 }
+            }
+            input {
+                cursor: not-allowed;
             }
         }
     `;
