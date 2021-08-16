@@ -1,8 +1,8 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
-import {useState} from '../../hooks/useState';
+import {useStatus} from './useStatus';
 
-function fixPercent(percent:number | string) : number  {
+function fixPercent(percent: number | string): number  {
     let _percent = Number(percent);
     if (_percent > 100) _percent = 100;
     if (_percent < 0) _percent = 0;
@@ -48,34 +48,11 @@ export class Progress<T extends ProgressProps = ProgressProps> extends Component
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    public status = useStatus(this);
-}
+    public status = useStatus();
 
-function useStatus (instance: Progress) {
-    const status = useState<Required<ProgressProps['status']>>('active');
-
-    instance.on('$receive:status', (v) => {
-        status.set(getStatus(instance));
-    }); 
-
-    instance.on('$receive:percent', (percent: number | string) => {
-        instance.set('percent', fixPercent(percent));
-        status.set(getStatus(instance));
-    }); 
-
-    return status;
-}
-
-function getStatus (instance: Progress) {
-    let {status, percent} = instance.get();
-    if (Number(percent) === 100 && status !== 'error')  {
-        return 'success'
+    init() {
+        this.on('$receive:percent', (percent: number | string) => {
+            this.set('percent', fixPercent(percent));
+        }); 
     }
-    return status;
 }
-
-
-
-
-
-
