@@ -12,7 +12,7 @@ type TypeStyles = {
 }
 
 type SizeStyles = {
-    width: ThemeValue<string>
+    width: string
 }
 
 const widthMap: Record<Sizes, string> = {
