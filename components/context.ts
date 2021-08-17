@@ -1,7 +1,7 @@
 import {Component, provide, inject, createRef, RefObject, Props, ComponentConstructor} from 'intact';
 import {isNullOrUndefined} from 'intact-shared';
 
-interface ProviderProps<T> {
+export interface ProviderProps<T> {
     value?: T 
 }
 

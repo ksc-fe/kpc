@@ -7,6 +7,7 @@ import {useExpanded} from './useExpanded';
 import {useSelected} from './useSelected';
 import {useFilter} from './useFilter';
 import {useDraggable} from './useDraggable';
+import {useTransitionEvent} from './useTransitionEvent';
 
 export interface TreeProps {
     data?: DataItem[]
@@ -48,6 +49,7 @@ const typeDefs: Required<TypeDefs<TreeProps>> = {
 
 const defaults = (): Partial<TreeProps> => ({
     selectable: true,
+    showLine: true,
 });
 
 export class Tree extends Component<TreeProps> {
@@ -61,6 +63,7 @@ export class Tree extends Component<TreeProps> {
     private selected = useSelected(this.nodes.getNodes);
     private filter = useFilter(this.nodes.getNodes, this.expanded.get);
     private draggable = useDraggable();
+    private transition = useTransitionEvent();
 
     public getCheckedData(leafOnly: boolean = false) {
         return this.checked.getCheckedData(leafOnly);
@@ -80,6 +83,10 @@ export class Tree extends Component<TreeProps> {
         const expandedKeys = this.expanded.get();
         expandedKeys.delete(key);
         this.set('expandedKeys', Array.from(expandedKeys));
+    }
+
+    public getNodes() {
+        return this.nodes.getNodes();
     }
 
     @bind

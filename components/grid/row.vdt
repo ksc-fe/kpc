@@ -1,0 +1,18 @@
+import {getRestProps} from '../utils';
+import {makeRowStyles} from './styles';
+import {context as GutterContext, gutterStyle} from './useGutter';
+
+const {className, children, gutter, style} = this.get();
+const classNameObj = {
+    'k-row': true,
+    [className]: className,
+    [makeRowStyles()]: true,
+};
+
+const newStyle = gutter ? gutterStyle(gutter, style, 'margin') : style; 
+
+<div class={classNameObj} {...getRestProps(this)} style={newStyle}>
+    <GutterContext.Provider value={gutter}>
+        {children}
+    </GutterContext.Provider>
+</div>
