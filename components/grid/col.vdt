@@ -1,0 +1,23 @@
+import {getRestProps} from '../utils';
+import {makeColStyles} from './styles';
+import {context as GutterContext, gutterStyle} from './useGutter';
+
+const {className, children, span, style} = this.get();
+const classNameObj = {
+    'k-col': true,
+    [`k-${span}`]: true,
+    [className]: className,
+    [makeColStyles()]: true,
+};
+
+
+<GutterContext.Consumer>
+    {gutter => {
+        const newStyle = gutter ? gutterStyle(gutter, style, 'padding') : style;
+        return (
+            <div class={classNameObj} {...getRestProps(this)} style={newStyle}>
+                {children}
+            </div>
+        );
+    }}
+</GutterContext.Consumer>

@@ -57,7 +57,7 @@ const treeNodes = (nodes) => {
                     <Icon class="k-tree-icon ion-android-arrow-dropdown" 
                         v-if={node.children && node.loaded !== false}
                         ev-click={(e) => {
-                            // may be in dropdownMenu, e.g. TreeSelect
+                            // it may be in dropdownMenu, e.g. TreeSelect
                             e._ignore = true;
                             toggleExpanded(node);
                         }}
