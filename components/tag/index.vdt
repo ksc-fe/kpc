@@ -19,10 +19,8 @@ const classNameObj = {
     [makeStyles()]: true,
 };
 
-<div class={classNameObj}>
-    <template>
-        <b:body>{children}</b:body>
-    </template>
+<div class={classNameObj} {...getRestProps(this)}>
+    <b:body>{children}</b:body>
     <Button v-if={closable} 
         type="none" 
         disabled={disabled}

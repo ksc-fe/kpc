@@ -83,7 +83,7 @@ export default function makeStyles() {
         }
 
         ${types.map(t => {
-            if (t == 'disabled') {
+            if (t === 'disabled') {
                 return css`
                     &.k-${t} {
                         color: ${tag.disabledColor};
@@ -93,8 +93,7 @@ export default function makeStyles() {
                         .k-tag-close { color: ${tag.disabledColor}; }
                     }
                 `;
-            }
-            else {
+            } else {
                 return css`
                     &.k-${t} {
                         color: ${tag[t].color};
@@ -108,15 +107,15 @@ export default function makeStyles() {
         })}
 
         ${sizes.map(s => {
-            if (s != 'default') {
+            if (s !== 'default') {
                 return css `
-                &.k-${s} {
-                    font-size: ${tag[s].fontSize};
-                    padding: ${tag[s].padding};
-                    &.k-closable {
-                        padding-right: ${tag[s].closablePaddingRight};
+                    &.k-${s} {
+                        font-size: ${tag[s].fontSize};
+                        padding: ${tag[s].padding};
+                        &.k-closable {
+                            padding-right: ${tag[s].closablePaddingRight};
+                        }
                     }
-                }
                 `;
             }
         })}

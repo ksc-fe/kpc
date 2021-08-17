@@ -1,20 +1,18 @@
 import {Component, TypeDefs} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
-import {sizes} from '../../styles/utils';
+import {sizes, Sizes} from '../../styles/utils';
 
 export interface TagProps {
-    type: 'default' | 'primary' | 'danger' | 'success' | 'warning',
+    type: Sizes,
     closable: boolean,
-    closed: boolean,
     disabled: boolean,
-    size: string
+    size: Sizes
 }
 
 const typeDefs: Required<TypeDefs<TagProps>> = {
     type: ['default', 'primary', 'danger', 'success', 'warning'],
     closable: Boolean,
-    closed: Boolean,
     disabled: Boolean,
     size: sizes
 };
