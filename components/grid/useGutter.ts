@@ -1,11 +1,10 @@
 import {useInstance} from 'intact';
 import {createContext} from '../context';
-import {hasDocumentAvailable, isObject} from 'intact-shared';
+import {hasDocumentAvailable, isObject, isNullOrUndefined} from 'intact-shared';
 import type * as EnquireJs from 'enquire.js';
 import type {Row} from './row';
 import {useState} from '../../hooks/useState';
-
-export type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
+import {Breakpoint, responsiveMap} from './constants';
 
 let enquire: typeof EnquireJs;
 if (hasDocumentAvailable) {
@@ -13,15 +12,6 @@ if (hasDocumentAvailable) {
 }
 
 export const context = createContext<number>(0);
-
-const responsiveMap: Record<Breakpoint, string> = {
-    xxl: `(min-width: 0)`,
-    xl: `(min-width: 1200px)`,
-    lg: `(min-width: 992px)`,
-    md: `(min-width: 768px)`,
-    sm: `(min-width: 576px)`,
-    xs: `(max-width: 575px)`,
-};
 
 export function useGutter() {
     const instance = useInstance() as Row;
@@ -52,6 +42,28 @@ export function useGutter() {
             });
         }
     } 
+
+    function getGutter() {
+        const {gutter}  = instance.get();
+        if (isObject(gutter)) {
+            let key: Breakpoint;
+            let lastFound: string | number | null = null;
+            for (key in responsiveMap) {
+                const value = gutter[key]; 
+                if (!isNullOrUndefined(value)) {
+                    lastFound = value;
+                    if (matches.value[key]) {
+                        return value;
+                    }
+                }
+            }
+            // if the breakpoint has not value, use the closest breakpoint value instead of
+            return lastFound
+        }
+        return gutter;
+    }
+
+    return {getGutter};
 }
 
 export function gutterStyle(
