@@ -103,7 +103,7 @@ export function makeStepStyles() {
     `;
 }
 
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         display: flex;
         // default and line type
