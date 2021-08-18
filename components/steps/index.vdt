@@ -1,4 +1,4 @@
-import {getRestProps,Children, eachChildren} from '../utils';
+import {getRestProps, eachChildren} from '../utils';
 import {Step} from './step';
 import makeStyles from './styles';
 import {context as ClickableContext} from './useClickable';
