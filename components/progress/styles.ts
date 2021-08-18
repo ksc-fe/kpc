@@ -19,7 +19,7 @@ const progressBarAnimation = keyframes`
     }
 `
 
-const procesStyles = {
+const progressStyles = {
     stokeColor: {
         get normal() { return theme.color.primary },
         get success() { return theme.color.success },
@@ -66,9 +66,8 @@ const procesStyles = {
 }; 
 
 const {progress} = deepDefaults(theme, {
-    progress: procesStyles
+    progress: progressStyles
 });
-export {progress};
 
 export default function makeStyles() {
     return css`

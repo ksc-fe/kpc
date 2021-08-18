@@ -2,13 +2,6 @@ import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {useStatus} from './useStatus';
 
-function fixPercent(percent: number | string): number  {
-    let _percent = Number(percent);
-    if (_percent > 100) _percent = 100;
-    if (_percent < 0) _percent = 0;
-    return _percent;
-}
-
 type Sizes = 'default' | 'small' | 'mini';
 type Type = 'bar' | 'circle';
 type Status = 'active' | 'success' | 'error' | 'normal' | 'warning';
@@ -55,4 +48,11 @@ export class Progress<T extends ProgressProps = ProgressProps> extends Component
             this.set('percent', fixPercent(percent));
         }); 
     }
+}
+
+function fixPercent(percent: number | string): number  {
+    let _percent = Number(percent);
+    if (_percent > 100) _percent = 100;
+    if (_percent < 0) _percent = 0;
+    return _percent;
 }
