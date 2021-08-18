@@ -1,4 +1,4 @@
-import {getRestProps, mapChildren} from '../utils';
+import {getRestProps,Children, eachChildren} from '../utils';
 import {Step} from './step';
 import makeStyles from './styles';
 import {context as ClickableContext} from './useClickable';
@@ -17,13 +17,13 @@ const classNameObj = {
 };
 
 let stepIndex = 0;
-let steps = (Array.isArray(children) ? children : [children]).filter(vNode => {
-    if (vNode && vNode.tag === Step) {
+const steps = [];
+eachChildren(children, vNode => {
+    if (vNode.tag === Step) {
         vNode.props = {...vNode.props, index: stepIndex};
+        steps.push(vNode);
         stepIndex++;
-        return true;
     }
-    return false;
 });
 
 // add width
