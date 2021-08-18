@@ -6,8 +6,7 @@ order: 1
 给`Row`添加`gutter`，可以定义`Col`之间的间距，单位为`px`；如果要支持响应式，可以以对象的方式
 定义，如：`{lg: 16, md: 4}`
 
-> IE9不支持matchMedia，如果要使`gutter`在IE9下支持响应式，需要引入[matchMedia polyfill](https://github.com/paulirish/matchMedia.js)
-> `@since v0.7.4` 已经包含了matchMedia polyfill无需再次引入
+> 如果屏幕宽度达到下一级的响应式条件，但是又没有找到对应的间距定义时，组件会沿用上一级尺寸的间距定义
 
 ```vdt
 import {Row, Col} from 'kpc/components/grid';
