@@ -8,12 +8,16 @@ const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
 const {tag} = deepDefaults(theme, {
     tag: {
         color: 'inherit',
-        borderColor: '#cad0dd',
-        get fontSize() { 
-            return theme.large.fontSize;
+        get borderColor() {
+            return theme.color.border;
         },
-        padding: '7px 20px',
-        closablePaddingRight: '32px',
+        get fontSize() { 
+            return theme.default.fontSize;
+        },
+        get padding() {
+            return `6px ${theme.default.padding}`;
+        }, 
+        closablePaddingRight: '30px',
         closeIconFontSize: '26px',
         primary: {
             get color() { return theme.color.primary },
@@ -41,19 +45,31 @@ const {tag} = deepDefaults(theme, {
             return theme.color.disabledBg;
         },
         large: {
-            padding: '7px 25px',
-            fontSize: '16px',
-            closablePaddingRight: '36px'
+            get padding() {
+                return `9px ${theme.large.padding}`;
+            }, 
+            get fontSize() { 
+                return theme.large.fontSize;
+            },
+            closablePaddingRight: '36px',
         },
         small: {
-            padding: '5px 15px',
-            fontSize: '12px',
-            closablePaddingRight: '26px',
+            get padding() {
+                return `2px ${theme.small.padding}`;
+            }, 
+            get fontSize() { 
+                return theme.small.fontSize;
+            },
+            closablePaddingRight: '20px',
         },
         mini: {
-            padding: '3px 10px',
-            fontSize: '12px',
-            closablePaddingRight: '22px',
+            get padding() {
+                return `0px ${theme.mini.padding}`;
+            }, 
+            get fontSize() { 
+                return theme.mini.fontSize;
+            },
+            closablePaddingRight: '16px',
         }
     }
 });
@@ -63,17 +79,21 @@ export default function makeStyles() {
         display: inline-block;
         padding: ${tag.padding};
         border: 1px solid ${tag.borderColor};
-        border-radius: 2px;
+        border-radius: ${theme.borderRadius};
         position: relative;
         font-size: ${tag.fontSize};
         color: ${tag.color};
+
+        .k-tag.k-mini {
+            line-height: 14px
+        }
 
         &.k-closable {
             padding-right: ${tag.closablePaddingRight};
         }
         .k-tag-close {
             position: absolute;
-            right: -7px;
+            right: -9px;
             top: 0;
             bottom: 0;
             margin: auto;
@@ -107,7 +127,20 @@ export default function makeStyles() {
         })}
 
         ${sizes.map(s => {
-            if (s !== 'default') {
+            if (s === 'large') {
+                return css `
+                    &.k-${s} {
+                        font-size: ${tag[s].fontSize};
+                        padding: ${tag[s].padding};
+                        &.k-closable {
+                            padding-right: ${tag[s].closablePaddingRight};
+                        }
+                        .k-tag-icon {
+                            margin-right: 0px;
+                        }
+                    }
+                `;
+            } else if (s !== 'default') {
                 return css `
                     &.k-${s} {
                         font-size: ${tag[s].fontSize};
