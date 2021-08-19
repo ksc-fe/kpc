@@ -20,7 +20,7 @@ import {Editable} from 'kpc/components/editable';
         ref="__test2"
     >{this.get('value')}</Editable>
     <br />
-    <Editable v-model="value" validate="\d+"
+    <Editable v-model="value" validate="\\d+"
         ev-error={this._showErrorTip}
         ref="__test3"
     >{this.get('value')}</Editable>
