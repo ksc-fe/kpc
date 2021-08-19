@@ -7,10 +7,14 @@ order: 4
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
+import {Switch} from 'kpc/components/switch';
 import {ButtonGroup, Button} from 'kpc/components/button';
 import {Icon} from 'kpc/components/icon';
 
 <div>
+    <Switch on="收起" off="展开" v-model="isCollapse" width="60" trueValue={true} falseValue={false}/>
+    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"  />
+    <Switch on="horizontal" off="vertical" v-model="type" width="100" trueValue="horizontal" falseValue="vertical" />
     <ButtonGroup checkType="radio" v-model="size">
         <Button value="large">large</Button>
         <Button value="default">default</Button>

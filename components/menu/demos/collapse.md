@@ -7,13 +7,16 @@ order: 2
 
 ```vdt
 import {Menu, MenuItem} from 'kpc/components/menu';
+import {Switch} from 'kpc/components/switch';
 import {Icon} from 'kpc/components/icon';
 
 <div>
+    <Switch on="收起" off="展开" v-model="isCollapse" width="60" trueValue={true} falseValue={false} style="margin-right: 16px;" />
+    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
     <br /><br />
     <Menu v-model:expandedKeys="expandedKeys" 
-        collapse
-        theme="light"
+        collapse={this.get('isCollapse')}
+        theme={this.get('theme')}
     >
         <MenuItem key="1"><Icon class="ion-flag" />menu 1</MenuItem>
         <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>

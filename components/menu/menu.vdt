@@ -40,8 +40,10 @@ const header = (
     >{header}{children}</div>
     <DropdownMenu 
         v-else 
-        class={{'k-menu': true, 
-                [`k-${this.rootMenu.get('theme') || 'dark'}`]: true,
-                [makeStyles()]: true}}
+        class={{
+            'k-menu': true, 
+            [`k-${this.rootMenu.get('theme') || 'dark'}`]: true,
+            [makeStyles()]: true
+        }}
     >{header}{children}</DropdownMenu>
 </template>

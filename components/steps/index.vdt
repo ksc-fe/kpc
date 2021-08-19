@@ -1,0 +1,34 @@
+import {getRestProps, eachChildren} from '../utils';
+import {Step} from './step';
+import {makeStyles} from './styles';
+import {context as ClickableContext} from './useClickable';
+
+const {
+    children, className, value,
+    status, type, clickable
+} = this.get();
+
+const classNameObj = {
+    'k-steps': true,
+    [className]: className,
+    [`k-${type}`]: true,
+    'k-clickable': clickable,
+    [makeStyles()]: true,
+};
+
+let stepIndex = 0;
+const steps = [];
+eachChildren(children, vNode => {
+    if (vNode.tag === Step) {
+        vNode.props = {...vNode.props, index: stepIndex};
+        steps.push(vNode);
+        stepIndex++;
+    }
+});
+
+// add width
+const width = (100 / stepIndex) + '%'; 
+
+<ClickableContext.Provider value={{value, status, width, onChange: this.clickable.onChangeIndex}}>
+    <div class={classNameObj} {...getRestProps(this)}>{steps}</div>
+</ClickableContext.Provider>

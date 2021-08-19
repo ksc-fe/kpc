@@ -1,27 +1,28 @@
 import {css} from '@emotion/css';
 import {theme, ThemeValue} from '../../styles/theme';
-import {deepDefaults, palette}  from '../../styles/utils';
+import {deepDefaults, Sizes, sizes, palette}  from '../../styles/utils';
 import '../../styles/global';
 
 type ValueOf<T extends readonly any[]> = T[number]
 
-type Types = ValueOf<typeof types>
-
-type Sizes = ValueOf<typeof sizes>
+export type Types = ValueOf<typeof types>
 
 type TypeStyles = {
     color: ThemeValue<string>
 }
 
 type SizeStyles = {
-    width: ThemeValue<string>
-    height: ThemeValue<string>
-    marginLeft: ThemeValue<string>
+    width: string
+}
+
+const widthMap: Record<Sizes, string> = {
+    large: '13px',
+    default: '9px',
+    small: '7px',
+    mini: '5px',
 }
 
 export const types = ['primary', 'warning', 'danger', 'success'] as const;
-
-const sizes = ['large', 'default', 'small', 'mini'] as const;
 
 const typeStyles = types.reduce((memo, type) => {
     const color = theme.color;
@@ -30,6 +31,15 @@ const typeStyles = types.reduce((memo, type) => {
     };
     return memo;
 }, {} as {[key in Types]: TypeStyles});
+
+const sizeStyles = sizes.reduce((memo, size) => {
+    const styles = theme[size];
+    memo[size] = {
+        get width() { return widthMap[size] },
+    };
+
+    return memo;
+}, {} as Record<Sizes, SizeStyles>);
 
 const {timeline} = deepDefaults(theme, {
     timeline: deepDefaults(
@@ -41,22 +51,9 @@ const {timeline} = deepDefaults(theme, {
             indicator: {
                 width: '16px',
             },
-
-            // sizeStyles
-            large:{
-                width: '13px'
-            },
-            default:{
-                width: '9px'
-            },
-            small:{
-                width: '7px'
-            },
-            mini:{
-                width: '5px'
-            }
         },
         typeStyles,
+        sizeStyles
     )
 });
 
