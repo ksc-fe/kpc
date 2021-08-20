@@ -4,14 +4,14 @@ import {_$} from '../../i18n';
 import {bind} from '../utils';
 
 export interface EditableProps {
-    editing: boolean,
-    value: string | number,
-    required: boolean,
-    validate: Function | string | RegExp,
-    disabled: boolean,
-    tip: string | number,
-    trim: boolean,
-    invalid: boolean,
+    editing?: boolean,
+    value?: string | number,
+    required?: boolean,
+    validate?: Function | string | RegExp,
+    disabled?: boolean,
+    tip?: string | number,
+    trim?: boolean,
+    invalid?: boolean,
 }
 
 const typeDefs: Required<TypeDefs<EditableProps>> = {
