@@ -1,0 +1,43 @@
+import {Button} from '../button';
+import {Input} from '../input';
+import {getRestProps} from '../utils';
+import makeStyles from './styles';
+
+const {
+    className, disabled, max, min,
+    style, size, vertical, _value, width,
+} = this.get();
+
+const classNameObj = {
+    'k-spinner': true,
+    'k-disabled': disabled,
+    [`k-spinner-${size}`]: size !== 'default',
+    [className]: className,
+    'k-spinner-vertical': vertical,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <Button icon ev-click={this._decrease}
+        disabled={this._disableDecrease()}
+        class={vertical ? 'k-spinner-vertical-left' : 'k-spinner-left'}
+        size={size}
+    >
+        <i v-if={!vertical} class="k-icon ion-ios-minus-empty"></i>
+        <i v-else class="ion-ios-arrow-down"></i>
+    </Button>
+    <Input disabled={disabled} 
+        ev-change={this._changeValue}
+        value={_value}
+        size={size}
+        width={width}
+    />
+    <Button icon ev-click={this._increase}
+        disabled={this._disableIncrease()}
+        class={vertical ? 'k-spinner-vertical-right' : 'k-spinner-right'}
+        size={size}
+    >
+        <i v-if={!vertical} class="k-icon ion-ios-plus-empty"></i>
+        <i v-else class="ion-ios-arrow-up"></i>
+    </Button>
+</div>
