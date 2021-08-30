@@ -15,12 +15,14 @@ import Spinner from 'kpc/components/spinner';
 
 <div>
     <Spinner vertical 
+        _value={this.get('money')}
         formatter={value => ('￥' + value).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
         parser={value => value.replace(/￥|,/g, '')}
     />
     <Spinner vertical 
         prefix="增长率 "
         suffix="%"
+        _value={this.get('percent')}
     />
 </div>
 ```
@@ -30,3 +32,13 @@ import Spinner from 'kpc/components/spinner';
     margin-right 16px
 ```
 
+```ts
+export default class extends Component  {
+    static template = template;
+
+    static defaults = () => ({
+        money: 1000,
+        percent: 78,
+    });
+}
+```
