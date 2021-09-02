@@ -11,7 +11,7 @@ import Tip from 'kpc/components/tip';
 <div>
     <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
         type={$value}
-    >{ $value }</Tip>
+    >{$value}</Tip>
 </div>
 ```
 
