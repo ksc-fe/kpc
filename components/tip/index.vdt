@@ -5,27 +5,27 @@ import Button from 'kpc/components/button'
 const {children, type, closable, show} = this.get();
 
 const classNameObj = {
-	'k-tag': true,
-	[`k-${type}`]: type !== 'default',
-	[makeStyles()]: true
+    'k-tag': true,
+    [`k-${type}`]: type !== 'default',
+    [makeStyles()]: true
 };
 
 <div class={classNameObj} v-if={show}>
-	<div v-if={$blocks.title} class="k-title">
-		<b:title />
-	</div>
-	{children}
-	<Button
-		icon={!$blocks.close}
-		type="none"
-		class={{"k-tip-close": true, "k-custom": $blocks.close}}
-		ev-click={this.handleCloseClick}
-		v-if={closable}
-	>
-		<template>
-			<b:close>
-				<Icon class="k-icon ion-ios-close-empty" />
-			</b:close>
-		</template>
-	</Button>
+    <div v-if={$blocks.title} class="k-title">
+        <b:title />
+    </div>
+    {children}
+    <Button
+        icon={!$blocks.close}
+        type="none"
+        class={{"k-tip-close": true, "k-custom": $blocks.close}}
+        ev-click={this.handleCloseClick}
+        v-if={closable}
+    >
+        <template>
+            <b:close>
+                <Icon class="k-icon ion-ios-close-empty" />
+            </b:close>
+        </template>
+    </Button>
 </div>
