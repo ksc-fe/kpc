@@ -7,8 +7,8 @@ type ValueOf<T extends readonly any[]> = T[number]
 type Types = ValueOf<typeof types>
 
 type TypeStyles = {
-    bgColor: ThemeValue<string>
-    borderColor: ThemeValue<string>
+	bgColor: ThemeValue<string>
+	borderColor: ThemeValue<string>
 	hoverColor: ThemeValue<string>
 }
 
@@ -66,9 +66,7 @@ export function makeStyles() {
 			position: absolute;
 			right: -1px;
 			top: -1px;
-			i {
-				font-size: ${tip.iconFont};
-			}
+			font-size: ${tip.iconFont};
 		}
 
 		& .k-custom {

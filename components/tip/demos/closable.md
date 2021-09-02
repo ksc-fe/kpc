@@ -15,8 +15,8 @@ import Tip from 'kpc/components/tip';
 
 <div>
     <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
-        key={ $value }
-        type={ $value }
+        key={$value}
+        type={$value}
         closable
     >{$value}</Tip>
     <Tip closable>

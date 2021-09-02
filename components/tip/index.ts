@@ -19,8 +19,6 @@ const typeDefs: Required<TypeDefs<TipProps>> = {
 
 const defaults = (): Partial<TipProps> => ({
 	type: 'default',
-	disabled: false,
-	closable: false,
 	show: true
 });
 
