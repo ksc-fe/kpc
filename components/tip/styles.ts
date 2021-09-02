@@ -51,7 +51,7 @@ const tip = deepDefaults(
 );
 
 export function makeStyles() {
-  	return css`
+	return css`
 		background: #fff;
 		border: 1px solid #ccc;
 		border-radius: ${tip.borderRadius};

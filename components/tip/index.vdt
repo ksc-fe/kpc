@@ -15,9 +15,9 @@ const classNameObj = {
 		<b:title />
 	</div>
 	{children}
-	<Button 
+	<Button
 		icon={!$blocks.close}
-		type="none" 
+		type="none"
 		class={{"k-tip-close": true, "k-custom": $blocks.close}}
 		ev-click={this.handleCloseClick}
 		v-if={closable}
