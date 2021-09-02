@@ -66,9 +66,7 @@ export function makeStyles() {
 			position: absolute;
 			right: -1px;
 			top: -1px;
-			i {
-				font-size: ${tip.iconFont};
-			}
+			font-size: ${tip.iconFont};
 		}
 
 		& .k-custom {

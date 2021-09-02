@@ -9,8 +9,8 @@ order: 0
 import Tip from 'kpc/components/tip';
 
 <div>
-    <Tip v-for={ ['default', 'primary', 'success', 'warning', 'danger'] }
-        type={ $value }
+    <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
+        type={$value}
     >{ $value }</Tip>
 </div>
 ```
