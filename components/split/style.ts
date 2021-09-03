@@ -2,7 +2,7 @@ import {theme} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 import {deepDefaults}  from '../../styles/utils';
-import {Mode} from './index'
+import {Mode} from './index';
 
 export const kls = (className: string): string => `k-split-${className}`;
 
@@ -20,8 +20,8 @@ const {split} = deepDefaults(theme, {
             return `-${split.dragLinesCount * (split.dragLiensGutter + 1) / 2}px`;
         },
         boxShadow(direction: Mode) {
-            let i = 1,
-            tmp = [];
+            let i = 1;
+            let tmp = [];
             while(i <= split.dragLinesCount) {
                 const shadowVal = direction === 'horizontal'
                     ? `0 ${i * split.dragLiensGutter}px 0 0`
@@ -36,7 +36,7 @@ const {split} = deepDefaults(theme, {
 });
 
 export function makeStyles() {
-      return css`
+    return css`
         display: flex;
         height: 100%;
 

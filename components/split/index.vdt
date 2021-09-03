@@ -1,5 +1,5 @@
 import {makeStyles} from './style';
-import {kls} from './style'
+import {kls} from './style';
 
 const {mode, firstSize, lastSize} = this.get();
 
