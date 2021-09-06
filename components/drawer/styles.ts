@@ -72,7 +72,7 @@ export function makeStyles(overlay: boolean) {
             }
 
             return `
-                &.k-drawer-${placement} {
+                &.k-${placement} {
                     ${positionValue}
                     &.transition-enter-from,
                     &.transition-leave-to,

@@ -2,7 +2,7 @@ import {makeStyles} from './styles';
 
 const classNameObj = {
     'k-drawer': true,
-    [`k-drawer-${this.get('placement')}`]: true,
+    [`k-${this.get('placement')}`]: true,
     [makeStyles(this.get('overlay'))]: true
 };
 
