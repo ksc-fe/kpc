@@ -39,11 +39,11 @@ export default class extends Component {
         };
     }
 
-    _showErrorTip(c, value) {
+    _showErrorTip(value) {
         Message.error('Please enter digits.');
     }
 
-    _onChange(c, newValue, oldValue) {
+    _onChange(newValue, oldValue) {
         console.log(newValue, oldValue);
     }
 }

@@ -26,12 +26,9 @@ const typeDefs: Required<TypeDefs<EditableProps>> = {
 };
 
 const defaults = (): Partial<EditableProps> => ({
-    editing: false,
     required: true,
-    disabled: false, 
     tip: _$('编辑'),
     trim: true,
-    invalid: false,
 })
 
 export class Editable<T extends EditableProps = EditableProps> extends Component<T> {
@@ -103,7 +100,7 @@ export class Editable<T extends EditableProps = EditableProps> extends Component
             // do not change the value if invalid, #51
             // this.set('value', value, {silent: true});
             this.set('invalid', true);
-            return this.trigger('error', this, value);
+            return this.trigger('error', value);
         }
 
         this.set({
@@ -113,7 +110,7 @@ export class Editable<T extends EditableProps = EditableProps> extends Component
         });
 
         if (oldValue !== value) {
-            this.trigger('change', this, value, oldValue);
+            this.trigger('change', value, oldValue);
         }
     }
 }
