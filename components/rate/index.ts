@@ -21,9 +21,6 @@ const typeDefs: Required<TypeDefs<RateProps>> = {
 const defaults = (): Partial<RateProps> => ({
     value: 0,
     count: 5,
-    disabled: false,
-    half: false,
-    clearable: false,
 })
 
 export class Rate<T extends RateProps = RateProps> extends Component<T> {
