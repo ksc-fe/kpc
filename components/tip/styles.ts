@@ -27,13 +27,6 @@ const tipTypeStyles = types.reduce((memo, type) => {
 
 const tip = deepDefaults(
     {
-        default: {
-            get borderColor() { return theme.color.border },
-            get bgColor() { return '#fff' },
-            get hoverColor() { return '#fff' }
-        }
-    },
-    {
         bgColor: '#fff',
         title: {
             fontSize: '14px',
@@ -45,7 +38,6 @@ const tip = deepDefaults(
         get borderColor() { return theme.color.border },
         get borderRadius() { return theme.borderRadius },
         get fontSize() { return theme.default.fontSize },
-        get height() { return theme.default.height }
     },
     tipTypeStyles
 );
@@ -66,7 +58,9 @@ export function makeStyles() {
             position: absolute;
             right: -1px;
             top: -1px;
-            font-size: ${tip.iconFont};
+            .ion-ios-close-empty {
+                font-size: ${tip.iconFont};
+            }
         }
 
         & .k-custom {
@@ -86,16 +80,16 @@ export function makeStyles() {
         ${types.map(type => {
             const typeStyles = tip[type as Types];
             return css`
-            &.k-${type} {
-                background: ${typeStyles.bgColor};
-                border-color: ${typeStyles.borderColor};
-                .k-tip-close {
-                    color: ${typeStyles.borderColor};
+                &.k-${type} {
+                    background: ${typeStyles.bgColor};
+                    border-color: ${typeStyles.borderColor};
+                    .k-tip-close {
+                        color: ${typeStyles.borderColor};
+                    }
+                    .k-tip-close:hover {
+                        color: ${typeStyles.hoverColor};
+                    }
                 }
-                .k-tip-close:hover {
-                    color: ${typeStyles.hoverColor};
-                }
-            }
             `;
         })};
     `;
