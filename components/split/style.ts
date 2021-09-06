@@ -54,7 +54,7 @@ export function makeStyles() {
             flex: auto;
         }
 
-        &.${kls('first-auto')} {
+        &.k-first-auto {
             & > .${kls('first')} {
                 flex: auto;
             }
@@ -63,7 +63,7 @@ export function makeStyles() {
             }
         }
 
-        &:not(.${kls('resizing')}) {
+        &:not(.k-resizing) {
             & > .${kls('first')},
             & > .${kls('last')} {
                 transition: all ${split.transition};
