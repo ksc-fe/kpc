@@ -1,0 +1,46 @@
+import {Transition} from 'intact';
+import {makeStyles} from './itemStyle';
+import {expandAnimationCallbacks} from '../utils';
+import {kls} from './collapseStyle';
+import Icon from 'kpc/components/Icon';
+
+const {
+    children, title, value,
+    className, disabled
+} = this.get();
+
+const isActive = this.collapse.isActive(value);
+
+const classNameObj = {
+    'k-collapse-item': true,
+    [makeStyles()]: true,
+    [className]: className,
+    'k-active': isActive,
+    'k-disabled': disabled
+};
+
+<div class={classNameObj}>
+    <div class={kls('title')} ev-click={this.toggle}>
+        <b:title>{title}</b:title>
+        <Icon class={{[kls('arrow')]: true, 'ion-ios-arrow-right': true}}></Icon>
+    </div>
+    <Transition
+        show={isActive}
+        {...expandAnimationCallbacks}
+        class={kls('content')}
+        onEnter={
+            el => {
+                expandAnimationCallbacks.onEnter(el);
+                this.onEnter();
+            }
+        }
+        onAfterLeave={
+            el => {
+                expandAnimationCallbacks.onAfterLeave(el);
+                this.onAfterLeave();
+            }
+        }
+    >
+        <div class={kls('wrapper')}>{children}</div>
+    </Transition>
+</div>
