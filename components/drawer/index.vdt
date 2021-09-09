@@ -1,0 +1,15 @@
+import {makeStyles} from './styles';
+
+const classNameObj = {
+    'k-drawer': true,
+    [`k-${this.get('placement')}`]: true,
+    [makeStyles(this.get('overlay'))]: true
+};
+
+<t:super class={classNameObj}>
+    <b:content>
+        <div class='k-drawer-content'>
+            {$super()}
+        </div>
+    </b:content>
+</t:super>
