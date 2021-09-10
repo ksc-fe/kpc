@@ -19,14 +19,10 @@ export function makeStyles() {
         font-size: ${collapse.fontSize};
         
         &.k-left {
-            .k-collapse-item {
-                > .${kls('title')} {
-                    .${kls('arrow')} {
-                        float: left;
-                        margin-right: ${collapse.titleMarginRight};
-                        transform-origin: center center 0;
-                    }
-                }
+            .${kls('arrow')} {
+                float: left;
+                margin-right: ${collapse.titleMarginRight};
+                transform-origin: center center 0;
             }
         }
 

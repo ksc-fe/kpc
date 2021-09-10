@@ -19,48 +19,48 @@ export function makeStyles() {
             border-bottom-color: transparent;
         }
 
-        > .${kls('title')} {
+        .${kls('title')} {
             cursor: pointer;
             font-weight: bold;
             height: ${collapseItem.titleHeight};
             line-height: ${collapseItem.titleHeight};
             transition: color ${theme.transition};
-            .${kls('arrow')} {
-                float: right;
-                transition: transform ${theme.transition};
-                line-height: ${collapseItem.titleHeight};
-                height: ${collapseItem.titleHeight};
-                transform-origin: left center 0;
-            }
+            
+        }
+        
+        .${kls('arrow')} {
+            float: right;
+            transition: transform ${theme.transition};
+            line-height: ${collapseItem.titleHeight};
+            height: ${collapseItem.titleHeight};
+            transform-origin: left center 0;
         }
 
         &:not(.k-disabled) {
-            > .${kls('title')} {
+            .${kls('title')} {
                 &:hover {
                     color: ${theme.color.primary};
                 }
             }
         }
 
-        > .${kls('content')} {
+        .${kls('content')} {
             overflow: hidden;
-            > .${kls('wrapper')} {
+            .${kls('wrapper')} {
                 overflow: hidden;
                 padding: ${collapseItem.contentPadding};
             }
         }
 
         &.k-active {
-            > .${kls('title')} {
-                .${kls('arrow')} {
-                    transform: rotate(90deg);
-                }
+            .${kls('arrow')} {
+                transform: rotate(90deg);
             }
         }
 
         &.k-disabled {
             color: ${theme.color.disabledBorder};
-            > .${kls('title')} {
+            .${kls('title')} {
                 cursor: not-allowed;
             }
         }

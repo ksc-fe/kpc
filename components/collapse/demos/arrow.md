@@ -36,7 +36,7 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
     float right
 ```
 
-```js
+```ts
 export default class extends Component {
     static template = template;
 
