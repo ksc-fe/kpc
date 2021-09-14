@@ -11,18 +11,18 @@ order: 4
 > 当`formatter / parser`和`prefix / suffix`同时定义时，前者的优先级更高
 
 ```vdt
-import Spinner from 'kpc/components/spinner';
+import {Spinner} from 'kpc/components/spinner';
 
 <div>
     <Spinner vertical 
-        _value={this.get('money')}
+        value={this.get('money')}
         formatter={value => ('￥' + value).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
         parser={value => value.replace(/￥|,/g, '')}
     />
     <Spinner vertical 
         prefix="增长率 "
         suffix="%"
-        _value={this.get('percent')}
+        value={this.get('percent')}
     />
 </div>
 ```

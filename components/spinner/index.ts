@@ -7,7 +7,7 @@ const numberReg = /^(-|\+)?\d+(\.(\d+)?)?$/;
 
 export interface SpinnerProps {
     disabled: Boolean,
-    _value: [number, string],
+    value: [number, string],
     max: number,
     min: number,
     step: [number, Object, Function],
@@ -24,7 +24,7 @@ export interface SpinnerProps {
 
 const typeDefs: Required<TypeDefs<SpinnerProps>> = {
     disabled: Boolean,
-    _value: [Number, String],
+    value: [Number, String],
     max: Number,
     min: Number,
     step: [Number, Object, Function],
@@ -40,38 +40,28 @@ const typeDefs: Required<TypeDefs<SpinnerProps>> = {
 };
 
 const defaults = (): Partial<SpinnerProps> => ({
-    disabled: false,
-    _value: 0,
+    value: 0,
     max: Number.POSITIVE_INFINITY,
     min: Number.NEGATIVE_INFINITY,
     step: 1,
-    size: 'default',
-    vertical: false,
-    precision: undefined,
-    formatter: undefined,
-    parser: undefined,
-    prefix: undefined,
-    suffix: undefined,
-    width: undefined,
-    forceStep: false,
+    size: 'default'
 });
 
-export default class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T> {
+class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    @bind
     mounted() {
-        const {formatter, prefix, suffix, _value} = this.get();
+        const {formatter, prefix, suffix, value} = this.get();
         if (formatter || prefix || suffix) {
-            this.set({'_value': this._format(_value)});
+            this.set({'value': this.format(value)});
         }
     }
 
     @bind
-    private _getStep(): Number {
-        let v = this.get('_value');
+    private getStep(): Number {
+        let v = this.get('value');
         let s = this.get('step');
 
         if (Object.prototype.toString.call(s) === "[object Object]") {
@@ -86,7 +76,7 @@ export default class Spinner <T extends SpinnerProps = SpinnerProps> extends Com
         return Number(s);
     }
 
-    private _parse(value: any) {
+    private parse(value: any) {
         const {parser, prefix, suffix} = this.get();
         value = String(value);
 
@@ -103,7 +93,7 @@ export default class Spinner <T extends SpinnerProps = SpinnerProps> extends Com
         return parser(value);
     }
 
-    private _format(value: any) {
+    private format(value: any) {
         const {formatter, prefix, suffix} = this.get();
 
         if (!formatter) {
@@ -114,60 +104,54 @@ export default class Spinner <T extends SpinnerProps = SpinnerProps> extends Com
     }
 
     @bind
-    private _increase(): void {
-        let v = this.get('_value');
+    private increase(): void {
+        let v = this.get('value');
         const {formatter, prefix, suffix} = this.get();
         if (formatter || prefix || suffix) {
-            v = this._parse(v);
+            v = this.parse(v);
         }
 
-        let s = this._getStep();
+        let s = this.getStep();
         let _v = Number(v) + Number(s);
         _v = Number.isInteger(_v) ? _v : _v.toFixed(1);
         _v = _v > this.get('max') ? this.get('max') : _v;
-        this.set({'_value': this._format(_v)});
+        this.set({'value': this.format(_v)});
     }
 
     @bind
-    private _decrease(): void {
-        let v = this.get('_value');
+    private decrease(): void {
+        let v = this.get('value');
         const {formatter, prefix, suffix} = this.get();
         if (formatter || prefix || suffix) {
-            v = this._parse(v);
+            v = this.parse(v);
         }
 
-        let s = this._getStep();
+        let s = this.getStep();
         let _v = Number(v) - Number(s);
         _v = Number.isInteger(_v) ? _v : _v.toFixed(1);
         _v = _v < this.get('min') ? this.get('min') : _v;
-        this.set({'_value': this._format(_v)});
+        this.set({'value': this.format(_v)});
     }
 
     @bind
-    private _disableDecrease(): boolean {
-        let v = this.get('_value');
+    private disableDecrease(): boolean {
+        let v = this.get('value');
         return Number(v) <= this.get('min');
     }
 
     @bind
-    private _disableIncrease(): boolean {
-        let v = this.get('_value');
+    private disableIncrease(): boolean {
+        let v = this.get('value');
         return Number(v) >= this.get('max');
     }
 
     @bind
-    private _changeValue(e: Event): void {
+    private changeValue(e: Event): void {
         let ev = e.target.value;
         if (this.get('min') <= ev && ev <= this.get('max')) {
-            this.set({'_value': ev});
+            this.set({'value': ev});
         }
     }
-}
-
-function _parseStep(step, defaultValue) {
-}
-
-export function parseStep(step, defaultValue) {
 }
 
 export {Spinner};

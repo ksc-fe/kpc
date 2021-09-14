@@ -15,7 +15,7 @@ export function createContext<T = any>(defaultValue?: T): {Provider: ProviderCon
     class Provider extends Component<ProviderProps<T>> {
         static template = providerTemplate;
 
-        private ref = Ref<T | undefined>();
+        private ref = createRef<T | undefined>();
 
         init(props: ProviderProps<T> | null) {
             const value = props && props.value;

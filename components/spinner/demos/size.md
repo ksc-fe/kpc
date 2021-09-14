@@ -6,7 +6,7 @@ order: 2
 `size`属性定义尺寸：`large`, `default`, `small`, `mini`
 
 ```vdt
-import Spinner from 'kpc/components/spinner';
+import {Spinner} from 'kpc/components/spinner';
 
 <div>
     <Spinner size="large" />

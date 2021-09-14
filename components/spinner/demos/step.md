@@ -6,7 +6,7 @@ order: 1
 `max`和`min`可指定取值范围，`step`指定步长
 
 ```vdt
-import Spinner from 'kpc/components/spinner';
+import {Spinner} from 'kpc/components/spinner';
 
 <div>
     <Spinner v-model="value1" max={10} min={0} step={1.2} />
