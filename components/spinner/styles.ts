@@ -59,12 +59,12 @@ export default function makeStyles() {
                 position: relative;
             }
         }
-        .k-spinner-left {
+        .k-left {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
             margin-right: -1px;
         }
-        .k-spinner-right {
+        .k-right {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             margin-left: -1px;
@@ -86,11 +86,11 @@ export default function makeStyles() {
         }
 
         
-        &.k-spinner-vertical {
+        &.k-vertical {
             position: relative;
             font-size: 0;
 
-            .k-spinner-vertical-left {
+            .k-vertical-left {
                 position: absolute;
                 right: 0;
                 bottom: 0;
@@ -98,7 +98,7 @@ export default function makeStyles() {
                 height: calc(50% + 1px);
                 line-height: 50%;
             }
-            .k-spinner-vertical-right {
+            .k-vertical-right {
                 position: absolute;
                 right: 0;
                 top: 0;
@@ -118,7 +118,7 @@ export default function makeStyles() {
             ${sizes.map(s => {
                 if (s !== 'default') {
                     return `
-                        &.k-spinner-${s} {
+                        &.k-${s} {
                             .k-input {
                                 padding-right: ${spinner.vertical[s].paddingRight};
                                 width: ${spinner.vertical[s].width};
@@ -132,7 +132,7 @@ export default function makeStyles() {
         ${sizes.map(s => {
             if (s !== 'default') {
                 return `
-                    &.k-spinner-${s} {
+                    &.k-${s} {
                         .k-btn {
                             .k-icon {
                                 font-size: ${spinner[s].iconFontSize};

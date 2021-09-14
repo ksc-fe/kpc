@@ -11,16 +11,16 @@ const {
 const classNameObj = {
     'k-spinner': true,
     'k-disabled': disabled,
-    [`k-spinner-${size}`]: size !== 'default',
+    [`k-${size}`]: size !== 'default',
     [className]: className,
-    'k-spinner-vertical': vertical,
+    'k-vertical': vertical,
     [makeStyles()]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
     <Button icon ev-click={this.decrease}
         disabled={this.disableDecrease()}
-        class={vertical ? 'k-spinner-vertical-left' : 'k-spinner-left'}
+        class={vertical ? 'k-vertical-left' : 'k-left'}
         size={size}
     >
         <i v-if={!vertical} class="k-spinner-icon ion-ios-minus-empty"></i>
@@ -34,7 +34,7 @@ const classNameObj = {
     />
     <Button icon ev-click={this.increase}
         disabled={this.disableIncrease()}
-        class={vertical ? 'k-spinner-vertical-right' : 'k-spinner-right'}
+        class={vertical ? 'k-vertical-right' : 'k-right'}
         size={size}
     >
         <i v-if={!vertical} class="k-spinner-icon ion-ios-plus-empty"></i>
