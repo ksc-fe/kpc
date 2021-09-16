@@ -72,6 +72,7 @@ export function makeDialogStyles() {
         color: ${dialog.color};
         box-shadow: ${dialog.boxShadow};
         max-width: 100%;
+        z-index: ${theme.maxZIndex};
 
         // drag
         &.k-dragging {

@@ -1,0 +1,35 @@
+import {getRestProps} from '../utils';
+import {Input} from '../input';
+import {Icon} from '../icon';
+import {makeStyles} from './styles';
+
+const {
+    children, className, editing, 
+    value, validate, disabled, 
+    tip, invalid
+} = this.get();
+
+const classNameObj = {
+    'k-editable': true,
+    'k-editing': editing,
+    'k-disabled': disabled,
+    'k-invalid': invalid,
+    [className]: className,
+    [makeStyles()]: true
+};
+
+<div {...getRestProps(this)} class={classNameObj}>
+    <Icon class="k-icon-edit k-editable-icon" title={tip}
+        v-if={!disabled && !editing}
+        ev-click={this.onClick}
+    />
+    <div class="c-ellipsis">
+        {!editing ? children :
+            <Input size="small" defaultValue={value} 
+                ev-blur={this.onBlur}
+                ev-keydown={this.onKeydown}
+                ref={this.elementRef}
+            />
+       }
+    </div>
+</div>
