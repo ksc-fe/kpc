@@ -1,4 +1,4 @@
-import {Component, TypeDefs, createRef, createVNode, VNodeComponentClass, callAll, remove} from 'intact';
+import {Component, TypeDefs, createRef, createVNode, VNodeComponentClass, callAll, remove, provide} from 'intact';
 import template from './index.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {Container} from '../portal';
@@ -12,7 +12,7 @@ import {useDraggable} from './useDraggable';
 import {useEscClosable} from './useEscClosable';
 import {onOpen, onClosed} from './fixBody';
 import {addStaticMethods} from './staticMethods';
-import {SHOW, HIDE} from './constants';
+import {SHOW, HIDE, DIALOG} from './constants';
 
 export interface DialogProps {
     title?: string
@@ -84,6 +84,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         useShowHideEvents('value', SHOW, HIDE);
         useEscClosable();
         useMouseOutsidable(this.dialogRef); 
+        provide(DIALOG, this);
 
         if (this.$vNode) {
             // TODO

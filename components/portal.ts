@@ -10,8 +10,11 @@ import {
     patch,
     remove,
     TypeDefs,
+    inject,
 } from 'intact';
 import {isString} from 'intact-shared';
+import {DIALOG} from './dialog/constants';
+import type {Dialog} from './dialog';
 
 export interface PortalProps {
     container?: Container
@@ -33,6 +36,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     static typeDefs = typeDefs;
 
     private container: Element | null = null;
+    private dialog: Dialog | null = inject(DIALOG, null);
 
     $render(
         lastVNode: VNodeComponentClass | null,
@@ -84,7 +88,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
                 false,
             );
         } else {
-            remove(lastProps.children as VNode, lastContainer);
+            remove(lastProps.children as VNode, lastContainer, false);
             mount(nextProps.children as VNode, nextContainer, this, this.$SVG, anchor, mountedQueue);
         }
 
@@ -104,20 +108,14 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
                 this.container = container(parentDom, anchor);
             }
         }
-        if (!this.container || false) {
+        if (!this.container) {
             // find the closest dialog if exists
-            let dom: Element | null = parentDom;
-            let found;
-            do {
-                // dom maybe a foreignObject, and its className is an object
-                if (isString(dom.className)) {
-                    if (dom.className.split(' ').indexOf('k-dialog') > -1) {
-                        found = dom;
-                        break;
-                    }
-                }
-            } while (dom = dom.parentElement);
-            this.container = found || document.body;
+            let tmp;
+            if ((tmp = this.dialog) && (tmp = tmp.dialogRef.value)) {
+                this.container = tmp;
+            } else {
+                this.container = document.body;
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ order: 0
 
 
 ```vdt
-import Tooltip from 'kpc/components/tooltip';
+import {Tooltip} from 'kpc/components/tooltip';
 
 <div>
     <Tooltip content="hello">

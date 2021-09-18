@@ -8,11 +8,13 @@ order: 0
 ```vdt
 import {Button} from 'kpc/components/button';
 import {Dialog} from 'kpc/components/dialog';
+import {Select, Option} from 'kpc/components/select';
 
 <div>
     <Button ev-click={this.onClick} type="primary">Show Dialog</Button>
     <Dialog v-model="show" title="Dialog Title" ref="__demo">
         Dialog Body 
+        <Select></Select>
     </Dialog>
 </div>
 ```

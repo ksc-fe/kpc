@@ -7,8 +7,8 @@ order: 4
 事件。你还可以通过`okText`和`cancelText`属性指定按钮文案
 
 ```vdt
-import Tooltip from 'kpc/components/tooltip';
-import Button from 'kpc/components/button';
+import {Tooltip} from 'kpc/components/tooltip';
+import {Button} from 'kpc/components/button';
 
 <div>
     <Tooltip content="确定删除？"

@@ -10,7 +10,7 @@ export interface TooltipProps extends BaseTooltipProps {
     content: Children 
 }
 
-export default function Tooltip(props: Props<TooltipProps, BaseTooltip>) {
+export function Tooltip(props: Props<TooltipProps, BaseTooltip>) {
     let {children, content, $blocks, ...rest} = props;
 
     if ($blocks && $blocks.content) {
@@ -26,5 +26,3 @@ export default function Tooltip(props: Props<TooltipProps, BaseTooltip>) {
         ...rest,
     });
 }
-
-export {Tooltip};

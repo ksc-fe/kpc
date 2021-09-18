@@ -1,4 +1,4 @@
-import {TransitionGroup} from 'intact';
+import {TransitionGroup, Transition} from 'intact';
 import {Input} from '../input';
 import {Icon} from '../icon';
 import {isNullOrUndefined} from 'intact-shared';
@@ -47,8 +47,9 @@ const {onInput, inputRef, keywords: {value: keywords}} = this.input;
             <b:prefix />
         </div>
         <div class="k-select-main">
-            <TransitionGroup name="k-fade">
-                <input type="hidden" value={value} name={name} key="hidden-input" />
+            <input type="hidden" value={value} name={name} key="hidden-input" />
+            {/* TODO: Need mode on Transition */}
+            <TransitionGroup name="k-fade" appear={false}>
                 <Input v-if={!multiple && filterable}
                     value={_show ? keywords : label}
                     ev-$change:value={onInput}
