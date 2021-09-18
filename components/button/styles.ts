@@ -135,6 +135,8 @@ const {button} = deepDefaults(theme, {
     )
 });
 
+export {button};
+
 export function makeButtonStyles({iconSide}: {iconSide?: string}) {
     const {secondary, link} = button;
 

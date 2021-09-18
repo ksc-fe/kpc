@@ -19,7 +19,6 @@ sidebar: doc
 | size | 定义菜单尺寸 | `"large"` &#124; `"default"` &#124; `"small"` | `"default"` |
 | accordion | 是否每次只能展开一项 | `Boolean` | `false` |
 | dot | 是否给菜单项前面添加圆点 | `Boolean` | `false` |
-| hideOnSelect | 是否选中该菜单后隐藏整个菜单，只有`type='horizontal` 或 `collapse=true` 才会生效 | `Boolean` | `true` |
 
 ## MenuItem
 

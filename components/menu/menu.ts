@@ -12,7 +12,6 @@ export interface MenuProps {
     size?: 'large' | 'default' | 'small' 
     accordion?: boolean
     dot?: boolean
-    hideOnSelect?: boolean
 }
 
 const typeDefs: Required<TypeDefs<MenuProps>> = {
@@ -24,7 +23,6 @@ const typeDefs: Required<TypeDefs<MenuProps>> = {
     size: ['large', 'default', 'small'],
     accordion: Boolean,
     dot: Boolean,
-    hideOnSelect: Boolean,
 };
 
 const defaults = (): Partial<MenuProps> => ({
@@ -36,7 +34,6 @@ const defaults = (): Partial<MenuProps> => ({
     size: 'default',
     accordion: false,
     dot: false,
-    hideOnSelect: true,
 })
 
 export const MENU = 'Menu';

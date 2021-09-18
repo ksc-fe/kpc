@@ -1,0 +1,33 @@
+import Button from '../button';
+import Icon from 'kpc/components/icon';
+import {getRestProps} from '../utils';
+import makeStyles from './styles';
+import {TransitionGroup} from 'intact';
+
+const {
+    className, children, type,
+    disabled, closable, closed, size
+} = this.get();
+
+const classNameObj = {
+    'k-tag': true,
+    [className]: className,
+    [`k-${type}`]: type !== 'default',
+    [`k-${size}`]: size !== 'default',
+    'k-disabled': disabled,
+    'k-closable': closable,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <b:body>{children}</b:body>
+    <Button v-if={closable} 
+        type="none" 
+        disabled={disabled}
+        size={size}
+        ev-click={this.onClose}
+        class="k-tag-close"
+    >
+        <Icon class="k-tag-icon ion-ios-close-empty"/>
+    </Button>
+</div>

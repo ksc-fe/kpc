@@ -1,0 +1,45 @@
+import {linkEvent} from 'intact';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {Icon} from '../icon';
+
+const {className, count, disabled, half} = this.get();
+const {activeValue, onClick, onMouseEnter, onMouseLeaveComponent} = this.activeValue;
+
+const classNameObj = {
+    'k-rate': true,
+    'k-disabled': disabled,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+const icon = <b:icon><Icon class="ion-android-star" /></b:icon>
+const rateIcon = function(className, step) {
+    return (
+        <div class={className}
+            ev-click={linkEvent(step, onClick)}
+            ev-mouseenter={linkEvent(step, onMouseEnter)}
+        >{icon}</div>
+    );
+};
+
+const items = [];
+for(let i = 0; i < count; i++) {
+    const className = activeValue.value >= i + 1 ? 
+        'k-full' : activeValue.value === i + 0.5 ? 
+            'k-half' : null;
+    const halfStep = half ? i + 0.5 : i + 1;
+    const item = (
+        <div class={{"k-rate-item": true, [className]: className}}>
+            {rateIcon("k-rate-first", halfStep)}
+            {rateIcon("k-rate-second", i + 1)}
+        </div>
+    );
+    items.push(item);
+}
+
+<div class={classNameObj} {...getRestProps(this)}
+    ev-mouseleave={onMouseLeaveComponent}
+>
+    <template>{items}</template>
+</div>
