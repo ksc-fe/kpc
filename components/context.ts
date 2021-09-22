@@ -46,7 +46,7 @@ function consumertemplate(this: Component & {ref: RefObject<any>}) {
 
 // Maybe like legency context api of React
 // Error: Can not use it in multiple instances.
-// export function createContext<T = any>(defaultValue?: T) {
+// export function Context<T = any>(defaultValue?: T) {
     // let data: T | undefined;
 
     // function Provider({value, children}: Props<ProviderProps<T>>) {
