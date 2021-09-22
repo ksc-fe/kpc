@@ -43,132 +43,111 @@ const {spinner} = deepDefaults(theme, {
     }
 });
 
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         display: inline-block;
         vertical-align: middle;
         line-height: 1;
         .k-spinner-btn {
             vertical-align: top;
-            &:hover {
-                z-index: 1;
-                position: relative;
-            }
+            &:hover,
             &:focus {
                 z-index: 1;
                 position: relative;
             }
+
+            &.k-left {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                margin-right: -1px;
+            }
+            &.k-right {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                margin-left: -1px;
+            }
         }
-        .k-left {
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            margin-right: -1px;
-        }
-        .k-right {
-            border-top-left-radius: 0;
-            border-bottom-left-radius: 0;
-            margin-left: -1px;
-        }
-        .k-input {
+        .k-spinner-input {
             width: ${spinner.default.inputWidth};
             vertical-align: top;
-            text-align: center;
             .k-input-inner {
                 text-align: center;
                 padding: 0;
+                border-radius: 0;
             }
         }
-        .k-icon {
+        .k-spinner-icon {
             font-size: ${spinner.default.iconFontSize};
         }
-        i:before {
-            font-size: ${spinner.default.iconFontSize};
-        }
-
         
         &.k-vertical {
             position: relative;
             font-size: 0;
-
-            .k-vertical-left {
+            .k-spinner-btn {
                 position: absolute;
                 right: 0;
+                margin: 0;
+                height: calc(50% + 1px);
+                line-height: 50%;
+            }
+            .k-spinner-icon {
+                line-height: 50% !important;
+                font-size: inherit !important;
+            }
+            .k-spinner-btn.k-left {
                 bottom: 0;
-                margin: 0;
-                height: calc(50% + 1px);
-                line-height: 50%;
+                border-radius: 0 0 ${theme.borderRadius} 0;
             }
-            .k-vertical-right {
-                position: absolute;
-                right: 0;
+            .k-spinner-btn.k-right {
                 top: 0;
-                margin: 0;
-                height: calc(50% + 1px);
-                line-height: 50%;
+                border-radius: 0 ${theme.borderRadius} 0 0;
             }
-            .k-input {
+            .k-spinner-input {
                 margin-right: -1px;
                 font-size: 0;
-                padding-right: ${spinner.vertical.default.paddingRight};
-                width: ${spinner.vertical.default.width};
+                .k-input-inner {
+                    border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
+                }
             }
-            i:before {
-                font-size: 12px !important;
-            }
-            ${sizes.map(s => {
-                if (s !== 'default') {
+            ${sizes.map(size => {
+                const styles = spinner.vertical[size];
+                const generate = () => `
+                    .k-spinner-input {
+                        padding-right: ${styles.paddingRight};
+                        width: ${styles.width};
+                    }
+                `
+                if (size === 'default') {
+                    return generate();
+                } else {
                     return `
-                        &.k-${s} {
-                            .k-input {
-                                padding-right: ${spinner.vertical[s].paddingRight};
-                                width: ${spinner.vertical[s].width};
-                            }
+                        &.k-${size} {
+                            ${generate()}
                         }
                     `;
                 }
             })}
         }
 
-        ${sizes.map(s => {
-            if (s !== 'default') {
+        ${sizes.map(size => {
+            const styles = spinner[size];
+            const generate = () => `
+                .k-spinner-icon {
+                    font-size: ${styles.iconFontSize};
+                }
+                .k-spinner-input {
+                    width: ${styles.inputWidth};
+                }
+            `;
+            if (size === 'default') {
+                return generate();
+            } else {
                 return `
-                    &.k-${s} {
-                        .k-btn {
-                            .k-icon {
-                                font-size: ${spinner[s].iconFontSize};
-                            }
-                            i:before {
-                                font-size: ${spinner[s].iconFontSize};
-                            }
-                        }
-                        .k-input {
-                            width: ${spinner[s].inputWidth};
-                        }
+                    &.k-${size} {
+                        ${generate()}
                     }
                 `;
             }
         })}
-
-        .k-spinner {
-            .k-input {
-                .k-inner {
-                    border-radius: 0;
-                }
-            }
-                
-            &.k-vertical {
-                .k-input {
-                    .k-inner {
-                        border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
-                    }
-                }
-                .k-right {
-                    border-radius: 0 ${theme.borderRadius} 0 0;
-                }
-                .k-left {
-                    border-radius: 0 0 ${theme.borderRadius} 0;
-                }
-            }
-        }
     `;
 }

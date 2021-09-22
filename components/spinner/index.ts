@@ -6,21 +6,27 @@ import {sizes, Sizes} from '../../styles/utils';
 const numberReg = /^(-|\+)?\d+(\.(\d+)?)?$/;
 
 export interface SpinnerProps {
-    disabled: Boolean,
-    value: [number, string],
-    max: number,
-    min: number,
-    step: [number, Object, Function],
-    size: Sizes,
-    vertical: Boolean,
-    precision: number,
-    formatter: Function,
-    parser: Function,
-    prefix: string,
-    suffix: string,
-    width: [string, number],
-    forceStep: Boolean,
+    disabled?: boolean,
+    value?: number | string,
+    max?: number,
+    min?: number,
+    step?: number | StepObject | StepFunction,
+    size?: Sizes,
+    vertical?: boolean,
+    precision?: number,
+    formatter?: Formatter,
+    parser?: Parser,
+    prefix?: string,
+    suffix?: string,
+    width?: string | number,
+    forceStep?: boolean,
 }
+type StepObject = {
+    [key in number | '$']: number
+}
+type StepFunction = (value: number) => number
+type Formatter = (value: number) => string
+type Parser = (value: string) => number
 
 const typeDefs: Required<TypeDefs<SpinnerProps>> = {
     disabled: Boolean,
@@ -47,7 +53,7 @@ const defaults = (): Partial<SpinnerProps> => ({
     size: 'default'
 });
 
-class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T> {
+export class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -153,5 +159,3 @@ class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T> {
         }
     }
 }
-
-export {Spinner};

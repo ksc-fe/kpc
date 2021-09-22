@@ -1,13 +1,10 @@
 import {Button} from '../button';
+import {Icon} from '../icon';
 import {Input} from '../input';
 import {getRestProps} from '../utils';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 
-const {
-    className, disabled, max, min,
-    style, size, vertical, value, width,
-} = this.get();
-
+const {className, disabled, size, vertical, value, width} = this.get();
 const classNameObj = {
     'k-spinner': true,
     'k-disabled': disabled,
@@ -20,24 +17,28 @@ const classNameObj = {
 <div class={classNameObj} {...getRestProps(this)}>
     <Button icon ev-click={this.decrease}
         disabled={this.disableDecrease()}
-        class={vertical ? 'k-vertical-left' : 'k-left'}
+        class="k-spinner-btn k-left"
         size={size}
     >
-        <i v-if={!vertical} class="k-spinner-icon ion-ios-minus-empty"></i>
-        <i v-else class="ion-ios-arrow-down"></i>
+        <Icon v-if={!vertical} class="k-spinner-icon ion-ios-minus-empty" />
+        <Icon v-else class="k-spinner-icon ion-ios-arrow-down" />
     </Button>
-    <Input disabled={disabled} 
+    <Input
+        class="k-spinner-input"
+        disabled={disabled} 
         ev-change={this.changeValue}
         value={value}
+        ev-input={this.onInput}
         size={size}
         width={width}
+        ev-focus={this.onFocus}
     />
     <Button icon ev-click={this.increase}
         disabled={this.disableIncrease()}
-        class={vertical ? 'k-vertical-right' : 'k-right'}
+        class="k-spinner-btn k-right"
         size={size}
     >
-        <i v-if={!vertical} class="k-spinner-icon ion-ios-plus-empty"></i>
-        <i v-else class="ion-ios-arrow-up"></i>
+        <Icon v-if={!vertical} class="k-spinner-icon ion-ios-plus-empty" />
+        <Icon v-else class="k-spinner-icon ion-ios-arrow-up" />
     </Button>
 </div>
