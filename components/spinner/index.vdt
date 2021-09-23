@@ -31,7 +31,6 @@ const classNameObj = {
         ev-input={this.onInput}
         size={size}
         width={width}
-        ev-focus={this.onFocus}
     />
     <Button icon ev-click={this.increase}
         disabled={this.isDisabledIncrease()}

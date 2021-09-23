@@ -104,6 +104,6 @@ export class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T
         const val = (e.target as HTMLInputElement).value;
         const {value} = this.value.getFixedValue(val.trim(), this.get('value')!);
         this.value.showValue.set(val);
-        this.set({value})
+        this.set({value});
     }
 }

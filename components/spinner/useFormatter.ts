@@ -16,7 +16,10 @@ export function useFormatter() {
 
     function parse(value: string): number | typeof NaN {
         const {parser, prefix, suffix} = instance.get();
-        // value = String(value);
+
+        if (value === '') {
+            return NaN;
+        }
 
         if (!parser) {
             if (prefix) {
