@@ -1,13 +1,16 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
-import {minMaxStep, bind} from '../utils';
+import {bind} from '../utils';
 import {sizes, Sizes} from '../../styles/utils';
+import {useStep} from './useStep';
+import {useFormatter} from './useFormatter';
+import {useValue} from'./useValue';
 
 const numberReg = /^(-|\+)?\d+(\.(\d+)?)?$/;
 
 export interface SpinnerProps {
     disabled?: boolean,
-    value?: number | string,
+    value?: number,
     max?: number,
     min?: number,
     step?: number | StepObject | StepFunction,
@@ -21,16 +24,16 @@ export interface SpinnerProps {
     width?: string | number,
     forceStep?: boolean,
 }
-type StepObject = {
+export type StepObject = {
     [key in number | '$']: number
 }
-type StepFunction = (value: number) => number
+export type StepFunction = (value: number) => number
 type Formatter = (value: number) => string
 type Parser = (value: string) => number
 
 const typeDefs: Required<TypeDefs<SpinnerProps>> = {
     disabled: Boolean,
-    value: [Number, String],
+    value: Number,
     max: Number,
     min: Number,
     step: [Number, Object, Function],
@@ -45,11 +48,12 @@ const typeDefs: Required<TypeDefs<SpinnerProps>> = {
     forceStep: Boolean,
 };
 
+const defaultStep = 1;
 const defaults = (): Partial<SpinnerProps> => ({
     value: 0,
     max: Number.POSITIVE_INFINITY,
     min: Number.NEGATIVE_INFINITY,
-    step: 1,
+    step: defaultStep,
     size: 'default'
 });
 
@@ -58,104 +62,48 @@ export class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    mounted() {
-        const {formatter, prefix, suffix, value} = this.get();
-        if (formatter || prefix || suffix) {
-            this.set({'value': this.format(value)});
-        }
-    }
-
-    @bind
-    private getStep(): Number {
-        let v = this.get('value');
-        let s = this.get('step');
-
-        if (Object.prototype.toString.call(s) === "[object Object]") {
-            let keys = Object.keys(s);
-            for (let i = 0; i < keys.length; i++) {
-                if (v < Number(keys[i]) || keys[i] === '$') {
-                    return s[keys[i]];
-                }
-            }
-        }
-        
-        return Number(s);
-    }
-
-    private parse(value: any) {
-        const {parser, prefix, suffix} = this.get();
-        value = String(value);
-
-        if (!parser) {
-            if (prefix) {
-                value = value.replace(new RegExp(`^${prefix}`), '');
-            }
-            if (suffix) {
-                value = value.replace(new RegExp(`${suffix}$`), '');
-            }
-            return value;
-        }
-
-        return parser(value);
-    }
-
-    private format(value: any) {
-        const {formatter, prefix, suffix} = this.get();
-
-        if (!formatter) {
-            return `${prefix || ''}${value}${suffix || ''}`;
-        }
-
-        return formatter(value);
-    }
+    private step = useStep(defaultStep);
+    private formatter = useFormatter();
+    private value = useValue(this.step, this.formatter);
 
     @bind
     private increase(): void {
-        let v = this.get('value');
-        const {formatter, prefix, suffix} = this.get();
-        if (formatter || prefix || suffix) {
-            v = this.parse(v);
-        }
-
-        let s = this.getStep();
-        let _v = Number(v) + Number(s);
-        _v = Number.isInteger(_v) ? _v : _v.toFixed(1);
-        _v = _v > this.get('max') ? this.get('max') : _v;
-        this.set({'value': this.format(_v)});
+        const {value} = this.get();
+        const [step] = this.step.value!(value!, 'increase');
+        this.value.fixValue(Number((value! + step).toFixed(10)), 0);
     }
 
     @bind
     private decrease(): void {
-        let v = this.get('value');
-        const {formatter, prefix, suffix} = this.get();
-        if (formatter || prefix || suffix) {
-            v = this.parse(v);
-        }
-
-        let s = this.getStep();
-        let _v = Number(v) - Number(s);
-        _v = Number.isInteger(_v) ? _v : _v.toFixed(1);
-        _v = _v < this.get('min') ? this.get('min') : _v;
-        this.set({'value': this.format(_v)});
+        const {value} = this.get();
+        const [step] = this.step.value(value!, 'decrease');
+        this.value.fixValue(Number((value! - step).toFixed(10)), 0);
     }
 
-    @bind
-    private disableDecrease(): boolean {
-        let v = this.get('value');
-        return Number(v) <= this.get('min');
+    private isDisabledDecrease(): boolean {
+        const {value, min, disabled} = this.get();
+        return disabled || value! <= min!;
     }
 
-    @bind
-    private disableIncrease(): boolean {
-        let v = this.get('value');
-        return Number(v) >= this.get('max');
+    private isDisabledIncrease(): boolean {
+        const {value, max, disabled} = this.get();
+        return disabled || value! >= max!;
     }
 
     @bind
     private changeValue(e: Event): void {
-        let ev = e.target.value;
-        if (this.get('min') <= ev && ev <= this.get('max')) {
-            this.set({'value': ev});
-        }
+        this.value.fixValue(
+            (e.target as HTMLInputElement).value.trim(),
+            this.get('value')!
+        );
+    }
+
+    // we need change value as long as the input is valid, #213
+    @bind
+    private onInput(e: InputEvent) {
+        const val = (e.target as HTMLInputElement).value;
+        const {value} = this.value.getFixedValue(val.trim(), this.get('value')!);
+        this.value.showValue.set(val);
+        this.set({value})
     }
 }
