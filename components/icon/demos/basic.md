@@ -9,7 +9,7 @@ order: 0
 数字或这数字字符串自定义图标的大小
 
 ```vdt
-import Icon from 'kpc/components/icon';
+import {Icon} from 'kpc/components/icon';
 
 <div>
     <Icon v-for={['36', 'large', 'default', 'small', 'mini']}

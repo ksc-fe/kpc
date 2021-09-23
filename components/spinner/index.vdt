@@ -1,0 +1,44 @@
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {Input} from '../input';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+
+const {className, disabled, size, vertical, value, width} = this.get();
+const classNameObj = {
+    'k-spinner': true,
+    'k-disabled': disabled,
+    [`k-${size}`]: size !== 'default',
+    [className]: className,
+    'k-vertical': vertical,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <Button icon ev-click={this.decrease}
+        disabled={this.isDisabledDecrease()}
+        class="k-spinner-btn k-left"
+        size={size}
+    >
+        <Icon v-if={!vertical} class="k-spinner-icon ion-ios-minus-empty" />
+        <Icon v-else class="k-spinner-icon ion-ios-arrow-down" />
+    </Button>
+    <Input
+        class="k-spinner-input"
+        disabled={disabled} 
+        ev-change={this.changeValue}
+        value={this.value.showValue.value}
+        ev-input={this.onInput}
+        size={size}
+        width={width}
+        ev-focus={this.onFocus}
+    />
+    <Button icon ev-click={this.increase}
+        disabled={this.isDisabledIncrease()}
+        class="k-spinner-btn k-right"
+        size={size}
+    >
+        <Icon v-if={!vertical} class="k-spinner-icon ion-ios-plus-empty" />
+        <Icon v-else class="k-spinner-icon ion-ios-arrow-up" />
+    </Button>
+</div>

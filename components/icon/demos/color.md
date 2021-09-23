@@ -7,7 +7,7 @@ order: 1
 可以自定义`color`值
 
 ```vdt
-import Icon from 'kpc/components/icon';
+import {Icon} from 'kpc/components/icon';
 
 <div>
     <Icon 
