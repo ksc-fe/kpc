@@ -2,7 +2,6 @@ import {useInstance} from 'intact';
 import {useState} from '../../hooks/useState';
 import {Rate} from './index';
 
-
 export function useActiveValue() {
     const instance = useInstance() as Rate;
     const activeValue = useState<number>(0);
