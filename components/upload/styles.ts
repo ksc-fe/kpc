@@ -33,7 +33,7 @@ const {upload} = deepDefaults(theme, {
         // drag
         drag: {
             get color() { return theme.color.lightBlack },
-            get border() { return `1px solid ${theme.color.border}` },
+            get border() { return `1px dashed ${theme.color.border}` },
             get borderRadius() { return theme.borderRadius },
             get hoverBorderColor() { return theme.color.primary },
             padding: `20px 0 40px 0`,
@@ -121,7 +121,7 @@ export function makeStyles() {
         }
         .k-upload-close {
             display: none;
-            .k-icon:before {
+            .k-icon {
                 font-size: ${upload.closeFontSize};
             }
         }

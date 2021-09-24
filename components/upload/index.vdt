@@ -10,14 +10,15 @@ import {UploadFileStatus} from './useUpload';
 
 const {
     className, accept, multiple, limit,
-    files, children, type, _dragOver, directory
+    files, children, type, directory
 } = this.get();
 
+const drag = this.drag;
 const classNameObj = {
     'k-upload': true,
     [className]: className,
     'k-drag': type === 'drag', 
-    'k-dragover': _dragOver,
+    'k-dragover': drag.dragOver.value, 
     'k-gallery': type === 'gallery',
     [makeStyles()]: true,
 };
@@ -26,20 +27,20 @@ const events = {
     'ev-click': this.selectFile,
 };
 if (type === 'drag') {
-    events['ev-dragover'] = this._preventDefault;
-    events['ev-dragenter'] = this._onDragEnter;
-    events['ev-dragleave'] = this._onDragLeave;
-    events['ev-drop'] = this._onDrop;
+    events['ev-dragover'] = drag.stopEvent;
+    events['ev-dragenter'] = drag.onDragEnter;
+    events['ev-dragleave'] = drag.onDragLeave;
+    events['ev-drop'] = drag.onDrop;
 }
 
 const handle = (
-    <div class="k-upload-handle" {...events} ref="handle">
+    <div class="k-upload-handle" {...events}>
         <b:content>
             <b:children v-if={children}>{children}</b:children>
             <template v-else-if={type !== 'gallery'}>
                 <Button type="primary" v-if={type === 'select'}>{_$('点击上传')}</Button>
                 <div class="k-upload-area" v-else>
-                    <i class="k-icon ion-upload"></i>
+                    <Icon class="ion-upload" />
                     <div>{_$('将文件拖到此处，或点击上传')}</div>
                 </div>
             </template>
@@ -55,7 +56,7 @@ const closeBtn = (value, index, icon) => (
     <Button type="none" icon size="mini" class="k-upload-close"
         ev-click={() => removeFile(value, index)}
     >
-        <i class={"k-icon " + icon}></i>
+        <Icon class={icon} />
     </Button>
 );
 
@@ -151,7 +152,7 @@ const closeBtn = (value, index, icon) => (
 
     <Dialog title={_$("查看图片")} key="dialog" 
         v-model="_showImage"
-        class={{"k-upload-dialog": true, [makeUploadDialogStyles()]: true }}
+        class={{"k-upload-dialog": true, [makeUploadDialogStyles()]: true}}
     >
         <a href={this.get('_showedFile.url')} target="_blank">
             <img src={this.get('_showedFile.url')} />

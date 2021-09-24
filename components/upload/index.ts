@@ -4,6 +4,7 @@ import {useAccept} from './useAccept';
 import {useUpload, UploadFileStatus} from './useUpload';
 import {useFiles} from './useFiles';
 import {bind} from '../utils';
+import {useDrag} from './useDrag';
 
 export interface UploadProps {
     accept?: string
@@ -22,6 +23,7 @@ export interface UploadProps {
     type?: 'select' | 'drag' | 'gallery'
     directory?: boolean
     disabled?: boolean
+    multiple?: boolean
 }
 
 export type UploadFile = {
@@ -57,6 +59,7 @@ const typeDefs: Required<TypeDefs<UploadProps>> = {
     type: ['select', 'drag', 'gallery'],
     directory: Boolean,
     disabled: Boolean,
+    multiple: Boolean,
 };
 
 const defaults = (): Partial<UploadProps> => ({
@@ -74,9 +77,18 @@ export class Upload extends Component<UploadProps> {
     private accept = useAccept();
     private upload = useUpload();
     private files = useFiles(this.accept.isValidType, this.upload);
+    private drag = useDrag(this.files.addFiles);
+
+    public submit() {
+        this.get('files')!.forEach(file => {
+            if (file.status === UploadFileStatus.NotReady) {
+                this.upload(file);
+            }
+        });
+    }
 
     @bind
-    selectFile() {
+    private selectFile() {
         if (!this.get('disabled')) {
             const input = this.inputRef.value!;
             input.value = '';
@@ -85,7 +97,7 @@ export class Upload extends Component<UploadProps> {
     }
 
     @bind
-    onInputChange(e: Event) {
-        this.files.addFile((e.target as HTMLInputElement).files!);
+    private onInputChange(e: Event) {
+        this.files.addFiles((e.target as HTMLInputElement).files!);
     }
 }

@@ -32,7 +32,7 @@ export function useFiles(
         }
     }
 
-    async function addFile(fileList: FileList) {
+    async function addFiles(fileList: FileList) {
         const files = instance.get('files')!.slice(0);
         const newFiles = Array.from(fileList);
         const {maxSize, limit, autoUpload, accept} = instance.get();
@@ -98,5 +98,5 @@ export function useFiles(
         }
     }
 
-    return {addFile, removeFile};
+    return {addFiles, removeFile};
 }

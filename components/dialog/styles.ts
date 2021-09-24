@@ -145,8 +145,10 @@ export function makeDialogStyles() {
 }
 
 export function makeWrapperStyles() {
+    // k-fade-leave-active will add position absolute to the styles
+    // so we must set fixed with important
     return css`
-        position: fixed;
+        position: fixed !important;
         z-index: ${theme.maxZIndex};
         top: 0;
         left: 0;

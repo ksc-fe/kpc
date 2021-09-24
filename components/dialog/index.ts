@@ -171,7 +171,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     @bind
     private onAfterLeave() {
         if (this.get('overlay')) {
-            this.wrapperRef.value!.style.display = 'none';
+            // this.wrapperRef.value!.style.display = 'none';
             onClosed();
         }
         if (!this.useAsComponent) {
