@@ -1,16 +1,16 @@
 import {isNullOrUndefined} from 'intact-shared';
 
-type Options = {
-    action: string
-    headers: Record<string, string>
+export type Options = {
+    action?: string
+    headers?: Record<string | number, string>
     data: any
-    withCredentials: boolean
-    onProgress: (e: ProgressEvent, percent: number) => void 
+    withCredentials?: boolean
+    onProgress: (e: ProgressEvent, percent: number, xhr: XMLHttpRequest) => void 
     onError: (err: RequestError, xhr: XMLHttpRequest) => void 
     onSuccess: (res: any, xhr: XMLHttpRequest) => void 
 }
 
-interface RequestError extends Error {
+export interface RequestError extends Error {
     status: number
     method: string
     url: string
@@ -37,7 +37,7 @@ export function request(options: Options) {
             if (e.total > 0) {
                 percent = Math.floor(e.loaded / e.total * 100);
             }
-            options.onProgress(e, percent);
+            options.onProgress(e, percent, xhr);
         };
     }
 
@@ -49,7 +49,7 @@ export function request(options: Options) {
         options.onSuccess(getBody(xhr), xhr);
     }
 
-    xhr.open('post', options.action, true);
+    xhr.open('post', options.action || '', true);
 
     if (options.withCredentials && 'withCredentials' in xhr) {
         xhr.withCredentials = true;
@@ -58,8 +58,9 @@ export function request(options: Options) {
     const headers = options.headers;
     if (headers) {
         for (let key in headers) {
-            if (headers[key] != null) {
-                xhr.setRequestHeader(key, headers[key]);
+            const value = headers[key];
+            if (!isNullOrUndefined(value)) {
+                xhr.setRequestHeader(key, value);
             }
         }
     }
@@ -78,7 +79,7 @@ function getError(options: Options, xhr: XMLHttpRequest) {
     const err = new Error(msg) as RequestError;
     err.status = xhr.status;
     err.method = 'post';
-    err.url = options.action;
+    err.url = options.action || '';
     err.response = getBody(xhr);
 
     return err;

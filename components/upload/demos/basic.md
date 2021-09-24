@@ -8,7 +8,7 @@ order: 0
 如果函数的返回值为`true`则删除文件，否则不删除，该函数可以是异步函数或者返回`Promise`对象
 
 ```vdt
-import Upload from 'kpc/components/upload';
+import {Upload} from 'kpc/components/upload';
 
 <Upload multiple
     beforeRemove={this._beforeRemove}
@@ -26,24 +26,21 @@ import Upload from 'kpc/components/upload';
     width 400px
 ```
 
-```js
-import Dialog from 'kpc/components/dialog';
-import Message from 'kpc/components/message';
+```ts
+import {Dialog} from 'kpc/components/dialog';
+import {Message} from 'kpc/components/message';
+import {bind} from 'kpc/components/utils';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
+    @bind
     _beforeRemove(file) {
         return new Promise((resolve, reject) => {
-            const dialog = new Dialog({
-                size: 'mini',
-                title: '确认删除',
-                children: `确认删除文件：${file.name}`, 
-            });
-            dialog.show();
-            dialog.on('ok', resolve);
-            dialog.on('cancel', reject);
+            Dialog.confirm({content: `确认删除文件：${file.name}?`}).then(
+                () => resolve(true),
+                () => resolve(false),
+            );
         });
     }
 

@@ -1,7 +1,12 @@
 import {Button} from '../button';
 import {Progress} from '../progress';
 import {Dialog} from '../dialog';
-import {expandAnimationCallbacks, _$, getRestProps} from '../utils';
+import {expandAnimationCallbacks, getRestProps} from '../utils';
+import {makeStyles, makeUploadDialogStyles} from './styles';
+import {TransitionGroup, Transition} from 'intact';
+import {_$} from '../../i18n';
+import {Icon} from '../icon';
+import {UploadFileStatus} from './useUpload';
 
 const {
     className, accept, multiple, limit,
@@ -14,10 +19,11 @@ const classNameObj = {
     'k-drag': type === 'drag', 
     'k-dragover': _dragOver,
     'k-gallery': type === 'gallery',
+    [makeStyles()]: true,
 };
 
 const events = {
-    'ev-click': this._selectFile,
+    'ev-click': this.selectFile,
 };
 if (type === 'drag') {
     events['ev-dragover'] = this._preventDefault;
@@ -27,28 +33,29 @@ if (type === 'drag') {
 }
 
 const handle = (
-    <div class="k-handle" {...events} ref="handle">
+    <div class="k-upload-handle" {...events} ref="handle">
         <b:content>
             <b:children v-if={children}>{children}</b:children>
-            <b:_list v-else-if={type !== 'gallery'}>
+            <template v-else-if={type !== 'gallery'}>
                 <Button type="primary" v-if={type === 'select'}>{_$('点击上传')}</Button>
-                <div class="k-area" v-else>
+                <div class="k-upload-area" v-else>
                     <i class="k-icon ion-upload"></i>
                     <div>{_$('将文件拖到此处，或点击上传')}</div>
                 </div>
-            </b:_list>
-            <b:_list v-else>
-                <i class="k-picture-card k-add ion-ios-plus-empty"></i>
-            </b:_list>
+            </template>
+            <template v-else>
+                <i class="k-upload-picture-card k-upload-add ion-ios-plus-empty"></i>
+            </template>
         </b:content>
     </div>
 );
 
-const CloseBtn = (props) => (
-    <Button type="none" icon size="mini" class="k-close"
-        ev-click={this._removeFile.bind(this, props.value, props.index)}
+const {removeFile} = this.files;
+const closeBtn = (value, index, icon) => (
+    <Button type="none" icon size="mini" class="k-upload-close"
+        ev-click={() => removeFile(value, index)}
     >
-        <i class={"k-icon " + props.icon}></i>
+        <i class={"k-icon " + icon}></i>
     </Button>
 );
 
@@ -56,79 +63,95 @@ const CloseBtn = (props) => (
     <input type="file" 
         accept={accept}
         class="c-hidden" 
-        ref="input" 
-        ev-change={this._onInputChange}
+        ref={this.inputRef}
+        ev-change={this.onInputChange}
         multiple={multiple}
         directory={directory ? '' : undefined}
         webkitdirectory={directory ? '' : undefined}
     />
 
-    <Animate class="k-pictures" key="pictures" a:disabled v-if={type === 'gallery'}>
-        <Animate 
+    <TransitionGroup 
+        v-if={type === 'gallery'}
+        tag="div"
+        name="c-dropdown"
+        class="k-upload-pictures"
+        key="pictures"
+    >
+        <div
             class={{
-                "k-picture k-picture-card": true, 
-                'k-error': value.status === 'error'
+                "k-upload-picture k-upload-picture-card": true, 
+                'k-error': $value.status === UploadFileStatus.Error,
             }}
             v-for={files}
-            key={value.uid}
-            a:transition="c-dropdown"
+            key={$value.uid}
         >
-            <img src={value.url} />
-            <Animate class="k-overlap" a:transition="c-fade" key="overlap"
-                v-if={value.status === 'ready' || value.status === 'uploading'}
-            >
-                <Progress percent={value.percent} size="mini" />
-            </Animate>
-            <div class="k-overlap k-icons" v-else 
-                ev-click={this._showImage.bind(this, value)}
-            >
-                <i class="k-zoom ion-ios-eye-outline"></i>
-            </div>
-            <CloseBtn value={value} index={key} icon="ion-ios-close" />
-        </Animate>
-        <Animate key="handle" a:transition="c-dropdown" class="c-middle"
-            v-if={!limit || files.length < limit}
-        >{handle}</Animate>
-    </Animate>
-    <b:_handle v-else>{handle}</b:_handle>
-
-    <div class="k-tip" v-if={blocks.tip}><b:tip /></div>
-
-    <div class="k-files" v-if={type !== 'gallery'}>
-        <Animate v-for={files} 
-            class={{"k-file": true, 'k-error': value.status === 'error'}}
-            key={value.uid}
-            {...expandAnimationCallbacks}
-        >
-            <div class="k-wrapper">
-                <div class="k-name c-ellipsis">
-                    <i class="k-file-icon ion-document"></i>
-                    {value.name}
-                    <div class="k-icons">
-                        <CloseBtn value={value} index={key} 
-                            icon="ion-ios-close-empty" 
-                        />
-                        <i class="k-status-icon ion-ios-checkmark-outline" 
-                            v-if={value.status === 'done'}
-                        ></i>
-                        <i class="k-status-icon ion-ios-close-outline"
-                            v-if={value.status === 'error'}
-                        ></i>
-                    </div>
-                </div>
-                <Animate key="progress" 
-                    v-if={value.status === 'ready' || value.status === 'uploading'}
-                    {...expandAnimationCallbacks}
+            <img class="k-upload-img" src={$value.url} />
+            <Transition name="c-fade">
+                <div class="k-upload-overlap" key="overlap"
+                    v-if={
+                        $value.status === UploadFileStatus.Ready || 
+                        $value.status === UploadFileStatus.Uploading
+                    }
                 >
-                    <Progress percent={value.percent} size="mini" />
-                </Animate>
+                    <Progress percent={$value.percent} size="mini"
+                        class="k-upload-progress"
+                    />
+                </div>
+                <div class="k-upload-overlap k-upload-icons" v-else 
+                    ev-click={this._showImage.bind(this, $value)}
+                >
+                    <i class="k-upload-zoom ion-ios-eye-outline"></i>
+                </div>
+            </Transition>
+            {closeBtn($value, $key, 'ion-ios-close')}
+        </div>
+        <div key="handle" class="c-middle" v-if={!limit || files.length < limit}>
+            {handle}
+        </div>
+    </TransitionGroup>
+    <template v-else>{handle}</template>
+
+    <div class="k-upload-tip" v-if={$blocks.tip}><b:tip /></div>
+
+    <div class="k-upload-files" v-if={type !== 'gallery'}>
+        <TransitionGroup {...expandAnimationCallbacks}>
+            <div v-for={files} 
+                class={{
+                    "k-upload-file": true,
+                    'k-error': $value.status === UploadFileStatus.Error
+                }}
+                key={$value.uid}
+            >
+                <div class="k-upload-name c-ellipsis">
+                    <Icon class="k-upload-file-icon ion-document" />
+                    <span class="k-upload-file-name">{$value.name}</span>
+                    {closeBtn($value, $key, 'ion-ios-close-empty')}
+                    <Icon class="k-upload-status-icon ion-ios-checkmark-outline" 
+                        v-if={$value.status === UploadFileStatus.Done}
+                    />
+                    <Icon class="k-upload-status-icon ion-ios-close-outline"
+                        v-if={$value.status === UploadFileStatus.Error}
+                    />
+                </div>
+                <Transition {...expandAnimationCallbacks}>
+                    <div key="progress" 
+                        v-if={
+                            $value.status === UploadFileStatus.Ready || 
+                            $value.status === UploadFileStatus.Uploading
+                        }
+                    >
+                        <Progress percent={$value.percent} size="mini"
+                            class="k-upload-progress"
+                        />
+                    </div>
+                </Transition>
             </div>
-        </Animate>
+        </TransitionGroup>
     </div>
 
     <Dialog title={_$("查看图片")} key="dialog" 
         v-model="_showImage"
-        class="k-upload-dialog"
+        class={{"k-upload-dialog": true, [makeUploadDialogStyles()]: true }}
     >
         <a href={this.get('_showedFile.url')} target="_blank">
             <img src={this.get('_showedFile.url')} />

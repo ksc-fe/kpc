@@ -1,6 +1,7 @@
 import {useInstance} from 'intact';
-import {Upload, UploadFile, UploadFileStatus} from './';
+import {Upload, UploadFile} from './';
 import {_$} from '../../i18n';
+import {UploadFileStatus} from './useUpload';
 
 let uid = 0;
 
@@ -31,7 +32,7 @@ export function useFiles(
         }
     }
 
-    async function addFile(fileList: File[]) {
+    async function addFile(fileList: FileList) {
         const files = instance.get('files')!.slice(0);
         const newFiles = Array.from(fileList);
         const {maxSize, limit, autoUpload, accept} = instance.get();
@@ -86,7 +87,7 @@ export function useFiles(
         const files = instance.get('files')!.slice(0);
         let shouldRemove = true;
         if (beforeRemove) {
-            try { shouldRemove = await beforeRemove(file, files); } catch (e) { }
+            shouldRemove = await beforeRemove(file, files);
         }
         if (shouldRemove) {
             files.splice(index, 1);
@@ -96,4 +97,6 @@ export function useFiles(
             instance.set('files', files);
         }
     }
+
+    return {addFile, removeFile};
 }

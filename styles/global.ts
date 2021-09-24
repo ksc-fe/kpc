@@ -85,4 +85,7 @@ injectGlobal`
         overflow: hidden;
         text-overflow: ellipsis;
     }
+    .c-hidden {
+        display: none;
+    }
 `;
