@@ -31,6 +31,7 @@ const sizes = ['large', 'small', 'mini'] as const;
 const btnStyles = {
     get color() { return theme.color.text },
     bgColor: '#fff',
+    lineHeight: '1.15',
     get padding() { return `0 ${theme.default.padding}` },
     get borderColor() { return theme.color.border },
     get borderRadius() { return theme.borderRadius },
@@ -143,24 +144,22 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
     return cx(
         // extract static styles to individual css method for performance
         css`
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            display: inline-block;
             height: ${button.height};
             padding: ${button.padding};
             outline: none;
             vertical-align: middle;
             color: ${button.color};
             background: ${button.bgColor};
-            text-align: center;
             border-radius: ${button.borderRadius};
             border: 1px solid ${button.borderColor};
             font-size: ${button.fontSize};
             white-space: nowrap;
-            transition: all .25s ease-in-out;
-            button& > span {
-                vertical-align: middle;
-                line-height: calc(${button.height} - 2px);
-            }
+            transition: all ${theme.transition};
+            line-height: ${button.lineHeight};
             &:hover,
             &:focus {
                 border-color: ${button.hoverBorderColor};
@@ -249,24 +248,14 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                         font-size: ${styles.fontSize};
                         height: ${styles.height};
                         padding: ${styles.padding};
-                        .k-icon {
-                            line-height: calc(${styles.height} - 2px);
-                        }
                         &.k-btn-icon {
                             width: ${styles.height};
-                        }
-                        button& > span {
-                            line-height: calc(${styles.height} - 2px);
                         }
                     }
                 `;
             })}
 
             // icon
-            .k-icon {
-                vertical-align: middle;
-                line-height: calc(${button.height} - 2px);
-            }
             &.k-btn-icon {
                 width: ${button.height};
                 padding: 0;
