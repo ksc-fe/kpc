@@ -80,6 +80,23 @@ injectGlobal`
         transition: transform ${theme.transition};
     }
 
+    .k-dropdown-enter-from,
+    .k-dropdown-leave-to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    .k-dropdown-enter-active,
+    .k-dropdown-leave-active,
+    .k-dropdown-move {
+        transition: all ${theme.transition};
+    }
+    .k-dropdown-leave-active {
+        position: absolute !important;
+    }
+    .k-dropdown-move {
+        transition: transform ${theme.transition};
+    }
+
     .c-ellipsis {
         white-space: nowrap;
         overflow: hidden;
@@ -87,5 +104,9 @@ injectGlobal`
     }
     .c-hidden {
         display: none;
+    }
+    .c-middle {
+        display: inline-block;
+        vertical-align: middle;
     }
 `;

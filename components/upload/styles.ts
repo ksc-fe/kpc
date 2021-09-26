@@ -248,7 +248,7 @@ export function makeStyles() {
             width: 100%;
             height: 100%;
             left: 0;
-            right: 0;
+            top: 0;
             color: ${upload.overlap.color};
             background: ${upload.overlap.bgColor};
             .k-upload-progress {

@@ -18,6 +18,7 @@ const isHide = mode === 'hide';
 const classNameObj = {
    "k-dialog": true, 
     'k-dragging': this.drag.dragging.value,
+    [className]: className,
     [$props.className]: $props.className,
     [`k-${size}`]: size !== 'default',
     [makeDialogStyles()]: true,

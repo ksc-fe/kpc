@@ -5,6 +5,7 @@ import {useUpload, UploadFileStatus} from './useUpload';
 import {useFiles} from './useFiles';
 import {bind} from '../utils';
 import {useDrag} from './useDrag';
+import {useShowImage} from './useShowImage';
 
 export interface UploadProps {
     accept?: string
@@ -78,6 +79,7 @@ export class Upload extends Component<UploadProps> {
     private upload = useUpload();
     private files = useFiles(this.accept.isValidType, this.upload);
     private drag = useDrag(this.files.addFiles);
+    private showImage = useShowImage();
 
     public submit() {
         this.get('files')!.forEach(file => {
