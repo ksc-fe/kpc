@@ -181,7 +181,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         let ofElement: HTMLElement | MouseEvent | undefined; 
         let _of = this.get('of');
         if (_of === 'parent') {
-            // TODO
+            ofElement = (findDomFromVNode(this.$vNode!, true) as HTMLElement).parentElement!;
         } else if (_of === 'self') {
             ofElement = findDomFromVNode(this.$vNode!, true) as HTMLElement;
         } else {

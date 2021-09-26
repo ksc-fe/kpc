@@ -1,0 +1,60 @@
+import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
+import {Icon} from '../icon';
+import {_$} from '../../i18n';
+import {makeMenuStyles} from './styles';
+
+const {data, trigger} = this.get();
+const classNameObj = {
+    'k-cascader-menu': true,
+    [makeMenuStyles()]: true,
+};
+
+const Options = (data, level, parentShowed, loaded) => {
+    if (!data.length) {
+        if (!loaded) {
+            return <Icon class="ion-load-c k-cascader-loading" rotate />
+        } else {
+            return <div class="k-cascader-empty">{_$('无数据')}</div>
+        }
+    }
+
+    return data.map((item, index) => {
+        const children = item.children;
+        const Item = () => {
+            return (
+                <DropdownItem
+                    disabled={item.disabled}
+                >
+                    {item.label}
+                    <Icon v-if={children}
+                        class="k-cascader-arrow ion-ios-arrow-right"
+                    /> 
+                </DropdownItem>
+            );
+        };
+
+        return (
+            children ?
+                <Dropdown
+                    position={{my: 'left top', at: 'right top', collisionDirection: ['left']}}
+                    of="parent"
+                    disabled={item.disabled}
+                    trigger={trigger}
+                >
+                    {Item()}
+                    <DropdownMenu class={classNameObj}>
+                        {Options(children, level + 1, false, item.loaded)}
+                    </DropdownMenu>
+                </Dropdown> :
+                Item()
+        );
+    });
+}
+
+<t:super>
+    <b:base-menu>
+        <DropdownMenu class={classNameObj}>
+            {Options(data, 0, true, true)}
+        </DropdownMenu>
+    </b:base-menu>
+</t:super>
