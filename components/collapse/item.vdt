@@ -2,7 +2,7 @@ import {Transition} from 'intact';
 import {makeStyles} from './itemStyle';
 import {expandAnimationCallbacks} from '../utils';
 import {kls} from './collapseStyle';
-import Icon from 'kpc/components/Icon';
+import {Icon} from '../icon';
 
 const {
     children, title, value,

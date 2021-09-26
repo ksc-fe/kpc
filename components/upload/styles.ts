@@ -133,7 +133,7 @@ export function makeStyles() {
         }
         .k-upload-progress {
             .k-progress-text {
-                width: auto;
+                width: auto !important;
             }
         }
 

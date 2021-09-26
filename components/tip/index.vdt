@@ -1,6 +1,6 @@
 import {makeStyles} from './styles';
-import Icon from 'kpc/components/Icon';
-import Button from 'kpc/components/button'
+import {Icon} from '../icon';
+import {Button} from '../button'
 
 const {children, type, closable, show} = this.get();
 

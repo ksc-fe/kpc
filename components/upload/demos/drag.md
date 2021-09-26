@@ -13,7 +13,7 @@ import {Upload} from 'kpc/components/upload';
 <Upload multiple
     type="drag"
     beforeRemove={this._beforeRemove}
-    action="//jsonplaceholder.typicode.com/posts/"
+    action="//fakestoreapi.com/products"
 />
 ```
 

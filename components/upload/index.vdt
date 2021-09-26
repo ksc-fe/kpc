@@ -135,16 +135,15 @@ const closeBtn = (value, index, icon) => (
                     />
                 </div>
                 <Transition {...expandAnimationCallbacks}>
-                    <div key="progress" 
+                    <Progress percent={$value.percent}
+                        size="mini"
+                        class="k-upload-progress"
                         v-if={
                             $value.status === UploadFileStatus.Ready || 
                             $value.status === UploadFileStatus.Uploading
                         }
-                    >
-                        <Progress percent={$value.percent} size="mini"
-                            class="k-upload-progress"
-                        />
-                    </div>
+
+                    />
                 </Transition>
             </div>
         </TransitionGroup>

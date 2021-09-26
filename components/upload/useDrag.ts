@@ -8,7 +8,6 @@ export function useDrag(addFiles: (fileList: FileList) => void) {
     let counter = 0;
 
     function onDragEnter(e: Event) {
-        console.log('enter')
         e.preventDefault();
         counter++;
         if (dragOver.value || instance.get('disabled')) return;
@@ -17,7 +16,6 @@ export function useDrag(addFiles: (fileList: FileList) => void) {
     }
 
     function onDragLeave(e: Event) {
-        console.log('leave')
         counter--;
         if (!counter) {
             dragOver.set(false);
@@ -35,7 +33,6 @@ export function useDrag(addFiles: (fileList: FileList) => void) {
     }
 
     function stopEvent(e: Event) {
-        console.log('over');
         e.stopPropagation();
         e.preventDefault();
     }

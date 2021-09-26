@@ -12,7 +12,7 @@ import {Upload} from 'kpc/components/upload';
 
 <Upload multiple
     beforeRemove={this._beforeRemove}
-    action="//jsonplaceholder.typicode.com/posts/"
+    action="//fakestoreapi.com/products"
     accept=".jpg, .png"
     maxSize={500}
     ev-error={this._showError}
