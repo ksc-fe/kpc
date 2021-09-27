@@ -69,7 +69,7 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
         if (this.get('disabled')) return;
 
         // Some cases, the item may been removed after click immediately
-        // and the menu will hide, because it cann't detect it contains
+        // and the menu will hide, because it can't detect it contains
         // the removed item.
         // Set the ignore flag to prevent menu from hidding
         (e as IgnoreClickEvent)._ignore = true;

@@ -10,6 +10,8 @@ const {cascader} = deepDefaults(theme, {
         get highlightColor() { return theme.color.danger },
         loadingGap: '20px',
         arrowGap: '8px',
+        get selectedColor() { return theme.color.primary },
+        get activeBgColor() { return theme.color.bg },
 
         // empty
         empty: {
@@ -40,6 +42,15 @@ export function makeMenuStyles() {
             padding: ${cascader.empty.padding};
             color: ${cascader.empty.color};
             text-align: center;
+        }
+
+        .k-cascader-option {
+            &.k-selected {
+                color: ${cascader.selectedColor};
+            }
+            &.k-active {
+                background: ${cascader.activeBgColor};
+            }
         }
     ` 
 }

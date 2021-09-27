@@ -3,14 +3,15 @@ import {
     removeTransitionClass,
     whenTransitionEnds,
     TransitionElement,
+    nextTick,
 } from 'intact';
 import {Feedback} from '../position';
 
-export function useTransition(getFeedback: () => Feedback) {
+export function useTransition(getFeedback: () => Feedback | Promise<Feedback>) {
     let transition = 'k-slidedown';
 
-    function onEnter(el: TransitionElement, done: Function) {
-        transition = getTransition(getFeedback());
+    async function onEnter(el: TransitionElement, done: Function) {
+        transition = getTransition(await getFeedback());
         const enterFromClass = `${transition}-enter-from`;
         const enterActiveClass = `${transition}-enter-active`;
 
@@ -31,9 +32,9 @@ export function useTransition(getFeedback: () => Feedback) {
         removeTransitionClass(el, `${transition}-enter-active`);
     }
 
-    function onLeave(el: TransitionElement, done: Function) {
+    async function onLeave(el: TransitionElement, done: Function) {
         // maybe the position has changed, so we re-get it
-        transition = getTransition(getFeedback());
+        transition = getTransition(await getFeedback());
         addTransitionClass(el, `${transition}-leave-to`);
         addTransitionClass(el, `${transition}-leave-active`);
 

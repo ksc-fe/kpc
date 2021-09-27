@@ -80,10 +80,7 @@ const {onInput, inputRef, keywords: {value: keywords}} = this.input;
                     <TransitionGroup name="k-fade">
                         <template>
                             <b:values params={[value, label]}>
-                                <div class="k-select-tag" 
-                                    v-for={label} 
-                                    key={$value}
-                                >
+                                <div class="k-select-tag" v-for={label} key={$value}>
                                     <span class="k-select-text">
                                         <b:value params={[value[$key], $value]}>
                                             {$value}

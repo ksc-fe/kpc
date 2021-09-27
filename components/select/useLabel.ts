@@ -4,30 +4,16 @@ import {findChildren, isEmptyString, ValidVNode, isComponentVNode} from '../util
 import {Option, OptionProps} from './option';
 import {OptionGroup, OptionGroupProps} from './group';
 import type {Select, SelectProps} from './select';
+import {useBaseLabel} from './useBaseLabel';
 
 export function useLabel() {
     const instance = useInstance() as Select;
     const activeIndices = createRef<number[]>([]);
 
-    function getLabel() {
-        const {value, multiple, children} = instance.get();
-
-        if (isNullOrUndefined(value)) return;
-
-        if (!multiple) {
-            return findLabel(children, value);
-        } else {
-            const labels: Children[] = [];
-            value.forEach((value: any) => {
-                const label = findLabel(children, value);
-                if (!isNullOrUndefined(label)) {
-                    labels.push(label);
-                }
-            });
-
-            return labels;
-        }
-    }
+    const {getLabel} = useBaseLabel(
+        () => instance.get('children'),
+        findLabel
+    );
 
     function findLabel(children: Children, value: any) {
         let label: Children = null;
@@ -57,42 +43,8 @@ export function useLabel() {
         };
         loop(children);
 
-        const map = instance.get('labelMap')!;
-        if (isNullOrUndefined(label)) {
-            label = map.get(value);
-        } else {
-            map.set(value, label);
-        }
-
-        label = isEmptyString(label) ? (isStringOrNumber(value) ? value : null) : label;
-
         return label;
     }
-
-    function cleanMap() {
-        const {value, multiple, labelMap} = instance.get() as Required<SelectProps>;
-
-        if (isNullOrUndefined(value)) {
-            labelMap.clear();
-            return;
-        }
-
-        if (multiple) {
-            labelMap.forEach((item, key) => {
-                if (!value.includes(key)) {
-                    labelMap.delete(key);
-                }
-            });
-            return;
-        }
-        labelMap.forEach((item, key) => {
-            if (key !== value) {
-                labelMap.delete(key);
-            }
-        });
-    }
- 
-    instance.watch('value', cleanMap, {inited: true});
 
     return {getLabel, activeIndices};
 }

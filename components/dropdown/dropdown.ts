@@ -19,6 +19,7 @@ import {DropdownMenu} from './menu';
 import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
 import {Portal, PortalProps} from '../portal';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
+import {usePosition} from './usePosition';
 
 export type Position = Options 
 
@@ -111,6 +112,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
     public dropdown: Dropdown | null = null;
     public rootDropdown: Dropdown | null = null;
     public showedDropdown: Dropdown | null = null;
+    public positionHook = usePosition();
 
     private timer: number | undefined = undefined;
     private triggerProps: any = null;
@@ -135,7 +137,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
                 if (this.get('value')) {
                     this.position();
                 }
-            }, {presented: true});
+            }, {presented: true, inited: true});
         });
 
         // if disabled, always set value to false
@@ -178,28 +180,7 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
 
     @bind
     position() {
-        let ofElement: HTMLElement | MouseEvent | undefined; 
-        let _of = this.get('of');
-        if (_of === 'parent') {
-            ofElement = (findDomFromVNode(this.$vNode!, true) as HTMLElement).parentElement!;
-        } else if (_of === 'self') {
-            ofElement = findDomFromVNode(this.$vNode!, true) as HTMLElement;
-        } else {
-            ofElement = _of as MouseEvent | undefined;
-        }
-
-        let feedback: Feedback;
-        position(findDomFromVNode(this.menuVNode!, true) as HTMLElement, {
-            my: 'left top+8',
-            at: 'left bottom',
-            ...this.get('position'),
-            of: ofElement,
-            using: _feedback => {
-                feedback = _feedback;
-            },
-        });
-
-        return feedback!;
+        return this.positionHook.handle();
     }
 
     @bind
