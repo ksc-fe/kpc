@@ -15,7 +15,7 @@ order: 7
 ```vdt
 import {Cascader} from 'kpc/components/cascader';
 
-<Cascader data={this.get('data')} loadData={this.loadData}/>
+<Cascader data={this.get('data')} loadData={this.loadData} />
 ```
 
 ```ts

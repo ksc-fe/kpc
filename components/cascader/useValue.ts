@@ -82,6 +82,10 @@ export function useValue() {
         // no matter which case, we set the last value by level
         const newValue = showedValue.value.slice(0);
         newValue[level] = value;
+        setValue(newValue);
+    }
+
+    function setValue(newValue: Value) {
         if (instance.get('multiple')) {
             values.set([...values.value, newValue]);
         } else {
@@ -89,5 +93,5 @@ export function useValue() {
         }
     }
 
-    return {values, isShowed, isSelected, onSelect, toggleShowedValue};
+    return {values, isShowed, isSelected, onSelect, toggleShowedValue, setValue};
 }

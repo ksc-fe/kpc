@@ -11,7 +11,7 @@ const typeDefs: Required<TypeDefs<OptionGroupProps>> = {
     label: [String, Number, /* VNode */]
 }
 
-export class OptionGroup extends Component {
+export class OptionGroup extends Component<OptionGroupProps> {
     static template = template;
     static typeDefs = typeDefs;
 

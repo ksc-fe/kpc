@@ -5,12 +5,16 @@ import {_$} from '../../i18n';
 import {isNullOrUndefined} from 'intact-shared';
 import {useValue} from './useValue';
 import {useLabel} from './useLabel';
+import {useLoad} from './useLoad';
+import {useFilterable} from './useFilterable';
 
 export interface CascaderProps extends BaseSelectProps {
     data?: CascaderData[]
     trigger?: 'click' | 'hover'
     changeOnSelect?: boolean
     format?: (labels: string[]) => string
+    loadData?: (data: CascaderData) => CascaderData[]
+    filter?: (keywords: string, data: CascaderData) => boolean,
 }
 
 export type CascaderData = {
@@ -27,6 +31,8 @@ const typeDefs: Required<TypeDefs<CascaderProps>> = {
     trigger: ['click', 'hover'],
     changeOnSelect: Boolean,
     format: Function,
+    loadData: Function,
+    filter: Function,
 }
 
 const defaults = (): Partial<CascaderProps> => ({
@@ -34,6 +40,7 @@ const defaults = (): Partial<CascaderProps> => ({
     data: [],
     trigger: 'click',
     format: (labels: string[]) => labels.join(' / '),
+    filter: (keywords: string, data: CascaderData) => data.label.includes(keywords),
 });
 
 export class Cascader extends BaseSelect<CascaderProps> {
@@ -43,6 +50,8 @@ export class Cascader extends BaseSelect<CascaderProps> {
 
     private value = useValue();
     private label = useLabel();
+    private load = useLoad();
+    private filterable = useFilterable(this.input.keywords, this.value.setValue);
     private positionObj = {my: 'left top', at: 'right top', collisionDirection: ['left']};
 
     protected getPlaceholder() {
