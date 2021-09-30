@@ -2,6 +2,8 @@ import {useInstance, findDomFromVNode} from 'intact';
 import type {Dropdown} from './';
 import {Options, position, Feedback} from '../position';
 
+export type FeedbackCallback = (feedback: Feedback) => void;
+
 export function usePosition() {
     const instance = useInstance() as Dropdown;
     const positioned = {value: false}
@@ -11,7 +13,10 @@ export function usePosition() {
     });
 
     // if the dropdown is nested, we must show child after parent has positioned
-    function p(ofElement: HTMLElement | MouseEvent | undefined, parentFeedback: Feedback | null): Feedback {
+    function p(
+        ofElement: HTMLElement | MouseEvent | undefined,
+        parentFeedback: Feedback | null,
+    ): Feedback {
 
         let feedback: Feedback;
         position(findDomFromVNode(instance.menuVNode!, true) as HTMLElement, {
@@ -30,7 +35,7 @@ export function usePosition() {
         return parentFeedback || feedback!;
     }
 
-    function handle(): Feedback | Promise<Feedback> {
+    function handle(callback: FeedbackCallback) {
         const _of = instance.get('of');
 
         if (_of === 'parent') {
@@ -42,23 +47,21 @@ export function usePosition() {
             }
             const ofElement = findDomFromVNode(parent.menuVNode!, true) as HTMLElement;
             if (parent.positionHook.positioned.value) {
-                return p(ofElement, null);
+                callback(p(ofElement, null));
             } else {
                 // wait the parent has positioned
-                return new Promise(resolve => {
-                    const callback = (feedback: Feedback) => {
-                        parent.off('positioned', callback);
-                        // let the child menu has the same transtion with parent menu,
-                        // when them show together
-                        resolve(p(ofElement, feedback));
-                    }
-                    parent.on('positioned', callback);
-                });
+                const fn = (feedback: Feedback) => {
+                    parent.off('positioned', fn);
+                    // let the child menu has the same transtion with parent menu,
+                    // when them show together
+                    callback(p(ofElement, feedback));
+                }
+                parent.on('positioned', fn);
             }
         } else if (_of === 'self') {
-            return p(findDomFromVNode(instance.$vNode!, true) as HTMLElement, null);
+            callback(p(findDomFromVNode(instance.$vNode!, true) as HTMLElement, null));
         } else {
-            return p(_of as MouseEvent | undefined, null);
+            callback(p(_of as MouseEvent | undefined, null));
         }
     }
 

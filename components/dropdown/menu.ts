@@ -5,6 +5,7 @@ import {Dropdown, DROPDOWN} from './dropdown';
 import {useTransition} from './useTransition';
 import {useMenuKeyboard} from './useKeyboard';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
+import {FeedbackCallback} from './usePosition';
 
 export interface DropdownMenuProps { }
 
@@ -17,7 +18,7 @@ export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> exten
     public dropdown: Dropdown = inject(DROPDOWN)!;
     public keyboard = useKeyboardForDropdownMenu(this.dropdown);
 
-    private transition = useTransition(() => this.dropdown.position());
+    private transition = useTransition((callback: FeedbackCallback) => this.dropdown.position(callback));
 
     init() {
         provide(DROPDOWN_MENU, this);

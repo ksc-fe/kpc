@@ -37,11 +37,11 @@ export function createContext<T = any>(defaultValue?: T): {Provider: ProviderCon
 }
 
 function providerTemplate(this: Component) {
-    return this.props.children;
+    return this.$props.children;
 }
 
 function consumertemplate(this: Component & {ref: RefObject<any>}) {
-    return (this.props.children as unknown as Function)(this.ref.value);
+    return (this.$props.children as unknown as Function)(this.ref.value);
 }
 
 // Maybe like legency context api of React

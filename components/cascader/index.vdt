@@ -9,8 +9,8 @@ const classNameObj = {
     [makeMenuStyles()]: true,
 };
 
-const {values, isActive, isSelected, onClickItem, onSelect} = this.value;
-const Options = (data, level, parentShowed, loaded) => {
+const {values, isShowed, isSelected, onSelect, toggleShowedValue} = this.value;
+const Options = (data, level, loaded) => {
     if (!data.length) {
         if (!loaded) {
             return <Icon class="ion-load-c k-cascader-loading" rotate />
@@ -21,29 +21,20 @@ const Options = (data, level, parentShowed, loaded) => {
 
     return data.map((item, index) => {
         const value = item.value;
-        const active = isActive(value, level);
+        const showed = isShowed(value, level);
         const selected = isSelected(value, level);
         const children = item.children;
-        const Item = () => {
-            const events = {
-                'ev-click': onClickItem.bind(null, value, level, !children),
-            };
-            if (trigger === 'hover') {
-                events['ev-mouseenter'] = events['ev-click'];
-            }
-            if (!changeOnSelect) {
-                events['ev-select'] = onSelect;
-            }
 
+        const Item = () => {
             return (
                 <DropdownItem
                     disabled={item.disabled}
                     class={{
                         'k-cascader-option': true,
-                        'k-active': active,
+                        'k-active': showed,
                         'k-selected': selected,
                     }}
-                    {...events}
+                    ev-select={onSelect.bind(null, value, level)}
                 >
                     {item.label}
                     <Icon v-if={children}
@@ -53,8 +44,6 @@ const Options = (data, level, parentShowed, loaded) => {
             );
         };
 
-        const show = parentShowed && active;
-
         return (
             children ?
                 <Dropdown
@@ -62,11 +51,12 @@ const Options = (data, level, parentShowed, loaded) => {
                     of="parent"
                     disabled={item.disabled}
                     trigger={trigger}
-                    value={show}
+                    value={showed}
+                    ev-$changed:value={toggleShowedValue.bind(null, value, level)}
                 >
                     {Item()}
                     <DropdownMenu class={classNameObj}>
-                        {show ? Options(children, level + 1, show, item.loaded) : null}
+                        {showed ? Options(children, level + 1, item.loaded) : null}
                     </DropdownMenu>
                 </Dropdown> :
                 Item()
@@ -77,7 +67,7 @@ const Options = (data, level, parentShowed, loaded) => {
 <t:super>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
-            {Options(data, 0, _show, true)}
+            {Options(data, 0, true)}
         </DropdownMenu>
     </b:base-menu>
 </t:super>

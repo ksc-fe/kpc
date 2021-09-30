@@ -6,25 +6,28 @@ import {
     nextTick,
 } from 'intact';
 import {Feedback} from '../position';
+import type {FeedbackCallback} from './usePosition';
 
-export function useTransition(getFeedback: () => Feedback | Promise<Feedback>) {
+export function useTransition(getFeedback: (callback: FeedbackCallback) => void) {
     let transition = 'k-slidedown';
 
-    async function onEnter(el: TransitionElement, done: Function) {
-        transition = getTransition(await getFeedback());
-        const enterFromClass = `${transition}-enter-from`;
-        const enterActiveClass = `${transition}-enter-active`;
+    function onEnter(el: TransitionElement, done: Function) {
+        getFeedback(feedback => {
+            transition = getTransition(feedback as Feedback);
+            const enterFromClass = `${transition}-enter-from`;
+            const enterActiveClass = `${transition}-enter-active`;
 
-        addTransitionClass(el, enterFromClass);
+            addTransitionClass(el, enterFromClass);
 
-        document.body.offsetWidth;
+            document.body.offsetWidth;
 
-        addTransitionClass(el, enterActiveClass);
-        removeTransitionClass(el, enterFromClass);
+            addTransitionClass(el, enterActiveClass);
+            removeTransitionClass(el, enterFromClass);
 
-        whenTransitionEnds(el, () => {
-            onEnterCancelled(el);
-            done();
+            whenTransitionEnds(el, () => {
+                onEnterCancelled(el);
+                done();
+            });
         });
     }
 
@@ -32,15 +35,17 @@ export function useTransition(getFeedback: () => Feedback | Promise<Feedback>) {
         removeTransitionClass(el, `${transition}-enter-active`);
     }
 
-    async function onLeave(el: TransitionElement, done: Function) {
+    function onLeave(el: TransitionElement, done: Function) {
         // maybe the position has changed, so we re-get it
-        transition = getTransition(await getFeedback());
-        addTransitionClass(el, `${transition}-leave-to`);
-        addTransitionClass(el, `${transition}-leave-active`);
+        getFeedback(feedback => {
+            transition = getTransition(feedback);
+            addTransitionClass(el, `${transition}-leave-to`);
+            addTransitionClass(el, `${transition}-leave-active`);
 
-        whenTransitionEnds(el, () => {
-            onLeaveCancelled(el);
-            done();
+            whenTransitionEnds(el, () => {
+                onLeaveCancelled(el);
+                done();
+            });
         });
     }
 

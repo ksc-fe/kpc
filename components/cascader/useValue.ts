@@ -2,7 +2,7 @@ import {useInstance} from 'intact';
 import type {Cascader} from './';
 import {useState, watchState} from '../../hooks/useState';
 import {isNullOrUndefined} from 'intact-shared';
-import {isEqualArray} from '../utils';
+import {isEqualArray, last} from '../utils';
 
 // treat as string
 type Value = string[];
@@ -12,7 +12,7 @@ export function useValue() {
     const instance = useInstance() as Cascader;
     // Normalize the value to multipe values, no matter it's multipe or not
     const values = useState<Values>([]);
-    const tmpValue = useState<Value>([]);
+    const showedValue = useState<Value>([]);
 
     instance.watch('value', (value: Value | Values | undefined, oldValue: Value | Values | undefined) => {
         const {multiple} = instance.get();
@@ -36,8 +36,14 @@ export function useValue() {
         }
     });
 
-    function isActive(value: string, level: number): boolean {
-        return tmpValue.value[level] === value;
+    instance.watch('_show', value => {
+        if (value) {
+            showedValue.set(last(values.value) || []);
+        }
+    });
+
+    function isShowed(value: string, level: number): boolean {
+        return showedValue.value[level] === value;
     }
 
     function isSelected(value: string, level: number): boolean {
@@ -46,27 +52,42 @@ export function useValue() {
         }) > -1;
     }
 
-    function onClickItem(value: string, level: number, isLeaf: boolean) {
-        const _value = tmpValue.value.slice(0, level + 1);
-        if (!isLeaf && _value[level] === value) {
-            _value.splice(level, 1);
-        } else {
-            _value[level] = value;
-        }
-        tmpValue.set(_value);
+    function onSubDropdownShow(value: string, level: number) {
+        const _value = showedValue.value.slice(0, level);
+        _value[level] = value;
+        showedValue.set(_value);
 
         if (instance.get('changeOnSelect')) {
-            onSelect();
+            onSelect(value, level);
         }
     }
 
-    function onSelect() {
-        if (instance.get('multiple')) {
-            values.set([...values.value, tmpValue.value]);
+    function onSubDropdownHide(value: string, level: number) {
+        if (showedValue.value[level] !== value) return;
+        const _value = showedValue.value.slice(0, level);
+        showedValue.set(_value);
+    }
+
+    function toggleShowedValue(value: string, level: number, showed: boolean) {
+        if (showed) {
+            onSubDropdownShow(value, level);
         } else {
-            values.set([tmpValue.value]);
+            onSubDropdownHide(value, level);
         }
     }
 
-    return {values, isActive, isSelected, onClickItem, onSelect};
+    function onSelect(value: string, level: number) {
+        // maybe the showedValue has the leaf value when we set it on show menu,
+        // if we select by clicking, the showedValue has not the leaf value,
+        // no matter which case, we set the last value by level
+        const newValue = showedValue.value.slice(0);
+        newValue[level] = value;
+        if (instance.get('multiple')) {
+            values.set([...values.value, newValue]);
+        } else {
+            values.set([newValue]);
+        }
+    }
+
+    return {values, isShowed, isSelected, onSelect, toggleShowedValue};
 }

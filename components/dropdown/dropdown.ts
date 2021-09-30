@@ -12,14 +12,14 @@ import {
     nextTick,
 } from 'intact';
 import {bind, isTextChildren} from '../utils';
-import {EMPTY_OBJ, isFunction} from 'intact-shared';
+import {EMPTY_OBJ, isFunction, noop} from 'intact-shared';
 import {Options, position, Feedback} from '../position';
 import {cx} from '@emotion/css';
 import {DropdownMenu} from './menu';
 import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
 import {Portal, PortalProps} from '../portal';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
-import {usePosition} from './usePosition';
+import {usePosition, FeedbackCallback} from './usePosition';
 
 export type Position = Options 
 
@@ -179,8 +179,8 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
     }
 
     @bind
-    position() {
-        return this.positionHook.handle();
+    position(callback: FeedbackCallback = noop) {
+        return this.positionHook.handle(callback);
     }
 
     @bind

@@ -72,7 +72,9 @@ export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> exten
         // and the menu will hide, because it can't detect it contains
         // the removed item.
         // Set the ignore flag to prevent menu from hidding
-        (e as IgnoreClickEvent)._ignore = true;
+        // 
+        // @Change Cascader need click item to toggle show an hide
+        // (e as IgnoreClickEvent)._ignore = true;
         this.trigger('click', e);
         this.select();
     }
