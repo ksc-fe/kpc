@@ -8,8 +8,8 @@ export function usePosition() {
     const instance = useInstance() as Dropdown;
     const positioned = {value: false}
 
-    instance.on('$change:value', (value) => {
-        if (!value) {
+    instance.watch('value', (value) => {
+        if (value) {
             positioned.value = false;
         }
     });
@@ -19,7 +19,6 @@ export function usePosition() {
         ofElement: HTMLElement | MouseEvent | undefined,
         parentFeedback: Feedback | null,
     ): Feedback {
-
         let feedback: Feedback;
         position(findDomFromVNode(instance.menuVNode!, true) as HTMLElement, {
             my: 'left top+8',
