@@ -8,8 +8,10 @@ export function usePosition() {
     const instance = useInstance() as Dropdown;
     const positioned = {value: false}
 
-    instance.on('hide', () => {
-        positioned.value = false;
+    instance.on('$change:value', (value) => {
+        if (!value) {
+            positioned.value = false;
+        }
     });
 
     // if the dropdown is nested, we must show child after parent has positioned

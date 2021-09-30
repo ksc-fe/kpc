@@ -7,7 +7,6 @@ const {cascader} = deepDefaults(theme, {
     cascader: {
         width: '140px',
         height: '160px',
-        get highlightColor() { return theme.color.danger },
         loadingGap: '20px',
         arrowGap: '8px',
         get selectedColor() { return theme.color.primary },
@@ -18,6 +17,13 @@ const {cascader} = deepDefaults(theme, {
             padding: `16px`,
             get color() { return theme.color.placeholder },
         },
+
+        // filter
+        filter: {
+            get highlightColor() { return theme.color.danger },
+            minWidth: '300px',
+            maxHeight: '200px',
+        }
     }
 });
 
@@ -52,5 +58,17 @@ export function makeMenuStyles() {
                 background: ${cascader.activeBgColor};
             }
         }
-    ` 
+    `; 
+}
+
+export function makeFilterMenuStyles() {
+    return css`
+        min-width: ${cascader.filter.minWidth} !important;
+        height: auto;
+        max-height: ${cascader.filter.maxHeight};
+        em {
+            font-style: normal;
+            color: ${cascader.filter.highlightColor};
+        }
+    `;
 }

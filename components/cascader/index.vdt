@@ -1,12 +1,13 @@
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Icon} from '../icon';
 import {_$} from '../../i18n';
-import {makeMenuStyles} from './styles';
+import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 
 const {data, trigger, filterable} = this.get();
+const baseMenuStyles = makeMenuStyles();
 const classNameObj = {
     'k-cascader-menu': true,
-    [makeMenuStyles()]: true,
+    [baseMenuStyles]: true,
 };
 
 const {values, isShowed, isSelected, onSelect, toggleShowedValue} = this.value;
@@ -79,6 +80,8 @@ const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
             key="filter"
             class={{
                 'k-cascader-filter': true,
+                [baseMenuStyles]: true,
+                [makeFilterMenuStyles()]: true,
             }}
         >
             {(() => {
