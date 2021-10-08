@@ -43,8 +43,12 @@ export function useKeyboard(options: Options) {
         }
     };
 
-    const removeEventListener = () => document.removeEventListener('keydown', onKeydown);
-    const addEventListener = () => document.addEventListener('keydown', onKeydown);
+    const removeEventListener = () => {
+        document.removeEventListener('keydown', onKeydown);
+    };
+    const addEventListener = () => {
+        document.addEventListener('keydown', onKeydown);
+    };
     onUnmounted(removeEventListener);
 
     return [addEventListener, removeEventListener, (v: boolean) => locked = v] as const;
