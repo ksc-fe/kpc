@@ -87,7 +87,10 @@ export function useValue() {
 
     function setValue(newValue: Value) {
         if (instance.get('multiple')) {
-            values.set([...values.value, newValue]);
+            const oldValue = values.value;
+            // ignore the same value
+            if (oldValue.find(value => isEqualArray(value, newValue))) return;
+            values.set([...oldValue, newValue]);
         } else {
             values.set([newValue]);
         }
