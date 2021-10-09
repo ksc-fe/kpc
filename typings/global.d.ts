@@ -3,7 +3,7 @@ declare module "*.vdt" {
 
     const template: Template;
 
-    export = template
+    export = template 
 }
 
 declare module "*.eot" {}
@@ -18,4 +18,8 @@ namespace Chai {
     interface Assertion {
         matchSnapshot(): Assertion
     }
+}
+
+declare module 'mxgraphx' {
+    export = any
 }

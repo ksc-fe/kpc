@@ -9553,6 +9553,11 @@ mute-stream@0.0.8, mute-stream@~0.0.4:
   resolved "https://registry.npm.taobao.org/mute-stream/download/mute-stream-0.0.8.tgz#1630c42b2251ff81e2a283de96a5497ea92e5e0d"
   integrity sha1-FjDEKyJR/4HiooPelqVJfqkuXg0=
 
+mxgraph@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.nlark.com/mxgraph/download/mxgraph-4.2.2.tgz#52336443f10ab1039be79cc3fdd2eb8c00c91ba2"
+  integrity sha1-UjNkQ/EKsQOb55zD/dLrjADJG6I=
+
 mxgraphx@^4.0.7:
   version "4.0.7"
   resolved "https://registry.nlark.com/mxgraphx/download/mxgraphx-4.0.7.tgz#5a904654916b883ff4246af8ad5edfe3e924ff74"

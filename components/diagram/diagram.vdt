@@ -1,0 +1,15 @@
+import {getRestProps} from '../utils';
+
+const {className, children} = this.get();
+const classNameObj = {
+    'k-diagram': true,
+    [className]: className,
+
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-diagram-scheme">
+        {children}
+    </div>
+    <div class="k-diagram-canvas" ref={this.canvasRef}></div>
+</div>

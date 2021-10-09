@@ -194,6 +194,7 @@
     "intact-react": "^1.1.30",
     "intact-vue": "^1.0.0",
     "monaco-editor": "^0.26.1",
+    "mxgraph": "^4.2.2",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.0",
     "tinycolor2": "^1.4.1"
