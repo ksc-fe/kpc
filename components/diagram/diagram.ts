@@ -5,6 +5,8 @@ import mx from './mxgraph';
 import {bind} from '../utils';
 import {DIAGRAM} from './constants';
 import type {DShape} from './shapes/shape';
+import type {DLine} from './shapes/line';
+import type {DLayout} from './layouts/layout';
 import {error, isNullOrUndefined} from 'intact-shared';
 
 const {mxRubberband, mxEvent} = mx;
@@ -14,13 +16,13 @@ type StateCallback = (this: any, cell: any) => boolean;
 export class Diagram extends Component {
     static template = template;
 
-    private shapes: Map<Key, DShape> = new Map();
-    private lines = [];
-    private layouts = [];
-    private canvasRef = createRef<HTMLDivElement>();
-
     public graph: any;
     public cell: any;
+
+    public shapes: Map<Key, DShape> = new Map();
+    private lines: Set<DLine> = new Set(); 
+    private layouts: Set<DLayout> = new Set();
+    private canvasRef = createRef<HTMLDivElement>();
 
     // save the orignal function, because we will change them
     private isCellSelectable!: StateCallback;
@@ -57,6 +59,10 @@ export class Diagram extends Component {
         this.draw();
     }
 
+    updated() {
+        this.draw();
+    }
+
     beforeUnmount() {
         this.canvasRef.value!.removeAttribute('style');
         this.graph.destroy();
@@ -79,6 +85,22 @@ export class Diagram extends Component {
     public deleteShape(shape: DShape) {
         const {key} = shape.get();
         this.shapes.delete(isNullOrUndefined(key) ? shape.uniqueId : key);
+    }
+
+    public addLine(line: DLine) {
+        this.lines.add(line);
+    }
+
+    public deleteLine(line: DLine) {
+        this.lines.delete(line);
+    }
+
+    public addLayout(layout: DLayout) {
+        this.layouts.add(layout);
+    }
+
+    public deleteLayout(layout: DLayout) {
+        this.layouts.delete(layout);
     }
 
     @bind
@@ -112,19 +134,14 @@ export class Diagram extends Component {
                 shape.draw();
             });
             // we render lines after all vertexes has rendered
-            // this.lines.forEach(line => {
-                // line.draw();
-            // });
+            this.lines.forEach(line => {
+                line.draw();
+            });
 
             // render layout
-            // we must render parent firstly, because layouts may be nested
-            // for (let i = this.layouts.length - 1; i >= 0; i--) {
-                // this.layouts[i].draw();
-            // }
-            // this.layouts.forEach(layout => {
-                // layout.draw();
-            // });
-            // this.lines.forEach(line => line._setStyle());
+            this.layouts.forEach(layout => {
+                layout.draw();
+            });
         } finally {
             model.endUpdate();
         }

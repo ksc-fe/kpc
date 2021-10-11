@@ -9,63 +9,54 @@ import {
     isComponentClass,
     provide,
     inject,
-    onMounted,
+    VNodeComponentClass,
 } from 'intact';
 import {mapChildren, ValidVNode} from '../../utils';
 import mx from '../mxgraph';
-import {isStringOrNumber} from 'intact-shared';
+import {isStringOrNumber, isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
 import {DIAGRAM, SHAPE} from '../constants';
 import type {Diagram} from '../diagram';
-import {useCell} from './useCell';
+import {DBase, DBaseProps} from './base';
 
 const {mxCell, mxGeometry} = mx;
 
-export interface DShapeProps {
-    strokeStyle?: 'solid' | 'dashed' | 'dotted'
-    label?: string | number
+export interface DShapeProps extends DBaseProps {
     left?: string | number
     top?: string | number
     width?: string | number
     height?: string | number
-    style?: Record<string, string | number>
     movable?: boolean
     selectable?: boolean
     resizable?: boolean
     rotatable?: boolean
     editable?: boolean
     connectable?: boolean
-    data?: any
 }
 
 const strOrNum = [String, Number];
 const typeDefs: Required<TypeDefs<DShapeProps>> = {
-    strokeStyle: ['solid', 'dashed', 'dotted'],
-    label: strOrNum,
+    ...DBase.typeDefs,
     left: strOrNum,
     top: strOrNum,
     width: strOrNum,
     height: strOrNum,
-    style: Object,
     movable: Boolean,
     selectable: Boolean,
     resizable: Boolean,
     rotatable: Boolean,
     editable: Boolean,
     connectable: Boolean,
-    data: null,
 };
 
 const defaults = (): Partial<DShapeProps> => ({
-    strokeStyle: 'solid',
+    ...DBase.defaults(),
     left: 0,
     top: 0,
     width: 0,
     height: 0,
 });
 
-let uniqueId = 0;
-
-export abstract class DShape<P extends DShapeProps = DShapeProps> extends Component<P> {
+export abstract class DShape<P extends DShapeProps = DShapeProps> extends DBase<P> {
     static template = function(this: DShape) {
         let children: Children = this.children;
         if (children && children.length) {
@@ -77,13 +68,9 @@ export abstract class DShape<P extends DShapeProps = DShapeProps> extends Compon
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    public wrapperRef = createRef<HTMLDivElement>();
-    public hasElement: boolean = false;
-    public uniqueId = uniqueId++;
-
+    private wrapperRef = createRef<HTMLDivElement>();
+    private hasElement: boolean = false;
     private children: ValidVNode[] | null = null;
-    private cell = useCell();
-    private diagram = inject<Diagram>(DIAGRAM)!;
     private parent = inject<DShape | null>(SHAPE, null);
 
     init() {
@@ -105,32 +92,52 @@ export abstract class DShape<P extends DShapeProps = DShapeProps> extends Compon
         });
     }
 
-    public getCell() {
-        return this.cell.getCell();
+    updated() {
+        const model = this.diagram.graph.model;
+        const geo = this.getGeometry();
+        model.setGeometry(this.cell, geo);
     }
 
-    public draw() {
-        const {getCell, diagram, setStyle} = this.cell;
-        const cell = getCell();
-        const parentCell = this.parent ? this.parent.getCell() : diagram.cell;
+    beforeUnmount() {
+        const graph = this.diagram.graph;
+        this.deleteFromDiagram();
+        graph.removeCells([this.cell], false);
+    }
+
+    protected startDraw() {
+        const diagram = this.diagram;
+        const cell = this.cell!;
+        const parentCell = this.parent ? this.parent.cell : diagram.cell;
 
         cell.vertex = true;
-        setStyle();
+        this.setStyle();
         diagram.graph.addCell(cell, parentCell); 
     }
 
-    public addToDigram() {
-        this.cell.diagram.addShape(this);
+    protected addToDigram() {
+        this.diagram.addShape(this);
     }
 
-    public deleteFromDiagram() {
-        this.cell.diagram.deleteShape(this);
+    protected deleteFromDiagram() {
+        this.diagram.addShape(this);
     }
 
-    public abstract getStylesheet(): string;
-
-    public getGeometry() {
+    protected getGeometry() {
         const {width, height, top, left} = this.get();
         return new mxGeometry(+left!, +top!, +width!, +height!);
     } 
+
+    protected getValue() {
+        const {label} = this.get();
+        return isNullOrUndefined(label) ?
+            this.hasElement && this.wrapperRef.value || null :
+            String(label);
+    }
+
+    protected setStyle() {
+        // if hasElement, disable edit
+        this.diagram.graph.setCellStyles('editable', this.hasElement ? 0 : 1, [this.cell]);
+
+        super.setStyle();
+    }
 }
