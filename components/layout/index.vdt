@@ -1,0 +1,19 @@
+import {EMPTY_OBJ} from 'intact-shared';
+import {getRestProps} from '../utils';
+import makeStyles from './styles';
+import {Layout} from './layout'
+
+const {className, children} = this.get();
+
+const __className = this.className ? this.className.value : EMPTY_OBJ;
+
+const classNameObj = {
+    ...this.defaultClassName,
+    ...__className,
+    [className]: className,
+    [makeStyles()]: this.$vNode.tag === Layout
+};
+
+<div class={classNameObj}
+    {...getRestProps(this)}
+>{children}</div>
