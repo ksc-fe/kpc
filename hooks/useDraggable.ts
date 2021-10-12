@@ -2,7 +2,7 @@ import {createRef, onUnmounted} from 'intact';
 import {useState} from './useState';
 
 export type Options = {
-    onStart: (e: MouseEvent) => void,
+    onStart?: (e: MouseEvent) => void,
     onMove: (e: MouseEvent) => void,
     onEnd?: (e: MouseEvent) => void,
 }
@@ -16,7 +16,9 @@ export function useDraggable(options: Options) {
 
         dragging.set(true);
 
-        options.onStart(e);
+        if (options.onStart) {
+            options.onStart(e);
+        }
 
         document.addEventListener('mousemove', move);
         document.addEventListener('mouseup', end);

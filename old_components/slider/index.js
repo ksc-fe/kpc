@@ -91,7 +91,7 @@ export default class Slider extends Intact {
             }
         });
 
-        // trigger change event expect dragging
+        // trigger change event except for dragging
         // we will also trigger the event on keyup and dragend
         this.on('$change:value', (c, v) => {
             if (!this.get('_isDragging')) {

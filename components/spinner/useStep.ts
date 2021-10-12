@@ -1,21 +1,29 @@
-import {useInstance, createRef} from 'intact';
-import type {Spinner, SpinnerProps, StepObject, StepFunction} from './';
+import {useInstance, Component} from 'intact';
+import type {StepObject, StepFunction} from './';
 import {isUndefined} from 'intact-shared';
 
 type Direction = 'increase' | 'decrease';
 type GetStep = (value: number, direction?: Direction) => [number, number?] | number
 export type NormalizedGetStep = (value: number, direction?: Direction) => [number, number];
 
-export function useStep(defaultStep: number) {
-    const instance = useInstance() as Spinner;
-    const step = createRef<NormalizedGetStep>(() => {
+interface StepComponentProps {
+    step?: number | StepObject | StepFunction
+    min?: number
+    max?: number
+}
+
+interface StepComponent extends Component<StepComponentProps> { }
+
+export function useStep<T extends StepComponent>(defaultStep: number) {
+    const instance = useInstance() as T;
+    let step: NormalizedGetStep = () => {
         const {step, min} = instance.get();
         return [step as number, min as number];
-    });
+    };
 
     instance.on('$receive:step', (v) => {
         const getStep = parseStep(v, defaultStep);
-        step.value = (value: number, direction?: Direction) => {
+        step = (value: number, direction?: Direction) => {
             const step = getStep(value, direction);
             const min = instance.get('min')!;
             if (Array.isArray(step)) {
@@ -26,10 +34,10 @@ export function useStep(defaultStep: number) {
         }
     });
 
-    return step;
+    return (value: number, direction?: Direction) => step(value, direction);
 }
 
-function parseStep(step: SpinnerProps['step'], defaultValue: number): GetStep {
+function parseStep(step: StepComponentProps['step'], defaultValue: number): GetStep {
     const type = typeof step;
     switch (type) {
         case 'number': return () => step as number;

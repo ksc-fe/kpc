@@ -1,4 +1,4 @@
-import {useInstance, RefObject} from 'intact';
+import {useInstance} from 'intact';
 import type {Spinner} from './';
 import {useReceive} from '../../hooks/useReceive';
 import {NormalizedGetStep} from './useStep';
@@ -9,7 +9,7 @@ import {useState} from '../../hooks/useState';
 // const numberReg = /^(-|\+)?\d+(\.(\d+)?)?$/;
 
 export function useValue(
-    getStep: RefObject<NormalizedGetStep>,
+    getStep: NormalizedGetStep,
     formatter: ReturnType<typeof useFormatter>,
 ) {
     const instance = useInstance() as Spinner;
@@ -39,7 +39,7 @@ export function useValue(
             value = fallbackValue;
         }
 
-        const [step, min] = getStep.value!(value);
+        const [step, min] = getStep(value);
 
         if (min > max!) {
             if (process.env.NODE_ENV !== 'production') {

@@ -57,26 +57,26 @@ const defaults = (): Partial<SpinnerProps> => ({
     size: 'default'
 });
 
-export class Spinner <T extends SpinnerProps = SpinnerProps> extends Component<T> {
+export class Spinner<T extends SpinnerProps = SpinnerProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private step = useStep(defaultStep);
+    private step = useStep<Spinner>(defaultStep);
     private formatter = useFormatter();
     private value = useValue(this.step, this.formatter);
 
     @bind
     private increase(): void {
         const {value} = this.get();
-        const [step] = this.step.value!(value!, 'increase');
+        const [step] = this.step(value!, 'increase');
         this.value.fixValue(Number((value! + step).toFixed(10)), 0);
     }
 
     @bind
     private decrease(): void {
         const {value} = this.get();
-        const [step] = this.step.value(value!, 'decrease');
+        const [step] = this.step(value!, 'decrease');
         this.value.fixValue(Number((value! - step).toFixed(10)), 0);
     }
 

@@ -1,0 +1,56 @@
+import {Spinner} from '../spinner';
+import {Tooltip} from '../tooltip';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+
+const {
+    disabled, className, max,
+    min, unit, isShowInput,
+    isRange, step, value,
+    spinnerProps
+} = this.get();
+const {onStart, trackRef, dragging} = this.draggable;
+
+const classNameObj = {
+    'k-slider': true,
+    'k-disabled': disabled,
+    'k-dragging': dragging.value,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+const {barStyle, thumbFirstStyle, thumbSecondStyle} = this.styles();
+const {onSpinnerChange} = this.value;
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-slider-main">
+        <div class="k-slider-track-wrapper">
+            <div class="k-slider-track" ref={trackRef}>
+                <div class="k-slider-bar" style={barStyle}></div>
+                <div class="k-slider-thumb-wrapper" style={thumbFirstStyle}>
+                    <div class="k-slider-thumb"
+                        tabindex={disabled ? '-1' : '0'}
+                        ev-mousedown={onStart.bind(null, true)} 
+                    ></div>
+                </div>
+            </div>
+        </div>
+        <div class="k-slider-ends">
+            <span>{min + unit}</span>
+            <span>{max + unit}</span>
+        </div>
+    </div>
+    <div class="k-slider-spinner" v-if={isShowInput && !isRange}>
+        <Spinner
+            disabled={disabled}
+            max={max}
+            min={min}
+            step={step}
+            vertical
+            value={value}
+            suffix={unit}
+            ev-$change:value={onSpinnerChange}
+            {...spinnerProps}
+        />
+    </div>
+</div>
