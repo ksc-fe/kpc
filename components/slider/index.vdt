@@ -64,7 +64,7 @@ const {onClickTrack, setOneValue} = this.click;
             disabled={disabled}
             max={max}
             min={min}
-            step={step}
+            step={step || 0.01}
             vertical
             value={value}
             suffix={unit}

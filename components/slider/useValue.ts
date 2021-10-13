@@ -14,6 +14,7 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     const showValue = useState<Value>(instance.get('value')!, isEqualValue);
 
     useReceive<Slider>(['min', 'max', 'step', 'value'], () => {
+        if (getDragging()) return;
         fixValue(instance.get('value')!, true);
     });
 
