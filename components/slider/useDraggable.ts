@@ -8,12 +8,14 @@ export function useDraggable(
     showValue: State<Value>,
     getFixedValue: (value: Value) => Value,
     setValue: (value: Value) => void,
+    triggerChangeEvent: (value: Value) => void,
 ) {
     const instance = useInstance() as Slider;
     const trackRef = createRef<HTMLDivElement>();
     const firstThumbRef = createRef<HTMLDivElement>();
     const secondThumbRef = createRef<HTMLDivElement>();
     let isFirst = true;
+    let oldValue: Value;
 
     const {start, dragging} = useBaseDraggable({
         onMove(e) {
@@ -26,13 +28,18 @@ export function useDraggable(
         onEnd(e) {
             (isFirst ? firstThumbRef.value : secondThumbRef.value)!.blur();
             showValue.set(instance.get('value')!);
+            triggerChangeEvent(oldValue);
         }
     });
 
-    function onStart(_isFirst: boolean, e: MouseEvent) {
+    function onStart(e: MouseEvent) {
         if (instance.get('disabled')) return;
 
-        isFirst = _isFirst;
+        // remain the old value to detect whether it changed to trigger change event
+        oldValue = instance.get('value')!;
+
+        // use Focusin to set the flag, because it will be used on operating by keyboard
+        // isFirst = _isFirst;
 
         start(e);
     }
@@ -81,5 +88,18 @@ export function useDraggable(
         }
     }
 
-    return {onStart, dragging, trackRef, firstThumbRef, secondThumbRef};
+    function onFocusin(_isFirst: boolean) {
+        isFirst = _isFirst;
+    }
+
+    return {
+        onStart,
+        dragging,
+        trackRef,
+        firstThumbRef,
+        secondThumbRef,
+        isFirst: () => isFirst,
+        onFocusin,
+        getNewValue,
+    };
 }

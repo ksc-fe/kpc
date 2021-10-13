@@ -8,7 +8,7 @@ order: 3
 ```vdt
 import {Slider} from 'kpc/components/slider';
 
-<Slider isRange v-model="values" />
+<Slider isRange v-model="values" ev-change={(v) => console.log(v)}/>
 ```
 
 ```ts

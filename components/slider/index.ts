@@ -6,6 +6,7 @@ import {useStep} from '../spinner/useStep';
 import {useValue} from './useValue';
 import {useDraggable} from './useDraggable';
 import {useStyles} from './useStyles';
+import {useKeyboard} from './useKeyboard';
 
 export interface SliderProps {
     max?: number
@@ -64,11 +65,22 @@ export class Slider extends Component<SliderProps> {
     static defaults = defaults;
 
     private step = useStep<Slider>(defaultStep);
-    private value = useValue(this.step);
+    private value = useValue(this.step, () => this.draggable.dragging.value);
     private draggable = useDraggable(
         this.value.showValue,
         this.value.getFixedValue,
         this.value.setValue,
+        this.value.triggerChangeEvent,
     );
     private styles = useStyles(this.value.showValue);
+    private keyboard = useKeyboard(
+        this.value.showValue,
+        this.step,
+        this.draggable.getNewValue,
+        this.value.getFixedValue,
+        this.value.setValue,
+        this.draggable.isFirst,
+        this.draggable.dragging,
+        this.value.triggerChangeEvent,
+    );
 }

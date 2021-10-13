@@ -9,12 +9,17 @@ import {useState} from '../../hooks/useState';
 
 export type Value = number | [number, number];
 
-export function useValue(getStep: NormalizedGetStep) {
+export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean) {
     const instance = useInstance() as Slider;
     const showValue = useState<Value>(instance.get('value')!, isEqualValue);
 
     useReceive<Slider>(['min', 'max', 'step', 'value'], () => {
         fixValue(instance.get('value')!);
+    });
+
+    instance.on('$change:value', (newValue, oldValue) => {
+        if (getDragging()) return;
+        instance.trigger('change', newValue, oldValue);
     });
 
     function isEqualValue(newValue: Value, oldValue: Value) {
@@ -69,5 +74,12 @@ export function useValue(getStep: NormalizedGetStep) {
         instance.set({value: v});
     }
 
-    return {showValue, getFixedValue, onSpinnerChange, setValue};
+    function triggerChangeEvent(oldValue: Value) {
+        const {value} = instance.get();
+        if (isEqualValue(value!, oldValue)) return;
+
+        instance.trigger('change', value!, oldValue);
+    }
+
+    return {showValue, getFixedValue, onSpinnerChange, setValue, triggerChangeEvent};
 }

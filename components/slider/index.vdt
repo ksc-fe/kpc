@@ -9,7 +9,11 @@ const {
     isRange, step, value,
     spinnerProps
 } = this.get();
-const {onStart, trackRef, dragging, firstThumbRef, secondThumbRef} = this.draggable;
+const {
+    onStart, trackRef, dragging,
+    firstThumbRef, secondThumbRef,
+    onFocusin
+} = this.draggable;
 
 const classNameObj = {
     'k-slider': true,
@@ -21,12 +25,16 @@ const classNameObj = {
 
 const {barStyle, thumbFirstStyle, thumbSecondStyle} = this.styles();
 const {onSpinnerChange} = this.value;
+const {onKeydown, onKeyup} = this.keyboard;
 const createThumb = (thumbStyle, isFirst, ref) => {
     return (
        <div class="k-slider-thumb-wrapper" style={thumbStyle}>
             <div class="k-slider-thumb"
                 tabindex={disabled ? '-1' : '0'}
-                ev-mousedown={onStart.bind(null, isFirst)} 
+                ev-mousedown={onStart} 
+                ev-focusin={onFocusin.bind(null, isFirst)}
+                ev-keydown={onKeydown}
+                ev-keyup={onKeyup}
                 ref={ref}
             ></div>
         </div>
