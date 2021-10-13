@@ -14,7 +14,7 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     const showValue = useState<Value>(instance.get('value')!, isEqualValue);
 
     useReceive<Slider>(['min', 'max', 'step', 'value'], () => {
-        fixValue(instance.get('value')!);
+        fixValue(instance.get('value')!, true);
     });
 
     instance.on('$change:value', (newValue, oldValue) => {
@@ -26,9 +26,9 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
         return newValue === oldValue || isEqualArray(newValue, oldValue);
     }
 
-    function fixValue(value: Value) {
+    function fixValue(value: Value, fixShowValue: boolean) {
         const fixedValue = getFixedValue(value); 
-        showValue.set(fixedValue);
+        showValue.set(fixShowValue ? fixedValue: value);
         setValue(fixedValue);
     }
 
@@ -81,5 +81,11 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
         instance.trigger('change', value!, oldValue);
     }
 
-    return {showValue, getFixedValue, onSpinnerChange, setValue, triggerChangeEvent};
+    return {
+        showValue,
+        onSpinnerChange,
+        setValue,
+        triggerChangeEvent,
+        fixValue,
+    };
 }

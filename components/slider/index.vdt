@@ -1,3 +1,4 @@
+import {linkEvent} from 'intact';
 import {Spinner} from '../spinner';
 import {Tooltip} from '../tooltip';
 import {getRestProps} from '../utils';
@@ -32,7 +33,7 @@ const createThumb = (thumbStyle, isFirst, ref) => {
             <div class="k-slider-thumb"
                 tabindex={disabled ? '-1' : '0'}
                 ev-mousedown={onStart} 
-                ev-focusin={onFocusin.bind(null, isFirst)}
+                ev-focusin={linkEvent(isFirst, onFocusin)}
                 ev-keydown={onKeydown}
                 ev-keyup={onKeyup}
                 ref={ref}
@@ -41,18 +42,21 @@ const createThumb = (thumbStyle, isFirst, ref) => {
     );
 };
 
+const {onClickTrack, setOneValue} = this.click;
 <div class={classNameObj} {...getRestProps(this)}>
     <div class="k-slider-main">
-        <div class="k-slider-track-wrapper">
+        <div class="k-slider-track-wrapper" ev-click={onClickTrack}>
             <div class="k-slider-track" ref={trackRef}>
                 <div class="k-slider-bar" style={barStyle}></div>
-                <template>{createThumb(thumbFirstStyle, true, firstThumbRef)}</template>
-                <template v-if={isRange}>{createThumb(thumbSecondStyle, false, secondThumbRef)}</template>
+                {createThumb(thumbFirstStyle, true, firstThumbRef)}
+                <template v-if={isRange}>
+                    {createThumb(thumbSecondStyle, false, secondThumbRef)}
+                </template>
             </div>
         </div>
         <div class="k-slider-ends">
-            <span>{min + unit}</span>
-            <span>{max + unit}</span>
+            <span ev-click={linkEvent(min, setOneValue)}>{min + unit}</span>
+            <span ev-click={linkEvent(max, setOneValue)}>{max + unit}</span>
         </div>
     </div>
     <div class="k-slider-spinner" v-if={isShowInput && !isRange}>

@@ -5,11 +5,9 @@ import type {Value} from './useValue';
 import type {State} from '../../hooks/useState';
 
 export function useKeyboard(
-    showValue: State<Value>,
     getStep: NormalizedGetStep,
     getNewValue: (value: number) => Value,
-    getFixedValue: (value: Value) => Value,
-    setValue: (value: Value) => void,
+    fixValue: (value: Value, fixShowValue: boolean) => void,
     isFirst: () => boolean,
     dragging: State<boolean>,
     triggerChangeEvent: (value: Value) => void,
@@ -41,9 +39,7 @@ export function useKeyboard(
         // disable transition
         dragging.set(true);
 
-        const fixedValue = getFixedValue(getNewValue(value));
-        showValue.set(fixedValue);
-        setValue(fixedValue);
+        fixValue(getNewValue(value), true);
     }
 
     function onKeyup({keyCode}: KeyboardEvent) {

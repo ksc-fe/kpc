@@ -6,8 +6,7 @@ import type {Value} from './useValue';
 
 export function useDraggable(
     showValue: State<Value>,
-    getFixedValue: (value: Value) => Value,
-    setValue: (value: Value) => void,
+    fixValue: (value: Value, fixShowValue: boolean) => void,
     triggerChangeEvent: (value: Value) => void,
 ) {
     const instance = useInstance() as Slider;
@@ -20,9 +19,7 @@ export function useDraggable(
     const {start, dragging} = useBaseDraggable({
         onMove(e) {
             const tempValue = getNewValue(getSlidingValue(e.clientX));
-            const fixedValue = getFixedValue(tempValue);
-            showValue.set(tempValue);
-            setValue(fixedValue);
+            fixValue(tempValue, false);
         },
 
         onEnd(e) {
@@ -101,5 +98,6 @@ export function useDraggable(
         isFirst: () => isFirst,
         onFocusin,
         getNewValue,
+        getSlidingValue,
     };
 }
