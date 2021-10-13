@@ -18,6 +18,8 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
+import {bind} from 'kpc/components/utils';
+
 export default class extends Component {
     static template = template;
 
@@ -30,6 +32,7 @@ export default class extends Component {
         }
     }
 
+    @bind
     _changeRange() {
         const max = Math.floor(Math.random() * 100);
         const min = Math.floor(Math.random() * max);

@@ -116,5 +116,30 @@ export function makeStyles() {
                 transition: none;
             }
         }
+
+        // disabled
+        &.k-disabled {
+            color: ${slider.disabled.color};
+            .k-slider-track-wrapper {
+                cursor: not-allowed;
+            }
+            .k-slider-bar {
+                background-color: ${slider.disabled.color};
+            }
+            .k-slider-thumb {
+                border-color: ${slider.disabled.color};
+                &:hover,
+                &:focus {
+                    background-color: ${slider.disabled.bgColor};
+                    cursor: not-allowed;
+                    transform: none;
+                }
+            }
+            .k-slider-ends {
+                span {
+                    cursor: not-allowed;
+                }
+            }
+        }
     `;
 }

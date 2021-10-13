@@ -9,7 +9,7 @@ const {
     isRange, step, value,
     spinnerProps
 } = this.get();
-const {onStart, trackRef, dragging} = this.draggable;
+const {onStart, trackRef, dragging, firstThumbRef, secondThumbRef} = this.draggable;
 
 const classNameObj = {
     'k-slider': true,
@@ -21,18 +21,25 @@ const classNameObj = {
 
 const {barStyle, thumbFirstStyle, thumbSecondStyle} = this.styles();
 const {onSpinnerChange} = this.value;
+const createThumb = (thumbStyle, isFirst, ref) => {
+    return (
+       <div class="k-slider-thumb-wrapper" style={thumbStyle}>
+            <div class="k-slider-thumb"
+                tabindex={disabled ? '-1' : '0'}
+                ev-mousedown={onStart.bind(null, isFirst)} 
+                ref={ref}
+            ></div>
+        </div>
+    );
+};
 
 <div class={classNameObj} {...getRestProps(this)}>
     <div class="k-slider-main">
         <div class="k-slider-track-wrapper">
             <div class="k-slider-track" ref={trackRef}>
                 <div class="k-slider-bar" style={barStyle}></div>
-                <div class="k-slider-thumb-wrapper" style={thumbFirstStyle}>
-                    <div class="k-slider-thumb"
-                        tabindex={disabled ? '-1' : '0'}
-                        ev-mousedown={onStart.bind(null, true)} 
-                    ></div>
-                </div>
+                <template>{createThumb(thumbFirstStyle, true, firstThumbRef)}</template>
+                <template v-if={isRange}>{createThumb(thumbSecondStyle, false, secondThumbRef)}</template>
             </div>
         </div>
         <div class="k-slider-ends">

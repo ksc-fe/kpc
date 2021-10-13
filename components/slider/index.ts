@@ -65,6 +65,10 @@ export class Slider extends Component<SliderProps> {
 
     private step = useStep<Slider>(defaultStep);
     private value = useValue(this.step);
-    private draggable = useDraggable(this.value.showValue, this.value.getFixedValue);
+    private draggable = useDraggable(
+        this.value.showValue,
+        this.value.getFixedValue,
+        this.value.setValue,
+    );
     private styles = useStyles(this.value.showValue);
 }

@@ -4,9 +4,15 @@ import {useDraggable as useBaseDraggable} from '../../hooks/useDraggable';
 import {State} from '../../hooks/useState';
 import type {Value} from './useValue';
 
-export function useDraggable(showValue: State<Value>, getFixedValue: (value: Value) => Value) {
+export function useDraggable(
+    showValue: State<Value>,
+    getFixedValue: (value: Value) => Value,
+    setValue: (value: Value) => void,
+) {
     const instance = useInstance() as Slider;
     const trackRef = createRef<HTMLDivElement>();
+    const firstThumbRef = createRef<HTMLDivElement>();
+    const secondThumbRef = createRef<HTMLDivElement>();
     let isFirst = true;
 
     const {start, dragging} = useBaseDraggable({
@@ -14,13 +20,22 @@ export function useDraggable(showValue: State<Value>, getFixedValue: (value: Val
             const tempValue = getNewValue(getSlidingValue(e.clientX));
             const fixedValue = getFixedValue(tempValue);
             showValue.set(tempValue);
-            instance.set({value: fixedValue});
+            setValue(fixedValue);
         },
 
         onEnd(e) {
-
+            (isFirst ? firstThumbRef.value : secondThumbRef.value)!.blur();
+            showValue.set(instance.get('value')!);
         }
     });
+
+    function onStart(_isFirst: boolean, e: MouseEvent) {
+        if (instance.get('disabled')) return;
+
+        isFirst = _isFirst;
+
+        start(e);
+    }
 
     function getSlidingValue(pos: number): number {
         const rect = trackRef.value!.getBoundingClientRect();
@@ -42,19 +57,29 @@ export function useDraggable(showValue: State<Value>, getFixedValue: (value: Val
 
         if (!isRange) return value;
 
+        const [min, max] = oldValue as [number, number];
         if (isFirst) {
-            return [value, (oldValue as [number, number])[1]];
+            if (value > max) {
+                // exchange the thumb
+                isFirst = false;
+                firstThumbRef.value!.blur();
+                secondThumbRef.value!.focus();
+                return [max, value]; 
+            } else {
+                return [value, max];
+            }
         } else {
-            return [(oldValue as [number, number][0]), value];
+            if (value < min) {
+                // exchange the thumb
+                isFirst = true;
+                firstThumbRef.value!.focus();
+                secondThumbRef.value!.blur();
+                return [value, min];
+            } else {
+                return [min, value];
+            }
         }
     }
 
-    function onStart(_isFirst: boolean, e: MouseEvent) {
-        if (instance.get('disabled')) return;
-        isFirst = _isFirst;
-
-        start(e);
-    }
-
-    return {onStart, dragging, trackRef};
+    return {onStart, dragging, trackRef, firstThumbRef, secondThumbRef};
 }

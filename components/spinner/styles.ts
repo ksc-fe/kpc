@@ -129,6 +129,15 @@ export function makeStyles() {
             })}
         }
 
+        &.k-disabled {
+            .k-spinner-btn {
+                &:hover,
+                &:focus {
+                    z-index: 0;
+                }
+            }
+        }
+
         ${sizes.map(size => {
             const styles = spinner[size];
             const generate = () => `

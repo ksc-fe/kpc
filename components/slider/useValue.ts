@@ -11,16 +11,25 @@ export type Value = number | [number, number];
 
 export function useValue(getStep: NormalizedGetStep) {
     const instance = useInstance() as Slider;
-    const showValue = useState<Value>(instance.get('value')!);
+    const showValue = useState<Value>(instance.get('value')!, isEqualValue);
 
     useReceive<Slider>(['min', 'max', 'step', 'value'], () => {
         fixValue(instance.get('value')!);
     });
 
+    function isEqualValue(newValue: Value, oldValue: Value) {
+        return newValue === oldValue || isEqualArray(newValue, oldValue);
+    }
+
     function fixValue(value: Value) {
         const fixedValue = getFixedValue(value); 
         showValue.set(fixedValue);
-        instance.set({value: fixedValue});
+        setValue(fixedValue);
+    }
+
+    function setValue(value: Value) {
+        if (isEqualValue(value, instance.get('value')!)) return;
+        instance.set({value});
     }
 
     function getFixedValue(value: Value): Value {
@@ -33,9 +42,6 @@ export function useValue(getStep: NormalizedGetStep) {
                 fixedValue = [tmp, tmp];
             } else {
                 fixedValue = [fix(value[0]), fix(value[1])];
-                if (isEqualArray(fixedValue, value)) {
-                    return value;
-                }
             }
         } else {
             fixedValue = fix(value as number);
@@ -63,5 +69,5 @@ export function useValue(getStep: NormalizedGetStep) {
         instance.set({value: v});
     }
 
-    return {showValue, getFixedValue, onSpinnerChange};
+    return {showValue, getFixedValue, onSpinnerChange, setValue};
 }
