@@ -32,7 +32,7 @@ export interface DropdownProps {
     trigger?: 'hover' | 'click' | 'contextmenu'
     disabled?: boolean
     value?: boolean
-    position?: Position
+    position?: Position | 'left' | 'bottom' | 'right' | 'top'
     of?: 'self' | 'parent' | Event
     container?: PortalProps['container']
 }
@@ -41,7 +41,7 @@ export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     trigger: ['hover', 'click', 'contextmenu'],
     disabled: Boolean,
     value: Boolean,
-    position: Object,
+    position: [Object, 'left', 'bottom', 'right', 'top'],
     // Event is undefined in NodeJs
     of: ['self', 'parent', typeof Event === 'undefined' ? undefined : Event],
     container: [String, Function],
@@ -131,14 +131,6 @@ export class Dropdown<T extends DropdownProps = DropdownProps> extends Component
         }
 
         useShowHideEvents();
-
-        (['of', 'position'] as const).forEach(item => {
-            this.watch(item, () => {
-                if (this.get('value')) {
-                    this.position();
-                }
-            }, {presented: true, inited: true});
-        });
 
         // if disabled, always set value to false
         this.watch('disabled', disabled => {

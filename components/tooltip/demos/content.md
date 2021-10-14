@@ -7,12 +7,18 @@ order: 3
 
 ```vdt
 import {Tooltip} from 'kpc/components/tooltip';
+import {Slider} from 'kpc/components/slider';
 import {Button} from 'kpc/components/button';
 
 <div>
     <Tooltip trigger="click">
         <Button>Adjust Volume</Button>
         <b:content>
+            <Slider v-model="volume" 
+                style="width: 200px;"
+                isShowInput={false} 
+                isShowEnd={false}
+            />
         </b:content>
     </Tooltip>
 </div>

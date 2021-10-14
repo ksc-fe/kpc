@@ -1,0 +1,63 @@
+---
+title: 展示提示气泡
+order: 6
+---
+
+给组件添加`isShowTooltip`可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过`tooltip`扩展点自定义展示内容；
+当添加`always`属性时，将一直展示提示气泡。通过`tooltipProps`可以设置`Tooltip`的所有属性
+
+> `tooltip`扩展点和`Tooltip`组件的`content`扩展点行为一样，如果你传入空的内容，则不会展示气泡
+
+```vdt
+import {Slider} from 'kpc/components/slider';
+
+<div>
+    <Slider v-model="value1" min={50} max={500} isShowTooltip />
+    <Slider v-model="values" isRange isShowTooltip />
+    <Slider v-model="value2" min={1} max={12}
+        isShowInput={false}
+        marks={this.get('marks')}
+        isShowTooltip
+        always
+    >
+        <b:tooltip args="value">
+            <span v-if={value > 9}>满{value - 9}年，优惠{(value - 9) * 2}个月</span>
+        </b:tooltip>
+    </Slider>
+    <Slider v-model="value3" min={50} max={500}
+        isShowTooltip
+        always
+        tooltipProps={{'theme': 'light', 'size': 'small'}}
+    />
+</div>
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+
+    static defaults() {
+        return {
+            value1: 277,
+            values: [50, 76],
+            value2: 6,
+            value3: 300,
+            marks: {
+                1: '1',
+                2: '2',
+                3: '3',
+                4: '4',
+                5: '5',
+                6: '6月',
+                7: '7',
+                8: '8',
+                9: '9',
+                10: '1年',
+                11: '2年',
+                12: '3年',
+            }
+        }
+    }
+}
+```
+

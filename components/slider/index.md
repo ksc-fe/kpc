@@ -18,7 +18,7 @@ sidebar: doc
 | step | 步长，支持动态步长，详见示例 | `Number` &#124; `Object` | `1` |
 | isShowStop | 是否展示间隔点 | `Boolean` | `false` |
 | marks | 标注刻度 | `Object` | `undefined` |
-| showTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
+| isShowTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
 | always | 当展示气泡时，是否一直展示 | `Boolean` | `false` |
 | animate | 滑块的移动是否使用缓动动画 | `Boolean` | `true` |
 | tooltipProps | 设置`Tooltip`的所有属性 | `Object` | `undefined` |

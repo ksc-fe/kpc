@@ -1,6 +1,7 @@
 import {useInstance, findDomFromVNode} from 'intact';
 import type {Dropdown} from './';
 import {Options, position, Feedback} from '../position';
+import {noop} from 'intact-shared';
 
 export type FeedbackCallback = (feedback: Feedback) => void;
 
@@ -14,16 +15,40 @@ export function usePosition() {
         }
     });
 
+    (['of', 'position'] as const).forEach(item => {
+        instance.watch(item, () => {
+            if (instance.get('value')) {
+                handle(noop);
+            }
+        }, {presented: true, inited: true});
+    });
+
     // if the dropdown is nested, we must show child after parent has positioned
     function p(
         ofElement: HTMLElement | MouseEvent | undefined,
         parentFeedback: Feedback | null,
     ): Feedback {
         let feedback: Feedback;
+        let pos = instance.get('position');
+        switch (pos) {
+            case 'left':
+                case 'left':
+                    pos = {my: 'right-10 center', at: 'left center'};
+                    break;
+                case 'bottom':
+                    pos = {my: 'center top+10', at: 'center bottom'};
+                    break;
+                case 'right':
+                    pos = {my: 'left+10 center', at: 'right center'};
+                    break;
+                case 'top':
+                    pos = {my: 'center bottom-10', at: 'center top'};
+                    break;
+        }
         position(findDomFromVNode(instance.menuVNode!, true) as HTMLElement, {
             my: 'left top+8',
             at: 'left bottom',
-            ...instance.get('position'),
+            ...pos,
             of: ofElement,
             using: _feedback => {
                 feedback = _feedback;

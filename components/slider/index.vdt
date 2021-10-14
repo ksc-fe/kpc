@@ -8,7 +8,7 @@ const {
     disabled, className, max,
     min, unit, isShowInput,
     isRange, step, value,
-    spinnerProps, isShowEnd,
+    spinnerProps, isShowEnd, isShowTooltip,
 } = this.get();
 const {
     onStart, trackRef, dragging,
@@ -29,15 +29,18 @@ const {onSpinnerChange} = this.value;
 const {onKeydown, onKeyup} = this.keyboard;
 const createThumb = (thumbStyle, isFirst, ref) => {
     return (
-       <div class="k-slider-thumb-wrapper" style={thumbStyle}>
-            <div class="k-slider-thumb"
-                tabindex={disabled ? '-1' : '0'}
-                ev-mousedown={onStart} 
-                ev-focusin={linkEvent(isFirst, onFocusin)}
-                ev-keydown={onKeydown}
-                ev-keyup={onKeyup}
-                ref={ref}
-            ></div>
+        <div class="k-slider-thumb-wrapper" style={thumbStyle}>
+            <Tooltip disabled={!isShowTooltip}>
+                <div class="k-slider-thumb"
+                    tabindex={disabled ? '-1' : '0'}
+                    ev-mousedown={onStart} 
+                    ev-focusin={linkEvent(isFirst, onFocusin)}
+                    ev-keydown={onKeydown}
+                    ev-keyup={onKeyup}
+                    ref={ref}
+                ></div>
+                <b:content>test</b:content>
+            </Tooltip>
         </div>
     );
 };
