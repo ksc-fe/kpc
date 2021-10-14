@@ -32,10 +32,13 @@ const {slider} = deepDefaults(theme, {
         // spinnerWidth: '124px',
         spinnerGap: '16px',
 
-        stop: {
-            get width() { return slider.height },
-            get height() { return slider.stop.width },
+        point: {
+            width: '8px',
+            get height() { return slider.point.width },
             bgColor: '#fff',
+            borderRadius: '50%',
+            get border() { return `2px solid ${slider.bgColor}` },
+            get activeBorderColor() { return slider.barColor },
         },
 
         marks: {
@@ -139,6 +142,21 @@ export function makeStyles() {
                 span {
                     cursor: not-allowed;
                 }
+            }
+        }
+
+        // stop point
+        .k-slider-point {
+            position: absolute;
+            top: calc((${slider.height} - ${slider.point.height}) / 2 );
+            width: ${slider.point.width};
+            height: ${slider.point.height};
+            background: ${slider.point.bgColor};
+            transform: translateX(-50%);
+            border-radius: ${slider.point.borderRadius};
+            border: ${slider.point.border};
+            &.k-active {
+                border-color: ${slider.point.activeBorderColor};
             }
         }
     `;

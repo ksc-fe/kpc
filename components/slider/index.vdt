@@ -8,7 +8,7 @@ const {
     disabled, className, max,
     min, unit, isShowInput,
     isRange, step, value,
-    spinnerProps
+    spinnerProps,
 } = this.get();
 const {
     onStart, trackRef, dragging,
@@ -43,6 +43,7 @@ const createThumb = (thumbStyle, isFirst, ref) => {
 };
 
 const {onClickTrack, setOneValue} = this.click;
+const points = this.points();
 <div class={classNameObj} {...getRestProps(this)}>
     <div class="k-slider-main">
         <div class="k-slider-track-wrapper" ev-click={onClickTrack}>
@@ -52,6 +53,10 @@ const {onClickTrack, setOneValue} = this.click;
                 <template v-if={isRange}>
                     {createThumb(thumbSecondStyle, false, secondThumbRef)}
                 </template>
+                <i v-for={points} 
+                    class={{'k-slider-point': true, 'k-active': $value.active}}
+                    style={$value.style}
+                ></i>
             </div>
         </div>
         <div class="k-slider-ends">

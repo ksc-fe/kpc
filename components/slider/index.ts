@@ -8,6 +8,7 @@ import {useDraggable} from './useDraggable';
 import {useStyles} from './useStyles';
 import {useKeyboard} from './useKeyboard';
 import {useClick} from './useClick';
+import {usePoints} from './usePoints';
 
 export interface SliderProps {
     max?: number
@@ -18,7 +19,7 @@ export interface SliderProps {
     isShowEnd?: boolean
     isShowInput?: boolean
     step?: number | StepObject | StepFunction
-    isShowStop?: boolean
+    points?: number[] | boolean
     marks: Marks
     disabled?: boolean
     isShowTooltip?: boolean
@@ -39,7 +40,7 @@ const typeDefs: Required<TypeDefs<SliderProps>> = {
     isShowEnd: Boolean,
     isShowInput: Boolean,
     step: [Number, Object, Function],
-    isShowStop: Boolean,
+    points: [Array, Boolean],
     marks: Object,
     disabled: Boolean,
     isShowTooltip: Boolean,
@@ -53,6 +54,7 @@ const defaultStep = 1;
 const defaults = (): Partial<SliderProps> => ({
     max: 100,
     min: 0,
+    value: 0,
     unit: '',
     isShowEnd: true,
     isShowInput: true,
@@ -89,5 +91,9 @@ export class Slider extends Component<SliderProps> {
         this.value.fixValue,
         this.value.showValue,
         this.value.setValue,
+    );
+    private points = usePoints(
+        this.value.showValue,
+        this.step
     );
 }
