@@ -9,6 +9,7 @@ import {useStyles} from './useStyles';
 import {useKeyboard} from './useKeyboard';
 import {useClick} from './useClick';
 import {usePoints} from './usePoints';
+import {Marks, useMarks} from './useMarks';
 
 export interface SliderProps {
     max?: number
@@ -28,8 +29,6 @@ export interface SliderProps {
     tooltipProps?: TooltipProps
     spinnerProps?: SpinnerProps
 }
-
-type Marks = Record<string | number, string | number>; 
 
 const typeDefs: Required<TypeDefs<SliderProps>> = {
     max: Number,
@@ -96,4 +95,5 @@ export class Slider extends Component<SliderProps> {
         this.value.showValue,
         this.step
     );
+    private marks = useMarks();
 }

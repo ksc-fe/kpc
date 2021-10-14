@@ -8,7 +8,7 @@ const {
     disabled, className, max,
     min, unit, isShowInput,
     isRange, step, value,
-    spinnerProps,
+    spinnerProps, isShowEnd,
 } = this.get();
 const {
     onStart, trackRef, dragging,
@@ -44,6 +44,7 @@ const createThumb = (thumbStyle, isFirst, ref) => {
 
 const {onClickTrack, setOneValue} = this.click;
 const points = this.points();
+const marks = this.marks();
 <div class={classNameObj} {...getRestProps(this)}>
     <div class="k-slider-main">
         <div class="k-slider-track-wrapper" ev-click={onClickTrack}>
@@ -59,7 +60,14 @@ const points = this.points();
                 ></i>
             </div>
         </div>
-        <div class="k-slider-ends">
+        <div class="k-slider-marks" v-if={marks.length}>
+            <span v-for={marks}
+                style={$value.style}
+                ev-click={linkEvent($value.value, setOneValue)}
+                class={{'k-active': $value.active}}
+            >{$value.text}</span>
+        </div>
+        <div class="k-slider-ends" v-else-if={isShowEnd}>
             <span ev-click={linkEvent(min, setOneValue)}>{min + unit}</span>
             <span ev-click={linkEvent(max, setOneValue)}>{max + unit}</span>
         </div>

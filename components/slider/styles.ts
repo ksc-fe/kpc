@@ -159,5 +159,26 @@ export function makeStyles() {
                 border-color: ${slider.point.activeBorderColor};
             }
         }
+
+        // marks
+        .k-slider-marks {
+            position: relative;
+            height: ${slider.marks.height};
+            > span {
+                position: absolute;
+                transform: translateX(-50%);
+                white-space: nowrap;
+                cursor: pointer;
+                &:first-child {
+                    transform: none;
+                }
+                &:last-child {
+                    transform: translateX(-100%);
+                }
+                &.k-active {
+                    color: ${slider.marks.activeColor};
+                }
+            }
+        }
     `;
 }

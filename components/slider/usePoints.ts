@@ -24,10 +24,10 @@ export function usePoints(
     instance.on('$receive:points', v => {
         if (v === true) {
             makeStepPoints();
-        } else if (v === false) {
-            points = [];
+        } else if (Array.isArray(v)) {
+            addStyle(v);
         } else {
-            addStyle(v!);
+            points = [];
         }
     });
 

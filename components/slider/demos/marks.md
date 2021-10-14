@@ -9,7 +9,7 @@ order: 5
 此时与`value`为`String`类型的表现是一样的。
 
 ```vdt
-import Slider from 'kpc/components/slider';
+import {Slider} from 'kpc/components/slider';
 
 <div>
     <Slider min={1} max={12} value={6} 
