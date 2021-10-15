@@ -10,6 +10,7 @@ import {useKeyboard} from './useKeyboard';
 import {useClick} from './useClick';
 import {usePoints} from './usePoints';
 import {Marks, useMarks} from './useMarks';
+import {useTooltip} from './useTooltip';
 
 export interface SliderProps {
     max?: number
@@ -71,10 +72,12 @@ export class Slider extends Component<SliderProps> {
         this.step,
         () => this.draggable.dragging.value
     );
+    private tooltip = useTooltip(this.value.showValue);
     private draggable = useDraggable(
         this.value.showValue,
         this.value.fixValue,
         this.value.triggerChangeEvent,
+        this.tooltip.show,
     );
     private styles = useStyles(this.value.showValue);
     private keyboard = useKeyboard(

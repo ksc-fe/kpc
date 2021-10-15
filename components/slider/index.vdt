@@ -8,7 +8,8 @@ const {
     disabled, className, max,
     min, unit, isShowInput,
     isRange, step, value,
-    spinnerProps, isShowEnd, isShowTooltip,
+    spinnerProps, isShowEnd,
+    isShowTooltip,
 } = this.get();
 const {
     onStart, trackRef, dragging,
@@ -27,19 +28,28 @@ const classNameObj = {
 const {barStyle, thumbFirstStyle, thumbSecondStyle} = this.styles();
 const {onSpinnerChange} = this.value;
 const {onKeydown, onKeyup} = this.keyboard;
-const createThumb = (thumbStyle, isFirst, ref) => {
+const {firstTooltipRef, secondTooltipRef, getTooltipProps, hide} = this.tooltip;
+const tooltipProps = getTooltipProps();
+const tooltip = value => <b:tooltip params={value}>{value}</b:tooltip>
+const createThumb = (thumbStyle, isFirst, ref, value, tooltipRef) => {
     return (
         <div class="k-slider-thumb-wrapper" style={thumbStyle}>
-            <Tooltip disabled={!isShowTooltip}>
+            <Tooltip
+                disabled={!isShowTooltip}
+                ref={tooltipRef}
+                {...tooltipProps}
+                class="k-slider-tooltip"
+            >
                 <div class="k-slider-thumb"
                     tabindex={disabled ? '-1' : '0'}
                     ev-mousedown={onStart} 
                     ev-focusin={linkEvent(isFirst, onFocusin)}
+                    ev-focusout={hide}
                     ev-keydown={onKeydown}
                     ev-keyup={onKeyup}
                     ref={ref}
                 ></div>
-                <b:content>test</b:content>
+                <b:content>{tooltip(value)}</b:content>
             </Tooltip>
         </div>
     );
@@ -53,9 +63,21 @@ const marks = this.marks();
         <div class="k-slider-track-wrapper" ev-click={onClickTrack}>
             <div class="k-slider-track" ref={trackRef}>
                 <div class="k-slider-bar" style={barStyle}></div>
-                {createThumb(thumbFirstStyle, true, firstThumbRef)}
+                {createThumb(
+                    thumbFirstStyle,
+                    true,
+                    firstThumbRef,
+                    isRange ? value[0] : value,
+                    firstTooltipRef,
+                )}
                 <template v-if={isRange}>
-                    {createThumb(thumbSecondStyle, false, secondThumbRef)}
+                    {createThumb(
+                        thumbSecondStyle,
+                        false,
+                        secondThumbRef,
+                        value[1],
+                        secondTooltipRef,
+                    )}
                 </template>
                 <i v-for={points} 
                     class={{'k-slider-point': true, 'k-active': $value.active}}

@@ -8,6 +8,7 @@ export function useDraggable(
     showValue: State<Value>,
     fixValue: (value: Value, fixShowValue: boolean) => void,
     triggerChangeEvent: (value: Value) => void,
+    showTooltip: () => void,
 ) {
     const instance = useInstance() as Slider;
     const trackRef = createRef<HTMLDivElement>();
@@ -20,6 +21,7 @@ export function useDraggable(
         onMove(e) {
             const tempValue = getNewValue(getSlidingValue(e.clientX));
             fixValue(tempValue, false);
+            showTooltip();
         },
 
         onEnd(e) {
@@ -87,6 +89,7 @@ export function useDraggable(
 
     function onFocusin(_isFirst: boolean) {
         isFirst = _isFirst;
+        showTooltip();
     }
 
     return {

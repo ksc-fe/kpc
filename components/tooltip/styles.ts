@@ -65,6 +65,7 @@ export default function makeStyles() {
 
             // arrow
             .k-tooltip-arrow {
+                pointer-events: none;
                 &:before, & {
                     position: absolute;
                     display: block;

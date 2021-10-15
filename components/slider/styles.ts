@@ -180,5 +180,9 @@ export function makeStyles() {
                 }
             }
         }
+
+        .k-slider-tooltip {
+            white-space: nowrap;
+        }
     `;
 }

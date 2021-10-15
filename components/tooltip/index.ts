@@ -7,8 +7,10 @@ import {TooltipContent} from './content';
 import {noop} from 'intact-shared';
 
 export interface TooltipProps extends BaseTooltipProps {
-    content: Children 
+    content?: Children 
 }
+
+export type Tooltip = typeof BaseTooltip
 
 export function Tooltip(props: Props<TooltipProps, BaseTooltip>) {
     let {children, content, $blocks, ...rest} = props;

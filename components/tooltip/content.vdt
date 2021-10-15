@@ -16,6 +16,7 @@ const classNameObj = {
     'k-always': always,
     [`k-${theme}`]: true,
     [`k-${size}`]: size !== 'default',
+    [className]: className,
     [makeStyles()]: true,
 };
 

@@ -25,19 +25,15 @@ const {spinner} = deepDefaults(theme, {
         vertical: {
             default: {
                 width: '108px',
-                paddingRight: '32px'
             },
             large: {
                 width: '138px',
-                paddingRight: '40px'
             },
             small: {
                 width: '78px',
-                paddingRight: '24px'
             },
             mini: {
                 width: '56px',
-                paddingRight: '16px'
             }
         }
     }
@@ -103,18 +99,16 @@ export function makeStyles() {
                 border-radius: 0 ${theme.borderRadius} 0 0;
             }
             .k-spinner-input {
-                margin-right: -1px;
                 font-size: 0;
                 .k-input-inner {
                     border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
                 }
             }
             ${sizes.map(size => {
-                const styles = spinner.vertical[size];
                 const generate = () => `
                     .k-spinner-input {
-                        padding-right: ${styles.paddingRight};
-                        width: ${styles.width};
+                        padding-right: calc(${theme[size].height} - 1px);
+                        width: ${spinner.vertical[size].width};
                     }
                 `
                 if (size === 'default') {

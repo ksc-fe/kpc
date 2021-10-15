@@ -16,7 +16,7 @@ export interface TooltipProps extends DropdownProps {
     confirm?: boolean
     okText?: string
     cancelText?: string
-    size: 'small' | 'default'
+    size?: 'small' | 'default'
 }
 
 export const typeDefs: Required<TypeDefs<TooltipProps>> = {
