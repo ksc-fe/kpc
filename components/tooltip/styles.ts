@@ -58,7 +58,8 @@ export default function makeStyles() {
             pointer-events: none;
 
             // hoverable
-            &.k-hoverable {
+            &.k-hoverable,
+            &.k-always {
                 pointer-events: all;
             }
 

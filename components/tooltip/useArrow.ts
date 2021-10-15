@@ -1,4 +1,4 @@
-import {useInstance, createRef, onBeforeUnmount} from 'intact';
+import {useInstance, createRef, onBeforeUnmount, nextTick} from 'intact';
 import {TooltipContent} from './content';
 import {Tooltip} from './tooltip';
 import {Feedback} from '../position';
@@ -19,8 +19,9 @@ export function useArrow() {
         if (!(instance.dropdown as Tooltip).get('showArrow')) return;
 
         arrowType.set(feedback[feedback.important]);
-        // nextTick(() => {
-            // if (this.$unmounted) return;
+        // we must calcuate style after set arrow type and view has updated
+        nextTick(() => {
+            if (instance.$unmounted) return;
 
             const arrow = arrowRef.value!;
             const {target, element} = feedback;
@@ -45,7 +46,7 @@ export function useArrow() {
                 top = clamp(top, 1, element.height - 1 - arrowHeight);
                 arrow.setAttribute('style', `top: ${top}px`);
             }
-        // });
+        });
     }
 
     return {arrowType, arrowRef};

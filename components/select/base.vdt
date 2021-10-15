@@ -4,7 +4,7 @@ import {Icon} from '../icon';
 import {isNullOrUndefined} from 'intact-shared';
 import makeStyles from './styles';
 import {Dropdown} from '../dropdown';
-import {getRestProps} from '../utils';
+import {getRestProps, addStyle} from '../utils';
 
 const {
     value, multiple,
@@ -12,7 +12,7 @@ const {
     size, hideIcon, fluid,
     clearable, filterable,
     className, container,
-    inline,
+    inline, style, width,
 
     _show,
 } = this.get();
@@ -42,6 +42,7 @@ const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 >
     <div {...getRestProps(this)} class={classNameObj} tabindex="0"
         ev-keydown={this.onKeypress}
+        style={!isNullOrUndefined(width) ? addStyle(style, {width: `${width}px`}) : style}
     >
         <div class="k-select-prefix" v-if={$blocks.prefix}>
             <b:prefix />

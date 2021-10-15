@@ -5,7 +5,7 @@ const {
     showArrow, confirm, className,
     theme, hoverable, trigger,
     value, cancelText, okText,
-    size,
+    size, always,
 } = this.dropdown.get();
 const {children} = this.get();
 const {arrowRef, arrowType} = this.arrow;
@@ -13,6 +13,7 @@ const {arrowRef, arrowType} = this.arrow;
 const classNameObj = {
     'k-tooltip-content': true,
     'k-hoverable': hoverable || trigger === 'click',
+    'k-always': always,
     [`k-${theme}`]: true,
     [`k-${size}`]: size !== 'default',
     [makeStyles()]: true,

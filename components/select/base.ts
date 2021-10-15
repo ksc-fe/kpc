@@ -31,6 +31,7 @@ export interface BaseSelectProps {
     inline?: boolean
     placeholder?: Children
     container?: Container
+    width?: string | number
 
     _show?: boolean
 }
@@ -49,6 +50,7 @@ const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
     inline: Boolean,
     placeholder: [String, Number],
     container: [Function, String],
+    width: [String, Number],
 
     _show: Boolean,
 };
