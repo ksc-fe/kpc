@@ -1,0 +1,120 @@
+import {linkEvent, Transition, TransitionGroup} from 'intact';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {Input} from '../input';
+import {Checkbox} from '../checkbox';
+import {Button} from '../button';
+import {Tree} from '../tree';
+
+const {
+    data, className, value, keyName, leftChecked, 
+    rightChecked, filterable, filter, label, 
+    placeholder, leftTitle, rightTitle,
+    enableAdd, enableRemove, tree,
+} = this.get();
+const {add, remove} = this.buttons;
+const {filterData, selectedKeys, isCheckAll, toggleCheckAll, onCheckboxChange} = this.panel;
+
+const classNameObj = {
+    'k-transfer': true,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+const Panel = ({model, data, title} = {}) => {
+    const keywords = this.get(`_${model}Keywords`);
+    if(keywords) {
+        data = data.filter(item => filter(item, keywords));
+    }
+    return <div class="k-transfer-panel">
+        <div class="k-transfer-title">
+            <b:header params={model}>
+                {   
+                    tree ? 
+                        <div>{title}</div> : 
+                        <template>
+                            <div class="k-transfer-count">
+                                {this.get(`${model}Checked.length`)} /
+                                {data.length}
+                            </div>
+                            <Checkbox class="c-ellipsis" 
+                                value={isCheckAll(model)}
+                                ev-click={toggleCheckAll.bind(this, model)}
+                            >{title}</Checkbox>
+                        </template>
+                }
+            </b:header>
+        </div>
+        <b:filter params={model} v-if={filterable}>
+            <Input placeholder={placeholder}
+                v-model={`_${model}Keywords`}
+                clearable
+                size="small"
+            >
+                <b:prefix>
+                    <i class="ion-ios-search"></i>
+                </b:prefix>
+            </Input>
+        </b:filter>
+        <div class="k-transfer-list">
+            <b:list params={model}>
+                <TransitionGroup name="k-fade">
+                    {
+                        tree ? 
+                            <Tree 
+                                data={data}
+                                checkbox
+                                v-model:checkedKeys={`_${model}CheckedKeys`}
+                                v-model:expandedKeys={`${model}ExpandedKeys`}
+                                ref={this[`${model}TreeRef`]}
+                            /> : 
+                            <div 
+                                v-for={data} 
+                                class={{"k-transfer-item": true, "k-disabled": $value.disabled}}
+                                key={$value[keyName] || $value.label || $value}
+                            >
+                                <Checkbox v-model={`_${model}CheckedKeys`} name={model}
+                                    trueValue={$value[keyName]}
+                                    disabled={$value.disabled}
+                                    ev-click={onCheckboxChange.bind(this, model, $key)}
+                                >
+                                    <template>
+                                        <b:label params={[$value, $key, model]}>
+                                            {label.call(this, $value, $key, model)}
+                                        </b:label>
+                                    </template>
+                                </Checkbox>
+                            </div>
+                    }
+                </TransitionGroup>
+            </b:list>
+        </div>
+    </div>
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <Panel data={filterData(data, selectedKeys.value, false)}
+        model="left" 
+        title={leftTitle}
+    />
+    <div class="k-transfer-arrows">
+        <Button circle icon disabled={!enableRemove.call(this)}
+            ev-click={remove}
+            type="primary"
+            size="large"
+        >
+            <i class="k-transfer-icon ion-ios-arrow-left" />
+        </Button>
+        <Button circle icon disabled={!enableAdd.call(this)}
+            ev-click={add}
+            type="primary"
+            size="large"
+        >
+            <i class="k-transfer-icon ion-ios-arrow-right" />
+        </Button>
+    </div>
+    <Panel data={value} 
+        model="right" 
+        title={rightTitle}
+    />
+</div>

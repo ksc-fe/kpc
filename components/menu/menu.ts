@@ -50,7 +50,7 @@ export class Menu<T extends MenuProps = MenuProps> extends Component<T> {
 
     public rootMenu = inject<Menu | null>(ROOT_MENU, null);
     public parentMenu = inject<Menu | null>(MENU, null);
-    public highlightedKeys = useState<string[]>([], isEqualArray);;
+    public highlightedKeys = useState<string[]>([], isEqualArray);
     public _expandedKeys: Set<string> = new Set();
 
     init() {
