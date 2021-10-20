@@ -16,6 +16,7 @@ import {Transfer} from 'kpc/components/transfer';
     rightExpandedKeys={this.get('rightExpandedKeys')}
     data={this.get('data')} 
     v-model="value"
+    v-model:leftChecked="checked"
 >
 </Transfer>
 ```
@@ -100,10 +101,26 @@ export default class extends Component {
         return {
             data: data,
             value: [
-                data[0]
+                data[1]
             ],
             leftExpandedKeys: [],
             rightExpandedKeys: [],
+            checked: [{
+                label: 'database',
+                key: 'database',
+                children: [
+                    {
+                        label: 'table1',
+                        key: 'table1',
+                        children: [
+                            {
+                                label: 'class',
+                                key: 'class'
+                            }
+                        ]
+                    }
+                ]
+            }]
         };
     }
 

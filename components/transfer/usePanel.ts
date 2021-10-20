@@ -70,16 +70,16 @@ export function usePanel() {
         return data;
     }
     function filterData(data: any[], keys: Key[], isInter: boolean = true) {
-        data = deepClone(data);
-        const keyName = instance.get('keyName')!;
+        const {keyName, tree} = instance.get();
+        data = tree ? deepClone(data) : data;
         const loop = (children: any[]) => {
             return children.filter(item => {
                 if (item.children && item.children.length > 0) {
                     item.children = loop(item.children);
                 }
-                const leftFilter = (!keys.includes(item[keyName]) && !item.children) || 
-                    (!keys.includes(item[keyName]) && item.children && item.children.length);
-                const rightFilter = keys.includes(item[keyName]) || (item.children && item.children.length);
+                const leftFilter = (!keys.includes(item[keyName!]) && !item.children) || 
+                    (!keys.includes(item[keyName!]) && item.children && item.children.length);
+                const rightFilter = keys.includes(item[keyName!]) || (item.children && item.children.length);
                 return !isInter ? leftFilter : rightFilter;
             })
         }
