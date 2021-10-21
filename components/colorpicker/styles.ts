@@ -76,9 +76,18 @@ const {colorpicker} = deepDefaults(theme, {
             height: '16px',
             borderRadius: '3px',
             boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, .15)',
-        }
+        },
+
+        // disabled
+        disabled: {
+            get bgColor() { return theme.color.disabledBg },
+            get borderColor() { return theme.color.disabledBorder },
+            cursor: 'not-allowed',
+        },
     }
 });
+
+const _sizes = ['large', 'small', 'mini'] as const;
 
 export function makeStyles() {
     return css`
@@ -96,6 +105,29 @@ export function makeStyles() {
         .k-colorpicker-inner {
             border-radius: ${colorpicker.innerBorderRadius};
             height: 100%;
+        }
+        
+        // size
+        ${_sizes.map(size => {
+            const styles = colorpicker[size];
+            return css`
+                &.k-${size} {
+                    .k-colorpicker-color {
+                        height: ${styles.height};
+                        width: ${styles.width};
+                        ${(styles as any).padding && `padding: ${(styles as any).padding}`}
+                    }
+                }
+            `
+        })}
+
+        // disabled
+        &.k-disabled {
+            .k-colorpicker-color {
+                background: ${colorpicker.disabled.bgColor};
+                border-color: ${colorpicker.disabled.borderColor};
+                cursor: ${colorpicker.disabled.cursor};
+            }
         }
     `;
 }
