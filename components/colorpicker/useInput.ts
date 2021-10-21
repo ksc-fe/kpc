@@ -44,6 +44,15 @@ export function useInput(
         hsv.set(tinycolor({...color, [type]: v}).toHsv());
     }
 
+    function setInputValue(type: string, maxValue: number, e: InputEvent) {
+        let value = parseInt((e.target as HTMLInputElement).value.trim(), 10);
+        if (Number.isNaN(value)) return;
+
+        value = Math.min(Math.max(0, value), maxValue);
+
+        changeColor(type, value);
+    }
+
     function onStart() {
         dragging.set(true);
     }
@@ -52,6 +61,9 @@ export function useInput(
         dragging.set(false);
     }
 
-    return {onInputHex, mode, changeMode, changeColor, onStart, onEnd, dragging};
+    return {
+        onInputHex, mode, changeMode, changeColor,
+        onStart, onEnd, dragging, setInputValue,
+    };
 }
 

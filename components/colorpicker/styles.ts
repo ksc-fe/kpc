@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
+import {ColorFormats} from 'tinycolor2';
 
 const {colorpicker} = deepDefaults(theme, {
     colorpicker: {
@@ -176,9 +177,6 @@ export function makePanelStyles() {
         }
         .k-colorpicker-alpha {
             background-size: contain;
-            .k-slider-track-wrapper {
-                background: linear-gradient(to right, rgba(54, 48, 55, 0) 0%, rgb(54, 48, 55) 100%);
-            }
         }
         .k-colorpicker-alpha-bg {
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC");
@@ -234,4 +232,12 @@ export function makePanelStyles() {
             user-select: none;
         }
     `
+}
+
+export function makeAlphaBgColor({r, g, b}: ColorFormats.RGBA) {
+    return css`
+        .k-slider-track-wrapper {
+            background: linear-gradient(to right, rgba(${r}, ${g}, ${b}, 0) 0%, rgb(${r}, ${g}, ${b}) 100%);
+        }
+    `;
 }

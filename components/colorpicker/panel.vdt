@@ -1,7 +1,7 @@
 import {Row, Col} from '../grid';
 import {Slider} from '../slider';
 import {Input} from '../input';
-import {makePanelStyles} from './styles';
+import {makePanelStyles, makeAlphaBgColor} from './styles';
 import {linkEvent} from 'intact';
 import {Mode} from './useInput';
 import {ColorpickerDrag as Drag} from './drag';
@@ -23,7 +23,7 @@ const {
 const {start, areaRef} = this.pointer;
 const {
     onInputHex, mode, changeMode, changeColor,
-    onStart, onEnd, dragging,
+    onStart, onEnd, dragging, setInputValue,
 } = this.input;
 const alpha = Math.round(rgb.a * 100);
 
@@ -55,7 +55,11 @@ const alpha = Math.round(rgb.a * 100);
                 ev-$change:value={changeHue}
                 animate={!dragging.value}
             />
-            <Slider class="k-colorpicker-alpha k-colorpicker-alpha-bg"
+            <Slider 
+                class={{
+                    "k-colorpicker-alpha k-colorpicker-alpha-bg": true,
+                    [makeAlphaBgColor(rgb)]: true,
+                }}
                 isShowInput={false}
                 isShowEnd={false}
                 step={0}
@@ -97,14 +101,16 @@ const alpha = Math.round(rgb.a * 100);
             }
             return params.map(value => {
                 const v = Math.round(color[value]);
+                const realMax = value === 'h' ? 359 : max;
                 return (
                     <Col span="4">
                         <Input fluid size="small"
                             value={v} 
                             class="k-colorpicker-input" 
+                            ev-input={setInputValue.bind(null, value, realMax)}
                         />
                         <Drag value={v}
-                            max={value === 'h' ? 359 : max}
+                            max={realMax}
                             ev-$change:value={changeColor.bind(null, value)}
                             ev-click={changeMode}
                             onStart={onStart}
@@ -121,6 +127,7 @@ const alpha = Math.round(rgb.a * 100);
             <Input fluid size="small"
                 value={alpha} 
                 class="k-colorpicker-input" 
+                ev-input={setInputValue.bind(null, 'a', 100)}
             />
             <Drag value={alpha}
                 max={100}
