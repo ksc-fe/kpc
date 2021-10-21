@@ -11,7 +11,7 @@ const classNameObj = {
     ...this.defaultClassName,
     ...__className,
     [className]: className,
-    [makeStyles()]: this.$vNode.tag === Layout
+    [makeStyles()]: this.constructor === Layout
 };
 
 <div class={classNameObj}

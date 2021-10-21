@@ -3,22 +3,17 @@ import type {Layout} from './layout';
 import {Aside} from './aside';
 import {Header} from './header';
 import {useState} from '../../hooks/useState';
-import {mapChildren, isComponentVNode} from '../utils';
+import {findChildren, isComponentVNode} from '../utils';
 
-export function useIndexClassName(this: any) {
+export function useLayoutClassName(this: any) {
     const instance = useInstance() as Layout;
-    const className = useState<Record<string, boolean>>(instance.defaultClassName);
+    const className = useState<Record<string, boolean> | null>(null);
 
     function updateClassName() {
         const {children} = instance.get();
-        let hasAside = false;
-        mapChildren(children, vNode => {
-            if (isComponentVNode(vNode, Aside)) {
-                hasAside = true;
-            }
-        });
+        const hasAside = findChildren(children, vNode => isComponentVNode(vNode, Aside));
         if (hasAside) {
-            className.set({'k-layout k-has-aside': true});
+            className.set({'k-has-aside': true});
         }
     }
 
@@ -30,16 +25,18 @@ export function useIndexClassName(this: any) {
 }
 export function useHeaderClassName() {
     const instance = useInstance() as Header;
-    const className = useState<Record<string, boolean>>(instance.defaultClassName);
+    const className = useState<Record<string, boolean>>({'k-layout-fixed': false});
 
     function updateClassName() {
         const {fixed} = instance.get();
-        className.set({'k-layout-header': true, 'k-layout-fixed': fixed!})
+        className.set({'k-layout-fixed': fixed!})
     }
 
     onMounted(() => {
         updateClassName();
     });
+
+    instance.on('$receive:fixed', updateClassName);
 
     return className;
 }
