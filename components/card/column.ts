@@ -11,13 +11,8 @@ const typeDefs: Required<TypeDefs<CardColumnProps>> = {
     center: Boolean
 };
 
-const defaults = (): Partial<CardColumnProps> => ({
-    center: false
-})
-
 export class CardColumn<T extends CardColumnProps = CardColumnProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
-    static defaults = defaults;
 }
 

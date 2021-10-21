@@ -7,19 +7,20 @@ order: 1
 
 ```vdt
 import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Icon} from 'kpc/components/icon';
 
 <Breadcrumb>
     <b:separator>
         <b class="separator">=></b>
     </b:separator>
     <BreadcrumbItem to="/">
-        <i class="ion-home"></i> item 1
+        <Icon class="ion-home" /> item 1
     </BreadcrumbItem>
     <BreadcrumbItem to="/components/breadcrumb/">
-        <i class="ion-earth"></i> item 2
+        <Icon class="ion-earth" /> item 2
     </BreadcrumbItem>
     <BreadcrumbItem>
-        <i class="ion-planet"></i> item 3
+        <Icon class="ion-planet" /> item 3
     </BreadcrumbItem>
 </Breadcrumb>
 ```

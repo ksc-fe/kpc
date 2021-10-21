@@ -24,7 +24,6 @@ const typeDefs: Required<TypeDefs<CarouselProps>> = {
 };
 
 const defaults = (): Partial<CarouselProps> => ({
-    autoplay: false,
     arrow: 'hover',
     effect: 'slide',
     clonedAmount: 1

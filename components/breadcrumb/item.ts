@@ -15,11 +15,11 @@ export class BreadcrumbItem<T extends BreadcrumbItemProps = BreadcrumbItemProps>
     static template = template;
     static typeDefs = typeDefs;
 
-    static $router: Array<String> = [];
+    private $router: any = null;
 
     @bind
     mounted() {
-        BreadcrumbItem.$router = findRouter(this);
+        this.$router = findRouter(this);
     }
 
     @bind
@@ -27,7 +27,7 @@ export class BreadcrumbItem<T extends BreadcrumbItemProps = BreadcrumbItemProps>
         const to = this.get('to');
 
         if (to) {
-            const $router = BreadcrumbItem.$router;
+            const $router = this.$router;
             if ($router && !isExternalLink(to)) {
                 $router.push(to!);
             } else {

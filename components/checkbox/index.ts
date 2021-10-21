@@ -22,11 +22,8 @@ const typeDefs: Required<TypeDefs<CheckboxProps>> = {
 };
 
 const defaults = (): Partial<CheckboxProps> => ({
-    disabled: false,
-    value: false,
     trueValue: true,
     falseValue: false,
-    indeterminate: false,
 });
 
 export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component<T> {
