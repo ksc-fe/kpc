@@ -29,20 +29,17 @@ const Panel = ({model, data, title} = {}) => {
     return <div class="k-transfer-panel">
         <div class="k-transfer-title">
             <b:header params={model}>
-                {   
-                    tree ? 
-                        <div>{title}</div> : 
-                        <template>
-                            <div class="k-transfer-count">
-                                {this.get(`${model}Checked.length`)} /
-                                {data.length}
-                            </div>
-                            <Checkbox class="c-ellipsis" 
-                                value={isCheckAll(model)}
-                                ev-click={toggleCheckAll.bind(this, model)}
-                            >{title}</Checkbox>
-                        </template>
-                }
+                <div v-if={tree}>{title}</div> 
+                <template v-else>
+                    <div class="k-transfer-count">
+                        {this.get(`${model}Checked.length`)} /
+                        {data.length}
+                    </div>
+                    <Checkbox class="c-ellipsis" 
+                        value={isCheckAll(model)}
+                        ev-click={toggleCheckAll.bind(this, model)}
+                    >{title}</Checkbox>
+                </template>
             </b:header>
         </div>
         <b:filter params={model} v-if={filterable}>
@@ -57,37 +54,39 @@ const Panel = ({model, data, title} = {}) => {
             </Input>
         </b:filter>
         <div class="k-transfer-list">
-            <b:list params={model}>
-                <TransitionGroup name="k-fade">
-                    {
-                        tree ? 
-                            <Tree 
-                                data={data}
-                                checkbox
-                                v-model:checkedKeys={`_${model}CheckedKeys`}
-                                v-model:expandedKeys={`${model}ExpandedKeys`}
-                                ref={this[`${model}TreeRef`]}
-                            /> : 
-                            <div 
-                                v-for={data} 
-                                class={{"k-transfer-item": true, "k-disabled": $value.disabled}}
-                                key={$value[keyName] || $value.label || $value}
-                            >
-                                <Checkbox v-model={`_${model}CheckedKeys`} name={model}
-                                    trueValue={$value[keyName]}
-                                    disabled={$value.disabled}
-                                    ev-click={onCheckboxChange.bind(this, model, $key)}
+            <TransitionGroup name="k-fade" appear={false}>
+                <Tree v-if={tree}
+                    data={data}
+                    checkbox
+                    v-model:checkedKeys={`_${model}CheckedKeys`}
+                    v-model:expandedKeys={`${model}ExpandedKeys`}
+                    ref={this[`${model}TreeRef`]}
+                />
+                <template v-else>
+                    <TransitionGroup name="k-fade">
+                        <template>
+                            <b:list params={model}>
+                                <div v-for={data} 
+                                    class={{"k-transfer-item": true, "k-disabled": $value.disabled}}
+                                    key={$value[keyName] || $value.label || $value}
                                 >
-                                    <template>
-                                        <b:label params={[$value, $key, model]}>
-                                            {label.call(this, $value, $key, model)}
-                                        </b:label>
-                                    </template>
-                                </Checkbox>
-                            </div>
-                    }
-                </TransitionGroup>
-            </b:list>
+                                    <Checkbox v-model={`_${model}CheckedKeys`} name={model}
+                                        trueValue={$value[keyName]}
+                                        disabled={$value.disabled}
+                                        ev-click={onCheckboxChange.bind(this, model, $key)}
+                                    >
+                                        <template>
+                                            <b:label params={[$value, $key, model]}>
+                                                {label.call(this, $value, $key, model)}
+                                            </b:label>
+                                        </template>
+                                    </Checkbox>
+                                </div>
+                            </b:list>
+                        </template>
+                    </TransitionGroup>
+                </template>
+            </TransitionGroup>
         </div>
     </div>
 };
