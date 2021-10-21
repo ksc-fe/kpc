@@ -3,6 +3,9 @@ import template from './index.vdt';
 import {ButtonGroup} from './group';
 import {bind} from '../utils';
 import {Sizes, Colors} from '../types';
+import {BUTTON_GROUP} from './constants';
+
+export * from './group';
 
 export interface ButtonProps {
     type?: Colors | 'none' | 'secondary' | 'link'
@@ -39,28 +42,18 @@ const typeDefs: Required<TypeDefs<ButtonProps>> = {
 const defaults = (): Partial<ButtonProps> => ({
     type: 'default',
     size: 'default',
-    icon: false,
-    circle: false,
-    loading: false,
-    disabled: false,
-    fluid: false,
     htmlType: 'button',
     tagName: 'button',
     tabindex: '0',
-    ghost: false,
 }); 
 
-export default class Button<T extends ButtonProps = ButtonProps> extends Component<T> {
+export class Button<T extends ButtonProps = ButtonProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private buttonGroup: ButtonGroup | null = null;
+    private buttonGroup = inject<ButtonGroup | null>(BUTTON_GROUP, null);
     private elementRef = createRef<HTMLButtonElement>();
-
-    init() {
-        this.buttonGroup = inject('ButtonGroup', null);
-    }
 
     showLoading() {
         this.set('loading', true);
@@ -121,5 +114,3 @@ export default class Button<T extends ButtonProps = ButtonProps> extends Compone
         this.trigger('mouseup', e);
     }
 }
-
-export {Button, ButtonGroup}
