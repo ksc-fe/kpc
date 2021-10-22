@@ -7,10 +7,10 @@ import {Button} from '../button';
 import {Tree} from '../tree';
 
 const {
-    data, className, value, keyName, labelName, 
+    data, className, keyName, labelName, 
     filterable, filter, placeholder 
 } = this.get();
-const {getFilterData} = this.filter;
+const {getShowedData} = this.filter;
 const {enableAdd, enableRemove, add, remove} = this.transfer;
 const {isCheckAll, toggleCheckAll, onCheckboxChange} = this.check;
 
@@ -22,11 +22,8 @@ const classNameObj = {
 
 const Panel = (model) => {
     const title = this.get(`${model}Title`);
-    const keywords = this.get(`${model}Keywords`);
-    const data = keywords ?
-        getFilterData(model).filter(item => filter(item, keywords)) :
-        getFilterData(model);
-        
+    const data = getShowedData(model);
+
     return <div class="k-transfer-panel">
         <div class="k-transfer-title">
             <b:header params={model}>
