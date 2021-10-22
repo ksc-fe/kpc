@@ -5,10 +5,7 @@ import {Icon} from '../icon';
 import {makeStyles} from './styles';
 import {linkEvent} from 'intact';
 
-const {
-    className, children, arrow, effect,
-    _translate, _stopTransition, 
-} = this.get();
+const {className, children, arrow, effect} = this.get();
 const {translate, shouldTransition, elementRef, isSlide} = this.slide;
 
 const classNameObj = {

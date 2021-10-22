@@ -16,7 +16,7 @@ const {
 
 const isHide = mode === 'hide';
 const classNameObj = {
-   "k-dialog": true, 
+    'k-dialog': true, 
     'k-dragging': this.drag.dragging.value,
     [className]: className,
     [$props.className]: $props.className,
@@ -28,8 +28,7 @@ const dialog = (
         show={value}
         appear={value}
         key="dialog"
-        onEnter={this.onEnter}
-        onAfterLeave={this.onAfterLeave}
+        onAfterLeave={this.position.onAfterLeave}
     >
         <div v-if={isHide ? true : value}
             class={classNameObj}
@@ -74,17 +73,24 @@ const dialog = (
 );
 
 <Portal container={container}>
-    <Transition 
-        show={overlay ? value : false} 
-        appear={value}
-        name="k-fade"
-        v-if={overlay}
-    >
-        <div class={{"k-dialog-wrapper": true, [makeWrapperStyles()]: true}}
-            key="wrapper" 
-            ref={this.wrapperRef}
-            ev-click={this.onClickWrapper}
-        >{dialog}</div>
-    </Transition>
-    <template v-else>{dialog}</template>
+    <div class={{
+        'k-dialog-wrapper': true,
+        'k-open': value,
+        [makeWrapperStyles()]: true,
+    }}>
+        <Transition 
+            key="overlay" 
+            show={overlay ? value : false} 
+            appear={value}
+            name="k-fade"
+            v-if={overlay}
+        >
+            <div
+                ev-click={this.onClickWrapper}
+                class="k-dialog-overlay"
+                ref={this.overlayRef}
+            ></div>
+        </Transition>
+        {dialog}
+    </div>
 </Portal>

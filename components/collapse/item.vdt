@@ -1,7 +1,6 @@
 import {Transition} from 'intact';
-import {makeStyles} from './itemStyle';
-import {expandAnimationCallbacks} from '../utils';
-import {kls} from './collapseStyle';
+import {expandAnimationCallbacks, getRestProps} from '../utils';
+import {kls, makeItemStyles} from './styles';
 import {Icon} from '../icon';
 
 const {
@@ -13,13 +12,13 @@ const isActive = this.collapse.isActive(value);
 
 const classNameObj = {
     'k-collapse-item': true,
-    [makeStyles()]: true,
+    [makeItemStyles()]: true,
     [className]: className,
     'k-active': isActive,
     'k-disabled': disabled
 };
 
-<div class={classNameObj}>
+<div class={classNameObj} {...getRestProps(this)}>
     <div class={kls('title')} ev-click={this.toggle}>
         <b:title>{title}</b:title>
         <Icon class={{[kls('arrow')]: true, 'ion-ios-arrow-right': true}}></Icon>

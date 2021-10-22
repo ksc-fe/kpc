@@ -9,7 +9,7 @@ const {
     min, unit, isShowInput,
     isRange, step, value,
     spinnerProps, isShowEnd,
-    isShowTooltip,
+    isShowTooltip, animate,
 } = this.get();
 const {
     onStart, trackRef, dragging,
@@ -20,7 +20,7 @@ const {
 const classNameObj = {
     'k-slider': true,
     'k-disabled': disabled,
-    'k-dragging': dragging.value,
+    'k-dragging': dragging.value || !animate,
     [className]: className,
     [makeStyles()]: true,
 };

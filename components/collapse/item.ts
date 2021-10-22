@@ -1,5 +1,5 @@
 import {Component, TypeDefs, VNode, inject} from 'intact';
-import Collapse, {COLLAPSE} from './index'
+import {Collapse, COLLAPSE} from './index'
 import template from './item.vdt';
 import {bind} from '../utils';
 
@@ -15,7 +15,7 @@ const typeDefs: Required<TypeDefs<CollapseItemProps>> = {
     disabled: Boolean,
 };
 
-export default class CollapseItem<T extends CollapseItemProps = CollapseItemProps> extends Component<T>{
+export class CollapseItem<T extends CollapseItemProps = CollapseItemProps> extends Component<T>{
     static template = template;
     static typeDefs = typeDefs;
 

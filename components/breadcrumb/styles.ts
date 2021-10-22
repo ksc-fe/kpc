@@ -23,14 +23,14 @@ export default function makeStyles() {
                 font-weight: ${breadcrumb.activeFontWeight};
                 color: ${breadcrumb.activeColor};
             }
-            .k-breadcrumb-link,
-            .k-breadcrumb-link a {
-                color: ${breadcrumb.color};
-            }
-            a.k-breadcrumb-link:hover,
-            .k-breadcrumb-link a:hover {
-                color: ${breadcrumb.hoverColor};
-            }
+        }
+        .k-breadcrumb-link,
+        .k-breadcrumb-link a {
+            color: ${breadcrumb.color};
+        }
+        a.k-breadcrumb-link:hover,
+        .k-breadcrumb-link a:hover {
+            color: ${breadcrumb.hoverColor};
         }
         .k-breadcrumb-separator {
             margin: 0 ${breadcrumb.gap};

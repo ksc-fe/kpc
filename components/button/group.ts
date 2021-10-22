@@ -1,6 +1,7 @@
 import {Component, provide, TypeDefs} from 'intact';
 import template from './group.vdt';
 import {toggleArray} from '../utils';
+import {BUTTON_GROUP} from './constants';
 
 export interface ButtonGroupProps {
     vertical?: boolean
@@ -17,18 +18,16 @@ const typeDefs: Required<TypeDefs<ButtonGroupProps>> = {
 };
 
 const defaults = (): Partial<ButtonGroupProps> => ({
-    vertical: false,
     checkType: 'none',
-    fluid: false,
 });
 
-export default class ButtonGroup<T extends ButtonGroupProps = ButtonGroupProps> extends Component<T> {
+export class ButtonGroup<T extends ButtonGroupProps = ButtonGroupProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
     init() {
-        provide('ButtonGroup', this); 
+        provide(BUTTON_GROUP, this); 
     }
 
     setValue(v: any): void {
@@ -41,5 +40,3 @@ export default class ButtonGroup<T extends ButtonGroupProps = ButtonGroupProps> 
         }
     }
 }
-
-export {ButtonGroup}

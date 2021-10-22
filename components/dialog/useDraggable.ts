@@ -1,9 +1,12 @@
-import {useInstance} from 'intact';
+import {useInstance, RefObject} from 'intact';
 import {useDraggable as useBaseDraggable} from '../../hooks/useDraggable';
 import {scrollbarWidth} from '../position';
 import type {Dialog} from './index';
 
-export function useDraggable() {
+export function useDraggable(
+    dialogRef: RefObject<HTMLDivElement>,
+    areaRef: RefObject<HTMLDivElement>
+) {
     const component = useInstance() as Dialog;
     let x = 0;
     let y = 0;
@@ -13,7 +16,7 @@ export function useDraggable() {
     let areaHeight = 0;
 
     function onStart(e: MouseEvent) {
-        const dialog = component.dialogRef.value!;
+        const dialog = dialogRef.value!;
 
         x = dialog.offsetLeft - e.clientX;
         y = dialog.offsetTop - e.clientY;
@@ -33,12 +36,12 @@ export function useDraggable() {
     }
 
     function onMove(e: MouseEvent) {
-        const style = component.dialogRef.value!.style;
+        const style = dialogRef.value!.style;
         let _areaWidth = areaWidth;
-        if (component.get('overlay')) {
+        const area = areaRef.value;
+        if (area) {
             // detect the wrapper has scrollbar or not
-            const wrapper = component.wrapperRef.value!;
-            if (wrapper.scrollHeight > wrapper.offsetHeight) {
+            if (area.scrollHeight > area.offsetHeight) {
                 const scrollBarWidth = scrollbarWidth();
                 _areaWidth -= scrollBarWidth;
             }

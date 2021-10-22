@@ -2,6 +2,7 @@ import {Component, TypeDefs, createRef, watch, nextTick, onMounted, RefObject} f
 import {Sizes} from '../types';
 import template from './index.vdt';
 import {bind} from '../utils';
+import {isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
 export * from './search';
 
 export interface InputProps {
@@ -108,6 +109,11 @@ export default class Input<T extends InputProps = InputProps> extends Component<
     private endInput(e: FocusEvent & {_dispatch: boolean}) {
         // ignore dispatch event, #523
         if (e._dispatch) return;
+        const propValue = (this.$vNode.props || EMPTY_OBJ).value;
+        if (!isNullOrUndefined(propValue)) {
+            // set the value as the value that parent passes to it
+            this.set({value: propValue});
+        }
         this.set({_inputing: false});
         this.trigger('blur', e);
     }

@@ -50,7 +50,7 @@ export default class extends Dialog {
 ```
 
 ```vdt
-import Button from 'kpc/components/button';
+import {Button} from 'kpc/components/button';
 
 <Button type="primary"
     ev-click={this.showDialog}

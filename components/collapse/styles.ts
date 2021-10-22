@@ -1,18 +1,47 @@
+import {deepDefaults}  from '../../styles/utils';
 import {theme} from '../../styles/theme';
 import {css} from '@emotion/css';
-import {deepDefaults}  from '../../styles/utils';
-import {kls} from './collapseStyle';
 import '../../styles/global';
 
-const {collapseItem} = deepDefaults(theme, {
-    collapseItem: {
-        borderBottom: '1px solid #e5e5e5',
-        titleHeight: '40px',
-        contentPadding: '0 16px 16px'
-    },
+export const kls = (className: string) => `k-collapse-${className}`;
+
+const {collapse} = deepDefaults(theme, {
+    collapse: {
+        fontSize: '12px',
+        titleMarginRight: '8px',
+        borderPadding: '0 24px',
+        collBorder: '1px solid #eee',
+
+        item: {
+            borderBottom: '1px solid #e5e5e5',
+            titleHeight: '40px',
+            contentPadding: '0 16px 16px'
+        }
+    }
 });
 
 export function makeStyles() {
+    return css`
+        font-size: ${collapse.fontSize};
+        
+        &.k-left {
+            .${kls('arrow')} {
+                float: left;
+                margin-right: ${collapse.titleMarginRight};
+                transform-origin: center center 0;
+            }
+        }
+
+        &.k-border {
+            border-radius: ${theme.borderRadius};
+            padding: ${collapse.borderPadding};
+            border: ${collapse.collBorder};
+        }
+    `;
+}
+
+export function makeItemStyles() {
+    const collapseItem = collapse.item;
     return css`
         border-bottom: ${collapseItem.borderBottom};
         &:last-of-type {
