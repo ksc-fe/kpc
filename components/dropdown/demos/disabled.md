@@ -7,8 +7,8 @@ order: 3
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Button} from 'kpc/components/button';
+import {Icon} from 'kpc/components/icon';
 
 <div>
     <Dropdown disabled>
