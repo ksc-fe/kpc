@@ -1,8 +1,16 @@
 import {useInstance} from 'intact';
+import {useState, watchState} from '../../hooks/useState';
+import {isEqualArray} from '../utils';
 import {Transfer} from './index';
 
 export function useTransfer() {
     const instance = useInstance() as Transfer;
+    const rightData = useState<any[]>([], isEqualArray);
+
+    watchState(rightData, v => {
+        const {keyName} = instance.get();
+        instance.set('value', v.map(item => item[keyName!]));
+    })
 
     function enableAdd() {
         const {enableAdd: _enableAdd} = instance.get();
@@ -21,30 +29,29 @@ export function useTransfer() {
     }
 
     function add() {
-        const {value, leftCheckedKeys} = instance.get();
-        const selectedKeys = value!.concat(leftCheckedKeys);
-        instance.set({
-            leftCheckedKeys: [],
-            value: selectedKeys
-        });
+        const {data, leftCheckedKeys, keyName} = instance.get();
+        const _rightData = rightData.value.concat(data!.filter(item => {
+            return ~leftCheckedKeys.indexOf(item[keyName!]);
+        }))
+        rightData.set(_rightData);
+        instance.set('leftCheckedKeys', []);
 
         instance.trigger('add');
     }
 
     function remove() {
-        const {value, rightCheckedKeys} = instance.get();
-        const selectedKeys = value!.filter(item => {
-            return !~rightCheckedKeys.indexOf(item)
+        const {rightCheckedKeys, keyName} = instance.get();
+        const _rightData = rightData.value!.filter(item => {
+            return !~rightCheckedKeys.indexOf(item[keyName!])
         })
-        instance.set({
-            rightCheckedKeys: [],
-            value: selectedKeys
-        });
+        rightData.set(_rightData);
+        instance.set('rightCheckedKeys', []);
 
         instance.trigger('remove');
     }
 
     return {
+        rightData,
         enableAdd,
         enableRemove,
         add,

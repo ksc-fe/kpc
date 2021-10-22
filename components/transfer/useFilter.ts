@@ -1,17 +1,21 @@
 import {useInstance, Key} from 'intact';
+import {State} from '../../hooks/useState';
 import {Transfer} from './index';
 
 export type Model = 'left' | 'right';
 
-export function useFilter() {
+export function useFilter(rightData: State<any[]>) {
     const instance = useInstance() as Transfer;
 
     instance.on('$receive:value', v => {
         if (!Array.isArray(v)) {
             instance.set('value', [], {silent: true});
         } else {
-            const {rightCheckedKeys} = instance.get();
-            instance.set('rightCheckedKeys', fixData(filterData('right'), rightCheckedKeys));
+            const {keyName} = instance.get();
+            const data = instance.get('data')!.filter(item => {
+                return ~v.indexOf(item[keyName!]);
+            });
+            rightData.set(data);
         }
     });
 
@@ -20,44 +24,46 @@ export function useFilter() {
         if (!v || !v.length) {
             instance.set('leftCheckedKeys', []);
         } else {
-            const {leftCheckedKeys} = instance.get();
-            instance.set('leftCheckedKeys', fixData(filterData('left'), leftCheckedKeys));
+            const {leftCheckedKeys, keyName} = instance.get();
+            const allKeys = v.reduce((memo, item) => {
+                memo[item[keyName!]] = true;
+                return memo;
+            }, {});
+            const fix = (keys: Key[]) => {
+                const ret: Key[] = [];
+                if (keys) {
+                    keys.forEach(key => {
+                        if (allKeys[key]) {
+                            ret.push(key);
+                        }
+                    });
+                }
+                return ret;
+            };
+            instance.set('leftCheckedKeys', fix(leftCheckedKeys));
         }
     });
 
-    function fixData(data: any[], keys: Key[]){
-        const {keyName} = instance.get();
-        const allKeys = data!.reduce((memo, item) => {
-            memo[item[keyName!]] = true;
-            return memo;
-        }, {})
-        const ret: Key[] = [];
-        if (keys) {
-            keys.forEach(key => {
-                if (allKeys[key]) {
-                    ret.push(key);
-                }
+    function getFilterData(model: Model){
+        let data;
+        if (model === 'left') {
+            const {value, keyName} = instance.get();
+            data = instance.get('data')!.filter(item => {
+                return !~value!.indexOf(item[keyName!]);
             });
+        } else {
+            data = rightData.value;
         }
-        return ret;
-    }
-
-    function filterData(model: Model) {
-        const {data, keyName, value} = instance.get();
-        return data!.filter(item => {
-            const rightFilter = ~value!.indexOf(item[keyName!]);
-            return model === 'left' ? !rightFilter : rightFilter;
-        })
+        return data;
     }
 
     function getShowedData(model: Model) {
-        let data = filterData(model);
+        let data = getFilterData(model);
         const keywords = instance.get(`${model}Keywords`);
         if (instance.get('filterable') && keywords) {
             const filter = instance.get('filter')!;
             data = data!.filter(item => filter(item, keywords));
         }
-
         return data;
     }
 
@@ -68,7 +74,7 @@ export function useFilter() {
     }
 
     return {
-        filterData,
+        getFilterData,
         getShowedData,
         getEnabledData
     };

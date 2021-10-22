@@ -2,7 +2,7 @@ import {Component, TypeDefs, VNode, createRef, Key} from 'intact';
 import template from './index.vdt';
 import {_$} from '../../i18n';
 import {useTransfer} from './useTransfer';
-import {useFilter} from './useFilter';
+import {useFilter, Model} from './useFilter';
 import {useCheck} from './useCheck';
 
 export interface TransferProps {
@@ -63,6 +63,18 @@ export class Transfer<T extends TransferProps = TransferProps> extends Component
     static defaults = defaults;
 
     private transfer = useTransfer();
-    private filter = useFilter();
+    private filter = useFilter(this.transfer.rightData);
     private check = useCheck(this.filter);
+
+    public getData() {
+        return this.transfer.rightData.value;
+    }
+
+    public getCheckedData(model: Model) {
+        const data = this.filter.getFilterData(model);
+        const {keyName} = this.get();
+        return data.filter(item => {
+            return ~this.get(`${model}CheckedKeys`).indexOf(item[keyName!]);
+        })
+    }
 }
