@@ -6,7 +6,7 @@ order: 0
 使用`v-model`绑定输入的值，`disabled`来禁用组件
 
 ```vdt
-import Input from 'kpc/components/input';
+import {Input} from 'kpc/components/input';
 
 <div>
     <Input v-model="value" placeholder="please enter" ref="__test" /> {this.get('value')}

@@ -6,8 +6,8 @@ order: 2
 添加`size`属性，定义如下尺寸：`large`, `default`，`small`，`mini`
 
 ```vdt
-import Input from 'kpc/components/input';
-import Button from 'kpc/components/button';
+import {Input} from 'kpc/components/input';
+import {Button} from 'kpc/components/button';
 
 <div>
     <Input size="large" value="large" />

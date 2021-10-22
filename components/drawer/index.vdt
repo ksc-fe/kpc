@@ -1,9 +1,10 @@
 import {makeStyles} from './styles';
 
+const {placement, overlay} = this.get();
 const classNameObj = {
     'k-drawer': true,
-    [`k-${this.get('placement')}`]: true,
-    [makeStyles(this.get('overlay'))]: true
+    [`k-${placement}`]: true,
+    [makeStyles(overlay)]: true
 };
 
 <t:super class={classNameObj}>

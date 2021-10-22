@@ -80,9 +80,9 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    public dialogRef = createRef<HTMLDivElement>();
     public useAsComponent = false;
 
-    private dialogRef = createRef<HTMLDivElement>();
     private overlayRef = createRef<HTMLDivElement>();
     private drag = useDraggable(
         this.dialogRef,
@@ -107,7 +107,6 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         provide(DIALOG, this);
 
         if (this.$vNode) {
-            // TODO
             this.useAsComponent = true;
         }
     }

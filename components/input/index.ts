@@ -60,7 +60,7 @@ const defaults = (): Partial<InputProps> => ({
     frozenOnInput: false,
 });
 
-export default class Input<T extends InputProps = InputProps> extends Component<T> {
+export class Input<T extends InputProps = InputProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -135,5 +135,3 @@ function selectInput(input: HTMLInputElement) {
         input.setSelectionRange(0, input.value.length);
     }
 }
-
-export {Input};
