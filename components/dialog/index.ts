@@ -13,6 +13,7 @@ import {useEscClosable} from './useEscClosable';
 import {onOpen, onClosed} from './fixBody';
 import {addStaticMethods} from './staticMethods';
 import {SHOW, HIDE, DIALOG} from './constants';
+import {usePosition} from './usePosition';
 
 export interface DialogProps {
     title?: string
@@ -58,11 +59,8 @@ const defaults = (): Partial<DialogProps> => ({
     title: _$('提示'),
     value: false,
     size: 'default',
-    loading: false,
-    disabledOk: false,
     okText: _$('确定'),
     cancelText: _$('取消'),
-    hideClose: false,
     overlay: true,
     closable: true,
     escClosable: true,
@@ -74,11 +72,15 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    public dialogRef = createRef<HTMLDivElement>();
-    public wrapperRef = createRef<HTMLDivElement>();
+    public useAsComponent = false;
 
-    private drag = useDraggable();
-    private useAsComponent = false;
+    private dialogRef = createRef<HTMLDivElement>();
+    private overlayRef = createRef<HTMLDivElement>();
+    private drag = useDraggable(
+        this.dialogRef,
+        this.overlayRef,
+    );
+    private position = usePosition(this.dialogRef);
 
     init() {
         useShowHideEvents('value', SHOW, HIDE);
@@ -92,7 +94,7 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         }
     }
 
-    show(props: T | null) {
+    public show(props: T | null) {
         return new Promise(resolve => {
             if (this.get('value')) return;
 
@@ -118,23 +120,23 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         });
     }
 
-    close() {
+    public close() {
         this.set('value', false);
     }
 
-    showLoading() {
+    public showLoading() {
         this.set('loading', true);
     }
 
-    hideLoading() {
+    public hideLoading() {
         this.set('loading', false);
     }
 
-    disableOk() {
+    public disableOk() {
         this.set('disabledOk', true);
     }
 
-    enableOk() {
+    public enableOk() {
         this.set('disabledOk', false);
     }
 
@@ -144,62 +146,18 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
      * presses ESC or clicks overlay
      */
     @bind
-    terminate() {
+    public terminate() {
         this.btnCallback('terminate');
     }
 
     @bind
-    ok() {
+    public ok() {
         this.btnCallback('ok');
     }
 
     @bind
-    cancel() {
+    public cancel() {
         this.btnCallback('cancel');
-    }
-
-    @bind
-    private onEnter() {
-        if (this.get('overlay')) {
-            this.wrapperRef.value!.style.display = 'block';
-            onOpen();
-
-        }
-        this.center();
-    }
-
-    @bind
-    private onAfterLeave() {
-        if (this.get('overlay')) {
-            // this.wrapperRef.value!.style.display = 'none';
-            onClosed();
-        }
-        if (!this.useAsComponent) {
-            remove(this.$vNode!, document.body, false);
-        }
-    }
-
-    beforeUnmount() {
-        if (this.get('value')) {
-            onClosed();
-        }
-    }
-
-    private center() {
-        position(this.dialogRef.value!, {
-            // ensure title visible always
-            using: (feedback, position) => {
-                const height = feedback.element.height;
-                const scrollTop = window.pageYOffset;
-                const outerHeight = window.document.documentElement.clientHeight;
-                if (height > outerHeight) {
-                    position.top = scrollTop;
-                }
-            },
-            // let dialog padding top half of padding bottom
-            my: 'center center+16%',
-            at: 'center center-16%'
-        });
     }
 
     private btnCallback(type: 'ok' | 'cancel' | 'terminate') {
@@ -214,10 +172,8 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
 
     @bind
     private onClickWrapper(e: MouseEvent) {
-        if (e.target === this.wrapperRef.value) {
-            if (this.get('closable')) {
-                this.terminate();
-            }
+        if (this.get('closable')) {
+            this.terminate();
         }
     }
 }

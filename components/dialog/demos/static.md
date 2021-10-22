@@ -54,9 +54,9 @@ export default class extends Component {
             title: type[0].toUpperCase() + type.substring(1),
             content: type + ' dialog',
         }).then(() => {
-            Message.log('clicked ok button');
+            Message.info('clicked ok button');
         }, () => {
-            Message.log('clicked cancel button');
+            Message.info('clicked cancel button');
         });
     }
 }

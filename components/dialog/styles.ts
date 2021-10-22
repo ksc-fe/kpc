@@ -146,17 +146,21 @@ export function makeDialogStyles() {
 
 export function makeWrapperStyles() {
     // k-fade-leave-active will add position absolute to the styles
-    // so we must set fixed with important
+    // so we must set fixed with important to .k-dialog-overlay
     return css`
-        position: fixed !important;
+        position: fixed;
         z-index: ${theme.maxZIndex};
         top: 0;
         left: 0;
         width: 100%;
-        height: 100%;
-        overflow: auto;
-        display: none;
-        background: rgba(0, 0, 0, .5);
+        .k-dialog-overlay {
+            position: fixed !important;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .5);
+        }
     `;
 }
 
