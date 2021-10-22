@@ -15,7 +15,7 @@ import {Dialog} from 'kpc/components/dialog';
 <div>
     <ButtonGroup>
         <template v-for={['large', 'default', 'small', 'mini']}>
-            <Button ev-click={this.set.bind(this, `show${$value}`, true)}>Show {$value} Dialog</Button>
+            <Button ev-click={this.set.bind(this, `show${$value}`, true)}>Show{' '}{$value}{' '}Dialog</Button>
             <Dialog v-model={`show${$value}`} title="Dialog Title" size={$value}>
                 Size: {$value}
             </Dialog>
