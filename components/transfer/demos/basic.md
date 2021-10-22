@@ -8,8 +8,7 @@ order: 0
 > 你需要给每一行数据指定`key`，默认会取数据项中的`key`值，没有则会取`label`值。你也可以通过
 > `keyName`属性来指定取哪个值当做`key`
 
-> `value`选中的值为原始数据`data`数组中的同一引用。`@since v1.0.0` `value`中的数据不一定是`data`
-> 中的同一引用，而是通过`key`去判断是否是同一数据。
+> `value`选中的值为原始数据`data`数组中的`key`值。
 
 ```vdt
 import {Transfer} from 'kpc/components/transfer';
@@ -34,10 +33,7 @@ export default class extends Component {
     static defaults() {
         return {
             data: data,
-            value: [
-                data[0],
-                data[1]
-            ]
+            value: [0, 1]
         }
     }
 }
@@ -47,10 +43,7 @@ export default class extends Component {
 data() {
     return {
         data: data,
-        value: [
-            data[0],
-            data[1]
-        ]
+        value: [0, 1]
     }
 },
 ```
@@ -60,10 +53,7 @@ constructor(props) {
     super(props);
     this.state = {
         data: data,
-        value: [
-            data[0],
-            data[1]
-        ]
+        value: [0, 1]
     };
 }
 ```

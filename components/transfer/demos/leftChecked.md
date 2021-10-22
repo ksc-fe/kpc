@@ -3,16 +3,14 @@ title: 控制选择项
 order: 2
 ---
 
-通过`leftChecked`属性，我们可以控制左侧已选项，`rightChecked`同理
-
-> `leftChecked`数组为`data`中每一项的同一引用
+通过`leftCheckedKeys`属性，我们可以控制左侧已选项，`rightCheckedKeys`同理
 
 ```vdt
 import {Transfer} from 'kpc/components/transfer';
 
 <div>
     <Transfer data={this.get('data')} 
-        v-model:leftChecked="checked"
+        v-model:leftCheckedKeys="checked"
     />
     <p>You checked left side: {JSON.stringify(this.get('checked'))}</p>
 </div>
@@ -32,7 +30,7 @@ export default class extends Component {
     static defaults() {
         return {
             data: data,
-            checked: [data[0], data[2]]
+            checked: [0, 2]
         }
     }
 }
@@ -42,7 +40,7 @@ export default class extends Component {
 data() {
     return {
         data: data,
-        checked: [data[0], data[2]]
+        checked: [0, 2]
     }
 },
 ```
@@ -52,12 +50,12 @@ constructor(props) {
     super(props);
     this.state = {
         data: data,
-        checked: [data[0], data[2]]
+        checked: [0, 2]
     };
 }
 ```
 
 ```angular-properties
 private data = data;
-private checked = [data[0], data[2]];
+private checked = [0, 2];
 ```

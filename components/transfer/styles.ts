@@ -37,7 +37,6 @@ const {transfer} = deepDefaults(theme, {
 
         arrow: {
             gap: '16px 10px',
-            fontSize: '22px'
         }
     }
 });
@@ -115,9 +114,8 @@ export function makeStyles() {
 
         .k-transfer-arrows {
             .k-btn {
-                display: block;
+                display: flex;
                 margin: ${transfer.arrow.gap};
-                font-size: ${transfer.arrow.fontSize};
             }
         }
     `;

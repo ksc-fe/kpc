@@ -7,13 +7,13 @@ import {Button} from '../button';
 import {Tree} from '../tree';
 
 const {
-    data, className, value, keyName, leftChecked, 
-    rightChecked, filterable, filter, label, 
-    placeholder, leftTitle, rightTitle,
-    enableAdd, enableRemove, tree,
+    data, className, value, keyName, 
+    labelName, filterable, filter, 
+    placeholder, leftTitle, rightTitle, 
 } = this.get();
-const {add, remove} = this.buttons;
-const {filterData, selectedKeys, isCheckAll, toggleCheckAll, onCheckboxChange} = this.panel;
+const {filterData} = this.filter;
+const {enableAdd, enableRemove, add, remove} = this.transfer;
+const {isCheckAll, toggleCheckAll, onCheckboxChange} = this.check;
 
 const classNameObj = {
     'k-transfer': true,
@@ -21,30 +21,27 @@ const classNameObj = {
     [makeStyles()]: true,
 };
 
-const Panel = ({model, data, title} = {}) => {
-    const keywords = this.get(`_${model}Keywords`);
+const Panel = (data, model, title) => {
+    const keywords = this.get(`${model}Keywords`);
     if(keywords) {
         data = data.filter(item => filter(item, keywords));
     }
     return <div class="k-transfer-panel">
         <div class="k-transfer-title">
             <b:header params={model}>
-                <div v-if={tree}>{title}</div> 
-                <template v-else>
-                    <div class="k-transfer-count">
-                        {this.get(`${model}Checked.length`)} /
-                        {data.length}
-                    </div>
-                    <Checkbox class="c-ellipsis" 
-                        value={isCheckAll(model)}
-                        ev-click={toggleCheckAll.bind(this, model)}
-                    >{title}</Checkbox>
-                </template>
+                <div class="k-transfer-count">
+                    {this.get(`${model}CheckedKeys.length`)} /
+                    {data.length}
+                </div>
+                <Checkbox class="c-ellipsis" 
+                    value={isCheckAll(model)}
+                    ev-click={toggleCheckAll.bind(null, model)}
+                >{title}</Checkbox>
             </b:header>
         </div>
         <b:filter params={model} v-if={filterable}>
             <Input placeholder={placeholder}
-                v-model={`_${model}Keywords`}
+                v-model={`${model}Keywords`}
                 clearable
                 size="small"
             >
@@ -54,57 +51,43 @@ const Panel = ({model, data, title} = {}) => {
             </Input>
         </b:filter>
         <div class="k-transfer-list">
-            <TransitionGroup name="k-fade" appear={false}>
-                <Tree v-if={tree}
-                    data={data}
-                    checkbox
-                    v-model:checkedKeys={`_${model}CheckedKeys`}
-                    v-model:expandedKeys={`${model}ExpandedKeys`}
-                    ref={this[`${model}TreeRef`]}
-                />
-                <template v-else>
-                    <TransitionGroup name="k-fade">
-                        <template>
-                            <b:list params={model}>
-                                <div v-for={data} 
-                                    class={{"k-transfer-item": true, "k-disabled": $value.disabled}}
-                                    key={$value[keyName] || $value.label || $value}
-                                >
-                                    <Checkbox v-model={`_${model}CheckedKeys`} name={model}
-                                        trueValue={$value[keyName]}
-                                        disabled={$value.disabled}
-                                        ev-click={onCheckboxChange.bind(this, model, $key)}
-                                    >
-                                        <template>
-                                            <b:label params={[$value, $key, model]}>
-                                                {label.call(this, $value, $key, model)}
-                                            </b:label>
-                                        </template>
-                                    </Checkbox>
-                                </div>
-                            </b:list>
-                        </template>
-                    </TransitionGroup>
-                </template>
-            </TransitionGroup>
+            <b:list params={model}>
+                <TransitionGroup name="k-fade">
+                    <div v-for={data} 
+                        class={{"k-transfer-item": true, "k-disabled": $value.disabled}}
+                        key={$value[keyName] || $value[labelName] || $value}
+                    >
+                        <Checkbox v-model={`${model}CheckedKeys`} name={model}
+                            trueValue={$value[keyName]}
+                            disabled={$value.disabled}
+                            ev-click={onCheckboxChange.bind(this, model, $key)}
+                        >
+                            <template>
+                                <b:label params={[$value, $key, model]}>
+                                    {$value[labelName]}
+                                </b:label>
+                            </template>
+                        </Checkbox>
+                    </div>
+                </TransitionGroup>
+            </b:list>
         </div>
     </div>
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <Panel data={filterData(data, selectedKeys.value, false)}
-        model="left" 
-        title={leftTitle}
-    />
+    {Panel(filterData('left'), 'left', leftTitle)}
     <div class="k-transfer-arrows">
-        <Button circle icon disabled={!enableRemove.call(this)}
+        <Button circle icon 
+            disabled={!enableRemove()}
             ev-click={remove}
             type="primary"
             size="large"
         >
             <i class="k-transfer-icon ion-ios-arrow-left" />
         </Button>
-        <Button circle icon disabled={!enableAdd.call(this)}
+        <Button circle icon 
+            disabled={!enableAdd()}
             ev-click={add}
             type="primary"
             size="large"
@@ -112,8 +95,5 @@ const Panel = ({model, data, title} = {}) => {
             <i class="k-transfer-icon ion-ios-arrow-right" />
         </Button>
     </div>
-    <Panel data={value} 
-        model="right" 
-        title={rightTitle}
-    />
+    {Panel(filterData('right'), 'right', rightTitle)}
 </div>

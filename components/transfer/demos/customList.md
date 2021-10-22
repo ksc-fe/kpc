@@ -50,7 +50,7 @@ import {Checkbox} from 'kpc/components/checkbox';
 ```
 
 ```ts
-import Message from 'kpc/components/message';
+import {Message} from 'kpc/components/message';
 import {bind} from 'kpc/components/utils';
 
 export default class extends Component {
