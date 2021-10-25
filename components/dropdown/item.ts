@@ -21,7 +21,6 @@ const typeDefs: Required<TypeDefs<DropdownItemProps>> = {
 }
 
 const defaults = (): Partial<DropdownItemProps> => ({
-    disabled: false,
     hideOnSelect: true,
 });
 

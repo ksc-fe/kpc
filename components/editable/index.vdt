@@ -21,15 +21,17 @@ const classNameObj = {
 <div {...getRestProps(this)} class={classNameObj}>
     <Icon class="k-icon-edit k-editable-icon" title={tip}
         v-if={!disabled && !editing}
-        ev-click={this.onClick}
+        ev-click={this.edit}
     />
     <div class="c-ellipsis">
-        {!editing ? children :
-            <Input size="small" defaultValue={value} 
-                ev-blur={this.onBlur}
-                ev-keydown={this.onKeydown}
-                ref={this.elementRef}
-            />
-       }
+        <template v-if={!editing}>{children}</template>
+        <Input v-else
+            size="small"
+            defaultValue={value} 
+            ev-blur={this.onBlur}
+            ev-keydown={this.onKeydown}
+            ref={this.inputRef}
+            frozenOnInput
+        />
     </div>
 </div>
