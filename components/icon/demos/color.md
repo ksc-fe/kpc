@@ -4,7 +4,7 @@ order: 1
 ---
 
 使用`color`属性可以定义图标的颜色，组件内置了4中颜色：`primary` `warning` `danger` `success`。你也
-可以自定义`color`值
+可以自定义`color`值；给组件添加`hoverable`属性，可以展示`hover`效果
 
 ```vdt
 import {Icon} from 'kpc/components/icon';

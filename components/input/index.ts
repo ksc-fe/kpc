@@ -1,5 +1,5 @@
 import {Component, TypeDefs, createRef, watch, nextTick, onMounted, RefObject} from 'intact';
-import {Sizes} from '../types';
+import {Sizes, sizes} from '../../styles/utils';
 import template from './index.vdt';
 import {bind} from '../utils';
 import {isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
@@ -8,7 +8,7 @@ import {useFrozen} from './useFrozen';
 export * from './search';
 
 export interface InputProps {
-    type?: string
+    type?: 'text' | 'textarea' 
     value?: string | number
     defaultValue?: string | number
     placeholder?: string
@@ -22,10 +22,6 @@ export interface InputProps {
     width?: number | string
     stackClearIcon?: boolean
     frozenOnInput?: boolean
-
-    _width?: number
-    _inputing?: boolean
-    _originalValue?: string | number
 }
 
 const typeDefs: Required<TypeDefs<InputProps>> = {
@@ -36,7 +32,7 @@ const typeDefs: Required<TypeDefs<InputProps>> = {
     readonly: Boolean,
     clearable: Boolean,
     disabled: Boolean,
-    size: ['large', 'default', 'small', 'mini'],
+    size: sizes,
     rows: [String, Number],
     autoWidth: Boolean,
     fluid: Boolean,
@@ -47,15 +43,8 @@ const typeDefs: Required<TypeDefs<InputProps>> = {
 
 const defaults = (): Partial<InputProps> => ({
     type: 'text', // text | textarea
-    readonly: false,
-    clearable: false,
-    disabled: false,
     size: 'default',
     rows: 2,
-    autoWidth: false,
-    fluid: false,
-    stackClearIcon: false,
-    frozenOnInput: false,
 });
 
 export class Input<T extends InputProps = InputProps> extends Component<T> {
