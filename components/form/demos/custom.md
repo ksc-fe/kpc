@@ -68,6 +68,7 @@ import {Button} from 'kpc/components/button';
 
 ```ts
 import {Form} from 'kpc/components/form';
+import {bind} from 'kpc/components/utils';
 
 // 添加全局规则
 Form.addMethod('letter', (value, param) => {
@@ -80,10 +81,12 @@ export default class extends Component<{descriptions: string[]}> {
         descriptions: ['', '']
     });
 
+    @bind
     add() {
         this.set('descriptions', this.get('descriptions').concat(''));
     }
 
+    @bind
     remove(index: number) {
         const descriptions = this.get('descriptions').slice(0);
         descriptions.splice(index, 1);
