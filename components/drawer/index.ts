@@ -1,24 +1,23 @@
 import {TypeDefs} from 'intact';
 import template from './index.vdt';
 import {Dialog, DialogProps} from 'kpc/components/dialog';
+import {Placement, placements} from './styles';
 
-type Placement = 'top' | 'bottom' | 'left' | 'right'
-
-interface DrawerProps extends DialogProps {
-  placement?: Placement
+export interface DrawerProps extends DialogProps {
+    placement?: Placement
 }
 
 const typeDefs: Required<TypeDefs<DrawerProps>> = {
-    placement: String,
     ...Dialog.typeDefs,
+    placement: placements,
 };
 
 const defaults = (): Partial<DrawerProps> => ({
-    placement: 'right',
     ...Dialog.defaults(),
+    placement: 'right',
 });
 
-export default class Drawer<T extends DrawerProps = DrawerProps> extends Dialog<T> {
+export class Drawer<T extends DrawerProps = DrawerProps> extends Dialog<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -1,4 +1,4 @@
-import Icon from '../icon';
+import {Icon} from '../icon';
 import {addStyle, isTextBlock, getRestProps} from '../utils';
 import {makeStyles} from './styles';
 import {noop} from 'intact-shared';

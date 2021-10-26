@@ -1,4 +1,4 @@
-import {isStringOrNumberNotEmpty, getRestProps} from '../utils';
+import {getRestProps} from '../utils';
 import {Icon} from '../icon';
 import {makeButtonStyles} from './styles';
 import {DynamicButton} from './dynamicButton';
@@ -21,11 +21,6 @@ let iconSide;
 if (!icon && Array.isArray(children)) {
     children.forEach((child, index) => {
         if (child) {
-            if (child.type === 1 || isStringOrNumberNotEmpty(child)) {
-                // is a text node
-                // wrap text node with span
-                children[index] = <span>{child}</span>
-            }
             // whether the icon is on the left side or right
             if (index === 0) {
                 if (isIcon(child)) {
@@ -38,9 +33,6 @@ if (!icon && Array.isArray(children)) {
             }
         }
     });
-} else if (isStringOrNumberNotEmpty(children) || children && children.type === 1) {
-    // wrap text node with span
-    children = <span>{children}</span>
 }
 
 const classNameObj = {

@@ -9,8 +9,8 @@ order: 2
 > 以便按钮变为`loading`状态时能够将它替换为loading图标
 
 ```vdt
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Button} from 'kpc/components/button';
+import {Icon} from 'kpc/components/icon';
 
 <div>
     <Button type="primary" loading>确认</Button>

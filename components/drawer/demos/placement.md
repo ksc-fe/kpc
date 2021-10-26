@@ -6,7 +6,7 @@ order: 0.1
 添加`placement`属性，定义如下位置：`top`,`bottom`,`left`,`right`。默认`right`从右侧出现
 
 ```vdt
-import Drawer from 'kpc/components/drawer';
+import {Drawer} from 'kpc/components/drawer';
 import {Button, ButtonGroup} from 'kpc/components/button';
 
 <div>
