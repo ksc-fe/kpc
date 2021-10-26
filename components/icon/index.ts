@@ -10,24 +10,24 @@ export interface IconProps {
     hoverable?: boolean,
 }
 
-export default class Icon<T extends IconProps = IconProps> extends Component<T> {
-    static template = template;
+const typeDefs: Required<TypeDefs<IconProps>> = {
+    size: [...sizes, 'default', String, Number],
+    color: String,
+    rotate: Boolean,
+    hoverable: Boolean,
+};
+
+const defaults = (): Partial<IconProps> => ({
+    size: 'default',
+});
+
+const defaultColors = [...colors, 'default'];
+
+export class Icon<T extends IconProps = IconProps> extends Component<T> {
     static displayName = 'Icon';
+    static template = template;
+    static typeDefs = typeDefs;
+    static defaults = defaults;
 
-    static typeDefs: Required<TypeDefs<IconProps>> = {
-        size: [...sizes, 'default', String, Number],
-        color: String,
-        rotate: Boolean,
-        hoverable: Boolean,
-    };
-
-    static defaults = (): Partial<IconProps> => ({
-        size: 'default',
-        rotate: false,
-        hoverable: false,
-    });
-
-    private colors = [...colors, 'default'];
+    private colors = defaultColors;
 }
-
-export {Icon};
