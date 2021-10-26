@@ -39,7 +39,6 @@ import {Icon} from 'kpc/components/icon';
                     <MenuItem key="3-4-2">Option 2</MenuItem>
                 </Menu>
             </MenuItem>
-
         </Menu>
     </MenuItem>
     <MenuItem key="4" to="/"><Icon class="ion-gear-b" />menu 4</MenuItem>
