@@ -1,0 +1,97 @@
+import {linkEvent, Transition, TransitionGroup} from 'intact';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {Input} from '../input';
+import {Checkbox} from '../checkbox';
+import {Button} from '../button';
+import {Tree} from '../tree';
+
+const {
+    data, className, keyName, labelName, 
+    filterable, filter, placeholder 
+} = this.get();
+const {getShowedData} = this.filter;
+const {enableAdd, enableRemove, add, remove} = this.transfer;
+const {isCheckAll, toggleCheckAll, onCheckboxChange} = this.check;
+
+const classNameObj = {
+    'k-transfer': true,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+const Panel = (model) => {
+    const title = this.get(`${model}Title`);
+    const data = getShowedData(model);
+
+    return <div class="k-transfer-panel">
+        <div class="k-transfer-title">
+            <b:header params={model}>
+                <div class="k-transfer-count">
+                    {this.get(`${model}CheckedKeys.length`)} /
+                    {data.length}
+                </div>
+                <Checkbox class="c-ellipsis" 
+                    value={isCheckAll(model)}
+                    ev-click={toggleCheckAll.bind(null, model)}
+                >{title}</Checkbox>
+            </b:header>
+        </div>
+        <b:filter params={model} v-if={filterable}>
+            <Input placeholder={placeholder}
+                v-model={`${model}Keywords`}
+                clearable
+                size="small"
+            >
+                <b:prefix>
+                    <i class="ion-ios-search"></i>
+                </b:prefix>
+            </Input>
+        </b:filter>
+        <div class="k-transfer-list">
+            <b:list params={model}>
+                <TransitionGroup name="k-fade">
+                    <div v-for={data} 
+                        class={{"k-transfer-item": true, "k-disabled": $value.disabled}}
+                        key={$value[keyName] || $value[labelName] || $value}
+                    >
+                        <Checkbox v-model={`${model}CheckedKeys`} name={model}
+                            trueValue={$value[keyName]}
+                            disabled={$value.disabled}
+                            ev-click={onCheckboxChange.bind(this, model, $key)}
+                        >
+                            <template>
+                                <b:label params={[$value, $key, model]}>
+                                    {$value[labelName]}
+                                </b:label>
+                            </template>
+                        </Checkbox>
+                    </div>
+                </TransitionGroup>
+            </b:list>
+        </div>
+    </div>
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    {Panel('left')}
+    <div class="k-transfer-arrows">
+        <Button circle icon 
+            disabled={!enableRemove()}
+            ev-click={remove}
+            type="primary"
+            size="large"
+        >
+            <i class="k-transfer-icon ion-ios-arrow-left" />
+        </Button>
+        <Button circle icon 
+            disabled={!enableAdd()}
+            ev-click={add}
+            type="primary"
+            size="large"
+        >
+            <i class="k-transfer-icon ion-ios-arrow-right" />
+        </Button>
+    </div>
+    {Panel('right')}
+</div>
