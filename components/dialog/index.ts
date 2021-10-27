@@ -1,16 +1,24 @@
-import {Component, TypeDefs, createRef, createVNode, VNodeComponentClass, callAll, remove, provide} from 'intact';
+import {
+    Component,
+    TypeDefs,
+    createRef,
+    createVNode,
+    VNodeComponentClass,
+    callAll,
+    provide,
+    Props,
+    ComponentClass,
+} from 'intact';
 import template from './index.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {Container} from '../portal';
 import {_$} from '../../i18n';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
-import {position} from '../position';
 import {bind} from '../utils';
 import {isFunction} from 'intact-shared';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {useDraggable} from './useDraggable';
 import {useEscClosable} from './useEscClosable';
-import {onOpen, onClosed} from './fixBody';
 import {addStaticMethods} from './staticMethods';
 import {SHOW, HIDE, DIALOG} from './constants';
 import {usePosition} from './usePosition';
@@ -72,15 +80,25 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    public dialogRef = createRef<HTMLDivElement>();
     public useAsComponent = false;
 
-    private dialogRef = createRef<HTMLDivElement>();
     private overlayRef = createRef<HTMLDivElement>();
     private drag = useDraggable(
         this.dialogRef,
         this.overlayRef,
     );
     private position = usePosition(this.dialogRef);
+
+    constructor(
+        props: Props<T, Component<T>> | null | undefined,
+        $vNode: VNodeComponentClass = null as unknown as VNodeComponentClass,
+        $SVG: boolean = false,
+        $mountedQueue: Function[] = [],
+        $parent: ComponentClass | null = null
+    ) {
+        super(props, $vNode, $SVG, $mountedQueue, $parent);
+    }
 
     init() {
         useShowHideEvents('value', SHOW, HIDE);
@@ -89,7 +107,6 @@ export class Dialog<T extends DialogProps = DialogProps> extends Component<T> {
         provide(DIALOG, this);
 
         if (this.$vNode) {
-            // TODO
             this.useAsComponent = true;
         }
     }

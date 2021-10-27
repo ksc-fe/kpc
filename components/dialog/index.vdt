@@ -52,7 +52,7 @@ const dialog = (
                 </div>
                 <div class="k-dialog-body"><b:body>{children}</b:body></div>
                 <b:footer-wrapper>
-                    <div class="c-clearfix k-dialog-footer">
+                    <div class="k-dialog-footer">
                         <b:footer>
                             <Button class="k-dialog-ok" 
                                 type="primary"

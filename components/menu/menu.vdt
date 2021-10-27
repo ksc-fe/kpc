@@ -1,49 +1,38 @@
-import {directClone} from 'intact';
-import Item from './item';
 import {DropdownMenu} from '../dropdown';
-import {mapChildren, isStringOrNumberNotEmpty, getRestProps} from '../utils';
+import {getRestProps} from '../utils';
 import makeStyles from './menuStyles';
+import {isDropdown} from './useDropdown';
 
-const {
-    children, className, collapse, dot,
-    theme, type, size,
-} = this.get();
-
+const {children, className} = this.get();
+const {collapse, theme, type, size} = (this.rootMenu || this).get();
+const isRootMenu = !this.rootMenu;
+const isDropdownMenu = !isRootMenu && isDropdown(this.rootMenu);
 const classNameObj = {
     'k-menu': true,
     [className]: className,
-    [`k-${theme}`]: !this.rootMenu && theme,
-    [`k-${size}`]: !this.rootMenu && size && size !== 'default',
-    'k-collapsed': collapse,
-    [`k-${type}`]: type,
+    [`k-${theme}`]: (isRootMenu || isDropdownMenu) && theme,
+    [`k-${size}`]: isRootMenu && size !== 'default',
+    'k-collapsed': isRootMenu && collapse,
+    [`k-${type}`]: isRootMenu && type,
     [makeStyles()]: true,
 };
 
-const header = (
-    <div class="k-menu-header" v-if={$blocks.header}>
-        {
-            mapChildren(<b:header />, vNode => {
-                if (vNode.type & 1 || isStringOrNumberNotEmpty(vNode)) {
-                    return <span>{vNode}</span>;
-                } else {
-                    return vNode;
-                }
-            })
-        }
-    </div>
+const content = (
+    <template>
+        <div class="k-menu-header" v-if={$blocks.header}>
+            <b:header />
+        </div>
+        {children}
+    </template>
 );
 
 <template>
-    <div v-if={!this.isDropdownMenu()}
+    <div v-if={!isDropdownMenu}
         {...getRestProps(this)}
         class={classNameObj}
-    >{header}{children}</div>
-    <DropdownMenu 
-        v-else 
-        class={{
-            'k-menu': true, 
-            [`k-${this.rootMenu.get('theme') || 'dark'}`]: true,
-            [makeStyles()]: true
-        }}
-    >{header}{children}</DropdownMenu>
+    >{content}{}</div>
+    <DropdownMenu v-else 
+        {...getRestProps(this)}
+        class={classNameObj}
+    >{content}</DropdownMenu>
 </template>

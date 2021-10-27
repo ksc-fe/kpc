@@ -4,86 +4,73 @@ import {Tooltip} from '../tooltip';
 import {Icon} from '../icon';
 import {Menu} from './menu';
 import makeStyles from './itemStyles';
-import {
-    mapChildren, expandAnimationCallbacks, 
-    isStringOrNumberNotEmpty, getRestProps
-} from '../utils';
+import {getRestProps, expandAnimationCallbacks} from '../utils';
+import {isNullOrUndefined} from 'intact-shared';
 
-const {theme, type} = this.rootMenu.get();
-const {children, key, className, dot, disabled, _show} = this.get();
-const {isHighlighted} = this.highlight;
-
-let subMenuVNode;
-let tooltipContents = [];
-const titleVNodes = mapChildren(children, vNode => {
-    if (vNode.tag === Menu) {
-        subMenuVNode = vNode;
-    } else if (vNode.type & 1 || isStringOrNumberNotEmpty(vNode)) {
-        tooltipContents.push(vNode);
-        return <span>{vNode}</span>;
-    } else {
-        return vNode;
-    }
-});
-
-const isExpanded = subMenuVNode && this.rootMenu.isExpanded(key);
-if (isExpanded) {
-    this.parentMenu._expandedKeys.add(key);
-}
-
+const rootMenu = this.rootMenu;
+const {theme, type, dot: rootDot} = rootMenu.get();
+const {children, key, className, disabled, dot} = this.get();
+const {isHighlighted, isSelected} = this.highlight;
+const {isExpanded: isExpandedKey} = this.expanded;
+const isExpanded = isExpandedKey(key);
+const {
+    isTopItem, subMenuVNode, isDropdownMenu,
+    tooltipContents, iconVNode, titleVNodes,
+    position, isCollapse,
+} = this.dropdown();
 const classNameObj = {
     'k-menu-item': true,
     [className]: className,
     'k-expanded': isExpanded, 
     'k-disabled': disabled,
-    'k-active':  this.rootMenu.isSelected(key),
-    'k-hover': this.isFirstFloorChildren && Menu.showAsDropdown(this.rootMenu),
-    'k-show': this.show.value,
-    'k-highlighted': isHighlighted(key),
+    'k-active':  isSelected(), 
+    'k-highlighted': isHighlighted(),
     [makeStyles()]: true,
 };
 
-const position = type !== 'horizontal' || !this.isFirstFloorChildren 
-    ? {my: 'left top', at: 'right+5 top'} 
-    : {my: 'left top', at: 'left bottom+5'};
-
-const title = (
+const showDot = isTopItem && !iconVNode && isNullOrUndefined(dot) ? rootDot : dot;
+const title = (children) => (
     <div class="k-menu-title" ev-click={this.onClick.bind(this, subMenuVNode)}>
-        <Icon class="k-menu-dot ion-record" v-if={dot} />
-        {titleVNodes}
+        <Icon class="k-menu-dot ion-record" v-if={showDot} />
+        {children}
         <i class="k-menu-arrow ion-ios-arrow-down" v-if={subMenuVNode}></i>
     </div>
 );
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <template v-if={!Menu.showAsDropdown(this.rootMenu)}>
-        {title}
-        <Transition 
-            key="subMenu"
+    <template v-if={!isDropdownMenu}>
+        {title(titleVNodes)}
+        <Transition
             show={isExpanded}
+            key="subMenu"
             {...expandAnimationCallbacks}
         >
-            <template v-if={subMenuVNode}>{subMenuVNode}</template>
+            {subMenuVNode}
         </Transition>
     </template>
 
     <template v-else-if={!subMenuVNode}>
         <Tooltip 
-            v-if={this.isFirstFloorChildren && type !== 'horizontal'}
-            position={{my: 'left+10 center', at: 'right center'}}
+            v-if={isTopItem && isCollapse}
+            position={rootMenu.get('type') !== 'horizontal' ? 'right' : 'bottom'}
+            theme={rootMenu.get('theme')}
         >
-            {title}
+            {title(iconVNode)}
             <b:content>{tooltipContents}</b:content> 
         </Tooltip>
-        <template v-else>{title}</template>
+        <template v-else>{title(titleVNodes)}</template>
     </template>
 
-    <Dropdown 
-        v-else 
-        position={position} 
-        ev-$change:value={this.onDropdownShowChange}
-    >
-        <template>{title}</template>
-        <template>{subMenuVNode}</template>
-    </Dropdown>
+    <template v-else>
+        <Dropdown position={position}>
+            <template>{title(isTopItem && isCollapse ? iconVNode : titleVNodes)}</template>
+            <template>{subMenuVNode}</template>
+        </Dropdown>
+        <Transition
+            {/* use a Transition to keep the shrink and expand animation */}
+            show={isExpanded}
+            key="subMenu"
+            {...expandAnimationCallbacks}
+        ></Transition>
+    </template>
 </div>

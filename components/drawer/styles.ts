@@ -5,9 +5,9 @@ import '../../styles/global';
 
 type ValueOf<T extends readonly any[]> = T[number]
 
-type Placements = ValueOf<typeof placements>
+export type Placement = ValueOf<typeof placements>
 
-const placements = ['top', 'right', 'bottom', 'left'] as const;
+export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
 const {drawer} = deepDefaults(theme, {
     drawer: {
@@ -46,10 +46,10 @@ export function makeStyles(overlay: boolean) {
             }
         }
         
-        ${placements.map((placement: Placements) => {
+        ${placements.map((placement) => {
             let positionValue: string = '';
             let transformValue: string = '';
-            placements.forEach((p: Placements) => {
+            placements.forEach((p) => {
                 // Set top to `0 !important` when overlay is false and placement is right or left
                 // Because dialog without overlay don't have positional parent element
                 positionValue += p !== placement 

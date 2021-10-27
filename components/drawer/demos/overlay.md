@@ -6,7 +6,7 @@ order: 0.2
 添加`overlay`属性，false则不展示遮罩层，true展示遮罩层
 
 ```vdt
-import Drawer from 'kpc/components/drawer';
+import {Drawer} from 'kpc/components/drawer';
 import {Button, ButtonGroup} from 'kpc/components/button';
 
 <div>

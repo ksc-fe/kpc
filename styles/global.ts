@@ -37,7 +37,7 @@ injectGlobal`
             .k-slide${direction}-enter-active,
             .k-slide${direction}-leave-active {
                 transform-origin: ${slideDirections[direction as keyof typeof slideDirections]};
-                transition: opacity ${theme.transition}, transform ${theme.transition};
+                transition: opacity ${theme.transition}, transform ${theme.transition} !important;
                 pointer-events: none;
             }
         `

@@ -1,12 +1,21 @@
-import {useInstance, createRef, onMounted, onUpdated, onUnmounted} from 'intact';
-import type {Menu, MenuItem} from '.';
+import {useInstance, createRef, onMounted, onUpdated, onUnmounted, Key} from 'intact';
+import type {Menu, MenuItem} from './';
+import {inArray} from '../table/useChecked';
+// import {isEqualArray} from '../utils';
 
-export function useHighlight(rootMenu: Menu, parentMenuItem: MenuItem | null) {
+export function useHighlight(
+    rootMenu: Menu & {highlightedKeys?: Key[]},
+    parentMenuItem: MenuItem | null
+) {
     const instance = useInstance() as MenuItem;
 
-    rootMenu.watch('selectedKey', updateStatus, {inited: true, presented: true});
+    // we can not watch selectedKey on before initializing rootMenu
+    // because rootMenu has initialized
+    // so call updateStatus here
+    updateStatus(rootMenu.get('selectedKey'));
+    rootMenu.watch('selectedKey', updateStatus);
 
-    function updateStatus(v: string | undefined) {
+    function updateStatus(v: Key | undefined) {
         const {key} = instance.get();
         if (v !== key) return;
 
@@ -18,18 +27,26 @@ export function useHighlight(rootMenu: Menu, parentMenuItem: MenuItem | null) {
         }
         
         const expandedKeys = new Set(rootMenu.get('expandedKeys'));
-        const _highlightedKeys = items.map(item => {
+        const highlightedKeys = items.map(item => {
             const key = item.get('key');
-            expandedKeys.add(key!);
+            expandedKeys.add(key);
             return key;
         });
-        rootMenu.highlightedKeys.set(_highlightedKeys as string[]);
+        rootMenu.highlightedKeys = highlightedKeys;
         rootMenu.set('expandedKeys', Array.from(expandedKeys))
     }
 
-    function isHighlighted(key: string) {
-        return rootMenu.highlightedKeys.value.indexOf(key) > -1;
+    function isHighlighted() {
+        return inArray(rootMenu.highlightedKeys, instance.get('key'));
     }
 
-    return {isHighlighted, updateStatus};
+    function select() {
+        rootMenu.set('selectedKey', instance.get('key'));
+    }
+
+    function isSelected() {
+        return rootMenu.get('selectedKey') === instance.get('key');
+    }
+
+    return {isHighlighted, updateStatus, select, isSelected};
 }

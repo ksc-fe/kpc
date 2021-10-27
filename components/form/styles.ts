@@ -20,7 +20,7 @@ const {form} = deepDefaults(theme, {
             get invalidBorder() { return `1px solid ${theme.color.danger}` },
 
             // append
-            appendGap: `10px`,
+            appendPadding: `0 10px`,
 
             // layout
             inlineGap: '16px',
@@ -102,7 +102,7 @@ export function makeItemStyles() {
         // append
         .k-form-append {
             display: table-cell;
-            padding: ${form.item.appendGap};
+            padding: ${form.item.appendPadding};
             vertical-align: middle;
         }
     `

@@ -6,7 +6,7 @@ order: 5
 添加`disabled`属性，可以禁用按钮
 
 ```vdt
-import Button from 'kpc/components/button';
+import {Button} from 'kpc/components/button';
 
 <div>
     <Button disabled>disabled</Button>

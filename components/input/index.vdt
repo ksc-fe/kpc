@@ -1,7 +1,7 @@
-import Icon from '../icon';
+import {Icon} from '../icon';
 import {addStyle, isTextBlock, getRestProps} from '../utils';
 import {makeStyles} from './styles';
-import {noop} from 'intact-shared';
+import {noop, isNullOrUndefined} from 'intact-shared';
 
 const {
     className, style, type, value, defaultValue, placeholder,
@@ -12,13 +12,14 @@ const {
     'ev-mounseenter': mouseenter,
     'ev-mouseleave': mouseleave,
 
-    _width, _inputing, _originalValue,
-
     ...rest
 } = this.get();
 
-const inputValue = frozenOnInput && _inputing ? _originalValue : value;
-const hasValue = inputValue != null && inputValue !== '';
+const {
+    inputing: {value: inputing},
+    originalValue: {value: originalValue},
+    startInput, onInput, endInput
+} = this.frozen;
 
 const classNameObj = {
     'k-input': true,
@@ -33,6 +34,29 @@ const classNameObj = {
     'k-stack-clear': stackClearIcon,
     [className]: className,
     [makeStyles()]: true,
+}
+
+const {fakeRef, width: {value: fakeWidth}} = this.autoWidth;
+
+const inputValue = frozenOnInput && inputing ? originalValue : value;
+const hasInputValue = !isNullOrUndefined(inputValue);
+const hasValue = hasInputValue && inputValue !== '';
+const inputProps = {
+    ...getRestProps(this, rest),
+    'ev-focus': startInput,
+    'ev-blur': endInput,
+    'ev-input': onInput,
+    defaultValue,
+    readOnly: readonly,
+    placeholder,
+    disabled,
+    ref: this.inputRef,
+    style: autoWidth ? {width: fakeWidth + 'px'} : undefined,
+};
+// if we pass value to input element, the input is controlled and the
+// defaultValue does not work
+if (hasInputValue) {
+    inputProps.value = inputValue;
 }
 
 <div class={classNameObj}
@@ -58,33 +82,14 @@ const classNameObj = {
             <b:prefix />
         </div>
         <input v-if={type !== 'textarea'}
-            {...getRestProps(this, rest)}
+            {...inputProps}
             class="k-input-inner" 
             type={type}
-            value={inputValue}
-            ev-focus={this.startInput}
-            ev-blur={this.endInput}
-            ev-input={this.onInput}
-            defaultValue={defaultValue}
-            readOnly={readonly}
-            placeholder={placeholder}
-            disabled={disabled}
-            ref={this.inputRef}
-            style={autoWidth ? {width: _width + 'px'} : undefined}
         />
         <textarea v-else 
-            {...getRestProps(this, rest)}
+            {...inputProps}
             class="k-input-inner k-textarea"
-            value={inputValue}
-            ev-focus={this.startInput}
-            ev-blur={this.endInput}
-            ev-input={this.onInput}
-            defaultValue={defaultValue}
-            readOnly={readonly} 
-            placeholder={placeholder}
-            disabled={disabled}
             rows={rows}
-            ref={this.inputRef}
         ></textarea>
         <div class="k-input-suffix" v-if={$blocks.suffix || clearable && !disabled}>
             <Icon v-if={clearable && !disabled}
@@ -98,7 +103,7 @@ const classNameObj = {
         </div>
         <div v-if={autoWidth}
             class="k-input-fake"
-            ref={this.fakeRef}
+            ref={fakeRef}
         >{!hasValue ? placeholder : inputValue}</div>
     </div>
     {do {

@@ -32,7 +32,7 @@ const defaults = (): Partial<SearchProps> => ({
     _open: false,
 });
 
-export default class Search<T extends SearchProps = SearchProps> extends Component<T> {
+export class Search<T extends SearchProps = SearchProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -79,5 +79,3 @@ export default class Search<T extends SearchProps = SearchProps> extends Compone
         this.trigger('submit', this.get('value')!.trim());
     }
 }
-
-export {Search};
