@@ -3,9 +3,9 @@ import {Dropdown, DropdownItem} from '../dropdown';
 import {Tooltip} from '../tooltip';
 import {Icon} from '../icon';
 import {Menu} from './menu';
-import makeStyles from './itemStyles';
 import {getRestProps, expandAnimationCallbacks} from '../utils';
 import {isNullOrUndefined} from 'intact-shared';
+import {makeItemStyles, makeTitleStyles} from './styles';
 
 const rootMenu = this.rootMenu;
 const {theme, type, dot: rootDot} = rootMenu.get();
@@ -25,14 +25,16 @@ const classNameObj = {
     'k-disabled': disabled,
     'k-active':  isSelected(), 
     'k-highlighted': isHighlighted(),
-    [makeStyles()]: true,
+    [makeItemStyles()]: true,
 };
 
 const showDot = isTopItem && !iconVNode && isNullOrUndefined(dot) ? rootDot : dot;
 const title = (children) => (
-    <div class="k-menu-title" ev-click={this.onClick.bind(this, subMenuVNode)}>
+    <div class={{'k-menu-title': true, [makeTitleStyles()]: true}}
+        ev-click={this.onClick.bind(this, subMenuVNode)}
+    >
         <Icon class="k-menu-dot ion-record" v-if={showDot} />
-        {children}
+        <div class="k-menu-name">{children}</div>
         <i class="k-menu-arrow ion-ios-arrow-down" v-if={subMenuVNode}></i>
     </div>
 );
