@@ -13,7 +13,11 @@ import {Icon} from 'kpc/components/icon';
 
 <div>
     <Switch on="收起" off="展开" v-model="isCollapse" width="60" trueValue={true} falseValue={false}/>
-    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"  />
+    <ButtonGroup checkType="radio" v-model="theme">
+        <Button value="light">light</Button>
+        <Button value="dark">dark</Button>
+        <Button value="white">white</Button>
+    </ButtonGroup>
     <Switch on="horizontal" off="vertical" v-model="type" width="100" trueValue="horizontal" falseValue="vertical" />
     <ButtonGroup checkType="radio" v-model="size">
         <Button value="large">large</Button>
@@ -63,6 +67,7 @@ export default class extends Component {
         return {
             expandedKeys: ['3'],
             size: 'large',
+            theme: 'light',
         };
     }
 }

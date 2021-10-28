@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults, getLeft, getRight} from '../../styles/utils';
+import {deepDefaults, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const sizes = ['large', 'small'] as const;
@@ -47,6 +47,21 @@ const {menu} = deepDefaults(theme, {
             },
         },
 
+        white: {
+            bgColor: '#fff',
+            subBgColor:  '#fafafa',
+            headerBorderBottom: '1px solid #eee',
+            item: {
+                get color() { return theme.color.text }, 
+                get hoverColor() { return theme.color.primary }, 
+                get disabledColor() { return theme.color.disabled },
+            },
+            active: {
+                get color() { return theme.color.primary },
+                get bgColor() { return palette(theme.color.primary, -4) },
+            }
+        },
+
         // dropdown
         dropdown: {
             minWidth: '150px',
@@ -64,8 +79,9 @@ const {menu} = deepDefaults(theme, {
     } 
 });
 
+export {menu};
+
 export function makeMenuStyles() {
-    const {light} = menu;
     // we must increase the priority by adding &.k-menu
     // to override the css of dropdownMenu
     return css`
@@ -106,33 +122,54 @@ export function makeMenuStyles() {
             border-bottom: ${menu.header.borderBottom};
         }
 
-        // light theme
-        &.k-light {
-            background: ${light.bgColor};
-            .k-menu-header {
-                color: ${light.item.color};
-                border-bottom: ${light.headerBorderBottom};
-            }
-            .k-menu-item {
-                .k-menu-title {
-                    color: ${light.item.color};
-                    &:hover {
-                        color: ${light.item.hoverColor};
+        // theme
+        ${(['light', 'white'] as const).map(theme => {
+            const styles = menu[theme];
+            return css`
+                &.k-${theme} {
+                    background: ${styles.bgColor};
+                    .k-menu-header {
+                        color: ${styles.item.color};
+                        border-bottom: ${styles.headerBorderBottom};
+                    }
+                    .k-menu-item {
+                        .k-menu-title {
+                            color: ${styles.item.color};
+                            &:hover {
+                                color: ${styles.item.hoverColor};
+                            }
+                        }
+                        &.k-highlighted {
+                            > .k-menu-title {
+                                color: ${styles.item.hoverColor};
+                            }
+                        }
+                        &.k-disabled {
+                            > .k-menu-title {
+                                color: ${styles.item.disabledColor} !important;
+                            }
+                        }
+                    }
+                    .k-menu:not(.k-dropdown-menu) {
+                        background: ${styles.subBgColor};
+                    }
+
+                    &.k-horizontal {
+                        .k-menu-header {
+                            border-right: ${styles.headerBorderBottom};
+                        }
                     }
                 }
-                &.k-highlighted {
-                    > .k-menu-title {
-                        color: ${light.item.hoverColor};
-                    }
+            `;
+        })}
+
+        &.k-white {
+            // active
+            .k-menu-item.k-active {
+                > .k-menu-title {
+                    color: ${menu.white.active.color } !important;
+                    background: ${menu.white.active.bgColor};
                 }
-                &.k-disabled {
-                    > .k-menu-title {
-                        color: ${light.item.disabledColor} !important;
-                    }
-                }
-            }
-            .k-menu:not(.k-dropdown-menu) {
-                background: ${light.subBgColor};
             }
         }
 
@@ -179,11 +216,6 @@ export function makeMenuStyles() {
             .k-menu-header {
                 border-bottom: none;
                 border-right: ${menu.header.borderBottom};
-            }
-            &.k-light {
-                .k-menu-header {
-                    border-right: ${light.headerBorderBottom};
-                }
             }
         }
     `

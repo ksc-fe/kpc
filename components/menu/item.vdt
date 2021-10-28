@@ -55,7 +55,7 @@ const title = (children) => (
         <Tooltip 
             v-if={isTopItem && isCollapse}
             position={rootMenu.get('type') !== 'horizontal' ? 'right' : 'bottom'}
-            theme={rootMenu.get('theme')}
+            theme={rootMenu.get('theme') === 'dark' ? 'dark' : 'light'}
         >
             {title(iconVNode)}
             <b:content>{tooltipContents}</b:content> 
