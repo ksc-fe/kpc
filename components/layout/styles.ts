@@ -1,149 +1,114 @@
-import {css, keyframes} from '@emotion/css';
+import {css} from '@emotion/css';
 import {theme} from '../../styles/theme';
-import {deepDefaults} from '../../styles/utils';
+import {deepDefaults, getLeft} from '../../styles/utils';
 import '../../styles/global';
-import {menu} from '../menu/menuStyles';
-import {menuItem} from '../menu/itemStyles';
+import {menu} from '../menu/styles';
 
 const sizes = ['small', 'large'] as const;
-
-const layoutStyles = {
-    headerInAsideBorderBottomColor: theme.color.border,
-    header: {
-        height: '64px',
-        get background() { return menu.bgColor },
-        fixed: {
-            asideTopGap: '64px',
-        }
-    },
-    aside: {
-        get background() { return menu.bgColor },
-        get transition() { return theme.transition },
-        width: menu.width,
-        fixed: {
-            wrapperRightGap: '-20px',
-            get layoutHeaderLeftGap() { return menu.width },
-            get collapsedHeaderLeftGap() { return `calc(${menuItem.icon.left} * 2 + ${menuItem.icon.width})` }
-        },
-        layoutAsideWidth: {
-            get small() { return menu.small.width },
-            get large() { return menu.large.width }
-        },
-        get collapsedWidth() { return `calc(${menuItem.icon.left} * 2 + ${menuItem.icon.width})` },
-    },
-    footer: {
-        padding: '24px 50px'
-    },
-    body: {
-        margin: '0 20px'
-    }
-};
+export const themes = ['light', 'dark', 'white'] as const;
 
 const {layout} = deepDefaults(theme, {
-    layout: layoutStyles
+    layout: {
+        get color() { return menu.item.color },
+        get bgColor() { return menu.bgColor },
+        light: {
+            get color() { return menu.light.bgColor },
+            get bgColor() { return menu.light.bgColor },
+            get border() { return menu.light.border },
+        },
+        white: {
+            get color() { return menu.white.bgColor },
+            get bgColor() { return menu.white.bgColor },
+            get border() { return menu.white.border },
+        },
+
+        get collapsedWidth() { return `calc(${getLeft(menu.item.padding)} * 2 + ${menu.icon.width})` },
+        footerPadding: '24px 50px',
+        bodyMargin: '0 20px',
+    },
 });
 
-export default function makeStyles() {
+export function getCollapseWidth() {
+    return layout.collapsedWidth;
+}
+
+export function makeLayoutStyles() {
     return css`
         display: flex;
         flex-direction: column;
         flex: 1;
+        transition: padding-left ${theme.transition};
         &.k-has-aside {
             flex-direction: row;
-            .k-layout {
-                > .k-layout-header {
-                    background: #fff;
-                    border-bottom: 1px solid ${layout.headerInAsideBorderBottomColor};
-                }
-            }
         }
-        > .k-layout-header {
-            height: ${layout.header.height};
-            line-height: ${layout.header.height};
-            background: ${layout.header.background};
-            .k-menu {
-                .k-menu-item {
-                    vertical-align: top;
-                    > .k-menu-title {
-                        height: auto;
-                        line-height: inherit;
-                    }
-                }
-            }
-            &.k-layout-fixed {
-                position: fixed;
-                width: 100%;
-                z-index: ${theme.midZIndex - 1};
-                left: 0;
-                & + .k-layout,
-                & + .k-layout-body,
-                & + .k-layout > .k-layout-aside.k-layout-fixed {
-                    padding-top: ${layout.header.fixed.asideTopGap};
-                }
-                & + .k-layout > .k-layout-aside.k-layout-fixed {
-                    z-index: ${theme.midZIndex - 2};
-                }
-            }
+        .k-layout-footer {
+            padding: ${layout.footerPadding};
         }
-        > .k-layout-aside {
-            background: ${layout.aside.background};
-            transition: width ${layout.aside.transition};
-            width: ${layout.aside.width};
-            display: flex;
-            z-index: ${theme.midZIndex};
-            flex-direction: column;
-            &.k-layout-fixed {
-                position: fixed;
-                height: 100vh;
-                overflow: hidden;
-                top: 0;
-                > .k-layout-wrapper {
-                    height: 100%;
-                    overflow: auto;
-                    margin-right: -20px;
-                    > .k-menu {
-                        min-height: 100%;
-                    }
-                }
-                & + .k-layout,
-                & + .k-layout-body,
-                & + .k-layout > .k-layout-header.k-layout-fixed {
-                    padding-left: ${layout.aside.width};
-                    transition: padding-left ${layout.aside.transition};
-                }
-                // collapse
-                &.k-layout-collapsed {
-                    & + .k-layout,
-                    & + .k-layout-body,
-                    & + .k-layout > .k-layout-header.k-layout-fixed {
-                        padding-left: ${layout.aside.fixed.collapsedHeaderLeftGap} !important
-                    }
-                }                    
-            }
-            ${sizes.map(size => {
-                return css`
-                    &.k-${size} {
-                        width: ${layout.aside.layoutAsideWidth[size]};
-                        &.k-layout-fixed {
-                            & + .k-layout,
-                            & + .k-layout-body,
-                            & + .k-layout > .k-layout-header.k-layout-fixed {
-                                padding-left: ${layout.aside.layoutAsideWidth[size]};
-                            }
-                        }
-                    }
-                `
-            })}
-            &.k-layout-collapsed {
-                width: ${layout.aside.collapsedWidth};
-            }
-        }
-        > .k-layout-footer {
-            padding: ${layout.footer.padding};
-        }
-        > .k-layout-body {
+        .k-layout-body {
             flex: 1;
-            margin: ${layout.body.margin};
+            margin: ${layout.bodyMargin};
         }
     `
 }
+
+export function makeHeaderStyles() {
+    return css`
+        display: flex;
+        align-items: center;
+        color: ${layout.color};
+        background: ${layout.bgColor};
+        left: 0;
+        transition: left ${theme.transition};
+        &.k-fixed {
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: ${theme.midZIndex};
+        }
+        ${themes.map(theme => {
+            if (theme === 'dark') return;
+            const styles = layout[theme];
+            return css`
+                &.k-${theme} {
+                    background: ${styles.bgColor};
+                    color: ${styles.color};
+                    border-bottom: ${styles.border};
+                }
+            `
+        })}
+    `;
+}
+
+export function makeAsideStyles() {
+    return css`
+        transition: width ${theme.transition};
+        display: flex;
+        flex-direction: column;
+        background: ${layout.bgColor};
+        color: ${layout.color};
+        ${themes.map(theme => {
+            if (theme === 'dark') return;
+            const styles = layout[theme];
+            return css`
+                &.k-${theme} {
+                    background: ${styles.bgColor};
+                    color: ${styles.color};
+                    border-right: ${styles.border};
+                }
+            `
+        })}
+        &.k-fixed {
+            position: fixed;
+            overflow: auto;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: ${theme.midZIndex};
+        }
+        .k-menu {
+            width: auto !important;
+        }
+    `
+}
+

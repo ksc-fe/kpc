@@ -1,9 +1,15 @@
 import {Component} from 'intact';
-import template from './index.vdt';
+import template from './template.vdt';
 
 export class Footer extends Component {
     static template = template;
 
-    public defaultClassName = {'k-layout-footer': true};
+    private getClassNames() {
+        const {className} = this.get();
+        return {
+            'k-layout-footer': true,
+            [className as string]: className,
+        };
+    }
 }
 

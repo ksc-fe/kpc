@@ -69,7 +69,7 @@ import {Button} from 'kpc/components/button';
     margin 17px 20px
 .k-breadcrumb
     margin 20px 0
-.k-layout-aside.k-layout-collapsed
+.k-layout-aside.k-collapsed
     .logo
         margin 17px 5px
 ```

@@ -39,7 +39,7 @@ const {menu} = deepDefaults(theme, {
         light: {
             bgColor: '#e5e5e9',
             subBgColor:  '#d5d5d9',
-            headerBorderBottom: '1px solid #d5d5d9',
+            border: '1px solid #d5d5d9',
             item: {
                 get color() { return theme.color.text }, 
                 get hoverColor() { return theme.color.primary }, 
@@ -50,7 +50,7 @@ const {menu} = deepDefaults(theme, {
         white: {
             bgColor: '#fff',
             subBgColor:  '#fafafa',
-            headerBorderBottom: '1px solid #eee',
+            border: '1px solid #eee',
             item: {
                 get color() { return theme.color.text }, 
                 get hoverColor() { return theme.color.primary }, 
@@ -130,7 +130,7 @@ export function makeMenuStyles() {
                     background: ${styles.bgColor};
                     .k-menu-header {
                         color: ${styles.item.color};
-                        border-bottom: ${styles.headerBorderBottom};
+                        border-bottom: ${styles.border};
                     }
                     .k-menu-item {
                         .k-menu-title {
@@ -156,7 +156,7 @@ export function makeMenuStyles() {
 
                     &.k-horizontal {
                         .k-menu-header {
-                            border-right: ${styles.headerBorderBottom};
+                            border-right: ${styles.border};
                         }
                     }
                 }

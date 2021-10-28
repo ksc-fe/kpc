@@ -38,7 +38,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
         </Menu>
     </Header>
     <Layout>
-        <Aside fixed>
+        <Aside fixed theme="light">
             <Menu
                 v-model:expandedKeys="expandedKeys" 
                 v-model:selectedKey="selectedKey"
