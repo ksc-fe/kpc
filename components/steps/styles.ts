@@ -64,7 +64,8 @@ const {steps} = deepDefaults(theme, {
             titleFontSize: '14px',
             titleGopTop: '16px',
             iconLineHeight: '30px',
-            tailTop: '16px'
+            tailTop: '16px',
+            width: '160px',
         },
 
         // simple
@@ -76,34 +77,9 @@ const {steps} = deepDefaults(theme, {
     },
 });
 
-export {steps};
-
 const stepStatus = ['done', 'active', 'error'] as const; 
 
-export function makeStepStyles() {
-    return css`
-        position: relative; 
-        flex: 1;
-        .k-step-icon:before {
-            font-size: ${steps.head.iconFontSize};
-        }
-        .k-step-title {
-            display: inline-block;
-            padding-right: ${steps.main.titlePaddingRight};
-            white-space: nowrap;
-        }
-        .k-step-content {
-            font-size: ${steps.main.contentFontSize};
-            white-space: nowrap;
-        }
-        .k-step-inner,
-        .k-step-main {
-            transition: all ${theme.transition};
-        }
-    `;
-}
-
-export function makeStyles() {
+export function makeStepsStyles() {
     return css`
         display: flex;
         // default and line type
@@ -248,6 +224,7 @@ export function makeStyles() {
             }
             .k-step-main {
                 position: relative;
+                width: ${steps.line.width};
             }
             .k-step-title {
                 line-height: ${steps.head.innerWidth};
@@ -334,3 +311,27 @@ export function makeStyles() {
         }
     `;
 }
+
+export function makeStepStyles() {
+    return css`
+        position: relative; 
+        flex: 1;
+        .k-step-icon:before {
+            font-size: ${steps.head.iconFontSize};
+        }
+        .k-step-title {
+            display: inline-block;
+            padding-right: ${steps.main.titlePaddingRight};
+            white-space: nowrap;
+        }
+        .k-step-content {
+            font-size: ${steps.main.contentFontSize};
+        }
+        .k-step-inner,
+        .k-step-main {
+            transition: all ${theme.transition};
+        }
+    `;
+}
+
+

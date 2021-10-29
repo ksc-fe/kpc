@@ -18,9 +18,9 @@ export interface TableColumnProps {
 
     // passed by Table
     // offset: number
-    cols: number
-    rows: number
-    prevVNode: VNodeComponentClass<TableColumn> | null
+    cols?: number
+    rows?: number
+    prevVNode?: VNodeComponentClass<TableColumn> | null
 }
 
 export type TableColumnGroupItem = {

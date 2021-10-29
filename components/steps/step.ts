@@ -12,11 +12,7 @@ const typeDefs: Required<TypeDefs<StepProps>> = {
     index: Number
 };
 
-const defaults = (): Partial<StepProps> => ({
-})
-
 export class Step<T extends StepProps = StepProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
-    static defaults = defaults;
 }

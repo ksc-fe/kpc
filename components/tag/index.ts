@@ -4,10 +4,10 @@ import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 
 export interface TagProps {
-    type: Sizes,
-    closable: boolean,
-    disabled: boolean,
-    size: Sizes
+    type?: Sizes,
+    closable?: boolean,
+    disabled?: boolean,
+    size?: Sizes
 }
 
 const typeDefs: Required<TypeDefs<TagProps>> = {
