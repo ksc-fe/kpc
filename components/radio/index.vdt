@@ -1,15 +1,16 @@
 import {getRestProps} from '../utils';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 
 const {
     className, disabled, trueValue, style,
     children, value, ref, key, title, ...rest
 } = this.get();
+const isChecked = value === trueValue;
 
 const classNameObj = {
     'k-radio': true,
     'k-disabled': disabled,
-    'k-checked': this.isChecked(),
+    'k-checked': isChecked,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -32,28 +33,25 @@ const events = [
     return memo;
 }, {});
 
-<label class={ classNameObj } style={ style }
-    tabindex={ disabled ? "-1" : "0" }
-    ev-keypress={ this.onKeypress }
-    { ...events }
-    title={ title }
-    ev-click={ this.fixClick }
+<label {...events}
+    class={classNameObj}
+    style={style}
+    title={title}
+    tabindex={disabled ? "-1" : "0"}
+    ev-keypress={this.onKeypress}
+    ev-click={this.fixClick}
 >
     <span class="k-radio-wrapper">
-        <input type="radio" disabled={ disabled }
-            value={ trueValue }
-            tabindex="-1"
+        <input
             { ...getRestProps(this, rest) }
+            type="radio"
+            disabled={disabled}
+            value={trueValue}
+            tabindex="-1"
             ref={this.elementRef}
-            checked={ value === trueValue }
-            ev-click={ 
-                // (e) => {
-                    // setCheckboxModel(this, 'value', trueValue, false, e, $this);
-                    // evClick && evClick(e);
-                // } 
-                this.onClick
-            }
+            checked={isChecked}
+            ev-click={this.onClick}
         />
     </span>
-    <span class="k-radio-text" v-if={ children }>{ children }</span>
+    <span class="k-radio-text" v-if={children}>{children}</span>
 </label>

@@ -1,6 +1,6 @@
-import Icon from '../icon';
+import {Icon} from '../icon';
 import {getRestProps} from '../utils';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 
 const {
     type, className, percent, size,

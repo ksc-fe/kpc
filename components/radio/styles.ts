@@ -23,7 +23,7 @@ const {radio} = deepDefaults(theme, {
     }
 });
 
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         display: inline-flex;
         align-items: center;

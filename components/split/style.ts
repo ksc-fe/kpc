@@ -84,9 +84,9 @@ export function makeStyles() {
             }
         }
 
-        &.${kls('horizontal')} {
+        &.k-horizontal {
             & > .${kls('line-wrapper')} {
-                cursor: row-resize;
+                cursor: col-resize;
                 width: ${split.splitLineSize};
                 .${kls('line')} {
                     border-left: ${split.baseBorder};
@@ -102,7 +102,7 @@ export function makeStyles() {
             }
         }
 
-        &.${kls('vertical')} {
+        &.k-vertical {
             flex-direction: column;
             & > .${kls('line-wrapper')} {
                 cursor: row-resize;
