@@ -1,7 +1,7 @@
-import {Button} from '../button';
-import {Icon} from 'kpc/components/icon';
+import {Icon} from '../icon';
 import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
+import {Transition} from 'intact';
 
 const {
     className, children, type, border,
@@ -9,7 +9,7 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-tag': true,
+    'k-tag': !$props.className,
     [className]: className,
     [`k-${type}`]: type !== 'default',
     [`k-${size}`]: size !== 'default',
@@ -17,14 +17,22 @@ const classNameObj = {
     'k-disabled': disabled,
     'k-closable': closable,
     [makeStyles()]: true,
+    [$props.className]: $props.className,
 };
 
-<div class={classNameObj} {...getRestProps(this)}>
-    <b:body>{children}</b:body>
-    <Icon class="k-tag-close ion-ios-close-empty"
-        color={type}
-        hoverable={!disabled}
-        v-if={closable}
-        ev-click={this.onClose}
-    />
-</div>
+<Transition name={$props.name || 'k-scale'}>
+    <div v-if={!closed}
+        class={classNameObj}
+        {...getRestProps(this)}
+    >
+        <b:body>{children}</b:body>
+        <b:_close>
+            <Icon class="k-tag-close ion-ios-close-empty"
+                color={type}
+                hoverable={!disabled}
+                v-if={closable}
+                ev-click={this.onClose}
+            />
+        </b:_close>
+    </div>
+</Transition>

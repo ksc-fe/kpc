@@ -6,7 +6,7 @@ order: 0
 标签类型：`default`, `primary`, `success`, `warning` `danger`
 
 ```vdt
-import Tip from 'kpc/components/tip';
+import {Tip} from 'kpc/components/tip';
 
 <div>
     <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
@@ -16,6 +16,6 @@ import Tip from 'kpc/components/tip';
 ```
 
 ```styl
-.k-tag
+.k-tip
     margin-bottom 8px
 ```

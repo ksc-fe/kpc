@@ -6,6 +6,7 @@ import {sizes, Sizes} from '../../styles/utils';
 export interface TagProps {
     type?: Sizes
     closable?: boolean
+    closed?: boolean
     disabled?: boolean
     size?: Sizes
     border?: 'solid' | 'dashed' | 'none'
@@ -14,6 +15,7 @@ export interface TagProps {
 const typeDefs: Required<TypeDefs<TagProps>> = {
     type: ['default', 'primary', 'danger', 'success', 'warning'],
     closable: Boolean,
+    closed: Boolean,
     disabled: Boolean,
     size: sizes,
     border: ['solid', 'dashed', 'none'],
@@ -34,5 +36,8 @@ export class Tag<T extends TagProps = TagProps> extends Component<T> {
     private onClose(e: MouseEvent): void {
         e.stopPropagation();
         this.trigger('close', e);
+        if (!e.defaultPrevented) {
+            this.set('closed', true);
+        }
     }
 }

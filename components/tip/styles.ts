@@ -44,53 +44,26 @@ const tip = deepDefaults(
 
 export function makeStyles() {
     return css`
-        background: #fff;
-        border: 1px solid #ccc;
-        border-radius: ${tip.borderRadius};
-        padding: ${tip.padding};
-        vertical-align: middle;
-        font-size: ${tip.fontSize};
-        white-space: nowrap;
-        color: ${tip.color};
-        position: relative;
-
-        & .k-tip-close {
-            position: absolute;
-            right: -1px;
-            top: -1px;
-            .ion-ios-close-empty {
-                font-size: ${tip.iconFont};
-            }
+        // Tip extends Tag, so we add k-tip to increase the priority of class
+        &.k-tip {
+            display: flex;
+            height: auto;
+            padding: 0;
+            color: ${tip.color} !important;
+            align-items: flex-start;
+        }
+        .k-tip-wrapper {
+            flex: 1;
+            padding: ${tip.padding};
         }
 
-        & .k-custom {
-            color: ${theme.color.primary};
-            width: auto;
-            padding: 0 ${theme.default.padding};
-            &: hover {
-                color: ${palette(theme.color.primary, -1)};
-            }
-        }
-
-        & .k-title {
+        .k-tip-title {
             font-size: ${tip.title.fontSize};
             margin-bottom: ${tip.title.marginBottom};
         }
 
-        ${types.map(type => {
-            const typeStyles = tip[type as Types];
-            return css`
-                &.k-${type} {
-                    background: ${typeStyles.bgColor};
-                    border-color: ${typeStyles.borderColor};
-                    .k-tip-close {
-                        color: ${typeStyles.borderColor};
-                    }
-                    .k-tip-close:hover {
-                        color: ${typeStyles.hoverColor};
-                    }
-                }
-            `;
-        })};
+        &.k-fade-leave-active {
+            position: relative;
+        }
     `;
 }
