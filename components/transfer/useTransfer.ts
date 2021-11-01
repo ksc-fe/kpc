@@ -2,6 +2,7 @@ import {useInstance} from 'intact';
 import {useState, watchState} from '../../hooks/useState';
 import {isEqualArray} from '../utils';
 import {Transfer} from './index';
+import {isFunction} from 'intact-shared';
 
 export function useTransfer() {
     const instance = useInstance() as Transfer;
@@ -10,29 +11,30 @@ export function useTransfer() {
     watchState(rightData, v => {
         const {keyName} = instance.get();
         instance.set('value', v.map(item => item[keyName!]));
-    })
+    });
 
     function enableAdd() {
-        const {enableAdd: _enableAdd} = instance.get();
-        if(typeof _enableAdd === 'function') {
-            return _enableAdd();
+        const {enableAdd, leftCheckedKeys} = instance.get();
+        if (isFunction(enableAdd)) {
+            return enableAdd();
         }
-        return instance.get('leftCheckedKeys').length;
+        return leftCheckedKeys!.length;
     }
 
     function enableRemove() {
-        const {enableRemove: _enableRemove} = instance.get();
-        if(typeof _enableRemove === 'function') {
-            return _enableRemove();
+        const {enableRemove, rightCheckedKeys} = instance.get();
+        if (isFunction(enableRemove)) {
+            return enableRemove();
         }
-        return instance.get('rightCheckedKeys').length;
+        return rightCheckedKeys!.length;
     }
 
     function add() {
         const {data, leftCheckedKeys, keyName} = instance.get();
         const _rightData = rightData.value.concat(data!.filter(item => {
-            return ~leftCheckedKeys.indexOf(item[keyName!]);
-        }))
+            return ~leftCheckedKeys!.indexOf(item[keyName!]);
+        }));
+
         rightData.set(_rightData);
         instance.set('leftCheckedKeys', []);
 
@@ -42,8 +44,9 @@ export function useTransfer() {
     function remove() {
         const {rightCheckedKeys, keyName} = instance.get();
         const _rightData = rightData.value!.filter(item => {
-            return !~rightCheckedKeys.indexOf(item[keyName!])
-        })
+            return !~rightCheckedKeys!.indexOf(item[keyName!])
+        });
+
         rightData.set(_rightData);
         instance.set('rightCheckedKeys', []);
 
