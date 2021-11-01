@@ -3,15 +3,15 @@ import template from './index.vdt';
 import {_$} from '../../i18n';
 import {useTransfer} from './useTransfer';
 import {useFilter, Model} from './useFilter';
-import {useCheck} from './useCheck';
+import {useCheck, CheckedKeys} from './useCheck';
 
 export interface TransferProps {
     data?: any[],
     keyName?: string,
     labelName?: string,
     value?: Key[],
-    leftCheckedKeys: Key[],
-    rightCheckedKeys: Key[],
+    leftCheckedKeys?: Key[],
+    rightCheckedKeys?: Key[],
     filterable?: boolean,
     filter?: (data: any, keywords: string) => boolean
     placeholder?: string,
@@ -49,9 +49,6 @@ const defaults = (): Partial<TransferProps> => ({
     value: [],
     leftCheckedKeys: [],
     rightCheckedKeys: [],
-    filter(data, keywords) {
-        return data.label.includes(keywords);
-    },
     placeholder: _$('请输入'),
     leftTitle: _$('请选择'),
     rightTitle: _$('已选择'),
@@ -73,8 +70,10 @@ export class Transfer<T extends TransferProps = TransferProps> extends Component
     public getCheckedData(model: Model) {
         const data = this.filter.getFilterData(model);
         const {keyName} = this.get();
+        const checkedKeys = this.get(`${model}CheckedKeys` as CheckedKeys)!;
+
         return data.filter(item => {
-            return ~this.get(`${model}CheckedKeys`).indexOf(item[keyName!]);
-        })
+            return ~checkedKeys.indexOf(item[keyName!]);
+        });
     }
 }

@@ -11,11 +11,11 @@ export function useFilter(rightData: State<any[]>) {
         if (!Array.isArray(v)) {
             instance.set('value', [], {silent: true});
         } else {
-            const {keyName} = instance.get();
-            const data = instance.get('data')!.filter(item => {
+            const {keyName, data} = instance.get();
+            const _data = data!.filter(item => {
                 return ~v.indexOf(item[keyName!]);
             });
-            rightData.set(data);
+            rightData.set(_data);
         }
     });
 
@@ -40,7 +40,7 @@ export function useFilter(rightData: State<any[]>) {
                 }
                 return ret;
             };
-            instance.set('leftCheckedKeys', fix(leftCheckedKeys));
+            instance.set('leftCheckedKeys', fix(leftCheckedKeys!));
         }
     });
 
@@ -59,9 +59,9 @@ export function useFilter(rightData: State<any[]>) {
 
     function getShowedData(model: Model) {
         let data = getFilterData(model);
-        const keywords = instance.get(`${model}Keywords`);
+        const keywords = instance.get(`${model}Keywords` as `leftKeywords` | `rightKeywords`);
         if (instance.get('filterable') && keywords) {
-            const filter = instance.get('filter')!;
+            const filter = instance.get('filter') || defaultFilter;
             data = data!.filter(item => filter(item, keywords));
         }
         return data;
@@ -73,9 +73,16 @@ export function useFilter(rightData: State<any[]>) {
         });
     }
 
+
+    function defaultFilter(data: any, keywords: string) {
+        const {labelName} = instance.get();
+        return data[labelName!].includes(keywords);
+    }
+
     return {
         getFilterData,
         getShowedData,
         getEnabledData
     };
 }
+
