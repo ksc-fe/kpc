@@ -31,7 +31,6 @@ const defaults = (): Partial<ProgressProps> => ({
     percent: 0, // 0~100
     size: 'default',
     showOuterText: true,
-    showInnerText: false,
     status: 'active',
     strokeWidth: 4,
 });

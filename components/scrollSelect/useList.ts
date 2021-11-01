@@ -15,17 +15,17 @@ export function useList() {
             data = data(value.value);
         }
 
-        let index = data.findIndex(item => item.value === value.value);
+        let index = data!.findIndex(item => item.value === value.value);
         if (index < 0) {
             index = 0;
-            setValue(data[0].value, false);
+            setValue(data![0].value, false);
         }
 
-        const length = data.length;
-        const half = Math.floor(count / 2);
+        const length = data!.length;
+        const half = Math.floor(count! / 2);
         const _list = [];
-        for (let i = 0; i < count; i++) {
-            _list.push(data[(((index - half + i) % length) + length) % length]);
+        for (let i = 0; i < count!; i++) {
+            _list.push(data![(((index - half + i) % length) + length) % length]);
         }
 
         list.set(_list); 
