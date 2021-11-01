@@ -9,7 +9,7 @@ export interface TimelineItemProps {
 }
 
 const typeDefs: Required<TypeDefs<TimelineItemProps>> = {
-    type: types as any,
+    type: types,
     size: sizes,
 };
 
