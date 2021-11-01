@@ -1,5 +1,4 @@
 import {eachChildren} from '../utils';
-import {TableColumn} from './column';
 import {makeStyles} from './styles';
 import {isStringOrNumber, isNull} from 'intact-shared';
 import {getClassAndStyleForFixed} from './useFixedColumns';

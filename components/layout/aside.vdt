@@ -1,0 +1,32 @@
+import {directClone} from 'intact';
+import {mapChildren, getRestProps} from '../utils';
+import {Menu} from '../menu';
+import {makeAsideStyles} from './styles';
+
+const {
+    className, children, collapse,
+    fixed, theme,
+} = this.get();
+
+const vNodes = mapChildren(children, vNode => {
+    if (vNode.tag === Menu) {
+        let vNodeClone = directClone(vNode);
+        vNodeClone.props = {...vNode.props, collapse};
+        return <div class="k-layout-wrapper">{vNodeClone}</div>
+    }
+    return vNode
+});
+
+const classNameObj = {
+    'k-layout-aside': true,
+    'k-collapsed': collapse,
+    'k-fixed': fixed,
+    [`k-${theme}`]: true,
+    [className]: className,
+    [makeAsideStyles()]: true,
+};
+
+<div {...getRestProps(this)}
+    class={classNameObj}
+    style={this.getStyles()}
+>{vNodes}</div>

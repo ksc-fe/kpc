@@ -12,7 +12,7 @@ import {usePanel} from '../datepicker/usePanel';
 import {State} from '../../hooks/useState';
 import {PanelTypes} from '../datepicker/usePanel';
 import {useStep} from './useStep';
-import {TimepickerProps, typeDefs} from './constants'
+import {TimepickerProps, typeDefs} from './constants';
 
 export class PanelPicker extends BasePicker<TimepickerProps> {
     static template = template; 

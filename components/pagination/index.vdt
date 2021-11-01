@@ -4,7 +4,7 @@ import {Select, Option} from '../select';
 import {Input} from '../input';
 import {Icon} from '../icon';
 import {_$} from '../../i18n';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 
 const {
     total, size, noBorder, simple, 
@@ -33,12 +33,21 @@ const totalPages = (Math.ceil(total / limit)) || 0;
 
 const paginationButton = function(page) {
     return (
-        <Button type={type} size={size} icon value={page}>{page}</Button>
+        <Button type={type}
+            size={size}
+            icon
+            value={page}
+        >{page}</Button>
     );
 };
 
 const paginationDot = function(callback) {
-    return <Button type={type} size={size} icon class="k-pagination-ellipsis" ev-click={callback}>...</Button>
+    return <Button type={type}
+        size={size}
+        icon
+        class="k-pagination-ellipsis"
+        ev-click={callback}
+    >...</Button>
 };
 
 let paginationItems = [];
@@ -113,7 +122,9 @@ let nextPage = current + 1;
     <template v-if={!simple}>
         <div class="k-pagination-limits" v-if={showLimits}>
             <Select v-model="limit" allowUnmatch size={size}>
-                <Option v-for={limits} value={$value}>{_$('{n} 条 / 页', {n: $value})}</Option>
+                <Option v-for={limits} value={$value}>
+                    {_$('{n} 条 / 页', {n: $value})}
+                </Option>
             </Select>
         </div>
 
@@ -123,6 +134,8 @@ let nextPage = current + 1;
             <span class="c-middle">{_$('页')}</span>
         </div>
 
-        <div v-if={showTotal} class="k-pagination-total">{_$('共 {n} 条', {n: total})}</div>
+        <div v-if={showTotal} class="k-pagination-total">
+            {_$('共 {n} 条', {n: total})}
+        </div>
     </template>
 </div>

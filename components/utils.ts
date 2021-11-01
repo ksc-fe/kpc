@@ -32,7 +32,7 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
     };
 }
 
-export function addStyle(style: string | Record<string, string> | undefined, extra: Record<string, string>) {
+export function addStyle(style: string | Record<string, string | null> | undefined, extra: Record<string, string | null>) {
     if (!style) return extra;
     if (!extra) return style;
     if (typeof style === 'string') {

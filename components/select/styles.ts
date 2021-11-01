@@ -305,6 +305,7 @@ export function makeMenuStyles() {
             height: ${select.card.height};
             .k-tabs {
                 border: none;
+                overflow: auto;
             }
             .k-select-group {
                 flex: 1;

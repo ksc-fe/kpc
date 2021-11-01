@@ -1,11 +1,11 @@
 import {linkEvent} from 'intact';
 import {getRestProps, addStyle} from '../utils';
 import {makeStepStyles} from './styles';
-import {context as ClickableContext} from './useClickable';
+import {context as StepsContext} from './context';
 
 const {children, title, index, className, style} = this.get();
 
-<ClickableContext.Consumer>
+<StepsContext.Consumer>
     {({value, status, width, onChange}) => {
         const selected = value === index;
         const error = selected && status === 'error';
@@ -38,4 +38,4 @@ const {children, title, index, className, style} = this.get();
             </div>
         </div>
     }}
-</ClickableContext.Consumer>
+</StepsContext.Consumer>

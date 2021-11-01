@@ -1,11 +1,10 @@
-import Button from '../button';
-import Icon from 'kpc/components/icon';
+import {Button} from '../button';
+import {Icon} from 'kpc/components/icon';
 import {getRestProps} from '../utils';
-import makeStyles from './styles';
-import {TransitionGroup} from 'intact';
+import {makeStyles} from './styles';
 
 const {
-    className, children, type,
+    className, children, type, border,
     disabled, closable, closed, size
 } = this.get();
 
@@ -14,6 +13,7 @@ const classNameObj = {
     [className]: className,
     [`k-${type}`]: type !== 'default',
     [`k-${size}`]: size !== 'default',
+    [`k-${border}`]: border,
     'k-disabled': disabled,
     'k-closable': closable,
     [makeStyles()]: true,
@@ -21,13 +21,10 @@ const classNameObj = {
 
 <div class={classNameObj} {...getRestProps(this)}>
     <b:body>{children}</b:body>
-    <Button v-if={closable} 
-        type="none" 
-        disabled={disabled}
-        size={size}
+    <Icon class="k-tag-close ion-ios-close-empty"
+        color={type}
+        hoverable={!disabled}
+        v-if={closable}
         ev-click={this.onClose}
-        class="k-tag-close"
-    >
-        <Icon class="k-tag-icon ion-ios-close-empty"/>
-    </Button>
+    />
 </div>

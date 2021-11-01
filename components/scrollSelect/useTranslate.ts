@@ -27,7 +27,7 @@ export function getInitMeta(
     const count = instance.get('count');
     const height = element.offsetHeight; 
     const itemHeight = getItemHeight();
-    const deltaY = -(Math.floor(count / 2) * itemHeight - (height - itemHeight) / 2);
+    const deltaY = -(Math.floor(count! / 2) * itemHeight - (height - itemHeight) / 2);
 
     return {deltaY, itemHeight};
 }

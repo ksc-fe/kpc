@@ -4,22 +4,25 @@ import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 
 export interface TagProps {
-    type: Sizes,
-    closable: boolean,
-    disabled: boolean,
-    size: Sizes
+    type?: Sizes
+    closable?: boolean
+    disabled?: boolean
+    size?: Sizes
+    border?: 'solid' | 'dashed' | 'none'
 }
 
 const typeDefs: Required<TypeDefs<TagProps>> = {
     type: ['default', 'primary', 'danger', 'success', 'warning'],
     closable: Boolean,
     disabled: Boolean,
-    size: sizes
+    size: sizes,
+    border: ['solid', 'dashed', 'none'],
 };
 
 const defaults = (): Partial<TagProps> => ({
     type: 'default',
     size: 'default',
+    border: 'solid',
 });
 
 export class Tag<T extends TagProps = TagProps> extends Component<T> {

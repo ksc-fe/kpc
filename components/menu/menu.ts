@@ -4,7 +4,7 @@ import template from './menu.vdt';
 export interface MenuProps {
     expandedKeys?: Key[]
     selectedKey?: Key 
-    theme?: 'light' | 'dark'
+    theme?: 'light' | 'dark' | 'white'
     collapse?: boolean
     type?: 'vertical' | 'horizontal'
     size?: 'large' | 'default' | 'small' 
@@ -15,7 +15,7 @@ export interface MenuProps {
 const typeDefs: Required<TypeDefs<MenuProps>> = {
     expandedKeys: Array,
     selectedKey: [String, Number],
-    theme: ['light', 'dark'],
+    theme: ['light', 'dark', 'white'],
     collapse: Boolean,
     type: ['vertical', 'horizontal'],
     size: ['large', 'default', 'small'],

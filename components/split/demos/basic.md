@@ -9,7 +9,7 @@ order: 0
 扩展点分别定义第一个和第二个面板的内容
 
 ```vdt
-import Split from 'kpc/components/split';
+import {Split} from 'kpc/components/split';
 
 <div>
     <Split>

@@ -1,4 +1,4 @@
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 import {getRestProps} from '../utils';
 
 const {value, disabled, disable} = this.get();

@@ -3,154 +3,115 @@ import {deepDefaults, sizes, palette} from '../../styles/utils';
 import {theme} from '../../styles/theme';
 import '../../styles/global';
 
+type ValueOf<T extends readonly any[]> = T[number]
+type Types = ValueOf<typeof types>
+type TypeStyles = {
+    color: string
+    bgColor: string
+}
+
 const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
 
 const {tag} = deepDefaults(theme, {
-    tag: {
-        color: 'inherit',
-        get borderColor() {
-            return theme.color.border;
-        },
-        get fontSize() { 
-            return theme.default.fontSize;
-        },
-        get padding() {
-            return `6px ${theme.default.padding}`;
-        }, 
-        closablePaddingRight: '30px',
-        closeIconFontSize: '26px',
-        primary: {
-            get color() { return theme.color.primary },
-            get bgColor() { return palette(theme.color.primary, -4)}
-        },
-        warning: {
-            get color() { return theme.color.warning },
-            get bgColor() { return palette(theme.color.warning, -4)}
-        },
-        danger: {
-            get color() { return theme.color.danger },
-            get bgColor() { return palette(theme.color.danger, -4)}
-        },
-        success: {
-            get color() { return theme.color.success },
-            get bgColor() { return palette(theme.color.success, -4)}
-        },
-        get disabledColor() {
-            return theme.color.disabled;
-        },
-        get disabledBorderColor() {
-            return theme.color.disabledBorder;
-        },
-        get disabledBgColor() {
-            return theme.color.disabledBg;
-        },
-        large: {
-            get padding() {
-                return `9px ${theme.large.padding}`;
-            }, 
-            get fontSize() { 
-                return theme.large.fontSize;
+    tag: deepDefaults(
+        {
+            get borderColor() { return theme.color.border },
+            get borderRadius() { return theme.borderRadius },
+            get fontSize() { return theme.default.fontSize },
+            padding: `0 8px`,
+            height: '20px',
+            close: {
+                fontSize: '20px',
+                gap: '8px',
             },
-            closablePaddingRight: '36px',
-        },
-        small: {
-            get padding() {
-                return `2px ${theme.small.padding}`;
-            }, 
-            get fontSize() { 
-                return theme.small.fontSize;
+            disabled: {
+                get color() { return theme.color.disabled },
+                get borderColor() { return theme.color.disabledBorder },
+                get bgColor() { return theme.color.disabledBg },
             },
-            closablePaddingRight: '20px',
-        },
-        mini: {
-            get padding() {
-                return `0px ${theme.mini.padding}`;
-            }, 
-            get fontSize() { 
-                return theme.mini.fontSize;
+            large: {
+                padding: `0px 16px`,
+                height: '32px',
+                close: {
+                    fontSize: '24px',
+                    gap: '12px',
+                }
             },
-            closablePaddingRight: '16px',
-        }
-    }
+            small: {
+                padding: `0 4px`,
+                height: '18px',
+                close: {
+                    fontSize: '18px',
+                    gap: '4px'
+                }
+            },
+            mini: {
+                padding: `0 1px`,
+                height: '14px',
+                close: {
+                    fontSize: '16px',
+                    gap: '2px'
+                }
+            },
+        },
+        types.reduce((memo, type) => {
+            if (type === 'disabled') return memo;
+            memo[type] = {
+                get color() { return theme.color[type] },
+                get bgColor() { return palette(theme.color[type], -4)}
+            };
+            return memo;
+        }, {} as {[key in Exclude<Types, 'disabled'>]: TypeStyles}),
+    )
 });
 
-export default function makeStyles() {
+export function makeStyles() {
     return css`
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
         padding: ${tag.padding};
         border: 1px solid ${tag.borderColor};
-        border-radius: ${theme.borderRadius};
-        position: relative;
+        border-radius: ${tag.borderRadius};
         font-size: ${tag.fontSize};
-        color: ${tag.color};
+        height: ${tag.height};
 
-        .k-tag.k-mini {
-            line-height: 14px
-        }
-
-        &.k-closable {
-            padding-right: ${tag.closablePaddingRight};
-        }
         .k-tag-close {
-            position: absolute;
-            right: -9px;
-            top: 0;
-            bottom: 0;
-            margin: auto;
-        }
-        .k-tag-icon {
-            font-size: ${tag.closeIconFontSize};
+            font-size: ${tag.close.fontSize};
+            margin-left: ${tag.close.gap};
         }
 
         ${types.map(t => {
-            if (t === 'disabled') {
-                return css`
-                    &.k-${t} {
-                        color: ${tag.disabledColor};
-                        border-color: ${tag.disabledBorderColor};
-                        background: ${tag.disabledBgColor};
-
-                        .k-tag-close { color: ${tag.disabledColor}; }
-                    }
-                `;
-            } else {
-                return css`
-                    &.k-${t} {
-                        color: ${tag[t].color};
-                        border-color: ${tag[t].color};
-                        background: ${tag[t].bgColor};
-
-                        .k-tag-close { color: ${tag[t].color}; }
-                    }
-                `;
-            }
+            const styles = tag[t];
+            return css`
+                &.k-${t} {
+                    color: ${styles.color};
+                    border-color: ${styles.color};
+                    background: ${styles.bgColor};
+                }
+            `;
         })}
 
         ${sizes.map(s => {
-            if (s === 'large') {
-                return css `
-                    &.k-${s} {
-                        font-size: ${tag[s].fontSize};
-                        padding: ${tag[s].padding};
-                        &.k-closable {
-                            padding-right: ${tag[s].closablePaddingRight};
-                        }
-                        .k-tag-icon {
-                            margin-right: 0px;
-                        }
+            if (s === 'default') return;
+            const styles = tag[s];
+            return css `
+                &.k-${s} {
+                    padding: ${styles.padding};
+                    height: ${styles.height};
+                    .k-tag-close {
+                        font-size: ${styles.close.fontSize};
+                        margin-left: ${styles.close.gap};
                     }
-                `;
-            } else if (s !== 'default') {
-                return css `
-                    &.k-${s} {
-                        font-size: ${tag[s].fontSize};
-                        padding: ${tag[s].padding};
-                        &.k-closable {
-                            padding-right: ${tag[s].closablePaddingRight};
-                        }
-                    }
-                `;
-            }
+                }
+            `;
         })}
+
+        // border
+        &.k-dashed {
+            border-style: dashed;
+        }
+        &.k-none {
+            border: none;
+        }
     `;
 }

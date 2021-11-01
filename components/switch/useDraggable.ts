@@ -53,8 +53,10 @@ export function useDraggable(elementRef: RefObject<HTMLElement>) {
                 instance.uncheck();
             }
 
-            if (!instance.isChecked() && instance.get('width') && instance.get('height')) {
-                barWidth.set(+instance.get('height'));
+            const {width: _width, height: _height} = instance.get();
+
+            if (!instance.isChecked() && _width && _height) {
+                barWidth.set(+_height);
             } else {
                 barWidth.set(null);
             }

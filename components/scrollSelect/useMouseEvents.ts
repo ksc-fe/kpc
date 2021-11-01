@@ -80,7 +80,7 @@ export function useMouseEvents(
         if (dragged) return;
 
         const {count} = instance.get();
-        const half = Math.floor(count / 2);
+        const half = Math.floor(count! / 2);
         const itemHeight = getItemHeight();
 
         translate.set(translate.value - itemHeight * (index - half));
