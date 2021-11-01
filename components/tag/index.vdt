@@ -4,7 +4,7 @@ import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 
 const {
-    className, children, type,
+    className, children, type, border,
     disabled, closable, closed, size
 } = this.get();
 
@@ -13,6 +13,7 @@ const classNameObj = {
     [className]: className,
     [`k-${type}`]: type !== 'default',
     [`k-${size}`]: size !== 'default',
+    [`k-${border}`]: border,
     'k-disabled': disabled,
     'k-closable': closable,
     [makeStyles()]: true,
@@ -21,6 +22,7 @@ const classNameObj = {
 <div class={classNameObj} {...getRestProps(this)}>
     <b:body>{children}</b:body>
     <Icon class="k-tag-close ion-ios-close-empty"
+        color={type}
         hoverable={!disabled}
         v-if={closable}
         ev-click={this.onClose}

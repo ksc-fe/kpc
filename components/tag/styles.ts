@@ -15,49 +15,44 @@ const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
 const {tag} = deepDefaults(theme, {
     tag: deepDefaults(
         {
-            get borderColor() {
-                return theme.color.border;
+            get borderColor() { return theme.color.border },
+            get borderRadius() { return theme.borderRadius },
+            get fontSize() { return theme.default.fontSize },
+            padding: `0 8px`,
+            height: '20px',
+            close: {
+                fontSize: '20px',
+                gap: '8px',
             },
-            get fontSize() { 
-                return theme.default.fontSize;
-            },
-            get padding() {
-                return `6px ${theme.default.padding}`;
-            }, 
-            gap: '30px',
-            closeIconFontSize: '26px',
             disabled: {
                 get color() { return theme.color.disabled },
                 get borderColor() { return theme.color.disabledBorder },
                 get bgColor() { return theme.color.disabledBg },
             },
             large: {
-                get padding() {
-                    return `9px ${theme.large.padding}`;
-                }, 
-                get fontSize() { 
-                    return theme.large.fontSize;
-                },
-                gap: '36px',
+                padding: `0px 16px`,
+                height: '32px',
+                close: {
+                    fontSize: '24px',
+                    gap: '12px',
+                }
             },
             small: {
-                get padding() {
-                    return `2px ${theme.small.padding}`;
-                }, 
-                get fontSize() { 
-                    return theme.small.fontSize;
-                },
-                gap: '20px',
+                padding: `0 4px`,
+                height: '18px',
+                close: {
+                    fontSize: '18px',
+                    gap: '4px'
+                }
             },
             mini: {
-                get padding() {
-                    return `0px ${theme.mini.padding}`;
-                }, 
-                get fontSize() { 
-                    return theme.mini.fontSize;
-                },
-                gap: '16px',
-            }
+                padding: `0 1px`,
+                height: '14px',
+                close: {
+                    fontSize: '16px',
+                    gap: '2px'
+                }
+            },
         },
         types.reduce((memo, type) => {
             if (type === 'disabled') return memo;
@@ -74,34 +69,16 @@ export function makeStyles() {
     return css`
         display: inline-flex;
         align-items: center;
-        // padding: ${tag.padding};
-        padding: 0 8px;
+        padding: ${tag.padding};
         border: 1px solid ${tag.borderColor};
-        border-radius: ${theme.borderRadius};
-        position: relative;
+        border-radius: ${tag.borderRadius};
         font-size: ${tag.fontSize};
+        height: ${tag.height};
 
-        &.k-mini {
-            line-height: 14px
-        }
-        
         .k-tag-close {
-            margin-left: 8px;
+            font-size: ${tag.close.fontSize};
+            margin-left: ${tag.close.gap};
         }
-
-        // &.k-closable {
-            // padding-right: ${tag.gap};
-        // }
-        // .k-tag-close {
-            // position: absolute;
-            // right: -9px;
-            // top: 0;
-            // bottom: 0;
-            // margin: auto;
-        // }
-        // .k-tag-icon {
-            // font-size: ${tag.closeIconFontSize};
-        // }
 
         ${types.map(t => {
             const styles = tag[t];
@@ -110,9 +87,6 @@ export function makeStyles() {
                     color: ${styles.color};
                     border-color: ${styles.color};
                     background: ${styles.bgColor};
-                    .k-tag-close {
-                        color: ${styles.color};
-                    }
                 }
             `;
         })}
@@ -122,16 +96,22 @@ export function makeStyles() {
             const styles = tag[s];
             return css `
                 &.k-${s} {
-                    font-size: ${styles.fontSize};
-                    // padding: ${styles.padding};
-                    // &.k-closable {
-                        // padding-right: ${styles.gap};
-                    // }
-                    // .k-tag-icon {
-                        // margin-right: 0px;
-                    // }
+                    padding: ${styles.padding};
+                    height: ${styles.height};
+                    .k-tag-close {
+                        font-size: ${styles.close.fontSize};
+                        margin-left: ${styles.close.gap};
+                    }
                 }
             `;
         })}
+
+        // border
+        &.k-dashed {
+            border-style: dashed;
+        }
+        &.k-none {
+            border: none;
+        }
     `;
 }
