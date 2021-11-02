@@ -1,4 +1,4 @@
-import {useInstance, Key, onBeforeUpdate, VNodeComponentClass} from 'intact';
+import {useInstance, Key, onBeforeUpdate} from 'intact';
 import type {Tree} from './';
 import type {Node, DataItem} from './useNodes';
 import {EMPTY_OBJ, isNullOrUndefined} from 'intact-shared';
@@ -8,7 +8,7 @@ export function useFilter(getNodes: () => Node[], getExpandedKeys: () => Set<Key
 
     instance.on('$receive:filter', refresh);
 
-    onBeforeUpdate((lastVNode: VNodeComponentClass<Tree>, nextVNode: VNodeComponentClass<Tree>) => {
+    onBeforeUpdate<Tree>((lastVNode, nextVNode) => {
         const lastProps = lastVNode.props || EMPTY_OBJ;
         const nextProps = nextVNode.props || EMPTY_OBJ;
         if (

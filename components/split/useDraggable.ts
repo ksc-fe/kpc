@@ -73,7 +73,7 @@ export function useDraggable(firstSize: State<string>, lastSize: State<string>) 
         instance.trigger('moving', e);
     }
 
-    function onEnd(e: MouseEvent): void {
+    function onEnd(e?: MouseEvent): void {
         // reset mouse style
         setMouseStyle();
         instance.trigger('moveEnd', e);

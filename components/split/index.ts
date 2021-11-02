@@ -2,8 +2,7 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {useSize} from './useSize';
 import {useDraggable} from './useDraggable';
-
-type Mode = 'horizontal' | 'vertical'
+import {Mode} from './style';
 
 export interface SplitProps {
     mode?: Mode
