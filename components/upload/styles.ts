@@ -200,17 +200,6 @@ export function makeStyles() {
                 .k-icon {
                     font-size: ${upload.gallery.close.fontSize};
                 }
-                &:before {
-                    content: '';
-                    position: absolute;
-                    display: block;
-                    width: calc(${upload.file.status.width} / 2);
-                    height: calc(${upload.file.status.width} / 2);
-                    top: calc(${upload.file.status.width} / 4);
-                    left: calc(${upload.file.status.width} / 4);
-                    border-radius: 50%;
-                    background: #fff;
-                }
             }
             .k-upload-icons {
                 opacity: 0;
