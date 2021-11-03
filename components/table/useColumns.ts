@@ -59,7 +59,6 @@ export function useColumns() {
                 clonedVNode.props = props;
                 columns[row].push(clonedVNode);
 
-
                 handleProps(props, parentProps, row, clonedVNode);
             }
         });
@@ -96,7 +95,7 @@ export function useColumns() {
 
         // update the parent's cols after hanlding all children columns
         if (parentProps) {
-            parentProps.cols += props.cols;
+            parentProps.cols! += props.cols!;
         }
     }
 

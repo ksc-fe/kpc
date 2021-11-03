@@ -59,7 +59,7 @@ const {timeline} = deepDefaults(theme, {
 
 export function makeStyles() {
     return css`
-        font-size: ${timeline.fontSize};    
+        font-size: ${timeline.fontSize};
         padding-top: calc(${theme.lineHeight}em / 2);
     `;
 }

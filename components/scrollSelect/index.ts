@@ -6,9 +6,9 @@ import {useTranslate} from './useTranslate';
 import {useMouseEvents} from './useMouseEvents';
 
 export interface ScrollSelectProps {
-    value: any
-    count: number
-    data: Data
+    value?: any
+    count?: number
+    data?: Data
     disabled?: boolean
     disable?: (v: any) => boolean 
 }

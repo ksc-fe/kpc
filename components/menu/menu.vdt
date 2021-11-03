@@ -1,7 +1,8 @@
 import {DropdownMenu} from '../dropdown';
-import {getRestProps} from '../utils';
-import makeStyles from './menuStyles';
+import {getRestProps, findChildren, isComponentVNode} from '../utils';
 import {isDropdown} from './useDropdown';
+import {makeMenuStyles, makeTitleStyles} from './styles';
+import {Icon} from '../icon';
 
 const {children, className} = this.get();
 const {collapse, theme, type, size} = (this.rootMenu || this).get();
@@ -14,13 +15,22 @@ const classNameObj = {
     [`k-${size}`]: isRootMenu && size !== 'default',
     'k-collapsed': isRootMenu && collapse,
     [`k-${type}`]: isRootMenu && type,
-    [makeStyles()]: true,
+    [makeMenuStyles()]: true,
 };
 
+const header = <b:header />
 const content = (
     <template>
-        <div class="k-menu-header" v-if={$blocks.header}>
-            <b:header />
+        <div v-if={$blocks.header}
+            class={{
+                'k-menu-header': true,
+                [makeTitleStyles()]: true
+            }}
+        >
+            <template v-if={!collapse}>{header}</template>
+            <template v-else>
+                {findChildren(header, vNode => isComponentVNode(vNode, Icon))}
+            </template>
         </div>
         {children}
     </template>

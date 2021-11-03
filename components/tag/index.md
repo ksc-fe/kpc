@@ -13,6 +13,7 @@ sidebar: doc
 | disabled | 是否展示禁用状态 | `Boolean` | `false` |
 | closable | 是否可关闭 | `Boolean` | `false` |
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| border | 定义边框样式 | `"solid"` &#124; `"dashed"` &#124; `"none"` | `"solid"` |
 
 # 事件
 

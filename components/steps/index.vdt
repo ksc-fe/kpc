@@ -1,7 +1,7 @@
 import {getRestProps, eachChildren} from '../utils';
 import {Step} from './step';
-import {makeStyles} from './styles';
-import {context as ClickableContext} from './useClickable';
+import {makeStepsStyles} from './styles';
+import {context as StepsContext} from './context';
 
 const {
     children, className, value,
@@ -13,7 +13,7 @@ const classNameObj = {
     [className]: className,
     [`k-${type}`]: true,
     'k-clickable': clickable,
-    [makeStyles()]: true,
+    [makeStepsStyles()]: true,
 };
 
 let stepIndex = 0;
@@ -29,6 +29,11 @@ eachChildren(children, vNode => {
 // add width
 const width = (100 / stepIndex) + '%'; 
 
-<ClickableContext.Provider value={{value, status, width, onChange: this.clickable.onChangeIndex}}>
+<StepsContext.Provider value={{
+    value,
+    status,
+    width,
+    onChange: this.changeIndex 
+}}>
     <div class={classNameObj} {...getRestProps(this)}>{steps}</div>
-</ClickableContext.Provider>
+</StepsContext.Provider>

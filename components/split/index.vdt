@@ -1,31 +1,38 @@
 import {makeStyles} from './style';
 import {kls} from './style';
 
-const {mode, firstSize, lastSize} = this.get();
-
+const {mode} = this.get();
+const {firstSize, lastSize} = this.size;
+const {firstRef, lastRef, elementRef, start, dragging} = this.drag;
 const classNameObj = {
     'k-split': true,
-    [kls(mode)]: true,
+    [`k-${mode}`]: true,
     [makeStyles()]: true,
-    ['k-first-auto']: firstSize === 'auto',
-    ['k-last-auto']: lastSize === 'auto',
-    ['k-resizing']: this.drag.dragging.value
+    ['k-first-auto']: firstSize.value === 'auto',
+    ['k-last-auto']: lastSize.value === 'auto',
+    ['k-resizing']: dragging.value,
 };
 
 const stylePropName = mode === 'horizontal' ? 'width' : 'height';
 
-<div class={classNameObj} ref={this.splitRef}>
-    <div class={kls('first')} style={{[stylePropName]: firstSize}} ref="firstSize">
+<div class={classNameObj} ref={elementRef}>
+    <div class={kls('first')}
+        ref={firstRef}
+        style={{[stylePropName]: firstSize.value}}
+    >
         <b:first />
     </div>
-    <div class={kls('line-wrapper')} ev-mousedown={this.drag.start}>
+    <div class={kls('line-wrapper')} ev-mousedown={start}>
         <b:drag>
             <div class={kls('line')}>
                 <div class={kls('drag-lines')}></div>
             </div>
         </b:drag>
     </div>
-    <div class={kls('last')} style={{[stylePropName]: lastSize}} ref="lastSize">
+    <div class={kls('last')}
+        style={{[stylePropName]: lastSize.value}}
+        ref={lastRef}
+    >
         <b:last />
     </div>
 </div>

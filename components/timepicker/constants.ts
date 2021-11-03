@@ -9,7 +9,7 @@ export const NOW = getNowDate();
 export const PREFIX = NOW.format(YEAR_FORMAT);
 
 export interface TimepickerProps extends BasePickerProps<string> {
-    step: string
+    step?: string
 }
 
 export const typeDefs: Required<TypeDefs<TimepickerProps>> = {

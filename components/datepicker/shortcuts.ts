@@ -1,6 +1,6 @@
 import {Children} from 'intact';
 import {_$} from '../../i18n';
-import {Value} from './';
+import {Value} from './basepicker';
 
 export type Shortcut = {
     label: (() => Children) | Children 

@@ -14,9 +14,8 @@ describe('Checkbox', () => {
     });
 
     it('should get value correctly of group checkboxes', () => {
-        const instance = mount(GroupDemo);
+        const [instance, element] = mount(GroupDemo);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const [first, second] = Array.from<HTMLElement>(element.querySelectorAll('.k-checkbox'));
         // dispatchEvent(first, 'click');
         first.click();
@@ -28,9 +27,8 @@ describe('Checkbox', () => {
     });
 
     it('should get value correctly of checkbox which set trueValue and falseValue', () => {
-        const instance = mount(ValueDemo);
+        const [instance, element] = mount(ValueDemo);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const [first, second, third] = Array.from<HTMLElement>(element.querySelectorAll('.k-checkbox'));
 
         first.click();
@@ -50,9 +48,8 @@ describe('Checkbox', () => {
     });
 
     it('should check when press enter key for enabled checkbox', () => {
-        const instance = mount(BasicDemo);
+        const [instance, element] = mount(BasicDemo);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const [first, second] = Array.from<HTMLElement>(element.querySelectorAll('.k-checkbox'));
         dispatchEvent(first, 'keypress', {keyCode: 13});
         expect(first.className).include('k-checked');
@@ -64,7 +61,7 @@ describe('Checkbox', () => {
     //TODO: modify
     it('should only trigger change event once', () => {
         const spy = sinon.spy();
-        class Demo {
+        class Demo extends Component<{value: number[]}> {
             static template = `
                 <div>
                     <Checkbox v-for={{ [1, 2, 3] }} 
@@ -79,7 +76,9 @@ describe('Checkbox', () => {
 
             static defaults = () => ({
                 value: [1]
-            })
+            });
+
+            private Checkbox: any;
 
             init() {
                 this.Checkbox = Checkbox;
@@ -90,14 +89,14 @@ describe('Checkbox', () => {
             // }
 
             @bind
-            onChange(v) {
+            onChange(v: number[]) {
                 this.set('value', v); 
                 spy(v);
             }
         } 
 
-        instance = mount(Demo);
-        const [checkbox1, checkbox2, checkbox3] = instance.element.querySelectorAll('.k-checkbox');
+        const [instance, element] = mount(Demo);
+        const [checkbox1, checkbox2, checkbox3] = Array.from(element.querySelectorAll('.k-checkbox'));
         checkbox2.click();
         expect(spy.callCount).to.eql(1);
         expect(spy.calledWith([1, 2])).to.eql(true);
@@ -109,5 +108,4 @@ describe('Checkbox', () => {
         checkbox3.click();
         expect(spy.callCount).to.eql(2);
     });
-
 });

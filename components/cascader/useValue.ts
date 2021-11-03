@@ -5,7 +5,7 @@ import {isNullOrUndefined} from 'intact-shared';
 import {isEqualArray, last} from '../utils';
 
 // treat as string
-type Value = string[];
+export type Value = string[];
 type Values = Value[];
 
 export function useValue() {

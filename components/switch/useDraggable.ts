@@ -32,7 +32,10 @@ export function useDraggable(elementRef: RefObject<HTMLElement>) {
         barWidth.set(newWidth);
     }
 
-    function onEnd(e: MouseEvent) {
+    function onEnd(e?: MouseEvent) {
+        // unmounted
+        if (!e) return;
+
         elementRef.value!.blur();
 
         const bar = barRef.value!;
@@ -53,8 +56,10 @@ export function useDraggable(elementRef: RefObject<HTMLElement>) {
                 instance.uncheck();
             }
 
-            if (!instance.isChecked() && instance.get('width') && instance.get('height')) {
-                barWidth.set(+instance.get('height'));
+            const {width: _width, height: _height} = instance.get();
+
+            if (!instance.isChecked() && _width && _height) {
+                barWidth.set(+_height);
             } else {
                 barWidth.set(null);
             }

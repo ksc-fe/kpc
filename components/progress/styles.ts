@@ -17,59 +17,54 @@ const progressBarAnimation = keyframes`
         opacity: 0;
         width: 100%;
     }
-`
-
-const progressStyles = {
-    stokeColor: {
-        get normal() { return theme.color.primary },
-        get success() { return theme.color.success },
-        get error() { return theme.color.danger },
-        get warning() { return theme.color.warning },
-        color: '#eaeef2'
-    },
-    animation: {
-        transition: 'all .6s ease'
-    },
-    bar: {
-        fontColor: '#404040',
-        height: '16px',
-        textWidth: '40px',
-        textMarginLeft: '16px',
-        innerText: {
-            fontSize: '12px',
-            gap: {
-                left: '3px',
-                right: '10px'
-            }
-        },
-        small: {
-            height: '10px',
-            fontSize: '12px'
-        },
-        mini: {
-            height: '4px',
-            fontSize: '12px'
-        }
-    },
-    circle: {
-        width: '104px',
-        fontSize: '16px',
-        small: {
-            width: '80px',
-            fontSize: '14px'
-        },
-        mini: {
-            width: '40px',
-            fontSize: '12px'
-        }
-    }
-}; 
+`;
 
 const {progress} = deepDefaults(theme, {
-    progress: progressStyles
+    progress: {
+        stokeColor: {
+            get normal() { return theme.color.primary },
+            get success() { return theme.color.success },
+            get error() { return theme.color.danger },
+            get warning() { return theme.color.warning },
+            color: '#eaeef2'
+        },
+        animation: {
+            transition: 'all .6s ease'
+        },
+        bar: {
+            fontColor: '#404040',
+            height: '16px',
+            textWidth: '40px',
+            textMarginLeft: '16px',
+            innerText: {
+                fontSize: '12px',
+                padding: `0 10px 0 3px`,
+            },
+            small: {
+                height: '10px',
+                fontSize: '12px'
+            },
+            mini: {
+                height: '4px',
+                fontSize: '12px'
+            }
+        },
+        circle: {
+            width: '104px',
+            fontSize: '16px',
+            small: {
+                width: '80px',
+                fontSize: '14px'
+            },
+            mini: {
+                width: '40px',
+                fontSize: '12px'
+            }
+        }
+    }
 });
 
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         position: relative;
         line-height: 1;
@@ -111,7 +106,7 @@ export default function makeStyles() {
                 line-height: ${progress.bar.height};
                 width: 100%;
                 text-align: right;
-                padding: 0 ${progress.bar.innerText.gap.right} 0 ${progress.bar.innerText.gap.left};
+                padding: ${progress.bar.innerText.padding};
             }
             
             // status
@@ -212,11 +207,12 @@ export default function makeStyles() {
                 }
             };
             ${sizes.map(size => {
+                const styles = progress.circle[size];
                 return css`
                     &.k-${size} {
-                        width: ${progress.circle[size].width};
-                        height: ${progress.circle[size].width};
-                        font-size: ${progress.circle[size].fontSize};
+                        width: ${styles.width};
+                        height: ${styles.width};
+                        font-size: ${styles.fontSize};
                     }
                 `
             })}

@@ -11,7 +11,7 @@ order: 1
 > 需要自己维护`closed`属性，或者通过`v-if`来控制组件
 
 ```vdt
-import Tip from 'kpc/components/tip';
+import {Tip} from 'kpc/components/tip';
 
 <div>
     <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
@@ -27,6 +27,6 @@ import Tip from 'kpc/components/tip';
 ```
 
 ```styl
-.k-tag
+.k-tip
     margin-bottom 8px
 ```

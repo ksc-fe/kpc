@@ -6,7 +6,7 @@ order: 2
 通过`title`扩展点，可以自定义标题内容
 
 ```vdt
-import Tip from 'kpc/components/tip';
+import {Tip} from 'kpc/components/tip';
 
 <div>
     <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
@@ -21,6 +21,6 @@ import Tip from 'kpc/components/tip';
 ```
 
 ```styl
-.k-tag
+.k-tip
     margin-bottom 8px
 ```

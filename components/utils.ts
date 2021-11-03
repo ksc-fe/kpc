@@ -1,5 +1,5 @@
 import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor, isText} from 'intact';
-import {EMPTY_OBJ, isStringOrNumber, isNullOrUndefined, isInvalid} from 'intact-shared';
+import {EMPTY_OBJ, isStringOrNumber, isString, isNullOrUndefined, isInvalid} from 'intact-shared';
 
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
@@ -32,7 +32,7 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
     };
 }
 
-export function addStyle(style: string | Record<string, string> | undefined, extra: Record<string, string>) {
+export function addStyle(style: string | Record<string, string | null> | undefined, extra: Record<string, string | null>) {
     if (!style) return extra;
     if (!extra) return style;
     if (typeof style === 'string') {
@@ -121,57 +121,57 @@ export function getRestProps<T>(component: Component<T>, props = component.get()
  *
  * @return
  */
- export function findRouter(instance) {
-    const Component = instance.constructor;
-    if (Component.$$cid === 'IntactReact') {
-        // in React
-        let parentVNode = instance.vNode;
-        while (parentVNode) {
-            let i;
-            if (
-                parentVNode.type === Types.ComponentClass &&
-                (i = parentVNode.children.context)
-            ) {
-                if (i = i.router) {
-                    return i.history;
-                } else if (i = parentVNode.children.__providers) {
-                    // for react-router@5
-                    const iter = i.entries();
-                    while (i = iter.next().value) {
-                        if (i[0]._context.displayName === 'Router' && (i = i[1]).history) {
-                            return i.history;
-                        }
-                    }
-                }
-                break;
-            }
-            parentVNode = parentVNode.parentVNode;
-        }
-    } else if (Component.cid === 'IntactVue') {
-        return instance.get('_context').data.$router;
-    } else if (Component.cid === 'IntactVueNext') {
-        // for vue3.0
-        while (instance) {
-            const vueInstance = instance.vueInstance;
-            if (vueInstance) {
-                return vueInstance.$router;
-            }
-            let parentVNode = instance.parentVNode;
-            while (true) {
-                if (!parentVNode) return;
-                if (parentVNode.type === Types.ComponentClass) {
-                    instance = parentVNode.children;
-                    break;
-                }
-                parentVNode = parentVNode.parentVNode;
-            }
-        }
-    }
+ export function findRouter(instance: any): any {
+    // const Component = instance.constructor;
+    // if (Component.$$cid === 'IntactReact') {
+        // // in React
+        // let parentVNode = instance.vNode;
+        // while (parentVNode) {
+            // let i;
+            // if (
+                // parentVNode.type === Types.ComponentClass &&
+                // (i = parentVNode.children.context)
+            // ) {
+                // if (i = i.router) {
+                    // return i.history;
+                // } else if (i = parentVNode.children.__providers) {
+                    // // for react-router@5
+                    // const iter = i.entries();
+                    // while (i = iter.next().value) {
+                        // if (i[0]._context.displayName === 'Router' && (i = i[1]).history) {
+                            // return i.history;
+                        // }
+                    // }
+                // }
+                // break;
+            // }
+            // parentVNode = parentVNode.parentVNode;
+        // }
+    // } else if (Component.cid === 'IntactVue') {
+        // return instance.get('_context').data.$router;
+    // } else if (Component.cid === 'IntactVueNext') {
+        // // for vue3.0
+        // while (instance) {
+            // const vueInstance = instance.vueInstance;
+            // if (vueInstance) {
+                // return vueInstance.$router;
+            // }
+            // let parentVNode = instance.parentVNode;
+            // while (true) {
+                // if (!parentVNode) return;
+                // if (parentVNode.type === Types.ComponentClass) {
+                    // instance = parentVNode.children;
+                    // break;
+                // }
+                // parentVNode = parentVNode.parentVNode;
+            // }
+        // }
+    // }
 }
 
 const externalLinkReg = /^(https?:)?\/\//;
-export function isExternalLink(to) {
-    if (typeof to !== 'string') return false;
+export function isExternalLink(to?: string) {
+    if (!isString(to)) return false;
     return externalLinkReg.test(to);
 }
 

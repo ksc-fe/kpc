@@ -17,10 +17,10 @@ import {Tag} from 'kpc/components/tag';
     <Tag v-for={this.get('tags')}
         key={$value}
         type={$value}
-        ev-close={() => this.onClose($key)}
         closable
     >{$value}</Tag>
     <Tag disabled closable>disabled</Tag>
+    <Tag closable ev-close={e => e.preventDefault()}>prevent default</Tag>
 </div>
 ```
 
@@ -30,8 +30,6 @@ import {Tag} from 'kpc/components/tag';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
-
 export default class extends Component {
     static template = template;
     static defaults() {
@@ -39,18 +37,5 @@ export default class extends Component {
             tags: ['default', 'primary', 'success', 'warning', 'danger']
         }
     }
-
-    @bind
-    onClose(index) {
-        let tags = this.get('tags').slice(0);
-        tags.splice(index, 1);
-        this.set('tags', tags);
-    }
-}
-```
-
-```vue-methods
-onClose(index) {
-    this.tags.splice(index, 1);
 }
 ```

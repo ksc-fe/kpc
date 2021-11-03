@@ -4,7 +4,6 @@ import {ButtonGroup} from './group';
 import {bind} from '../utils';
 import {Sizes, Colors} from '../types';
 import {BUTTON_GROUP} from './constants';
-
 export * from './group';
 
 export interface ButtonProps {

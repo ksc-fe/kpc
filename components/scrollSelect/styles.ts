@@ -27,7 +27,7 @@ const {scrollSelect} = deepDefaults(theme, {
 
 export {scrollSelect};
 
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         text-align: center;
         overflow: hidden;

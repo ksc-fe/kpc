@@ -16,11 +16,12 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
 import {Button} from 'kpc/components/button';
 
 <Layout class="layout">
-    <Aside collapse={this.get('collapse')} fixed size="large">
+    <Aside collapse={this.get('collapse')} fixed theme="white">
         <div class="logo">LOGO</div>
         <Menu
             v-model:expandedKeys="expandedKeys" 
             v-model:selectedKey="selectedKey"
+            theme="white"
         >
             <MenuItem key="1">
                 <Icon class="ion-flag" />menu 1
@@ -33,7 +34,7 @@ import {Button} from 'kpc/components/button';
             </MenuItem>
             <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
             <MenuItem key="3">
-                <i class="k-icon ion-heart"></i>menu 3
+                <Icon class="k-icon ion-heart" />menu 3
                 <Menu>
                     <MenuItem key="3-1">sub menu 1</MenuItem>
                     <MenuItem key="3-2">sub menu 2</MenuItem>
@@ -45,7 +46,7 @@ import {Button} from 'kpc/components/button';
         </Menu>
     </Aside>
     <Layout>
-        <Header fixed>
+        <Header fixed theme="white">
             <Button type="none" size="large" style="height: 64px" ev-click={this.toggle}>
                 <Icon class="ion-navicon" size="30"/>
             </Button>
@@ -72,7 +73,7 @@ import {Button} from 'kpc/components/button';
     transition all .25s ease-in-out
 .k-breadcrumb
     margin 20px 0
-.k-layout-aside.k-layout-collapsed
+.k-layout-aside.k-collapsed
     .logo
         margin 17px 5px
 ```

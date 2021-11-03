@@ -21,8 +21,6 @@ export interface SelectProps extends BaseSelectProps {
     labelMap?: Map<any, Children> 
     card?: boolean
     autoDisableArrow: boolean
-    // TODO
-    // unmatchable: boolean
 }
 
 const typeDefs: Required<TypeDefs<SelectProps>> = {

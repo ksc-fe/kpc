@@ -6,8 +6,6 @@ import {useStep} from './useStep';
 import {useFormatter} from './useFormatter';
 import {useValue} from'./useValue';
 
-const numberReg = /^(-|\+)?\d+(\.(\d+)?)?$/;
-
 export interface SpinnerProps {
     disabled?: boolean,
     value?: number,

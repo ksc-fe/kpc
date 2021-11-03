@@ -1,11 +1,10 @@
 import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
-import {useReceive} from '../../hooks/useReceive';
+import {useSize} from './useSize';
 import {useDraggable} from './useDraggable';
+import {Mode} from './style';
 
-export type Mode = 'horizontal' | 'vertical'
-
-interface SplitProps {
+export interface SplitProps {
     mode?: Mode
     firstSize?: string
     lastSize?: string
@@ -29,39 +28,14 @@ const defaults = (): Partial<SplitProps> => ({
     max: '100%-6'
 });
 
-export default class Split<T extends SplitProps = SplitProps> extends Component<T> {
+export class Split<T extends SplitProps = SplitProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    public splitRef = createRef<HTMLDivElement>();
-    public totalSize: number = 0;
-    public min: number = 0;
-    public max: number = 0;
-
-    private drag = useDraggable();
-
-    init() {
-        const fixSize = (): void => {
-            const {firstSize, lastSize} = this.get();
-            if(firstSize === 'auto' && lastSize === 'auto') {
-                this.set('firstSize', '50%');
-            } else if (firstSize !== 'auto' && lastSize !== 'auto') {
-                this.set('lastSize', 'auto');
-            }
-        };
-
-        useReceive<Split>(['firstSize', 'lastSize'], fixSize);
-
-        fixSize();
-    }
-
-    mounted() {
-        const {mode} = this.get();
-        this.totalSize = this.splitRef.value![
-            mode === 'horizontal'
-                ? 'offsetWidth'
-                : 'offsetHeight'
-        ];
-    }
+    private size = useSize();
+    private drag = useDraggable(
+        this.size.firstSize,
+        this.size.lastSize,
+    );
 }

@@ -2,9 +2,10 @@ import {useInstance, Key} from 'intact';
 import {Transfer} from './index';
 import type {useFilter, Model} from './useFilter';
 
-export function useCheck(filter: ReturnType<typeof useFilter>) {
+export type CheckedKeys = `leftCheckedKeys` | `rightCheckedKeys`
+
+export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useFilter>) {
     const instance = useInstance() as Transfer;
-    const {getEnabledData, getShowedData} = filter;
 
     let startIndex: number | undefined = undefined;
     let endIndex: number | undefined = undefined;
@@ -12,21 +13,24 @@ export function useCheck(filter: ReturnType<typeof useFilter>) {
 
     function selectAll(model: Model) {
         const keyName = instance.get('keyName')!;
-        instance.set(`${model}CheckedKeys`, getEnabledData(model).map(item => item[keyName]));
+        instance.set(
+            `${model}CheckedKeys` as CheckedKeys,
+            getEnabledData(model).map(item => item[keyName])
+        );
     }
 
     function isCheckAll(model: Model) {
-        const checked = instance.get(`${model}CheckedKeys`);
+        const checked = instance.get(`${model}CheckedKeys` as CheckedKeys)!;
         const data = getEnabledData(model);
 
-        return data.length && checked!.length >= data.length;
+        return data.length && checked.length >= data.length;
     }
 
     function toggleCheckAll(model: Model, e: MouseEvent) {
         if ((e.target as any).checked) {
             selectAll(model);
         }  else {
-            instance.set(`${model}CheckedKeys`, []);
+            instance.set(`${model}CheckedKeys` as CheckedKeys, []);
         }
     }
 
@@ -39,7 +43,7 @@ export function useCheck(filter: ReturnType<typeof useFilter>) {
             e.preventDefault();
 
             const values = getShowedData(model)!;
-            const checkedKeys = instance.get(`${model}CheckedKeys`).slice(0);
+            const checkedKeys = instance.get(`${model}CheckedKeys` as CheckedKeys)!.slice(0);
             const lastEndIndex = endIndex;
             const keyName = instance.get('keyName')!;
             endIndex = index;
@@ -80,7 +84,7 @@ export function useCheck(filter: ReturnType<typeof useFilter>) {
                 checked
             );
 
-            instance.set(`${model}CheckedKeys`, checkedKeys);
+            instance.set(`${model}CheckedKeys` as CheckedKeys, checkedKeys);
         }
     }
 

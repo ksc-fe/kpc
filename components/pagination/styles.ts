@@ -28,7 +28,7 @@ const {pagination} = deepDefaults(theme, {
     pagination: deepDefaults(
         {
             get fontSize() { return theme.default.fontSize }, 
-            gutter: '16px',
+            gap: '16px',
 
             btn: {
                 gap: '6px',
@@ -54,15 +54,13 @@ const {pagination} = deepDefaults(theme, {
     )
 });
 
-export {pagination};
-
-export default function makeStyles() {
+export function makeStyles() {
     return css`
         font-size: ${pagination.fontSize};
         .k-pagination-limits,
         .k-pagination-goto,
         .k-pagination-total {
-            margin-left: ${pagination.gutter};
+            margin-left: ${pagination.gap};
             display: inline-block;
             vertical-align: middle;
         }

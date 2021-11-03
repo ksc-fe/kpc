@@ -2,7 +2,8 @@ import {theme} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 import {deepDefaults}  from '../../styles/utils';
-import {Mode} from './index';
+
+export type Mode = 'horizontal' | 'vertical'
 
 export const kls = (className: string): string => `k-split-${className}`;
 
@@ -84,9 +85,9 @@ export function makeStyles() {
             }
         }
 
-        &.${kls('horizontal')} {
+        &.k-horizontal {
             & > .${kls('line-wrapper')} {
-                cursor: row-resize;
+                cursor: col-resize;
                 width: ${split.splitLineSize};
                 .${kls('line')} {
                     border-left: ${split.baseBorder};
@@ -102,7 +103,7 @@ export function makeStyles() {
             }
         }
 
-        &.${kls('vertical')} {
+        &.k-vertical {
             flex-direction: column;
             & > .${kls('line-wrapper')} {
                 cursor: row-resize;

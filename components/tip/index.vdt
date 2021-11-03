@@ -1,31 +1,38 @@
-import {makeStyles} from './styles';
+import {Button} from '../button';
 import {Icon} from '../icon';
-import {Button} from '../button'
+import {makeStyles} from './styles';
 
-const {children, type, closable, show} = this.get();
-
+const {children, closable, type, disabled} = this.get();
 const classNameObj = {
-    'k-tag': true,
-    [`k-${type}`]: type !== 'default',
-    [makeStyles()]: true
+    'k-tip': true,
+    [makeStyles()]: true,
 };
 
-<div class={classNameObj} v-if={show}>
-    <div v-if={$blocks.title} class="k-title">
-        <b:title />
-    </div>
-    {children}
-    <Button
-        icon={!$blocks.close}
-        type="none"
-        class={{"k-tip-close": true, "k-custom": $blocks.close}}
-        ev-click={this.handleCloseClick}
-        v-if={closable}
-    >
-        <template>
-            <b:close>
-                <Icon class="k-icon ion-ios-close-empty" />
-            </b:close>
-        </template>
-    </Button>
-</div>
+<t:super class={classNameObj} name="k-fade">
+    <b:body>
+        <div class="k-tip-wrapper">
+            <div v-if={$blocks.title} class="k-tip-title">
+                <b:title />
+            </div>
+            {children}
+        </div>
+    </b:body> 
+    <b:_close>
+        <Button v-if={closable}
+            type={!$blocks.close ? 'none' : 'link'}
+            icon={!$blocks.close}
+            ev-click={this.onClose}
+            class="k-tip-close"
+        >
+            <template>
+                <b:close>
+                    <Icon class="ion-ios-close-empty"
+                        size="large"
+                        color={type}
+                        hoverable={!disabled}
+                    />
+                </b:close>
+            </template>
+        </Button>
+    </b:_close>
+</t:super>

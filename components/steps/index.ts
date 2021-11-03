@@ -1,6 +1,6 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
-import {useClickable} from './useClickable';
+import {bind} from '../utils';
 export * from './step';
 
 export interface StepsProps {
@@ -21,13 +21,18 @@ const defaults = (): Partial<StepsProps> => ({
     value: 0,
     status: 'normal',
     type: 'default',
-    clickable: false
-})
+});
 
 export class Steps<T extends StepsProps = StepsProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private clickable = useClickable();
+    @bind
+    private changeIndex(index: number) {
+        const {value, clickable} = this.get();
+        if (clickable && value! > index) {
+            this.set('value', index);
+        }
+    }
 }

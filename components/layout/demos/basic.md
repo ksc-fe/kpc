@@ -44,7 +44,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
         </Menu>
     </Header>
     <Layout>
-        <Aside>
+        <Aside theme="light">
             <Menu
                 v-model:expandedKeys="expandedKeys" 
                 v-model:selectedKey="selectedKey"
@@ -89,10 +89,8 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
     height 30px
     line-height 30px
     text-align center
-    color #fff
-    float: left
     background gray
-    margin 17px 20px
+    margin 0 20px
 .k-breadcrumb
     margin 20px 0
 ```

@@ -15,21 +15,16 @@ const typeDefs: Required<TypeDefs<RadioProps>> = {
 };
 
 const defaults = (): Partial<RadioProps> => ({
-    disabled: false,
     value: false,
     trueValue: true,
 });
 
-export default class Radio<T extends RadioProps = RadioProps> extends Component<T> {
+export class Radio<T extends RadioProps = RadioProps> extends Component<T> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
     private elementRef = createRef<HTMLInputElement>();
-
-    private isChecked(): boolean {
-        return this.get('value') === this.get('trueValue');
-    }
 
     @bind
     private onKeypress(e: KeyboardEvent): void {
@@ -58,5 +53,3 @@ export default class Radio<T extends RadioProps = RadioProps> extends Component<
         }
     }
 }
-
-export {Radio};

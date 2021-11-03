@@ -17,7 +17,6 @@ import {isStringOrNumber, isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
 import {DIAGRAM, SHAPE, LAYOUT} from '../constants';
 import type {DLayout} from '../layouts/layout';
 import type {Diagram} from '../diagram';
-import {useCell} from './useCell';
 
 const {mxCell, mxGeometry} = mx;
 

@@ -7,12 +7,12 @@ order: 3
 调整面板的大小，来模拟显示和隐藏面板的效果
 
 ```vdt
-import Split from 'kpc/components/split';
+import {Split} from 'kpc/components/split';
 import {Table, TableColumn} from 'kpc/components/table';
 import {Tabs, Tab} from 'kpc/components/tabs';
 import {FormItem} from 'kpc/components/form';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Button} from 'kpc/components/button';
+import {Icon} from 'kpc/components/icon';
 
 <div class="split-container">
     <Split mode="vertical"

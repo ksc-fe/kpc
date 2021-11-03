@@ -5,10 +5,10 @@ import type {Tabs} from './';
 import {bind} from '../utils';
 
 export interface TabProps {
-    value: any
-    disabled: boolean
-    to: string | object
-    closable: boolean
+    value?: any
+    disabled?: boolean
+    to?: string | object
+    closable?: boolean
 }
 
 const typeDefs: Required<TypeDefs<TabProps>> = {
