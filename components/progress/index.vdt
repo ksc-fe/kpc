@@ -1,4 +1,4 @@
-import Icon from '../icon';
+import {Icon} from '../icon';
 import {getRestProps} from '../utils';
 import makeStyles from './styles';
 
@@ -9,6 +9,7 @@ const {
 } = this.get();
 
 const status = this.status.value;
+const background = this.color.value || '';
 
 const classNameObj = {
     'k-progress' : true,
@@ -21,8 +22,8 @@ const classNameObj = {
 
 <div class={classNameObj} {...getRestProps(this)}>
     <div class="k-progress-container" v-if={type === 'bar'}>
-        <div  class="k-progress-content">
-            <div class="k-progress-bg" style={{width: percent + '%'}}>
+        <div class="k-progress-content">
+            <div class="k-progress-bg" style={{width: percent + '%', background}}>
                 <div class="k-progress-inner-text" v-if={showInnerText}>
                     {percent} %
                 </div>
