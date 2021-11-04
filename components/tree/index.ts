@@ -1,7 +1,7 @@
 import {Component, Key, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {DataItem, useNodes, Node} from './useNodes';
-import {bind} from 'kpc/components/utils';
+import {bind} from '../utils';
 import {useChecked} from './useChecked';
 import {useExpanded} from './useExpanded';
 import {useSelected} from './useSelected';

@@ -1,4 +1,4 @@
-import {Props, createVNode as h, Children} from 'intact';
+import {Props, createVNode as h, Children, Component} from 'intact';
 import {
     Tooltip as BaseTooltip,
     TooltipProps as BaseTooltipProps
@@ -12,7 +12,7 @@ export interface TooltipProps extends BaseTooltipProps {
 
 export type Tooltip = typeof BaseTooltip
 
-export function Tooltip(props: Props<TooltipProps, BaseTooltip>) {
+function _Tooltip(props: Props<TooltipProps, BaseTooltip>) {
     let {children, content, $blocks, ...rest} = props;
 
     if ($blocks && $blocks.content) {
@@ -28,3 +28,6 @@ export function Tooltip(props: Props<TooltipProps, BaseTooltip>) {
         ...rest,
     });
 }
+
+const functionalWrapper = (Component as any).functionalWrapper;
+export const Tooltip = functionalWrapper ? functionalWrapper(_Tooltip) : _Tooltip;

@@ -46,7 +46,8 @@ const defaults = (): Partial<ButtonProps> => ({
     tabindex: '0',
 }); 
 
-export class Button<T extends ButtonProps = ButtonProps> extends Component<T> {
+
+export class Button extends Component<ButtonProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -1,6 +1,6 @@
 import {TypeDefs} from 'intact';
 import template from './index.vdt';
-import {Dialog, DialogProps} from 'kpc/components/dialog';
+import {Dialog, DialogProps} from '../dialog';
 import {Placement, placements} from './styles';
 
 export interface DrawerProps extends DialogProps {

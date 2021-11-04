@@ -1,6 +1,7 @@
 import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor, isText} from 'intact';
 import {EMPTY_OBJ, isStringOrNumber, isString, isNullOrUndefined, isInvalid} from 'intact-shared';
 
+// @reference https://github.com/andreypopp/autobind-decorator/blob/master/src/index.js
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the
@@ -13,6 +14,7 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
         get(this: T): T {
             if (
                 definingProperty ||
+                this === target.prototype ||
                 this.hasOwnProperty(key) /* has bound, for invoking super bound method */
             ) {
                 return method;
@@ -28,6 +30,13 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
             definingProperty = false;
 
             return value;
+        },
+        set(value: T) {
+            Object.defineProperty(this, key, {
+                value,
+                configurable: true,
+                writable: true,
+            });
         }
     };
 }

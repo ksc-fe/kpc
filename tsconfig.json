@@ -77,7 +77,8 @@
     "hooks",
     "styles",
     "i18n",
-    "typings"
+    "typings",
+    "index.ts"
   ],
   "exclude": [
     "node_modules",

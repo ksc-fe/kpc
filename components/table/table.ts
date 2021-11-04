@@ -195,7 +195,7 @@ export class Table extends Component<TableProps> {
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {
-        this.trigger('click:row', data, index, key);
+        this.trigger('clickRow', data, index, key);
     }
     
     @bind
