@@ -1,6 +1,6 @@
 ---
 title: 圆形进度
-order: 3
+order: 4
 ---
 
 将`type`设为`circle`可以展示圆形进度
