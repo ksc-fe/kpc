@@ -14,7 +14,7 @@ const defaults = (): Partial<BreadcrumbProps> => ({
     separator: '>'
 });
 
-export class Breadcrumb<T extends BreadcrumbProps = BreadcrumbProps> extends Component<T> {
+export class Breadcrumb extends Component<BreadcrumbProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

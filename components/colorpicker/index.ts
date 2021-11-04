@@ -28,7 +28,7 @@ const defaults = (): Partial<ColorpickerProps> => ({
     size: 'default',
 });
 
-export class Colorpicker extends Component {
+export class Colorpicker extends Component<ColorpickerProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

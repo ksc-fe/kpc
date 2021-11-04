@@ -11,7 +11,7 @@ const typeDefs: Required<TypeDefs<BreadcrumbItemProps>> = {
     to: String,
 };
 
-export class BreadcrumbItem<T extends BreadcrumbItemProps = BreadcrumbItemProps> extends Component<T> {
+export class BreadcrumbItem extends Component<BreadcrumbItemProps> {
     static template = template;
     static typeDefs = typeDefs;
 

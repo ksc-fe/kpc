@@ -26,7 +26,7 @@ const defaults = (): Partial<CollapseProps> => ({
     arrow: 'right'
 });
 
-export class Collapse<T extends CollapseProps = CollapseProps> extends Component<T> {
+export class Collapse extends Component<CollapseProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

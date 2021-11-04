@@ -21,7 +21,7 @@ const defaults = (): Partial<ButtonGroupProps> => ({
     checkType: 'none',
 });
 
-export class ButtonGroup<T extends ButtonGroupProps = ButtonGroupProps> extends Component<T> {
+export class ButtonGroup extends Component<ButtonGroupProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

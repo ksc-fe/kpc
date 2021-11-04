@@ -34,7 +34,7 @@ const defaults = (): Partial<DatepickerProps> => ({
     type: 'date',
 });
 
-export class Datepicker<T extends DatepickerProps = DatepickerProps> extends BasePicker<T> {
+export class Datepicker extends BasePicker<DatepickerProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

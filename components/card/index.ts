@@ -15,9 +15,9 @@ const typeDefs: Required<TypeDefs<CardProps>> = {
 
 const defaults = (): Partial<CardProps> => ({
     type: 'shadow'
-})
+});
 
-export class Card<T extends CardProps = CardProps> extends Component<T> {
+export class Card extends Component<CardProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
