@@ -47,7 +47,7 @@ const defaults = (): Partial<InputProps> => ({
     rows: 2,
 });
 
-export class Input<T extends InputProps = InputProps> extends Component<T> {
+export class Input extends Component<InputProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

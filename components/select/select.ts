@@ -38,7 +38,7 @@ const defaults = (): Partial<SelectProps> => ({
     labelMap: new Map(),
 });
 
-export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
+export class Select extends BaseSelect<SelectProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

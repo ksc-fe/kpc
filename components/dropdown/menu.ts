@@ -11,7 +11,7 @@ export interface DropdownMenuProps { }
 
 export const DROPDOWN_MENU = 'DropdownMenu';
 
-export class DropdownMenu<T extends DropdownMenuProps = DropdownMenuProps> extends Component<T> {
+export class DropdownMenu extends Component<DropdownMenuProps> {
     static template = template;
 
     public elementRef = createRef<HTMLDivElement>();

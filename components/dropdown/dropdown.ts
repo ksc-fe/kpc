@@ -49,7 +49,6 @@ export const typeDefs: Required<TypeDefs<DropdownProps>> = {
 
 export const defaults = (): Partial<DropdownProps> => ({
     trigger: 'hover',
-    value: false,
     position: {},
     of: 'self',
 });

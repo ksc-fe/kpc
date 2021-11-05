@@ -23,7 +23,7 @@ const defaults = (): Partial<RateProps> => ({
     count: 5,
 })
 
-export class Rate<T extends RateProps = RateProps> extends Component<T> {
+export class Rate extends Component<RateProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

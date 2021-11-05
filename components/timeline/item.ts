@@ -18,7 +18,7 @@ const defaults = (): Partial<TimelineItemProps> => ({
     size: 'default',
 })
 
-export class TimelineItem<T extends TimelineItemProps = TimelineItemProps> extends Component<T> {
+export class TimelineItem extends Component<TimelineItemProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

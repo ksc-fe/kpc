@@ -27,7 +27,7 @@ const defaults = (): Partial<TagProps> => ({
     border: 'solid',
 });
 
-export class Tag<T extends TagProps = TagProps> extends Component<T> {
+export class Tag extends Component<TagProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

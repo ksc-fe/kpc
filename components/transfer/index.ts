@@ -54,7 +54,7 @@ const defaults = (): Partial<TransferProps> => ({
     rightTitle: _$('已选择'),
 })
 
-export class Transfer<T extends TransferProps = TransferProps> extends Component<T> {
+export class Transfer extends Component<TransferProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

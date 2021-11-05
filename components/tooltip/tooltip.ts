@@ -4,7 +4,7 @@ import {
     DropdownProps,
     defaults as dropdownDefaults,
     typeDefs as dropdownTypeDefs,
-} from '../dropdown';
+} from '../dropdown/dropdown';
 import {_$} from '../../i18n';
 import {Theme, themes} from './styles';
 
@@ -44,7 +44,7 @@ export const defaults = (): Partial<TooltipProps> => ({
     size: 'default',
 });
 
-export class Tooltip<T extends TooltipProps = TooltipProps> extends Dropdown<T> {
+export class Tooltip extends Dropdown<TooltipProps> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 

@@ -1,23 +1,23 @@
 import {TypeDefs} from 'intact';
 import template from './index.vdt';
-import {Dialog, DialogProps} from '../dialog';
+import {BaseDialog, BaseDialogProps} from '../dialog/base';
 import {Placement, placements} from './styles';
 
-export interface DrawerProps extends DialogProps {
+export interface DrawerProps extends BaseDialogProps {
     placement?: Placement
 }
 
 const typeDefs: Required<TypeDefs<DrawerProps>> = {
-    ...Dialog.typeDefs,
+    ...BaseDialog.typeDefs,
     placement: placements,
 };
 
 const defaults = (): Partial<DrawerProps> => ({
-    ...Dialog.defaults(),
+    ...BaseDialog.defaults(),
     placement: 'right',
 });
 
-export class Drawer<T extends DrawerProps = DrawerProps> extends Dialog<T> {
+export class Drawer extends BaseDialog<DrawerProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

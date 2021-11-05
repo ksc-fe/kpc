@@ -24,7 +24,7 @@ const defaults = (): Partial<DropdownItemProps> => ({
     hideOnSelect: true,
 });
 
-export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> extends Component<T> {
+export class DropdownItem extends Component<DropdownItemProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -33,7 +33,7 @@ const defaults = (): Partial<ScrollSelectProps> => ({
     data: [],
 });
 
-export class ScrollSelect<T extends ScrollSelectProps = ScrollSelectProps> extends Component<T> {
+export class ScrollSelect extends Component<ScrollSelectProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -27,7 +27,7 @@ const typeDefs: Required<TypeDefs<MenuItemProps>> = {
 
 export const MENU_ITEM = 'MenuItem';
 
-export class MenuItem<T extends MenuItemProps = MenuItemProps> extends Component<T> {
+export class MenuItem extends Component<MenuItemProps> {
     static template = template;
     static typeDefs = typeDefs;
 

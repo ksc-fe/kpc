@@ -42,7 +42,7 @@ const defaults = (): Partial<PaginationProps> => ({
     showLimits: true,
 })
 
-export class Pagination<T extends PaginationProps = PaginationProps> extends Component<T> {
+export class Pagination extends Component<PaginationProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

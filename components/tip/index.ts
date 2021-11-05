@@ -1,8 +1,8 @@
 import template from './index.vdt';
 import {Tag, TagProps} from '../tag';
 
-export interface TipProps extends TagProps { }
+export type TipProps = TagProps
 
-export class Tip<T extends TipProps = TipProps> extends Tag<T> {
+export class Tip extends Tag {
     static template = template;
 }

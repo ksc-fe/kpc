@@ -55,7 +55,7 @@ const defaults = (): Partial<SpinnerProps> => ({
     size: 'default'
 });
 
-export class Spinner<T extends SpinnerProps = SpinnerProps> extends Component<T> {
+export class Spinner extends Component<SpinnerProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -28,7 +28,7 @@ const defaults = (): Partial<SplitProps> => ({
     max: '100%-6'
 });
 
-export class Split<T extends SplitProps = SplitProps> extends Component<T> {
+export class Split extends Component<SplitProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

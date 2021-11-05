@@ -5,9 +5,7 @@ import {bind} from '../utils';
 import {Tooltip} from './tooltip';
 import {useArrow} from './useArrow';
 
-export interface TooltipContentProps { }
-
-export class TooltipContent<T extends TooltipContentProps = TooltipContentProps> extends DropdownMenu<T> {
+export class TooltipContent extends DropdownMenu {
     static template = template;
 
     private isEmptyChildren: boolean = true;

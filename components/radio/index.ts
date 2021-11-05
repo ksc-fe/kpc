@@ -19,7 +19,7 @@ const defaults = (): Partial<RadioProps> => ({
     trueValue: true,
 });
 
-export class Radio<T extends RadioProps = RadioProps> extends Component<T> {
+export class Radio extends Component<RadioProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

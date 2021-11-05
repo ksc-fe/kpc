@@ -32,7 +32,7 @@ const defaults = (): Partial<EditableProps> => ({
     trim: true,
 })
 
-export class Editable<T extends EditableProps = EditableProps> extends Component<T> {
+export class Editable extends Component<EditableProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

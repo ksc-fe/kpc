@@ -43,7 +43,7 @@ const defaults = (): Partial<ProgressProps> => ({
     strokeWidth: 4,
 });
 
-export class Progress<T extends ProgressProps = ProgressProps> extends Component<T> {
+export class Progress extends Component<ProgressProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

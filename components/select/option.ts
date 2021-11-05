@@ -19,7 +19,7 @@ const typeDefs: Required<TypeDefs<OptionProps>> = {
     disabled: Boolean,
 };
 
-export class Option<T extends OptionProps = OptionProps> extends Component<T> {
+export class Option extends Component<OptionProps> {
     static template = template;
     static typeDefs = typeDefs;
 
