@@ -4,7 +4,7 @@ import makeStyles from './styles';
 const {
     className, disabled, falseValue, 
     children, value, trueValue, style,
-    name, indeterminate, title, ...rest
+    indeterminate, title, ...rest
 } = this.get();
 
 const isChecked = this.isChecked();
@@ -54,7 +54,6 @@ const events = [
             disabled={disabled}
             tabindex="-1"
             ref={this.inputRef}
-            name={name}
             {...getRestProps(this, rest)}
         />
     </span>

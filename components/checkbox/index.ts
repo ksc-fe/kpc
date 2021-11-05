@@ -2,19 +2,18 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {bind} from '../utils';
 import {isArray} from 'intact-shared';
+import {CommonInputHTMLAttributes} from '../types';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends CommonInputHTMLAttributes {
     disabled?: boolean
-    name?: string
     value?: any
     trueValue?: any
     falseValue?: any
     indeterminate?: boolean
 }
 
-const typeDefs: Required<TypeDefs<CheckboxProps>> = {
+const typeDefs: Required<TypeDefs<Omit<CheckboxProps, keyof CommonInputHTMLAttributes>>> = {
     disabled: Boolean, 
-    name: String,
     value: null, 
     trueValue: null, 
     falseValue: null, 

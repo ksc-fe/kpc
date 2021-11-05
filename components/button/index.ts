@@ -6,7 +6,17 @@ import {Sizes, Colors} from '../types';
 import {BUTTON_GROUP} from './constants';
 export * from './group';
 
-export interface ButtonProps {
+interface ButtonHTMLAttributes {
+    autofocus?: boolean
+    form?: string
+    formaction?: string
+    formenctype?: string
+    formmethod?: string
+    formnovalidate?: boolean
+    formtarget?: string
+}
+
+export interface ButtonProps extends ButtonHTMLAttributes {
     type?: Colors | 'none' | 'secondary' | 'link'
     size?: Sizes,
     icon?: boolean
@@ -14,7 +24,7 @@ export interface ButtonProps {
     loading?: boolean
     disabled?: boolean
     fluid?: boolean
-    htmlType?: string
+    htmlType?: 'submit' | 'reset' | 'button'
     tagName?: string | ComponentConstructor
     value?: any
     name?: string
@@ -22,7 +32,7 @@ export interface ButtonProps {
     ghost?: boolean
 }
 
-const typeDefs: Required<TypeDefs<ButtonProps>> = {
+const typeDefs: Required<TypeDefs<Omit<ButtonProps, keyof ButtonHTMLAttributes>>> = {
     type: ['default', 'primary', 'warning', 'danger', 'success', 'none', 'secondary', 'link'],
     size: ['large', 'default', 'small', 'mini'],
     icon: Boolean,

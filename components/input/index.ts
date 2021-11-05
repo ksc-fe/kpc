@@ -5,9 +5,21 @@ import {bind} from '../utils';
 import {isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
 import {useAutoWidth} from './useAutoWidth';
 import {useFrozen} from './useFrozen';
+import {CommonInputHTMLAttributes} from '../types';
 export * from './search';
 
-export interface InputProps {
+interface InputHTMLAttributes extends CommonInputHTMLAttributes {
+    // type input
+    pattern?: string
+    dirname?: string
+    datalist?: string
+
+    // type textarea
+    cols?: number
+    wrap?: 'hard' | 'soft'
+}
+
+export interface InputProps extends InputHTMLAttributes {
     type?: 'text' | 'textarea' 
     value?: string | number
     defaultValue?: string | number
@@ -24,7 +36,7 @@ export interface InputProps {
     frozenOnInput?: boolean
 }
 
-const typeDefs: Required<TypeDefs<InputProps>> = {
+const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> = {
     type: String,
     value: [String, Number],
     defaultValue: [String, Number],

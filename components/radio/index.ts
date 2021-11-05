@@ -1,14 +1,15 @@
 import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
+import {CommonInputHTMLAttributes} from '../types';
 
-export interface RadioProps {
+export interface RadioProps extends CommonInputHTMLAttributes {
     disabled?: boolean
     value?: any 
     trueValue?: any 
 }
 
-const typeDefs: Required<TypeDefs<RadioProps>> = {
+const typeDefs: Required<TypeDefs<Omit<RadioProps, keyof CommonInputHTMLAttributes>>> = {
     disabled: Boolean,
     value: null,
     trueValue: null,

@@ -9,7 +9,7 @@ import {
     ValidVNode,
 } from '../utils';
 import {Options} from '../position';
-import {ROOT_DROPDOWN, Dropdown} from '../dropdown';
+import {ROOT_DROPDOWN, Dropdown} from '../dropdown/dropdown';
 
 export function useDropdown(rootMenu: Menu, parentMenu: Menu) {
     const instance = useInstance() as MenuItem;
