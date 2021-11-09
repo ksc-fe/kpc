@@ -17,6 +17,15 @@ export interface PaginationProps {
     showLimits?: boolean,
 }
 
+export interface PaginationEvents {
+    change: [ChangeData] 
+}
+
+type ChangeData = {
+    limit: number
+    current: number
+}
+
 const typeDefs: Required<TypeDefs<PaginationProps>> = {
     size: sizes,
     counts: [Number, String],
@@ -42,7 +51,7 @@ const defaults = (): Partial<PaginationProps> => ({
     showLimits: true,
 })
 
-export class Pagination extends Component<PaginationProps> {
+export class Pagination extends Component<PaginationProps, PaginationEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -65,12 +74,12 @@ export class Pagination extends Component<PaginationProps> {
                 this.set('current', 1);
                 this.ignore = false;
             }
-            this.trigger('change', {limit: v, current: 1});
+            this.trigger('change', {limit: v!, current: 1});
         }, {inited: true});
         
         this.watch('current', v => {
             if (this.ignore) return;
-            this.trigger('change', {limit: this.get('limit'), current: v});
+            this.trigger('change', {limit: this.get('limit')!, current: v!});
         }, {inited: true});
     }
 

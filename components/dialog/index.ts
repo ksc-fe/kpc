@@ -1,11 +1,12 @@
-import {BaseDialog, BaseDialogProps} from './base';
+import {BaseDialog, BaseDialogProps, BaseDialogEvents} from './base';
 import {createVNode, VNodeComponentClass, callAll, Props, ComponentClass} from 'intact';
 import {_$} from '../../i18n';
 import {addStaticMethods} from './staticMethods';
 
 export interface DialogProps extends BaseDialogProps { }
+export interface DialogEvents extends BaseDialogEvents { }
 
-export class Dialog extends BaseDialog<DialogProps> {
+export class Dialog extends BaseDialog<DialogProps, DialogEvents> {
     public useAsComponent = false;
 
     constructor(

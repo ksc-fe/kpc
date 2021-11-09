@@ -32,6 +32,11 @@ export interface ButtonProps extends ButtonHTMLAttributes {
     ghost?: boolean
 }
 
+export interface ButtonEvents {
+    click: [MouseEvent]
+    mouseup: [MouseEvent]
+}
+
 const typeDefs: Required<TypeDefs<Omit<ButtonProps, keyof ButtonHTMLAttributes>>> = {
     type: ['default', 'primary', 'warning', 'danger', 'success', 'none', 'secondary', 'link'],
     size: ['large', 'default', 'small', 'mini'],
@@ -57,7 +62,7 @@ const defaults = (): Partial<ButtonProps> => ({
 }); 
 
 
-export class Button extends Component<ButtonProps> {
+export class Button extends Component<ButtonProps, ButtonEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

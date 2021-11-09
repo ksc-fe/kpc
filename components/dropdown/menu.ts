@@ -8,10 +8,11 @@ import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {FeedbackCallback} from './usePosition';
 
 export interface DropdownMenuProps { }
+export interface DropdownMenuEvents { }
 
 export const DROPDOWN_MENU = 'DropdownMenu';
 
-export class DropdownMenu extends Component<DropdownMenuProps> {
+export class DropdownMenu extends Component<DropdownMenuProps, DropdownMenuEvents> {
     static template = template;
 
     public elementRef = createRef<HTMLDivElement>();

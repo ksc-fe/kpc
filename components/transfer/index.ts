@@ -23,6 +23,11 @@ export interface TransferProps {
     enableRemove?: () => boolean,
 }
 
+export interface TransferEvents {
+    add: []
+    remove: []
+}
+
 const typeDefs: Required<TypeDefs<TransferProps>> = {
     data: Array,
     keyName: String,
@@ -54,7 +59,7 @@ const defaults = (): Partial<TransferProps> => ({
     rightTitle: _$('已选择'),
 })
 
-export class Transfer extends Component<TransferProps> {
+export class Transfer extends Component<TransferProps, TransferEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

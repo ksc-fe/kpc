@@ -52,8 +52,8 @@ export class Progress extends Component<ProgressProps> {
     public color = useColor();
 
     init() {
-        this.on('$receive:percent', (percent: number | string) => {
-            this.set('percent', fixPercent(percent));
+        this.on('$receive:percent', percent => {
+            this.set('percent', fixPercent(percent!));
         }); 
     }
 }

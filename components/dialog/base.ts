@@ -32,6 +32,14 @@ export interface BaseDialogProps {
     mode?: 'destroy' | 'hide'
 }
 
+export interface BaseDialogEvents {
+    open: []
+    close: []
+    ok: []
+    cancel: []
+    terminate: []
+}
+
 const typeDefs: Required<TypeDefs<BaseDialogProps>> = {
     title: String,
     value: Boolean,
@@ -64,7 +72,10 @@ const defaults = (): Partial<BaseDialogProps> => ({
     mode: 'hide',
 });
 
-export class BaseDialog<T extends BaseDialogProps = BaseDialogProps> extends Component<T> {
+export class BaseDialog<
+    T extends BaseDialogProps = BaseDialogProps,
+    E extends BaseDialogEvents = BaseDialogEvents,
+> extends Component<T, E> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -80,7 +91,7 @@ export class BaseDialog<T extends BaseDialogProps = BaseDialogProps> extends Com
     private position = usePosition(this.dialogRef);
 
     init() {
-        useShowHideEvents('value', SHOW, HIDE);
+        useShowHideEvents<BaseDialog, 'value', typeof SHOW, typeof HIDE>('value', SHOW, HIDE);
         useEscClosable();
         useMouseOutsidable(this.dialogRef); 
         provide(DIALOG, this);

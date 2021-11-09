@@ -16,6 +16,10 @@ export interface TabsProps {
     beforeChange?: (value: any) => boolean | Promise<boolean>
 }
 
+export interface TabsEvents {
+    remove: [any]
+}
+
 const typeDefs: Required<TypeDefs<TabsProps>> = {
     value: null,
     vertical: Boolean,
@@ -30,7 +34,7 @@ const defaults = (): Partial<TabsProps> => ({
     type: 'default',
 });
 
-export class Tabs extends Component<TabsProps> {
+export class Tabs extends Component<TabsProps, TabsEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -2,6 +2,7 @@ import {TypeDefs} from 'intact';
 import {
     Dropdown,
     DropdownProps,
+    DropdownEvents,
     defaults as dropdownDefaults,
     typeDefs as dropdownTypeDefs,
 } from '../dropdown/dropdown';
@@ -17,6 +18,11 @@ export interface TooltipProps extends DropdownProps {
     okText?: string
     cancelText?: string
     size?: 'small' | 'default'
+}
+
+export interface TooltipEvents extends DropdownEvents {
+    ok: []
+    cancel: []
 }
 
 export const typeDefs: Required<TypeDefs<TooltipProps>> = {
@@ -44,7 +50,7 @@ export const defaults = (): Partial<TooltipProps> => ({
     size: 'default',
 });
 
-export class Tooltip extends Dropdown<TooltipProps> {
+export class Tooltip extends Dropdown<TooltipProps, TooltipEvents> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 

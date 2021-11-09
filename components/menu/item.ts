@@ -15,6 +15,11 @@ export interface MenuItemProps {
     disabled?: boolean
 }
 
+export interface MenuItemEvents {
+    click: [MouseEvent]
+    select: [MenuItem, MouseEvent]
+}
+
 const typeDefs: Required<TypeDefs<MenuItemProps>> = {
     key: {
         type: [String, Number],
@@ -27,7 +32,7 @@ const typeDefs: Required<TypeDefs<MenuItemProps>> = {
 
 export const MENU_ITEM = 'MenuItem';
 
-export class MenuItem extends Component<MenuItemProps> {
+export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
     static template = template;
     static typeDefs = typeDefs;
 

@@ -12,6 +12,12 @@ export interface SplitProps {
     max?: number | string
 }
 
+export interface SplitEvents {
+    moveStart: [MouseEvent]
+    moving: [MouseEvent]
+    moveEnd: [MouseEvent | undefined]
+}
+
 const typeDefs: Required<TypeDefs<SplitProps>> = {
     mode: String,
     firstSize: String,
@@ -28,7 +34,7 @@ const defaults = (): Partial<SplitProps> => ({
     max: '100%-6'
 });
 
-export class Split extends Component<SplitProps> {
+export class Split extends Component<SplitProps, SplitEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

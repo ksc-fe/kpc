@@ -89,8 +89,8 @@ export function isStringOrNumberNotEmpty(o: any): o is string | number {
 
 export function getRestProps<T>(component: Component<T>, props = component.get()) {
     const Ctor = component.constructor as typeof Component;
-    const typeDefs = Ctor.typeDefs || EMPTY_OBJ;
-    const events = (Ctor as any).events || EMPTY_OBJ;
+    const typeDefs = Ctor.typeDefs;
+    const events = (Ctor as any).events;
     const ret: Partial<T> = {};
 
     for (const key in props) {
@@ -103,8 +103,8 @@ export function getRestProps<T>(component: Component<T>, props = component.get()
             default:
                 if (
                     key[0] === '$' ||
-                    key in typeDefs ||
-                    key.substr(3) in events ||
+                    typeDefs && key in typeDefs ||
+                    events && key.substr(3) in events ||
                     key.substr(0, 4) === 'ev-$'
                 ) {
                     continue;

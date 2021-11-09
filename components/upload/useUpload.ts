@@ -44,8 +44,8 @@ export function useUpload() {
             onProgress: (e, percent, xhr) => {
                 onProgress(e, percent, file, xhr);
             },
-            onError: (e, xhr) => {
-                onError(e, file, xhr);
+            onError: (e) => {
+                onError(e, file);
             },
             onSuccess: (res, xhr) => {
                 onSuccess(res, file, xhr);
@@ -59,19 +59,19 @@ export function useUpload() {
         file.status = UploadFileStatus.Uploading;
         file.percent = percent;
         instance.forceUpdate();
-        instance.trigger('progress', e, xhr, file, instance.get('files'));
+        instance.trigger('progress', e, xhr, file, instance.get('files')!);
     }
 
-    function onError(e: RequestError, file: UploadFile, xhr: XMLHttpRequest) {
+    function onError(e: RequestError, file: UploadFile) {
         file.status = UploadFileStatus.Error;
         instance.forceUpdate();
-        instance.trigger('error', e, xhr, file, instance.get('files'));
+        instance.trigger('error', e, file, instance.get('files')!);
     }
 
     function onSuccess(res: any, file: UploadFile, xhr: XMLHttpRequest) {
         file.status = UploadFileStatus.Done;
         instance.forceUpdate();
-        instance.trigger('success', res, xhr, file, instance.get('files'));
+        instance.trigger('success', res, xhr, file, instance.get('files')!);
     }
 
     return upload;

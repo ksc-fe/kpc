@@ -6,6 +6,7 @@ import {useFiles} from './useFiles';
 import {bind} from '../utils';
 import {useDrag} from './useDrag';
 import {useShowImage} from './useShowImage';
+import type {RequestError} from './ajaxUploader';
 
 export interface UploadProps {
     accept?: string
@@ -25,6 +26,12 @@ export interface UploadProps {
     directory?: boolean
     disabled?: boolean
     multiple?: boolean
+}
+
+export interface UploadEvents {
+    progress: [ProgressEvent, XMLHttpRequest, UploadFile, UploadFile[]]
+    success: [any, XMLHttpRequest, UploadFile, UploadFile[]]
+    error: [Error | RequestError, File[] | File | UploadFile, UploadFile[]]
 }
 
 export type UploadFile = {
@@ -69,7 +76,7 @@ const defaults = (): Partial<UploadProps> => ({
     autoUpload: true,
 });
 
-export class Upload extends Component<UploadProps> {
+export class Upload extends Component<UploadProps, UploadEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

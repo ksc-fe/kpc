@@ -50,6 +50,10 @@ export interface TableProps {
     widthStoreKey?: string
 }
 
+export interface TableEvents {
+    clickRow: [any, number, TableRowKey]
+}
+
 export type TableRowKey = string | number;
 export type TableSortValue = {
     key?: string
@@ -98,7 +102,7 @@ const defaults = (): Partial<TableProps> => ({
     minColWidth: 40,
 });
 
-export class Table extends Component<TableProps> {
+export class Table extends Component<TableProps, TableEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

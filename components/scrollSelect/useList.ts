@@ -50,8 +50,8 @@ export function useList() {
     }
 
     instance.on('$receive:value', v => setValue(v, true));
-    ['data', 'count'].forEach(item => {
-        instance.on(`$receive:${item}`, generateList);
+    (['data', 'count'] as const).forEach(item => {
+        instance.on(`$receive:${item}` as const, generateList);
     });
     instance.on('$receive:disable', () => {
         const oldValue = instance.get('value');

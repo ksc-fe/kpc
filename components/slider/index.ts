@@ -31,6 +31,10 @@ export interface SliderProps {
     spinnerProps?: SpinnerProps
 }
 
+export interface SliderEvents {
+    change: [number, number]
+}
+
 const typeDefs: Required<TypeDefs<SliderProps>> = {
     max: Number,
     min: Number,
@@ -62,7 +66,7 @@ const defaults = (): Partial<SliderProps> => ({
     animate: true,
 });
 
-export class Slider extends Component<SliderProps> {
+export class Slider extends Component<SliderProps, SliderEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -35,14 +35,14 @@ export class TooltipContent extends DropdownMenu {
 
     @bind
     private ok() {
-        const dropdown = this.dropdown!; 
+        const dropdown = this.dropdown as Tooltip; 
         dropdown.hide(true);
         dropdown.trigger('ok');
     }
 
     @bind
     private cancel() {
-        const dropdown = this.dropdown!; 
+        const dropdown = this.dropdown as Tooltip; 
         dropdown.hide(true);
         dropdown.trigger('cancel');
     }

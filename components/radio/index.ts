@@ -9,6 +9,11 @@ export interface RadioProps extends CommonInputHTMLAttributes {
     trueValue?: any 
 }
 
+export interface RadioEvents {
+    click: [MouseEvent]
+    change: [any, MouseEvent]
+}
+
 const typeDefs: Required<TypeDefs<Omit<RadioProps, keyof CommonInputHTMLAttributes>>> = {
     disabled: Boolean,
     value: null,
@@ -20,7 +25,7 @@ const defaults = (): Partial<RadioProps> => ({
     trueValue: true,
 });
 
-export class Radio extends Component<RadioProps> {
+export class Radio extends Component<RadioProps, RadioEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

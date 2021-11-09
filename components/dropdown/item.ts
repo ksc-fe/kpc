@@ -13,6 +13,11 @@ export interface DropdownItemProps {
     _isFocus: boolean
 }
 
+export interface DropdownItemEvents {
+    select: []
+    click: [MouseEvent]
+}
+
 const typeDefs: Required<TypeDefs<DropdownItemProps>> = {
     disabled: Boolean,
     hideOnSelect: Boolean,
@@ -24,7 +29,7 @@ const defaults = (): Partial<DropdownItemProps> => ({
     hideOnSelect: true,
 });
 
-export class DropdownItem extends Component<DropdownItemProps> {
+export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

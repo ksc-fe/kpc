@@ -37,6 +37,15 @@ export interface DropdownProps {
     container?: PortalProps['container']
 }
 
+export interface DropdownEvents {
+    shouldFocus: []
+    show: []
+    hide: []
+    mouseenter: [MouseEvent]
+    mouseleave: [MouseEvent]
+    positioned: [Feedback]
+}
+
 export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     trigger: ['hover', 'click', 'contextmenu'],
     disabled: Boolean,
@@ -53,7 +62,10 @@ export const defaults = (): Partial<DropdownProps> => ({
     of: 'self',
 });
 
-export class Dropdown<T extends DropdownProps = DropdownProps> extends Component<T> {
+export class Dropdown<
+    T extends DropdownProps = DropdownProps,
+    E extends DropdownEvents = DropdownEvents,
+> extends Component<T, E> {
     static typeDefs = typeDefs;
     static defaults = defaults;
     static template = function(this: Dropdown) {

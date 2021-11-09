@@ -9,7 +9,7 @@ export function useAccept() {
 
     instance.on('$receive:accept', parseAccept);
 
-    function parseAccept(accept: string) {
+    function parseAccept(accept?: string) {
         extensions = [];
         mimeTypes = [];
         groupTypes = [];

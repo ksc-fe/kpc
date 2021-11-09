@@ -12,6 +12,10 @@ export interface TagProps {
     border?: 'solid' | 'dashed' | 'none'
 }
 
+export interface TagEvents {
+    close: [MouseEvent]
+}
+
 const typeDefs: Required<TypeDefs<TagProps>> = {
     type: ['default', 'primary', 'danger', 'success', 'warning'],
     closable: Boolean,
@@ -27,7 +31,7 @@ const defaults = (): Partial<TagProps> => ({
     border: 'solid',
 });
 
-export class Tag extends Component<TagProps> {
+export class Tag extends Component<TagProps, TagEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
