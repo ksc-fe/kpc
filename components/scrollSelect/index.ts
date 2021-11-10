@@ -13,6 +13,12 @@ export interface ScrollSelectProps {
     disable?: (v: any) => boolean 
 }
 
+export interface ScrollSelectEvents { }
+
+export interface ScrollSelectBlocks {
+    append: null
+}
+
 export type DataItem = {
     value: any
     label: Children 
@@ -33,7 +39,7 @@ const defaults = (): Partial<ScrollSelectProps> => ({
     data: [],
 });
 
-export class ScrollSelect extends Component<ScrollSelectProps> {
+export class ScrollSelect extends Component<ScrollSelectProps, ScrollSelectEvents, ScrollSelectBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

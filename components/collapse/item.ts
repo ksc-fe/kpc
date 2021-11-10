@@ -14,13 +14,17 @@ export interface CollapseItemEvents {
     hide: [CollapseItem]
 }
 
+export interface CollapseItemBlocks {
+    title: null
+}
+
 const typeDefs: Required<TypeDefs<CollapseItemProps>> = {
     value: String,
     title: [String, Object],
     disabled: Boolean,
 };
 
-export class CollapseItem extends Component<CollapseItemProps, CollapseItemEvents>{
+export class CollapseItem extends Component<CollapseItemProps, CollapseItemEvents, CollapseItemBlocks>{
     static template = template;
     static typeDefs = typeDefs;
 

@@ -42,6 +42,13 @@ export interface BaseSelectEvents {
     hide: []
 }
 
+export interface BaseSelectBlocks {
+    value: [[any, Children]]
+    values: [[any[], Children[]]]
+    prefix: null
+    suffix: null
+}
+
 const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
     value: null,
     multiple: Boolean,
@@ -67,8 +74,9 @@ const defaults = (): Partial<BaseSelectProps> => ({
 
 export abstract class BaseSelect<
     T extends BaseSelectProps = BaseSelectProps,
-    E extends BaseSelectEvents = BaseSelectEvents
-> extends Component<T, E> {
+    E extends BaseSelectEvents = BaseSelectEvents,
+    B extends BaseSelectBlocks = BaseSelectBlocks,
+> extends Component<T, E, B> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

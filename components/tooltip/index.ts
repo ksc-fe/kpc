@@ -1,16 +1,24 @@
 import {Props, createVNode as h, Children, Component} from 'intact';
 import {
     Tooltip as BaseTooltip,
-    TooltipProps as BaseTooltipProps
+    TooltipProps as BaseTooltipProps,
+    TooltipEvents,
+    TooltipBlocks as BaseTooltipBlocks,
 } from './tooltip';
-import {TooltipContent} from './content';
+import {TooltipContent, TooltipContentBlocks} from './content';
 import {noop} from 'intact-shared';
 
-export interface TooltipProps extends BaseTooltipProps {
-    content?: Children 
+export type {
+    TooltipEvents,
 }
 
-export type Tooltip = typeof BaseTooltip
+export interface TooltipProps extends BaseTooltipProps {
+    content?: Children
+}
+
+export interface TooltipBlocks extends BaseTooltipBlocks, TooltipContentBlocks {
+    content: null
+}
 
 function _Tooltip(props: Props<TooltipProps, BaseTooltip>) {
     let {children, content, $blocks, ...rest} = props;
@@ -29,5 +37,7 @@ function _Tooltip(props: Props<TooltipProps, BaseTooltip>) {
     });
 }
 
+declare class HackTooltip extends BaseTooltip<TooltipProps, TooltipEvents, TooltipBlocks> { }
+
 const functionalWrapper = (Component as any).functionalWrapper;
-export const Tooltip = functionalWrapper ? functionalWrapper(_Tooltip) : _Tooltip;
+export const Tooltip = (functionalWrapper ? functionalWrapper(_Tooltip) : _Tooltip) as typeof HackTooltip;

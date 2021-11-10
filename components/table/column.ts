@@ -23,6 +23,14 @@ export interface TableColumnProps {
     prevVNode?: VNodeComponentClass<TableColumn> | null
 }
 
+export interface TableColumnEvents { }
+
+export interface TableColumnBlocks<T> {
+    title: null
+    template: [T, number]
+    default: [T, number]
+}
+
 export type TableColumnGroupItem = {
     label: Children
     value: any
@@ -51,7 +59,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     prevVNode: null,
 };
 
-export class TableColumn extends Component<TableColumnProps> {
+export class TableColumn<T = unknown> extends Component<TableColumnProps, TableColumnEvents, TableColumnBlocks<T>> {
     static template = template;
     static typeDefs = typeDefs;
 

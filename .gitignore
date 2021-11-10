@@ -48,3 +48,4 @@ packages/kpc-angular/hooks
 .DS_Store
 
 es/
+build/

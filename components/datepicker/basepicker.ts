@@ -9,7 +9,7 @@ import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {isEqualArray, last, bind} from '../utils';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
-import {BaseSelect, BaseSelectProps, BaseSelectEvents} from '../select/base';
+import {BaseSelect, BaseSelectProps, BaseSelectEvents, BaseSelectBlocks} from '../select/base';
 
 export type StateValueRange = [Dayjs, Dayjs?];
 export type StateValueItem = Dayjs | StateValueRange;
@@ -33,6 +33,8 @@ export interface BasePickerProps<Value> extends BaseSelectProps {
 
 export interface BasePickerEvents extends BaseSelectEvents { }
 
+export interface BasePickerBlocks extends BaseSelectBlocks { }
+
 export type Value = string | Date | number | Dayjs;
 
 const typeDefs: Required<TypeDefs<BasePickerProps<Value>>> = {
@@ -53,9 +55,10 @@ const defaults = (): Partial<BasePickerProps<any>> => ({
 });
 
 export abstract class BasePicker<
-    T extends BasePickerProps<any>,
-    E extends BasePickerEvents
-> extends BaseSelect<T, E> {
+    T extends BasePickerProps<any> = BasePickerProps<any>,
+    E extends BasePickerEvents = BasePickerEvents,
+    B extends BasePickerBlocks = BasePickerBlocks,
+> extends BaseSelect<T, E, B> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
@@ -95,7 +98,7 @@ export function useValue(
 ) {
     // Normalize the value to multipe values, no matter it's multipe or not
     const value = useState<StateValue>([]);
-    const instance = useInstance() as BasePicker<BasePickerProps<Value>, BaseSelectEvents>;
+    const instance = useInstance() as BasePicker<BasePickerProps<Value>>;
     let dayjsValue: DayjsValue = [];
 
     instance.watch('value', (newValue, oldValue) => {

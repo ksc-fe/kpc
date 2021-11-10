@@ -8,6 +8,12 @@ export interface SpinProps {
     overlay?: boolean
 }
 
+export interface SpinEvents { }
+
+export interface SpinBlocks {
+    canvas: null
+}
+
 const typeDefs: Required<TypeDefs<SpinProps>> = {
     size: sizes,
     center: Boolean,
@@ -18,7 +24,7 @@ const defaults = (): Partial<SpinProps> => ({
     size: 'default'
 });
 
-export class Spin extends Component<SpinProps> {
+export class Spin extends Component<SpinProps, SpinEvents, SpinBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

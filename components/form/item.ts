@@ -26,6 +26,12 @@ export interface FormItemEvents {
     focusout: [FocusEvent]
 }
 
+export interface FormItemBlocks {
+    label: null
+    content: null
+    append: null
+}
+
 export type Rules = Record<string, any>
 
 enum MessageOrClassname {
@@ -47,7 +53,7 @@ const typeDefs: Required<TypeDefs<FormItemProps>> = {
     fluid: Boolean,
 };
 
-export class FormItem extends Component<FormItemProps, FormItemEvents> {
+export class FormItem extends Component<FormItemProps, FormItemEvents, FormItemBlocks> {
     static template = template;
     static typeDefs = typeDefs;
 

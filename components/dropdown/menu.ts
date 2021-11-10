@@ -9,10 +9,15 @@ import {FeedbackCallback} from './usePosition';
 
 export interface DropdownMenuProps { }
 export interface DropdownMenuEvents { }
+export interface DropdownMenuBlocks { }
 
 export const DROPDOWN_MENU = 'DropdownMenu';
 
-export class DropdownMenu extends Component<DropdownMenuProps, DropdownMenuEvents> {
+export class DropdownMenu<
+    T extends DropdownMenuProps = DropdownMenuProps,
+    E extends DropdownMenuEvents = DropdownMenuEvents,
+    B extends DropdownMenuBlocks = DropdownMenuBlocks,
+> extends Component<T, E, B> {
     static template = template;
 
     public elementRef = createRef<HTMLDivElement>();

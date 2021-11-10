@@ -46,6 +46,8 @@ export interface DropdownEvents {
     positioned: [Feedback]
 }
 
+export interface DropdownBlocks { }
+
 export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     trigger: ['hover', 'click', 'contextmenu'],
     disabled: Boolean,
@@ -65,7 +67,8 @@ export const defaults = (): Partial<DropdownProps> => ({
 export class Dropdown<
     T extends DropdownProps = DropdownProps,
     E extends DropdownEvents = DropdownEvents,
-> extends Component<T, E> {
+    B extends DropdownBlocks = DropdownBlocks,
+> extends Component<T, E, B> {
     static typeDefs = typeDefs;
     static defaults = defaults;
     static template = function(this: Dropdown) {

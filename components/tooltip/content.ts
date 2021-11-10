@@ -1,11 +1,26 @@
 import {createRef, Children, VNode} from 'intact';
-import {DropdownMenu} from '../dropdown';
+import {
+    DropdownMenu,
+    DropdownMenuProps,
+    DropdownMenuEvents,
+    DropdownMenuBlocks,
+} from '../dropdown/menu';
 import template from './content.vdt';
 import {bind} from '../utils';
 import {Tooltip} from './tooltip';
 import {useArrow} from './useArrow';
 
-export class TooltipContent extends DropdownMenu {
+export interface TooltipContentProps extends DropdownMenuProps { } 
+export interface TooltipContentEvents extends DropdownMenuEvents { }
+export interface TooltipContentBlocks extends DropdownMenuBlocks {
+    buttons: null
+}
+
+export class TooltipContent extends DropdownMenu<
+    TooltipContentProps,
+    TooltipContentEvents,
+    TooltipContentBlocks
+>{
     static template = template;
 
     private isEmptyChildren: boolean = true;

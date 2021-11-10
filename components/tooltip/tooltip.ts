@@ -1,8 +1,9 @@
-import {TypeDefs} from 'intact';
+import {TypeDefs, Children} from 'intact';
 import {
     Dropdown,
     DropdownProps,
     DropdownEvents,
+    DropdownBlocks,
     defaults as dropdownDefaults,
     typeDefs as dropdownTypeDefs,
 } from '../dropdown/dropdown';
@@ -18,12 +19,17 @@ export interface TooltipProps extends DropdownProps {
     okText?: string
     cancelText?: string
     size?: 'small' | 'default'
+
+    // for hack functional Tooltip component
+    content?: Children
 }
 
 export interface TooltipEvents extends DropdownEvents {
     ok: []
     cancel: []
 }
+
+export interface TooltipBlocks extends DropdownBlocks { }
 
 export const typeDefs: Required<TypeDefs<TooltipProps>> = {
     ...dropdownTypeDefs,
@@ -34,7 +40,9 @@ export const typeDefs: Required<TypeDefs<TooltipProps>> = {
     confirm: Boolean,
     okText: String,
     cancelText: String,
-    size: ['small', 'default']
+    size: ['small', 'default'],
+
+    content: null,
 };
 
 export const defaults = (): Partial<TooltipProps> => ({
@@ -50,7 +58,11 @@ export const defaults = (): Partial<TooltipProps> => ({
     size: 'default',
 });
 
-export class Tooltip extends Dropdown<TooltipProps, TooltipEvents> {
+export class Tooltip<
+    T extends TooltipProps = TooltipProps,
+    E extends TooltipEvents = TooltipEvents,
+    B extends TooltipBlocks = TooltipBlocks
+> extends Dropdown<T, E, B> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 

@@ -21,7 +21,7 @@ const classNameObj = {
 };
 
 <t:super
-    value={value && !this.isEmptyChildren}
+    value={!!value && !this.isEmptyChildren}
     transition={{name: 'k-fade', onEnter: this.onEnter}}
     class={classNameObj}
 >

@@ -35,6 +35,10 @@ export interface SliderEvents {
     change: [Value, Value]
 }
 
+export interface SliderBlocks {
+    tooltip: [Value] 
+}
+
 const typeDefs: Required<TypeDefs<SliderProps>> = {
     max: Number,
     min: Number,
@@ -66,7 +70,7 @@ const defaults = (): Partial<SliderProps> => ({
     animate: true,
 });
 
-export class Slider extends Component<SliderProps, SliderEvents> {
+export class Slider extends Component<SliderProps, SliderEvents, SliderBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

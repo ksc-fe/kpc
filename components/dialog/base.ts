@@ -1,5 +1,5 @@
 import {Component, TypeDefs, createRef, provide} from 'intact';
-import template from './index.vdt';
+import template from './base.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {Container} from '../portal';
 import {_$} from '../../i18n';
@@ -40,6 +40,14 @@ export interface BaseDialogEvents {
     terminate: []
 }
 
+export interface BaseDialogBlocks {
+    content: null
+    header: null
+    body: null
+    footerWrapper: null
+    footer: null
+}
+
 const typeDefs: Required<TypeDefs<BaseDialogProps>> = {
     title: String,
     value: Boolean,
@@ -75,7 +83,8 @@ const defaults = (): Partial<BaseDialogProps> => ({
 export class BaseDialog<
     T extends BaseDialogProps = BaseDialogProps,
     E extends BaseDialogEvents = BaseDialogEvents,
-> extends Component<T, E> {
+    B extends BaseDialogBlocks = BaseDialogBlocks,
+> extends Component<T, E, B> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

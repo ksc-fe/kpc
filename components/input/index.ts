@@ -43,6 +43,13 @@ export interface InputEvents {
     input: [InputEvent]
 }
 
+export interface InputBlocks {
+    prepend: null
+    prefix: null
+    suffix: null
+    append: null
+}
+
 const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> = {
     type: String,
     value: [String, Number],
@@ -66,7 +73,7 @@ const defaults = (): Partial<InputProps> => ({
     rows: 2,
 });
 
-export class Input extends Component<InputProps, InputEvents> {
+export class Input extends Component<InputProps, InputEvents, InputBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

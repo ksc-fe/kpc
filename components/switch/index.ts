@@ -22,6 +22,11 @@ export interface SwitchEvents {
     keypress: [KeyboardEvent]
 }
 
+export interface SwitchBlocks {
+    off: null
+    on: null
+}
+
 const typeDefs: Required<TypeDefs<SwitchProps>> = {
     name: String,
     on: String,
@@ -46,7 +51,7 @@ interface MouseEventWithIgnore extends MouseEvent {
     _switchIgnore?: boolean
 }
 
-export class Switch extends Component<SwitchProps, SwitchEvents> {
+export class Switch extends Component<SwitchProps, SwitchEvents, SwitchBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
