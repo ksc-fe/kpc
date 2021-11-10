@@ -14,7 +14,7 @@ import {usePanel} from './usePanel';
 import {useFocusDate} from './useFocusDate';
 import {useKeyboards} from './useKeyboards';
 import {Shortcut} from './shortcuts';
-import {BasePicker, BasePickerProps, Value} from './basepicker';
+import {BasePicker, BasePickerProps, BasePickerEvents, Value} from './basepicker';
 
 export * as shortcuts from './shortcuts';
 
@@ -22,6 +22,8 @@ export interface DatepickerProps extends BasePickerProps<Value> {
     type?: 'date' | 'datetime' | 'year' | 'month'
     shortcuts?: Shortcut[]
 }
+
+export interface DatepickerEvents extends BasePickerEvents { }
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BasePicker.typeDefs,
@@ -34,7 +36,7 @@ const defaults = (): Partial<DatepickerProps> => ({
     type: 'date',
 });
 
-export class Datepicker extends BasePicker<DatepickerProps> {
+export class Datepicker extends BasePicker<DatepickerProps, DatepickerEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

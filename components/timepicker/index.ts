@@ -1,9 +1,9 @@
 import {createVNode as h, Component} from 'intact';
-import {TimepickerProps, typeDefs} from './constants'
+import {TimepickerProps, TimepickerEvents, typeDefs} from './constants'
 import {PanelPicker} from './panelPicker';
 import {SelectPicker} from './selectPicker';
 
-export type {TimepickerProps};
+export type {TimepickerProps, TimepickerEvents};
 
 function _Timepicker(props: TimepickerProps) {
     if (props.step && !props.range) {

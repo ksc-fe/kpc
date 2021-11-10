@@ -13,6 +13,10 @@ export interface SearchProps {
     open?: boolean
 }
 
+export interface SearchEvents {
+    submit: [string]
+}
+
 const typeDefs: Required<TypeDefs<SearchProps>> = {
     placeholder: String,
     value: String,
@@ -29,7 +33,7 @@ const defaults = (): Partial<SearchProps> => ({
     open: false,
 });
 
-export class Search extends Component<SearchProps> {
+export class Search extends Component<SearchProps, SearchEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

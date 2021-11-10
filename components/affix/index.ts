@@ -9,6 +9,10 @@ export interface AffixProps {
     shouldFix?: (data: ShouldFixParam) => boolean
 }
 
+export interface AffixEvents {
+    change: [boolean]
+}
+
 export type ExcludeParam = {
     offsetTop?: number,
     offsetBottom?: number,
@@ -31,7 +35,7 @@ const typeDefs: Required<TypeDefs<AffixProps>> = {
     shouldFix: Function,
 };
 
-export class Affix extends Component<AffixProps> {
+export class Affix extends Component<AffixProps, AffixEvents> {
     static template = template;
     static typeDefs = typeDefs;
 

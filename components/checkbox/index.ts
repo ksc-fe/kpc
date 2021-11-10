@@ -12,6 +12,11 @@ export interface CheckboxProps extends CommonInputHTMLAttributes {
     indeterminate?: boolean
 }
 
+export interface CheckboxEvents {
+    click: [MouseEvent]
+    change: [any, MouseEvent]
+}
+
 const typeDefs: Required<TypeDefs<Omit<CheckboxProps, keyof CommonInputHTMLAttributes>>> = {
     disabled: Boolean, 
     value: null, 
@@ -25,7 +30,7 @@ const defaults = (): Partial<CheckboxProps> => ({
     falseValue: false,
 });
 
-export class Checkbox extends Component<CheckboxProps> {
+export class Checkbox extends Component<CheckboxProps, CheckboxEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -71,7 +76,7 @@ export class Checkbox extends Component<CheckboxProps> {
 
         const {disabled} = this.get();
         if (disabled) {
-            this.trigger('click');
+            this.trigger('click', e);
         } else {
             this.setCheckboxModel(e);
             this.trigger('click', e);

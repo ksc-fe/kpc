@@ -16,6 +16,8 @@ export interface DropdownItemProps {
 export interface DropdownItemEvents {
     select: []
     click: [MouseEvent]
+    mouseenter: [MouseEvent]
+    mouseleave: [MouseEvent]
 }
 
 const typeDefs: Required<TypeDefs<DropdownItemProps>> = {

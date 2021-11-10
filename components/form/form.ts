@@ -24,6 +24,10 @@ export interface FormProps extends FormHTMLAttributes {
     size?: 'default' | 'small' | 'mini'
 }
 
+export interface FormEvents {
+    submit: [Event]
+}
+
 const typeDefs: Required<TypeDefs<Omit<FormProps, keyof FormHTMLAttributes>>> = {
     labelWidth: [String, Number],
     layout: ['horizontal', 'vertical', 'inline'],
@@ -39,7 +43,7 @@ const defaults = (): Partial<FormProps> => ({
 export const FORM = 'Form';
 export const RECORD_KEY = 'FormRecord';
 
-export class Form extends Component<FormProps> {
+export class Form extends Component<FormProps, FormEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

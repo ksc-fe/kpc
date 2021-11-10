@@ -33,8 +33,8 @@ export interface BaseDialogProps {
 }
 
 export interface BaseDialogEvents {
-    open: []
-    close: []
+    [SHOW]: []
+    [HIDE]: []
     ok: []
     cancel: []
     terminate: []
@@ -91,7 +91,7 @@ export class BaseDialog<
     private position = usePosition(this.dialogRef);
 
     init() {
-        useShowHideEvents<BaseDialog, 'value', typeof SHOW, typeof HIDE>('value', SHOW, HIDE);
+        useShowHideEvents('value', SHOW, HIDE);
         useEscClosable();
         useMouseOutsidable(this.dialogRef); 
         provide(DIALOG, this);

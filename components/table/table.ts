@@ -52,6 +52,8 @@ export interface TableProps {
 
 export interface TableEvents {
     clickRow: [any, number, TableRowKey]
+    dragstart: [{key: TableRowKey, from: number}]
+    dragend: [{key: TableRowKey, from: number, to: number}]
 }
 
 export type TableRowKey = string | number;

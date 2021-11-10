@@ -10,7 +10,7 @@ export function useSelected() {
         return inArray(instance.get('selectedKeys'), key);
     }
 
-    instance.on('click:row', (data: any, index: number, key: TableRowKey) => {
+    instance.on('clickRow', (data: any, index: number, key: TableRowKey) => {
         const {rowSelectable, selectedKeys} = instance.get();
         if (rowSelectable === 'multiple') {
             instance.set('selectedKeys', toggleArray(selectedKeys, key));

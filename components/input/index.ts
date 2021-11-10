@@ -36,6 +36,13 @@ export interface InputProps extends InputHTMLAttributes {
     frozenOnInput?: boolean
 }
 
+export interface InputEvents {
+    clear: [MouseEvent]
+    focus: [FocusEvent]
+    blur: [FocusEvent]
+    input: [InputEvent]
+}
+
 const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> = {
     type: String,
     value: [String, Number],
@@ -59,7 +66,7 @@ const defaults = (): Partial<InputProps> => ({
     rows: 2,
 });
 
-export class Input extends Component<InputProps> {
+export class Input extends Component<InputProps, InputEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

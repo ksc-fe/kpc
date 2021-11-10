@@ -6,12 +6,14 @@ export * from './item';
 
 type ArrowType = 'left' | 'right'
 
-interface CollapseProps {
+export interface CollapseProps {
     value?: string[]
     accordion?: boolean
     arrow?: ArrowType
     noBorder?: boolean
 }
+
+export interface CollapseEvents { }
 
 const typeDefs: Required<TypeDefs<CollapseProps>> = {
     value: Array,
@@ -26,7 +28,7 @@ const defaults = (): Partial<CollapseProps> => ({
     arrow: 'right'
 });
 
-export class Collapse extends Component<CollapseProps> {
+export class Collapse extends Component<CollapseProps, CollapseEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

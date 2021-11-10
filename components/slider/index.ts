@@ -3,7 +3,7 @@ import template from './index.vdt';
 import type {StepObject, StepFunction, SpinnerProps} from '../spinner';
 import type {TooltipProps} from '../tooltip';
 import {useStep} from '../spinner/useStep';
-import {useValue} from './useValue';
+import {useValue, Value} from './useValue';
 import {useDraggable} from './useDraggable';
 import {useStyles} from './useStyles';
 import {useKeyboard} from './useKeyboard';
@@ -15,7 +15,7 @@ import {useTooltip} from './useTooltip';
 export interface SliderProps {
     max?: number
     min?: number
-    value?: number | [number, number]
+    value?: Value
     isRange?: boolean
     unit?: string
     isShowEnd?: boolean
@@ -32,7 +32,7 @@ export interface SliderProps {
 }
 
 export interface SliderEvents {
-    change: [number, number]
+    change: [Value, Value]
 }
 
 const typeDefs: Required<TypeDefs<SliderProps>> = {
