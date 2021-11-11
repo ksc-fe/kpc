@@ -2,11 +2,12 @@ import {Component, TypeDefs, inject, provide, VNode, Key} from 'intact';
 import {ROOT_MENU, MENU, Menu, MenuProps} from './menu'
 import {Dropdown, DropdownMenu} from '../dropdown';
 import template from './item.vdt';
-import {bind, findRouter, isExternalLink} from '../utils';
+import {bind, isExternalLink} from '../utils';
 import {useState} from '../../hooks/useState';
 import {useHighlight} from './useHighlight';
 import {useExpanded} from './useExpanded';
 import {useDropdown} from './useDropdown';
+import {useRouter} from '../../hooks/useRouter';
 
 export interface MenuItemProps {
     key: Key 
@@ -43,16 +44,10 @@ export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
     private expanded = useExpanded(this.rootMenu, this.parentMenu);
     private highlight = useHighlight(this.rootMenu, this.parentMenuItem);
     private dropdown = useDropdown(this.rootMenu, this.parentMenu);
-
-    private $router: any = null;
+    private router = useRouter();
 
     init() {
         provide(MENU_ITEM, this);
-    }
-
-    @bind
-    mounted() {
-        this.$router = findRouter(this);
     }
 
     @bind
@@ -71,9 +66,9 @@ export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
         if (!hasSubMenu) {
             this.trigger('select', this, e);
             if (to) {
-                const {$router} = this;
-                if ($router && !isExternalLink(to)) {
-                    $router.push(to!);
+                const router = this.router.value;
+                if (router && !isExternalLink(to)) {
+                    router.push(to!);
                 } else {
                     location.href = to!;
                 }
