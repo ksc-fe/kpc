@@ -18,7 +18,7 @@ import {exportTable} from './exportTable';
 import {useResizable} from './useResizable';
 import {useDraggable} from './useDraggable';
 
-export interface TableProps<T = unknown> {
+export interface TableProps<T = any> {
     data?: T[]
     fixHeader?: boolean | string | number 
     stickHeader?: boolean | string | number
@@ -50,7 +50,7 @@ export interface TableProps<T = unknown> {
     widthStoreKey?: string
 }
 
-export interface TableEvents<T = unknown> {
+export interface TableEvents<T = any> {
     clickRow: [T, number, TableRowKey]
     dragstart: [{key: TableRowKey, from: number}]
     dragend: [{key: TableRowKey, from: number, to: number}]
@@ -100,7 +100,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     widthStoreKey: String,
 };
 
-const defaults = (): Partial<TableProps<unknown>> => ({
+const defaults = (): Partial<TableProps> => ({
     checkType: 'checkbox',
     rowKey(value, index) { return index; },
     rowCheckable: true,
@@ -110,7 +110,7 @@ const defaults = (): Partial<TableProps<unknown>> => ({
     minColWidth: 40,
 });
 
-export class Table<T extends unknown = unknown> extends Component<TableProps<T>, TableEvents<T>> {
+export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

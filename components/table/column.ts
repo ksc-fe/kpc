@@ -59,7 +59,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     prevVNode: null,
 };
 
-export class TableColumn<T = unknown> extends Component<TableColumnProps, TableColumnEvents, TableColumnBlocks<T>> {
+export class TableColumn<T = any> extends Component<TableColumnProps, TableColumnEvents, TableColumnBlocks<T>> {
     static template = template;
     static typeDefs = typeDefs;
 
