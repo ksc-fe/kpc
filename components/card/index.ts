@@ -16,8 +16,7 @@ export interface CardBlocks {
 }
 
 const typeDefs: Required<TypeDefs<CardProps>> = {
-    //TODO:
-    title: [String/**, VNode */],
+    title: [String, VNode],
     type: ['shadow', 'border', 'none'],
 };
 

@@ -47,9 +47,8 @@ const typeDefs: Required<TypeDefs<TransferProps<any>>> = {
     placeholder: String,
     leftKeywords: String,
     rightKeywords: String,
-    // TODO: VNode
-    leftTitle: [String/* , VNode */],
-    rightTitle: [String/* , VNode */],
+    leftTitle: [String, VNode],
+    rightTitle: [String, VNode],
     enableAdd: Function,
     enableRemove: Function,
 };

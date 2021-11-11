@@ -1,4 +1,4 @@
-import {Component, TypeDefs, inject, Children} from 'intact';
+import {Component, TypeDefs, inject, Children, VNode} from 'intact';
 import template from './group.vdt';
 import {SELECT} from './constants';
 import type {Select} from './select';
@@ -14,7 +14,7 @@ export interface OptionGroupBlocks {
 }
 
 const typeDefs: Required<TypeDefs<OptionGroupProps>> = {
-    label: [String, Number, /* VNode */]
+    label: [String, Number, VNode]
 }
 
 export class OptionGroup extends Component<OptionGroupProps, OptionGroupEvents, OptionGroupBlocks> {

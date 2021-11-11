@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Children, VNodeComponentClass} from 'intact';
+import {Component, TypeDefs, Children, VNodeComponentClass, VNode} from 'intact';
 import template from './column.vdt';
 import {useGroup} from './useGroup';
 
@@ -41,7 +41,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
         type: String,
         required: true,
     },
-    title: String, // TODO
+    title: [String, Number, VNode],
     sortable: Boolean,
     width: [String, Number],
     group: Array,
