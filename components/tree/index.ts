@@ -34,6 +34,10 @@ export interface TreeEvents {
     transitionEnd: []
 }
 
+export interface TreeBlocks {
+    label: [DataItem, Node, number]
+}
+
 type DragEndData = {
     srcNode: Node
     toNode: Node
@@ -65,7 +69,7 @@ const defaults = (): Partial<TreeProps> => ({
     showLine: true,
 });
 
-export class Tree extends Component<TreeProps, TreeEvents> {
+export class Tree extends Component<TreeProps, TreeEvents, TreeBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

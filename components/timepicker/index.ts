@@ -1,11 +1,13 @@
 import {createVNode as h, Component} from 'intact';
-import {TimepickerProps, TimepickerEvents, typeDefs} from './constants'
+import {TimepickerProps, TimepickerEvents, TimepickerBlocks} from './constants';
 import {PanelPicker} from './panelPicker';
 import {SelectPicker} from './selectPicker';
 
-export type {TimepickerProps, TimepickerEvents};
+export type {TimepickerProps, TimepickerEvents, TimepickerBlocks};
 
-function _Timepicker(props: TimepickerProps) {
+declare class _Timepicker extends PanelPicker { } 
+
+function Wrapper(props: TimepickerProps) {
     if (props.step && !props.range) {
         return h(SelectPicker, props);
     }
@@ -13,4 +15,5 @@ function _Timepicker(props: TimepickerProps) {
 }
 
 const functionalWrapper = (Component as any).functionalWrapper;
-export const Timepicker = functionalWrapper ? functionalWrapper(_Timepicker) : _Timepicker;
+export const Timepicker: typeof _Timepicker = functionalWrapper ?
+    functionalWrapper(Wrapper) : Wrapper;

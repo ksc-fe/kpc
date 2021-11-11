@@ -12,9 +12,14 @@ import {usePanel} from '../datepicker/usePanel';
 import {State} from '../../hooks/useState';
 import {PanelTypes} from '../datepicker/usePanel';
 import {useStep} from './useStep';
-import {TimepickerProps, TimepickerEvents, typeDefs} from './constants';
+import {
+    TimepickerProps,
+    TimepickerEvents,
+    TimepickerBlocks,
+    typeDefs,
+} from './constants';
 
-export class PanelPicker extends BasePicker<TimepickerProps, TimepickerEvents> {
+export class PanelPicker extends BasePicker<TimepickerProps, TimepickerEvents, TimepickerBlocks> {
     static template = template; 
     static typeDefs = typeDefs;
 

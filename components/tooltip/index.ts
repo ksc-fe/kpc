@@ -20,7 +20,9 @@ export interface TooltipBlocks extends BaseTooltipBlocks, TooltipContentBlocks {
     content: null
 }
 
-function _Tooltip(props: Props<TooltipProps, BaseTooltip>) {
+declare class _Tooltip extends BaseTooltip<TooltipProps, TooltipEvents, TooltipBlocks> { }
+
+function Wrapper(props: Props<TooltipProps, BaseTooltip>) {
     let {children, content, $blocks, ...rest} = props;
 
     if ($blocks && $blocks.content) {
@@ -37,7 +39,7 @@ function _Tooltip(props: Props<TooltipProps, BaseTooltip>) {
     });
 }
 
-declare class HackTooltip extends BaseTooltip<TooltipProps, TooltipEvents, TooltipBlocks> { }
 
 const functionalWrapper = (Component as any).functionalWrapper;
-export const Tooltip = (functionalWrapper ? functionalWrapper(_Tooltip) : _Tooltip) as typeof HackTooltip;
+export const Tooltip: typeof _Tooltip = functionalWrapper ?
+    functionalWrapper(Wrapper) : Wrapper;

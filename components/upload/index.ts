@@ -34,6 +34,12 @@ export interface UploadEvents {
     error: [Error | RequestError, File[] | File | UploadFile, UploadFile[]]
 }
 
+export interface UploadBlocks {
+    content: null
+    children: null
+    tip: null 
+}
+
 export type UploadFile = {
     status: UploadFileStatus
     type?: string
@@ -76,7 +82,7 @@ const defaults = (): Partial<UploadProps> => ({
     autoUpload: true,
 });
 
-export class Upload extends Component<UploadProps, UploadEvents> {
+export class Upload extends Component<UploadProps, UploadEvents, UploadBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

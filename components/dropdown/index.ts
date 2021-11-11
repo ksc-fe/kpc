@@ -22,16 +22,16 @@ export type {
 };
 // Don't export the generic type class, because it will let
 // the type inferring break down
-export declare class HackDropdown extends BaseDropdown<
+declare class _Dropdown extends BaseDropdown<
     DropdownProps,
     DropdownEvents,
     DropdownBlocks
 > { } 
-export declare class HackDropdownMenu extends BaseDropdownMenu<
+declare class _DropdownMenu extends BaseDropdownMenu<
     DropdownMenuProps,
     DropdownMenuEvents,
     DropdownMenuBlocks
 > { }
 
-export const Dropdown = BaseDropdown as typeof HackDropdown;
-export const DropdownMenu = BaseDropdownMenu as typeof HackDropdownMenu;
+export const Dropdown = BaseDropdown as typeof _Dropdown;
+export const DropdownMenu = BaseDropdownMenu as typeof _DropdownMenu;

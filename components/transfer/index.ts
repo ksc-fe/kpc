@@ -5,15 +5,15 @@ import {useTransfer} from './useTransfer';
 import {useFilter, Model} from './useFilter';
 import {useCheck, CheckedKeys} from './useCheck';
 
-export interface TransferProps {
-    data?: any[],
+export interface TransferProps<T> {
+    data?: T[],
     keyName?: string,
     labelName?: string,
     value?: Key[],
     leftCheckedKeys?: Key[],
     rightCheckedKeys?: Key[],
     filterable?: boolean,
-    filter?: (data: any, keywords: string) => boolean
+    filter?: (data: T, keywords: string) => boolean
     placeholder?: string,
     leftKeywords?: string,
     rightKeywords?: string,
@@ -28,7 +28,14 @@ export interface TransferEvents {
     remove: []
 }
 
-const typeDefs: Required<TypeDefs<TransferProps>> = {
+export interface TransferBlocks<T> {
+    header: [Model]
+    filter: [Model]
+    list: [Model]
+    label: [T, Key, Model]
+}
+
+const typeDefs: Required<TypeDefs<TransferProps<any>>> = {
     data: Array,
     keyName: String,
     labelName: String,
@@ -47,7 +54,7 @@ const typeDefs: Required<TypeDefs<TransferProps>> = {
     enableRemove: Function,
 };
 
-const defaults = (): Partial<TransferProps> => ({
+const defaults = (): Partial<TransferProps<any>> => ({
     data: [],
     keyName: 'key',
     labelName: 'label',
@@ -57,11 +64,11 @@ const defaults = (): Partial<TransferProps> => ({
     placeholder: _$('请输入'),
     leftTitle: _$('请选择'),
     rightTitle: _$('已选择'),
-})
+});
 
-export class Transfer extends Component<TransferProps, TransferEvents> {
-    static template = template;
-    static typeDefs = typeDefs;
+export class Transfer<T = any> extends Component<TransferProps<T>, TransferEvents, TransferBlocks<T>> {
+static template = template;
+static typeDefs = typeDefs;
     static defaults = defaults;
 
     private transfer = useTransfer();
