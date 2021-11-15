@@ -29,9 +29,9 @@ export interface TransferEvents {
 }
 
 export interface TransferBlocks<T> {
-    header: [Model]
-    filter: [Model]
-    list: [Model]
+    header: Model
+    filter: Model
+    list: Model
     label: [T, Key, Model]
 }
 

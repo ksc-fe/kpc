@@ -36,7 +36,7 @@ export interface SliderEvents {
 }
 
 export interface SliderBlocks {
-    tooltip: [Value] 
+    tooltip: Value
 }
 
 const typeDefs: Required<TypeDefs<SliderProps>> = {

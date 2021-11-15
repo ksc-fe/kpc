@@ -58,8 +58,8 @@ export interface TableEvents<T = any> {
 
 export interface TableBlocks<T = unknown> {
     empty: null
-    tooltip: [[T, number]] 
-    expand: [[T, number]]
+    tooltip: [T, number] 
+    expand: [T, number]
 }
 
 export type TableRowKey = string | number;

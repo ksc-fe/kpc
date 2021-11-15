@@ -43,8 +43,8 @@ export interface BaseSelectEvents {
 }
 
 export interface BaseSelectBlocks {
-    value: [[any, Children]]
-    values: [[any[], Children[]]]
+    value: [any, Children]
+    values: [any[], Children[]]
     prefix: null
     suffix: null
 }
