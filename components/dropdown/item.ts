@@ -7,10 +7,10 @@ import {DropdownMenu, DROPDOWN_MENU} from './menu';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 
 export interface DropdownItemProps {
-    disabled: boolean
-    hideOnSelect: boolean
+    disabled?: boolean
+    hideOnSelect?: boolean
 
-    _isFocus: boolean
+    _isFocus?: boolean
 }
 
 export interface DropdownItemEvents {

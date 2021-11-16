@@ -69,6 +69,9 @@ export class Dropdown<
     E extends DropdownEvents = DropdownEvents,
     B extends DropdownBlocks = DropdownBlocks,
 > extends Component<T, E, B> {
+    // for intact-react and intact-vue-next
+    static $doubleVNodes = true;
+
     static typeDefs = typeDefs;
     static defaults = defaults;
     static template = function(this: Dropdown) {
@@ -99,7 +102,7 @@ export class Dropdown<
         const clonedTrigger = isTextChildren(trigger) ? 
             createVNode('span', null, trigger) :
             directClone(trigger);
-        const triggerProps = this.triggerProps = trigger.props || EMPTY_OBJ;
+        const triggerProps = this.triggerProps = this.normalizeTriggerProps(trigger.props || EMPTY_OBJ);
         // add a className for opening status
         let className = trigger.className || triggerProps.className;
         className = cx({
@@ -214,6 +217,30 @@ export class Dropdown<
     private callOriginalCallback(name: string, e: MouseEvent) {
         const callback = this.triggerProps[name];
         if (isFunction(callback)) callback(e);
+    }
+
+    private normalizeTriggerProps(props: any) {
+        // if use kpc in react or vue, normalize props by Wrapper.props.vnode;
+        if ((this as any).$isReact || (this as any).$isVueNext) {
+            const vnode = props.vnode;
+            if (!vnode) return props;
+
+            const _props = vnode.props;
+            return {
+                'ev-click': _props.onClick,
+                'ev-mouseenter': _props.onMouseEnter,
+                'ev-mouseleave': _props.onMouseLeave,
+                'ev-contextmenu': _props.onContextMenu,
+                className: _props.className || _props.class /* vue-next */,
+            };
+        } else if ((this as any).$isVue) {
+            // TODO:
+            // return {
+                // 'ev-click':  
+            // }
+        }
+
+        return props;
     }
 }
 
