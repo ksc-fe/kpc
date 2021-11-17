@@ -2,6 +2,7 @@ import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, Com
 import {EMPTY_OBJ, isStringOrNumber, isString, isNullOrUndefined, isInvalid} from 'intact-shared';
 
 // @reference https://github.com/andreypopp/autobind-decorator/blob/master/src/index.js
+// for loose mode
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the
@@ -14,8 +15,8 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
         get(this: T): T {
             if (
                 definingProperty ||
-                this === target.prototype ||
-                this.hasOwnProperty(key) /* has bound, for invoking super bound method */
+                this === target || /* get method from prototype */
+                this.hasOwnProperty('constructor') /* get method from prototype, e.g. super call */
             ) {
                 return method;
             }
@@ -40,6 +41,46 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
         }
     };
 }
+
+// class A {
+    // @bind
+    // hello() {
+        // console.log('A hello', this);
+    // }
+
+    // @bind
+    // test() {
+        // console.log('A test', this);
+    // }
+// }
+
+// const test1 = A.prototype.hello;
+// test1();
+// const test2 = (new A()).hello;
+// test2();
+
+// class B extends A {
+    // @bind
+    // hello() {
+        // super.hello();
+        // console.log('B hello', this);
+    // }
+// }
+
+// class C extends B {
+    // @bind
+    // test() {
+        // super.test();
+        // console.log('C test', this);
+    // }
+// }
+
+// const b = new B();
+// const c = new C();
+// const hello = b.hello;
+// const test = c.test;
+// hello();
+// test();
 
 export function addStyle(style: string | Record<string, string | null> | undefined, extra: Record<string, string | null>) {
     if (!style) return extra;
