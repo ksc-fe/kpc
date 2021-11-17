@@ -1,6 +1,6 @@
 {
   "name": "kpc-react",
-  "version": "1.4.8",
+  "version": "2.0.0-beta.1",
   "description": "KPC components for React.",
   "keywords": [
     "component",
