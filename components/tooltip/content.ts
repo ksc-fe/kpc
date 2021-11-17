@@ -20,7 +20,7 @@ export class TooltipContent extends DropdownMenu<
     TooltipContentProps,
     TooltipContentEvents,
     TooltipContentBlocks
->{
+> {
     static template = template;
 
     private isEmptyChildren: boolean = true;
