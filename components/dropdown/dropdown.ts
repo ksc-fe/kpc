@@ -227,6 +227,7 @@ export class Dropdown<
 
             const _props = vnode.props;
             return {
+                vnode,
                 'ev-click': _props.onClick,
                 'ev-mouseenter': _props.onMouseEnter,
                 'ev-mouseleave': _props.onMouseLeave,
