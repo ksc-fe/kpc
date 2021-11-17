@@ -1,5 +1,5 @@
 /*!
- * kpc v1.4.8
+ * kpc v2.0.0-beta.1
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -53,4 +53,4 @@ export * from './components/transfer';
 export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
-export declare const version = "1.4.8";
+export declare const version = "2.0.0-beta.1";
