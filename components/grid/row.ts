@@ -6,7 +6,7 @@ import {Value} from './constants';
 export interface RowProps {
     gutter?: Value 
     justify: 'start' | 'end' | 'center' | 'between' | 'around' | 'evenly'
-    align: 'top' | 'bottom' | 'middle' | 'stetch' | 'baseline'
+    align: 'top' | 'bottom' | 'middle' | 'stretch' | 'baseline'
 }
 
 const typeDefs: Required<TypeDefs<RowProps>> = {
