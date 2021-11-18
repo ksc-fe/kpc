@@ -57,15 +57,14 @@
     "kpc"
   ],
   "files": [
+    "es",
     "components",
-    "@css",
-    "@stylus",
-    "@vue",
-    "@react",
+    "hooks",
+    "i18n",
     "styles",
     "dist",
-    "i18n",
-    "index.js"
+    "typings",
+    "index.ts"
   ],
   "author": "ksc-fe",
   "homepage": "https://design.ksyun.com/",
