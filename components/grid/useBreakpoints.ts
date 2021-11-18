@@ -11,7 +11,7 @@ export function useBreakpoints() {
     const breakpointsValue: Partial<Record<Breakpoint, BreakpointPropsValues<keyof BaseColProps> | null>> = {}
 
     breakpoints.forEach((breakpoint) => {
-        instance.on(`$receive:${breakpoint}`, (v: BreakpointProps['xxl']) => {
+        instance.on(`$receive:${breakpoint}` as const, (v: BreakpointProps['xxl']) => {
             if (!v) {
                 breakpointsValue[breakpoint] = null;
             } else if (isStringOrNumber(v)) {
