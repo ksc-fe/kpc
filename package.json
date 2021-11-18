@@ -29,6 +29,8 @@
     "_prepublishOnly": "npm run build && (git commit -am'chore: build [skip ci]' || echo 'has not files to commit') && git push",
     "_publish": "npm run _prepublishOnly && lerna exec -- npm publish",
     "release": "npm run release-patch",
+    "alpha": "lerna version prerelease --preid alpha --force-publish && npm run _publish -- --tag=alpha",
+    "beta": "npm run prelease",
     "prelease": "lerna version prerelease --preid beta --force-publish && npm run _publish -- --tag=beta",
     "release-patch": "lerna version patch --force-publish && npm run _publish",
     "release-minor": "lerna version minor --force-publish && npm run _publish",
