@@ -4,5 +4,5 @@
     "packages/kpc-react",
     "packages/kpc-vue-next"
   ],
-  "version": "2.0.0-beta.2"
+  "version": "2.0.0-alpha.0"
 }
