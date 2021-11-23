@@ -40,6 +40,7 @@ sidebar: doc
 | placeholder | 展位文案 | `String` | `"请输入关键字"` |
 | type | 类型 | `"default"` &#124; `"line"` | `"default"` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| open | 是否展开状态 | `Boolean` | `false` |
 
 # 扩展点
 

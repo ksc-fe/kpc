@@ -5,15 +5,15 @@ import {getRestProps} from '../utils';
 import {makeSearchStyles} from './styles';
 
 const {
-    className, placeholder, value, type, size,
-     _open, 
+    className, placeholder, value,
+    type, size, open, 
 } = this.get();
 
 const classNameObj = {
     'k-search': true,
     [className]: className,
-    'k-open': _open,
-    'k-hide': !_open,
+    'k-open': open,
+    'k-hide': !open,
     [`k-${type}`]: type !== 'default',
     [makeSearchStyles()]: true,
 };
@@ -25,10 +25,10 @@ const classNameObj = {
 >
     <Input clearable
         ref={this.inputRef}
-        placeholder={_open ? placeholder : undefined}
-        value={_open ? value : undefined}
+        placeholder={open ? placeholder : undefined}
+        value={open ? value : undefined}
         ev-$change:value={this.onChangeValue}
-        readonly={!_open}
+        readonly={!open}
         size={size}
         class="k-with-suffix"
     />

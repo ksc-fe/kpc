@@ -2,8 +2,7 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {useSize} from './useSize';
 import {useDraggable} from './useDraggable';
-
-type Mode = 'horizontal' | 'vertical'
+import {Mode} from './style';
 
 export interface SplitProps {
     mode?: Mode
@@ -11,6 +10,18 @@ export interface SplitProps {
     lastSize?: string
     min?: number | string
     max?: number | string
+}
+
+export interface SplitEvents {
+    moveStart: [MouseEvent]
+    moving: [MouseEvent]
+    moveEnd: [MouseEvent | undefined]
+}
+
+export interface SplitBlocks {
+    first: null
+    last: null
+    drag: null
 }
 
 const typeDefs: Required<TypeDefs<SplitProps>> = {
@@ -29,7 +40,7 @@ const defaults = (): Partial<SplitProps> => ({
     max: '100%-6'
 });
 
-export class Split<T extends SplitProps = SplitProps> extends Component<T> {
+export class Split extends Component<SplitProps, SplitEvents, SplitBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

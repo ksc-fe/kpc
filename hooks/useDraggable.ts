@@ -4,7 +4,7 @@ import {useState} from './useState';
 export type Options = {
     onStart?: (e: MouseEvent) => void,
     onMove: (e: MouseEvent) => void,
-    onEnd?: (e: MouseEvent) => void,
+    onEnd?: (e?: MouseEvent) => void,
 }
 
 export function useDraggable(options: Options) {
@@ -32,7 +32,7 @@ export function useDraggable(options: Options) {
         }
     }
 
-    function end(e: MouseEvent) {
+    function end(e?: MouseEvent) {
         if (dragging.value) {
             dragging.set(false);
             if (options.onEnd) {
@@ -43,7 +43,7 @@ export function useDraggable(options: Options) {
         }
     }
 
-    onUnmounted(end);
+    onUnmounted(() => end());
 
     return {start, dragging};
 }

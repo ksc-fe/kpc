@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Children, VNodeComponentClass} from 'intact';
+import {Component, TypeDefs, Children, VNodeComponentClass, VNode} from 'intact';
 import template from './column.vdt';
 import {useGroup} from './useGroup';
 
@@ -23,6 +23,14 @@ export interface TableColumnProps {
     prevVNode?: VNodeComponentClass<TableColumn> | null
 }
 
+export interface TableColumnEvents { }
+
+export interface TableColumnBlocks<T> {
+    title: null
+    template: [T, number]
+    default: [T, number]
+}
+
 export type TableColumnGroupItem = {
     label: Children
     value: any
@@ -33,7 +41,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
         type: String,
         required: true,
     },
-    title: String, // TODO
+    title: [String, Number, VNode],
     sortable: Boolean,
     width: [String, Number],
     group: Array,
@@ -51,7 +59,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     prevVNode: null,
 };
 
-export class TableColumn extends Component<TableColumnProps> {
+export class TableColumn<T = any> extends Component<TableColumnProps, TableColumnEvents, TableColumnBlocks<T>> {
     static template = template;
     static typeDefs = typeDefs;
 

@@ -1,6 +1,6 @@
 import {Component, TypeDefs, Children, Key} from 'intact';
 import template from './index.vdt';
-import {BaseSelect, BaseSelectProps} from '../select/base';
+import {BaseSelect, BaseSelectProps, BaseSelectEvents, BaseSelectBlocks} from '../select/base';
 import {useEqualWidth} from '../select/useEqualWidth';
 import {TreeProps} from '../tree';
 import {_$} from '../../i18n';
@@ -21,6 +21,10 @@ export interface TreeSelectProps extends BaseSelectProps {
     filter?: (keywords: string, data: DataItem) => boolean
 }
 
+export interface TreeSelectEvents extends BaseSelectEvents { }
+
+export interface TreeSelectBlocks extends BaseSelectBlocks { }
+
 const typeDefs: Required<TypeDefs<TreeSelectProps>> = {
     ...BaseSelect.typeDefs,
     data: Array,
@@ -37,7 +41,7 @@ const defaults = (): Partial<TreeSelectProps> => ({
     showLine: true,
 });
 
-export class TreeSelect extends BaseSelect<TreeSelectProps> {
+export class TreeSelect extends BaseSelect<TreeSelectProps, TreeSelectEvents, TreeSelectBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

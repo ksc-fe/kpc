@@ -1,4 +1,5 @@
 import ChildrenDemo from '~/components/progress/demos/children';
+import CustomColorDemo from '~/components/progress/demos/customColor';
 import {mount, wait} from 'test/utils';
 import {Progress} from 'kpc/components/progress';
 import Intact, { Component } from 'intact';
@@ -76,5 +77,18 @@ describe('Progress', () => {
         instance.set<string>('status', 'error');
         await wait(500);
         expect(element.classList.contains('k-error')).to.be.true;
+    });
+
+    it('should custom colors', () => {
+        const [instance, element] = mount(CustomColorDemo);
+
+        instance.set<number>('percent', 25);
+        expect(element.outerHTML).to.matchSnapshot();
+        instance.set<number>('percent', 50);
+        expect(element.outerHTML).to.matchSnapshot();
+        instance.set<number>('percent', 75);
+        expect(element.outerHTML).to.matchSnapshot();
+        instance.set<number>('percent', 100);
+        expect(element.outerHTML).to.matchSnapshot();
     });
 });

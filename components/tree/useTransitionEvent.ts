@@ -1,9 +1,10 @@
 import {useInstance} from 'intact';
 import {expandAnimationCallbacks} from '../utils';
+import type {Tree} from './';
 
 // for TreeSelect to refresh position
 export function useTransitionEvent() {
-    const instance = useInstance()!;
+    const instance = useInstance() as Tree;
     const {onAfterEnter, onAfterLeave} = expandAnimationCallbacks;
    
     return {

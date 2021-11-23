@@ -5,9 +5,21 @@ import {bind} from '../utils';
 import {isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
 import {useAutoWidth} from './useAutoWidth';
 import {useFrozen} from './useFrozen';
+import {CommonInputHTMLAttributes} from '../types';
 export * from './search';
 
-export interface InputProps {
+interface InputHTMLAttributes extends CommonInputHTMLAttributes {
+    // type input
+    pattern?: string
+    dirname?: string
+    datalist?: string
+
+    // type textarea
+    cols?: number
+    wrap?: 'hard' | 'soft'
+}
+
+export interface InputProps extends InputHTMLAttributes {
     type?: 'text' | 'textarea' 
     value?: string | number
     defaultValue?: string | number
@@ -24,7 +36,21 @@ export interface InputProps {
     frozenOnInput?: boolean
 }
 
-const typeDefs: Required<TypeDefs<InputProps>> = {
+export interface InputEvents {
+    clear: [MouseEvent]
+    focus: [FocusEvent]
+    blur: [FocusEvent]
+    input: [InputEvent]
+}
+
+export interface InputBlocks {
+    prepend: null
+    prefix: null
+    suffix: null
+    append: null
+}
+
+const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> = {
     type: String,
     value: [String, Number],
     defaultValue: [String, Number],
@@ -47,7 +73,7 @@ const defaults = (): Partial<InputProps> => ({
     rows: 2,
 });
 
-export class Input<T extends InputProps = InputProps> extends Component<T> {
+export class Input extends Component<InputProps, InputEvents, InputBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

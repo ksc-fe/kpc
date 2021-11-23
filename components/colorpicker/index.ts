@@ -9,6 +9,8 @@ export interface ColorpickerProps {
     disabled?: boolean
 }
 
+export interface ColorpickerEvents { }
+
 const typeDefs: Required<TypeDefs<ColorpickerProps>> = {
     value: {
         type: String,
@@ -28,7 +30,7 @@ const defaults = (): Partial<ColorpickerProps> => ({
     size: 'default',
 });
 
-export class Colorpicker extends Component {
+export class Colorpicker extends Component<ColorpickerProps, ColorpickerEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

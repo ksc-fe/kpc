@@ -90,9 +90,9 @@ export function useDraggable() {
         if (valid) {
             handleData();
             instance.trigger('dragend', {
-                srcNode: draggingNode,
-                toNode: overNode,
-                mode: mode.value
+                srcNode: draggingNode!,
+                toNode: overNode!,
+                mode: mode.value!
             });
         }
 

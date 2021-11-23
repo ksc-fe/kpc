@@ -36,6 +36,19 @@ export interface BaseSelectProps {
     _show?: boolean
 }
 
+export interface BaseSelectEvents {
+    keypress: [KeyboardEvent]
+    show: []
+    hide: []
+}
+
+export interface BaseSelectBlocks {
+    value: [any, Children]
+    values: [any[], Children[]]
+    prefix: null
+    suffix: null
+}
+
 const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
     value: null,
     multiple: Boolean,
@@ -59,7 +72,11 @@ const defaults = (): Partial<BaseSelectProps> => ({
     size: 'default',
 });
 
-export abstract class BaseSelect<T extends BaseSelectProps = BaseSelectProps> extends Component<T> {
+export abstract class BaseSelect<
+    T extends BaseSelectProps = BaseSelectProps,
+    E extends BaseSelectEvents = BaseSelectEvents,
+    B extends BaseSelectBlocks = BaseSelectBlocks,
+> extends Component<T, E, B> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

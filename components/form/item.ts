@@ -12,7 +12,6 @@ import {useDirty} from './useDirty';
 export interface FormItemProps {
     value?: any
     rules?: Rules
-    // isDirty?: boolean
     messages?: typeof messages
     classNames?: typeof classNames
     errorClassName?: string
@@ -20,10 +19,17 @@ export interface FormItemProps {
     htmlFor?: string
     hideLabel?: boolean
     fluid?: boolean
+}
 
-    // _ellipsis?: boolean
-    // _isValid?: boolean
-    // _message?: string
+export interface FormItemEvents {
+    change: [Event]
+    focusout: [FocusEvent]
+}
+
+export interface FormItemBlocks {
+    label: null
+    content: null
+    append: null
 }
 
 export type Rules = Record<string, any>
@@ -47,7 +53,7 @@ const typeDefs: Required<TypeDefs<FormItemProps>> = {
     fluid: Boolean,
 };
 
-export class FormItem extends Component<FormItemProps> {
+export class FormItem extends Component<FormItemProps, FormItemEvents, FormItemBlocks> {
     static template = template;
     static typeDefs = typeDefs;
 

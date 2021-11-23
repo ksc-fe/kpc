@@ -39,8 +39,8 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     private dialog: Dialog | null = inject(DIALOG, null);
 
     $render(
-        lastVNode: VNodeComponentClass | null,
-        nextVNode: VNodeComponentClass,
+        lastVNode: VNodeComponentClass<this> | null,
+        nextVNode: VNodeComponentClass<this>,
         parentDom: Element,
         anchor: IntactDom | null,
         mountedQueue: Function[]
@@ -60,8 +60,8 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     }
 
     $update(
-        lastVNode: VNodeComponentClass,
-        nextVNode: VNodeComponentClass,
+        lastVNode: VNodeComponentClass<this>,
+        nextVNode: VNodeComponentClass<this>,
         parentDom: Element, 
         anchor: IntactDom | null,
         mountedQueue: Function[],
@@ -95,7 +95,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
     }
 
-    $unmount(vNode: VNodeComponentClass, nextVNode: VNodeComponentClass | null) {
+    $unmount(vNode: VNodeComponentClass<this>, nextVNode: VNodeComponentClass<this> | null) {
         removeVNodeDom(vNode.props!.children as VNode, this.container!);
         super.$unmount(vNode, nextVNode);
     }

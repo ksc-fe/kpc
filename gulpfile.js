@@ -1,1 +1,1 @@
-require('./build/gulp');
+require('./scripts/gulp');

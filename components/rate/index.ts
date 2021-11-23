@@ -10,6 +10,14 @@ export interface RateProps {
     clearable?: boolean,
 }
 
+export interface RateEvents {
+    mouseleave: [MouseEvent]
+}
+
+export interface RateBlocks {
+    icon: null
+}
+
 const typeDefs: Required<TypeDefs<RateProps>> = {
     value: Number,
     count: Number,
@@ -23,7 +31,7 @@ const defaults = (): Partial<RateProps> => ({
     count: 5,
 })
 
-export class Rate<T extends RateProps = RateProps> extends Component<T> {
+export class Rate extends Component<RateProps, RateEvents, RateBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

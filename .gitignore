@@ -21,19 +21,19 @@ packages/kpc-vue/components
 packages/kpc-vue/i18n
 packages/kpc-vue/styles
 packages/kpc-vue/index.js
-packages/kpc-vue/inheritsLoose.js
+packages/kpc-vue/hooks
 
 packages/kpc-vue-next/components
 packages/kpc-vue-next/i18n
 packages/kpc-vue-next/styles
 packages/kpc-vue-next/index.js
-packages/kpc-vue-next/inheritsLoose.js
+packages/kpc-vue-next/hooks
 
 packages/kpc-react/components
 packages/kpc-react/i18n
 packages/kpc-react/styles
 packages/kpc-react/index.js
-packages/kpc-react/inheritsLoose.js
+packages/kpc-react/hooks
 
 packages/kpc-angular/@css
 packages/kpc-angular/@stylus
@@ -41,7 +41,11 @@ packages/kpc-angular/kpc
 packages/kpc-angular/node_modules
 packages/kpc-angular/index.ts
 packages/kpc-angular/components
+packages/kpc-angular/hooks
 
 ~*
 
 .DS_Store
+
+es/
+build/

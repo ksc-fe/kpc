@@ -60,6 +60,7 @@ const loadingIcon = (
 
 const buttonGroup = this.buttonGroup;
 const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
+const isCheckType = checkType !== 'none';
 
 <DynamicButton 
     class={classNameObj}
@@ -70,6 +71,7 @@ const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
     ev-click={this.onClick}
     ev-mouseup={this.onMouseUp}
     htmlType={htmlType}
+    name={isCheckType ? null : name}
 >
     {loading ? 
         iconSide === 'right' ?
@@ -77,7 +79,7 @@ const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
             [loadingIcon, children] :
         children 
     }
-    <input type={checkType} v-if={checkType !== 'none'}
+    <input type={checkType} v-if={isCheckType}
         class="k-button-input"
         name={name} 
         checked={checked}

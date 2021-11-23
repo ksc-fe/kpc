@@ -9,7 +9,11 @@ interface ColorpickerDragProps {
     onEnd: () => void
 }
 
-export class ColorpickerDrag extends Component<ColorpickerDragProps> {
+interface ColorpickerDragEvents {
+    click: []
+}
+
+export class ColorpickerDrag extends Component<ColorpickerDragProps, ColorpickerDragEvents> {
     static template = template;
 
     private drag = useDrag();

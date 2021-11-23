@@ -5,26 +5,28 @@ module.exports = function(api) {
 
     const config = {
         "presets": [
-            ["@babel/preset-typescript", {
+            // "@babel/preset-typescript",
+            ["@babel/preset-env", {
+                // set browserslist in package.json
                 // targets: {
-                    // // browsers: 'last 2 versions'
-                    // esmodules: true,
+                    // browsers: 'last 2 versions'
                 // },
-                // "loose": true,
+                "loose": true,
                 // "useBuiltIns": "usage",
-                // "corejs": '3.6',
-                // "modules": process.env.BUILD ? false : "cjs",
-                // "modules": "cjs",
+                // "corejs": corejs,
+                // // "modules": process.env.BUILD ? false : "cjs",
+                // // "modules": "cjs",
+                "modules": false,
                 // "debug": true
             }],
+            "@babel/preset-typescript",
             // "@babel/preset-react"
         ],
         "plugins": [
-            // ["@babel/plugin-transform-runtime", {
-                // // "corejs": false,
-                // "corejs": corejs,
-                // // "useESModules": true
-            // }],
+            ["@babel/plugin-transform-runtime", {
+                "corejs": corejs,
+                // "useESModules": true
+            }],
             ["@babel/plugin-proposal-decorators", {"legacy": true}],
             // "@babel/plugin-syntax-dynamic-import",
             "@babel/plugin-proposal-do-expressions",

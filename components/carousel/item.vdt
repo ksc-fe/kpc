@@ -16,8 +16,6 @@ const isSlide = parent.get('effect') === 'slide';
 
 <Transition show={active || isSlide} name="k-carousel-fade">
     <div class={classNameObj} {...getRestProps(this)}>
-        <template>
-            <b:children>{children}</b:children>
-        </template>
+        {children}
     </div>
 </Transition>

@@ -11,7 +11,7 @@ const typeDefs: Required<TypeDefs<CardColumnProps>> = {
     center: Boolean
 };
 
-export class CardColumn<T extends CardColumnProps = CardColumnProps> extends Component<T> {
+export class CardColumn extends Component<CardColumnProps> {
     static template = template;
     static typeDefs = typeDefs;
 }

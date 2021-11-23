@@ -1,7 +1,9 @@
-import {onMounted, useInstance, onUnmounted} from 'intact';
+import {onMounted, useInstance, onUnmounted, Component} from 'intact';
 
 export function useDelayClose(close: () => void, duration: number) {
-    const instance = useInstance();
+    const instance = useInstance() as Component<
+        {}, {mouseenter: [MouseEvent], mouseleave: [MouseEvent]}
+    >;
     let timer: number;
 
     function delayClose() {

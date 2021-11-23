@@ -20,11 +20,15 @@ export interface DatepickerCalendarProps {
     flag: PanelFlags
 }
 
+export interface DatepickerCalendarEvents {
+    change: [Dayjs, PanelFlags]
+}
+
 const defaults = (): Partial<DatepickerCalendarProps> => ({
     type: 'date'
 });
 
-export class DatepickerCalendar extends Component<DatepickerCalendarProps> {
+export class DatepickerCalendar extends Component<DatepickerCalendarProps, DatepickerCalendarEvents> {
     static template = template;
     static defaults = defaults;
 

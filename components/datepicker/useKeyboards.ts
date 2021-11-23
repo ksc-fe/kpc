@@ -1,5 +1,6 @@
 import {useInstance, RefObject} from 'intact';
 import {DatepickerCalendar} from './calendar';
+import {Datepicker} from './';
 import {State} from '../../hooks/useState';
 import {Dayjs} from 'dayjs';
 import {useKeyboard} from '../../hooks/useKeyboard';
@@ -15,7 +16,7 @@ export function useKeyboards(
     panelRef: RefObject<DatepickerCalendar>,
     focusDate: State<Dayjs | null> 
 ) {
-    const instance = useInstance() as DatepickerCalendar; 
+    const instance = useInstance() as Datepicker; 
     
     const [add, remove] = useKeyboard({
         down(e: KeyboardEvent) {

@@ -1,19 +1,26 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {useStatus} from './useStatus';
+import {useColor} from './useColor';
 
 type Sizes = 'default' | 'small' | 'mini';
 type Type = 'bar' | 'circle';
 type Status = 'active' | 'success' | 'error' | 'normal' | 'warning';
+type percent = number | string;
+type color = {
+    percent: percent,
+    color: string 
+};
 
 export interface ProgressProps {
     type?: Type,
-    percent?: number | string,
+    percent?: percent,
     size?: Sizes,
     showOuterText?: boolean,
     showInnerText?: boolean,
     status?: Status,
     strokeWidth?: number,
+    color?: string | color[] | ((percent: percent) => string)
 };
 
 const typeDefs: Required<TypeDefs<ProgressProps>>  = {
@@ -24,6 +31,7 @@ const typeDefs: Required<TypeDefs<ProgressProps>>  = {
     showInnerText: Boolean,
     status: ['active', 'success', 'error', 'normal', 'warning'],
     strokeWidth: Number,
+    color: [String, Array, Function]
 };
 
 const defaults = (): Partial<ProgressProps> => ({
@@ -35,16 +43,17 @@ const defaults = (): Partial<ProgressProps> => ({
     strokeWidth: 4,
 });
 
-export class Progress<T extends ProgressProps = ProgressProps> extends Component<T> {
+export class Progress extends Component<ProgressProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
     public status = useStatus();
+    public color = useColor();
 
     init() {
-        this.on('$receive:percent', (percent: number | string) => {
-            this.set('percent', fixPercent(percent));
+        this.on('$receive:percent', percent => {
+            this.set('percent', fixPercent(percent!));
         }); 
     }
 }

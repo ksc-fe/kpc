@@ -5,14 +5,30 @@ import {addMethod} from './methods';
 import {bind} from '../utils';
 import type {FormItem} from './item';
 
-export interface FormProps {
+interface FormHTMLAttributes {
+    acceptcharset?: string
+    autocomplete?: string
+    name?: string
+    rel?: string
+    action?: string
+    enctype?: string
+    method?: 'post' | 'get' | 'dialog'
+    novalidate?: boolean
+    target?: string
+}
+
+export interface FormProps extends FormHTMLAttributes {
     labelWidth?: string | number
     layout?: 'horizontal' | 'vertical' | 'inline'
     starOnRequired?: boolean
     size?: 'default' | 'small' | 'mini'
 }
 
-const typeDefs: Required<TypeDefs<FormProps>> = {
+export interface FormEvents {
+    submit: [Event]
+}
+
+const typeDefs: Required<TypeDefs<Omit<FormProps, keyof FormHTMLAttributes>>> = {
     labelWidth: [String, Number],
     layout: ['horizontal', 'vertical', 'inline'],
     starOnRequired: Boolean,
@@ -27,7 +43,7 @@ const defaults = (): Partial<FormProps> => ({
 export const FORM = 'Form';
 export const RECORD_KEY = 'FormRecord';
 
-export class Form extends Component<FormProps> {
+export class Form extends Component<FormProps, FormEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

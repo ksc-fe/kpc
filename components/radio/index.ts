@@ -1,14 +1,20 @@
 import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
+import {CommonInputHTMLAttributes} from '../types';
 
-export interface RadioProps {
+export interface RadioProps extends CommonInputHTMLAttributes {
     disabled?: boolean
     value?: any 
     trueValue?: any 
 }
 
-const typeDefs: Required<TypeDefs<RadioProps>> = {
+export interface RadioEvents {
+    click: [MouseEvent]
+    change: [any, MouseEvent]
+}
+
+const typeDefs: Required<TypeDefs<Omit<RadioProps, keyof CommonInputHTMLAttributes>>> = {
     disabled: Boolean,
     value: null,
     trueValue: null,
@@ -19,7 +25,7 @@ const defaults = (): Partial<RadioProps> => ({
     trueValue: true,
 });
 
-export class Radio<T extends RadioProps = RadioProps> extends Component<T> {
+export class Radio extends Component<RadioProps, RadioEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

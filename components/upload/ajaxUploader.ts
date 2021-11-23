@@ -15,6 +15,7 @@ export interface RequestError extends Error {
     method: string
     url: string
     response: any
+    xhr: XMLHttpRequest
 }
 
 export function request(options: Options) {
@@ -74,13 +75,14 @@ export function request(options: Options) {
     };
 }
 
-function getError(options: Options, xhr: XMLHttpRequest) {
+function getError(options: Options, xhr: XMLHttpRequest): RequestError {
     const msg = `cannot post ${options.action} ${xhr.status}'`;
     const err = new Error(msg) as RequestError;
     err.status = xhr.status;
     err.method = 'post';
     err.url = options.action || '';
     err.response = getBody(xhr);
+    err.xhr = xhr;
 
     return err;
 }

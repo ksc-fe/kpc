@@ -1,6 +1,6 @@
 {
   "name": "kpc-react",
-  "version": "1.4.8",
+  "version": "2.0.0-alpha.1",
   "description": "KPC components for React.",
   "keywords": [
     "component",
@@ -28,20 +28,20 @@
     "url": "https://github.com/ksc-fe/kpc/issues"
   },
   "dependencies": {
-    "@babel/runtime-corejs3": "^7.9.2",
-    "core-js": "^3.6.4",
-    "dayjs": "^1.8.15",
+    "@babel/runtime-corejs3": "^7.16.0",
+    "@emotion/css": "^11.5.0",
+    "dayjs": "^1.10.7",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
-    "intact": "^2.5.15",
-    "intact-react": "^1.1.30",
-    "monaco-editor": "^0.17.1",
+    "intact-react": "^3.0.0-beta.15",
+    "monaco-editor": "^0.26.1",
     "mxgraphx": "^4.0.7",
-    "resize-observer-polyfill": "^1.5.0",
-    "tinycolor2": "^1.4.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "tinycolor2": "^1.4.2",
+    "tslib": "^2.3.1"
   },
   "sideEffects": [
-    "*.css",
-    "*.styl"
+    "**/*/styles/global.*",
+    "**/*/styles/fonts/*"
   ]
 }

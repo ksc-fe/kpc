@@ -15,6 +15,11 @@ export interface EditableProps {
     invalid?: boolean,
 }
 
+export interface EditableEvents {
+    error: [string | number]
+    change: [string, string | number | undefined]
+}
+
 const typeDefs: Required<TypeDefs<EditableProps>> = {
     editing: Boolean,
     value: [String, Number],
@@ -32,7 +37,7 @@ const defaults = (): Partial<EditableProps> => ({
     trim: true,
 })
 
-export class Editable<T extends EditableProps = EditableProps> extends Component<T> {
+export class Editable extends Component<EditableProps, EditableEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

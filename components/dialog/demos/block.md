@@ -20,7 +20,7 @@ import {Dialog} from 'kpc/components/dialog';
     >Show Dialog</Button>
     <Button ev-click={this.set.bind(this, 'show1', true)}
         type="primary"
-    >Show No Footer Dialog</Button>
+    >Show Dialog without Footer</Button>
     <Dialog v-model="show">
         <b:header>
             <div class="k-title">

@@ -10,7 +10,7 @@ export function useExpandable() {
         return inArray(instance.get('expandedKeys'), key);
     }
 
-    instance.on('click:row', (data: any, index: number, key: TableRowKey) => {
+    instance.on('clickRow', (data: any, index: number, key: TableRowKey) => {
         if (instance.get('rowExpandable')) {
             const {expandedKeys, $blocks} = instance.get();
             if (!$blocks || !$blocks.expand) return;

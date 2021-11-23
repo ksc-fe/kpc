@@ -2,7 +2,8 @@ import {theme} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 import {deepDefaults}  from '../../styles/utils';
-import {Mode} from './index';
+
+export type Mode = 'horizontal' | 'vertical'
 
 export const kls = (className: string): string => `k-split-${className}`;
 

@@ -32,7 +32,10 @@ export function useDraggable(elementRef: RefObject<HTMLElement>) {
         barWidth.set(newWidth);
     }
 
-    function onEnd(e: MouseEvent) {
+    function onEnd(e?: MouseEvent) {
+        // unmounted
+        if (!e) return;
+
         elementRef.value!.blur();
 
         const bar = barRef.value!;
