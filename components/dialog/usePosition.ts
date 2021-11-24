@@ -2,12 +2,13 @@ import {useInstance, RefObject, remove, onBeforeUnmount} from 'intact';
 import type {Dialog} from './';
 import {position} from '../position';
 import {onOpen, onClosed} from './fixBody';
+import {SHOW} from './constants';
 
 export function usePosition(elementRef: RefObject<HTMLDivElement>) {
     const instance = useInstance() as Dialog;
     let fixedBody = false;
 
-    instance.on('open', onEnter);
+    instance.on(SHOW, onEnter);
     
     onBeforeUnmount(() => {
         if (fixedBody && instance.get('value')) {

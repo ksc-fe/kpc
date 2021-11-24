@@ -3,7 +3,7 @@ import template from './index.vdt';
 import type {StepObject, StepFunction, SpinnerProps} from '../spinner';
 import type {TooltipProps} from '../tooltip';
 import {useStep} from '../spinner/useStep';
-import {useValue} from './useValue';
+import {useValue, Value} from './useValue';
 import {useDraggable} from './useDraggable';
 import {useStyles} from './useStyles';
 import {useKeyboard} from './useKeyboard';
@@ -15,7 +15,7 @@ import {useTooltip} from './useTooltip';
 export interface SliderProps {
     max?: number
     min?: number
-    value?: number | [number, number]
+    value?: Value
     isRange?: boolean
     unit?: string
     isShowEnd?: boolean
@@ -29,6 +29,14 @@ export interface SliderProps {
     animate?: boolean
     tooltipProps?: TooltipProps
     spinnerProps?: SpinnerProps
+}
+
+export interface SliderEvents {
+    change: [Value, Value]
+}
+
+export interface SliderBlocks {
+    tooltip: Value
 }
 
 const typeDefs: Required<TypeDefs<SliderProps>> = {
@@ -62,7 +70,7 @@ const defaults = (): Partial<SliderProps> => ({
     animate: true,
 });
 
-export class Slider extends Component<SliderProps> {
+export class Slider extends Component<SliderProps, SliderEvents, SliderBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

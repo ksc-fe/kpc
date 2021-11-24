@@ -9,7 +9,7 @@ import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {isEqualArray, last, bind} from '../utils';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
-import {BaseSelect, BaseSelectProps} from '../select/base';
+import {BaseSelect, BaseSelectProps, BaseSelectEvents, BaseSelectBlocks} from '../select/base';
 
 export type StateValueRange = [Dayjs, Dayjs?];
 export type StateValueItem = Dayjs | StateValueRange;
@@ -30,6 +30,11 @@ export interface BasePickerProps<Value> extends BaseSelectProps {
     max?: Value
     disabledDate?: (v: Value) => boolean
 }
+
+export interface BasePickerEvents extends BaseSelectEvents { }
+
+export interface BasePickerBlocks extends BaseSelectBlocks { }
+
 export type Value = string | Date | number | Dayjs;
 
 const typeDefs: Required<TypeDefs<BasePickerProps<Value>>> = {
@@ -49,7 +54,11 @@ const defaults = (): Partial<BasePickerProps<any>> => ({
     filterable: true,
 });
 
-export abstract class BasePicker<T extends BasePickerProps<any>> extends BaseSelect<T> {
+export abstract class BasePicker<
+    T extends BasePickerProps<any> = BasePickerProps<any>,
+    E extends BasePickerEvents = BasePickerEvents,
+    B extends BasePickerBlocks = BasePickerBlocks,
+> extends BaseSelect<T, E, B> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 

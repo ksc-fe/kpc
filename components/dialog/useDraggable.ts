@@ -30,8 +30,8 @@ export function useDraggable(
             areaWidth = Math.max(body.scrollWidth, html.scrollWidth);
             areaHeight = Math.max(body.scrollHeight, html.scrollHeight);
         } else {
-            areaWidth = html.offsetWidth;
-            areaHeight = html.offsetHeight;
+            areaWidth = Math.max(html.offsetWidth, window.innerWidth);
+            areaHeight = Math.max(html.offsetHeight, window.innerHeight);
         }
     }
 

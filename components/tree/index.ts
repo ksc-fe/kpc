@@ -1,12 +1,12 @@
 import {Component, Key, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {DataItem, useNodes, Node} from './useNodes';
-import {bind} from 'kpc/components/utils';
+import {bind} from '../utils';
 import {useChecked} from './useChecked';
 import {useExpanded} from './useExpanded';
 import {useSelected} from './useSelected';
 import {useFilter} from './useFilter';
-import {useDraggable} from './useDraggable';
+import {useDraggable, Mode} from './useDraggable';
 import {useTransitionEvent} from './useTransitionEvent';
 
 export interface TreeProps {
@@ -25,6 +25,23 @@ export interface TreeProps {
     draggable?: boolean
     allowDrag?: (node: Node) => boolean 
     allowDrop?: (node: Node) => boolean 
+}
+
+export interface TreeEvents {
+    denydrag: [Node]
+    denydrop: [Node]
+    dragend: [DragEndData]
+    transitionEnd: []
+}
+
+export interface TreeBlocks {
+    label: [DataItem, Node, number]
+}
+
+type DragEndData = {
+    srcNode: Node
+    toNode: Node
+    mode: Mode
 }
 
 type Filter = (data: DataItem, node: Node) => boolean;
@@ -52,7 +69,7 @@ const defaults = (): Partial<TreeProps> => ({
     showLine: true,
 });
 
-export class Tree extends Component<TreeProps> {
+export class Tree extends Component<TreeProps, TreeEvents, TreeBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

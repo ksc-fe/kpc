@@ -1,5 +1,5 @@
 import {VNode, VNodeComponentClass} from 'intact';
-import type {Dialog, DialogProps} from './index';
+import type {Dialog, DialogProps} from './';
 import template from './alert.vdt';
 
 export interface AlertDialogProps extends DialogProps {
@@ -10,7 +10,7 @@ export interface AlertDialogProps extends DialogProps {
 }
 
 export function addStaticMethods(Component: typeof Dialog) {
-    class AlertDialog extends Component<AlertDialogProps> {
+    class AlertDialog extends Component {
         static template = template;
         static defaults = (): Partial<AlertDialogProps> =>({
             ...Component.defaults(),
@@ -50,5 +50,4 @@ export function addStaticMethods(Component: typeof Dialog) {
             return show(options);
         }
     });
-
 }

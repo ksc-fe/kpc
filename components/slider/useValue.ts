@@ -20,7 +20,7 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
 
     instance.on('$change:value', (newValue, oldValue) => {
         if (getDragging()) return;
-        instance.trigger('change', newValue, oldValue);
+        instance.trigger('change', newValue!, oldValue!);
     });
 
     function isEqualValue(newValue: Value, oldValue: Value) {

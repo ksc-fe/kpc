@@ -11,6 +11,10 @@ export interface TabProps {
     closable?: boolean
 }
 
+export interface TabEvents {
+    click: [MouseEvent]
+}
+
 const typeDefs: Required<TypeDefs<TabProps>> = {
     value: null,
     disabled: Boolean,
@@ -18,7 +22,7 @@ const typeDefs: Required<TypeDefs<TabProps>> = {
     closable: Boolean,
 };
 
-export class Tab extends Component<TabProps> {
+export class Tab extends Component<TabProps, TabEvents> {
     static template = template;
 
     private tabs = inject<Tabs>(TABS)!

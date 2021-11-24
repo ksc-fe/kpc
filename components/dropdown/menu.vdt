@@ -14,7 +14,7 @@ const classNameObj = {
 const transition = $props.transition || {css: false, ...this.transition};
 
 <Transition 
-    show={'value' in $props ? $props.value : value}
+    show={'value' in $props ? $props.value : !!value}
     appear={true}
     {...transition}
 >

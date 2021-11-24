@@ -18,18 +18,18 @@ import {exportTable} from './exportTable';
 import {useResizable} from './useResizable';
 import {useDraggable} from './useDraggable';
 
-export interface TableProps {
-    data?: any[]
+export interface TableProps<T = any> {
+    data?: T[]
     fixHeader?: boolean | string | number 
     stickHeader?: boolean | string | number
     checkType?: 'checkbox' | 'radio' | 'none'
     checkedKeys?: TableRowKey[]
-    rowKey?: (value: any, index: number) => TableRowKey
+    rowKey?: (value: T, index: number) => TableRowKey
     rowCheckable?: boolean
-    disableRow?: (value: any, index: number, key: TableRowKey) => boolean
+    disableRow?: (value: T, index: number, key: TableRowKey) => boolean
     type?: 'default' | 'border' | 'grid'
     stripe?: boolean
-    rowClassName?: (value: any, index: number, key: TableRowKey) => string | undefined
+    rowClassName?: (value: T, index: number, key: TableRowKey) => string | undefined
     group?: Record<string, any> 
     sort?: TableSortValue 
     loading?: boolean
@@ -50,13 +50,25 @@ export interface TableProps {
     widthStoreKey?: string
 }
 
+export interface TableEvents<T = any> {
+    clickRow: [T, number, TableRowKey]
+    dragstart: [{key: TableRowKey, from: number}]
+    dragend: [{key: TableRowKey, from: number, to: number}]
+}
+
+export interface TableBlocks<T = unknown> {
+    empty: null
+    tooltip: [T, number] 
+    expand: [T, number]
+}
+
 export type TableRowKey = string | number;
 export type TableSortValue = {
     key?: string
     type?: 'desc' | 'asc'
 }
 
-const typeDefs: Required<TypeDefs<TableProps>> = {
+const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     data: Array,
     fixHeader: [Boolean, String, Number],
     stickHeader: [Boolean, String, Number],
@@ -98,7 +110,7 @@ const defaults = (): Partial<TableProps> => ({
     minColWidth: 40,
 });
 
-export class Table extends Component<TableProps> {
+export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -195,7 +207,7 @@ export class Table extends Component<TableProps> {
 
     @bind
     private clickRow(data: any, index: number, key: string | number) {
-        this.trigger('click:row', data, index, key);
+        this.trigger('clickRow', data, index, key);
     }
     
     @bind

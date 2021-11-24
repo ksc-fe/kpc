@@ -8,6 +8,12 @@ export interface TimelineItemProps {
     size?: Sizes
 }
 
+export interface TimelineItemEvents { }
+
+export interface TimelineItemBlocks {
+    dot: null
+}
+
 const typeDefs: Required<TypeDefs<TimelineItemProps>> = {
     type: types,
     size: sizes,
@@ -18,7 +24,7 @@ const defaults = (): Partial<TimelineItemProps> => ({
     size: 'default',
 })
 
-export class TimelineItem<T extends TimelineItemProps = TimelineItemProps> extends Component<T> {
+export class TimelineItem extends Component<TimelineItemProps, TimelineItemEvents, TimelineItemBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

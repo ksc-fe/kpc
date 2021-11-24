@@ -12,7 +12,7 @@ export function useReceive<T extends Component>(
     let shouldCall = false;
     props.forEach(prop => {
         instance.on(
-            `$receive:${prop}`,
+            `$receive:${prop}` as any,
             (newValue: unknown, oldValue: unknown, init: boolean) => {
                 if (ignoreInit && init) return;
                 shouldCall = true; 

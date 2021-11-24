@@ -11,9 +11,15 @@ import {error, isNullOrUndefined} from 'intact-shared';
 
 const {mxRubberband, mxEvent} = mx;
 
+export interface DiagramProps { }
+export interface DiagramEvents {
+    labelChanged: [any, string, string]
+    selectionChanged: [any[]]
+}
+
 type StateCallback = (this: any, cell: any) => boolean;
 
-export class Diagram extends Component {
+export class Diagram extends Component<DiagramProps, DiagramEvents> {
     static template = template;
 
     public graph: any;

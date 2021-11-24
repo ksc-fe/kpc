@@ -38,7 +38,7 @@ const defaults = (): Partial<MessageProps> => ({
 
 let messages: Messages | null = null;
 
-export class Message<T extends MessageProps = MessageProps> extends Component<T> {
+export class Message extends Component<MessageProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

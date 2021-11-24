@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.0-beta.2
+
+
+
 ## v1.4.8
 
 1. `Add` `Table`导出表格时，支持自定义表头 [#469](https://github.com/ksc-fe/kpc/issues/469)

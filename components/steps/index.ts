@@ -23,7 +23,7 @@ const defaults = (): Partial<StepsProps> => ({
     type: 'default',
 });
 
-export class Steps<T extends StepsProps = StepsProps> extends Component<T> {
+export class Steps extends Component<StepsProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

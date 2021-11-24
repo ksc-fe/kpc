@@ -200,7 +200,7 @@ export function useChecked(
     // for draggable
     instance.on('$change:data', updateAllCheckedStatus);
 
-    instance.on('click:row', (data: any, index: number, key: TableRowKey) => {
+    instance.on('clickRow', (data: any, index: number, key: TableRowKey) => {
         if (instance.get('rowCheckable')) {
             toggleChecked(key, index);
         }

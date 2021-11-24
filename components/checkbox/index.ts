@@ -2,19 +2,23 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {bind} from '../utils';
 import {isArray} from 'intact-shared';
+import {CommonInputHTMLAttributes} from '../types';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends CommonInputHTMLAttributes {
     disabled?: boolean
-    name?: string
     value?: any
     trueValue?: any
     falseValue?: any
     indeterminate?: boolean
 }
 
-const typeDefs: Required<TypeDefs<CheckboxProps>> = {
+export interface CheckboxEvents {
+    click: [MouseEvent]
+    change: [any, MouseEvent]
+}
+
+const typeDefs: Required<TypeDefs<Omit<CheckboxProps, keyof CommonInputHTMLAttributes>>> = {
     disabled: Boolean, 
-    name: String,
     value: null, 
     trueValue: null, 
     falseValue: null, 
@@ -26,7 +30,7 @@ const defaults = (): Partial<CheckboxProps> => ({
     falseValue: false,
 });
 
-export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component<T> {
+export class Checkbox extends Component<CheckboxProps, CheckboxEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -72,7 +76,7 @@ export class Checkbox<T extends CheckboxProps = CheckboxProps> extends Component
 
         const {disabled} = this.get();
         if (disabled) {
-            this.trigger('click');
+            this.trigger('click', e);
         } else {
             this.setCheckboxModel(e);
             this.trigger('click', e);

@@ -12,6 +12,12 @@ export interface MenuProps {
     dot?: boolean
 }
 
+export interface MenuEvents { }
+
+export interface MenuBlocks {
+    header: null
+}
+
 const typeDefs: Required<TypeDefs<MenuProps>> = {
     expandedKeys: Array,
     selectedKey: [String, Number],
@@ -33,7 +39,7 @@ const defaults = (): Partial<MenuProps> => ({
 export const MENU = 'Menu';
 export const ROOT_MENU = 'RootMenu';
 
-export class Menu<T extends MenuProps = MenuProps> extends Component<T> {
+export class Menu extends Component<MenuProps, MenuEvents, MenuBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

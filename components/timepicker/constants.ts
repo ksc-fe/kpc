@@ -1,6 +1,11 @@
 import dayjs, {Dayjs} from '../datepicker/dayjs';
 import {getNowDate} from '../datepicker/helpers';
-import {BasePicker, BasePickerProps} from '../datepicker/basepicker';
+import {
+    BasePicker,
+    BasePickerProps,
+    BasePickerEvents,
+    BasePickerBlocks,
+} from '../datepicker/basepicker';
 import {TypeDefs} from 'intact';
 
 export const YEAR_FORMAT = 'YYYY-MM-DD ';
@@ -11,6 +16,10 @@ export const PREFIX = NOW.format(YEAR_FORMAT);
 export interface TimepickerProps extends BasePickerProps<string> {
     step?: string
 }
+
+export interface TimepickerEvents extends BasePickerEvents { }
+
+export interface TimepickerBlocks extends BasePickerBlocks { }
 
 export const typeDefs: Required<TypeDefs<TimepickerProps>> = {
     ...BasePicker.typeDefs,

@@ -10,7 +10,7 @@ import {Option, OptionProps} from './option';
 import {OptionGroup} from './group';
 import {useFilterable} from './useFilterable';
 import {useLabel} from './useLabel';
-import {BaseSelect, BaseSelectProps} from './base';
+import {BaseSelect, BaseSelectProps, BaseSelectEvents, BaseSelectBlocks} from './base';
 import {_$} from '../../i18n';
 import {useEqualWidth} from './useEqualWidth';
 
@@ -21,6 +21,12 @@ export interface SelectProps extends BaseSelectProps {
     labelMap?: Map<any, Children> 
     card?: boolean
     autoDisableArrow: boolean
+}
+
+export interface SelectEvents extends BaseSelectEvents { }
+
+export interface SelectBlocks extends BaseSelectBlocks {
+    menu: null 
 }
 
 const typeDefs: Required<TypeDefs<SelectProps>> = {
@@ -38,7 +44,7 @@ const defaults = (): Partial<SelectProps> => ({
     labelMap: new Map(),
 });
 
-export class Select<T extends SelectProps = SelectProps> extends BaseSelect<T> {
+export class Select extends BaseSelect<SelectProps, SelectEvents, SelectBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

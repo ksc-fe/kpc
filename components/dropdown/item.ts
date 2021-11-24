@@ -7,10 +7,17 @@ import {DropdownMenu, DROPDOWN_MENU} from './menu';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 
 export interface DropdownItemProps {
-    disabled: boolean
-    hideOnSelect: boolean
+    disabled?: boolean
+    hideOnSelect?: boolean
 
-    _isFocus: boolean
+    _isFocus?: boolean
+}
+
+export interface DropdownItemEvents {
+    select: []
+    click: [MouseEvent]
+    mouseenter: [MouseEvent]
+    mouseleave: [MouseEvent]
 }
 
 const typeDefs: Required<TypeDefs<DropdownItemProps>> = {
@@ -24,7 +31,7 @@ const defaults = (): Partial<DropdownItemProps> => ({
     hideOnSelect: true,
 });
 
-export class DropdownItem<T extends DropdownItemProps = DropdownItemProps> extends Component<T> {
+export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

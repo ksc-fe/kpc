@@ -1,13 +1,26 @@
 import {createRef, Children, VNode} from 'intact';
-import {DropdownMenu} from '../dropdown';
+import {
+    DropdownMenu,
+    DropdownMenuProps,
+    DropdownMenuEvents,
+    DropdownMenuBlocks,
+} from '../dropdown/menu';
 import template from './content.vdt';
 import {bind} from '../utils';
 import {Tooltip} from './tooltip';
 import {useArrow} from './useArrow';
 
-export interface TooltipContentProps { }
+export interface TooltipContentProps extends DropdownMenuProps { } 
+export interface TooltipContentEvents extends DropdownMenuEvents { }
+export interface TooltipContentBlocks extends DropdownMenuBlocks {
+    buttons: null
+}
 
-export class TooltipContent<T extends TooltipContentProps = TooltipContentProps> extends DropdownMenu<T> {
+export class TooltipContent extends DropdownMenu<
+    TooltipContentProps,
+    TooltipContentEvents,
+    TooltipContentBlocks
+> {
     static template = template;
 
     private isEmptyChildren: boolean = true;
@@ -37,14 +50,14 @@ export class TooltipContent<T extends TooltipContentProps = TooltipContentProps>
 
     @bind
     private ok() {
-        const dropdown = this.dropdown!; 
+        const dropdown = this.dropdown as Tooltip; 
         dropdown.hide(true);
         dropdown.trigger('ok');
     }
 
     @bind
     private cancel() {
-        const dropdown = this.dropdown!; 
+        const dropdown = this.dropdown as Tooltip; 
         dropdown.hide(true);
         dropdown.trigger('cancel');
     }

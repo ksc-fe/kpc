@@ -38,9 +38,9 @@ export function makeStyles() {
 
     return css`
         display: inline-block;
-        .k-spin-canvas: {
-            width: ${spin.width},
-            height: ${spin.width},
+        .k-spin-canvas {
+            width: ${spin.width};
+            height: ${spin.width};
             animation: k-rotate 2s linear infinite;
         }
         .k-spin-circle {
@@ -78,7 +78,7 @@ export function makeStyles() {
 
         &.k-overlay {
             position: absolute;
-            z-index: 1;
+            z-index: ${theme.midZIndex};
             top: 0;
             bottom: 0;
             left: 0;

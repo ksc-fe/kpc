@@ -23,7 +23,7 @@ const defaults = (): Partial<IconProps> => ({
 
 const defaultColors = [...colors, 'default'];
 
-export class Icon<T extends IconProps = IconProps> extends Component<T> {
+export class Icon extends Component<IconProps> {
     static displayName = 'Icon';
     static template = template;
     static typeDefs = typeDefs;

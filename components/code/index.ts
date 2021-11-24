@@ -13,6 +13,10 @@ export interface CodeProps {
     options?: editor.IStandaloneEditorConstructionOptions 
 }
 
+export interface CodeEvents {
+    ready: [editor.IStandaloneCodeEditor, typeof editor]
+}
+
 const typeDefs: Required<TypeDefs<CodeProps>> = {
     value: String,
     language: String,
@@ -30,7 +34,7 @@ const defaults = (): Partial<CodeProps> => ({
     options: {},
 });
 
-export class Code extends Component<CodeProps> {
+export class Code extends Component<CodeProps, CodeEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

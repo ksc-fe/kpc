@@ -77,11 +77,13 @@
     "hooks",
     "styles",
     "i18n",
-    "typings"
+    "typings",
+    "site/data",
+    "index.ts"
   ],
   "exclude": [
     "node_modules",
-    "site/**/*.ts",
-    "**/*.spec.ts"
+    // "site/**/*.ts",
+    // "**/*.spec.ts"
   ]
 }

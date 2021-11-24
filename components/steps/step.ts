@@ -3,7 +3,7 @@ import template from './step.vdt';
 
 export interface StepProps {
     title?: string
-    // properties created by yourself
+    // properties created by parent Steps 
     index?: number
 }
 
@@ -12,7 +12,7 @@ const typeDefs: Required<TypeDefs<StepProps>> = {
     index: Number
 };
 
-export class Step<T extends StepProps = StepProps> extends Component<T> {
+export class Step extends Component<StepProps> {
     static template = template;
     static typeDefs = typeDefs;
 }

@@ -10,8 +10,11 @@ export interface SearchProps {
     value?: string
     type?: 'default' | 'line'
     size?: Sizes
+    open?: boolean
+}
 
-    _open?: boolean
+export interface SearchEvents {
+    submit: [string]
 }
 
 const typeDefs: Required<TypeDefs<SearchProps>> = {
@@ -19,8 +22,7 @@ const typeDefs: Required<TypeDefs<SearchProps>> = {
     value: String,
     type: ['default', 'line'],
     size: sizes,
-
-    _open: null,
+    open: Boolean,
 };
 
 const defaults = (): Partial<SearchProps> => ({
@@ -28,11 +30,10 @@ const defaults = (): Partial<SearchProps> => ({
     value: '',
     type: 'default',
     size: 'default',
-
-    _open: false,
+    open: false,
 });
 
-export class Search<T extends SearchProps = SearchProps> extends Component<T> {
+export class Search extends Component<SearchProps, SearchEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -45,18 +46,18 @@ export class Search<T extends SearchProps = SearchProps> extends Component<T> {
     }
 
     open() {
-        this.set('_open', true);
+        this.set('open', true);
         this.inputRef.value!.select();
     }
 
     hide() {
-        this.set('_open', false);
+        this.set('open', false);
     }
 
     @bind
     onClickBtn() {
         // if the box is open, then submit the form
-        if (this.get('_open')) {
+        if (this.get('open')) {
             this.submit();
         } else {
             this.open();
@@ -65,7 +66,7 @@ export class Search<T extends SearchProps = SearchProps> extends Component<T> {
 
     @bind
     onChangeValue(v: SearchProps['value']) {
-        if (!this.get('_open')) return;
+        if (!this.get('open')) return;
         this.set('value', v);
     }
 

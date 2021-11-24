@@ -54,6 +54,7 @@ export function useValue() {
             instance.set('value', keys);
         } else {
             instance.set('value', keys[0]);
+            instance.hide();
         }
         selectedKeys.set(keys);
     }

@@ -1,4 +1,12 @@
-import {Component, TypeDefs, createRef, VNodeComponentClass, Props, Key} from 'intact';
+import {
+    Component,
+    TypeDefs,
+    createRef,
+    VNodeComponentClass,
+    Props,
+    Key,
+    IntactDom
+} from 'intact';
 import template from './row.vdt';
 import type {TableColumnProps} from './column';
 import type {TableProps, TableRowKey} from './table';
@@ -41,9 +49,12 @@ export class TableRow extends Component<TableRowProps> {
     static template = template;
 
     $update(
-        lastVNode: VNodeComponentClass<TableRow>,
-        nextVNode: VNodeComponentClass<TableRow>,
-        ...rest: any[]
+        lastVNode: VNodeComponentClass<this>,
+        nextVNode: VNodeComponentClass<this>,
+        parentDom: Element,
+        anchor: IntactDom | null, 
+        mountedQueue: Function[],
+        force: boolean
     ) {
         const lastProps = lastVNode.props as TableRowProps;
         const nextProps = nextVNode.props as TableRowProps;
@@ -60,7 +71,7 @@ export class TableRow extends Component<TableRowProps> {
         }
 
         if (!isSame) {
-            (super.$update as any)(lastVNode, nextVNode, ...rest);
+            super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
         } else {
             // should update index
             this.set(nextProps, {silent: true});

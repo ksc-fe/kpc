@@ -25,7 +25,7 @@ const defaults = (): Partial<AsideProps> => ({
     width: defaultWidth,
 });
 
-export class Aside<T extends AsideProps = AsideProps> extends Component<T> {
+export class Aside extends Component<AsideProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

@@ -1,6 +1,8 @@
 import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor, isText} from 'intact';
 import {EMPTY_OBJ, isStringOrNumber, isString, isNullOrUndefined, isInvalid} from 'intact-shared';
 
+// @reference https://github.com/andreypopp/autobind-decorator/blob/master/src/index.js
+// for loose mode
 export function bind<T extends Function>(target: any, key: string, descriptor: TypedPropertyDescriptor<T>): TypedPropertyDescriptor<T> {
     const method = descriptor.value!;
     // In IE11 calling Object.defineProperty has a side-effect of evaluating the
@@ -13,7 +15,8 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
         get(this: T): T {
             if (
                 definingProperty ||
-                this.hasOwnProperty(key) /* has bound, for invoking super bound method */
+                this === target || /* get method from prototype */
+                this.hasOwnProperty('constructor') /* get method from prototype, e.g. super call */
             ) {
                 return method;
             }
@@ -28,9 +31,56 @@ export function bind<T extends Function>(target: any, key: string, descriptor: T
             definingProperty = false;
 
             return value;
+        },
+        set(value: T) {
+            Object.defineProperty(this, key, {
+                value,
+                configurable: true,
+                writable: true,
+            });
         }
     };
 }
+
+// class A {
+    // @bind
+    // hello() {
+        // console.log('A hello', this);
+    // }
+
+    // @bind
+    // test() {
+        // console.log('A test', this);
+    // }
+// }
+
+// const test1 = A.prototype.hello;
+// test1();
+// const test2 = (new A()).hello;
+// test2();
+
+// class B extends A {
+    // @bind
+    // hello() {
+        // super.hello();
+        // console.log('B hello', this);
+    // }
+// }
+
+// class C extends B {
+    // @bind
+    // test() {
+        // super.test();
+        // console.log('C test', this);
+    // }
+// }
+
+// const b = new B();
+// const c = new C();
+// const hello = b.hello;
+// const test = c.test;
+// hello();
+// test();
 
 export function addStyle(style: string | Record<string, string | null> | undefined, extra: Record<string, string | null>) {
     if (!style) return extra;
@@ -80,8 +130,8 @@ export function isStringOrNumberNotEmpty(o: any): o is string | number {
 
 export function getRestProps<T>(component: Component<T>, props = component.get()) {
     const Ctor = component.constructor as typeof Component;
-    const typeDefs = Ctor.typeDefs || EMPTY_OBJ;
-    const events = (Ctor as any).events || EMPTY_OBJ;
+    const typeDefs = Ctor.typeDefs;
+    const events = (Ctor as any).events;
     const ret: Partial<T> = {};
 
     for (const key in props) {
@@ -94,8 +144,8 @@ export function getRestProps<T>(component: Component<T>, props = component.get()
             default:
                 if (
                     key[0] === '$' ||
-                    key in typeDefs ||
-                    key.substr(3) in events ||
+                    typeDefs && key in typeDefs ||
+                    events && key.substr(3) in events ||
                     key.substr(0, 4) === 'ev-$'
                 ) {
                     continue;
@@ -106,67 +156,6 @@ export function getRestProps<T>(component: Component<T>, props = component.get()
     }
 
     return ret;
-}
-
-/**
- * @brief find the router instance
- *
- * in React, find the history of router
- * for react-router@5, we need get the history from providers
- * as it use the new context api of React
- *
- * in Vue, find the $router
- *
- * @param instance
- *
- * @return
- */
- export function findRouter(instance: any): any {
-    // const Component = instance.constructor;
-    // if (Component.$$cid === 'IntactReact') {
-        // // in React
-        // let parentVNode = instance.vNode;
-        // while (parentVNode) {
-            // let i;
-            // if (
-                // parentVNode.type === Types.ComponentClass &&
-                // (i = parentVNode.children.context)
-            // ) {
-                // if (i = i.router) {
-                    // return i.history;
-                // } else if (i = parentVNode.children.__providers) {
-                    // // for react-router@5
-                    // const iter = i.entries();
-                    // while (i = iter.next().value) {
-                        // if (i[0]._context.displayName === 'Router' && (i = i[1]).history) {
-                            // return i.history;
-                        // }
-                    // }
-                // }
-                // break;
-            // }
-            // parentVNode = parentVNode.parentVNode;
-        // }
-    // } else if (Component.cid === 'IntactVue') {
-        // return instance.get('_context').data.$router;
-    // } else if (Component.cid === 'IntactVueNext') {
-        // // for vue3.0
-        // while (instance) {
-            // const vueInstance = instance.vueInstance;
-            // if (vueInstance) {
-                // return vueInstance.$router;
-            // }
-            // let parentVNode = instance.parentVNode;
-            // while (true) {
-                // if (!parentVNode) return;
-                // if (parentVNode.type === Types.ComponentClass) {
-                    // instance = parentVNode.children;
-                    // break;
-                // }
-                // parentVNode = parentVNode.parentVNode;
-            // }
-        // }
-    // }
 }
 
 const externalLinkReg = /^(https?:)?\/\//;

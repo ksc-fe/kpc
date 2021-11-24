@@ -43,7 +43,7 @@ const defaults = (): Partial<ProgressProps> => ({
     strokeWidth: 4,
 });
 
-export class Progress<T extends ProgressProps = ProgressProps> extends Component<T> {
+export class Progress extends Component<ProgressProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -52,8 +52,8 @@ export class Progress<T extends ProgressProps = ProgressProps> extends Component
     public color = useColor();
 
     init() {
-        this.on('$receive:percent', (percent: number | string) => {
-            this.set('percent', fixPercent(percent));
+        this.on('$receive:percent', percent => {
+            this.set('percent', fixPercent(percent!));
         }); 
     }
 }

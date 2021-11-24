@@ -5,15 +5,15 @@ import {useTransfer} from './useTransfer';
 import {useFilter, Model} from './useFilter';
 import {useCheck, CheckedKeys} from './useCheck';
 
-export interface TransferProps {
-    data?: any[],
+export interface TransferProps<T> {
+    data?: T[],
     keyName?: string,
     labelName?: string,
     value?: Key[],
     leftCheckedKeys?: Key[],
     rightCheckedKeys?: Key[],
     filterable?: boolean,
-    filter?: (data: any, keywords: string) => boolean
+    filter?: (data: T, keywords: string) => boolean
     placeholder?: string,
     leftKeywords?: string,
     rightKeywords?: string,
@@ -23,7 +23,19 @@ export interface TransferProps {
     enableRemove?: () => boolean,
 }
 
-const typeDefs: Required<TypeDefs<TransferProps>> = {
+export interface TransferEvents {
+    add: []
+    remove: []
+}
+
+export interface TransferBlocks<T> {
+    header: Model
+    filter: Model
+    list: Model
+    label: [T, Key, Model]
+}
+
+const typeDefs: Required<TypeDefs<TransferProps<any>>> = {
     data: Array,
     keyName: String,
     labelName: String,
@@ -35,14 +47,13 @@ const typeDefs: Required<TypeDefs<TransferProps>> = {
     placeholder: String,
     leftKeywords: String,
     rightKeywords: String,
-    // TODO: VNode
-    leftTitle: [String/* , VNode */],
-    rightTitle: [String/* , VNode */],
+    leftTitle: [String, VNode],
+    rightTitle: [String, VNode],
     enableAdd: Function,
     enableRemove: Function,
 };
 
-const defaults = (): Partial<TransferProps> => ({
+const defaults = (): Partial<TransferProps<any>> => ({
     data: [],
     keyName: 'key',
     labelName: 'label',
@@ -52,11 +63,11 @@ const defaults = (): Partial<TransferProps> => ({
     placeholder: _$('请输入'),
     leftTitle: _$('请选择'),
     rightTitle: _$('已选择'),
-})
+});
 
-export class Transfer<T extends TransferProps = TransferProps> extends Component<T> {
-    static template = template;
-    static typeDefs = typeDefs;
+export class Transfer<T = any> extends Component<TransferProps<T>, TransferEvents, TransferBlocks<T>> {
+static template = template;
+static typeDefs = typeDefs;
     static defaults = defaults;
 
     private transfer = useTransfer();

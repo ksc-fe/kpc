@@ -26,7 +26,7 @@ const defaults = (): Partial<HeaderProps> => ({
     theme: 'dark',
 });
 
-export class Header<T extends HeaderProps = HeaderProps> extends Component<T> {
+export class Header extends Component<HeaderProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
