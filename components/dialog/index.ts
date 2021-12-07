@@ -14,9 +14,9 @@ export class Dialog extends BaseDialog<DialogProps, DialogEvents> {
         $vNode: VNodeComponentClass = null as unknown as VNodeComponentClass,
         $SVG: boolean = false,
         $mountedQueue: Function[] = [],
-        $parent: ComponentClass | null = null
+        $senior: ComponentClass | null = null
     ) {
-        super(props, $vNode, $SVG, $mountedQueue, $parent);
+        super(props, $vNode, $SVG, $mountedQueue, $senior);
     }
 
     init() {
