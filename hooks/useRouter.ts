@@ -26,7 +26,7 @@ function findRouter(instance: any): any {
         // in React
         let parent = instance;
         while (!parent.$isReact) {
-            parent = parent.$parent;
+            parent = parent.$senior;
             if (!parent) return;
         }
         for (let [key, value] of parent.$reactProviders) {
@@ -40,17 +40,21 @@ function findRouter(instance: any): any {
                 return value.history;
             }
         }
-    // } else if (Component.cid === 'IntactVue') {
-        // return instance.get('_context').data.$router;
+    } else if (Component.cid === 'IntactVue') {
+        do {
+            const parent = instance.$parent; 
+            if (parent) {
+                return parent.$router;
+            }
+        } while (parent = instance.$senior);
     } else if (Component.$cid === 'IntactVueNext') {
         // for vue-next
-        while (instance) {
+        do {
             const vueInstance = instance.vueInstance;
             if (vueInstance) {
                 return vueInstance.proxy.$router;
             }
-            instance = instance.$parent;
-        }
+        } while (instance = instance.$senior);
     }
 }
 

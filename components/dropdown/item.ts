@@ -64,7 +64,7 @@ export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvent
 
     hasSubMenu() {
         // TODO: wrapped by Tooltip
-        const parent = this.$parent;
+        const parent = this.$senior;
         if (parent instanceof Dropdown) {
             return parent
         }

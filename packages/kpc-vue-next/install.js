@@ -9,7 +9,7 @@ export function install(Vue) {
         const component = components[key];
         Vue.component(`K${key}`, component);
         // support call method like this.$message.success('test'), #88
-        const obj = Vue.prototype;
+        const obj = Vue.config.globalProperties;
         if (key === 'Message') {
             obj.$message = component;
         } else if (key === 'Dialog') {
