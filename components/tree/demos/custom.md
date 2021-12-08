@@ -16,8 +16,7 @@ order: 2
 组件默认会生成一个`root`节点对象，你可以通过它往根节点追加子节点
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Tree, Button, ButtonGroup} from 'kpc';
 
 const data = this.get('data');
 
@@ -51,10 +50,14 @@ const data = this.get('data');
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TreeDataItem, TreeNode} from 'kpc';
+
+interface Props {
+    data: TreeDataItem[]
+}
 
 let uniqueId = 0;
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -104,7 +107,7 @@ export default class extends Component {
     }
 
     @bind
-    append(data, node, index, e) {
+    append(data: TreeDataItem, node: TreeNode, index: number, e: Event) {
         e.stopPropagation();
 
         const children = data.children || (data.children = []);
@@ -121,11 +124,11 @@ export default class extends Component {
     }
 
     @bind
-    remove(data, node, index, e) {
+    remove(data: TreeDataItem, node: TreeNode, index: number, e: Event) {
         e.stopPropagation();
 
         const children = node.parent ? node.parent.data.children : this.get('data');
-        children.splice(index, 1);
+        children!.splice(index, 1);
         this.set('data', [
             ...this.get('data'),
         ]);

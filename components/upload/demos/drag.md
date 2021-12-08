@@ -12,7 +12,7 @@ import {Upload} from 'kpc/components/upload';
 
 <Upload multiple
     type="drag"
-    beforeRemove={this._beforeRemove}
+    beforeRemove={this.beforeRemove}
     action="//fakestoreapi.com/products"
 />
 ```
@@ -30,7 +30,7 @@ export default class extends Component {
     static template = template;
 
     @bind
-    _beforeRemove(file) {
+    beforeRemove(file: File) {
         return new Promise((resolve, reject) => {
             Dialog.confirm({content: `确认删除文件：${file.name}?`}).then(
                 () => resolve(true),

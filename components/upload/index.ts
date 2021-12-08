@@ -8,6 +8,8 @@ import {useDrag} from './useDrag';
 import {useShowImage} from './useShowImage';
 import type {RequestError} from './ajaxUploader';
 
+export type {RequestError};
+
 export interface UploadProps {
     accept?: string
     files?: UploadFile[]

@@ -11,11 +11,11 @@ order: 0
 import {Upload} from 'kpc/components/upload';
 
 <Upload multiple
-    beforeRemove={this._beforeRemove}
+    beforeRemove={this.beforeRemove}
     action="//fakestoreapi.com/products"
     accept=".jpg, .png"
     maxSize={500}
-    ev-error={this._showError}
+    ev-error={this.showError}
 >
     <b:tip>只能上传JPG/PNG格式文件，且不超过500kb</b:tip>
 </Upload>
@@ -30,12 +30,13 @@ import {Upload} from 'kpc/components/upload';
 import {Dialog} from 'kpc/components/dialog';
 import {Message} from 'kpc/components/message';
 import {bind} from 'kpc/components/utils';
+import {UploadFile, RequestError} from 'kpc/components/upload';
 
 export default class extends Component {
     static template = template;
 
     @bind
-    _beforeRemove(file) {
+    beforeRemove(file: UploadFile) {
         return new Promise((resolve, reject) => {
             Dialog.confirm({content: `确认删除文件：${file.name}?`}).then(
                 () => resolve(true),
@@ -44,7 +45,7 @@ export default class extends Component {
         });
     }
 
-    _showError(e) {
+    showError(e: Error | RequestError) {
         Message.error(e.message);
     }
 }

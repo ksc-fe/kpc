@@ -9,8 +9,7 @@ order: 7
 左边选中的节点的数据，当`model`为`right`时，返回右边选中的节点的数据。
 
 ```vdt
-import {Transfer} from 'kpc/components/transfer';
-import {Button} from 'kpc/components/button';
+import {Transfer, Button} from 'kpc';
 
 <div>
     <Button ev-click={this.getData}>get data</Button>
@@ -29,27 +28,26 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
-const data = [
-    {label: '主机名0', key: 0},
-    {label: '主机名1', key: 1, disabled: true},
-    {label: '主机名2', key: 2},
-    {label: '主机名3', key: 3, disabled: true},
-    {label: '主机名4', key: 4},
-];
 export default class extends Component {
     static template = template;
 
     static defaults() {
         return {
-            data: data,
+            data: [
+                {label: '主机名0', key: 0},
+                {label: '主机名1', key: 1, disabled: true},
+                {label: '主机名2', key: 2},
+                {label: '主机名3', key: 3, disabled: true},
+                {label: '主机名4', key: 4},
+            ],
             value: [0, 1]
         }
     }
 
     @bind
-    getCheckedData(model) {
+    getCheckedData(model: string) {
         console.log(this.refs.transfer.getCheckedData(model));
     }
 

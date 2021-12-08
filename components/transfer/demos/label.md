@@ -14,7 +14,7 @@ order: 1
 
 
 ```vdt
-import {Transfer} from 'kpc/components/transfer';
+import {Transfer} from 'kpc';
 
 <Transfer data={this.get('data')} 
     filter={this.filter}
@@ -32,6 +32,13 @@ import {Transfer} from 'kpc/components/transfer';
 ```
 
 ```ts
+type DataItem = {
+    name: string
+    desc: string
+    ip: string
+    disabled?: boolean
+}
+
 export default class extends Component {
     static template = template;
 
@@ -47,7 +54,7 @@ export default class extends Component {
         }
     }
 
-    filter(data, keywords) {
+    filter(data: DataItem, keywords: string) {
         return data.name.includes(keywords) || 
             data.desc.includes(keywords) ||
             data.ip.includes(keywords);

@@ -9,6 +9,8 @@ export interface AlertDialogProps extends DialogProps {
     hideFooter?: boolean
 }
 
+export type StaticMethod = (options?: AlertDialogProps) => Promise<void>
+
 export function addStaticMethods(Component: typeof Dialog) {
     class AlertDialog extends Component {
         static template = template;
@@ -39,7 +41,7 @@ export function addStaticMethods(Component: typeof Dialog) {
     }
 
     (['success', 'warning', 'error', 'confirm'] as const).forEach(type => {
-        (Component as any)[type] = (options: AlertDialogProps = {}) => {
+        Component[type] = (options: AlertDialogProps = {}) => {
             const closable = type === 'confirm';
             options = {
                 closable, 

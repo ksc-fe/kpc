@@ -7,8 +7,8 @@ import {useCheck, CheckedKeys} from './useCheck';
 
 export interface TransferProps<T> {
     data?: T[],
-    keyName?: string,
-    labelName?: string,
+    keyName?: keyof T,
+    labelName?: keyof T,
     value?: Key[],
     leftCheckedKeys?: Key[],
     rightCheckedKeys?: Key[],

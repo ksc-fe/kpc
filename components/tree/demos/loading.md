@@ -11,7 +11,7 @@ order: 1.2
 标识该子节点已经加载完成，无需再次加载
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
 <Tree data={this.get('data')} 
     checkbox
@@ -20,9 +20,13 @@ import {Tree} from 'kpc/components/tree';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TreeProps, TreeNode} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    data: NonNullable<TreeProps['data']>
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -40,8 +44,8 @@ export default class extends Component {
     }
 
     @bind
-    loadData(node) {
-        return new Promise(resolve => {
+    loadData(node: TreeNode) {
+        return new Promise<void>(resolve => {
             setTimeout(() => {
                 node.data.children = [
                     {label: 'child1', children: []},
