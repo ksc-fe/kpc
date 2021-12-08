@@ -55,7 +55,7 @@ module.exports = function (config) {
             mocha: {
                 reporter: 'html',
                 ui: 'bdd',
-                allowUncaught: true,
+                // allowUncaught: true,
             }
         },
         snapshot: {

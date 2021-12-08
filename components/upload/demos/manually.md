@@ -34,7 +34,7 @@ export default class extends Component {
     static template = template;
 
     @bind
-    upload(e) {
+    upload() {
         this.refs.instance.submit();
     }
 }

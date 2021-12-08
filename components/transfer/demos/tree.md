@@ -6,8 +6,7 @@ order: 4
 与【完全自定义】示例一样，`Transfer`也可以与`Tree`结合使用
 
 ```vdt
-import {Transfer} from 'kpc/components/transfer';
-import {Tree} from 'kpc/components/tree';
+import {Transfer, Tree} from 'kpc';
 
 <Transfer
     enableAdd={this.enableAdd}
@@ -39,9 +38,25 @@ import {Tree} from 'kpc/components/tree';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, Tree, TreeNode} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    data: DataItem[]
+    leftCheckedKeys: string[]
+    rightCheckedKeys: string[],
+    leftExpandedKeys: string[],
+    rightExpandedKeys: string[],
+    leftData: DataItem[],
+    rightData: DataItem[]
+}
+
+type DataItem = {
+    label: string
+    key: string
+    children?: DataItem[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -94,8 +109,8 @@ export default class extends Component {
     init() {
         // expand all nodes
         const data = this.get('data');
-        const allKeys = [];
-        const loop = (children => {
+        const allKeys: string[] = [];
+        const loop = ((children: DataItem[] | undefined)=> {
             if (children) {
                 children.forEach(item => {
                     allKeys.push(item.key);
@@ -133,14 +148,15 @@ export default class extends Component {
         this.set({leftData: to, rightData: from, rightCheckedKeys: []});
     }
 
-    @bind
-    moveData(tree, from, to) {
+    moveData(tree: Tree, from: DataItem[], to: DataItem[]) {
         from = this.deepClone(from);
         to = this.deepClone(to);
-        const loop = (children, from, to) => {
+        const loop = (children: TreeNode[] | null, from: DataItem[] | null | undefined, to: DataItem[]) => {
+            if (!children) return;
+
             let deleteCount = 0;
-            children.forEach((node, index) => {
-                const data = node.data;
+            children.forEach((node: TreeNode, index: number) => {
+                const data = node.data as DataItem;
                 if (node.checked) {
                     // remove from `from` 
                     if (from) {
@@ -152,7 +168,7 @@ export default class extends Component {
                     if (!newData) {
                         to.push(this.deepClone(data));
                     } else {
-                        loop(node.children, null, newData.children);
+                        loop(node.children, null, newData.children!);
                     }
                 } else if (node.indeterminate) {
                     let newData = to.find(item => item.key === data.key);
@@ -160,32 +176,31 @@ export default class extends Component {
                         newData = {...data, children: []};
                         to.push(newData);
                     }
-                    loop(node.children, from[index - deleteCount].children, newData.children);
+                    loop(node.children, from![index - deleteCount].children, newData.children!);
                 }
             });
         };
 
-        loop(tree.nodes.getNodes(), from, to);
+        loop(tree.getNodes(), from, to);
 
         return {from, to};
     }
 
-    @bind
-    deepClone(data) {
+    deepClone<T>(data: T): T {
         if (data == null) return data;
 
         if (Array.isArray(data)) {
             return data.map(item => {
                 return this.deepClone(item);
-            });
+            }) as unknown as T;
         } 
 
         if (typeof data === 'object') {
-            const ret = {};
+            const ret: any = {};
             for (let key in data) {
                 ret[key] = this.deepClone(data[key]);
             }           
-            return ret;
+            return ret as T;
         }
 
         return data;

@@ -9,6 +9,7 @@
  */
 
 export {_$, localize} from './i18n';
+export {bind} from './components/utils';
 
 /* generate start */
 

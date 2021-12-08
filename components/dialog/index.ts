@@ -1,12 +1,17 @@
 import {BaseDialog, BaseDialogProps, BaseDialogEvents} from './base';
 import {createVNode, VNodeComponentClass, callAll, Props, ComponentClass} from 'intact';
 import {_$} from '../../i18n';
-import {addStaticMethods} from './staticMethods';
+import {addStaticMethods, StaticMethod} from './staticMethods';
 
 export interface DialogProps extends BaseDialogProps { }
 export interface DialogEvents extends BaseDialogEvents { }
 
 export class Dialog extends BaseDialog<DialogProps, DialogEvents> {
+    static success: StaticMethod;
+    static warning: StaticMethod;
+    static error: StaticMethod;
+    static confirm: StaticMethod;
+
     public useAsComponent = false;
 
     constructor(

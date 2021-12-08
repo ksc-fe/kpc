@@ -1,4 +1,5 @@
 const {resolve} = require('../utils');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const noParse = [
     // 'intact',
@@ -107,5 +108,14 @@ module.exports = (config) => {
                     }
                 })
                 .end()
-            .end()
+            .end();
+
+    config.plugin('ts-checker').use(ForkTsCheckerWebpackPlugin, [{
+        typescript: {
+            diagnosticOptions: {
+                semantic: true,
+                syntactic: true,
+            },
+        },
+    }]);
 };

@@ -9,6 +9,11 @@ import {useFilter} from './useFilter';
 import {useDraggable, Mode} from './useDraggable';
 import {useTransitionEvent} from './useTransitionEvent';
 
+export type {
+    Node as TreeNode,
+    DataItem as TreeDataItem,
+};
+
 export interface TreeProps {
     data?: DataItem[]
     filter?: Filter 
