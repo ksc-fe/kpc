@@ -25,7 +25,7 @@ export default class extends Component {
 
     static defaults() {
         return {
-            data: Array.apply(null, {length: 12})
+            data: Array.apply(null, {length: 12} as unknown[])
                 .map((v, i) => ({label: i + 1 + '月', value: i}))
         };
     }

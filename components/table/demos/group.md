@@ -11,7 +11,7 @@ order: 18
 
 当分组方式改变时，可以监听默认事件`$change:group`来执行自定义分组逻辑
 
-> `group`属性不会双向绑定，所以在改变时，你应该同步更新当前属性值(`sort`也一样)
+> `group`改变时，你应该同步更新当前属性值(`sort`也一样)
 
 ```vdt
 import {Table, TableColumn} from 'kpc/components/table';
@@ -64,14 +64,24 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TableGroupValue} from 'kpc';
 
-const oData = [
+interface Props {
+    data: DataItem[]
+    multipleData: DataItem[]
+}
+
+type DataItem = {
+    name: string
+    status: string
+}
+
+const oData: DataItem[] = [
     {name: '主机1', status: 'active'},
     {name: '主机2', status: 'stopped'},
     {name: '主机3', status: 'active'},
 ];
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -84,13 +94,13 @@ export default class extends Component {
     }
 
     @bind
-    _onChangeGroup(group) {
+    _onChangeGroup(group: TableGroupValue) {
         console.log(group);
         const data = oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
-                if (value && item[key] !== value) {
+                if (value && item[key as keyof DataItem] !== value) {
                     matched = false;
                     break;
                 }
@@ -102,13 +112,13 @@ export default class extends Component {
     }
 
     @bind
-    _onChangeMultipleGroup(group) {
+    _onChangeMultipleGroup(group: TableGroupValue) {
         console.log(group);
         const data = oData.filter(item => {
             let matched = true;
             for (let key in group) {
                 const value = group[key];
-                if (value.length && value.indexOf(item[key]) === -1) {
+                if (value.length && value.indexOf(item[key as keyof DataItem]) === -1) {
                     matched = false;
                     break;
                 }

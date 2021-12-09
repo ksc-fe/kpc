@@ -6,8 +6,7 @@ order: 5
 组件默认会展示当前百分比，我们可以给组件添加子元素展示任意内容
 
 ```vdt
-import {Progress} from 'kpc/components/progress';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Progress, Button, ButtonGroup} from 'kpc';
 
 <div>
     <Progress percent={this.get('percent')} type="circle">
@@ -35,7 +34,12 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 
 ```ts
 import {bind} from 'kpc/components/utils';
-export default class extends Component {
+
+interface Props {
+    percent: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

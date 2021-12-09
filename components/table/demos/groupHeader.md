@@ -3,13 +3,12 @@ title: 表头分组
 order: 12
 ---
 
-`scheme`和`TableColumn`两种方式都可以定义分组的表头。`scheme`方式下，只需要嵌套定义`scheme`字段即可；
-`TableColumn`方式下，嵌套使用`TableColumn`即可
+嵌套使用`TableColumn`即可定义表头分组
 
-> 不管那种方式定义分组表头，`key`必须在当前表格下唯一
+> `key`必须在当前表格下必须唯一
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <Table data={this.get('data')} type="grid" resizable stickHeader="87">
     <TableColumn title="Weekday" key='weekday' fixed="left" width="100" />
@@ -36,7 +35,7 @@ const weekdays = ['Monday', 'Tuesday', 'Wendesday', 'Thursday', 'Friday'];
 const classes = ['English', 'Mathematics', 'Chinese', 'History', 'Geopraghy'];
 let index = 0;
 const randomClasses = () => {
-    const ret = {};
+    const ret: Record<string, string> = {};
     for (let i = 0; i < 7; i++) {
         // ret[`class${i + 1}`] = classes[Math.floor(Math.random() * classes.length)];
         ret[`class${i + 1}`] = classes[(i + index) % classes.length];

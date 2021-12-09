@@ -12,7 +12,7 @@ order: 8
 * `expandedKeys`：指定哪些`key`对应行展开，类型`Array`，默认`[]`
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div class='tables'>
     <Table 
@@ -70,9 +70,19 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TableRowKey} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    expandedKeys: TableRowKey[]
+    data: DataItem[]
+}
+
+type DataItem = {
+    name: string
+    email: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -86,7 +96,7 @@ export default class extends Component {
     }
 
     @bind
-    toggleExpand(data, index) {
+    toggleExpand(data: DataItem, index: number) {
         const expandedKeys = this.get('expandedKeys').slice(0);
         const i = expandedKeys.indexOf(index);
         if (i > -1) {

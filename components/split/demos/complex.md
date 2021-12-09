@@ -7,12 +7,7 @@ order: 3
 调整面板的大小，来模拟显示和隐藏面板的效果
 
 ```vdt
-import {Split} from 'kpc/components/split';
-import {Table, TableColumn} from 'kpc/components/table';
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {FormItem} from 'kpc/components/form';
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Split, Table, TableColumn, Tabs, Tab, FormItem, Button, Icon} from 'kpc';
 
 <div class="split-container">
     <Split mode="vertical"
@@ -26,7 +21,7 @@ import {Icon} from 'kpc/components/icon';
                 ref="table"
                 rowCheckable={false}
                 v-model:checkedKeys="checkedKeys"
-                ev-click:row={this._onClickRow}
+                ev-clickRow={this._onClickRow}
                 ev-$change:checkedKeys={this._togglePanel}
             >
                 <TableColumn title="名称" key="name" />
@@ -76,6 +71,9 @@ import {Icon} from 'kpc/components/icon';
         flex-direction column
     .k-table
         flex 1
+        height 100%
+    .k-table-wrapper 
+        height 100%
     .k-pagination
         padding 10px
         border-top 1px solid $table-border-color
@@ -96,13 +94,26 @@ import {Icon} from 'kpc/components/icon';
         z-index 1
 ```
 ```ts
-import {range} from 'kpc/components/utils';
-import {bind} from 'kpc/components/utils';
+import {range, bind} from 'kpc/components/utils';
+import {nextTick} from 'intact';
 
-export default class extends Component {
+interface Props {
+    data: DataItem[]
+    tab: string
+    size: string
+    selectedData?: DataItem
+    checkedKeys: string[]
+}
+
+type DataItem = {
+    name: string
+    ip: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: range(0, 10).map(item => {
                 return {
@@ -129,10 +140,10 @@ export default class extends Component {
     }
 
     @bind
-    _togglePanel(table, keys) {
+    _togglePanel(keys: string[]) {
         if (keys.length === 1) {
             // 只选中一行时，展开详情面板
-            const data = table.getCheckedData()[0];
+            const data = this.refs.table.getCheckedData()[0];
             this.set('selectedData', data);
             this._open();
         } else {
@@ -141,16 +152,19 @@ export default class extends Component {
     }
 
     @bind
-    _onClickRow(data, index, key) {
-        const checkedKeys = this.get('checkedKeys');
+    _onClickRow(data: DataItem, index: number, key: string) {
+        let checkedKeys = this.get('checkedKeys');
         if (checkedKeys.length === 1 && checkedKeys[0] === key) {
             // 如果只选中了一行，再次点击当前行，则取消选中
-            key = [];
+            checkedKeys = [];
         } else {
             // 否则只选中当前行
-            key = [key];
+            checkedKeys = [key];
         }
-        this.set('checkedKeys', key);
+        this.set('checkedKeys', checkedKeys);
+        nextTick(() => {
+            this._togglePanel(checkedKeys);
+        });
     }
 }
 ```

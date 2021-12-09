@@ -35,14 +35,18 @@ import {Tag} from 'kpc/components/tag';
 ```ts
 import {bind} from 'kpc/components/utils';
 
-export default class extends Component {
+interface Props {
+    tags: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
     static defaults = () => ({
         tags: ['large', 'default', 'small', 'mini']
     });
 
     @bind
-    onClose(index) {
+    onClose(index: number) {
         let tags = this.get('tags').slice(0);
         tags.splice(index, 1);
         this.set('tags', tags);
