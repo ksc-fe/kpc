@@ -15,7 +15,7 @@ import {
     DHexagon, DTriangle, DCylinder, DCloud,
     DDocument, DCallout,
 } from 'kpc/components/diagram';
-import {Button, ButtonGroup} from 'kpc/components/button'
+import {Button, ButtonGroup} from 'kpc';
 
 const states = this.get('states');
 <div>
@@ -47,7 +47,21 @@ const states = this.get('states');
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    states: States
+    selectedStates: (keyof States)[]
+}
+
+type States = {
+    selectable: boolean
+    movable: boolean
+    connectable: boolean
+    resizable: boolean
+    rotable: boolean
+    editable: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -66,9 +80,9 @@ export default class extends Component {
 
     init() {
         this.on('$change:selectedStates', (v) => {
-            const states = {};
+            const states = {} as States;
             for (let key in this.get('states')) {
-                states[key] = v.indexOf(key) > -1;
+                states[key as keyof States] = v.indexOf(key as keyof States) > -1;
             }
             this.set('states', states);
         });

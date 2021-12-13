@@ -65,3 +65,13 @@ import {TreeSelect} from 'kpc/components/treeSelect';
     ]}
 />
 ```
+
+```ts
+interface Props {
+    values: string[]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+}
+```

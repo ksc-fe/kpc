@@ -27,7 +27,11 @@ import {Input} from 'kpc/components/input';
 import tinycolor from 'tinycolor2';
 import {bind} from 'kpc/components/utils';
 
-export default class extends Component {
+interface Props {
+    value: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -38,7 +42,7 @@ export default class extends Component {
 
     @bind
     onInput(e: InputEvent) {
-        const value = e.target.value.trim();
+        const value = (e.target as HTMLInputElement).value.trim();
         const color = tinycolor(value);
         if (color.isValid()) {
             const newValue = color.toHexString();

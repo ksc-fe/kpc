@@ -27,10 +27,15 @@ import {Pagination} from 'kpc/components/pagination';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
-import {bind} from 'kpc/components/utils';
+import {Message, bind} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    current1: number
+    current2: number
+    limit: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -42,14 +47,14 @@ export default class extends Component {
     }
 
     @bind
-    _fetch1(v) {
+    _fetch1(v: number) {
         // fetch data
         this.set('current1', v);
         Message.info(`current page: ${v}`);
     }
 
     @bind
-    _fetch2({current, limit}) {
+    _fetch2({current, limit}: {current: number, limit: number}) {
         Message.info(`current page: ${current}, limit: ${limit}`);
     }
 }

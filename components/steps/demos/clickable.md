@@ -32,7 +32,11 @@ import {Button} from 'kpc/components/button';
 ```ts
 import {bind} from 'kpc/components/utils';
 
-export default class extends Component {
+interface Props {
+    index: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

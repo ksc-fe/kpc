@@ -93,6 +93,7 @@ function getAllCodes(file) {
     const codes = [];
     const exampleReg = /^(example-?)/;
     renderer.code = function(code, language) {
+        if (language === 'angular') return '';
         // for rendering example to html
         if (exampleReg.test(language)) {
             language = language.replace(exampleReg, "") || 'js';

@@ -30,10 +30,10 @@ export interface TableProps<T = any> {
     type?: 'default' | 'border' | 'grid'
     stripe?: boolean
     rowClassName?: (value: T, index: number, key: TableRowKey) => string | undefined
-    group?: Record<string, any> 
+    group?: TableGroupValue
     sort?: TableSortValue 
     loading?: boolean
-    merge?: TableMerge
+    merge?: TableMerge<T>
     expandedKeys?: TableRowKey[]
     rowExpandable?: boolean
     selectedKeys?: TableRowKey[]
@@ -63,10 +63,12 @@ export interface TableBlocks<T = unknown> {
 }
 
 export type TableRowKey = string | number;
-export type TableSortValue = {
-    key?: string
+export type TableSortValue<T = string> = {
+    key?: T 
     type?: 'desc' | 'asc'
 }
+
+export type TableGroupValue<T extends string | number | symbol = string> = Record<T, any | any[]> 
 
 const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     data: Array,

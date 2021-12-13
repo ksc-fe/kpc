@@ -134,10 +134,17 @@ import {Datepicker} from 'kpc/components/datepicker';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
-import {bind} from 'kpc/components/utils';
+import {Message, bind} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    model: Model
+}
+
+type Model = {
+    checkbox: string[] 
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

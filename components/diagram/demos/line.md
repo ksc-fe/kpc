@@ -11,11 +11,7 @@ order: 2
 
 ```vdt
 import {Diagram, DLine, DRectangle, DStackLayout} from 'kpc/components/diagram';
-import {Form, FormItem} from 'kpc/components/form';
-import {Button, ButtonGroup} from 'kpc/components/button';
-// import {Slider} from 'kpc/components/slider';
-import {Spinner as Slider} from 'kpc/components/spinner';
-import {Checkbox} from 'kpc/components/checkbox';
+import {Form, FormItem, Button, ButtonGroup, Slider, Checkbox} from 'kpc';
 
 const keys = ['A', 'B', 'C'];
 
@@ -35,7 +31,7 @@ const keys = ['A', 'B', 'C'];
                 max={1000}
                 isShowInput={false}
                 showTooltip
-                ev-$change:value={this._onSliderChange.bind(this, $value, index)}
+                ev-$change:value={this.onSliderChange.bind(this, $value, index)}
             >
                 <b:tooltip args="value">
                     {index === 0 ? 'x: ' : 'y: '} {value}
@@ -62,7 +58,7 @@ const keys = ['A', 'B', 'C'];
                 step={0}
                 isShowInput={false}
                 showTooltip
-                ev-$change:value={this._onSliderChange.bind(this, $value, index)}
+                ev-$change:value={this.onSliderChange.bind(this, $value, index)}
                 disabled={!this.get(`use${$value}`)}
             >
                 <b:tooltip args="value">
@@ -102,7 +98,22 @@ const keys = ['A', 'B', 'C'];
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    startArrow: string
+    endArrow: string
+    startPoint: [number, number]
+    endPoint: [number, number]
+    type: string
+    strokeStyle: string
+    from: string | null
+    to: string | null
+    exit: [number, number]
+    entry: [number, number]
+    useexit: boolean
+    useentry: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -122,8 +133,8 @@ export default class extends Component {
         };
     }
 
-    _onSliderChange(name, index, c, value) {
-        let propValue = this.get(name).slice(0);
+    onSliderChange(name: {[K in keyof Props]: Props[K] extends unknown[] ? K : never}[keyof Props], index: number, value: number) {
+        let propValue = this.get(name).slice(0) as [number, number];
         propValue[index] = value;
         this.set(name, propValue);
     }

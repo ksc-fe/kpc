@@ -9,11 +9,13 @@ iframe: 400
 `Menu`中
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Icon} from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
-import {Button} from 'kpc/components/button';
+import {
+    Layout, Header, Aside, Body, Footer,
+    Menu, MenuItem,
+    Icon,
+    Breadcrumb, BreadcrumbItem,
+    Button,
+} from 'kpc';
 
 <Layout class="layout">
     <Aside collapse={this.get('collapse')} fixed theme="white">
@@ -81,7 +83,14 @@ import {Button} from 'kpc/components/button';
 ```ts
 import {bind} from 'kpc/components/utils';
 
-export default class Demo extends Component {
+interface Props {
+    expandedKeys: string[]
+    selectedKey: string
+    collapse: boolean
+    data: any[]
+}
+
+export default class Demo extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -89,7 +98,7 @@ export default class Demo extends Component {
             expandedKeys: [],
             selectedKey: '3-1',
             collapse: false,
-            data: Array.apply(null, {length: 100}),
+            data: Array.apply(null, {length: 100} as unknown[]),
         };
     }
 

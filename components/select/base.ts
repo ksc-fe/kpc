@@ -16,6 +16,7 @@ import {Dropdown} from '../dropdown';
 import {State} from '../../hooks/useState';
 import {useInput} from './useInput';
 import {Container} from '../portal';
+import {useFocusout} from './useFocusout';
 
 export interface BaseSelectProps {
     value?: any
@@ -38,6 +39,7 @@ export interface BaseSelectProps {
 
 export interface BaseSelectEvents {
     keypress: [KeyboardEvent]
+    focusout: [FocusEvent]
     show: []
     hide: []
 }
@@ -83,6 +85,7 @@ export abstract class BaseSelect<
 
     public dropdownRef = createRef<Dropdown>(); 
     public input = useInput(this.resetKeywords);
+    private focusout = useFocusout();
 
     init() {
         provide(SELECT, this);

@@ -8,7 +8,7 @@ order: 7
 > 支持异步函数
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs v-model="tab" beforeChange={this.beforeChange}>
@@ -31,7 +31,7 @@ import {Tabs, Tab} from 'kpc/components/tabs';
 ```
 
 ```ts
-import {Dialog} from 'kpc/components/dialog';
+import {Dialog} from 'kpc';
 
 export default class extends Component {
     static template = template;
@@ -42,7 +42,7 @@ export default class extends Component {
         }
     }
 
-    beforeChange(value) {
+    beforeChange(value: string) {
         return new Promise(resolve => {
             Dialog.confirm({
                 content: `Are you sure to change to "${value}"`

@@ -13,12 +13,18 @@ order: 7
 > 对于已经加载完成的数据，组件会修改原始数据，往数据上添加`loaded = true`
 
 ```vdt
-import {Cascader} from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <Cascader data={this.get('data')} loadData={this.loadData} />
 ```
 
 ```ts
+import {CascaderData} from 'kpc';
+
+interface Props {
+    data: CascaderData[]
+}
+
 export default class extends Component {
     static template = template;
 
@@ -39,8 +45,8 @@ export default class extends Component {
         };
     }
 
-    loadData(item) {
-        return new Promise(resolve => {
+    loadData(item: CascaderData) {
+        return new Promise<void>(resolve => {
             setTimeout(() => {
                 switch (item.value) {
                     case 'beijing':

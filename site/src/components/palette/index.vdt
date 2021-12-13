@@ -1,4 +1,4 @@
-import Input from 'kpc/components/input';
+import {Input} from 'kpc';
 
 <div class="palette">
     <ul class="c-clearfix">

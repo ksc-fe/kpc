@@ -24,7 +24,7 @@ import {Message} from 'kpc/components/message';
 export default class extends Component {
     static template = template;
 
-    search(keywords) {
+    search(keywords: string) {
         Message.success('Search by keywords: ' + keywords);
     }
 }

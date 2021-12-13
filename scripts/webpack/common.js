@@ -15,7 +15,7 @@ module.exports = (config) => {
             .alias
                 .set('vue$', 'vue/dist/vue.js')
                 // .set('intact$', 'intact-vue')
-                .set('kpc$', resolve('index.js'))
+                .set('kpc$', resolve('index.ts'))
                 .set('kpc', root)
                 .set('kpc-vue', root)
                 .set('kpc-react', root)

@@ -32,6 +32,7 @@ const placeholder = this.getPlaceholder();
 const label = this.getLabel();
 const hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
+const {onFocusout, triggerRef} = this.focusout;
 
 <Dropdown
     trigger="click"
@@ -40,9 +41,13 @@ const {onInput, inputRef, keywords: {value: keywords}} = this.input;
     container={container}
     v-model="_show"
 >
-    <div {...getRestProps(this)} class={classNameObj} tabindex="0"
+    <div {...getRestProps(this)} 
+        class={classNameObj}
+        tabindex={disabled ? '-1' : '0'}
         ev-keydown={this.onKeypress}
+        ev-focusout={onFocusout}
         style={!isNullOrUndefined(width) ? addStyle(style, {width: `${width}px`}) : style}
+        ref={triggerRef}
     >
         <div class="k-select-prefix" v-if={$blocks.prefix}>
             <b:prefix />

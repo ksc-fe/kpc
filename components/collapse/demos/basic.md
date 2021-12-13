@@ -41,7 +41,7 @@ export default class extends Component {
         return {value: ['$0']};
     }
 
-    onShow(c) {
+    onShow() {
         console.log('show');
     }
 }

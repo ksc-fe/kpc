@@ -10,8 +10,7 @@ order: 3
  `{ percent: '需要设置的百分比值' , color: '对应的进度条颜色'}`
 
 ```vdt
-import {Progress} from 'kpc/components/progress';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Progress, Button, ButtonGroup} from 'kpc';
 
 <div>
     <Progress percent={this.get('percent')} color={this.get('color')}/>
@@ -33,7 +32,19 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 
 ```ts
 import {bind} from 'kpc/components/utils';
-export default class extends Component {
+
+interface Props {
+    color: string
+    colors: Color[]
+    percent: number
+}
+
+type Color = {
+    color: string
+    percent: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -63,7 +74,7 @@ export default class extends Component {
         this.set('percent', this.get('percent') - 25);
     }
 
-    setColor(percent) {
+    setColor(percent: number) {
         if (percent <= 50) {
             return '#D1FDD5';
         } else {

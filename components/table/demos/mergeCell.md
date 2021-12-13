@@ -18,7 +18,7 @@ order: 15
 > 注意：禁选行和选中行默认没有给出高亮，如果需要请自行设置高亮。
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div class='merge-cell'>
     <Table data={this.get('data')}
@@ -82,9 +82,26 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TableColumnProps} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    data: DataItem[]
+}
+
+type DataItem = {
+    weekday: string
+    class1: string
+    class2: string
+    class3: string
+    class4: string
+    class5: string
+    class6: string
+    class7: string
+    foreoonTime: string
+    afternoonTime: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -167,7 +184,7 @@ export default class extends Component {
     }
 
     @bind
-    merge(row, column, rowIndex, columnIndex) {
+    merge(row: DataItem, column: TableColumnProps, rowIndex: number, columnIndex: number) {
         if (columnIndex === 0) {
             // is check column
             if (rowIndex === 0) {
@@ -196,12 +213,12 @@ export default class extends Component {
         }
 
         // merge the same classes horizontally
-        const columns = [];
-        for (let i = 1; i <= 7; i++) columns.push(`class${i}`);
+        const columns: (keyof DataItem)[] = [];
+        for (let i = 1; i <= 7; i++) columns.push(`class${i}` as keyof DataItem);
 
         let colspan = 1;
-        const value = row[column.key];
-        for (let i = columns.indexOf(column.key) + 1; i < 7; i++) {
+        const value = row[column.key as keyof DataItem];
+        for (let i = columns.indexOf(column.key as keyof DataItem) + 1; i < 7; i++) {
             const nextValue = row[columns[i]];
             if (nextValue !== value) break;
             colspan++;
@@ -211,7 +228,7 @@ export default class extends Component {
     }
 
     @bind
-    disableRow(data: any, index: number) {
+    disableRow(data: DataItem, index: number) {
         return index === 1 || index === 5;
     }
 }

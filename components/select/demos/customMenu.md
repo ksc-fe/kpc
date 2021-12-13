@@ -8,11 +8,7 @@ order: 5.2
 > 此时需要给`Select`添加`allowUnmatch`属性，否则组件判断`value`不在可选的`Option`中时，会清空`value`值
 
 ```vdt
-import {Select} from 'kpc/components/select';
-// import {Table, TableColumn} from 'kpc/components/table';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Select, Table, TableColumn, Input, Button, Icon} from 'kpc';
 
 <Select value={this.text()}
     class="custom-select"
@@ -23,7 +19,7 @@ import {Icon} from 'kpc/components/icon';
         <Input placeholder="请输入关键字" size="small" fluid v-model="keywords">
             <b:suffix><Icon class="ion-ios-search" /></b:suffix>
         </Input>
-        <!--<Table data={this.filter()}
+        <Table data={this.filter()}
             type="border"
             fixHeader="200" 
             ref="table"
@@ -32,7 +28,7 @@ import {Icon} from 'kpc/components/icon';
         >
             <TableColumn title="Name" key="name" />
             <TableColumn title="Domain" key="domain" />
-        </Table>-->
+        </Table>
         <div class="footer">
             <Button type="primary" size="small" ev-click={this.confirm}>确定</Button>
             <Button size="small" ev-click={this.hide}>取消</Button>
@@ -57,7 +53,18 @@ import {Icon} from 'kpc/components/icon';
 ```ts
 import {bind} from 'kpc/components/utils';
 
-export default class extends Component {
+interface Props {
+    values: DataItem[]
+    keywords: string
+    data: DataItem[]
+}
+
+type DataItem = {
+    name: string
+    domain: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
