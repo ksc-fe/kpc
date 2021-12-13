@@ -37,6 +37,7 @@ const typeDefs: Required<TypeDefs<TreeSelectProps>> = {
 };
 
 const defaults = (): Partial<TreeSelectProps> => ({
+    ...BaseSelect.defaults(),
     defaultExpandAll: true,
     showLine: true,
 });
