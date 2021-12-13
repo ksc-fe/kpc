@@ -1,9 +1,12 @@
+import {Component} from 'intact';
 import BasicDemo from '~/components/upload/demos/basic';
 import DragDemo from '~/components/upload/demos/drag';
 import GalleryDemo from '~/components/upload/demos/gallery';
 import ManuallyDemo from '~/components/upload/demos/manually';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import {Upload} from './';
+import {RequestError} from './';
+import {bind} from '../utils';
 
 type Options = {
     name?: string,
@@ -46,7 +49,7 @@ describe('Upload', () => {
     });
 
     afterEach(function(done) {
-        // unmount(instance);
+        unmount();
         respond = xhr => { xhr.respond(200) };
         this.xhr.restore();
         setTimeout(done, 400);
@@ -150,147 +153,155 @@ describe('Upload', () => {
         });
     });
 
-    // it('manually', function(done) {
-        // this.enableTimeouts(false);
-        // instance = mount(ManuallyDemo);
+    it('manually', function(done) {
+        this.timeout(0);
+        const [instance, element] = mount(ManuallyDemo);
 
-        // const upload = instance.vdt.vNode.children;
-        // upload.one('success', async () => {
-            // await wait(500);
-            // expect(instance.element.innerHTML).to.matchSnapshot();
-            // done();
-        // });
+        const upload = instance.$lastInput!.children as Upload;
+        upload.on('success', async () => {
+            await wait(500);
+            expect(element.innerHTML).to.matchSnapshot();
+            done();
+        });
 
-        // const input = instance.element.querySelector('input');
-        // fixInputChange(input);
-        // input.files = getDataTransfer(['a']).files;
-        // expect(instance.element.innerHTML).to.matchSnapshot();
-        // instance.upload();
-    // });
+        const input = element.querySelector('input') as HTMLInputElement;
+        fixInputChange(input);
+        input.files = getDataTransfer(['a']).files;
+        wait(500).then(() => {
+            expect(element.innerHTML).to.matchSnapshot();
+            instance.upload();
+        });
+    });
 
-    // it('should trigger error event when exceed the maxSize', (done) => {
-        // class Demo extends Intact {
-            // @Intact.template()
-            // static template = `<Upload maxSize={{ 1 }} ev-error={{ self._onError }}/>`;
-            // _init() {
-                // this.Upload = Upload;
-            // }
-            // _onError(e) {
-                // expect(e.message).to.matchSnapshot();
-                // done();
-            // }
-        // }
-        // instance = mount(Demo);
-        // const input = instance.element.querySelector('input');
-        // fixInputChange(input);
-        // input.files = getDataTransfer(['a'.repeat(1025 * 1)], {name: 'a'}).files;
-    // });
+    it('should trigger error event when exceed the maxSize', (done) => {
+        class Demo extends Component {
+            static template = `const {Upload} = this; <Upload maxSize={1} ev-error={this._onError} />`;
 
-    // it('should handle error on uploading correctly', function(done) {
-        // this.enableTimeouts(false);
-         // class Demo extends Intact {
-            // @Intact.template()
-            // static template = `
-                // <Upload
-                    // action="//localhost"
-                    // ev-error={{ self._onError }}
-                // />
-            // `;
-            // _init() {
-                // this.Upload = Upload;
-            // }
-            // async _onError(e) {
-                // await wait(500);
-                // // FIXME: the innerHTML has string: `height: 44px;` when we run test in travis-ci
-                // expect(instance.element.innerHTML.replace(/height: \d+px;/, '')).to.matchSnapshot();
-                // done();
-            // }
-        // }
-        // instance = mount(Demo);
-        // const input = instance.element.querySelector('input');
-        // fixInputChange(input);
-        // input.files = getDataTransfer(['a'.repeat(1024 * 100)], {name: 'a'}).files;
+            private Upload = Upload;
 
-        // respond = xhr => xhr.respond(500)
-    // });
+            _onError(e: Error | RequestError) {
+                expect(e.message).to.matchSnapshot();
+                done();
+            }
+        }
 
-    // it('should abort request when remove file in progress', function(done) {
-        // this.enableTimeouts(false);
-        // class Demo extends Intact {
-            // @Intact.template()
-            // static template = `
-                // <Upload
-                    // action="//jsonplaceholder.typicode.com/posts/"
-                    // ref="upload"
-                // />
-            // `;
-            // _init() {
-                // this.Upload = Upload;
-            // }
-        // }
-        // instance = mount(Demo);
-        // const input = instance.element.querySelector('input');
-        // fixInputChange(input);
-        // input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
-        // instance.refs.upload.one('progress', async () => {
-            // instance.element.querySelector('.k-close').click();
-            // await wait(500);
-            // expect(instance.element.innerHTML).to.matchSnapshot();
-            // done();
-        // });
-    // });
+        const [instance, element] = mount(Demo);
+        const input = element.querySelector('input') as HTMLInputElement;
+        fixInputChange(input);
+        input.files = getDataTransfer(['a'.repeat(1025 * 1)], {name: 'a'}).files;
+    });
 
-    // it('should check file type', (done) => {
-        // const i = new Upload({accept: '.jpg, image/png, video/*, .tar'});
-        // expect(!!i._isValidType('image/gif', '')).to.be.false;
-        // expect(!!i._isValidType('image/jpg', 'a.jpg')).to.be.true;
-        // expect(!!i._isValidType('image/jpg', 'a.JPG')).to.be.true;
-        // expect(!!i._isValidType('image/png', '')).to.be.true;
-        // expect(!!i._isValidType('video/avi', '')).to.be.true;
-        // expect(!!i._isValidType('application/x-tar', 'a.tar')).to.be.true;
+    it('should handle error on uploading correctly', function(done) {
+        this.timeout(0);
+        class Demo extends Component {
+            static template = `
+                const {Upload} = this;
+                <Upload
+                    action="//localhost"
+                    ev-error={this._onError}
+                />
+            `;
+
+            private Upload = Upload;
+
+            async _onError(e: Error | RequestError) {
+                await wait(500);
+                // FIXME: the innerHTML has string: `height: 44px;` when we run test in travis-ci
+                // expect(element.innerHTML.replace(/height: \d+px;/, '')).to.matchSnapshot();
+                expect(element.innerHTML).to.matchSnapshot();
+                done();
+            }
+        }
+        const [instance, element] = mount(Demo);
+        const input = element.querySelector('input') as HTMLInputElement;
+        fixInputChange(input);
+        input.files = getDataTransfer(['a'.repeat(1024 * 100)], {name: 'a'}).files;
+
+        respond = xhr => xhr.respond(500)
+    });
+
+    it('should abort request when remove file in progress', function(done) {
+        this.timeout(0);
+        class Demo extends Component {
+            static template = `
+                const {Upload} = this;
+                <Upload
+                    action="//jsonplaceholder.typicode.com/posts/"
+                    ref="upload"
+                />
+            `;
+            private Upload = Upload;
+        }
+
+        const [instance, element] = mount(Demo);
+        const input = element.querySelector('input') as HTMLInputElement;
+        fixInputChange(input);
+        input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
+        instance.refs.upload.on('progress', async () => {
+            (element.querySelector('.k-upload-close') as HTMLElement).click();
+            await wait(500);
+            expect(element.innerHTML).to.matchSnapshot();
+            done();
+        });
+    });
+
+    it('should check file type', (done) => {
+        const i = new (Upload as any)({accept: '.jpg, image/png, video/*, .tar'}, null, null, null, null);
+        i.$init();
+        expect(!!i.accept.isValidType('image/gif', '')).to.be.false;
+        expect(!!i.accept.isValidType('image/jpg', 'a.jpg')).to.be.true;
+        expect(!!i.accept.isValidType('image/jpg', 'a.JPG')).to.be.true;
+        expect(!!i.accept.isValidType('image/png', '')).to.be.true;
+        expect(!!i.accept.isValidType('video/avi', '')).to.be.true;
+        expect(!!i.accept.isValidType('application/x-tar', 'a.tar')).to.be.true;
         
-        // instance = mount(BasicDemo);
+        const [instance, element] = mount(BasicDemo);
 
-        // const upload = instance.vdt.vNode.children;
-        // upload.on('error', (e) => {
-            // expect(e.message).to.matchSnapshot();
-            // done();
-        // });
+        const upload = instance.$lastInput!.children as Upload;
+        upload.on('error', (e) => {
+            expect(e.message).to.matchSnapshot();
+            done();
+        });
 
-        // const input = instance.element.querySelector('input');
-        // fixInputChange(input);
-        // input.files = getDataTransfer(['a'], {type: 'avi'}, 'video/avi').files;
-    // });
+        const input = element.querySelector('input') as HTMLInputElement;
+        fixInputChange(input);
+        input.files = getDataTransfer(['a'], {type: 'avi'}, 'video/avi').files;
+    });
 
-    // it('should not add file if beforeUpload returns false', (done) => {
-        // class Demo extends Intact {
-            // @Intact.template()
-            // static template = `
-                // <Upload
-                    // action="//jsonplaceholder.typicode.com/posts/"
-                    // ref="upload"
-                    // beforeUpload={{ self.beforeUpload }}
-                    // type="gallery"
-                    // limit={{ 1 }}
-                // />
-            // `;
-            // _init() {
-                // this.Upload = Upload;
-            // }
-            // beforeUpload(file) {
-                // return new Promise((resolve, reject) => {
-                    // setTimeout(() => {
-                        // const files = this.refs.upload.get('files');
-                        // expect(files.length).to.eql(0);
-                        // reject();
-                        // done();
-                    // }, 100);
-                // });
-            // }
-        // }
-        // instance = mount(Demo);
-        // const input = instance.element.querySelector('input');
-        // fixInputChange(input);
-        // input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
-    // });
+    it('should not add file if beforeUpload returns false', (done) => {
+        class Demo extends Component {
+            static template = `
+                const {Upload} = this;
+                <Upload
+                    action="//jsonplaceholder.typicode.com/posts/"
+                    ref="upload"
+                    beforeUpload={this.beforeUpload}
+                    type="gallery"
+                    limit={1}
+                />
+            `;
+
+            private Upload = Upload;
+
+            @bind
+            beforeUpload() {
+                return new Promise<boolean>((resolve, reject) => {
+                    setTimeout(() => {
+                        setTimeout(() => {
+                            const files = this.refs.upload.get('files');
+                            expect(files.length).to.eql(0);
+
+                            done();
+                        });
+
+                        resolve(false);
+                    }, 100);
+                });
+            }
+        }
+        const [instance, element] = mount(Demo);
+        const input = element.querySelector('input') as HTMLInputElement;
+        fixInputChange(input);
+        input.files = getDataTransfer(['a'.repeat(1024 * 512)], {name: 'a'}).files;
+    });
 });

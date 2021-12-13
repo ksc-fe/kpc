@@ -1,14 +1,18 @@
 import template from './index.vdt';
-import Intact from 'intact';
+import {Component} from 'intact';
 import './index.styl';
 import Chroma from 'chroma-js';
-import Message from 'kpc/components/message';
+import {Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface PaletteProps  {
+    primaryColor: string
+    colors: string[]
+}
+
+export default class extends Component<PaletteProps> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             primaryColor: '#0091ea',
             colors: [],
@@ -31,7 +35,7 @@ export default class extends Intact {
         this.set({colors});
     }
 
-    _palette(color, level) {
+    _palette(color: string, level: number) {
         const [h, s, b] = Chroma(color).hsv();
         const deS = s < 0.1 ? 0 : (s - 0.1) / 4;
         const inS = (1 - s) / 4;
@@ -46,10 +50,11 @@ export default class extends Intact {
             return color;
     }
 
-    _changeColor(e) {
-        const value = e.target.value.trim();
+    _changeColor(e: InputEvent) {
+        const target = e.target as HTMLInputElement;
+        const value = target.value.trim();
         if (/#[0-9a-f]{6}/i.test(value)) {
-            this.set('primaryColor', e.target.value);
+            this.set('primaryColor', target.value);
         } else {
             Message.error('请输入hex格式颜色值');
         }
