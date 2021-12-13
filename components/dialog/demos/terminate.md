@@ -8,8 +8,7 @@ order: 7
 `cancel`属性为同一函数
 
 ```vdt
-import {Button} from 'kpc/components/button';
-import {Dialog} from 'kpc/components/dialog';
+import {Dialog, Button} from 'kpc';
 
 <div>
     <Button ev-click={this.onClick} type="primary">Show Dialog</Button>
@@ -23,10 +22,13 @@ import {Dialog} from 'kpc/components/dialog';
 ```
 
 ```ts
-import {Dialog} from 'kpc/components/dialog';
-import {bind} from 'kpc/components/utils';
+import {Dialog, bind} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    show: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     @bind

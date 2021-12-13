@@ -36,7 +36,7 @@ const loop = (children, parent, disabled) => {
     return ret;
 }
 
-<Diagram ev-selectionChanged={this._onSelect}>
+<Diagram ev-selectionChanged={this.onSelect}>
     <DTreeLayout type="vertical">
         {loop([this.get('data')])}
     </DTreeLayout>
@@ -44,7 +44,7 @@ const loop = (children, parent, disabled) => {
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
+import {Message} from 'kpc';
 
 export default class extends Component {
     static template = template;
@@ -82,7 +82,7 @@ export default class extends Component {
         }
     }
 
-    _onSelect(shapes) {
+    onSelect(shapes: any[]) {
         if (!shapes.length) {
             Message.info('You selected nothing.');
         } else {

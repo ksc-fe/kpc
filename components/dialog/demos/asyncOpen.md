@@ -19,15 +19,19 @@ order: 5
 ```
 
 ```ts
-// @file dialog.js
-import {Dialog} from 'kpc/components/dialog';
+// @file dialog.ts
+import {BaseDialog, DialogProps} from 'kpc';
 import template from './dialog.vdt';
 
-export default class extends Dialog {
+interface Props extends DialogProps {
+    name: string
+}
+
+export default class extends BaseDialog<Props> {
     static template = template;
     static defaults() {
         return {
-            ...Dialog.defaults(),
+            ...BaseDialog.defaults(),
             title: 'Async Open Dialog'
         };
     }
@@ -37,7 +41,7 @@ export default class extends Dialog {
         super.init();
 
         // return a promise
-        return new Promise((resolve, reject) => {
+        return new Promise<{name: string}>((resolve, reject) => {
             // mock api
             setTimeout(() => {
                 resolve({name: 'KPC'});
@@ -60,23 +64,28 @@ import {Button} from 'kpc/components/button';
 
 ```ts
 import Dialog from './dialog';
-import {bind} from 'kpc/components/utils';
-import {Message} from 'kpc/components/message';
+import {bind, Message} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    loading: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {loading: false}
     }
 
+    private dialog: Dialog | null = null;
+
     @bind
-    showDialog(e) {
+    showDialog() {
         this.set('loading', true);
 
         const dialog = new Dialog();
         
         dialog.show();
-        dialog.on('ok', (data) => {
+        dialog.on('ok', () => {
             Message.info(`You clicked ok.`);
         });
 

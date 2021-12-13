@@ -9,8 +9,7 @@ order: 2
 > 以便按钮变为`loading`状态时能够将它替换为loading图标
 
 ```vdt
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Button, Icon} from 'kpc';
 
 <div>
     <Button type="primary" loading>确认</Button>
@@ -41,10 +40,14 @@ import {Icon} from 'kpc/components/icon';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    [key: string]: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    onClick(name) {
+    onClick(name: string) {
         this.set(name, true);
     }
 }

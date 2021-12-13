@@ -8,8 +8,7 @@ order: 1.1
 添加头部信息
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Icon} from 'kpc/components/icon';
+import {Menu, MenuItem, Icon} from 'kpc';
 
 <Menu 
     v-model:expandedKeys="expandedKeys"
@@ -34,6 +33,8 @@ import {Icon} from 'kpc/components/icon';
 ```
 
 ```ts
+import {MenuItem} from 'kpc';
+
 export default class extends Component {
     static template = template;
 
@@ -44,7 +45,7 @@ export default class extends Component {
         };
     }
 
-    onSelect(item) {
+    onSelect(item: MenuItem) {
         console.log('key', item.get('key'));
     }
 }

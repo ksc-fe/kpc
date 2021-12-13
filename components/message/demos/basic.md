@@ -22,7 +22,7 @@ import {Message} from 'kpc/components/message';
 export default class extends Component {
     static template = template;
 
-    showMessage(type) {
+    showMessage(type: 'info' | 'error' | 'warning' | 'success') {
         Message[type](type);
     }
 }

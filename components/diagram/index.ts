@@ -25,6 +25,7 @@ const {
 export {DDiamond, DTriangle, DCylinder, DCloud};
 
 // Layouts
+export * from './layouts/layout';
 export * from './layouts/circle'; 
 export * from './layouts/flow';
 export * from './layouts/organic';
