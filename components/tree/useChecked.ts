@@ -23,16 +23,25 @@ export function useChecked(getNodes: () => Node[]) {
                 const {key, parent} = node;
 
                 let checked = checkedKeys.has(key);
+                let shouldUpdateCheckedKeys = false;
                 if (parent && !uncorrelated) {
                     if (checked && !parent.checked) {
                         // need look back
                         needRecheckNodes.add(parent);
                     } else if (!node.data.disabled) {
-                        checked = parent.checked;
+                        if (checked !== parent.checked) {
+                            checked = parent.checked;
+                            // if we use the parent checked status, we should update checkedKeys
+                            shouldUpdateCheckedKeys = true;
+                        }
                     }
                 }
 
                 node.checked = checked;
+
+                if (shouldUpdateCheckedKeys) {
+                    updateCheckedKeys(node);
+                }
 
                 if (node.children) {
                     loop(node.children);            

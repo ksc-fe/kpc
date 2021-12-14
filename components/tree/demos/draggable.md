@@ -25,7 +25,12 @@ import {Tree, Input} from 'kpc';
 ```ts
 import {Message, TreeDataItem, TreeNode} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    data: TreeDataItem[]
+    expandedKeys: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -100,11 +105,11 @@ export default class extends Component {
     }
 
     onDenyDrag(node: TreeNode) {
-        Message.error(node.data.label);
+        Message.error(`Cannot drag node: ${node.data.label}.`);
     }
 
     onDenyDrop(node: TreeNode) {
-        Message.error(node.data.label);
+        Message.error(`Cannot drop to node: ${node.data.label}.`);
     }
 }
 ```

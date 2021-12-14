@@ -88,7 +88,7 @@ export default class extends Component<Props> {
     filter(data: TreeDataItem) {
         const keywords = this.get('keywords');
         if (!keywords) return true;
-        return (data.label as string).toLowerCase().includes(keywords.trim());
+        return (data.label as string).toLowerCase().includes(keywords.trim().toLowerCase());
     }
 }
 ```
