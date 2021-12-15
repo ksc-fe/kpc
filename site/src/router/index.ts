@@ -1,21 +1,22 @@
 import Router from 'universal-router';
 import {ComponentConstructor} from 'intact';
 
-export type RouteResult = Promise<{
+export type RouteResult = Promise<RouteAction>
+type RouteAction = {
     Page: ComponentConstructor
     data?: Data
-}>
+}
 type Data = {
     path?: string
 }
 
-export default new Router([
-    // {
-        // path: /^\/(kpc\/)?$/,
-        // action: async () => {
-            // return {Page: (await import('../pages/index')).default}
-        // }
-    // },
+export default new Router<RouteResult>([
+    {
+        path: /^\/?$/,
+        action: async () => {
+            return {Page: (await import('../pages/index')).default}
+        }
+    },
     // {
         // path: /^(?:\/kpc)?(\/docs\/design\/.*)$/,
         // action: async (context) => {
@@ -60,7 +61,7 @@ export default new Router([
             return {
                 Page: (await import('../pages/demo')).default,
                 data: {
-                    path: context.params[0],
+                    path: context.params[0] as string,
                 }
             }
         }
@@ -71,7 +72,7 @@ export default new Router([
             return {
                 Page: (await import('../pages/document')).default,
                 data: {
-                    path: context.params[0]
+                    path: context.params[0] as string
                 }
             };
         }
