@@ -185,7 +185,7 @@ describe('Tree', () => {
 
         // can not drag disabled item
         const disabled = element.querySelector('.k-disabled') as HTMLElement;
-        dispatchEvent(disabled, 'mousedown');
+        // dispatchEvent(disabled, 'mousedown');
         dispatchEvent(disabled, 'dragstart');
         expect(onDenyDrag.callCount).to.eql(1);
 
@@ -193,7 +193,7 @@ describe('Tree', () => {
 
         // can not drag not-allowed item
         const notAllowed = nodes[2];
-        dispatchEvent(notAllowed, 'mousedown');
+        // dispatchEvent(notAllowed, 'mousedown');
         dispatchEvent(notAllowed, 'dragstart');
         expect(onDenyDrag.callCount).to.eql(2);
 
@@ -235,7 +235,7 @@ describe('Tree', () => {
 });
 
 async function dragInsert(srcElement: HTMLElement, toElement: HTMLElement, mode?: 'before' | 'after') {
-    dispatchEvent(srcElement, 'mousedown');
+    // dispatchEvent(srcElement, 'mousedown');
     dispatchEvent(srcElement, 'dragstart', {dataTransfer: new DataTransfer()});
     const {top, bottom, height} = toElement.getBoundingClientRect();
     const des = height * RANGE;

@@ -80,6 +80,7 @@
     "i18n",
     "typings",
     "site/data",
+    "test",
     "index.ts"
   ],
   "exclude": [
