@@ -9,10 +9,10 @@ import {Component} from 'intact';
 
 describe('Timepicker', () => {
 
-    // afterEach(async () => {
-        // unmount();
-        // await wait(400);
-    // });
+    afterEach(async () => {
+        unmount();
+        await wait(400);
+    });
 
     it('select time', async () => {
         const [instance, element] = mount(BasicDemo);
