@@ -2,7 +2,8 @@
   "packages": [
     "./",
     "packages/kpc-react",
-    "packages/kpc-vue-next"
+    "packages/kpc-vue-next",
+    "packages/kpc-vue"
   ],
   "version": "2.0.0-alpha.1"
 }

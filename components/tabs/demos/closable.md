@@ -45,8 +45,19 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```ts
 import {bind} from 'kpc/components/utils';
 
+interface Props {
+    tab: number | null
+    tabs: Tab[]
+    size: string
+}
+
+type Tab = {
+    value: number
+    label: string
+}
+
 let id = 3;
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -62,7 +73,7 @@ export default class extends Component {
     }
 
     @bind
-    _remove(value) {
+    _remove(value: number) {
         const tabs = this.get('tabs').slice(0);
         const index = tabs.findIndex(item => item.value === value);
         tabs.splice(index, 1);

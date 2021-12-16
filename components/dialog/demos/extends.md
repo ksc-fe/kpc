@@ -16,15 +16,18 @@ order: 3
 ```
 
 ```ts
-// @file dialog.js
-import {Dialog} from 'kpc/components/dialog';
+// @file dialog.ts
+import {BaseDialog, bind, DialogProps, DialogEvents} from 'kpc';
 import template from './dialog.vdt';
-import {bind} from 'kpc/components/utils';
 
-export default class extends Dialog {
+interface Events extends DialogEvents {
+    success: [string]
+}
+
+export default class extends BaseDialog<DialogProps, Events> {
     static template = template;
     static defaults() {
-        return {...Dialog.defaults(), title: 'Extends Dialog'};
+        return {...BaseDialog.defaults(), title: 'Extends Dialog'};
     }
 
     @bind
@@ -32,32 +35,33 @@ export default class extends Dialog {
         this.showLoading();
         setTimeout(() => {
             this.close();
-            this.trigger("ok", 'test');
+            this.trigger("success", 'test');
         }, 2000);
     }
 }
 ```
 
 ```vdt
-import {Button} from 'kpc/components/button';
+import {Button} from 'kpc';
 
 <Button type="primary" ev-click={this.showDialog}>Show Dialog</Button>
 ```
 
 ```ts
 import Dialog from './dialog';
-import {bind} from 'kpc/components/utils';
+import {bind, Message} from 'kpc';
 import {mount} from 'intact';
-import {Message} from 'kpc/components/message';
 
 export default class extends Component {
     static template = template;
+
+    private dialog: Dialog | null = null;
 
     @bind
     showDialog() {
         const dialog = this.dialog = new Dialog();
         dialog.show();
-        dialog.on('ok', (data) => {
+        dialog.on('success', (data) => {
             Message.info(`data from dialog: ${data}`);
         });
     }

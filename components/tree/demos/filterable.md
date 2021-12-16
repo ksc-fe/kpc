@@ -7,8 +7,7 @@ order: 5
 否则过滤时，会因为每次更新`key`不同而闪动
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
-import {Input} from 'kpc/components/input';
+import {Tree, Input} from 'kpc';
 
 <div>
     <Input v-model="keywords" placeholder="Please enter keywords to filter node."/>
@@ -69,9 +68,14 @@ import {Input} from 'kpc/components/input';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TreeDataItem} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    expandedKeys: string[]
+    keywords: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -81,10 +85,10 @@ export default class extends Component {
     }
 
     @bind
-    filter(data) {
+    filter(data: TreeDataItem) {
         const keywords = this.get('keywords');
         if (!keywords) return true;
-        return data.label.toLowerCase().includes(keywords.trim());
+        return (data.label as string).toLowerCase().includes(keywords.trim().toLowerCase());
     }
 }
 ```

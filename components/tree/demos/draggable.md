@@ -8,8 +8,7 @@ order: 6
 触发`denydrag`和`denydrop`事件来告知用户
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
-import {Input} from 'kpc/components/input';
+import {Tree, Input} from 'kpc';
 
 <Tree 
     draggable
@@ -24,9 +23,14 @@ import {Input} from 'kpc/components/input';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
+import {Message, TreeDataItem, TreeNode} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    data: TreeDataItem[]
+    expandedKeys: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -88,24 +92,24 @@ export default class extends Component {
         };
     }
 
-    onDragEnd(data) {
+    onDragEnd(data: TreeDataItem[]) {
         console.log(data);
     }
 
-    allowDrag(node) {
+    allowDrag(node: TreeNode) {
         return node.key !== '1-1-1';
     }
 
-    allowDrop(node) {
+    allowDrop(node: TreeNode) {
         return node.key !== '1-1-1';
     }
 
-    onDenyDrag(node) {
-        Message.error(node.data.label);
+    onDenyDrag(node: TreeNode) {
+        Message.error(`Cannot drag node: ${node.data.label}.`);
     }
 
-    onDenyDrop(node) {
-        Message.error(node.data.label);
+    onDenyDrop(node: TreeNode) {
+        Message.error(`Cannot drop to node: ${node.data.label}.`);
     }
 }
 ```

@@ -28,7 +28,7 @@ import {Pagination} from 'kpc/components/pagination';
 export default class extends Component {
     static template = template;
 
-    _onChange(v) {
+    _onChange(v: number) {
         console.log(v);
     }
 }

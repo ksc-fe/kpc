@@ -19,7 +19,11 @@ import {Select, Option} from 'kpc/components/select';
 ```ts
 import {bind} from 'kpc/components/utils';
 
-export default class extends Component {
+interface Props {
+    users: any[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -28,13 +32,11 @@ export default class extends Component {
         }
     }
 
-    init() {
-        this.lastFetchId = 0;
-    }
+    private lastFetchId = 0;
 
     @bind
-    search(e) {
-        const keywords = e.target.value.trim();
+    search(e: InputEvent) {
+        const keywords = (e.target as HTMLInputElement).value.trim();
 
         if (!keywords) return;
 

@@ -20,11 +20,8 @@ order: 3
 原始位置。（该布局具有随机性）
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
-import {Form, FormItem} from 'kpc/components/form';
 import {Diagram, DRectangle, DCircle, DDiamond, DHexagon, DLine} from 'kpc/components/diagram';
-import {Spinner} from 'kpc/components/spinner';
-import {Checkbox} from 'kpc/components/checkbox';
+import {Button, ButtonGroup, Form, FormItem, Spinner, Checkbox} from 'kpc';
 
 const Layout = this.Layout;
 const currentLayout = this.get('layouts')[this.get('layout')];
@@ -84,10 +81,17 @@ const currentLayout = this.get('layouts')[this.get('layout')];
 ```
 
 ```ts
-import {createVNode as h} from 'intact';
+import {createVNode as h, Children, ComponentConstructor} from 'intact';
 import {DFlowLayout, DTreeLayout, DRadialLayout, DStackLayout, DPartitionLayout, DCircleLayout, DOrganicLayout} from 'kpc/components/diagram';
+import type {DLayout, DLayoutProps} from 'kpc/components/diagram';
 
-const Layout = ({layout, props, children}) => {
+type LayoutProps = {
+    layout: ComponentConstructor 
+    props: DLayoutProps
+    children: Children
+}
+
+const Layout = ({layout, props, children}: LayoutProps) => {
     return h(layout, {...props}, children);
 };
 

@@ -8,8 +8,7 @@ order: 3
 事件定义左右穿梭的逻辑
 
 ```vdt
-import {Transfer} from 'kpc/components/transfer';
-import {Checkbox} from 'kpc/components/checkbox';
+import {Transfer, Checkbox} from 'kpc';
 
 <div>
     <Transfer 
@@ -50,10 +49,28 @@ import {Checkbox} from 'kpc/components/checkbox';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
-import {bind} from 'kpc/components/utils';
+import {Message, bind} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    users: User[]
+    rooms: Room[]
+    checkedUsers: User[]
+    checkedRooms: Room[]
+}
+
+type User = {
+    name: string
+    id: number
+    room: Room | null
+}
+
+type Room = {
+    name: string
+    id: number
+    users: User[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

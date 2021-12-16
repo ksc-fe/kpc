@@ -47,7 +47,7 @@ export function unmount() {
     }
 }
 
-export function dispatchEvent(target: Element, eventName: string, options?: Record<string, string | number>) {
+export function dispatchEvent(target: Element, eventName: string, options?: Record<string, any>) {
     let event: Event;
     if (document.createEvent) {
         event = document.createEvent('Event');

@@ -7,9 +7,7 @@ order: 8
 例如本例中，你在`Input`中输入的内容，下次打开时依然存在
 
 ```vdt
-import {Button} from 'kpc/components/button';
-import {Dialog} from 'kpc/components/dialog';
-import {Input} from 'kpc/components/input';
+import {Button, Dialog, Input} from 'kpc';
 
 <div>
     <Button ev-click={this.onClick} type="primary">Show Dialog</Button>
@@ -20,9 +18,13 @@ import {Input} from 'kpc/components/input';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    show: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     @bind

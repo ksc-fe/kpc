@@ -3,7 +3,7 @@ import {getRestProps} from '../utils';
 import {makeItemStyles} from './styles';
 
 const {className, children, value, cloned} = this.get();
-const parent = this.$parent;
+const parent = this.$senior;
 const active = parent.isActive(value);
 const classNameObj = {
     'k-carousel-item': true,

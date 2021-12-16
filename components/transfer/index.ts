@@ -1,14 +1,14 @@
-import {Component, TypeDefs, VNode, createRef, Key} from 'intact';
+import {Component, TypeDefs, VNode, createRef, Key, Children} from 'intact';
 import template from './index.vdt';
 import {_$} from '../../i18n';
 import {useTransfer} from './useTransfer';
 import {useFilter, Model} from './useFilter';
 import {useCheck, CheckedKeys} from './useCheck';
 
-export interface TransferProps<T> {
+export interface TransferProps<T = TransferDataItem> {
     data?: T[],
-    keyName?: string,
-    labelName?: string,
+    keyName?: keyof T,
+    labelName?: keyof T,
     value?: Key[],
     leftCheckedKeys?: Key[],
     rightCheckedKeys?: Key[],
@@ -21,6 +21,12 @@ export interface TransferProps<T> {
     rightTitle?: string | VNode,
     enableAdd?: () => boolean,
     enableRemove?: () => boolean,
+}
+
+export type TransferDataItem = {
+    label: Children
+    key: Key
+    disabled?: boolean
 }
 
 export interface TransferEvents {
@@ -65,7 +71,7 @@ const defaults = (): Partial<TransferProps<any>> => ({
     rightTitle: _$('已选择'),
 });
 
-export class Transfer<T = any> extends Component<TransferProps<T>, TransferEvents, TransferBlocks<T>> {
+export class Transfer<T = TransferDataItem> extends Component<TransferProps<T>, TransferEvents, TransferBlocks<T>> {
 static template = template;
 static typeDefs = typeDefs;
     static defaults = defaults;

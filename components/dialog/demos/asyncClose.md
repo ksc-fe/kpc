@@ -7,10 +7,7 @@ order: 6
 指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。`cancel`属性同理。
 
 ```vdt
-import {Dialog} from 'kpc/components/dialog';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import {Dialog, Form, FormItem, Input, Button} from 'kpc';
 
 <div>
     <Button type="primary"
@@ -30,8 +27,7 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
-import {Message} from 'kpc/components/message';
+import {bind, Message} from 'kpc';
 
 export default class extends Component {
     static template = template;
@@ -44,7 +40,7 @@ export default class extends Component {
             // make the ok button show loading
             this.refs.dialog.showLoading(); 
             // mock api
-            new Promise((resolve, reject) => {
+            new Promise<void>((resolve, reject) => {
                 setTimeout(() => {
                     if (Math.random() > 0.5) {
                         resolve();

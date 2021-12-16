@@ -7,10 +7,7 @@ order: 1.1
 定义不同的内容
 
 ```vdt
-import {Transfer} from 'kpc/components/transfer';
-import {Input} from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import {Tag} from 'kpc/components/tag';
+import {Transfer, Input, Select, Option} from 'kpc';
 
 <div>
     <Transfer data={this.get('data')} 
@@ -56,10 +53,24 @@ import {Tag} from 'kpc/components/tag';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
-function mockApi(policy) {
-    const data = [
+interface Props {
+    policy: string
+    data: DataItem[]
+    keywords: string
+}
+
+type DataItem = {
+    name: string
+    policy: string
+    members: number
+    desc: string
+    disabled?: boolean
+}
+
+function mockApi(policy: string) {
+    const data: DataItem[] = [
         {name: 'AdministratorAccess', policy: 'system', 'members': 11, desc: '管理所有资源的权限'},
         {name: 'OSSFullAccess', policy: 'common', 'members': 11, desc: '管理所有资源的权限'},
         {name: 'SupportFullAccess', policy: 'common', 'members': 11, desc: '管理所有资源的权限'},
@@ -68,7 +79,7 @@ function mockApi(policy) {
         {name: 'CommonAccess', policy: 'common', 'members': 11, desc: '管理所有资源的权限'},
     ];
 
-    return new Promise(resolve => {
+    return new Promise<DataItem[]>(resolve => {
         setTimeout(() => {
             if (policy === 'all') resolve(data);
             else resolve(data.filter(item => item.policy === policy));
@@ -76,39 +87,42 @@ function mockApi(policy) {
     });
 }
 
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
         return {
             policy: 'all',
-            data: []
+            data: [],
+            keywords: ''
         }
     }
 
+    private originData: DataItem[] | null = null;
+
     init() {
         // when policy changed, fetch data
-        this.watch('policy', this._fetch);
-        this.watch('keywords', this._filter);
-        this._fetch();
+        this.watch('policy', this.fetch);
+        this.watch('keywords', this.filter);
+        this.fetch();
     }
 
     @bind
-    _fetch() {
+    fetch() {
         mockApi(this.get('policy')).then(data => {
             this.originData = data;
-            this._filter();
+            this.filter();
         });
     }
     
     @bind
-    _filter() {
+    filter() {
         const keywords = this.get('keywords');
         const data = keywords ? 
-            this.originData.filter(data => {
+            this.originData!.filter(data => {
                 return data.name.includes(keywords);
             }) :
-            this.originData;
+            this.originData!;
         this.set('data', data);
     }
 }

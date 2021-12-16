@@ -12,7 +12,7 @@ order: 0.1
 > 你将选择不到弹窗元素
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup>
@@ -33,13 +33,14 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```
 
 ```ts
-import {Dialog} from 'kpc/components/dialog';
-import {Message} from 'kpc/components/message';
+import {Dialog, Message} from 'kpc';
+
+type Type = 'success' | 'warning' | 'error' | 'confirm'
 
 export default class extends Component {
     static template = template;
 
-    showDialog(type) {
+    showDialog(type: Type) {
         Dialog[type]({
             content: type,
         }).then(() => {
@@ -49,7 +50,7 @@ export default class extends Component {
         });
     }
 
-    showDialogWithTitle(type) {
+    showDialogWithTitle(type: Type) {
         Dialog[type]({
             title: type[0].toUpperCase() + type.substring(1),
             content: type + ' dialog',

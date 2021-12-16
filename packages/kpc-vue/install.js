@@ -2,11 +2,14 @@ import * as components from './index';
 
 export function install(Vue) {
     for (let key in components) {
+        // the name of component starts with an upper case char
+        const charCode = key.charCodeAt(0);
+        if (charCode < 'A'.charCodeAt(0) && charCode > 'Z'.charCodeAt(0)) continue;
+
         const component = components[key];
         Vue.component(`K${key}`, component);
         // support call method like this.$message.success('test'), #88
-        // support vue2.0 and vue3.0
-        const obj = Vue.prototype || Vue.config.globalProperties;
+        const obj = Vue.prototype;
         if (key === 'Message') {
             obj.$message = component;
         } else if (key === 'Dialog') {

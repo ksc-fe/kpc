@@ -1,70 +1,7 @@
-import {Button} from 'kpc/components/button';
-import {Link} from 'kpc/components/link';
-import {Row, Col} from 'kpc/components/grid';
-import image1 from '../../imgs/page1.png';
-import image2 from '../../imgs/page2.png';
+import {makeStyles} from './styles';
 
-<t:parent className="index-page" pageIndex="index">
-    <b:header>
-        {{ parent() }}
-        <div class="circle-bg right"></div>
-    </b:header>
+<t:super class={makeStyles()}>
     <b:content>
-        <div class="pages">
-            <Row class="first-page" align="stretch" justify="center">
-                <Col class="first-page-left" lg="11">
-                    <div class="wrapper">
-                        <h1>KPC</h1>
-                        <h2><span>K</span>ing design <span>P</span>ublic <span>C</span>omponents</h2>
-                        <p>支持多框架的前端高质量组件库</p>
-                        <div class="actions">
-                            <Button tagName={{ Link }} type="primary"
-                                tagProps={{ {
-                                    href: `/docs/getting-started/`
-                                } }}
-                                class="button"
-                            >开始使用</Button>
-                            <Button href="https://github.com/ksc-fe/kpc" class="button"
-                                target="_blank"
-                            >GitHub</Button>
-                        </div>
-                    </div>
-                </Col>
-                <Col class="first-page-right" lg="11">
-                    <figure><img src={{ image1 }} /></figure>
-                </Col>
-            </Row>
-            <Row align="stretch" justify="center">
-                <Col class="second-page-left" lg="11">
-                    <figure><img src={{ image2 }} /></figure>
-                </Col>
-                <Col class="second-page-right" lg="11">
-                    <div class="info">
-                        <div class="feature">
-                            <h2>支持多框架</h2>
-                            <div>
-                                同时支持Intact/Vue/React/Angular框架
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <h2>忠于原生，增强原生</h2>
-                            <div>
-                                在保持浏览器原生特性的基础上，增强交互能力
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <h2>便捷开发</h2>
-                            <div>
-                                支持按需加载，主题定制，国际化等特性
-                            </div>
-                            <div>
-                                并且提供了配套的脚手架方便快速初始化项目
-                            </div>
-                        </div>
-                    </div>
-                </Col>
-            </Row>
-        </div>
-        <div class="circle-bg left"></div>
+        index page
     </b:content>
-</t:parent>
+</t:super>

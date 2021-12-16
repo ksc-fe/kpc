@@ -11,7 +11,6 @@ function init(router: UniversalRouter<RouteResult>) {
     if (unlisten) unlisten();
 
     unlisten = history.listen(async ({location}) => {
-        console.log(location);
         const {Page, data} = (await router.resolve(location.pathname))!;
         render(h(Page, data), container!);
     });

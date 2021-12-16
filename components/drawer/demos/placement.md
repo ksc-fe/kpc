@@ -6,8 +6,7 @@ order: 0.1
 添加`placement`属性，定义如下位置：`top`,`bottom`,`left`,`right`。默认`right`从右侧出现
 
 ```vdt
-import {Drawer} from 'kpc/components/drawer';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Drawer, Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup>
@@ -30,7 +29,12 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```ts
 import {bind} from 'kpc/components/utils';
 
-export default class extends Component {
+interface Props {
+    show: boolean
+    showPosition: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -54,7 +58,7 @@ export default class extends Component {
     }
 
     @bind
-    showDrawer(value) {
+    showDrawer(value: string) {
         this.set({
             'showPosition': value,
             'show': true

@@ -8,7 +8,7 @@ order: 4
 或`key`值的数组
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
     <div class='tables'>
@@ -39,7 +39,22 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    data1: DataItem1[]
+    data2: DataItem2[]
+    data3: DataItem1[]
+}
+
+type DataItem1 = {
+    a: string
+}
+
+type DataItem2 = {
+    text: string
+    id: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -50,7 +65,7 @@ export default class extends Component {
         }
     }
 
-    setRowKey(value, index) {
+    setRowKey(value: DataItem2, index: number) {
         return value.id;
     }
 }

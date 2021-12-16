@@ -6,8 +6,7 @@ order: 4
 绑定`rightclick:node`并利用`DropdownMenu`可以实现右键菜单来操作节点增删
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import {Tree, Dropdown, DropdownMenu, DropdownItem} from 'kpc';
 
 <div>
     <Tree ref="tree" 
@@ -28,10 +27,14 @@ import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TreeDataItem, TreeNode} from 'kpc';
+
+interface Props {
+    data: TreeDataItem[]
+}
 
 let uniqueId = 0;
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -82,7 +85,7 @@ export default class extends Component {
         };
     }
 
-    appendNode(data, node) {
+    appendNode(data: TreeDataItem, node: TreeNode) {
         const children = data.children || (data.children = []);
         children.push({
             label: 'Appended node',
@@ -93,8 +96,8 @@ export default class extends Component {
         this.refs.tree.expand(node.key);
     }
 
-    removeNode(data, node, index) {
-        const children = node.parent ? node.parent.data.children : this.get('data');
+    removeNode(data: TreeDataItem, node: TreeNode, index: number) {
+        const children = node.parent ? node.parent.data.children! : this.get('data');
         children.splice(index, 1);
         this.set('data', [...this.get('data')]);
     }

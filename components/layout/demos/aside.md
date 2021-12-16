@@ -7,11 +7,13 @@ order: 1
 控制侧边栏的展开收起状态。组件会自动给侧边栏下的菜单组件`Menu`应用相同的`collapse`属性
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Icon} from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
-import {Button} from 'kpc/components/button';
+import {
+    Layout, Header, Aside, Body, Footer,
+    Menu, MenuItem,
+    Icon,
+    Breadcrumb, BreadcrumbItem,
+    Button,
+} from 'kpc';
 
 <Layout class="layout">
     <Aside collapse={this.get('collapse')}>
@@ -76,7 +78,14 @@ import {Button} from 'kpc/components/button';
 
 ```ts
 import {bind} from 'kpc/components/utils';
-export default class extends Component {
+
+interface Props {
+    expandedKeys: string[]
+    selectedKey: string
+    collapse: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

@@ -11,7 +11,7 @@ order: 0
 > `value`选中的值为原始数据`data`数组中的`key`值。
 
 ```vdt
-import {Transfer} from 'kpc/components/transfer';
+import {Transfer} from 'kpc';
 
 <div>
     <Transfer data={this.get('data')} v-model="value" ref="__test" />
@@ -20,6 +20,13 @@ import {Transfer} from 'kpc/components/transfer';
 ```
 
 ```ts
+import type {TransferDataItem} from 'kpc';
+
+interface Props {
+    data: TransferDataItem[]
+    value: number[]
+}
+
 const data = [
     {label: '主机名0', key: 0},
     {label: '主机名1', key: 1, disabled: true},
@@ -27,7 +34,8 @@ const data = [
     {label: '主机名3', key: 3, disabled: true},
     {label: '主机名4', key: 4},
 ];
-export default class extends Component {
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

@@ -1,5 +1,5 @@
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Layout, Header, Aside, Body, Button, Icon, Tabs, Tab} from 'kpc';
+import {makeHeaderStyles} from './styles';
 
 const nav = [
     {
@@ -29,21 +29,23 @@ const nav = [
     }
 ];
 
-<div class={{'main-wrapper': true, [$props.className]: $props.className}} ref={this.element}>
-    <div class="header-wrapper" class={{
-        'header-wrapper': true, 
-        'header-shadow': $props.pageIndex !== 'index'
-    }} ref="header">
-        <header>
-            <b:header>
-                <div class="king-logo">
-                </div>
-                <div class="right">
-                </div>
-            </b:header>
-        </header>
-    </div>
-    <div class="content-wrapper" ref="wrapper">
-        <b:content />
-    </div>
-</div>
+<Layout class={$props.className}>
+    <Header fixed class={makeHeaderStyles()}>
+        <div class="logo"></div>
+        <div class="main">
+            <Tabs size="large">
+                <Tab v-for={nav}
+                    value={$value.index}
+                    to={$value.href}
+                >{$value.title}</Tab>
+            </Tabs>
+        </div>
+    </Header>
+    <Layout>
+        <Body>
+            <template>
+                <b:content />
+            </template>
+        </Body>
+    </Layout>
+</Layout>

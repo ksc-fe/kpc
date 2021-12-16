@@ -8,10 +8,12 @@ iframe: 400
 添加样式
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Icon} from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {
+    Layout, Header, Aside, Body, Footer,
+    Menu, MenuItem,
+    Icon,
+    Breadcrumb, BreadcrumbItem
+} from 'kpc';
 
 <Layout class="layout">
     <Header fixed>
@@ -99,7 +101,7 @@ export default class Demo extends Component {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
-            data: Array.apply(null, {length: 100}),
+            data: Array.apply(null, {length: 100} as unknown[]),
         };
     }
 }

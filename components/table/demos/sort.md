@@ -12,7 +12,7 @@ order: 17
 当排序方式改变时，可以监听默认事件`$change:sort`来执行自定义排序逻辑
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <Table data={this.get('data')} 
     sort={this.get('sort')}
@@ -24,7 +24,7 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TableSortValue} from 'kpc';
 
 const oData = [
     {name: 'aa', age: 1},
@@ -43,14 +43,14 @@ export default class extends Component {
     }
 
     @bind
-    _onSort(sort) {
+    _onSort(sort: TableSortValue<'name' | 'age'>) {
         console.log(sort);
         const data = oData.slice(0);
         if (sort.type) {
             data.sort((a, b) => {
                 return sort.type === 'desc' ? 
-                    (a[sort.key] > b[sort.key] ? -1 : 1) : 
-                    (a[sort.key] > b[sort.key] ? 1 : -1);
+                    (a[sort.key!] > b[sort.key!] ? -1 : 1) : 
+                    (a[sort.key!] > b[sort.key!] ? 1 : -1);
             });
         }
         this.set({data, sort});

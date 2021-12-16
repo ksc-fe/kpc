@@ -2,8 +2,8 @@ import {useInstance, Props} from 'intact';
 import type {Table, TableRowKey} from './table';
 import type {TableColumnProps} from './column';
 
-export type TableMerge = (
-    row: any,
+export type TableMerge<T = any> = (
+    row: T,
     column: Props<TableColumnProps> | null,
     rowIndex: number,
     columnIndex: number

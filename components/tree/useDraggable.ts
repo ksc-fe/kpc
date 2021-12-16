@@ -10,7 +10,7 @@ export enum Mode {
     Inner
 }
 
-const RANGE = 0.25;
+export const RANGE = 0.25;
 
 export function useDraggable() {
     const instance = useInstance() as Tree;

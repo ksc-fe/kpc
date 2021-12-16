@@ -1,10 +1,10 @@
 const webpack = require('webpack');
-const genConfig = require('../build/webpack');
-const addThread = require('../build/webpack/thread');
-const {addStyle} = require('../build/webpack/style');
-const {addMonaco} = require('../build/webpack/monaco');
-const {resolve} = require('../build/utils');
-const {destData} = require('../build/doc/webpack');
+const genConfig = require('../scripts/webpack');
+const addThread = require('../scripts/webpack/thread');
+const {addStyle} = require('../scripts/webpack/style');
+const {addMonaco} = require('../scripts/webpack/monaco');
+const {resolve} = require('../scripts/utils');
+const {destData} = require('../scripts/doc/webpack');
 
 exports.webpackConfig = () => {
     const config = genConfig();

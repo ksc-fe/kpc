@@ -1,4 +1,4 @@
-import {Component, Props, VNodeComponentClass} from 'intact';
+import {Component, Props, VNodeComponentClass, IntactDom} from 'intact';
 import template from './cell.vdt';
 import type {TableColumnProps} from './column';
 import type {TableProps} from './table';
@@ -23,16 +23,18 @@ export class TableCell extends Component<TableCellProps> {
     static template = template;
 
     $update(
-        lastVNode: VNodeComponentClass<TableCell>,
-        nextVNode: VNodeComponentClass<TableCell>,
-        ...rest: any[]
+        lastVNode: VNodeComponentClass<this>,
+        nextVNode: VNodeComponentClass<this>,
+        parentDom: Element,
+        anchor: IntactDom | null,
+        mountedQueue: Function[],
+        force: boolean
     ) {
-        const lastProps = lastVNode.props as TableCellProps;
-        const nextProps = nextVNode.props as TableCellProps;
+        const lastProps = lastVNode.props!;
+        const nextProps = nextVNode.props!;
 
         let isSame = true;
-        let key: keyof TableCellProps;
-        for (key in lastProps) {
+        for (const key in lastProps) {
             if (lastProps[key] !== nextProps[key]) {
                 isSame = false;
                 break;
@@ -40,7 +42,7 @@ export class TableCell extends Component<TableCellProps> {
         }
 
         if (!isSame) {
-            (super.$update as any)(lastVNode, nextVNode, ...rest);
+            super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
         } 
     }
 }

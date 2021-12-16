@@ -13,7 +13,7 @@ order: 3
 标识该子节点已经加载完成，无需再次加载
 
 ```vdt
-import {TreeSelect} from 'kpc/components/treeSelect';
+import {TreeSelect} from 'kpc';
 
 <TreeSelect data={this.get('data')} 
     load={this.loadData}
@@ -21,9 +21,13 @@ import {TreeSelect} from 'kpc/components/treeSelect';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind, TreeSelectProps, TreeNode} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    data: NonNullable<TreeSelectProps['data']>
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -42,8 +46,8 @@ export default class extends Component {
     }
 
     @bind
-    loadData(node) {
-        return new Promise(resolve => {
+    loadData(node: TreeNode) {
+        return new Promise<void>(resolve => {
             setTimeout(() => {
                 node.data.children = [
                     {label: `child ${node.key}.1`, children: [], key: `${node.key}.1`},

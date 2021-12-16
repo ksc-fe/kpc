@@ -26,9 +26,9 @@ export default class extends Component {
         };
     }
 
-    generateData(value) {
+    generateData(value: number) {
         const start = value - 5;
-        return Array.apply(null, {length: 10})
+        return Array.apply(null, {length: 10} as unknown[])
             .map((v, i) => {
                 const year = start + i; 
                 return {
@@ -38,7 +38,7 @@ export default class extends Component {
             });
     }
 
-    disable(value) {
+    disable(value: number) {
         // 排除闰年
         return value % 4 === 0 && (value % 100 !== 0 || value % 400 === 0);
     }
