@@ -265,6 +265,17 @@ export function makeStyles() {
             `
         })}
 
+        // inline
+        &.k-inline {
+            .k-input-inner {
+                height: auto;
+                line-height: inherit;
+                border: none;
+                border-radius: 0;
+                padding: 0;
+            }
+        }
+
         // textarea
         .k-textarea {
             padding: ${input.textareaPadding};

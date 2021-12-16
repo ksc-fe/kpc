@@ -17,3 +17,14 @@ import {Timepicker} from 'kpc/components/timepicker';
     You selected: {JSON.stringify(this.get('timeArray'))}
 </div>
 ```
+
+```ts
+interface Props {
+    time: string
+    timeArray: [string, string]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+}
+```
