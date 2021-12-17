@@ -23,6 +23,7 @@ const {dialog} = deepDefaults(theme, {
             closeTop: '16px',
             closeRight: '-9px',
             closeIconFontSize: '44px',
+            closeHoverWidth: '26px',
         },
 
         // body
@@ -123,6 +124,10 @@ export function makeDialogStyles() {
             top: ${dialog.header.closeTop};
             .k-icon {
                 font-size: ${dialog.header.closeIconFontSize};
+                &:hover:after {
+                    width: ${dialog.header.closeHoverWidth};
+                    height: ${dialog.header.closeHoverWidth};
+                }
             }
         }
 

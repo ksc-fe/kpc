@@ -14,6 +14,11 @@ const iconStyles = {
         large: '22px',
         small: '14px',
         mini: '12px',
+    },
+
+    hover: {
+        get bgColor() { return palette(theme.color.primary, -4) },
+        padding: '2px'
     }
 };
 
@@ -30,9 +35,16 @@ export default function makeStyles(color?: string) {
         line-height: 1;
         // display: inline-block;
         ${sizes.map(size => {
+            const fontSize = icon.fontSize[size];
             return css`
                 &.k-${size} {
-                    font-size: ${icon.fontSize[size]};
+                    font-size: ${fontSize};
+                    &.k-hoverable:hover{
+                        &:after {
+                            width: calc(${fontSize} + ${icon.hover.padding});
+                            height: calc(${fontSize} + ${icon.hover.padding});
+                        }
+                    }
                 }
             `
         })}
@@ -43,6 +55,9 @@ export default function makeStyles(color?: string) {
                     color: ${_color};
                     &.k-hoverable:hover {
                         color: ${palette(_color, -2)};
+                        &:after {
+                            display: none;
+                        }
                     }
                 }
             ` 
@@ -51,15 +66,28 @@ export default function makeStyles(color?: string) {
             animation: ${rotate} 1s infinite linear;
         }
         &:before {
+            position: relative;
             font-size: inherit;
+            z-index: 1;
         }
 
         // hoverable
         &.k-hoverable {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             transition: color ${theme.transition};
             &:hover {
                 color: ${theme.color.primary};
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: calc(${icon.fontSize.default} + ${icon.hover.padding});
+                    height: calc(${icon.fontSize.default} + ${icon.hover.padding});
+                    background: ${icon.hover.bgColor};
+                }
             }
             ${color && `
                 &:hover {

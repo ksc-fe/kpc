@@ -53,4 +53,9 @@ export const theme = {
     midZIndex: 999,
 
     transition: '.25s ease-in-out',
+    // transition: {
+    //     small: '.1s cubic-bezier(0.42, 0, 0.58, 1)',
+    //     middle: '.2s cubic-bezier(0.25, 0.1, 0.25, 1)',
+    //     large: '.3s cubic-bezier(0.25, 0.1, 0.25, 1)',
+    // },
 }

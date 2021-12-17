@@ -200,7 +200,7 @@ export default function makeStyles() {
         &.k-dropdown-open {
             border: ${select.focusBorder};
             .k-select-arrow {
-                transform: rotate(180deg);
+                transform: rotateX(180deg);
             }
         }
         &:focus {

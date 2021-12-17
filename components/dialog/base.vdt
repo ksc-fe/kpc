@@ -47,7 +47,7 @@ const dialog = (
                         v-if={!hideClose && !$props.hideClose}
                         ev-mousedown={stopPropagation}
                     >
-                        <Icon class="ion-ios-close-empty" />
+                        <Icon class="ion-ios-close-empty" hoverable/>
                     </Button>
                 </div>
                 <div class="k-dialog-body"><b:body>{children}</b:body></div>
