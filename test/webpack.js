@@ -12,9 +12,9 @@ exports.webpackConfig = () => {
     if (process.env.UPDATE || process.env.CI) {
         config
             .module
-                .rule('istanbulJs')
-                    .test(/^((?!(spec|mxgraph)).)*\.js$/)
-                    .include.add(resolve('./components')).end()
+                .rule('istanbulTs')
+                    .test(/^((?!(spec|mxgraph)).)*\.ts$/)
+                    .include.add(resolve('./components')).add(resolve('./hooks')).end()
                     .enforce('post')
                     .use('istanbul')
                         .loader('istanbul-instrumenter-loader')
@@ -25,7 +25,7 @@ exports.webpackConfig = () => {
                     .test(/^((?!site).)*\.vdt$/)
                     .enforce('post')
                     .use('istanbul')
-                        .merge(config.module.rules.get('istanbulJs').uses.get('istanbul').entries())
+                        .merge(config.module.rules.get('istanbulTs').uses.get('istanbul').entries())
                         .end()
                     .end()
                 .end()

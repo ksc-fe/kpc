@@ -1,5 +1,5 @@
 import {render, ComponentConstructor, Component, createVNode as h, findDomFromVNode} from 'intact';
-// import {nextFrame as _nextFrame} from '../components/utils';
+import {nextFrame as _nextFrame} from '../components/utils';
 // import {createApp, render as vueRender} from 'vue';
 
 // export function render(Component, props) {
@@ -82,48 +82,57 @@ export function getElement(query: string) {
     // return ret;
 // }
 
-// export function testDemos(req, test) {
-    // const groups = {};
-    // req.keys().forEach(item => {
-        // const paths = item.split('/');
-        // const name = paths[1];
-        // const type = paths[3];
-        // const Demo = req(item).default;
+type GroupItem = {
+    title: string
+    Demo: ComponentConstructor<Component>
+}
+export function testDemos(req: __WebpackModuleApi.RequireContext, test: (Demo: ComponentConstructor<Component>) => Promise<void>) {
+    const groups: Record<string, GroupItem[]> = {};
+    req.keys().forEach(item => {
+        if (item[0] !== '.') return;
 
-        // if (!groups[name]) {
-            // groups[name] = [];
-        // }
-        // groups[name].push({
-            // title: `${name[0].toUpperCase()}${name.substring(1)} ${type}`,
-            // Demo: Demo,
-        // });
-    // });
-    // Object.keys(groups).forEach(key => {
-        // const value = groups[key];
-        // describe(key, () => {
-            // value.forEach(value => {
-                // it(value.title, async () => {
-                    // await test(value.Demo);
-                    // // if (key === 'code') {
-                        // // await wait(1000);
-                    // // }
-                // });
-            // });
-        // });
-    // });
-// }
+        const paths = item.split('/');
+        const name = paths[1];
+        const type = paths[3];
+        const Demo = req(item).default;
 
-export function wait(time: number = 0) {
+        if (!groups[name]) {
+            groups[name] = [];
+        }
+        groups[name].push({
+            title: `${name[0].toUpperCase()}${name.substring(1)} ${type}`,
+            Demo: Demo,
+        });
+    });
+    Object.keys(groups).forEach(key => {
+        const value = groups[key];
+        describe(key, () => {
+            value.forEach(value => {
+                it(value.title, async () => {
+                    await test(value.Demo);
+                    // if (key === 'code') {
+                        // await wait(1000);
+                    // }
+                });
+            });
+        });
+    });
+}
+
+export function wait(time?: number) {
+    if (time === undefined) {
+        return new Promise<void>(resolve => resolve()).then();
+    }
     return new Promise(resolve => {
         setTimeout(resolve, time);
     });
 }
 
-// export function nextFrame() {
-    // return new Promise(resolve => {
-        // _nextFrame(resolve);
-    // });
-// }
+export function nextFrame() {
+    return new Promise<void>(resolve => {
+        _nextFrame(resolve);
+    });
+}
 
 // export function renderVue(App, hook) {
     // const container = document.createElement('div');
