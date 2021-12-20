@@ -17,11 +17,13 @@ import {useRestRowStatus} from './useRestRowStatus';
 import {exportTable} from './exportTable';
 import {useResizable} from './useResizable';
 import {useDraggable} from './useDraggable';
+import {useStickyScrollbar} from './useStickyScrollbar';
 
 export interface TableProps<T = any> {
     data?: T[]
     fixHeader?: boolean | string | number 
     stickHeader?: boolean | string | number
+    stickScrollbar?: boolean | string | number
     checkType?: 'checkbox' | 'radio' | 'none'
     checkedKeys?: TableRowKey[]
     rowKey?: (value: T, index: number) => TableRowKey
@@ -74,6 +76,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     data: Array,
     fixHeader: [Boolean, String, Number],
     stickHeader: [Boolean, String, Number],
+    stickScrollbar: [Boolean, String, Number],
     checkType: ['checkbox', 'radio', 'none'],
     checkedKeys: Array,
     rowKey: Function,
@@ -140,6 +143,12 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     private selected = useSelected();
     private resetRowStatus = useRestRowStatus();
     private draggable = useDraggable();
+    private stickyScrollbar = useStickyScrollbar(
+        this.stickyHeader.elementRef,
+        this.stickyHeader.scrollRef,
+        this.resizable.tableRef,
+        this.fixedColumns.onScroll,
+    );
 
     public getCheckedData() {
         return this.getData('checkedKeys');

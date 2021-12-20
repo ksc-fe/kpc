@@ -17,7 +17,7 @@ export function useStickyHeader() {
     }
 
     // when the scroll element scroll horizontally, scroll the sticky header too 
-    function onScroll() {
+    function onTableScroll() {
         if (isNull(stickHeader.value)) return;
 
         const scrollLeft = scrollRef.value!.scrollLeft;
@@ -30,10 +30,10 @@ export function useStickyHeader() {
     });
 
     onMounted(() => {
-        scrollRef.value!.addEventListener('scroll', onScroll);
+        scrollRef.value!.addEventListener('scroll', onTableScroll);
     });
     onBeforeUnmount(() => {
-        scrollRef.value!.removeEventListener('scroll', onScroll);
+        scrollRef.value!.removeEventListener('scroll', onTableScroll);
     });
 
     return {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef};

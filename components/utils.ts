@@ -336,6 +336,16 @@ export function throttle<T>(fn: (arg: T) => void, time: number, doAlways?: (arg:
     };
 }
 
+export function debounce(fn: Function, time: number) {
+    let timer: number;
+    return () => {
+        window.clearTimeout(timer);
+        timer = window.setTimeout(() => {
+            fn();
+        }, time)
+    };
+}
+
 export function nextFrame(fn: () => void) {
     requestAnimationFrame(() => {
         requestAnimationFrame(fn);

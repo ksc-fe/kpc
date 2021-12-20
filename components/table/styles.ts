@@ -325,6 +325,15 @@ export function makeStyles() {
         tr.k-dragging {
             opacity: ${table.draggingOpacity};
         }
+
+        // sticky scrollbar
+        .k-table-scrollbar {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        .k-table-scrollbar-inner {
+            height: 1px;
+        }
     `;
 }
 

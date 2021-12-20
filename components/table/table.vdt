@@ -188,6 +188,14 @@ const tbody = (
 );
 
 const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
+const {
+    shouldStickScrollbar,
+    stick: stickScrollbar,
+    style: stickScrollbarStyle,
+    scrollbarRef,
+    onScroll: onScrollbarScroll,
+    tableWidth: tableActualWidth,
+} = this.stickyScrollbar;
 <div class={classNameObj} ref={elementRef}>
     <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>
         <Affix v-if={!isNull(stickHeader.value)}
@@ -209,4 +217,13 @@ const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
     <Transition name="k-fade">
         <Spin v-if={loading} overlay size="small" class="k-table-spin" />
     </Transition>
+    <Affix v-if={!isNull(stickScrollbar.value)}
+        bottom={stickScrollbar.value}
+        shouldFix={shouldStickScrollbar}
+        style={stickScrollbarStyle.value}
+    >
+        <div class="k-table-scrollbar" ref={scrollbarRef} ev-scroll={onScrollbarScroll}>
+            <div class="k-table-scrollbar-inner" style={{width: tableActualWidth.value}}></div>
+        </div>
+    </Affix>
 </div>
