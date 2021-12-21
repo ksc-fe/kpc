@@ -43,7 +43,8 @@ const style = isStringOrNumber(fixHeader) ?
     {maxHeight: `${fixHeader}px`} :
     null;
 
-const {getWidth, start: onStart, tableRef, tableWidth} = this.resizable;
+const {getWidth, tableRef, tableWidth} = this.width;
+const {start: onStart} = this.resizable;
 
 const colgroup = (
     <colgroup>
@@ -186,6 +187,7 @@ const tbody = (
         }
     </TransitionGroup>
 );
+console.log('render')
 
 const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
 const {
@@ -194,7 +196,7 @@ const {
     style: stickScrollbarStyle,
     scrollbarRef,
     onScroll: onScrollbarScroll,
-    tableWidth: tableActualWidth,
+    tableActualWidth,
 } = this.stickyScrollbar;
 <div class={classNameObj} ref={elementRef}>
     <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>

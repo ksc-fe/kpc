@@ -21,6 +21,7 @@ import {Table, TableColumn} from 'kpc/components/table';
         v-model:group="group"
         ev-$change:group={this._onChangeGroup}
         ref="__test1"
+        rowKey={row => row.name}
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
@@ -40,6 +41,7 @@ import {Table, TableColumn} from 'kpc/components/table';
         v-model:group="multipleGroup"
         ev-$change:group={this._onChangeMultipleGroup}
         ref="__test2"
+        rowKey={row => row.name}
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
@@ -69,6 +71,8 @@ import {bind, TableGroupValue} from 'kpc';
 interface Props {
     data: DataItem[]
     multipleData: DataItem[]
+    group: TableGroupValue
+    multipleGroup: TableGroupValue
 }
 
 type DataItem = {

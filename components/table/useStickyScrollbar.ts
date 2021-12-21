@@ -1,9 +1,8 @@
 import {createRef, useInstance, onMounted, onBeforeUnmount, RefObject, nextTick} from 'intact';
 import {ShouldFixParam} from '../affix';
-import {useState} from '../../hooks/useState';
+import {useState, State, watchState} from '../../hooks/useState';
 import type {Table} from './';
 import {isStringOrNumber, isNull} from 'intact-shared';
-import ResizeObserver from 'resize-observer-polyfill';
 import {debounce} from '../utils';
 
 export function useStickyScrollbar(
@@ -11,12 +10,13 @@ export function useStickyScrollbar(
     scrollRef: RefObject<HTMLElement>,
     tableRef: RefObject<HTMLElement>,
     tableScroll: (e: Event) => void,
+    tableWidth: State<number | null>,
 ) {
     const instance = useInstance() as Table;
     const stick = useState<number | null>(null);
     const style = useState<Record<string, string> | null>(null);
     const scrollbarRef = createRef<HTMLElement>();
-    const tableWidth = useState<string | null>(null);
+    const tableActualWidth = useState<string | null>(null);
 
     let scrollLeft = 0;
     function shouldStickScrollbar({offsetBottom, viewportHeight}: ShouldFixParam) {
@@ -54,21 +54,27 @@ export function useStickyScrollbar(
         stick.set(v === true ? 0 : isStringOrNumber(v) ? +v : null);
     });
 
-    let ro: ResizeObserver;
+    function setTableActualWidth() {
+        tableActualWidth.set(tableRef.value!.offsetWidth + 'px');
+    }
+
+    watchState(tableWidth, v => {
+        if (v) {
+            tableActualWidth.set(v + 'px');
+        } else {
+            setTableActualWidth();
+        }
+    });
+
     onMounted(() => {
         scrollRef.value!.addEventListener('scroll', onTableScroll);
 
-        ro = new ResizeObserver(() => {
-            tableWidth.set(tableRef.value!.offsetWidth + 'px');
-        });
-        ro.observe(tableRef.value!);
-
+        setTableActualWidth();
     });
     onBeforeUnmount(() => {
         scrollRef.value!.removeEventListener('scroll', onTableScroll);
-        ro.disconnect();
     });
 
-    return {shouldStickScrollbar, stick, style, scrollbarRef, onScroll, tableWidth};
+    return {shouldStickScrollbar, stick, style, scrollbarRef, onScroll, tableActualWidth};
 }
 

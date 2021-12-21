@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Children, VNodeComponentClass, VNode} from 'intact';
+import {Component, TypeDefs, Children, VNodeComponentClass, VNode, createRef} from 'intact';
 import template from './column.vdt';
 import {useGroup} from './useGroup';
 
@@ -62,6 +62,8 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
 export class TableColumn<T = any> extends Component<TableColumnProps, TableColumnEvents, TableColumnBlocks<T>> {
     static template = template;
     static typeDefs = typeDefs;
+
+    public elementRef = createRef<HTMLElement>();
 
     private group = useGroup();
 }

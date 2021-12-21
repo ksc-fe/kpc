@@ -18,6 +18,7 @@ import {exportTable} from './exportTable';
 import {useResizable} from './useResizable';
 import {useDraggable} from './useDraggable';
 import {useStickyScrollbar} from './useStickyScrollbar';
+import {useWidth} from './useWidth';
 
 export interface TableProps<T = any> {
     data?: T[]
@@ -123,11 +124,21 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     private tree = useTree();
     private columns = useColumns();
     private stickyHeader = useStickyHeader();
-    private resizable = useResizable(this.stickyHeader.scrollRef);
+    private width = useWidth(
+        this.stickyHeader.scrollRef,
+        this.columns.getColumns,
+    );
+    private resizable = useResizable(
+        this.stickyHeader.scrollRef,
+        this.width.tableRef,
+        this.width.tableWidth,
+        this.width.widthMap,
+        this.width.storeWidth,
+    );
     private fixedColumns = useFixedColumns(
         this.columns.getColumns,
         this.stickyHeader.scrollRef,
-        this.resizable.widthMap,
+        this.width.widthMap,
     );
     private disableRow = useDisableRow(this.tree.loopData);
     private merge = useMerge(this.columns.getCols);
@@ -146,8 +157,9 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     private stickyScrollbar = useStickyScrollbar(
         this.stickyHeader.elementRef,
         this.stickyHeader.scrollRef,
-        this.resizable.tableRef,
+        this.width.tableRef,
         this.fixedColumns.onScroll,
+        this.width.tableWidth,
     );
 
     public getCheckedData() {

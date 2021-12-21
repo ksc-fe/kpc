@@ -226,9 +226,9 @@ export function makeStyles() {
                 color: ${theme.color.primary};
             }
             .k-icon {
-                position: absolute;
-                top: -1px;
-                left: 2px;
+                // position: absolute;
+                // top: -1px;
+                // left: 2px;
                 transition: transform ${theme.transition};
             }
             &.k-dropdown-open .k-icon {
