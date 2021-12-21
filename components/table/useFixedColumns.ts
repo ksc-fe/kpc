@@ -16,6 +16,7 @@ import {isNullOrUndefined, isString, error} from 'intact-shared';
 import {throttle} from '../utils';
 import {State, watchState} from '../../hooks/useState';
 import {createContext} from '../context';
+import type {useScroll} from './useScroll';
 
 type ScrollPosition = 'left' | 'middle' | 'right';
 type FixedInfo = {
@@ -27,17 +28,34 @@ export const context = createContext();
 
 export function useFixedColumns(
     getColumns: () => VNodeComponentClass<TableColumn>[][],
-    scrollRef: RefObject<HTMLElement>,
+    {scrollRef, callbacks}: ReturnType<typeof useScroll>,
     widthMap: State<Record<TableRowKey, number>>, 
 ) {
     const instance = useInstance()!;
-
     const scrollPosition = useState<ScrollPosition | null>(null);
     const hasFixed = useState<boolean>(false);
-    let scrollLeft = 0;
     let hasFixedLeft = false;
     let hasFixedRight = false;
     let offsetMap: Record<Key, number> = {};
+
+    callbacks.push(setScrollPosition);
+
+    instance.on('$receive:children', handleFixedColumns);
+    watchState(widthMap, handleFixedColumns);
+    
+    const throttleUpdate = throttle(() => {
+        if (instance.$unmounted) return;
+        updateScrollPositionOnResize();
+    }, 100);
+
+    onMounted(() => {
+        updateScrollPositionOnResize();
+        window.addEventListener('resize', throttleUpdate);
+    });
+
+    onUnmounted(() => {
+        window.removeEventListener('resize', throttleUpdate);
+    });
 
     function handleFixedColumns() {
         const columns = getColumns();
@@ -91,23 +109,19 @@ export function useFixedColumns(
         hasFixed.set(hasFixedLeft || hasFixedRight);
     }
 
-    function onScroll(e: Event) {
+    function setScrollPosition(scrollLeft: number) {
         if (!hasFixed.value) return;
 
-        const scrollDom = e.target as HTMLElement;
-        const newScrollLeft = scrollDom.scrollLeft;
-        if (scrollLeft !== newScrollLeft) {
-            scrollLeft = newScrollLeft;
-
-            const maxScroll = scrollDom.scrollWidth - scrollDom.offsetWidth;
-            scrollPosition.set(
-                scrollLeft === 0 ? 'left' :
-                    scrollLeft >= maxScroll ?
-                        'right' :
-                        'middle'
-            );
-        }
+        const scrollDom = scrollRef.value!;
+        const maxScroll = scrollDom.scrollWidth - scrollDom.offsetWidth;
+        scrollPosition.set(
+            scrollLeft === 0 ? 'left' :
+                scrollLeft >= maxScroll ?
+                    'right' :
+                    'middle'
+        );
     }
+
 
     function updateScrollPositionOnResize() {
         const scrollDom = scrollRef.value!;     
@@ -118,26 +132,9 @@ export function useFixedColumns(
         }
     }
 
-    instance.on('$receive:children', handleFixedColumns);
-    watchState(widthMap, handleFixedColumns);
-
-    const throttleUpdate = throttle(() => {
-        if (instance.$unmounted) return;
-        updateScrollPositionOnResize();
-    }, 100);
-
-    onMounted(() => {
-        updateScrollPositionOnResize();
-        window.addEventListener('resize', throttleUpdate);
-    });
-
-    onUnmounted(() => {
-        window.removeEventListener('resize', throttleUpdate);
-    });
-
     return {
         scrollPosition,
-        onScroll,
+        setScrollPosition,
         hasFixed,
         getHasFixedLeft: () => hasFixedLeft,
         getOffsetMap: () => offsetMap,

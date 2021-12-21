@@ -26,8 +26,9 @@ const {
     draggable,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
-const {onScroll, scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
-const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.stickyHeader;
+const {setScrollPosition, scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
+const {scrollRef} = this.scroll;
+const {stickHeader, excludeStickHeader, elementRef, headRef} = this.stickyHeader;
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
@@ -187,7 +188,6 @@ const tbody = (
         }
     </TransitionGroup>
 );
-console.log('render')
 
 const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
 const {
@@ -199,7 +199,7 @@ const {
     tableActualWidth,
 } = this.stickyScrollbar;
 <div class={classNameObj} ref={elementRef}>
-    <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>
+    <div class="k-table-wrapper" style={style} ref={scrollRef}>
         <Affix v-if={!isNull(stickHeader.value)}
             top={stickHeader.value}
             exclude={excludeStickHeader}

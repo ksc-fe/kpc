@@ -312,16 +312,15 @@ describe('Table', () => {
 
         instance.set('loading', true);
         await wait();
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(element.innerHTML).to.matchSnapshot();
         instance.set('loading', false);
         await wait();
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(element.innerHTML).to.matchSnapshot();
     });
 
-    return;
     it('export', async function() {
-        this.enableTimeouts(false);
-        instance = mount(ExportDemo);
+        this.timeout(0);
+        const [instance, element] = mount(ExportDemo);
 
         const content = await instance.refs.table.exportTable();
         expect(content.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
@@ -331,6 +330,7 @@ describe('Table', () => {
         expect(content1.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
     });
 
+    return;
     it('selectedKeys', () => {
         instance = mount(SelectedKeysDemo);
 

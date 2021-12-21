@@ -64,7 +64,6 @@ export function useWidth(
                 width: tableWidth.value,
             }));
         }
-
     }
 
     function checkTableWidth(isMount: boolean) {

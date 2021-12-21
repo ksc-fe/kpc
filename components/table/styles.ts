@@ -69,6 +69,7 @@ export function makeStyles() {
         color: ${table.color};
         border-top: ${table.border};
         position: relative;
+        z-index: 0;
         .k-table-wrapper {
             border-bottom: ${table.border};
             overflow: auto;

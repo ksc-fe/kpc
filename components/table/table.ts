@@ -19,6 +19,7 @@ import {useResizable} from './useResizable';
 import {useDraggable} from './useDraggable';
 import {useStickyScrollbar} from './useStickyScrollbar';
 import {useWidth} from './useWidth';
+import {useScroll} from './useScroll';
 
 export interface TableProps<T = any> {
     data?: T[]
@@ -123,13 +124,14 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
 
     private tree = useTree();
     private columns = useColumns();
-    private stickyHeader = useStickyHeader();
+    private scroll = useScroll();
+    private stickyHeader = useStickyHeader(this.scroll.callbacks);
     private width = useWidth(
-        this.stickyHeader.scrollRef,
+        this.scroll.scrollRef,
         this.columns.getColumns,
     );
     private resizable = useResizable(
-        this.stickyHeader.scrollRef,
+        this.scroll.scrollRef,
         this.width.tableRef,
         this.width.tableWidth,
         this.width.widthMap,
@@ -137,7 +139,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     );
     private fixedColumns = useFixedColumns(
         this.columns.getColumns,
-        this.stickyHeader.scrollRef,
+        this.scroll,
         this.width.widthMap,
     );
     private disableRow = useDisableRow(this.tree.loopData);
@@ -156,9 +158,9 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     private draggable = useDraggable();
     private stickyScrollbar = useStickyScrollbar(
         this.stickyHeader.elementRef,
-        this.stickyHeader.scrollRef,
+        this.scroll,
         this.width.tableRef,
-        this.fixedColumns.onScroll,
+        this.fixedColumns.setScrollPosition,
         this.width.tableWidth,
     );
 

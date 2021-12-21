@@ -1,13 +1,13 @@
-import {createRef, useInstance, onMounted, onBeforeUnmount} from 'intact';
+import {createRef, useInstance, onMounted, onBeforeUnmount, RefObject} from 'intact';
 import {ExcludeParam} from '../affix';
 import {useState} from '../../hooks/useState';
 import type {Table} from './';
 import {isStringOrNumber, isNull} from 'intact-shared';
+import type {ScrollCallback} from './useScroll';
 
-export function useStickyHeader() {
+export function useStickyHeader(callbacks: ScrollCallback[]) {
     const instance = useInstance() as Table;
     const elementRef = createRef<HTMLElement>();
-    const scrollRef = createRef<HTMLElement>();
     const headRef = createRef<HTMLElement>();
     const stickHeader = useState<number | null>(null);
 
@@ -16,26 +16,18 @@ export function useStickyHeader() {
         return bottom <= offsetTop!;
     }
 
-    // when the scroll element scroll horizontally, scroll the sticky header too 
-    function onTableScroll() {
-        if (isNull(stickHeader.value)) return;
-
-        const scrollLeft = scrollRef.value!.scrollLeft;
-        const affixHeadWrapper = headRef.value!.parentElement as HTMLElement;
-        affixHeadWrapper.scrollLeft = scrollLeft;
-    }
-
     instance.on('$receive:stickHeader', v => {
         stickHeader.set(v === true ? 0 : isStringOrNumber(v) ? +v : null);
     });
 
-    onMounted(() => {
-        scrollRef.value!.addEventListener('scroll', onTableScroll);
-    });
-    onBeforeUnmount(() => {
-        scrollRef.value!.removeEventListener('scroll', onTableScroll);
+    // when the scroll element scroll horizontally, scroll the sticky header too 
+    callbacks.push(scrollLeft => {
+        if (isNull(stickHeader.value)) return;
+
+        const affixHeadWrapper = headRef.value!.parentElement as HTMLElement;
+        affixHeadWrapper.scrollLeft = scrollLeft;
     });
 
-    return {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef};
+    return {stickHeader, excludeStickHeader, elementRef, headRef};
 }
 

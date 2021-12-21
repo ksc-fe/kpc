@@ -4,12 +4,13 @@ import {useState, State, watchState} from '../../hooks/useState';
 import type {Table} from './';
 import {isStringOrNumber, isNull} from 'intact-shared';
 import {debounce} from '../utils';
+import type {useScroll} from './useScroll';
 
 export function useStickyScrollbar(
     elementRef: RefObject<HTMLElement>,
-    scrollRef: RefObject<HTMLElement>,
+    {scrollRef, callbacks}: ReturnType<typeof useScroll>,
     tableRef: RefObject<HTMLElement>,
-    tableScroll: (e: Event) => void,
+    tableScroll: (scrollLeft: number) => void,
     tableWidth: State<number | null>,
 ) {
     const instance = useInstance() as Table;
@@ -17,6 +18,24 @@ export function useStickyScrollbar(
     const style = useState<Record<string, string> | null>(null);
     const scrollbarRef = createRef<HTMLElement>();
     const tableActualWidth = useState<string | null>(null);
+
+    instance.on('$receive:stickScrollbar', v => {
+        stick.set(v === true ? 0 : isStringOrNumber(v) ? +v : null);
+    });
+
+    watchState(tableWidth, v => {
+        if (v) {
+            tableActualWidth.set(v + 'px');
+        } else {
+            setTableActualWidth();
+        }
+    });
+
+    onMounted(() => {
+        setTableActualWidth();
+    });
+
+    callbacks.push(onTableScroll);
 
     let scrollLeft = 0;
     function shouldStickScrollbar({offsetBottom, viewportHeight}: ShouldFixParam) {
@@ -36,10 +55,10 @@ export function useStickyScrollbar(
     }
 
     let lock = false;
-    function onTableScroll(e: Event) {
+    function onTableScroll(_scrollLeft: number) {
         if (isNull(stick.value) || lock) return;
 
-        scrollbarRef.value!.scrollLeft = scrollLeft = scrollRef.value!.scrollLeft;
+        scrollbarRef.value!.scrollLeft = scrollLeft = _scrollLeft;
     }
 
     const unlock = debounce(() => lock = false, 100);
@@ -47,33 +66,12 @@ export function useStickyScrollbar(
         lock = true;
         scrollRef.value!.scrollLeft = scrollLeft = scrollbarRef.value!.scrollLeft; 
         unlock();
-        tableScroll(e);
+        tableScroll(scrollLeft);
     }
-
-    instance.on('$receive:stickScrollbar', v => {
-        stick.set(v === true ? 0 : isStringOrNumber(v) ? +v : null);
-    });
 
     function setTableActualWidth() {
         tableActualWidth.set(tableRef.value!.offsetWidth + 'px');
     }
-
-    watchState(tableWidth, v => {
-        if (v) {
-            tableActualWidth.set(v + 'px');
-        } else {
-            setTableActualWidth();
-        }
-    });
-
-    onMounted(() => {
-        scrollRef.value!.addEventListener('scroll', onTableScroll);
-
-        setTableActualWidth();
-    });
-    onBeforeUnmount(() => {
-        scrollRef.value!.removeEventListener('scroll', onTableScroll);
-    });
 
     return {shouldStickScrollbar, stick, style, scrollbarRef, onScroll, tableActualWidth};
 }
