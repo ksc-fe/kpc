@@ -1,0 +1,5 @@
+import {makeStyles} from './styles';
+
+<div class={makeStyles()}>
+    <div>king version</div>
+</div>

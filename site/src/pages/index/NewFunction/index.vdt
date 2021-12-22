@@ -1,0 +1,40 @@
+import {makeStyles} from './styles';
+import {Card} from '../../../components/card';
+import {Button, Icon} from 'kpc';
+
+<div class={makeStyles()}>
+    <div className='new-fn-box'>
+        <div class="title-box">
+            <div>全新的功能，为企业提效而生</div>
+            <div>让设计师/工程师快速上手</div>
+        </div>
+        <div class="card-wrapper">
+            <div class="card-box">
+                <Card
+                    mainTitle="资源"
+                    subTitle="为整条产品设计链路提效"
+                >
+                    world
+                </Card>
+                <Card
+                    mainTitle="组件"
+                    subTitle="即开即用，为品牌焕发新活力"
+                >
+                    hello
+                </Card>
+                <Card
+                    mainTitle="动效"
+                    subTitle="为产品体验增加更多可能"
+                >
+                    hello
+                </Card>
+            </div>
+            <Button class="arrow-btn next-arrow">
+                <Icon class="icon ion-chevron-right"></Icon>
+            </Button>
+            <Button class="arrow-btn prev-arrow">
+                <Icon class="icon ion-chevron-left"></Icon>
+            </Button>
+        </div>
+    </div>
+</div>

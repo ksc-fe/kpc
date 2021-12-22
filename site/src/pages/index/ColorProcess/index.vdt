@@ -1,0 +1,12 @@
+import {makeStyles} from './styles';
+import {ThemeFrame} from '../../../components/ThemeFrame';
+import {Button} from 'kpc';
+
+<div class={makeStyles()}>
+    <div>
+        <div>color process</div>
+        <ThemeFrame>
+            <Button type="primary">hello!!!</Button>
+        </ThemeFrame>
+    </div>
+</div>

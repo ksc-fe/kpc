@@ -1,0 +1,5 @@
+import {makeStyles} from './styles';
+
+<div class={makeStyles()}>
+    <div>footer a!!</div>
+</div>

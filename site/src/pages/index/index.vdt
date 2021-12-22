@@ -1,7 +1,38 @@
 import {makeStyles} from './styles';
+import {Button} from 'kpc';
+import nav_logo from '../../imgs/nav_logo.png';
+import design_system from '../../imgs/design_system.png';
+import github_logo from '../../imgs/github_logo.png';
+import {Footer} from '../../components/footer/';
+import {NewFunction} from './NewFunction';
+import {BestPractice} from './BestPractice';
+import {ColorProcess} from './ColorProcess';
+import {KingVersion} from './KingVersion';
 
-<t:super class={makeStyles()}>
+<t:super style="color: skyblue;" class={makeStyles()}>
     <b:content>
-        index page
+        <div class="nav">
+            <div class="nav-content">
+                <div>
+                    <img src={design_system} />
+                </div>
+                <div>
+                    <img src={nav_logo} />
+                </div>
+                <div>为企业提效而生</div>
+                <div>
+                    <Button type="primary">开始使用</Button>
+                    <Button type="secondary">
+                        <img src={github_logo} />
+                        <span>Github</span>
+                    </Button>
+                </div>
+            </div>
+        </div>
+        <NewFunction></NewFunction>
+        <BestPractice></BestPractice>
+        <ColorProcess></ColorProcess>
+        <KingVersion></KingVersion>
+        <Footer></Footer>
     </b:content>
 </t:super>

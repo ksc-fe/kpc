@@ -1,0 +1,114 @@
+import {makeStyles} from './styles';
+import vue_logo from '../../../imgs/vue_logo.png';
+import {Code, Input, Button, Icon, Select, Option, Slider} from 'kpc';
+
+const {codeContent, contentInput, iconPosition, buttonStatus, 
+buttonRadius, buttonRadiusMax, buttonRadiusMin} = this.get();
+
+const supportList = [
+    {
+        title: 'Vue',
+        src: vue_logo,
+        isActive: true
+    },
+    {
+        title: 'React',
+        src: vue_logo,
+        isActive: false
+    },
+    {
+        title: 'Angular',
+        src: vue_logo,
+        isActive: false
+    },
+];
+
+const innerButton = () => {
+    const buttonContent = <span>{contentInput}</span>
+    const buttonIcon = <Icon class="icon ion-plus"></Icon>
+    const isLeft = iconPosition == 'left'
+
+    return (
+        <Button type={buttonStatus}>
+            { isLeft ? buttonIcon : buttonContent }
+            { isLeft ? buttonContent : buttonIcon }
+        </Button>
+    )
+}
+
+<div class={makeStyles()}>
+    <div class="best-box">
+        <div>
+            <div class="title-box">
+                <div class="main-title">DevOps最佳实践，忠于原生增强原生</div>
+                <div class="sub-title">在保持浏览器原生特性的基础上增强交互能力，支持</div>
+                <div class="sub-title">按需加载、主题定制，国际化等特性</div>
+            </div>
+        </div>
+        <div>
+            <div class="imgs-box">
+                <div class={$value.isActive ? 'active' : ''} v-for={supportList}>
+                    <img src={$value.src} />
+                    <div>{$value.title}</div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="code-pen">
+                {/* <Code v-model="codeContent" language="javascript" /> */}
+                <div>{codeContent}</div>
+            </div>
+            <div class="optional-box">
+                <div class="left">
+                    {innerButton()}
+                </div>
+                <div class="right">
+                    <div class="item">
+                        <div>内容：</div>
+                        <div>
+                            <Input v-model="contentInput" />
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div>图标：</div>
+                        <div>
+                            <div>
+                                <Select v-model="iconPosition" fluid>
+                                    <Option value="left">Icon左置</Option>
+                                    <Option value="right">Icon右置</Option>
+                                </Select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div>圆角：</div>
+                        <div>
+                            <div class="radius-box">
+                                <div class="radius-value">{buttonRadiusMin}</div>
+                                <Slider 
+                                    v-model="buttonRadius" 
+                                    min={0} 
+                                    max={24} 
+                                    isShowInput={false} 
+                                    isShowEnd={false}
+                                />
+                                <div class="radius-value">{buttonRadiusMax}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div>状态：</div>
+                        <div>
+                            <div>
+                                <Select v-model="buttonStatus" fluid>
+                                    <Option value="primary">主按钮</Option>
+                                    <Option value="secondary">次按钮</Option>
+                                </Select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

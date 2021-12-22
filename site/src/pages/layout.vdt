@@ -1,31 +1,58 @@
 import {Layout, Header, Aside, Body, Button, Icon, Tabs, Tab} from 'kpc';
 import {makeHeaderStyles} from './styles';
 
+// const nav = [
+//     {
+//         title: '资源',
+//         href: '/docs/resources/',
+//         index: 'resources',
+//     },
+//     {
+//         title: '设计',
+//         href: '/docs/design/language/',
+//         index: 'design'
+//     },
+//     {
+//         title: '组件',
+//         href: '/docs/getting-started/',
+//         index: 'document'
+//     },
+//     {
+//         title: 'Blog',
+//         href: '/docs/blogs/design/',
+//         index: 'blog'
+//     },
+//     {
+//         title: '定制主题',
+//         href: 'https://kpc-theme.ksyun.com/',
+//         isOpen: true,
+//     }
+// ];
+
 const nav = [
     {
-        title: '资源',
+        title: '设计',
         href: '/docs/resources/',
         index: 'resources',
     },
     {
-        title: '设计',
+        title: '组件',
         href: '/docs/design/language/',
         index: 'design'
     },
     {
-        title: '组件',
+        title: '开发',
         href: '/docs/getting-started/',
         index: 'document'
     },
     {
-        title: 'Blog',
+        title: '资源',
         href: '/docs/blogs/design/',
         index: 'blog'
     },
     {
-        title: '定制主题',
+        title: '解决方案',
         href: 'https://kpc-theme.ksyun.com/',
-        isOpen: true,
     }
 ];
 
@@ -41,7 +68,7 @@ const nav = [
             </Tabs>
         </div>
     </Header>
-    <Layout>
+    <Layout style="margin: 0;">
         <Body>
             <template>
                 <b:content />
