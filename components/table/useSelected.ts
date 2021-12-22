@@ -15,7 +15,11 @@ export function useSelected() {
         if (rowSelectable === 'multiple') {
             instance.set('selectedKeys', toggleArray(selectedKeys, key));
         } else if (rowSelectable) {
-            instance.set('selectedKeys', [key]);
+            if (!selectedKeys || selectedKeys[0] !== key) {
+                instance.set('selectedKeys', [key]);
+            } else {
+                instance.set('selectedKeys', []);
+            }
         }
     });
 

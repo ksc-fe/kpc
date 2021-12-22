@@ -13,17 +13,17 @@ import TreeDemo from '~/components/table/demos/tree';
 import DisabledDemo from '~/components/table/demos/disableRow';
 import ScrollToRowDemo from '~/components/table/demos/scrollToRow';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
-import Intact from 'intact';
+import {Component} from 'intact';
 import {Table, TableColumn} from './';
 import DraggableTable from '~/components/table/demos/draggable';
 import MergeCellDemo from '~/components/table/demos/mergeCell';
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
 import {Icon} from '../icon';
-import Vue from 'vue';
+// import Vue from 'vue';
 import {useChecked, AllCheckedStatus} from './useChecked';
 
 describe('Table', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('check & uncheck', async () => {
         const [instance, element] = mount(BasicDemo);
@@ -330,119 +330,134 @@ describe('Table', () => {
         expect(content1.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
     });
 
-    return;
-    it('selectedKeys', () => {
-        instance = mount(SelectedKeysDemo);
+    it('selectedKeys', async () => {
+        const [instance, element] = mount(SelectedKeysDemo);
 
-        const [table1, table2] = instance.element.querySelectorAll('.k-tbody');
-        const [tr1, tr2] = table1.querySelectorAll('tr');
+        const [table1, table2] = element.querySelectorAll<HTMLElement>('tbody');
+        const [tr1, tr2] = table1.querySelectorAll<HTMLElement>('tr');
         tr1.click();
+        await wait();
         expect(table1.innerHTML).to.matchSnapshot();
         tr2.click();
+        await wait();
         expect(table1.innerHTML).to.matchSnapshot();
         expect(instance.refs.__test1.getSelectedData()).to.have.lengthOf(1);
         tr2.click();
+        await wait();
         expect(table1.innerHTML).to.matchSnapshot();
         expect(instance.refs.__test1.getSelectedData()).to.have.lengthOf(0);
 
-        const [tr21, tr22] = table2.querySelectorAll('tr');
+        const [tr21, tr22] = table2.querySelectorAll<HTMLElement>('tr');
         tr21.click();
+        await wait();
         expect(table2.innerHTML).to.matchSnapshot();
         tr22.click();
+        await wait();
         expect(table2.innerHTML).to.matchSnapshot();
         expect(instance.refs.__test2.getSelectedData()).to.have.lengthOf(2);
         tr22.click();
+        await wait();
         expect(table2.innerHTML).to.matchSnapshot();
         expect(instance.refs.__test2.getSelectedData()).to.have.lengthOf(1);
     });
 
-    it('tooltip', () => {
-        instance = mount(TooltipDemo);
+    it('tooltip', async () => {
+        const [instance, element] = mount(TooltipDemo);
 
-        const tr = instance.element.querySelector('tbody tr');
+        const tr = element.querySelector('tbody tr') as HTMLElement;
         dispatchEvent(tr, 'mouseenter');
-        const content = getElement('.k-tooltip-content');
+        await wait();
+        const content = getElement('.k-tooltip-content')!;
         expect(content.textContent).to.matchSnapshot();
     });
 
-    it('tree', () => {
-        instance = mount(TreeDemo);
+    it('tree', async () => {
+        const [instance, element] = mount(TreeDemo);
+        const table = instance.$lastInput!.children as Table;
 
         // check all
-        const checkbox = instance.element.querySelector('.k-checkbox');
+        const checkbox = element.querySelector('.k-checkbox') as HTMLElement;
         checkbox.click();
-        expect(instance.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(table.getCheckedData()).to.have.lengthOf(8);
 
-        const arrow = instance.element.querySelector('.k-table-arrow');
+        const arrow = element.querySelector('.k-table-arrow') as HTMLElement;
         arrow.click();
-        expect(instance.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
         arrow.click();
-        expect(instance.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(table.getCheckedData()).to.have.lengthOf(8);
     });
 
-    it('should keep checked status of the disabled row', () => {
-        instance = mount(DisabledDemo);
+    it('should keep checked status of the disabled row', async () => {
+        const [instance, element] = mount(DisabledDemo);
+        const checked = (instance.$lastInput!.children as any).checked as ReturnType<typeof useChecked>;
 
-        const checkbox = instance.element.querySelector('.k-checkbox');
+        const checkbox = element.querySelector('.k-checkbox') as HTMLElement;
         checkbox.click();
+        await wait();
         expect(instance.get('checkedKeys')).to.eql(['3', '2', '4']);
         checkbox.click();
+        await wait();
         expect(instance.get('checkedKeys')).to.eql(['3']);
 
-        const [, , checkbox2, , checkbox4] = instance.element.querySelectorAll('.k-checkbox input');
+        const [, , checkbox2, , checkbox4] = element.querySelectorAll<HTMLElement>('.k-checkbox');
         checkbox2.click();
-        expect(instance.refs.__test.isCheckAll()).to.be.false;
+        await wait();
+        expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.Indeterminate);
         checkbox4.click();
-        expect(instance.refs.__test.isCheckAll()).to.be.true;
+        await wait();
+        expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.All);
     });
 
     it('scroll to row', async () => {
-        instance = mount(ScrollToRowDemo);
+        const [instance, element] = mount(ScrollToRowDemo);
 
-        const table = instance.refs.table;
-        const elements = Array.from(instance.element.querySelectorAll('.k-tbody'));
-        const tr = instance.element.querySelector('.k-tbody tr');
+        const table = instance.refs.table as Table;
+        const scroll = element.querySelector('.k-table-wrapper') as HTMLElement;
+        const tr = element.querySelector('tbody tr') as HTMLElement;
         const height = tr.offsetHeight;
-        const test = async (rows) => {
-            await wait(200);
-            elements.forEach(el => {
-                expect(el.scrollTop).to.eql(height * rows + rows);
-            });
+        const test = (rows: number) => {
+            expect(scroll.scrollTop).to.eql(height * rows);
         };
 
-        table.scrollToRowByIndex(2);
-        await test(2);
-        table.scrollToRowByIndex(1);
-        await test(1);
+        await table.scrollToRowByIndex(2);
+        test(2);
+        await table.scrollToRowByIndex(1);
+        test(1);
 
-        table.scrollToRowByKey('name 3');
-        await test(2);
-        table.scrollToRowByKey('name 2');
-        await test(1);
+        await table.scrollToRowByKey('name 3');
+        test(2);
+        await table.scrollToRowByKey('name 2');
+        test(1);
     });
 
     it('render a hidden table with minWidth', () => {
-        class Demo extends Intact {
-            @Intact.template()
-            static template = `<div style="display: none;">
-                <Table>
-                    <TableColumn key="a" minWidth={{ 30 }} />
-                </Table>
-            </div>`
-            _init() {
-                this.Table = Table;
-                this.TableColumn = TableColumn;
-            }
+        class Demo extends Component {
+            static template = `
+                const {Table, TableColumn} = this;
+                <div style="display: none;">
+                    <Table>
+                        <TableColumn key="a" minWidth={30} />
+                    </Table>
+                </div>
+            `
+            private Table = Table;
+            private TableColumn = TableColumn;
         }
 
-        instance = mount(Demo);
+        const [, element] = mount(Demo);
+        expect(element.innerHTML).to.matchSnapshot();
     });
 
     it('draggable', async () => {
-        instance = mount(DraggableTable);
+        const [instance, element] = mount(DraggableTable);
 
-        const [tr1, tr2] = instance.element.querySelectorAll('.k-tbody tr');
-        const {top} = instance.element.getBoundingClientRect();
+        const [tr1, tr2] = element.querySelectorAll<HTMLElement>('tbody tr');
+        const {top} = element.getBoundingClientRect();
         dispatchEvent(tr2, 'dragstart');
         dispatchEvent(tr1, 'dragover', {
             clientY: top + 41 + 20
@@ -450,23 +465,23 @@ describe('Table', () => {
         dispatchEvent(tr2, 'dragend');
 
         await wait(300);
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(element.innerHTML).to.matchSnapshot();
     });
 
-    it('should not check all if the checkedKeys have some keys that not in rowKeys', () => {
-        class Demo extends Intact {
-            @Intact.template()
+    it('should not check all even though the keys is equal but the checkedKeys have some keys that not in rowKeys', async () => {
+        class Demo extends Component<{data: any[], checkedKeys: number[]}> {
             static template = `
+                const {Table, TableColumn} = this;
                 <Table v-model:checkedKeys="checkedKeys"
-                    data={{ self.get('data') }}
-                    rowKey={{ i => i.a }}
+                    data={this.get('data')}
+                    rowKey={i => i.a}
                     ref="table"
-                    removeCheckedKeyOnRowDestroyed={{ false }}
+                    keepStatus={true}
                 >
                     <TableColumn key="a" />
                 </Table>
             `;
-            defaults() {
+            static defaults() {
                 return {
                     data: [
                         {a: 1},
@@ -475,85 +490,87 @@ describe('Table', () => {
                     checkedKeys: [3, 4],
                 };
             }
-            _init() {
-                this.Table = Table;
-                this.TableColumn = TableColumn;
-            }
+            private Table = Table;
+            private TableColumn = TableColumn;
         }
 
-        instance = mount(Demo);
+        const [instance, element] = mount(Demo);
+        const table = instance.refs.table as Table;
+        const checked = (table as any).checked as ReturnType<typeof useChecked>;
 
-        expect(instance.refs.table.isCheckAll()).to.be.false;
+        expect(checked.getAllCheckedStatus()).to.eql(AllCheckedStatus.None);
 
-        instance.refs.table.checkAll();
+        table.checkAll();
         expect(instance.get('checkedKeys')).to.eql([3, 4, 1, 2]);
 
-        instance.refs.table.uncheckAll();
+        table.uncheckAll();
         expect(instance.get('checkedKeys')).to.eql([3, 4]);
 
         instance.set('checkedKeys', [3, 4, 1]);
-        expect(instance.refs.table.isCheckAll()).to.be.false;
+        await wait();
+        expect(checked.getAllCheckedStatus()).to.eql(AllCheckedStatus.Indeterminate);
 
-        instance.refs.table.checkAll();
+        table.checkAll();
         expect(instance.get('checkedKeys')).to.eql([3, 4, 1, 2]);
 
         // destroy one row
         instance.set('data', [{a: 1}]);
+        await wait();
         expect(instance.get('checkedKeys')).to.eql([3, 4, 1, 2]);
     });
 
-    it('should render dropdown in header of fixed table correctly in Vue', async () => {
-        const Demo = {
-            template: `
-                <Table :data="data" style="width: 800px;">
-                    <TableColumn key="a" width="300" fixed="left" />
-                    <TableColumn key="b" width="300">
-                        <template slot="title">
-                            <Dropdown trigger="click" :container="dom => dom.parentElement.closest('.k-table')">
-                                <Icon class="ion-ios-arrow-down" style="margin-left: 100px;" />
-                                <DropdownMenu>
-                                    <DropdownItem>1</DropdownItem>
-                                    <DropdownItem>2</DropdownItem>
-                                    <DropdownItem>3</DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
-                        </template>
-                    </TableColumn>
-                    <TableColumn key="c" width="300" fixed="right" />
-                </Table>
-            `,
-            components: {
-                Table,
-                TableColumn,
-                Dropdown,
-                DropdownMenu,
-                DropdownItem,
-                Icon,
-            },
-            data() {
-                return {
-                    data: [
-                        {a: 1, b: 1, c: 1},
-                        {a: 2, b: 2, c: 2},
-                    ],
-                };
-            }
-        };
-        const container = document.createElement('div');
-        document.body.appendChild(container);
-        const app = new Vue({
-            render: h => h('Demo'),
-            components: {
-                Demo
-            }
-        }).$mount(container);
+    // it('should render dropdown in header of fixed table correctly in Vue', async () => {
+        // const Demo = {
+            // template: `
+                // <Table :data="data" style="width: 800px;">
+                    // <TableColumn key="a" width="300" fixed="left" />
+                    // <TableColumn key="b" width="300">
+                        // <template slot="title">
+                            // <Dropdown trigger="click" :container="dom => dom.parentElement.closest('.k-table')">
+                                // <Icon class="ion-ios-arrow-down" style="margin-left: 100px;" />
+                                // <DropdownMenu>
+                                    // <DropdownItem>1</DropdownItem>
+                                    // <DropdownItem>2</DropdownItem>
+                                    // <DropdownItem>3</DropdownItem>
+                                // </DropdownMenu>
+                            // </Dropdown>
+                        // </template>
+                    // </TableColumn>
+                    // <TableColumn key="c" width="300" fixed="right" />
+                // </Table>
+            // `,
+            // components: {
+                // Table,
+                // TableColumn,
+                // Dropdown,
+                // DropdownMenu,
+                // DropdownItem,
+                // Icon,
+            // },
+            // data() {
+                // return {
+                    // data: [
+                        // {a: 1, b: 1, c: 1},
+                        // {a: 2, b: 2, c: 2},
+                    // ],
+                // };
+            // }
+        // };
+        // const container = document.createElement('div');
+        // document.body.appendChild(container);
+        // const app = new Vue({
+            // render: h => h('Demo'),
+            // components: {
+                // Demo
+            // }
+        // }).$mount(container);
 
-        // should show the first dropdown menu
-        app.$el.querySelector('.k-icon').click();
-        const dropdownMenu = app.$el.querySelectorAll('.k-dropdown-menu')[0];
-        expect(dropdownMenu.style.display).to.eql('');
+        // // should show the first dropdown menu
+        // app.$el.querySelector('.k-icon').click();
+        // const dropdownMenu = app.$el.querySelectorAll('.k-dropdown-menu')[0];
+        // expect(dropdownMenu.style.display).to.eql('');
 
-        app.$destroy();
-        document.body.removeChild(app.$el);
-    });
+        // app.$destroy();
+        // document.body.removeChild(app.$el);
+    // });
 });

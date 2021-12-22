@@ -10,7 +10,7 @@ import {nextFrame as _nextFrame} from '../components/utils';
 // }
 
 let container: HTMLDivElement | null = null;
-export function mount<T extends Component>(Component: ComponentConstructor<T>, style?: Record<string, string>, data?: Record<string, string>) {
+export function mount<T extends Component>(Component: ComponentConstructor<T>, style?: Record<string, string> | null, data?: any) {
     container = document.createElement('div');
     container.setAttribute('style', "width: 800px; height: 1080px; overflow: auto");
     if (style) {
@@ -47,7 +47,7 @@ export function unmount() {
     }
 }
 
-export function dispatchEvent(target: Element, eventName: string, options?: Record<string, any>) {
+export function dispatchEvent(target: Element | Document, eventName: string, options?: Record<string, any>) {
     let event: Event;
     if (document.createEvent) {
         event = document.createEvent('Event');

@@ -63,6 +63,8 @@ export async function exportTable(
         filename + '.csv',
         'text/comma-separated-values;charset=utf-8'
     );
+
+    return content;
 }
 
 function pushTextContext(rows: string[], dom: HTMLElement, content: string | undefined) {

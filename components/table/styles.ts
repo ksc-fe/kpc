@@ -298,9 +298,9 @@ export function makeStyles() {
         }
 
         // tree
-        tr.k-hidden {
-            display: none;
-        }
+        // tr.k-hidden {
+            // display: none;
+        // }
         .k-table-arrow {
             margin-right: ${table.arrow.gap};
             transition: transform ${theme.transition};

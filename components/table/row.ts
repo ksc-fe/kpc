@@ -28,7 +28,7 @@ export interface TableRowProps {
     onChangeChecked: (index: number, checked: boolean) => void
     grid: TableGrid
     selected: boolean
-    hidden: boolean
+    // hidden: boolean
     spreaded: boolean
     hasChildren: boolean
     indent: number

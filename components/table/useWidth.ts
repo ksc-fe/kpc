@@ -99,6 +99,7 @@ export function useWidth(
                 // check again because it may affect other columns
                 if (!isStop) {
                     // only check one more time, because sometimes we can not fix the width of column, #473
+                    // e.g. table display: none;
                     checkColumnMinWidth(true);
                 }
             });

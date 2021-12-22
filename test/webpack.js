@@ -57,7 +57,7 @@ exports.webpackConfigReact = () => {
 }
 
 function addConfig(config) {
-    // addThread(config);
-    // addStyle(config);
+    addThread(config);
+    addStyle(config);
     // addMonaco(config);
 }

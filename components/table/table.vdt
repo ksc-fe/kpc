@@ -114,6 +114,9 @@ const tbody = (
             (() => {
                 const rows = [];
                 loopData((value, index, level, hidden) => {
+                    // don't render if row is hidden
+                    if (hidden) return hidden;
+
                     const status = allStatus[index];
                     const key = allKeys[index];
                     const spreaded = isSpreaded(key);
@@ -138,7 +141,6 @@ const tbody = (
                         onChangeChecked={onChangeChecked}
                         selected={isSelected(key)}
                         spreaded={spreaded}
-                        hidden={hidden}
                         hasChildren={hasChildren}
                         indent={indentSize}
                         onToggleSpreadRow={toggleSpreadRow}

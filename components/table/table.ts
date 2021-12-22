@@ -154,7 +154,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     private sortable = useSortable();
     private expandable = useExpandable();
     private selected = useSelected();
-    private resetRowStatus = useRestRowStatus();
+    private resetRowStatus = useRestRowStatus(this.disableRow.getAllKeys);
     private draggable = useDraggable();
     private stickyScrollbar = useStickyScrollbar(
         this.stickyHeader.elementRef,
@@ -163,6 +163,14 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
         this.fixedColumns.setScrollPosition,
         this.width.tableWidth,
     );
+
+    public checkAll() {
+        this.checked.toggleCheckedAll(true);
+    }
+
+    public uncheckAll() {
+        this.checked.toggleCheckedAll(false);
+    }
 
     public getCheckedData() {
         return this.getData('checkedKeys');
@@ -178,7 +186,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
 
     public scrollToRowByKey(key: TableRowKey) {
         return new Promise<void>(resolve => {
-            const scrollElement = this.stickyHeader.scrollRef.value!;
+            const scrollElement = this.scroll.scrollRef.value!;
             const tr = scrollElement.querySelector(`tr[data-key="${key}"]`) as HTMLElement | null;
 
             if (!tr) return resolve();
@@ -188,7 +196,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
             // elem.scrollIntoView({behavior: 'smooth'});
             const headerHeight = (scrollElement.querySelector('thead') as HTMLElement).offsetHeight;
             let scrollTop = scrollElement.scrollTop;
-            const offsetTop = tr.offsetTop + 1 - headerHeight;
+            const offsetTop = tr.offsetTop - headerHeight;
             const top = offsetTop - scrollTop;
             const topOneFrame = top / 60 / (100 / 1000);
             const step = () => {
@@ -206,7 +214,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     }
 
     public async exportTable(data: any[] | undefined = this.get('data'), filename = 'table') {
-        await exportTable(this.columns.getData, data, filename, this, filename); 
+        return await exportTable(this.columns.getData, data, filename, this, filename); 
     }
 
     private getData(type: 'selectedKeys' | 'checkedKeys') {
