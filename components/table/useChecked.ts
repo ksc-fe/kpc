@@ -161,6 +161,7 @@ export function useChecked(
         if (checkType === 'radio') {
             for (let i = 0; i < checkedKeys.length; i++) {
                 const key = checkedKeys[i];
+                // FIXME: should ignore the disabled status, if we remove the radio keys
                 if (isDisabledKey(key)) continue;
                 checkedKeys.splice(i, 1);
                 i--;

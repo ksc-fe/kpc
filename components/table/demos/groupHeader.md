@@ -10,7 +10,7 @@ order: 12
 ```vdt
 import {Table, TableColumn} from 'kpc';
 
-<Table data={this.get('data')} type="grid" resizable stickHeader="87">
+<Table data={this.get('data')} type="grid" resizable stickHeader="64">
     <TableColumn title="Weekday" key='weekday' fixed="left" width="100" />
     <TableColumn title="Forenoon" key="forenoon">
         <TableColumn title="Time" key="forenoonTime" fixed="left" width="100" />

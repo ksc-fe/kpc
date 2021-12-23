@@ -43,6 +43,7 @@ const {onSelect, isChecked, getGroupText} = this.group;
                                             ev-click={sortable ? linkEvent(key, onChangeSort) : null}
                                             colspan={cols}
                                             rowspan={rows}
+                                            ref={this.elementRef}
                                         >
                                             <div v-if={resizable && this.$vNode.props.prevVNode}
                                                 class="k-table-resize"
@@ -63,7 +64,7 @@ const {onSelect, isChecked, getGroupText} = this.group;
                                                     <Button icon size="mini" class="k-table-group">
                                                         <Icon class="ion-android-arrow-dropdown" />
                                                     </Button>
-                                                    <DropdownMenu class={{"k-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
+                                                    <DropdownMenu class={{"k-table-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
                                                         <DropdownItem v-for={group}
                                                             ev-select={() => onSelect($value.value, groupValue, onChange)}
                                                             hideOnSelect={!multiple}

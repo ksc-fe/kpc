@@ -8,7 +8,7 @@ const {
     cols, data, checkType, hasFixedLeft,
     checked, disabled, className, merge,
     grid, index: rowIndex, indeterminate,
-    allDisabled, selected, hidden, spreaded,
+    allDisabled, selected, /* hidden,  */spreaded,
     hasChildren, indent, key, offsetMap,
     draggable, draggingKey,
 } = this.get();
@@ -16,7 +16,7 @@ const classNameObj = {
     'k-disabled': disabled,
     'k-checked': checked,
     'k-selected': selected,
-    'k-hidden': hidden,
+    /* 'k-hidden': hidden, */
     'k-spreaded': spreaded,
     'k-dragging': draggingKey === key,
     [className]: className,

@@ -23,7 +23,7 @@ const {data} = this.get();
 >
     <TableColumn key="a" title="通过minColWidth控制最小宽度100px" width="50%" />
     <TableColumn key="none" title="隐藏列" class="hidden" />
-    <TableColumn key="b" title="单独设置最小宽度300px" width="10%" />
+    <TableColumn key="b" title="单独设置最小宽度300px" width="10%" minWidth={300} />
     <TableColumn key="c" title="标题" width="40%" />
 </Table>
 ```

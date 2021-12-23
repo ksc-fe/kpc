@@ -2,13 +2,20 @@ import {useInstance, onBeforeUnmount, onUpdated} from 'intact';
 import type {Table, TableRowKey} from './table';
 import {addOrRemove} from './useChecked';
 
-export function useRestRowStatus() {
+export function useRestRowStatus(
+    getAllKeys: () => TableRowKey[]
+) {
     const instance = useInstance() as Table;
     let allUnmountedRows: TableRowKey[] = [];
     let willUnmounted = false;
 
     function onRowBeforeUnmount(key: TableRowKey) {
         if (willUnmounted || instance.get('keepStatus')) return;
+
+        // maybe the row is only removed by shrinking, i.e. tree table
+        const allKeys = getAllKeys();
+        if (allKeys.includes(key)) return;
+
         allUnmountedRows.push(key);
     }
 
