@@ -4,7 +4,7 @@ import WidthHeightDemo from '~/components/switch/demos/widthHeight';
 import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 
 describe('Switch', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => {unmount()});
 
     it('change value by clicking', async () => {
         const [instance, element] = mount(BasicDemo);
