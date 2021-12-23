@@ -35,8 +35,7 @@ export function useDraggable(firstSize: State<string>, lastSize: State<string>) 
 
         calcMinMaxValue();
 
-        const {lastSize: _lastSize} = instance.get();
-        if (_lastSize === 'auto') {
+        if (lastSize.value === 'auto') {
             targetRef = firstRef;
             targetSize = firstSize;
         } else {
