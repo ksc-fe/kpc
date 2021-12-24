@@ -5,6 +5,7 @@ import {sizes, Sizes} from '../../styles/utils';
 import {useStep} from './useStep';
 import {useFormatter} from './useFormatter';
 import {useValue} from'./useValue';
+import type {Events} from '../types';
 
 export interface SpinnerProps {
     disabled?: boolean,
@@ -22,6 +23,11 @@ export interface SpinnerProps {
     width?: string | number,
     forceStep?: boolean,
 }
+
+export interface SpinnerEvents {
+    change: [number]
+}
+
 export type StepObject = {
     [key in number | '$']: number
 }
@@ -55,10 +61,15 @@ const defaults = (): Partial<SpinnerProps> => ({
     size: 'default'
 });
 
-export class Spinner extends Component<SpinnerProps> {
+const events: Events<SpinnerEvents> =  {
+    change: true,
+};
+
+export class Spinner extends Component<SpinnerProps, SpinnerEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private step = useStep<Spinner>(defaultStep);
     private formatter = useFormatter();
@@ -68,14 +79,14 @@ export class Spinner extends Component<SpinnerProps> {
     private increase(): void {
         const {value} = this.get();
         const [step] = this.step(value!, 'increase');
-        this.value.fixValue(Number((value! + step).toFixed(10)), 0);
+        this.value.fixValue(Number((value! + step).toFixed(10)), 0, true);
     }
 
     @bind
     private decrease(): void {
         const {value} = this.get();
         const [step] = this.step(value!, 'decrease');
-        this.value.fixValue(Number((value! - step).toFixed(10)), 0);
+        this.value.fixValue(Number((value! - step).toFixed(10)), 0, true);
     }
 
     private isDisabledDecrease(): boolean {
@@ -92,7 +103,8 @@ export class Spinner extends Component<SpinnerProps> {
     private changeValue(e: Event): void {
         this.value.fixValue(
             (e.target as HTMLInputElement).value.trim(),
-            this.get('value')!
+            this.get('value')!,
+            true
         );
     }
 

@@ -8,6 +8,7 @@ import {useSelected} from './useSelected';
 import {useFilter} from './useFilter';
 import {useDraggable, Mode} from './useDraggable';
 import {useTransitionEvent} from './useTransitionEvent';
+import type {Events} from '../types';
 
 export type {
     Node as TreeNode,
@@ -74,10 +75,18 @@ const defaults = (): Partial<TreeProps> => ({
     showLine: true,
 });
 
+const events: Events<TreeEvents> = {
+    denydrag: true,
+    denydrop: true,
+    dragend: true,
+    transitionEnd: true, 
+};
+
 export class Tree extends Component<TreeProps, TreeEvents, TreeBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private nodes = useNodes();
     private checked = useChecked(this.nodes.getNodes);

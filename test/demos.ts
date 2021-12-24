@@ -1,20 +1,19 @@
-import {render, mount, testDemos, unmount, wait, nextFrame} from './utils';
+import {mount, testDemos, unmount, wait, nextFrame} from './utils';
 // import Vue from 'vue';
 // import Intact from 'intact';
 
-const req = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*index\.js$/);
+// const req = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*index\.js$/);
+const req = require.context('~/components/', true, /upload\/demos\/.*index\.ts$/);
 // const vueReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*index\.vue$/);
 
 describe('Demos', () => {
-    let demo;
-
-    afterEach(() => unmount(demo));
+    afterEach(() => unmount());
 
     describe('Intact', () => {
         testDemos(req, async (Demo) => {
-            demo = mount(Demo);
+            const [instance, element] = mount(Demo);
             await nextFrame();
-            expect(demo.element.outerHTML).to.matchSnapshot();
+            expect(element.outerHTML).to.matchSnapshot();
         });
     });
 

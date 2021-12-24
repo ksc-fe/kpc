@@ -20,13 +20,17 @@ export function useValue(
         'value', 'formatter', 'parser',
         'prefix', 'suffix',
     ], () => {
-        fixValue(instance.get('value')!, 0); 
+        fixValue(instance.get('value')!, 0, false); 
     });
 
-    function fixValue(value: number | string, fallbackValue: number) {
+    function fixValue(value: number | string, fallbackValue: number, shouldTriggerChange: boolean) {
         const {valueString, value: fixedValue} = getFixedValue(value, fallbackValue);
+        const oldValue = instance.get('value');
         showValue.set(valueString);
         instance.set({value: fixedValue});
+        if (shouldTriggerChange && oldValue !== fixedValue) {
+            instance.trigger('change', fixedValue);
+        }
     }
 
     function getFixedValue(value: number | string, fallbackValue: number): {valueString: string, value: number} {

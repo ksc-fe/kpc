@@ -20,6 +20,7 @@ import {useDraggable} from './useDraggable';
 import {useStickyScrollbar} from './useStickyScrollbar';
 import {useWidth} from './useWidth';
 import {useScroll} from './useScroll';
+import type {Events} from '../types';
 
 export interface TableProps<T = any> {
     data?: T[]
@@ -117,10 +118,17 @@ const defaults = (): Partial<TableProps> => ({
     minColWidth: 40,
 });
 
+const events: Events<TableEvents> = {
+    clickRow: true,
+    dragstart: true,
+    dragend: true,
+};
+
 export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private tree = useTree();
     private columns = useColumns();

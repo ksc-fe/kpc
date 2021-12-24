@@ -32,9 +32,9 @@ const myTheme = {
     checkbox: {
         borderRadius: `2px`,
     },
-    // input: {
-        // width: '400px',
-    // }
+    input: {
+        width: '400px',
+    }
 };
 
 const defaults = deepExtends({}, theme);

@@ -7,6 +7,7 @@ import {bind} from '../utils';
 import {useDrag} from './useDrag';
 import {useShowImage} from './useShowImage';
 import type {RequestError} from './ajaxUploader';
+import type {Events} from '../types';
 
 export type {RequestError};
 
@@ -84,10 +85,17 @@ const defaults = (): Partial<UploadProps> => ({
     autoUpload: true,
 });
 
+const events: Events<UploadEvents> = {
+    progress: true,
+    success: true,
+    error: true,
+};
+
 export class Upload extends Component<UploadProps, UploadEvents, UploadBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private inputRef = createRef<HTMLInputElement>();
     private accept = useAccept();
