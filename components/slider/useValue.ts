@@ -57,7 +57,7 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     }
 
     function fix(value: number): number {
-        const {max} = instance.get();
+        const {max, forceStep} = instance.get();
         const [step, min] = getStep(value);
         
         if (min > max!) {
@@ -67,7 +67,7 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
             }
         }
 
-        return minMaxStep(value, min, max!, step);
+        return minMaxStep(value, min, max!, forceStep ? step : null);
     }
 
     function onSpinnerChange(v: number) {

@@ -63,24 +63,24 @@ export function dispatchEvent(target: Element | Document, eventName: string, opt
 }
 
 export function getElement(query: string) {
-    const elements = document.querySelectorAll(query);
+    const elements = document.querySelectorAll<HTMLElement>(query);
     for (let i = elements.length - 1; i > -1; i--) {
-        if ((elements[i] as HTMLElement).style.display !== 'none') {
+        if (elements[i].style.display !== 'none') {
             return elements[i] as HTMLElement;
         }
     }
 }
 
-// export function getElements(query) {
-    // const elements = document.querySelectorAll(query);
-    // const ret = [];
-    // for (let i = 0; i < elements.length; i++) {
-        // if (elements[i].style.display !== 'none') {
-            // ret.push(elements[i]);
-        // }
-    // }
-    // return ret;
-// }
+export function getElements(query: string) {
+    const elements = document.querySelectorAll<HTMLElement>(query);
+    const ret: HTMLElement[] = [];
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i].style.display !== 'none') {
+            ret.push(elements[i]);
+        }
+    }
+    return ret;
+}
 
 type GroupItem = {
     title: string

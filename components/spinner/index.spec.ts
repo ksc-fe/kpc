@@ -170,7 +170,7 @@ describe('Spinner', () => {
          class Demo extends Component {
             static template = `
                 const {Spinner} = this;
-                <Spinner ev-$change:value={this._onChange} />
+                <Spinner ev-change={this._onChange} />
             `;
             private Spinner = Spinner;
             _onChange(v: number) {
@@ -197,7 +197,7 @@ describe('Spinner', () => {
         dispatchEvent(input, 'input');
         dispatchEvent(input, 'change');
         await wait();
-        expect(onChange.callCount).to.eql(4);
+        expect(onChange.callCount).to.eql(3);
         expect(onChange.calledWith(12)).to.be.true;
     });
 

@@ -5,6 +5,7 @@ import {sizes, Sizes} from '../../styles/utils';
 import {useStep} from './useStep';
 import {useFormatter} from './useFormatter';
 import {useValue} from'./useValue';
+import {useChange} from './useChange';
 import type {Events} from '../types';
 
 export interface SpinnerProps {
@@ -25,7 +26,7 @@ export interface SpinnerProps {
 }
 
 export interface SpinnerEvents {
-    change: [number]
+    change: [number, number | undefined]
 }
 
 export type StepObject = {
@@ -74,20 +75,7 @@ export class Spinner extends Component<SpinnerProps, SpinnerEvents> {
     private step = useStep<Spinner>(defaultStep);
     private formatter = useFormatter();
     private value = useValue(this.step, this.formatter);
-
-    @bind
-    private increase(): void {
-        const {value} = this.get();
-        const [step] = this.step(value!, 'increase');
-        this.value.fixValue(Number((value! + step).toFixed(10)), 0, true);
-    }
-
-    @bind
-    private decrease(): void {
-        const {value} = this.get();
-        const [step] = this.step(value!, 'decrease');
-        this.value.fixValue(Number((value! - step).toFixed(10)), 0, true);
-    }
+    private change = useChange(this.step, this.value.fixValue);
 
     private isDisabledDecrease(): boolean {
         const {value, min, disabled} = this.get();
@@ -97,15 +85,6 @@ export class Spinner extends Component<SpinnerProps, SpinnerEvents> {
     private isDisabledIncrease(): boolean {
         const {value, max, disabled} = this.get();
         return disabled || value! >= max!;
-    }
-
-    @bind
-    private changeValue(e: Event): void {
-        this.value.fixValue(
-            (e.target as HTMLInputElement).value.trim(),
-            this.get('value')!,
-            true
-        );
     }
 
     // we need change value as long as the input is valid, #213

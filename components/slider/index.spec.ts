@@ -3,9 +3,9 @@ import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
 import StepDemo from '~/components/slider/demos/step';
 import TooltipDemo from '~/components/slider/demos/tooltip';
-import {mount, unmount, dispatchEvent, getElement, wait, getElements} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait, getElements, fakeError} from 'test/utils';
 import {Slider} from './';
-import Intact from 'intact';
+import {Component} from 'intact';
 import DynamicStepDemo from '~/components/slider/demos/dynamicStep';
 
 describe('Slider', () => {
@@ -55,28 +55,24 @@ describe('Slider', () => {
         const [first, second] = element.querySelectorAll<HTMLElement>('.k-slider-thumb');
 
         // drag
-        dispatchEvent(first, 'mousedown');
+        dispatchEvent(first, 'mousedown', {which: 1});
         dispatchEvent(first, 'focusin');
         dispatchEvent(first, 'mousemove', {clientX: windowWidth * 0.8});
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
-        dispatchEvent(first, 'mouseup', {clientX: windowWidth * 0.8});
-        await wait();
-        expect(element.innerHTML).to.matchSnapshot();
         expect(instance.get('values')).eql([76, 80]);
+        dispatchEvent(first, 'mouseup');
 
-        dispatchEvent(second, 'mousedown');
+        dispatchEvent(second, 'mousedown', {which: 1});
         dispatchEvent(second, 'focusin');
         dispatchEvent(second, 'mousemove', {clientX: windowWidth * 0.6});
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
-        dispatchEvent(second, 'mouseup', {clientX: windowWidth * 0.6});
-        await wait();
-        expect(element.innerHTML).to.matchSnapshot();
         expect(instance.get('values')).eql([60, 76]);
+        dispatchEvent(first, 'mouseup');
 
         // click
-        const wrapper = element.querySelector('.k-slider-wrapper .k-wrapper');
+        const wrapper = element.querySelector('.k-slider-track-wrapper') as HTMLElement;
         dispatchEvent(wrapper, 'click', {clientX: windowWidth * 0.5});
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
@@ -88,166 +84,201 @@ describe('Slider', () => {
         expect(instance.get('values')).eql([50, 70]);
 
         // set invalid value
-        instance.set('values', 1);
+        instance.set<number>('values', 1);
         await wait();
-        expect(instance.get('values')).eql([0, 0]);
+        expect(instance.get('values')).eql([1, 1]);
     });
 
-    it('keyboard operation for basic', () => {
-        instance = mount(BasicDemo);
+    it('keyboard operation for basic', async () => {
+        const [instance, element] = mount(BasicDemo);
 
-        const [, slider] = instance.element.querySelectorAll('.k-slider');
-        const handle = slider.querySelector('.k-handle');
+        const [, slider] = element.querySelectorAll<HTMLElement>('.k-slider');
+        const handle = slider.querySelector('.k-slider-thumb') as HTMLElement;
 
         dispatchEvent(handle, 'focusin');
         dispatchEvent(handle, 'keydown', {keyCode: 37});
+        await wait();
         expect(slider.innerHTML).to.matchSnapshot();
+        expect(instance.get('value2')).to.eql(276);
         dispatchEvent(handle, 'keydown', {keyCode: 39});
+        await wait();
         expect(slider.innerHTML).to.matchSnapshot();
+        expect(instance.get('value2')).to.eql(277);
         dispatchEvent(handle, 'focusout');
+        await wait();
         expect(slider.innerHTML).to.matchSnapshot();
     });
 
-    it('keyboard operation for range', () => {
-        instance = mount(RangeDemo);
+    it('keyboard operation for range', async () => {
+        const [instance, element] = mount(RangeDemo);
 
-        const [first, second] = instance.element.querySelectorAll('.k-handle');
+        const [first, second] = element.querySelectorAll<HTMLElement>('.k-slider-thumb');
 
         instance.set('values', [50, 51]);
+        await wait();
         dispatchEvent(first, 'focusin');
         dispatchEvent(first, 'keydown', {keyCode: 39});
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(instance.get('values')).to.eql([51, 51]);
         dispatchEvent(first, 'keydown', {keyCode: 39});
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(instance.get('values')).to.eql([51, 52]);
         dispatchEvent(second, 'keydown', {keyCode: 39});
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(instance.get('values')).to.eql([51, 53]);
         dispatchEvent(second, 'focusout');
 
         instance.set('values', [50, 51]);
+        await wait();
         dispatchEvent(second, 'focusin');
         dispatchEvent(second, 'keydown', {keyCode: 37});
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(instance.get('values')).to.eql([50, 50]);
+        expect(element.innerHTML).to.matchSnapshot();
         dispatchEvent(second, 'keydown', {keyCode: 37});
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(instance.get('values')).to.eql([49, 50]);
+        expect(element.innerHTML).to.matchSnapshot();
         dispatchEvent(first, 'keydown', {keyCode: 37});
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(instance.get('values')).to.eql([48, 50]);
+        expect(element.innerHTML).to.matchSnapshot();
         dispatchEvent(first, 'focusout');
     });
 
-    it('disabled', () => {
-        instance = mount(DisabledDemo);
+    it('disabled', async () => {
+        const [instance, element] = mount(DisabledDemo);
+        const slider = instance.refs.__test as Slider;
 
         // cannot drag
-        const slider = instance.element.querySelector('.k-slider');
-        const handle = slider.querySelector('.k-handle');
-        dispatchEvent(handle, 'mousedown');
+        const sliderDom = element.querySelector('.k-slider') as HTMLElement;
+        const handle = sliderDom.querySelector('.k-slider-thumb') as HTMLElement;
+        dispatchEvent(handle, 'mousedown', {which: 1});
         dispatchEvent(handle, 'focusin');
         dispatchEvent(document, 'mousemove', {clientX: 0});
         dispatchEvent(handle, 'mouseup', {clientX: 0});
-        expect(slider.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(sliderDom.innerHTML).to.matchSnapshot();
+        expect(slider.get('value')).to.eql(50);
 
         // keyboard
         dispatchEvent(handle, 'keydown', {keyCode: 37});
         dispatchEvent(handle, 'focusout');
-        expect(slider.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(sliderDom.innerHTML).to.matchSnapshot();
+        expect(slider.get('value')).to.eql(50);
 
         // click
-        const wrapper = slider.querySelector('.k-slider-wrapper .k-wrapper');
+        const wrapper = sliderDom.querySelector('.k-slider-track-wrapper') as HTMLElement;
         dispatchEvent(wrapper, 'click', {clientX: 0});
-        expect(slider.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(sliderDom.innerHTML).to.matchSnapshot();
+        expect(slider.get('value')).to.eql(50);
     });
 
     it('min/max/step is undefined', () => {
-        class Component extends Intact {
-            @Intact.template()
-            static template = `<Slider min={{ undefined }}
-                max={{ undefined }}
-                step={{ undefined }}
-                value={{ 1 }}
+        class Demo extends Component {
+            static template = `const {Slider} = this; <Slider min={undefined}
+                max={undefined}
+                step={undefined}
+                value={1}
             />`;
-            _init() {
-                this.Slider = Slider;
-            }
+            private Slider = Slider;
         }
-        instance = mount(Component);
+        const [instance, element] = mount(Demo);
 
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        expect(element.innerHTML).to.matchSnapshot();
     });
 
     it('should log error when max < min', () => {
-         class Component extends Intact {
-            @Intact.template()
-            static template = `<Slider min={{ 20 }}
-                max={{ 0 }}
-                step={{ undefined }}
-                value={{ 1 }}
+         class Demo extends Component {
+            static template = `const {Slider} = this; <Slider min={20}
+                max={0}
+                step={undefined}
+                value={1}
             />`;
-            _init() {
-                this.Slider = Slider;
-            }
+            private Slider = Slider;
         }
-        instance = mount(Component);
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        const error = fakeError();
+        const [instance, element] = mount(Demo);
+        expect(element.innerHTML).to.matchSnapshot();
+        error('[Slider] min must less than or equal to max, but got min: 20 max: 0');
     });
 
-    it('should input any value even if it has step', () => {
-        instance = mount(StepDemo);
+    it('should input any value even if it has step', async () => {
+        const [instance, element] = mount(StepDemo);
 
-        const input = instance.element.querySelector('input');
-        input.value = 1;
+        const input = element.querySelector('input') as HTMLInputElement;
+        input.value = '1';
         dispatchEvent(input, 'input');
+        await wait();
         expect(input.value).to.eql('1');
-        input.value = 11;
+        input.value = '11';
         dispatchEvent(input, 'input');
+        await wait();
         expect(input.value).to.eql('11');
         expect(instance.get('value1')).to.eql(10);
         dispatchEvent(input, 'change');
+        await wait();
         expect(input.value).to.eql('10');
+
+        instance.set<number>('value1', 13);
+        await wait();
+        expect(instance.get('value1')).to.eql(15);
+
+        // disable forceStep
+        const slider = instance.refs.__test as Slider;
+        slider.set('forceStep', false);
+        instance.set<number>('value1', 13);
+        await wait();
+        expect(instance.get('value1')).to.eql(13);
     });
 
-    it('should show tooltip', () => {
-        instance = mount(TooltipDemo);
+    it('should show tooltip', async () => {
+        const [instance, element] = mount(TooltipDemo);
 
         instance.set('value2', 11);
+        await wait();
         const content = getElements('.k-tooltip-content')[0];
-        expect(content.textContent).to.matchSnapshot();
+        expect(content.textContent).to.eql('满2年，优惠4个月');
+
+        instance.set('value2', 5);
+        await wait();
+        expect(content.textContent).to.eql('');
     });
 
     it('should locate at the end if start value is equal to end value', () => {
-        class Component extends Intact {
-            @Intact.template()
-            static template = `<div>
-                <Slider min={{ 1 }} max={{ 1 }} value={{ 1 }} />
-                <Slider min={{ 1 }} max={{ 1 }} isRange />
+        class Demo extends Component {
+            static template = `const {Slider} = this; <div>
+                <Slider min={1} max={1} value={1} />
+                <Slider min={1} max={1} isRange />
             </div>`;
-            _init() {
-                this.Slider = Slider;
-            }
+            private Slider = Slider;
         }
-        instance = mount(Component);
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        const [instance, element] = mount(Demo);
+        expect(element.innerHTML).to.matchSnapshot();
     });
 
-    it('should trigger change event correctly', () => {
+    it('should trigger change event correctly', async () => {
         const spy = sinon.spy();
-        class Component extends Intact {
-            @Intact.template()
-            static template = `<Slider ev-change={{ self._onChange }} v-model="value" />`;
-            defaults() {
+        class Demo extends Component {
+            static template = `const Slider = this.Slider; <Slider ev-change={this._onChange} v-model="value" />`;
+            static defaults() {
                 return {value: 0};
             }
-            _init() {
-                this.Slider = Slider;
-            }
+            private Slider = Slider;
             _onChange(v) {
                 console.log('change', v);
                 spy(v);
             }
         }
-        instance = mount(Component);
+        const [instance, element] = mount(Demo);
 
-        const handle = instance.element.querySelector('.k-handle');
-        const bar = instance.element.querySelector('.k-bar-wrapper');
+        const handle = element.querySelector('.k-slider-thumb') as HTMLElement;
+        const bar = element.querySelector('.k-slider-track-wrapper') as HTMLElement;
 
         // keyboard
         dispatchEvent(handle, 'focusin');
@@ -268,7 +299,7 @@ describe('Slider', () => {
 
         // drag
         const width = bar.getBoundingClientRect().width;
-        dispatchEvent(handle, 'mousedown');
+        dispatchEvent(handle, 'mousedown', {which: 1});
         dispatchEvent(document, 'mousemove', {clientX: 0.1 * width});
         expect(spy.callCount).to.eql(2);
         dispatchEvent(document, 'mouseup', {clientX: 0.1 * width});
@@ -281,64 +312,59 @@ describe('Slider', () => {
         expect(spy.calledWith(20)).to.be.true;
 
         // click end
-        const start = instance.element.querySelector('.k-box span');
+        const start = element.querySelector('.k-slider-ends span') as HTMLElement;
         start.click();
         expect(spy.callCount).to.eql(5);
         expect(spy.calledWith(0)).to.be.true;
 
         // spinner
-        const input = instance.element.querySelector('input');
-        input.value = 1;
+        const input = element.querySelector('input') as HTMLInputElement;
+        input.value = '1';
         dispatchEvent(input, 'input');
+        await wait();
         expect(spy.callCount).to.eql(6);
         expect(spy.calledWith(1)).to.be.true;
-        const btn = instance.element.querySelector('.k-btn');
+        const btn = element.querySelector('.k-btn') as HTMLElement;
         btn.click();
+        await wait();
         expect(spy.callCount).to.eql(7);
         expect(spy.calledWith(0)).to.be.true;
     });
 
-    it('should set init value to min value', async () => {
-        class Component extends Intact {
-            @Intact.template()
-            static template = `<div>
-                <Slider min={{ -1 }} max={{ 1 }} v-model="a"/>
-                <Slider min={{ -1 }} max={{ 1 }} isRange v-model="b" />
-            </div>`;
-            _init() {
-                this.Slider = Slider;
-            }
-        }
-        instance = mount(Component);
+    // it('should set init value to min value', async () => {
+        // class Demo extends Component<{a: number, b: number}> {
+            // static template = `const {Slider} = this; <div>
+                // <Slider min={-1} max={1} v-model="a"/>
+                // <Slider min={-1} max={1} isRange v-model="b" />
+            // </div>`;
+            // private Slider = Slider;
+        // }
+        // const [instance, element] = mount(Demo);
 
-        expect(instance.get('a')).to.eql(-1);
-        expect(instance.get('b')).to.eql([-1, -1]);
-    });
+        // expect(instance.get('a')).to.eql(-1);
+        // expect(instance.get('b')).to.eql([-1, -1]);
+    // });
 
     it('should set value by `min + step * n`', async () => {
-        class Component extends Intact {
-            @Intact.template()
-            static template = `<div>
-                <Slider min={{ -6 }} max={{ 20 }} v-model="value" step={{ 5 }} isShowStop />
+        class Demo extends Component<{value: number}> {
+            static template = `const {Slider} = this; <div>
+                <Slider min={-6} max={20} v-model="value" step={5} points />
             </div>`;
-            _init() {
-                this.Slider = Slider;
-            }
+            private Slider = Slider;
         }
-        instance = mount(Component);
+        const [instance, element] = mount(Demo);
 
         instance.set('value', 0);
-        expect(instance.get('value'), -1);
-
-        await wait(300);
-        expect(instance.element.innerHTML).to.matchSnapshot();
+        await wait();
+        expect(instance.get('value')).to.eql(-1);
     });
 
-    it('dynamic step', () => {
-        instance = mount(DynamicStepDemo);
-        const handle = instance.element.querySelector('.k-handle');
+    it('dynamic step', async () => {
+        const [instance, element] = mount(DynamicStepDemo);
+        const handle = element.querySelector('.k-slider-thumb') as HTMLElement;
         const model = `value1`;
-        instance.set(model, 100);
+        instance.set<number>(model, 100);
+        await wait();
 
         dispatchEvent(handle, 'focusin');
 
