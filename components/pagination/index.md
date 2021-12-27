@@ -12,7 +12,7 @@ sidebar: doc
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"mini"` &#124; `"small"` | `"default"` |
 | counts | 展示按钮个数 | `Number` | `7` |
 | total | 数据总条数 | `Number` | `0` |
-| current | 当前页码 | `Number` | `1` |
+| value | 当前页码 | `Number` | `1` |
 | limit | 页面条数 | `Number` | `10` |
 | limits | 页面条数 | `Array<Number>` | `[10, 20, 50]` |
 | noBorder | 是否展示无边框样式，默认有边框 | `Boolean` | `false` |
@@ -33,4 +33,4 @@ sidebar: doc
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| change | `current`和`limit`变化时触发，同时变化不会重复触发 | `{current, limit}` |
+| change | `value`和`limit`变化时触发，同时变化不会重复触发 | `{value, limit}` |

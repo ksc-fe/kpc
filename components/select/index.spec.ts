@@ -11,10 +11,10 @@ import {Select, Option} from 'kpc/components/select';
 import SearchableDemo from '~/components/select/demos/searchable';
 
 describe('Select', () => {
-    // afterEach((done) => {
-        // unmount();
-        // setTimeout(done, 400);
-    // });
+    afterEach((done) => {
+        unmount();
+        setTimeout(done, 400);
+    });
 
     it('should select value correctly', async () => {
         const [instance, element] = mount(BasicDemo);

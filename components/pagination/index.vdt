@@ -9,7 +9,7 @@ import {makeStyles} from './styles';
 const {
     total, size, noBorder, simple, 
     className, showTotal, showGoto,
-    counts, current, limit, limits,
+    counts, value, limit, limits,
     showLimits
 } = this.get();
 
@@ -53,26 +53,26 @@ const paginationDot = function(callback) {
 let paginationItems = [];
 let minCount = Math.ceil(counts / 2);
 let maxCount = totalPages - minCount;
-let prevPage = current - 1;
-let nextPage = current + 1;
+let prevPage = value - 1;
+let nextPage = value + 1;
 
  if (!simple) {
     if (totalPages > counts) {
-        if (current <= minCount) {
+        if (value <= minCount) {
             const max = counts - 2;
             for (let i = 1; i <= max; i++) {
                 paginationItems.push(paginationButton(i));
             }
             paginationItems.push(paginationDot(this.fastNext));
             paginationItems.push(paginationButton(totalPages));
-        } else if (current > minCount && current <= maxCount) {
+        } else if (value > minCount && value <= maxCount) {
             paginationItems.push(paginationButton(1));
             paginationItems.push(paginationDot(this.fastPrev));
 
             const midCount = counts - 4;
             const mid = Math.floor(midCount / 2);
-            const min = current - mid;
-            const max = midCount % 2 === 1 ? current + mid : current + mid - 1;
+            const min = value - mid;
+            const max = midCount % 2 === 1 ? value + mid : value + mid - 1;
             for (let i = min; i <= max; i++) {
                 paginationItems.push(paginationButton(i));
             }
@@ -97,7 +97,7 @@ let nextPage = current + 1;
     paginationItems = [
         <Input size={size === 'mini' || size === 'small' ? 'mini' : 'small'}
             autoWidth
-            value={current}
+            value={value}
             ev-change={this.goto}
         />,
         <span class="k-pagination-text"> / {totalPages}</span>,
@@ -105,16 +105,16 @@ let nextPage = current + 1;
 }
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <ButtonGroup checkType="radio" v-model="current">
+    <ButtonGroup checkType="radio" v-model="value">
         <Button icon size={size}
             type={type}
-            disabled={current <= 1}
+            disabled={value <= 1}
             ev-click={this.prev}
         ><Icon class="ion-ios-arrow-left" /></Button>
         <template>{paginationItems}</template>
         <Button icon size={size}
             type={type}
-            disabled={current >= totalPages}
+            disabled={value >= totalPages}
             ev-click={this.next}
         ><Icon class="ion-ios-arrow-right" /></Button>
     </ButtonGroup>
@@ -130,7 +130,7 @@ let nextPage = current + 1;
 
         <div class="k-pagination-goto" v-if={showGoto}>
             <span class="c-middle">{_$('跳至')}</span>
-            <Input size={size} value={current} ev-change={this.goto}/>
+            <Input size={size} value={value} ev-change={this.goto}/>
             <span class="c-middle">{_$('页')}</span>
         </div>
 

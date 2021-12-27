@@ -7,7 +7,7 @@ export interface PaginationProps {
     size?: Sizes,
     counts?: number | string,
     total?: number,
-    current?: number,
+    value?: number,
     limit?: number,
     limits?: number[],
     noBorder?: boolean,
@@ -23,14 +23,14 @@ export interface PaginationEvents {
 
 type ChangeData = {
     limit: number
-    current: number
+    value: number
 }
 
 const typeDefs: Required<TypeDefs<PaginationProps>> = {
     size: sizes,
     counts: [Number, String],
     total: Number,
-    current: Number,
+    value: Number,
     limit: Number,
     limits: Array,
     noBorder: Boolean,
@@ -44,7 +44,7 @@ const defaults = (): Partial<PaginationProps> => ({
     size: 'default',
     counts: 7,
     total: 0,
-    current: 1,
+    value: 1,
     limit: 10,
     limits: [10, 20, 50],
     showTotal: true,
@@ -60,26 +60,26 @@ export class Pagination extends Component<PaginationProps, PaginationEvents> {
 
     init() {
         // avoid setting incorrect value
-        this.changePage(this.get('current')!);
+        this.changePage(this.get('value')!);
 
         this.watch('limit', v => {
-            const oldCurrent = this.get('current');
-            if (oldCurrent !== 1) {
+            const oldvalue = this.get('value');
+            if (oldvalue !== 1) {
                 // we should not silent it, but let it trigger change event
                 // to sync the value to parent
                 // set a flag to indicate that this set will be ignored to trigger
-                // change event again in bellow $change:current callback
+                // change event again in bellow $change:value callback
                 // #341
                 this.ignore = true;
-                this.set('current', 1);
+                this.set('value', 1);
                 this.ignore = false;
             }
-            this.trigger('change', {limit: v!, current: 1});
+            this.trigger('change', {limit: v!, value: 1});
         }, {inited: true});
         
-        this.watch('current', v => {
+        this.watch('value', v => {
             if (this.ignore) return;
-            this.trigger('change', {limit: this.get('limit')!, current: v!});
+            this.trigger('change', {limit: this.get('limit')!, value: v!});
         }, {inited: true});
     }
 
@@ -95,32 +95,32 @@ export class Pagination extends Component<PaginationProps, PaginationEvents> {
             page = 1;
         }
 
-        if (this.get('current') !== page) {
-            this.set('current', page);
+        if (this.get('value') !== page) {
+            this.set('value', page);
         }
     }
 
     @bind
     private prev() {
-        this.changePage(this.get('current')! - 1);
+        this.changePage(this.get('value')! - 1);
     }
 
     @bind
     private next() {
-        this.changePage(this.get('current')! + 1);
+        this.changePage(this.get('value')! + 1);
     }
 
     @bind
     private fastPrev() {
-        const {current, counts} = this.get();
-        const page = current! - Math.ceil(Number(counts) / 2);
+        const {value, counts} = this.get();
+        const page = value! - Math.ceil(Number(counts) / 2);
         this.changePage(page);
     }
 
     @bind
     private fastNext() {
-        const {current, counts} = this.get();
-        const page = current! + Math.ceil(Number(counts) / 2);
+        const {value, counts} = this.get();
+        const page = value! + Math.ceil(Number(counts) / 2);
         this.changePage(page);
     }
 
