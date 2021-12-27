@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {bind} from '../utils';
+import type {Events} from '../types';
 
 export interface PaginationProps {
     size?: Sizes,
@@ -49,12 +50,17 @@ const defaults = (): Partial<PaginationProps> => ({
     limits: [10, 20, 50],
     showTotal: true,
     showLimits: true,
-})
+});
+
+const events: Events<PaginationEvents> = {
+    change: true,
+};
 
 export class Pagination extends Component<PaginationProps, PaginationEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private ignore = false;
 
