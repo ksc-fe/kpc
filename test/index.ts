@@ -10,9 +10,9 @@ chai.use(matchSnapshot);
 // mx.mxClient.IS_POINTER = false;
 
 // require all test files (files that ends with .spec.js)
-const testsContext = require.context('../components/', true, /index\.spec\.ts/);
-// const testsContext = require.context('../components/tooltip/', true, /index\.spec\.js/);
+// const testsContext = require.context('../components/', true, /index\.spec\.ts/);
+const testsContext = require.context('../components/', true, /(slider|spinner)\/index\.spec\.ts/);
 testsContext.keys().forEach(testsContext);
 
 // test demos
-// require('./demos');
+require('./demos');

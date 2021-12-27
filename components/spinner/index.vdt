@@ -13,9 +13,10 @@ const classNameObj = {
     'k-vertical': vertical,
     [makeStyles()]: true,
 };
+const {decrease, increase, changeValue, onFocusin} = this.change;
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <Button icon ev-click={this.decrease}
+    <Button icon ev-click={decrease}
         disabled={this.isDisabledDecrease()}
         class="k-spinner-btn k-left"
         size={size}
@@ -26,13 +27,14 @@ const classNameObj = {
     <Input
         class="k-spinner-input"
         disabled={disabled} 
-        ev-change={this.changeValue}
+        ev-change={changeValue}
+        ev-focusin={onFocusin}
         value={this.value.showValue.value}
         ev-input={this.onInput}
         size={size}
         width={width}
     />
-    <Button icon ev-click={this.increase}
+    <Button icon ev-click={increase}
         disabled={this.isDisabledIncrease()}
         class="k-spinner-btn k-right"
         size={size}

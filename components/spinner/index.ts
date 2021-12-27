@@ -5,6 +5,8 @@ import {sizes, Sizes} from '../../styles/utils';
 import {useStep} from './useStep';
 import {useFormatter} from './useFormatter';
 import {useValue} from'./useValue';
+import {useChange} from './useChange';
+import type {Events} from '../types';
 
 export interface SpinnerProps {
     disabled?: boolean,
@@ -22,6 +24,11 @@ export interface SpinnerProps {
     width?: string | number,
     forceStep?: boolean,
 }
+
+export interface SpinnerEvents {
+    change: [number, number | undefined]
+}
+
 export type StepObject = {
     [key in number | '$']: number
 }
@@ -55,28 +62,20 @@ const defaults = (): Partial<SpinnerProps> => ({
     size: 'default'
 });
 
-export class Spinner extends Component<SpinnerProps> {
+const events: Events<SpinnerEvents> =  {
+    change: true,
+};
+
+export class Spinner extends Component<SpinnerProps, SpinnerEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private step = useStep<Spinner>(defaultStep);
     private formatter = useFormatter();
     private value = useValue(this.step, this.formatter);
-
-    @bind
-    private increase(): void {
-        const {value} = this.get();
-        const [step] = this.step(value!, 'increase');
-        this.value.fixValue(Number((value! + step).toFixed(10)), 0);
-    }
-
-    @bind
-    private decrease(): void {
-        const {value} = this.get();
-        const [step] = this.step(value!, 'decrease');
-        this.value.fixValue(Number((value! - step).toFixed(10)), 0);
-    }
+    private change = useChange(this.step, this.value.fixValue);
 
     private isDisabledDecrease(): boolean {
         const {value, min, disabled} = this.get();
@@ -86,14 +85,6 @@ export class Spinner extends Component<SpinnerProps> {
     private isDisabledIncrease(): boolean {
         const {value, max, disabled} = this.get();
         return disabled || value! >= max!;
-    }
-
-    @bind
-    private changeValue(e: Event): void {
-        this.value.fixValue(
-            (e.target as HTMLInputElement).value.trim(),
-            this.get('value')!
-        );
     }
 
     // we need change value as long as the input is valid, #213

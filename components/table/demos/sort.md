@@ -26,13 +26,23 @@ import {Table, TableColumn} from 'kpc';
 ```ts
 import {bind, TableSortValue} from 'kpc';
 
-const oData = [
+interface Props {
+    data: DataItem[]    
+    sort: TableSortValue
+}
+
+type DataItem = {
+    name: string
+    age: number
+}
+
+const oData: DataItem[] = [
     {name: 'aa', age: 1},
     {name: 'cc', age: 5},
     {name: 'bb', age: 9}
 ];
 
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

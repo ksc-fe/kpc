@@ -181,13 +181,6 @@ export default function makeStyles() {
             transition: opacity ${theme.transition};
         }
 
-        // filterable
-        .k-input-inner {
-            border: none !important;
-            padding: 0 !important;
-            border-radius: 0 !important;
-        }
-
         .k-select-arrow {
             display: inline-block;
             transition: transform ${theme.transition};

@@ -121,10 +121,7 @@ export function makeStyles() {
         }
         &:focus {
             outline: none;
-            .k-switch-bar,
-            .k-switch-wrapper {
-                background: ${kswitch.checkedBgColor};
-            }
+            border-color: ${kswitch.checked.borderColor};
         }
 
         // size

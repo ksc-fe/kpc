@@ -26,8 +26,9 @@ const {
     draggable,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
-const {onScroll, scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
-const {stickHeader, excludeStickHeader, elementRef, scrollRef, headRef} = this.stickyHeader;
+const {setScrollPosition, scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
+const {scrollRef} = this.scroll;
+const {stickHeader, excludeStickHeader, elementRef, headRef} = this.stickyHeader;
 const classNameObj = {
     'k-table': true,
     'k-fix-header': fixHeader,
@@ -43,7 +44,8 @@ const style = isStringOrNumber(fixHeader) ?
     {maxHeight: `${fixHeader}px`} :
     null;
 
-const {getWidth, start: onStart, tableRef, tableWidth} = this.resizable;
+const {getWidth, tableRef, tableWidth} = this.width;
+const {start: onStart} = this.resizable;
 
 const colgroup = (
     <colgroup>
@@ -112,6 +114,9 @@ const tbody = (
             (() => {
                 const rows = [];
                 loopData((value, index, level, hidden) => {
+                    // don't render if row is hidden
+                    if (hidden) return hidden;
+
                     const status = allStatus[index];
                     const key = allKeys[index];
                     const spreaded = isSpreaded(key);
@@ -136,7 +141,6 @@ const tbody = (
                         onChangeChecked={onChangeChecked}
                         selected={isSelected(key)}
                         spreaded={spreaded}
-                        hidden={hidden}
                         hasChildren={hasChildren}
                         indent={indentSize}
                         onToggleSpreadRow={toggleSpreadRow}
@@ -188,8 +192,16 @@ const tbody = (
 );
 
 const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
+const {
+    shouldStickScrollbar,
+    stick: stickScrollbar,
+    style: stickScrollbarStyle,
+    scrollbarRef,
+    onScroll: onScrollbarScroll,
+    tableActualWidth,
+} = this.stickyScrollbar;
 <div class={classNameObj} ref={elementRef}>
-    <div class="k-table-wrapper" style={style} ev-scroll={onScroll} ref={scrollRef}>
+    <div class="k-table-wrapper" style={style} ref={scrollRef}>
         <Affix v-if={!isNull(stickHeader.value)}
             top={stickHeader.value}
             exclude={excludeStickHeader}
@@ -209,4 +221,13 @@ const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
     <Transition name="k-fade">
         <Spin v-if={loading} overlay size="small" class="k-table-spin" />
     </Transition>
+    <Affix v-if={!isNull(stickScrollbar.value)}
+        bottom={stickScrollbar.value}
+        shouldFix={shouldStickScrollbar}
+        style={stickScrollbarStyle.value}
+    >
+        <div class="k-table-scrollbar" ref={scrollbarRef} ev-scroll={onScrollbarScroll}>
+            <div class="k-table-scrollbar-inner" style={{width: tableActualWidth.value}}></div>
+        </div>
+    </Affix>
 </div>

@@ -10,3 +10,5 @@ export interface CommonInputHTMLAttributes {
     required?: boolean
     // value?: string
 }
+
+export type Events<T> = Record<keyof T, true>; 

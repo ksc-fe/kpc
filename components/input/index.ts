@@ -34,6 +34,7 @@ export interface InputProps extends InputHTMLAttributes {
     width?: number | string
     stackClearIcon?: boolean
     frozenOnInput?: boolean
+    inline?: boolean
 }
 
 export interface InputEvents {
@@ -65,6 +66,7 @@ const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> 
     width: [Number, String],
     stackClearIcon: Boolean,
     frozenOnInput: Boolean,
+    inline: Boolean,
 }
 
 const defaults = (): Partial<InputProps> => ({

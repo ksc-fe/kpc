@@ -23,10 +23,12 @@ export function useValue(
         fixValue(instance.get('value')!, 0); 
     });
 
-    function fixValue(value: number | string, fallbackValue: number) {
+    function fixValue(value: number | string, fallbackValue: number): number {
         const {valueString, value: fixedValue} = getFixedValue(value, fallbackValue);
         showValue.set(valueString);
         instance.set({value: fixedValue});
+
+        return fixedValue;
     }
 
     function getFixedValue(value: number | string, fallbackValue: number): {valueString: string, value: number} {

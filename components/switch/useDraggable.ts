@@ -38,15 +38,13 @@ export function useDraggable(elementRef: RefObject<HTMLElement>) {
 
         elementRef.value!.blur();
 
-        const bar = barRef.value!;
-        
         // treat mousedown -> mouseup as click
         if (x === e.clientX) {
             barWidth.set(null);
             instance.toggle(false); 
         } else {
             // cancel this operation if the distance less than half of width
-            const percent = (bar.clientWidth - height / 2) / maxWidth;
+            const percent = (barWidth.value! - height / 2) / maxWidth;
 
             if (!instance.isChecked()) {
                 if (percent >= 0.5) {

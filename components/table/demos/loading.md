@@ -31,7 +31,11 @@ import {Checkbox} from 'kpc/components/checkbox';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    loading: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {loading: true};

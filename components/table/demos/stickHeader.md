@@ -16,7 +16,7 @@ import {Table, TableColumn} from 'kpc/components/table';
 <Table data={[
     {name: 'Javey', sex: 'male'},
     {name: 'Kanily', sex: 'female'}
-]} stickHeader="87" resizable>
+]} stickHeader="64" resizable>
     <TableColumn title="姓名" key="name">
         <b:template args="[data]">
             {data.name}
