@@ -17,6 +17,7 @@ import {State} from '../../hooks/useState';
 import {useInput} from './useInput';
 import {Container} from '../portal';
 import {useFocusout} from './useFocusout';
+import type {Events} from '../types';
 
 export interface BaseSelectProps {
     value?: any
@@ -38,7 +39,7 @@ export interface BaseSelectProps {
 }
 
 export interface BaseSelectEvents {
-    keypress: [KeyboardEvent]
+    keydown: [KeyboardEvent]
     focusout: [FocusEvent]
     show: []
     hide: []
@@ -74,6 +75,13 @@ const defaults = (): Partial<BaseSelectProps> => ({
     size: 'default',
 });
 
+const events: Events<BaseSelectEvents> = {
+    keydown: true,
+    focusout: true,
+    show: true,
+    hide: true,
+};
+
 export abstract class BaseSelect<
     T extends BaseSelectProps = BaseSelectProps,
     E extends BaseSelectEvents = BaseSelectEvents,
@@ -82,6 +90,7 @@ export abstract class BaseSelect<
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     public dropdownRef = createRef<Dropdown>(); 
     public input = useInput(this.resetKeywords);
@@ -137,8 +146,8 @@ export abstract class BaseSelect<
     }
 
     @bind
-    private onKeypress(e: KeyboardEvent) {
-        this.trigger('keypress', e);
+    private onKeydown(e: KeyboardEvent) {
+        this.trigger('keydown', e);
         switch (e.keyCode) {
             case 13: // enter
                 this.show();
