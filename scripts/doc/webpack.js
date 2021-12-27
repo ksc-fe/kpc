@@ -45,37 +45,15 @@ exports.webpackConfigClient = (production, theme = 'default') => {
     // const manifest = require(path.resolve(dest, 'dll-manifest.json'));
 
     config.entry(`static/client`).add(resolvePath('./site/src/client.ts'));
-    config.entry(`static/theme`).add(resolvePath('./site/src/theme.ts'));
-    
-    // config.plugin('html').use(HtmlWebpackPlugin, [{
-    //     template: resolvePath('./site/src/index.html'),
-    //     // dll: manifest.name,
-    // }]);
+    config.plugin('html').use(HtmlWebpackPlugin, [{
+        template: resolvePath('./site/src/index.html'),
+        // dll: manifest.name,
+    }]);
     // config.plugin('dllRef').use(webpack.DllReferencePlugin, [{
         // manifest
     // }]);
 
     // removeMonaco(config);
-
-    config.plugin('html').use(HtmlWebpackPlugin).tap(options => {
-        return [{
-            template: resolvePath('./site/src/index.html'),
-            filename: 'index.html',
-            excludeChunks: ['static/theme']
-            // dll: manifest.name,
-        }]
-    })
-
-    config.plugin('htmlTheme').use(HtmlWebpackPlugin).tap(options => {
-        return [{
-            template: resolvePath('./site/src/theme.html'),
-            filename: 'theme.html',
-            excludeChunks: ['static/client']
-            // dll: manifest.name,
-        }]
-    })
-
-  
 
     config.optimization.splitChunks({
         cacheGroups: {

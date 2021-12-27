@@ -1,7 +1,12 @@
 
-const {children} = this.get();
+const {width, height} = this.get();
 
 <div>
-    <div>iframe place holder</div>
-    <iframe ref={this.frameRef} src="./theme.html" frameborder="0" width="100" height="100"></iframe>
+    <iframe 
+        ref={this.frameRef} 
+        src={this.get('href')} 
+        frameborder="0"
+        width={width == 0 ? 'auto' : width}
+        height={height == 0 ? 'auto' : height}
+    ></iframe>
 </div>

@@ -56,10 +56,22 @@ export default new Router<RouteResult>([
         // // }
     // // },
     {
-        path: '/iframe\/(.*)/',
+        path: '/demo\/(.*)/',
         action: async (context) => {
             return {
                 Page: (await import('../pages/demo')).default,
+                data: {
+                    path: context.params[0] as string,
+                }
+            }
+        }
+    },
+    {
+        // path: '/iframe/:frameName\/(.*)',
+        path: '/iframe/:frameName',
+        action: async (context) => {
+            return {
+                Page: (await import(`../pages/iframe/${context.params.frameName}/index`)).default,
                 data: {
                     path: context.params[0] as string,
                 }

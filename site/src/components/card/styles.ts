@@ -11,6 +11,7 @@ export function makeStyles() {
         margin-right: 20px;
         padding: 24px 48px;
         font-family: PingFang SC;
+        vertical-align: top;
         .title {
             height: 45px;
             display: flex;

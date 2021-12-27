@@ -15,7 +15,7 @@ const defaults = (): Partial<ColorProcessProps> => ({
 
 });
 
-export class ColorProcess extends Component {
+export class ColorProcess extends Component<ColorProcessProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

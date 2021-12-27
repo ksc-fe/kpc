@@ -1,40 +1,8 @@
 import {makeStyles} from './styles';
-import vue_logo from '../../../imgs/vue_logo.png';
 import {Code, Input, Button, Icon, Select, Option, Slider} from 'kpc';
+import {ThemeFrame} from '../../../components/ThemeFrame';
 
-const {codeContent, contentInput, iconPosition, buttonStatus, 
-buttonRadius, buttonRadiusMax, buttonRadiusMin} = this.get();
-
-const supportList = [
-    {
-        title: 'Vue',
-        src: vue_logo,
-        isActive: true
-    },
-    {
-        title: 'React',
-        src: vue_logo,
-        isActive: false
-    },
-    {
-        title: 'Angular',
-        src: vue_logo,
-        isActive: false
-    },
-];
-
-const innerButton = () => {
-    const buttonContent = <span>{contentInput}</span>
-    const buttonIcon = <Icon class="icon ion-plus"></Icon>
-    const isLeft = iconPosition == 'left'
-
-    return (
-        <Button type={buttonStatus}>
-            { isLeft ? buttonIcon : buttonContent }
-            { isLeft ? buttonContent : buttonIcon }
-        </Button>
-    )
-}
+const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
 
 <div class={makeStyles()}>
     <div class="best-box">
@@ -47,8 +15,12 @@ const innerButton = () => {
         </div>
         <div>
             <div class="imgs-box">
-                <div class={$value.isActive ? 'active' : ''} v-for={supportList}>
-                    <img src={$value.src} />
+                <div
+                    class={$value.isActive ? 'active' : ''} 
+                    v-for={supportList}
+                    ev-click={this.handleLanguageClick.bind(this, $value)}
+                >
+                    <img src={$value.isActive ? $value.activeSrc : $value.src} />
                     <div>{$value.title}</div>
                 </div>
             </div>
@@ -60,7 +32,12 @@ const innerButton = () => {
             </div>
             <div class="optional-box">
                 <div class="left">
-                    {innerButton()}
+                    <ThemeFrame
+                        href="./iframe/button" 
+                        ref={this.iframeBoxRef}
+                        width="120"
+                        height="40"
+                    ></ThemeFrame>
                 </div>
                 <div class="right">
                     <div class="item">

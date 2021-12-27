@@ -1,5 +1,0 @@
-import {Button} from 'kpc';
-
-<div>
-    <Button type="primary">hello world</Button>
-</div>

@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {mainBlock} from '../../../styles/default'
+import {mainBlock, fullfill, center} from '../../../styles/default'
 
 export function makeStyles() {
     return css`
@@ -29,12 +29,146 @@ export function makeStyles() {
 				height: 335px;
 				margin-top: 62px;
 				
-				.card-box {
-					height: 100%;
-					white-space: nowrap;
+				& > div:first-child {
 					overflow: hidden;
+					height: 100%;
+					position: relative;
+					.card-box {
+						left: 0;
+						top: 0;
+						position: absolute;
+						height: 100%;
+						white-space: nowrap;
+						display: inline-block;	
+						transition: left .5s ease-out;
+					}
 				}
 
+				.resource-box {
+					${fullfill()}
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+					color: #4B4B4B;
+					font-size: 16px;
+					& > div {
+						background: #FFFFFF;
+						border-radius: 8px;
+						height: 80px;
+						display: flex;
+						align-items: center;
+						padding: 0 22px;
+						& > div:first-child {
+							flex-grow: 1;
+						}
+						& > div:last-child {
+							width: 182px;
+							display: flex;
+							align-items: center;
+						}
+					}
+					& > div:first-child {
+						& > div:last-child {
+							justify-content: space-between;
+						}
+					}
+				}
+				
+				.component-box {
+					${fullfill()}
+					background: #FFFFFF;
+					border-radius: 8px;
+					position: relative;
+					& > .k-btn {
+						position: absolute;
+						right: 10px;
+						top: 5px;
+						color: #818181;
+						font-size: 12px;
+						.k-icon {
+							color: #0191EA;
+							height: 20px;
+						}
+						display: flex;
+						align-items: center;
+					}
+					.comp-content {
+						${fullfill()}
+						padding: 35px 47px;
+						& > div {
+							height: 60px;
+							width: 100%;
+							display: flex;
+							align-items: center;
+							.comp-item {
+								flex-grow: 1;
+							}
+						}
+						.k-btn {
+							width: 120px;
+							height: 40px;
+						}
+						.k-select, .k-input {
+							width: 170px;
+							height: 40px;
+						}
+						.k-input-inner {
+							height: 40px;
+						}
+					}
+				}
+
+				.animate-box {
+					display: flex;
+					justify-content: space-between;
+					height: 100%;
+					.animate-left,
+					.animate-right > div {
+						background: #ffffff;
+						border-radius: 8px;
+					}
+					& > div {
+						height: 100%;
+					}
+					.animate-left {
+						width: 176px;
+						overflow: hidden;
+					}
+					.animate-right {
+						width: 300px;
+						display: flex;
+						justify-content: space-between;
+						flex-direction: column;
+						& > div:first-child {
+							font-size: 14px;
+							color: #4F4F4F;
+							height: 57px;
+							padding-left: 19px;
+							padding-right: 15px;
+							display: flex;
+							align-items: center;
+							.animate-title {
+								flex-grow: 1;
+							}
+							& > div:last-child {
+								width: 160px;
+							}
+						}
+						& > div:last-child {
+							height: 100px;
+							${center()}
+							.k-btn {
+								width: 120px;
+								height: 40px;
+							}
+						}
+						.k-select {
+							border-color: #F0F4FA;
+							background: #F0F4FA;
+						}
+					}
+				}
+				
 				.arrow-btn {
 					position: absolute;
 					top: 50%;

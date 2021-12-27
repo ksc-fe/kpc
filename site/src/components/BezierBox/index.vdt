@@ -1,0 +1,3 @@
+import {makeStyles} from './styles';
+
+<div class={makeStyles()} ref={this.bezierBoxRef}></div>

@@ -2,20 +2,22 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 
 export interface ThemeFrameProps {
-    mainTitle: string
-    subTitle: string
     href: string
+    width: string | number
+    height: string | number
 }
 
 const typeDefs: Required<TypeDefs<ThemeFrameProps>> = {
-    mainTitle: String,
-    subTitle: String,
-    href: String
+    href: String,
+    width: [Number, String],
+    height: [Number, String]
 };
 
 
 const defaults = (): Partial<ThemeFrameProps> => ({
-    
+    href: '',
+    width: '',
+    height: ''
 });
 
 export class ThemeFrame extends Component {
@@ -23,13 +25,16 @@ export class ThemeFrame extends Component {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private frameRef = createRef<HTMLElement>()
+    private frameRef = createRef<HTMLElement>();
 
-    render() {
-        (this.frameRef.value as any).contentWindow.refresh(this.get('children'))
+    reRender(val?: any) {
+        console.log(val);
+        (this.frameRef.value as any).contentWindow.setValue(val);
     }
 
     mounted() {
-        (this.frameRef.value as any).contentWindow.onload = this.render
+        (this.frameRef.value as any).contentWindow.onload = () => {
+            this.reRender();
+        }
     }
 }

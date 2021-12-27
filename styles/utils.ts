@@ -1,5 +1,5 @@
 import {isObject} from 'intact-shared';
-import {Theme} from './theme';
+import {Theme, theme} from './theme';
 import tinycolor from 'tinycolor2';
 
 export function deepDefaults<T, U>(source: T, defaults: U): T & U;
@@ -105,3 +105,7 @@ export function darken(color: string, number: number) {
 
 export type Sizes = 'large' | 'default' | 'small' | 'mini';
 export const sizes: Sizes[] = ['large', 'default', 'small', 'mini'];
+
+export function setTheme(theme: Theme) {
+    // theme
+}

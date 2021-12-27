@@ -37,6 +37,7 @@ export function makeStyles() {
                     font-family: Roboto;
                     font-size: 16px;
                     & > div {
+                        cursor: pointer;
                         border-radius: 8px;
                         width: 99px;
                         height: 99px;

@@ -1,0 +1,8 @@
+import {Button, Icon} from 'kpc';
+
+<div>
+    <Button
+        type="primary"
+        style="width: 120px;height: 40px;"
+    >Button</Button>
+</div>

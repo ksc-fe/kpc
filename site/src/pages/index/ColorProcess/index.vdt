@@ -5,8 +5,6 @@ import {Button} from 'kpc';
 <div class={makeStyles()}>
     <div>
         <div>color process</div>
-        <ThemeFrame>
-            <Button type="primary">hello!!!</Button>
-        </ThemeFrame>
+        <ThemeFrame></ThemeFrame>
     </div>
 </div>
