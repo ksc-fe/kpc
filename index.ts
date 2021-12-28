@@ -10,7 +10,7 @@
 
 export {_$, localize} from './i18n';
 export {bind} from './components/utils';
-export {setTheme} from './styles/utils';
+export {setTheme} from './styles/theme';
 
 /* generate start */
 

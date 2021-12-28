@@ -7,6 +7,5 @@ export function makeStyles() {
             height: 40px;
             font-size: 16px;
         }
-        
     `
 }

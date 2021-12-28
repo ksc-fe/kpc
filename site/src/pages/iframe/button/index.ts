@@ -1,4 +1,5 @@
 import {Component, TypeDefs} from 'intact';
+import {setTheme} from 'kpc';
 import template from './index.vdt';
 
 type ButtonProps = {
@@ -35,13 +36,20 @@ export default class extends Component<IframeBtnProps> {
     static defaults = defaults;
 
     init() {
-        (window as any).setValue = this.setValue.bind(this)
+        (window as any).setValue = this.setValue.bind(this);
     }
 
     setValue(val: ButtonProps) {
-        this.set('buttonRadius', val.buttonRadius)
-        this.set('buttonStatus', val.buttonStatus)
-        this.set('contentInput', val.contentInput)
-        this.set('iconPosition', val.iconPosition)
+        this.set('buttonRadius', val.buttonRadius);
+        this.set('buttonStatus', val.buttonStatus);
+        this.set('contentInput', val.contentInput);
+        this.set('iconPosition', val.iconPosition);
+        
+        console.log(val.buttonRadius)
+        setTheme({
+            button: {
+                borderRadius: `${val.buttonRadius}px`
+            }
+        })
     }
 }

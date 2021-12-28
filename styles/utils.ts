@@ -105,7 +105,3 @@ export function darken(color: string, number: number) {
 
 export type Sizes = 'large' | 'default' | 'small' | 'mini';
 export const sizes: Sizes[] = ['large', 'default', 'small', 'mini'];
-
-export function setTheme(theme: Theme) {
-    // theme
-}
