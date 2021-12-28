@@ -6,7 +6,7 @@ order: 0
 使用`v-model`建立需要编辑的文本的双向数据绑定；使用`disabled`可以禁用文本编辑
 
 ```vdt
-import {Editable} from 'kpc/components/editable';
+import {Editable} from 'kpc';
 
 <div>
     <Editable v-model="text" ref="__test">
@@ -27,7 +27,11 @@ import {Editable} from 'kpc/components/editable';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    text: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
