@@ -1,11 +1,11 @@
-// import BasicDemo from '~/components/form/demos/basic';
+import BasicDemo from '~/components/form/demos/basic';
 import CustomDemo from '~/components/form/demos/custom';
-// import VariableDemo from '~/components/form/demos/variable';
+import VariableDemo from '~/components/form/demos/variable';
 import RemoteDemo from '~/components/form/demos/remote';
 import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import {Component, findDomFromVNode} from 'intact';
-import {Form, FormItem} from 'kpc/components/form';
-import Input from 'kpc/components/input';
+import {Form, FormItem} from './';
+import {Input} from '../input';
 
 RemoteDemo.prototype.validateUserName = function(value) {
     // mock api
@@ -21,32 +21,31 @@ RemoteDemo.prototype.validateUserName = function(value) {
 };
 
 describe('Form', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
-    // it('validate', (done) => {
-        // instance = mount(BasicDemo);
+    it('validate', async () => {
+        const [instance, element] = mount(BasicDemo);
+        const form = instance.refs.form as Form;
 
-        // const form = instance.refs.form;
+        await instance.handleSubmit();
 
-        // instance.handleSubmit().then(() => {
-            // expect(instance.element.innerHTML).to.matchSnapshot();
-            // const item = form.getFirstInvalidFormItem();
-            // expect(item.get('label')).to.eql('Input');
+        expect(element.innerHTML).to.matchSnapshot();
+        const item = form.getFirstInvalidFormItem()!;
+        expect(item.get('label')).to.eql('Input');
 
-            // instance.reset();
-            // expect(instance.get('model')).to.matchSnapshot();
+        instance.reset();
+        await wait();
+        expect(instance.get('model')).to.matchSnapshot();
 
-            // // validate on focusout
-            // const input = instance.element.querySelector('input');
-            // input.value = 'a';
-            // input.focus();
-            // expect(instance.element.innerHTML).to.matchSnapshot();
-            // input.blur();
-            // expect(instance.element.innerHTML).to.matchSnapshot();
-
-            // done();
-        // });
-    // });
+        // validate on focusout
+        const input = element.querySelector('input') as HTMLInputElement;
+        dispatchEvent(input, 'focus');
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+        dispatchEvent(input, 'focusout');
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+    });
 
     it('custom rules', async () => {
         const [instance, element] = mount(CustomDemo);
@@ -67,25 +66,26 @@ describe('Form', () => {
         expect(element.innerHTML).to.matchSnapshot();
     });
 
-    // it('validate when rules have changed', async () => {
-        // instance = mount(VariableDemo);
+    it('validate when rules have changed', async () => {
+        const [instance, element] = mount(VariableDemo);
+        const form = instance.refs.form as Form;
 
-        // const form = instance.refs.form;
+        const res = await form.validate();
+        expect(res).to.be.true;
 
-        // const res = await form.validate();
-        // expect(res).to.be.true;
-
-        // instance.set('firstName', 'a');
-        // expect(instance.element.innerHTML).to.matchSnapshot();
-        // instance.set('lastName', 'b');
-        // expect(instance.element.innerHTML).to.matchSnapshot();
-    // });
+        instance.set('firstName', 'a');
+        await wait(0);
+        expect(element.innerHTML).to.matchSnapshot();
+        instance.set('lastName', 'b');
+        await wait(0);
+        expect(element.innerHTML).to.matchSnapshot();
+    });
 
     it('validate asynchronously', async function() {
         this.timeout(0);
         const [i, element] = mount(RemoteDemo);
 
-        const form = i.refs.form;
+        const form = i.refs.form as Form;
         i.set('userName', 'a');
         await wait();
         let res = await form.validate();
@@ -103,20 +103,19 @@ describe('Form', () => {
 
     it('should trigger submit event if form is valid', async () => {
         const [i, element] = mount(RemoteDemo);
-        const form = i.refs.form;
+        const form = i.refs.form as Form;
         const cb = sinon.spy();
 
         form.on('submit', cb);
         i.set('userName', 'a');
-        await wait();
         dispatchEvent(element, 'submit');
-        await wait();
+        await wait(0);
         expect(cb.callCount).to.eql(0);
 
         i.set('userName', 'b');
         await wait();
         dispatchEvent(element, 'submit');
-        await wait();
+        await wait(0);
         expect(cb.callCount).to.eql(1);
     });
 
@@ -426,7 +425,7 @@ describe('Form', () => {
         const {form, formItem} = instance.refs;
         await form.validate();
         await wait();
-        const classList = formItem.errorRef.value!.parentElement.classList;
+        const classList = formItem.error.errorRef.value!.parentElement.classList;
         expect(classList.contains('k-ellipsis')).to.be.true;
 
         instance.set('value', 'a');

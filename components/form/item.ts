@@ -58,7 +58,6 @@ export class FormItem extends Component<FormItemProps, FormItemEvents, FormItemB
     static typeDefs = typeDefs;
 
     private form: Form | null = inject(FORM, null);
-    private errorRef = createRef<HTMLDivElement>();
     private error = useError();
     private dirty = useDirty(() => this.validateHook.validate);
     private validateHook = useValidate(

@@ -8,9 +8,7 @@ order: 3
 例如本例中，用户可以不输入姓名，但如果输入了“姓”，就必须输入“名”，反之亦然。
 
 ```vdt
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Row, Col} from 'kpc/components/grid';
+import {Form, FormItem, Input, Row, Col} from 'kpc';
 
 <Form ref="form">
     <FormItem label="姓名">
@@ -42,4 +40,15 @@ import {Row, Col} from 'kpc/components/grid';
         width 100%
         .k-input
             width 100%
+```
+
+```ts
+interface Props {
+    firstName?: string
+    lastName?: string
+}
+
+export default class extends Component<Props> {
+    static template = template;
+}
 ```

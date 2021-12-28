@@ -4,7 +4,7 @@ import SearchDemo from '~/components/input/demos/search';
 import FrozenDemo from '~/components/input/demos/frozen';
 
 describe('Input', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => {unmount()});
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo); 
