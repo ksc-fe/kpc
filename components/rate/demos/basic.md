@@ -6,7 +6,7 @@ order: 0
 通过`value`设置组件的值，当添加`half`属性时，支持选中半星
 
 ```vdt
-import {Rate} from 'kpc/components/rate';
+import {Rate} from 'kpc';
 
 <div>
     <Rate v-model="value1" />
@@ -16,7 +16,12 @@ import {Rate} from 'kpc/components/rate';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value1: number
+    value2: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

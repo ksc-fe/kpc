@@ -22,7 +22,7 @@ export interface MessageProps {
 }
 
 const typeDefs: Required<TypeDefs<MessageProps>> = {
-    content: [String, /*VNode*/],
+    content: [String, VNode],
     duration: Number,
     type: ['info', 'error', 'success', 'warning'],
     closable: Boolean,
