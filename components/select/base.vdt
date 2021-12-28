@@ -44,7 +44,7 @@ const {onFocusout, triggerRef} = this.focusout;
     <div {...getRestProps(this)} 
         class={classNameObj}
         tabindex={disabled ? '-1' : '0'}
-        ev-keydown={this.onKeypress}
+        ev-keydown={this.onKeydown}
         ev-focusout={onFocusout}
         style={!isNullOrUndefined(width) ? addStyle(style, {width: `${width}px`}) : style}
         ref={triggerRef}

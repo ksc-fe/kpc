@@ -16,7 +16,8 @@ sidebar: doc
 | isShowEnd | 是否展示最小值和最大值刻度 | `Boolean` | `true` |
 | isShowInput | 是否展示输入框 | `Boolean` | `true` |
 | step | 步长，支持动态步长，详见示例 | `Number` &#124; `Object` | `1` |
-| isShowStop | 是否展示间隔点 | `Boolean` | `false` |
+| forceStep | 是否限制`value`除边界之外，满足`min + step * n`(`n`为整数) | `Boolean` | `true` |
+| points | 是否展示间隔点，或者指定哪些值展示间隔点 | `boolean` &#124; `number[]` | `false` |
 | marks | 标注刻度 | `Object` | `undefined` |
 | isShowTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
 | always | 当展示气泡时，是否一直展示 | `Boolean` | `false` |

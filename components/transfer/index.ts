@@ -4,6 +4,7 @@ import {_$} from '../../i18n';
 import {useTransfer} from './useTransfer';
 import {useFilter, Model} from './useFilter';
 import {useCheck, CheckedKeys} from './useCheck';
+import type {Events} from '../types';
 
 export interface TransferProps<T = TransferDataItem> {
     data?: T[],
@@ -71,10 +72,16 @@ const defaults = (): Partial<TransferProps<any>> => ({
     rightTitle: _$('已选择'),
 });
 
+const events: Events<TransferEvents> = {
+    add: true,
+    remove: true,
+}
+
 export class Transfer<T = TransferDataItem> extends Component<TransferProps<T>, TransferEvents, TransferBlocks<T>> {
-static template = template;
-static typeDefs = typeDefs;
+    static template = template;
+    static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private transfer = useTransfer();
     private filter = useFilter(this.transfer.rightData);

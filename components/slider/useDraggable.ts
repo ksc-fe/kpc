@@ -24,7 +24,7 @@ export function useDraggable(
             showTooltip();
         },
 
-        onEnd(e) {
+        onEnd() {
             (isFirst ? firstThumbRef.value : secondThumbRef.value)!.blur();
             showValue.set(instance.get('value')!);
             triggerChangeEvent(oldValue);

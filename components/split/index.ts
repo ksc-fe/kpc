@@ -3,6 +3,7 @@ import template from './index.vdt';
 import {useSize} from './useSize';
 import {useDraggable} from './useDraggable';
 import {Mode} from './style';
+import type {Events} from '../types';
 
 export interface SplitProps {
     mode?: Mode
@@ -40,10 +41,17 @@ const defaults = (): Partial<SplitProps> => ({
     max: '100%-6'
 });
 
+const events: Events<SplitEvents> = {
+    moveStart: true,
+    moving: true,
+    moveEnd: true,
+};
+
 export class Split extends Component<SplitProps, SplitEvents, SplitBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private size = useSize();
     private drag = useDraggable(

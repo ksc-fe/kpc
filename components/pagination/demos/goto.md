@@ -9,6 +9,6 @@ order: 3
 import {Pagination} from 'kpc/components/pagination';
 
 <div>
-    <Pagination total={200} showGoto />
+    <Pagination total={200} showGoto v-model="value" />
 </div>
 ```

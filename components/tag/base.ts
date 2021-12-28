@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
+import type {Events} from '../types';
 
 export interface TagProps {
     type?: Sizes
@@ -33,6 +34,10 @@ const defaults = (): Partial<TagProps> => ({
     border: 'solid',
 });
 
+const events: Events<TagEvents> = {
+    close: true,
+};
+
 export class Tag<
     T extends TagProps = TagProps,
     E extends TagEvents = TagEvents,
@@ -41,6 +46,7 @@ export class Tag<
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     @bind
     private onClose(e: MouseEvent): void {

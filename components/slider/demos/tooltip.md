@@ -33,7 +33,14 @@ import {Slider} from 'kpc/components/slider';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value1: number
+    values: [number, number]
+    value2: number
+    value3: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

@@ -1,6 +1,7 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {useActiveValue} from './useActiveValue';
+import type {Events} from '../types';
 
 export interface RateProps {
     value?: number,
@@ -29,12 +30,17 @@ const typeDefs: Required<TypeDefs<RateProps>> = {
 const defaults = (): Partial<RateProps> => ({
     value: 0,
     count: 5,
-})
+});
+
+const events: Events<RateEvents> = {
+    mouseleave: true,
+};
 
 export class Rate extends Component<RateProps, RateEvents, RateBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private activeValue = useActiveValue();
 }

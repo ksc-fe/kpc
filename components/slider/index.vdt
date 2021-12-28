@@ -9,7 +9,7 @@ const {
     min, unit, isShowInput,
     isRange, step, value,
     spinnerProps, isShowEnd,
-    isShowTooltip, animate,
+    isShowTooltip, animate, forceStep
 } = this.get();
 const {
     onStart, trackRef, dragging,
@@ -106,6 +106,7 @@ const marks = this.marks();
             vertical
             value={value}
             suffix={unit}
+            forceStep={forceStep}
             ev-$change:value={onSpinnerChange}
             {...spinnerProps}
         />

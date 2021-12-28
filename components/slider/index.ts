@@ -11,6 +11,7 @@ import {useClick} from './useClick';
 import {usePoints} from './usePoints';
 import {Marks, useMarks} from './useMarks';
 import {useTooltip} from './useTooltip';
+import type {Events} from '../types';
 
 export interface SliderProps {
     max?: number
@@ -29,6 +30,7 @@ export interface SliderProps {
     animate?: boolean
     tooltipProps?: TooltipProps
     spinnerProps?: SpinnerProps
+    forceStep?: boolean
 }
 
 export interface SliderEvents {
@@ -56,6 +58,7 @@ const typeDefs: Required<TypeDefs<SliderProps>> = {
     animate: Boolean,
     tooltipProps: Object,
     spinnerProps: Object,
+    forceStep: Boolean,
 };
 
 const defaultStep = 1;
@@ -68,12 +71,18 @@ const defaults = (): Partial<SliderProps> => ({
     isShowInput: true,
     step: defaultStep,
     animate: true,
+    forceStep: true,
 });
+
+const events: Events<SliderEvents> = {
+    change: true,
+};
 
 export class Slider extends Component<SliderProps, SliderEvents, SliderBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private step = useStep<Slider>(defaultStep);
     private value = useValue(

@@ -20,6 +20,7 @@ import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
 import {Portal, PortalProps} from '../portal';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {usePosition, FeedbackCallback} from './usePosition';
+import type {Events} from '../types';
 
 export type Position = Options 
 
@@ -48,7 +49,7 @@ export interface DropdownEvents {
 
 export interface DropdownBlocks { }
 
-export const typeDefs: Required<TypeDefs<DropdownProps>> = {
+const typeDefs: Required<TypeDefs<DropdownProps>> = {
     trigger: ['hover', 'click', 'contextmenu'],
     disabled: Boolean,
     value: Boolean,
@@ -58,11 +59,20 @@ export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     container: [String, Function],
 };
 
-export const defaults = (): Partial<DropdownProps> => ({
+const defaults = (): Partial<DropdownProps> => ({
     trigger: 'hover',
     position: {},
     of: 'self',
 });
+
+const events: Events<DropdownEvents> = {
+    shouldFocus: true,
+    show: true,
+    hide: true,
+    mouseenter: true,
+    mouseleave: true,
+    positioned: true,
+};
 
 export class Dropdown<
     T extends DropdownProps = DropdownProps,
@@ -74,6 +84,7 @@ export class Dropdown<
 
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
     static template = function(this: Dropdown) {
         const children = this.get('children');
         if (process.env.NODE_ENV !== 'production') {

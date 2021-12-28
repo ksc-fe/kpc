@@ -51,7 +51,11 @@ import {Icon} from 'kpc/components/icon';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    expandedKeys: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
