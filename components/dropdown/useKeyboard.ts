@@ -21,7 +21,7 @@ import {useState} from '../../hooks/useState';
 import {eachChildren, isComponentVNode} from '../utils';
 import {DropdownItem} from './item';
 import {isStringOrNumber} from 'intact-shared';
-import {DropdownMenu} from './menu';
+import {DropdownMenu} from './';
 
 interface ItemEvents {
     onFocusin: () => void;
@@ -52,6 +52,8 @@ export function useMenuKeyboard() {
     const instance = useInstance()!;
     let focusIndex = -1;
 
+    // we can't use the way that DropdownItem push itself to DropdownMenu to collect the items
+    // because it can't guarantee the order
     function collect() {
         items.length = 0;
 

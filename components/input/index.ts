@@ -5,7 +5,7 @@ import {bind} from '../utils';
 import {isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
 import {useAutoWidth} from './useAutoWidth';
 import {useFrozen} from './useFrozen';
-import {CommonInputHTMLAttributes} from '../types';
+import {CommonInputHTMLAttributes, Events} from '../types';
 export * from './search';
 
 interface InputHTMLAttributes extends CommonInputHTMLAttributes {
@@ -75,10 +75,18 @@ const defaults = (): Partial<InputProps> => ({
     rows: 2,
 });
 
+const events: Events<InputEvents> = {
+    clear: true,
+    focus: true,
+    blur: true,
+    input: true,
+};
+
 export class Input extends Component<InputProps, InputEvents, InputBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private inputRef = createRef<HTMLInputElement>();
     private autoWidth = useAutoWidth();
