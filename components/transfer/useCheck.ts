@@ -1,5 +1,5 @@
 import {useInstance, Key} from 'intact';
-import {Transfer} from './index';
+import type {Transfer, TransferDataItem} from './';
 import type {useFilter, Model} from './useFilter';
 
 export type CheckedKeys = `leftCheckedKeys` | `rightCheckedKeys`
@@ -27,7 +27,7 @@ export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useF
     }
 
     function toggleCheckAll(model: Model, e: MouseEvent) {
-        if ((e.target as any).checked) {
+        if ((e.target as HTMLInputElement).checked) {
             selectAll(model);
         }  else {
             instance.set(`${model}CheckedKeys` as CheckedKeys, []);
@@ -38,7 +38,7 @@ export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useF
         if (startIndex === undefined || !e.shiftKey) {
             startIndex = index;
             endIndex = undefined;
-            checked = (e.target as any).checked;
+            checked = (e.target as HTMLInputElement).checked;
         } else if (e.shiftKey) {
             e.preventDefault();
 
@@ -47,10 +47,10 @@ export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useF
             const lastEndIndex = endIndex;
             const keyName = instance.get('keyName')!;
             endIndex = index;
-            const update = (data: any[], isCheck: boolean) => {
+            const update = (data: TransferDataItem[], isCheck: boolean) => {
                 data.forEach(item => {
                     if (!item.disabled) {
-                        const key = item[keyName];
+                        const key = item[keyName as 'key'];
                         const index = checkedKeys.indexOf(key);
                         if (isCheck) {
                             if (!~index) {

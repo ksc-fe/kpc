@@ -6,17 +6,16 @@ order: 2
 添加`collapse`属性，可以使菜单呈现折叠状态
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Switch} from 'kpc/components/switch';
-import {Icon} from 'kpc/components/icon';
+import {Menu, MenuItem, Switch, Icon} from 'kpc';
 
 <div>
     <Switch on="收起" off="展开" v-model="isCollapse" width="60" trueValue={true} falseValue={false} style="margin-right: 16px;" />
     <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
     <br /><br />
     <Menu v-model:expandedKeys="expandedKeys" 
-        collapse={this.get('isCollapse')}
+        collapse={this.get('collapse')}
         theme={this.get('theme')}
+        ref="__test"
     >
         <MenuItem key="1"><Icon class="ion-flag" />menu 1</MenuItem>
         <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
@@ -41,12 +40,18 @@ import {Icon} from 'kpc/components/icon';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    expandedKeys: string[]
+    collapse: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
         return {
-            expandedKeys: ['3']
+            expandedKeys: ['3'],
+            collapse: false,
         };
     }
 }

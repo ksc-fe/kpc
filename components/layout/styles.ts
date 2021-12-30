@@ -24,7 +24,7 @@ const {layout} = deepDefaults(theme, {
 
         get collapsedWidth() { return `calc(${getLeft(menu.item.padding)} * 2 + ${menu.icon.width})` },
         footerPadding: '24px 50px',
-        bodyMargin: '0 20px',
+        // bodyMargin: '0 20px',
     },
 });
 
@@ -46,7 +46,6 @@ export function makeLayoutStyles() {
         }
         .k-layout-body {
             flex: 1;
-            margin: ${layout.bodyMargin};
         }
     `
 }

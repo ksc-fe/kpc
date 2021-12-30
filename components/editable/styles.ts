@@ -31,7 +31,7 @@ export function makeStyles() {
         // invalid
         &.k-invalid {
             .k-input-inner {
-                border: ${editable.invalid.border};
+                border: ${editable.invalid.border} !important;
             }
         }
     `;

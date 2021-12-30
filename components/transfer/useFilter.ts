@@ -13,7 +13,7 @@ export function useFilter(rightData: State<any[]>) {
         } else {
             const {keyName, data} = instance.get();
             const _data = data!.filter(item => {
-                return ~v.indexOf(item[keyName!]);
+                return ~v.indexOf(item[keyName as 'key']);
             });
             rightData.set(_data);
         }
@@ -26,9 +26,9 @@ export function useFilter(rightData: State<any[]>) {
         } else {
             const {leftCheckedKeys, keyName} = instance.get();
             const allKeys = v.reduce((memo, item) => {
-                memo[item[keyName!]] = true;
+                memo[item[keyName as 'key']] = true;
                 return memo;
-            }, {});
+            }, {} as Record<Key, boolean>);
             const fix = (keys: Key[]) => {
                 const ret: Key[] = [];
                 if (keys) {
@@ -49,7 +49,7 @@ export function useFilter(rightData: State<any[]>) {
         if (model === 'left') {
             const {value, keyName} = instance.get();
             data = instance.get('data')!.filter(item => {
-                return !~value!.indexOf(item[keyName!]);
+                return !~value!.indexOf(item[keyName as 'key']);
             });
         } else {
             data = rightData.value;

@@ -20,6 +20,7 @@ import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
 import {Portal, PortalProps} from '../portal';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {usePosition, FeedbackCallback} from './usePosition';
+import type {Events} from '../types';
 
 export type Position = Options 
 
@@ -48,7 +49,7 @@ export interface DropdownEvents {
 
 export interface DropdownBlocks { }
 
-export const typeDefs: Required<TypeDefs<DropdownProps>> = {
+const typeDefs: Required<TypeDefs<DropdownProps>> = {
     trigger: ['hover', 'click', 'contextmenu'],
     disabled: Boolean,
     value: Boolean,
@@ -58,11 +59,20 @@ export const typeDefs: Required<TypeDefs<DropdownProps>> = {
     container: [String, Function],
 };
 
-export const defaults = (): Partial<DropdownProps> => ({
+const defaults = (): Partial<DropdownProps> => ({
     trigger: 'hover',
     position: {},
     of: 'self',
 });
+
+const events: Events<DropdownEvents> = {
+    shouldFocus: true,
+    show: true,
+    hide: true,
+    mouseenter: true,
+    mouseleave: true,
+    positioned: true,
+};
 
 export class Dropdown<
     T extends DropdownProps = DropdownProps,
@@ -74,13 +84,15 @@ export class Dropdown<
 
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
     static template = function(this: Dropdown) {
         const children = this.get('children');
         if (process.env.NODE_ENV !== 'production') {
             if (!Array.isArray(children) || children.length !== 2) {
                 throw new Error(
                     'Dropdown must receive two children, ' + 
-                    'one is a trigger and another one is DropdownMenu'
+                    'one is a trigger and the another one is DropdownMenu.' +
+                    (Array.isArray(children) && children.length > 2 ? ' Please check the children, maybe you should remove the whitespaces.' : '')
                 );
             }
         }
@@ -118,7 +130,7 @@ export class Dropdown<
         return [
             clonedTrigger,
             // wrap the root dropdown menu to Portal to render into body
-            !this.rootDropdown ?
+            this.alwaysPortal || !this.rootDropdown ?
                 h(Portal, {children: menu, container: this.get('container')}) :
                 menu
         ];
@@ -129,6 +141,8 @@ export class Dropdown<
     public rootDropdown: Dropdown | null = null;
     public showedDropdown: Dropdown | null = null;
     public positionHook = usePosition();
+
+    protected alwaysPortal = false;
 
     private timer: number | undefined = undefined;
     private triggerProps: any = null;
@@ -248,11 +262,17 @@ export class Dropdown<
 function useDocumentClickForDropdown(dropdown: Dropdown) {
     const elementRef = () => findDomFromVNode(dropdown.menuVNode!, true) as Element;
     const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, (e) => {
-        // if click an trigger and the trigger type is hover, ignore it
-        if (dropdown.get('trigger') === 'hover') {
+        // case 1: if click an trigger and the trigger type is hover, ignore it
+        // case 2: if right click on trigger and the trigger type is contextmenu, ignore it
+        const trigger = dropdown.get('trigger');
+        const isHover = trigger === 'hover';
+        if (isHover || trigger === 'contextmenu') {
             const triggerDom = findDomFromVNode(dropdown.$lastInput!, true) as Element;
             const target = e.target as Element;
-            if (containsOrEqual(triggerDom, target)) return;
+            if (containsOrEqual(triggerDom, target)) {
+                if (isHover) return;
+                if (!isHover && e.type === 'contextmenu') return;
+            }
         }
 
         dropdown.hide(true);

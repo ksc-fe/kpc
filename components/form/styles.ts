@@ -84,12 +84,21 @@ export function makeItemStyles() {
         }
         &.k-invalid {
             // input
-            :not(.k-select) .k-input {
+            .k-input {
                 .k-input-inner {
                     border: ${form.item.invalidBorder};
                     position: relative;
                     z-index: 1
                 }
+            }
+            // select / checkbox / radio
+            .k-select,
+            .k-checkbox-wrapper,
+            .k-radio-wrapper {
+                border: ${form.item.invalidBorder} !important;
+            }
+            .k-select .k-input .k-input-inner {
+                border: none;
             }
         }
 

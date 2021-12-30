@@ -17,11 +17,16 @@ import {useRestRowStatus} from './useRestRowStatus';
 import {exportTable} from './exportTable';
 import {useResizable} from './useResizable';
 import {useDraggable} from './useDraggable';
+import {useStickyScrollbar} from './useStickyScrollbar';
+import {useWidth} from './useWidth';
+import {useScroll} from './useScroll';
+import type {Events} from '../types';
 
 export interface TableProps<T = any> {
     data?: T[]
     fixHeader?: boolean | string | number 
     stickHeader?: boolean | string | number
+    stickScrollbar?: boolean | string | number
     checkType?: 'checkbox' | 'radio' | 'none'
     checkedKeys?: TableRowKey[]
     rowKey?: (value: T, index: number) => TableRowKey
@@ -74,6 +79,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     data: Array,
     fixHeader: [Boolean, String, Number],
     stickHeader: [Boolean, String, Number],
+    stickScrollbar: [Boolean, String, Number],
     checkType: ['checkbox', 'radio', 'none'],
     checkedKeys: Array,
     rowKey: Function,
@@ -112,19 +118,37 @@ const defaults = (): Partial<TableProps> => ({
     minColWidth: 40,
 });
 
+const events: Events<TableEvents> = {
+    clickRow: true,
+    dragstart: true,
+    dragend: true,
+};
+
 export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private tree = useTree();
     private columns = useColumns();
-    private stickyHeader = useStickyHeader();
-    private resizable = useResizable(this.stickyHeader.scrollRef);
+    private scroll = useScroll();
+    private stickyHeader = useStickyHeader(this.scroll.callbacks);
+    private width = useWidth(
+        this.scroll.scrollRef,
+        this.columns.getColumns,
+    );
+    private resizable = useResizable(
+        this.scroll.scrollRef,
+        this.width.tableRef,
+        this.width.tableWidth,
+        this.width.widthMap,
+        this.width.storeWidth,
+    );
     private fixedColumns = useFixedColumns(
         this.columns.getColumns,
-        this.stickyHeader.scrollRef,
-        this.resizable.widthMap,
+        this.scroll,
+        this.width.widthMap,
     );
     private disableRow = useDisableRow(this.tree.loopData);
     private merge = useMerge(this.columns.getCols);
@@ -138,8 +162,23 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     private sortable = useSortable();
     private expandable = useExpandable();
     private selected = useSelected();
-    private resetRowStatus = useRestRowStatus();
+    private resetRowStatus = useRestRowStatus(this.disableRow.getAllKeys);
     private draggable = useDraggable();
+    private stickyScrollbar = useStickyScrollbar(
+        this.stickyHeader.elementRef,
+        this.scroll,
+        this.width.tableRef,
+        this.fixedColumns.setScrollPosition,
+        this.width.tableWidth,
+    );
+
+    public checkAll() {
+        this.checked.toggleCheckedAll(true);
+    }
+
+    public uncheckAll() {
+        this.checked.toggleCheckedAll(false);
+    }
 
     public getCheckedData() {
         return this.getData('checkedKeys');
@@ -155,7 +194,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
 
     public scrollToRowByKey(key: TableRowKey) {
         return new Promise<void>(resolve => {
-            const scrollElement = this.stickyHeader.scrollRef.value!;
+            const scrollElement = this.scroll.scrollRef.value!;
             const tr = scrollElement.querySelector(`tr[data-key="${key}"]`) as HTMLElement | null;
 
             if (!tr) return resolve();
@@ -165,7 +204,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
             // elem.scrollIntoView({behavior: 'smooth'});
             const headerHeight = (scrollElement.querySelector('thead') as HTMLElement).offsetHeight;
             let scrollTop = scrollElement.scrollTop;
-            const offsetTop = tr.offsetTop + 1 - headerHeight;
+            const offsetTop = tr.offsetTop - headerHeight;
             const top = offsetTop - scrollTop;
             const topOneFrame = top / 60 / (100 / 1000);
             const step = () => {
@@ -183,7 +222,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     }
 
     public async exportTable(data: any[] | undefined = this.get('data'), filename = 'table') {
-        await exportTable(this.columns.getData, data, filename, this, filename); 
+        return await exportTable(this.columns.getData, data, filename, this, filename); 
     }
 
     private getData(type: 'selectedKeys' | 'checkedKeys') {

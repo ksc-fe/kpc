@@ -32,7 +32,7 @@ export function useTransfer() {
     function add() {
         const {data, leftCheckedKeys, keyName} = instance.get();
         const _rightData = rightData.value.concat(data!.filter(item => {
-            return ~leftCheckedKeys!.indexOf(item[keyName!]);
+            return ~leftCheckedKeys!.indexOf(item[keyName as 'key']);
         }));
 
         rightData.set(_rightData);
@@ -44,7 +44,7 @@ export function useTransfer() {
     function remove() {
         const {rightCheckedKeys, keyName} = instance.get();
         const _rightData = rightData.value!.filter(item => {
-            return !~rightCheckedKeys!.indexOf(item[keyName!])
+            return !~rightCheckedKeys!.indexOf(item[keyName as 'key'])
         });
 
         rightData.set(_rightData);

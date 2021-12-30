@@ -1,5 +1,5 @@
 import {render, ComponentConstructor, Component, createVNode as h, findDomFromVNode} from 'intact';
-// import {nextFrame as _nextFrame} from '../components/utils';
+import {nextFrame as _nextFrame} from '../components/utils';
 // import {createApp, render as vueRender} from 'vue';
 
 // export function render(Component, props) {
@@ -10,7 +10,7 @@ import {render, ComponentConstructor, Component, createVNode as h, findDomFromVN
 // }
 
 let container: HTMLDivElement | null = null;
-export function mount<T extends Component>(Component: ComponentConstructor<T>, style?: Record<string, string>, data?: Record<string, string>) {
+export function mount<T extends Component>(Component: ComponentConstructor<T>, style?: Record<string, string> | null, data?: any) {
     container = document.createElement('div');
     container.setAttribute('style', "width: 800px; height: 1080px; overflow: auto");
     if (style) {
@@ -47,7 +47,7 @@ export function unmount() {
     }
 }
 
-export function dispatchEvent(target: Element, eventName: string, options?: Record<string, any>) {
+export function dispatchEvent(target: Element | Document, eventName: string, options?: Record<string, any>) {
     let event: Event;
     if (document.createEvent) {
         event = document.createEvent('Event');
@@ -63,67 +63,76 @@ export function dispatchEvent(target: Element, eventName: string, options?: Reco
 }
 
 export function getElement(query: string) {
-    const elements = document.querySelectorAll(query);
+    const elements = document.querySelectorAll<HTMLElement>(query);
     for (let i = elements.length - 1; i > -1; i--) {
-        if ((elements[i] as HTMLElement).style.display !== 'none') {
+        if (elements[i].style.display !== 'none') {
             return elements[i] as HTMLElement;
         }
     }
 }
 
-// export function getElements(query) {
-    // const elements = document.querySelectorAll(query);
-    // const ret = [];
-    // for (let i = 0; i < elements.length; i++) {
-        // if (elements[i].style.display !== 'none') {
-            // ret.push(elements[i]);
-        // }
-    // }
-    // return ret;
-// }
+export function getElements(query: string) {
+    const elements = document.querySelectorAll<HTMLElement>(query);
+    const ret: HTMLElement[] = [];
+    for (let i = 0; i < elements.length; i++) {
+        if (elements[i].style.display !== 'none') {
+            ret.push(elements[i]);
+        }
+    }
+    return ret;
+}
 
-// export function testDemos(req, test) {
-    // const groups = {};
-    // req.keys().forEach(item => {
-        // const paths = item.split('/');
-        // const name = paths[1];
-        // const type = paths[3];
-        // const Demo = req(item).default;
+type GroupItem = {
+    title: string
+    Demo: ComponentConstructor<Component>
+}
+export function testDemos(req: __WebpackModuleApi.RequireContext, test: (Demo: ComponentConstructor<Component>) => Promise<void>) {
+    const groups: Record<string, GroupItem[]> = {};
+    req.keys().forEach(item => {
+        if (item[0] !== '.') return;
 
-        // if (!groups[name]) {
-            // groups[name] = [];
-        // }
-        // groups[name].push({
-            // title: `${name[0].toUpperCase()}${name.substring(1)} ${type}`,
-            // Demo: Demo,
-        // });
-    // });
-    // Object.keys(groups).forEach(key => {
-        // const value = groups[key];
-        // describe(key, () => {
-            // value.forEach(value => {
-                // it(value.title, async () => {
-                    // await test(value.Demo);
-                    // // if (key === 'code') {
-                        // // await wait(1000);
-                    // // }
-                // });
-            // });
-        // });
-    // });
-// }
+        const paths = item.split('/');
+        const name = paths[1];
+        const type = paths[3];
+        const Demo = req(item).default;
 
-export function wait(time: number = 0) {
+        if (!groups[name]) {
+            groups[name] = [];
+        }
+        groups[name].push({
+            title: `${name[0].toUpperCase()}${name.substring(1)} ${type}`,
+            Demo: Demo,
+        });
+    });
+    Object.keys(groups).forEach(key => {
+        const value = groups[key];
+        describe(key, () => {
+            value.forEach(value => {
+                it(value.title, async () => {
+                    await test(value.Demo);
+                    // if (key === 'code') {
+                        // await wait(1000);
+                    // }
+                });
+            });
+        });
+    });
+}
+
+export function wait(time?: number) {
+    if (time === undefined) {
+        return new Promise<void>(resolve => resolve()).then();
+    }
     return new Promise(resolve => {
         setTimeout(resolve, time);
     });
 }
 
-// export function nextFrame() {
-    // return new Promise(resolve => {
-        // _nextFrame(resolve);
-    // });
-// }
+export function nextFrame() {
+    return new Promise<void>(resolve => {
+        _nextFrame(resolve);
+    });
+}
 
 // export function renderVue(App, hook) {
     // const container = document.createElement('div');
@@ -140,3 +149,13 @@ export function wait(time: number = 0) {
     // vueRender(null, container);
     // document.body.removeChild(container);
 // }
+
+export function fakeError() {
+    const error = console.error;
+    const spy = sinon.spy((...args: any[])=> error.apply(console, args));
+    console.error = spy;
+    return (msg: string) => {
+        expect(spy.calledWith(msg)).to.be.true;
+        console.error = error;
+    }
+}

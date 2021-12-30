@@ -3,6 +3,7 @@ import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 import {bind} from '../utils';
 import {useDraggable} from './useDraggable';
+import type {Events} from '../types';
 
 export interface SwitchProps {
     name?: string
@@ -47,6 +48,11 @@ const defaults = (): Partial<SwitchProps> => ({
     size: 'default',
 });
 
+const events: Events<SwitchEvents> = {
+    click: true,
+    keypress: true,
+};
+
 interface MouseEventWithIgnore extends MouseEvent {
     _switchIgnore?: boolean
 }
@@ -55,6 +61,7 @@ export class Switch extends Component<SwitchProps, SwitchEvents, SwitchBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private elementRef = createRef<HTMLElement>();
     private draggable = useDraggable(this.elementRef);

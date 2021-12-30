@@ -74,6 +74,7 @@ export function makeStyles() {
         & > .${kls('line-wrapper')} {
             flex: 0 0 auto;
             text-align: center;
+            overflow: hidden;
             .${kls('line')} {
                 height: 100%;
                 background: ${split.bgColor};

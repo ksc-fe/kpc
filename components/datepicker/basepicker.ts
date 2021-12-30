@@ -271,7 +271,7 @@ export function useValue(
     }
 
     function isValidDate(date: Dayjs) {
-        return date.isValid() && !isDisabled(date);
+        return date.isValid() && !isDisabled(date, getEqualType());
     }
 
     function onChangeTime(date: Dayjs, flag: PanelFlags) {

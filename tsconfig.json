@@ -79,7 +79,8 @@
     "styles",
     "i18n",
     "typings",
-    "site/data",
+    "site",
+    "test",
     "index.ts"
   ],
   "exclude": [

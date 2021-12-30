@@ -10,10 +10,7 @@ const options = this.step.options.value;
     {...rest}
     placeholder={placeholder || _$('请选择时间')}
     filterable
-    class={{
-        'k-timepicker': true,
-        [className]: className,
-    }}
+    class={className}
 >
     <Option v-for={options} value={$value.value}>{$value.label}</Option>
     <b:suffix>

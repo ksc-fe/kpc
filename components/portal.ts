@@ -48,14 +48,17 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         const nextProps = nextVNode.props!;
         this.initContainer(nextProps.container, parentDom, anchor);
 
-        mount(
-            nextProps.children as VNode,
-            this.container!,
-            this,
-            this.$SVG,
-            null,
-            mountedQueue
-        );
+        // add mount method to queue to let sub-component be appended after parent-component
+        mountedQueue.push(() => {
+            mount(
+                nextProps.children as VNode,
+                this.container!,
+                this,
+                this.$SVG,
+                null,
+                mountedQueue
+            );
+        });
         super.$render(lastVNode, nextVNode, parentDom, anchor, mountedQueue);
     }
 

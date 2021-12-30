@@ -6,7 +6,7 @@ import {noop, isNullOrUndefined} from 'intact-shared';
 const {
     className, style, type, value, defaultValue, placeholder,
     clearable, disabled, size, rows, autoWidth, fluid,
-    width, stackClearIcon, frozenOnInput, readonly,
+    width, stackClearIcon, frozenOnInput, readonly, inline,
 
     'ev-click': click,
     'ev-mounseenter': mouseenter,
@@ -32,6 +32,7 @@ const classNameObj = {
     'k-auto-width': autoWidth,
     'k-fluid': fluid,
     'k-stack-clear': stackClearIcon,
+    'k-inline': inline,
     [className]: className,
     [makeStyles()]: true,
 }

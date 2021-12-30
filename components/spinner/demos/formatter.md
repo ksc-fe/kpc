@@ -15,14 +15,14 @@ import {Spinner} from 'kpc/components/spinner';
 
 <div>
     <Spinner vertical 
-        value={this.get('money')}
+        v-model='money'
         formatter={value => ('￥' + value).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-        parser={value => value.replace(/￥|,/g, '')}
+        parser={value => +value.replace(/￥|,/g, '')}
     />
     <Spinner vertical 
         prefix="增长率 "
         suffix="%"
-        value={this.get('percent')}
+        v-model='percent'
     />
 </div>
 ```

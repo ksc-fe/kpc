@@ -4,11 +4,10 @@ import {
     DropdownProps,
     DropdownEvents,
     DropdownBlocks,
-    defaults as dropdownDefaults,
-    typeDefs as dropdownTypeDefs,
 } from '../dropdown/dropdown';
 import {_$} from '../../i18n';
 import {Theme, themes} from './styles';
+import type {Events} from '../types';
 
 export interface TooltipProps extends DropdownProps {
     showArrow?: boolean
@@ -31,8 +30,8 @@ export interface TooltipEvents extends DropdownEvents {
 
 export interface TooltipBlocks extends DropdownBlocks { }
 
-export const typeDefs: Required<TypeDefs<TooltipProps>> = {
-    ...dropdownTypeDefs,
+const typeDefs: Required<TypeDefs<TooltipProps>> = {
+    ...Dropdown.typeDefs,
     showArrow: Boolean,
     theme: themes,
     hoverable: Boolean,
@@ -45,8 +44,8 @@ export const typeDefs: Required<TypeDefs<TooltipProps>> = {
     content: null,
 };
 
-export const defaults = (): Partial<TooltipProps> => ({
-    ...dropdownDefaults(),
+const defaults = (): Partial<TooltipProps> => ({
+    ...Dropdown.defaults(),
     showArrow: true,
     theme: 'dark',
     position: {my: 'center bottom-10', at: 'center top', collision: 'flipfit'},
@@ -58,6 +57,12 @@ export const defaults = (): Partial<TooltipProps> => ({
     size: 'default',
 });
 
+const events: Events<TooltipEvents> = {
+    ...Dropdown.events,
+    ok: true,
+    cancel: true,
+}
+
 export class Tooltip<
     T extends TooltipProps = TooltipProps,
     E extends TooltipEvents = TooltipEvents,
@@ -65,6 +70,7 @@ export class Tooltip<
 > extends Dropdown<T, E, B> {
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     hide(immediately: boolean) {
         if (this.get('always')) return;

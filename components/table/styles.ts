@@ -69,6 +69,7 @@ export function makeStyles() {
         color: ${table.color};
         border-top: ${table.border};
         position: relative;
+        z-index: 0;
         .k-table-wrapper {
             border-bottom: ${table.border};
             overflow: auto;
@@ -226,9 +227,9 @@ export function makeStyles() {
                 color: ${theme.color.primary};
             }
             .k-icon {
-                position: absolute;
-                top: -1px;
-                left: 2px;
+                // position: absolute;
+                // top: -1px;
+                // left: 2px;
                 transition: transform ${theme.transition};
             }
             &.k-dropdown-open .k-icon {
@@ -297,9 +298,9 @@ export function makeStyles() {
         }
 
         // tree
-        tr.k-hidden {
-            display: none;
-        }
+        // tr.k-hidden {
+            // display: none;
+        // }
         .k-table-arrow {
             margin-right: ${table.arrow.gap};
             transition: transform ${theme.transition};
@@ -324,6 +325,15 @@ export function makeStyles() {
         // draggable
         tr.k-dragging {
             opacity: ${table.draggingOpacity};
+        }
+
+        // sticky scrollbar
+        .k-table-scrollbar {
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+        .k-table-scrollbar-inner {
+            height: 1px;
         }
     `;
 }

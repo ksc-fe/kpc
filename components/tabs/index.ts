@@ -5,6 +5,7 @@ import {Sizes, sizes} from '../../styles/utils';
 import {TabProps} from './tab';
 import {useActiveBar} from './useActiveBar';
 import {useScroll} from './useScroll';
+import type {Events} from '../types';
 export * from './tab';
 
 export interface TabsProps {
@@ -34,10 +35,15 @@ const defaults = (): Partial<TabsProps> => ({
     type: 'default',
 });
 
+const events: Events<TabsEvents> = {
+    remove: true,
+}
+
 export class Tabs extends Component<TabsProps, TabsEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private activeBar = useActiveBar();
     private scroll = useScroll();

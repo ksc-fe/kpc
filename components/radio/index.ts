@@ -1,7 +1,7 @@
 import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
-import {CommonInputHTMLAttributes} from '../types';
+import type {CommonInputHTMLAttributes, Events} from '../types';
 
 export interface RadioProps extends CommonInputHTMLAttributes {
     disabled?: boolean
@@ -25,10 +25,16 @@ const defaults = (): Partial<RadioProps> => ({
     trueValue: true,
 });
 
+const events: Events<RadioEvents> = {
+    click: true,
+    change: true,
+};
+
 export class Radio extends Component<RadioProps, RadioEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private elementRef = createRef<HTMLInputElement>();
 

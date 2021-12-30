@@ -45,7 +45,12 @@ import {Select, Option} from 'kpc/components/select';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    day: string | null
+    days: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {

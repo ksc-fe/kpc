@@ -10,6 +10,7 @@ declare module "*.eot" {}
 declare module "*.ttf" {}
 declare module "*.woff" {}
 declare module "*.svg" {}
+declare module "*.png" {}
 
 declare const expect: Chai.ExpectStatic
 declare const sinon: Sinon
