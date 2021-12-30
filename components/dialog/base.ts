@@ -90,6 +90,7 @@ export class BaseDialog<
     static defaults = defaults;
 
     public dialogRef = createRef<HTMLDivElement>();
+    public useAsComponent = true;
 
     private overlayRef = createRef<HTMLDivElement>();
     private drag = useDraggable(
