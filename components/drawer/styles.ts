@@ -54,9 +54,9 @@ export function makeStyles(overlay: boolean) {
                 // Because dialog without overlay don't have positional parent element
                 positionValue += p !== placement 
                     ? ((placement === 'right' || placement === 'left') && !overlay && p === 'top')
-                        ? `${p}: 0 !important;`
-                        : `${p}: auto !important;`
-                    : `${p}: 0 !important;`;
+                        ? `${p}: 0;`
+                        : `${p}: auto;`
+                    : `${p}: 0;`;
             });
 
             if(placement === 'left' || placement === 'right') {

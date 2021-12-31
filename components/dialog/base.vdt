@@ -28,12 +28,13 @@ const dialog = (
         show={value}
         appear={value}
         key="dialog"
-        onAfterLeave={this.position.onAfterLeave}
+        onAfterLeave={this.onAfterLeave}
     >
         <div v-if={isHide ? true : value}
             class={classNameObj}
             ref={this.dialogRef}
             style={{width: typeof width === 'number' ? `${width}px` : width}}
+            ev-mousedown={this.mouseOutsidable.onMouseDown}
         >
             <b:content>
                 <div class="k-dialog-header"
