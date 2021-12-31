@@ -3,6 +3,7 @@ import type {Affix} from './';
 import {useState, watchState} from '../../hooks/useState';
 import {isNullOrUndefined} from 'intact-shared';
 import ResizeObserver from 'resize-observer-polyfill'; 
+import {useReceive} from '../../hooks/useReceive';
 
 export function useStyle(elementRef: RefObject<HTMLElement>) {
     const instance = useInstance() as Affix;
@@ -100,10 +101,7 @@ export function useStyle(elementRef: RefObject<HTMLElement>) {
         disconnect();
     });
 
-    // for convenience of unit test
-    // ['top', 'bottom'].forEach(item => {
-        // instance.on(`$change:${item}`, genStyle); 
-    // });
+    useReceive<Affix>(['top', 'bottom'], genStyle, true)
 
     return {style, containerStyle};
 }
