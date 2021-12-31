@@ -11,8 +11,8 @@ chai.use(matchSnapshot);
 
 // require all test files (files that ends with .spec.js)
 // const testsContext = require.context('../components/', true, /index\.spec\.ts/);
-const testsContext = require.context('../components/', true, /(slider|spinner)\/index\.spec\.ts/);
+const testsContext = require.context('../components/', true, /(affix)\/index\.spec\.ts/);
 testsContext.keys().forEach(testsContext);
 
 // test demos
-require('./demos');
+// require('./demos');
