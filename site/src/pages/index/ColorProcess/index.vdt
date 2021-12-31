@@ -1,10 +1,103 @@
 import {makeStyles} from './styles';
 import {ThemeFrame} from '../../../components/ThemeFrame';
 import {Button} from 'kpc';
+import cp_bg1 from '../../../imgs/cp_bg1.png';
+import cp_bg2 from '../../../imgs/cp_bg2.png';
+import cp_bg3 from '../../../imgs/cp_bg3.png';
+import cp_logo from '../../../imgs/cp_logo.png';
+import cp_desc from '../../../imgs/cp_desc.png';
+import sun from '../../../imgs/sun.png';
+import {Icon} from 'kpc';
+
+const {colorList, curColor, iframeWidth, iframeHeight, iframeScale, curThemeType} = this.get();
+
+
+
+const getTextStyle = (showColor, color) => {
+    if(!showColor) return {}
+    if(color.includes('linear-gradient')) {
+        return {
+            backgroundImage: color,
+            '-webkit-background-clip': 'text',
+            '-webkit-text-fill-color': 'transparent'
+        }
+    } else {
+        return {
+            color
+        }
+    }
+}
+
+;
 
 <div class={makeStyles()}>
-    <div>
-        <div>color process</div>
-        <ThemeFrame></ThemeFrame>
+    <div class="cp-content">
+        <div>
+            <div class="cp-logo">
+                <img src={cp_logo} />
+            </div>
+            <div>
+                <img src={cp_desc} />
+            </div>
+            <p class="cp-desc">KD设计系统置入了<strong>实时颜色算法</strong>，并提供多元化的主题配色板，在这里你可以实时预览你的灵感和业务场景情绪板。</p>
+            <div class="info-box">
+                <div>支持</div>
+                <div>WCAG2.0</div>
+            </div>
+            <div class="color-box">
+                <div class="color-wrapper">
+                    <div class="color-item-box">
+                        <div class="color-item" v-for={colorList}>
+                            <div
+                                ev-click={this.handleColorClick.bind(this, $value)} 
+                                style={{background: $value.color}}
+                            >
+                                <Icon v-if={curColor == $value.name} class="icon ion-checkmark-round"></Icon>
+                            </div>
+                            <div style={getTextStyle(curColor == $value.name, $value.color)}>{$value.name}</div>
+                        </div>
+                    </div>
+                    <div class="color-swtich-box">
+                        <div class="theme-type-switch">
+                            <div
+                                class={{active: curThemeType == 'dark'}} 
+                                ev-click={this.handleThemeTypeChange.bind(this, 'dark')}    
+                            >
+                                <Icon class="icon ion-ios-moon"></Icon>    
+                            </div>
+                            <div
+                                class={{active: curThemeType == 'light'}} 
+                                ev-click={this.handleThemeTypeChange.bind(this, 'light')}
+                            >
+                                <Icon class="icon ion-ios-sunny"></Icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="cp-box" ref={this.cpBoxRef}>
+                <div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div style={{height: `${iframeHeight * iframeScale - 1}px`}}>
+                    <ThemeFrame
+                        style={{transform: `scale(${iframeScale})`}}
+                        href="./iframe/colorProcess" 
+                        ref={this.iframeBoxRef}
+                        width={iframeWidth}
+                        height={iframeHeight}
+                    ></ThemeFrame>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-layer">
+        <img src={cp_bg1} />
+        <img src={cp_bg2} />
+        <img src={cp_bg3} />
     </div>
 </div>

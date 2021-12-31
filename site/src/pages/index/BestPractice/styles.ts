@@ -65,6 +65,8 @@ export function makeStyles() {
                     width: 455px;
                     margin-right: 20px;
                     background: #212121;
+                    border-radius: 8px;
+                    overflow: hidden;
                 }
                 .optional-box {
                     width: 725px;

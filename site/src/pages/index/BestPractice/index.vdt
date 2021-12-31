@@ -1,5 +1,6 @@
 import {makeStyles} from './styles';
-import {Code, Input, Button, Icon, Select, Option, Slider} from 'kpc';
+import {Input, Select, Option, Slider} from 'kpc';
+import {Code} from 'kpc/components/code';
 import {ThemeFrame} from '../../../components/ThemeFrame';
 
 const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
@@ -27,15 +28,20 @@ const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
         </div>
         <div>
             <div class="code-pen">
-                {/* <Code v-model="codeContent" language="javascript" /> */}
-                <div>{codeContent}</div>
+                <Code 
+                    v-model="codeContent" 
+                    language="javascript"
+                    theme="vs-dark"
+                    options={{minimap: {enabled: false}}}
+                    readOnly={true}
+                    ev-ready={this.handleCodeBoxReady}
+                />
             </div>
             <div class="optional-box">
                 <div class="left">
                     <ThemeFrame
                         href="./iframe/button" 
                         ref={this.iframeBoxRef}
-                        width="120"
                         height="40"
                     ></ThemeFrame>
                 </div>
@@ -64,8 +70,8 @@ const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
                                 <div class="radius-value">{buttonRadiusMin}</div>
                                 <Slider 
                                     v-model="buttonRadius" 
-                                    min={0} 
-                                    max={24} 
+                                    min={buttonRadiusMin} 
+                                    max={buttonRadiusMax} 
                                     isShowInput={false} 
                                     isShowEnd={false}
                                 />

@@ -5,20 +5,55 @@ import vue_logo_active from '../../../imgs/vue_logo_active.png';
 import react_logo from '../../../imgs/react_logo.png';
 import react_logo_active from '../../../imgs/react_logo_active.png';
 import {ThemeFrame} from '../../../components/ThemeFrame';
-
-// console.log = (log => {
-//     return a => {
-//         console.clear()
-//         log(a)
-//     }
-// })(console.log)
+import {bind} from 'components/utils';
 
 type SupportLang = {
     title: string 
     src: any
     activeSrc: any
     isActive: boolean
+    codeTemplate: Function
 };
+
+const vueTemplate = 
+`<div>
+    placeholder1
+    placeholder2
+</div>`
+
+const reactTemplate = 
+`export default class Demo extends React.Component {
+    render() {
+        return (
+            <div>
+                placeholder1
+                placeholder2
+            </div>
+        )
+    }
+}`
+
+const templateMap = {
+    vue: vueTemplate,
+    react: reactTemplate
+}
+
+const getTemplate = (type: 'vue' | 'react'): Function => {    
+    return (buttonStatus: string, contentInput: string, iconPosition: string) => {
+        const isLeft =  iconPosition == 'left';
+        const button = `<Button type="BUTTON_TYPE">BUTTON_CONTENT</Button>`
+            .replace('BUTTON_TYPE', buttonStatus)
+            .replace('BUTTON_CONTENT', contentInput);
+        const icon = `<Icon class="icon ion-plus"></Icon>`
+
+        let placeholder1 = isLeft ? icon : button;
+        let placeholder2 = isLeft ? button : icon;
+        let tmp = templateMap[type];
+        return tmp
+            .replace('placeholder1', placeholder1)
+            .replace('placeholder2', placeholder2);
+    }
+}
 
 export interface BestPracticeProps {
     codeContent: string
@@ -42,27 +77,29 @@ const typeDefs: Required<TypeDefs<BestPracticeProps>> = {
     supportList: Array
 };
 
-
 const defaults = (): Partial<BestPracticeProps> => ({
-    codeContent: 'hello world',
+    codeContent: '',
     contentInput: 'Button',
     iconPosition: 'left',
     buttonStatus: 'primary',
     buttonRadius: 2,
-    buttonRadiusMax: 24,
+    buttonRadiusMax: 20,
     buttonRadiusMin: 0,
     supportList: [
         {
             title: 'Vue',
             src: vue_logo,
             activeSrc: vue_logo_active,
-            isActive: true
+            isActive: true,
+            codeTemplate: getTemplate('vue')
+
         },
         {
             title: 'React',
             src: react_logo,
             activeSrc: react_logo_active,
-            isActive: false
+            isActive: false,
+            codeTemplate: getTemplate('react')
         }
     ]
 });
@@ -82,12 +119,21 @@ export class BestPractice extends Component<BestPracticeProps> {
                 contentInput,
                 buttonStatus,
                 buttonRadius
-            })
+            });
+
+            this.setCode();
         }
-        this.watch('iconPosition', handleValueChange)
-        this.watch('contentInput', handleValueChange)
-        this.watch('buttonStatus', handleValueChange)
-        this.watch('buttonRadius', handleValueChange)
+        this.watch('iconPosition', handleValueChange);
+        this.watch('contentInput', handleValueChange);
+        this.watch('buttonStatus', handleValueChange);
+        this.watch('buttonRadius', handleValueChange);
+    }
+
+    setCode() {
+        const {iconPosition, contentInput, buttonStatus} = this.get();
+        const active = this.get('supportList').find((item: SupportLang) => item.isActive)!;
+        const code = active.codeTemplate(buttonStatus, contentInput, iconPosition);
+        this.set('codeContent', code);
     }
 
     handleLanguageClick(curLang: SupportLang) {
@@ -99,9 +145,11 @@ export class BestPractice extends Component<BestPracticeProps> {
         this.set('supportList', tmp);
 
         curLang.isActive = true;
+        this.setCode();
     }
-    
-    handlePositionChange(position: string) {
-        // this.iframeBoxRef.value?.reRender();
+
+    @bind
+    handleCodeBoxReady() {
+        this.setCode();
     }
 }

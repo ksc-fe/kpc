@@ -169,8 +169,8 @@ class Bezier {
         pen.fillText(brackets, this.padding, this.padding - 8);
         pen.fillText(brackets, canvas.width - 60 - this.padding, canvas.height - 8);
         pen.fillStyle = '#FF7F22';
-        pen.fillText(`${x1}    ${y1}`, this.padding + 10, this.padding - 7);
-        pen.fillText(`${x2}    ${y2}`, canvas.width - 60 - this.padding + 8, canvas.height - 7);
+        pen.fillText(`${x2}    ${y2}`, this.padding + 10, this.padding - 7);
+        pen.fillText(`${x1}    ${y1}`, canvas.width - 60 - this.padding + 8, canvas.height - 7);
     }
 
     drawStatic(): void {

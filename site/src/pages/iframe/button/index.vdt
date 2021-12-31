@@ -2,7 +2,7 @@ import {Button, Icon} from 'kpc';
 import {makeStyles} from './styles';
 
 const {
-    buttonRadius, buttonStatus, contentInput, iconPosition
+    buttonStatus, contentInput, iconPosition
 } = this.get();
 
 const innerButton = () => {

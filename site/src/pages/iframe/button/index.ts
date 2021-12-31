@@ -40,15 +40,25 @@ export default class extends Component<IframeBtnProps> {
     }
 
     setValue(val: ButtonProps) {
-        this.set('buttonRadius', val.buttonRadius);
-        this.set('buttonStatus', val.buttonStatus);
-        this.set('contentInput', val.contentInput);
-        this.set('iconPosition', val.iconPosition);
+        const { buttonRadius, buttonStatus, contentInput, iconPosition } = this.get();
+
+        const target = val
+            ? val
+            : {
+                buttonRadius,
+                buttonStatus,
+                contentInput,
+                iconPosition
+            }
+            
+        this.set('buttonRadius', target.buttonRadius);
+        this.set('buttonStatus', target.buttonStatus);
+        this.set('contentInput', target.contentInput);
+        this.set('iconPosition', target.iconPosition);
         
-        console.log(val.buttonRadius)
         setTheme({
             button: {
-                borderRadius: `${val.buttonRadius}px`
+                borderRadius: `${target.buttonRadius}px`
             }
         })
     }

@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {mainBlock, fullfill, center} from '../../../styles/default'
+import {mainBlock, fullfill, center} from '../../../styles/default';
 
 export function makeStyles() {
     return css`

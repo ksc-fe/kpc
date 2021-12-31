@@ -5,19 +5,22 @@ export interface ThemeFrameProps {
     href: string
     width: string | number
     height: string | number
+    style: any
 }
 
 const typeDefs: Required<TypeDefs<ThemeFrameProps>> = {
     href: String,
     width: [Number, String],
-    height: [Number, String]
+    height: [Number, String],
+    style: Object
 };
 
 
 const defaults = (): Partial<ThemeFrameProps> => ({
     href: '',
     width: '',
-    height: ''
+    height: '',
+    style: {}
 });
 
 export class ThemeFrame extends Component {
@@ -28,7 +31,6 @@ export class ThemeFrame extends Component {
     private frameRef = createRef<HTMLElement>();
 
     reRender(val?: any) {
-        console.log(val);
         (this.frameRef.value as any).contentWindow.setValue(val);
     }
 
