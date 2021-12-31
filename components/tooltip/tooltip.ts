@@ -72,6 +72,8 @@ export class Tooltip<
     static defaults = defaults;
     static events = events;
 
+    protected alwaysPortal = true;
+
     hide(immediately: boolean) {
         if (this.get('always')) return;
 
