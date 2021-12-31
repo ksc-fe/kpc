@@ -8,8 +8,7 @@ order: 0
 > 可以通过缩放浏览器查看效果
 
 ```vdt
-import {Affix} from 'kpc/components/affix';
-import {Button} from 'kpc/components/button';
+import {Affix, Button} from 'kpc';
 
 <div>
     <Affix top={87}>

@@ -93,7 +93,6 @@ interface Props  {
     xAxisKeywords: string[]
     yAxisKeywords: string[]
     pos: Pos
-    
 }
 type Pos = { 
     myX: string
@@ -101,10 +100,9 @@ type Pos = {
     myY: string
     myYOffset: number
     atX: string
-    atXOffset: number,
-    atY: string,
-    atYOffset: number,
-
+    atXOffset: number
+    atY: string
+    atYOffset: number
 }
 export default class extends Component<Props> {
     static template = template;

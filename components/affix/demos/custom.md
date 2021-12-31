@@ -10,8 +10,7 @@ order: 1
 之外时，不启用固定
 
 ```vdt
-import {Affix} from 'kpc/components/affix';
-import {Button} from 'kpc/components/button';
+import {Affix, Button} from 'kpc';
 
 <div ref="node">
     <Affix top={150} shouldFix={this._shouldFix}>

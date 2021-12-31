@@ -40,16 +40,15 @@ describe('Tooltip', () => {
         // should hide
         dispatchEvent(first, 'mouseleave');
         await wait(400);
-        content = getElement('.k-tooltip-content')!;
-        expect(content).be.undefined;
+        expect(content.style.display).to.eql('none');
     });
 
     it('should position correctly', async () => {
         const [instance, element] = mount(PositionDemo);
 
-        const tooltipContent = getElement('.k-tooltip-content') as HTMLDivElement;
-        const arrow = tooltipContent.querySelector('.k-tooltip-arrow') as HTMLDivElement;
-        const at = element.querySelector('.opera .k-btn') as HTMLDivElement;
+        const tooltipContent = getElement('.k-tooltip-content')!;
+        const arrow = tooltipContent.querySelector<HTMLElement>('.k-tooltip-arrow')!;
+        const at = element.querySelector('.opera .k-btn') as HTMLElement;
         const {width, height, left, top} = at.getBoundingClientRect();
         const contains = (name: string) => expect(arrow.classList.contains(name)).to.be.true;
         const eql = (a: number, b: number) => expect(Math.floor(a)).to.eql(Math.floor(b));
@@ -101,10 +100,10 @@ describe('Tooltip', () => {
     it('should trigger correctly', async () => {
         const [, element] = mount(TriggerDemo);
 
-        const [, click,] = Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
+        const [, click, ] = element.querySelectorAll<HTMLElement>('.k-btn');
         click.click();
         await wait();
-        let content = getElement('.k-tooltip-content') as HTMLElement;
+        let content = getElement('.k-tooltip-content')!;
         expect(content.textContent).to.matchSnapshot();
 
         // should not hide
@@ -116,11 +115,10 @@ describe('Tooltip', () => {
         // should hide when click document
         document.body.click();
         await wait(300);
-        let content2 = getElement('.k-tooltip-content');
-        expect(content2).not.eql(content);
+        expect(content.style.display).to.eql('none')
     });
 
-    it('should hoverable', async () => {
+    it('should be hoverable', async () => {
         const [, element] = mount(TriggerDemo);
         const [, , canHover] = Array.from(element.querySelectorAll('.k-btn'));
         dispatchEvent(canHover, 'mouseenter');
@@ -137,8 +135,7 @@ describe('Tooltip', () => {
 
         dispatchEvent(canHover, 'mouseleave');
         await wait(500);
-        const content2 = getElement('.k-tooltip-content');
-        expect(content2).be.undefined;
+        expect(content.style.display).to.eql('none')
     });
 
     it('should custom content correctly', async () => {
@@ -149,7 +146,7 @@ describe('Tooltip', () => {
         await wait(300);
         const content = getElement('.k-tooltip-content') as HTMLElement;
         // ignore the arrow, because it may change className to adapt to the direction
-        expect(content.children[1].outerHTML).to.matchSnapshot();
+        expect(content.querySelector<HTMLElement>('.k-slider')!.outerHTML).to.matchSnapshot();
     });
 
     it('should handle confirm tooltip corectly', async () => {
@@ -171,7 +168,7 @@ describe('Tooltip', () => {
         expect(content.style.display).eql('none');
 
         dispatchEvent(element.firstElementChild!, 'click');
-        await wait(0);
+        await wait();
         content = getElement('.k-tooltip-content')!;
         const [, btn] = Array.from<HTMLElement>(content.querySelectorAll('.k-btn'));
         btn.click();
@@ -280,7 +277,7 @@ describe('Tooltip', () => {
     //     document.body.removeChild(app.$el);
     // });
 
-    it('should hide layer when we have disabled Tooltip and also hide on next update', async () => {
+    it('should hide layer when we have disabled Tooltip and also hide on next updating', async () => {
         class Demo extends Component<{disabled: boolean}> {
             static template = `
                 const Tooltip = this.Tooltip;

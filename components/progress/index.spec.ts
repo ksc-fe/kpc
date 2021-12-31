@@ -74,6 +74,7 @@ describe('Progress', () => {
         expect(element.classList.contains('k-success')).to.be.true;
 
         instance.forceUpdate();
+        await wait();
         expect(element.classList.contains('k-success')).to.be.true;
 
         instance.set<string>('status', 'active');
