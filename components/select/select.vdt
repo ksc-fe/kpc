@@ -1,5 +1,6 @@
 import {SelectMenu} from './menu';
 import {isEmptyChildren} from '../utils';
+import {Wave} from '../wave';
 
 const {className, children, autoDisableArrow, disabled, multiple, value} = this.get();
 const {getCreatedVNode, filter} = this.filterable;
@@ -14,14 +15,16 @@ const isDisableArrow =  disabled ||
         allShowedValues[0] === value
     );
 
-<t:super isDisableArrow={isDisableArrow}>
-    <b:base-menu>
-        <SelectMenu class={className} values={allShowedValues}>
-            <template>
-                <b:menu>
-                    {getCreatedVNode(options)}{options}
-                </b:menu>
-            </template>
-        </SelectMenu>
-    </b:base-menu>
-</t:super>
+<Wave>
+    <t:super isDisableArrow={isDisableArrow}>
+        <b:base-menu>
+            <SelectMenu class={className} values={allShowedValues}>
+                <template>
+                    <b:menu>
+                        {getCreatedVNode(options)}{options}
+                    </b:menu>
+                </template>
+            </SelectMenu>
+        </b:base-menu>
+    </t:super>
+</Wave>

@@ -2,6 +2,7 @@ import {getRestProps} from '../utils';
 import {Icon} from '../icon';
 import {makeButtonStyles} from './styles';
 import {DynamicButton} from './dynamicButton';
+import {Wave} from '../wave';
 
 let {
     type, className, size, icon, circle, ref, key, tabindex,
@@ -62,27 +63,29 @@ const buttonGroup = this.buttonGroup;
 const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
 const isCheckType = checkType !== 'none';
 
-<DynamicButton 
-    class={classNameObj}
-    tagName={tagName}
-    {...getRestProps(this)}
-    ref={this.elementRef}
-    tabindex={disabled || loading ? '-1' : tabindex}
-    ev-click={this.onClick}
-    ev-mouseup={this.onMouseUp}
-    htmlType={htmlType}
-    name={isCheckType ? null : name}
->
-    {loading ? 
-        iconSide === 'right' ?
-            [children, loadingIcon] :
-            [loadingIcon, children] :
-        children 
-    }
-    <input type={checkType} v-if={isCheckType}
-        class="k-button-input"
-        name={name} 
-        checked={checked}
-        tabindex="-1"
-    />
-</DynamicButton>
+<Wave disabled={loading || type === 'none' || type === 'link'}>
+    <DynamicButton 
+        class={classNameObj}
+        tagName={tagName}
+        {...getRestProps(this)}
+        ref={this.elementRef}
+        tabindex={disabled || loading ? '-1' : tabindex}
+        ev-click={this.onClick}
+        ev-mouseup={this.onMouseUp}
+        htmlType={htmlType}
+        name={isCheckType ? null : name}
+    >
+        {loading ? 
+            iconSide === 'right' ?
+                [children, loadingIcon] :
+                [loadingIcon, children] :
+            children 
+        }
+        <input type={checkType} v-if={isCheckType}
+            class="k-button-input"
+            name={name} 
+            checked={checked}
+            tabindex="-1"
+        />
+    </DynamicButton>
+</Wave>

@@ -59,6 +59,7 @@ if (searchable) {
                     value={keywords.value}
                     ev-$change:value={onInput}
                     clearable
+                    waveDisabled={true}
                 >
                     <b:suffix><Icon class="ion-ios-search" /></b:suffix>
                 </Input>

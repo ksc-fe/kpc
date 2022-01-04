@@ -1,5 +1,6 @@
 import {injectGlobal, css} from '@emotion/css';
 import {theme} from './theme';
+import {waveEffect} from './keyframes';
 
 const slideDirections = {
     down: 'center top 0',
@@ -11,6 +12,7 @@ const slideDirections = {
 // TODO: update global when theme changed
 injectGlobal`
     html {
+        --var-wave-color: ${theme.color.primary};
         box-sizing: border-box;
         font-family: -apple-system,BlinkMacSystemFont,SF Pro SC,SF Pro Text,Helvetica Neue,Helvetica,PingFang SC,Segoe UI,Roboto,Hiragino Sans GB,arial,microsoft yahei ui,Microsoft YaHei,SimSun,sans-serif;
     }
@@ -108,5 +110,22 @@ injectGlobal`
     .c-middle {
         display: inline-block;
         vertical-align: middle;
+    }
+
+    [kpc-click-animating='true'] {
+        position: relative;
+        &::after {
+            display: block;
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            opacity: 0;
+            border-radius: inherit;
+            animation: ${waveEffect} 0.2s ease;
+            animation-fill-mode: forwards;
+        }
     }
 `;
