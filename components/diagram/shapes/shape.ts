@@ -119,7 +119,7 @@ export abstract class DShape<P extends DShapeProps = DShapeProps> extends DBase<
     }
 
     protected deleteFromDiagram() {
-        this.diagram.addShape(this);
+        this.diagram.deleteShape(this);
     }
 
     protected getGeometry() {
