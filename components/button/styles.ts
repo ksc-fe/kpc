@@ -139,7 +139,7 @@ const defaults = deepDefaults(
 let button: any;
 setDefault(() => {
     button = deepDefaults(theme, {button: defaults}).button;
-})
+});
 
 export {button};
 

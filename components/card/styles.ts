@@ -10,12 +10,12 @@ const defaults = {
     headerHeight: '48px',
     headerFontSize: '14px',
     bgColor: '#fff',
-}
+};
 
 let card: any;
 setDefault(() => {
     card = deepDefaults(theme, {card: defaults}).card;
-})
+});
 
 export function makeStyles() {
     return css`

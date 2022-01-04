@@ -1,12 +1,15 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
-const {affix} = deepDefaults(theme, {
-    affix: {
-        zIndex: 9
-    }
+const defaults = {
+    zIndex: 9
+};
+
+let affix: any;
+setDefault(() => {
+    affix = deepDefaults(theme, {affix: defaults}).affix;
 });
 
 export function makeStyles() {

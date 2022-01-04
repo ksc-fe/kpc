@@ -1,66 +1,69 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
-const {table} = deepDefaults(theme, {
-    table: {
-        border: `1px solid #e5e5e5`,
+const defaults = {
+    border: `1px solid #e5e5e5`,
+    fontSize: `12px`,
+    bgColor: `#fff`,
+    get color() { return theme.color.text },
+    fixLeftShadow: `inset 5px 0px 6px -6px rgb(0 0 0 / 30%)`,
+    fixRightShadow: `inset -5px 0px 6px -6px rgb(0 0 0 / 30%)`,
+
+    // head
+    thead: {
+        get bgColor() { return theme.color.bg },
+        padding: `0 5px 0 12px`,
         fontSize: `12px`,
-        bgColor: `#fff`,
-        get color() { return theme.color.text },
-        fixLeftShadow: `inset 5px 0px 6px -6px rgb(0 0 0 / 30%)`,
-        fixRightShadow: `inset -5px 0px 6px -6px rgb(0 0 0 / 30%)`,
+        fontWeight: `bold`,
+        textAlign: 'left',
+        height: `30px`,
+        delimiterHeight: '12px',
+        delimiterColor: '#bfbfbf',
+    },
 
-        // head
-        thead: {
-            get bgColor() { return theme.color.bg },
-            padding: `0 5px 0 12px`,
-            fontSize: `12px`,
-            fontWeight: `bold`,
-            textAlign: 'left',
-            height: `30px`,
-            delimiterHeight: '12px',
-            delimiterColor: '#bfbfbf',
-        },
+    // tbody 
+    tbody: {
+        get hoverBgcolor() { return theme.color.bg },
+        padding: `11px 5px 11px 12px`,
+    },
 
-        // tbody 
-        tbody: {
-            get hoverBgcolor() { return theme.color.bg },
-            padding: `11px 5px 11px 12px`,
-        },
+    // stripe
+    stripeBgColor: '#f9f9fc',
 
-        // stripe
-        stripeBgColor: '#f9f9fc',
+    // group
+    group: {
+        width: `14px`,
+        gap: `10px`,
+        color: `#a6a6a6`,
+        menuMaxHeight: '200px',
+        get activeColor() { return theme.color.primary },
+    },
 
-        // group
-        group: {
-            width: `14px`,
-            gap: `10px`,
-            color: `#a6a6a6`,
-            menuMaxHeight: '200px',
-            get activeColor() { return theme.color.primary },
-        },
+    // sort
+    sort: {
+        iconHeight: `7px`,
+        gap: `10px`,
+        color: `#a6a6a6`,
+        disabledColor: `#ddd`,
+    },
 
-        // sort
-        sort: {
-            iconHeight: `7px`,
-            gap: `10px`,
-            color: `#a6a6a6`,
-            disabledColor: `#ddd`,
-        },
+    expandBgColor: '#fdfcff',
+    get selectedBgColor() { return palette(theme.color.primary, -4) },
 
-        expandBgColor: '#fdfcff',
-        get selectedBgColor() { return palette(theme.color.primary, -4) },
+    // tree
+    arrow: {
+        gap: `4px`,
+    },
 
-        // tree
-        arrow: {
-            gap: `4px`,
-        },
+    resizeWidth: `5px`,
+    draggingOpacity: `.4`,
+};
 
-        resizeWidth: `5px`,
-        draggingOpacity: `.4`,
-    }
+let table: any;
+setDefault(() => {
+    table = deepDefaults(theme, {table: defaults}).table;
 });
 
 export function makeStyles() {

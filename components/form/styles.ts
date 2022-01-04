@@ -1,38 +1,41 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
-const {form} = deepDefaults(theme, {
-    form: {
-        item: {
-            gap: `24px`,
-            labelWidth: `80px`,
-            get labelLineHeight() { return theme.default.height },
-            labelTextAlign: 'right',
-            labelGap: '10px',
-            get starColor() { return theme.color.danger },
-            starGap: '3px',
+const defaults = {
+    item: {
+        gap: `24px`,
+        labelWidth: `80px`,
+        get labelLineHeight() { return theme.default.height },
+        labelTextAlign: 'right',
+        labelGap: '10px',
+        get starColor() { return theme.color.danger },
+        starGap: '3px',
 
-            // invalid
-            errorFontSize: '12px',
-            get errorColor() { return theme.color.danger },
-            get invalidBorder() { return `1px solid ${theme.color.danger}` },
+        // invalid
+        errorFontSize: '12px',
+        get errorColor() { return theme.color.danger },
+        get invalidBorder() { return `1px solid ${theme.color.danger}` },
 
-            // append
-            appendPadding: `0 10px`,
+        // append
+        appendPadding: `0 10px`,
 
-            // layout
-            inlineGap: '16px',
-            verticalLabelGap: '8px',
+        // layout
+        inlineGap: '16px',
+        verticalLabelGap: '8px',
 
-            // size
-            smallGap: '16px',
-            smallInlineGap: '12px',
-            miniGap: '8px',
-            miniInlineGap: '8px',
-        },
-    } 
+        // size
+        smallGap: '16px',
+        smallInlineGap: '12px',
+        miniGap: '8px',
+        miniInlineGap: '8px',
+    },
+};
+
+let form: any;
+setDefault(() => {
+    form = deepDefaults(theme, {form: defaults}).form;
 });
 
 export function makeItemStyles() {

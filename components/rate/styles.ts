@@ -1,19 +1,22 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
-const {rate} = deepDefaults(theme, {
-    rate: {
-        color: '#ccc',
-        get activeColor() { return theme.color.warning },
-        iconFontSize: '24px',
+const defaults = {
+    color: '#ccc',
+    get activeColor() { return theme.color.warning },
+    iconFontSize: '24px',
 
-        item: {
-            gap: '8px',
-            hoverTransform: 'scale(1.1)',
-        },
-    }
+    item: {
+        gap: '8px',
+        hoverTransform: 'scale(1.1)',
+    },
+};
+
+let rate: any;
+setDefault(() => {
+    rate = deepDefaults(theme, {rate: defaults}).rate;
 });
 
 export function makeStyles() {

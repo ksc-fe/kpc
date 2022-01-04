@@ -24,12 +24,12 @@ const defaults = {
     get collapsedWidth() { return `calc(${getLeft(menu.item.padding)} * 2 + ${menu.icon.width})` },
     footerPadding: '24px 50px',
     // bodyMargin: '0 20px',
-}
+};
 
 let layout: any;
 setDefault(() => {
     layout = deepDefaults(theme, {layout: defaults}).layout;
-})
+});
 
 export function getCollapseWidth() {
     return layout.collapsedWidth;

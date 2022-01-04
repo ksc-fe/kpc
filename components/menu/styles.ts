@@ -75,12 +75,12 @@ const defaults = {
         width: '180px',
         get fontSize() { return theme.small.fontSize },
     }
-}
+};
 
 let menu: any;
 setDefault(() => {
     menu = deepDefaults(theme, {menu: defaults}).menu;
-})
+});
 
 export {menu};
 

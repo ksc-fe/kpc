@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {theme, ThemeValue} from '../../styles/theme';
+import {theme, ThemeValue, setDefault} from '../../styles/theme';
 import {deepDefaults, Sizes, sizes, palette}  from '../../styles/utils';
 import '../../styles/global';
 
@@ -41,20 +41,23 @@ const sizeStyles = sizes.reduce((memo, size) => {
     return memo;
 }, {} as Record<Sizes, SizeStyles>);
 
-const {timeline} = deepDefaults(theme, {
-    timeline: deepDefaults(
-        {
-            fontSize: '12px',
-            padding: '0 0 16px 24px',
-            get lineBorder() { return `1px solid ${theme.color.border}` },
+const defaults = deepDefaults(
+    {
+        fontSize: '12px',
+        padding: '0 0 16px 24px',
+        get lineBorder() { return `1px solid ${theme.color.border}` },
 
-            indicator: {
-                width: '16px',
-            },
+        indicator: {
+            width: '16px',
         },
-        typeStyles,
-        sizeStyles
-    )
+    },
+    typeStyles,
+    sizeStyles
+);
+
+let timeline: any;
+setDefault(() => {
+    timeline = deepDefaults(theme, {timeline: defaults}).timeline;
 });
 
 export function makeStyles() {
