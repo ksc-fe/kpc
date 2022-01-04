@@ -11,8 +11,6 @@ import {Wave} from 'kpc/components/wave';
 import {Select, Option} from 'kpc/components/select';
 import {Input} from 'kpc/components/input';
 
-const {disabled} = this.get();
-
 <div>
     <Select v-model="day">
         <Option value="Monday">星期一</Option>
@@ -28,7 +26,7 @@ const {disabled} = this.get();
     <br />
     <Input disabled placeholder="disabled" />
     <br />
-    <Button type="primary" disabled={disabled}>点击加载</Button>
+    <Button type="primary">点击加载</Button>
     <Button type="default">secondary</Button>
     <Button type="secondary">secondary</Button>
     <Button type="warning">warning</Button>
@@ -54,16 +52,5 @@ export default class extends Component {
     static defaults = () => ({
         disabled: true,
     });
-
-    onClick() {
-        console.log("本身click")
-    }
-
-    @bind
-    mounted() {
-        setTimeout(() => {
-            this.set('disabled', false)
-        }, 1000)
-    }
 }
 ```

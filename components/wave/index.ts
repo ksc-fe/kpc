@@ -70,20 +70,28 @@ export class Wave extends Component<WaveProps> {
         }
 
         this.resetAnimation();
-        const getNodeComputedStyle = getComputedStyle(instance!);
-        const borderColor = getNodeComputedStyle.getPropertyValue('border-top-color') ||
-            getNodeComputedStyle.getPropertyValue('border-color') ||
-            getNodeComputedStyle.getPropertyValue('background-color');
-        // Not white or transparent or grey
-        if (
-            borderColor &&
-            borderColor !== '#ffffff' &&
-            borderColor !== 'rgb(255, 255, 255)' &&
-            isNotGrey(borderColor) &&
-            !/rgba\((?:\d*, ){3}0\)/.test(borderColor) && // any transparent rgba color
-            borderColor !== 'transparent'
-        ) {
-            document.documentElement.style.setProperty('--var-wave-color', borderColor);
+        // Input is not border, so set to defalut border color
+        const isInput = instance?.classList.contains('k-input');
+        if (!isInput) {
+            const getNodeComputedStyle = getComputedStyle(instance!);
+            const borderWidth = getNodeComputedStyle.getPropertyValue('border-top-width') || 
+            getNodeComputedStyle.getPropertyValue('border-width');
+            if (borderWidth === '0px') return;
+
+            const borderColor = getNodeComputedStyle.getPropertyValue('border-top-color') ||
+                getNodeComputedStyle.getPropertyValue('border-color') ||
+                getNodeComputedStyle.getPropertyValue('background-color');
+            // Not white or transparent 
+            if (
+                borderColor &&
+                borderColor !== '#ffffff' &&
+                borderColor !== 'rgb(255, 255, 255)' &&
+                isNotGrey(borderColor) &&
+                !/rgba\((?:\d*, ){3}0\)/.test(borderColor) && // any transparent rgba color
+                borderColor !== 'transparent'
+            ) {
+                document.documentElement.style.setProperty('--var-wave-color', borderColor);
+            }
         }
 
         instance!.addEventListener('animationend', this.resetAnimation);

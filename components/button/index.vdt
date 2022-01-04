@@ -63,7 +63,7 @@ const buttonGroup = this.buttonGroup;
 const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
 const isCheckType = checkType !== 'none';
 
-<Wave disabled={loading || type === 'none' || type === 'link'}>
+<Wave disabled={loading}>
     <DynamicButton 
         class={classNameObj}
         tagName={tagName}
