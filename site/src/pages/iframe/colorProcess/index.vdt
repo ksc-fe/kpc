@@ -1,6 +1,7 @@
-import {Layout, Header, Aside, Menu, MenuItem, Icon, Body, Button} from 'kpc';
+import {Layout, Header, Aside, Menu, MenuItem, Icon, Body, Card} from 'kpc';
 import {makeStyles} from './styles';
 import KD_logo from '../../../imgs/KD_logo.png';
+import colorProLogo from '../../../imgs/color_pro_logo.png';
 
 const {
     asideWidth, headerHeight, bgTheme, curBgTheme,
@@ -9,7 +10,9 @@ const {
 
 <Layout class={makeStyles(bgTheme[curBgTheme], theme[curTheme])} ref={this.layoutRef}>
     <Header height={headerHeight}>
-        <div>没错，这里是一个LOGO</div>
+        <div class="header-logo">
+            <img src={colorProLogo} />
+        </div>
         <div class="header-menu">
             <div>Design</div>
             <div>Component</div>
@@ -46,7 +49,7 @@ const {
         <Body class="cp-content">
             <div class="img-box"></div>
             <div class="card-box">
-                <div>
+                <Card>
                     <div class="card-title">
                         <div>Trending</div>
                         <Icon class="icon ion-navicon"></Icon>
@@ -65,8 +68,8 @@ const {
                         </div>
                         <p>Bring a business mind to design, and transform your career and company</p>
                     </div>
-                </div>
-                <div>
+                </Card>
+                <Card>
                     <div class="card-title">
                         <div>Collections</div>
                         <Icon class="icon ion-navicon"></Icon>
@@ -85,7 +88,7 @@ const {
                             <div>Crafts</div>
                         </div>
                     </div>
-                </div>
+                </Card>
             </div>
         </Body>
     </Layout>

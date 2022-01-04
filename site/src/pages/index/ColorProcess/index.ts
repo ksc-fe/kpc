@@ -61,6 +61,8 @@ export class ColorProcess extends Component<ColorProcessProps> {
 
     private cpBoxRef = createRef<HTMLElement>();
 
+    private curColor: string = ''
+
     init() {
 
     }
@@ -74,8 +76,11 @@ export class ColorProcess extends Component<ColorProcessProps> {
 
     @bind
     handleThemeTypeChange(themeType: string) {
-        this.set('curThemeType', themeType);
-        this.setTheme();
+        if(this.curColor !== themeType) {
+            this.curColor = themeType;
+            this.set('curThemeType', themeType);
+            this.setTheme();    
+        }
     }
 
     setTheme() {

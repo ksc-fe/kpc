@@ -1,66 +1,7 @@
 import {css} from '@emotion/css';
-import { theme, push, setDefault } from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
-
-// const {input} = deepDefaults(theme, {
-//     input: deepDefaults(
-//         {
-//             get fontSize() { return theme.default.fontSize },
-//             get height() { return theme.default.height },
-//             width: '300px',
-//             get border() { return `1px solid ${theme.color.border}` },
-//             get paddingGap() { return theme.default.padding },
-//             bgColor: '#fff',
-//             get color() { return theme.color.text },
-//             get focusBorder() { return `1px solid ${theme.color.primary}` },
-//             get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
-//             get borderRadius() { return theme.borderRadius },
-//             get placeholderColor() { return theme.color.placeholder },
-
-//             // clearable
-//             get clearIconColor() { return theme.color.placeholder },
-//             clearIconGap: '3px',
-            
-//             // textarea
-//             get textareaPadding() { return `5px ${input.paddingGap}` },
-
-//             // group
-//             get groupBgColor() { return theme.color.bg },
-//             groupPaddingGap: '16px',
-
-//             // disabled
-//             get disabledBorderColor() { return theme.color.disabledBorder },
-//             get disabledColor() { return theme.color.disabled },
-//             get disabledBgColor() { return theme.color.disabledBg },
-
-//             // search input
-//             search: {
-//                 suffixMarginRight: '15px' 
-//             }
-
-//         },
-//         sizes.reduce((memo, size) => {
-//             const styles = theme[size];
-//             memo[size] = {
-//                 get fontSize() { return styles.fontSize },
-//                 get height() { return styles.height },
-//                 get paddingGap() { return styles.padding },
-//             }
-
-//             if (size === 'large') {
-//                 // use default padding for large size
-//                 Object.defineProperty(memo.large, 'paddingGap', {
-//                     get() {
-//                         return theme.default.padding;
-//                     }
-//                 });
-//             }
-
-//             return memo;
-//         }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
-//     )
-// });
 
 const defaults = deepDefaults(
     {

@@ -35,6 +35,10 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
             & > div:first-child {
                 flex-grow: 1;
             }
+            .header-logo {
+                display: flex;
+                padding-left: 25px;
+            }
             .header-menu {
                 display: flex;
                 align-items: center;
@@ -126,10 +130,10 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
                 letter-spacing: -0.1em;
                 & > div {
                     height: 350px;
-                    background: ${bgTheme.cardBgColor};
+                    /* background: ${bgTheme.cardBgColor}; */
                     flex-grow: 1;
                     width: 0;
-                    padding: 25px 40px 0 40px;
+                    padding: 23px 40px 0 40px;
                 }
                 & > div:first-child {
                     margin-right: 10px;

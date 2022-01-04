@@ -1,9 +1,6 @@
 import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
-import {setTheme} from 'kpc';
-import {bind} from 'components/utils';
-import {Layout} from 'kpc';
-import { deepExtends } from 'styles/utils';
+import {setTheme, Layout} from 'kpc';
 
 type BgThemeType = 'light' | 'dark';
 export type BgThemeValue = {
@@ -106,14 +103,10 @@ export default class extends Component<ColorProcessProps> {
     }
 
     getDefaultProps() {
-        const themeMap = this.get('theme');
-        const curTheme = themeMap[this.get('curTheme')];
+        const curTheme = this.get('theme')[this.get('curTheme')];
         const curBgTheme = this.get('bgTheme')[this.get('curBgTheme')];
 
         return {
-            button: {
-                borderRadius: `20px`
-            },
             menu: {
                 bgColor: curBgTheme.menuColor,
                 fontSize: '32px',
@@ -125,6 +118,10 @@ export default class extends Component<ColorProcessProps> {
             },
             layout: {
                 bgColor: curTheme.mainColor
+            },
+            card: {
+                padding: 0,
+                bgColor: curBgTheme.cardBgColor
             }
         };
     }
@@ -140,23 +137,11 @@ export default class extends Component<ColorProcessProps> {
     }
 
     setValue(theme?: any) {
-        setTheme(theme)
-        this.layoutRef!.value?.forceUpdate()
-    }
-
-    @bind
-    light() {
-        this.set('curBgTheme', 'light')
-        this.setThemeViaProps()
-    }
-
-    @bind
-    dark() {
-        this.set('curBgTheme', 'dark')
-        this.setThemeViaProps()
+        setTheme(theme);
+        this.layoutRef!.value?.forceUpdate();
     }
 
     mounted() {
-        this.setColor(this.get('curTheme'))
+        this.setColor(this.get('curTheme'));
     }
 }

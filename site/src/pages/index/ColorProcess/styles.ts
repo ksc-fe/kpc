@@ -142,7 +142,7 @@ export function makeStyles() {
                     display: flex;
                     align-items: center;
                     justify-content: flex-end;
-                    padding-right: 30px;
+                    padding-right: 15px;
                     background: #3D3D3D;
                     & > div {
                         width: 9px;
