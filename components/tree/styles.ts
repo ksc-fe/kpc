@@ -5,6 +5,7 @@ import '../../styles/global';
 
 const {tree} = deepDefaults(theme, {
     tree: {
+        get transition() { return theme.transition.middle },
         fontSize: '12px',
         lineHeight: '24px',
         get hoverColor() { return theme.color.primary },
@@ -85,7 +86,7 @@ export function makeStyles() {
             text-align: center;
             color: ${tree.iconColor};
             transform: rotate(-90deg);
-            transition: transform ${theme.transition};
+            transition: transform ${tree.transition};
         }
 
         .k-tree-checkbox {

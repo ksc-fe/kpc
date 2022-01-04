@@ -11,6 +11,7 @@ const {collapse} = deepDefaults(theme, {
         titleMarginRight: '8px',
         borderPadding: '0 24px',
         collBorder: '1px solid #eee',
+        get transition() { return theme.transition.large },
 
         item: {
             borderBottom: '1px solid #e5e5e5',
@@ -53,13 +54,13 @@ export function makeItemStyles() {
             font-weight: bold;
             height: ${collapseItem.titleHeight};
             line-height: ${collapseItem.titleHeight};
-            transition: color ${theme.transition};
+            transition: color ${collapse.transition};
             
         }
         
         .${kls('arrow')} {
             float: right;
-            transition: transform ${theme.transition};
+            transition: transform ${collapse.transition};
             line-height: ${collapseItem.titleHeight};
             height: ${collapseItem.titleHeight};
             transform-origin: left center 0;

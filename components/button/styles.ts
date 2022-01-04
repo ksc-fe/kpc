@@ -102,6 +102,7 @@ const btnSizeStyles = sizes.reduce((memo, size) => {
 const {button} = deepDefaults(theme, {
     button: deepDefaults(
         {
+            get transition() { return theme.transition.middle },
             active: btnActiveStyles,
             secondary: {
                 get color() { return theme.color.primary },
@@ -158,7 +159,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             border: 1px solid ${button.borderColor};
             font-size: ${button.fontSize};
             white-space: nowrap;
-            transition: all ${theme.transition};
+            transition: all ${button.transition};
             line-height: ${button.lineHeight};
             &:hover,
             &:focus {

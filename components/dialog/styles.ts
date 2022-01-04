@@ -39,6 +39,7 @@ const {dialog} = deepDefaults(theme, {
         },
 
         // transition
+        get transition() { return theme.transition.large },
         transform: 'translateY(-10px) scale(1.05)',
 
         // size
@@ -85,8 +86,8 @@ export function makeDialogStyles() {
         &.transition-enter-active,
         &.transition-leave-active,
         &.transition-appear-active {
-            // transition: transform ${theme.transition}, opacity ${theme.transition};
-            transition: all ${theme.transition};
+            // transition: transform ${dialog.transition}, opacity ${dialog.transition};
+            transition: all ${dialog.transition};
         }
         &.transition-enter-from,
         &.transition-leave-to,

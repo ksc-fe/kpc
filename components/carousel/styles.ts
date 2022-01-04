@@ -5,7 +5,7 @@ import '../../styles/global';
 
 const {carousel} = deepDefaults(theme, {
     carousel: {
-        transition: `.5s ease`,
+        get transition() { return theme.transition.large },
         height: `300px`,
 
         indicator: {

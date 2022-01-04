@@ -6,6 +6,7 @@ import '../../styles/global';
 const {rate} = deepDefaults(theme, {
     rate: {
         color: '#ccc',
+        get transition() { return theme.transition.middle },
         get activeColor() { return theme.color.warning },
         iconFontSize: '24px',
 
@@ -25,7 +26,7 @@ export function makeStyles() {
             cursor: pointer;
             position: relative;
             color: ${rate.color}; 
-            transition: all ${theme.transition};
+            transition: all ${rate.transition};
             &:hover {
                 transform: ${rate.item.hoverTransform};
             }

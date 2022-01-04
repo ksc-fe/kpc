@@ -6,6 +6,7 @@ import '../../styles/global';
 const {input} = deepDefaults(theme, {
     input: deepDefaults(
         {
+            get transition() { return theme.transition.middle },
             get fontSize() { return theme.default.fontSize },
             get height() { return theme.default.height },
             width: '300px',
@@ -77,7 +78,7 @@ export function makeStyles() {
             width: 100%;
             border: ${input.border};
             background-color: ${input.bgColor};
-            transition: border ${theme.transition}, background ${theme.transition}, box-shadow ${theme.transition};
+            transition: border ${input.transition}, background ${input.transition}, box-shadow ${input.transition};
             border-radius: ${input.borderRadius};
             outline: none;
             position: relative;
@@ -115,7 +116,7 @@ export function makeStyles() {
             vertical-align: top;
             cursor: pointer;
             opacity: 0;
-            transition: opacity ${theme.transition};
+            transition: opacity ${input.transition};
             pointer-events: none;
             color: ${input.clearIconColor};
             &:hover {
@@ -137,7 +138,7 @@ export function makeStyles() {
                 z-index: 1;
                 right: 0;
                 &.k-input-show + i {
-                    transition: opacity ${theme.transition};
+                    transition: opacity ${input.transition};
                 }
             }
             &:hover {
@@ -305,7 +306,7 @@ export function makeSearchStyles() {
         position: relative;
         display: inline-block;
         .k-input {
-            transition: width ${theme.transition};
+            transition: width ${input.transition};
         }
         .k-btn {
             position: absolute;

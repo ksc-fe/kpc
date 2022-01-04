@@ -9,6 +9,8 @@ import '../../styles/fonts/ionicons';
 import '../../styles/global';
 
 const iconStyles = {
+    get transition() { return theme.transition.small },
+
     fontSize: {
         default: '16px',
         large: '22px',
@@ -78,7 +80,7 @@ export default function makeStyles(color?: string) {
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: color ${theme.transition};
+            transition: color ${icon.transition};
             &:hover {
                 color: ${theme.color.primary};
                 &:after {

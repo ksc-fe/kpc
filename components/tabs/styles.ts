@@ -20,6 +20,7 @@ const closeFontSizeMap: Record<Sizes, string> = {
 const {tabs} = deepDefaults(theme, {
     tabs: deepDefaults(
         {
+            get transition() { return theme.transition.middle },
             get borderColor() { return theme.color.border },
             borderWidth: '1px',
             get border() { return `${tabs.borderWidth} solid ${tabs.borderColor}` },
@@ -97,7 +98,7 @@ export function makeStyles() {
 
         // active-bar
         .k-tabs-active-bar {
-            transition: all ${theme.transition};
+            transition: all ${tabs.transition};
             position: absolute;
             left: 0;
             height: ${tabs.highlight.height};
@@ -250,7 +251,7 @@ export function makeStyles() {
             .k-tabs-wrapper {
                 white-space: nowrap;
                 float: left;
-                transition: transform ${theme.transition};
+                transition: transform ${tabs.transition};
             }
             .k-tabs-prev,
             .k-tabs-next {

@@ -15,7 +15,7 @@ const {split} = deepDefaults(theme, {
         dragLiensGutter: 5,
         get bgColor() { return theme.color.bg },
         get baseBorder() { return `1px solid ${theme.color.border}` },
-        get transition() { return theme.transition },
+        get transition() { return theme.transition.middle },
         get boderColor() { return theme.color.border },
         get dragLineMargin(): string {
             return `-${split.dragLinesCount * (split.dragLiensGutter + 1) / 2}px`;

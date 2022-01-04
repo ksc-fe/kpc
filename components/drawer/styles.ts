@@ -11,7 +11,7 @@ export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
 const {drawer} = deepDefaults(theme, {
     drawer: {
-        get transition() { return theme.transition },
+        get transition() { return theme.transition.large },
         get boxShadow() { return theme.boxShadow }
     } 
 });

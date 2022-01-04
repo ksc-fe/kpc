@@ -5,6 +5,7 @@ import '../../styles/global';
 
 const {message} = deepDefaults(theme, {
     message: {
+        get transition() { return theme.transition.middle },
         top: `10px`,
         transform: `translateY(-10px)`,
         get bgColor() { return theme.color.bg },
@@ -117,10 +118,10 @@ export function makeMessageStyles() {
         }
         &.transition-enter-active,
         &.transition-leave-active {
-            transition: transform ${theme.transition}, opacity ${theme.transition};
+            transition: transform ${message.transition}, opacity ${message.transition};
         }
         &.transition-move {
-            transition: transform ${theme.transition};
+            transition: transform ${message.transition};
         }
     `;
 }

@@ -13,6 +13,7 @@ type SizeStyles = {
 
 const {scrollSelect} = deepDefaults(theme, {
     scrollSelect: {
+        get transition() { return theme.transition.middle },
         height: `125px`,
         item: {
             height: `30px`,
@@ -36,7 +37,7 @@ export function makeStyles() {
         user-select: none;
         position: relative;
         .k-scroll-select-wrapper {
-            transition: transform ${theme.transition};
+            transition: transform ${scrollSelect.transition};
         }
         &.k-dragging {
             .k-scroll-select-wrapper {

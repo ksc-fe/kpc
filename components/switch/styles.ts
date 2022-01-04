@@ -5,6 +5,7 @@ import '../../styles/global';
 
 const {switch: kswitch} = deepDefaults(theme, {
     switch: {
+        get transition() { return theme.transition.middle },
         bgColor: `#fff`,
         fontSize: `12px`,
         get color() { return theme.color.text },
@@ -87,14 +88,14 @@ export function makeStyles() {
         .k-switch-wrapper {
             height: 100%;
             background: ${kswitch.bgColor};
-            transition: all ${theme.transition};
+            transition: all ${kswitch.transition};
         }
         .k-switch-handle {
             border-radius: ${kswitch.handleBorderRadius};
             background: ${kswitch.handleBgColor};
             height: 100%;
             cursor: pointer;
-            transition: left ${theme.transition};
+            transition: left ${kswitch.transition};
             display: inline-block;
             img {
                 height: 100%;
@@ -116,7 +117,7 @@ export function makeStyles() {
             .k-switch-bar,
             .k-switch-wrapper {
                 background: ${kswitch.checkedBgColor};
-                transition: background ${theme.transition};
+                transition: background ${kswitch.transition};
             }
         }
         &:focus {

@@ -9,6 +9,7 @@ const {table} = deepDefaults(theme, {
         fontSize: `12px`,
         bgColor: `#fff`,
         get color() { return theme.color.text },
+        get transition() { return theme.transition.middle },
         fixLeftShadow: `inset 5px 0px 6px -6px rgb(0 0 0 / 30%)`,
         fixRightShadow: `inset -5px 0px 6px -6px rgb(0 0 0 / 30%)`,
 
@@ -149,7 +150,7 @@ export function makeStyles() {
             &:after {
                 content: '';
                 display: block;
-                transition: box-shadow ${theme.transition};
+                transition: box-shadow ${table.transition};
                 position: absolute;
                 top: 0;
                 bottom: 0px;
@@ -230,7 +231,7 @@ export function makeStyles() {
                 // position: absolute;
                 // top: -1px;
                 // left: 2px;
-                transition: transform ${theme.transition};
+                transition: transform ${table.transition};
             }
             &.k-dropdown-open .k-icon {
                 transform: rotate(180deg);
@@ -303,7 +304,7 @@ export function makeStyles() {
         // }
         .k-table-arrow {
             margin-right: ${table.arrow.gap};
-            transition: transform ${theme.transition};
+            transition: transform ${table.transition};
             position: relative;
             top: -1px;
         }

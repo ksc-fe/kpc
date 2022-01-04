@@ -6,6 +6,7 @@ import '../../styles/global';
 const {radio} = deepDefaults(theme, {
     radio: {
         width: '14px',
+        get transition() { return theme.transition.small },
         get borderColor() {
             return theme.color.darkBorder;
         },
@@ -36,7 +37,7 @@ export function makeStyles() {
             vertical-align: middle;
             border: 1px solid ${radio.borderColor};
             border-radius: 50%;
-            transition: all ${theme.transition} ;
+            transition: all ${radio.transition} ;
             position: relative;
             background: ${radio.bgColor};
             flex: 0 0 auto;
@@ -54,7 +55,7 @@ export function makeStyles() {
                 border-radius: 50%;
                 background-color: ${radio.checkedColor};
                 transform: scale(0);
-                transition: all ${theme.transition};
+                transition: all ${radio.transition};
             }    
         }
         input {
