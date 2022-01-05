@@ -91,7 +91,8 @@ export class Dropdown<
             if (!Array.isArray(children) || children.length !== 2) {
                 throw new Error(
                     'Dropdown must receive two children, ' + 
-                    'one is a trigger and another one is DropdownMenu'
+                    'one is a trigger and the another one is DropdownMenu.' +
+                    (Array.isArray(children) && children.length > 2 ? ' Please check the children, maybe you should remove the whitespaces.' : '')
                 );
             }
         }
@@ -129,7 +130,7 @@ export class Dropdown<
         return [
             clonedTrigger,
             // wrap the root dropdown menu to Portal to render into body
-            !this.rootDropdown ?
+            this.alwaysPortal || !this.rootDropdown ?
                 h(Portal, {children: menu, container: this.get('container')}) :
                 menu
         ];
@@ -140,6 +141,8 @@ export class Dropdown<
     public rootDropdown: Dropdown | null = null;
     public showedDropdown: Dropdown | null = null;
     public positionHook = usePosition();
+
+    protected alwaysPortal = false;
 
     private timer: number | undefined = undefined;
     private triggerProps: any = null;
@@ -259,11 +262,17 @@ export class Dropdown<
 function useDocumentClickForDropdown(dropdown: Dropdown) {
     const elementRef = () => findDomFromVNode(dropdown.menuVNode!, true) as Element;
     const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, (e) => {
-        // if click an trigger and the trigger type is hover, ignore it
-        if (dropdown.get('trigger') === 'hover') {
+        // case 1: if click an trigger and the trigger type is hover, ignore it
+        // case 2: if right click on trigger and the trigger type is contextmenu, ignore it
+        const trigger = dropdown.get('trigger');
+        const isHover = trigger === 'hover';
+        if (isHover || trigger === 'contextmenu') {
             const triggerDom = findDomFromVNode(dropdown.$lastInput!, true) as Element;
             const target = e.target as Element;
-            if (containsOrEqual(triggerDom, target)) return;
+            if (containsOrEqual(triggerDom, target)) {
+                if (isHover) return;
+                if (!isHover && e.type === 'contextmenu') return;
+            }
         }
 
         dropdown.hide(true);

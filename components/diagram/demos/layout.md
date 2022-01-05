@@ -91,11 +91,15 @@ type LayoutProps = {
     children: Children
 }
 
+interface Props {
+    layout: string
+}
+
 const Layout = ({layout, props, children}: LayoutProps) => {
     return h(layout, {...props}, children);
 };
 
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

@@ -1,9 +1,9 @@
 declare module "*.vdt" {
     import {Template} from 'vdt';
 
-    const template: Template;
+    const template: Template | string;
 
-    export = template 
+    export = template
 }
 
 declare module "*.eot" {}

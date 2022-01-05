@@ -1,15 +1,14 @@
 import {findDomFromVNode, Component} from 'intact';
 import BasicDemo from '~/components/tooltip/demos/basic';
-// import PositionDemo from '~/components/tooltip/demos/position';
+import PositionDemo from '~/components/tooltip/demos/position';
 import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
-// import Vue from 'vue';
-import Tooltip from 'kpc/components/tooltip';
-import Radio from 'kpc/components/radio';
-// import Intact from 'intact';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import Vue from 'vue';
+import {Tooltip} from './';
+import {Radio} from '../radio';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 
 describe('Tooltip', () => {
     afterEach((done) => {
@@ -18,9 +17,8 @@ describe('Tooltip', () => {
     });
 
     it('should show and hide content correctly', async () => {
-        const instance = mount(BasicDemo);
+        const [, element] = mount(BasicDemo);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const [first, , second, , disabled] = Array.from<HTMLElement>(element.querySelectorAll('span'));
         dispatchEvent(first, 'mouseenter');
         await wait(0);
@@ -41,67 +39,75 @@ describe('Tooltip', () => {
 
         // should hide
         dispatchEvent(first, 'mouseleave');
-        await wait(300);
-        content = getElement('.k-tooltip-content')!;
-        expect(content).be.undefined;
+        await wait(400);
+        expect(content.style.display).to.eql('none');
     });
 
-    // it('should position correctly', () => {
-        // instance = mount(PositionDemo);
+    it('should position correctly', async () => {
+        const [instance, element] = mount(PositionDemo);
 
-        // const tooltipContent = instance.element.querySelector('.k-tooltip-content');
-        // const arrow = tooltipContent.querySelector('.k-arrow');
-        // const at = instance.element.querySelector('.opera .k-btn');
-        // const {width, height, left, top} = at.getBoundingClientRect();
-        // const contains = (name) => expect(arrow.classList.contains(name)).to.be.true;
-        // const eql = (a, b) => expect(Math.round(a)).to.eql(Math.round(b));
+        const tooltipContent = getElement('.k-tooltip-content')!;
+        const arrow = tooltipContent.querySelector<HTMLElement>('.k-tooltip-arrow')!;
+        const at = element.querySelector('.opera .k-btn') as HTMLElement;
+        const {width, height, left, top} = at.getBoundingClientRect();
+        const contains = (name: string) => expect(arrow.classList.contains(name)).to.be.true;
+        const eql = (a: number, b: number) => expect(Math.floor(a)).to.eql(Math.floor(b));
 
-        // instance.set('position', 'left');
-        // contains('k-right');
-        // eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+        
+        instance.set('position', 'left');
+        await wait();
+        contains('k-right');
+        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
 
-        // instance.set('position', 'right');
-        // contains('k-left');
-        // eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+        instance.set('position', 'right');
+        await wait();
+        contains('k-left');
+        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
 
-        // instance.set('position', 'top');
-        // contains('k-bottom');
-        // eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
+        instance.set('position', 'top');
+        await wait();
+        contains('k-bottom');
+        eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
 
-        // instance.set('position', 'bottom');
-        // contains('k-top');
-        // eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
+        instance.set('position', 'bottom');
+        await wait();
+        contains('k-top');
+        eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
 
-        // instance.set('position', 'custom');
-        // instance.getPosition = () => ({my: 'left bottom', at: 'left top'});
-        // instance.update();
-        // eql(arrow.offsetLeft, width / 2 - arrow.offsetWidth / 2);
+        instance.set('position', 'custom');
+        await wait();
+        instance.getPosition = () => ({my: 'left bottom', at: 'left top'});
+        instance.forceUpdate();
+        await wait();
+        eql(arrow.offsetLeft, width / 2 - arrow.offsetWidth / 2);
 
-        // instance.getPosition = () => ({my: 'left+100 bottom', at: 'left top'});
-        // instance.update();
-        // eql(arrow.offsetLeft, 1);
+        instance.getPosition = () => ({my: 'left+100 bottom', at: 'left top'});
+        instance.forceUpdate();
+        await wait();
+        eql(arrow.offsetLeft, 1);
 
-        // instance.getPosition = () => ({my: 'left top', at: 'right top'});
-        // instance.update();
-        // eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+        instance.getPosition = () => ({my: 'left top', at: 'right top'});
+        instance.forceUpdate();
+        await wait();
+        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
 
-        // instance.getPosition = () => ({my: 'left top+30', at: 'right top'});
-        // instance.update();
-        // eql(arrow.offsetTop, 1);
-    // });
+        instance.getPosition = () => ({my: 'left top+30', at: 'right top'});
+        instance.forceUpdate();
+        await wait();
+        eql(arrow.offsetTop, 1);
+    });
 
     it('should trigger correctly', async () => {
-        const instance = mount(TriggerDemo);
+        const [, element] = mount(TriggerDemo);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
-        const [hover, click, canHover] = Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
+        const [, click, ] = element.querySelectorAll<HTMLElement>('.k-btn');
         click.click();
         await wait();
         let content = getElement('.k-tooltip-content')!;
         expect(content.textContent).to.matchSnapshot();
 
         // should not hide
-        (content as HTMLElement).click();
+        content.click();
         await wait();
         let content1 = getElement('.k-tooltip-content');
         expect(content).eql(content1);
@@ -109,44 +115,42 @@ describe('Tooltip', () => {
         // should hide when click document
         document.body.click();
         await wait(300);
-        let content2 = getElement('.k-tooltip-content');
-        expect(content2).not.eql(content);
+        expect(content.style.display).to.eql('none')
     });
 
-    it('should hoverable', async () => {
-        const instance = mount(TriggerDemo);
-
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
+    it('should be hoverable', async () => {
+        const [, element] = mount(TriggerDemo);
         const [, , canHover] = Array.from(element.querySelectorAll('.k-btn'));
         dispatchEvent(canHover, 'mouseenter');
         await wait();
         dispatchEvent(canHover, 'mouseleave');
-        await wait();
+        await wait(300);
         const content = getElement('.k-tooltip-content')!;
         dispatchEvent(content, 'mouseenter');
         await wait(300);
         const content1 = getElement('.k-tooltip-content');
+
+        //  should not hide when hover from button to tooltip content    
         expect(content1).eql(content);
 
         dispatchEvent(canHover, 'mouseleave');
         await wait(500);
-        const content2 = getElement('.k-tooltip-content');
-        expect(content2).be.undefined;
+        expect(content.style.display).to.eql('none')
     });
 
-    // it('should custom content correctly', () => {
-        // instance = mount(ContentDemo);
+    it('should custom content correctly', async () => {
+        const [, element] = mount(ContentDemo);
 
-        // const element = findDomFromVNode(instance.$lastInput);
-        // const [btn] = element.querySelectorAll('.k-btn');
-        // btn.click();
-        // const content = getElement('.k-tooltip-content');
-        // // ignore the arrow, because it may change className to adapt to the direction
-        // expect(content.children[1].outerHTML).to.matchSnapshot();
-    // });
+        const [btn] =  Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
+        btn.click();
+        await wait(300);
+        const content = getElement('.k-tooltip-content') as HTMLElement;
+        // ignore the arrow, because it may change className to adapt to the direction
+        expect(content.querySelector<HTMLElement>('.k-slider')!.outerHTML).to.matchSnapshot();
+    });
 
     it('should handle confirm tooltip corectly', async () => {
-        const instance = mount(ConfirmDemo);
+        const [instance, element] = mount(ConfirmDemo);
 
         const cancelCb = sinon.spy();
         const okCb = sinon.spy();
@@ -154,7 +158,6 @@ describe('Tooltip', () => {
         instance.refs.__test.on('cancel', cancelCb);
         instance.refs.__test.on('ok', okCb);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         dispatchEvent(element.children[0], 'click');
         await wait();
         let content = getElement('.k-tooltip-content')!;
@@ -165,7 +168,7 @@ describe('Tooltip', () => {
         expect(content.style.display).eql('none');
 
         dispatchEvent(element.firstElementChild!, 'click');
-        await wait(0);
+        await wait();
         content = getElement('.k-tooltip-content')!;
         const [, btn] = Array.from<HTMLElement>(content.querySelectorAll('.k-btn'));
         btn.click();
@@ -177,9 +180,8 @@ describe('Tooltip', () => {
     });
 
     it('should always show tooltip', async () => {
-        const instance = mount(AlwaysDemo);
+        const [, element] = mount(AlwaysDemo);
 
-        const element = findDomFromVNode(instance.$lastInput!, true) as Element;
         const content = getElement('.k-tooltip-content')!;
         expect(content.textContent).eql('hello');
 
@@ -197,79 +199,85 @@ describe('Tooltip', () => {
     });
 
     // it('should hide tooltip when v-show is false in Vue', async () => {
-        // const Test = {
-            // template: `
-                // <div>
-                    // <Tooltip content="hello" v-show="show">
-                        // <div style="font-size: 12px;">hover</div>
-                    // </Tooltip>
-                // </div>
-            // `,
-            // components: {
-                // Tooltip
-            // },
-            // data() {
-                // return {show: false};
-            // }
-        // };
+    //     interface IData {
+    //         show: boolean
+    //     }
+    //     const Test = {
+    //         template: `
+    //             <div>
+    //                 <Tooltip content="hello" v-show="show">
+    //                     <div style="font-size: 12px;">hover</div>
+    //                 </Tooltip>
+    //             </div>
+    //         `,
+    //         components: {
+    //             Tooltip: Tooltip as any
+    //         },
+    //         data(): IData {
+    //             return {show: true};
+    //         }
+    //     };
 
-        // const container = document.createElement('div');
-        // document.body.appendChild(container);
+    //     const container = document.createElement('div');
+    //     document.body.appendChild(container);
 
-        // const app = new Vue({
-            // render: h => h('Test', {ref: 'test'}),
-            // components: {Test},
-        // }).$mount(container);
+    //     const app = new Vue({
+    //         render: h => h(
+    //             'Test', 
+    //             {ref: 'test'}),
+    //         components: {Test},
+    //     }).$mount(container);
 
-        // expect(app.$el.innerHTML).to.matchSnapshot();
+    //     expect(app.$el.outerHTML).to.matchSnapshot();
 
-        // app.$refs.test.show = true;
-        // await wait();
-        // expect(app.$el.innerHTML).to.matchSnapshot();
+    //     (app.$refs.test as any).show = true;
+    //     await wait();
+    //     expect(app.$el.innerHTML).to.matchSnapshot();
 
-        // app.$refs.test.show = false;
-        // await wait();
-        // expect(app.$el.innerHTML).to.matchSnapshot();
+    //     (app.$refs.test as any).show = false;
+    //     await wait();
+    //     expect(app.$el.innerHTML).to.matchSnapshot();
 
-        // app.$destroy();
-        // document.body.removeChild(app.$el);
+    //     app.$destroy();
+    //     document.body.removeChild(app.$el);
     // });
 
     // it('should change value on click when we use tooltip on radio in Vue', async () => {
-        // const container = document.createElement('div');
-        // document.body.appendChild(container);
+    //     const container = document.createElement('div');
+    //     document.body.appendChild(container);
 
-        // const app = new Vue({
-            // template: `
-                // <div>
-                    // <Tooltip content="hello">
-                        // <Radio v-model="a" trueValue="1">test</Radio>
-                    // </Tooltip>
-                    // <Tooltip content="hello">
-                        // <Radio v-model="a" trueValue="2">test</Radio>
-                    // </Tooltip>
-                // </div>
-            // `,
-            // components: {
-                // Tooltip, Radio,
-            // },
-            // data: {
-                // a: '1',
-            // }
-        // }).$mount(container);
+    //     const app = new Vue({
+    //         template: `
+    //             <div>
+    //                 <Tooltip content="hello">
+    //                     <Radio v-model="a" trueValue="1">test</Radio>
+    //                 </Tooltip>
+    //                 <Tooltip content="hello">
+    //                     <Radio v-model="a" trueValue="2">test</Radio>
+    //                 </Tooltip>
+    //             </div>
+    //         `,
+    //         components: {
+    //             Tooltip:  Tooltip as any, 
+    //             Radio: Radio as any,
+    //         },
+    //         data: {
+    //             a: '1',
+    //         }
+    //     }).$mount(container);
 
-        // const [radio1, radio2] = app.$el.querySelectorAll('input');
-        // // If we run call click on label, the snapshots of demos is very weird.
-        // // I don't known why. So we call it on input.
-        // radio2.click();
-        // expect(app.a).to.eql('2');
+    //     const [, radio2] = Array.from<HTMLElement>(app.$el.querySelectorAll('input'));
+    //     // If we run call click on label, the snapshots of demos is very weird.
+    //     // I don't known why. So we call it on input.
+    //     radio2.click();
+    //     expect(app.a).to.eql('2');
 
-        // await wait();
-        // app.$destroy();
-        // document.body.removeChild(app.$el);
+    //     await wait();
+    //     app.$destroy();
+    //     document.body.removeChild(app.$el);
     // });
 
-    it('should hide layer when we have disabled Tooltip and also hide on next update', async () => {
+    it('should hide layer when we have disabled Tooltip and also hide on next updating', async () => {
         class Demo extends Component<{disabled: boolean}> {
             static template = `
                 const Tooltip = this.Tooltip;
@@ -281,11 +289,11 @@ describe('Tooltip', () => {
                     </Tooltip>
                 </div>
             `;
-            static defaults = {disabled: false};
+            static defaults = () => ({disabled: false});
             Tooltip = Tooltip;
         }
 
-        const i = mount(Demo);
+        const [i] = mount(Demo);
 
         dispatchEvent(i.refs.test, 'mouseenter');
         await wait();
@@ -313,7 +321,7 @@ describe('Tooltip', () => {
                     </Tooltip>
                 </div>
             `;
-            static defaults = {show: false};
+            static defaults = () => ({show: false});
             Tooltip = Tooltip;
             mounted() {
                 const element = findDomFromVNode(this.$lastInput!, true) as Element;
@@ -322,7 +330,7 @@ describe('Tooltip', () => {
             }
         }
 
-        const i = mount(Demo);
+        const [i] = mount(Demo);
 
         await wait(500);
         window.scrollTo(0, 10000);

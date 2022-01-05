@@ -8,14 +8,13 @@ order: 0
 > 可以通过缩放浏览器查看效果
 
 ```vdt
-import {Affix} from 'kpc/components/affix';
-import {Button} from 'kpc/components/button';
+import {Affix, Button} from 'kpc';
 
 <div>
     <Affix top={87}>
         <Button>fix at 87px from the top</Button>
     </Affix>
-    <Affix bottom={0} ref="__test">
+    <Affix bottom={this.get('bottom')}>
         <Button>fix at the bottom</Button>
     </Affix>
 </div>
@@ -24,4 +23,20 @@ import {Button} from 'kpc/components/button';
 ```styl
 .k-affix
     margin-bottom 20px
+```
+
+```ts
+    interface Props {
+        bottom: number
+    }
+
+    export default class extends Component<Props> {
+        static template = template;
+
+        static defaults() {
+            return {
+                bottom: 0
+            }
+        }
+    }
 ```

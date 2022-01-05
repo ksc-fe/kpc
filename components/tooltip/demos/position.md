@@ -88,7 +88,23 @@ import {Spinner} from 'kpc/components/spinner';
 ```
 
 ```ts
-export default class extends Component {
+interface Props  {
+    position: string
+    xAxisKeywords: string[]
+    yAxisKeywords: string[]
+    pos: Pos
+}
+type Pos = { 
+    myX: string
+    myXOffset: number
+    myY: string
+    myYOffset: number
+    atX: string
+    atXOffset: number
+    atY: string
+    atYOffset: number
+}
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -111,7 +127,7 @@ export default class extends Component {
 
     getPosition() {
         const position = this.get('position');
-        const getNumStr = num => num > 0 ? `+${num}` : num === 0 ? '' : num;
+        const getNumStr = (num: number) => num > 0 ? `+${num}` : num === 0 ? '' : num;
 
         if (position === 'custom') {
             const pos = this.get('pos');

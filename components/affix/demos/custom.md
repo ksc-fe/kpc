@@ -10,14 +10,13 @@ order: 1
 之外时，不启用固定
 
 ```vdt
-import {Affix} from 'kpc/components/affix';
-import {Button} from 'kpc/components/button';
+import {Affix, Button} from 'kpc';
 
 <div ref="node">
     <Affix top={150} shouldFix={this._shouldFix}>
         <Button type="primary">fix at 150px from the top when scroll top 100px</Button>
     </Affix>
-    <Affix bottom={0} exclude={this._exclude} ref="__test">
+    <Affix bottom={this.get('bottom')} exclude={this._exclude}>
         <Button type="primary">fix at the bottom only when this demo is in viewport</Button>
     </Affix>
 </div>
@@ -31,8 +30,18 @@ import {Button} from 'kpc/components/button';
 ```ts
 import {bind} from 'kpc/components/utils';
 
-export default class extends Component {
+interface Props {
+    bottom: number
+}
+
+export default class extends Component<Props> {
     static template = template;
+
+    static defaults() {
+        return {
+            bottom: 0
+        }
+    }
 
     @bind
     _shouldFix() {
@@ -63,6 +72,9 @@ import './index.styl';
 export default class Demo extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            bottom: 0
+        };
         this._shouldFix = this._shouldFix.bind(this);
         this._exclude = this._exclude.bind(this);
     }
@@ -89,7 +101,7 @@ export default class Demo extends React.Component {
                 <Affix top={150} shouldFix={this._shouldFix}>
                     <Button type="primary">fix at 150px from the top while scroll top 100px</Button>
                 </Affix>
-                <Affix bottom={0} exclude={this._exclude}>
+                <Affix bottom={this.state.bottom} exclude={this._exclude}>
                     <Button type="primary">fix at the bottom only while this demo is in viewport</Button>
                 </Affix>
             </div>

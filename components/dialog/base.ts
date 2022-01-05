@@ -10,7 +10,8 @@ import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {useDraggable} from './useDraggable';
 import {useEscClosable} from './useEscClosable';
 import {SHOW, HIDE, DIALOG} from './constants';
-import {usePosition} from './usePosition';
+import {useFixBody} from './useFixBody';
+import type {Events} from '../types';
 
 export interface BaseDialogProps {
     title?: string
@@ -38,6 +39,7 @@ export interface BaseDialogEvents {
     ok: []
     cancel: []
     terminate: []
+    afterClose: []
 }
 
 export interface BaseDialogBlocks {
@@ -80,6 +82,15 @@ const defaults = (): Partial<BaseDialogProps> => ({
     mode: 'hide',
 });
 
+const events: Events<BaseDialogEvents> = {
+    open: true,
+    close: true,
+    ok: true,
+    cancel: true,
+    terminate: true,
+    afterClose: true,
+};
+
 export class BaseDialog<
     T extends BaseDialogProps = BaseDialogProps,
     E extends BaseDialogEvents = BaseDialogEvents,
@@ -88,6 +99,7 @@ export class BaseDialog<
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     public dialogRef = createRef<HTMLDivElement>();
 
@@ -96,12 +108,12 @@ export class BaseDialog<
         this.dialogRef,
         this.overlayRef,
     );
-    private position = usePosition(this.dialogRef);
+    private mouseOutsidable = useMouseOutsidable(this.dialogRef, false);
 
     init() {
         useShowHideEvents('value', SHOW, HIDE);
+        useFixBody(this.dialogRef);
         useEscClosable();
-        useMouseOutsidable(this.dialogRef); 
         provide(DIALOG, this);
     }
 
@@ -164,5 +176,10 @@ export class BaseDialog<
         if (this.get('closable')) {
             this.terminate();
         }
+    }
+
+    @bind
+    private onAfterLeave() {
+        this.trigger('afterClose');
     }
 }

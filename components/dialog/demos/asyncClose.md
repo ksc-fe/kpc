@@ -29,8 +29,14 @@ import {Dialog, Form, FormItem, Input, Button} from 'kpc';
 ```ts
 import {bind, Message} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    show?: boolean
+    code?: string
+}
+
+export default class extends Component<Props> {
     static template = template;
+    private timer?: number;
 
     @bind
     async ok() {
@@ -41,7 +47,7 @@ export default class extends Component {
             this.refs.dialog.showLoading(); 
             // mock api
             new Promise<void>((resolve, reject) => {
-                setTimeout(() => {
+                this.timer = window.setTimeout(() => {
                     if (Math.random() > 0.5) {
                         resolve();
                     } else {
@@ -58,6 +64,10 @@ export default class extends Component {
                 Message.error('error occured');
             });
         }
+    }
+
+    beforeUnmount() {
+        window.clearTimeout(this.timer);
     }
 }
 ```

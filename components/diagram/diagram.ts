@@ -8,6 +8,7 @@ import type {DShape} from './shapes/shape';
 import type {DLine} from './shapes/line';
 import type {DLayout} from './layouts/layout';
 import {error, isNullOrUndefined} from 'intact-shared';
+import type {Events} from '../types';
 
 const {mxRubberband, mxEvent} = mx;
 
@@ -19,8 +20,14 @@ export interface DiagramEvents {
 
 type StateCallback = (this: any, cell: any) => boolean;
 
+const events: Events<DiagramEvents> = {
+    labelChanged: true,
+    selectionChanged: true,
+};
+
 export class Diagram extends Component<DiagramProps, DiagramEvents> {
     static template = template;
+    static events = events;
 
     public graph: any;
     public cell: any;

@@ -1,28 +1,13 @@
-import {useInstance, RefObject, remove, onBeforeUnmount} from 'intact';
+import {useInstance, RefObject, remove} from 'intact';
 import type {Dialog} from './';
 import {position} from '../position';
-import {onOpen, onClosed} from './fixBody';
 import {SHOW} from './constants';
 
 export function usePosition(elementRef: RefObject<HTMLDivElement>) {
     const instance = useInstance() as Dialog;
-    let fixedBody = false;
 
-    instance.on(SHOW, onEnter);
-    
-    onBeforeUnmount(() => {
-        if (fixedBody && instance.get('value')) {
-            onClosed();
-        }
-    });
-
-    function onEnter() {
-        if (instance.get('overlay')) {
-            fixedBody = true;
-            onOpen();
-        }
-        center();
-    }
+    instance.on(SHOW, center);
+    instance.on('afterClose', onAfterLeave);
 
     function center() {
         position(elementRef.value!, {
@@ -42,20 +27,15 @@ export function usePosition(elementRef: RefObject<HTMLDivElement>) {
     }
 
     function onAfterLeave() {
-        if (fixedBody) {
-            fixedBody = false;
-            onClosed();
+        const element = elementRef.value;
+        if (element) {
+            // in `destroy` mode, the elementRef.value doesn't exist
+            const style = element.style;
+            style.left = style.top = '';
         }
-        clearPosition();
+
         if (!instance.useAsComponent) {
             remove(instance.$vNode!, document.body, false);
         }
     }
-
-    function clearPosition() {
-        const style = elementRef.value!.style;
-        style.left = style.top = '';
-    }
-
-    return {onAfterLeave};
 }

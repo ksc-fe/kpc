@@ -21,6 +21,8 @@ import {useState} from '../../hooks/useState';
 import {eachChildren, isComponentVNode} from '../utils';
 import {DropdownItem} from './item';
 import {isStringOrNumber} from 'intact-shared';
+// can not import DropdownMenu from index.ts, otherwise it will cause circle reference
+// import {DropdownMenu} from './';
 import {DropdownMenu} from './menu';
 
 interface ItemEvents {
@@ -52,6 +54,8 @@ export function useMenuKeyboard() {
     const instance = useInstance()!;
     let focusIndex = -1;
 
+    // we can't use the way that DropdownItem push itself to DropdownMenu to collect the items
+    // because it can't guarantee the order
     function collect() {
         items.length = 0;
 
@@ -62,7 +66,8 @@ export function useMenuKeyboard() {
             } else {
                 const children = vNode.children;
                 if (isComponentClass(vNode)) {
-                    if (!isComponentVNode(vNode, DropdownMenu)) {
+                    const tag = vNode.tag;
+                    if (tag !== DropdownMenu && !(tag.prototype instanceof DropdownMenu)) {
                         loop((children as Component).$lastInput!);
                     }
                 } else if (isComponentFunction(vNode)) {

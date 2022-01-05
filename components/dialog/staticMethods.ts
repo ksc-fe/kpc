@@ -26,7 +26,7 @@ export function addStaticMethods(Component: typeof Dialog) {
     function show(options: AlertDialogProps = {}) {
         return new Promise<void>((resolve, reject) => {
             const dialog = new AlertDialog(options, null as unknown as VNodeComponentClass<any>, false, [], null);
-            dialog.show(options);
+            dialog.show();
             dialog.on('ok', () => {
                 resolve();
             });

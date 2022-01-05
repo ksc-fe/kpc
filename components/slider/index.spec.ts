@@ -270,7 +270,7 @@ describe('Slider', () => {
                 return {value: 0};
             }
             private Slider = Slider;
-            _onChange(v) {
+            _onChange(v: number) {
                 console.log('change', v);
                 spy(v);
             }

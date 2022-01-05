@@ -1,7 +1,7 @@
 import {BaseDialog as _BaseDialog, BaseDialogProps, BaseDialogEvents, BaseDialogBlocks} from './base';
 import {createVNode, VNodeComponentClass, callAll, Props, ComponentClass} from 'intact';
-import {_$} from '../../i18n';
 import {addStaticMethods, StaticMethod} from './staticMethods';
+import {usePosition} from './usePosition';
 
 export interface DialogProps extends BaseDialogProps { }
 export interface DialogEvents extends BaseDialogEvents { }
@@ -27,16 +27,21 @@ export class BaseDialog<
     init() {
         super.init();
 
+        usePosition(this.dialogRef);
+
         if (this.$vNode) {
             this.useAsComponent = true;
         }
     }
 
-    public show(props?: P) {
-        return new Promise(resolve => {
-            if (this.get('value')) return;
+    public show() {
+        return new Promise<void>(resolve => {
+            if (this.get('value')) return resolve();
 
-            const show = () => this.set('value', true);
+            const show = () => {
+                this.set('value', true);
+                resolve();
+            }
 
             if (this.useAsComponent) {
                 return show();
@@ -44,7 +49,7 @@ export class BaseDialog<
 
             // use as intance
             const mountedQueue = this.$mountedQueue;
-            this.$init(props || null); 
+            this.$init(null); 
             const vNode = this.$vNode = createVNode(BaseDialog) as VNodeComponentClass<any>;
             vNode.children = this;
             this.$render(null, vNode, document.body, null, mountedQueue);
