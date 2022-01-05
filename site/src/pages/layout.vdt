@@ -1,5 +1,6 @@
-import {Layout, Header, Aside, Body, Button, Icon, Tabs, Tab} from 'kpc';
+import {Layout, Header, Body, Icon, Tabs, Tab} from 'kpc';
 import {makeHeaderStyles} from './styles';
+import {Transition} from 'intact';
 
 // const nav = [
 //     {
@@ -56,8 +57,10 @@ const nav = [
     }
 ];
 
-<Layout class={$props.className}>
-    <Header fixed class={makeHeaderStyles()}>
+const {themeColor, colorList} = this.get();
+
+<Layout class={$props.className} ref={this.layoutRef}>
+    <Header fixed class={makeHeaderStyles()} id="header">
         <div class="logo"></div>
         <div class="main">
             <Tabs size="large">
@@ -65,7 +68,38 @@ const nav = [
                     value={$value.index}
                     to={$value.href}
                 >{$value.title}</Tab>
+                <Tab>
+                    <div class="lang-wrapper">
+                        <div class="lang-box">
+                            <div class="active">zh-CN</div>
+                            <div>en-US</div>
+                        </div>    
+                    </div>
+                </Tab>
             </Tabs>
+            <div class="theme-color-box">
+                <div class="cur-color">
+                    <div 
+                        class="color-item" 
+                        style={{background: themeColor}} 
+                        ev-click={this.showColorList.bind(this)}
+                    ></div>
+                </div>
+                <div class="theme-color-option" v-if={this.get('showThemeColor')}>
+                    <div v-for={colorList}>
+                        <div 
+                            class="color-item" 
+                            style={{background: $value}} 
+                            ev-click={this.handleColorChange.bind(this, $value)}
+                        >
+                            <Icon 
+                                v-if={themeColor === $value } 
+                                class="icon ion-checkmark-round"
+                            ></Icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </Header>
     <Layout style="margin: 0;">

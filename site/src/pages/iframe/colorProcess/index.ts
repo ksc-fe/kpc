@@ -1,6 +1,6 @@
 import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
-import {setTheme, Layout} from 'kpc';
+import {setTheme} from 'kpc';
 
 type BgThemeType = 'light' | 'dark';
 export type BgThemeValue = {
@@ -91,8 +91,6 @@ export default class extends Component<ColorProcessProps> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private layoutRef = createRef<Layout>()
-
     init() {
         (window as any).setValue = (target?: {bgTheme: BgThemeType, theme: ThemeType}) => {
             if(target) {
@@ -138,7 +136,7 @@ export default class extends Component<ColorProcessProps> {
 
     setValue(theme?: any) {
         setTheme(theme);
-        this.layoutRef!.value?.forceUpdate();
+        this.forceUpdate();
     }
 
     mounted() {

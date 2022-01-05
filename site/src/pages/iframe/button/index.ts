@@ -1,4 +1,4 @@
-import {Component, TypeDefs} from 'intact';
+import {Component, createRef, TypeDefs} from 'intact';
 import {setTheme} from 'kpc';
 import template from './index.vdt';
 
@@ -6,7 +6,8 @@ type ButtonProps = {
     buttonRadius: number
     buttonStatus: string
     contentInput: string
-    iconPosition: string
+    iconPosition: string,
+    primary?: string
 }
 
 export interface IframeBtnProps {
@@ -35,6 +36,8 @@ export default class extends Component<IframeBtnProps> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    private curTheme: any = {};
+
     init() {
         (window as any).setValue = this.setValue.bind(this);
     }
@@ -42,24 +45,35 @@ export default class extends Component<IframeBtnProps> {
     setValue(val: ButtonProps) {
         const { buttonRadius, buttonStatus, contentInput, iconPosition } = this.get();
 
-        const target = val
-            ? val
-            : {
-                buttonRadius,
-                buttonStatus,
-                contentInput,
-                iconPosition
-            }
+        const target = val ? val : {
+            buttonRadius,
+            buttonStatus,
+            contentInput,
+            iconPosition
+        }
             
-        this.set('buttonRadius', target.buttonRadius);
         this.set('buttonStatus', target.buttonStatus);
         this.set('contentInput', target.contentInput);
         this.set('iconPosition', target.iconPosition);
-        
-        setTheme({
+
+        const targetTheme: any = {
             button: {
                 borderRadius: `${target.buttonRadius}px`
             }
-        })
+        }
+
+        if(target.primary) {
+            this.curTheme = {
+                color: {
+                    primary: target.primary
+                }   
+            }
+        }
+
+        setTheme({
+            ...targetTheme,
+            ...this.curTheme
+        });
+        this.forceUpdate();
     }
 }

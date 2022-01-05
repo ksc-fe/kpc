@@ -30,7 +30,7 @@ import {KingVersion} from './KingVersion';
             </div>
         </div>
         <NewFunction></NewFunction>
-        <BestPractice></BestPractice>
+        <BestPractice ref={this.bestPrac}></BestPractice>
         <ColorProcess></ColorProcess>
         <KingVersion></KingVersion>
         <Footer></Footer>

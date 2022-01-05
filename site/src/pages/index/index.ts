@@ -1,6 +1,7 @@
-import {Component} from 'intact';
+import {Component, createRef} from 'intact';
 import template from './index.vdt';
 import Layout from '../layout';
+import {BestPractice} from './BestPractice';
 
 export default class Index extends Layout {
     static template = template;
@@ -9,5 +10,12 @@ export default class Index extends Layout {
         return {
             ...Layout.defaults(),
         }
+    }
+
+    private bestPrac = createRef<BestPractice>();
+
+    handleColorChange(color: string) {
+        super.handleColorChange(color);
+        this.bestPrac!.value?.setFrameValue(color);
     }
 }

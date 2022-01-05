@@ -1,34 +1,26 @@
 import {makeStyles} from './styles';
 import {ThemeFrame} from '../../../components/ThemeFrame';
-import {Button} from 'kpc';
 import cp_bg1 from '../../../imgs/cp_bg1.png';
 import cp_bg2 from '../../../imgs/cp_bg2.png';
 import cp_bg3 from '../../../imgs/cp_bg3.png';
 import cp_logo from '../../../imgs/cp_logo.png';
 import cp_desc from '../../../imgs/cp_desc.png';
-import sun from '../../../imgs/sun.png';
 import {Icon} from 'kpc';
 
 const {colorList, curColor, iframeWidth, iframeHeight, iframeScale, curThemeType} = this.get();
 
-
-
 const getTextStyle = (showColor, color) => {
-    if(!showColor) return {}
+    if(!showColor) return {};
     if(color.includes('linear-gradient')) {
         return {
             backgroundImage: color,
             '-webkit-background-clip': 'text',
             '-webkit-text-fill-color': 'transparent'
-        }
+        };
     } else {
-        return {
-            color
-        }
+        return {color};
     }
-}
-
-;
+};
 
 <div class={makeStyles()}>
     <div class="cp-content">
@@ -49,7 +41,7 @@ const getTextStyle = (showColor, color) => {
                     <div class="color-item-box">
                         <div class="color-item" v-for={colorList}>
                             <div
-                                ev-click={this.handleColorClick.bind(this, $value)} 
+                                ev-click={this.handleColorClick.bind(this, $value)}
                                 style={{background: $value.color}}
                             >
                                 <Icon v-if={curColor == $value.name} class="icon ion-checkmark-round"></Icon>
@@ -60,13 +52,13 @@ const getTextStyle = (showColor, color) => {
                     <div class="color-swtich-box">
                         <div class="theme-type-switch">
                             <div
-                                class={{active: curThemeType == 'dark'}} 
-                                ev-click={this.handleThemeTypeChange.bind(this, 'dark')}    
+                                class={{active: curThemeType == 'dark'}}
+                                ev-click={this.handleThemeTypeChange.bind(this, 'dark')}
                             >
-                                <Icon class="icon ion-ios-moon"></Icon>    
+                                <Icon class="icon ion-ios-moon"></Icon>
                             </div>
                             <div
-                                class={{active: curThemeType == 'light'}} 
+                                class={{active: curThemeType == 'light'}}
                                 ev-click={this.handleThemeTypeChange.bind(this, 'light')}
                             >
                                 <Icon class="icon ion-ios-sunny"></Icon>
@@ -86,7 +78,7 @@ const getTextStyle = (showColor, color) => {
                 <div style={{height: `${iframeHeight * iframeScale - 1}px`}}>
                     <ThemeFrame
                         style={{transform: `scale(${iframeScale})`}}
-                        href="./iframe/colorProcess" 
+                        href="./iframe/colorProcess"
                         ref={this.iframeBoxRef}
                         width={iframeWidth}
                         height={iframeHeight}

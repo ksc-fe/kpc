@@ -61,16 +61,11 @@ export class ColorProcess extends Component<ColorProcessProps> {
 
     private cpBoxRef = createRef<HTMLElement>();
 
-    private curColor: string = ''
-
-    init() {
-
-    }
+    private curColor: string = '';
 
     @bind
     handleColorClick(item: ColorItem) {
         this.set('curColor', item.name);
-        // TODO: change theme of iframe
         this.setTheme();
     }
 
@@ -79,20 +74,20 @@ export class ColorProcess extends Component<ColorProcessProps> {
         if(this.curColor !== themeType) {
             this.curColor = themeType;
             this.set('curThemeType', themeType);
-            this.setTheme();    
+            this.setTheme();
         }
     }
 
     setTheme() {
         const {curThemeType, curColor} = this.get();
         this.iframeBoxRef.value?.reRender({
-            bgTheme: curThemeType, 
+            bgTheme: curThemeType,
             theme: curColor
-        })
+        });
     }
 
     mounted() {
-        const scale = this.cpBoxRef.value!.offsetWidth / this.get('iframeWidth')
+        const scale = this.cpBoxRef.value!.offsetWidth / this.get('iframeWidth');
         this.set('iframeScale', scale);
     }
 }

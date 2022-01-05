@@ -24,7 +24,6 @@ export function makeStyles() {
             button {
                 width: 40px;
                 height: 40px;
-                background: #0191EA;
                 border-radius: 50%;
                 color: #ffffff;
                 .k-icon {

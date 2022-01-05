@@ -1,35 +1,27 @@
-import {Component, TypeDefs, provide} from 'intact';
+import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 
-type ArrowType = 'left' | 'right'
-
-export interface CollapseProps {
-    value?: string[]
-    accordion?: boolean
-    arrow?: ArrowType
-    noBorder?: boolean
+export interface FooterProps {
+    
 }
 
-export interface CollapseEvents { }
+export interface FooterEvents { }
 
-const typeDefs: Required<TypeDefs<CollapseProps>> = {
-    value: Array,
-    accordion: Boolean,
-    arrow: String,
-    noBorder: Boolean
+const typeDefs: Required<TypeDefs<FooterProps>> = {
+    
 };
 
 
-const defaults = (): Partial<CollapseProps> => ({
-    arrow: 'right'
+const defaults = (): Partial<FooterProps> => ({
+
 });
 
-export class Footer extends Component {
+export class Footer extends Component<FooterProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
     init() {
-        
+
     }
 }

@@ -8,7 +8,7 @@ const {
     theme, curTheme
 } = this.get();
 
-<Layout class={makeStyles(bgTheme[curBgTheme], theme[curTheme])} ref={this.layoutRef}>
+<Layout class={makeStyles(bgTheme[curBgTheme], theme[curTheme])}>
     <Header height={headerHeight}>
         <div class="header-logo">
             <img src={colorProLogo} />

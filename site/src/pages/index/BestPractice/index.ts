@@ -66,6 +66,10 @@ export interface BestPracticeProps {
     supportList: SupportLang[]
 }
 
+export interface BestPracticeEvents {
+    setFrameValue: [string]
+}
+
 const typeDefs: Required<TypeDefs<BestPracticeProps>> = {
     codeContent: String,
     contentInput: String,
@@ -104,7 +108,7 @@ const defaults = (): Partial<BestPracticeProps> => ({
     ]
 });
 
-export class BestPractice extends Component<BestPracticeProps> {
+export class BestPractice extends Component<BestPracticeProps, BestPracticeEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -112,21 +116,29 @@ export class BestPractice extends Component<BestPracticeProps> {
     private iframeBoxRef = createRef<ThemeFrame>();
 
     init() {
-        const handleValueChange = () => {
-            const {iconPosition, contentInput, buttonStatus, buttonRadius} = this.get();
-            this.iframeBoxRef.value?.reRender({
-                iconPosition,
-                contentInput,
-                buttonStatus,
-                buttonRadius
-            });
+        const handleValueChange = () => this.setFrameValue();
 
-            this.setCode();
-        }
         this.watch('iconPosition', handleValueChange);
         this.watch('contentInput', handleValueChange);
         this.watch('buttonStatus', handleValueChange);
         this.watch('buttonRadius', handleValueChange);
+    }
+
+    setFrameValue(primaryColor?: string) {
+        const {iconPosition, contentInput, buttonStatus, buttonRadius} = this.get();
+        const theme: any = {
+            iconPosition,
+            contentInput,
+            buttonStatus,
+            buttonRadius
+        }
+
+        if(primaryColor) {
+            theme.primary = primaryColor;
+        }
+        
+        this.iframeBoxRef.value?.reRender(theme);
+        this.setCode();
     }
 
     setCode() {
