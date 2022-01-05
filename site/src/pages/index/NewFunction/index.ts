@@ -1,4 +1,4 @@
-import {Component, TypeDefs, createRef} from 'intact';
+import {Component, TypeDefs, createRef, nextTick} from 'intact';
 import template from './index.vdt';
 import {bind} from 'components/utils';
 import {Coordinates} from '../../../components/BezierBox';
@@ -10,6 +10,8 @@ export interface NewFunctionProps {
     cardsPerPage: number
     animationType: string
     bezierValue: number[]
+    curTabIndex: string
+    textTop: string
 }
 
 const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
@@ -18,7 +20,9 @@ const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
     curCardNum: Number,
     cardsPerPage: Number,
     animationType: String,
-    bezierValue: Array
+    bezierValue: Array,
+    curTabIndex: String,
+    textTop: String
 };
 
 const defaults = (): Partial<NewFunctionProps> => ({
@@ -27,7 +31,9 @@ const defaults = (): Partial<NewFunctionProps> => ({
     curCardNum: 2,
     cardsPerPage: 2,
     animationType: '',
-    bezierValue: [.42, 0, .58, 1]
+    bezierValue: [.42, 0, .58, 1],
+    curTabIndex: '1',
+    textTop: '40'
 });
 
 const curveTypeMap: any = {
@@ -50,12 +56,22 @@ export class NewFunction extends Component<NewFunctionProps> {
                 this.set('bezierValue', target);
             }
         });
+
+        this.watch('curTabIndex', (value: string) => {
+            setTimeout(() => {
+                this.set('textTop', value == '2' ? '0' : '40');
+            });
+        })
     }
 
     setCardBoxPosition() {
         const {curCardNum, cardsPerPage, totalCards} = this.get();
         const cardWidthWithMargin = this.cardBoxRef.value!.offsetWidth / totalCards;
         this.set('cardLeft', (curCardNum - cardsPerPage) * cardWidthWithMargin);
+    }
+
+    showTransition() {
+        
     }
 
     @bind
@@ -81,5 +97,9 @@ export class NewFunction extends Component<NewFunctionProps> {
     handleNextClick(): void {
         this.set('curCardNum', this.get('curCardNum') + 1);
         this.setCardBoxPosition();
+    }
+
+    test() {
+        
     }
 }

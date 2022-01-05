@@ -1,7 +1,7 @@
 import {css} from '@emotion/css';
 import {mainBlock, fullfill, center} from '../../../styles/default';
 
-export function makeStyles() {
+export function makeStyles(bezierValue?: number[]) {
     return css`
         background: #ffffff;
 		${mainBlock(544)};
@@ -122,8 +122,7 @@ export function makeStyles() {
 					display: flex;
 					justify-content: space-between;
 					height: 100%;
-					.animate-left,
-					.animate-right > div {
+					.animate-left {
 						background: #ffffff;
 						border-radius: 8px;
 					}
@@ -135,16 +134,20 @@ export function makeStyles() {
 						overflow: hidden;
 					}
 					.animate-right {
+						background: #ffffff;
+						border-radius: 8px;
 						width: 300px;
 						display: flex;
 						justify-content: space-between;
 						flex-direction: column;
+						& > div {
+							padding-left: 19px;
+							padding-right: 15px;
+						}
 						& > div:first-child {
 							font-size: 14px;
 							color: #4F4F4F;
 							height: 57px;
-							padding-left: 19px;
-							padding-right: 15px;
 							display: flex;
 							align-items: center;
 							.animate-title {
@@ -156,16 +159,41 @@ export function makeStyles() {
 						}
 						& > div:last-child {
 							height: 100px;
-							${center()}
-							.k-btn {
-								width: 120px;
-								height: 40px;
+							display: flex;
+							margin-bottom: 12px;
+							flex-direction: column;
+						}
+						.tab-content {
+							flex-grow: 1;
+							background: #F5F5F9;
+							& > div {
+								${center()};
+								${fullfill()};
+								overflow: hidden;
+								.k-btn {
+									margin: 0 8px;
+									width: 80px;
+								}
+								.tab-text {
+									width: 224px;
+									white-space: pre-wrap;
+									transition: all .3s cubic-bezier(${bezierValue?.join()});
+									transform: translateY(40px);
+								}
 							}
 						}
 						.k-select {
 							border-color: #F0F4FA;
 							background: #F0F4FA;
 						}
+						.k-tabs {
+							border: none;
+							.k-tabs-scroll {
+								display: flex;
+								justify-content: center;
+							}
+						}
+						
 					}
 				}
 				

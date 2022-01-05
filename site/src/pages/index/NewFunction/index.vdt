@@ -1,18 +1,19 @@
 import {makeStyles} from './styles';
 import {Card} from '../../../components/card';
-import {Button, Icon, Select, Option, Switch, Input} from 'kpc';
+import {Button, Icon, Select, Option, Switch, Input, Tabs, Tab} from 'kpc';
 import {BezierBox} from '../../../components/BezierBox'
 import king_version_logo from '../../../imgs/king_version_logo.png';
 import sketch_img from '../../../imgs/sketch_img.png';
 import axure_img from '../../../imgs/axure_img.png';
 import rectangle from '../../../imgs/rectangle.png';
 
-const {cardLeft, totalCards, curCardNum, cardsPerPage, animationType, bezierValue} = this.get();
+const {cardLeft, totalCards, curCardNum, cardsPerPage, 
+    animationType, bezierValue, curTabIndex, textTop} = this.get();
 
 const canNext = totalCards > curCardNum;
 const canPrev = curCardNum > cardsPerPage;
 
-<div class={makeStyles()}>
+<div class={makeStyles(bezierValue)}>
     <div className='new-fn-box'>
         <div class="title-box">
             <div>全新的功能，为企业提效而生</div>
@@ -90,7 +91,7 @@ const canPrev = curCardNum > cardsPerPage;
                             </div>
                             <div class="animate-right">
                                 <div>
-                                    <div class="animate-title">曲线选择：</div>
+                                    <div class="animate-title" ev-click={this.test.bind(this)}>曲线选择：</div>
                                     <div>
                                         <Select v-model="animationType" fluid placeholder="选择曲线">
                                             <Option value="1">轻柔缓动</Option>
@@ -100,7 +101,22 @@ const canPrev = curCardNum > cardsPerPage;
                                     </div>
                                 </div>
                                 <div>
-                                    <Button type="primary">Button</Button>
+                                    <Tabs v-model="curTabIndex">
+                                        <Tab value="1">Tab1</Tab>
+                                        <Tab value="2">Tab2</Tab>
+                                    </Tabs>
+                                    <div class="tab-content">
+                                        <div v-if={curTabIndex == 1}>
+                                            <Button type="primary">Button</Button>
+                                            <Button type="secondary">Button</Button>
+                                        </div>
+                                        <div v-if={curTabIndex == 2}>
+                                            <div 
+                                                style={{transform: `translateY(${textTop}px)`}} 
+                                                class="tab-text"
+                                            >优秀又合适的动效，总是能给产品体验带来更多可能。</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
