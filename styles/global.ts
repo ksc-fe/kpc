@@ -1,6 +1,7 @@
 import {injectGlobal, css} from '@emotion/css';
 import {theme} from './theme';
 import {waveEffect} from './keyframes';
+import {palette}  from '../styles/utils';
 
 const slideDirections = {
     down: 'center top 0',
@@ -39,7 +40,7 @@ injectGlobal`
             .k-slide${direction}-enter-active,
             .k-slide${direction}-leave-active {
                 transform-origin: ${slideDirections[direction as keyof typeof slideDirections]};
-                transition: opacity ${theme.transition}, transform ${theme.transition} !important;
+                transition: opacity ${theme.transition.large}, transform ${theme.transition.large} !important;
                 pointer-events: none;
             }
         `
@@ -50,13 +51,13 @@ injectGlobal`
     }
     .k-fade-enter-active,
     .k-fade-leave-active {
-        transition: opacity ${theme.transition};
+        transition: opacity ${theme.transition.large};
     }
     .k-fade-leave-active:not(tr) {
         position: absolute;
     }
     .k-fade-move {
-        transition: transform ${theme.transition};
+        transition: transform ${theme.transition.large};
     }
 
     .k-scale-enter-from,
@@ -65,7 +66,7 @@ injectGlobal`
     }
     .k-scale-enter-active,
     .k-scale-leave-active {
-        transition: transform ${theme.transition};
+        transition: transform ${theme.transition.large};
     }
 
     .k-expand-enter-from,
@@ -75,11 +76,11 @@ injectGlobal`
     }
     .k-expand-enter-active,
     .k-expand-leave-active {
-        transition: all ${theme.transition} !important;
+        transition: all ${theme.transition.large} !important;
         overflow: hidden;
     }
     .k-expand-move {
-        transition: transform ${theme.transition};
+        transition: transform ${theme.transition.large};
     }
 
     .k-dropdown-enter-from,
@@ -90,13 +91,43 @@ injectGlobal`
     .k-dropdown-enter-active,
     .k-dropdown-leave-active,
     .k-dropdown-move {
-        transition: all ${theme.transition};
+        transition: all ${theme.transition.large};
     }
     .k-dropdown-leave-active {
         position: absolute !important;
     }
     .k-dropdown-move {
-        transition: transform ${theme.transition};
+        transition: transform ${theme.transition.large};
+    }
+
+    .k-fade-in-left-enter-from,
+    .k-fade-in-left-leave-to {
+        opacity: 0;
+        transform: translate3d(-15px, 0, 0);
+    }
+    .k-fade-in-left-enter-active,
+    .k-fade-in-left-leave-active {
+        transition: all ${theme.transition.large};
+        td {
+            background: ${palette(theme.color.primary, -4)} !important;
+        }
+    }
+    .k-fade-in-left-move {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+
+    .k-fade-expand-enter-from,
+    .k-fade-expand-leave-to {
+        opacity: 0;
+    }
+    .k-fade-expand-enter-active,
+    .k-fade-expand-leave-active {
+        transition: all ${theme.transition.large};  
+        background: ${palette(theme.color.primary, -4)} !important;
+    }
+    .k-fade-expand-move {
+        opacity: 1;
     }
 
     .c-ellipsis {

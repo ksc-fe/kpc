@@ -9,7 +9,7 @@ const {table} = deepDefaults(theme, {
         fontSize: `12px`,
         bgColor: `#fff`,
         get color() { return theme.color.text },
-        get transition() { return theme.transition.middle },
+        get transition() { return theme.transition.large },
         fixLeftShadow: `inset 5px 0px 6px -6px rgb(0 0 0 / 30%)`,
         fixRightShadow: `inset -5px 0px 6px -6px rgb(0 0 0 / 30%)`,
 
@@ -80,6 +80,11 @@ export function makeStyles() {
             // border-collapse: collapse;
             border-spacing: 0;
             table-layout: fixed;
+            
+            td, 
+            th{
+                transition: all ${table.transition};  
+            }
         }
 
         // thead
@@ -130,6 +135,7 @@ export function makeStyles() {
                 }
                 &:last-of-type td {
                     border-bottom: none;
+                    border-bottom-color: transparent;
                 }
             }
         }

@@ -71,20 +71,23 @@ const thead = (
                     <FixedColumnsContext.Provider value={offsetMap}>
                         <thead>
                             <tr v-for={columns}>
-                                <th v-if={$key === 0 && checkType !== 'none'}
-                                    {...getClassAndStyleForFixed({
-                                        fixed: hasFixedLeft ? 'left' : false,
-                                    }, 0)} 
-                                    rowspan={maxRows}
-                                >
-                                    <Checkbox v-if={checkType === 'checkbox'}
-                                        value={allCheckedStatus === AllCheckedStatus.All}
-                                        indeterminate={showIndeterminate && allCheckedStatus == AllCheckedStatus.Indeterminate}
-                                        ev-$change:value={toggleCheckedAll}
-                                        disabled={!hasData}
-                                    />
-                                </th>
-                                {$value}
+                                <TransitionGroup name="k-fade-expand">
+                                    <th v-if={$key === 0 && checkType !== 'none'}
+                                        {...getClassAndStyleForFixed({
+                                            fixed: hasFixedLeft ? 'left' : false,
+                                        }, 0)}
+                                        rowspan={maxRows}
+                                        key="$checktype"
+                                    >
+                                        <Checkbox v-if={checkType === 'checkbox'}
+                                            value={allCheckedStatus === AllCheckedStatus.All}
+                                            indeterminate={showIndeterminate && allCheckedStatus == AllCheckedStatus.Indeterminate}
+                                            ev-$change:value={toggleCheckedAll}
+                                            disabled={!hasData}
+                                        />
+                                    </th>
+                                    {$value}
+                                </TransitionGroup>
                             </tr>
                         </thead>
                     </FixedColumnsContext.Provider>
@@ -104,7 +107,7 @@ const {isSelected} = this.selected;
 const {loopData, isSpreaded, toggleSpreadRow} = this.tree;
 const {onRowDragStart, onRowDragOver, onRowDragEnd, draggingKey} = this.draggable;
 const tbody = (
-    <TransitionGroup tag="tbody" name="k-fade" move={!draggingKey.value}>
+    <TransitionGroup tag="tbody" name="k-fade-in-left" move={!draggingKey.value}>
         {!hasData ? 
             <tr key="table-empty">
                 <td colspan={colCount} class="k-table-empty">
