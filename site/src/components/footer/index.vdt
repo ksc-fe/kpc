@@ -1,8 +1,7 @@
 import {makeStyles} from './styles';
-import footer_logo from '../../imgs/footer_logo.png';
 import {Row, Col} from 'kpc';
 
-<div class={makeStyles()}>
+<div class={makeStyles()} style={{background: this.get('bgColor')}}>
     <div class="footer-box">
         <div class="footer-table">
             <Row class="footer-logo-box">

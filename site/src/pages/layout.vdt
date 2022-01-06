@@ -1,34 +1,5 @@
 import {Layout, Header, Body, Icon, Tabs, Tab} from 'kpc';
 import {makeHeaderStyles} from './styles';
-import {Transition} from 'intact';
-
-// const nav = [
-//     {
-//         title: '资源',
-//         href: '/docs/resources/',
-//         index: 'resources',
-//     },
-//     {
-//         title: '设计',
-//         href: '/docs/design/language/',
-//         index: 'design'
-//     },
-//     {
-//         title: '组件',
-//         href: '/docs/getting-started/',
-//         index: 'document'
-//     },
-//     {
-//         title: 'Blog',
-//         href: '/docs/blogs/design/',
-//         index: 'blog'
-//     },
-//     {
-//         title: '定制主题',
-//         href: 'https://kpc-theme.ksyun.com/',
-//         isOpen: true,
-//     }
-// ];
 
 const nav = [
     {
@@ -48,12 +19,12 @@ const nav = [
     },
     {
         title: '资源',
-        href: '/docs/blogs/design/',
+        href: '/resource',
         index: 'blog'
     },
     {
         title: '解决方案',
-        href: 'https://kpc-theme.ksyun.com/',
+        href: '/solution',
     }
 ];
 
@@ -61,7 +32,7 @@ const {themeColor, colorList} = this.get();
 
 <Layout class={$props.className} ref={this.layoutRef}>
     <Header fixed class={makeHeaderStyles()} id="header">
-        <div class="logo"></div>
+        <div class="logo" ev-click={() => window.location.href = '/'}></div>
         <div class="main">
             <Tabs size="large">
                 <Tab v-for={nav}

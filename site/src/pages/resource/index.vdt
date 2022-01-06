@@ -1,34 +1,70 @@
-import {Row, Col} from 'kpc/components/grid';
-import {Card} from 'kpc/components/card';
-import {Icon} from 'kpc/components/icon';
+import {makeStyles} from './styles';
+import {Footer} from '../../components/footer/';
+import {Icon} from 'kpc';
+import color_process_logo from '../../imgs/color_process_logo.png';
 
-<t:parent navIndex="resources" class="resource-page">
+const pricipleList = [
+    {
+        title: '产品的设计流程是什么样的？',
+        link: 'http://www.ksyun.com'
+    },
+    {
+        title: '字体和排版的指南',
+        link: 'http://www.ksyun.com'
+    },
+    {
+        title: '使用合适的间距',
+        link: 'http://www.ksyun.com'
+    },
+    {
+        title: '什么是设计的可访问性？',
+        link: 'http://www.ksyun.com'
+    },
+    {
+        title: '数据展示如何做？',
+        link: 'http://www.ksyun.com'
+    },
+];
+
+<t:super class={makeStyles()}>
     <b:content>
-        <Row gutter="40">
-            <Col lg="8">
-                <Card type="none">
-                    <Icon class="axure" />
-                    <h3>King Design for Axure</h3>
-                    <p>组件库基于Axure 9设计制作</p>
-                    <a class="action" href="https://damife.ks3-cn-beijing.ksyun.com/kpc/KingDesign1.4.1.rplib">下载资源</a>
-                </Card>
-            </Col>
-            <Col lg="8">
-                <Card type="none">
-                    <Icon class="sketch"/>
-                    <h3>King Design for Sketch</h3>
-                    <p>组件库基于Sketch 60设计制作</p>
-                    <a class="action" href="https://damife.ks3-cn-beijing.ksyun.com/kpc/KingDesing-1.4.1.sketch">下载资源</a>
-                </Card>
-            </Col>
-            <Col lg="8">
-                <Card type="none">
-                    <Icon class="vision" />
-                    <h3>King Vision</h3>
-                    <p>金山云视觉库，开源的原创ICON及素材图</p>
-                    <a class="action" href="http://vision.ksyun.com" target="_blank">立即查看</a>
-                </Card>
-            </Col>
-        </Row>
+        <div class="source-nav">
+            <div class="content">
+                <div class="nav-title">
+                    <div>资源</div>
+                    <div>为你的整条产品设计链路提效</div>
+                </div>
+            </div>
+        </div>
+        <div class="source-content">
+            <div>
+                <div class="content-top">时刻准备为你的工作流提效</div>
+                <div class="content-bottom">
+                    <div class="tool-box">
+                        <div>
+                            <div class="title">工具</div>
+                            <div>KD设计系统2.0打造了全新的组件语言和工具</div>
+                        </div>
+                        <div class="tool-item process-box">
+                            <img src={color_process_logo} />
+                        </div>
+                        <div class="tool-item">place holder</div>
+                    </div>
+                    <div class="principle">
+                        <div>
+                            <div class="title">原则与方法论</div>
+                            <div>KD设计系统2.0打造了全新的组件语言和工具</div>
+                        </div>
+                        <div class="priciples">
+                            <div class="priciple-item" v-for={pricipleList}>
+                                <span>{$value.title}</span>
+                                <Icon class="icon ion-chevron-right"></Icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Footer bgColor="#FAFAFA"></Footer>
     </b:content>
-</t:parent>
+</t:super>

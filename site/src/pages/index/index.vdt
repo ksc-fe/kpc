@@ -8,7 +8,7 @@ import {BestPractice} from './BestPractice';
 import {ColorProcess} from './ColorProcess';
 import {KingVersion} from './KingVersion';
 
-<t:super style="color: skyblue;" class={makeStyles()}>
+<t:super class={makeStyles()}>
     <b:content>
         <div class="nav">
             <div class="nav-content">

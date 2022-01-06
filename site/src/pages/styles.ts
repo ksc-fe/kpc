@@ -17,6 +17,7 @@ export function makeHeaderStyles() {
                 height: 37px;
                 background-size: cover;
                 margin-left: 22px;
+                cursor: pointer;
             }
             @media screen and (-webkit-min-device-pixel-ratio: 2) {
                 .logo {
