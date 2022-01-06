@@ -64,6 +64,14 @@ describe('Timepicker', () => {
         expect(instance.get('timeArray')).to.eql(['01:00:00']);
         expect(dropdown.innerHTML).to.matchSnapshot();
 
+        // clear
+        picker2.querySelector<HTMLElement>('.k-select-clear')!.click();
+        await wait();
+        expect(instance.get('timeArray')).to.eql([]);
+        ok2.click();
+        await wait();
+        expect(instance.get('timeArray')).to.eql(['00:00:00']);
+
         // set value
         instance.set('timeArray', ['03:03:03', '03:03:04']);
         await wait();

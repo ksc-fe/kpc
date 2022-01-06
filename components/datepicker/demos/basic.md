@@ -18,3 +18,13 @@ import {Datepicker} from 'kpc/components/datepicker';
 .k-datepicker
     margin-right 20px
 ```
+
+```ts
+interface Props {
+    date: string
+}
+
+export default class extends Component<Props> {
+    static template = template;
+}
+```

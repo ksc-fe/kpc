@@ -29,3 +29,18 @@ import {Datepicker} from 'kpc/components/datepicker';
     <br /><br />
 </div>
 ```
+
+```ts
+interface Props {
+    date: string[]
+    datetime: string[]
+    year: string[]
+    month: string[]
+    dateRange: [string, string][]
+    datetimeRange: [string, string][]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+}
+```

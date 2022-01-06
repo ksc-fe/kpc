@@ -26,7 +26,15 @@ export function useStatus(focusDate: State<Dayjs | null>) {
                 return false;
             }
             return (value as StateValueRange[]).some(([start, end]): boolean => {
-                if (!end) end = focusDate.value as Dayjs | undefined;
+                if (!end) {
+                    end = focusDate.value as Dayjs | undefined;
+                    if (end && isLT(end, start, type)) {
+                        // maybe the focusDate is less than start date
+                        const tmp = start;
+                        start = end;
+                        end = tmp;
+                    }
+                }
                 if (start && end) {
                     return isGT(date, start, type) && isLT(date, end, type);
                 }

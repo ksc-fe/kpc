@@ -4,7 +4,8 @@ import {
     StateValueItem,
     StateValueRange,
     DayjsValueItem,
-    DayjsValueRange
+    DayjsValueRange,
+    DayjsValue,
 } from './basepicker';
 import {Dayjs} from 'dayjs';
 import {Datepicker} from './index';
@@ -34,12 +35,28 @@ export function useValue(
         function() {
             const {type} = instance.get();
             return type === 'datetime' ? 'second' : type!;
+        },
+        function(dayjsValue, value) {
+            if (
+                instance.get('multiple') && 
+                panel.getPanel(PanelFlags.Start).value === PanelTypes.Time
+            ) {
+                value.set(dayjsValue.concat([last(value.value)] as DayjsValue));
+            } else {
+                value.set(dayjsValue.slice(0));
+            }
         }
     );
 
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
         let _value: StateValueItem = v;
+
+        // the datetime must be greater than minDate, #406
+        const minDate = disabled.minDate.value;
+        if (minDate && _value.isBefore(minDate)) {
+            _value = minDate;
+        }
 
         if (range) {
             const oldValue = last(value.value as StateValueRange[]);
@@ -49,6 +66,7 @@ export function useValue(
                 _value = [oldValue[0], v];
                 (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
             }
+            instance.trigger('selecting', _value);
         }
 
         setValue(_value, false);

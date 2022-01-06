@@ -9,10 +9,10 @@ import {PanelFlags, usePanel} from './usePanel';
 
 export function useShowDate(panel: ReturnType<typeof usePanel>) {
     const instance = useInstance() as DatepickerCalendar;
-    const {flag} = instance.get();
+    const {flag, type} = instance.get();
     let date = getNowDate();
     if (flag === PanelFlags.End) {
-        date = date.add(1, 'month');
+        date = getPanelShowDate(date, true);
     }
     const showDate = useState<Dayjs>(date);
     const anotherPanel = flag === PanelFlags.Start ? panel.endRef : panel.startRef;
@@ -38,7 +38,7 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
                 !(another = anotherPanel.value) ||
                 !value.isSame(another.showDate.date.value, 'month')
             )
-         ){
+         ) {
             showDate.set(value);
         }
     });
@@ -50,7 +50,10 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
             if (endPanel) {
                 const endShowDate = endPanel.showDate.date.value.date(1);
                 if (v.isAfter(endShowDate, 'date') || v.isSame(endShowDate, 'date')) {
-                    endPanel.showDate.nextMonth();
+                    // maybe we are changing the year, so we must set it as the next month from show date
+                    // of start panel
+                    // endPanel.showDate.nextMonth();
+                    endPanel.showDate.date.set(getPanelShowDate(v, true));
                 }
             }
         } else {
@@ -60,11 +63,25 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
                 // set to the last date
                 startShowDate = startShowDate.add(1, 'month').add(-1, 'day');
                 if (v.isBefore(startShowDate, 'date') || v.isSame(startShowDate, 'date')) {
-                    startPanel.showDate.prevMonth();
+                    // startPanel.showDate.prevMonth();
+                    startPanel.showDate.date.set(getPanelShowDate(v, false));
                 }
             }
         }
     });
+
+    function getPanelShowDate(date: Dayjs, isEnd: boolean) {
+        switch (type) {
+            case 'year':
+                return date.add(isEnd ? 10 : -10, 'year');
+            case 'month':
+                return date.add(isEnd ? 1 : -1, 'year');
+                break;
+            default:
+                return date.add(isEnd ? 1 : -1, 'month');
+                break;
+        }
+    }
 
     function getDateLabel() {
         const map = {

@@ -31,8 +31,8 @@ export class Diagram extends Component<DiagramProps, DiagramEvents> {
 
     public graph: any;
     public cell: any;
-
     public shapes: Map<Key, DShape> = new Map();
+
     private lines: Set<DLine> = new Set(); 
     private layouts: Set<DLayout> = new Set();
     private canvasRef = createRef<HTMLDivElement>();
