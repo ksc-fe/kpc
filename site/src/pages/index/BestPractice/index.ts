@@ -1,4 +1,4 @@
-import {Component, TypeDefs, createRef, nextTick} from 'intact';
+import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import vue_logo from '../../../imgs/vue_logo.png';
 import vue_logo_active from '../../../imgs/vue_logo_active.png';
@@ -44,11 +44,11 @@ const getTemplate = (type: 'vue' | 'react'): Function => {
         const button = `<Button type="BUTTON_TYPE">BUTTON_CONTENT</Button>`
             .replace('BUTTON_TYPE', buttonStatus)
             .replace('BUTTON_CONTENT', contentInput);
-        const icon = `<Icon class="icon ion-plus"></Icon>`
+        const icon = `<Icon class="icon ion-plus"></Icon>`;
 
-        let placeholder1 = isLeft ? icon : button;
-        let placeholder2 = isLeft ? button : icon;
-        let tmp = templateMap[type];
+        const placeholder1 = isLeft ? icon : button;
+        const placeholder2 = isLeft ? button : icon;
+        const tmp = templateMap[type];
         return tmp
             .replace('placeholder1', placeholder1)
             .replace('placeholder2', placeholder2);
@@ -117,7 +117,6 @@ export class BestPractice extends Component<BestPracticeProps, BestPracticeEvent
 
     init() {
         const handleValueChange = () => this.setFrameValue();
-
         this.watch('iconPosition', handleValueChange);
         this.watch('contentInput', handleValueChange);
         this.watch('buttonStatus', handleValueChange);
@@ -131,7 +130,7 @@ export class BestPractice extends Component<BestPracticeProps, BestPracticeEvent
             contentInput,
             buttonStatus,
             buttonRadius
-        }
+        };
 
         if(primaryColor) {
             theme.primary = primaryColor;

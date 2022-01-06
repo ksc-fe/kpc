@@ -12,6 +12,8 @@ export interface NewFunctionProps {
     bezierValue: number[]
     curTabIndex: string
     textTop: string
+    transition: string
+    curComponentsGroup: number
 }
 
 const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
@@ -22,7 +24,9 @@ const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
     animationType: String,
     bezierValue: Array,
     curTabIndex: String,
-    textTop: String
+    textTop: String,
+    transition: String,
+    curComponentsGroup: Number
 };
 
 const defaults = (): Partial<NewFunctionProps> => ({
@@ -33,7 +37,9 @@ const defaults = (): Partial<NewFunctionProps> => ({
     animationType: '',
     bezierValue: [.42, 0, .58, 1],
     curTabIndex: '1',
-    textTop: '40'
+    textTop: '40',
+    transition: 'all 0s ease',
+    curComponentsGroup: 0
 });
 
 const curveTypeMap: any = {
@@ -54,13 +60,14 @@ export class NewFunction extends Component<NewFunctionProps> {
             const target = curveTypeMap[value];
             if(target) {
                 this.set('bezierValue', target);
+                this.showTransition();
             }
         });
 
         this.watch('curTabIndex', (value: string) => {
-            setTimeout(() => {
-                this.set('textTop', value == '2' ? '0' : '40');
-            });
+            if(value == '2') {
+                this.showTransition();
+            }
         })
     }
 
@@ -71,7 +78,13 @@ export class NewFunction extends Component<NewFunctionProps> {
     }
 
     showTransition() {
-        
+        this.set('transition', 'all 0s ease');
+        this.set('textTop', '40');
+        setTimeout(() => {
+            const bezierValue = this.get('bezierValue').join();
+            this.set('transition', `all .3s cubic-bezier(${bezierValue})`);
+            this.set('textTop', '0');
+        });
     }
 
     @bind
@@ -85,6 +98,9 @@ export class NewFunction extends Component<NewFunctionProps> {
         })
         this.set('animationType', targetCurveType);
         this.set('bezierValue', bezierValue);
+
+        // Show tarnsition when bezier value change
+        this.showTransition();
     }
 
     @bind
@@ -99,7 +115,9 @@ export class NewFunction extends Component<NewFunctionProps> {
         this.setCardBoxPosition();
     }
 
-    test() {
-        
+    @bind
+    changeComponentsGroup(): void {
+        const cur = this.get('curComponentsGroup');
+        this.set('curComponentsGroup', (cur + 1) % 3);
     }
 }

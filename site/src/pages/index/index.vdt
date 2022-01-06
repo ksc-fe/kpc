@@ -1,7 +1,6 @@
 import {makeStyles} from './styles';
 import {Button} from 'kpc';
-import nav_logo from '../../imgs/nav_logo.png';
-import design_system from '../../imgs/design_system.png';
+
 import github_logo from '../../imgs/github_logo.png';
 import {Footer} from '../../components/footer/';
 import {NewFunction} from './NewFunction';
@@ -13,12 +12,8 @@ import {KingVersion} from './KingVersion';
     <b:content>
         <div class="nav">
             <div class="nav-content">
-                <div>
-                    <img src={design_system} />
-                </div>
-                <div>
-                    <img src={nav_logo} />
-                </div>
+                <div></div>
+                <div></div>
                 <div>为企业提效而生</div>
                 <div>
                     <Button type="primary">开始使用</Button>

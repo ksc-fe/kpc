@@ -8,10 +8,16 @@ import axure_img from '../../../imgs/axure_img.png';
 import rectangle from '../../../imgs/rectangle.png';
 
 const {cardLeft, totalCards, curCardNum, cardsPerPage, 
-    animationType, bezierValue, curTabIndex, textTop} = this.get();
+    animationType, bezierValue, curTabIndex, textTop, 
+    transition, curComponentsGroup} = this.get();
 
 const canNext = totalCards > curCardNum;
 const canPrev = curCardNum > cardsPerPage;
+
+const textTransitionStyle = {
+    transition: transition,
+    transform: `translateY(${textTop}px)`
+};
 
 <div class={makeStyles(bezierValue)}>
     <div className='new-fn-box'>
@@ -52,11 +58,11 @@ const canPrev = curCardNum > cardsPerPage;
                         subTitle="即开即用，为品牌焕发新活力"
                     >
                         <div class="component-box">
-                            <Button type="none">
+                            <Button type="none" ev-click={this.changeComponentsGroup}>
                                 <Icon class="icon ion-refresh"></Icon>
                                 <span>换一换</span>
                             </Button>
-                            <div class="comp-content">
+                            <div class="comp-content" v-if={curComponentsGroup == 0}>
                                 <div>
                                     <div class="comp-item">
                                         <Button type="primary">Button</Button>
@@ -70,6 +76,42 @@ const canPrev = curCardNum > cardsPerPage;
                                         <Select fluid placeholder="选择一项">
                                             <Option value="1">选择一项</Option>
                                         </Select>
+                                    </div>
+                                    <div class="comp-item">
+                                        <Input fluid placeholder="请输入"></Input>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comp-content" v-if={curComponentsGroup == 1}>
+                                <div>
+                                    <div class="comp-item">
+                                        <Button type="primary">Button</Button>
+                                    </div>
+                                    <div class="comp-item">
+                                        <Button type="primary">Button</Button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="comp-item">
+                                        <Button type="primary">Button</Button>
+                                    </div>
+                                    <div class="comp-item">
+                                        <Button type="primary">Button</Button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comp-content" v-if={curComponentsGroup == 2}>
+                                <div>
+                                    <div class="comp-item">
+                                        <Input fluid placeholder="请输入"></Input>
+                                    </div>
+                                    <div class="comp-item">
+                                        <Input fluid placeholder="请输入"></Input>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="comp-item">
+                                        <Input fluid placeholder="请输入"></Input>
                                     </div>
                                     <div class="comp-item">
                                         <Input fluid placeholder="请输入"></Input>
@@ -91,7 +133,7 @@ const canPrev = curCardNum > cardsPerPage;
                             </div>
                             <div class="animate-right">
                                 <div>
-                                    <div class="animate-title" ev-click={this.test.bind(this)}>曲线选择：</div>
+                                    <div class="animate-title">曲线选择：</div>
                                     <div>
                                         <Select v-model="animationType" fluid placeholder="选择曲线">
                                             <Option value="1">轻柔缓动</Option>
@@ -112,7 +154,7 @@ const canPrev = curCardNum > cardsPerPage;
                                         </div>
                                         <div v-if={curTabIndex == 2}>
                                             <div 
-                                                style={{transform: `translateY(${textTop}px)`}} 
+                                                style={textTransitionStyle} 
                                                 class="tab-text"
                                             >优秀又合适的动效，总是能给产品体验带来更多可能。</div>
                                         </div>

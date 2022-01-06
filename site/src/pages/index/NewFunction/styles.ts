@@ -1,7 +1,7 @@
 import {css} from '@emotion/css';
 import {mainBlock, fullfill, center} from '../../../styles/default';
 
-export function makeStyles(bezierValue?: number[]) {
+export function makeStyles() {
     return css`
         background: #ffffff;
 		${mainBlock(544)};
@@ -177,8 +177,6 @@ export function makeStyles(bezierValue?: number[]) {
 								.tab-text {
 									width: 224px;
 									white-space: pre-wrap;
-									transition: all .3s cubic-bezier(${bezierValue?.join()});
-									transform: translateY(40px);
 								}
 							}
 						}
