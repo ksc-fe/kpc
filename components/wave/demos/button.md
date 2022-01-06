@@ -43,14 +43,3 @@ import {Input} from 'kpc/components/input';
 .k-select, .k-input
     margin-bottom 20px
 ```
-
-```ts
-import {bind} from 'kpc/components/utils';
-
-export default class extends Component {
-    static template = template;
-    static defaults = () => ({
-        disabled: true,
-    });
-}
-```

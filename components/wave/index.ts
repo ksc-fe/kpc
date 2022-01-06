@@ -48,18 +48,18 @@ export class Wave extends Component<WaveProps> {
         }
 
         this.instance = node;
-        node.addEventListener('click', this.onClick, true);
+        node.addEventListener('click', this.onClick);
     }
 
     beforeUnmount() {
         if (this.instance) {
-            this.instance!.removeEventListener('click', this.onClick, true);
+            this.instance!.removeEventListener('click', this.onClick);
         }
         this.resetAnimation();
     }
 
     @bind
-    private onClick(e: MouseEvent) {
+    private onClick(e: Event) {
         const {instance} = this;
         const {disabled} = this.get();
         if (disabled ||
