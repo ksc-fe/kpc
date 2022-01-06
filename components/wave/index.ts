@@ -28,7 +28,6 @@ export class Wave extends Component<WaveProps> {
     static typeDefs = typeDefs;
     static template = function(this: Wave) {
         const children = this.get('children') as VNode;
-        console.log(children)
         if (process.env.NODE_ENV !== 'production') {
             if (!children || (isArray(children) && children.length > 1)) {
                 throw new Error('Wave must receive one Element children');
