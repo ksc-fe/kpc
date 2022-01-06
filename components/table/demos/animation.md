@@ -31,12 +31,26 @@ const {data, num, isShow} = this.get();
 ```ts
 import {bind} from 'kpc/components/utils';
 
+interface Props {
+    data: any[]
+    num: number
+    isShow: boolean
+}
+
 export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
         return {
-            data: [{a: 'Cell 1-1', b: 'Cell 1-2', c: 'Cell 1-3'}, {a: 'Cell 2-1', b: 'Cell 2-2', c: 'Cell 2-3'}],
+            data: [{
+              a: 'Cell 1-1', 
+              b: 'Cell 1-2', 
+              c: 'Cell 1-3'
+            }, {
+              a: 'Cell 2-1', 
+              b: 'Cell 2-2', 
+              c: 'Cell 2-3'
+            }],
             num: 3,
             isShow: false,
         }
@@ -44,17 +58,20 @@ export default class extends Component<Props> {
             
     @bind
     addRow() {
-      let {data, num} = this.get();
-      data.push({a: `Cell ${num}-1`, b: `Cell ${num}-2`, c: `Cell ${num}-3`});
+      const {num, data} = this.get();
+      data.push({
+        a: `Cell ${num}-1`, 
+        b: `Cell ${num}-2`, 
+        c: `Cell ${num}-3`
+      });
       this.set({
         data: data,
-        num: ++num
+        num: num + 1
       });
     }
 
     @bind
     addColumn() {
-      let {isShow} = this.get();
       this.set({
         isShow: true,
       });
