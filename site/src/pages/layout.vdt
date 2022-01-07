@@ -28,9 +28,9 @@ const nav = [
     }
 ];
 
-const {themeColor, colorList} = this.get();
+const {themeColor, colorList, curLang} = this.get();
 
-<Layout class={$props.className} ref={this.layoutRef}>
+<Layout class={$props.className}>
     <Header fixed class={makeHeaderStyles()} id="header">
         <div class="logo" ev-click={() => window.location.href = '/'}></div>
         <div class="main">
@@ -42,8 +42,14 @@ const {themeColor, colorList} = this.get();
                 <Tab>
                     <div class="lang-wrapper">
                         <div class="lang-box">
-                            <div class="active">zh-CN</div>
-                            <div>en-US</div>
+                            <div 
+                                class={{active: curLang == 'cn'}} 
+                                ev-click={this.setLang.bind(this, 'cn')}
+                            >zh-CN</div>
+                            <div 
+                                class={{active: curLang == 'en'}} 
+                                ev-click={this.setLang.bind(this, 'en')}
+                            >en-US</div>
                         </div>    
                     </div>
                 </Tab>
@@ -64,7 +70,7 @@ const {themeColor, colorList} = this.get();
                             ev-click={this.handleColorChange.bind(this, $value)}
                         >
                             <Icon 
-                                v-if={themeColor === $value } 
+                                v-if={themeColor === $value} 
                                 class="icon ion-checkmark-round"
                             ></Icon>
                         </div>

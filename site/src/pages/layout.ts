@@ -1,5 +1,5 @@
-import {Component, createRef} from 'intact';
 import template from './layout.vdt';
+import {Component} from 'intact';
 import {setTheme} from 'kpc';
 
 export interface LayoutProps {
@@ -7,6 +7,7 @@ export interface LayoutProps {
     themeColor: string
     colorList: string[]
     showThemeColor: boolean
+    curLang: string
 }
 
 const colorList = [
@@ -21,25 +22,26 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
         version: 'v1.1.1',
         themeColor: colorList[0],
         colorList: colorList,
-        showThemeColor: false
+        showThemeColor: false,
+        curLang: 'cn'
     });
-
-    private layoutRef = createRef<Layout>()
 
     handleColorChange(color: string) {
         if(this.get('themeColor') !== color){
             this.set('themeColor', color);
             this.set('showThemeColor', false);
             setTheme({
-                color: {
-                    primary: color
-                }
-            })
-            this.layoutRef!.value?.forceUpdate();
+                color: {primary: color}
+            });
+            this.forceUpdate();
         }        
     }
 
     showColorList() {
-        this.set('showThemeColor', true)
+        this.set('showThemeColor', true);
+    }
+
+    setLang(langType: string) {
+        this.set('curLang', langType);
     }
 }
