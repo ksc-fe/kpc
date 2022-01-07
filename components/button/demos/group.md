@@ -59,11 +59,17 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    city: string
+    cities: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
+
     static defaults = () => ({
         city: 'beijing',
-        cities: [],
+        cities: []
     });
 }
 ```
