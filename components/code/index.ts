@@ -40,4 +40,8 @@ export class Code extends Component<CodeProps, CodeEvents> {
     static defaults = defaults;
 
     private editor = useEditor();
+
+    public getEditor() {
+        return this.editor.getEditor();
+    }
 }

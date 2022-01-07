@@ -74,10 +74,15 @@ import {Code} from 'kpc/components/code';
 ```
 
 ```ts
+interface Props {
+    value: string
+}
+
 const code = `function test() {
     console.log('hello world');
 }`;
-export default class extends Component {
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
