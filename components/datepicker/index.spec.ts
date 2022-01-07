@@ -18,10 +18,10 @@ const startYear = Math.floor(year / 10) * 10;
 const month = now.getMonth();
 
 describe('Datepicker', () => {
-    // afterEach(async () => {
-        // unmount();
-        // await wait(400);
-    // });
+    afterEach(async () => {
+        unmount();
+        await wait(400);
+    });
 
     describe('Pick', () => {
         it('date', async () => {
