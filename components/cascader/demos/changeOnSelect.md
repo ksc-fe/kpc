@@ -15,7 +15,11 @@ import {Cascader} from 'kpc/components/cascader';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

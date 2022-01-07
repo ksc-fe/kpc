@@ -7,10 +7,11 @@ order: 5
 当前展示的标签会通过'`/`'分隔，如果你想改变标签的展示字符串，通过`format`属性指定
 
 ```vdt
-import {Cascader} from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <Cascader data={this.get('data')} clearable
     format={labels => labels[labels.length - 1]}
+    v-model="value"
 >
     <b:value args="[value, label]">
         <div>
@@ -24,7 +25,11 @@ import {Cascader} from 'kpc/components/cascader';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

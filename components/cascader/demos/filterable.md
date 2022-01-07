@@ -10,12 +10,16 @@ order: 6
 import {Cascader} from 'kpc/components/cascader';
 
 <div>
-    <Cascader data={this.get('data')} filterable />
+    <Cascader data={this.get('data')} v-model="value" filterable />
 </div>
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

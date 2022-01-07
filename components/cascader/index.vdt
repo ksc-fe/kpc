@@ -67,7 +67,7 @@ const Options = (data, level, loaded) => {
 }
 
 const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
-<t:super>
+<t:super class="k-cascader">
     <b:base-menu>
         <DropdownMenu 
             v-if={!filterable || !keywords}
