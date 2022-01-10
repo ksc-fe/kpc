@@ -49,7 +49,7 @@ describe('Upload', () => {
     });
 
     afterEach(function(done) {
-        // unmount();
+        unmount();
         respond = xhr => { xhr.respond(200) };
         this.xhr.restore();
         setTimeout(done, 400);
