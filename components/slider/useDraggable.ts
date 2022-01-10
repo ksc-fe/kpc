@@ -25,6 +25,8 @@ export function useDraggable(
         },
 
         onEnd() {
+            if (instance.$unmounted) return;
+
             (isFirst ? firstThumbRef.value : secondThumbRef.value)!.blur();
             showValue.set(instance.get('value')!);
             triggerChangeEvent(oldValue);
