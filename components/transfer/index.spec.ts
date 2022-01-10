@@ -4,7 +4,7 @@ import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import type {Transfer} from './';
 
 describe('Transfer', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should only fix leftChecked when data changed', async () => {
         const [instance, element] = mount(BasicDemo);

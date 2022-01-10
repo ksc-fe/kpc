@@ -9,7 +9,7 @@ import {Component} from 'intact';
 import DynamicStepDemo from '~/components/slider/demos/dynamicStep';
 
 describe('Slider', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo);

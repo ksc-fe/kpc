@@ -3,7 +3,7 @@ import BeforeChangeDemo from '~/components/tabs/demos/beforeChange';
 import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 
 describe('Tabs', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => unmount());
 
     it('closable', async function() {
         this.timeout(0);

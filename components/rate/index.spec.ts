@@ -4,7 +4,7 @@ import DisabledDemo from '~/components/rate/demos/disabled';
 import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 
 describe('Rate', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should change value on click', async () => {
         const [instance, element] = mount(BasicDemo);

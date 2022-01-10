@@ -2,23 +2,8 @@ import BasicDemo from '~/components/affix/demos/basic';
 import CustomDemo from '~/components/affix/demos/custom';
 import {mount, unmount, wait, dispatchEvent} from '../../test/utils';
 
-// const nativeScrollTo = window.scrollTo;
-// window.scrollTo = (...args: any[]) => {
-    // debugger;
-
-    // nativeScrollTo.call(window, ...args);
-// } 
-
-// window.scrollBy = () => {
-    // debugger;
-// }
-
-// window.addEventListener('scroll', () => {
-    // debugger;
-// });
-
 describe('Affix', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('basic test', async function() {
         this.timeout(0);

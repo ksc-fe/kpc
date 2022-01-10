@@ -8,7 +8,7 @@ import ForceStepDemo from '~/components/spinner/demos/forceStep';
 import DynamicStepDemo from '~/components/spinner/demos/dynamicStep';
 
 describe('Spinner', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => unmount());
 
     it('step/max/min test', async () => {
         const [instance, element] = mount(StepDemo);
