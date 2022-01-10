@@ -42,7 +42,7 @@ describe('Colorpicker', () => {
             pageY: top + window.pageYOffset + 1
         });
         await wait();
-        expect(instance.get('color')).to.eql('#fdfdfc');
+        expect(instance.get('color')).to.eql('#fdfcfc');
 
         dispatchEvent(saturation, 'mouseup');
         await wait();

@@ -12,7 +12,7 @@ describe('Cascader', () => {
         await wait(400);
     });
 
-    it('basic test', async () => {
+    it('basic test', async function() {
         const [instance, element] = mount(BasicDemo);
 
         const select = element.querySelector('.k-cascader') as HTMLElement;

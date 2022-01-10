@@ -50,7 +50,7 @@
 ```
 "<div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 1</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 2</div></div></div><div class=\"k-menu-item k-disabled css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 3</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">
                     sub menu 4
-                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-2yrx8j css-s5aq4a k-slideright-enter-active\" style=\"left: 155px; top: 120px; display: none;\"><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
+                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-2yrx8j css-s5aq4a\" style=\"display: none;\"><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
 ```
 
 ```
@@ -68,7 +68,7 @@
 ```
 "<div class=\"k-menu-item k-active css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 1</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 2</div></div></div><div class=\"k-menu-item k-disabled css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 3</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">
                     sub menu 4
-                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-2yrx8j css-s5aq4a k-slideright-enter-active\" style=\"left: 155px; top: 120px; display: none;\"><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
+                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-2yrx8j css-s5aq4a\" style=\"display: none;\"><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-1qxjnzz\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
 ```
 
 #### `accordion`
