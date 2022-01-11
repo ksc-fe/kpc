@@ -2,6 +2,7 @@ import {Component, TypeDefs, createRef, nextTick} from 'intact';
 import template from './index.vdt';
 import {bind} from 'components/utils';
 import {Coordinates} from '../../../components/BezierBox';
+import {Message} from 'kpc';
 
 export interface NewFunctionProps {
     cardLeft: number
@@ -14,6 +15,8 @@ export interface NewFunctionProps {
     textTop: string
     transition: string
     curComponentsGroup: number
+    editableText: string
+    scrollSelectData: any[]
 }
 
 const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
@@ -26,8 +29,14 @@ const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
     curTabIndex: String,
     textTop: String,
     transition: String,
-    curComponentsGroup: Number
+    curComponentsGroup: Number,
+    editableText: String,
+    scrollSelectData: Array
 };
+
+const createMonthVal = () => {
+    return Array.from({length: 12}).map((v, i) => ({label: i + 1 + '月', value: i}));
+}
 
 const defaults = (): Partial<NewFunctionProps> => ({
     cardLeft: 0,
@@ -39,7 +48,9 @@ const defaults = (): Partial<NewFunctionProps> => ({
     curTabIndex: '1',
     textTop: '40',
     transition: 'all 0s ease',
-    curComponentsGroup: 0
+    curComponentsGroup: 0,
+    editableText: 'Editable text',
+    scrollSelectData: createMonthVal()
 });
 
 const curveTypeMap: any = {
@@ -119,5 +130,10 @@ export class NewFunction extends Component<NewFunctionProps> {
     changeComponentsGroup(): void {
         const cur = this.get('curComponentsGroup');
         this.set('curComponentsGroup', (cur + 1) % 3);
+    }
+
+    @bind
+    handleGlobalInfo(): void {
+        Message.success('成功');
     }
 }

@@ -78,12 +78,27 @@ export function makeStyles() {
                     width: 326px;
                     height: 261px;
                     background: #F0F0F0;
-                    background-image: linear-gradient(0deg, #D5D5D5 1px, #D5D5D5 1px, transparent 1px, transparent), 
-                        linear-gradient(90deg, #D5D5D5 1px, transparent 0);
-                    background-size: 20px 20px;
                     border-radius: 8px;
                     overflow: hidden;
+                    position: relative;
+                    .row {
+                        position: absolute;
+                        width: 100%;
+                        border-bottom: 1px dashed #ccc;
+                        left: 0;
+                        top: 20px;
+                    }
+                    .column {
+                        position: absolute;
+                        height: 100%;
+                        top: 0;
+                        left: 20px;
+                        border: 1px dashed #D5D5D5;
+                    }
                     ${center()}
+                    iframe {
+                        z-index: 10;
+                    }
                     .k-btn {
                         width: 120px;
                         height: 40px;

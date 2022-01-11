@@ -115,6 +115,12 @@ export class BestPractice extends Component<BestPracticeProps, BestPracticeEvent
 
     private iframeBoxRef = createRef<ThemeFrame>();
 
+    private leftBox = createRef<HTMLElement>();
+
+    private rowNum: any[] = []
+    private columnNum: any[] = []
+    
+
     init() {
         const handleValueChange = () => this.setFrameValue();
         this.watch('iconPosition', handleValueChange);
@@ -162,5 +168,19 @@ export class BestPractice extends Component<BestPracticeProps, BestPracticeEvent
     @bind
     handleCodeBoxReady() {
         this.setCode();
+    }
+
+    mounted() {
+        console.clear()
+        const box = this.leftBox.value!
+
+        this.rowNum = Array.from({length: Math.ceil(box.offsetHeight / 20)}).map((item, index) => ({
+            top: (index + 1) * 20
+        }))
+        this.columnNum = Array.from({length: Math.ceil(box.offsetWidth / 20)}).map((item, index) => ({
+            left: (index + 1) * 20
+        }))
+        console.log(this.rowNum)
+        console.log(this.columnNum)
     }
 }

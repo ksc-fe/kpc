@@ -54,12 +54,14 @@ const {themeColor, colorList, curLang} = this.get();
                     </div>
                 </Tab>
             </Tabs>
-            <div class="theme-color-box">
+            <div class="theme-color-box" 
+                ev-mouseenter={this.showColorList.bind(this)} 
+                ev-mouseleave={this.hideColorList.bind(this)}
+            >
                 <div class="cur-color">
                     <div 
                         class="color-item" 
                         style={{background: themeColor}} 
-                        ev-click={this.showColorList.bind(this)}
                     ></div>
                 </div>
                 <div class="theme-color-option" v-if={this.get('showThemeColor')}>

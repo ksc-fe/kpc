@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import global, {mainBlock} from '../../styles/default';
 import design_system from '../../imgs/design_system.png';
 import nav_logo from '../../imgs/nav_logo.png';
+import index_nav_bg from '../../imgs/index_nav_bg.png';
 
 export function makeStyles() {
 
@@ -11,6 +12,7 @@ export function makeStyles() {
             ${mainBlock(460)};
             padding-top: 64px;
             background: linear-gradient(110.15deg, #EFF3FA 36.71%, rgba(235, 242, 248, 0.64) 79.74%);
+            background-repeat: no-repeat;
             .nav-content {
                 & > div:first-child {
                     margin-top: 53px;

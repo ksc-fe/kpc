@@ -38,7 +38,17 @@ const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
                 />
             </div>
             <div class="optional-box">
-                <div class="left">
+                <div class="left" ref={this.leftBox}>
+                    <div 
+                        class="row" 
+                        v-for={this.rowNum} 
+                        style={{top: `${$value.top}px`}}
+                    ></div>
+                    <div 
+                        class="column" 
+                        v-for={this.columnNum} 
+                        style={{left: `${$value.left}px`}}
+                    ></div>
                     <ThemeFrame
                         href="./iframe/button" 
                         ref={this.iframeBoxRef}
@@ -49,7 +59,7 @@ const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
                     <div class="item">
                         <div>内容：</div>
                         <div>
-                            <Input v-model="contentInput" />
+                            <Input v-model="contentInput" maxlength="20" />
                         </div>
                     </div>
                     <div class="item">

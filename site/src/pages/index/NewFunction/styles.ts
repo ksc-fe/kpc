@@ -101,19 +101,31 @@ export function makeStyles() {
 							display: flex;
 							align-items: center;
 							.comp-item {
+								height: 100%;
 								flex-grow: 1;
+								width: 0;
 							}
 						}
 						.k-btn {
 							width: 120px;
 							height: 40px;
 						}
-						.k-select, .k-input {
-							width: 170px;
-							height: 40px;
+						.input-select {
+							.k-select, .k-input {
+								width: 170px;
+								height: 40px;
+							}	
+							.k-input-inner {
+								height: 40px;
+							}
 						}
-						.k-input-inner {
-							height: 40px;
+						.k-datepicker {
+							width: 170px;
+						}
+						.k-editable {
+							.k-input {
+								width: 170px;
+							}
 						}
 					}
 				}

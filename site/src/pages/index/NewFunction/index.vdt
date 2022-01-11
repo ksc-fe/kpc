@@ -1,6 +1,9 @@
 import {makeStyles} from './styles';
 import {Card} from '../../../components/card';
-import {Button, Icon, Select, Option, Switch, Input, Tabs, Tab} from 'kpc';
+import {Button, Icon, Select, Option, 
+    Switch, Input, Tabs, Tab, Pagination,
+    Editable, ScrollSelect, Slider,
+    Datepicker} from 'kpc';
 import {BezierBox} from '../../../components/BezierBox'
 import king_version_logo from '../../../imgs/king_version_logo.png';
 import sketch_img from '../../../imgs/sketch_img.png';
@@ -63,50 +66,56 @@ const textTransitionStyle = {
                                 <span>换一换</span>
                             </Button>
                             <div class="comp-content" v-if={curComponentsGroup == 0}>
-                                <div>
+                                <div class="input-select">
                                     <div class="comp-item">
-                                        <Button type="primary">Button</Button>
+                                        <Input fluid placeholder="请输入"></Input>
                                     </div>
-                                    <div class="comp-item">
-                                        <Switch width={50} height={24}></Switch>
-                                    </div>
-                                </div>
-                                <div>
                                     <div class="comp-item">
                                         <Select fluid placeholder="选择一项">
                                             <Option value="1">选择一项</Option>
                                         </Select>
                                     </div>
+                                </div>
+                                <div>
                                     <div class="comp-item">
-                                        <Input fluid placeholder="请输入"></Input>
+                                        <Button type="primary">Button</Button>
+                                    </div>
+                                    <div class="comp-item">
+                                        <Pagination simple total={200} />
                                     </div>
                                 </div>
                             </div>
                             <div class="comp-content" v-if={curComponentsGroup == 1}>
                                 <div>
                                     <div class="comp-item">
-                                        <Button type="primary">Button</Button>
+                                        <Switch  width="50" height="24"></Switch>
                                     </div>
                                     <div class="comp-item">
-                                        <Button type="primary">Button</Button>
+                                        <Datepicker />
                                     </div>
                                 </div>
                                 <div>
                                     <div class="comp-item">
-                                        <Button type="primary">Button</Button>
+                                        <Editable 
+                                            v-model="editableText"
+                                            validate={value => value.length < 20}
+                                        >{this.get('editableText')}</Editable>
                                     </div>
                                     <div class="comp-item">
-                                        <Button type="primary">Button</Button>
+                                        <Button 
+                                            type="primary"
+                                            ev-click={this.handleGlobalInfo}
+                                        >全局提示</Button>
                                     </div>
                                 </div>
                             </div>
                             <div class="comp-content" v-if={curComponentsGroup == 2}>
                                 <div>
                                     <div class="comp-item">
-                                        <Input fluid placeholder="请输入"></Input>
+                                        <ScrollSelect data={this.get("scrollSelectData")} />
                                     </div>
                                     <div class="comp-item">
-                                        <Input fluid placeholder="请输入"></Input>
+                                        <Slider isShowInput={false}></Slider>
                                     </div>
                                 </div>
                                 <div>

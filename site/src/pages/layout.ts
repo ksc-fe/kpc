@@ -18,6 +18,7 @@ const colorList = [
 
 export default class Layout<T extends LayoutProps = LayoutProps> extends Component<T> {
     static template = template;
+    
     static defaults = (): Partial<LayoutProps> => ({
         version: 'v1.1.1',
         themeColor: colorList[0],
@@ -39,6 +40,10 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
 
     showColorList() {
         this.set('showThemeColor', true);
+    }
+    
+    hideColorList() {
+        this.set('showThemeColor', false);
     }
 
     setLang(langType: string) {
