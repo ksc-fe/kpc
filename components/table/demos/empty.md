@@ -6,7 +6,7 @@ order: 16
 当`data`为空数组`[]`时, 通过`empty`扩展点，来定义无数据是展示的内容
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 const data = [];
 

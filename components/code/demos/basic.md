@@ -5,7 +5,7 @@ order: 0
 
 > `Code`由于基于`Monaco Editor`这个庞大的库，所以没有放入索引文件`index.js`，你只能通过如下方式引入
 >
-> `import {Code} from 'kpc/components/code';`
+> `import {Code} from 'kpc';`
 >
 > 而不能直接通过`kpc`引入
 >
@@ -68,7 +68,7 @@ order: 0
 > 或者也可以使用[terser](https://github.com/terser-js/terser)(`uglify-es`不维护了)进行压缩
 
 ```vdt
-import {Code} from 'kpc/components/code';
+import {Code} from 'kpc';
 
 <Code v-model="value" height="200px" language="javascript" />
 ```

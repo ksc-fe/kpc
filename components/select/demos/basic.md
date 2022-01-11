@@ -7,7 +7,7 @@ order: 0
 `loading`属性来标示加载状态
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <div style="margin-bottom: 16px;">

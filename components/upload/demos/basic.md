@@ -8,7 +8,7 @@ order: 0
 如果函数的返回值为`true`则删除文件，否则不删除，该函数可以是异步函数或者返回`Promise`对象
 
 ```vdt
-import {Upload} from 'kpc/components/upload';
+import {Upload} from 'kpc';
 
 <Upload multiple
     beforeRemove={this.beforeRemove}
@@ -27,10 +27,10 @@ import {Upload} from 'kpc/components/upload';
 ```
 
 ```ts
-import {Dialog} from 'kpc/components/dialog';
-import {Message} from 'kpc/components/message';
-import {bind} from 'kpc/components/utils';
-import {UploadFile, RequestError} from 'kpc/components/upload';
+import {Dialog} from 'kpc';
+import {Message} from 'kpc';
+import {bind} from 'kpc';
+import {UploadFile, RequestError} from 'kpc';
 
 export default class extends Component {
     static template = template;

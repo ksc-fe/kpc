@@ -6,10 +6,10 @@ order: 5
 通过`layout`指定表单布局：`horizontal`, `vertical`, `inline`，还可以通过`size`控制`FormItem`的间距
 
 ```vdt
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Form, FormItem} from 'kpc';
+import {Input} from 'kpc';
+import {Select, Option} from 'kpc';
+import {ButtonGroup, Button} from 'kpc';
 
 <Form layout={this.get('layout')} size={this.get('size')}>
     <FormItem label="Layout">

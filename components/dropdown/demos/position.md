@@ -6,9 +6,9 @@ order: 2
 通过`position`属性，可以定义菜单相对触发器的位置。位置对象中`my`指菜单，`at`指触发器
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
+import {Button} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <Dropdown position={{my: 'left top', at: 'left bottom+5'}}>

@@ -26,17 +26,17 @@ import {Affix, Button} from 'kpc';
 ```
 
 ```ts
-    interface Props {
-        bottom: number
-    }
+interface Props {
+    bottom: number
+}
 
-    export default class extends Component<Props> {
-        static template = template;
+export default class extends Component<Props> {
+    static template = template;
 
-        static defaults() {
-            return {
-                bottom: 0
-            }
+    static defaults() {
+        return {
+            bottom: 0
         }
     }
+}
 ```

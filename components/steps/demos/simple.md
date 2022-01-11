@@ -6,8 +6,8 @@ order: 3
 设置`type`属性值为`simple`，可以展示简洁样式的步骤条
 
 ```vdt
-import {Steps, Step} from 'kpc/components/steps';
-import {Button} from 'kpc/components/button';
+import {Steps, Step} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
     <Steps v-model="index" type="simple">
@@ -37,7 +37,7 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     index: number

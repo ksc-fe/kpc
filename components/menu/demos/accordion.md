@@ -6,8 +6,8 @@ order: 1.1
 添加`accordion`属性，可以使菜单每次只能展开一项
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Icon} from 'kpc/components/icon';
+import {Menu, MenuItem} from 'kpc';
+import {Icon} from 'kpc';
 
 <Menu v-model:expandedKeys="expandedKeys" accordion>
     <MenuItem key="1">

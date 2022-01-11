@@ -9,8 +9,8 @@ order: 25
 > 需要`fixHeader`固定表头才能生效
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Table, TableColumn} from 'kpc';
+import {Button, ButtonGroup} from 'kpc';
 
 <div class="wrapper">
     <ButtonGroup>
@@ -39,7 +39,7 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```
 
 ```ts
-import {range, bind} from 'kpc/components/utils';
+import {range, bind} from 'kpc';
 
 const data =  range(1, 100).map(item => {
     return {

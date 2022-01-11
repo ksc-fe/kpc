@@ -7,7 +7,7 @@ order: 4
 只会触发一次
 
 ```vdt
-import {Pagination} from 'kpc/components/pagination';
+import {Pagination} from 'kpc';
 
 <div>
     <Pagination total={200} 

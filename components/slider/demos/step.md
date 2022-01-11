@@ -9,7 +9,7 @@ order: 1
 > 如果`step`设为`0`，`Spinner`默认会设置`step = 0.01`来指定加减按钮的步长
 
 ```vdt
-import {Slider} from 'kpc/components/slider';
+import {Slider} from 'kpc';
 
 <div>
     <Slider v-model="value1" step={5} isShowEnd={false} ref="__test" />

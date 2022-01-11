@@ -6,7 +6,7 @@ order: 0
 基本用法和禁用状态
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker v-model="date" ref="__demo" value="2018-01-01" />

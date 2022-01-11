@@ -6,7 +6,7 @@ order: 1
 添加`readOnly`属性，置为只读状态
 
 ```vdt
-import {Code} from 'kpc/components/code';
+import {Code} from 'kpc';
 
 <Code v-model="value" height="200px" readOnly />
 ```

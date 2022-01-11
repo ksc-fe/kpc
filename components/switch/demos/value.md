@@ -7,7 +7,7 @@ order: 5
 我们可以指定选中和非选中的值。
 
 ```vdt
-import {Switch} from 'kpc/components/switch';
+import {Switch} from 'kpc';
 
 <div>
     <div style="margin-bottom: 20px">

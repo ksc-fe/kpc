@@ -7,7 +7,7 @@ order: 4.1
 让它不要真正去过滤结果。
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <Select multiple filterable filter={() => true} ev-input={this.search}>
     <Option v-for={this.get('users')} 
@@ -17,7 +17,7 @@ import {Select, Option} from 'kpc/components/select';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     users: any[]

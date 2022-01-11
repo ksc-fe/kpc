@@ -6,7 +6,7 @@ order: 1.2
 添加`simple`属性，可以展示简洁样式
 
 ```vdt
-import {Pagination} from 'kpc/components/pagination';
+import {Pagination} from 'kpc';
 
 <div>
     <Pagination simple total={200} size="large" />

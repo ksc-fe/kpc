@@ -7,7 +7,7 @@ order: 5
 `top` `bottom` `middle` `stretch` `baseline`
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
     <h4>顶端对齐 top</h4>

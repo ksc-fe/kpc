@@ -94,7 +94,7 @@ import {Split, Table, TableColumn, Tabs, Tab, FormItem, Button, Icon} from 'kpc'
         z-index 1
 ```
 ```ts
-import {range, bind} from 'kpc/components/utils';
+import {range, bind} from 'kpc';
 import {nextTick} from 'intact';
 
 interface Props {

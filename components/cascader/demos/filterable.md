@@ -7,7 +7,7 @@ order: 6
 自定义的搜索逻辑，组件会将当前的搜索关键词和每一项数据作为参数传入
 
 ```vdt
-import {Cascader} from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <div>
     <Cascader data={this.get('data')} v-model="value" filterable />

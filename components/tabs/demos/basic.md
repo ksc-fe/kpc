@@ -6,7 +6,7 @@ order: 0
 `Tab`的基本用法。`Tabs`嵌套`Tab`使用，使用`v-model`进行双向数据绑定。
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs v-model="tab">

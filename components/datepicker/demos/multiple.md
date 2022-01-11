@@ -6,7 +6,7 @@ order: 4
 添加`multiple`属性，即可支持日期多选。
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker multiple v-model="date" clearable />

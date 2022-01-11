@@ -7,7 +7,7 @@ order: 2
 本例中，我们可以传入`disable`函数来禁用闰年选项
 
 ```vdt
-import {ScrollSelect} from 'kpc/components/scrollSelect';
+import {ScrollSelect} from 'kpc';
 
 <ScrollSelect
     data={this.generateData}

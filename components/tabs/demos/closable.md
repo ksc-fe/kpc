@@ -8,8 +8,8 @@ order: 6
 作为参数传给事件回调函数
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Tabs, Tab} from 'kpc';
+import {Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup v-model="size" checkType="radio">
@@ -43,7 +43,7 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     tab: number | null

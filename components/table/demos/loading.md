@@ -6,8 +6,8 @@ order: 21
 给`Table`添加`loading`属性，即可展示加载状态
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-import {Checkbox} from 'kpc/components/checkbox';
+import {Table, TableColumn} from 'kpc';
+import {Checkbox} from 'kpc';
 
 <div>
     <Table 

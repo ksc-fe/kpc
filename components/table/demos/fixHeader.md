@@ -9,7 +9,7 @@ order: 10
 2. 如果取值为`Number`，则表示，当表格超出该高度时即展示滚动条，并固定表头
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div class="wrapper">
     <Table

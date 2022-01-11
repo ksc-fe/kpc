@@ -4,11 +4,11 @@ const {indent, dedent, getDefaults} = require('./utils');
 const {memoize} = require('../utils');
 
 exports.toVue2 = function(...args) {
-    return parseToVue2(partialParse(...args));
+    return parseToVue2(start(...args, 2));
 }
 
 exports.toVue3 = function(...args) {
-    return parseToVue3(partialParse(...args));
+    return parseToVue3(start(...args, 3));
 }
 
 function parseToVue2(template) {
@@ -24,39 +24,50 @@ function parseToVue3(template) {
         .replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
             return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
         })
-        // .replace(/kpc-vue/g, 'kpc-vue-next');
+        .replace(/kpc-vue/g, 'kpc-vue-next');
 
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }
 
-const partialParse = memoize(
-    function(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus) {
-        // console.log(vdt, js, vueScript);
-        const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
-        const result = [
-            `<template>`,
-            obj.template,
-            `</template>`,
-            `<script>`,
+function start(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, hasStylus, version) {
+    // console.log(vdt, js, vueScript);
+    const obj = parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData);
+    const isVue3 = version === 3;
+    const result = [
+        `<template>`,
+        obj.template,
+        `</template>`,
+    ];
+    if (isVue3) {
+        result.push(
+            `<script lang="ts">`,
+            `import {defineComponent} from 'kpc-vue/node_modules/vue';`,
             obj.head + (jsHead ? '\n' + jsHead + '\n' : ''),
-            `export default {`,
+            `export default defineComponent({`,
             obj.js,
-            `}`,
+            `});`,
+            `</script>`
+        );
+    } else {
+        result.push(
+            `<script lang="ts">`,
+            `import Vue from 'vue'`,
+            obj.head + (jsHead ? '\n' + jsHead + '\n' : ''),
+            `export default Vue.extend({`,
+            obj.js,
+            `});`,
             `</script>`,
-        ];
-        if (hasStylus) {
-            result.push('<style lang="stylus" src="./index.styl"></style>');
-        }
-
-        return result.join('\n');
-    },
-    function(vdt, js, vueScript, vueTemplate) {
-        return vdt + vueTemplate;
+        );
     }
-);
+    if (hasStylus) {
+        result.push('<style lang="stylus" src="./index.styl"></style>');
+    }
+
+    return result.join('\n');
+};
 
 const importRegExp = /import \{?([\s\S]*?)\}? from .*/g
-function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
+const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
     const components = [];
     let properties = {};
     let methods = {};
@@ -98,8 +109,17 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
             let line = lines[i];
             if (line.startsWith('import')) {
                 const matches = line.match(/import \{?(.*?)\}? from .*/);
-                const names = matches[1].split(', ').map(item => item === 'Switch' ? 'KSwitch' : item)
-                if (names.find(name => components.indexOf(name) > -1)) continue;
+                const variables = matches[1];
+                // ignore bind, it is unnecessary in Vue
+                if (variables === 'bind') continue;
+
+                const names = variables.split(', ').map(item => {
+                    return item === 'Switch' ? 'KSwitch' : item;
+                }).filter(name => {
+                    return components.indexOf(name) === -1 && name !== 'bind';
+                });
+                if (!names.length) continue;
+
                 line = line.replace('kpc', 'kpc-vue');
             }
             if (line.startsWith('export default')) {
@@ -165,7 +185,9 @@ function parse(vdt, js, vueScript, vueTemplate, vueMethods, vueData) {
         template: template.trim().split('\n').map(item => `    ${item}`).join('\n'),
         js: scripts.join('\n'),
     };
-}
+}, function(vdt, js, vueScript, vueTemplate) {
+    return vdt + vueTemplate;
+});
 
 function parseJS(js, vueData) {
     return {
@@ -174,8 +196,8 @@ function parseJS(js, vueData) {
     };
 }
 
-const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
-const getRegExp = /self\.get\(['"](.*?)['"]\)/g;
+const delimitersRegExp = /\b([^\s]*?)=\{\s*([\s\S]*?)\s*}/g;
+const getRegExp = /this\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods) {
     // specical for Editable validate string
     template = template.replace('"\\d+"', '"\\\\d+"');
@@ -186,7 +208,7 @@ function parseProperty(template, properties, methods) {
         });
         if (name.substring(0, 3) === 'ev-') {
             name = `@${name.substring(3)}`;
-            const matches = value.match(/self\.(\w+)(\.bind\(self, (.*?)\))?/);
+            const matches = value.match(/this\.(\w+)(\.bind\(this, (.*?)\))?/);
             if (matches) {
                 if (matches[2]) {
                     if (matches[1] === 'set') {
@@ -208,11 +230,11 @@ function parseProperty(template, properties, methods) {
             else value = value.replace(/[\`\$\{\}]/g, '');
         } else {
             name = `:${name}`;
-            if (value.substring(0, 5) === 'self.') {
+            if (value.substring(0, 5) === 'this.') {
                 value = value.substring(5);
             }
         }
-        value = value.replace(/self\./, '').replace(/\\/g, '\\\\');
+        value = value.replace(/this\./, '').replace(/\\/g, '\\\\');
         return `${name}="${value}"`;
     });
 }
@@ -252,14 +274,16 @@ function getMethods(js) {
     let name;
     const lines = js.split('\n');
     let spaces = '';
+    let isBound = false;
     lines.forEach((code, index) => {
-        const matches = code.match(/^(\s*)((?:async )?\w+)\(.*?\) {$/);
+        if (code.startsWith('export default')) return;
+        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)\(.*?\) {$/);
         if (matches) {
             start = index;
             name = matches[2];
             spaces = matches[1];
         } else if (code === `${spaces}}`) {
-            if (name === 'defaults' || name === '_init') return;
+            if (name === 'defaults') return;
             let codes = lines.slice(start, index + 1);
             if (spaces) {
                 codes = dedent(codes);

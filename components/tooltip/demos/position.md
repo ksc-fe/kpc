@@ -9,11 +9,11 @@ order: 1
 > 参考`jQuery-UI`实现https://api.jqueryui.com/position/
 
 ```vdt
-import {Tooltip} from 'kpc/components/tooltip';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Form, FormItem} from 'kpc/components/form';
-import {Select, Option} from 'kpc/components/select';
-import {Spinner} from 'kpc/components/spinner';
+import {Tooltip} from 'kpc';
+import {ButtonGroup, Button} from 'kpc';
+import {Form, FormItem} from 'kpc';
+import {Select, Option} from 'kpc';
+import {Spinner} from 'kpc';
 
 <Form>
     <FormItem label="position:">

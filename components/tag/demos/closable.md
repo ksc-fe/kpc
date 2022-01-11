@@ -11,7 +11,7 @@ order: 1
 > 需要自己维护`closed`属性，或者通过`v-if`来控制组件
 
 ```vdt
-import {Tag} from 'kpc/components/tag';
+import {Tag} from 'kpc';
 
 <div>
     <Tag v-for={this.get('tags')}

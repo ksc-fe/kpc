@@ -6,7 +6,7 @@ order: 2
 通过`max`和`min`可以给组件指定最大和最小选择日期。
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker v-model="from" placeholder="开始日期"

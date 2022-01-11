@@ -20,7 +20,7 @@ order: 3
 原始位置。（该布局具有随机性）
 
 ```vdt
-import {Diagram, DRectangle, DCircle, DDiamond, DHexagon, DLine} from 'kpc/components/diagram';
+import {Diagram, DRectangle, DCircle, DDiamond, DHexagon, DLine} from 'kpc';
 import {Button, ButtonGroup, Form, FormItem, Spinner, Checkbox} from 'kpc';
 
 const Layout = this.Layout;
@@ -82,8 +82,8 @@ const currentLayout = this.get('layouts')[this.get('layout')];
 
 ```ts
 import {createVNode as h, Children, ComponentConstructor} from 'intact';
-import {DFlowLayout, DTreeLayout, DRadialLayout, DStackLayout, DPartitionLayout, DCircleLayout, DOrganicLayout} from 'kpc/components/diagram';
-import type {DLayout, DLayoutProps} from 'kpc/components/diagram';
+import {DFlowLayout, DTreeLayout, DRadialLayout, DStackLayout, DPartitionLayout, DCircleLayout, DOrganicLayout} from 'kpc';
+import type {DLayout, DLayoutProps} from 'kpc';
 
 type LayoutProps = {
     layout: ComponentConstructor 

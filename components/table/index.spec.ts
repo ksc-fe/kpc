@@ -17,7 +17,7 @@ import {Component} from 'intact';
 import {Table, TableColumn} from './';
 import DraggableTable from '~/components/table/demos/draggable';
 import MergeCellDemo from '~/components/table/demos/mergeCell';
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
 import {Icon} from '../icon';
 // import Vue from 'vue';
 import {useChecked, AllCheckedStatus} from './useChecked';

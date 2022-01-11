@@ -7,9 +7,9 @@ order: 0
 通过`trigger`属性来指定它们。
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
+import {Button} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <Dropdown>

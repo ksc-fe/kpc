@@ -8,7 +8,7 @@ order: 1
 2. 通过扩展点`on` `off`来定义
 
 ```vdt
-import {Switch} from 'kpc/components/switch';
+import {Switch} from 'kpc';
 
 <div>
     <Switch on="开" off="关" />

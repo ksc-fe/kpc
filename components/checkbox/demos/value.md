@@ -11,7 +11,7 @@ order: 1
 > 此时应该在js中定义该对象，然后模板中引用它。
 
 ```vdt
-import {Checkbox} from 'kpc/components/checkbox';
+import {Checkbox} from 'kpc';
 
 <div>
     <Checkbox v-model="value1">默认值: {JSON.stringify(this.get('value1'))}</Checkbox>

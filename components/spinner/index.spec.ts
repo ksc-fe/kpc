@@ -1,7 +1,7 @@
 import StepDemo from '~/components/spinner/demos/step';
 import PrecisionDemo from '~/components/spinner/demos/precision';
 import {mount, unmount, dispatchEvent, wait, fakeError} from 'test/utils';
-import {Spinner} from 'kpc/components/spinner';
+import {Spinner} from 'kpc';
 import {Component} from 'intact';
 import FormatterDemo from '~/components/spinner/demos/formatter';
 import ForceStepDemo from '~/components/spinner/demos/forceStep';

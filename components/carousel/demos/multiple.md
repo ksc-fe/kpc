@@ -10,7 +10,7 @@ order: 3
 > 该特性只对`effect="slide"`有效
 
 ```vdt
-import {Carousel, CarouselItem} from 'kpc/components/carousel';
+import {Carousel, CarouselItem} from 'kpc';
 
 <Carousel clonedAmount={2}>
     <CarouselItem class="one">1</CarouselItem>

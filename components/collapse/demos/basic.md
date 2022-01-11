@@ -9,7 +9,7 @@ order: 0
 可以使用`v-model`进行双向绑定
 
 ```vdt
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc';
 
 <Collapse v-model="value">
     <CollapseItem title="设计语言" ev-show={this.onShow}>

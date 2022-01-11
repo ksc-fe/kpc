@@ -9,7 +9,7 @@ order: 2
 > `@since v1.1.0` `step`不能隐藏“秒”，可以通过`showFomart`或`format`来格式化时间字符串
 
 ```vdt
-import {Timepicker} from 'kpc/components/timepicker';
+import {Timepicker} from 'kpc';
 
 <div>
     <Timepicker class="time" v-model="time" step="00:30:00"/>

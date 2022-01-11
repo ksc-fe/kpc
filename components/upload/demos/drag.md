@@ -8,7 +8,7 @@ order: 1
 > 如果你没有给组件指定子元素，则组件会默认根据`type`展示不同的内容，否则会展示你指定的元素
 
 ```vdt
-import {Upload} from 'kpc/components/upload';
+import {Upload} from 'kpc';
 
 <Upload multiple
     type="drag"
@@ -23,8 +23,8 @@ import {Upload} from 'kpc/components/upload';
 ```
 
 ```ts
-import {Dialog} from 'kpc/components/dialog';
-import {bind} from 'kpc/components/utils';
+import {Dialog} from 'kpc';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;

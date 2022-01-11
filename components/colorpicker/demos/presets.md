@@ -6,7 +6,7 @@ order: 1
 通过`presets`定义组件的预选颜色，置为空数组时`[]`则不会展示预选颜色
 
 ```vdt
-import {Colorpicker} from 'kpc/components/colorpicker';
+import {Colorpicker} from 'kpc';
 
 <div>
     <Colorpicker v-model="color1"

@@ -6,8 +6,8 @@ order: 0.1
 添加`clickable`属性，即可实现点击【已完成】的步骤快速切换到相应步骤的功能
 
 ```vdt
-import {Steps, Step} from 'kpc/components/steps';
-import {Button} from 'kpc/components/button';
+import {Steps, Step} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
     <Steps v-model="index" clickable>
@@ -30,7 +30,7 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     index: number

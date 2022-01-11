@@ -7,7 +7,7 @@ order: 0
 深色背景下)
 
 ```vdt
-import {Card} from 'kpc/components/card';
+import {Card} from 'kpc';
 
 <div>
     <Card title="用户信息">

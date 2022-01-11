@@ -7,7 +7,7 @@ order: 5
 指定`label`，以便组件知道筛选的内容，当然你也可以通过`filter`指定过滤函数。
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <Select v-model="day" filterable>
     <Option v-for={this.get('data')} value={$value.value} label={$value.label}>

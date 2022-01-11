@@ -8,7 +8,7 @@ order: 0
 > `to`属性支持`vue-router`或者`react-router` `push`方法参数用法
 
 ```vdt
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Breadcrumb, BreadcrumbItem} from 'kpc';
 
 <Breadcrumb>
     <BreadcrumbItem to="#/">item 1</BreadcrumbItem>

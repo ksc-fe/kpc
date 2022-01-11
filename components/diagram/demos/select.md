@@ -7,7 +7,7 @@ order: 4
 数组的形式传给事件回调函数，如果图形添加了`data`属性，则我们可以通过图形对象获取到该数据`shape.data`
 
 ```vdt
-import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc/components/diagram';
+import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc';
 
 const loop = (children, parent, disabled) => {
     const ret = [];
@@ -112,8 +112,8 @@ export default class extends Component {
     </Diagram>
 </template>
 <script>
-import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc/components/diagram';
-import Message from 'kpc/components/message';
+import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc';
+import Message from 'kpc';
 
 export default {
     components: {

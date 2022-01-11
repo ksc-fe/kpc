@@ -6,7 +6,7 @@ order: 1
 不指定`title`属性和相关的扩展点，则不会展示头部
 
 ```vdt
-import {Card} from 'kpc/components/card';
+import {Card} from 'kpc';
 
 <div>
     <Card>

@@ -14,10 +14,10 @@ order: 0
 > 布局组件采用`flex`实现，请注意[浏览器兼容性](https://caniuse.com/#search=flex)，IE需要10及以上
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Icon} from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Layout, Header, Aside, Body, Footer} from 'kpc';
+import {Menu, MenuItem} from 'kpc';
+import {Icon} from 'kpc';
+import {Breadcrumb, BreadcrumbItem} from 'kpc';
 
 <Layout class="layout">
     <Header class="header">

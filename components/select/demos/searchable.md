@@ -9,7 +9,7 @@ order: 10
 同样我们可以通过`values / value`扩展点定义展示的选择结果
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" searchable>

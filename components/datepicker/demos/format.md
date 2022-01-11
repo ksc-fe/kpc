@@ -17,7 +17,7 @@ order: 3.1
 > 属性也可以作用于`maxDate` `minDate`属性
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <div>

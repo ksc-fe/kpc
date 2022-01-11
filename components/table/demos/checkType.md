@@ -6,7 +6,7 @@ order: 3
 通过`checkType`设置行选择类型，`checkbox`多选(默认) / `radio`单选 / `none`不可选
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
     <Table data={this.get('data1')} ref="__checkbox">

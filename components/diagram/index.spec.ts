@@ -5,7 +5,7 @@ import {
     DFlowLayout, DTreeLayout, DOrganicLayout, DCircleLayout,
     DPartitionLayout, DStackLayout, DDocument, DParallelogram,
     DHexagon, DCallout,
-} from 'kpc/components/diagram';
+} from 'kpc';
 import {Button} from '../button';
 import {mount, unmount, dispatchEvent, wait} from 'test/utils';
 import LayoutDemo from '~/components/diagram/demos/layout';

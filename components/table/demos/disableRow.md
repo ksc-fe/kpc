@@ -11,7 +11,7 @@ order: 9
 > 禁用的行会添加`k-disabled`样式名
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <Table 
     data={[{a: '1'}, {a: '2'}, {a: '3'}, {a: '4'}, {a: '5'}]}

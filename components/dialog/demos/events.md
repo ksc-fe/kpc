@@ -7,8 +7,8 @@ order: 2
 此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用`ok`和`cancel`属性，详见异步关闭。
 
 ```vdt
-import {Button} from 'kpc/components/button';
-import {Dialog} from 'kpc/components/dialog';
+import {Button} from 'kpc';
+import {Dialog} from 'kpc';
 
 <div>
     <Button ev-click={this.set.bind(this, 'show', true)}
@@ -22,7 +22,7 @@ import {Dialog} from 'kpc/components/dialog';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
+import {Message} from 'kpc';
 
 export default class extends Component {
     static template = template;

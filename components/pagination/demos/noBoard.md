@@ -6,7 +6,7 @@ order: 1.1
 添加`noBorder`属性，可以展示无边框的样式效果
 
 ```vdt
-import {Pagination} from 'kpc/components/pagination';
+import {Pagination} from 'kpc';
 
 <div>
     <Pagination noBorder total={200} size="large" />

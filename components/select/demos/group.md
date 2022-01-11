@@ -7,7 +7,7 @@ order: 6
 `OptionGroup`支持`label`扩展点，用来定义复杂的分组标签展示
 
 ```vdt
-import {Select, Option, OptionGroup} from 'kpc/components/select';
+import {Select, Option, OptionGroup} from 'kpc';
 
 <div>
     <Select v-model="day" filterable>

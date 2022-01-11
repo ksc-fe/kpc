@@ -51,7 +51,7 @@ import {Select, Table, TableColumn, Input, Button, Icon} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     values: DataItem[]

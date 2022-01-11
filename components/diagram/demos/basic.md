@@ -5,7 +5,7 @@ order: 0
 
 > `Diagram`及所有子组件，由于基于`mxGraph`这个庞大的库，所以没有放入索引文件`index.js`，你只能通过如下方式引入
 >
-> `import {Diagram, DRectangle} from 'kpc/components/diagram';`
+> `import {Diagram, DRectangle} from 'kpc';`
 >
 > 而不能直接通过`kpc`引入
 >
@@ -34,7 +34,7 @@ order: 0
 3. 布局组件下面只能嵌套图形组件，否则组件会抛出错误；
 
 ```vdt
-import {Diagram, DTreeLayout, DRectangle, DCircle, DDiamond, DLine} from 'kpc/components/diagram';
+import {Diagram, DTreeLayout, DRectangle, DCircle, DDiamond, DLine} from 'kpc';
 
 <Diagram>
     <DTreeLayout type="vertical">

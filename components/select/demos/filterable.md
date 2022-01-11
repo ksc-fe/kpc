@@ -7,7 +7,7 @@ order: 4
 `filter`属性来自定义筛选函数
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" filterable>

@@ -7,7 +7,7 @@ order: 5
 组件会自动禁用该项的选择。例如：`format='YYYY-MM-DD HH:mm'`，则表示只选择“时分”
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker type="datetime" v-model="datetime1" clearable />

@@ -8,8 +8,8 @@ order: 5.1
 > 存在`value`扩展点时，不能指定`filterable`来筛选
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
-import {Icon} from 'kpc/components/icon';
+import {Select, Option} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <div class="item">

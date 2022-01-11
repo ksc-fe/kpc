@@ -10,7 +10,7 @@ order: 14
 > 帮助该列来确定固定的位置 
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 const data = [
     {name: 'John'},

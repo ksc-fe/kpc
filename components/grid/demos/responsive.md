@@ -11,7 +11,7 @@ order: 6
 > 组件将变为未定义状态，其中宽度将变为`100%`
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
     <h4>指定每一个断点Col所占的栅格数</h4>

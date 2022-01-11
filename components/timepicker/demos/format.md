@@ -13,7 +13,7 @@ order: 4
 > 属性也可以作用于`max` `min`属性
 
 ```vdt
-import {Timepicker} from 'kpc/components/timepicker';
+import {Timepicker} from 'kpc';
 
 <div>
     <Timepicker 

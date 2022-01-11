@@ -15,7 +15,7 @@ order: 0
 你可以通过`expandedKeys`指定哪些节点展开，当你展开子节点时，需要指定父节点也展开
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
 <Tree
     data={[

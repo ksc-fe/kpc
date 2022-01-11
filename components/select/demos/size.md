@@ -6,7 +6,7 @@ order: 7
 `size`指定尺寸：`large` `default` `small` `mini`
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" size="large">

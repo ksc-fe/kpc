@@ -7,7 +7,7 @@ order: 1.1
 隐藏前面的`Icon`
 
 ```vdt
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {ButtonGroup, Button} from 'kpc';
 
 <ButtonGroup>
     <Button v-for={['info', 'error', 'warning', 'success']}
@@ -17,7 +17,7 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
+import {Message} from 'kpc';
 
 export default class extends Component {
     static template = template;

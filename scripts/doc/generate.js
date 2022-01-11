@@ -10,8 +10,8 @@ const NUMS = os.cpus().length;
 // const NUMS = 2;
 
 // const globExp = './@(docs|components)/**/*.md';
-const globExp = resolvePath('./@(docs|components)/**/*.md');
-// const globExp = resolvePath('./@(docs|components)/tooltip/demos/position.md');
+// const globExp = resolvePath('./@(docs|components)/**/*.md');
+const globExp = resolvePath('./@(docs|components)/card/**/*.md');
 
 function prepare() {
     return new Promise(resolve => {

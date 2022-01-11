@@ -6,9 +6,9 @@ order: 1
 通过`theme`属性可以指定主题：`dark` `light`，默认`dark`
 
 ```vdt
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Icon} from 'kpc/components/icon';
+import {ButtonGroup, Button} from 'kpc';
+import {Menu, MenuItem} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <ButtonGroup checkType="radio" v-model="theme">

@@ -7,7 +7,7 @@ order: 1
 如果间隔为`0`则不自动切换
 
 ```vdt
-import {Carousel, CarouselItem} from 'kpc/components/carousel';
+import {Carousel, CarouselItem} from 'kpc';
 
 <Carousel autoplay>
     <CarouselItem>1</CarouselItem>

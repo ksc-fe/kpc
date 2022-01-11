@@ -12,7 +12,7 @@ order: 7
 > 对象，需要调用`event.persist()`方法 https://reactjs.org/docs/events.html#event-pooling
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
 
 <Dropdown trigger="contextmenu">
     <div class="contextmenu-area">

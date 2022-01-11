@@ -9,8 +9,8 @@ order: 5
 所有子元素将居中显示，并且不会自动撑开父容器宽高
 
 ```vdt
-import {Diagram, DTreeLayout, DRectangle, DLine} from 'kpc/components/diagram';
-import {Select, Option} from 'kpc/components/select';
+import {Diagram, DTreeLayout, DRectangle, DLine} from 'kpc';
+import {Select, Option} from 'kpc';
 
 const cities = this.get('cities');
 

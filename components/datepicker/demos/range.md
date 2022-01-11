@@ -6,7 +6,7 @@ order: 6
 给组件添加`range`属性，可以选择日期范围
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker range v-model="date" clearable />

@@ -10,8 +10,8 @@ order: 1
 选中的叶子节点
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
-import {Button} from 'kpc/components/button';
+import {Tree} from 'kpc';
+import {Button} from 'kpc';
 
 const data = this.get('data');
 
@@ -35,7 +35,7 @@ const data = this.get('data');
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;

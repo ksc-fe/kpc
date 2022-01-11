@@ -9,7 +9,7 @@ order: 5
 > 当给`Button`指定`href`属性时，则它会强制渲染成`a`标签
 
 ```vdt
-import {Button} from 'kpc/components/button';
+import {Button} from 'kpc';
 
 <div>
     <Button tagName="div" type="primary">div元素按钮</Button>

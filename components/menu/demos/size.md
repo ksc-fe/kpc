@@ -6,10 +6,10 @@ order: 4
 通过`size`属性，可以定义菜单的尺寸：`large` `default` `small`
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Switch} from 'kpc/components/switch';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Menu, MenuItem} from 'kpc';
+import {Switch} from 'kpc';
+import {ButtonGroup, Button} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <Switch on="收起" off="展开" v-model="isCollapse" width="60" trueValue={true} falseValue={false}/>

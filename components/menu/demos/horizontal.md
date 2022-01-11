@@ -6,9 +6,9 @@ order: 3
 通过`type`属性，可以定义菜单垂直或者水平排列：`vertical` `horizontal`，默认`vertical`
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Switch} from 'kpc/components/switch';
-import {Icon} from 'kpc/components/icon';
+import {Menu, MenuItem} from 'kpc';
+import {Switch} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <Menu theme={this.get('theme')} type="horizontal">

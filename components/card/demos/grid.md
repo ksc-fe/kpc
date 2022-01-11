@@ -7,8 +7,7 @@ order: 3
 另外你可以通过`center`属性来指定该栏内容是否居中展示
 
 ```vdt
-import {Card, CardColumn} from 'kpc/components/card';
-import {Icon} from 'kpc/components/icon';
+import {Card, CardColumn, Icon} from 'kpc';
 
 <div>
     <Card>

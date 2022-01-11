@@ -10,7 +10,7 @@ order: 2
 起止位置为图形周长上的某个点，需要通过`exit`（起始位置）和`entry`（终止位置）来指定
 
 ```vdt
-import {Diagram, DLine, DRectangle, DStackLayout} from 'kpc/components/diagram';
+import {Diagram, DLine, DRectangle, DStackLayout} from 'kpc';
 import {Form, FormItem, Button, ButtonGroup, Slider, Checkbox} from 'kpc';
 
 const keys = ['A', 'B', 'C'];

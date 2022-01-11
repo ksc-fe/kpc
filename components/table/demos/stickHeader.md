@@ -11,7 +11,7 @@ order: 11
 > 表头吸顶后会`fixed`，此时`document.body`不要出现横向滚动条，否则横向滚动后，表格体位置变了而表头位置不会变
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <Table data={[
     {name: 'Javey', sex: 'male'},

@@ -9,7 +9,7 @@ order: 6
 > `tooltip`扩展点和`Tooltip`组件的`content`扩展点行为一样，如果你传入空的内容，则不会展示气泡
 
 ```vdt
-import {Slider} from 'kpc/components/slider';
+import {Slider} from 'kpc';
 
 <div>
     <Slider v-model="value1" min={50} max={500} isShowTooltip />

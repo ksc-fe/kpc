@@ -54,7 +54,7 @@ export default class extends BaseDialog<Props> {
 ```
 
 ```vdt
-import {Button} from 'kpc/components/button';
+import {Button} from 'kpc';
 
 <Button type="primary"
     ev-click={this.showDialog}

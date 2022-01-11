@@ -9,8 +9,8 @@ order: 0.2
 > `width`优先级高于`size`
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
-import {Dialog} from 'kpc/components/dialog';
+import {Button, ButtonGroup} from 'kpc';
+import {Dialog} from 'kpc';
 
 <div>
     <ButtonGroup>

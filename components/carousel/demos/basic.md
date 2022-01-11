@@ -7,7 +7,7 @@ order: 0
 取值为`$0` `$1`的索引形式，你也可以通过`value`指定任意值
 
 ```vdt
-import {Carousel, CarouselItem} from 'kpc/components/carousel';
+import {Carousel, CarouselItem} from 'kpc';
 
 <Carousel>
     <CarouselItem>1</CarouselItem>

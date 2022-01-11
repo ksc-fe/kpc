@@ -9,7 +9,7 @@ order: 11
 2. 当只有一个`Option`并且用户已经选择了该`Option`时
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select autoDisableArrow>

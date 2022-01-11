@@ -12,7 +12,7 @@ sidebar: doc
 > 组件提供了两个全局配置，用来自定义元素的修正逻辑。例如：本文档网站的配置如下
 > ```js
 > // @code
-> import {configure} from 'kpc/components/utils';
+> import {configure} from 'kpc';
 >
 > configure({
 >     onDialogOpen(scrollbarWidth) {

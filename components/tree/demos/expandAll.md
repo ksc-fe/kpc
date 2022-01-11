@@ -8,7 +8,7 @@ order: 7
 > 仅限首次渲染`Tree`时生效，后续添加节点不会默认展开
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
 <Tree
     defaultExpandAll

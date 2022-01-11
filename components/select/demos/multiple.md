@@ -6,7 +6,7 @@ order: 3
 指定`multiple`支持多选
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" multiple>

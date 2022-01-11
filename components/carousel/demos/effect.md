@@ -6,7 +6,7 @@ order: 1
 组件目前支持两种切换动画：`slide`（默认），`fade`
 
 ```vdt
-import {Carousel, CarouselItem} from 'kpc/components/carousel';
+import {Carousel, CarouselItem} from 'kpc';
 
 <Carousel effect="fade">
     <CarouselItem>1</CarouselItem>

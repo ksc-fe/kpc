@@ -14,7 +14,7 @@ import {
     DImage, DText, DDiamond, DParallelogram,
     DHexagon, DTriangle, DCylinder, DCloud,
     DDocument, DCallout,
-} from 'kpc/components/diagram';
+} from 'kpc';
 import {Button, ButtonGroup} from 'kpc';
 
 const states = this.get('states');

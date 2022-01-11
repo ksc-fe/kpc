@@ -6,7 +6,7 @@ order: 2
 给`Tab`添加`disabled`属性，可以禁用该项选择
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs v-model="tab">

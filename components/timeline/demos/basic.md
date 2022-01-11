@@ -6,7 +6,7 @@ order: 0
 使用`Timeline`嵌套`TimelineItem`即可实现基础的时间轴
 
 ```vdt
-import {Timeline, TimelineItem} from 'kpc/components/timeline';
+import {Timeline, TimelineItem} from 'kpc';
 
 <Timeline>
     <TimelineItem>

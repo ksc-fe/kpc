@@ -9,7 +9,7 @@ order: 1
 > 该扩展点有个别名`default`，所以Vue下也可以不用指定`slot`的名称
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 const data = [{a: '虚拟DOM', b: '获取到了item.b', c: {c1: 'item.c.c1'}}];
 
@@ -82,7 +82,7 @@ data() {
 
 ```jsx
 import React from 'react';
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 import './index.styl';
 
 export default class Demo extends React.Component {

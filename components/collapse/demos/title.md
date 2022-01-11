@@ -6,7 +6,7 @@ order: 2
 使用`title`扩展点，可以定义复杂的标题内容
 
 ```vdt
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc';
 
 <Collapse v-model="value">
     <CollapseItem>

@@ -8,8 +8,8 @@ order: 2
 > 切换主题会引入相应的css文件，所以它是全局生效的，并不能对单个实例引用不同主题
 
 ```vdt
-import {Code} from 'kpc/components/code';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Code} from 'kpc';
+import {ButtonGroup, Button} from 'kpc';
 
 <div>
     主题：<ButtonGroup v-model="theme" checkType="radio">

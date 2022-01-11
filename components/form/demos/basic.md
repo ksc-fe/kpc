@@ -32,15 +32,15 @@ order: 0
 另外，验证失败时，可以通过`Form`的`getFirstInvalidFormItem()`方法来获取第一条出错的`FormItem`
 
 ```vdt
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import {Checkbox} from 'kpc/components/checkbox';
-import {Radio} from 'kpc/components/radio';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Switch} from 'kpc/components/switch';
-import {Slider} from 'kpc/components/slider';
-import {Datepicker} from 'kpc/components/datepicker';
+import {Form, FormItem} from 'kpc';
+import {Input} from 'kpc';
+import {Select, Option} from 'kpc';
+import {Checkbox} from 'kpc';
+import {Radio} from 'kpc';
+import {ButtonGroup, Button} from 'kpc';
+import {Switch} from 'kpc';
+import {Slider} from 'kpc';
+import {Datepicker} from 'kpc';
 
 <Form ev-submit={this.submit} ref="form" labelWidth="200">
     <FormItem label="Input" value={this.get('model.input')} rules={{required: true}}>

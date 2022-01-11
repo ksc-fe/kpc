@@ -5,7 +5,7 @@ order: 3
 
 
 ```vdt
-import {Colorpicker} from 'kpc/components/colorpicker';
+import {Colorpicker} from 'kpc';
 
 <Colorpicker v-model="color" disabled />
 ```

@@ -8,7 +8,7 @@ order: 3
 2. `url` 文件对应的url地址
 
 ```vdt
-import {Upload} from 'kpc/components/upload';
+import {Upload} from 'kpc';
 
 <Upload multiple
     action="//fakestoreapi.com/products"

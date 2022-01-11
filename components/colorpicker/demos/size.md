@@ -6,7 +6,7 @@ order: 2
 通过`size`指定尺寸：`large` `default` `small` `mini`
 
 ```vdt
-import {Colorpicker} from 'kpc/components/colorpicker';
+import {Colorpicker} from 'kpc';
 
 <div>
     <Colorpicker v-for={['large', 'default', 'small', 'mini']}

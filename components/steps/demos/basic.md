@@ -6,8 +6,8 @@ order: 0
 `Steps`嵌套`Step`即可实现步骤条，用`v-model`双向绑定当前指向哪一步，索引从`0`开始
 
 ```vdt
-import {Steps, Step} from 'kpc/components/steps';
-import {Button} from 'kpc/components/button';
+import {Steps, Step} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
     <Steps v-model="index">
@@ -30,7 +30,7 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     index: number

@@ -6,7 +6,7 @@ order: 6
 `Tabs`添加`vertical`属性。
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs v-model="tab" vertical>

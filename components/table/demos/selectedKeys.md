@@ -8,7 +8,7 @@ order: 5
 抛出`$change:selectedKeys`事件，我们可以通过`getSelectedData`来获取高亮行的数据
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
     <Table data={this.get('data')} 
@@ -37,7 +37,7 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;

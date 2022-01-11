@@ -6,7 +6,7 @@ order: 1
 添加`range`属性，支持时间范围选择
 
 ```vdt
-import {Timepicker} from 'kpc/components/timepicker';
+import {Timepicker} from 'kpc';
 
 <div>
     <Timepicker v-model="time" range clearable />

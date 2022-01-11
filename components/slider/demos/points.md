@@ -7,7 +7,7 @@ order: 4
 需要展示间隔点。
 
 ```vdt
-import {Slider} from 'kpc/components/slider';
+import {Slider} from 'kpc';
 
 <div>
     <Slider value={45} step={5} points isShowInput={false}/>

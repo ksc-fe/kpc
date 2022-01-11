@@ -9,7 +9,7 @@ order: 1
 > 如果屏幕宽度达到下一级的响应式条件，但是又没有找到对应的间距定义时，组件会沿用上一级尺寸的间距定义
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
     <Row gutter="16"> 

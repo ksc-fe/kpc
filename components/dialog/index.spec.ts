@@ -195,14 +195,12 @@ describe('Dialog', () => {
         dispatchEvent(element.firstChild as HTMLElement, 'click');
         await wait();
         const dialog = getElement('.k-dialog')!;
-        console.log(dialog.style.top);
         const top = Math.round(parseFloat(dialog.style.top));
         const header = getElement('.k-dialog-header')!;
         dispatchEvent(header, 'mousedown', {which: 1, clientY: 0});
         dispatchEvent(document, 'mousemove', {clientY: -1});
         dispatchEvent(document, 'mouseup');
         await wait();
-        console.log(dialog.style.top);
         expect(dialog.style.top).to.eql(`${top - 1}px`);
     });
 

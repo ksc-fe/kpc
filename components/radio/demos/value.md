@@ -8,7 +8,7 @@ order: 2
 > 和`Checkbox`一样，判定选中状态时，当值为对象比较的是引用地址
 
 ```vdt
-import {Radio} from 'kpc/components/radio';
+import {Radio} from 'kpc';
 
 <div>
     <Radio v-model="value1">默认值：{ JSON.stringify(this.get('value1')) }</Radio>

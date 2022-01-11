@@ -18,7 +18,7 @@ import {Button, Dialog, Select, Option} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 export default class extends Component<{show: boolean}> {
     static template = template;

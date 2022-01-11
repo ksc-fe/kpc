@@ -9,7 +9,7 @@ order: 7
 你也可以直接添加`stripe`属性，使相邻行展示不同的背景色
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
     <Table

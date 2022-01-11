@@ -11,7 +11,7 @@ order: 0.1
 组件内置了一些快捷方式，可以直接使用，如本例所示
 
 ```vdt
-import {Datepicker, shortcuts} from 'kpc/components/datepicker';
+import {Datepicker, shortcuts} from 'kpc';
 
 <div>
     <Datepicker v-model="date" shortcuts={[

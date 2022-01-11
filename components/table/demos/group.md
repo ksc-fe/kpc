@@ -14,7 +14,7 @@ order: 18
 > `group`改变时，你应该同步更新当前属性值(`sort`也一样)
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div class='tables'>
     <Table data={this.get('data')} 

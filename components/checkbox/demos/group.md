@@ -8,7 +8,7 @@ order: 1
 > 此时必须初始化绑定的属性为数组，否则`Checkbox`将类似`radio`一样只能单选
 
 ```vdt
-import {Checkbox} from 'kpc/components/checkbox';
+import {Checkbox} from 'kpc';
 
 <div>
     <Checkbox name="languages" trueValue="Javascript" v-model="languages">Javascript</Checkbox>

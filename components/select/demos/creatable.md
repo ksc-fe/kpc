@@ -6,7 +6,7 @@ order: 8
 同时指定`filterable`和`creatable`支持筛选到不存在的条目时，创建新的选项供选择
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" filterable creatable style="margin-right: 10px">

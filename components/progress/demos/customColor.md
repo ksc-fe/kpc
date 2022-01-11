@@ -31,7 +31,7 @@ import {Progress, Button, ButtonGroup} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     color: string

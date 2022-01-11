@@ -1,13 +1,13 @@
 const {indent, dedent, getDefaults} = require('./utils');
 
 module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
-    const obj = parse(vdt, js, reactMethods, hasStylus);
+    const properties = {state: false, interface: false, refs: false};
+    const obj = parse(vdt, js, reactMethods, hasStylus, properties);
     const result = [
         `import React from 'react';`,
         obj.head.trim(),
         jsHead,
-        '',
-        'export default class Demo extends React.Component {',
+        `export default class Demo extends React.Component${properties.interface ? '<{}, Props>' : ''} {`,
         obj.js,
         '}',
     ].filter(item => item !== undefined);
@@ -16,7 +16,7 @@ module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
 }
 
 const importRegExp = /import \{?([\s\S]*?)\}? from .*/g
-function parse(vdt, js, reactMethods, hasStylus) {
+function parse(vdt, js, reactMethods, hasStylus, properties) {
     const components = [];
     let head = '';
     let template = vdt.replace(importRegExp, (match, name) => {
@@ -25,7 +25,6 @@ function parse(vdt, js, reactMethods, hasStylus) {
         return '';
     });
 
-    const properties = {state: false};
     let methodsObj = {};
 
     template = template.replace(/class=/g, 'className=');
@@ -43,7 +42,7 @@ function parse(vdt, js, reactMethods, hasStylus) {
     template = parseVIf(template);
     template = parseProperty(template, properties, methodsObj);
     template = parseVModel(template, properties, methodsObj);
-    template = parseRef(template);
+    template = parseRef(template, properties);
     template = parseInterpolation(template, properties);
     template = parseBlock(template);
     template = parseStyle(template);
@@ -71,10 +70,13 @@ function parse(vdt, js, reactMethods, hasStylus) {
             if (line.startsWith('export default')) {
                 js = lines.slice(i).join('\n');
                 break;
+            } else if (line.startsWith('interface')) {
+                properties.interface = true;
             }
+
             _head.push(line);
         }
-        
+
         head += _head.join('\n');
 
         const defaults = getDefaults(js);
@@ -91,59 +93,37 @@ function parse(vdt, js, reactMethods, hasStylus) {
         Object.assign(methodsObj, methods);
     }
 
-    if ((properties.state || Object.keys(methodsObj).length) && !methodsObj.$constructor) {
-        let constructor = [
-            'constructor(props) {',
-            '    super(props);',
-        ];
-        if (properties.state) {
-            constructor.push(...indent(`this.state = ${JSON.stringify(properties.state, null, 4)};`));
-        }
-        const methods = Object.keys(methodsObj);
-        if (methods.length) {
-            methods.forEach(name => {
-                if (['getChildContext', 'undefined'].indexOf(name) > -1) return;
-                name = name.replace('async ', '');
-                constructor.push(`    this.${name} = this.${name}.bind(this);`);
-            });
-        }
-        
-        scripts = [
-            ...scripts,
-            ...indent([
-                ...constructor,
-                '}'
-            ]),
-            '',
-        ];
-    } else if (methodsObj.$constructor) {
-        scripts = [
-            ...scripts,
-            ...indent(methodsObj.$constructor)
-        ];
+    if (properties.state) {
+        scripts.push(
+            ...indent(`public state = ${JSON.stringify(properties.state, null, 4)};\n`),
+        );
+    }
+
+    if (properties.refs) {
+        scripts.push(
+            ...properties.refs.map(ref => {
+                return `    private ${ref}: any;\n`;
+            })
+        );
+    }
+
+    if (methodsObj.$constructor) {
+        scripts.push(...indent(methodsObj.$constructor));
         delete methodsObj.$constructor;
     }
 
     const methods = Object.values(methodsObj);
     if (methods.length) {
-        scripts = [
-            ...scripts,
-            ...indent(methods.join('\n')),
-        ];
+        scripts.push(...indent(methods.join('\n')));
     }
 
     let render = [
         'render() {',
     ];
     if (templateJsCode) {
-        render = [
-            ...render,
-            indent(templateJsCode),
-            '',
-        ];
+        render.push(indent(templateJsCode), '');
     }
-    scripts = [
-        ...scripts,
+    scripts.push(
         ...indent([
             ...render,
             '    return (',
@@ -151,7 +131,7 @@ function parse(vdt, js, reactMethods, hasStylus) {
             '    )',
             '}',
         ]),
-    ];
+    );
 
     return {
         head,
@@ -164,7 +144,7 @@ function parseProperty(template, properties, methods) {
     // specical for Editable validate string
     template = template.replace('"\\d+"', '"\\\\d+"');
     return template.replace(delimitersRegExp, (match, name, value) => {
-        value = parseGet(value, properties); 
+        value = parseGet(value, properties);
         if (name.substring(0, 3) === 'ev-') {
             if (name === 'ev-contextmenu') {
                 name = 'onContextMenu';
@@ -197,7 +177,7 @@ function parseProperty(template, properties, methods) {
                     '',
                 ].join('\n');
                 return `value={this.state.descriptions[key]} on$change-value={this._onChangeValue.bind(this, key)}`;
-            } 
+            }
             return `value={this.state[${value}]} on$change-value={(c, v) => this.setState({[${value}]: v})}`;
         } else if (name === 'className') {
             methods._classNames = [
@@ -277,8 +257,10 @@ function parseVModel(template, properties, methods) {
     return results.join('\n');
 }
 
-function parseRef(template) {
+function parseRef(template, properties) {
     return template.replace(/ ref=['"]([^"']+)["']/g, (match, ref) => {
+        if (!properties.refs) properties.refs = [];
+        properties.refs.push(ref);
         return ` ref={i => this.${ref} = i}`;
     });
 }
@@ -350,7 +332,7 @@ function parseBlock(template) {
                     const componentCode = results[0].trimRight();
                     const lastChar = componentCode[componentCode.length - 1];
                     const indentCount = compponentSpaces.length / 4 + 1;
-    
+
                     results[0] = [
                         (lastChar === '>' ? componentCode.slice(0, -1) : componentCode),
                         indent([
@@ -440,10 +422,10 @@ function parseVFor(template) {
             if (
                 code.substring(0, spaces.length + 2) === `${spaces}</` ||
                 code === `${spaces}/>` ||
-                newLineRegExp.test(code) && 
-                    (lines[index + 1] === undefined || 
-                    (tmp = lines[index + 1]) && 
-                    (tmp = tmp.match(/^(\s*)\S/)) && 
+                newLineRegExp.test(code) &&
+                    (lines[index + 1] === undefined ||
+                    (tmp = lines[index + 1]) &&
+                    (tmp = tmp.match(/^(\s*)\S/)) &&
                     tmp[1].length <= spaces.length)
             ) {
                 const indentCount = spaces.length / 4;
@@ -527,8 +509,8 @@ function parseVIf(template) {
             const {spaces, value} = getMeta(vIfRegExp);
             const codes = [];
             stacks.push({
-                spaces, 
-                isVIf: true, 
+                spaces,
+                isVIf: true,
                 codes,
                 vElseIf: [],
                 value,
@@ -542,9 +524,9 @@ function parseVIf(template) {
             const codes = [];
             last.hasEnd = false;
             last.vElseIf.push({
-                spaces, 
-                isVElseIf: true, 
-                value, 
+                spaces,
+                isVElseIf: true,
+                value,
                 codes,
             });
             last.codesStacks.push(codes);
@@ -570,7 +552,7 @@ function parseVIf(template) {
                     results.splice(-backLines, backLines);
                 }
                 index = last.endIndex;
-                
+
                 const stack = stacks.pop();
                 const {spaces, value} = stack;
                 const results = [`${spaces}{${value} ?`];
@@ -622,15 +604,15 @@ function parseVIf(template) {
     return indent(results.filter(line => line !== undefined), 0).join('\n');
 }
 
-const interpolationRegExp = /\{\{\s+(.*?)\s+\}\}/g
+const interpolationRegExp = /\{\s*(.*?)\s*\}/g
 function parseInterpolation(template, properties) {
     return template.replace(interpolationRegExp, (match, value) => {
-        value = parseGet(value, properties); 
+        value = parseGet(value, properties);
         return `{${value}}`;
     });
 }
 
-const getRegExp = /self\.get\((['"](.*?)['"])?\)/g;
+const getRegExp = /this\.get\((['"](.*?)['"])?\)/g;
 function parseGet(template, properties = {}) {
     return template.replace(new RegExp(getRegExp, 'g'), (match, key, name) => {
         if (key) {
@@ -650,24 +632,30 @@ function getMethods(js) {
     const methods = {};
     let start = 0;
     let name;
-    const lines = js.split('\n');
+    const lines = js.split('\n').slice();
     let spaces = '';
+    let isBound = false;
     lines.forEach((code, index) => {
-        const matches = code.match(/^(\s*)(?:(?:get|set|async) )?(\w+)\(.*?\) {$/);
+        if (code.startsWith('export default')) return;
+        if (/@bind/.test(code)) {
+            isBound = true;
+            return;
+        }
+        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)\(.*?\) {$/);
         if (matches) {
             start = index;
             name = matches[2];
             spaces = matches[1];
         } else if (code === `${spaces}}`) {
-            if (['defaults', '_init'].indexOf(name) > -1) return;
-            if (name === 'constructor') {
-                name = '$constructor';
-            }
+            if (['defaults'].indexOf(name) > -1) return;
+            // if (name === 'constructor') {
+                // name = '$constructor';
+            // }
             let codes = lines.slice(start, index + 1);
             if (spaces) {
                 codes = dedent(codes);
             }
-            methods[name] = codes.join('\n')
+            methods[name] = (isBound ? '@bind\n' : '') + codes.join('\n')
                 .replace(
                     /this\.get\((['"])?([\d\w]+)["']?\)/g,
                     (nouse, quote, name) => {
@@ -677,7 +665,7 @@ function getMethods(js) {
                             return `this.state.[${name}]`;
                         }
                     }
-                ) 
+                )
                 .replace(
                     /this\.set\((['"])?([\d\w]+)["']?,\s*(.*?)\)/g,
                     (nouse, quote, name, value, semiconlon) => {
@@ -698,6 +686,8 @@ function getMethods(js) {
                     /this\.refs/g,
                     'this'
                 ) + '\n';
+
+            isBound = false;
         }
     });
     return methods;

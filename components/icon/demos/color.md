@@ -7,7 +7,7 @@ order: 1
 可以自定义`color`值；给组件添加`hoverable`属性，可以展示`hover`效果
 
 ```vdt
-import {Icon} from 'kpc/components/icon';
+import {Icon} from 'kpc';
 
 <div>
     <Icon 

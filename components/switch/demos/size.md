@@ -6,7 +6,7 @@ order: 3
 通过`size`可以定义尺寸: `large` `default` `small` `mini`
 
 ```vdt
-import {Switch} from 'kpc/components/switch';
+import {Switch} from 'kpc';
 
 <div>
     large: <Switch size="large" />

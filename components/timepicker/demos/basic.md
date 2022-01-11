@@ -7,7 +7,7 @@ order: 0
 通过`min` `max`属性可以指定最小最大可选时间
 
 ```vdt
-import {Timepicker} from 'kpc/components/timepicker';
+import {Timepicker} from 'kpc';
 
 <div>
     <Timepicker v-model="time" min="01:34:56" max="15:02:59" />

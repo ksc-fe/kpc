@@ -6,8 +6,8 @@ order: 2
 给表格定义复杂的表头内容，只需要通过`TableColumn` `title`扩展点传入自定义内容即可
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-import {Tooltip} from 'kpc/components/tooltip';
+import {Table, TableColumn} from 'kpc';
+import {Tooltip} from 'kpc';
 
 const data = [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}];
 

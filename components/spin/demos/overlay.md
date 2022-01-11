@@ -7,8 +7,8 @@ order: 1
 会居中展示，`center`属性在该情况下将被忽略
 
 ```vdt
-import {Spin} from 'kpc/components/spin';
-import {Table, TableColumn} from 'kpc/components/table';
+import {Spin} from 'kpc';
+import {Table, TableColumn} from 'kpc';
 
 <div class="wrapper">
     <Table data={this.get('data')}>

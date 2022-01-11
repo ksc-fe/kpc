@@ -11,7 +11,7 @@ order: 4
 > 当`formatter / parser`和`prefix / suffix`同时定义时，前者的优先级更高
 
 ```vdt
-import {Spinner} from 'kpc/components/spinner';
+import {Spinner} from 'kpc';
 
 <div>
     <Spinner vertical 

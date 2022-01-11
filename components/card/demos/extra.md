@@ -6,7 +6,7 @@ order: 2
 使用`extra`扩展点，可以在头部右侧追加内容
 
 ```vdt
-import {Card} from 'kpc/components/card';
+import {Card} from 'kpc';
 
 <div>
     <Card title="用户信息">

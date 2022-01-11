@@ -11,7 +11,7 @@ order: 0
 、滚动进行选择
 
 ```vdt
-import {ScrollSelect} from 'kpc/components/scrollSelect';
+import {ScrollSelect} from 'kpc';
 
 <ScrollSelect
     data={this.get('data')}

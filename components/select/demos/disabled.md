@@ -6,7 +6,7 @@ order: 1
 给`Select`添加`disabled`禁用整个选择框选择；给`Option`添加`disabled`禁用该项选择
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" disabled>

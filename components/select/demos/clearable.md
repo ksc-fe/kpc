@@ -6,7 +6,7 @@ order: 2
 指定`clearable`展示清空按钮
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" clearable style="margin-right: 10px">

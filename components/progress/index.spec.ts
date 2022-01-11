@@ -1,7 +1,7 @@
 import ChildrenDemo from '~/components/progress/demos/children';
 import CustomColorDemo from '~/components/progress/demos/customColor';
 import {mount, unmount, wait} from 'test/utils';
-import {Progress} from 'kpc/components/progress';
+import {Progress} from 'kpc';
 import Intact, { Component } from 'intact';
 
 describe('Progress', () => {

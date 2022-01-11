@@ -6,7 +6,7 @@ order: 3
 通过`border`可以定义边框样式: `solid`(默认) `dashed` `none`
 
 ```vdt
-import {Tag} from 'kpc/components/tag';
+import {Tag} from 'kpc';
 
 <div>
     <div v-for={['dashed', 'none']} v-for-value="border" class="row">

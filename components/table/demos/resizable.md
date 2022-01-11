@@ -10,7 +10,7 @@ order: 20
 > `widthStoreKey`必须在当前域名下唯一
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 const {data} = this.get();
 

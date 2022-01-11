@@ -7,7 +7,7 @@ order: 5
 其中`no-border-card`适用于具有背景色的场景
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs type="card" v-model="tab">

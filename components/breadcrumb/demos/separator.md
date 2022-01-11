@@ -6,8 +6,7 @@ order: 1
 通过`separator`属性或者`separator`扩展点可以指定分隔符
 
 ```vdt
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
-import {Icon} from 'kpc/components/icon';
+import {Breadcrumb, BreadcrumbItem, Icon} from 'kpc';
 
 <Breadcrumb>
     <b:separator>

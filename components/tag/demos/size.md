@@ -6,7 +6,7 @@ order: 2
 通过`size`可以定义尺寸: `default` `large` `small` `mini`
 
 ```vdt
-import {Tag} from 'kpc/components/tag';
+import {Tag} from 'kpc';
 
 <div>
     <Tag v-for={['large', 'default', 'small', 'mini']}
@@ -33,7 +33,7 @@ import {Tag} from 'kpc/components/tag';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     tags: string[]

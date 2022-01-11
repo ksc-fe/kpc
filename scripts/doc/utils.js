@@ -2,7 +2,7 @@ exports.dedent = function dedent(scripts, number = 1) {
     if (typeof scripts === 'string') {
         scripts = scripts.split('\n');
     }
-    
+
     const ret = [];
     for (let i = 0; i < scripts.length; i++) {
         const item = scripts[i];
@@ -35,14 +35,15 @@ exports.indent = function indent(scripts, number = 1) {
     return ret;
 }
 
-const defaultsRegExp = /\n\s{4}defaults\(\) \{\n\s+return ([^;]*?);?\n\s{4}\}/;
+const defaultsRegExp = /\n\s{4}static defaults\(\) \{\n\s+return ([^;]*?);?\n\s{4}\}/;
 exports.getDefaults = function getDefaults(js) {
     const matches = js.match(defaultsRegExp);
     if (matches) {
+        // return matches[1];
         let data;
         try {
             eval(`data = ${matches[1]}`);
         } catch (e) {}
-        return data; 
+        return data;
     }
 }

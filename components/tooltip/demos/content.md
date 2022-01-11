@@ -6,9 +6,9 @@ order: 3
 使用`content`扩展点，可以自定义复杂的提示内容
 
 ```vdt
-import {Tooltip} from 'kpc/components/tooltip';
-import {Slider} from 'kpc/components/slider';
-import {Button} from 'kpc/components/button';
+import {Tooltip} from 'kpc';
+import {Slider} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
     <Tooltip trigger="click">

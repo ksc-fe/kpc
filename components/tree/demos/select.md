@@ -6,8 +6,8 @@ order: 1.1
 添加`multiple`属性，可以支持节点多选，通过`getCheckedData()`方法，可以获取选中的节点数据
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
-import {Button} from 'kpc/components/button';
+import {Tree} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
     <Button ev-click={this.getSelectedData}>get selected data</Button>
@@ -28,7 +28,7 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;

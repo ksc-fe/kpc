@@ -13,7 +13,7 @@ order: 0
 > 如需渲染包裹元素，请做如下配置
 > ```js
 > // @code 
-> import {configure} from 'kpc/components/utils';
+> import {configure} from 'kpc';
 >
 > // 该配置全局生效
 > configure({useWrapper: true});
@@ -21,9 +21,9 @@ order: 0
 
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
+import {Button} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <Dropdown>

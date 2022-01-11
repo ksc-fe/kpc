@@ -7,7 +7,7 @@ import CreatableDemo from '~/components/select/demos/creatable';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import {Tooltip} from '../tooltip';
 import {Component} from 'intact';
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 import SearchableDemo from '~/components/select/demos/searchable';
 
 describe('Select', () => {

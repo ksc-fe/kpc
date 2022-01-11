@@ -16,9 +16,9 @@ order: 1
 > 参数传给验证方法。当然我们还可以指定任意值，只要不是`false`就行，因为`false`代表不验证
 
 ```vdt
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import {Form, FormItem} from 'kpc';
+import {Input} from 'kpc';
+import {Button} from 'kpc';
 
 <Form>
     <FormItem label="描述">
@@ -67,8 +67,8 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {Form} from 'kpc/components/form';
-import {bind} from 'kpc/components/utils';
+import {Form} from 'kpc';
+import {bind} from 'kpc';
 
 // 添加全局规则
 Form.addMethod('letter', (value, param) => {
@@ -112,7 +112,7 @@ add() {
 
 ```angular
 // import {Component} from '@angular/core';
-// import {Form} from 'kpc/components/form';
+// import {Form} from 'kpc';
 // 
 // // 添加全局规则
 // Form.addMethod('letter', (value, item, param) => {
