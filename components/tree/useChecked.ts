@@ -4,7 +4,7 @@ import {useReceive} from '../../hooks/useReceive';
 import type {Tree} from './';
 import type {Node, DataItem} from './useNodes';
 
-export function useChecked(getNodes: () => Node[]) {
+export function useChecked(getNodes: () => Node<Key>[]) {
     const instance = useInstance() as Tree;
     let checkedKeys: Set<Key> = new Set();
 
@@ -17,8 +17,8 @@ export function useChecked(getNodes: () => Node[]) {
     function refresh() {
         const nodes = getNodes(); 
         const uncorrelated = instance.get('uncorrelated');
-        const needRecheckNodes: Set<Node> = new Set();
-        const loop = (nodes: Node[]) => {
+        const needRecheckNodes: Set<Node<Key>> = new Set();
+        const loop = (nodes: Node<Key>[]) => {
             nodes.forEach(node => {
                 const {key, parent} = node;
 
@@ -55,7 +55,7 @@ export function useChecked(getNodes: () => Node[]) {
         });
     }
 
-    function updateCheckedKeys(node: Node) {
+    function updateCheckedKeys(node: Node<Key>) {
         if (node.checked) {
             checkedKeys.add(node.key);
         } else {
@@ -63,7 +63,7 @@ export function useChecked(getNodes: () => Node[]) {
         }
     }
 
-    function toggle(node: Node) {
+    function toggle(node: Node<Key>) {
         const uncorrelated = instance.get('uncorrelated');
         updateDownward(node, !node.checked);
         updateUpward(node.parent);
@@ -71,7 +71,7 @@ export function useChecked(getNodes: () => Node[]) {
         instance.set('checkedKeys', Array.from(checkedKeys));
     }
 
-    function updateDownward(node: Node, checked: boolean) {
+    function updateDownward(node: Node<Key>, checked: boolean) {
         node.checked = checked;
         node.indeterminate = false;
 
@@ -90,7 +90,7 @@ export function useChecked(getNodes: () => Node[]) {
         }
     }
 
-    function updateUpward(node: Node | null) {
+    function updateUpward(node: Node<Key> | null) {
         if (instance.get('uncorrelated') || !node) return;
 
         let checkedCount = 0;
@@ -120,8 +120,8 @@ export function useChecked(getNodes: () => Node[]) {
     }
 
     function getCheckedData(leafOnly: boolean) {
-        const data: DataItem[] = [];
-        const loop = (nodes: Node[]) => {
+        const data: DataItem<Key>[] = [];
+        const loop = (nodes: Node<Key>[]) => {
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
                 if (node.checked && (!leafOnly || !node.children)) {

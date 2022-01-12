@@ -2,7 +2,7 @@ import {useInstance, Key, onBeforeMount} from 'intact';
 import type {Tree} from './';
 import type {Node} from './useNodes';
 
-export function useExpanded(getNodes: () => Node[]) {
+export function useExpanded(getNodes: () => Node<Key>[]) {
     const instance = useInstance() as Tree;
     let expandedKeys: Set<Key> = new Set();
 
@@ -16,7 +16,7 @@ export function useExpanded(getNodes: () => Node[]) {
         }
     });
 
-    async function toggle(node: Node) {
+    async function toggle(node: Node<Key>) {
         const {load} = instance.get();
         const key = node.key;
         const expanded = expandedKeys.has(key); 
@@ -39,7 +39,7 @@ export function useExpanded(getNodes: () => Node[]) {
 
     function expandAll() {
         const {load} = instance.get();
-        const loop = (nodes: Node[]) => {
+        const loop = (nodes: Node<Key>[]) => {
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
                 if (!load || node.loaded) {

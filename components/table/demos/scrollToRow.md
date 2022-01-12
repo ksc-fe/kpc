@@ -39,7 +39,7 @@ import {Button, ButtonGroup} from 'kpc';
 ```
 
 ```ts
-import {range, bind} from 'kpc';
+import {range, bind} from 'kpc/components/utils';
 
 const data =  range(1, 100).map(item => {
     return {

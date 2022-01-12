@@ -57,7 +57,12 @@ function handleFiles(files, dest) {
         };
         const {html, codes, catalogs} = parseMarkdown(fileObj, contents);
 
-        await generateFiles(fileObj, codes, html, metadata, catalogs);
+        try {
+            await generateFiles(fileObj, codes, html, metadata, catalogs);
+        } catch (e) {
+            console.error(file);
+            console.error(e);
+        }
 
         return {metadata, file: fileObj, catalogs};
     }));

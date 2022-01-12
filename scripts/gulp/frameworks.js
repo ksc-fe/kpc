@@ -26,7 +26,7 @@ function generateCopy(type) {
     const name = `copy@${type}`;
     tasks.push(name);
     gulp.task(name, () => {
-        let ret = gulp.src(['./es/**/*'], {base: './es', root})
+        let ret = gulp.src(['./es/@(components|hooks|i18n|styles)/**/*', './es/index.d.ts'], {base: './es', root})
             .pipe(tap(file => {
                 const extname = path.extname(file.path);
                 if (extname === '.js' || extname === '.ts') {

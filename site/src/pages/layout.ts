@@ -1,5 +1,6 @@
 import {Component, createRef} from 'intact';
 import template from './layout.vdt';
+import '../styles/highlight.styl';
 
 export interface LayoutProps {
     version: string

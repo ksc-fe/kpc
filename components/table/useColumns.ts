@@ -24,6 +24,7 @@ export function useColumns() {
         maxRows = 0;
         maxCols = 0;
         cols = [];
+        currentVNode = null;
 
         loopColumn(children, null, 0);
     }

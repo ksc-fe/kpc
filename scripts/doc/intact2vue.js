@@ -130,32 +130,54 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
         }
         head += _head.join('\n');
 
-        const {defaults, methods} = parseJS(js, vueData);
-        if (defaults) {
-            properties = {...properties, ...defaults};
+        let {defaults, methods} = parseJS(js, vueData);
+        let data;
+        try {
+            eval(`data = ${defaults}`);
+        } catch (e) {
         }
+        if (data) {
+            for (let key in properties) {
+                if (key in data) {
+                    delete properties[key];
+                }
+            }
+        }
+        const extra = Object.keys(properties).map(key => {
+            return indent(`${key}: null,`);
+        });
+        if (defaults) {
+            const lines = defaults.split('\n');
+            const lastLine = lines.pop();
+            lines.push(...extra, lastLine);
+            defaults = lines.join('\n');
+        } else if (extra.length) {
+            defaults = [`{`, ...extra, `}`].join('\n');
+        }
+
         methodsObj = methods;
         js.replace(importRegExp, (match, name) => {
             if (components.indexOf(name) > -1) return;
             if (name === 'Intact' || name === 'template') return;
             head += match + '\n'
         });
+
+        if (defaults && !vueData) {
+            scripts = [
+                ...scripts,
+                ...indent([
+                    `data() {`,
+                    ...indent(`return ${defaults};`),
+                    `},`
+                ]),
+            ];
+        }
     }
     if (vueMethods) {
         const methods = getMethods(vueMethods);
         Object.assign(methodsObj, methods);
     }
     methods = [...Object.values(methods), ...Object.values(methodsObj)];
-    if (Object.keys(properties).length && !vueData) {
-        scripts = [
-            ...scripts,
-            ...indent([
-                `data() {`,
-                ...indent(`return ${JSON.stringify(properties, null, 4)}`),
-                `},`
-            ]),
-        ];
-    }
     if (vueData) {
         scripts = [
             ...scripts,
@@ -191,7 +213,7 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
 
 function parseJS(js, vueData) {
     return {
-        defaults: vueData ? {} : getDefaults(js),
+        defaults: vueData ? null : getDefaults(js),
         methods: getMethods(js),
     };
 }
@@ -276,14 +298,13 @@ function getMethods(js) {
     let spaces = '';
     let isBound = false;
     lines.forEach((code, index) => {
-        if (code.startsWith('export default')) return;
         const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)\(.*?\) {$/);
         if (matches) {
             start = index;
             name = matches[2];
             spaces = matches[1];
         } else if (code === `${spaces}}`) {
-            if (name === 'defaults') return;
+            if (!name || name === 'defaults') return;
             let codes = lines.slice(start, index + 1);
             if (spaces) {
                 codes = dedent(codes);

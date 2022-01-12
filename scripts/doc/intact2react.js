@@ -6,6 +6,7 @@ module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
     const result = [
         `import React from 'react';`,
         obj.head.trim(),
+        '',
         jsHead,
         `export default class Demo extends React.Component${properties.interface ? '<{}, Props>' : ''} {`,
         obj.js,
@@ -95,7 +96,8 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
 
     if (properties.state) {
         scripts.push(
-            ...indent(`public state = ${JSON.stringify(properties.state, null, 4)};\n`),
+            // ...indent(`public state = ${JSON.stringify(properties.state, null, 4)};\n`),
+            ...indent(`public state = ${properties.state};\n`),
         );
     }
 
@@ -164,7 +166,7 @@ function parseProperty(template, properties, methods) {
                 }
             }
         } else if (name === 'v-model') {
-            properties.state = {};
+            properties.state = '{}';
             if (value === "`descriptions[${key}]`") {
                 methods._onChangeValue = [
                     `_onChangeValue(index, c, v) {`,
@@ -222,13 +224,13 @@ function parseVModel(template, properties, methods) {
             if (!nouse) {
                 name = 'value';
             }
-            properties.state = {};
+            properties.state = '{}';
             const matches = value.match(/(\w+)\.(.*)/);
             let valueStr = `${name}={this.state.${value}}`;
-            let changeStr = `on$change-${name}={(c, ${value}) => this.setState({${value}})}`;
+            let changeStr = `onChange${lowerFirst(name)}={${value} => this.setState({${value}})}`;
             if (matches) {
                 methods._onChange = [
-                    `_onChange(key, c, value) {`,
+                    `_onChange(key: string, value: any) {`,
                     ...indent([
                         `this.setState({`,
                         ...indent([
@@ -243,7 +245,7 @@ function parseVModel(template, properties, methods) {
                     '',
                 ].join('\n')
                 valueStr = `value={this.state.${value}}`;
-                changeStr = `on$change-value={this._onChange.bind(this, '${matches[2]}')}`;
+                changeStr = `onChangeValue={this._onChange.bind(this, '${matches[2]}')}`;
             }
             valueStr = `${spaces}${start}${valueStr}`;
             changeStr = `${changeStr}${isEnd || ''}`;
@@ -292,7 +294,7 @@ function parseBlock(template) {
             const {spaces: compponentSpaces, blocks} = last;
             const lastBlock = blocks[blocks.length - 1];
             const spaces = compponentSpaces + '    ';
-            const startBlockRegExp = new RegExp(`^${spaces}<b:([\\w\\-]+)(\\s+params="(.+)")?\\s*(/)?>`);
+            const startBlockRegExp = new RegExp(`^${spaces}<b:([\\w\\-]+)(\\s+args="(.+)")?\\s*(/)?>`);
             const matches = code.match(startBlockRegExp);
             if (matches) {
                 resultsStacks.push(results);
@@ -338,19 +340,20 @@ function parseBlock(template) {
                         indent([
                             blocks.map(block => {
                                 const codes = block.codes;
+                                const name = lowerFirst(block.name);
                                 if (!block.params) {
                                     if (codes.length === 1) {
-                                        return indent(`b-${block.name}={<React.Fragment>${block.codes[0].trim()}</React.Fragment>}`, indentCount);
+                                        return indent(`slot${name}={<React.Fragment>${block.codes[0].trim()}</React.Fragment>}`, indentCount);
                                     } else {
                                         return [
-                                            indent(`b-${block.name}={<React.Fragment>`, indentCount),
+                                            indent(`slot${name}={<React.Fragment>`, indentCount),
                                             block.codes,
                                             indent(`</React.Fragment>}`, indentCount)
                                         ];
                                     }
                                 } else {
                                     return [
-                                        indent(`b-${block.name}={(${block.params}) => {`, indentCount),
+                                        indent(`slot${name}={(${block.params}) => {`, indentCount),
                                         indent(`    return <React.Fragment>`, indentCount),
                                         indent(block.codes, 1),
                                         indent(`    </React.Fragment>`, indentCount),
@@ -390,7 +393,7 @@ function parseBlock(template) {
     return results.filter(line => line !== undefined).join('\n');
 }
 
-const vForRegExp = / v-for=\{\{\s+([\s\S]*?)\s+\}\}/;
+const vForRegExp = / v-for=\{\s*([\s\S]*?)\s*\}/;
 function parseVFor(template) {
     const lines = template.split('\n');
     const stacks = [];
@@ -430,7 +433,7 @@ function parseVFor(template) {
             ) {
                 const indentCount = spaces.length / 4;
                 results[last.start] = indent([
-                    `{${last.value}.map((value, key) => {`,
+                    `{${last.value}.map(($value, $key) => {`,
                     `    return (`,
                 ], indentCount);
                 results[last.start].push(`        ${startCode.replace(vForRegExp, '')}`);
@@ -457,8 +460,8 @@ function parseVFor(template) {
     return indent(results.filter(line => line !== undefined), 0).join('\n');
 }
 
-const vIfRegExp = / v-if=\{\{\s+([\s\S]*?)\s+\}\}/;
-const vElseIfRegExp = / v-else-if=\{\{\s+([\s\S]*?)\s+\}\}/;
+const vIfRegExp = / v-if=\{\s*([\s\S]*?)\s*\}/;
+const vElseIfRegExp = / v-else-if=\{\s*([\s\S]*?)\s*\}/;
 const vElseRegExp = / v-else/;
 function parseVIf(template) {
     const lines = template.split('\n');
@@ -616,7 +619,7 @@ const getRegExp = /this\.get\((['"](.*?)['"])?\)/g;
 function parseGet(template, properties = {}) {
     return template.replace(new RegExp(getRegExp, 'g'), (match, key, name) => {
         if (key) {
-            properties.state = {};
+            properties.state = '{}';
             return `this.state.${name}`;
         } else {
             return `this.state`;
@@ -636,7 +639,7 @@ function getMethods(js) {
     let spaces = '';
     let isBound = false;
     lines.forEach((code, index) => {
-        if (code.startsWith('export default')) return;
+        // if (code.startsWith('export default')) return;
         if (/@bind/.test(code)) {
             isBound = true;
             return;
@@ -647,7 +650,7 @@ function getMethods(js) {
             name = matches[2];
             spaces = matches[1];
         } else if (code === `${spaces}}`) {
-            if (['defaults'].indexOf(name) > -1) return;
+            if (!name || ['defaults'].indexOf(name) > -1) return;
             // if (name === 'constructor') {
                 // name = '$constructor';
             // }
@@ -714,6 +717,10 @@ function upperCase(word) {
         });
     }
     return _cache[word];
+}
+
+function lowerFirst(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 function indentOneLine(code, count = 1) {

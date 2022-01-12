@@ -1,4 +1,4 @@
-/* import {Tabs, Tab} from 'kpc/components/tabs'; */
+import {Tabs, Tab} from 'kpc/components/tabs';
 /* import {Tooltip} from 'kpc/components/tooltip'; */
 
 <div class="contents">
@@ -18,6 +18,22 @@
                     <div class="desc" innerHTML={Demo.data.contents}></div>
                 </div>
                 <div class="example-code">
+                    <Tabs v-model={`file${Demo.data.index}`}>
+                        <Tab v-for={Demo.data.highlighted} 
+                            v-for-value="{file, language}"
+                            value={file}
+                            v-if={language !== 'vdt' && language !== 'ts'}
+                        >
+                            <span class="filetype">{(() => { 
+                                switch (file) {
+                                    case 'index.styl': return 'index.styl (Stylus)';
+                                    case 'index.vue': return 'Vue';
+                                    case 'next.vue': return 'Vue Next';
+                                    case 'react.tsx': return 'React';
+                                }
+                            })()}</span>
+                        </Tab>
+                    </Tabs>
                     <div class="code" innerHTML={(Demo.data.highlighted.find(item => {
                         const file = item.file ? item.file : `index.${item.language}`;
                         return file === this.get('file' + Demo.data.index);

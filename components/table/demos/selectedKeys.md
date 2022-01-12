@@ -37,7 +37,7 @@ import {Table, TableColumn} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc';
+import {bind, Table} from 'kpc';
 
 export default class extends Component {
     static template = template;
@@ -50,7 +50,7 @@ export default class extends Component {
 
     @bind
     onSelectedKeysChanged() {
-        console.log(this.refs.__test1.getSelectedData());
+        console.log((this.refs.__test1 as Table).getSelectedData());
     }
 }
 ```

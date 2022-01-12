@@ -26,7 +26,7 @@ import {Table, TableColumn, Button, ButtonGroup} from 'kpc';
 ```
 
 ```ts
-import {range, bind} from 'kpc';
+import {range, bind} from 'kpc/components/utils';
 import {Message, TableRowKey} from 'kpc';
 
 interface Props {

@@ -8,7 +8,7 @@
  * https://ksc-fe.github.io/kpc/
  */
 export { _$, localize } from './i18n';
-export {bind} from './components/utils';
+export { bind } from './components/utils';
 export * from './components/affix';
 export * from './components/badge';
 export * from './components/breadcrumb';

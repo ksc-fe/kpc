@@ -19,16 +19,14 @@ import {Upload} from 'kpc';
 />
 ```
 
-```js
-import {Dialog} from 'kpc';
-import {Message} from 'kpc';
-import {bind} from 'kpc';
+```ts
+import {Dialog, Message, bind, RequestError} from 'kpc';
 
 export default class extends Component {
     static template = template;
 
     @bind
-    _onError(err) {
+    _onError(err: Error | RequestError) {
         Message.error(err.message);
     }
 }

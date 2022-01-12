@@ -23,15 +23,14 @@ import {Upload} from 'kpc';
 ```
 
 ```ts
-import {Dialog} from 'kpc';
-import {bind} from 'kpc';
+import {Dialog, bind, UploadFile} from 'kpc';
 
 export default class extends Component {
     static template = template;
 
     @bind
-    beforeRemove(file: File) {
-        return new Promise((resolve, reject) => {
+    beforeRemove(file: UploadFile) {
+        return new Promise<boolean>((resolve, reject) => {
             Dialog.confirm({content: `确认删除文件：${file.name}?`}).then(
                 () => resolve(true),
                 () => resolve(false),

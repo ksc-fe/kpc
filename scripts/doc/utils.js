@@ -9,7 +9,11 @@ exports.dedent = function dedent(scripts, number = 1) {
         if (Array.isArray(item)) {
             ret.push.apply(ret, dedent(item, number));
         } else if (item !== undefined) {
-            ret.push(item.substring(4 * number));
+            if (item.substring(0, 4 * number) === ' '.repeat(4 * number)) {
+                ret.push(item.substring(4 * number));
+            } else {
+                ret.push(item);
+            }
         }
     }
 
@@ -39,11 +43,11 @@ const defaultsRegExp = /\n\s{4}static defaults\(\) \{\n\s+return ([^;]*?);?\n\s{
 exports.getDefaults = function getDefaults(js) {
     const matches = js.match(defaultsRegExp);
     if (matches) {
-        // return matches[1];
-        let data;
-        try {
-            eval(`data = ${matches[1]}`);
-        } catch (e) {}
-        return data;
+        return exports.dedent(matches[1], 2).join('\n');
+        // let data;
+        // try {
+            // eval(`data = ${matches[1]}`);
+        // } catch (e) {}
+        // return data;
     }
 }
