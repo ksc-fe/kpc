@@ -13,7 +13,8 @@ export function useItems() {
     function handleChildren() {
         const {children, value} = instance.get();
         items = [];
-        
+        itemsWithCloned = [];
+
         let index: number = 0;
         let valueExist = false;
         eachChildren(children, vNode => {
