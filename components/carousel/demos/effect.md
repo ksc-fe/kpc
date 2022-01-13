@@ -8,7 +8,7 @@ order: 1
 ```vdt
 import {Carousel, CarouselItem} from 'kpc';
 
-<Carousel effect="fade">
+<Carousel effect={this.get('effect')}>
     <CarouselItem>1</CarouselItem>
     <CarouselItem>2</CarouselItem>
     <CarouselItem>3</CarouselItem>
@@ -23,4 +23,18 @@ import {Carousel, CarouselItem} from 'kpc';
     line-height 300px
     text-align center
     font-size 30px
+```
+
+```ts
+interface Props {
+    effect: string
+}
+
+export default class extends Component<Props> {
+    static template = template;
+
+    static defaults = () => ({
+        effect: 'fade'
+    });
+}
 ```

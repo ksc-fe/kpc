@@ -9,7 +9,7 @@ order: 1
 ```vdt
 import {Carousel, CarouselItem} from 'kpc';
 
-<Carousel autoplay>
+<Carousel autoplay={this.get('time')}>
     <CarouselItem>1</CarouselItem>
     <CarouselItem>2</CarouselItem>
     <CarouselItem>3</CarouselItem>
@@ -24,4 +24,18 @@ import {Carousel, CarouselItem} from 'kpc';
     line-height 300px
     text-align center
     font-size 30px
+```
+
+```ts
+interface Props {
+    time: number | boolean
+}
+
+export default class extends Component<Props> {
+    static template = template;
+
+    static defaults = () => ({
+        time: 2000
+    });
+}
 ```
