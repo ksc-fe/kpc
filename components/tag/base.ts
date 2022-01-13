@@ -2,10 +2,10 @@ import {Component, TypeDefs} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
-import type {Events} from '../types';
+import type {Events, Colors} from '../types';
 
 export interface TagProps {
-    type?: Sizes
+    type?: Colors 
     closable?: boolean
     closed?: boolean
     disabled?: boolean

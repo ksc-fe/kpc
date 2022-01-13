@@ -26,8 +26,8 @@ import {Tree, Input} from 'kpc';
 import {Message, TreeDataItem, TreeNode} from 'kpc';
 
 interface Props {
-    data: TreeDataItem[]
-    expandedKeys: string[]
+    data?: TreeDataItem<string>[]
+    expandedKeys?: string[]
 }
 
 export default class extends Component<Props> {
@@ -92,23 +92,23 @@ export default class extends Component<Props> {
         };
     }
 
-    onDragEnd(data: TreeDataItem[]) {
+    onDragEnd(data: TreeDataItem<string>[]) {
         console.log(data);
     }
 
-    allowDrag(node: TreeNode) {
+    allowDrag(node: TreeNode<string>) {
         return node.key !== '1-1-1';
     }
 
-    allowDrop(node: TreeNode) {
+    allowDrop(node: TreeNode<string>) {
         return node.key !== '1-1-1';
     }
 
-    onDenyDrag(node: TreeNode) {
+    onDenyDrag(node: TreeNode<string>) {
         Message.error(`Cannot drag node: ${node.data.label}.`);
     }
 
-    onDenyDrop(node: TreeNode) {
+    onDenyDrop(node: TreeNode<string>) {
         Message.error(`Cannot drop to node: ${node.data.label}.`);
     }
 }

@@ -58,10 +58,17 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
             if (line.startsWith('import')) {
-                const matches = line.match(/import \{?(.*?)\}? from .*/);
+                const matches = line.match(/(import (?:type )?)\{?(.*?)\}? from (.*)/);
                 if (matches) {
-                    const names = matches[1].split(',').map(item => item.trim());
-                    if (names.find(name => components.indexOf(name) > -1)) continue;
+                    const variables = matches[2];
+                    const names = variables.split(',')
+                        .map(item => item.trim())
+                        .filter(name => {
+                            return components.indexOf(name) === -1;
+                        });
+                    if (!names.length) continue;
+
+                    line = `${matches[1]}{${names.join(', ')}} from ${matches[3]}`;
                     line = line.replace('kpc', 'kpc-react');
                 }
             } else if (!hasAdded && hasStylus) {
@@ -644,16 +651,23 @@ function getMethods(js) {
             isBound = true;
             return;
         }
-        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)\(.*?\) {$/);
+        const property = code.match(/(private|public) (\w+)(: | =)/);
+        if (property) {
+            methods[property[2]] = dedent(code) + '\n';
+            return;
+        }
+        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)(?:<.*>)?\(.*?\) {$/);
         if (matches) {
             start = index;
             name = matches[2];
             spaces = matches[1];
         } else if (code === `${spaces}}`) {
             if (!name || ['defaults'].indexOf(name) > -1) return;
-            // if (name === 'constructor') {
+            if (name === 'init') {
                 // name = '$constructor';
-            // }
+                name = 'componentDidMount';
+                lines[start] = lines[start].replace('init', name);
+            }
             let codes = lines.slice(start, index + 1);
             if (spaces) {
                 codes = dedent(codes);

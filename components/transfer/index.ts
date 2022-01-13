@@ -6,13 +6,22 @@ import {useFilter, Model} from './useFilter';
 import {useCheck, CheckedKeys} from './useCheck';
 import type {Events} from '../types';
 
-export interface TransferProps<T = TransferDataItem> {
+// type KeysOfType<T, U> = {
+    // [P in keyof T as T[P] extends U ? P : never]: T[P]
+// };
+
+export interface TransferProps<
+    K extends string = 'key',
+    L extends string = 'label',
+    T extends TransferDataItem<K, L> = TransferDataItem<K, L>,
+    V extends T[K] = T[K],
+> {
     data?: T[],
-    keyName?: keyof T,
-    labelName?: keyof T,
-    value?: Key[],
-    leftCheckedKeys?: Key[],
-    rightCheckedKeys?: Key[],
+    keyName?: K,
+    labelName?: L,
+    value?: V[],
+    leftCheckedKeys?: V[],
+    rightCheckedKeys?: V[],
     filterable?: boolean,
     filter?: (data: T, keywords: string) => boolean
     placeholder?: string,
@@ -24,9 +33,14 @@ export interface TransferProps<T = TransferDataItem> {
     enableRemove?: () => boolean,
 }
 
-export type TransferDataItem = {
-    label: Children
-    key: Key
+export type TransferDataItem<
+    A extends string = 'key',
+    B extends string = 'label',
+> = {
+    [K in A]: Key
+} & {
+    [K in B]?: Children
+} & {
     disabled?: boolean
 }
 
@@ -35,14 +49,14 @@ export interface TransferEvents {
     remove: []
 }
 
-export interface TransferBlocks<T> {
+export interface TransferBlocks<T, V> {
     header: Model
     filter: Model
     list: Model
-    label: [T, Key, Model]
+    label: [T, V, Model]
 }
 
-const typeDefs: Required<TypeDefs<TransferProps<any>>> = {
+const typeDefs: Required<TypeDefs<TransferProps>> = {
     data: Array,
     keyName: String,
     labelName: String,
@@ -60,7 +74,7 @@ const typeDefs: Required<TypeDefs<TransferProps<any>>> = {
     enableRemove: Function,
 };
 
-const defaults = (): Partial<TransferProps<any>> => ({
+const defaults = (): Partial<TransferProps> => ({
     data: [],
     keyName: 'key',
     labelName: 'label',
@@ -75,9 +89,14 @@ const defaults = (): Partial<TransferProps<any>> => ({
 const events: Events<TransferEvents> = {
     add: true,
     remove: true,
-}
+};
 
-export class Transfer<T = TransferDataItem> extends Component<TransferProps<T>, TransferEvents, TransferBlocks<T>> {
+export class Transfer<
+    K extends string = 'key',
+    L extends string = 'label',
+    T extends TransferDataItem<K, L> = TransferDataItem<K, L>,
+    V extends T[K] = T[K],
+> extends Component<TransferProps<K, L, T, V>, TransferEvents, TransferBlocks<T, V>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

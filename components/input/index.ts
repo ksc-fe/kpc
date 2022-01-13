@@ -19,9 +19,11 @@ interface InputHTMLAttributes extends CommonInputHTMLAttributes {
     wrap?: 'hard' | 'soft'
 }
 
-export interface InputProps extends InputHTMLAttributes {
+type Value = string | number
+
+export interface InputProps<V extends Value = Value> extends InputHTMLAttributes {
     type?: 'text' | 'textarea' 
-    value?: string | number
+    value?: V
     defaultValue?: string | number
     placeholder?: string
     readonly?: boolean
@@ -82,7 +84,7 @@ const events: Events<InputEvents> = {
     input: true,
 };
 
-export class Input extends Component<InputProps, InputEvents, InputBlocks> {
+export class Input<V extends Value = Value> extends Component<InputProps<V>, InputEvents, InputBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

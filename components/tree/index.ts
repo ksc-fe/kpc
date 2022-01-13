@@ -104,20 +104,20 @@ export class Tree<K extends Key = Key> extends Component<TreeProps<K>, TreeEvent
         return this.selected.getSelectedData();
     }
 
-    public expand(key: Key) {
+    public expand(key: K) {
         const expandedKeys = this.expanded.get();
         expandedKeys.add(key);
         this.set('expandedKeys', Array.from(expandedKeys) as K[]);
     }
 
-    public shrink(key: Key) {
+    public shrink(key: K) {
         const expandedKeys = this.expanded.get();
         expandedKeys.delete(key);
         this.set('expandedKeys', Array.from(expandedKeys) as K[]);
     }
 
     public getNodes() {
-        return this.nodes.getNodes();
+        return this.nodes.getNodes() as Node<K>[];
     }
 
     @bind

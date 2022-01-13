@@ -108,19 +108,22 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
             if (line.startsWith('import')) {
-                const matches = line.match(/import \{?(.*?)\}? from .*/);
-                const variables = matches[1];
-                // ignore bind, it is unnecessary in Vue
-                if (variables === 'bind') continue;
+                const matches = line.match(/(import (?:type )?)\{?(.*?)\}? from (.*)/);
+                if (matches) {
+                    const variables = matches[2];
+                    // ignore bind, it is unnecessary in Vue
+                    if (variables === 'bind') continue;
 
-                const names = variables.split(', ').map(item => {
-                    return item === 'Switch' ? 'KSwitch' : item;
-                }).filter(name => {
-                    return components.indexOf(name) === -1 && name !== 'bind';
-                });
-                if (!names.length) continue;
+                    const names = variables.split(', ').map(item => {
+                        return item === 'Switch' ? 'KSwitch' : item;
+                    }).filter(name => {
+                        return components.indexOf(name) === -1 && name !== 'bind';
+                    });
+                    if (!names.length) continue;
 
-                line = line.replace('kpc', 'kpc-vue');
+                    line = `${matches[1]}{${names.join(', ')}} from ${matches[3]}`;
+                    line = line.replace('kpc', 'kpc-vue');
+                }
             }
             if (line.startsWith('export default')) {
                 js = lines.slice(i).join('\n');

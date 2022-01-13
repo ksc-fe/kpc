@@ -27,10 +27,11 @@ import {Tree, Dropdown, DropdownMenu, DropdownItem} from 'kpc';
 ```
 
 ```ts
-import {bind, TreeDataItem, TreeNode} from 'kpc';
+import {bind, Tree, TreeDataItem, TreeNode} from 'kpc';
 
 interface Props {
-    data: TreeDataItem[]
+    data: TreeDataItem<string | number>[]
+    expandedKeys?: (string | number)[]
 }
 
 let uniqueId = 0;
@@ -85,7 +86,7 @@ export default class extends Component<Props> {
         };
     }
 
-    appendNode(data: TreeDataItem, node: TreeNode) {
+    appendNode(data: TreeDataItem<string | number>, node: TreeNode<string | number>) {
         const children = data.children || (data.children = []);
         children.push({
             label: 'Appended node',
@@ -93,10 +94,10 @@ export default class extends Component<Props> {
         });
         this.set('data', [...this.get('data')]);
         // expand the node
-        this.refs.tree.expand(node.key);
+        (this.refs.tree as Tree).expand(node.key);
     }
 
-    removeNode(data: TreeDataItem, node: TreeNode, index: number) {
+    removeNode(data: TreeDataItem<string | number>, node: TreeNode<string | number>, index: number) {
         const children = node.parent ? node.parent.data.children! : this.get('data');
         children.splice(index, 1);
         this.set('data', [...this.get('data')]);

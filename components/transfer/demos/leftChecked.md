@@ -45,16 +45,6 @@ data() {
 },
 ```
 
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data: data,
-        checked: [0, 2]
-    };
-}
-```
-
 ```angular-properties
 private data = data;
 private checked = [0, 2];

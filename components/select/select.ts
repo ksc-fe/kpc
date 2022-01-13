@@ -20,7 +20,7 @@ export interface SelectProps extends BaseSelectProps {
     creatable?: boolean
     labelMap?: Map<any, Children> 
     card?: boolean
-    autoDisableArrow: boolean
+    autoDisableArrow?: boolean
 }
 
 export interface SelectEvents extends BaseSelectEvents { }

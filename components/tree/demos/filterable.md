@@ -10,7 +10,9 @@ order: 5
 import {Tree, Input} from 'kpc';
 
 <div>
-    <Input v-model="keywords" placeholder="Please enter keywords to filter node."/>
+    <Input v-model="keywords"
+        placeholder="Please enter keywords to filter node."
+    />
     <Tree 
         data={[
             {
@@ -71,8 +73,8 @@ import {Tree, Input} from 'kpc';
 import {bind, TreeDataItem} from 'kpc';
 
 interface Props {
-    expandedKeys: string[]
-    keywords: string
+    expandedKeys?: string[]
+    keywords?: string
 }
 
 export default class extends Component<Props> {
@@ -81,11 +83,12 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             expandedKeys: ['2', '2-1'],
+            keywords: '',
         };
     }
 
     @bind
-    filter(data: TreeDataItem) {
+    filter(data: TreeDataItem<string>) {
         const keywords = this.get('keywords');
         if (!keywords) return true;
         return (data.label as string).toLowerCase().includes(keywords.trim().toLowerCase());

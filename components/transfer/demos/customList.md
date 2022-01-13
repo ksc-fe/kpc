@@ -93,17 +93,17 @@ export default class extends Component<Props> {
             ],
             checkedUsers: [],
             checkedRooms: [],
-        }
+        } as Props;
     }
 
     @bind
     enableAdd() {
-        return this.get('checkedUsers').length && this.get('checkedRooms').length === 1;
+        return !!this.get('checkedUsers').length && this.get('checkedRooms').length === 1;
     }
 
     @bind
     enableRemove() {
-        return this.get('checkedRooms').length;
+        return !!this.get('checkedRooms').length;
     }
 
     @bind
