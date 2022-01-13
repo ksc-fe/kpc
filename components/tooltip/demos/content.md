@@ -6,9 +6,7 @@ order: 3
 使用`content`扩展点，可以自定义复杂的提示内容
 
 ```vdt
-import {Tooltip} from 'kpc';
-import {Slider} from 'kpc';
-import {Button} from 'kpc';
+import {Tooltip, Slider, Button} from 'kpc';
 
 <div>
     <Tooltip trigger="click">
@@ -22,4 +20,15 @@ import {Button} from 'kpc';
         </b:content>
     </Tooltip>
 </div>
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            volume: 0
+        };
+    };
+}
 ```

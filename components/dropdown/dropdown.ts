@@ -23,6 +23,7 @@ import {usePosition, FeedbackCallback} from './usePosition';
 import type {Events} from '../types';
 
 export type Position = Options 
+export type PositionShorthand = 'left' | 'bottom' | 'right' | 'top'
 
 type DropdownChildren = [VNode, VNode];
 

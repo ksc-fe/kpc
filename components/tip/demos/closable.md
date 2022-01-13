@@ -14,7 +14,7 @@ order: 1
 import {Tip} from 'kpc';
 
 <div>
-    <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
+    <Tip v-for={this.get('types')}
         key={$value}
         type={$value}
         closable
@@ -29,4 +29,15 @@ import {Tip} from 'kpc';
 ```styl
 .k-tip
     margin-bottom 8px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            types: ['default', 'primary', 'success', 'warning', 'danger'] as const
+        };
+    }
+}
 ```

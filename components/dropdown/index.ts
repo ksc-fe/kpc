@@ -12,6 +12,8 @@ import {
 } from './menu';
 export * from './item';
 
+export type {Position as PositionOption, PositionShorthand} from './dropdown';
+
 export type {
     DropdownProps,
     DropdownEvents,

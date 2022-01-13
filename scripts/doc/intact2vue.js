@@ -245,7 +245,7 @@ function parseProperty(template, properties, methods) {
                 }
             }
         } else if (name === 'v-for') {
-            value = `(value, key) in ${value}`;
+            value = `($value, $key) in ${value}`;
         } else if (name === 'v-if' || name === 'v-else-if') {
             // do nothing
         } else if (name === 'v-model') {

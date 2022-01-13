@@ -12,8 +12,8 @@ order: 5
 import {Tooltip} from 'kpc';
 
 <div style={{position: 'relative'}}>
-    <Tooltip content="hello" always value={true} canHover 
-        container={dom => dom.parentElement}
+    <Tooltip content="hello" always value={true} 
+        container={this.container}
     >
         always show this tootip 
     </Tooltip>
@@ -22,4 +22,14 @@ import {Tooltip} from 'kpc';
         don't show if content is empty
     </Tooltip>
 </div>
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+
+    container(dom: Element) {
+        return dom.parentElement!; 
+    }
+}
 ```

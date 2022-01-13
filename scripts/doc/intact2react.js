@@ -234,14 +234,15 @@ function parseVModel(template, properties, methods) {
             properties.state = '{}';
             const matches = value.match(/(\w+)\.(.*)/);
             let valueStr = `${name}={this.state.${value}}`;
-            let changeStr = `onChange${lowerFirst(name)}={${value} => this.setState({${value}})}`;
+            let changeStr = `onChange${upperFirst(name)}={${value} => this.setState({${value}})}`;
             if (matches) {
-                methods._onChange = [
-                    `_onChange(key: string, value: any) {`,
+                const name = `onChange${upperFirst(matches[1])}`;
+                methods[name] = [
+                    `${name}(key: string, value: any) {`,
                     ...indent([
                         `this.setState({`,
                         ...indent([
-                            `model:{`,
+                            `${matches[1]}: {`,
                             `    ...this.state.${matches[1]},`,
                             `    [key]: value`,
                             `}`,
@@ -252,7 +253,7 @@ function parseVModel(template, properties, methods) {
                     '',
                 ].join('\n')
                 valueStr = `value={this.state.${value}}`;
-                changeStr = `onChangeValue={this._onChange.bind(this, '${matches[2]}')}`;
+                changeStr = `onChangeValue={this.${name}.bind(this, '${matches[2]}')}`;
             }
             valueStr = `${spaces}${start}${valueStr}`;
             changeStr = `${changeStr}${isEnd || ''}`;
@@ -347,7 +348,7 @@ function parseBlock(template) {
                         indent([
                             blocks.map(block => {
                                 const codes = block.codes;
-                                const name = lowerFirst(block.name);
+                                const name = upperFirst(block.name);
                                 if (!block.params) {
                                     if (codes.length === 1) {
                                         return indent(`slot${name}={<React.Fragment>${block.codes[0].trim()}</React.Fragment>}`, indentCount);
@@ -733,7 +734,7 @@ function upperCase(word) {
     return _cache[word];
 }
 
-function lowerFirst(word) {
+function upperFirst(word) {
     return word.charAt(0).toUpperCase() + word.slice(1);
 }
 

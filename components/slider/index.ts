@@ -23,7 +23,7 @@ export interface SliderProps {
     isShowInput?: boolean
     step?: number | StepObject | StepFunction
     points?: number[] | boolean
-    marks: Marks
+    marks?: Marks
     disabled?: boolean
     isShowTooltip?: boolean
     always?: boolean
