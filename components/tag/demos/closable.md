@@ -20,7 +20,7 @@ import {Tag} from 'kpc';
         closable
     >{$value}</Tag>
     <Tag disabled closable>disabled</Tag>
-    <Tag closable ev-close={e => e.preventDefault()}>prevent default</Tag>
+    <Tag closable ev-close={this.prevent}>prevent default</Tag>
 </div>
 ```
 
@@ -30,12 +30,22 @@ import {Tag} from 'kpc';
 ```
 
 ```ts
+import {TagProps} from 'kpc';
+
+interface Props {
+    tags: TagProps['type'][]
+}
+
 export default class extends Component {
     static template = template;
     static defaults() {
         return {
             tags: ['default', 'primary', 'success', 'warning', 'danger']
-        }
+        } as Props;
+    }
+
+    prevent(e: MouseEvent) {
+        e.preventDefault();
     }
 }
 ```

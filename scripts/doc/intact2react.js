@@ -402,6 +402,8 @@ function parseBlock(template) {
 }
 
 const vForRegExp = / v-for=\{\s*([\s\S]*?)\s*\}/;
+const vForValueRegExp = / v-for-value="(\w+)"/;
+const vForKeyRegExp = / v-for-key="(\w+)"/;
 function parseVFor(template) {
     const lines = template.split('\n');
     const stacks = [];
@@ -410,6 +412,17 @@ function parseVFor(template) {
         let code = lines[index];
         const matches = code.match(vForRegExp);
         if (matches) {
+            let $value = '$value';
+            let valueMatches = code.match(vForValueRegExp);
+            if (valueMatches) {
+                $value = valueMatches[1];
+            }
+            let $key = '$key';
+            let keyMatches = code.match(vForKeyRegExp);
+            if (keyMatches) {
+                $key = keyMatches[1];
+            }
+
             let backLines = 0;
             let _code = code;
             while (!/^\s*</.test(_code)) {
@@ -422,6 +435,8 @@ function parseVFor(template) {
             stacks.push({
                 start: index - backLines,
                 value: parseGet(matches[1]),
+                $value,
+                $key,
             });
         } else if (stacks.length) {
             const last = stacks[stacks.length - 1];
@@ -441,7 +456,7 @@ function parseVFor(template) {
             ) {
                 const indentCount = spaces.length / 4;
                 results[last.start] = indent([
-                    `{${last.value}.map(($value, $key) => {`,
+                    `{${last.value}.map((${last.$value}, ${last.$key}) => {`,
                     `    return (`,
                 ], indentCount);
                 results[last.start].push(`        ${startCode.replace(vForRegExp, '')}`);

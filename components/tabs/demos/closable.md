@@ -8,8 +8,7 @@ order: 6
 作为参数传给事件回调函数
 
 ```vdt
-import {Tabs, Tab} from 'kpc';
-import {Button, ButtonGroup} from 'kpc';
+import {Tabs, Tab, Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup v-model="size" checkType="radio">
@@ -22,7 +21,7 @@ import {Button, ButtonGroup} from 'kpc';
     <Tabs v-model="tab"
         closable={this.get('tabs').length > 1}
         ev-remove={this._remove}
-        v-for={['default', 'card', 'border-card', 'no-border-card']}
+        v-for={this.get('types')}
         type={$value}
         size={this.get('size')}
     >
@@ -43,15 +42,16 @@ import {Button, ButtonGroup} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc';
+import {bind, TabsProps} from 'kpc';
 
 interface Props {
     tab: number | null
-    tabs: Tab[]
-    size: string
+    tabs: TabItem[]
+    size: TabsProps['size'] 
+    types: TabsProps['type'][]
 }
 
-type Tab = {
+type TabItem = {
     value: number
     label: string
 }
@@ -69,7 +69,8 @@ export default class extends Component<Props> {
                 {value: 3, label: 'Tab 3'},
             ],
             size: 'large',
-        }
+            types: ['default', 'card', 'border-card', 'no-border-card']
+        } as Props;
     }
 
     @bind

@@ -27,3 +27,18 @@ import {Tabs, Tab} from 'kpc';
 .content
     margin 20px
 ```
+
+```ts
+interface Props {
+    tab: string | null
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            tab: null
+        } as Props;
+    }
+}
+```

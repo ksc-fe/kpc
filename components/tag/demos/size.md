@@ -9,14 +9,14 @@ order: 2
 import {Tag} from 'kpc';
 
 <div>
-    <Tag v-for={['large', 'default', 'small', 'mini']}
-        size={$value}
-    >{ $value }</Tag>
+    <Tag v-for={this.get('sizes')} size={$value}>
+        {$value}
+    </Tag>
     <br /><br />
-    <Tag v-for={[['large', 'primary'], ['default', 'warning'], ['small', 'success'], ['mini', 'danger']]}
-        size={$value[0]}
-        type={$value[1]}
-    >{ $value[0] }</Tag>
+    <Tag v-for={this.get('sizes')}
+        size={$value}
+        type={this.get('types')[$key]}
+    >{$value}</Tag>
     <br /><br />
     <Tag v-for={this.get('tags')}
         type="primary"
@@ -33,17 +33,24 @@ import {Tag} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc';
+import {bind, TagProps} from 'kpc';
 
 interface Props {
-    tags: string[]
+    tags: TagProps['size'][]
+    sizes: TagProps['size'][]
+    types: TagProps['type'][]
 }
 
 export default class extends Component<Props> {
     static template = template;
-    static defaults = () => ({
-        tags: ['large', 'default', 'small', 'mini']
-    });
+
+    static defaults() {
+        return {
+            sizes: ['large', 'default', 'small', 'mini'],
+            tags: ['large', 'default', 'small', 'mini'],
+            types: ['primary', 'warning', 'success', 'danger'],
+        } as Props;
+    };
 
     @bind
     onClose(index: number) {

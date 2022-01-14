@@ -11,7 +11,9 @@ order: 7
 import {Tabs, Tab} from 'kpc';
 
 <div>
-    <Tabs v-model="tab" beforeChange={this.beforeChange}>
+    <Tabs v-model="tab"
+        beforeChange={this.beforeChange}
+    >
         <Tab value="rulein">入站规则</Tab>
         <Tab value="ruleout">出站规则</Tab>
         <Tab value="relatedVM">关联云主机</Tab>
@@ -43,7 +45,7 @@ export default class extends Component {
     }
 
     beforeChange(value: string) {
-        return new Promise(resolve => {
+        return new Promise<boolean>(resolve => {
             Dialog.confirm({
                 content: `Are you sure to change to "${value}"`
             }).then(() => {
