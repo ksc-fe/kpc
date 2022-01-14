@@ -14,9 +14,9 @@ export interface TreeSelectProps<
     K extends Key = Key,
     Multipe extends boolean = boolean,
     Checkbox extends boolean = boolean,
-> extends BaseSelectProps {
-    value?: Multipe extends true ? K[] : K,
-    multiple?: Checkbox extends true ? true : Multipe,
+> extends BaseSelectProps<K, Multipe, Checkbox extends true ? K [] : K | null> {
+    // value?: Multipe extends true ? K[] : Checkbox extends true ? K[] :  K | null
+    // multiple?: Checkbox extends true ? true : Multipe,
     data?: TreeProps<K>['data']
     uncorrelated?: boolean
     load?: TreeProps<K>['load']
@@ -28,7 +28,7 @@ export interface TreeSelectProps<
 
 export interface TreeSelectEvents extends BaseSelectEvents { }
 
-export interface TreeSelectBlocks extends BaseSelectBlocks { }
+export interface TreeSelectBlocks<K> extends BaseSelectBlocks<K> { }
 
 const typeDefs: Required<TypeDefs<TreeSelectProps>> = {
     ...BaseSelect.typeDefs,
@@ -54,7 +54,7 @@ export class TreeSelect<
 > extends BaseSelect<
     TreeSelectProps<K, Multipe, Checkbox>,
     TreeSelectEvents,
-    TreeSelectBlocks
+    TreeSelectBlocks<K>
 > {
     static template = template;
     static typeDefs = typeDefs;

@@ -5,15 +5,31 @@ import {SelectPicker} from './selectPicker';
 
 export type {TimepickerProps, TimepickerEvents, TimepickerBlocks};
 
-declare class _Timepicker extends PanelPicker { } 
-
-function Wrapper(props: TimepickerProps) {
-    if (props.step && !props.range) {
-        return h(SelectPicker, props);
+export class Timepicker<
+    Multipe extends boolean = false,
+    Range extends boolean = false,
+> extends Component<TimepickerProps<Multipe, Range>, TimepickerEvents, TimepickerBlocks> {
+    static template(this: Timepicker) {
+        const props = this.get();
+        if (props.step && !props.range) {
+            return h(SelectPicker, props as any);
+        }
+        return h(PanelPicker, props as any);
     }
-    return h(PanelPicker, props);
 }
 
-const functionalWrapper = (Component as any).functionalWrapper;
-export const Timepicker: typeof _Timepicker = functionalWrapper ?
-    functionalWrapper(Wrapper) : Wrapper;
+// declare class _Timepicker<
+    // Multipe extends boolean = false,
+    // Range extends boolean = false,
+// > extends PanelPicker<Multipe, Range> { } 
+
+// function Wrapper(props: TimepickerProps) {
+    // if (props.step && !props.range) {
+        // return h(SelectPicker, props);
+    // }
+    // return h(PanelPicker, props);
+// }
+
+// const functionalWrapper = (Component as any).functionalWrapper;
+// export const Timepicker: typeof _Timepicker = functionalWrapper ?
+    // functionalWrapper(Wrapper) : Wrapper;

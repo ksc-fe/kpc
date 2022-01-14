@@ -6,7 +6,6 @@ import {CarouselItem} from './item';
 import {Component} from 'intact';
 
 describe('Carousel', () => {
-
     afterEach(() => {unmount()});
 
     it('basic test', async function() {

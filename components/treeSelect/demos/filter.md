@@ -17,14 +17,14 @@ import {TreeSelect} from 'kpc';
 
 ```ts
 interface Props {
-    value?: string
+    value?: string | null
 }
 
 export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {
-            value: '',
+            value: null,
             data: [
                 {
                     label: 'First floor-1',

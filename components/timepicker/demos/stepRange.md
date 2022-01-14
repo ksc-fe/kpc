@@ -9,8 +9,26 @@ order: 3
 import {Timepicker} from 'kpc';
 
 <div>
-    <Timepicker v-model="time" step="00:30:00" range clearable />
+    <Timepicker v-model="time"
+        step="00:30:00"
+        range
+        clearable
+    />
     You selected: {JSON.stringify(this.get('time'))}
 </div>
 ```
 
+```ts
+interface Props {
+    time?: [string, string] | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            time: null 
+        } as Props;
+    };
+}
+```

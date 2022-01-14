@@ -42,4 +42,23 @@ import {Timepicker} from 'kpc';
 </div>
 ```
 
+```ts
+interface Props {
+    time1?: string | null
+    time2?: string | null
+    time3?: [string, string] | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            tiem1: null,
+            time2: null,
+            time3: null
+        } as Props;
+    };
+}
+```
+
 [1]: https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#list-of-all-available-formats

@@ -13,7 +13,10 @@ export const TIME_FORMAT = 'HH:mm:ss';
 export const NOW = getNowDate();
 export const PREFIX = NOW.format(YEAR_FORMAT);
 
-export interface TimepickerProps extends BasePickerProps<string> {
+export interface TimepickerProps<
+    M extends boolean = boolean,
+    R extends boolean = boolean
+> extends BasePickerProps<string, M, R> {
     step?: string
 }
 

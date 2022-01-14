@@ -20,11 +20,17 @@ import {Timepicker} from 'kpc';
 
 ```ts
 interface Props {
-    time: string
-    timeArray: [string, string]
+    time?: string | null
+    timeArray?: string[]
 }
 
 export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            time: null,
+            timeArray: []
+        } as Props;
+    }
 }
 ```

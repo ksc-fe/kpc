@@ -19,8 +19,11 @@ import {TreeSelect} from 'kpc';
 ```
 
 ```ts
+import {TreeDataItem} from 'kpc';
+
 interface Props {
     values?: string[]
+    data: TreeDataItem<string>[]
 }
 
 export default class extends Component<Props> {
@@ -77,7 +80,7 @@ export default class extends Component<Props> {
                     ]
                 }
             ]
-        }
+        } as Props;
     }
 }
 ```

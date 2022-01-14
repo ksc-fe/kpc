@@ -16,10 +16,11 @@ import {TreeSelect} from 'kpc';
 ```
 
 ```ts
-import {Key} from 'intact';
+import {TreeDataItem} from 'kpc';
 
 interface Props {
-    values?: Key[]
+    values?: string[]
+    data: TreeDataItem<string>[]
 }
 
 export default class extends Component<Props> {
@@ -76,7 +77,7 @@ export default class extends Component<Props> {
                     ]
                 }
             ]
-        }
+        } as Props;
     }
 }
 ```

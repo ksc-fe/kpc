@@ -23,15 +23,18 @@ import {TreeSelect} from 'kpc';
 ```
 
 ```ts
+import {TreeDataItem} from 'kpc';
+
 interface Props {
-    value?: string
+    value?: string | null
+    data: TreeDataItem<string>[]
 }
 
 export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {
-            value: '',
+            value: null,
             data: [
                  {
                     label: 'First floor-1',
@@ -81,7 +84,7 @@ export default class extends Component<Props> {
                     ]
                 }
             ]
-        }
+        } as Props;
     }
 } 
 ```

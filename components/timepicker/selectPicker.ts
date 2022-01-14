@@ -5,7 +5,6 @@ import {
     TimepickerBlocks,
     typeDefs,
 } from './constants';
-
 import template from './selectPicker.vdt';
 import {useFormats} from './useFormats';
 import {useDisabled} from '../datepicker/useDisabled';

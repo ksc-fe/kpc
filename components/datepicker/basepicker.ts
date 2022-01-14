@@ -21,9 +21,20 @@ export type DayjsValueRange = [Dayjs, Dayjs]
 export type DayjsValueItem = Dayjs | DayjsValueRange
 export type DayjsValue = DayjsValueItem[]
 
-export interface BasePickerProps<Value> extends BaseSelectProps {
-    value?: Value | Value[] | [Value, Value] | [Value, Value][] | null
-    range?: boolean
+export interface BasePickerProps<
+    V extends Value = Value,
+    Multipe extends boolean = boolean,
+    Range extends boolean = boolean,
+> extends BaseSelectProps<V | [V, V], Multipe> {
+    value?: 
+        Multipe extends true ?
+            Range extends true ? 
+                [V, V][] :
+                V[] :
+            Range extends true ?
+                [V, V] | null :
+                V | null
+    range?: Range 
     format?: string
     valueFormat?: string
     showFormat?: string
@@ -63,7 +74,7 @@ const events: Events<BasePickerEvents> = {
 };
 
 export abstract class BasePicker<
-    T extends BasePickerProps<any> = BasePickerProps<any>,
+    T extends BasePickerProps = BasePickerProps,
     E extends BasePickerEvents = BasePickerEvents,
     B extends BasePickerBlocks = BasePickerBlocks,
 > extends BaseSelect<T, E, B> {
@@ -91,6 +102,12 @@ export abstract class BasePicker<
                 ].join(' ~ ') : ''
         );
     }
+
+    // @bind
+    // protected clear(e: MouseEvent) {
+        // e.stopPropagation();
+        // this.set('value', this.get('multiple') ? [] : null);
+    // }
 }
 
 export function useValue(
@@ -122,7 +139,7 @@ export function useValue(
 
     watchState(instance.input.keywords, v => {
         const {range, multiple} = instance.get();
-        if (!multiple && v === '') return instance.set('value', '');
+        if (!multiple && v === '') return instance.set('value', null);
 
         if (range) {
             const [start, end] = v.split(/\s*~\s*/).map(s => s.trim());

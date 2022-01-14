@@ -56,7 +56,7 @@ import {Transfer, Input, Select, Option, Tag} from 'kpc';
 import {bind} from 'kpc';
 
 interface Props {
-    policy: string
+    policy?: string | null
     data: DataItem[]
     keywords?: string
     value?: string[]
@@ -111,7 +111,7 @@ export default class extends Component<Props> {
 
     @bind
     fetch() {
-        mockApi(this.get('policy')).then(data => {
+        mockApi(this.get('policy')!).then(data => {
             this.originData = data;
             this.filter();
         });

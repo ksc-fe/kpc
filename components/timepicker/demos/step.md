@@ -23,3 +23,20 @@ import {Timepicker} from 'kpc';
     You selected: {JSON.stringify(this.get('timeArray'))}
 </div>
 ```
+
+```ts
+interface Props {
+    time?: string | null
+    timeArray?: string[]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            time: null,
+            timeArray: []
+        } as Props;
+    };
+}
+```
