@@ -17,17 +17,17 @@ export default new Router<RouteResult>([
             return {Page: (await import('../pages/index')).default}
         }
     },
-    // {
-        // path: /^(?:\/kpc)?(\/docs\/design\/.*)$/,
-        // action: async (context) => {
-            // return {
-                // Page: (await import('../pages/design')).default,
-                // data: {
-                    // path: context.params[0]
-                // }
-            // };
-        // }
-    // },
+    {
+        path: /^(\/docs\/design\/.*)$/,
+        action: async (context) => {
+            return {
+                Page: (await import('../pages/design')).default,
+                data: {
+                    path: context.params[0] as string
+                }
+            };
+        }
+    },
     // {
         // path: /^(?:\/kpc)?(\/docs\/blogs\/.*)$/,
         // action: async (context) => {

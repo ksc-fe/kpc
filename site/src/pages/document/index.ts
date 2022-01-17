@@ -6,7 +6,7 @@ import './index.styl';
 
 // export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/, 'lazy');
 // export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
-export const req = require.context('~/', true, /^\.\/(components)\/.*index.ts$/);
+export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
 
 export interface DocumentProps extends LayoutProps {
     hasRead: string | boolean | null 
