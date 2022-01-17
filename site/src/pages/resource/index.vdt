@@ -2,6 +2,10 @@ import {makeStyles} from './styles';
 import {Footer} from '../../components/footer/';
 import {Icon} from 'kpc';
 import color_process_logo from '../../imgs/color_process_logo.png';
+import axure_img from '../../imgs/axure_img.png';
+import sketch_img from '../../imgs/sketch_img.png';
+import rectangle from '../../imgs/rectangle.png';
+import {WorkflowCard} from '../../components/WorkflowCard/';
 
 const pricipleList = [
     {
@@ -38,7 +42,72 @@ const pricipleList = [
         </div>
         <div class="source-content">
             <div>
-                <div class="content-top">时刻准备为你的工作流提效</div>
+                <div class="content-top">
+                    <div class="main-title">时刻准备为你的工作流提效</div>
+                    <div class="secondary-title">一站式产品设计流程</div>
+                    <div class="workflow-box">
+                        <WorkflowCard title="原型设计">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">组件库</div>
+                                    <div class="card-item">
+                                        <img src={axure_img} />
+                                        <div>Axure组件库</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                        <WorkflowCard title="UI/UE设计">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">组件库</div>
+                                    <div class="card-item">
+                                        <img src={sketch_img} />
+                                        <div>Sketch组件库</div>
+                                    </div>
+                                    <div class="card-item">
+                                        <img src={rectangle} />
+                                        <div>Figma组件库</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="card-title">灵感与素材</div>
+                                    <div class="card-item">
+                                        <img src={rectangle} />
+                                        <div>Axure组件库</div>
+                                    </div>
+                                    <div class="card-item">
+                                        <img src={rectangle} />
+                                        <div>Axure组件库</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                        <WorkflowCard title="开发阶段">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">组件套件</div>
+                                    <div class="card-item">
+                                        <img src={axure_img} />
+                                        <div>Axure组件库</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                        <WorkflowCard title="测试阶段">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">可用性检查</div>
+                                    <div class="card-item">
+                                        <img src={axure_img} />
+                                        <div>度量衡工具</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                    </div>
+                    <div class="line"></div>
+                </div>
                 <div class="content-bottom">
                     <div class="tool-box">
                         <div>
@@ -48,7 +117,9 @@ const pricipleList = [
                         <div class="tool-item process-box">
                             <img src={color_process_logo} />
                         </div>
-                        <div class="tool-item">place holder</div>
+                        <div class="tool-item">
+                            {/* TODO */}
+                        </div>
                     </div>
                     <div class="principle">
                         <div>

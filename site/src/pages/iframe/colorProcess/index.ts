@@ -94,8 +94,8 @@ export default class extends Component<ColorProcessProps> {
     init() {
         (window as any).setValue = (target?: {bgTheme: BgThemeType, theme: ThemeType}) => {
             if(target) {
-                this.set('curBgTheme', target.bgTheme)
-                this.setColor(target.theme)
+                this.set('curBgTheme', target.bgTheme);
+                this.setColor(target.theme);
             }
         }
     }

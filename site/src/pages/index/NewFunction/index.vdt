@@ -3,7 +3,7 @@ import {Card} from '../../../components/card';
 import {Button, Icon, Select, Option, 
     Switch, Input, Tabs, Tab, Pagination,
     Editable, ScrollSelect, Slider,
-    Datepicker} from 'kpc';
+    Datepicker, Spinner, Tree} from 'kpc';
 import {BezierBox} from '../../../components/BezierBox'
 import king_version_logo from '../../../imgs/king_version_logo.png';
 import sketch_img from '../../../imgs/sketch_img.png';
@@ -21,6 +21,22 @@ const textTransitionStyle = {
     transition: transition,
     transform: `translateY(${textTop}px)`
 };
+
+const treeData = [
+    {
+        label: 'First floor-1',
+        children: [
+            {
+                label: 'Second floor-1.1',
+                children: [
+                    {
+                        label: 'Third floor-1.1.1'
+                    }
+                ]
+            }
+        ]
+    }
+];
 
 <div class={makeStyles(bezierValue)}>
     <div className='new-fn-box'>
@@ -120,10 +136,10 @@ const textTransitionStyle = {
                                 </div>
                                 <div>
                                     <div class="comp-item">
-                                        <Input fluid placeholder="请输入"></Input>
+                                        <Spinner></Spinner>
                                     </div>
                                     <div class="comp-item">
-                                        <Input fluid placeholder="请输入"></Input>
+                                        <Tree data={treeData}></Tree>
                                     </div>
                                 </div>
                             </div>

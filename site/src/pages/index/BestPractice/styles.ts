@@ -67,6 +67,24 @@ export function makeStyles() {
                     background: #212121;
                     border-radius: 8px;
                     overflow: hidden;
+                    display: flex;
+                    flex-direction: column;
+                    & > div:first-child {
+                        padding: 20px 45px;
+                        color: #B8B8B8;
+                        font-size: 14px;
+                        font-family: Roboto;
+                        background: #212121;
+                    }
+                    & > div:last-child {
+                        flex-grow: 1;
+                        .mtk1, .mtk22 {
+                            color: #FACD11;
+                        }
+                        .mtk5 {
+                            color: #04E1D1;
+                        }
+                    }
                 }
                 .optional-box {
                     width: 725px;

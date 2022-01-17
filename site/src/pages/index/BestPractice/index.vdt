@@ -28,14 +28,18 @@ const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
         </div>
         <div>
             <div class="code-pen">
-                <Code 
-                    v-model="codeContent" 
-                    language="javascript"
-                    theme="vs-dark"
-                    options={{minimap: {enabled: false}}}
-                    readOnly={true}
-                    ev-ready={this.handleCodeBoxReady}
-                />
+                <div>Code</div>
+                <div>
+                    <Code 
+                        v-model="codeContent" 
+                        language="javascript"
+                        theme="vs-dark"
+                        options={{minimap: {enabled: false}}}
+                        readOnly={true}
+                        ev-ready={this.handleCodeBoxReady}
+                        height="200px"
+                    />
+                </div>
             </div>
             <div class="optional-box">
                 <div class="left" ref={this.leftBox}>

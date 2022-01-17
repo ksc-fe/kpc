@@ -4,7 +4,7 @@ import {makeHeaderStyles} from './styles';
 const nav = [
     {
         title: '设计',
-        href: '/docs/resources/',
+        href: '/design',
         index: 'resources',
     },
     {

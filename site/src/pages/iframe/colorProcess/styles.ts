@@ -3,13 +3,19 @@ import {center} from 'site/src/styles/default';
 import {BgThemeValue, ThemeValue} from './index';
 
 export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
-    const style = document.createElement('style');
-    style.innerHTML = `
-        html, body, #page {
-            height: 100%;
-        }
-    `;
-    document.head.appendChild(style);
+    const styleId = 'style';
+
+    if(!document.getElementById(styleId)) {
+        const style = document.createElement('style');
+        style.id = styleId;
+        
+        style.innerHTML = `
+            html, body, #page {
+                height: 100%;
+            }
+        `;
+        document.head.appendChild(style);    
+    }
 
     return css`
         height: 100%;
@@ -130,7 +136,6 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
                 letter-spacing: -0.1em;
                 & > div {
                     height: 350px;
-                    /* background: ${bgTheme.cardBgColor}; */
                     flex-grow: 1;
                     width: 0;
                     padding: 23px 40px 0 40px;

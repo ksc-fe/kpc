@@ -1,0 +1,27 @@
+import {makeStyles} from './styles';
+import {Menu, MenuItem} from 'kpc';
+
+<t:super class={makeStyles()}>
+    <b:content>
+        <div class="box">
+            <div class="menu">
+                <Menu theme="light">
+                    <MenuItem key="1">设计语言</MenuItem>
+                    <MenuItem key="2">可访问性设计</MenuItem>
+                    <MenuItem key="3">颜色</MenuItem>
+                    <MenuItem key="4">字体和排版</MenuItem>
+                    <MenuItem key="5">框架</MenuItem>
+                    <MenuItem key="6">栅格</MenuItem>
+                    <MenuItem key="7">间距</MenuItem>
+                    <MenuItem key="8">文案</MenuItem>
+                </Menu>
+            </div>
+            <div class="content-box">
+                <div class="content">
+                    主标题H1
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </b:content>
+</t:super>

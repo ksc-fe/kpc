@@ -62,7 +62,9 @@ export function makeHeaderStyles() {
                     position: relative;
                     width: 100px;
                     height: 100%;
-                    background: #ffffff;
+                    &:hover {
+                        background: #ffffff;
+                    }
                     .cur-color {
                         ${fullfill()};
                         ${center()};

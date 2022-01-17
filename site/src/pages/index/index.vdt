@@ -11,18 +11,30 @@ import {KingVersion} from './KingVersion';
 <t:super class={makeStyles()}>
     <b:content>
         <div class="nav">
-            <div class="nav-content">
-                <div></div>
-                <div></div>
-                <div>为企业提效而生</div>
-                <div>
-                    <Button type="primary">开始使用</Button>
-                    <Button type="secondary">
-                        <img src={github_logo} />
-                        <span>Github</span>
-                    </Button>
+            <div class="nav-bg"></div>
+            <div class="nav-content-box">
+                <div class="nav-content">
+                    <div></div>
+                    <div></div>
+                    <div>为企业提效而生</div>
+                    <div>
+                        <Button type="primary">开始使用</Button>
+                        <Button type="secondary">
+                            <img src={github_logo} />
+                            <span>Github</span>
+                        </Button>
+                    </div>
                 </div>
             </div>
+
+
+            {/* <div class="nav-box">
+                <div class="nav-bg"></div>
+                <div class="nav-content-box"></div>
+            </div> */}
+            
+
+            
         </div>
         <NewFunction></NewFunction>
         <BestPractice ref={this.bestPrac}></BestPractice>

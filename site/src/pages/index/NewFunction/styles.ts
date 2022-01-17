@@ -106,7 +106,7 @@ export function makeStyles() {
 								width: 0;
 							}
 						}
-						.k-btn {
+						.k-btn(:not:.k-spinner-btn) {
 							width: 120px;
 							height: 40px;
 						}

@@ -1,24 +1,29 @@
 import {css} from '@emotion/css';
 import global, {mainBlock} from '../../styles/default';
-import resource_bg from '../../imgs/resource_bg.png';
+import solution_bg from '../../imgs/solution_bg.png';
 
 export function makeStyles() {
 
     return css`
         font-family: ${global.fontFamily};
         .solution-nav {
-            ${mainBlock(196)};
+            ${mainBlock(260)};
             padding-top: 64px;
             background: #F1F6FA;
-            background-image: url(${resource_bg});
+            background-image: url(${solution_bg});
             background-repeat: no-repeat;
-            background-position: 750px -50px;
+            background-position: -30px 0px;
             .content {
                 display: flex;
                 align-items: center;
                 .nav-title {
                     & > div:first-child {
-                        font-size: 26px;
+                        font-size: 44px;
+                        color: #000000;
+                    }
+                    & > div:last-child {
+                        color: #797979;
+                        font-size: 16px;
                     }
                 }
             }

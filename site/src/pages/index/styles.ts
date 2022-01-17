@@ -9,10 +9,35 @@ export function makeStyles() {
     return css`
         font-family: ${global.fontFamily};
         .nav {
-            ${mainBlock(460)};
-            padding-top: 64px;
-            background: linear-gradient(110.15deg, #EFF3FA 36.71%, rgba(235, 242, 248, 0.64) 79.74%);
-            background-repeat: no-repeat;
+            height: 460px;
+            position: relative;
+            .nav-bg, .nav-content-box {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+
+            .nav-bg {
+               z-index: 1;
+               background-image: url(${index_nav_bg});
+               background-position: 63px 0px;
+               background-repeat: no-repeat;
+            }
+            
+            .nav-content-box {
+                z-index: 5;
+                background: linear-gradient(90deg, #EFF3FA 37.08%, rgba(235, 242, 248, 0.26) 74.87%);
+                padding-top: 64px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .nav-content {
+                    width: ${global.contentWidth}px;
+                }
+            }
+
             .nav-content {
                 & > div:first-child {
                     margin-top: 53px;
