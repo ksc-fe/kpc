@@ -30,7 +30,7 @@ import {Tabs, Tab} from 'kpc';
 
 ```ts
 interface Props {
-    tab: string | null
+    tab?: string | null
 }
 
 export default class extends Component {

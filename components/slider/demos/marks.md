@@ -13,12 +13,12 @@ import {Slider} from 'kpc';
 
 <div>
     <Slider min={1} max={12} value={6} 
-        isShowInput={false}
+        showInput={false}
         marks={this.get('marks')}
     />
     <Slider min={1} max={12} value={[2, 6]} 
-        isShowInput={false}
-        isRange
+        showInput={false}
+        range
         marks={this.get('marks')}
     />
 </div>

@@ -6,8 +6,7 @@ order: 0
 `Steps`嵌套`Step`即可实现步骤条，用`v-model`双向绑定当前指向哪一步，索引从`0`开始
 
 ```vdt
-import {Steps, Step} from 'kpc';
-import {Button} from 'kpc';
+import {Steps, Step, Button} from 'kpc';
 
 <div>
     <Steps v-model="index">
@@ -33,7 +32,7 @@ import {Button} from 'kpc';
 import {bind} from 'kpc';
 
 interface Props {
-    index: number
+    index?: number
 }
 
 export default class extends Component<Props> {
@@ -47,12 +46,12 @@ export default class extends Component<Props> {
 
     @bind
     previous() {
-        this.set('index', this.get('index') - 1);
+        this.set('index', this.get('index')! - 1);
     }
 
     @bind
     next() {
-        this.set('index', this.get('index') + 1);
+        this.set('index', this.get('index')! + 1);
     }
 }
 ```

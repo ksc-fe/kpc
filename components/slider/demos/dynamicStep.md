@@ -18,6 +18,6 @@ import {Slider} from 'kpc';
         '500': 50
     }}
     showTooltip
-    isShowStop
+    points 
 />
 ```

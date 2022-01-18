@@ -45,7 +45,7 @@ import {Tabs, Tab, Button, ButtonGroup} from 'kpc';
 import {bind, TabsProps} from 'kpc';
 
 interface Props {
-    tab: number | null
+    tab?: number
     tabs: TabItem[]
     size: TabsProps['size'] 
     types: TabsProps['type'][]
@@ -83,7 +83,7 @@ export default class extends Component<Props> {
         let tab = this.get('tab');
         if (value === tab) {
             const item = tabs[index] || tabs[index - 1];
-            tab = item ? item.value : null;
+            tab = item ? item.value : undefined;
         }
 
         this.set({tabs, tab});

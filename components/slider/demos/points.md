@@ -10,9 +10,9 @@ order: 4
 import {Slider} from 'kpc';
 
 <div>
-    <Slider value={45} step={5} points isShowInput={false}/>
-    <Slider value={[0.3, 0.6]} min={0} max={1} step={0.1} isRange points />
-    <Slider value={45} step={5} isShowInput={false} 
+    <Slider value={45} step={5} points showInput={false}/>
+    <Slider value={[0.3, 0.6]} min={0} max={1} step={0.1} range points />
+    <Slider value={45} step={5} showInput={false} 
         points={[0, 35, 95, 100]}
     />
 </div>

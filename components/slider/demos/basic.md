@@ -7,8 +7,7 @@ order: 0
 值不让它超出该范围
 
 ```vdt
-import {Slider} from 'kpc';
-import {Button} from 'kpc';
+import {Slider, Button} from 'kpc';
 
 <div>
     <Slider v-model="value1" min={this.get('min')} max={this.get('max')} unit="MB"/>

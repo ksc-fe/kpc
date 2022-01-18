@@ -92,7 +92,7 @@ export default class extends Component<Props> {
                 {name: 'Javey', email: 'jiawei23716@sina.com'}, 
                 {name: 'Jiawei', email: 'zoujiawei@gmail.com'}
             ],
-        };
+        } as Props;
     }
 
     @bind

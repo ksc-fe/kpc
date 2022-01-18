@@ -13,18 +13,7 @@ order: 13
 ```vdt
 import {Table, TableColumn} from 'kpc';
 
-const data = [
-    {name: 'John'},
-    {name: 'Tom'},
-    {name: 'Javey'},
-].map(item => {
-    for (let i = 0; i < 4; i++) {
-        item[`column${i + 1}`] = 'test';
-    }
-    return item;
-});
-
-<Table data={data} resizable stickScrollbar>
+<Table data={this.get('data')} resizable stickScrollbar>
     <TableColumn key="name" title="Name" width="200" />
     <TableColumn key="column1" title="Column1" width="300" />
     <TableColumn key="column2" title="Column2" width="300" />
@@ -38,32 +27,23 @@ const data = [
 </Table>
 ```
 
-```vue-data
-data() {
-    return {
-        data: [
-            {name: 'John'},
-            {name: 'Tom'},
-            {name: 'Javey'},
-        ].map(item => {
-            for (let i = 0; i < 4; i++) {
-                item[`column${i + 1}`] = 'test';
-            }
-            return item;
-        })
-    }
-},
-```
-
-```angular-properties
-private data = [
+```ts
+const data = [
     {name: 'John'},
     {name: 'Tom'},
     {name: 'Javey'},
-].map(item => {
+].map((item: any) => {
     for (let i = 0; i < 4; i++) {
         item[`column${i + 1}`] = 'test';
     }
     return item;
 });
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            data
+        }
+    }
+}
 ```

@@ -148,19 +148,26 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
     }
 }
 
-const delimitersRegExp = /\b([^\s]*?)=\{\{\s+([\s\S]*?)\s+}}/g;
+const delimitersRegExp = /\b([^\s]*?)=\{\s*([\s\S]*?)\s*(\})?\}/g;
 function parseProperty(template, properties, methods) {
     // specical for Editable validate string
     template = template.replace('"\\d+"', '"\\\\d+"');
-    return template.replace(delimitersRegExp, (match, name, value) => {
+    return template.replace(delimitersRegExp, (match, name, value, isObject) => {
+        if (isObject) value += isObject;
         value = parseGet(value, properties);
         if (name.substring(0, 3) === 'ev-') {
             if (name === 'ev-contextmenu') {
                 name = 'onContextMenu';
             } else {
-                name = `on${name.substring(3, 4).toUpperCase()}${name.substring(4).replace(':', '-')}`;
+                let type = name.substring(3);
+                if (type.startsWith('$change')) {
+                    type = `Change` + upperFirst(type.substring(`$change-`.length));
+                } else {
+                    type = upperFirst(type);
+                }
+                name = `on${type.replace(':', '-')}`;
             }
-            const matches = value.match(/self\.(\w+)(\.bind\(self, (.*?)\))?/);
+            const matches = value.match(/this\.(\w+)(\.bind\(this, (.*?)\))?/);
             if (matches) {
                 if (matches[2]) {
                     if (matches[1] === 'set') {
@@ -169,7 +176,7 @@ function parseProperty(template, properties, methods) {
                     // value = `${matches[1]}(${matches[3]})`;
                     value = `this.${matches[1]}.bind(this, ${matches[3]})`;
                 } else {
-                    value = `this.${matches[1]}`;
+                    // value = `this.${matches[1]}`;
                 }
             }
         } else if (name === 'v-model') {
@@ -189,8 +196,8 @@ function parseProperty(template, properties, methods) {
             }
             return `value={this.state[${value}]} on$change-value={(c, v) => this.setState({[${value}]: v})}`;
         } else if (name === 'className') {
-            methods._classNames = [
-                `_classNames(classNames) {`,
+            methods.classNames = [
+                `private classNames(classNames: Record<string, any>) {`,
                 ...indent([
                     `const ret = [];`,
                     `for (let key in classNames) {`,
@@ -208,9 +215,9 @@ function parseProperty(template, properties, methods) {
                 `}`,
                 ``
             ].join('\n');
-            value = `this._classNames(${value})`;
+            value = `this.classNames(${value})`;
         } else {
-            value = value.replace(/self/g, 'this');
+            value = value.replace(/this/g, 'this');
         }
 
         return `${name}={${value}}`;

@@ -15,7 +15,7 @@ export function useClick(
         if (instance.get('disabled')) return;
 
         let newValue: Value = getSlidingValue(e.clientX);
-        if (instance.get('isRange')) {
+        if (instance.get('range')) {
             newValue = generateRangeValue(newValue);
         }
 
@@ -36,7 +36,7 @@ export function useClick(
         if (instance.get('disabled')) return;
 
         let newValue: Value = v;
-        if (instance.get('isRange')) {
+        if (instance.get('range')) {
             newValue = generateRangeValue(v);
         }
         showValue.set(newValue);

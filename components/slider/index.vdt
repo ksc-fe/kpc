@@ -6,10 +6,10 @@ import {makeStyles} from './styles';
 
 const {
     disabled, className, max,
-    min, unit, isShowInput,
-    isRange, step, value,
-    spinnerProps, isShowEnd,
-    isShowTooltip, animate, forceStep
+    min, unit, showInput,
+    range, step, value,
+    spinnerProps, showEnd,
+    showTooltip, animate, forceStep
 } = this.get();
 const {
     onStart, trackRef, dragging,
@@ -35,7 +35,7 @@ const createThumb = (thumbStyle, isFirst, ref, value, tooltipRef) => {
     return (
         <div class="k-slider-thumb-wrapper" style={thumbStyle}>
             <Tooltip
-                disabled={!isShowTooltip}
+                disabled={!showTooltip}
                 ref={tooltipRef}
                 {...tooltipProps}
                 class="k-slider-tooltip"
@@ -67,10 +67,10 @@ const marks = this.marks();
                     thumbFirstStyle,
                     true,
                     firstThumbRef,
-                    isRange ? value[0] : value,
+                    range ? value[0] : value,
                     firstTooltipRef,
                 )}
-                <template v-if={isRange}>
+                <template v-if={range}>
                     {createThumb(
                         thumbSecondStyle,
                         false,
@@ -92,12 +92,12 @@ const marks = this.marks();
                 class={{'k-active': $value.active}}
             >{$value.text}</span>
         </div>
-        <div class="k-slider-ends" v-else-if={isShowEnd}>
+        <div class="k-slider-ends" v-else-if={showEnd}>
             <span ev-click={linkEvent(min, setOneValue)}>{min + unit}</span>
             <span ev-click={linkEvent(max, setOneValue)}>{max + unit}</span>
         </div>
     </div>
-    <div class="k-slider-spinner" v-if={isShowInput && !isRange}>
+    <div class="k-slider-spinner" v-if={showInput && !range}>
         <Spinner
             disabled={disabled}
             max={max}

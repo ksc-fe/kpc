@@ -9,7 +9,7 @@ order: 0
 import {Spin} from 'kpc';
 
 <div>
-    <Spin v-for={['large', 'default', 'small', 'mini']}
+    <Spin v-for={this.get('sizes')}
         size={$value}
     />
 </div>
@@ -18,4 +18,15 @@ import {Spin} from 'kpc';
 ```styl
 .k-spin
     margin-right 16px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            sizes: ['large', 'default', 'small', 'mini'] as const
+        }
+    }
+}
 ```

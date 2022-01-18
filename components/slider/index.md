@@ -12,14 +12,15 @@ sidebar: doc
 | min | 最小值 | `Number` | 0 |
 | max | 最大值 | `Number` | 100 |
 | value | 当前值，可用`v-model`双向绑定 | `Number` &#124; `Array` | `min` |
+| range | 是否是范围选择 | `Boolean` | `false` |
 | unit | 单位，用于刻度展示 | `String` | `""` |
-| isShowEnd | 是否展示最小值和最大值刻度 | `Boolean` | `true` |
-| isShowInput | 是否展示输入框 | `Boolean` | `true` |
+| showEnd | 是否展示最小值和最大值刻度 | `Boolean` | `true` |
+| showInput | 是否展示输入框 | `Boolean` | `true` |
 | step | 步长，支持动态步长，详见示例 | `Number` &#124; `Object` | `1` |
 | forceStep | 是否限制`value`除边界之外，满足`min + step * n`(`n`为整数) | `Boolean` | `true` |
 | points | 是否展示间隔点，或者指定哪些值展示间隔点 | `boolean` &#124; `number[]` | `false` |
 | marks | 标注刻度 | `Object` | `undefined` |
-| isShowTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
+| showTooltip | 是否展示提示气泡，默认不展示 | `Boolean` | `false` |
 | always | 当展示气泡时，是否一直展示 | `Boolean` | `false` |
 | animate | 滑块的移动是否使用缓动动画 | `Boolean` | `true` |
 | tooltipProps | 设置`Tooltip`的所有属性 | `Object` | `undefined` |

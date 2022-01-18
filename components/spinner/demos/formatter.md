@@ -33,12 +33,19 @@ import {Spinner} from 'kpc';
 ```
 
 ```ts
-export default class extends Component  {
+interface Props {
+    money?: number
+    percent?: number
+}
+
+export default class extends Component<Props>  {
     static template = template;
 
-    static defaults = () => ({
-        money: 1000,
-        percent: 78,
-    });
+    static defaults() {
+        return {
+            money: 1000,
+            percent: 78,
+        };
+    };
 }
 ```

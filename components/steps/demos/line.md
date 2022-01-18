@@ -6,8 +6,7 @@ order: 2
 设置`type`属性值为`line`，可以展示时间轴样式的步骤条
 
 ```vdt
-import {Steps, Step} from 'kpc';
-import {Button} from 'kpc';
+import {Steps, Step, Button} from 'kpc';
 
 <div>
     <Steps v-model="index" type="line">
@@ -40,7 +39,7 @@ import {Button} from 'kpc';
 import {bind} from 'kpc';
 
 interface Props {
-    index: number
+    index?: number
 }
 
 export default class extends Component<Props> {
@@ -54,12 +53,12 @@ export default class extends Component<Props> {
 
     @bind
     previous() {
-        this.set('index', this.get('index') - 1);
+        this.set('index', this.get('index')! - 1);
     }
 
     @bind
     next() {
-        this.set('index', this.get('index') + 1);
+        this.set('index', this.get('index')! + 1);
     }
 }
 ```

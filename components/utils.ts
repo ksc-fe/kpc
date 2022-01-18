@@ -264,7 +264,7 @@ export function isComponentVNode<T extends ComponentConstructor>(o: any, tag: T)
     return o.tag === tag; 
 }
 
-export function range(start: number, end: number) {
+export function range(start: number, end: number): number[] {
     return Array.apply(null, {length: end - start + 1} as any)
         .map((v, i) => i + start);
 }

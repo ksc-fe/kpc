@@ -2,9 +2,9 @@ import {useInstance, Props} from 'intact';
 import type {Table, TableRowKey} from './table';
 import type {TableColumnProps} from './column';
 
-export type TableMerge<T = any> = (
+export type TableMerge<T = any, CheckType = 'checkbox'> = (
     row: T,
-    column: Props<TableColumnProps> | null,
+    column: CheckType extends 'none' ? Props<TableColumnProps> : Props<TableColumnProps> | null,
     rowIndex: number,
     columnIndex: number
 ) => TableMergeConfig | undefined

@@ -61,9 +61,9 @@ export function useDraggable(
     }
 
     function getNewValue(value: number): Value {
-        const {isRange, value: oldValue} = instance.get();
+        const {range, value: oldValue} = instance.get();
 
-        if (!isRange) return value;
+        if (!range) return value;
 
         const [min, max] = oldValue as [number, number];
         if (isFirst) {

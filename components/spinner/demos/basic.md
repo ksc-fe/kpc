@@ -18,3 +18,18 @@ import {Spinner} from 'kpc';
 .k-spinner
     margin-right 20px
 ```
+
+```ts
+interface Props {
+    value?: number
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value: 0,
+        };
+    }
+}
+```

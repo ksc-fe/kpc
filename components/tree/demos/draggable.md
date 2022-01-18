@@ -23,7 +23,7 @@ import {Tree, Input} from 'kpc';
 ```
 
 ```ts
-import {Message, TreeDataItem, TreeNode} from 'kpc';
+import {Message, TreeDataItem, TreeNode, TreeDragEndData} from 'kpc';
 
 interface Props {
     data?: TreeDataItem<string>[]
@@ -92,7 +92,7 @@ export default class extends Component<Props> {
         };
     }
 
-    onDragEnd(data: TreeDataItem<string>[]) {
+    onDragEnd(data: TreeDragEndData<string>) {
         console.log(data);
     }
 

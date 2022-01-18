@@ -39,10 +39,10 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     }
 
     function getFixedValue(value: Value): Value {
-        const {min, isRange} = instance.get();
+        const {min, range} = instance.get();
 
         let fixedValue: Value;
-        if (isRange) {
+        if (range) {
             if (!Array.isArray(value)) {
                 const tmp = fix(value);
                 fixedValue = [tmp, tmp];

@@ -17,15 +17,15 @@ export interface SliderProps {
     max?: number
     min?: number
     value?: Value
-    isRange?: boolean
+    range?: boolean
     unit?: string
-    isShowEnd?: boolean
-    isShowInput?: boolean
+    showEnd?: boolean
+    showInput?: boolean
     step?: number | StepObject | StepFunction
     points?: number[] | boolean
     marks?: Marks
     disabled?: boolean
-    isShowTooltip?: boolean
+    showTooltip?: boolean
     always?: boolean
     animate?: boolean
     tooltipProps?: TooltipProps
@@ -45,15 +45,15 @@ const typeDefs: Required<TypeDefs<SliderProps>> = {
     max: Number,
     min: Number,
     value: [Number, Array],
-    isRange: Boolean,
+    range: Boolean,
     unit: String,
-    isShowEnd: Boolean,
-    isShowInput: Boolean,
+    showEnd: Boolean,
+    showInput: Boolean,
     step: [Number, Object, Function],
     points: [Array, Boolean],
     marks: Object,
     disabled: Boolean,
-    isShowTooltip: Boolean,
+    showTooltip: Boolean,
     always: Boolean,
     animate: Boolean,
     tooltipProps: Object,
@@ -67,8 +67,8 @@ const defaults = (): Partial<SliderProps> => ({
     min: 0,
     value: 0,
     unit: '',
-    isShowEnd: true,
-    isShowInput: true,
+    showEnd: true,
+    showInput: true,
     step: defaultStep,
     animate: true,
     forceStep: true,

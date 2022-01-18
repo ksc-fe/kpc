@@ -221,12 +221,13 @@ function parseJS(js, vueData) {
     };
 }
 
-const delimitersRegExp = /\b([^\s]*?)=\{\s*([\s\S]*?)\s*}/g;
+const delimitersRegExp = /\b([^\s]*?)={\s*([\s\S]*?)\s*(})?}/g;
 const getRegExp = /this\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods) {
     // specical for Editable validate string
     template = template.replace('"\\d+"', '"\\\\d+"');
-    return template.replace(delimitersRegExp, (match, name, value) => {
+    return template.replace(delimitersRegExp, (match, name, value, isObject) => {
+        if (isObject) value += isObject;
         value = value.replace(getRegExp, (nouse, name) => {
             properties[name] = null;
             return name;

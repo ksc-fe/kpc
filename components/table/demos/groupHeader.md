@@ -60,20 +60,3 @@ export default class extends Component {
     }
 }
 ```
-
-```vue-data
-data() {
-    return {data};
-}
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {data};
-}
-```
-
-```angular-properties
-private data = data;
-```

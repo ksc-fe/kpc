@@ -15,8 +15,28 @@ import {Switch} from 'kpc';
         {JSON.stringify(this.get('value1'))}
     </div>
     <div>
-        <Switch v-model="value2" trueValue={1} falseValue="1" />
+        <Switch v-model="value2"
+            trueValue={1}
+            falseValue="1"
+        />
         {JSON.stringify(this.get('value2'))}
     </div>
 </div>
+```
+
+```ts
+interface Props {
+    value1?: boolean 
+    value2?: number | string
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value1: false,
+            value2: '1'
+        } as Props;
+    }
+}
 ```

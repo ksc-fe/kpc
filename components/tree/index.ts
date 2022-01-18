@@ -50,6 +50,8 @@ type DragEndData<K extends Key> = {
     mode: Mode
 }
 
+export type TreeDragEndData<K extends Key = Key> = DragEndData<K>
+
 type Filter<K extends Key> = (data: DataItem<K>, node: Node<K>) => boolean;
 
 const typeDefs: Required<TypeDefs<TreeProps<Key>>> = {

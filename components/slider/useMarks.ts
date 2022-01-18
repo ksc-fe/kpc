@@ -45,9 +45,9 @@ export function useMarks() {
     instance.on('$change:value', addText);
 
     function addText() {
-        const {value, isRange} = instance.get();
+        const {value, range} = instance.get();
         marks.forEach(mark => {
-            const active = !isRange ?
+            const active = !range ?
                 mark.value === value as number :
                 (value as [number, number]).includes(mark.value);
 

@@ -27,3 +27,20 @@ import {Spinner} from 'kpc';
 .k-spinner
     margin-right 20px
 ```
+
+```ts
+interface Props {
+    value1?: number
+    value2?: number
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value1: 0,
+            value2: 0
+        };
+    }
+}
+```

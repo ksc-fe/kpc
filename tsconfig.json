@@ -51,6 +51,7 @@
         "kpc/*": ["*"],
         "kpc": ["./"],
         "kpc-react": ["./packages/kpc-react"],
+        "kpc-react/*": ["./packages/kpc-react/*"],
         "kpc-vue": ["./packages/kpc-vue"],
         "kpc-vue/*": ["./packages/kpc-vue/*"],
         "kpc-vue-next": ["./packages/kpc-vue-next"],
