@@ -7,7 +7,8 @@ import cp_logo from '../../../imgs/cp_logo.png';
 import cp_desc from '../../../imgs/cp_desc.png';
 import {Icon} from 'kpc';
 
-const {colorList, curColor, iframeWidth, iframeHeight, iframeScale, curThemeType} = this.get();
+const {colorList, curColor, iframeWidth, iframeHeight, 
+    iframeScale, curThemeType} = this.get();
 
 const getTextStyle = (showColor, color) => {
     if(!showColor) return {};
@@ -19,6 +20,16 @@ const getTextStyle = (showColor, color) => {
         };
     } else {
         return {color};
+    }
+};
+
+const getColorItemStyle = (value) => {
+    // Get first value of color if it is gradient.
+    const shadowColor = value.color.match(/#\w{6}/)[0];
+    
+    return {
+        background: value.color,
+        boxShadow: curColor == value.name ? `0px 0px 20px ${shadowColor}` : ''
     }
 };
 
@@ -37,12 +48,12 @@ const getTextStyle = (showColor, color) => {
                 <div>WCAG2.0</div>
             </div>
             <div class="color-box">
-                <div class="color-wrapper">
+                <div class="color-wrapper" style={{background: curThemeType == 'dark' ? '#000000' : '#F5F6FF'}}>
                     <div class="color-item-box">
                         <div class="color-item" v-for={colorList}>
                             <div
                                 ev-click={this.handleColorClick.bind(this, $value)}
-                                style={{background: $value.color}}
+                                style={getColorItemStyle($value)}
                             >
                                 <Icon v-if={curColor == $value.name} class="icon ion-checkmark-round"></Icon>
                             </div>

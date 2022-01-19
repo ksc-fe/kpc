@@ -81,6 +81,7 @@ export function makeStyles() {
 					position: relative;
 					& > .k-btn {
 						position: absolute;
+						transition: color .25s linear;
 						right: 10px;
 						top: 5px;
 						color: #818181;
@@ -92,9 +93,108 @@ export function makeStyles() {
 						display: flex;
 						align-items: center;
 					}
+					& > .k-btn:hover {
+						color: #0091ea;
+					}
 					.comp-content {
 						${fullfill()}
 						padding: 35px 47px;
+						.switch-box {
+							padding-left: 40px;
+							padding-top: 8px;
+						}
+						.comp-list-btn {
+							width: 120px;
+							height: 40px;
+						}
+						.select-box {
+							.k-select {
+								width: 170px;
+								height: 40px;
+							}
+						}
+						.input-box {
+							.k-input, .k-input-inner {
+								width: 170px;
+								height: 40px;
+							}
+						}
+						.menu-tree-box {
+							height: 124px;
+							display: flex;
+							& > div {
+								height: 100%;
+							}
+							.tree-box {
+								border: 1px solid #DCDCDC;
+								background: #F9F9F9;
+								padding: 10px 5px;
+								margin-right: 9px;
+								height: 124px;
+								width: 170px;
+							}
+							.menu-box {
+								margin-left: 9px;
+								border: 1px solid #DCDCDC;
+								overflow: hidden;
+								height: 124px;
+								width: 170px;
+							}
+							.k-tree {
+								border: none;
+							}
+							.k-tree-label {
+								margin: 2px 0;
+							}
+							.k-tree-text {
+								color: #595959;
+							}
+							.k-menu-name {
+								font-size: 12px;
+							}
+							.k-menu-item:not(.k-active) {
+								.k-menu-name {
+									color: #868686;
+								}
+							}
+							.k-tree-text:first-child {
+								color: red;
+							}
+							
+							.k-tree-label, .k-tree-node, .k-menu {
+								background: #F9F9F9;
+							}
+							.k-menu-header {
+								height: 28px;
+							}
+							.k-menu-item, .k-menu-title {
+								height: 32px;
+							}
+						}
+						.slider-box {
+							.k-slider {
+								width: 170px;
+							}
+						}
+						.rate-box, .radio-box {
+							padding-left: 20px;
+						}
+						.rate-box {
+							padding-top: 2px;
+						}
+						.radio-box {
+							.k-active {
+								background: #0191EA;
+								color: #ffffff;
+							}
+						}
+						.slider-radio-box {
+							margin-top: 15px;
+						}
+						.select-input {
+							margin-top: 5px;
+						}
+
 						& > div {
 							height: 60px;
 							width: 100%;
@@ -105,10 +205,6 @@ export function makeStyles() {
 								flex-grow: 1;
 								width: 0;
 							}
-						}
-						.k-btn(:not:.k-spinner-btn) {
-							width: 120px;
-							height: 40px;
 						}
 						.input-select {
 							.k-select, .k-input {

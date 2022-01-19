@@ -18,9 +18,7 @@ import kingvisionButton from '../../../imgs/kingvision_button.png';
             <img src={kingvisionButton} />
         </div>
         <div>
-            <div>
-                PLACE HOLDER
-            </div>
+            <div class="king-vision-bg"></div>
         </div>
     </div>
 </div>

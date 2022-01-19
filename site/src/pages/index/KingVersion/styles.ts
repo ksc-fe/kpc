@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {mainBlock} from '../../../styles/default';
 import kingVisionBgInner from '../../../imgs/kingvision_bg_inner.png';
 import kingVisionBgOuter from '../../../imgs/kingvision_bg_outer.png';
+import kingvision from '../../../imgs/kingvision.png';
 
 export function makeStyles() {
     return css`
@@ -26,10 +27,13 @@ export function makeStyles() {
                 align-items: center;
                 & > div {
                     width: 100%;
-                    height: 360px;
-                    background: #646464;
+                    height: 350px;
+                    background-image: url(${kingvision});
                     border-radius: 8px;
                     overflow: hidden;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    filter: drop-shadow(0px 0px 20px rgba(0, 0, 0, 0.25));
                 }
             }
             .main-logo {

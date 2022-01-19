@@ -125,7 +125,7 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
             .img-box {
                 width: 100%;
                 height: 500px;
-                background: ${theme.mainColor};
+                background-size: cover;
             }
             .card-box {
                 font-family: Roboto;

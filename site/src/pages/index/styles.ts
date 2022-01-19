@@ -73,6 +73,10 @@ export function makeStyles() {
                     }
                 }
             }
+
+            .btn-github {
+                margin-left: 5px;
+            }
         }
     `
 }

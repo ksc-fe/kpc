@@ -171,11 +171,12 @@ export class BestPractice extends Component<BestPracticeProps, BestPracticeEvent
 
     mounted() {
         const box = this.leftBox.value!;
-        this.rowNum = Array.from({length: Math.ceil(box.offsetHeight / 20)}).map((item, index) => ({
-            top: (index + 1) * 20
+        const width = 22;
+        this.rowNum = Array.from({length: Math.ceil(box.offsetHeight / width)}).map((item, index) => ({
+            top: (index + 1) * width
         }));
-        this.columnNum = Array.from({length: Math.ceil(box.offsetWidth / 20)}).map((item, index) => ({
-            left: (index + 1) * 20
+        this.columnNum = Array.from({length: Math.ceil(box.offsetWidth / width)}).map((item, index) => ({
+            left: (index + 1) * width
         }));
     }
 }

@@ -9,6 +9,7 @@ export default class Index extends Layout {
     static defaults() {
         return {
             ...Layout.defaults(),
+            themeColor: '#0191EA'
         }
     }
 
@@ -17,5 +18,6 @@ export default class Index extends Layout {
     handleColorChange(color: string) {
         super.handleColorChange(color);
         this.bestPrac!.value?.setFrameValue(color);
+        this.set('themeColor', color);
     }
 }

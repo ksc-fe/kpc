@@ -1,7 +1,6 @@
 import {css} from '@emotion/css';
 
 export function makeStyles() {
-
     return css`
         width: 590px;
         background: #EFF3FA;
@@ -25,7 +24,9 @@ export function makeStyles() {
                 width: 40px;
                 height: 40px;
                 border-radius: 50%;
-                color: #ffffff;
+                color: #16325C;
+                background: #EFF3FA;
+                border: none;
                 .k-icon {
                     margin-right: 0;
                 }
@@ -42,5 +43,5 @@ export function makeStyles() {
             height: 176px;
             margin-top: 36px;
         }
-    `
+    `;
 }

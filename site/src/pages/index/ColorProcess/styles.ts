@@ -99,6 +99,7 @@ export function makeStyles() {
                             & > div:last-child {
                                 padding-top: 10px;
                                 text-align: center;
+                                color: #737373;
                             }
                         }
                     }
@@ -137,6 +138,7 @@ export function makeStyles() {
                 overflow: hidden;
                 display: flex;
                 flex-direction: column;
+                background: #3D3D3D;
                 & > div:first-child {
                     flex-grow: 1;
                     display: flex;

@@ -2,11 +2,28 @@ import {Layout, Header, Aside, Menu, MenuItem, Icon, Body, Card} from 'kpc';
 import {makeStyles} from './styles';
 import KD_logo from '../../../imgs/KD_logo.png';
 import colorProLogo from '../../../imgs/color_pro_logo.png';
+import colorNewEar from '../../../imgs/color_NewEra.png';
+import color_ocean from '../../../imgs/color_ocean.png';
+import color_deign62 from '../../../imgs/color_deign62.png';
+import color_techno from '../../../imgs/color_techno.png';
 
 const {
     asideWidth, headerHeight, bgTheme, curBgTheme,
     theme, curTheme
 } = this.get();
+
+function getBgImage() {
+    const colorMap = {
+        'New Era': colorNewEar,
+        'Ocean': color_ocean,
+        'Techno': color_techno,
+        'burset 62': color_deign62,
+    }
+
+    return {
+        backgroundImage: `url(${colorMap[curTheme]})`
+    }
+};
 
 <Layout class={makeStyles(bgTheme[curBgTheme], theme[curTheme])}>
     <Header height={headerHeight}>
@@ -47,7 +64,7 @@ const {
             </div>
         </Aside>
         <Body class="cp-content">
-            <div class="img-box"></div>
+            <div class="img-box" style={getBgImage()}></div>
             <div class="card-box">
                 <Card>
                     <div class="card-title">
