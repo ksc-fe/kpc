@@ -29,3 +29,20 @@ import {Select, Option} from 'kpc';
     </Select>
 </div>
 ```
+
+```ts
+interface Props {
+    day?: string | null
+    days?: string[]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            day: null,
+            days: [],
+        } as Props;
+    }
+}
+```

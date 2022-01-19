@@ -30,10 +30,15 @@ import {Radio} from 'kpc';
 export default class extends Component {
     static template = template;
     
-    static defaults = () => ({
-        checkedValue: {
-            test: 1
+    static defaults() {
+        return {
+            value1: false,
+            value2: false,
+            value3: false,
+            checkedValue: {
+                test: 1
+            }
         }
-    });
+    };
 }
 ```

@@ -6,27 +6,39 @@ order: 4
 通过`size`属性，可以定义菜单的尺寸：`large` `default` `small`
 
 ```vdt
-import {Menu, MenuItem} from 'kpc';
-import {Switch} from 'kpc';
-import {ButtonGroup, Button} from 'kpc';
-import {Icon} from 'kpc';
+import {Menu, MenuItem, Switch, ButtonGroup, Button, Icon} from 'kpc';
 
 <div>
-    <Switch on="收起" off="展开" v-model="isCollapse" width="60" trueValue={true} falseValue={false}/>
-    <ButtonGroup checkType="radio" v-model="theme">
+    <Switch v-model="collapse"
+        on="收起"
+        off="展开" 
+        width="60"
+        trueValue={true}
+        falseValue={false}
+    />
+    <ButtonGroup checkType="radio"
+        v-model="theme"
+    >
         <Button value="light">light</Button>
         <Button value="dark">dark</Button>
         <Button value="white">white</Button>
     </ButtonGroup>
-    <Switch on="horizontal" off="vertical" v-model="type" width="100" trueValue="horizontal" falseValue="vertical" />
-    <ButtonGroup checkType="radio" v-model="size">
+    <Switch v-model="type"
+        on="horizontal" off="vertical"
+        width="100"
+        trueValue="horizontal"
+        falseValue="vertical"
+    />
+    <ButtonGroup v-model="size"
+        checkType="radio"
+    >
         <Button value="large">large</Button>
         <Button value="default">default</Button>
         <Button value="small">small</Button>
     </ButtonGroup>
     <br /><br />
     <Menu v-model:expandedKeys="expandedKeys" 
-        collapse={this.get('isCollapse')}
+        collapse={this.get('collapse')}
         theme={this.get('theme')}
         size={this.get('size')}
         type={this.get('type')}
@@ -60,6 +72,8 @@ import {Icon} from 'kpc';
 ```
 
 ```ts
+import type {MenuProps} from 'kpc';
+
 export default class extends Component {
     static template = template;
 
@@ -68,7 +82,9 @@ export default class extends Component {
             expandedKeys: ['3'],
             size: 'large',
             theme: 'light',
-        };
+            type: 'vertical',
+            collapse: false,
+        } as MenuProps;
     }
 }
 ```

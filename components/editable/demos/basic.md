@@ -28,7 +28,7 @@ import {Editable} from 'kpc';
 
 ```ts
 interface Props {
-    text: string
+    text?: string
 }
 
 export default class extends Component<Props> {

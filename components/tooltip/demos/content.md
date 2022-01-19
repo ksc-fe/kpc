@@ -14,8 +14,8 @@ import {Tooltip, Slider, Button} from 'kpc';
         <b:content>
             <Slider v-model="volume" 
                 style="width: 200px;"
-                isShowInput={false} 
-                isShowEnd={false}
+                showInput={false} 
+                showEnd={false}
             />
         </b:content>
     </Tooltip>

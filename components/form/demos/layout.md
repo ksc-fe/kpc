@@ -6,10 +6,7 @@ order: 5
 通过`layout`指定表单布局：`horizontal`, `vertical`, `inline`，还可以通过`size`控制`FormItem`的间距
 
 ```vdt
-import {Form, FormItem} from 'kpc';
-import {Input} from 'kpc';
-import {Select, Option} from 'kpc';
-import {ButtonGroup, Button} from 'kpc';
+import {Form, FormItem, Input, Select, Option, ButtonGroup, Button} from 'kpc';
 
 <Form layout={this.get('layout')} size={this.get('size')}>
     <FormItem label="Layout">
@@ -45,17 +42,28 @@ import {ButtonGroup, Button} from 'kpc';
 ```
 
 ```ts
-export default class extends Component {
+import type {FormProps} from 'kpc';
+
+interface Props {
+    model: Model
+    layout: FormProps['layout']
+    size: FormProps['size']
+}
+
+type Model = {
+    input?: string
+    select?: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
         return {
-            model: {
-                checkbox: [],
-            },
+            model: {},
             layout: 'horizontal',
-            size: 'default',
-        };
+            size: 'default'
+        } as Props;
     }
 }
 ```

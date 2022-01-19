@@ -49,3 +49,18 @@ import {Select, Option, OptionGroup} from 'kpc';
     .k-tab
         text-align right
 ```
+
+```ts
+interface Props {
+   day?: string | null
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            day: null
+        } as Props;
+    }
+}
+```

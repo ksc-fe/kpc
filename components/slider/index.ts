@@ -13,11 +13,11 @@ import {Marks, useMarks} from './useMarks';
 import {useTooltip} from './useTooltip';
 import type {Events} from '../types';
 
-export interface SliderProps {
+export interface SliderProps<Range extends boolean = boolean> {
     max?: number
     min?: number
-    value?: Value
-    range?: boolean
+    value?: Value<Range>
+    range?: Range 
     unit?: string
     showEnd?: boolean
     showInput?: boolean
@@ -33,12 +33,14 @@ export interface SliderProps {
     forceStep?: boolean
 }
 
-export interface SliderEvents {
-    change: [Value, Value]
+export type SliderMarks = Marks;
+
+export interface SliderEvents<Range extends boolean = boolean> {
+    change: [Value<Range>, Value<Range>]
 }
 
-export interface SliderBlocks {
-    tooltip: Value
+export interface SliderBlocks<Range extends boolean = boolean> {
+    tooltip: Value<Range>
 }
 
 const typeDefs: Required<TypeDefs<SliderProps>> = {
@@ -78,7 +80,9 @@ const events: Events<SliderEvents> = {
     change: true,
 };
 
-export class Slider extends Component<SliderProps, SliderEvents, SliderBlocks> {
+export class Slider<
+    Range extends boolean = false 
+> extends Component<SliderProps<Range>, SliderEvents<Range>, SliderBlocks<Range>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

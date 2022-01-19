@@ -33,11 +33,14 @@ import {Slider} from 'kpc';
 ```
 
 ```ts
+import {SliderMarks} from 'kpc';
+
 interface Props {
     value1?: number
     values?: [number, number]
     value2?: number
     value3?: number
+    marks: SliderMarks 
 }
 
 export default class extends Component<Props> {
@@ -63,7 +66,7 @@ export default class extends Component<Props> {
                 11: '2年',
                 12: '3年',
             }
-        }
+        } as Props;
     }
 }
 ```

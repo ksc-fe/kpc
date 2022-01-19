@@ -1,9 +1,9 @@
 import {Component, TypeDefs, provide, inject, Key} from 'intact';
 import template from './menu.vdt';
 
-export interface MenuProps {
-    expandedKeys?: Key[]
-    selectedKey?: Key 
+export interface MenuProps<K extends Key = Key> {
+    expandedKeys?: K[]
+    selectedKey?: K 
     theme?: 'light' | 'dark' | 'white'
     collapse?: boolean
     type?: 'vertical' | 'horizontal'
@@ -34,12 +34,12 @@ const defaults = (): Partial<MenuProps> => ({
     theme: 'dark',
     type: 'vertical',
     size: 'default',
-})
+});
 
 export const MENU = 'Menu';
 export const ROOT_MENU = 'RootMenu';
 
-export class Menu extends Component<MenuProps, MenuEvents, MenuBlocks> {
+export class Menu<K extends Key = Key> extends Component<MenuProps<K>, MenuEvents, MenuBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

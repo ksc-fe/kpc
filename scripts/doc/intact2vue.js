@@ -108,9 +108,9 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
             if (line.startsWith('import')) {
-                const matches = line.match(/(import (?:type )?)\{?(.*?)\}? from (.*)/);
+                const matches = line.match(/(import (?:type )?)(\{?)(.*?)\}? from (.*)/);
                 if (matches) {
-                    const variables = matches[2];
+                    const variables = matches[3];
                     // ignore bind, it is unnecessary in Vue
                     if (variables === 'bind') continue;
 
@@ -121,7 +121,7 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
                     });
                     if (!names.length) continue;
 
-                    line = `${matches[1]}{${names.join(', ')}} from ${matches[3]}`;
+                    line = `${matches[1]}${matches[2] ? '{' : ''}${names.join(', ')}${matches[2] ? '}' : ''} from ${matches[4]}`;
                     line = line.replace('kpc', 'kpc-vue');
                 }
             }
@@ -134,29 +134,30 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
         head += _head.join('\n');
 
         let {defaults, methods} = parseJS(js, vueData);
-        let data;
-        try {
-            eval(`data = ${defaults}`);
-        } catch (e) {
-        }
-        if (data) {
-            for (let key in properties) {
-                if (key in data) {
-                    delete properties[key];
-                }
-            }
-        }
-        const extra = Object.keys(properties).map(key => {
-            return indent(`${key}: null,`);
-        });
+        // let data;
+        // try {
+            // eval(`data = ${defaults}`);
+        // } catch (e) {
+        // }
+        // if (data) {
+            // for (let key in properties) {
+                // if (key in data) {
+                    // delete properties[key];
+                // }
+            // }
+        // }
+        // const extra = Object.keys(properties).map(key => {
+            // return indent(`${key}: null,`);
+        // });
         if (defaults) {
             const lines = defaults.split('\n');
             const lastLine = lines.pop();
-            lines.push(...extra, lastLine);
+            // lines.push(...extra, lastLine);
             defaults = lines.join('\n');
-        } else if (extra.length) {
-            defaults = [`{`, ...extra, `}`].join('\n');
         }
+        // else if (extra.length) {
+            // defaults = [`{`, ...extra, `}`].join('\n');
+        // }
 
         methodsObj = methods;
         js.replace(importRegExp, (match, name) => {

@@ -32,3 +32,20 @@ import {Select, Option} from 'kpc';
     Days: {JSON.stringify(this.get('days'))}
 </div>
 ```
+
+```ts
+interface Props {
+    day?: string | null
+    days?: string[]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            day: null,
+            days: [],
+        } as Props;
+    }
+}
+```

@@ -6,9 +6,7 @@ order: 3
 通过`type`属性，可以定义菜单垂直或者水平排列：`vertical` `horizontal`，默认`vertical`
 
 ```vdt
-import {Menu, MenuItem} from 'kpc';
-import {Switch} from 'kpc';
-import {Icon} from 'kpc';
+import {Menu, MenuItem, Switch, Icon} from 'kpc';
 
 <div>
     <Menu theme={this.get('theme')} type="horizontal">
@@ -41,4 +39,17 @@ import {Icon} from 'kpc';
         falseValue="dark"
     />
 </div>
+```
+
+```ts
+import type {MenuProps} from 'kpc';
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            theme: 'dark' as MenuProps['theme'],
+        }
+    }
+}
 ```

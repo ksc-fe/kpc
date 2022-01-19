@@ -22,3 +22,20 @@ import {Slider} from 'kpc';
 .k-slider
     margin-bottom 20px
 ```
+
+```ts
+interface Props {
+    value1?: number
+    value2?: number
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value1: 0,
+            value2: 50,
+        };
+    }
+}
+```

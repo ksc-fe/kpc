@@ -13,7 +13,7 @@ import {Slider} from 'kpc';
 
 ```ts
 interface Props {
-    values: [number, number]
+    values?: [number, number]
 }
 
 export default class extends Component<Props> {
@@ -22,7 +22,7 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             values: [50, 76],
-        }
+        } as Props;
     }
 }
 ```

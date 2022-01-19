@@ -9,7 +9,10 @@ order: 0
 import {Input} from 'kpc';
 
 <div>
-    <Input v-model="value" placeholder="please enter" ref="__test" /> {this.get('value')}
+    <Input v-model="value"
+        placeholder="please enter"
+        ref="__test"
+    /> {this.get('value')}
     <br />
     <Input disabled placeholder="disabled" />
 </div>
@@ -18,4 +21,15 @@ import {Input} from 'kpc';
 ```styl
 .k-input
     margin 5px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value: ''
+        }
+    }
+}
 ```

@@ -20,8 +20,8 @@ import {Slider, Button} from 'kpc';
 import {bind} from 'kpc';
 
 interface Props {
-    value1: number
-    value2: number
+    value1?: number
+    value2?: number
     min: number
     max: number
 }

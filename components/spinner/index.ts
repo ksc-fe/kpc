@@ -30,7 +30,9 @@ export interface SpinnerEvents {
 }
 
 export type StepObject = {
-    [key in number | '$']: number
+    [key in number]: number
+} & {
+    $?: number
 }
 export type StepFunction = (value: number) => number
 type Formatter = (value: number) => string

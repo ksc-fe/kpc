@@ -46,8 +46,8 @@ import {Select, Option} from 'kpc';
 
 ```ts
 interface Props {
-    day: string | null
-    days: string[]
+    day?: string | null
+    days?: string[]
 }
 
 export default class extends Component<Props> {
@@ -56,7 +56,7 @@ export default class extends Component<Props> {
         return {
             day: null,
             days: ['Monday', 'Tuesday'],
-        };
+        } as Props;
     }
 }
 ```

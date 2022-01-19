@@ -8,6 +8,32 @@ import {useFrozen} from './useFrozen';
 import {CommonInputHTMLAttributes, Events} from '../types';
 export * from './search';
 
+type HTMLInputTypes =
+    | 'textarea' // for textarea
+    | 'button'
+    | 'checkbox'
+    | 'color'
+    | 'date'
+    | 'datetime-local'
+    | 'email'
+    | 'file'
+    | 'hidden'
+    | 'image'
+    | 'month'
+    | 'number'
+    | 'password'
+    | 'radio'
+    | 'range'
+    | 'reset'
+    | 'search'
+    | 'submit'
+    | 'tel'
+    | 'text'
+    | 'time'
+    | 'url'
+    | 'week'
+    | (string & {});
+
 interface InputHTMLAttributes extends CommonInputHTMLAttributes {
     // type input
     pattern?: string
@@ -22,7 +48,7 @@ interface InputHTMLAttributes extends CommonInputHTMLAttributes {
 type Value = string | number
 
 export interface InputProps<V extends Value = Value> extends InputHTMLAttributes {
-    type?: 'text' | 'textarea' 
+    type?: HTMLInputTypes 
     value?: V
     defaultValue?: string | number
     placeholder?: string
@@ -115,7 +141,7 @@ export class Input<V extends Value = Value> extends Component<InputProps<V>, Inp
 
     @bind
     private clear(e: MouseEvent) {
-        this.set('value', '');
+        this.set<string>('value', '');
         this.focus();
         this.trigger('clear', e);
     }

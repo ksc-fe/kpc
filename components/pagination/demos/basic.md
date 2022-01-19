@@ -25,10 +25,12 @@ import {Pagination} from 'kpc';
 ```
 
 ```ts
+import {PaginationChangeData} from 'kpc';
+
 interface Props {
-    value1: number
-    value2: number
-    value3: number
+    value1?: number
+    value2?: number
+    value3?: number
 }
 
 export default class extends Component<Props> {
@@ -42,7 +44,7 @@ export default class extends Component<Props> {
         };
     }
 
-    _onChange(v: number) {
+    _onChange(v: PaginationChangeData) {
         console.log(v);
     }
 }

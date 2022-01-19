@@ -27,11 +27,17 @@ import {Drawer, Button, ButtonGroup} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc';
+import {bind, DrawerProps} from 'kpc';
 
 interface Props {
-    show: boolean
-    showPosition: string
+    show?: boolean
+    showPosition: DrawerProps['placement'] 
+    showList: ListItem[]
+}
+
+type ListItem = {
+    key: DrawerProps['placement'] 
+    value: string
 }
 
 export default class extends Component<Props> {
@@ -41,24 +47,29 @@ export default class extends Component<Props> {
         return {
             show: false,
             showPosition: 'right',
-            showList: [{
-                key: 'top',
-                value: '从上侧出现'
-            }, {
-                key: 'bottom',
-                value: '从下侧出现'
-            }, {
-                key: 'left',
-                value: '从左侧出现'
-            }, {
-                key: 'right',
-                value: '从右侧出现'
-            },]
-        }
+            showList: [
+                {
+                    key: 'top',
+                    value: '从上侧出现'
+                },
+                {
+                    key: 'bottom',
+                    value: '从下侧出现'
+                },
+                {
+                    key: 'left',
+                    value: '从左侧出现'
+                },
+                {
+                    key: 'right',
+                    value: '从右侧出现'
+                }
+            ]
+        } as Props;
     }
 
     @bind
-    showDrawer(value: string) {
+    showDrawer(value: DrawerProps['placement']) {
         this.set({
             'showPosition': value,
             'show': true

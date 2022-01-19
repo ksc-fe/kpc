@@ -10,7 +10,7 @@ order: 0
 import {ButtonGroup, Button} from 'kpc';
 
 <ButtonGroup>
-    <Button v-for={['info', 'error', 'warning', 'success']}
+    <Button v-for={this.get('types')}
         ev-click={this.showMessage.bind(this, $value)}
     >{$value}</Button>
 </ButtonGroup>
@@ -21,6 +21,12 @@ import {Message} from 'kpc';
 
 export default class extends Component {
     static template = template;
+
+    static defaults() {
+        return {
+            types: ['info', 'error', 'warning', 'success'] as const
+        }
+    }
 
     showMessage(type: 'info' | 'error' | 'warning' | 'success') {
         Message[type](type);

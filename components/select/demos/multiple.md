@@ -21,3 +21,18 @@ import {Select, Option} from 'kpc';
     You selected: {JSON.stringify(this.get('day'))} 
 </div>
 ```
+
+```ts
+interface Props {
+   day?: string[]
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            day: [] 
+        } as Props;
+    }
+}
+```

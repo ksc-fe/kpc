@@ -20,12 +20,15 @@ import {Radio} from 'kpc';
 .k-radio
     margin-right 20px
 ```
+
 ```ts
 export default class extends Component {
     static template = template;
     
-    static defaults = () => ({
-        language: 'Javascript'
-    });
+    static defaults() {
+        return {
+            language: 'Javascript'
+        }
+    };
 }
 ```

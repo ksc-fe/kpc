@@ -32,15 +32,17 @@ order: 0
 另外，验证失败时，可以通过`Form`的`getFirstInvalidFormItem()`方法来获取第一条出错的`FormItem`
 
 ```vdt
-import {Form, FormItem} from 'kpc';
-import {Input} from 'kpc';
-import {Select, Option} from 'kpc';
-import {Checkbox} from 'kpc';
-import {Radio} from 'kpc';
-import {ButtonGroup, Button} from 'kpc';
-import {Switch} from 'kpc';
-import {Slider} from 'kpc';
-import {Datepicker} from 'kpc';
+import {
+    Form, FormItem,
+    Input,
+    Select, Option,
+    Checkbox,
+    Radio,
+    ButtonGroup, Button,
+    Switch,
+    Slider,
+    Datepicker,
+} from 'kpc';
 
 <Form ev-submit={this.submit} ref="form" labelWidth="200">
     <FormItem label="Input" value={this.get('model.input')} rules={{required: true}}>
@@ -86,7 +88,7 @@ import {Datepicker} from 'kpc';
         <Switch v-model="model.switch" />
     </FormItem>
     <FormItem value={this.get("model.slider")} rules={{required: true, min: 1}} label="Slider">
-        <Slider v-model="model.slider" isShowInput={false} />
+        <Slider v-model="model.slider" showInput={false} />
     </FormItem>
     <FormItem value={this.get("model.date")} rules={{required: true}} label="Datepicker">
         <Datepicker v-model="model.date" />  
@@ -141,7 +143,17 @@ interface Props {
 }
 
 type Model = {
+    input?: string
+    select?: string
     checkbox: string[] 
+    radio?: string
+    buttonGroup?: string
+    switch?: boolean
+    slider?: number
+    date?: string
+    textarea?: string
+    password?: string
+    confirmPassword?: string
 }
 
 export default class extends Component<Props> {
@@ -152,7 +164,7 @@ export default class extends Component<Props> {
             model: {
                 checkbox: []
             }
-        };
+        } as Props;
     }
 
     @bind
@@ -178,14 +190,4 @@ export default class extends Component<Props> {
         console.log(this.get('model'));
     }
 }
-```
-
-```vue-data
-data() {
-    return {
-        model: {
-            checkbox: [],
-        }
-    }
-},
 ```

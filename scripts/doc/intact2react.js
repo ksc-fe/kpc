@@ -58,9 +58,9 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
         for (let i = 0; i < lines.length; i++) {
             let line = lines[i];
             if (line.startsWith('import')) {
-                const matches = line.match(/(import (?:type )?)\{?(.*?)\}? from (.*)/);
+                const matches = line.match(/(import (?:type )?)(\{?)(.*?)\}? from (.*)/);
                 if (matches) {
-                    const variables = matches[2];
+                    const variables = matches[3];
                     const names = variables.split(',')
                         .map(item => item.trim())
                         .filter(name => {
@@ -68,7 +68,7 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
                         });
                     if (!names.length) continue;
 
-                    line = `${matches[1]}{${names.join(', ')}} from ${matches[3]}`;
+                    line = `${matches[1]}${matches[2] ? '{' : ''}${names.join(', ')}${matches[2] ? '}' : ''} from ${matches[4]}`;
                     line = line.replace('kpc', 'kpc-react');
                 }
             } else if (!hasAdded && hasStylus) {
@@ -126,21 +126,23 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
         scripts.push(...indent(methods.join('\n')));
     }
 
-    let render = [
-        'render() {',
-    ];
-    if (templateJsCode) {
-        render.push(indent(templateJsCode), '');
+    if (!methodsObj.render) {
+        let render = [
+            'render() {',
+        ];
+        if (templateJsCode) {
+            render.push(indent(templateJsCode), '');
+        }
+        scripts.push(
+            ...indent([
+                ...render,
+                '    return (',
+                ...indent(template.trim(), 2),
+                '    )',
+                '}',
+            ]),
+        );
     }
-    scripts.push(
-        ...indent([
-            ...render,
-            '    return (',
-            ...indent(template.trim(), 2),
-            '    )',
-            '}',
-        ]),
-    );
 
     return {
         head,
@@ -148,7 +150,7 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
     }
 }
 
-const delimitersRegExp = /\b([^\s]*?)=\{\s*([\s\S]*?)\s*(\})?\}/g;
+const delimitersRegExp = /\b([^\s]*?)=\{\s*([\s\S]*?)\s*(\})?\}(?!`)/g;
 function parseProperty(template, properties, methods) {
     // specical for Editable validate string
     template = template.replace('"\\d+"', '"\\\\d+"');
@@ -171,7 +173,7 @@ function parseProperty(template, properties, methods) {
             if (matches) {
                 if (matches[2]) {
                     if (matches[1] === 'set') {
-                        methods.set = `set(key, value) { this.setState({[key]: value}); }\n`;
+                        addSet(methods);
                     }
                     // value = `${matches[1]}(${matches[3]})`;
                     value = `this.${matches[1]}.bind(this, ${matches[3]})`;
@@ -180,25 +182,27 @@ function parseProperty(template, properties, methods) {
                 }
             }
         } else if (name === 'v-model') {
-            properties.state = '{}';
-            if (value === "`descriptions[${key}]`") {
-                methods._onChangeValue = [
-                    `_onChangeValue(index, c, v) {`,
-                    ...indent([
-                        `const descriptions = this.state.descriptions.slice(0);`,
-                        `descriptions[index] = v;`,
-                        `this.setState({descriptions});`
-                    ]),
-                    `}`,
-                    '',
-                ].join('\n');
-                return `value={this.state.descriptions[key]} on$change-value={this._onChangeValue.bind(this, key)}`;
-            }
-            return `value={this.state[${value}]} on$change-value={(c, v) => this.setState({[${value}]: v})}`;
+            // properties.state = '{}';
+            // if (value === "`descriptions[${key}]`") {
+                // methods._onChangeValue = [
+                    // `_onChangeValue(index, c, v) {`,
+                    // ...indent([
+                        // `const descriptions = this.state.descriptions.slice(0);`,
+                        // `descriptions[index] = v;`,
+                        // `this.setState({descriptions});`
+                    // ]),
+                    // `}`,
+                    // '',
+                // ].join('\n');
+                // return `value={this.state.descriptions[key]} on$change-value={this._onChangeValue.bind(this, key)}`;
+            // }
+            addSet(methods);
+            return `value={this.state[${value}]} onChangeValue={this.set.bind(this, ${value})}`;
         } else if (name === 'className') {
             methods.classNames = [
-                `private classNames(classNames: Record<string, any>) {`,
+                `private classNames(classNames: Record<string, any> | string) {`,
                 ...indent([
+                    `if (typeof classNames === 'string') return classNames;`,
                     `const ret = [];`,
                     `for (let key in classNames) {`,
                     ...indent([
@@ -762,4 +766,13 @@ function upperFirst(word) {
 
 function indentOneLine(code, count = 1) {
     return `${'    '.repeat(count)}${code}`;
+}
+
+function addSet(methods) {
+    if (methods.set) return;
+    methods.set = [
+        `set<K extends keyof Props>(key: K, value: Props[K]) {`,
+        `    this.setState({[key]: value} as Pick<Props, K>);`,
+        `}`
+    ].join('\n') + '\n';
 }

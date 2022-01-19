@@ -84,8 +84,8 @@ import {
 import {bind} from 'kpc';
 
 interface Props {
-    expandedKeys: string[]
-    selectedKey: string
+    expandedKeys?: string[]
+    selectedKey?: string
     collapse: boolean
     data: any[]
 }
@@ -106,30 +106,6 @@ export default class Demo extends Component<Props> {
     toggle() {
         this.set('collapse', !this.get('collapse'));
     }
-}
-```
-
-```vue-data
-data() {
-    return {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        collapse: false,
-        data: Array.apply(null, {length: 100}),
-    };
-},
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        collapse: false,
-        data: Array.apply(null, {length: 100}),
-    };
-    this._toggle = this._toggle.bind(this);
 }
 ```
 

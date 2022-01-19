@@ -24,3 +24,18 @@ import {Select, Option} from 'kpc';
 .k-select
     margin-right 16px
 ```
+
+```ts
+interface Props {
+    day?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            day: null,
+        } as Props;
+    }
+}
+```

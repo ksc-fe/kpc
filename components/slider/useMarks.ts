@@ -19,7 +19,7 @@ type Style = {
 }
 
 export function useMarks() {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
     let marks: Mark[] = []; 
 
     useReceive<Slider>(['marks', 'value'], () => {

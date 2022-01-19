@@ -21,3 +21,18 @@ import {Slider} from 'kpc';
     points 
 />
 ```
+
+```ts
+interface Props {
+    value1?: number
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value1: 0,
+        };
+    }
+}
+```

@@ -20,11 +20,17 @@ import {Select, Option} from 'kpc';
 ```
 
 ```ts
+interface Props {
+    day?: string | null
+    data: any[]
+}
+
 export default class extends Component {
     static template = template;
 
     static defaults() {
         return {
+            day: null,
             data: [
                 {label: '星期一', value: 'Monday'},
                 {label: '星期二', value: 'Tuesday'},
@@ -34,7 +40,7 @@ export default class extends Component {
                 {label: '星期六', value: 'Saturday'},
                 {label: '星期天', value: 'Sunday'},
             ]
-        }
+        } as Props;
     }
 }
 ```

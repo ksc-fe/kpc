@@ -23,3 +23,14 @@ import {Radio} from 'kpc';
     margin-right 20px
 ```
 
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value: false
+        }
+    }
+}
+```
+

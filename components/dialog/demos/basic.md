@@ -20,8 +20,15 @@ import {Button, Dialog, Select, Option} from 'kpc';
 ```ts
 import {bind} from 'kpc';
 
-export default class extends Component<{show: boolean}> {
+interface Props {
+    show?: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {show: false};
+    }
 
     @bind
     onClick() {

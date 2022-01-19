@@ -25,6 +25,12 @@ import {Slider} from 'kpc';
 ```
 
 ```ts
+import {SliderMarks} from 'kpc';
+
+interface Props {
+    marks: SliderMarks
+}
+
 export default class extends Component {
     static template = template;
 
@@ -44,7 +50,7 @@ export default class extends Component {
                 11: '2年',
                 12: '3年',
             }
-        }
+        } as Props;
     }
 }
 ```

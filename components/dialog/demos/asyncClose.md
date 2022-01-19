@@ -36,7 +36,14 @@ interface Props {
 
 export default class extends Component<Props> {
     static template = template;
-    private timer?: number;
+    static defaults() {
+        return {
+            show: false,
+            code: ''
+        };
+    }
+
+    private timer: number | undefined;
 
     @bind
     async ok() {

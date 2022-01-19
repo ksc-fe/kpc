@@ -35,7 +35,7 @@ export default class extends Component {
 
     static defaults() {
         return {
-            value: 100
+            value: '100' 
         };
     }
 
@@ -43,7 +43,7 @@ export default class extends Component {
         Message.error('Please enter digits.');
     }
 
-    _onChange(newValue: string, oldValue: string) {
+    _onChange(newValue: string, oldValue?: string) {
         console.log(newValue, oldValue);
     }
 }

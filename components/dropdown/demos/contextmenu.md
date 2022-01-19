@@ -18,7 +18,7 @@ import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
     <div class="contextmenu-area">
         right click this area to show context menu
     </div>
-    <DropdownMenu position={{my: 'left+1 top', at: 'right bottom'}}>
+    <DropdownMenu>
         <DropdownItem>Option 1</DropdownItem>
         <DropdownItem>Option 2</DropdownItem>
         <DropdownItem>Option 3</DropdownItem>

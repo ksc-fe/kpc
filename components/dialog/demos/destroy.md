@@ -20,11 +20,14 @@ import {Button, Dialog, Input} from 'kpc';
 import {bind} from 'kpc';
 
 interface Props {
-    show: boolean
+    show?: boolean
 }
 
 export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {show: false};
+    }
 
     @bind
     onClick() {

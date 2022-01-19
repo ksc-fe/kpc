@@ -12,3 +12,14 @@ import {Pagination} from 'kpc';
     <Pagination total={200} showGoto v-model="value" />
 </div>
 ```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value: 1
+        }
+    }
+}
+```

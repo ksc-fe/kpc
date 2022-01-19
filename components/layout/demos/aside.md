@@ -80,8 +80,8 @@ import {
 import {bind} from 'kpc';
 
 interface Props {
-    expandedKeys: string[]
-    selectedKey: string
+    expandedKeys?: string[]
+    selectedKey?: string
     collapse: boolean
 }
 

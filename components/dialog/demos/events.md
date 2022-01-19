@@ -7,8 +7,7 @@ order: 2
 此时弹窗会自动立即关闭，如果需要控制更多细节，可以使用`ok`和`cancel`属性，详见异步关闭。
 
 ```vdt
-import {Button} from 'kpc';
-import {Dialog} from 'kpc';
+import {Button, Dialog} from 'kpc';
 
 <div>
     <Button ev-click={this.set.bind(this, 'show', true)}
@@ -24,8 +23,15 @@ import {Dialog} from 'kpc';
 ```ts
 import {Message} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    show?: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {show: false};
+    }
 
     onOk() {
         Message.success('You clicked ok button.');

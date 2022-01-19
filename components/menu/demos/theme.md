@@ -6,9 +6,7 @@ order: 1
 通过`theme`属性可以指定主题：`dark` `light`，默认`dark`
 
 ```vdt
-import {ButtonGroup, Button} from 'kpc';
-import {Menu, MenuItem} from 'kpc';
-import {Icon} from 'kpc';
+import {ButtonGroup, Button, Menu, MenuItem, Icon} from 'kpc';
 
 <div>
     <ButtonGroup checkType="radio" v-model="theme">
@@ -36,13 +34,15 @@ import {Icon} from 'kpc';
 ```
 
 ```ts
+import {MenuProps} from 'kpc';
+
 export default class extends Component {
     static template = template;
 
     static defaults() {
         return {
             expandedKeys: ['3'],
-            theme: 'light',
+            theme: 'light' as MenuProps['theme'],
         };
     }
 }

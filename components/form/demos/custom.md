@@ -16,9 +16,7 @@ order: 1
 > 参数传给验证方法。当然我们还可以指定任意值，只要不是`false`就行，因为`false`代表不验证
 
 ```vdt
-import {Form, FormItem} from 'kpc';
-import {Input} from 'kpc';
-import {Button} from 'kpc';
+import {Form, FormItem, Input, Button} from 'kpc';
 
 <Form>
     <FormItem label="描述">
@@ -67,19 +65,24 @@ import {Button} from 'kpc';
 ```
 
 ```ts
-import {Form} from 'kpc';
-import {bind} from 'kpc';
+import {Form, bind} from 'kpc';
+
+interface Props {
+    descriptions: string[]
+}
 
 // 添加全局规则
 Form.addMethod('letter', (value, param) => {
     return /^[a-z|A-Z]+$/.test(value);
 }, '只能输入字母');
 
-export default class extends Component<{descriptions: string[]}> {
+export default class extends Component<Props> {
     static template = template;
-    static defaults = () => ({
-        descriptions: ['', '']
-    });
+    static defaults() {
+        return {
+            descriptions: ['', '']
+        }
+    };
 
     @bind
     add() {
@@ -107,6 +110,50 @@ remove(index) {
 ```react-methods
 add() {
     this.setState({descriptions: this.state.descriptions.concat('')});
+}
+
+onInput(index: number, v?: string) {
+    const descriptions = this.state.descriptions.slice(0);
+    descriptions[index] = v!;
+    this.setState({descriptions});
+}
+
+render() {
+    return (
+        <Form>
+            <FormItem label="描述">
+                {this.state.descriptions.map(($value, $key) => {
+                    return (
+                        <FormItem
+                            slotAppend={<Button onClick={this.remove.bind(self, $key)}>删除</Button>}
+                            value={$value}
+                            hideLabel
+                            rules={{
+                                required: true, 
+                                // 自定义全局规则
+                                letter: true,
+                                // 自定义局部规则，所有描述必须不重复
+                                unique: (value: string) => {
+                                    let count = 0;
+                                    this.state.descriptions.find(item => {
+                                        if (item === value) count++;
+                                        return count > 1;
+                                    });
+                                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
+                                    return count === 1 || '不能相同';
+                                }
+                            }}
+                        >
+                            <Input value={this.state.descriptions[$key]} 
+                                onChangeValue={this.onInput.bind(this, $key)}
+                            />    
+                        </FormItem>
+                    )
+                })}
+                <Button onClick={this.add}>添加</Button>
+            </FormItem>
+        </Form>
+    )
 }
 ```
 

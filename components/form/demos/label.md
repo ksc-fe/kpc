@@ -7,8 +7,7 @@ order: 3
 必填的`FormItem`标签前面将自动添加`*`
 
 ```vdt
-import {Form, FormItem} from 'kpc';
-import {Input} from 'kpc';
+import {Form, FormItem, Input} from 'kpc';
 
 <Form starOnRequired>
     <FormItem rules={{required: true}} label="姓名">

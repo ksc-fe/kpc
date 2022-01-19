@@ -6,11 +6,13 @@ order: 0.1
 `Header`和`Aside`都支持单独指定主题颜色，可取值为：`dark` `light` `white`，默认为`dark`
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc';
-import {Menu, MenuItem} from 'kpc';
-import {Icon} from 'kpc';
-import {Breadcrumb, BreadcrumbItem} from 'kpc';
-import {ButtonGroup, Button} from 'kpc';
+import {
+    Layout, Header, Aside, Body, Footer,
+    Menu, MenuItem,
+    Icon,
+    Breadcrumb, BreadcrumbItem,
+    ButtonGroup, Button
+} from 'kpc';
 
 <div>
     <ButtonGroup checkType="radio" v-model="theme">
@@ -97,6 +99,8 @@ import {ButtonGroup, Button} from 'kpc';
 ```
 
 ```ts
+import type {MenuProps} from 'kpc';
+
 export default class extends Component {
     static template = template;
 
@@ -104,7 +108,7 @@ export default class extends Component {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
-            theme: 'white',
+            theme: 'white' as MenuProps['theme'],
         };
     }
 }

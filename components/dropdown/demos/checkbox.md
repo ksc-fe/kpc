@@ -3,25 +3,29 @@ title: 菜单项添加Checkbox
 order: 6
 ---
 
-`DropdownItem`嵌套`Checkbox`使用
+`DropdownItem`嵌套`Checkbox`使用，你可能需要指定`hideOnSelect=false`来使点击菜单项时不隐藏菜单
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
-import {Checkbox} from 'kpc';
-import {Button} from 'kpc';
+import {Dropdown, DropdownMenu, DropdownItem, Checkbox, Button, Icon} from 'kpc';
 
 <div>
     <Dropdown>
-        <Button>More ></Button>
+        <Button>More<Icon class="ion-ios-arrow-right" /></Button>
         <DropdownMenu class="checkbox-menu">
             <DropdownItem hideOnSelect={false}>
-                <Checkbox v-model="checked" trueValue="1">item 1</Checkbox>
+                <Checkbox v-model="checked"
+                    trueValue="1"
+                >item 1</Checkbox>
             </DropdownItem>
             <DropdownItem hideOnSelect={false}>
-                <Checkbox v-model="checked" trueValue="2">item 2</Checkbox>
+                <Checkbox v-model="checked"
+                    trueValue="2"
+                >item 2</Checkbox>
             </DropdownItem>
             <DropdownItem hideOnSelect={false}>
-                <Checkbox v-model="checked" trueValue="3">item 3</Checkbox>
+                <Checkbox v-model="checked"
+                    trueValue="3"
+                >item 3</Checkbox>
             </DropdownItem>
         </DropdownMenu>
     </Dropdown>
@@ -34,21 +38,6 @@ export default class extends Component {
 
     static defaults() {
         return { checked: [] };
-    }
-}
-```
-
-```vue-methods
-_onSelectAndPreventDefault(c, e) {
-    e.preventDefault();
-    console.log('preventDefault', e);
-
-    const checked = this.checked;
-    const index = checked.indexOf('2');
-    if (index > -1) {
-        checked.splice(index, 1);
-    } else {
-        checked.push('2');
     }
 }
 ```
