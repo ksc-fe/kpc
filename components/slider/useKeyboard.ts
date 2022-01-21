@@ -12,7 +12,7 @@ export function useKeyboard(
     dragging: State<boolean>,
     triggerChangeEvent: (value: Value) => void,
 ) {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
     let oldValue: Value;
 
     function onKeydown({keyCode}: KeyboardEvent) {

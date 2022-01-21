@@ -4,7 +4,7 @@ import {useState} from '../../hooks/useState';
 import type {TableRow} from './row';
 
 export function useDraggable() {
-    const instance = useInstance() as Table;
+    const instance = useInstance() as Table<any, any, TableRowKey>;
     const draggingKey = useState<TableRowKey | null>(null);
 
     let originIndex: number;

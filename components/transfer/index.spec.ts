@@ -19,7 +19,7 @@ describe('Transfer', () => {
         expect((transfer as any).check.isCheckAll('left')).to.be.false;
         expect(transfer.get('leftCheckedKeys')).to.eql([]);
         expect(transfer.get('rightCheckedKeys')).to.eql([]);
-        expect(instance.get('value').length).to.eql(2);
+        expect(instance.get('value')!.length).to.eql(2);
 
         // keep the checked item when the key in the new data
         checkAll.click();

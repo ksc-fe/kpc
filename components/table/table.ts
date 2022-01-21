@@ -21,12 +21,10 @@ import {useWidth} from './useWidth';
 import {useScroll} from './useScroll';
 import type {Events} from '../types';
 
-type CheckType = 'checkbox' | 'radio' | 'none'
-
 export interface TableProps<
     T = any,
-    C extends CheckType = 'checkbox',
-    K extends TableRowKey = number,
+    C extends CheckType = CheckType,
+    K extends TableRowKey = TableRowKey,
     S extends string = string,
     G extends TableGroupValue = TableGroupValue
 > {
@@ -73,6 +71,9 @@ export interface TableBlocks<T = unknown> {
     tooltip: [T, number] 
     expand: [T, number]
 }
+
+type CheckType = 'checkbox' | 'radio' | 'none'
+export type TableCheckType = CheckType;
 
 export type TableRowKey = string | number;
 export type TableSortValue<T = string> = {
@@ -133,8 +134,8 @@ const events: Events<TableEvents> = {
 
 export class Table<
     T = any,
-    C extends CheckType = CheckType,
-    K extends TableRowKey = TableRowKey,
+    C extends CheckType = 'checkbox',
+    K extends TableRowKey = number,
     S extends string = string,
     G extends TableGroupValue = TableGroupValue
 > extends Component<TableProps<T, C, K, S, G>, TableEvents<T, K>, TableBlocks<T>> {

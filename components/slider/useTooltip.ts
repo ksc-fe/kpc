@@ -39,7 +39,7 @@ export function useTooltip(showValue: State<Value>) {
     }
 
     function show() {
-        if (!instance.get('isShowTooltip')) return;
+        if (!instance.get('showTooltip')) return;
 
         const first = firstTooltipRef.value!;
         const second = secondTooltipRef.value;

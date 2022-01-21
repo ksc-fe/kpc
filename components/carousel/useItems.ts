@@ -67,7 +67,7 @@ export function useItems() {
                 return clonedVNode;
             };
 
-            for (let i = 0; i < instance.get('clonedAmount'); i++) {
+            for (let i = 0; i < instance.get('clonedAmount')!; i++) {
                 firstVNodes.push(clone(items[i % length], i));
                 lastVNodes.unshift(clone(items[((length - i - 1) % length + length) % length], i));
             }

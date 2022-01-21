@@ -10,7 +10,7 @@ export function useDraggable(
     triggerChangeEvent: (value: Value) => void,
     showTooltip: () => void,
 ) {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
     const trackRef = createRef<HTMLDivElement>();
     const firstThumbRef = createRef<HTMLDivElement>();
     const secondThumbRef = createRef<HTMLDivElement>();

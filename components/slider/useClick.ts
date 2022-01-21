@@ -9,7 +9,7 @@ export function useClick(
     showValue: State<Value>,
     setValue: (value: Value) => void,
 ) {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
 
     function onClickTrack(e: MouseEvent) {
         if (instance.get('disabled')) return;

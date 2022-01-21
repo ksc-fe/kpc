@@ -49,7 +49,7 @@ describe('Select', () => {
         const close = element.querySelector('.k-select-close') as HTMLElement;
         close.click();
         await wait();
-        expect(instance.get('days').length).to.eql(2);
+        expect(instance.get('days')!.length).to.eql(2);
     });
 
     it('clearable', async () => {

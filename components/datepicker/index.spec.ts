@@ -105,7 +105,7 @@ describe('Datepicker', () => {
             await wait();
             // select the middle date
             dispatchEvent(content.querySelectorAll('.k-calendar-item')[17], 'click');
-            const curDate = new Date(instance.get('date'));
+            const curDate = new Date(instance.get('date')!);
             curDate.setFullYear(curDate.getFullYear() + 1);
             curDate.setMonth(curDate.getMonth() + 1);
             expect(curDate.getFullYear()).be.eql(year);
@@ -124,7 +124,7 @@ describe('Datepicker', () => {
             await wait();
             // select the middle date
             dispatchEvent(content.querySelectorAll('.k-calendar-item')[17], 'click');
-            const curDate1 = new Date(instance.get('date'));
+            const curDate1 = new Date(instance.get('date')!);
             const curMonth = curDate1.getMonth();
             expect(curMonth).be.eql(month);
             expect(curDate1.getFullYear()).be.eql(year);
@@ -469,7 +469,7 @@ describe('Datepicker', () => {
             expect(first.nextElementSibling!.classList.contains('k-in-range')).to.be.false;
             dispatchEvent(first.previousElementSibling!.previousElementSibling!, 'click');
             await wait();
-            const value = instance.get('date');
+            const value = instance.get('date')!;
             expect(value).have.lengthOf(2);
             expect(value[0] < value[1]).to.be.true;
 
@@ -480,7 +480,7 @@ describe('Datepicker', () => {
             first.click();
             first.click();
             await wait();
-            const value1 = instance.get('date');
+            const value1 = instance.get('date')!;
             expect(value1).have.lengthOf(2);
             expect(value1[0]).eql(value1[1]);
 
@@ -523,7 +523,7 @@ describe('Datepicker', () => {
             dispatchEvent(calendar2.querySelector<HTMLElement>('.k-scroll-select-wrapper .k-active')!.previousElementSibling!, 'click');
             (content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement).click();
             await wait();
-            const value2 = instance.get('time');
+            const value2 = instance.get('time')!;
             expect(value2).have.lengthOf(2);
             expect(value2.map(item => item.split(' ')[1])).eql(['01:00:00', '23:00:00']);
         });
@@ -598,7 +598,7 @@ describe('Datepicker', () => {
             // enter
             dispatchEvent(select, 'keydown', {keyCode: 13});
             await wait();
-            expect(instance.get('date').split('-').map(v => +v)).to.eql([now.getFullYear(), now.getMonth() + 1, now.getDate()]);
+            expect(instance.get('date')!.split('-').map(v => +v)).to.eql([now.getFullYear(), now.getMonth() + 1, now.getDate()]);
 
             // again
             select.click();
@@ -629,7 +629,7 @@ describe('Datepicker', () => {
             dispatchEvent(select, 'keydown', {keyCode: 13});
             dispatchEvent(select, 'keydown', {keyCode: 13});
             await wait();
-            const _value = instance.get('date');
+            const _value = instance.get('date')!;
             expect(_value[0]).eql(_value[1]);
         });
     });
