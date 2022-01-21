@@ -22,7 +22,9 @@ export interface TimepickerProps<
 
 export interface TimepickerEvents extends BasePickerEvents { }
 
-export interface TimepickerBlocks extends BasePickerBlocks { }
+export interface TimepickerBlocks<
+    R extends boolean = boolean,
+> extends BasePickerBlocks<string, R> { }
 
 export const typeDefs: Required<TypeDefs<TimepickerProps>> = {
     ...BasePicker.typeDefs,

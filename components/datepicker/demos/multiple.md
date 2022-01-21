@@ -32,15 +32,25 @@ import {Datepicker} from 'kpc';
 
 ```ts
 interface Props {
-    date: string[]
-    datetime: string[]
-    year: string[]
-    month: string[]
-    dateRange: [string, string][]
-    datetimeRange: [string, string][]
+    date?: string[]
+    datetime?: string[]
+    year?: string[]
+    month?: string[]
+    dateRange?: [string, string][]
+    datetimeRange?: [string, string][]
 }
 
 export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            date: [],
+            datetime: [],
+            year: [],
+            month: [],
+            dateRange: [],
+            datetimeRange: [],
+        } as Props;
+    }
 }
 ```

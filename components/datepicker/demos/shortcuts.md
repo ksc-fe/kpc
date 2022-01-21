@@ -43,6 +43,21 @@ import {Datepicker, shortcuts} from 'kpc';
     margin-right 20px
 ```
 
+```ts
+interface Props {
+    date?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            data: null
+        } as Props;
+    }
+}
+```
+
 ```vue-data
 data() {
     return {

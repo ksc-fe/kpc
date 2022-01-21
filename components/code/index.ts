@@ -2,6 +2,7 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import type {editor} from 'monaco-editor';
 import {useEditor} from './useEditor';
+import type {Events} from '../types';
 
 export interface CodeProps {
     value?: string
@@ -34,10 +35,15 @@ const defaults = (): Partial<CodeProps> => ({
     options: {},
 });
 
+const events: Events<CodeEvents> = {
+    ready: true,
+}
+
 export class Code extends Component<CodeProps, CodeEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private editor = useEditor();
 

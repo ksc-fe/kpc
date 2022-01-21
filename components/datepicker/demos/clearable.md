@@ -10,3 +10,18 @@ import {Datepicker} from 'kpc';
 
 <Datepicker clearable v-model="date"/>
 ```
+
+```ts
+interface Props {
+    date?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            date: null,
+        } as Props;
+    }
+}
+```

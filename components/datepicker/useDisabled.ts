@@ -13,7 +13,7 @@ export function useDisabled({createDateByValueFormat}: ReturnType<typeof useForm
     const maxDate = useState<Dayjs | null>(null);
     const minDate = useState<Dayjs | null>(null);
 
-    function convertToDayjs(state: State<Dayjs | null>, v: Value | undefined) {
+    function convertToDayjs(state: State<Dayjs | null>, v?: Value | null) {
         if (isNullOrUndefined(v)) {
             state.set(null);
         } else {

@@ -38,16 +38,19 @@ export interface BasePickerProps<
     format?: string
     valueFormat?: string
     showFormat?: string
-    min?: Value
-    max?: Value
-    disabledDate?: (v: Value) => boolean
+    min?: Value | null
+    max?: Value | null
+    disabledDate?: (v: Dayjs) => boolean
 }
 
 export interface BasePickerEvents extends BaseSelectEvents {
     selecting: [StateValueRange]
 }
 
-export interface BasePickerBlocks extends BaseSelectBlocks { }
+export interface BasePickerBlocks<
+    V extends Value = Value,
+    R extends boolean = boolean,
+> extends BaseSelectBlocks<R extends true ? [Value, Value] : Value> { }
 
 export type Value = string | Date | number | Dayjs;
 
@@ -76,7 +79,7 @@ const events: Events<BasePickerEvents> = {
 export abstract class BasePicker<
     T extends BasePickerProps = BasePickerProps,
     E extends BasePickerEvents = BasePickerEvents,
-    B extends BasePickerBlocks = BasePickerBlocks,
+    B extends BasePickerBlocks<any> = BasePickerBlocks<any>,
 > extends BaseSelect<T, E, B> {
     static typeDefs = typeDefs;
     static defaults = defaults;

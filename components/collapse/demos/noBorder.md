@@ -29,12 +29,17 @@ import {Collapse, CollapseItem} from 'kpc';
 </Collapse>
 ```
 
-```js
+```ts
+interface Props {
+    value?: string[]
+}
+
 export default class extends Component {
     static template = template;
-
     static defaults() {
-        return {value: ['$0']};
+        return {
+            value: ['$0']
+        }
     }
 }
 ```

@@ -9,7 +9,7 @@ order: 4
 import {Cascader} from 'kpc';
 
 <div>
-    <Cascader v-for={['large', 'default', 'small', 'mini']} 
+    <Cascader v-for={this.get('sizes')} 
         size={$value}
         data={this.get('data')} 
     />
@@ -27,6 +27,7 @@ export default class extends Component {
 
     static defaults() {
         return {
+            sizes: ['large', 'default', 'small', 'mini'] as const,
             data: [
                 {
                     value: 'beijing',

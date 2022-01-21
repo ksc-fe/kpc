@@ -1,3 +1,3 @@
-export const DIAGRAM = 'Diagram';
-export const SHAPE = 'Shape';
-export const LAYOUT = 'Layout';
+export const DIAGRAM = 'DDiagram';
+export const SHAPE = 'DShape';
+export const LAYOUT = 'DLayout';

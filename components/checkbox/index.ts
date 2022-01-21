@@ -2,19 +2,19 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {bind} from '../utils';
 import {isArray} from 'intact-shared';
-import {CommonInputHTMLAttributes} from '../types';
+import {CommonInputHTMLAttributes, Events} from '../types';
 
-export interface CheckboxProps extends CommonInputHTMLAttributes {
+export interface CheckboxProps<V = boolean> extends CommonInputHTMLAttributes {
     disabled?: boolean
-    value?: any
+    value?: V
     trueValue?: any
-    falseValue?: any
+    falseValue?: any 
     indeterminate?: boolean
 }
 
-export interface CheckboxEvents {
+export interface CheckboxEvents<V = boolean> {
     click: [MouseEvent]
-    change: [any, MouseEvent]
+    change: [V, MouseEvent]
 }
 
 const typeDefs: Required<TypeDefs<Omit<CheckboxProps, keyof CommonInputHTMLAttributes>>> = {
@@ -30,10 +30,16 @@ const defaults = (): Partial<CheckboxProps> => ({
     falseValue: false,
 });
 
-export class Checkbox extends Component<CheckboxProps, CheckboxEvents> {
+const events: Events<CheckboxEvents> = {
+    click: true,
+    change: true,
+}
+
+export class Checkbox<V = boolean> extends Component<CheckboxProps<V>, CheckboxEvents<V>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private inputRef = createRef<HTMLInputElement>();
 
@@ -49,19 +55,19 @@ export class Checkbox extends Component<CheckboxProps, CheckboxEvents> {
         let checked = (event.target as any)?.checked;
         let value = this.get('value');
         if (isArray(value)) {
-            value = value.slice(0);
-            let index = value.indexOf(trueValue);
+            value = value.slice(0) as V & any[];
+            let index = (value as (V & any[])).indexOf(trueValue);
             if (checked) {
                 if (index === -1) {
-                    value.push(trueValue);
+                    (value as (V & any[])).push(trueValue);
                 }
             } else {
                 if (index > -1) {
-                    value.splice(index, 1);
+                    (value as (V &any[])).splice(index, 1);
                 }
             }
         } else {
-            value = checked ? trueValue : falseValue;
+            value = (checked ? trueValue : falseValue);
         }
         this.set('value', value);
     }
@@ -80,7 +86,7 @@ export class Checkbox extends Component<CheckboxProps, CheckboxEvents> {
         } else {
             this.setCheckboxModel(e);
             this.trigger('click', e);
-            this.trigger('change', this.get('value'), e);
+            this.trigger('change', this.get('value')!, e);
         }
     }
 

@@ -9,7 +9,7 @@ order: 2
 import {Colorpicker} from 'kpc';
 
 <div>
-    <Colorpicker v-for={['large', 'default', 'small', 'mini']}
+    <Colorpicker v-for={this.get('sizes')}
         size={$value}
         value="#36acef"
     />
@@ -19,4 +19,15 @@ import {Colorpicker} from 'kpc';
 ```styl
 .k-colorpicker
     margin-right 16px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            sizes: ['large', 'default', 'small', 'mini'] as const
+        }
+    }
+}
 ```

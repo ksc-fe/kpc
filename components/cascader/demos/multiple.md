@@ -20,6 +20,7 @@ export default class extends Component {
 
     static defaults() {
         return {
+            values: [] as string[][],
             data: [
                 {
                     value: 'beijing',

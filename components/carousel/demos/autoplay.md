@@ -34,8 +34,10 @@ interface Props {
 export default class extends Component<Props> {
     static template = template;
 
-    static defaults = () => ({
-        time: 2000
-    });
+    static defaults() {
+        return {
+            time: 2000
+        }
+    };
 }
 ```

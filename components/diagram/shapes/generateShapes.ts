@@ -1,4 +1,7 @@
 import {DShape} from './shape';
+import {ComponentConstructor} from 'intact';
+
+type ShapeConstructor = ComponentConstructor<DShape>
 
 const shapes = {
     Diamond: {
@@ -23,7 +26,7 @@ const shapes = {
     },
 };
 
-const components: {[key in keyof typeof shapes]: DShape} = {} as any;
+const components: {[key in keyof typeof shapes]: ShapeConstructor} = {} as any;
 for (let key in shapes) {
     const value = shapes[key as keyof typeof shapes];
     components[key as keyof typeof shapes] = class extends DShape {
@@ -40,7 +43,7 @@ for (let key in shapes) {
         public getStylesheet() {
             return value.stylesheet;
         }
-    } as any;
+    };
 }
 
 export default components;

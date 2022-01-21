@@ -32,13 +32,21 @@ import {Datepicker} from 'kpc';
 
 ```ts
 interface Props {
-    from?: string
-    to?: string
-    fromTime?: string
-    toTime?: string
+    from?: string | null
+    to?: string | null
+    fromTime?: string | null
+    toTime?: string | null
 }
 
 export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            from: null,
+            to: null,
+            fromTime: null,
+            toTime: null,
+        } as Props;
+    }
 }
 ```

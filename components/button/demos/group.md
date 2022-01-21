@@ -60,16 +60,18 @@ import {Button, ButtonGroup} from 'kpc';
 
 ```ts
 interface Props {
-    city: string
-    cities: string[]
+    city?: string
+    cities?: string[]
 }
 
 export default class extends Component<Props> {
     static template = template;
 
-    static defaults = () => ({
-        city: 'beijing',
-        cities: []
-    });
+    static defaults() {
+        return {
+            city: 'beijing',
+            cities: []
+        } as Props;
+    } 
 }
 ```

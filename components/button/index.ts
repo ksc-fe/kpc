@@ -14,6 +14,10 @@ interface ButtonHTMLAttributes {
     formmethod?: string
     formnovalidate?: boolean
     formtarget?: string
+    // Anchor
+    href?: string
+    target?: string
+    download?: string
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes {

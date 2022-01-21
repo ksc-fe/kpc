@@ -34,7 +34,7 @@ import {Collapse, CollapseItem} from 'kpc';
 
 ```ts
 interface Props {
-    value: string[]
+    value?: string[]
 }
 
 export default class extends Component<Props> {

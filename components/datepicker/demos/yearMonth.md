@@ -18,3 +18,20 @@ import {Datepicker} from 'kpc';
 .k-datepicker
     margin-right 20px
 ```
+
+```ts
+interface Props {
+    year?: string | null
+    month?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            year: null,
+            month: null,
+        } as Props;
+    }
+}
+```

@@ -27,9 +27,11 @@ import {Checkbox} from 'kpc';
 export default class extends Component {
     static template = template;
 
-    static defaults = () => ({
-        // 必须初始化为数组
-        languages: []
-    });
+    static defaults() {
+        return {
+            // 必须初始化为数组
+            languages: [] as string[]
+        }
+    };
 }
 ```

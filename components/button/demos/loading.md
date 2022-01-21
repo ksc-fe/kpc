@@ -41,13 +41,24 @@ import {Button, Icon} from 'kpc';
 
 ```ts
 interface Props {
-    [key: string]: boolean
+    loading1?: boolean
+    loading2?: boolean
+    loading3?: boolean
+    loading4?: boolean
 }
 
 export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            'loading1': false,
+            'loading2': false,
+            'loading3': false,
+            'loading4': false,
+        } as Props;
+    }
 
-    onClick(name: string) {
+    onClick(name: keyof Props) {
         this.set(name, true);
     }
 }

@@ -30,13 +30,24 @@ import {Checkbox} from 'kpc';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value1?: boolean
+    value2?: boolean | string 
+    value3?: number | object
+    uncheckedValue: object
+}
+export default class extends Component<Props> {
     static template = template;
 
-    static defaults = () => ({
-        uncheckedValue: {
-            unchecked: true
-        }
-    });
+    static defaults() {
+        return {
+            value1: false,
+            value2: false,
+            value3: 0,
+            uncheckedValue: {
+                unchecked: true
+            }
+        } as Props;
+    };
 }
 ```

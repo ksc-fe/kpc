@@ -27,14 +27,16 @@ import {Carousel, CarouselItem} from 'kpc';
 
 ```ts
 interface Props {
-    effect: string
+    effect: 'slide' | 'fade'
 }
 
 export default class extends Component<Props> {
     static template = template;
 
-    static defaults = () => ({
-        effect: 'fade'
-    });
+    static defaults() {
+        return {
+            effect: 'fade'
+        } as Props;
+    };
 }
 ```

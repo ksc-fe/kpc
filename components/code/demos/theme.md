@@ -8,7 +8,7 @@ order: 2
 > 切换主题会引入相应的css文件，所以它是全局生效的，并不能对单个实例引用不同主题
 
 ```vdt
-import {Code} from 'kpc';
+import {Code} from 'kpc/components/code';
 import {ButtonGroup, Button} from 'kpc';
 
 <div>
@@ -27,6 +27,8 @@ import {ButtonGroup, Button} from 'kpc';
 ```
 
 ```ts
+import type {CodeProps} from 'kpc/components/code';
+
 const code = `function test() {
     console.log('hello world');
 }`;
@@ -36,7 +38,7 @@ export default class extends Component {
     static defaults() {
         return {
             value: code,
-            theme: 'vs'
+            theme: 'vs' as CodeProps['theme']
         }
     }
 }

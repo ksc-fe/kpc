@@ -35,3 +35,18 @@ import {Collapse, CollapseItem} from 'kpc';
     margin-right 8px
     vertical-align middle
 ```
+
+```ts
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value: ['$0']
+        }
+    }
+}
+```

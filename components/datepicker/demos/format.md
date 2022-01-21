@@ -40,4 +40,23 @@ import {Datepicker} from 'kpc';
     margin 0 20px 20px 0
 ```
 
+```ts
+interface Props {
+    date1?: string | null
+    date2?: string | null
+    date3?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            date1: null,
+            date2: null,
+            date3: null
+        } as Props;
+    }
+}
+```
+
 [1]: https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#list-of-all-available-formats

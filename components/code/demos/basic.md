@@ -68,14 +68,14 @@ order: 0
 > 或者也可以使用[terser](https://github.com/terser-js/terser)(`uglify-es`不维护了)进行压缩
 
 ```vdt
-import {Code} from 'kpc';
+import {Code} from 'kpc/components/code';
 
 <Code v-model="value" height="200px" language="javascript" />
 ```
 
 ```ts
 interface Props {
-    value: string
+    value?: string
 }
 
 const code = `function test() {

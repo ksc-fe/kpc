@@ -2,7 +2,7 @@ import {TypeDefs} from 'intact';
 import {DShape, DShapeProps} from './shape';
 
 export interface DRectangleProps extends DShapeProps {
-    rounded: number | string
+    rounded?: number | string
 }
 
 const typeDefs: Required<TypeDefs<DRectangleProps>> = {

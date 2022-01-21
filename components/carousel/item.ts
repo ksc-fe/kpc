@@ -3,7 +3,7 @@ import template from './item.vdt';
 import type {Carousel} from './';
 
 export interface CarouselItemProps {
-    value: string,
+    value?: string,
     
     // passed by parent
     cloned?: boolean

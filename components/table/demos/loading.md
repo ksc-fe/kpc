@@ -32,7 +32,7 @@ import {Checkbox} from 'kpc';
 
 ```ts
 interface Props {
-    loading: boolean
+    loading?: boolean
 }
 
 export default class extends Component<Props> {

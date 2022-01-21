@@ -22,3 +22,18 @@ import {Checkbox} from 'kpc';
 .k-checkbox
     margin-right 20px
 ```
+
+```ts
+interface Props {
+    value?: boolean
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value: false
+        }
+    }
+}
+```

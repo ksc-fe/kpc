@@ -8,11 +8,11 @@ import {useAutoplay} from './useAutoplay';
 export * from './item';
 
 export interface CarouselProps {
-    value: string
-    autoplay: number | boolean
-    arrow: 'hover' | 'always' | 'never'
-    effect: 'slide' | 'fade'
-    clonedAmount: number
+    value?: string
+    autoplay?: number | boolean
+    arrow?: 'hover' | 'always' | 'never'
+    effect?: 'slide' | 'fade'
+    clonedAmount?: number
 }
 
 const typeDefs: Required<TypeDefs<CarouselProps>> = {

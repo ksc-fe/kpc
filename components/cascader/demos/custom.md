@@ -26,7 +26,7 @@ import {Cascader} from 'kpc';
 
 ```ts
 interface Props {
-    value?: string[]
+    value?: string[] | null
 }
 
 export default class extends Component<Props> {
@@ -34,6 +34,7 @@ export default class extends Component<Props> {
 
     static defaults() {
         return {
+            value: [] as string[],
             data: [
                 {
                     value: 'beijing',

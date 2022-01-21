@@ -5,9 +5,7 @@ import {isNullOrUndefined} from 'intact-shared';
 import {useBaseLabel} from '../select/useBaseLabel';
 
 // treat value as string
-type CascaderStringData = Omit<CascaderData, 'value'> & {
-    value: string
-}
+type CascaderStringData = CascaderData<string>
 
 export function useLabel() {
     const instance = useInstance() as Cascader;

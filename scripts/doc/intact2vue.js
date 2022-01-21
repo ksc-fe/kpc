@@ -149,12 +149,12 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
         // const extra = Object.keys(properties).map(key => {
             // return indent(`${key}: null,`);
         // });
-        if (defaults) {
-            const lines = defaults.split('\n');
-            const lastLine = lines.pop();
-            // lines.push(...extra, lastLine);
-            defaults = lines.join('\n');
-        }
+        // if (defaults) {
+            // const lines = defaults.split('\n');
+            // const lastLine = lines.pop();
+            // // lines.push(...extra, lastLine);
+            // defaults = lines.join('\n');
+        // }
         // else if (extra.length) {
             // defaults = [`{`, ...extra, `}`].join('\n');
         // }
@@ -303,7 +303,7 @@ function getMethods(js) {
     let spaces = '';
     let isBound = false;
     lines.forEach((code, index) => {
-        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)\(.*?\) {$/);
+        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)\(.*?\)(:[^{]*)? {$/);
         if (matches) {
             start = index;
             name = matches[2];
@@ -338,7 +338,26 @@ function getMethods(js) {
                         return ret;
                     }
                 ) + ',';
+
+                if (/this\.set\(/.test(methods[name])) {
+                    addSet(methods);
+                }
         }
     });
     return methods;
+}
+
+function addSet(methods) {
+    if (methods.set) return;
+    methods.set = [
+        `set(key: any, value?: any) {`,
+        `    if (typeof key === 'string') {`,
+        `        this[key as keyof Props] = value!;`,
+        `    } else {`,
+        `        for (let propName in key) {`,
+        `            this[propName as keyof Props] = key[propName];`,
+        `        }`,
+        `    }`,
+        `},`,
+    ].join('\n');
 }

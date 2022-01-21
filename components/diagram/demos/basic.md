@@ -34,7 +34,7 @@ order: 0
 3. 布局组件下面只能嵌套图形组件，否则组件会抛出错误；
 
 ```vdt
-import {Diagram, DTreeLayout, DRectangle, DCircle, DDiamond, DLine} from 'kpc';
+import {Diagram, DTreeLayout, DRectangle, DCircle, DDiamond, DLine} from 'kpc/components/diagram';
 
 <Diagram>
     <DTreeLayout type="vertical">
