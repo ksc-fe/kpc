@@ -254,7 +254,7 @@ describe('Slider', () => {
         class Demo extends Component {
             static template = `const {Slider} = this; <div>
                 <Slider min={1} max={1} value={1} />
-                <Slider min={1} max={1} isRange />
+                <Slider min={1} max={1} range />
             </div>`;
             private Slider = Slider;
         }

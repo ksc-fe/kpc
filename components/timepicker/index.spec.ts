@@ -26,10 +26,10 @@ describe('Timepicker', () => {
         next.click();
         await wait();
         expect(dropdown.innerHTML).to.matchSnapshot();
-        expect(instance.get('time')).to.be.undefined;
+        expect(instance.get('time')).to.be.null;
         next.click();
         await wait();
-        expect(instance.get('time')).to.be.undefined;
+        expect(instance.get('time')).to.be.null;
         expect(dropdown.innerHTML).to.matchSnapshot();
         const ok = dropdown.querySelector('.k-btn') as HTMLElement;
         ok.click();

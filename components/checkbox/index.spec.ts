@@ -7,7 +7,7 @@ import {Checkbox} from './';
 import {bind} from '../utils';
 
 describe('Checkbox', () => {
-    afterEach(() => {unmount()});
+    // afterEach(() => unmount());
 
     it('should get value correctly of group checkboxes', async () => {
         const [instance, element] = mount(GroupDemo);
@@ -45,10 +45,10 @@ describe('Checkbox', () => {
 
         third.click();
         await wait();
-        expect(instance.get('value3')).be.eql(0);
+        expect(instance.get('value3')).be.eql(instance.get('checkedValue'));
         third.click();
         await wait();
-        expect(instance.get('value3')).be.eql(instance.get('uncheckedValue'));
+        expect(instance.get('value3')).be.eql(0);
     });
 
     it('should check when press enter key for enabled checkbox', async () => {

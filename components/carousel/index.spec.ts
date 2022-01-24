@@ -6,7 +6,7 @@ import {CarouselItem} from './item';
 import {Component} from 'intact';
 
 describe('Carousel', () => {
-    afterEach(() => {unmount()});
+    afterEach(() => unmount());
 
     it('basic test', async function() {
         this.timeout(0);
@@ -38,42 +38,43 @@ describe('Carousel', () => {
         
         // should change to next item
         carousel.next();
-        await nextFrame();
+        await wait();
         expect(carousel.get('value')).to.eql('$1');
         expect(element.innerHTML).to.matchSnapshot();
         
         carousel.prev();
-        await nextFrame();
+        await wait();
         expect(carousel.get('value')).to.eql('$0');
         expect(element.innerHTML).to.matchSnapshot();
 
         carousel.setIndex(3);
-        await nextFrame();
+        await wait();
         expect(carousel.get('value')).to.eql('$3');
         expect(element.innerHTML).to.matchSnapshot();
         
         carousel.setIndex(0);
-        await nextFrame();
+        await wait();
         expect(carousel.get('value')).to.eql('$0');
         expect(element.innerHTML).to.matchSnapshot();
         
         carousel.prev();
-        await nextFrame();
+        await wait();
         expect(carousel.get('value')).to.eql('$3');
         expect(element.innerHTML).to.matchSnapshot();
         
         carousel.next();
-        await nextFrame();
+        await wait();
         expect(carousel.get('value')).to.eql('$0');
         expect(element.innerHTML).to.matchSnapshot();
 
-        instance.set<string>('value', '$3');
-        await nextFrame();
+        instance.set('value', '$3');
+        await wait();
+        expect(carousel.get('value')).to.eql('$3');
         expect(element.innerHTML).to.matchSnapshot();
 
         // change clonedAmount
-        instance.set<number>('clonedAmount', 2);
-        await wait(0);
+        instance.set('clonedAmount', 2);
+        await wait();
         expect(element.innerHTML).to.matchSnapshot();
     });
 
@@ -83,7 +84,7 @@ describe('Carousel', () => {
         const [instance] = mount(AutoPlayDemo);
 
         const carousel = instance.$lastInput!.children as Carousel;
-        instance.set<number>('time', 1000);
+        instance.set('time', 1000);
         await wait(1500);
         expect(carousel.get('value')).to.eql('$1');
         
@@ -93,7 +94,7 @@ describe('Carousel', () => {
         await wait(1100);
         expect(carousel.get('value')).to.eql('$3');
         
-        instance.set<boolean>('time', false);
+        instance.set('time', false);
         await wait(1100);
         expect(carousel.get('value')).to.eql('$3');
     });
@@ -104,16 +105,16 @@ describe('Carousel', () => {
         const carousel = instance.$lastInput!.children as Carousel;
 
         carousel.next();
-        await nextFrame();
+        await wait();
         expect(element.innerHTML).to.matchSnapshot();
 
         // change effect
-        instance.set<string>('effect', 'slide');
-        await wait(0);
+        instance.set('effect', 'slide');
+        await wait();
         expect(element.innerHTML).to.matchSnapshot();
         
-        instance.set<string>('effect', 'fade');
-        await wait(0);
+        instance.set('effect', 'fade');
+        await wait();
         expect(element.innerHTML).to.matchSnapshot();
     });
 });

@@ -18,6 +18,7 @@ import {useInput} from './useInput';
 import {Container} from '../portal';
 import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
+import {isNullOrUndefined} from 'intact-shared';
 
 export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
     value?: Multipe extends true ? V[] : Attach
@@ -128,6 +129,11 @@ export abstract class BaseSelect<
 
     public resetKeywords(keywords: State<string>) {
         keywords.set('');
+    }
+
+    protected hasValue() {
+        const {value, multiple} = this.get();
+        return !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
     }
 
     private delete(index: number, e: MouseEvent) {

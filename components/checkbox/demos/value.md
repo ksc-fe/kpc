@@ -18,8 +18,8 @@ import {Checkbox} from 'kpc';
     <Checkbox v-model="value2" trueValue="checked">
         指定选中时取值为"checked": {JSON.stringify(this.get('value2'))}
     </Checkbox>
-    <Checkbox v-model="value3" trueValue={0} falseValue={this.get("uncheckedValue")}>
-        指定非选中时取值为对象：{JSON.stringify(this.get('value3'))}
+    <Checkbox v-model="value3" trueValue={this.get("checkedValue")} falseValue={0}>
+        指定选中时取值为对象：{JSON.stringify(this.get('value3'))}
     </Checkbox>
 </div>
 ```
@@ -34,7 +34,7 @@ interface Props {
     value1?: boolean
     value2?: boolean | string 
     value3?: number | object
-    uncheckedValue: object
+    checkedValue: object
 }
 export default class extends Component<Props> {
     static template = template;
@@ -44,8 +44,8 @@ export default class extends Component<Props> {
             value1: false,
             value2: false,
             value3: 0,
-            uncheckedValue: {
-                unchecked: true
+            checkedValue: {
+                checked: true
             }
         } as Props;
     };

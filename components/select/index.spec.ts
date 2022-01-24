@@ -62,7 +62,7 @@ describe('Select', () => {
         clear1.click();
         clear2.click();
         await wait();
-        expect(instance.get('day')).to.eql('');
+        expect(instance.get('day')).to.eql(null);
         expect(instance.get('days')).to.eql([]);
         unmount();
 

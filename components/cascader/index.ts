@@ -72,4 +72,11 @@ export class Cascader<
     protected getLabel() {
         return this.label.getLabel();
     }
+
+    protected hasValue() {
+        const {value} = this.get();
+        const has = super.hasValue();
+        if (has && !(value as V[]).length) return false;
+        return has;
+    }
 }

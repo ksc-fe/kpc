@@ -30,7 +30,7 @@ const classNameObj = {
 
 const placeholder = this.getPlaceholder();
 const label = this.getLabel();
-const hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
+const hasValue = this.hasValue();
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 const {onFocusout, triggerRef} = this.focusout;
 

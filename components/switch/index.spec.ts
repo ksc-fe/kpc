@@ -42,7 +42,7 @@ describe('Switch', () => {
         dispatchEvent(document, 'mouseup', {clientX: 1});
         await wait();
         expect(element.outerHTML).to.matchSnapshot();  
-        expect(instance.get('value')).to.be.undefined;
+        expect(instance.get('value')).to.be.false;
 
         dispatchEvent(el, 'mousedown', {which: 1, clientX: 0});
         dispatchEvent(document, 'mousemove', {clientX: 30});

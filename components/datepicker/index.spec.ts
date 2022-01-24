@@ -230,7 +230,7 @@ describe('Datepicker', () => {
             instance.set<string>('date', '2018-03-04');
             await wait();
             dispatchEvent(element.querySelector('.k-select-clear')!, 'click');
-            expect(instance.get<string>('date')).be.eql('');
+            expect(instance.get<string>('date')).be.eql(null);
         });
 
         it('datetime', async () => {
@@ -248,7 +248,7 @@ describe('Datepicker', () => {
             await wait();
             expect(instance.get('datetime1')).to.be.string;
             dispatchEvent(element.querySelector('.k-select-clear')!, 'click');
-            expect(instance.get('datetime1')).be.eql('');
+            expect(instance.get('datetime1')).be.eql(null);
 
             // set value to empty string should clear datetime
             input.click();
@@ -458,7 +458,7 @@ describe('Datepicker', () => {
             let first = content.querySelector('.k-calendar-item:nth-child(18)') as HTMLElement;
             first.click();
             await wait();
-            expect(instance.get('date')).to.be.undefined;
+            expect(instance.get('date')).to.be.null;
             // hover status
             dispatchEvent(first.nextElementSibling!.nextElementSibling!, 'mouseenter');
             await wait();
@@ -800,9 +800,9 @@ describe('Datepicker', () => {
             // input correct value
             await myTest('2020-02-02', '2020-02-02');
             // clear value
-            await myTest('', '');
+            await myTest('', null);
             // input disabled date
-            await myTest('1999-01-01', '');
+            await myTest('1999-01-01', null);
         });
 
         it('multiple', async () => {
@@ -834,9 +834,9 @@ describe('Datepicker', () => {
             await myTest('2020-03-03~2020-03-04', ['2020-03-03', '2020-03-04']);
             expect(getElement('.k-datepicker-content')!.innerHTML).to.matchSnapshot();
             // clear value
-            await myTest('', '')
+            await myTest('', null)
             // input disabled range date
-            await myTest('1999-01-01~2020-03-04', '');
+            await myTest('1999-01-01~2020-03-04', null);
         });
 
         it('datetime', async () => {

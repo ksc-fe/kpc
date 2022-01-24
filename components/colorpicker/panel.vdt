@@ -47,8 +47,8 @@ const alpha = Math.round(rgb.a * 100);
     <div class="k-colorpicker-controls">
         <div class="k-colorpicker-sliders">
             <Slider class="k-colorpicker-hue"
-                isShowInput={false}
-                isShowEnd={false}
+                showInput={false}
+                showEnd={false}
                 step={0}
                 max={360}
                 value={hsv.h}
@@ -60,8 +60,8 @@ const alpha = Math.round(rgb.a * 100);
                     "k-colorpicker-alpha k-colorpicker-alpha-bg": true,
                     [makeAlphaBgColor(rgb)]: true,
                 }}
-                isShowInput={false}
-                isShowEnd={false}
+                showInput={false}
+                showEnd={false}
                 step={0}
                 max={1}
                 value={rgb.a}

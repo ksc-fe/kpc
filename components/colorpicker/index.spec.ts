@@ -18,10 +18,10 @@ describe('Colorpicker', () => {
         picker = getElement('.k-colorpicker-content')!;
     });
 
-    afterEach(async function() {
-        unmount();
-        await wait(400);
-    });
+    // afterEach(async function() {
+        // unmount();
+        // await wait(400);
+    // });
 
     it('should select color by saturation', async function() {
         expect(picker.innerHTML).to.matchSnapshot();
