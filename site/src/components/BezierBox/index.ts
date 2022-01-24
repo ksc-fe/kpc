@@ -14,7 +14,7 @@ export type Coordinates = number[];
 class Bezier {
     private wrapper: HTMLElement | null = null;
 
-    private opts: BezierOpts | null = null
+    private opts: BezierOpts | null = null;
 
     private canvas: HTMLCanvasElement | null = null;
 

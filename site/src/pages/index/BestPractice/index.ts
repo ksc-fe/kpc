@@ -4,6 +4,8 @@ import vue_logo from '../../../imgs/vue_logo.png';
 import vue_logo_active from '../../../imgs/vue_logo_active.png';
 import react_logo from '../../../imgs/react_logo.png';
 import react_logo_active from '../../../imgs/react_logo_active.png';
+import angular_logo from '../../../imgs/angular_logo.png';
+import angular_logo_active from '../../../imgs/angular_logo_active.png';
 import {ThemeFrame} from '../../../components/ThemeFrame';
 import {bind} from 'components/utils';
 
@@ -19,7 +21,7 @@ const vueTemplate =
 `<div>
     placeholder1
     placeholder2
-</div>`
+</div>`;
 
 const reactTemplate = 
 `export default class Demo extends React.Component {
@@ -31,14 +33,26 @@ const reactTemplate =
             </div>
         )
     }
-}`
+}`;
+
+const angularTemplate = 
+`@Component({
+    selector: 'app-demo',
+    template: \`
+        <div>
+            placeholder1
+            placeholder2
+        </div>
+    \`,
+})`;
 
 const templateMap = {
     vue: vueTemplate,
-    react: reactTemplate
+    react: reactTemplate,
+    angular: angularTemplate
 }
 
-const getTemplate = (type: 'vue' | 'react'): Function => {    
+const getTemplate = (type: 'vue' | 'react' | 'angular'): Function => {    
     return (buttonStatus: string, contentInput: string, iconPosition: string) => {
         const isLeft =  iconPosition == 'left';
         const button = `<Button type="BUTTON_TYPE">BUTTON_CONTENT</Button>`
@@ -104,6 +118,13 @@ const defaults = (): Partial<BestPracticeProps> => ({
             activeSrc: react_logo_active,
             isActive: false,
             codeTemplate: getTemplate('react')
+        },
+        {
+            title: 'Angular',
+            src: angular_logo,
+            activeSrc: angular_logo_active,
+            isActive: false,
+            codeTemplate: getTemplate('angular')
         }
     ]
 });
