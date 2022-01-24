@@ -76,8 +76,8 @@
 
 ```
 "<div class=\"k-select css-sdvm74 k-dropdown-open\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" type=\"text\" value=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
-    Day: xxx<br><div class=\"k-select css-sdvm74\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-values\"><div class=\"k-input k-auto-width k-inline k-select-input css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" type=\"text\" style=\"width: 72px;\"><div class=\"k-input-fake\">请输入或选择</div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
-    Days: "
+    Day: xxx<br><div class=\"k-select css-sdvm74\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-input k-auto-width k-inline k-select-input css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" type=\"text\" style=\"width: 72px;\"><div class=\"k-input-fake\">请输入或选择</div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
+    Days: []"
 ```
 
 ```
@@ -86,8 +86,8 @@
 
 ```
 "<div class=\"k-select css-sdvm74 k-dropdown-open\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" type=\"text\" value=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
-    Day: xxx<br><div class=\"k-select css-sdvm74\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-values\"><div class=\"k-input k-auto-width k-inline k-select-input css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" type=\"text\" style=\"width: 72px;\"><div class=\"k-input-fake\">请输入或选择</div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
-    Days: "
+    Day: xxx<br><div class=\"k-select css-sdvm74\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-input k-auto-width k-inline k-select-input css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" type=\"text\" style=\"width: 72px;\"><div class=\"k-input-fake\">请输入或选择</div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
+    Days: []"
 ```
 
 ```
@@ -96,7 +96,7 @@
 
 ```
 "<div class=\"k-select css-sdvm74\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" type=\"text\" value=\"xxx\" readonly=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
-    Day: xxx<br><div class=\"k-select css-sdvm74\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-values\"><div class=\"k-input k-auto-width k-inline k-select-input css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" type=\"text\" style=\"width: 72px;\"><div class=\"k-input-fake\">请输入或选择</div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
-    Days: "
+    Day: xxx<br><div class=\"k-select css-sdvm74\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-input k-auto-width k-inline k-select-input css-1qqnubh\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" type=\"text\" style=\"width: 72px;\"><div class=\"k-input-fake\">请输入或选择</div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-1ai1ziz\"></i></span></span></div><!--portal-->
+    Days: []"
 ```
 
