@@ -7,7 +7,7 @@ import {Checkbox} from './';
 import {bind} from '../utils';
 
 describe('Checkbox', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should get value correctly of group checkboxes', async () => {
         const [instance, element] = mount(GroupDemo);

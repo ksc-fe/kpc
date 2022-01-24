@@ -4,7 +4,7 @@ import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import {Menu} from './';
 
 describe('Menu', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('expand and shrink sub menu', async () => {
         const [instance, element] = mount(CollapseDemo);
