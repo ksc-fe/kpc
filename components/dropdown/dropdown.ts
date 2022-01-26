@@ -231,7 +231,9 @@ export class Dropdown<
 
     private callOriginalCallback(name: string, e: MouseEvent) {
         const callback = this.triggerProps[name];
+        const callbackOnDropdown = this.get<Function>(name);
         if (isFunction(callback)) callback(e);
+        if (isFunction(callbackOnDropdown)) callbackOnDropdown(e);
     }
 
     private normalizeTriggerProps(props: any) {

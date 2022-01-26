@@ -5,7 +5,7 @@ import type {useTree} from './useTree';
 export function useDisableRow(
     loopData: ReturnType<typeof useTree>['loopData'],
 ) {
-    const instance = useInstance() as Table<any, TableCheckType, TableRowKey>;
+    const instance = useInstance() as Table<any, TableRowKey>;
     let enabledKeys: TableRowKey[] = [];
     let disabledKeys: TableRowKey[] = [];
     let allKeys: TableRowKey[] = [];

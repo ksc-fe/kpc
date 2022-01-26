@@ -48,7 +48,10 @@ exports.webpackConfig = () => {
 exports.webpackConfigReact = () => {
     const config = genConfig();
 
-    config.resolve.alias.set('~', destData).set('intact$', 'intact-react');
+    config.resolve.alias
+        .set('~', destData)
+        .set('intact$', 'intact/dist/index.esm.js')
+        // .set('intact$', 'intact-react');
     config.devtool('inline-source-map');
 
     addConfig(config);

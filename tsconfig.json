@@ -87,6 +87,7 @@
     "typings",
     "site",
     "test",
+    "packages/kpc-react",
     "index.ts"
   ],
   "exclude": [

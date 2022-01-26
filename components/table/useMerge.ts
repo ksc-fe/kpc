@@ -24,7 +24,7 @@ export type TableGrid = TableGridItem[][];
 export function useMerge(
     getCols: () => Props<TableColumnProps>[],
 ) {
-    const instance = useInstance() as Table<any, TableCheckType>;
+    const instance = useInstance() as Table<any, TableRowKey, TableCheckType>;
     let grid: TableGrid = [];
 
     function handleSpans() {

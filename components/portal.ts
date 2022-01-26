@@ -11,6 +11,8 @@ import {
     remove,
     TypeDefs,
     inject,
+    nextTick,
+    callAll,
 } from 'intact';
 import {isString} from 'intact-shared';
 import {DIALOG} from './dialog/constants';
@@ -49,16 +51,20 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         this.initContainer(nextProps.container, parentDom, anchor);
 
         // add mount method to queue to let sub-component be appended after parent-component
-        mountedQueue.push(() => {
+        // mountedQueue.push(() => {
+        // nextTick(() => {
+            // const mountedQueue: Function[] = [];
             mount(
                 nextProps.children as VNode,
                 this.container!,
                 this,
                 this.$SVG,
                 null,
-                mountedQueue
+                mountedQueue,
             );
-        });
+            // callAll(mountedQueue);
+        // });
+        // });
         super.$render(lastVNode, nextVNode, parentDom, anchor, mountedQueue);
     }
 
@@ -79,21 +85,25 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         }
         const nextContainer = this.container!;
 
-        if (lastContainer === nextContainer) {
-            patch(
-                lastProps.children as VNode,
-                nextProps.children as VNode,
-                nextContainer,
-                this,
-                this.$SVG,
-                anchor,
-                mountedQueue,
-                false,
-            );
-        } else {
-            remove(lastProps.children as VNode, lastContainer, false);
-            mount(nextProps.children as VNode, nextContainer, this, this.$SVG, anchor, mountedQueue);
-        }
+        // nextTick(() => {
+            // const mountedQueue: Function[] = [];
+            if (lastContainer === nextContainer) {
+                patch(
+                    lastProps.children as VNode,
+                    nextProps.children as VNode,
+                    nextContainer,
+                    this,
+                    this.$SVG,
+                    anchor,
+                    mountedQueue,
+                    false,
+                );
+            } else {
+                remove(lastProps.children as VNode, lastContainer, false);
+                mount(nextProps.children as VNode, nextContainer, this, this.$SVG, anchor, mountedQueue);
+            }
+            // callAll(mountedQueue);
+        // });
 
         super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
     }

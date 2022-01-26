@@ -26,7 +26,7 @@ export function useChecked(
     getGrid: () => TableGrid,
     loopData: ReturnType<typeof useTree>['loopData'],
 ) {
-    const instance = useInstance() as Table<any, TableCheckType, TableRowKey>;
+    const instance = useInstance() as Table<any, TableRowKey, TableCheckType>;
     let allStatus: RowStatus[] = [];
 
     function isChecked(key: TableRowKey) {

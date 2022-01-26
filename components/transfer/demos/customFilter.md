@@ -112,6 +112,7 @@ export default class extends Component<Props> {
     @bind
     fetch() {
         mockApi(this.get('policy')!).then(data => {
+            if (this.$unmounted) return;
             this.originData = data;
             this.filter();
         });
@@ -132,21 +133,27 @@ export default class extends Component<Props> {
 
 ```vue-script
 created() {
-    this._fetch();
+    this.fetch();
 },
 watch: {
     policy: function() {
-        this._fetch();
+        this.fetch();
     },
     keywords: function() {
-        this._filter();
+        this.filter();
     },
 },
 ```
 
 ```react-methods
+private $unmounted: boolean = false;
+
 componentDidMount() {
     this.fetch();
+}
+
+componentWillUnmount() {
+    this.$unmounted = true;
 }
 
 setState<K extends keyof Props>(state: Pick<Props, K>, cb?: () => void) {

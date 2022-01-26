@@ -20,7 +20,7 @@ module.exports = function(api) {
                 // "debug": true
             }],
             "@babel/preset-typescript",
-            // "@babel/preset-react"
+            "@babel/preset-react"
         ],
         "plugins": [
             ["@babel/plugin-transform-runtime", {

@@ -362,20 +362,20 @@ function parseBlock(template) {
                                 const name = upperFirst(block.name);
                                 if (!block.params) {
                                     if (codes.length === 1) {
-                                        return indent(`slot${name}={<React.Fragment>${block.codes[0].trim()}</React.Fragment>}`, indentCount);
+                                        return indent(`slot${name}={<>${block.codes[0].trim()}</>}`, indentCount);
                                     } else {
                                         return [
-                                            indent(`slot${name}={<React.Fragment>`, indentCount),
+                                            indent(`slot${name}={<>`, indentCount),
                                             block.codes,
-                                            indent(`</React.Fragment>}`, indentCount)
+                                            indent(`</>}`, indentCount)
                                         ];
                                     }
                                 } else {
                                     return [
                                         indent(`slot${name}={(${block.params}) => {`, indentCount),
-                                        indent(`    return <React.Fragment>`, indentCount),
+                                        indent(`    return <>`, indentCount),
                                         indent(block.codes, 1),
-                                        indent(`    </React.Fragment>`, indentCount),
+                                        indent(`    </>`, indentCount),
                                         indent(`}}`, indentCount),
                                     ];
                                 }
@@ -678,7 +678,7 @@ function getMethods(js) {
             isBound = true;
             return;
         }
-        const property = code.match(/(private|public) (\w+)(: | =)/);
+        const property = code.match(/(private|public) ([\$\w]+)(: | =)/);
         if (property) {
             methods[property[2]] = dedent(code) + '\n';
             return;

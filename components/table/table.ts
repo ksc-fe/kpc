@@ -23,8 +23,8 @@ import type {Events} from '../types';
 
 export interface TableProps<
     T = any,
-    C extends CheckType = CheckType,
     K extends TableRowKey = TableRowKey,
+    C extends CheckType = CheckType,
     S extends string = string,
     G extends TableGroupValue = TableGroupValue
 > {
@@ -134,11 +134,11 @@ const events: Events<TableEvents> = {
 
 export class Table<
     T = any,
-    C extends CheckType = 'checkbox',
-    K extends TableRowKey = number,
-    S extends string = string,
-    G extends TableGroupValue = TableGroupValue
-> extends Component<TableProps<T, C, K, S, G>, TableEvents<T, K>, TableBlocks<T>> {
+    RowKey extends TableRowKey = TableRowKey,
+    Checkbox extends CheckType = 'checkbox',
+    Sort extends string = string,
+    Group extends TableGroupValue = TableGroupValue
+> extends Component<TableProps<T, RowKey, Checkbox, Sort, Group>, TableEvents<T, RowKey>, TableBlocks<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -261,7 +261,7 @@ export class Table<
     }
 
     @bind
-    private clickRow(data: T, index: number, key: K) {
+    private clickRow(data: T, index: number, key: RowKey) {
         this.trigger('clickRow', data, index, key);
     }
     

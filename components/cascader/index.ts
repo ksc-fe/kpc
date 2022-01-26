@@ -76,6 +76,7 @@ export class Cascader<
     protected hasValue() {
         const {value} = this.get();
         const has = super.hasValue();
+
         if (has && !(value as V[]).length) return false;
         return has;
     }
