@@ -23,6 +23,7 @@ export function useEscClosable() {
 
     function onHide() {
         const dialog = dialogs.pop();
+        // const dialog = dialogs.shift();
         if (process.env.NODE_ENV !== 'production') {
             if (dialog !== instance) {
                 throw new Error('The dialog has handled hide callback. It is a bug of KPC');

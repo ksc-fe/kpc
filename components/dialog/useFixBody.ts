@@ -56,7 +56,7 @@ function onClosed(dialog: BaseDialog) {
     dialogs.delete(dialog);
     if (dialogs.size === 0) {
         if (originalStyle) {
-            console.log(originalStyle);
+            // console.log(originalStyle);
             body.setAttribute('style', originalStyle);
         } else {
             body.removeAttribute('style');

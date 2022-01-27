@@ -10,6 +10,7 @@ import {
     patch,
     remove,
     TypeDefs,
+    provide,
     inject,
     nextTick,
     callAll,
@@ -28,6 +29,8 @@ const typeDefs: Required<TypeDefs<PortalProps>> = {
     container: [String, Function],
 };
 
+const PORTAL = 'Portal';
+
 export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     static template(this: Portal) {
         if (process.env.NODE_ENV === 'production') {
@@ -39,6 +42,16 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
 
     private container: Element | null = null;
     private dialog: Dialog | null = inject(DIALOG, null);
+    private portal: Portal | null = inject(PORTAL, null);
+    private rootPortal = inject<Portal | null>(PORTAL, null);
+    public mountedQueue?: Function[];
+    public mountedDone?: boolean;
+
+    init() {
+        if (!this.rootPortal) {
+            provide(PORTAL, this);
+        }
+    }
 
     $render(
         lastVNode: VNodeComponentClass<this> | null,
@@ -51,9 +64,22 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         this.initContainer(nextProps.container, parentDom, anchor);
 
         // add mount method to queue to let sub-component be appended after parent-component
-        // mountedQueue.push(() => {
-        // nextTick(() => {
-            // const mountedQueue: Function[] = [];
+        let rootPortal: Portal;
+        let shouldTrigger = false;
+        if (!this.rootPortal) {
+            rootPortal = this;
+            rootPortal.mountedQueue = [];
+            shouldTrigger = true;
+        } else {
+            rootPortal = this.rootPortal!;
+            if (rootPortal.mountedDone) {
+                shouldTrigger = true;
+                rootPortal.mountedQueue = [];
+            }
+        }
+
+        const selfMountedQueue = rootPortal.mountedQueue!;
+        selfMountedQueue.push(() => {
             mount(
                 nextProps.children as VNode,
                 this.container!,
@@ -62,9 +88,13 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
                 null,
                 mountedQueue,
             );
-            // callAll(mountedQueue);
-        // });
-        // });
+        });
+
+        if (shouldTrigger) {
+            callAll(selfMountedQueue);
+            rootPortal.mountedDone = true;
+        }
+
         super.$render(lastVNode, nextVNode, parentDom, anchor, mountedQueue);
     }
 
@@ -85,31 +115,35 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         }
         const nextContainer = this.container!;
 
-        // nextTick(() => {
-            // const mountedQueue: Function[] = [];
-            if (lastContainer === nextContainer) {
-                patch(
-                    lastProps.children as VNode,
-                    nextProps.children as VNode,
-                    nextContainer,
-                    this,
-                    this.$SVG,
-                    anchor,
-                    mountedQueue,
-                    false,
-                );
-            } else {
-                remove(lastProps.children as VNode, lastContainer, false);
-                mount(nextProps.children as VNode, nextContainer, this, this.$SVG, anchor, mountedQueue);
-            }
-            // callAll(mountedQueue);
-        // });
-
+        if (lastContainer === nextContainer) {
+            patch(
+                lastProps.children as VNode,
+                nextProps.children as VNode,
+                nextContainer,
+                this,
+                this.$SVG,
+                anchor,
+                mountedQueue,
+                false,
+            );
+        } else {
+            remove(lastProps.children as VNode, lastContainer, false);
+            mount(
+                nextProps.children as VNode,
+                nextContainer,
+                this,
+                this.$SVG,
+                anchor,
+                mountedQueue,
+            );
+        }
+        
         super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
     }
 
     $unmount(vNode: VNodeComponentClass<this>, nextVNode: VNodeComponentClass<this> | null) {
-        removeVNodeDom(vNode.props!.children as VNode, this.container!);
+        remove(vNode.props!.children as VNode, this.container!, false);
+        // removeVNodeDom(vNode.props!.children as VNode, this.container!);
         super.$unmount(vNode, nextVNode);
     }
 
