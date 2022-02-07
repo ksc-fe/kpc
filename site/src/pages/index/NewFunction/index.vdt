@@ -25,6 +25,10 @@ const textTransitionStyle = {
     transform: `translateY(${textTop}px)`
 };
 
+const buttonTransitionStyle = {
+    transition: transition
+}
+
 const treeData = [
     {
         label: 'UED部门',
@@ -188,8 +192,8 @@ const treeData = [
                                     </Tabs>
                                     <div class="tab-content">
                                         <div v-if={curTabIndex == 1}>
-                                            <Button type="primary">Button</Button>
-                                            <Button type="secondary">Button</Button>
+                                            <Button type="primary" style={buttonTransitionStyle}>Button</Button>
+                                            <Button type="secondary" style={buttonTransitionStyle}>Button</Button>
                                         </div>
                                         <div v-if={curTabIndex == 2}>
                                             <div 

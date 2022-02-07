@@ -16,7 +16,6 @@ export interface NewFunctionProps {
     transition: string
     curComponentsGroup: number
     editableText: string
-    scrollSelectData: any[]
     curTreeValue: string[]
     selectedMenu: string
 }
@@ -33,14 +32,9 @@ const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
     transition: String,
     curComponentsGroup: Number,
     editableText: String,
-    scrollSelectData: Array,
     curTreeValue: Array,
     selectedMenu: String
 };
-
-const createMonthVal = () => {
-    return Array.from({length: 12}).map((v, i) => ({label: i + 1 + '月', value: i}));
-}
 
 const defaults = (): Partial<NewFunctionProps> => ({
     cardLeft: 0,
@@ -54,7 +48,6 @@ const defaults = (): Partial<NewFunctionProps> => ({
     transition: 'all 0s ease',
     curComponentsGroup: 0,
     editableText: 'Editable text',
-    scrollSelectData: createMonthVal(),
     curTreeValue: ['设计师小蓝'],
     selectedMenu: '1'
 });
