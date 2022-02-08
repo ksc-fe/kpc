@@ -1,19 +1,22 @@
 import {css, cx} from '@emotion/css';
-import {theme, ThemeValue} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette}  from '../../styles/utils';
 import '../../styles/global';
 
-const {badge} = deepDefaults(theme, {
-    badge: {
-        width: '8px',
-        get height() { return badge.width },
-        bgColor: '#ff4133',
-    
-        // has-text
-        textHeight: '16px',
-        textPadding: '5px',
-        textColor: '#fff',
-    },
+const defaults = {
+    width: '8px',
+    get height() { return badge.width },
+    bgColor: '#ff4133',
+
+    // has-text
+    textHeight: '16px',
+    textPadding: '5px',
+    textColor: '#fff',
+};
+
+let badge: any;
+setDefault(() => {
+    badge = deepDefaults(theme, {badge: defaults}).badge;
 });
 
 export default function makeStyles() {

@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
 
@@ -11,118 +11,120 @@ type SizeStyles = {
     multipleMargin: string,
 }
 
-const {select} = deepDefaults(theme, {
-    select: deepDefaults(
-        {
-            width: `300px`,
-            get height() { return theme.default.height },
-            bgColor: '#fff',
-            get fontSize() { return theme.default.fontSize },
-            get border() { return `1px solid ${theme.color.border}` },
-            get focusBorder() { return `1px solid ${theme.color.primary}` },
-            get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
-            get iconColor() { return theme.color.placeholder },
-            get activeColor() { return theme.color.primary },
-            get borderRadius() { return theme.borderRadius },
-            suffixGap: '10px',
-            disabledArrowColor: '#e5e5e5',
+const defaults = deepDefaults(
+    {
+        width: `300px`,
+        get height() { return theme.default.height },
+        bgColor: '#fff',
+        get fontSize() { return theme.default.fontSize },
+        get border() { return `1px solid ${theme.color.border}` },
+        get focusBorder() { return `1px solid ${theme.color.primary}` },
+        get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
+        get iconColor() { return theme.color.placeholder },
+        get activeColor() { return theme.color.primary },
+        get borderRadius() { return theme.borderRadius },
+        suffixGap: '10px',
+        disabledArrowColor: '#e5e5e5',
 
-            clearGap: `8px`,
-            get placeholderColor() { return theme.color.placeholder },
+        clearGap: `8px`,
+        get placeholderColor() { return theme.color.placeholder },
 
-            // disabled
-            disabled: {
-                get color() { return theme.color.disabled },
-                get bgColor() { return theme.color.disabledBg },
-                get borderColor() { return theme.color.disabledBorder },
-            },
+        // disabled
+        disabled: {
+            get color() { return theme.color.disabled },
+            get bgColor() { return theme.color.disabledBg },
+            get borderColor() { return theme.color.disabledBorder },
+        },
 
-            // group
-            group: {
-                get labelColor() { return theme.color.disabled },
-                labelPadding: `8px`,
-            },
-            // card
-            card: {
-                height: `160px`,
-                get itemHoverColor() { return theme.color.primary },
-                itemHoverBgColor: `transparent`,
-            },
+        // group
+        group: {
+            get labelColor() { return theme.color.disabled },
+            labelPadding: `8px`,
+        },
+        // card
+        card: {
+            height: `160px`,
+            get itemHoverColor() { return theme.color.primary },
+            itemHoverBgColor: `transparent`,
+        },
 
-            // multiple
-            multiple: {
-                checkmark: {
-                    fontSize: '32px',
-                },
-            },
-            tag: {
-                margin: `3px 8px 3px 0`,
-                padding: `4px 8px`,
-                get borderRadius() { return theme.borderRadius },
-                get bgColor() { return theme.color.bg },
-                disabledBgColor: '#eee',
-
-                delete: {
-                    gap: `8px`,
-                    fontSize: '14px',
-                    get color() { return theme.color.placeholder },
-                }
-            },
-
-            menuMaxHeight: `200px`,
-
-            // empty
-            empty: {
-                padding: `16px`,
-                get color() { return theme.color.placeholder },
-            },
-
-            // searchable
-            searchable: {
-                padding: `16px 16px 8px 16px`,
-                headerGap: `8px`,
-                get border() { return `1px solid ${theme.color.border}` },
-                header: {
-                    padding: `0 0 16px 0`,
-                    gap: `8px`,
-                    btnPadding: `0`,
-                    btnGap: `16px`,
-                },
-                optionPadding: `0 8px`,
-                footer: {
-                    padding: `8px 0 0`,
-                    gap: `8px`,
-                    btnGap: `8px`,
-                },
+        // multiple
+        multiple: {
+            checkmark: {
+                fontSize: '32px',
             },
         },
-        sizes.reduce((memo, size) => {
-            const styles = theme[size];
-            memo[size] = {
-                get padding() { return `0 ${styles.padding}` },
-                get height() { return styles.height },
-                get fontSize() { return styles.fontSize },
-                multipleGap: `1px`,
-                multipleMargin: `0 2px 1px 0`,
-            }
+        tag: {
+            margin: `3px 8px 3px 0`,
+            padding: `4px 8px`,
+            get borderRadius() { return theme.borderRadius },
+            get bgColor() { return theme.color.bg },
+            disabledBgColor: '#eee',
 
-            if (size === 'large') {
-                // use default padding for large size
-                Object.defineProperty(memo.large, 'padding', {
-                    get() {
-                        return `0 ${theme.default.padding}`;
-                    }
-                });
-                Object.defineProperty(memo.large, 'fontSize', {
-                    get() {
-                        return theme.default.fontSize;
-                    }
-                });
+            delete: {
+                gap: `8px`,
+                fontSize: '14px',
+                get color() { return theme.color.placeholder },
             }
+        },
 
-            return memo;
-        }, {} as Record<Sizes, SizeStyles>)
-    )
+        menuMaxHeight: `200px`,
+
+        // empty
+        empty: {
+            padding: `16px`,
+            get color() { return theme.color.placeholder },
+        },
+
+        // searchable
+        searchable: {
+            padding: `16px 16px 8px 16px`,
+            headerGap: `8px`,
+            get border() { return `1px solid ${theme.color.border}` },
+            header: {
+                padding: `0 0 16px 0`,
+                gap: `8px`,
+                btnPadding: `0`,
+                btnGap: `16px`,
+            },
+            optionPadding: `0 8px`,
+            footer: {
+                padding: `8px 0 0`,
+                gap: `8px`,
+                btnGap: `8px`,
+            },
+        },
+    },
+    sizes.reduce((memo, size) => {
+        memo[size] = {
+            get padding() { return `0 ${theme[size].padding}` },
+            get height() { return theme[size].height },
+            get fontSize() { return theme[size].fontSize },
+            multipleGap: `1px`,
+            multipleMargin: `0 2px 1px 0`,
+        }
+
+        if (size === 'large') {
+            // use default padding for large size
+            Object.defineProperty(memo.large, 'padding', {
+                get() {
+                    return `0 ${theme.default.padding}`;
+                }
+            });
+            Object.defineProperty(memo.large, 'fontSize', {
+                get() {
+                    return theme.default.fontSize;
+                }
+            });
+        }
+
+        return memo;
+    }, {} as Record<Sizes, SizeStyles>)
+);
+
+let select: any;
+setDefault(() => {
+    select = deepDefaults(theme, {select: defaults}).select;
 });
 
 export default function makeStyles() {

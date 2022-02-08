@@ -1,47 +1,87 @@
-import {Layout, Header, Aside, Body, Button, Icon, Tabs, Tab} from 'kpc';
+import {Layout, Header, Body, Icon, Tabs, Tab} from 'kpc';
 import {makeHeaderStyles} from './styles';
 
 const nav = [
     {
-        title: '资源',
-        href: '/docs/resources/',
+        title: '设计',
+        href: '/design',
         index: 'resources',
     },
     {
-        title: '设计',
+        title: '组件',
         href: '/docs/design/language/',
         index: 'design'
     },
     {
-        title: '组件',
+        title: '开发',
         href: '/docs/getting-started/',
         index: 'document'
     },
     {
-        title: 'Blog',
-        href: '/docs/blogs/design/',
+        title: '资源',
+        href: '/resource',
         index: 'blog'
     },
     {
-        title: '定制主题',
-        href: 'https://kpc-theme.ksyun.com/',
-        isOpen: true,
+        title: '解决方案',
+        href: '/solution',
     }
 ];
 
+const {themeColor, colorList, curLang} = this.get();
+
 <Layout class={$props.className}>
-    <Header fixed class={makeHeaderStyles()}>
-        <div class="logo"></div>
+    <Header fixed class={makeHeaderStyles()} id="header">
+        <div class="logo" ev-click={() => window.location.href = '/'}></div>
         <div class="main">
             <Tabs size="large">
                 <Tab v-for={nav}
                     value={$value.index}
                     to={$value.href}
                 >{$value.title}</Tab>
+                <Tab>
+                    <div class="lang-wrapper">
+                        <div class="lang-box">
+                            <div 
+                                class={{active: curLang == 'cn'}} 
+                                ev-click={this.setLang.bind(this, 'cn')}
+                            >zh-CN</div>
+                            <div 
+                                class={{active: curLang == 'en'}} 
+                                ev-click={this.setLang.bind(this, 'en')}
+                            >en-US</div>
+                        </div>    
+                    </div>
+                </Tab>
             </Tabs>
+            <div class="theme-color-box" 
+                ev-mouseenter={this.showColorList.bind(this)} 
+                ev-mouseleave={this.hideColorList.bind(this)}
+            >
+                <div class="cur-color">
+                    <div 
+                        class="color-item" 
+                        style={{background: themeColor}} 
+                    ></div>
+                </div>
+                <div class="theme-color-option" v-if={this.get('showThemeColor')}>
+                    <div v-for={colorList}>
+                        <div 
+                            class="color-item" 
+                            style={{background: $value}} 
+                            ev-click={this.handleColorChange.bind(this, $value)}
+                        >
+                            <Icon 
+                                v-if={themeColor === $value} 
+                                class="icon ion-checkmark-round"
+                            ></Icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </Header>
-    <Layout>
+    <Layout style="margin: 0;">
         <Body>
             <template>
                 <b:content />

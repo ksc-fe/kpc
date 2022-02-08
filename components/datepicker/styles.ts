@@ -1,62 +1,65 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 
-const {datepicker} = deepDefaults(theme, {
-    datepicker: {
-        width: `300px`,
-        padding: `16px 16px 4px`,
-        border: `1px solid #e5e5e5`,
+const defaults = {
+    width: `300px`,
+    padding: `16px 16px 4px`,
+    border: `1px solid #e5e5e5`,
 
-        item: {
-            gutter: `7px`,
-            height: `24px`,
-            get hoverBgColor() { return theme.color.bg },
-            get exceedColor() { return theme.color.disabled },
-            get todayBorder() { return `1px solid ${theme.color.border}` },
-            get borderRadius() { return theme.borderRadius },
+    item: {
+        gutter: `7px`,
+        height: `24px`,
+        get hoverBgColor() { return theme.color.bg },
+        get exceedColor() { return theme.color.disabled },
+        get todayBorder() { return `1px solid ${theme.color.border}` },
+        get borderRadius() { return theme.borderRadius },
 
-            active: {
-                get bgColor() { return theme.color.primary },
-                color: `#fff`,
-                todayBorderColor: `transparent` ,
-            },
-
-            disabled: {
-                color: '#ccc',
-                hoverBgColor: 'none',
-            },
-
-            range: {
-                get bgColor() { return palette(datepicker.item.active.bgColor, -4) },
-            }
+        active: {
+            get bgColor() { return theme.color.primary },
+            color: `#fff`,
+            todayBorderColor: `transparent` ,
         },
 
-        weekday: {
-            padding: `10px 0`
+        disabled: {
+            color: '#ccc',
+            hoverBgColor: 'none',
         },
 
-        month: {
-            padding: `0 6px 12px`,
-            fontSize: `14px`,
-            valueGap: `3px`,
-        },
+        range: {
+            get bgColor() { return palette(datepicker.item.active.bgColor, -4) },
+        }
+    },
 
-        footer: {
-            padding: `8px 16px`,
-        },
+    weekday: {
+        padding: `10px 0`
+    },
 
-        shortcuts: {
-            width: '100px',
-            padding: '12px 0',
-            shortcut: {
-                get hoverBgcolor() { return theme.color.bg },
-                height: '32px',
-                padding: '0 16px',
-            }
+    month: {
+        padding: `0 6px 12px`,
+        fontSize: `14px`,
+        valueGap: `3px`,
+    },
+
+    footer: {
+        padding: `8px 16px`,
+    },
+
+    shortcuts: {
+        width: '100px',
+        padding: '12px 0',
+        shortcut: {
+            get hoverBgcolor() { return theme.color.bg },
+            height: '32px',
+            padding: '0 16px',
         }
     }
+};
+
+let datepicker: any;
+setDefault(() => {
+    datepicker = deepDefaults(theme, {datepicker: defaults}).datepicker;
 });
 
 export {datepicker};

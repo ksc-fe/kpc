@@ -1,0 +1,59 @@
+import {makeStyles} from './styles';
+import {Footer} from '../../components/footer/';
+import {Icon} from 'kpc';
+
+<t:super class={makeStyles()}>
+    <b:content>
+        <div class="solution-nav">
+            <div class="content">
+                <div class="nav-title">
+                    <div>解决方案</div>
+                    <div>提供各行业领域内的产品/组件模版</div>
+                </div>
+            </div>
+        </div>
+        <div class="solution-content">
+            <div>
+                <div class="solution-row" v-for={[1,2,3]}>
+                    <div class="solution-item">
+                        <div>img</div>
+                        <div>
+                            <div class="title-box">
+                                <div>智能监控首页模版</div>
+                                <div>可下载</div>
+                            </div>
+                            <div class="download-icon">
+                                <Icon class='icon ion-ios-download-outline'></Icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div>img</div>
+                        <div>
+                            <div class="title-box">
+                                <div>智能监控首页模版</div>
+                                <div>可下载</div>
+                            </div>
+                            <div class="download-icon">
+                                <Icon class='icon ion-ios-download-outline'></Icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="solution-item">
+                        <div>img</div>
+                        <div>
+                            <div class="title-box">
+                                <div>智能监控首页模版</div>
+                                <div>可下载</div>
+                            </div>
+                            <div class="download-icon">
+                                <Icon class='icon ion-ios-download-outline'></Icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Footer bgColor="#FAFAFA"></Footer>
+    </b:content>
+</t:super>

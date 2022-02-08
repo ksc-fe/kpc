@@ -1,5 +1,5 @@
 import {css, keyframes} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
@@ -19,49 +19,52 @@ const progressBarAnimation = keyframes`
     }
 `;
 
-const {progress} = deepDefaults(theme, {
-    progress: {
-        stokeColor: {
-            get normal() { return theme.color.primary },
-            get success() { return theme.color.success },
-            get error() { return theme.color.danger },
-            get warning() { return theme.color.warning },
-            color: '#eaeef2'
+const defaults = {
+    stokeColor: {
+        get normal() { return theme.color.primary },
+        get success() { return theme.color.success },
+        get error() { return theme.color.danger },
+        get warning() { return theme.color.warning },
+        color: '#eaeef2'
+    },
+    animation: {
+        transition: 'all .6s ease'
+    },
+    bar: {
+        fontColor: '#404040',
+        height: '16px',
+        textWidth: '40px',
+        textMarginLeft: '16px',
+        innerText: {
+            fontSize: '12px',
+            padding: `0 10px 0 3px`,
         },
-        animation: {
-            transition: 'all .6s ease'
+        small: {
+            height: '10px',
+            fontSize: '12px'
         },
-        bar: {
-            fontColor: '#404040',
-            height: '16px',
-            textWidth: '40px',
-            textMarginLeft: '16px',
-            innerText: {
-                fontSize: '12px',
-                padding: `0 10px 0 3px`,
-            },
-            small: {
-                height: '10px',
-                fontSize: '12px'
-            },
-            mini: {
-                height: '4px',
-                fontSize: '12px'
-            }
+        mini: {
+            height: '4px',
+            fontSize: '12px'
+        }
+    },
+    circle: {
+        width: '104px',
+        fontSize: '16px',
+        small: {
+            width: '80px',
+            fontSize: '14px'
         },
-        circle: {
-            width: '104px',
-            fontSize: '16px',
-            small: {
-                width: '80px',
-                fontSize: '14px'
-            },
-            mini: {
-                width: '40px',
-                fontSize: '12px'
-            }
+        mini: {
+            width: '40px',
+            fontSize: '12px'
         }
     }
+};
+
+let progress: any;
+setDefault(() => {
+  progress = deepDefaults(theme, {progress: defaults}).progress;
 });
 
 export function makeStyles() {

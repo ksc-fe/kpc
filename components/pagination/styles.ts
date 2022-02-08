@@ -1,5 +1,5 @@
 import {css, cx} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, Sizes}  from '../../styles/utils';
 import '../../styles/global';
 import {button}  from '../button/styles';
@@ -24,34 +24,37 @@ const iconFontSizeMap: Record<Exclude<Sizes, 'default'>, string> = {
 
 const sizes = ['large', 'small', 'mini'] as const;
 
-const {pagination} = deepDefaults(theme, {
-    pagination: deepDefaults(
-        {
-            get fontSize() { return theme.default.fontSize }, 
-            gap: '16px',
+const defaults = deepDefaults(
+    {
+        get fontSize() { return theme.default.fontSize }, 
+        gap: '16px',
 
-            btn: {
-                gap: '6px',
-                padding: '0 3px',
-            },
-
-            // goto
-            goto: {
-                width: '60px',
-                gap: '0 10px'
-            }  
+        btn: {
+            gap: '6px',
+            padding: '0 3px',
         },
-        sizes.reduce((memo, size) => {
-            const styles = theme[size];
-            memo[size] = {
-                get fontSize() { return styles.fontSize },
-                get btnGap() { return btnGapMap[size] },
-                get iconFontSize() { return iconFontSizeMap[size] },
-            };
 
-            return memo;
-        }, {} as Record<Sizes, SizeStyles>)
-    )
+        // goto
+        goto: {
+            width: '60px',
+            gap: '0 10px'
+        }  
+    },
+    sizes.reduce((memo, size) => {
+        const styles = theme[size];
+        memo[size] = {
+            get fontSize() { return styles.fontSize },
+            get btnGap() { return btnGapMap[size] },
+            get iconFontSize() { return iconFontSizeMap[size] },
+        };
+
+        return memo;
+    }, {} as Record<Sizes, SizeStyles>)
+);
+
+let pagination: any;
+setDefault(() => {
+    pagination = deepDefaults(theme, {pagination: defaults}).pagination;
 });
 
 export function makeStyles() {

@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
 
@@ -11,18 +11,21 @@ type SizeStyles = {
     multipleMargin: string,
 }
 
-const {scrollSelect} = deepDefaults(theme, {
-    scrollSelect: {
-        height: `125px`,
-        item: {
-            height: `30px`,
-            get color() { return theme.color.text },
-            get activeColor() { return theme.color.primary },
-            activeFontSize: `1.1em`,
-            get disabledColor() { return theme.color.disabled },
-            border: `1px solid #e5e5e5`,
-        }
+const defaults = {
+    height: `125px`,
+    item: {
+        height: `30px`,
+        get color() { return theme.color.text },
+        get activeColor() { return theme.color.primary },
+        activeFontSize: `1.1em`,
+        get disabledColor() { return theme.color.disabled },
+        border: `1px solid #e5e5e5`,
     }
+};
+
+let scrollSelect: any;
+setDefault(() => {
+    scrollSelect = deepDefaults(theme, {scrollSelect: defaults}).scrollSelect;
 });
 
 export {scrollSelect};

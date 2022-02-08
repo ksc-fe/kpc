@@ -1,82 +1,85 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const sizes = ['large', 'small'] as const;
 
-const {menu} = deepDefaults(theme, {
-    menu: {
-        width: '200px',
-        bgColor: '#262626',
+const defaults = {
+    width: '200px',
+    bgColor: '#262626',
+    fontSize: '14px',
+    get borderRadius() { return theme.borderRadius },
+
+    item: {
+        height: '40px',
+        padding: '0 21px',
+        color: '#b2b2b2',
+        hoverColor: '#fff',
+        get disabledColor() { return theme.color.text },
+        get activeBgColor() { return theme.color.primary },
+        dotFontSize: '12px'
+    },
+
+    icon: {
+        width: '16px',
+        gap: '11px'
+    },
+
+    header: {
+        height: '50px',
         fontSize: '14px',
-        get borderRadius() { return theme.borderRadius },
+        borderBottom: '1px solid #1b1b1d',
+    },
 
+    // sub-menu
+    subBgColor: '#000',
+
+    light: {
+        bgColor: '#e5e5e9',
+        subBgColor:  '#d5d5d9',
+        border: '1px solid #d5d5d9',
         item: {
-            height: '40px',
-            padding: '0 21px',
-            color: '#b2b2b2',
-            hoverColor: '#fff',
-            get disabledColor() { return theme.color.text },
-            get activeBgColor() { return theme.color.primary },
-            dotFontSize: '12px'
+            get color() { return theme.color.text }, 
+            get hoverColor() { return theme.color.primary }, 
+            disabledColor: '#999'
         },
+    },
 
-        icon: {
-            width: '16px',
-            gap: '11px'
+    white: {
+        bgColor: '#fff',
+        subBgColor:  '#fafafa',
+        border: '1px solid #eee',
+        item: {
+            get color() { return theme.color.text }, 
+            get hoverColor() { return theme.color.primary }, 
+            get disabledColor() { return theme.color.disabled },
         },
-
-        header: {
-            height: '50px',
-            fontSize: '14px',
-            borderBottom: '1px solid #1b1b1d',
-        },
-
-        // sub-menu
-        subBgColor: '#000',
-
-        light: {
-            bgColor: '#e5e5e9',
-            subBgColor:  '#d5d5d9',
-            border: '1px solid #d5d5d9',
-            item: {
-                get color() { return theme.color.text }, 
-                get hoverColor() { return theme.color.primary }, 
-                disabledColor: '#999'
-            },
-        },
-
-        white: {
-            bgColor: '#fff',
-            subBgColor:  '#fafafa',
-            border: '1px solid #eee',
-            item: {
-                get color() { return theme.color.text }, 
-                get hoverColor() { return theme.color.primary }, 
-                get disabledColor() { return theme.color.disabled },
-            },
-            active: {
-                get color() { return theme.color.primary },
-                get bgColor() { return palette(theme.color.primary, -4) },
-            }
-        },
-
-        // dropdown
-        dropdown: {
-            minWidth: '150px',
-        },
-
-        large: {
-            width: '250px',
-            get fontSize() { return menu.fontSize },
-        },
-
-        small: {
-            width: '180px',
-            get fontSize() { return theme.small.fontSize },
+        active: {
+            get color() { return theme.color.primary },
+            get bgColor() { return palette(theme.color.primary, -4) },
         }
-    } 
+    },
+
+    // dropdown
+    dropdown: {
+        minWidth: '150px',
+    },
+
+    large: {
+        width: '250px',
+        get fontSize() { return menu.fontSize },
+    },
+
+    small: {
+        width: '180px',
+        get fontSize() { return theme.small.fontSize },
+    }
+};
+
+let menu: any;
+setDefault(() => {
+    menu = deepDefaults(theme, {menu: defaults}).menu;
 });
 
 export {menu};
@@ -226,8 +229,8 @@ export function makeTitleStyles() {
     return css`
         display: flex;
         align-items: center;
-        padding: ${item.padding};
-        color: ${item.color};
+        padding: ${menu.item.padding};
+        color: ${menu.item.color};
         white-space: nowrap;
         overflow: hidden;
         flex-wrap: nowrap;
@@ -239,10 +242,10 @@ export function makeItemStyles() {
     return css`
         .k-menu-title {
             cursor: pointer;
-            height: ${item.height};
+            height: ${menu.item.height};
             transition: all ${theme.transition};
             &:hover {
-                color: ${item.hoverColor};
+                color: ${menu.item.hoverColor};
             }
         }
         .k-menu-name {
@@ -258,7 +261,7 @@ export function makeItemStyles() {
         // expanded
         &.k-expanded {
             > .k-menu-title {
-                color: ${item.hoverColor};
+                color: ${menu.item.hoverColor};
                 .k-menu-arrow {
                     transform: rotate(180deg);
                 }
@@ -268,29 +271,29 @@ export function makeItemStyles() {
         // highlighted
         &.k-highlighted {
             > .k-menu-title {
-                color: ${item.hoverColor};
+                color: ${menu.item.hoverColor};
             }
         }
 
         // active
         &.k-active {
             > .k-menu-title {
-                color: ${item.hoverColor} !important;
-                background: ${item.activeBgColor};
+                color: ${menu.item.hoverColor} !important;
+                background: ${menu.item.activeBgColor};
             }
         }
 
         // disabled
         &.k-disabled {
             > .k-menu-title {
-                color: ${item.disabledColor} !important;
+                color: ${menu.item.disabledColor} !important;
                 cursor: not-allowed;
             }
         }
 
         // dot
         .k-menu-dot {
-            font-size: ${item.dotFontSize};
+            font-size: ${menu.item.dotFontSize};
             transform: scale(.4);
         }
     `

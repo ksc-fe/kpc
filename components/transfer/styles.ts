@@ -1,44 +1,47 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
-const {transfer} = deepDefaults(theme, {
-    transfer: {
-        fontSize: '12px',
-        searchGap: '16px',
-        listHeight: '251px',
+const defaults = {
+    fontSize: '12px',
+    searchGap: '16px',
+    listHeight: '251px',
 
-        panel: {
-            width: '250px',
-            height: '350px',
-            get border() { return `1px solid ${theme.color.border}` }, 
-            get borderRadius() { return theme.borderRadius }
-        },
+    panel: {
+        width: '250px',
+        height: '350px',
+        get border() { return `1px solid ${theme.color.border}` }, 
+        get borderRadius() { return theme.borderRadius }
+    },
 
-        title: {
-            lineHeight: '40px',
-            fontSize: '14px',
-            padding: '0 16px',
-            get color() { return theme.color.title },
-            get bgColor() { return theme.color.bg },
-            countGap: '8px'
-        },
+    title: {
+        lineHeight: '40px',
+        fontSize: '14px',
+        padding: '0 16px',
+        get color() { return theme.color.title },
+        get bgColor() { return theme.color.bg },
+        countGap: '8px'
+    },
 
-        item: {
-            get color() { return theme.color.text },
-            get hoverColor() { return theme.color.primary },
-            bgColor: '#fff',
-            hoverBgColor: 'transparent',
-            padding: '5px 16px',
-            get height() { return theme.default.height },
-            get descColor() { return theme.color.lightBlack },
-        },
+    item: {
+        get color() { return theme.color.text },
+        get hoverColor() { return theme.color.primary },
+        bgColor: '#fff',
+        hoverBgColor: 'transparent',
+        padding: '5px 16px',
+        get height() { return theme.default.height },
+        get descColor() { return theme.color.lightBlack },
+    },
 
-        arrow: {
-            gap: '16px 10px',
-        }
+    arrow: {
+        gap: '16px 10px',
     }
+};
+
+let transfer: any;
+setDefault(() => {
+    transfer = deepDefaults(theme, {transfer: defaults}).transfer;
 });
 
 export function makeStyles() {

@@ -1,17 +1,20 @@
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 import {deepDefaults}  from '../../styles/utils';
 
-const {tip}= deepDefaults(theme, {
-    tip: {
-        title: {
-            fontSize: '14px',
-            gap: '8px'
-        },
-        get color() { return theme.color.text },
-        get padding() { return `6px ${theme.default.padding}` },
+const defaults = {
+    title: {
+        fontSize: '14px',
+        gap: '8px'
     },
+    get color() { return theme.color.text },
+    get padding() { return `6px ${theme.default.padding}` },
+};
+
+let tip: any;
+setDefault(() => {
+    tip = deepDefaults(theme, {tip: defaults}).tip;
 });
 
 export function makeStyles() {
