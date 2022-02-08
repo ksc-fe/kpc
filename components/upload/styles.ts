@@ -1,78 +1,81 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
-const {upload} = deepDefaults(theme, {
-    upload: {
-        fontSize: '12px',
-        tip: {
-            gap: '16px',
-            get color() { return theme.color.lightBlack }
-        },
-        closeFontSize: '24px',
+const defaults = {
+    fontSize: '12px',
+    tip: {
+        gap: '16px',
+        get color() { return theme.color.lightBlack }
+    },
+    closeFontSize: '24px',
 
-        // files list
-        filesGap: '16px',
-        file: {
-            margin: '4px 0',
-            get borderRadius() { return theme.borderRadius },
-            get bgColor() { return theme.color.bg },
-            padding: '0 4px',
-            get height() { return theme.default.height },
-            fileIconGap: '8px',
-            status: {
-                // width: '16px',
-                get color() { return theme.color.success },
-                gap: '8px',
-                get errorColor() { return theme.color.danger },
-            },
+    // files list
+    filesGap: '16px',
+    file: {
+        margin: '4px 0',
+        get borderRadius() { return theme.borderRadius },
+        get bgColor() { return theme.color.bg },
+        padding: '0 4px',
+        get height() { return theme.default.height },
+        fileIconGap: '8px',
+        status: {
+            // width: '16px',
+            get color() { return theme.color.success },
+            gap: '8px',
             get errorColor() { return theme.color.danger },
         },
+        get errorColor() { return theme.color.danger },
+    },
 
-        // drag
-        drag: {
-            get color() { return theme.color.lightBlack },
+    // drag
+    drag: {
+        get color() { return theme.color.lightBlack },
+        get border() { return `1px dashed ${theme.color.border}` },
+        get borderRadius() { return theme.borderRadius },
+        get hoverBorderColor() { return theme.color.primary },
+        padding: `20px 0 40px 0`,
+        icon: {
+            fontSize: '80px',
+            get color() { return theme.color.placeholder },
+        },
+        get overBorderColor() { return theme.color.primary },
+    },
+
+    // gallery
+    gallery: {
+        width: '100px',
+        height: '100px',
+        get borderRadius() { return theme.borderRadius },
+        get border() { return `1px solid ${theme.color.border}` },
+        margin: '0px 8px 8px 0',
+        padding: '8px',
+        bgColor: '#fff',
+        get errorBorderColor() { return theme.color.danger },
+        close: {
+            top: '-8px',
+            right: '-8px',
+            fontSize: '18px',
+        },
+        add: {
             get border() { return `1px dashed ${theme.color.border}` },
-            get borderRadius() { return theme.borderRadius },
+            fontSize: '44px',
             get hoverBorderColor() { return theme.color.primary },
-            padding: `20px 0 40px 0`,
-            icon: {
-                fontSize: '80px',
-                get color() { return theme.color.placeholder },
-            },
-            get overBorderColor() { return theme.color.primary },
-        },
-
-        // gallery
-        gallery: {
-            width: '100px',
-            height: '100px',
-            get borderRadius() { return theme.borderRadius },
-            get border() { return `1px solid ${theme.color.border}` },
-            margin: '0px 8px 8px 0',
-            padding: '8px',
-            bgColor: '#fff',
-            get errorBorderColor() { return theme.color.danger },
-            close: {
-                top: '-8px',
-                right: '-8px',
-                fontSize: '18px',
-            },
-            add: {
-                get border() { return `1px dashed ${theme.color.border}` },
-                fontSize: '44px',
-                get hoverBorderColor() { return theme.color.primary },
-            }
-        },
-
-        // overlap
-        overlap: {
-            bgColor: 'rgba(0, 0, 0, .35)',
-            color: '#fff',
-            zoomFontSize: '24px',
         }
+    },
+
+    // overlap
+    overlap: {
+        bgColor: 'rgba(0, 0, 0, .35)',
+        color: '#fff',
+        zoomFontSize: '24px',
     }
+};
+
+let upload: any;
+setDefault(() => {
+    upload = deepDefaults(theme, {upload: defaults}).upload;
 });
 
 export function makeStyles() {

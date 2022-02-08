@@ -1,36 +1,39 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
-const {tooltip} = deepDefaults(theme, {
-    tooltip: {
-        padding: '8px 12px',
-        get color() { return theme.color.text },
-        bgColor: '#fff',
-        lineHeight: 1.4,
-        maxWidth: '300px',
+const defaults = {
+    padding: '8px 12px',
+    get color() { return theme.color.text },
+    bgColor: '#fff',
+    lineHeight: 1.4,
+    maxWidth: '300px',
 
-        // arrow
-        arrow: {
-            borderColor: 'rgba(191, 191, 191, .5)',
-            width: '8px',
-        },
+    // arrow
+    arrow: {
+        borderColor: 'rgba(191, 191, 191, .5)',
+        width: '8px',
+    },
 
-        // confirm
-        confirm: {
-            gaps: '8px',
-        },
+    // confirm
+    confirm: {
+        gaps: '8px',
+    },
 
-        // dark
-        dark: {
-            get bgColor() { return theme.color.text },
-            color: '#fff',
-            get arrowBorderColor() { return theme.color.text },
-        },
+    // dark
+    dark: {
+        get bgColor() { return theme.color.text },
+        color: '#fff',
+        get arrowBorderColor() { return theme.color.text },
+    },
 
-        smallPadding: '4px',
-    } 
+    smallPadding: '4px',
+};
+
+let tooltip: any;
+setDefault(() => {
+    tooltip = deepDefaults(theme, {tooltip: defaults}).tooltip;
 });
 
 export type Theme = 'dark' | 'light';

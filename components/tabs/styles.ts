@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 
@@ -17,53 +17,55 @@ const closeFontSizeMap: Record<Sizes, string> = {
     mini: '16px',
 }
 
-const {tabs} = deepDefaults(theme, {
-    tabs: deepDefaults(
-        {
-            get borderColor() { return theme.color.border },
-            borderWidth: '1px',
-            get border() { return `${tabs.borderWidth} solid ${tabs.borderColor}` },
-            margin: `0 10px`,
-            get color() { return theme.color.text },
-            closeGutter: `8px`,
+const defaults = deepDefaults(
+    {
+        get borderColor() { return theme.color.border },
+        borderWidth: '1px',
+        get border() { return `${tabs.borderWidth} solid ${tabs.borderColor}` },
+        margin: `0 10px`,
+        get color() { return theme.color.text },
+        closeGutter: `8px`,
 
-            // vertical
-            verticalPadding: `0 25px`,
+        // vertical
+        verticalPadding: `0 25px`,
 
-            //active
-            get activeColor() { return theme.color.primary },
-            highlight: {
-                height: `2px`,
-                // get bottom() { return `calc(-${tabs.highlight.height} / 2)` },
-                get bgColor() { return theme.color.primary },
-            },
-
-            // scroll
-            navigatorWidth: `20px`,
-
-            // border-card
-            borderCard: {
-                get bgColor() { return theme.color.bg },
-            },
-
-            // no-border-card
-            noBorderCard: {
-                bgColor: `#eee`,
-                gutter: `4px`,
-            }
+        //active
+        get activeColor() { return theme.color.primary },
+        highlight: {
+            height: `2px`,
+            // get bottom() { return `calc(-${tabs.highlight.height} / 2)` },
+            get bgColor() { return theme.color.primary },
         },
-        sizes.reduce((memo, size) => {
-            const styles = theme[size];
-            memo[size] = {
-                get fontSize() { return styles.fontSize },
-                get height() { return styles.height },
-                get padding() { return `0 ${styles.padding}` },
-                get closeFontSize() { return closeFontSizeMap[size] },
-            };
 
-            return memo;
-        }, {} as Record<Sizes, SizeStyles>)
-    )
+        // scroll
+        navigatorWidth: `20px`,
+
+        // border-card
+        borderCard: {
+            get bgColor() { return theme.color.bg },
+        },
+
+        // no-border-card
+        noBorderCard: {
+            bgColor: `#eee`,
+            gutter: `4px`,
+        }
+    },
+    sizes.reduce((memo, size) => {
+        memo[size] = {
+            get fontSize() { return theme[size].fontSize },
+            get height() { return theme[size].height },
+            get padding() { return `0 ${theme[size].padding}` },
+            get closeFontSize() { return closeFontSizeMap[size] },
+        };
+
+        return memo;
+    }, {} as Record<Sizes, SizeStyles>)
+);
+
+let tabs: any;
+setDefault(() => {
+    tabs = deepDefaults(theme, {tabs: defaults}).tabs;
 });
 
 export function makeStyles() {

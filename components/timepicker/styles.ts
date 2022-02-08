@@ -1,23 +1,26 @@
 import {css, cx} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 import {datepicker, makePanelStyles as makePanelStylesBase} from '../datepicker/styles';
 
-const {timepicker} = deepDefaults(theme, {
-    timepicker: {
-        get border() { return datepicker.border; },
-        padding: `16px`,
-        scrollHeight: `160px`,
+const defaults = {
+    get border() { return datepicker.border; },
+    padding: `16px`,
+    scrollHeight: `160px`,
 
-        // range
-        range: {
-            width: `200px`,
-            padding: `16px`,
-            titleGap: `8px`,
-            scrollHeight: `140px`,
-        },
-    }
+    // range
+    range: {
+        width: `200px`,
+        padding: `16px`,
+        titleGap: `8px`,
+        scrollHeight: `140px`,
+    },
+};
+
+let timepicker: any;
+setDefault(() => {
+    timepicker = deepDefaults(theme, {timepicker: defaults}).timepicker;
 });
 
 export function makePanelStyles() {

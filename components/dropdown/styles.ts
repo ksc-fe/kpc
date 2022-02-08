@@ -1,27 +1,30 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, getLeft, getRight} from '../../styles/utils';
 import '../../styles/global';
 
-const {dropdown} = deepDefaults(theme, {
-    dropdown: {
-        item: {
-            get height() { return theme.default.height },
-            get padding() { return `0 ${theme.default.padding}` },
-            get hoverBgColor() { return theme.color.bg },
+const defaults = {
+    item: {
+        get height() { return theme.default.height },
+        get padding() { return `0 ${theme.default.padding}` },
+        get hoverBgColor() { return theme.color.bg },
 
-            // disabled
-            get disabledBgColor() { return theme.color.disabledBg },
-            get disabledColor() { return theme.color.disabled },
-        },
-        menu: {
-            minWidth: '100px',
-            bgColor: '#fff',
-            get borderRadius() { return theme.borderRadius },
-            fontSize: '12px',
-            get zIndex() { return theme.midZIndex },
-        }
+        // disabled
+        get disabledBgColor() { return theme.color.disabledBg },
+        get disabledColor() { return theme.color.disabled },
+    },
+    menu: {
+        minWidth: '100px',
+        bgColor: '#fff',
+        get borderRadius() { return theme.borderRadius },
+        fontSize: '12px',
+        get zIndex() { return theme.midZIndex },
     }
+};
+
+let dropdown: any;
+setDefault(() => {
+    dropdown = deepDefaults(theme, {dropdown: defaults}).dropdown;
 });
 
 export function makeMenuStyles() {

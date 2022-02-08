@@ -1,0 +1,17 @@
+import {makeStyles} from './styles';
+import {Button, Icon} from 'kpc';
+
+const {children, mainTitle, subTitle} = this.get();
+
+<div class={makeStyles()}>
+    <div class="title">
+        <div>{mainTitle}</div>
+        <Button type="primary">
+            <Icon class="icon ion-chevron-right"></Icon>
+        </Button>
+    </div>
+    <div class="sub-title">{subTitle}</div>
+    <div class="content-box">
+        {children}
+    </div>
+</div>

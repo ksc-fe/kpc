@@ -10,8 +10,5 @@
 </head>
 <body>
     <div id="page"></div>
-    <% if (htmlWebpackPlugin.options.dll) {%>
-    <script src="/<%= htmlWebpackPlugin.options.dll.replace('_', '.') %>.js"></script>
-    <% } %>
 </body>
 </html>

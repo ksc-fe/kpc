@@ -1,42 +1,45 @@
 import {css} from '@emotion/css';
 import {deepDefaults, sizes, palette} from '../../styles/utils';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
 
-const {spinner} = deepDefaults(theme, {
-    spinner: {
+const defaults = {
+    default: {
+        inputWidth: '46px',
+        iconFontSize: '24px'
+    },
+    large: {
+        inputWidth: '60px',
+        iconFontSize: '32px'
+    },
+    small: {
+        inputWidth: '32px',
+        iconFontSize: '18px'
+    },
+    mini: {
+        inputWidth: '26px',
+        iconFontSize: '14px'
+    },
+
+    vertical: {
         default: {
-            inputWidth: '46px',
-            iconFontSize: '24px'
+            width: '108px',
         },
         large: {
-            inputWidth: '60px',
-            iconFontSize: '32px'
+            width: '138px',
         },
         small: {
-            inputWidth: '32px',
-            iconFontSize: '18px'
+            width: '78px',
         },
         mini: {
-            inputWidth: '26px',
-            iconFontSize: '14px'
-        },
-
-        vertical: {
-            default: {
-                width: '108px',
-            },
-            large: {
-                width: '138px',
-            },
-            small: {
-                width: '78px',
-            },
-            mini: {
-                width: '56px',
-            }
+            width: '56px',
         }
     }
+};
+
+let spinner: any;
+setDefault(() => {
+    spinner = deepDefaults(theme, {spinner: defaults}).spinner;
 });
 
 export function makeStyles() {

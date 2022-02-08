@@ -1,0 +1,24 @@
+import {makeStyles} from './styles';
+import kingvisionLogo from '../../../imgs/kingvision_logo.png';
+import kingvisioinTitle from '../../../imgs/kingvisioin_title.png';
+import kingvisionButton from '../../../imgs/kingvision_button.png';
+
+<div class={makeStyles()}>
+    <div class="king-vis-wrapper">
+        <div>
+            <div class="main-logo">
+                <img src={kingvisionLogo} />
+            </div>
+            <div class="vis-title">
+                <img src={kingvisioinTitle} />
+            </div>
+            <div class="vis-description">
+                <a href="javascript:;">原创</a>并且丰富全面的设计物料，业务化的ICON库，这是由KD设计系统的设计师们精心维护的素材库，不论是灵感源泉还是规范语言，这里都有。
+            </div>
+            <img src={kingvisionButton} />
+        </div>
+        <div>
+            <div class="king-vision-bg"></div>
+        </div>
+    </div>
+</div>

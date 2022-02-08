@@ -1,23 +1,26 @@
 import {deepDefaults}  from '../../styles/utils';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 
 export const kls = (className: string) => `k-collapse-${className}`;
 
-const {collapse} = deepDefaults(theme, {
-    collapse: {
-        fontSize: '12px',
-        titleMarginRight: '8px',
-        borderPadding: '0 24px',
-        collBorder: '1px solid #eee',
+const defaults = {
+    fontSize: '12px',
+    titleMarginRight: '8px',
+    borderPadding: '0 24px',
+    collBorder: '1px solid #eee',
 
-        item: {
-            borderBottom: '1px solid #e5e5e5',
-            titleHeight: '40px',
-            contentPadding: '0 16px 16px'
-        }
+    item: {
+        borderBottom: '1px solid #e5e5e5',
+        titleHeight: '40px',
+        contentPadding: '0 16px 16px'
     }
+};
+
+let collapse: any;
+setDefault(() => {
+    collapse = deepDefaults(theme, {collapse: defaults}).collapse;
 });
 
 export function makeStyles() {

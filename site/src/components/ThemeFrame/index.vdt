@@ -1,0 +1,11 @@
+
+const {width, height, style} = this.get();
+
+<iframe 
+    ref={this.frameRef} 
+    src={this.get('href')} 
+    frameborder="0"
+    width={width == 0 ? 'auto' : width}
+    height={height == 0 ? 'auto' : height}
+    style={{...style}}
+></iframe>

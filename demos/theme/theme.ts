@@ -1,5 +1,5 @@
-import {theme} from 'kpc/styles/theme';
-import {deepExtends} from 'kpc/styles/utils';
+import {theme, defualtTheme, setTheme} from 'kpc/styles/theme';
+import {deepExtends, deepDefaults} from 'kpc/styles/utils';
 
 const myTheme = {
     color: {
@@ -37,12 +37,10 @@ const myTheme = {
     }
 };
 
-const defaults = deepExtends({}, theme);
-
 export function attach() {
-    deepExtends(theme, myTheme);
+    setTheme(myTheme);
 }
 
 export function detach() {
-    deepExtends(theme, defaults);
+    setTheme({});
 }
