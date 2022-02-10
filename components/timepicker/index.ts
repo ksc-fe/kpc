@@ -1,5 +1,5 @@
 import {createVNode as h, Component} from 'intact';
-import {TimepickerProps, TimepickerEvents, TimepickerBlocks} from './constants';
+import {TimepickerProps, TimepickerEvents, TimepickerBlocks, typeDefs} from './constants';
 import {PanelPicker} from './panelPicker';
 import {SelectPicker} from './selectPicker';
 
@@ -16,6 +16,7 @@ export class Timepicker<
         }
         return h(PanelPicker, props as any);
     }
+    static typeDefs = typeDefs;
 }
 
 // declare class _Timepicker<

@@ -53,7 +53,7 @@ export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {
-            tiem1: null,
+            time1: null,
             time2: null,
             time3: null
         } as Props;

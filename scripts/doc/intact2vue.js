@@ -12,7 +12,7 @@ exports.toVue3 = function(...args) {
 }
 
 function parseToVue2(template) {
-    template = template.replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
+    template = template.replace(/<b:([\w\-]+)(\s+args="(.+)")?/g, (match, name, nouse, params) => {
         return `<template slot="${name}"` + (params ? ` slot-scope="${params}"` : '');
     });
 
@@ -21,7 +21,7 @@ function parseToVue2(template) {
 
 function parseToVue3(template) {
     template = template
-        .replace(/<b:([\w\-]+)(\s+params="(.+)")?/g, (match, name, nouse, params) => {
+        .replace(/<b:([\w\-]+)(\s+args="(.+)")?/g, (match, name, nouse, params) => {
             return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
         })
         .replace(/kpc-vue/g, 'kpc-vue-next');
@@ -222,17 +222,33 @@ function parseJS(js, vueData) {
     };
 }
 
-const delimitersRegExp = /\b([^\s]*?)={\s*([\s\S]*?)\s*(})?}/g;
+const delimitersRegExp1 = /\b([^\s]*?)=\{\[(\s*[\s\S]*?\s*)(\})?\]\}/g;
+const delimitersRegExp2 = /\b([^\s]*?)=\{\{(\s*[\s\S]*?\s*)(\})?\}\}/g;
+const delimitersRegExp3 = /\b([^\s]*?)=\{\s*([\s\S]*?)\s*(\})?\}(?!`)/g;
 const getRegExp = /this\.get\(['"](.*?)['"]\)/g;
 function parseProperty(template, properties, methods) {
     // specical for Editable validate string
     template = template.replace('"\\d+"', '"\\\\d+"');
-    return template.replace(delimitersRegExp, (match, name, value, isObject) => {
+    template = parsePropertyWithRegExp(delimitersRegExp1, template, properties, methods, ']');
+    template = parsePropertyWithRegExp(delimitersRegExp2, template, properties, methods, '}');
+    template = parsePropertyWithRegExp(delimitersRegExp3, template, properties, methods);
+    template = template.replace(/ v-for-value="\w+"/g, '');
+    return template;
+}
+function parsePropertyWithRegExp(regExp, template, properties, methods, delimiter) {
+    return template.replace(regExp, (match, name, value, isObject, index) => {
         if (isObject) value += isObject;
         value = value.replace(getRegExp, (nouse, name) => {
             properties[name] = null;
             return name;
         });
+
+        if (delimiter === ']') {
+            value = `[${value}]`;
+        } else if (delimiter === '}') {
+            value = `{${value}}`;
+        }
+
         if (name.substring(0, 3) === 'ev-') {
             name = `@${name.substring(3)}`;
             const matches = value.match(/this\.(\w+)(\.bind\(this, (.*?)\))?/);
@@ -247,7 +263,13 @@ function parseProperty(template, properties, methods) {
                 }
             }
         } else if (name === 'v-for') {
-            value = `($value, $key) in ${value}`;
+            const line = template.slice(index).split(/\n/)[0];
+            const vForValue = line.match(/v-for-value="(\w+)"/);
+            if (vForValue) {
+                value = `(${vForValue[1]}, $key) in ${value}`;
+            } else {
+                value = `($value, $key) in ${value}`;
+            }
         } else if (name === 'v-if' || name === 'v-else-if') {
             // do nothing
         } else if (name === 'v-model') {
@@ -266,7 +288,7 @@ function parseProperty(template, properties, methods) {
     });
 }
 
-const interpolationRegExp = /\{\{\s+([\s\S]*?)\s+\}\}/g
+const interpolationRegExp = /(?<!:\w+=")\{\s*([^\:]*?)\s*\}/g
 function parseInterpolation(template, properties, methods) {
     return template.replace(interpolationRegExp, (match, value) => {
         value = value.replace(new RegExp(getRegExp, 'g'), (match, value) => {
@@ -274,7 +296,7 @@ function parseInterpolation(template, properties, methods) {
             return value;
         });
         value = value.replace(/JSON.stringify/, match => {
-            methods.stringify = `stringify(data) { return JSON.stringify(data); },`;
+            methods.stringify = `stringify(data: any) { return JSON.stringify(data); },`;
             return 'stringify';
         });
         return `{{ ${value} }}`;

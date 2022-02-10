@@ -62,7 +62,7 @@ export default class extends Component<Props> {
 data() {
     return {
         date: null,
-        Datepicker,
+        shortcuts,
     };
 },
 ```

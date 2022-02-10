@@ -9,6 +9,7 @@
  */
 export { _$, localize } from './i18n';
 export { bind } from './components/utils';
+export { setTheme } from './styles/theme';
 export * from './components/affix';
 export * from './components/badge';
 export * from './components/breadcrumb';

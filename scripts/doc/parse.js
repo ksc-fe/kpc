@@ -432,7 +432,7 @@ function generateOtherCodes(vdt, ts, hasMap, codeSnippetMap, codes) {
     if (!hasVue) {
         const code3 = {
             language: 'vue',
-            content: toVue3(vdt, ts, vueScript, vueNextTemplate, vueMethods, vueData, tsHead, hasStylus),
+            content: toVue3(vdt, ts, vueScript, vueTemplate, vueMethods, vueData, tsHead, hasStylus),
             filename: 'next.vue',
         };
         const code2 = {

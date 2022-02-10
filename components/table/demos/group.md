@@ -25,11 +25,7 @@ import {Table, TableColumn} from 'kpc';
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
-            group={[ 
-                {label: '全部', value: ''},
-                {label: '运行中', value: 'active'},
-                {label: '已关闭', value: 'stopped'}
-            ]}
+            group={this.get('statusGroup')}
         >
             <b:template args="[data]">
                 <span>{data.status === 'active' ? '运行中' : '已关闭'}</span>
@@ -45,10 +41,7 @@ import {Table, TableColumn} from 'kpc';
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
-            group={[ 
-                {label: '运行中', value: 'active'},
-                {label: '已关闭', value: 'stopped'}
-            ]}
+            group={this.get('multipleStatusGroup')}
             multiple
         >
             <b:template args="[data]">
@@ -66,13 +59,15 @@ import {Table, TableColumn} from 'kpc';
 ```
 
 ```ts
-import {bind, TableGroupValue} from 'kpc';
+import {bind, TableGroupValue, TableColumnGroupItem} from 'kpc';
 
 interface Props {
     data: DataItem[]
-    multipleData: DataItem[]
     group?: TableGroupValue
+    statusGroup: TableColumnGroupItem[] 
+    multipleData: DataItem[]
     multipleGroup?: TableGroupValue
+    multipleStatusGroup: TableColumnGroupItem[]
 }
 
 type DataItem = {
@@ -92,8 +87,17 @@ export default class extends Component<Props> {
         return {
             data: oData, 
             group: {status: ''},
+            statusGroup: [
+                {label: '全部', value: ''},
+                {label: '运行中', value: 'active'},
+                {label: '已关闭', value: 'stopped'}
+            ],
             multipleData: oData,
             multipleGroup: {status: []},
+            multipleStatusGroup: [
+                {label: '运行中', value: 'active'},
+                {label: '已关闭', value: 'stopped'}
+            ]
         } as Props;
     }
 

@@ -61,38 +61,56 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         mountedQueue: Function[]
     ) {
         const nextProps = nextVNode.props!;
-        this.initContainer(nextProps.container, parentDom, anchor);
+        const isVueNext = (Component as any).$cid === 'IntactVueNext';
 
         // add mount method to queue to let sub-component be appended after parent-component
-        let rootPortal: Portal;
-        let shouldTrigger = false;
-        if (!this.rootPortal) {
-            rootPortal = this;
-            rootPortal.mountedQueue = [];
-            shouldTrigger = true;
-        } else {
-            rootPortal = this.rootPortal!;
-            if (rootPortal.mountedDone) {
-                shouldTrigger = true;
+        if (!isVueNext) {
+            this.initContainer(nextProps.container, parentDom, anchor);
+
+            let rootPortal: Portal;
+            let shouldTrigger = false;
+            if (!this.rootPortal) {
+                rootPortal = this;
                 rootPortal.mountedQueue = [];
+                shouldTrigger = true;
+            } else {
+                rootPortal = this.rootPortal!;
+                if (rootPortal.mountedDone) {
+                    shouldTrigger = true;
+                    rootPortal.mountedQueue = [];
+                }
             }
-        }
 
-        const selfMountedQueue = rootPortal.mountedQueue!;
-        selfMountedQueue.push(() => {
-            mount(
-                nextProps.children as VNode,
-                this.container!,
-                this,
-                this.$SVG,
-                null,
-                mountedQueue,
-            );
-        });
+            const selfMountedQueue = rootPortal.mountedQueue!;
+            selfMountedQueue.push(() => {
+                mount(
+                    nextProps.children as VNode,
+                    this.container!,
+                    this,
+                    this.$SVG,
+                    null,
+                    mountedQueue,
+                );
+            });
 
-        if (shouldTrigger) {
-            callAll(selfMountedQueue);
-            rootPortal.mountedDone = true;
+            if (shouldTrigger) {
+                callAll(selfMountedQueue);
+                rootPortal.mountedDone = true;
+            }
+        } else {
+            mountedQueue.push(() => {
+                parentDom = this.$lastInput!.dom!.parentElement!;
+                this.initContainer(nextProps.container, parentDom, anchor);
+
+                mount(
+                    nextProps.children as VNode,
+                    this.container!,
+                    this,
+                    this.$SVG,
+                    null,
+                    mountedQueue,
+                );
+            });
         }
 
         super.$render(lastVNode, nextVNode, parentDom, anchor, mountedQueue);

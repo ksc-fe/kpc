@@ -16,8 +16,8 @@ import {Spinner} from 'kpc';
 <div>
     <Spinner vertical 
         v-model='money'
-        formatter={value => ('￥' + value).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-        parser={value => +value.replace(/￥|,/g, '')}
+        formatter={this.formater}
+        parser={this.parser}
     />
     <Spinner vertical 
         prefix="增长率 "
@@ -47,5 +47,13 @@ export default class extends Component<Props>  {
             percent: 78,
         };
     };
+
+    formater(value: number) {
+        return ('￥' + value).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    parser(value: string) {
+        return +value.replace(/￥|,/g, '')
+    }
 }
 ```

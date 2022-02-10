@@ -9,11 +9,18 @@ order: 1
 import {Timepicker} from 'kpc';
 
 <div>
-    <Timepicker v-model="time" range clearable />
+    <Timepicker v-model="time"
+        range
+        clearable
+    />
     You selected: {JSON.stringify(this.get('time'))}
     <br />
     <br />
-    <Timepicker v-model="timeArr" range clearable multiple />
+    <Timepicker v-model="timeArr"
+        range
+        clearable
+        multiple
+    />
     You selected: {JSON.stringify(this.get('timeArr'))}
 </div>
 ```

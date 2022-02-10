@@ -35,7 +35,7 @@ exports.webpackConfig = () => {
         .resolve
             .alias
                 .set('~', destData)
-                .set('intact$', 'intact/dist/index.esm.js')
+                // .set('intact$', 'intact/dist/index.esm.js')
                 .end()
             .end()
         .devtool('inline-source-map')

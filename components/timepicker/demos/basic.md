@@ -10,10 +10,16 @@ order: 0
 import {Timepicker} from 'kpc';
 
 <div>
-    <Timepicker v-model="time" min="01:34:56" max="15:02:59" />
+    <Timepicker v-model="time"
+        min="01:34:56"
+        max="15:02:59"
+    />
     You selected: {this.get('time')}
     <br /><br />
-    <Timepicker v-model="timeArray" multiple clearable />
+    <Timepicker v-model="timeArray"
+        multiple
+        clearable
+    />
     You selected: {JSON.stringify(this.get('timeArray'))}
 </div>
 ```
