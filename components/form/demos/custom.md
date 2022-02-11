@@ -27,17 +27,8 @@ import {Form, FormItem, Input, Button} from 'kpc';
                 required: true, 
                 // 自定义全局规则
                 letter: true,
-                // 自定义局部规则，所有描述必须不重复
-                unique: (value) => {
-                    let count = 0;
-                    this.get('descriptions').find(item => {
-                        if (item === value) count++;
-                        return count > 1;
-                    });
-
-                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
-                    return count === 1 || '不能相同';
-                }
+                // 自定义局部规则: 所有描述必须不重复
+                unique: this.unique 
             }}
         >
             <Input v-model={`descriptions[${$key}]`} />    
@@ -95,6 +86,18 @@ export default class extends Component<Props> {
         descriptions.splice(index, 1);
         this.set('descriptions', descriptions);
     }
+
+    @bind
+    unique(value: string) {
+        let count = 0;
+        this.get('descriptions').find(item => {
+            if (item === value) count++;
+            return count > 1;
+        });
+
+        // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
+        return count === 1 || '不能相同';
+    }
 }
 ```
 
@@ -109,16 +112,7 @@ export default class extends Component<Props> {
                 // 自定义全局规则
                 letter: true,
                 // 自定义局部规则，所有描述必须不重复
-                unique: (value: string) => {
-                    let count = 0;
-                    descriptions.find(item => {
-                        if (item === value) count++;
-                        return count > 1;
-                    });
-
-                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
-                    return count === 1 || '不能相同';
-                }
+                unique: unique 
             }"
         >
             <Input v-model="descriptions[$key]" />    
@@ -166,15 +160,7 @@ render() {
                                 // 自定义全局规则
                                 letter: true,
                                 // 自定义局部规则，所有描述必须不重复
-                                unique: (value: string) => {
-                                    let count = 0;
-                                    this.state.descriptions.find(item => {
-                                        if (item === value) count++;
-                                        return count > 1;
-                                    });
-                                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
-                                    return count === 1 || '不能相同';
-                                }
+                                unique: this.unique 
                             }}
                         >
                             <Input value={this.state.descriptions[$key]} 

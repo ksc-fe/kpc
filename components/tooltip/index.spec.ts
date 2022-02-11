@@ -5,7 +5,7 @@ import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
-import Vue from 'vue';
+// import Vue from 'vue';
 import {Tooltip} from './';
 import {Radio} from '../radio';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';

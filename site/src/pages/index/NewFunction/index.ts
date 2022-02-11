@@ -1,6 +1,6 @@
 import {Component, TypeDefs, createRef, nextTick} from 'intact';
 import template from './index.vdt';
-import {bind} from 'components/utils';
+import {bind} from 'kpc/components/utils';
 import {Coordinates} from '../../../components/BezierBox';
 import {Message} from 'kpc';
 

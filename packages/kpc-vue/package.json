@@ -53,5 +53,11 @@
   "sideEffects": [
     "**/*/styles/global.*",
     "**/*/styles/fonts/*"
-  ]
+  ],
+  "devDependencies": {
+    "vue": "^2.6.14",
+    "vue-loader": "^15.9.8",
+    "vue-router": "^4.0.12",
+    "vue-template-compiler": "^2.6.14"
+  }
 }

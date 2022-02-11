@@ -61,10 +61,11 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         mountedQueue: Function[]
     ) {
         const nextProps = nextVNode.props!;
-        const isVueNext = (Component as any).$cid === 'IntactVueNext';
+        const $cid = (Component as any).$cid;
+        const isVue = $cid === 'IntactVueNext' || $cid === 'IntactVue';
 
         // add mount method to queue to let sub-component be appended after parent-component
-        if (!isVueNext) {
+        if (!isVue) {
             this.initContainer(nextProps.container, parentDom, anchor);
 
             let rootPortal: Portal;

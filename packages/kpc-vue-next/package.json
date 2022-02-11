@@ -32,7 +32,8 @@
     "url": "git+https://github.com/ksc-fe/kpc.git"
   },
   "scripts": {
-    "prelease-patch": "npm version prepatch --preid beta && npm publish --tag=next"
+    "prelease-patch": "npm version prepatch --preid beta && npm publish --tag=next",
+    "test": "../../node_modules/.bin/karma start __tests__/karma.conf.js"
   },
   "bugs": {
     "url": "https://github.com/ksc-fe/kpc/issues"

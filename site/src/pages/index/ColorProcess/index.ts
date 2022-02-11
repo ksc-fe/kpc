@@ -1,6 +1,6 @@
 import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
-import {bind} from 'components/utils';
+import {bind} from 'kpc/components/utils';
 import {ThemeFrame} from '../../../components/ThemeFrame';
 
 interface ColorItem {

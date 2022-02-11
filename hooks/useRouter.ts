@@ -40,13 +40,13 @@ function findRouter(instance: any): any {
                 return value.history;
             }
         }
-    } else if (Component.cid === 'IntactVue') {
+    } else if (Component.$cid === 'IntactVue') {
         do {
             const parent = instance.$parent; 
             if (parent) {
                 return parent.$router;
             }
-        } while (parent = instance.$senior);
+        } while (instance = instance.$senior);
     } else if (Component.$cid === 'IntactVueNext') {
         // for vue-next
         do {

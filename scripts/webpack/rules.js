@@ -111,12 +111,12 @@ module.exports = (config) => {
                 // .end()
             // .end();
 
-    // config.plugin('ts-checker').use(ForkTsCheckerWebpackPlugin, [{
-        // typescript: {
-            // diagnosticOptions: {
-                // semantic: true,
-                // syntactic: true,
-            // },
-        // },
-    // }]);
+    config.plugin('ts-checker').use(ForkTsCheckerWebpackPlugin, [{
+        typescript: {
+            diagnosticOptions: {
+                semantic: true,
+                syntactic: true,
+            },
+        },
+    }]);
 };

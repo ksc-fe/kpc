@@ -6,7 +6,7 @@ import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 import TerminateDemo from '~/components/dialog/demos/terminate';
 import DestroyDemo from '~/components/dialog/demos/destroy';
-import Vue from 'vue';
+// import Vue from 'vue';
 
 describe('Dialog', () => {
     afterEach((done) => {

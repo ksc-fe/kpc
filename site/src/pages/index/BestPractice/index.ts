@@ -7,7 +7,7 @@ import react_logo_active from '../../../imgs/react_logo_active.png';
 import angular_logo from '../../../imgs/angular_logo.png';
 import angular_logo_active from '../../../imgs/angular_logo_active.png';
 import {ThemeFrame} from '../../../components/ThemeFrame';
-import {bind} from 'components/utils';
+import {bind} from 'kpc/components/utils';
 
 type SupportLang = {
     title: string 

@@ -106,7 +106,7 @@ const marks = this.marks();
             vertical
             value={value}
             suffix={unit}
-            forceStep={forceStep}
+            forceStep={step && forceStep}
             ev-$change:value={onSpinnerChange}
             {...spinnerProps}
         />

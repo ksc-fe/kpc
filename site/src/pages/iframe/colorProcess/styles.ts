@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {center} from 'site/src/styles/default';
+import {center} from '../../../styles/default';
 import {BgThemeValue, ThemeValue} from './index';
 
 export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {

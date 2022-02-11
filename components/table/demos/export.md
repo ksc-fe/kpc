@@ -18,7 +18,7 @@ import {Table, TableColumn} from 'kpc';
 import {Button} from 'kpc';
 
 <div>
-    <Button type="primary" ev-click={this.export}>导出表格</Button>
+    <Button type="primary" ev-click={this.exportTable}>导出表格</Button>
     <Button type="primary" ev-click={this.exportData}>导出自定义数据</Button>
     <Table data={this.get('data')} ref="table">
         <TableColumn title="定义该列单元格内容" key="a">
@@ -65,7 +65,7 @@ export default class extends Component {
     }
 
     @bind
-    export() {
+    exportTable() {
         this.refs.table.exportTable();
     }
 
