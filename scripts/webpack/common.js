@@ -1,6 +1,7 @@
 const {resolve, root} = require('../utils');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
+const {destData} = require('../doc/webpack');
 // const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (config) => {
@@ -22,6 +23,7 @@ module.exports = (config) => {
                 .set('kpc-react', resolve('packages/kpc-react'))
                 .set('@', root)
                 .set('dayjs', 'dayjs/esm')
+                .set('~', destData)
                 .end()
             .symlinks(false)
             .extensions

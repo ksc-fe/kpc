@@ -1,19 +1,13 @@
 const path = require('path');
-const os = require('os');
 const genConfig = require('../../../scripts/webpack');
-const {addStyle} = require('../../../scripts/webpack/style');
-const addThread = require('../../../scripts/webpack/thread');
-const {addMonaco} = require('../../../scripts/webpack/monaco');
-const {destData} = require('../../../scripts/doc/webpack');
 const {VueLoaderPlugin} = require('vue-loader');
-const {root} = require('../../../scripts/utils');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const {addConfig} = require('../../../test/webpack');
 
 const resolve = (p) => path.resolve(__dirname, p);
 
 module.exports = function() {
      const config = genConfig()
-        // .context(resolve(''))
         .module
             .rule('ts')
                 .test(/\.ts$/)
@@ -41,7 +35,6 @@ module.exports = function() {
         .resolve
             .alias
                 .set('vue$', resolve('../node_modules/vue/dist/vue.js'))
-                .set('~', destData)
                 .set('vue-router', resolve('../node_modules/vue-router/dist/vue-router.esm-bundler.js'))
             .end()
         .end()
@@ -50,13 +43,11 @@ module.exports = function() {
             .end()
         .devtool('inline-source-map');
 
-        config.stats({
-            errorDetails: true
-        });
+    config.stats({
+        errorDetails: true
+    });
 
-    addThread(config);
-    addStyle(config);
-    addMonaco(config);
+    addConfig(config);
 
     return config;
 }

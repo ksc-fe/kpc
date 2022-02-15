@@ -10,7 +10,7 @@ chai.use(matchSnapshot);
 
 mx.mxClient.IS_POINTER = false;
 
-const testsContext = require.context('../components/', true, /index\.react\.spec\.ts/);
+const testsContext = require.context('./components/', true, /.*\.spec\.tsx?/);
 testsContext.keys().forEach(testsContext);
 
 // const reactReq = require.context('~/components/', true, /^((?!(affix|code|layout)).)*\/demos\/.*react\.tsx$/);

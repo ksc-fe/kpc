@@ -9,15 +9,15 @@ chai.use(matchSnapshot);
 
 mx.mxClient.IS_POINTER = false;
 
-// const testsContext = require.context('../components/', true, /index\.react\.spec\.ts/);
-// testsContext.keys().forEach(testsContext);
+const testsContext = require.context('./components/', true, /.*\.spec\.ts/);
+testsContext.keys().forEach(testsContext);
 
 const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*index\.vue$/);
 // const reactReq = require.context('~/components/', true, /slider\/demos\/.*index\.vue$/);
 // const reactReq = require.context('~/components/', true, /slider\/demos\/step\/index\.vue$/);
 
 describe('Vue Legacy Demos', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     function wrap(Demo: any) {
         return class extends Component {

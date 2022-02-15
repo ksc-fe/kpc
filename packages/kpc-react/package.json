@@ -22,7 +22,7 @@
     "url": "git+https://github.com/ksc-fe/kpc.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "../../node_modules/.bin/karma start ./__tests__/karma.conf.js"
   },
   "bugs": {
     "url": "https://github.com/ksc-fe/kpc/issues"

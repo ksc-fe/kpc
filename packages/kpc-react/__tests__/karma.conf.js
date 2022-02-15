@@ -1,6 +1,6 @@
-const {webpackConfigReact} = require('../../../test/webpack');
 const path = require('path');
 const os = require('os');
+const webpackConfig = require('./webpack.config');
 
 // for get font files
 // https://github.com/ryanclark/karma-webpack/issues/498#issuecomment-790040818
@@ -27,7 +27,7 @@ module.exports = function (config) {
             './index.ts': ['webpack', 'sourcemap'],
             // '**/__snapshots__/**/*.md': ['snapshot'],
         },
-        webpack: {...webpackConfigReact().toConfig(), output},
+        webpack: {...webpackConfig().toConfig(), output},
         webpackMiddleware: {
             // noInfo: true
         },

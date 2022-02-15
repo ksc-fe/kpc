@@ -6,7 +6,8 @@
         "paths": {
             "vue": ["./node_modules/vue"],
             "kpc-vue-next": ["./"],
-            "kpc-vue-next/*": ["./*"]
+            "kpc-vue-next/*": ["./*"],
+            "@/*": ["../../*"]
         }
     },
     "include": [

@@ -9,14 +9,14 @@ chai.use(matchSnapshot);
 
 mx.mxClient.IS_POINTER = false;
 
-// const testsContext = require.context('../components/', true, /index\.react\.spec\.ts/);
-// testsContext.keys().forEach(testsContext);
+const testsContext = require.context('./components/', true, /.*\.spec\.ts/);
+testsContext.keys().forEach(testsContext);
 
 const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*next\.vue$/);
 // const reactReq = require.context('~/components/', true, /button\/demos\/.*next\.vue$/);
 
 describe('Vue Next Demos', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     function wrap(Demo: any) {
         return class extends Component {
