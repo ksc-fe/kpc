@@ -7,7 +7,7 @@ import {
     DHexagon, DCallout,
 } from './';
 import {Button} from '../button';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import LayoutDemo from '~/components/diagram/demos/layout';
 import mx from './mxgraph';
 

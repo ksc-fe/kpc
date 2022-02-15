@@ -1,6 +1,6 @@
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Component} from 'intact';
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
+import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import BasicDemo from '~/components/dropdown/demos/basic';
 import NestedDemo from '~/components/dropdown/demos/nested';
 import ContextMenuDemo from '~/components/dropdown/demos/contextmenu';

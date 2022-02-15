@@ -1,6 +1,6 @@
 import {createApp, render, h} from 'vue';
 import {Component, createRef} from 'intact';
-import {mount, unmount, testDemos, wait, nextFrame} from '../../../test/utils';
+import {mount, unmount, testDemos, wait, nextFrame} from '@/test/utils';
 import {matchSnapshot} from 'chai-karma-snapshot';
 import mx from '../components/diagram/mxgraph/mx';
 import '../../../test/test.styl';

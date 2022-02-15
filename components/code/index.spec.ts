@@ -1,5 +1,5 @@
 import BasicDemo from '~/components/code/demos/basic';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Code, CodeProps} from './';
 
 describe('Code', () => {

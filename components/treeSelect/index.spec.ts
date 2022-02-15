@@ -5,7 +5,7 @@ import FilterDemo from '~/components/treeSelect/demos/filter';
 import {TreeSelect} from './';
 import {Form, FormItem} from '../form';
 import {Component} from 'intact';
-import {mount, unmount, dispatchEvent, wait, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait, getElement} from '../../test/utils';
 
 describe('TreeSelect', () => {
     afterEach(() => unmount());

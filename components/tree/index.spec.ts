@@ -5,7 +5,7 @@ import CustomDemo from '~/components/tree/demos/custom';
 import FilterableDemo from '~/components/tree/demos/filterable';
 import SelectDemo from '~/components/tree/demos/select';
 import DraggableDemo from '~/components/tree/demos/draggable';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Tree} from './';
 import {RANGE} from './useDraggable';
 

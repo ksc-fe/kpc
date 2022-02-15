@@ -1,6 +1,6 @@
 import BasicDemo from '~/components/collapse/demos/basic';
 import AccordionDemo from '~/components/collapse/demos/accordion';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Component} from 'intact';
 import {Collapse, CollapseItem} from './';
 

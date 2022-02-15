@@ -1,7 +1,7 @@
 import BasicDemo from '~/components/switch/demos/basic';
 import ValueDemo from '~/components/switch/demos/value';
 import WidthHeightDemo from '~/components/switch/demos/widthHeight';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 
 describe('Switch', () => {
     afterEach(() => {unmount()});

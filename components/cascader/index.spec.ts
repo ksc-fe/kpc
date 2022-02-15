@@ -3,7 +3,7 @@ import CustomDemo from '~/components/cascader/demos/custom';
 import ChangeOnSelectDemo from '~/components/cascader/demos/changeOnSelect';
 import LoadDataDemo from '~/components/cascader/demos/loadData';
 import FilterDemo from '~/components/cascader/demos/filterable';
-import {mount, unmount, dispatchEvent, getElement, getElements, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, getElements, wait} from '../../test/utils';
 import {Cascader} from './';
 
 describe('Cascader', () => {

@@ -1,6 +1,6 @@
 import CollapseDemo from '~/components/menu/demos/collapse';
 import AccordionDemo from '~/components/menu/demos/accordion';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Menu} from './';
 
 describe('Menu', () => {

@@ -1,5 +1,5 @@
 import ClickableDemo from '~/components/steps/demos/clickable';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 
 describe('Steps', () => {
     afterEach(() => {unmount()});

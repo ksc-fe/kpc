@@ -3,7 +3,7 @@ import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
 import StepDemo from '~/components/slider/demos/step';
 import TooltipDemo from '~/components/slider/demos/tooltip';
-import {mount, unmount, dispatchEvent, getElement, wait, getElements, fakeError} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait, getElements, fakeError} from '../../test/utils';
 import {Slider} from './';
 import {Component} from 'intact';
 import DynamicStepDemo from '~/components/slider/demos/dynamicStep';

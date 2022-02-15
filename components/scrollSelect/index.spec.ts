@@ -1,6 +1,6 @@
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import BasicDemo from '~/components/scrollSelect/demos/basic';
-import {ScrollSelect} from 'kpc';
+import {ScrollSelect} from './';
 import {Component} from 'intact';
 
 describe('ScrollSelect', () => {

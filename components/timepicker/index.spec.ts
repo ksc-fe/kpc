@@ -3,7 +3,7 @@ import RangeDemo from '~/components/timepicker/demos/range';
 import StepDemo from '~/components/timepicker/demos/step';
 import StepRangeDemo from '~/components/timepicker/demos/stepRange';
 import FormatDemo from '~/components/timepicker/demos/format';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Timepicker} from 'kpc';
 import {Component} from 'intact';
 

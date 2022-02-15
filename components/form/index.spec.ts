@@ -2,7 +2,7 @@ import BasicDemo from '~/components/form/demos/basic';
 import CustomDemo from '~/components/form/demos/custom';
 import VariableDemo from '~/components/form/demos/variable';
 import RemoteDemo from '~/components/form/demos/remote';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Component, findDomFromVNode} from 'intact';
 import {Form, FormItem} from './';
 import {Input} from '../input';

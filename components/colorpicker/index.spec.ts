@@ -1,5 +1,5 @@
 import BasicDemo from '~/components/colorpicker/demos/basic';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Component} from 'intact';
 import tinycolor from 'tinycolor2';
 

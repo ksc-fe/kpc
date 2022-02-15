@@ -2,7 +2,7 @@ import {findDomFromVNode, Component} from 'intact';
 import GroupDemo from '~/components/checkbox/demos/group';
 import ValueDemo from '~/components/checkbox/demos/value';
 import BasicDemo from '~/components/checkbox/demos/basic';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Checkbox} from './';
 import {bind} from '../utils';
 

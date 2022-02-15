@@ -1,6 +1,6 @@
 import BasicDemo from '~/components/editable/demos/basic';
 import ValidateDemo from '~/components/editable/demos/validate';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Editable} from './';
 import {Component, findDomFromVNode} from 'intact';
 

@@ -1,7 +1,7 @@
 import GroupDemo from '~/components/radio/demos/group';
 import ValueDemo from '~/components/radio/demos/value';
 import BasicDemo from '~/components/radio/demos/basic';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Component} from 'intact';
 import {Radio} from './';
 

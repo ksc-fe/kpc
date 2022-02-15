@@ -1,12 +1,11 @@
 import {Component} from 'intact';
 import {Dialog, BaseDialog, DialogProps} from './';
-import {getElement, mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {getElement, mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import BasicDemo from '~/components/dialog/demos/basic';
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 import TerminateDemo from '~/components/dialog/demos/terminate';
 import DestroyDemo from '~/components/dialog/demos/destroy';
-// import Vue from 'vue';
 
 describe('Dialog', () => {
     afterEach((done) => {

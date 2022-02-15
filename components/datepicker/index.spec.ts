@@ -4,7 +4,7 @@ import ClearableDemo from '~/components/datepicker/demos/clearable';
 import DatetimeDemo from '~/components/datepicker/demos/datetime';
 import RangeDemo from '~/components/datepicker/demos/range';
 import MultipleDemo from '~/components/datepicker/demos/multiple';
-import {mount, unmount, dispatchEvent, wait, getElement} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait, getElement} from '../../test/utils';
 import {Component, findDomFromVNode} from 'intact';
 import {strPad} from '../utils';
 import {Datepicker} from './';

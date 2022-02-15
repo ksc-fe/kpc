@@ -4,10 +4,10 @@ import ClearableDemo from '~/components/select/demos/clearable';
 import FilterDemo from '~/components/select/demos/filterable';
 import GroupDemo from '~/components/select/demos/group';
 import CreatableDemo from '~/components/select/demos/creatable';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Tooltip} from '../tooltip';
 import {Component} from 'intact';
-import {Select, Option} from 'kpc';
+import {Select, Option} from '../select';
 import SearchableDemo from '~/components/select/demos/searchable';
 
 describe('Select', () => {

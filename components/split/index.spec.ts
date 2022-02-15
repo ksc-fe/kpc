@@ -1,7 +1,7 @@
 import BasicDemo from '~/components/split/demos/basic';
 import VerticalDemo from '~/components/split/demos/vertical';
 import RangeDemo from '~/components/split/demos/range';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {render, createVNode as h, Component, VNodeComponentClass} from 'intact';
 import {Split} from './';
 
