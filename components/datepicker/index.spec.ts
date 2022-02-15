@@ -18,10 +18,10 @@ const startYear = Math.floor(year / 10) * 10;
 const month = now.getMonth();
 
 describe('Datepicker', () => {
-    // afterEach(async () => {
-        // unmount();
-        // await wait(400);
-    // });
+    afterEach(async () => {
+        unmount();
+        await wait(400);
+    });
 
     describe('Pick', () => {
         it('date', async () => {
@@ -832,7 +832,11 @@ describe('Datepicker', () => {
             dispatchEvent(globalInput!, 'click'); // show calendar
             await wait();
             await myTest('2020-03-03~2020-03-04', ['2020-03-03', '2020-03-04']);
-            expect(getElement('.k-datepicker-content')!.innerHTML).to.matchSnapshot();
+            expect(
+                getElement('.k-datepicker-content')!
+                    .querySelector<HTMLElement>('.k-datepicker-calendar-wrapper:nth-child(1)')!
+                    .innerHTML
+            ).to.matchSnapshot();
             // clear value
             await myTest('', null)
             // input disabled range date
