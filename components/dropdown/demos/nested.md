@@ -16,22 +16,22 @@ import {Icon} from 'kpc';
         <Button type="primary">
             click <Icon class="ion-ios-arrow-down" />
         </Button>
-        <DropdownMenu>
+        <DropdownMenu class="dropdown-demo">
             <DropdownItem>item 1</DropdownItem>
             <DropdownItem>item 2</DropdownItem>
             <DropdownItem>item 3</DropdownItem>
-            <Dropdown position={{my: 'left top', at: 'right top'}}>
+            <Dropdown position={{my: 'left top', at: 'right top'}} class="dropdown-demo">
                 <DropdownItem>
                     <span>hover</span>
                     <i class="ion-ios-arrow-right"></i>
                 </DropdownItem>
-                <DropdownMenu>
+                <DropdownMenu class="dropdown-demo">
                     <Dropdown position={{my: 'left top', at: 'right top'}}>
                         <DropdownItem>
                             <span>hover</span>
                             <i class="ion-ios-arrow-right"></i>
                         </DropdownItem>
-                        <DropdownMenu>
+                        <DropdownMenu class="dropdown-demo">
                             <DropdownItem>item 1</DropdownItem>
                             <DropdownItem>item 2</DropdownItem>
                         </DropdownMenu>
@@ -44,13 +44,13 @@ import {Icon} from 'kpc';
                     <span>click</span>
                     <i class="ion-ios-arrow-right"></i>
                 </DropdownItem>
-                <DropdownMenu>
+                <DropdownMenu class="dropdown-demo">
                     <Dropdown trigger="click" position={{my: 'left top', at: 'right top'}}>
                         <DropdownItem>
                             <span>click</span>
                             <i class="ion-ios-arrow-right"></i>
                         </DropdownItem>
-                        <DropdownMenu>
+                        <DropdownMenu class="dropdown-demo">
                             <DropdownItem>item 1</DropdownItem>
                             <DropdownItem>item 2</DropdownItem>
                         </DropdownMenu>
@@ -65,7 +65,7 @@ import {Icon} from 'kpc';
 ```
 
 ```styl
-/.k-dropdown-menu
+/.dropdown-demo.k-dropdown-menu
     .ion-ios-arrow-right
         float right
         height 32px
