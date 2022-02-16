@@ -31,7 +31,7 @@ module.exports = (config) => {
                 .loader('babel-loader')
                 .options({
                     cacheDirectory: resolve('./.cache'),
-                    rootMode: 'upward',
+                    // rootMode: 'upward',
                 })
                 .end()
             .end()

@@ -28,5 +28,8 @@ describe('Dropdown', () => {
         expect(click.callCount).to.eql(1);
         await wait();
         expect(getElement('.k-dropdown-menu')).to.be.exist;
+
+        ReactDOM.unmountComponentAtNode(container);
+        document.body.removeChild(container);
     });
 });

@@ -2,6 +2,8 @@ const path = require('path');
 const os = require('os');
 const createWebpackConfig = require('./webpack.config');
 
+const isDebug = !process.env.UPDATE && !process.env.CI
+
 // for get font files
 // https://github.com/ryanclark/karma-webpack/issues/498#issuecomment-790040818
 const output = {
@@ -21,11 +23,11 @@ module.exports = function (config) {
         reporters: ['mocha'],
         files: [
             './index.ts',
-            // '**/__snapshots__/**/*.md',
+            './__snapshots__/**/*.md',
         ],
         preprocessors: {
             './index.ts': ['webpack', 'sourcemap'],
-            // '**/__snapshots__/**/*.md': ['snapshot'],
+            './__snapshots__/**/*.md': ['snapshot'],
         },
         webpack: {...createWebpackConfig().toConfig(), output},
         // webpack: createWebpackConfig().toConfig(),
@@ -46,7 +48,7 @@ module.exports = function (config) {
             update: process.env.UPDATE === '1',
             prune: process.env.UPDATE === '3',
         },
-        // logLevel: config.LOG_INFO,
-        // singleRun: true,
+        logLevel: config.LOG_INFO,
+        singleRun: !isDebug,
     });
 };

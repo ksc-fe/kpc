@@ -16,7 +16,7 @@ const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/
 // const reactReq = require.context('~/components/', true, /button\/demos\/.*next\.vue$/);
 
 describe('Vue Next Demos', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     function wrap(Demo: any) {
         return class extends Component {
