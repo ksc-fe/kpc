@@ -1,7 +1,8 @@
 import {Component, createRef} from 'intact';
 import Layout, {LayoutProps} from '../layout';
 import template from './index.vdt';
-import './index.styl';
+import '../../styles/highlight.styl';
+// import './index.styl';
 // import 'kpc/components/table/index.styl';
 
 // export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/, 'lazy');

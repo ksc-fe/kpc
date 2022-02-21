@@ -1,14 +1,15 @@
-import {Button} from 'kpc/components/button';
+import {Button, Badge, Aside} from 'kpc';
+import {makeStyles} from './styles';
 
 const Article = this.get('Article');
 
 let currentNav = {};
 /* let demos = this.get('demos') || []; */
 
-function Catalog(props) {
+const Catalog = (props) => {
     let isEmpty = true;
 
-    const lis = props.value.forEach((value) => {
+    const lis = props.value.map((value) => {
         if (!value.disabled) isEmpty = false;
         return <li
             class={{
@@ -72,7 +73,25 @@ if (sidebar) {
     }
 }
 
-<t:super navIndex="document" class="document-page fixed-aside" {...$props}>
+<t:super navIndex="document" class={{
+    "document-page fixed-aside": true,
+    [makeStyles()]: true,
+}} {...$props}>
+    <b:aside>
+        <Aside class={{expanded: this.get('expanded')}} fixed width="260px">
+            <div class="aside-wrapper">
+                <template v-for={_sidebar}>
+                    {Catalog($value)}
+                </template>
+                <div class="aside-border transition"></div>
+            </div>
+            <Button icon
+                ev-click={() => this.set('expanded', !this.get('expanded'))}
+            >
+                <i class="k-icon ion-android-menu"></i>
+            </Button>
+        </Aside>
+    </b:aside>
     <b:content>
         <article>
             <div class="article-head">

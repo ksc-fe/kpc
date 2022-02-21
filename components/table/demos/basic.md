@@ -15,11 +15,6 @@ import {Table, TableColumn} from 'kpc';
 </Table>
 ```
 
-```styl
-.k-table
-    margin-bottom 20px
-```
-
 ```ts
 export default class extends Component {
     static template = template;

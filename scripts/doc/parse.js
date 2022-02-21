@@ -7,6 +7,9 @@ const intact2react = require('./intact2react');
 const intact2angular = require('./intact2angular');
 const {root, writeFile} = require('../utils');
 const path = require('path');
+const {makeStyles} = require('../../components/table/styles');
+
+console.log(makeStyles());
 
 const renderer = new marked.Renderer();
 const codeRenderer = renderer.code;

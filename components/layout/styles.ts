@@ -66,7 +66,7 @@ export function makeHeaderStyles() {
             left: 0;
             right: 0;
             top: 0;
-            z-index: ${theme.midZIndex};
+            z-index: ${theme.midZIndex + 1};
         }
         ${themes.map(theme => {
             if (theme === 'dark') return;

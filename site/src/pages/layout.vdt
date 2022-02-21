@@ -81,7 +81,10 @@ const {themeColor, colorList, curLang} = this.get();
             </div>
         </div>
     </Header>
-    <Layout style="margin: 0;">
+    <Layout>
+        <template>
+            <b:aside />
+        </template>
         <Body>
             <template>
                 <b:content />
