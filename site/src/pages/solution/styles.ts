@@ -30,6 +30,7 @@ export function makeStyles() {
         }
         .solution-content {
             ${mainBlock(1030)};
+            height: auto;
             & > div {
                 padding-top: 32px;
             }
@@ -40,6 +41,10 @@ export function makeStyles() {
             }
             .solution-item {
                 width: 384px;
+                img {
+                    width: 384px;
+                    border-radius: 8px;
+                }
                 & > div:first-child {
                     width: 384px;
                     height: 240px;
@@ -48,16 +53,17 @@ export function makeStyles() {
                 }
                 & > div:last-child {
                     display: flex;
+                    padding: 15px 0;
                     align-items: center;
                     .title-box {
                         flex-grow: 1;
                         & > div:first-child {
-                            margin-top: 15px;
                             font-size: 18px;
                             color: #000000;
                         }
                     }
                     .download-icon {
+                        cursor: pointer;
                         .k-icon {
                             font-size: 25px;
                         }

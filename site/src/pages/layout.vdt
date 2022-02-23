@@ -39,7 +39,9 @@ const {themeColor, colorList, curLang} = this.get();
                     value={$value.index}
                     to={$value.href}
                 >{$value.title}</Tab>
-                <Tab>
+                {
+                // 语言切换功能
+                /* <Tab>
                     <div class="lang-wrapper">
                         <div class="lang-box">
                             <div 
@@ -52,7 +54,7 @@ const {themeColor, colorList, curLang} = this.get();
                             >en-US</div>
                         </div>    
                     </div>
-                </Tab>
+                </Tab> */}
             </Tabs>
             <div class="theme-color-box" 
                 ev-mouseenter={this.showColorList.bind(this)} 

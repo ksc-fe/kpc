@@ -1,7 +1,11 @@
 import {css} from '@emotion/css';
 import {mainBlock, center} from '../../../styles/default';
 
-export function makeStyles() {
+export function makeStyles(themeColor: string) {
+
+    console.clear()
+    console.log(themeColor)
+
     return css`
         background: #F0F4FA;
         ${mainBlock(657)};
@@ -49,7 +53,7 @@ export function makeStyles() {
                     }
                     & > div.active {
                         color: #ffffff;
-                        background: #0191EA;
+                        background: ${themeColor};
                     }
                 }
             }

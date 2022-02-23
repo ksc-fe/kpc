@@ -1,10 +1,9 @@
 import {makeStyles} from './styles';
 import {Card} from '../../../components/card';
 import {Button, Icon, Select, Option, 
-    Switch, Input, Tabs, Tab,
-    Editable, ScrollSelect, Slider,
+    Switch, Input, Tabs, Tab, Slider,
     Menu, MenuItem, Rate, ButtonGroup,
-    Datepicker, Spinner, Tree} from 'kpc';
+    Spinner, Tree} from 'kpc';
 import {BezierBox} from '../../../components/BezierBox'
 import king_version_logo from '../../../imgs/king_version_logo.png';
 import sketch_img from '../../../imgs/sketch_img.png';
@@ -15,7 +14,7 @@ import menu_header from '../../../imgs/menu_header.png';
 const {cardLeft, totalCards, curCardNum, cardsPerPage, 
     animationType, bezierValue, curTabIndex, textTop, 
     transition, curComponentsGroup, curTreeValue, 
-    selectedMenu} = this.get();
+    selectedMenu, themeColor} = this.get();
 
 const canNext = totalCards > curCardNum;
 const canPrev = curCardNum > cardsPerPage;
@@ -49,11 +48,11 @@ const treeData = [
     }
 ];
 
-<div class={makeStyles(bezierValue)}>
+<div class={makeStyles(themeColor)}>
     <div className='new-fn-box'>
         <div class="title-box">
             <div>全新的功能，为企业提效而生</div>
-            <div>让设计师/工程师快速上手</div>
+            <div>让设计师/工程师快速上手 {themeColor}</div>
         </div>
         <div class="card-wrapper">
             <div>
@@ -89,7 +88,7 @@ const treeData = [
                     >
                         <div class="component-box">
                             <Button class="refresh-btn" type="none" ev-click={this.changeComponentsGroup}>
-                                <Icon class="icon ion-refresh"></Icon>
+                                <Icon class="icon ion-refresh" style={{color: themeColor}}></Icon>
                                 <span>换一换</span>
                             </Button>
                             <div class="comp-content" v-if={curComponentsGroup == 0}>

@@ -18,6 +18,7 @@ export interface NewFunctionProps {
     editableText: string
     curTreeValue: string[]
     selectedMenu: string
+    themeColor: string
 }
 
 const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
@@ -33,7 +34,8 @@ const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
     curComponentsGroup: Number,
     editableText: String,
     curTreeValue: Array,
-    selectedMenu: String
+    selectedMenu: String,
+    themeColor: String
 };
 
 const defaults = (): Partial<NewFunctionProps> => ({
@@ -49,7 +51,8 @@ const defaults = (): Partial<NewFunctionProps> => ({
     curComponentsGroup: 0,
     editableText: 'Editable text',
     curTreeValue: ['设计师小蓝'],
-    selectedMenu: '1'
+    selectedMenu: '1',
+    themeColor: ''
 });
 
 const curveTypeMap: any = {

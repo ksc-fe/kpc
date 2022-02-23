@@ -78,6 +78,7 @@ export interface BestPracticeProps {
     buttonRadiusMax: number
     buttonRadiusMin: number
     supportList: SupportLang[]
+    themeColor: string
 }
 
 export interface BestPracticeEvents {
@@ -92,7 +93,8 @@ const typeDefs: Required<TypeDefs<BestPracticeProps>> = {
     buttonRadius: Number,
     buttonRadiusMax: Number,
     buttonRadiusMin: Number,
-    supportList: Array
+    supportList: Array,
+    themeColor: String
 };
 
 const defaults = (): Partial<BestPracticeProps> => ({
@@ -126,7 +128,8 @@ const defaults = (): Partial<BestPracticeProps> => ({
             isActive: false,
             codeTemplate: getTemplate('angular')
         }
-    ]
+    ],
+    themeColor: ''
 });
 
 export class BestPractice extends Component<BestPracticeProps, BestPracticeEvents> {

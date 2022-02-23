@@ -3,9 +3,10 @@ import {Input, Select, Option, Slider} from 'kpc';
 import {Code} from 'kpc/components/code';
 import {ThemeFrame} from '../../../components/ThemeFrame';
 
-const {codeContent, buttonRadiusMax, buttonRadiusMin, supportList} = this.get();
+const {codeContent, buttonRadiusMax, buttonRadiusMin,
+    supportList, themeColor} = this.get();
 
-<div class={makeStyles()}>
+<div class={makeStyles(themeColor)}>
     <div class="best-box">
         <div>
             <div class="title-box">
