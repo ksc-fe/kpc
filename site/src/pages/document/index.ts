@@ -1,4 +1,4 @@
-import {Component, createRef} from 'intact';
+import {Component, createRef, nextTick} from 'intact';
 import Layout, {LayoutProps} from '../layout';
 import template from './index.vdt';
 import '../../styles/highlight.styl';
@@ -46,19 +46,25 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
             this.path = path;
 
             const Article = (await req(`.${path}/index.ts`)).default as any;
-            this.set({Article: Article});
+            this.set({
+                Article: Article,
+                expanded: false,
+            });
+            nextTick(() => {
+                window.scrollTo(0, 0);
+            });
         };
 
         this.on('$receive:path', updateArticle);
     }
 
-    // beforeMount() {
-        // this.set('hasRead', localStorage.getItem(process.version));
-        // if (this.path === '/docs/changelog') {
-            // this.set('hasRead', true);
-            // localStorage.setItem(process.version, '1');
-        // }
-    // }
+    beforeMount() {
+        this.set('hasRead', localStorage.getItem(process.version));
+        if (this.path === '/docs/changelog') {
+            this.set('hasRead', true);
+            localStorage.setItem(process.version, '1');
+        }
+    }
 
     // mounted() {
         // super.mounted();

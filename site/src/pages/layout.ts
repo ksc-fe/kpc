@@ -1,6 +1,6 @@
 import template from './layout.vdt';
 import {Component} from 'intact';
-import {setTheme} from 'kpc';
+import {setTheme, bind} from 'kpc';
 
 export interface LayoutProps {
     version: string
@@ -24,7 +24,7 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
         themeColor: colorList[0],
         colorList: colorList,
         showThemeColor: false,
-        curLang: 'cn'
+        curLang: 'cn',
     });
 
     handleColorChange(color: string) {
@@ -38,10 +38,12 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
         }        
     }
 
+    @bind
     showColorList() {
         this.set('showThemeColor', true);
     }
     
+    @bind
     hideColorList() {
         this.set('showThemeColor', false);
     }

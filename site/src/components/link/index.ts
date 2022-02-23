@@ -10,6 +10,10 @@ interface LinkProps {
 export class Link extends Component<LinkProps> {
     static template = template;
 
+    static to = (href: string) => {
+        history.push(href);
+    };
+
     @bind
     goTo(e: MouseEvent) {
         e.preventDefault();

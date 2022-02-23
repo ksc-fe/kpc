@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import headerLogo from '../imgs/header_logo.png';
 import headerLogo2x from '../imgs/header_logo_x2.png';
 import {center, fullfill} from '../styles/default';
+import {theme} from 'kpc/styles/theme';
 
 export function makeHeaderStyles() {
     return css`
@@ -58,6 +59,7 @@ export function makeHeaderStyles() {
             .main {
                 height: 100%;
                 display: flex;
+                align-items: center;
                 .theme-color-box {
                     position: relative;
                     width: 100px;
@@ -75,6 +77,7 @@ export function makeHeaderStyles() {
                         left: 0;
                         top: 65px;
                         background: #ffffff;
+                        box-shadow: 0px 4px 20px rgba(108, 103, 103, 0.25);
                         & > div {
                             height: 62px;
                             ${center()};
@@ -93,6 +96,29 @@ export function makeHeaderStyles() {
                     }
                 }
             }
+
+            .menu-btn {
+                display: none;
+            }
+
+            @media (max-width: 768px) {
+                .logo {
+                    width: 30px;
+                }
+                .k-tabs {
+                    display: none;
+                }
+                .menu-btn {
+                    display: block;
+                }
+                .nav-menu-list {
+                    width: 200px;
+                    .active {
+                        color: ${theme.color.primary};
+                    }
+                }
+            }
         }
+
     `
 }
