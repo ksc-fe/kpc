@@ -81,7 +81,7 @@ if (sidebar) {
     [makeStyles()]: true,
 }} {...$props}>
     <b:aside>
-        <Aside class={{expanded: this.get('expanded')}} fixed width="260px">
+        <Aside class={{expanded: this.get('expanded')}} fixed width="260px" theme="white">
             <div class="aside-wrapper">
                 <template v-for={_sidebar}>
                     {Catalog($value)}

@@ -249,7 +249,7 @@ function writeIndex(file, metadata) {
         `    const file = keys[i];`,
         `    if (!file.startsWith('.')) continue;`,
         `    // if we found demo.js then ignore index.js`,
-        `    if (/demo\.js$/.test(file)) i++;`,
+        `    if (/demo\.ts$/.test(file)) i++;`,
         `    demos.push(r(file));`,
         `}`,
         ``,
@@ -267,14 +267,13 @@ function writeIndex(file, metadata) {
 
 function writeIframe(file, height) {
     return Promise.all([
-        writeFile(path.join(file.path, 'demo.js'), [
+        writeFile(path.join(file.path, 'demo.ts'), [
             `export {default as data} from './index.json';`,
-            `import Intact from 'intact';`,
+            `import {Component} from 'intact';`,
             ``,
-            `export default class extends Intact {`,
-            `    @Intact.template()`,
+            `export default class extends Component {`,
             `    static template = \`<div class="browser-mockup">`,
-            `        <iframe height="${height}" src="/iframe/${file.relative}/"></iframe>`,
+            `        <iframe height="${height}" src="/demo/${file.relative}/"></iframe>`,
             `    </div>\`;`,
             `}`,
         ].join('\n')),

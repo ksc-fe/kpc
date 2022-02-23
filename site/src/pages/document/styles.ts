@@ -38,7 +38,6 @@ export function makeStyles() {
             }
         }
         .k-layout-aside {
-            background: #fff;
             font-size: 14px;
             overflow: visible !important;
             .aside-wrapper {
@@ -108,6 +107,40 @@ export function makeStyles() {
                     font-style: italic;
                     font-size: 12px;
                 }
+            }
+            .browser-mockup {
+                border-top: 30px solid #eee;
+                position: relative;
+                border-radius: ${theme.borderRadius};
+                box-shadow: ${theme.boxShadow};
+                &:before {
+                    display: block;
+                    content: '';
+                    box-shadow: 0 0 0 2px ${theme.color.danger}, 21px 0 0 2px ${theme.color.success}, 42px 0 0 2px ${theme.color.warning};
+                    background: ${theme.color.danger};
+                    position: absolute;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 50%;
+                    top: -19px;
+                    left: 19px;
+                }
+                &:after {
+                    content: '';
+                    display: block;
+                    height: 20px;
+                    background: #fff;
+                    position: absolute;
+                    top: -26px;
+                    left: 85px;
+                    width: calc(100% - 90px);
+                    border-radius: ${theme.borderRadius};
+                }
+            }
+            iframe {
+                width: 100%;
+                border: none;
+                display: block;
             }
         }
         .example {
