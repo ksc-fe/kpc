@@ -111,6 +111,17 @@ export default new Router<RouteResult>([
         }
     },
     {
+        path: '/demo\/(.*)/',
+        action: async (context) => {
+            return {
+                Page: (await import('../pages/demo')).default,
+                data: {
+                    path: context.params[0] as string,
+                }
+            }
+        }
+    },
+    {
         path: /(.*)/,
         action: async (context) => {
             return {

@@ -56,3 +56,5 @@ export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
 export declare const version = "2.0.0-alpha.1";
+
+export {normalize} from 'intact-vue';

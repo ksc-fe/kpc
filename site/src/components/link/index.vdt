@@ -1,0 +1,5 @@
+const {children, href} = this.get();
+
+<a href={href} ev-click={this.goTo}>
+    {children}
+</a>

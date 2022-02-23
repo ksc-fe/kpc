@@ -7,26 +7,17 @@ const intact2react = require('./intact2react');
 const intact2angular = require('./intact2angular');
 const {root, writeFile} = require('../utils');
 const path = require('path');
-const {makeStyles} = require('../../components/table/styles');
-
-console.log(makeStyles());
 
 const renderer = new marked.Renderer();
 const codeRenderer = renderer.code;
 
 renderer.table = (header, body) => {
-    return `<div class="k-table k-border">
+    return `<div class="k-table k-grid">
         <div class="k-table-wrapper">
-            <div class="k-thead">
-                <table>
-                    <thead>${header}</thead>
-                </table>
-            </div>
-            <div class="k-tbody">
-                <table>
-                    <tbody>${body}</tbody>
-                </table>
-            </div>
+            <table>
+                <thead>${header}</thead>
+                <tbody>${body}</tbody>
+            </table>
         </div>
     </div>`
 };

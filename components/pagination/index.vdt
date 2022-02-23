@@ -121,7 +121,7 @@ let nextPage = value + 1;
 
     <template v-if={!simple}>
         <div class="k-pagination-limits" v-if={showLimits}>
-            <Select v-model="limit" allowUnmatch size={size}>
+            <Select v-model="limit" size={size}>
                 <Option v-for={limits} value={$value}>
                     {_$('{n} 条 / 页', {n: $value})}
                 </Option>

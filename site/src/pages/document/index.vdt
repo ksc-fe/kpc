@@ -1,7 +1,10 @@
 import {Button, Badge, Aside} from 'kpc';
 import {makeStyles} from './styles';
+import {Link} from '../../components/link';
 
 const Article = this.get('Article');
+
+if (!Article) return <div>Loading...</div>;
 
 let currentNav = {};
 /* let demos = this.get('demos') || []; */
@@ -23,7 +26,7 @@ const Catalog = (props) => {
             }}
             v-if={!value.disabled}
         >
-            <a href={`/${value.path}/`}>
+            <Link href={`/${value.path}/`}>
                 {(() => {
                     const matches = value.path.match(/components\/([^\/]+)/);
                     if (matches) {
@@ -40,7 +43,7 @@ const Catalog = (props) => {
                         }
                     }
                 })()}
-            </a>
+            </Link>
         </li>
     });
     if (isEmpty) return;

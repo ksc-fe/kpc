@@ -1,7 +1,7 @@
 {
-  "name": "kpc-vue-next",
+  "name": "@king-design/vue",
   "version": "2.0.0-alpha.1",
-  "description": "KPC components for Vue 3.0.",
+  "description": "King-Design UI components for Vue3.0.",
   "keywords": [
     "component",
     "intact",
@@ -25,8 +25,7 @@
   "author": "Javey <jiawei23716@sina.com>",
   "homepage": "https://design.ksyun.com",
   "license": "MIT",
-  "module": "index.js",
-  "main": "dist/kpc.vue.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ksc-fe/kpc.git"

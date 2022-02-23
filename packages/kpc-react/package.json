@@ -1,7 +1,7 @@
 {
-  "name": "kpc-react",
+  "name": "@king-design/react",
   "version": "2.0.0-alpha.1",
-  "description": "KPC components for React.",
+  "description": "King-Design UI components for React.",
   "keywords": [
     "component",
     "intact",
@@ -15,8 +15,7 @@
   "author": "Javey <jiawei23716@sina.com>",
   "homepage": "https://design.ksyun.com",
   "license": "MIT",
-  "module": "index.js",
-  "main": "dist/kpc.react.js",
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ksc-fe/kpc.git"

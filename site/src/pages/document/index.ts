@@ -2,11 +2,7 @@ import {Component, createRef} from 'intact';
 import Layout, {LayoutProps} from '../layout';
 import template from './index.vdt';
 import '../../styles/highlight.styl';
-// import './index.styl';
-// import 'kpc/components/table/index.styl';
 
-// export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index\.js$/, 'lazy');
-// export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
 export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
 
 export interface DocumentProps extends LayoutProps {
@@ -42,16 +38,18 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
     private path: string | null = null;
     private examples: NodeListOf<HTMLDivElement> | null = null;
 
-    async init() {
-        // super.init();
+    init() {
+        const updateArticle = async () => {
+            let path = this.get('path').replace('index.html', '').replace('\\', '/');
+            path = path.slice(0, -1);
 
-        let path = this.get('path').replace('index.html', '').replace('\\', '/');
-        path = path.slice(0, -1);// .replace(process.URL_PREFIX, '');
+            this.path = path;
 
-        this.path = path;
+            const Article = (await req(`.${path}/index.ts`)).default as any;
+            this.set({Article: Article});
+        };
 
-        const Article = (await req(`.${path}/index.ts`)).default as any;
-        this.set({Article: Article});
+        this.on('$receive:path', updateArticle);
     }
 
     // beforeMount() {

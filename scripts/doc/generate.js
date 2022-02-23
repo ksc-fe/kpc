@@ -32,7 +32,7 @@ function prepare() {
     });
 }
 
-function parseFiles(files) {
+async function parseFiles(files) {
     if (files.length < 8) {
         return Promise.all([parse(files, destData)]);
     }

@@ -33,9 +33,13 @@ function generateCopy(type) {
             .pipe(tap(file => {
                 const extname = path.extname(file.path);
                 if (extname === '.js' || extname === '.ts') {
-                    const contents = file.contents.toString('utf-8');
                     const intact = `intact-${type}`;
-                    file.contents = Buffer.from(contents.replace(/['"]intact["']/, `'${intact}'`));
+
+                    contents = file.contents.toString('utf-8');
+                    contents = contents.replace(/['"]intact["']/, `'${intact}'`);
+                    contents += `\n\nexport {normalize} from '${intact}';`;
+
+                    file.contents = Buffer.from(contents);
                 }
             }));
 

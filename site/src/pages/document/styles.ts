@@ -1,5 +1,6 @@
 import {css} from '@emotion/css';
 import {theme} from 'kpc/styles/theme';
+import {makeStyles as makeTableStyles} from 'kpc/components/table/styles';
 
 export function makeStyles() {
     return css`
@@ -65,6 +66,12 @@ export function makeStyles() {
                     margin-left: 5px;
                     color: #666;
                     font-size: 12px;
+                }
+            }
+            .active {
+                & > a, & span {
+                    color: #ffffff !important;
+                    background-color: ${theme.color.primary};
                 }
             }
         }
@@ -136,5 +143,14 @@ export function makeStyles() {
                 }
             }
         }
+        .api {
+            .k-table {
+                ${makeTableStyles()}
+            }
+            table {
+                table-layout: auto !important;
+            }
+        }
     `;
 }
+

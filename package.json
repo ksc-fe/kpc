@@ -1,10 +1,8 @@
 {
-  "name": "kpc",
+  "name": "@king-design/intact",
   "version": "2.0.0-alpha.1",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
-  "browser": "@css/index.js",
-  "main": "dist/kpc.js",
-  "module": "index.js",
+  "main": "es/index.js",
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "snapshots": "cross-env UPDATE=1 npm run test",

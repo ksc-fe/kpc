@@ -1,9 +1,8 @@
 import router, {RouteResult} from './router';
-import {createBrowserHistory} from 'history';
 import UniversalRouter from 'universal-router';
 import {render, createVNode as h} from 'intact';
+import {history} from './history';
 
-const history = createBrowserHistory();
 const container = document.getElementById('page');
 
 let unlisten: () => void;

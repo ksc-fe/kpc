@@ -2,6 +2,7 @@
 title: Angular中使用
 order: 1.21
 sidebar: doc
+disabled: true
 ---
 
 > 目前KPC并没有TypeScript类型声明，所以你需要将KPC组件转为`any`类型
