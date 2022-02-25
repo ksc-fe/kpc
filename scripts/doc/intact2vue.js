@@ -24,7 +24,7 @@ function parseToVue3(template) {
         .replace(/<b:([\w\-]+)(\s+args="(.+)")?/g, (match, name, nouse, params) => {
             return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
         })
-        .replace(/kpc-vue/g, 'kpc-vue-next');
+        .replace(/vue-legacy/g, 'vue');
 
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }
@@ -41,7 +41,7 @@ function start(vdt, js, vueScript, vueTemplate, vueMethods, vueData, jsHead, has
     if (isVue3) {
         result.push(
             `<script lang="ts">`,
-            `import {defineComponent} from 'kpc-vue/node_modules/vue';`,
+            `import {defineComponent} from '@king-design/vue/node_modules/vue';`,
             obj.head + (jsHead ? '\n' + jsHead + '\n' : ''),
             `export default defineComponent({`,
             obj.js,
@@ -78,7 +78,7 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
             return item === 'Switch' ? 'KSwitch' : item;
         }).filter(Boolean);
         components.push(...name);
-        head += match.replace('Switch', 'Switch as KSwitch').replace('kpc', 'kpc-vue') + '\n';
+        head += match.replace('Switch', 'Switch as KSwitch').replace('kpc', '@king-design/vue-legacy') + '\n';
         return '';
     }).replace(/<(\/)?Switch/g, '<$1KSwitch');
     if (vueTemplate) {
@@ -122,7 +122,7 @@ const parse = memoize(function(vdt, js, vueScript, vueTemplate, vueMethods, vueD
                     if (!names.length) continue;
 
                     line = `${matches[1]}${matches[2] ? '{' : ''}${names.join(', ')}${matches[2] ? '}' : ''} from ${matches[4]}`;
-                    line = line.replace('kpc', 'kpc-vue');
+                    line = line.replace('kpc', '@king-design/vue-legacy');
                 }
             }
             if (line.startsWith('export default')) {

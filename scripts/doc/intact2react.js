@@ -5,13 +5,12 @@ module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
     const obj = parse(vdt, js, reactMethods, hasStylus, properties);
     const result = [
         `import React from 'react';`,
-        obj.head.trim(),
-        '',
+        obj.head,
         jsHead,
         `export default class Demo extends React.Component${properties.interface ? '<{}, Props>' : ''} {`,
         obj.js,
         '}',
-    ].filter(item => item !== undefined);
+    ].filter(item => item != undefined);
 
     return result.join('\n');
 }
@@ -22,7 +21,7 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
     let head = '';
     let template = vdt.replace(importRegExp, (match, name) => {
         components.push(...(name.split(',').map(item => item.trim())).filter(Boolean));
-        head += match.replace('kpc', 'kpc-react') + '\n';
+        head += match.replace('kpc', '@king-design/react') + '\n';
         return '';
     });
 
@@ -50,9 +49,10 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
     template = parseTemplate(template);
 
     let scripts = [];
+    let hasImportInJs = false;
 
     if (js) {
-        const lines = js.split('\n');
+        const lines = js.trim().split('\n');
         const _head = [];
         let hasAdded = false;
         for (let i = 0; i < lines.length; i++) {
@@ -69,10 +69,11 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
                     if (!names.length) continue;
 
                     line = `${matches[1]}${matches[2] ? '{' : ''}${names.join(', ')}${matches[2] ? '}' : ''} from ${matches[4]}`;
-                    line = line.replace('kpc', 'kpc-react');
+                    line = line.replace('kpc', '@king-design/react');
+                    hasImportInJs = true;
                 }
             } else if (!hasAdded && hasStylus) {
-                head += `import './index.styl';`;
+                head += `import './index.styl';\n`;
                 hasAdded = true;
             }
             if (line.startsWith('export default')) {
@@ -85,7 +86,7 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
             _head.push(line);
         }
 
-        head += _head.join('\n');
+        head += (hasImportInJs || !_head.length ? '' : '\n') + _head.join('\n');
 
         const defaults = getDefaults(js);
         if (defaults) {
@@ -93,7 +94,9 @@ function parse(vdt, js, reactMethods, hasStylus, properties) {
         }
         Object.assign(methodsObj, getMethods(js));
     } else if (hasStylus) {
-        head += `import './index.styl';`;
+        head += `import './index.styl';\n`;
+    } else {
+        head += '\n'
     }
 
     if (reactMethods) {

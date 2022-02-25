@@ -27,17 +27,30 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                             <span class="filetype">{(() => { 
                                 switch (file) {
                                     case 'index.styl': return 'index.styl (Stylus)';
-                                    case 'index.vue': return 'Vue';
-                                    case 'next.vue': return 'Vue Next';
+                                    case 'index.vue': return 'Vue (Legacy)';
+                                    case 'next.vue': return 'Vue';
                                     case 'react.tsx': return 'React';
                                 }
                             })()}</span>
                         </Tab>
                     </Tabs>
-                    <div class="code" innerHTML={(Demo.data.highlighted.find(item => {
-                        const file = item.file ? item.file : `index.${item.language}`;
-                        return file === this.get('file' + Demo.data.index);
-                    }) || {}).content}></div>
+                    <div class="code" innerHTML={(() => {
+                        let content = (Demo.data.highlighted.find(item => {
+                            const file = item.file ? item.file : `index.${item.language}`;
+                            return file === this.get('file' + Demo.data.index);
+                        }) || {}).content;
+                        if (content) {
+                            const file = this.get('file' + Demo.data.index);
+                            if (file === 'next.vue') {
+                                content = content.replace('@king-design/vue/node_modules/vue', 'vue');
+                            } else if (file === 'react.tsx' ){
+                                // use `States` to replace `Props`, it's the convention of React
+                                content = content.replace(/\bProps\b/g, 'States');
+                            }
+                        }
+
+                        return content;
+                    })()}></div>
                 </div>
             </div>
         })}

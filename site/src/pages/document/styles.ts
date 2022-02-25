@@ -217,6 +217,12 @@ export function makeStyles() {
             }
             .k-layout-body {
                 padding: 0 !important;
+                article {
+                    margin-right: 0;
+                }
+                .catalogue {
+                    display: none;
+                }
             }
         }
     `;
