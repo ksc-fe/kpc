@@ -7,15 +7,17 @@ export function makeStyles() {
         top: 0;
         right: -200px;
         width: 200px;
-        .k-tabs {
-            width: 100%;
-            border-right: none;
-            border-left: 1px solid ${theme.color.border};
-            .k-tab {
-                text-align: left;
-            }
-            .k-tabs-active-bar {
-                left: 0;
+        .k-affix {
+            .k-tabs {
+                width: 100%;
+                border-right: none;
+                border-left: 1px solid ${theme.color.border};
+                .k-tab {
+                    text-align: left;
+                }
+                .k-tabs-active-bar {
+                    left: 0;
+                }
             }
         }
         .senior {
