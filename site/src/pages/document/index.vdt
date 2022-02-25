@@ -1,13 +1,13 @@
 import {Button, Badge, Aside} from 'kpc';
 import {makeStyles} from './styles';
 import {Link} from '../../components/link';
+import {Catalogue} from '../../components/catalogue';
 
 const Article = this.get('Article');
 
 if (!Article) return <div>Loading...</div>;
 
 let currentNav = {};
-/* let demos = this.get('demos') || []; */
 
 const Catalog = (props) => {
     let isEmpty = true;
@@ -107,7 +107,10 @@ if (sidebar) {
                     上修正该文档
                 </div>
             </div>
-            <Article ref="article" />
+            <Article ref={this.articleRef} />
+            <Catalogue data={this.get('catalogue')}
+                v-model="catalogueId"
+            />
         </article>
     </b:content>
 </t:super>

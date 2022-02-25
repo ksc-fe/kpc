@@ -3,7 +3,7 @@ import {Tabs, Tab} from 'kpc/components/tabs';
 
 <div class="contents">
     <div key="demos" v-if={this.get('demos').length}>
-        <h1>示例</h1>
+        <h1 id="demos">示例</h1>
         {this.get('demos').map(Demo => {
             const highlighted = Demo.data.highlighted;
             /* highlighted.sort() */

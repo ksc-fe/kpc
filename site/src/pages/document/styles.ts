@@ -85,9 +85,9 @@ export function makeStyles() {
             font-size: 14px;
             max-width: 100%;
             article {
-                max-width: 990px;
-                margin: 0 auto;
+                position: relative;
                 padding: 15px 20px;
+                margin-right: 200px;
             }
             .article-head {
                 display: flex;

@@ -2,6 +2,8 @@ import {Component, createRef, nextTick} from 'intact';
 import Layout, {LayoutProps} from '../layout';
 import template from './index.vdt';
 import '../../styles/highlight.styl';
+import type {CatalogueProps} from '../../components/catalogue';
+import type Article from '../../components/article';
 
 export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
 
@@ -9,10 +11,15 @@ export interface DocumentProps extends LayoutProps {
     hasRead: string | boolean | null 
     expanded: boolean
     path: string
-    Article: Component,
-    demos: Component,
+    Article: Component & {data: ArticleData},
     activeExample: string,
-    borderStyle?: BorderStyle
+    borderStyle?: BorderStyle,
+    catalogue: CatalogueProps['data']
+    catalogueId: string
+}
+
+type ArticleData = {
+    catalogs: CatalogueProps['data']
 }
 
 type BorderStyle = {
@@ -37,6 +44,7 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
    
     private path: string | null = null;
     private examples: NodeListOf<HTMLDivElement> | null = null;
+    private articleRef = createRef<Article>();
 
     init() {
         const updateArticle = async () => {
@@ -52,6 +60,7 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
             });
             nextTick(() => {
                 window.scrollTo(0, 0);
+                this.updateCatalogue();
             });
         };
 
@@ -66,56 +75,24 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
         }
     }
 
-    // mounted() {
-        // super.mounted();
-        // this.examples = this.element.value!.querySelectorAll('.example');
-        // document.title = this.get('Article.data.setting.title');
-        // // if (this.refs.article) {
-            // // this.set('demos', this.refs.article.get('demos'));
-        // // }
+    updateCatalogue() {
+        const Article = this.get('Article');
+        const demos = this.articleRef.value!.get('demos') as any[];
+        const catalogs = Article.data.catalogs;
 
-        // // window.addEventListener('scroll', this.onScroll);
-    // }
-
-    // beforeUnmount() {
-        // // window.removeEventListener('scroll', this.onScroll);
-    // }
-
-    // private onScroll = () => {
-        // const example = this.findActive(this.examples!, 0);
-        // this.set('activeExample', example.header);
-
-        // let active = this.refs.tableContents.querySelectorAll('.active');
-        // active = active[active.length - 1];
-        // if (active) {
-            // this.set('borderStyle', {
-                // height: active.offsetHeight + 'px',
-                // top: active.offsetTop + 8 + 'px', // fix top +8px
-            // });
-        // } else {
-            // this.set('borderStyle', undefined);
-        // }
-    // }
-
-    // private findActive(hs: NodeListOf<HTMLDivElement>, minTop = 0): ActiveHeader {
-        // const scrollTop = window.pageYOffset;
-
-        // for (let i = hs.length - 1; i >= 0; i--) {
-            // const h = hs[i];
-            // const top = h.getBoundingClientRect().top + scrollTop;
-
-            // if (top > minTop && top - 88 <= scrollTop) {
-                // return {header: h.id, top: top, elem: h};
-            // }
-        // }
-
-        // return {header: '', top: 0, elem: null};
-    // }
-
-    // private scrollToView(demo) {
-        // const index = demo.data.index;
-        // const dom = this.element.value!.querySelector(`#${index}`);
-        // const top = dom!.getBoundingClientRect().top + window.pageYOffset;
-        // window.scrollTo(0, top - 87);
-    // }
+        this.set({
+            catalogue: [
+                {text: '示例', level: 1, id: 'demos'},
+                ...demos.map(({data}) => {
+                    return {
+                        text: data.setting.title,
+                        level: 2,
+                        id: data.index,
+                    };
+                }),
+                ...catalogs,
+            ],
+            catalogueId: 'demos',
+        });
+    }
 }

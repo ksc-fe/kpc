@@ -134,14 +134,30 @@ function getAllCodes(file) {
 
 function getAllCatalogs(file) {
     let catalogs = [];
+    let stack = [''];
+    let prevLevel = 0;
     renderer.heading = function(text, level, raw) {
         const id = encodeURIComponent(raw);
-        let result = `<h${level} id='${id}'>${text}</h${level}>`;
+        let parentId;
+        if (level === prevLevel + 1) {
+            parentId = stack[prevLevel];
+            stack.push(`${parentId}${id}`);
+            prevLevel++;
+        } else {
+            if (level < prevLevel) {
+                stack.pop();
+                prevLevel--;
+            }
+            parentId = stack[prevLevel - 1];
+            stack[prevLevel] = `${parentId}${id}`;
+        }
+        const actualId = `${parentId}${id}`;
+        let result = `<h${level} id='${actualId}'>${text}</h${level}>`;
         if (!file.isDemo && level < 4) {
             catalogs.push({
                 text: text,
                 level: level,
-                id: id,
+                id: actualId,
             });
         }
         return result;
