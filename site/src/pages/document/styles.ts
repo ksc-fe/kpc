@@ -42,6 +42,7 @@ export function makeStyles() {
             overflow: visible !important;
             .aside-wrapper {
                 overflow: auto;
+                padding-bottom: 10px;
             }
             .catalog-section {
                 margin-top: 10px
