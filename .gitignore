@@ -2,6 +2,7 @@ bower_components/
 node_modules/
 .idea/
 npm-debug*.log
+lerna-debug.log
 *.swp
 log/
 .log
