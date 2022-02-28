@@ -283,29 +283,29 @@ import-fresh@^3.1.0:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-intact-react@^3.0.0-beta.18:
-  version "3.0.0-beta.18"
-  resolved "https://registry.npmmirror.com/intact-react/-/intact-react-3.0.0-beta.18.tgz#d6e8c47c0dacfe2ad2bc97d704b5dc8f4fdf0717"
-  integrity sha512-f+XUh1L16NnCNlMY64/GvrIqcC/bQs+4oY7IJLpwdHERjBGsdKDM89cU13MHV/MpfcelRxCFB76YQ7gdYCp1vQ==
+intact-react@^3.0.0-beta.20:
+  version "3.0.0-beta.20"
+  resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.0-beta.20.tgz#69ccf97349028e8e09b806626c004d7569de8cf5"
+  integrity sha512-1bHwGKFa97VMB7/dJJ/47WEon+WHAvd9lvhJOM1l49OaqP5mleFZb9uKvN75l0EXKGxM3ntC76EH2bCmC5UE6A==
   dependencies:
-    intact "^3.0.0-beta.18"
+    intact "^3.0.0-beta.20"
     tslib "^2.3.1"
 
-intact-shared@^3.0.0-beta.18:
-  version "3.0.0-beta.18"
-  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.0-beta.18.tgz#141cfda2f89b0667c2216f5fca7bec81a04fe339"
-  integrity sha512-+XJ/SjP3qWdI+gfFmLbaKIj3Y2qRSyGgu0kFPOauMBO4V674mHx/VAESHyvxPokq0RvPAZY6ia6PjK9TsP6zVQ==
+intact-shared@^3.0.0-beta.20:
+  version "3.0.0-beta.20"
+  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.0-beta.20.tgz#fb0300ee67a2eda886fab93a235a79ae7146a41d"
+  integrity sha512-EcxmuYmEtAGBgdrvZx1JFHh+eggECH0Q/i0/Rw7U8eqWqobeHjq1mvZeN48gzdVofhLzsNhXqhmRFl3NwW5Unw==
 
-intact@^3.0.0-beta.18:
-  version "3.0.0-beta.18"
-  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.0-beta.18.tgz#1c7ed548088befe5f62b4391eef142e24fbc91a6"
-  integrity sha512-sH4/jHZn0hY/s6oHdGfxXWEQEsocqKvGFud8CEn3obMKhg6GAFAchKzqXHghebMJGi4FZKoz8piOEf/dBjhKNA==
+intact@^3.0.0-beta.20:
+  version "3.0.0-beta.20"
+  resolved "https://registry.npmjs.org/intact/-/intact-3.0.0-beta.20.tgz#e03050d9c56ef0081763d4fdde3e564fe3e93745"
+  integrity sha512-CtaRtT76CB4f1midUJ3No1gnaHgmdoI6JtXEi5r6p38w4thONLc8sHRJes3Aj2o0AW10Nb5xk6lJPCSM1t6b3g==
   dependencies:
-    intact-shared "^3.0.0-beta.18"
-    misstime "^3.0.0-beta.18"
+    intact-shared "^3.0.0-beta.20"
+    misstime "^3.0.0-beta.20"
     tslib "^2.2.0"
-    vdt "^3.0.0-beta.18"
-    vdt-compiler "^3.0.0-beta.18"
+    vdt "^3.0.0-beta.20"
+    vdt-compiler "^3.0.0-beta.20"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -334,12 +334,12 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmmirror.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-misstime@^3.0.0-beta.18:
-  version "3.0.0-beta.18"
-  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.0-beta.18.tgz#9d273c14b6fa838b7a970211b04eba24b80d3c27"
-  integrity sha512-nepnNOEtqo6FiqphgRrVVTvE3+opj4De6MakVUNXx5PlhQ+4SOgHHChQ3ue/xxSJFEBlftgDU7i4enL/op4a6A==
+misstime@^3.0.0-beta.20:
+  version "3.0.0-beta.20"
+  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.0-beta.20.tgz#a7efad9e09062c954d2d72bf20b0c239bc0dc5cc"
+  integrity sha512-JW1vOq6O9hp2+tQjYRN3/u6xoXxPz4ay9MHwMsw/dseoUdUDLdViuDX5mCSazypPya1+c21DcQm6d/iAzhuLiA==
   dependencies:
-    intact-shared "^3.0.0-beta.18"
+    intact-shared "^3.0.0-beta.20"
 
 monaco-editor@^0.26.1:
   version "0.26.1"
@@ -444,22 +444,22 @@ tslib@^2.2.0, tslib@^2.3.1:
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-vdt-compiler@^3.0.0-beta.18:
-  version "3.0.0-beta.18"
-  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.0-beta.18.tgz#9042425c6e0bbf3d9050e2c1eac603ddb6d2f618"
-  integrity sha512-sMKoNsOV5Bmyp9Ov1SLoAqtq/hMVfcmh6y4G7k/5UaZ/HAprojZBa9ysHWyvSYlTgA5aJPcapFK7Iu8YQ//Hkw==
+vdt-compiler@^3.0.0-beta.20:
+  version "3.0.0-beta.20"
+  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.0-beta.20.tgz#784e6e18c070e45864325bee4efb51ac8705f0bb"
+  integrity sha512-vfPWmwsGMbyzk9mXYw5qvzESgRyajrtfLE1TjipaY7BtBvCWq8Bq7iRmnuVpGPQlfbMy3YISNm8eRG0sDaLEiQ==
   dependencies:
-    intact-shared "^3.0.0-beta.18"
-    misstime "^3.0.0-beta.18"
+    intact-shared "^3.0.0-beta.20"
+    misstime "^3.0.0-beta.20"
     tslib "^2.2.0"
 
-vdt@^3.0.0-beta.18:
-  version "3.0.0-beta.18"
-  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.0-beta.18.tgz#669f13129e9ddcef2ead6c6c02ff17f25722350e"
-  integrity sha512-8DG66HHJGpZ0eCnxhyHdBXBFtzFObrYqzxNCiuqCzBnubLdIZiQdymYOORy+oyZN4rvrl/krzlof/eyz/705VQ==
+vdt@^3.0.0-beta.20:
+  version "3.0.0-beta.20"
+  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.0-beta.20.tgz#4e0660a65857abdbaaffe7ba3aa65e73b18e2455"
+  integrity sha512-h48gSLd3mOKtwDU/N7iMh3qEqGKOlG+KACsU5x8J2B23eSRW7Ik4Y2zWoIGuy/7jBY/AAFeTX/r+raSjjZmwvA==
   dependencies:
-    intact-shared "^3.0.0-beta.18"
-    misstime "^3.0.0-beta.18"
+    intact-shared "^3.0.0-beta.20"
+    misstime "^3.0.0-beta.20"
     tslib "^2.2.0"
 
 yaml@^1.7.2:

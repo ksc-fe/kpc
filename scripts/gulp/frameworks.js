@@ -37,7 +37,11 @@ function generateCopy(type) {
 
                     contents = file.contents.toString('utf-8');
                     contents = contents.replace(/['"]intact["']/, `'${intact}'`);
-                    contents += `\n\nexport {normalize} from '${intact}';`;
+
+                    const filePath = path.relative(path.resolve(root, './es'), file.path);
+                    if (filePath === 'index.js' || filePath === 'index.d.ts') {
+                        contents += `\n\nexport {normalize} from '${intact}';`;
+                    }
 
                     file.contents = Buffer.from(contents);
                 }
