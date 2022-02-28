@@ -20,6 +20,10 @@
     "type": "git",
     "url": "git+https://github.com/ksc-fe/kpc.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "test": "../../node_modules/.bin/karma start ./__tests__/karma.conf.js",
     "snapshots": "../../node_modules/.bin/cross-env UPDATE=1 npm run test"
