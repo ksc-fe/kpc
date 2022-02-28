@@ -52,7 +52,7 @@ const treeData = [
     <div className='new-fn-box'>
         <div class="title-box">
             <div>全新的功能，为企业提效而生</div>
-            <div>让设计师/工程师快速上手 {themeColor}</div>
+            <div>让设计师/工程师快速上手</div>
         </div>
         <div class="card-wrapper">
             <div>
@@ -94,7 +94,7 @@ const treeData = [
                             <div class="comp-content" v-if={curComponentsGroup == 0}>
                                 <div class="input-select">
                                     <div class="comp-item">
-                                        <Button type="primary comp-list-btn">Button</Button>
+                                        <Button type="primary" class="comp-list-btn">Button</Button>
                                     </div>
                                     <div class="comp-item switch-box">
                                         <Switch width="48" height="22"></Switch>

@@ -16,7 +16,12 @@ KingDesign设计系统是⾦⼭云基于多年的企业级产品设计开发经�
 
 KingDesign设计系统是⾯向企业级产品的设计解决⽅案，为企业提效⽽⽣，提供设计思路、设计指南、设计资源帮助企业快速构建产品。
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX IMG PLACEHOLDER XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+![1](/imgs/design_new/about/1.png)
+![2](/imgs/design_new/about/2.png)
+![3](/imgs/design_new/about/3.png)
+![4](/imgs/design_new/about/4.png)
+![5](/imgs/design_new/about/5.png)
+![6](/imgs/design_new/about/6.png)
 
 ## 设计系统的维护
 

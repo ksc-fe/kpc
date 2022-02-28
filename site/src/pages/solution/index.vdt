@@ -14,55 +14,86 @@ import tpl_9 from '../../imgs/tpl_9.png';
 import tpl_10 from '../../imgs/tpl_10.png';
 import form_1 from '../../imgs/common/form_1.png';
 import form_2 from '../../imgs/common/form_2.png';
+import login_1 from '../../imgs/common/login_1.png';
+import login_2 from '../../imgs/common/login_2.png';
+import personal_1 from '../../imgs/common/personal_1.png';
+import list_1 from '../../imgs/common/list_1.png';
+import detail_1 from '../../imgs/common/detail_1.png';
+import overview_1 from '../../imgs/common/overview_1.png';
+import overview_2 from '../../imgs/common/overview_2.png';
+import edu_1 from '../../imgs/industry/edu_1.png';
+import edu_2 from '../../imgs/industry/edu_2.png';
+import edu_3 from '../../imgs/industry/edu_3.png';
+import iot_1 from '../../imgs/industry/iot_1.png';
+import iot_2 from '../../imgs/industry/iot_2.png';
+import iot_3 from '../../imgs/industry/iot_3.png';
+import iot_4 from '../../imgs/industry/iot_4.png';
+import ai_1 from '../../imgs/industry/ai_1.png';
+import ai_2 from '../../imgs/industry/ai_2.png';
+import ai_3 from '../../imgs/industry/ai_3.png';
+import ai_4 from '../../imgs/industry/ai_4.png';
+import ob_1 from '../../imgs/industry/ob_1.png';
+import ob_2 from '../../imgs/industry/ob_2.png';
+import ob_3 from '../../imgs/industry/ob_3.png';
+import ob_4 from '../../imgs/industry/ob_4.png';
 
 const templateList = [
     [
         {
             name: '通用-表单',
             img: tpl_1,
-            templateList: [form_1, form_2, form_1, form_2]
+            templateList: [form_1, form_2]
         },
         {
             name: '通用-登录',
-            img: tpl_2
+            img: tpl_2,
+            templateList: [login_1, login_2]
         },
         {
             name: '通用-个人中心',
-            img: tpl_3
+            img: tpl_3,
+            templateList: [personal_1]
         },
     ],
     [
         {
             name: '通用-列表',
-            img: tpl_4
+            img: tpl_4,
+            templateList: [list_1]
         },
         {
             name: '通用-详情',
-            img: tpl_5
+            img: tpl_5,
+            templateList: [detail_1]
         },
         {
             name: '通用-总览',
-            img: tpl_6
+            img: tpl_6,
+            templateList: [overview_1, overview_2]
         },
     ],
     [
         {
             name: '行业-监控',
-            img: tpl_7
+            img: tpl_7,
+            templateList: [ob_1, ob_2, ob_3, ob_4]
         },
         {
             name: '行业-教育',
-            img: tpl_8
+            img: tpl_8,
+            templateList: [edu_1, edu_2, edu_3]
         },
         {
             name: '行业-人工智能',
-            img: tpl_9
+            img: tpl_9,
+            templateList: [ai_1, ai_2, ai_3, ai_4]
         },
     ],
     [
         {
             name: '行业-IOT',
-            img: tpl_10
+            img: tpl_10,
+            templateList: [iot_1, iot_2, iot_3, iot_4]
         }
     ],
 ];
