@@ -1,5 +1,5 @@
 /*!
- * kpc v2.0.0-alpha.1
+ * kpc v2.0.0-beta.0
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -60,6 +60,6 @@ export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
 
-export const version = '2.0.0-alpha.1';
+export const version = '2.0.0-beta.0';
 
 /* generate end */
