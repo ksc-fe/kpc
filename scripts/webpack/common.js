@@ -1,7 +1,6 @@
-const {resolve, root} = require('../utils');
+const {resolve, root, destData} = require('../utils');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
-const {destData} = require('../doc/webpack');
 // const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (config) => {

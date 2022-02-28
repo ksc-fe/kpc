@@ -1,5 +1,5 @@
 const genConfig = require('../webpack');
-const {resolve: resolvePath} = require('../utils');
+const {resolve: resolvePath, destData, dest, destServer} = require('../utils');
 const {version} = require('../../package.json');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -11,10 +11,6 @@ const {addStyle} = require('../webpack/style');
 const {addMonaco, removeMonaco} = require('../webpack/monaco');
 const nodeExternal = require('webpack-node-externals');
 const path = require('path');
-
-const destData = exports.destData = resolvePath('./site/data');
-const dest = exports.dest = resolvePath('./site/dist');
-const destServer = exports.destServer = resolvePath('./site/.dist');
 
 exports.webpackConfig = (production) => {
     const config = genConfig();

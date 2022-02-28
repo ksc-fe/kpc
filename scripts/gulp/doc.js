@@ -1,8 +1,8 @@
 const {prepare, parseFiles, globExp} = require("../doc/generate");
-const {destData, destServer, dest, webpackConfigDevServer} = require('../doc/webpack');
+const {webpackConfigDevServer} = require('../doc/webpack');
 const {buildClient, buildServer, buildDll, staticize, upload} = require("../doc/dist");
 const gulp = require('gulp');
-const {exec, rm, resolve, themes} = require('../utils');
+const {exec, rm, resolve, themes, destData, destServer, dest} = require('../utils');
 const gulpMultiProcess = require('gulp-multi-process');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');

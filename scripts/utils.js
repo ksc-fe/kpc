@@ -79,5 +79,8 @@ module.exports = {
         }
 
         return memoized;
-    }
+    },
+    destData: resolve('./site/data'),
+    dest: resolve('./site/dist'),
+    destServer: resolve('./site/.dist'),
 };
