@@ -60,6 +60,6 @@ export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
 
-export const version = '2.0.0-beta.0';
+export const version = '2.0.0-beta.1';
 
 /* generate end */
