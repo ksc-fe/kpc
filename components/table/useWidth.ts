@@ -68,10 +68,12 @@ export function useWidth(
 
     function checkTableWidth(isMount: boolean) {
         checkColumnMinWidth(false);
+        const {resizable, type} = instance.get();
 
-        if (instance.get('resizable')) {
+        if (resizable) {
+            const hasBorder = type === 'grid' || type === 'border';
             const _tableWidth = tableRef.value!.offsetWidth;
-            const containerWidth = scrollRef.value!.offsetWidth;
+            const containerWidth = scrollRef.value!.offsetWidth + (hasBorder ? -2 : 0);
             if (_tableWidth < containerWidth) {
                 tableWidth.set(isMount ? null : containerWidth);
 

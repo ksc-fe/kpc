@@ -74,10 +74,10 @@ describe('Form', () => {
         expect(res).to.be.true;
 
         instance.set('firstName', 'a');
-        await wait(0);
+        await wait(100);
         expect(element.innerHTML).to.matchSnapshot();
         instance.set('lastName', 'b');
-        await wait(0);
+        await wait(100);
         expect(element.innerHTML).to.matchSnapshot();
     });
 

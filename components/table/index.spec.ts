@@ -463,7 +463,7 @@ describe('Table', () => {
         });
         dispatchEvent(tr2, 'dragend');
 
-        await wait(300);
+        await wait(500);
         expect(element.innerHTML).to.matchSnapshot();
     });
 
