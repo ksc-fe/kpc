@@ -1,9 +1,8 @@
-const {resolve: resolvePath, writeFile} = require('../utils');
+const {resolve: resolvePath, writeFile, destData} = require('../utils');
 const glob = require('glob');
 const cp = require('child_process');
 const os = require('os');
 const path = require('path');
-const {destData} = require('./webpack');
 const parse = require('./parse');
 
 const NUMS = os.cpus().length;
@@ -11,7 +10,9 @@ const NUMS = os.cpus().length;
 
 // const globExp = './@(docs|components)/**/*.md';
 const globExp = resolvePath('./@(docs|components)/**/*.md');
-// const globExp = resolvePath('./@(docs|components)/tooltip/demos/position.md');
+// const globExp = resolvePath('./@(components)/**/*.md');
+// const globExp = resolvePath('./@(docs|components)/card/**/*.md');
+// const globExp = resolvePath('./@(docs|components)/table/demos/basic.md');
 
 function prepare() {
     return new Promise(resolve => {
@@ -30,7 +31,7 @@ function prepare() {
     });
 }
 
-function parseFiles(files) {
+async function parseFiles(files) {
     if (files.length < 8) {
         return Promise.all([parse(files, destData)]);
     }

@@ -6,7 +6,7 @@ order: 2
 指定`clearable`展示清空按钮
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" clearable style="margin-right: 10px">
@@ -28,4 +28,21 @@ import {Select, Option} from 'kpc/components/select';
         <Option value="Sunday">星期天</Option>
     </Select>
 </div>
+```
+
+```ts
+interface Props {
+    day?: string | null
+    days?: string[]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            day: null,
+            days: [],
+        } as Props;
+    }
+}
 ```

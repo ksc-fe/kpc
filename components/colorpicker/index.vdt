@@ -16,7 +16,6 @@ const classNameObj = {
 
 <div class={classNameObj} {...getRestProps(this)}>
     <Dropdown
-        class="k-colorpicker-content"
         position={{my: 'left top+8', at: 'left bottom', collision: 'flip'}}
         trigger="click"
         disabled={disabled}
@@ -24,7 +23,7 @@ const classNameObj = {
         <div class="k-colorpicker-color">
             <div class="k-colorpicker-inner" style={{backgroundColor: value}}></div>
         </div>
-        <DropdownMenu>
+        <DropdownMenu class="k-colorpicker-content">
             <ColorpickerPanel v-model="value" presets={presets} />
         </DropdownMenu>
     </Dropdown>

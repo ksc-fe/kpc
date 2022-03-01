@@ -9,22 +9,28 @@ order: 5
 此时与`value`为`String`类型的表现是一样的。
 
 ```vdt
-import {Slider} from 'kpc/components/slider';
+import {Slider} from 'kpc';
 
 <div>
     <Slider min={1} max={12} value={6} 
-        isShowInput={false}
+        showInput={false}
         marks={this.get('marks')}
     />
     <Slider min={1} max={12} value={[2, 6]} 
-        isShowInput={false}
-        isRange
+        showInput={false}
+        range
         marks={this.get('marks')}
     />
 </div>
 ```
 
 ```ts
+import {SliderMarks} from 'kpc';
+
+interface Props {
+    marks: SliderMarks
+}
+
 export default class extends Component {
     static template = template;
 
@@ -44,7 +50,7 @@ export default class extends Component {
                 11: '2年',
                 12: '3年',
             }
-        }
+        } as Props;
     }
 }
 ```

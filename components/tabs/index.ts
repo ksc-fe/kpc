@@ -8,17 +8,17 @@ import {useScroll} from './useScroll';
 import type {Events} from '../types';
 export * from './tab';
 
-export interface TabsProps {
-    value?: any
+export interface TabsProps<T = any> {
+    value?: T
     vertical?: boolean
     size?: Sizes
     type?: 'default' | 'card' | 'border-card' | 'no-border-card'
     closable?: boolean
-    beforeChange?: (value: any) => boolean | Promise<boolean>
+    beforeChange?: (value: T) => boolean | Promise<boolean>
 }
 
-export interface TabsEvents {
-    remove: [any]
+export interface TabsEvents<T = any> {
+    remove: [T]
 }
 
 const typeDefs: Required<TypeDefs<TabsProps>> = {
@@ -39,7 +39,7 @@ const events: Events<TabsEvents> = {
     remove: true,
 }
 
-export class Tabs extends Component<TabsProps, TabsEvents> {
+export class Tabs<T = any> extends Component<TabsProps<T>, TabsEvents<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -69,7 +69,7 @@ export class Tabs extends Component<TabsProps, TabsEvents> {
         }
     }
     
-    public remove(value: any) {
+    public remove(value: T) {
         this.trigger('remove', value);
     }
 }

@@ -10,7 +10,10 @@ import {
     patch,
     remove,
     TypeDefs,
+    provide,
     inject,
+    nextTick,
+    callAll,
 } from 'intact';
 import {isString} from 'intact-shared';
 import {DIALOG} from './dialog/constants';
@@ -26,6 +29,8 @@ const typeDefs: Required<TypeDefs<PortalProps>> = {
     container: [String, Function],
 };
 
+const PORTAL = 'Portal';
+
 export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     static template(this: Portal) {
         if (process.env.NODE_ENV === 'production') {
@@ -37,6 +42,16 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
 
     private container: Element | null = null;
     private dialog: Dialog | null = inject(DIALOG, null);
+    private portal: Portal | null = inject(PORTAL, null);
+    private rootPortal = inject<Portal | null>(PORTAL, null);
+    public mountedQueue?: Function[];
+    public mountedDone?: boolean;
+
+    init() {
+        if (!this.rootPortal) {
+            provide(PORTAL, this);
+        }
+    }
 
     $render(
         lastVNode: VNodeComponentClass<this> | null,
@@ -46,19 +61,59 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         mountedQueue: Function[]
     ) {
         const nextProps = nextVNode.props!;
-        this.initContainer(nextProps.container, parentDom, anchor);
+        const $cid = (Component as any).$cid;
+        const isVue = $cid === 'IntactVueNext' || $cid === 'IntactVue';
 
         // add mount method to queue to let sub-component be appended after parent-component
-        mountedQueue.push(() => {
-            mount(
-                nextProps.children as VNode,
-                this.container!,
-                this,
-                this.$SVG,
-                null,
-                mountedQueue
-            );
-        });
+        if (!isVue) {
+            this.initContainer(nextProps.container, parentDom, anchor);
+
+            let rootPortal: Portal;
+            let shouldTrigger = false;
+            if (!this.rootPortal) {
+                rootPortal = this;
+                rootPortal.mountedQueue = [];
+                shouldTrigger = true;
+            } else {
+                rootPortal = this.rootPortal!;
+                if (rootPortal.mountedDone) {
+                    shouldTrigger = true;
+                    rootPortal.mountedQueue = [];
+                }
+            }
+
+            const selfMountedQueue = rootPortal.mountedQueue!;
+            selfMountedQueue.push(() => {
+                mount(
+                    nextProps.children as VNode,
+                    this.container!,
+                    this,
+                    this.$SVG,
+                    null,
+                    mountedQueue,
+                );
+            });
+
+            if (shouldTrigger) {
+                callAll(selfMountedQueue);
+                rootPortal.mountedDone = true;
+            }
+        } else {
+            mountedQueue.push(() => {
+                parentDom = this.$lastInput!.dom!.parentElement!;
+                this.initContainer(nextProps.container, parentDom, anchor);
+
+                mount(
+                    nextProps.children as VNode,
+                    this.container!,
+                    this,
+                    this.$SVG,
+                    null,
+                    mountedQueue,
+                );
+            });
+        }
+
         super.$render(lastVNode, nextVNode, parentDom, anchor, mountedQueue);
     }
 
@@ -92,14 +147,22 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
             );
         } else {
             remove(lastProps.children as VNode, lastContainer, false);
-            mount(nextProps.children as VNode, nextContainer, this, this.$SVG, anchor, mountedQueue);
+            mount(
+                nextProps.children as VNode,
+                nextContainer,
+                this,
+                this.$SVG,
+                anchor,
+                mountedQueue,
+            );
         }
-
+        
         super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
     }
 
     $unmount(vNode: VNodeComponentClass<this>, nextVNode: VNodeComponentClass<this> | null) {
-        removeVNodeDom(vNode.props!.children as VNode, this.container!);
+        remove(vNode.props!.children as VNode, this.container!, false);
+        // removeVNodeDom(vNode.props!.children as VNode, this.container!);
         super.$unmount(vNode, nextVNode);
     }
 

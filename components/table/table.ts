@@ -1,4 +1,4 @@
-import {Component, TypeDefs, Props, createRef, mount, findDomFromVNode} from 'intact';
+import {Component, TypeDefs} from 'intact';
 import template from './table.vdt';
 import {useColumns} from './useColumns';
 import {useFixedColumns} from './useFixedColumns';
@@ -7,7 +7,6 @@ import {bind} from '../utils';
 import {useChecked} from './useChecked';
 import {useDisableRow} from './useDisableRow';
 import {useSortable} from './useSortable';
-import type {TableColumnProps} from './column';
 import {useMerge, TableMerge} from './useMerge';
 import {useExpandable} from './useExpandable';
 import {useSelected} from './useSelected';
@@ -22,30 +21,36 @@ import {useWidth} from './useWidth';
 import {useScroll} from './useScroll';
 import type {Events} from '../types';
 
-export interface TableProps<T = any> {
+export interface TableProps<
+    T = any,
+    K extends TableRowKey = TableRowKey,
+    C extends CheckType = CheckType,
+    S extends string = string,
+    G extends TableGroupValue = TableGroupValue
+> {
     data?: T[]
     fixHeader?: boolean | string | number 
     stickHeader?: boolean | string | number
     stickScrollbar?: boolean | string | number
-    checkType?: 'checkbox' | 'radio' | 'none'
-    checkedKeys?: TableRowKey[]
-    rowKey?: (value: T, index: number) => TableRowKey
+    checkType?: C
+    checkedKeys?: K[]
+    rowKey?: (value: T, index: number) => K 
     rowCheckable?: boolean
-    disableRow?: (value: T, index: number, key: TableRowKey) => boolean
+    disableRow?: (value: T, index: number, key: K) => boolean
     type?: 'default' | 'border' | 'grid'
     stripe?: boolean
-    rowClassName?: (value: T, index: number, key: TableRowKey) => string | undefined
-    group?: TableGroupValue
-    sort?: TableSortValue 
+    rowClassName?: (value: T, index: number, key: K) => string | undefined
+    group?: G
+    sort?: TableSortValue<S>
     loading?: boolean
-    merge?: TableMerge<T>
-    expandedKeys?: TableRowKey[]
+    merge?: TableMerge<T, C>
+    expandedKeys?: K[]
     rowExpandable?: boolean
-    selectedKeys?: TableRowKey[]
+    selectedKeys?: K[]
     rowSelectable?: boolean | 'single' | 'multiple'
     childrenKey?: string
     indent?: number
-    spreadKeys?: TableRowKey[]
+    spreadKeys?: K[]
     tooltipPosition?: TooltipProps['position']
     tooltipContainer?: TooltipProps['container']
     keepStatus?: boolean
@@ -55,10 +60,10 @@ export interface TableProps<T = any> {
     widthStoreKey?: string
 }
 
-export interface TableEvents<T = any> {
-    clickRow: [T, number, TableRowKey]
-    dragstart: [{key: TableRowKey, from: number}]
-    dragend: [{key: TableRowKey, from: number, to: number}]
+export interface TableEvents<T = any, K extends TableRowKey = number> {
+    clickRow: [T, number, K]
+    dragstart: [{key: K, from: number}]
+    dragend: [{key: K, from: number, to: number}]
 }
 
 export interface TableBlocks<T = unknown> {
@@ -67,13 +72,16 @@ export interface TableBlocks<T = unknown> {
     expand: [T, number]
 }
 
+type CheckType = 'checkbox' | 'radio' | 'none'
+export type TableCheckType = CheckType;
+
 export type TableRowKey = string | number;
 export type TableSortValue<T = string> = {
     key?: T 
     type?: 'desc' | 'asc'
 }
 
-export type TableGroupValue<T extends string | number | symbol = string> = Record<T, any | any[]> 
+export type TableGroupValue<T extends string | number | symbol = string | number | symbol> = Record<T, any | any[]> 
 
 const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     data: Array,
@@ -124,7 +132,13 @@ const events: Events<TableEvents> = {
     dragend: true,
 };
 
-export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
+export class Table<
+    T = any,
+    RowKey extends TableRowKey = TableRowKey,
+    Checkbox extends CheckType = 'checkbox',
+    Sort extends string = string,
+    Group extends TableGroupValue = TableGroupValue
+> extends Component<TableProps<T, RowKey, Checkbox, Sort, Group>, TableEvents<T, RowKey>, TableBlocks<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -247,7 +261,7 @@ export class Table<T = any> extends Component<TableProps<T>, TableEvents<T>> {
     }
 
     @bind
-    private clickRow(data: any, index: number, key: string | number) {
+    private clickRow(data: T, index: number, key: RowKey) {
         this.trigger('clickRow', data, index, key);
     }
     

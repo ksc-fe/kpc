@@ -10,6 +10,7 @@ import type {useDisabled} from './useDisabled';
 import {isEqualArray, last, bind} from '../utils';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
 import {BaseSelect, BaseSelectProps, BaseSelectEvents, BaseSelectBlocks} from '../select/base';
+import type {Events} from '../types';
 
 export type StateValueRange = [Dayjs, Dayjs?];
 export type StateValueItem = Dayjs | StateValueRange;
@@ -20,20 +21,36 @@ export type DayjsValueRange = [Dayjs, Dayjs]
 export type DayjsValueItem = Dayjs | DayjsValueRange
 export type DayjsValue = DayjsValueItem[]
 
-export interface BasePickerProps<Value> extends BaseSelectProps {
-    value?: Value | Value[] | [Value, Value] | [Value, Value][] | null
-    range?: boolean
+export interface BasePickerProps<
+    V extends Value = Value,
+    Multipe extends boolean = boolean,
+    Range extends boolean = boolean,
+> extends BaseSelectProps<V | [V, V], Multipe> {
+    value?: 
+        Multipe extends true ?
+            Range extends true ? 
+                [V, V][] :
+                V[] :
+            Range extends true ?
+                [V, V] | null :
+                V | null
+    range?: Range 
     format?: string
     valueFormat?: string
     showFormat?: string
-    min?: Value
-    max?: Value
-    disabledDate?: (v: Value) => boolean
+    min?: Value | null
+    max?: Value | null
+    disabledDate?: (v: Dayjs) => boolean
 }
 
-export interface BasePickerEvents extends BaseSelectEvents { }
+export interface BasePickerEvents extends BaseSelectEvents {
+    selecting: [StateValueRange]
+}
 
-export interface BasePickerBlocks extends BaseSelectBlocks { }
+export interface BasePickerBlocks<
+    V extends Value = Value,
+    R extends boolean = boolean,
+> extends BaseSelectBlocks<R extends true ? [Value, Value] : Value> { }
 
 export type Value = string | Date | number | Dayjs;
 
@@ -54,16 +71,23 @@ const defaults = (): Partial<BasePickerProps<any>> => ({
     filterable: true,
 });
 
+const events: Events<BasePickerEvents> = {
+    ...BaseSelect.events,
+    selecting: true,
+};
+
 export abstract class BasePicker<
-    T extends BasePickerProps<any> = BasePickerProps<any>,
+    T extends BasePickerProps = BasePickerProps,
     E extends BasePickerEvents = BasePickerEvents,
-    B extends BasePickerBlocks = BasePickerBlocks,
+    B extends BasePickerBlocks<any> = BasePickerBlocks<any>,
 > extends BaseSelect<T, E, B> {
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     public abstract value: ReturnType<typeof useValue>
     public abstract formats: ReturnType<typeof useFormats>
+    public abstract panel: ReturnType<typeof usePanel>
 
     @bind
     public resetKeywords(keywords: State<string>) {
@@ -81,6 +105,12 @@ export abstract class BasePicker<
                 ].join(' ~ ') : ''
         );
     }
+
+    // @bind
+    // protected clear(e: MouseEvent) {
+        // e.stopPropagation();
+        // this.set('value', this.get('multiple') ? [] : null);
+    // }
 }
 
 export function useValue(
@@ -90,11 +120,12 @@ export function useValue(
         getShowString,
         getValueString,
     }: ReturnType<typeof useFormats>,
-    {isDisabled}: ReturnType<typeof useDisabled>,
+    {isDisabled, minDate}: ReturnType<typeof useDisabled>,
     panel: ReturnType<typeof usePanel>,
     shouldUpdateValue: (v: StateValueItem) => boolean,
     updateValueOnInput: (v: DayjsValueItem) => void,
     getEqualType: () => OpUnitType,
+    updateStateValue: (v: DayjsValue, value: State<StateValue>) => void,
 ) {
     // Normalize the value to multipe values, no matter it's multipe or not
     const value = useState<StateValue>([]);
@@ -104,13 +135,15 @@ export function useValue(
     instance.watch('value', (newValue, oldValue) => {
         if (isEqualArray(newValue, oldValue)) return;
         dayjsValue = convertToDayjs(newValue);
-        value.set(dayjsValue.slice());
+        updateStateValue(dayjsValue, value);
         // should update keywords
         instance.resetKeywords(instance.input.keywords);
     });
 
     watchState(instance.input.keywords, v => {
-        const range = instance.get('range');
+        const {range, multiple} = instance.get();
+        if (!multiple && v === '') return instance.set('value', null);
+
         if (range) {
             const [start, end] = v.split(/\s*~\s*/).map(s => s.trim());
             if (start && end) {
@@ -283,6 +316,7 @@ export function useValue(
         if (range) {
             _value = (values as DayjsValueRange[])[lastIndex].slice() as DayjsValueRange;
             _value[flag] = date;
+            instance.trigger('selecting', _value);
         }
 
         values[lastIndex] = _value;
@@ -293,13 +327,9 @@ export function useValue(
         const _value = value.value;
         if (!_value.length) return null;
 
-        const {range} = instance.get();
+        const {range, min} = instance.get();
         const lastValue = last(_value);
-
-        if (range) {
-            return (lastValue as StateValueRange)[flag];
-        }
-        return lastValue as Dayjs;
+        return range ? (lastValue as StateValueRange)[flag] : lastValue as Dayjs;
     }
 
     function getDayjsValue() {

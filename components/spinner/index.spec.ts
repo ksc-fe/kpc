@@ -1,14 +1,14 @@
 import StepDemo from '~/components/spinner/demos/step';
 import PrecisionDemo from '~/components/spinner/demos/precision';
-import {mount, unmount, dispatchEvent, wait, fakeError} from 'test/utils';
-import {Spinner} from 'kpc/components/spinner';
+import {mount, unmount, dispatchEvent, wait, fakeError} from '../../test/utils';
+import {Spinner} from '../spinner';
 import {Component} from 'intact';
 import FormatterDemo from '~/components/spinner/demos/formatter';
 import ForceStepDemo from '~/components/spinner/demos/forceStep';
 import DynamicStepDemo from '~/components/spinner/demos/dynamicStep';
 
 describe('Spinner', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => unmount());
 
     it('step/max/min test', async () => {
         const [instance, element] = mount(StepDemo);

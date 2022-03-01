@@ -46,7 +46,7 @@ export default class extends Component<Props> {
     }
 
     @bind
-    loadData(node: TreeNode) {
+    loadData(node: TreeNode<string>) {
         return new Promise<void>(resolve => {
             setTimeout(() => {
                 node.data.children = [

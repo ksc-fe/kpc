@@ -18,10 +18,12 @@ import {useInput} from './useInput';
 import {Container} from '../portal';
 import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
+import {isNullOrUndefined} from 'intact-shared';
 
-export interface BaseSelectProps {
-    value?: any
-    multiple?: boolean
+export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
+    value?: Multipe extends true ? V[] : Attach
+    // value?: any 
+    multiple?: Multipe 
     filterable?: boolean
     loading?: boolean
     disabled?: boolean
@@ -45,14 +47,14 @@ export interface BaseSelectEvents {
     hide: []
 }
 
-export interface BaseSelectBlocks {
-    value: [any, Children]
-    values: [any[], Children[]]
+export interface BaseSelectBlocks<V> {
+    value: [V, Children]
+    values: [V[], Children[]]
     prefix: null
     suffix: null
 }
 
-const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
+const typeDefs: Required<TypeDefs<BaseSelectProps<any>>> = {
     value: null,
     multiple: Boolean,
     filterable: Boolean,
@@ -71,7 +73,7 @@ const typeDefs: Required<TypeDefs<BaseSelectProps>> = {
     _show: Boolean,
 };
 
-const defaults = (): Partial<BaseSelectProps> => ({
+const defaults = (): Partial<BaseSelectProps<any>> => ({
     size: 'default',
 });
 
@@ -83,9 +85,9 @@ const events: Events<BaseSelectEvents> = {
 };
 
 export abstract class BaseSelect<
-    T extends BaseSelectProps = BaseSelectProps,
+    T extends BaseSelectProps<any> = BaseSelectProps<any>,
     E extends BaseSelectEvents = BaseSelectEvents,
-    B extends BaseSelectBlocks = BaseSelectBlocks,
+    B extends BaseSelectBlocks<any> = BaseSelectBlocks<any>,
 > extends Component<T, E, B> {
     static template = template;
     static typeDefs = typeDefs;
@@ -129,6 +131,11 @@ export abstract class BaseSelect<
         keywords.set('');
     }
 
+    protected hasValue() {
+        const {value, multiple} = this.get();
+        return !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
+    }
+
     private delete(index: number, e: MouseEvent) {
         if (this.get('disabled')) return;
 
@@ -142,7 +149,7 @@ export abstract class BaseSelect<
     @bind
     protected clear(e: MouseEvent) {
         e.stopPropagation();
-        this.set('value', this.get('multiple') ? [] : '');
+        this.set('value', this.get('multiple') ? [] : null);
     }
 
     @bind

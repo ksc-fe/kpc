@@ -10,21 +10,10 @@ order: 14
 > 帮助该列来确定固定的位置 
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-
-const data = [
-    {name: 'John'},
-    {name: 'Tom'},
-    {name: 'Javey'},
-].map(item => {
-    for (let i = 0; i < 4; i++) {
-        item[`column${i + 1}`] = 'test';
-    }
-    return item;
-});
+import {Table, TableColumn} from 'kpc';
 
 <div>
-    <Table data={data} resizable stickHeader="64">
+    <Table data={this.get('data')} resizable stickHeader="64">
         <TableColumn fixed="left" key="name" title="Name" width="200" class="name" />
         <TableColumn key="column1" title="Column1" width="300">
             <b:title>
@@ -40,7 +29,7 @@ const data = [
             </b:template>
         </TableColumn>
     </Table>
-    <Table data={data} fixHeader="150" resizable ref="__test" type="grid" stickHeader="64">
+    <Table data={this.get('data')} fixHeader="150" resizable ref="__test" type="grid" stickHeader="64">
         <TableColumn fixed="left" key="name" title="Name" width="200" />
         <TableColumn key="column1" title="Column1" width="300" />
         <TableColumn key="column2" title="Column2" width="300" />
@@ -60,32 +49,23 @@ const data = [
     margin-bottom 20px
 ```
 
-```vue-data
-data() {
-    return {
-        data: [
-            {name: 'John'},
-            {name: 'Tom'},
-            {name: 'Javey'},
-        ].map(item => {
-            for (let i = 0; i < 4; i++) {
-                item[`column${i + 1}`] = 'test';
-            }
-            return item;
-        })
-    }
-},
-```
+```ts
 
-```angular-properties
-private data = [
+const data = [
     {name: 'John'},
     {name: 'Tom'},
     {name: 'Javey'},
-].map(item => {
+].map((item: any) => {
     for (let i = 0; i < 4; i++) {
         item[`column${i + 1}`] = 'test';
     }
     return item;
 });
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {data};
+    }
+}
 ```

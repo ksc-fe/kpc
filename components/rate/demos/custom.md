@@ -6,8 +6,8 @@ order: 3
 通过`icon`扩展点，可以自定义图标
 
 ```vdt
-import {Rate} from 'kpc/components/rate';
-import {Icon} from 'kpc/components/icon';
+import {Rate} from 'kpc';
+import {Icon} from 'kpc';
 
 <Rate v-model="value">
     <b:icon><Icon class="ion-heart" /></b:icon>

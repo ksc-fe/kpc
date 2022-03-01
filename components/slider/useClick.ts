@@ -9,13 +9,13 @@ export function useClick(
     showValue: State<Value>,
     setValue: (value: Value) => void,
 ) {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
 
     function onClickTrack(e: MouseEvent) {
         if (instance.get('disabled')) return;
 
         let newValue: Value = getSlidingValue(e.clientX);
-        if (instance.get('isRange')) {
+        if (instance.get('range')) {
             newValue = generateRangeValue(newValue);
         }
 
@@ -36,7 +36,7 @@ export function useClick(
         if (instance.get('disabled')) return;
 
         let newValue: Value = v;
-        if (instance.get('isRange')) {
+        if (instance.get('range')) {
             newValue = generateRangeValue(v);
         }
         showValue.set(newValue);

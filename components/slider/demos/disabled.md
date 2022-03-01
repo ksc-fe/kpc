@@ -10,6 +10,6 @@ import {Slider} from 'kpc';
 
 <div>
     <Slider disabled value={50} ref="__test" />
-    <Slider disabled isRange value={[55, 80]} min={50} max={100} />
+    <Slider disabled range value={[55, 80]} min={50} max={100} />
 </div>
 ```

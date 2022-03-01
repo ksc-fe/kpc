@@ -23,6 +23,7 @@ import {usePosition, FeedbackCallback} from './usePosition';
 import type {Events} from '../types';
 
 export type Position = Options 
+export type PositionShorthand = 'left' | 'bottom' | 'right' | 'top'
 
 type DropdownChildren = [VNode, VNode];
 
@@ -79,14 +80,20 @@ export class Dropdown<
     E extends DropdownEvents = DropdownEvents,
     B extends DropdownBlocks = DropdownBlocks,
 > extends Component<T, E, B> {
-    // for intact-react and intact-vue-next
+    // for intact-react, intact-vue-next and intact-vue
     static $doubleVNodes = true;
 
     static typeDefs = typeDefs;
     static defaults = defaults;
     static events = events;
     static template = function(this: Dropdown) {
-        const children = this.get('children');
+        let children = this.get('children');
+        // ignore whitespaces between elements in Vue
+        if ((this as any).$isVue || (this as any).$isVueNext) {
+            if (Array.isArray(children)) {
+                children = children.filter(child => child !== ' ');
+            }
+        }
         if (process.env.NODE_ENV !== 'production') {
             if (!Array.isArray(children) || children.length !== 2) {
                 throw new Error(
@@ -230,7 +237,9 @@ export class Dropdown<
 
     private callOriginalCallback(name: string, e: MouseEvent) {
         const callback = this.triggerProps[name];
+        const callbackOnDropdown = this.get<Function>(name);
         if (isFunction(callback)) callback(e);
+        if (isFunction(callbackOnDropdown)) callbackOnDropdown(e);
     }
 
     private normalizeTriggerProps(props: any) {
@@ -249,10 +258,19 @@ export class Dropdown<
                 className: _props.className || _props.class /* vue-next */,
             };
         } else if ((this as any).$isVue) {
-            // TODO:
-            // return {
-                // 'ev-click':  
-            // }
+            const vnode = props.vnode;
+            if (!vnode) return props;
+
+            const data = vnode.data;
+            const on = data && data.on || EMPTY_OBJ;
+            const ret: Record<string, any> = {vnode};
+            ['click', 'mouseenter', 'mouseleave', 'contextmenu'].forEach(event => {
+                const method = on[event];
+                if (method) {
+                    ret[`ev-${event}`] = method;
+                }
+            });
+            return ret;
         }
 
         return props;

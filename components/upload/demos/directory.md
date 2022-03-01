@@ -6,8 +6,8 @@ order: 5
 添加`directory`属性可以上传文件夹 [caniuse](https://caniuse.com/#feat=input-file-directory)
 
 ```vdt
-import {Upload} from 'kpc/components/upload';
-import {Button} from 'kpc/components/button';
+import {Upload} from 'kpc';
+import {Button} from 'kpc';
 
 <Upload 
     directory

@@ -3,13 +3,13 @@ import RangeDemo from '~/components/slider/demos/range';
 import DisabledDemo from '~/components/slider/demos/disabled';
 import StepDemo from '~/components/slider/demos/step';
 import TooltipDemo from '~/components/slider/demos/tooltip';
-import {mount, unmount, dispatchEvent, getElement, wait, getElements, fakeError} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait, getElements, fakeError} from '../../test/utils';
 import {Slider} from './';
 import {Component} from 'intact';
 import DynamicStepDemo from '~/components/slider/demos/dynamicStep';
 
 describe('Slider', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo);
@@ -254,7 +254,7 @@ describe('Slider', () => {
         class Demo extends Component {
             static template = `const {Slider} = this; <div>
                 <Slider min={1} max={1} value={1} />
-                <Slider min={1} max={1} isRange />
+                <Slider min={1} max={1} range />
             </div>`;
             private Slider = Slider;
         }

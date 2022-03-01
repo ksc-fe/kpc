@@ -8,7 +8,7 @@ order: 2
 > 最好不要小于7个，否则影响体验。使用奇数可以使页码对称分布
 
 ```vdt
-import {Pagination} from 'kpc/components/pagination';
+import {Pagination} from 'kpc';
 
 <div>
     <Pagination total={200} counts="10" />

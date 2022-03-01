@@ -9,12 +9,12 @@ export type Value = string[];
 type Values = Value[];
 
 export function useValue() {
-    const instance = useInstance() as Cascader;
+    const instance = useInstance() as Cascader<string, boolean>;
     // Normalize the value to multipe values, no matter it's multipe or not
     const values = useState<Values>([]);
     const showedValue = useState<Value>([]);
 
-    instance.watch('value', (value: Value | Values | undefined, oldValue: Value | Values | undefined) => {
+    instance.watch('value', (value, oldValue) => {
         const {multiple} = instance.get();
 
         if (isNullOrUndefined(value)) return values.set([]);

@@ -2,7 +2,7 @@ import {useInstance, Key} from 'intact';
 import type {Tree} from './';
 import type {Node, DataItem} from './useNodes';
 
-export function useSelected(getNodes: () => Node[]) {
+export function useSelected(getNodes: () => Node<Key>[]) {
     const instance = useInstance() as Tree;
     let selectedKeys: Set<Key> = new Set();
 
@@ -10,7 +10,7 @@ export function useSelected(getNodes: () => Node[]) {
         selectedKeys = new Set(v);
     });
 
-    async function toggle(node: Node) {
+    async function toggle(node: Node<Key>) {
         if (node.data.disabled) return;
 
         const key = node.key;
@@ -28,12 +28,12 @@ export function useSelected(getNodes: () => Node[]) {
     }
 
     function getSelectedData() {
-        const data: DataItem[] = [];
+        const data: DataItem<Key>[] = [];
         const size = selectedKeys.size;
         if (!size) return data;
 
         let count = 0;
-        const loop = (nodes: Node[]) => {
+        const loop = (nodes: Node<Key>[]) => {
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
                 if (selectedKeys.has(node.key)) {

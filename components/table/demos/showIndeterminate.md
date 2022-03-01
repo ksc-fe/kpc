@@ -6,7 +6,7 @@ order: 28
 通过`showIndeterminate`属性可以控制`Table`展示是否支持半选中状态
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
     <Table 

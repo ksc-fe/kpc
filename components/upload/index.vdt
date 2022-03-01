@@ -129,7 +129,7 @@ const {show, close, image, isShow} = this.showImage;
                         v-if={$value.status === UploadFileStatus.Done}
                     />
                     <Icon class="k-upload-status-icon ion-ios-close-outline"
-                        v-if={$value.status === UploadFileStatus.Error}
+                        v-else-if={$value.status === UploadFileStatus.Error}
                     />
                 </div>
                 <Transition {...expandAnimationCallbacks}>

@@ -3,10 +3,7 @@ title: 菜单项添加Tooltip提示
 order: 5
 ---
 
-使用`Tooltip`包裹需要提示的菜单项`DropdownItem`即可添加提示，需要注意的是：
-在Intact下，当用`Tooltip`包裹触发器时，需要使用另外的元素将它包裹起来，因为`Tooltip`实际
-返回的是两个元素，一个是它的触发器，一个是提示内容层。而`Dropdown`的触发器只能
-接受一个元素，所以需要另外再包起来（如本例中`item 4`)。
+使用`Tooltip`包裹需要提示的菜单项`DropdownItem`即可添加提示
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem, Button, Tooltip} from 'kpc';
@@ -23,11 +20,9 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Tooltip} from 'kpc';
                 <DropdownItem disabled>item 3</DropdownItem>
             </Tooltip>
             <Dropdown position={{my: 'left top', at: 'right top'}}>
-                <div>
-                    <Tooltip content="This is a nested Dropdown.">
-                        <DropdownItem>item 4</DropdownItem>
-                    </Tooltip>
-                </div>
+                <Tooltip content="This is a nested Dropdown.">
+                    <DropdownItem>item 4</DropdownItem>
+                </Tooltip>
                 <DropdownMenu>
                     <DropdownItem>item 1</DropdownItem>
                     <Tooltip content="nested DropdownItem">

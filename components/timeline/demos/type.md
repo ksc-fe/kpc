@@ -8,7 +8,7 @@ order: 1
 `size`属性可以改变轴点的大小，可选值`default` `large` `small` `mini`，默认`default`
 
 ```vdt
-import {Timeline, TimelineItem} from 'kpc/components/timeline';
+import {Timeline, TimelineItem} from 'kpc';
 
 <Timeline>
     <TimelineItem>August</TimelineItem>

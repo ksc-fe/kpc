@@ -24,14 +24,21 @@ import {
 
 export * as shortcuts from './shortcuts';
 
-export interface DatepickerProps extends BasePickerProps<Value> {
+export interface DatepickerProps<
+    V extends Value = Value,
+    M extends boolean = boolean,
+    R extends boolean = boolean,
+> extends BasePickerProps<V extends string ? V : V | string, M, R> {
     type?: 'date' | 'datetime' | 'year' | 'month'
     shortcuts?: Shortcut[]
 }
 
 export interface DatepickerEvents extends BasePickerEvents { }
 
-export interface DatepickerBlocks extends BasePickerBlocks { }
+export interface DatepickerBlocks<
+    V extends Value = Value,
+    R extends boolean = boolean,
+> extends BasePickerBlocks<V, R> { }
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BasePicker.typeDefs,
@@ -44,7 +51,11 @@ const defaults = (): Partial<DatepickerProps> => ({
     type: 'date',
 });
 
-export class Datepicker extends BasePicker<DatepickerProps, DatepickerEvents, DatepickerBlocks> {
+export class Datepicker<
+    V extends Value = Value,
+    M extends boolean = false,
+    R extends boolean = false,
+> extends BasePicker<DatepickerProps<V, M, R>, DatepickerEvents, DatepickerBlocks<V, R>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

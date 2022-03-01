@@ -6,14 +6,14 @@ import type {Tree} from '../tree';
 import type {Node} from '../tree/useNodes';
 
 export function useValue() {
-    const instance = useInstance() as TreeSelect;
+    const instance = useInstance() as TreeSelect<Key, boolean, boolean>;
     const selectedKeys = useState<Key[]>([]);
     const checkedKeys = useState<Key[]>([]);
     const treeRef = createRef<Tree>();
 
     instance.watch('value', setKeys);
 
-    function setKeys(v: Key | Key[] | undefined) {
+    function setKeys(v: Key | Key[] | undefined | null) {
         if (!instance.get('multiple') && !instance.get('checkbox')) {
             v = isNullOrUndefined(v) ? [] : [v as Key];
         } else if (isNullOrUndefined(v)) {
@@ -32,7 +32,7 @@ export function useValue() {
     function getAllCheckedKeys() {
         // if the parent has been checked, ignore the children
         const keys: Key[] = [];
-        const loop = (nodes: Node[]) => {
+        const loop = (nodes: Node<Key>[]) => {
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
                 if (node.checked) {

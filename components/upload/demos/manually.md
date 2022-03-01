@@ -6,8 +6,8 @@ order: 4
 手动上传需要通过指定`autoUpload`为`false`来关闭自动上传，然后调用组件的`submit`方法来手动上传
 
 ```vdt
-import {Upload} from 'kpc/components/upload';
-import {Button} from 'kpc/components/button';
+import {Upload} from 'kpc';
+import {Button} from 'kpc';
 
 <Upload 
     ref="instance"
@@ -28,7 +28,7 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;

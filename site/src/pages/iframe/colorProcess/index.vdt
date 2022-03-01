@@ -1,0 +1,112 @@
+import {Layout, Header, Aside, Menu, MenuItem, Icon, Body, Card} from 'kpc';
+import {makeStyles} from './styles';
+import KD_logo from '../../../imgs/KD_logo.png';
+import colorProLogo from '../../../imgs/color_pro_logo.png';
+import colorNewEar from '../../../imgs/color_NewEra.png';
+import color_ocean from '../../../imgs/color_ocean.png';
+import color_deign62 from '../../../imgs/color_deign62.png';
+import color_techno from '../../../imgs/color_techno.png';
+
+const {
+    asideWidth, headerHeight, bgTheme, curBgTheme,
+    theme, curTheme
+} = this.get();
+
+function getBgImage() {
+    const colorMap = {
+        'New Era': colorNewEar,
+        'Ocean': color_ocean,
+        'Techno': color_techno,
+        'burset 62': color_deign62,
+    }
+
+    return {
+        backgroundImage: `url(${colorMap[curTheme]})`
+    }
+};
+
+<Layout class={makeStyles(bgTheme[curBgTheme], theme[curTheme])}>
+    <Header height={headerHeight}>
+        <div class="header-logo">
+            <img src={colorProLogo} />
+        </div>
+        <div class="header-menu">
+            <div>Design</div>
+            <div>Component</div>
+            <div>DevOps</div>
+            <div>Resources</div>
+            <div>
+                <img src={KD_logo} />
+            </div>
+        </div>
+    </Header>
+    <Layout collapse={true} class="cp-body">
+        <Aside width={asideWidth}>
+            <Menu selectedKey="1">
+                <b:header>
+                    <div clsss="menu-header">
+                        <span>Design</span>
+                        <Icon class="icon ion-navicon"></Icon>
+                    </div>
+                </b:header>
+                <MenuItem key="1">Collections</MenuItem>
+                <MenuItem key="2">Webflow</MenuItem>
+                <MenuItem key="3">Colors</MenuItem>
+                <MenuItem key="4">Fonts</MenuItem>
+                <MenuItem key="5">Layout</MenuItem>
+                <MenuItem key="6">Interaction</MenuItem>
+            </Menu>
+            <div class="menu-footer">
+                <div>
+                    <div>design.ksyun.com</div>
+                    <div>COPY</div>
+                </div>
+            </div>
+        </Aside>
+        <Body class="cp-content">
+            <div class="img-box" style={getBgImage()}></div>
+            <div class="card-box">
+                <Card>
+                    <div class="card-title">
+                        <div>Trending</div>
+                        <Icon class="icon ion-navicon"></Icon>
+                    </div>
+                    <div class="title-secondary">
+                        <div>
+                            <span>A unique design color for your brand. </span>
+                            <span>2022/01/01</span>
+                        </div>
+                        <p>KD color algorithm tool generate the color scale and auxiliary color automatically</p>    
+                    </div>
+                    <div class="title-secondary">
+                        <div>
+                            <span>Business Thinking for Designers. </span>
+                            <span>2022/01/01</span>
+                        </div>
+                        <p>Bring a business mind to design, and transform your career and company</p>
+                    </div>
+                </Card>
+                <Card>
+                    <div class="card-title">
+                        <div>Collections</div>
+                        <Icon class="icon ion-navicon"></Icon>
+                    </div>
+                    <div class="collection-box">
+                        <div>
+                            <div>20</div>
+                            <div>NEWS</div>
+                        </div>
+                        <div>
+                            <div>14</div>
+                            <div>Design Books</div>
+                        </div>
+                        <div>
+                            <div>230</div>
+                            <div>Crafts</div>
+                        </div>
+                    </div>
+                </Card>
+            </div>
+        </Body>
+    </Layout>
+</Layout>

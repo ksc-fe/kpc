@@ -14,7 +14,7 @@ export type {RequestError};
 export interface UploadProps {
     accept?: string
     files?: UploadFile[]
-    defaultFiles?: UploadFile[]
+    defaultFiles?: (Partial<UploadFile> & Pick<UploadFile, 'name' | 'url'>)[]
     maxSize?: number
     limit?: number
     autoUpload?: boolean
@@ -50,7 +50,7 @@ export type UploadFile = {
     name: string
     percent: number
     uid: number
-    raw: File | UploadFile 
+    raw: File | Partial<UploadFile>
     url?: string
     request?: any
 }

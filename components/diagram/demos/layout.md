@@ -82,8 +82,17 @@ const currentLayout = this.get('layouts')[this.get('layout')];
 
 ```ts
 import {createVNode as h, Children, ComponentConstructor} from 'intact';
-import {DFlowLayout, DTreeLayout, DRadialLayout, DStackLayout, DPartitionLayout, DCircleLayout, DOrganicLayout} from 'kpc/components/diagram';
-import type {DLayout, DLayoutProps} from 'kpc/components/diagram';
+import {
+    DFlowLayout,
+    DTreeLayout,
+    DRadialLayout,
+    DStackLayout,
+    DPartitionLayout,
+    DCircleLayout,
+    DOrganicLayout,
+    DLayout,
+    DLayoutProps,
+} from 'kpc/components/diagram';
 
 type LayoutProps = {
     layout: ComponentConstructor 

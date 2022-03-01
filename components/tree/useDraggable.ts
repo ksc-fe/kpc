@@ -19,13 +19,13 @@ export function useDraggable() {
     const mode = useState<Mode | null>(null);
 
     let draggingDom: HTMLElement | null = null;
-    let draggingNode: Node | null = null;
-    let overNode: Node | null = null;
+    let draggingNode: Node<Key> | null = null;
+    let overNode: Node<Key> | null = null;
     let clientX: number | null = null;
     let clientY: number | null = null;
     let valid: boolean = false;
 
-    function onDragStart(node: Node, e: MouseEvent) {
+    function onDragStart(node: Node<Key>, e: MouseEvent) {
         e.stopPropagation();
 
         const {allowDrag} = instance.get();
@@ -40,7 +40,7 @@ export function useDraggable() {
         draggingKey.set(node.key);
     }
 
-    function onDragOver(node: Node, e: MouseEvent) {
+    function onDragOver(node: Node<Key>, e: MouseEvent) {
         e.stopPropagation();
         e.preventDefault();
 
@@ -130,24 +130,24 @@ export function useDraggable() {
     return {onDragStart, onDragOver, onDragEnd, draggingKey, overKey, mode};
 }
 
-function remove(node: Node, data: DataItem[]) {
+function remove(node: Node<Key>, data: DataItem<Key>[]) {
     const siblings = getNodeSiblings(node, data);
     const index = siblings.indexOf(node.data);
     siblings!.splice(index, 1);
 }
 
-function insert(node: Node, newNode: Node, data: DataItem[], offset: number) {
+function insert(node: Node<Key>, newNode: Node<Key>, data: DataItem<Key>[], offset: number) {
     const siblings = getNodeSiblings(node, data);
     const index = siblings.indexOf(node.data);
     siblings.splice(index + offset, 0, newNode.data);
 }
 
-function append(node: Node, newNode: Node) {
+function append(node: Node<Key>, newNode: Node<Key>) {
     const children = node.data.children || (node.data.children = []);
     children.push(newNode.data);
 }
 
-function getNodeSiblings(node: Node, data: DataItem[]) {
+function getNodeSiblings(node: Node<Key>, data: DataItem<Key>[]) {
     const parent = node.parent;
     return parent ? parent.data.children! : data;
 }

@@ -1,6 +1,6 @@
 import template from './index.vdt';
 import {Component} from 'intact';
-import './index.styl';
+// import './index.styl';
 import Chroma from 'chroma-js';
 import {Message} from 'kpc';
 

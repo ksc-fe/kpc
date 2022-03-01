@@ -30,7 +30,7 @@ const classNameObj = {
 
 const placeholder = this.getPlaceholder();
 const label = this.getLabel();
-const hasValue = !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
+const hasValue = this.hasValue();
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 const {onFocusout, triggerRef} = this.focusout;
 
@@ -88,10 +88,14 @@ const {onFocusout, triggerRef} = this.focusout;
                     <TransitionGroup name="k-fade">
                         <template>
                             <b:values params={[value, label]}>
-                                <div class="k-select-tag" v-for={label} key={$value}>
+                                <div class="k-select-tag"
+                                    v-for={label}
+                                    v-for-value="$label"
+                                    key={$label}
+                                >
                                     <span class="k-select-text">
-                                        <b:value params={[value[$key], $value]}>
-                                            {$value}
+                                        <b:value params={[value[$key], $label]}>
+                                            {$label}
                                         </b:value>
                                     </span>
                                     <Icon class="ion-ios-close k-select-close"

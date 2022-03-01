@@ -72,26 +72,3 @@ export default class extends Component<Props> {
     }
 }
 ```
-
-```vue-data
-data() {
-    return {
-        data
-    }
-},
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data
-    };
-    this._remove = this._remove.bind(this);
-    this._onDragEnd = this._onDragEnd.bind(this);
-}
-```
-
-```angular-properties
-private data = data;
-```

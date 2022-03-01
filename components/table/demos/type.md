@@ -6,7 +6,7 @@ order: 19
 通过`type`设置表格的类型：`default` | `border` | `grid`
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
     <Table data={this.get('data1')} type="border">

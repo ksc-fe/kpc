@@ -6,7 +6,7 @@ order: 1
 提示默认会在5s后关闭，我们可以指定`duration`来自定义时长（单位ms）。当指定为`0`时，提示不会自动关闭。
 
 ```vdt
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {ButtonGroup, Button} from 'kpc';
 
 <ButtonGroup>
     <Button ev-click={this.showMessage1}>close after 10s</Button>
@@ -15,8 +15,8 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
-import {bind} from 'kpc/components/utils';
+import {Message} from 'kpc';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;

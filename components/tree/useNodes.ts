@@ -1,21 +1,20 @@
 import {useInstance, Children, Key} from 'intact';
-import {useState} from '../../hooks/useState';
 import type {Tree} from './';
 import {isNullOrUndefined} from 'intact-shared';
 
-export type DataItem = {
+export type DataItem<K extends Key> = {
     label?: Children 
-    key?: Key
+    key?: K
     disabled?: boolean
     loaded?: boolean
-    children?: DataItem[]
+    children?: DataItem<K>[]
 }
 
 const prefix = '__$_';
 
 export function useNodes() {
     const instance = useInstance() as Tree;
-    let nodes: Node[] = [];
+    let nodes: Node<Key>[] = [];
 
     instance.watch('data', data => {
         nodes = createNodes(data, null, prefix);
@@ -24,17 +23,17 @@ export function useNodes() {
     return {getNodes: () => nodes}
 }
 
-export class Node {
+export class Node<K extends Key> {
     public checked = false;
     public indeterminate = false;
-    public children: Node[] | null = null;
+    public children: Node<K>[] | null = null;
     public loaded: boolean | null | undefined;
     public filter = true;
 
     constructor(
-        public data: DataItem,
-        public parent: Node | null,
-        public key: Key,
+        public data: DataItem<K>,
+        public parent: Node<K> | null,
+        public key: K,
     ) {
         this.loaded = isNullOrUndefined(data.loaded) && 
             data.children && 
@@ -44,7 +43,7 @@ export class Node {
     }
 }
 
-function createNode(data: DataItem, parent: Node | null, prefix: string, reference: {index: number}) {
+function createNode(data: DataItem<Key>, parent: Node<Key> | null, prefix: string, reference: {index: number}) {
     const key = isNullOrUndefined(data.key) ? `${prefix}${reference.index++}` : data.key;
     const node = new Node(data, parent, key);
 
@@ -56,7 +55,7 @@ function createNode(data: DataItem, parent: Node | null, prefix: string, referen
     return node;
 }
 
-function createNodes(data: DataItem[] | undefined, parent: Node | null, prefix: string) {
+function createNodes(data: DataItem<Key>[] | undefined, parent: Node<Key> | null, prefix: string) {
     if (isNullOrUndefined(data)) return [];
 
     const reference = {index: 0};

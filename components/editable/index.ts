@@ -1,23 +1,26 @@
-import {Component, TypeDefs, createRef, nextTick} from 'intact';
+import {Component, TypeDefs, createRef, nextTick, Children} from 'intact';
 import template from './index.vdt';
 import {_$} from '../../i18n';
 import {bind} from '../utils';
 import type {Input} from '../input';
+import type {Events} from '../types';
 
-export interface EditableProps {
+type Value = string | number
+
+export interface EditableProps<V extends Value = Value> {
     editing?: boolean,
-    value?: string | number,
+    value?: V,
     required?: boolean,
-    validate?: Function | string | RegExp,
+    validate?: ((v: string) => boolean) | string | RegExp,
     disabled?: boolean,
-    tip?: string | number,
+    tip?: Value, 
     trim?: boolean,
     invalid?: boolean,
 }
 
-export interface EditableEvents {
-    error: [string | number]
-    change: [string, string | number | undefined]
+export interface EditableEvents<V extends Value = Value> {
+    error: [string]
+    change: [string, V | undefined]
 }
 
 const typeDefs: Required<TypeDefs<EditableProps>> = {
@@ -35,12 +38,20 @@ const defaults = (): Partial<EditableProps> => ({
     required: true,
     tip: _$('编辑'),
     trim: true,
-})
+});
 
-export class Editable extends Component<EditableProps, EditableEvents> {
+const events: Events<EditableEvents> = {
+    error: true,
+    change: true,
+};
+
+export class Editable<
+    V extends Value = Value
+> extends Component<EditableProps<V>, EditableEvents<V>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static events = events;
 
     private inputRef = createRef<Input>();
 
@@ -99,7 +110,7 @@ export class Editable extends Component<EditableProps, EditableEvents> {
         this.set({
             invalid: false,
             editing: false,
-            value
+            value: value as V
         });
 
         if (oldValue !== value) {

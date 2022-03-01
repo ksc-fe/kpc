@@ -1,11 +1,13 @@
 export type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';
 export type PrimitiveValue = string | number
 export type BreakpointValue = {
-    [key in Breakpoint]: PrimitiveValue
+    [key in Breakpoint]?: PrimitiveValue
 };
 export type Value = PrimitiveValue | BreakpointValue;
 export type BreakpointPropsValues<T extends string> = {[key in T]?: PrimitiveValue}
-export type BreakpointValues<T extends string> = Record<Breakpoint, PrimitiveValue | null | undefined | BreakpointPropsValues<T>>
+export type BreakpointValues<T extends string> = {
+    [key in Breakpoint]?: PrimitiveValue | null | undefined | BreakpointPropsValues<T>
+}
 
 export const Value = [String, Number, Object];
 export const PrimitiveValue = [String, Number];

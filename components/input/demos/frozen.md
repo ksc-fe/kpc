@@ -9,7 +9,7 @@ order: 7
 本例中，上面的`Input`你接着输入`d`，`value`会立即更新成`#dddddd`，但是下面的`Input`不会
 
 ```vdt
-import {Input} from 'kpc/components/input';
+import {Input} from 'kpc';
 
 <div>
     <Input value={this.get('value')} ev-input={this.onInput} />
@@ -25,7 +25,7 @@ import {Input} from 'kpc/components/input';
 
 ```ts
 import tinycolor from 'tinycolor2';
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     value: string

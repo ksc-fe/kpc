@@ -7,7 +7,7 @@ order: 1.01
 单独控制互不影响，此时你可以指定`checkedKeys`自由控制`checkbox`选中状态
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
 <Tree data={this.get('data')} 
     checkbox

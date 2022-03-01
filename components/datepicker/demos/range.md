@@ -6,7 +6,7 @@ order: 6
 给组件添加`range`属性，可以选择日期范围
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker range v-model="date" clearable />
@@ -22,4 +22,25 @@ import {Datepicker} from 'kpc/components/datepicker';
     You selected: {JSON.stringify(this.get('month'))}
     <br /><br />
 </div>
+```
+
+```ts
+interface Props {
+    date?: [string, string] | null
+    time?: [string, string] | null
+    year?: [string, string] | null
+    month?: [string, string] | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            date: null,
+            time: null,
+            year: null,
+            month: null,
+        } as Props;
+    }
+}
 ```

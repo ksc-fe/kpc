@@ -1,0 +1,50 @@
+import {makeStyles} from './styles';
+import {Row, Col} from 'kpc';
+
+<div class={makeStyles()} style={{background: this.get('bgColor')}}>
+    <div class="footer-box">
+        <div class="footer-table">
+            <Row class="footer-logo-box">
+                <Col span="24"><div class="logo"></div></Col>
+            </Row>
+            <Row class="info-box">
+                <Col class="info-left" span="12">
+                    <div class="title">一个设计系统，为企业提效而生</div>
+                    <div>
+                        <span>联系我们</span>
+                        <span>关注我们</span>
+                    </div>
+                </Col>
+                <Col class="info-right" span="12">
+                    <Row class="quick-access-box">
+                        <Col span="24">
+                            <div class="title">快速访问</div>
+                            <div class="link-list">
+                                <div>组件语言</div>
+                                <div>开发</div>
+                                <div>设计</div>
+                                <div>资源</div>
+                                <div>解决方案</div>
+                                <div>Color-Process</div>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span="24">
+                            <div class="title">生态</div>
+                            <div class="link-list">
+                                <div>KingVision</div>
+                                <div>金山云</div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+            <Row>
+                <Col span="24" class="copy-right-info">
+                    ©北京金山云网络技术有限公司   2021 Ksyun All Rights Reserved Kingsoft Corp.      京ICP证120829号      京ICP备 12032080号
+                </Col>
+            </Row>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,7 @@ order: 0
 、滚动进行选择
 
 ```vdt
-import {ScrollSelect} from 'kpc/components/scrollSelect';
+import {ScrollSelect} from 'kpc';
 
 <ScrollSelect
     data={this.get('data')}
@@ -26,7 +26,8 @@ export default class extends Component {
     static defaults() {
         return {
             data: Array.apply(null, {length: 12} as unknown[])
-                .map((v, i) => ({label: i + 1 + '月', value: i}))
+                .map((v, i) => ({label: i + 1 + '月', value: i})),
+            value: 0
         };
     }
 }

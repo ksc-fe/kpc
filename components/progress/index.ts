@@ -6,21 +6,21 @@ import {useColor} from './useColor';
 type Sizes = 'default' | 'small' | 'mini';
 type Type = 'bar' | 'circle';
 type Status = 'active' | 'success' | 'error' | 'normal' | 'warning';
-type percent = number | string;
-type color = {
-    percent: percent,
+type Percent = number | string;
+type Color = {
+    percent: Percent,
     color: string 
 };
 
 export interface ProgressProps {
     type?: Type,
-    percent?: percent,
+    percent?: Percent,
     size?: Sizes,
     showOuterText?: boolean,
     showInnerText?: boolean,
     status?: Status,
     strokeWidth?: number,
-    color?: string | color[] | ((percent: percent) => string)
+    color?: string | Color[] | ((percent: number) => string)
 };
 
 const typeDefs: Required<TypeDefs<ProgressProps>>  = {
@@ -58,7 +58,7 @@ export class Progress extends Component<ProgressProps> {
     }
 }
 
-function fixPercent(percent: number | string): number  {
+function fixPercent(percent: number | string): number {
     let _percent = Number(percent);
     if (_percent > 100) _percent = 100;
     if (_percent < 0) _percent = 0;

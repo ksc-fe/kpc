@@ -6,7 +6,7 @@ order: 8
 同时指定`filterable`和`creatable`支持筛选到不存在的条目时，创建新的选项供选择
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" filterable creatable style="margin-right: 10px">
@@ -31,4 +31,21 @@ import {Select, Option} from 'kpc/components/select';
     </Select>
     Days: {JSON.stringify(this.get('days'))}
 </div>
+```
+
+```ts
+interface Props {
+    day?: string | null
+    days?: string[]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            day: null,
+            days: [],
+        } as Props;
+    }
+}
 ```

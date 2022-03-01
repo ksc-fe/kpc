@@ -6,7 +6,7 @@ order: 7
 `size`指定尺寸：`large` `default` `small` `mini`
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" size="large">
@@ -51,4 +51,19 @@ import {Select, Option} from 'kpc/components/select';
 ```styl
 .k-select
     margin-right 10px
+```
+
+```ts
+interface Props {
+   day?: string | null
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            day: null
+        } as Props;
+    }
+}
 ```

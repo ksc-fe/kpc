@@ -1,0 +1,21 @@
+import {Button, Icon} from 'kpc';
+import {makeStyles} from './styles';
+
+const {
+    buttonStatus, contentInput, iconPosition
+} = this.get();
+
+const innerButton = () => {
+    const buttonContent = <span>{contentInput}</span>
+    const buttonIcon = <Icon class="icon ion-plus"></Icon>
+    const isLeft = iconPosition == 'left'
+    
+    return <Button type={buttonStatus}>
+        {isLeft ? buttonIcon : buttonContent}
+        {isLeft ? buttonContent : buttonIcon}
+    </Button>
+}
+
+<div class={makeStyles()}>
+    {innerButton()}
+</div>

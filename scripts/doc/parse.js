@@ -12,18 +12,12 @@ const renderer = new marked.Renderer();
 const codeRenderer = renderer.code;
 
 renderer.table = (header, body) => {
-    return `<div class="k-table k-border">
+    return `<div class="k-table k-grid">
         <div class="k-table-wrapper">
-            <div class="k-thead">
-                <table>
-                    <thead>${header}</thead>
-                </table>
-            </div>
-            <div class="k-tbody">
-                <table>
-                    <tbody>${body}</tbody>
-                </table>
-            </div>
+            <table>
+                <thead>${header}</thead>
+                <tbody>${body}</tbody>
+            </table>
         </div>
     </div>`
 };
@@ -57,7 +51,12 @@ function handleFiles(files, dest) {
         };
         const {html, codes, catalogs} = parseMarkdown(fileObj, contents);
 
-        await generateFiles(fileObj, codes, html, metadata, catalogs);
+        try {
+            await generateFiles(fileObj, codes, html, metadata, catalogs);
+        } catch (e) {
+            console.error(file);
+            console.error(e);
+        }
 
         return {metadata, file: fileObj, catalogs};
     }));
@@ -135,14 +134,30 @@ function getAllCodes(file) {
 
 function getAllCatalogs(file) {
     let catalogs = [];
+    let stack = [''];
+    let prevLevel = 0;
     renderer.heading = function(text, level, raw) {
         const id = encodeURIComponent(raw);
-        let result = `<h${level} id='${id}'>${text}</h${level}>`;
+        let parentId;
+        if (level === prevLevel + 1) {
+            parentId = stack[prevLevel];
+            stack.push(`${parentId}${id}`);
+            prevLevel++;
+        } else {
+            if (level < prevLevel) {
+                stack.pop();
+                prevLevel--;
+            }
+            parentId = stack[prevLevel - 1];
+            stack[prevLevel] = `${parentId}${id}`;
+        }
+        const actualId = `${parentId}${id}`;
+        let result = `<h${level} id='${actualId}'>${text}</h${level}>`;
         if (!file.isDemo && level < 4) {
             catalogs.push({
                 text: text,
                 level: level,
-                id: id,
+                id: actualId,
             });
         }
         return result;
@@ -250,7 +265,7 @@ function writeIndex(file, metadata) {
         `    const file = keys[i];`,
         `    if (!file.startsWith('.')) continue;`,
         `    // if we found demo.js then ignore index.js`,
-        `    if (/demo\.js$/.test(file)) i++;`,
+        `    if (/demo\.ts$/.test(file)) i++;`,
         `    demos.push(r(file));`,
         `}`,
         ``,
@@ -268,14 +283,13 @@ function writeIndex(file, metadata) {
 
 function writeIframe(file, height) {
     return Promise.all([
-        writeFile(path.join(file.path, 'demo.js'), [
+        writeFile(path.join(file.path, 'demo.ts'), [
             `export {default as data} from './index.json';`,
-            `import Intact from 'intact';`,
+            `import {Component} from 'intact';`,
             ``,
-            `export default class extends Intact {`,
-            `    @Intact.template()`,
+            `export default class extends Component {`,
             `    static template = \`<div class="browser-mockup">`,
-            `        <iframe height="${height}" src="/iframe/${file.relative}/"></iframe>`,
+            `        <iframe height="${height}" src="/demo/${file.relative}/"></iframe>`,
             `    </div>\`;`,
             `}`,
         ].join('\n')),
@@ -427,7 +441,7 @@ function generateOtherCodes(vdt, ts, hasMap, codeSnippetMap, codes) {
     if (!hasVue) {
         const code3 = {
             language: 'vue',
-            content: toVue3(vdt, ts, vueScript, vueNextTemplate, vueMethods, vueData, tsHead, hasStylus),
+            content: toVue3(vdt, ts, vueScript, vueTemplate, vueMethods, vueData, tsHead, hasStylus),
             filename: 'next.vue',
         };
         const code2 = {
@@ -442,11 +456,11 @@ function generateOtherCodes(vdt, ts, hasMap, codeSnippetMap, codes) {
     }
 
     if (!hasReact) {
-        // codes.push({
-            // language: 'tsx',
-            // content: intact2react(vdt, ts, reactMethods, tsHead, hasStylus),
-            // filename: 'react.tsx',
-        // });
+        codes.push({
+            language: 'tsx',
+            content: intact2react(vdt, ts, reactMethods, tsHead, hasStylus),
+            filename: 'react.tsx',
+        });
     }
 
     if (!hasAngular) {

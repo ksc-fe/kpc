@@ -8,7 +8,7 @@ order: 2
 [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)
 
 ```vdt
-import {Upload} from 'kpc/components/upload';
+import {Upload} from 'kpc';
 
 <Upload multiple
     action="//fakestoreapi.com/products"
@@ -19,16 +19,14 @@ import {Upload} from 'kpc/components/upload';
 />
 ```
 
-```js
-import {Dialog} from 'kpc/components/dialog';
-import {Message} from 'kpc/components/message';
-import {bind} from 'kpc/components/utils';
+```ts
+import {Dialog, Message, bind, RequestError} from 'kpc';
 
 export default class extends Component {
     static template = template;
 
     @bind
-    _onError(err) {
+    _onError(err: Error | RequestError) {
         Message.error(err.message);
     }
 }

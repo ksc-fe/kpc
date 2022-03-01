@@ -14,7 +14,10 @@ order: 0
 import {Transfer} from 'kpc';
 
 <div>
-    <Transfer data={this.get('data')} v-model="value" ref="__test" />
+    <Transfer v-model="value"
+        data={this.get('data')} 
+        ref="__test"
+    />
     <p>You selected: {JSON.stringify(this.get('value'))}</p>
 </div>
 ```
@@ -24,7 +27,7 @@ import type {TransferDataItem} from 'kpc';
 
 interface Props {
     data: TransferDataItem[]
-    value: number[]
+    value?: number[]
 }
 
 const data = [
@@ -45,27 +48,4 @@ export default class extends Component<Props> {
         }
     }
 }
-```
-
-```vue-data
-data() {
-    return {
-        data: data,
-        value: [0, 1]
-    }
-},
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data: data,
-        value: [0, 1]
-    };
-}
-```
-
-```angular-properties
-private data = data;
 ```

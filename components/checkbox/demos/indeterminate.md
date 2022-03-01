@@ -8,7 +8,7 @@ order: 2
 ```vdt
 import {Checkbox} from 'kpc';
 
-const length = this.get('languages').length;
+const length = this.getLength();
 
 <div>
     <Checkbox indeterminate={length > 0 && length < 3}
@@ -34,56 +34,46 @@ const length = this.get('languages').length;
 import {bind} from 'kpc';
 
 interface Props {
-    languages: string[]
+    languages?: string[]
     options: string[]
 }
 
 export default class extends Component<Props> {
     static template = template;
 
-    static defaults = () => ({
-        // 必须初始化为数组
-        languages: [],
-        options: ['Javascript', 'C++', 'PHP'],
-    });
+    static defaults() {
+        return {
+            // 必须初始化为数组
+            languages: [],
+            options: ['Javascript', 'C++', 'PHP'],
+        } as Props;
+    };
 
     @bind
-    _toggleSelectAll(checked: boolean) {
+    _toggleSelectAll(checked?: boolean) {
         if (checked) {
             this.set('languages', ['Javascript', 'C++', 'PHP']);
         } else {
             this.set('languages', []);
         }
     }
-}
-```
 
-```vue-template
-<div>
-    <Checkbox :indeterminate="length > 0 && length < 3"
-        :value="length === 3"
-        @$change:value="_toggleSelectAll"
-    >全选</Checkbox>
-    <hr />
-    <Checkbox v-for="(value, key) in options"
-        name="languages" 
-        :trueValue="value"
-        v-model="languages"
-    >{{ value }}</Checkbox>
-    Your selected: {{ languages }}
-</div>
+    getLength() {
+        return this.get('languages')!.length;
+    }
+}
 ```
 
 ```vue-script
 computed: {
-    length() {
-        return this.languages.length;
+    length(): number {
+        return this.getLength();
     }
 },
 ```
 
 ```angular-methods
 get length() {
-    return this.languages.length;
+    return this.getLength();
 }
 ```

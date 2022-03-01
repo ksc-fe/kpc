@@ -1,7 +1,7 @@
 import BasicDemo from '~/components/switch/demos/basic';
 import ValueDemo from '~/components/switch/demos/value';
 import WidthHeightDemo from '~/components/switch/demos/widthHeight';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 
 describe('Switch', () => {
     afterEach(() => {unmount()});
@@ -42,7 +42,7 @@ describe('Switch', () => {
         dispatchEvent(document, 'mouseup', {clientX: 1});
         await wait();
         expect(element.outerHTML).to.matchSnapshot();  
-        expect(instance.get('value')).to.be.undefined;
+        expect(instance.get('value')).to.be.false;
 
         dispatchEvent(el, 'mousedown', {which: 1, clientX: 0});
         dispatchEvent(document, 'mousemove', {clientX: 30});

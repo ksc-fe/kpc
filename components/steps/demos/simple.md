@@ -6,8 +6,7 @@ order: 3
 设置`type`属性值为`simple`，可以展示简洁样式的步骤条
 
 ```vdt
-import {Steps, Step} from 'kpc/components/steps';
-import {Button} from 'kpc/components/button';
+import {Steps, Step, Button} from 'kpc';
 
 <div>
     <Steps v-model="index" type="simple">
@@ -37,10 +36,10 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
-    index: number
+    index?: number
 }
 
 export default class extends Component<Props> {
@@ -54,12 +53,12 @@ export default class extends Component<Props> {
 
     @bind
     previous() {
-        this.set('index', this.get('index') - 1);
+        this.set('index', this.get('index')! - 1);
     }
 
     @bind
     next() {
-        this.set('index', this.get('index') + 1);
+        this.set('index', this.get('index')! + 1);
     }
 }
 ```

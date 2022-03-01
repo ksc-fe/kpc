@@ -6,7 +6,7 @@ order: 0
 组件接收任意合法的颜色字符串当做`value`值
 
 ```vdt
-import {Colorpicker} from 'kpc/components/colorpicker';
+import {Colorpicker} from 'kpc';
 
 <div>
     <Colorpicker v-model="color" />

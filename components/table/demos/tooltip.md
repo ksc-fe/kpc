@@ -8,7 +8,7 @@ order: 23
 组件会将当前行的数据和索引传入该扩展点
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <Table 
     data={[

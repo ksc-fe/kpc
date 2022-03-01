@@ -56,7 +56,7 @@ function parseStep(step: StepComponentProps['step'], defaultValue: number): GetS
                     const prevBreakpoint = breakpoints[i - 1];
                     if (value < breakpoint.value) {
                         return [
-                            (step as StepObject)[breakpoint.key as keyof StepObject],
+                            (step as StepObject)[breakpoint.key as keyof StepObject]!,
                             prevBreakpoint && prevBreakpoint.value
                         ];
                     }
@@ -66,13 +66,13 @@ function parseStep(step: StepComponentProps['step'], defaultValue: number): GetS
                             const nextBreakpoint = breakpoints[i + 1];
                             if (nextBreakpoint !== undefined) {
                                 return [
-                                    (step as StepObject)[nextBreakpoint.key as keyof StepObject],
+                                    (step as StepObject)[nextBreakpoint.key as keyof StepObject]!,
                                     breakpoint.value
                                 ];
                             }
                         }
                         return [
-                            (step as StepObject)[breakpoint.key as keyof StepObject],
+                            (step as StepObject)[breakpoint.key as keyof StepObject]!,
                             prevBreakpoint && prevBreakpoint.value
                         ];
                     }

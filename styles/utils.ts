@@ -1,5 +1,5 @@
 import {isObject} from 'intact-shared';
-import {Theme} from './theme';
+import {Theme, theme} from './theme';
 import tinycolor from 'tinycolor2';
 
 export function deepDefaults<T, U>(source: T, defaults: U): T & U;

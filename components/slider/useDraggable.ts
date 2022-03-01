@@ -10,7 +10,7 @@ export function useDraggable(
     triggerChangeEvent: (value: Value) => void,
     showTooltip: () => void,
 ) {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
     const trackRef = createRef<HTMLDivElement>();
     const firstThumbRef = createRef<HTMLDivElement>();
     const secondThumbRef = createRef<HTMLDivElement>();
@@ -25,6 +25,8 @@ export function useDraggable(
         },
 
         onEnd() {
+            if (instance.$unmounted) return;
+
             (isFirst ? firstThumbRef.value : secondThumbRef.value)!.blur();
             showValue.set(instance.get('value')!);
             triggerChangeEvent(oldValue);
@@ -59,9 +61,9 @@ export function useDraggable(
     }
 
     function getNewValue(value: number): Value {
-        const {isRange, value: oldValue} = instance.get();
+        const {range, value: oldValue} = instance.get();
 
-        if (!isRange) return value;
+        if (!range) return value;
 
         const [min, max] = oldValue as [number, number];
         if (isFirst) {

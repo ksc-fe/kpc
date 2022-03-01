@@ -4,7 +4,7 @@ import type {Cascader, CascaderData} from './';
 export function useLoad() {
     const instance = useInstance() as Cascader;
 
-    async function loadData(item: CascaderData) {
+    async function loadData(item: CascaderData<any>) {
         const {loadData} = instance.get();
         if (!loadData) return;
 

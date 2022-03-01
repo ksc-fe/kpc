@@ -1,39 +1,42 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
-const {carousel} = deepDefaults(theme, {
-    carousel: {
-        get transition() { return theme.transition.large },
-        height: `300px`,
+const defaults = {
+    get transition() { return theme.transition.large },
+    height: `300px`,
 
-        indicator: {
-            bottom: `8px`,
-            height: `20px`,
-        },
-        dot: {
-            paddingTop: `8px`,
-            margin: `0 2px`,
-            height: `3px`,
-            width: `16px`,
-            opacity: `.3`,
-            bgColor: `#fff`,
-            active: {
-                opacity: `1`,
-                width: `24px`,
-            }
-        },
-
-        arrow: {
-            bgColor: `rgba(0, 0, 0, .5)`,
-            color: `#fff`,
-            opacity: `.5`,
-            hoverOpacity: `1`,
-            left: `10px`,
-            right: `10px`,
+    indicator: {
+        bottom: `8px`,
+        height: `20px`,
+    },
+    dot: {
+        paddingTop: `8px`,
+        margin: `0 2px`,
+        height: `3px`,
+        width: `16px`,
+        opacity: `.3`,
+        bgColor: `#fff`,
+        active: {
+            opacity: `1`,
+            width: `24px`,
         }
+    },
+
+    arrow: {
+        bgColor: `rgba(0, 0, 0, .5)`,
+        color: `#fff`,
+        opacity: `.5`,
+        hoverOpacity: `1`,
+        left: `10px`,
+        right: `10px`,
     }
+};
+
+let carousel: any;
+setDefault(() => {
+    carousel = deepDefaults(theme, {carousel: defaults}).carousel;
 });
 
 export function makeStyles() {

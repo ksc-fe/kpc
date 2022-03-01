@@ -69,7 +69,7 @@ export function useSlide(
             const length = getItems().length;
             if (oldIndex === length - 1 && newIndex === 0) {
                 // the current item is the last one and the next item is the first one,
-                // we set translate to the first cloned item without transition immediately
+                // we set translate to the first cloned item immediately without transition
                 await setTranslate(itemsWithCloned[0], false);
             } else if (oldIndex === 0 && newIndex === length - 1) {
                 await setTranslate(itemsWithCloned[itemsWithCloned.length - 1], false);
@@ -80,6 +80,8 @@ export function useSlide(
     }
 
     async function setTranslate(item: VNodeComponentClass<CarouselItem>, withTranstion: boolean) {
+        if (instance.$unmounted) return;
+
         if (!withTranstion) {
             stopTranstion();
         }

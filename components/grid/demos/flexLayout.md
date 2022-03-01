@@ -7,7 +7,7 @@ order: 4
 `start` `end` `center` `between` `around` `evenly`
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
     <h4>居左 start</h4>

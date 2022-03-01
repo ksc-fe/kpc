@@ -11,6 +11,7 @@ import {linkEvent} from 'intact';
 import {context as TableContext} from './useColumns';
 import {context as ResizableContext} from './useResizable';
 import {context as FixedColumnsContext} from './useFixedColumns';
+import {stopPropagation} from '../utils';
 
 const {title, fixed, group, multiple, key, sortable, cols, rows} = this.get();
 const {onSelect, isChecked, getGroupText} = this.group;
@@ -61,7 +62,9 @@ const {onSelect, isChecked, getGroupText} = this.group;
                                                     position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
                                                     key="dropdown"
                                                 >
-                                                    <Button icon size="mini" class="k-table-group">
+                                                    <Button icon size="mini" class="k-table-group"
+                                                        ev-click={stopPropagation}
+                                                    >
                                                         <Icon class="ion-android-arrow-dropdown" />
                                                     </Button>
                                                     <DropdownMenu class={{"k-table-group-dropdown": true, [makeGroupMenuStyles()]: true}}>

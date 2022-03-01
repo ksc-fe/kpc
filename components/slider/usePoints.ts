@@ -71,10 +71,10 @@ export function usePoints(
     } 
 
     function addActive() {
-        const {isRange} = instance.get();
+        const {range} = instance.get();
         const value = showValue.value;
         points.forEach(point => {
-            point.active = !isRange ?
+            point.active = !range ?
                 point.value <= (value as number) :
                 point.value >= (value as [number, number])[0] &&
                 point.value <= (value as [number, number])[1];

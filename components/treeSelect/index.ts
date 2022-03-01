@@ -10,20 +10,25 @@ import {useReceive} from '../../hooks/useReceive';
 import {useValue} from './useValue';
 import {bind} from '../utils';
 
-export interface TreeSelectProps extends BaseSelectProps {
-    value?: Key | Key[],
-    data?: TreeProps['data']
-    uncorrelated?: TreeProps['uncorrelated'] 
-    load?: TreeProps['load']
-    showLine?: TreeProps['showLine']
-    defaultExpandAll?: TreeProps['defaultExpandAll']
-    checkbox?: TreeProps['checkbox']
-    filter?: (keywords: string, data: DataItem) => boolean
+export interface TreeSelectProps<
+    K extends Key = Key,
+    Multipe extends boolean = boolean,
+    Checkbox extends boolean = boolean,
+> extends BaseSelectProps<K, Multipe, Checkbox extends true ? K [] : K | null> {
+    // value?: Multipe extends true ? K[] : Checkbox extends true ? K[] :  K | null
+    // multiple?: Checkbox extends true ? true : Multipe,
+    data?: TreeProps<K>['data']
+    uncorrelated?: boolean
+    load?: TreeProps<K>['load']
+    showLine?: boolean
+    defaultExpandAll?: boolean
+    checkbox?: Checkbox
+    filter?: (keywords: string, data: DataItem<K>) => boolean
 }
 
 export interface TreeSelectEvents extends BaseSelectEvents { }
 
-export interface TreeSelectBlocks extends BaseSelectBlocks { }
+export interface TreeSelectBlocks<K> extends BaseSelectBlocks<K> { }
 
 const typeDefs: Required<TypeDefs<TreeSelectProps>> = {
     ...BaseSelect.typeDefs,
@@ -42,7 +47,15 @@ const defaults = (): Partial<TreeSelectProps> => ({
     showLine: true,
 });
 
-export class TreeSelect extends BaseSelect<TreeSelectProps, TreeSelectEvents, TreeSelectBlocks> {
+export class TreeSelect<
+    K extends Key = Key,
+    Checkbox extends boolean = false,
+    Multipe extends boolean = Checkbox extends true ? true : false,
+> extends BaseSelect<
+    TreeSelectProps<K, Multipe, Checkbox>,
+    TreeSelectEvents,
+    TreeSelectBlocks<K>
+> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -56,7 +69,7 @@ export class TreeSelect extends BaseSelect<TreeSelectProps, TreeSelectEvents, Tr
         // if we get checkbox is true, set mutiple to true forcely
         useReceive<this>(['checkbox', 'multiple'], () => {
             if (this.get('checkbox')) {
-                this.set('multiple', true, {silent: true});
+                this.set<true>('multiple', true, {silent: true});
             }
         });
     }
@@ -73,7 +86,7 @@ export class TreeSelect extends BaseSelect<TreeSelectProps, TreeSelectEvents, Tr
 
         let label: Children | Children[];
         let counts = 0;
-        const loop = (children: DataItem[]): DataItem | undefined => {
+        const loop = (children: DataItem<K>[]): DataItem<K> | undefined => {
             return children.find(item => {
                 if (!multiple) {
                     if (item.key === value) {
@@ -106,7 +119,7 @@ export class TreeSelect extends BaseSelect<TreeSelectProps, TreeSelectEvents, Tr
     }
 
     @bind
-    private filter(data: DataItem) {
+    private filter(data: DataItem<K>) {
         let keywords = this.input.keywords.value;
         if (!keywords) return true;
 

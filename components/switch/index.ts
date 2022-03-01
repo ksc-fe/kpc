@@ -5,13 +5,13 @@ import {bind} from '../utils';
 import {useDraggable} from './useDraggable';
 import type {Events} from '../types';
 
-export interface SwitchProps {
+export interface SwitchProps<True = any, False = any> {
     name?: string
     on?: string 
     off?: string 
-    value?: boolean
-    trueValue?: any
-    falseValue?: any
+    value?: True | False 
+    trueValue?: True 
+    falseValue?: False 
     width?: number | string
     height?: number | string
     size?: Sizes
@@ -57,7 +57,7 @@ interface MouseEventWithIgnore extends MouseEvent {
     _switchIgnore?: boolean
 }
 
-export class Switch extends Component<SwitchProps, SwitchEvents, SwitchBlocks> {
+export class Switch<True = true, False = false> extends Component<SwitchProps<True, False>, SwitchEvents, SwitchBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

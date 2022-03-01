@@ -8,51 +8,62 @@ order: 7
 > 仅限首次渲染`Tree`时生效，后续添加节点不会默认展开
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
 <Tree
     defaultExpandAll
-    data={[
-        {
-            label: 'First floor-1',
-            children: [
+    data={this.get('data')}
+/>
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            data: [
                 {
-                    label: 'Second floor-1.1',
+                    label: 'First floor-1',
                     children: [
                         {
-                            label: 'Third floor-1.1.1'
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            label: 'First floor-2',
-            key: '2',
-            children: [
-                {
-                    label: 'Second floor-2.1',
-                    children: [
-                        {
-                            label: 'Third floor-2.1.1',
-                            key: '2-1' 
-                        },
-                        {
-                            label: 'Third floor-2.1.2'
+                            label: 'Second floor-1.1',
+                            children: [
+                                {
+                                    label: 'Third floor-1.1.1'
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    label: 'Second floor-2.2',
-                    disabled: true,
+                    label: 'First floor-2',
+                    key: '2',
                     children: [
                         {
-                            label: 'Third floor-2.2.1'
+                            label: 'Second floor-2.1',
+                            children: [
+                                {
+                                    label: 'Third floor-2.1.1',
+                                    key: '2-1' 
+                                },
+                                {
+                                    label: 'Third floor-2.1.2'
+                                }
+                            ]
+                        },
+                        {
+                            label: 'Second floor-2.2',
+                            disabled: true,
+                            children: [
+                                {
+                                    label: 'Third floor-2.2.1'
+                                }
+                            ]
                         }
                     ]
                 }
             ]
         }
-    ]}
-/>
+    }
+}
 ```

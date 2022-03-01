@@ -12,14 +12,13 @@ import TooltipDemo from '~/components/table/demos/tooltip';
 import TreeDemo from '~/components/table/demos/tree';
 import DisabledDemo from '~/components/table/demos/disableRow';
 import ScrollToRowDemo from '~/components/table/demos/scrollToRow';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Component} from 'intact';
 import {Table, TableColumn} from './';
 import DraggableTable from '~/components/table/demos/draggable';
 import MergeCellDemo from '~/components/table/demos/mergeCell';
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Icon} from '../icon';
-// import Vue from 'vue';
 import {useChecked, AllCheckedStatus} from './useChecked';
 
 describe('Table', () => {
@@ -464,7 +463,7 @@ describe('Table', () => {
         });
         dispatchEvent(tr2, 'dragend');
 
-        await wait(300);
+        await wait(500);
         expect(element.innerHTML).to.matchSnapshot();
     });
 

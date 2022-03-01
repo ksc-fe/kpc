@@ -7,7 +7,7 @@ order: 1
 可以单独禁用该项
 
 ```vdt
-import {Cascader} from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <div>
     <Cascader data={this.get('data')} disabled/>

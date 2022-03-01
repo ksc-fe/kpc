@@ -14,11 +14,11 @@ order: 22
 > 对于合并了表头和单元格的表格，不支持导出（csv格式文件不能合并单元格）
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-import {Button} from 'kpc/components/button';
+import {Table, TableColumn} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
-    <Button type="primary" ev-click={this.export}>导出表格</Button>
+    <Button type="primary" ev-click={this.exportTable}>导出表格</Button>
     <Button type="primary" ev-click={this.exportData}>导出自定义数据</Button>
     <Table data={this.get('data')} ref="table">
         <TableColumn title="定义该列单元格内容" key="a">
@@ -50,7 +50,7 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;
@@ -65,7 +65,7 @@ export default class extends Component {
     }
 
     @bind
-    export() {
+    exportTable() {
         this.refs.table.exportTable();
     }
 

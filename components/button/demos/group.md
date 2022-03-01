@@ -7,7 +7,7 @@ order: 1
 可以是按钮组纵向排列。给`ButtonGroup`添加`checkType`属性，可以使按钮组拥有单选或复选能力。
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup>
@@ -59,11 +59,19 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    city?: string
+    cities?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
-    static defaults = () => ({
-        city: 'beijing',
-        cities: [],
-    });
+
+    static defaults() {
+        return {
+            city: 'beijing',
+            cities: []
+        } as Props;
+    } 
 }
 ```

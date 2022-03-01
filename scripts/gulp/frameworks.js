@@ -26,13 +26,24 @@ function generateCopy(type) {
     const name = `copy@${type}`;
     tasks.push(name);
     gulp.task(name, () => {
-        let ret = gulp.src(['./es/**/*'], {base: './es', root})
+        let ret = gulp.src([
+            './es/@(components|hooks|i18n|styles)/**/*',
+            './es/index*'
+        ], {base: './es', root})
             .pipe(tap(file => {
                 const extname = path.extname(file.path);
                 if (extname === '.js' || extname === '.ts') {
-                    const contents = file.contents.toString('utf-8');
                     const intact = `intact-${type}`;
-                    file.contents = Buffer.from(contents.replace(/['"]intact["']/, `'${intact}'`));
+
+                    contents = file.contents.toString('utf-8');
+                    contents = contents.replace(/['"]intact["']/, `'${intact}'`);
+
+                    const filePath = path.relative(path.resolve(root, './es'), file.path);
+                    if (filePath === 'index.js' || filePath === 'index.d.ts') {
+                        contents += `\n\nexport {normalize} from '${intact}';`;
+                    }
+
+                    file.contents = Buffer.from(contents);
                 }
             }));
 

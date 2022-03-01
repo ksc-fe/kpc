@@ -4,7 +4,7 @@ import {inArray} from './useChecked';
 import {toggleArray} from '../utils';
 
 export function useSelected() {
-    const instance = useInstance() as Table;
+    const instance = useInstance() as Table<any, TableRowKey>;
 
     function isSelected(key: TableRowKey) {
         return inArray(instance.get('selectedKeys'), key);

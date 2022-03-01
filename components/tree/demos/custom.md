@@ -53,7 +53,7 @@ const data = this.get('data');
 import {bind, TreeDataItem, TreeNode} from 'kpc';
 
 interface Props {
-    data: TreeDataItem[]
+    data: TreeDataItem<string | number>[]
 }
 
 let uniqueId = 0;
@@ -107,7 +107,7 @@ export default class extends Component<Props> {
     }
 
     @bind
-    append(data: TreeDataItem, node: TreeNode, index: number, e: Event) {
+    append(data: TreeDataItem<string | number>, node: TreeNode<string>, index: number, e: Event) {
         e.stopPropagation();
 
         const children = data.children || (data.children = []);
@@ -115,35 +115,35 @@ export default class extends Component<Props> {
             label: 'Appended node',
             key: uniqueId++,
         });
-        this.set('data', [
+        this.set({data: [
             ...this.get('data')
-        ]);
+        ]});
 
         // expand the node
         this.refs.tree.expand(node.key);
     }
 
     @bind
-    remove(data: TreeDataItem, node: TreeNode, index: number, e: Event) {
+    remove(data: TreeDataItem<string>, node: TreeNode<string>, index: number, e: Event) {
         e.stopPropagation();
 
         const children = node.parent ? node.parent.data.children : this.get('data');
         children!.splice(index, 1);
-        this.set('data', [
+        this.set({data: [
             ...this.get('data'),
-        ]);
+        ]});
     }
 
     @bind
     appendToRoot() {
         const data = this.get('data');
-        this.set('data', [
+        this.set({data: [
             ...data,
             {
                 label: 'Appended root node',
                 key: uniqueId++,
             }
-        ]);
+        ]});
     }
 }
 ```

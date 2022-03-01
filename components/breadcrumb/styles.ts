@@ -1,17 +1,20 @@
 import {css, cx} from '@emotion/css';
 import {deepDefaults, darken} from '../../styles/utils';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
 
-const {breadcrumb} = deepDefaults(theme, {
-    breadcrumb: {
-        fontSize: '14px',
-        get color() { return theme.color.lightBlack },
-        get hoverColor() {return theme.color.primary },
-        gap: '6px',
-        activeFontWeight: 'normal',
-        activeColor: `#262626`,
-    }
+const defaults = {
+    fontSize: '14px',
+    get color() { return theme.color.lightBlack },
+    get hoverColor() {return theme.color.primary },
+    gap: '6px',
+    activeFontWeight: 'normal',
+    activeColor: `#262626`,
+};
+
+let breadcrumb: any;
+setDefault(() => {
+    breadcrumb = deepDefaults(theme, {breadcrumb: defaults}).breadcrumb;
 });
 
 export default function makeStyles() {

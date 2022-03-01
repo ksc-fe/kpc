@@ -9,16 +9,16 @@ order: 0.2
 > `width`优先级高于`size`
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
-import {Dialog} from 'kpc/components/dialog';
+import {Button, ButtonGroup, Dialog} from 'kpc';
 
 <div>
     <ButtonGroup>
-        <template v-for={['large', 'default', 'small', 'mini']}>
+        <template v-for={this.get('sizes')}>
             <Button ev-click={this.set.bind(this, `show${$value}`, true)}>Show{' '}{$value}{' '}Dialog</Button>
-            <Dialog v-model={`show${$value}`} title="Dialog Title" size={$value}>
-                Size: {$value}
-            </Dialog>
+            <Dialog v-model={`show${$value}`}
+                title="Dialog Title"
+                size={$value}
+            >Size: {$value}</Dialog>
         </template>
     </ButtonGroup>
     <br /><br />
@@ -29,14 +29,29 @@ import {Dialog} from 'kpc/components/dialog';
 </div>
 ```
 
-```vue-data
-data() {
-    return {
-        showlarge: false,
-        showdefault: false,
-        showsmall: false,
-        showmini: false,
-        customSize: false,
+```ts
+import type {DialogProps} from 'kpc';
+
+interface Props {
+    sizes: NonNullable<DialogProps['size']>[]
+    showlarge?: boolean 
+    showdefault?: boolean
+    showsmall?: boolean
+    showmini?: boolean
+    customSize?: boolean
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            sizes: ['large', 'default', 'small', 'mini'],
+            showlarge: false,
+            showdefault: false,
+            showsmall: false,
+            showmini: false,
+            customSize: false
+        } as Props;
     }
-},
+}
 ```

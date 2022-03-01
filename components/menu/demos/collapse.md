@@ -9,8 +9,20 @@ order: 2
 import {Menu, MenuItem, Switch, Icon} from 'kpc';
 
 <div>
-    <Switch on="收起" off="展开" v-model="isCollapse" width="60" trueValue={true} falseValue={false} style="margin-right: 16px;" />
-    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
+    <Switch v-model="collapse"
+        on="收起"
+        off="展开"
+        width="60"
+        style="margin-right: 16px;"
+    />
+    <Switch value={this.get('theme')}
+        ev-$change:value={this.setTheme}
+        on="light"
+        off="dark"
+        width="60"
+        trueValue="light"
+        falseValue="dark"
+    />
     <br /><br />
     <Menu v-model:expandedKeys="expandedKeys" 
         collapse={this.get('collapse')}
@@ -40,10 +52,9 @@ import {Menu, MenuItem, Switch, Icon} from 'kpc';
 ```
 
 ```ts
-interface Props {
-    expandedKeys: string[]
-    collapse: boolean
-}
+import {MenuProps, bind} from 'kpc';
+
+interface Props extends MenuProps { }
 
 export default class extends Component<Props> {
     static template = template;
@@ -52,7 +63,13 @@ export default class extends Component<Props> {
         return {
             expandedKeys: ['3'],
             collapse: false,
-        };
+            theme: 'dark'
+        } as MenuProps;
+    }
+
+    @bind
+    setTheme(theme?: string) {
+        this.set('theme', theme as MenuProps['theme']);
     }
 }
 ```

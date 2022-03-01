@@ -9,7 +9,7 @@ order: 0
 > 选中状态的判定条件是`value === trueValue || value.indexOf(trueValue)`，对于值为对象的情况要注意。
 
 ```vdt
-import {Checkbox} from 'kpc/components/checkbox';
+import {Checkbox} from 'kpc';
 
 <div>
     <Checkbox v-model="value">checkbox</Checkbox>
@@ -21,4 +21,19 @@ import {Checkbox} from 'kpc/components/checkbox';
 ```styl
 .k-checkbox
     margin-right 20px
+```
+
+```ts
+interface Props {
+    value?: boolean
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value: false
+        }
+    }
+}
 ```

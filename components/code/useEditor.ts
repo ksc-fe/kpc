@@ -4,6 +4,7 @@ import {useState} from '../../hooks/useState';
 import type {editor} from 'monaco-editor';
 import {isNullOrUndefined} from 'intact-shared';
 import {useResizeObserver} from '../../hooks/useResizeObserver';
+import {crossDomainWorker} from './crossDomain';
 
 export function useEditor() {
     const instance = useInstance() as Code;
@@ -16,7 +17,8 @@ export function useEditor() {
         import('monaco-editor').then(monaco => {
             if (instance.$unmounted) return;
 
-            console.log(monaco);
+            crossDomainWorker();
+
             const {value, language, theme, readOnly, options} = instance.get();
             const Editor = monaco.editor;
 
@@ -74,5 +76,9 @@ export function useEditor() {
         });
     }
 
-    return {elementRef, loading};
+    function getEditor() {
+        return codeEditor;
+    }
+
+    return {elementRef, loading, getEditor};
 }

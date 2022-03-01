@@ -6,7 +6,7 @@ order: 1
 给`Select`添加`disabled`禁用整个选择框选择；给`Option`添加`disabled`禁用该项选择
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" disabled>
@@ -46,8 +46,8 @@ import {Select, Option} from 'kpc/components/select';
 
 ```ts
 interface Props {
-    day: string | null
-    days: string[]
+    day?: string | null
+    days?: string[]
 }
 
 export default class extends Component<Props> {
@@ -56,7 +56,7 @@ export default class extends Component<Props> {
         return {
             day: null,
             days: ['Monday', 'Tuesday'],
-        };
+        } as Props;
     }
 }
 ```

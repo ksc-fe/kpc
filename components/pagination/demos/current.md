@@ -7,7 +7,7 @@ order: 4
 只会触发一次
 
 ```vdt
-import {Pagination} from 'kpc/components/pagination';
+import {Pagination} from 'kpc';
 
 <div>
     <Pagination total={200} 
@@ -24,12 +24,12 @@ import {Pagination} from 'kpc/components/pagination';
 ```
 
 ```ts
-import {Message, bind} from 'kpc';
+import {Message, bind, PaginationChangeData} from 'kpc';
 
 interface Props {
     value1: number
-    value2: number
-    limit: number
+    value2?: number
+    limit?: number
 }
 
 export default class extends Component<Props> {
@@ -40,18 +40,18 @@ export default class extends Component<Props> {
             value1: 1, 
             value2: 1,
             limit: 20
-        };
+        } as Props;
     }
 
     @bind
-    _fetch1(v: number) {
+    _fetch1(v?: number) {
         // fetch data
-        this.set('value1', v);
-        Message.info(`value page: ${v}`);
+        this.set('value1', v!);
+        Message.info(`value page: ${v!}`);
     }
 
     @bind
-    _fetch2({value, limit}: {value: number, limit: number}) {
+    _fetch2({value, limit}: PaginationChangeData) {
         Message.info(`value page: ${value}, limit: ${limit}`);
     }
 }

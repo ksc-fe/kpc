@@ -19,10 +19,10 @@ export interface PaginationProps {
 }
 
 export interface PaginationEvents {
-    change: [ChangeData] 
+    change: [PaginationChangeData] 
 }
 
-type ChangeData = {
+export type PaginationChangeData = {
     limit: number
     value: number
 }

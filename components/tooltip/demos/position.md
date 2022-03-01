@@ -9,11 +9,7 @@ order: 1
 > 参考`jQuery-UI`实现https://api.jqueryui.com/position/
 
 ```vdt
-import {Tooltip} from 'kpc/components/tooltip';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Form, FormItem} from 'kpc/components/form';
-import {Select, Option} from 'kpc/components/select';
-import {Spinner} from 'kpc/components/spinner';
+import {Tooltip, ButtonGroup, Button, Form, FormItem, Select, Option, Spinner} from 'kpc';
 
 <Form>
     <FormItem label="position:">
@@ -66,7 +62,7 @@ import {Spinner} from 'kpc/components/spinner';
                 always
                 value={true}
                 container=".opera"
-                canHover
+                hoverable
             >
                 <Button>at</Button>
             </Tooltip>
@@ -89,7 +85,7 @@ import {Spinner} from 'kpc/components/spinner';
 
 ```ts
 interface Props  {
-    position: string
+    position: 'left' | 'bottom' | 'right' | 'top' | 'custom'
     xAxisKeywords: string[]
     yAxisKeywords: string[]
     pos: Pos
@@ -122,7 +118,7 @@ export default class extends Component<Props> {
                 atY: 'top',
                 atYOffset: 0,
             },
-        }
+        } as Props;
     }
 
     getPosition() {

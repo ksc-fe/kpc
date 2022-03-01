@@ -9,7 +9,7 @@ order: 6
 > 选中的数据默认会在每一行的元素上有`k-checked`样式名
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div class='tables'>
     <Table data={[{a: 'A', b: 'B'}, {a: 'A', b: '点我不会选中整行'}]} rowCheckable={false}>

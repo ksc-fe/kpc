@@ -9,7 +9,7 @@ order: 0
 可以使用`v-model`进行双向绑定
 
 ```vdt
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc';
 
 <Collapse v-model="value">
     <CollapseItem title="设计语言" ev-show={this.onShow}>
@@ -29,12 +29,15 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
         原则顺序必须按照给定的顺序执行。也就是说，美不可以建立在清晰和效率之上，效率也不可以妥协于一致性之下，清晰永远都是第一优先级。在制定任何设计决策时都应按照设计原则，考虑优先级。
         设计由设计者的选择而决定，设计原则为设计者提供了选择依据，从众多存在矛盾或价值冲突的设计决策中找到平衡。
     </CollapseItem>
-    <div>hello world</div>
 </Collapse>
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

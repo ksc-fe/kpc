@@ -8,7 +8,7 @@ order: 1
 弹出更多错误提示。
 
 ```vdt
-import {Editable} from 'kpc/components/editable';
+import {Editable} from 'kpc';
 
 <div>
     <Editable v-model="value" validate={value => /\d+/.test(value)}
@@ -28,14 +28,14 @@ import {Editable} from 'kpc/components/editable';
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
+import {Message} from 'kpc';
 
 export default class extends Component {
     static template = template;
 
     static defaults() {
         return {
-            value: 100
+            value: '100' 
         };
     }
 
@@ -43,7 +43,7 @@ export default class extends Component {
         Message.error('Please enter digits.');
     }
 
-    _onChange(newValue: string, oldValue: string) {
+    _onChange(newValue: string, oldValue?: string) {
         console.log(newValue, oldValue);
     }
 }

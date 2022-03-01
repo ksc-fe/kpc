@@ -33,7 +33,10 @@ export function useValue(
         },
         function() {
             return 'second';
-        } 
+        },
+        function(dayjsValue, value) {
+            value.set(dayjsValue.slice(0));
+        }
     );
 
     setValue(getPlaceholderDates(), false);

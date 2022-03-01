@@ -25,11 +25,13 @@ module.exports = (config) => {
             // .end()
         .rule('babel')
             .test(/\.[jt]sx?$/)
+            // .test(/\.js$/)
             .exclude.add(/node_modules/).end()
             .use('babel')
                 .loader('babel-loader')
                 .options({
                     cacheDirectory: resolve('./.cache'),
+                    // rootMode: 'upward',
                 })
                 .end()
             .end()
@@ -95,20 +97,20 @@ module.exports = (config) => {
                 })
                 .end()
             .end()
-        .rule('vue')
-            .test(/\.vue$/)
-            // .use('thread')
-                // .merge(rules.get('babel').uses.get('thread').entries())
+        // .rule('vue')
+            // .test(/\.vue$/)
+            // // .use('thread')
+                // // .merge(rules.get('babel').uses.get('thread').entries())
+                // // .end()
+            // .use('vue')
+                // .loader('vue-loader')
+                // .options({
+                    // compilerOptions: {
+                        // preserveWhitespace: false,
+                    // }
+                // })
                 // .end()
-            .use('vue')
-                .loader('vue-loader')
-                .options({
-                    compilerOptions: {
-                        preserveWhitespace: false,
-                    }
-                })
-                .end()
-            .end();
+            // .end();
 
     config.plugin('ts-checker').use(ForkTsCheckerWebpackPlugin, [{
         typescript: {

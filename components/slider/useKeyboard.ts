@@ -12,17 +12,17 @@ export function useKeyboard(
     dragging: State<boolean>,
     triggerChangeEvent: (value: Value) => void,
 ) {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
     let oldValue: Value;
 
     function onKeydown({keyCode}: KeyboardEvent) {
         if (instance.get('disabled')) return;
 
-        let {value, isRange} = instance.get();
+        let {value, range} = instance.get();
         // remain the old value to detect whether it changed to trigger change event
         oldValue = value!;
 
-        if (isRange) {
+        if (range) {
             const [min, max] = value as [number, number];
             value = isFirst() ? min : max;
         }

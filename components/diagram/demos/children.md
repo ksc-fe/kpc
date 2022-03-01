@@ -10,7 +10,7 @@ order: 5
 
 ```vdt
 import {Diagram, DTreeLayout, DRectangle, DLine} from 'kpc/components/diagram';
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 const cities = this.get('cities');
 

@@ -7,7 +7,7 @@ order: 3
 箭头展示在左边。指定`arrow`属性为`left`即可
 
 ```vdt
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc';
 
 <Collapse v-model="value" accordion arrow="left">
     <CollapseItem>
@@ -37,7 +37,11 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {

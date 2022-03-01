@@ -11,9 +11,9 @@ export function useFilterable(
 
     function filter() {
         const {data, filter} = instance.get();
-        const ret: CascaderData[][] = [];
+        const ret: CascaderData<any>[][] = [];
 
-        const loop = (data: CascaderData[], prefix: CascaderData[] = [], valid = false, disabled = false) => {
+        const loop = (data: CascaderData<any>[], prefix: CascaderData<any>[] = [], valid = false, disabled = false) => {
             data.forEach(item => {
                 const _valid = valid || filter!(keywords.value, item);
                 const _disabled = disabled || item.disabled;
@@ -32,7 +32,7 @@ export function useFilterable(
         return ret;
     }
 
-    function selectByFilter(data: CascaderData[]) {
+    function selectByFilter(data: CascaderData<any>[]) {
         const value = data.map(item => item.value);
         setValue(value);
     }

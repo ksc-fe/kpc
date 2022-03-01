@@ -2,7 +2,7 @@ import {TypeDefs} from 'intact';
 import {DShape, DShapeProps} from './shape';
 
 export interface DRectangleProps extends DShapeProps {
-    rounded: number | string
+    rounded?: number | string
 }
 
 const typeDefs: Required<TypeDefs<DRectangleProps>> = {
@@ -26,6 +26,6 @@ export class DRectangle extends DShape<DRectangleProps> {
     public getStylesheet() {
         const {rounded} = this.get();
 
-        return `rounded=${+rounded ? 1 : 0};whiteSpace=wrap;html=1;arcSize=${rounded}`;
+        return `rounded=${+rounded! ? 1 : 0};whiteSpace=wrap;html=1;arcSize=${rounded}`;
     }
 }

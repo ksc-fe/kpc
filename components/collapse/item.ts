@@ -4,7 +4,7 @@ import template from './item.vdt';
 import {bind} from '../utils';
 
 export interface CollapseItemProps {
-    value: string
+    value?: string
     title?: string | VNode
     disabled?: boolean
 }
@@ -33,7 +33,7 @@ export class CollapseItem extends Component<CollapseItemProps, CollapseItemEvent
     @bind
     toggle() {
         if (this.get('disabled')) return;
-        this.collapse.changeValue(this.get('value'));
+        this.collapse.changeValue(this.get('value')!);
     }
 
     private onEnter() {

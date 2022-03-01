@@ -1,67 +1,69 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
-const {dialog} = deepDefaults(theme, {
-    dialog: {
-        width: '800px',
-        bgColor: '#fff',
-        get borderRadius() { return theme.borderRadius },
-        padding: '0',
-        margin: '0 20px',
-        get color() { return theme.color.text },
-        get fontSize() { return theme.fontSize },
-        get boxShadow() { return theme.boxShadow },
+const defaults = {
+    width: '800px',
+    bgColor: '#fff',
+    get borderRadius() { return theme.borderRadius },
+    get transition() { return theme.transition.large },
+    padding: '0',
+    margin: '0 20px',
+    get color() { return theme.color.text },
+    get fontSize() { return theme.fontSize },
+    get boxShadow() { return theme.boxShadow },
 
-        // header
-        header: {
-            fontSize: '16px',
-            get color() { return theme.color.title },
-            height: '61px',
-            border: `1px solid #eaeaea`,
-            closeTop: '16px',
-            closeRight: '-9px',
-            closeIconFontSize: '44px',
-            closeHoverWidth: '26px',
-        },
+    // header
+    header: {
+        fontSize: '16px',
+        get color() { return theme.color.title },
+        height: '61px',
+        border: `1px solid #eaeaea`,
+        closeTop: '16px',
+        closeRight: '-9px',
+        closeIconFontSize: '44px',
+    },
 
-        // body
-        body: {
-            padding: `20px`,
-        },
+    // body
+    body: {
+        padding: `20px`,
+    },
 
-        // footer
-        footer: {
-            padding: `20px 0`,
-            btnGap: `12px`,
-            border: `1px solid #eaeaea`,
-        },
+    // footer
+    footer: {
+        padding: `20px 0`,
+        btnGap: `12px`,
+        border: `1px solid #eaeaea`,
+    },
 
-        // transition
-        get transition() { return theme.transition.large },
-        transform: 'translateY(-10px) scale(1.05)',
+    // transition
+    transform: 'translateY(-10px) scale(1.05)',
 
-        // size
-        largeWidth: '1000px',
-        smallWidth: '600px',
-        miniWidth: '400px',
+    // size
+    largeWidth: '1000px',
+    smallWidth: '600px',
+    miniWidth: '400px',
 
-        // alert dialog
-        alert: {
-            padding: `0 20px`,
-            bodyMarginTop: `-25px`,
-            tipIconMarginBottom: '10px',
-            tipIconFontSize: '37px',
-            tipIconLineHeight: '37px',
+    // alert dialog
+    alert: {
+        padding: `0 20px`,
+        bodyMarginTop: `-25px`,
+        tipIconMarginBottom: '10px',
+        tipIconFontSize: '37px',
+        tipIconLineHeight: '37px',
 
-            // with title
-            titleTipIconFontSize: '37px',
-            titleFontSize: '14px',
-            wrapperPaddingLeft: '8px',
-            titleBodyMarginTop: '-36px',
-        },
-    } 
+        // with title
+        titleTipIconFontSize: '37px',
+        titleFontSize: '14px',
+        wrapperPaddingLeft: '8px',
+        titleBodyMarginTop: '-36px',
+    },
+};
+
+let dialog: any;
+setDefault(() => {
+    dialog = deepDefaults(theme, {dialog: defaults}).dialog;
 });
 
 export function makeDialogStyles() {

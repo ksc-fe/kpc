@@ -6,11 +6,11 @@ order: 3
 通过`border`可以定义边框样式: `solid`(默认) `dashed` `none`
 
 ```vdt
-import {Tag} from 'kpc/components/tag';
+import {Tag} from 'kpc';
 
 <div>
-    <div v-for={['dashed', 'none']} v-for-value="border" class="row">
-        <Tag v-for={['default', 'primary', 'success', 'warning', 'danger']}
+    <div v-for={this.get('borders')} v-for-value="border" class="row">
+        <Tag v-for={this.get('types')}
             type={$value}
             border={border}
         >{$value}</Tag>
@@ -24,4 +24,23 @@ import {Tag} from 'kpc/components/tag';
     margin-right 16px
 .row
     margin-bottom 16px
+```
+
+```ts
+import {TagProps} from 'kpc';
+
+interface Props {
+    types: TagProps['type'][]
+    borders: TagProps['border'][]
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            types: ['default', 'primary', 'success', 'warning', 'danger'],
+            borders: ['dashed', 'none'],
+        } as Props;
+    }
+}
 ```

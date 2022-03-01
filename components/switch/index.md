@@ -6,7 +6,7 @@ sidebar: doc
 ---
 
 > Vue不能使用`Switch`作为组件名，可以自定义为`KSwitch`: 
-> `import {Switch as KSwitch} from 'kpc/components/switch';`
+> `import {Switch as KSwitch} from 'kpc';`
 
 # 属性
 

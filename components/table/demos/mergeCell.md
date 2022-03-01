@@ -97,7 +97,7 @@ type DataItem = {
     class5: string
     class6: string
     class7: string
-    foreoonTime: string
+    forenoonTime: string
     afternoonTime: string
 }
 
@@ -184,7 +184,7 @@ export default class extends Component<Props> {
     }
 
     @bind
-    merge(row: DataItem, column: TableColumnProps, rowIndex: number, columnIndex: number) {
+    merge(row: DataItem, column: TableColumnProps | null, rowIndex: number, columnIndex: number) {
         if (columnIndex === 0) {
             // is check column
             if (rowIndex === 0) {
@@ -205,7 +205,7 @@ export default class extends Component<Props> {
         }
 
         const data = this.get('data');
-        if (column.key === 'forenoonTime' || column.key === 'afternoonTime') {
+        if (column!.key === 'forenoonTime' || column!.key === 'afternoonTime') {
             return {
                 rowspan: data.length,
                 colspan: 1,
@@ -217,8 +217,8 @@ export default class extends Component<Props> {
         for (let i = 1; i <= 7; i++) columns.push(`class${i}` as keyof DataItem);
 
         let colspan = 1;
-        const value = row[column.key as keyof DataItem];
-        for (let i = columns.indexOf(column.key as keyof DataItem) + 1; i < 7; i++) {
+        const value = row[column!.key as keyof DataItem];
+        for (let i = columns.indexOf(column!.key as keyof DataItem) + 1; i < 7; i++) {
             const nextValue = row[columns[i]];
             if (nextValue !== value) break;
             colspan++;

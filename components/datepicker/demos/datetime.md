@@ -7,7 +7,7 @@ order: 5
 组件会自动禁用该项的选择。例如：`format='YYYY-MM-DD HH:mm'`，则表示只选择“时分”
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker type="datetime" v-model="datetime1" clearable />
@@ -16,6 +16,23 @@ import {Datepicker} from 'kpc/components/datepicker';
         format="YYYY-MM-DD HH:mm"
     />
 </div>
+```
+
+```ts
+interface Props {
+    datetime1?: string | null
+    datetime2?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            datetime1: null,
+            datetime2: null
+        } as Props;
+    }
+}
 ```
 
 ```styl

@@ -9,14 +9,14 @@ order: 3
 > `@since v1.1.0` 会传入当前日期对象`Dayjs`作为第2个参数
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker disabledDate={this.disabledDate} />
     <br /><br />
     <Datepicker disabledDate={this.disabledMonth} type='month' />
     <br /><br />
-    <Datepicker disabledDate={this.disabledYear} type='year' maxDate="2025" />
+    <Datepicker disabledDate={this.disabledYear} type='year' max="2025" />
 </div>
 ```
 

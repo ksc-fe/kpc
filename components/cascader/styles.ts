@@ -1,30 +1,33 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
 
-const {cascader} = deepDefaults(theme, {
-    cascader: {
-        width: '140px',
-        height: '160px',
-        loadingGap: '20px',
-        arrowGap: '8px',
-        get selectedColor() { return theme.color.primary },
-        get activeBgColor() { return theme.color.bg },
+const defaults = {
+    width: '140px',
+    height: '160px',
+    loadingGap: '20px',
+    arrowGap: '8px',
+    get selectedColor() { return theme.color.primary },
+    get activeBgColor() { return theme.color.bg },
 
-        // empty
-        empty: {
-            padding: `16px`,
-            get color() { return theme.color.placeholder },
-        },
+    // empty
+    empty: {
+        padding: `16px`,
+        get color() { return theme.color.placeholder },
+    },
 
-        // filter
-        filter: {
-            get highlightColor() { return theme.color.danger },
-            minWidth: '300px',
-            maxHeight: '200px',
-        }
+    // filter
+    filter: {
+        get highlightColor() { return theme.color.danger },
+        minWidth: '300px',
+        maxHeight: '200px',
     }
+};
+
+let cascader: any;
+setDefault(() => {
+    cascader = deepDefaults(theme, {cascader: defaults}).cascader;
 });
 
 export function makeMenuStyles() {

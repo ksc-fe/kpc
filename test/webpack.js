@@ -3,8 +3,7 @@ const genConfig = require('../scripts/webpack');
 const addThread = require('../scripts/webpack/thread');
 const {addStyle} = require('../scripts/webpack/style');
 const {addMonaco} = require('../scripts/webpack/monaco');
-const {resolve} = require('../scripts/utils');
-const {destData} = require('../scripts/doc/webpack');
+const {resolve, destData} = require('../scripts/utils');
 
 exports.webpackConfig = () => {
     const config = genConfig();
@@ -31,33 +30,15 @@ exports.webpackConfig = () => {
                 .end()
     }
 
-    config
-        .resolve
-            .alias
-                .set('~', destData)
-                .set('intact$', 'intact/dist/index.esm.js')
-                .end()
-            .end()
-        .devtool('inline-source-map')
+    config.devtool('inline-source-map')
 
     addConfig(config);
 
     return config;
 }
 
-exports.webpackConfigReact = () => {
-    const config = genConfig();
-
-    config.resolve.alias.set('~', destData).set('intact$', 'intact-react');
-    config.devtool('inline-source-map');
-
-    addConfig(config);
-
-    return config;
-}
-
-function addConfig(config) {
+const addConfig = exports.addConfig = function(config) {
     addThread(config);
     addStyle(config);
-    // addMonaco(config);
+    addMonaco(config);
 }

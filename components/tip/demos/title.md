@@ -6,10 +6,10 @@ order: 2
 通过`title`扩展点，可以自定义标题内容
 
 ```vdt
-import {Tip} from 'kpc/components/tip';
+import {Tip} from 'kpc';
 
 <div>
-    <Tip v-for={['default', 'primary', 'success', 'warning', 'danger']}
+    <Tip v-for={this.get('types')}
         key={$value}
         type={$value}
         closable
@@ -23,4 +23,15 @@ import {Tip} from 'kpc/components/tip';
 ```styl
 .k-tip
     margin-bottom 8px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            types: ['default', 'primary', 'success', 'warning', 'danger'] as const
+        };
+    }
+}
 ```

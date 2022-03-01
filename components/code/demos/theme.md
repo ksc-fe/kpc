@@ -9,7 +9,7 @@ order: 2
 
 ```vdt
 import {Code} from 'kpc/components/code';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {ButtonGroup, Button} from 'kpc';
 
 <div>
     主题：<ButtonGroup v-model="theme" checkType="radio">
@@ -27,6 +27,8 @@ import {ButtonGroup, Button} from 'kpc/components/button';
 ```
 
 ```ts
+import type {CodeProps} from 'kpc/components/code';
+
 const code = `function test() {
     console.log('hello world');
 }`;
@@ -36,7 +38,7 @@ export default class extends Component {
     static defaults() {
         return {
             value: code,
-            theme: 'vs'
+            theme: 'vs' as CodeProps['theme']
         }
     }
 }

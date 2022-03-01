@@ -6,7 +6,7 @@ order: 2
 添加`clearable`属性可以使组件在再次点击后清空值
 
 ```vdt
-import {Rate} from 'kpc/components/rate';
+import {Rate} from 'kpc';
 
 <Rate v-model="value" clearable />
 ```

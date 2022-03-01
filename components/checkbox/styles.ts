@@ -1,48 +1,51 @@
 import {css, cx} from '@emotion/css';
-import {theme, ThemeValue} from '../../styles/theme';
+import {theme, ThemeValue, setDefault} from '../../styles/theme';
 import {deepDefaults, palette, getLeft}  from '../../styles/utils';
 import '../../styles/global';
 
-const {checkbox} = deepDefaults(theme, {
-    checkbox: {
-        width: '14px',
-        get borderColor() { return theme.color.darkBorder },
-        get borderRadius() { return theme.borderRadius },
-        get transition() { return theme.transition.small },
-        bgColor: '#fff',
-        
-        // text
-        text: {
-            gap: '8px',
-        },
-
-        // checked
-        checked: {
-            get borderColor() { return theme.color.primary },
-            get bgColor() { return checkbox.checked.borderColor },
-        },
-
-        inner: {
-            width: '5px',
-            height: '10px',
-            top: '-1px',
-            left: '4px',
-            border: '1px solid #fff',
-        },
-
-        // disabled
-        disabled: {
-            get color() { return theme.color.disabled },
-            get borderColor() { return theme.color.disabledBorder },
-            get bgColor() { return theme.color.disabledBg }, 
-            get innerColor() { return theme.color.disabledBorder }, 
-        },
-
-        // indeterminate
-        indeterminate: {
-            innerLeft: '3px'
-        }
+const defaults = {
+    width: '14px',
+    get borderColor() { return theme.color.darkBorder },
+    get borderRadius() { return theme.borderRadius },
+    get transition() { return theme.transition.small },
+    bgColor: '#fff',
+    
+    // text
+    text: {
+        gap: '8px',
     },
+
+    // checked
+    checked: {
+        get borderColor() { return theme.color.primary },
+        get bgColor() { return checkbox.checked.borderColor },
+    },
+
+    inner: {
+        width: '5px',
+        height: '10px',
+        top: '-1px',
+        left: '4px',
+        border: '1px solid #fff',
+    },
+
+    // disabled
+    disabled: {
+        get color() { return theme.color.disabled },
+        get borderColor() { return theme.color.disabledBorder },
+        get bgColor() { return theme.color.disabledBg }, 
+        get innerColor() { return theme.color.disabledBorder }, 
+    },
+
+    // indeterminate
+    indeterminate: {
+        innerLeft: '3px'
+    }
+};
+
+let checkbox: any;
+setDefault(() => {
+    checkbox = deepDefaults(theme, {checkbox: defaults}).checkbox;
 });
 
 export default function makeStyles() {

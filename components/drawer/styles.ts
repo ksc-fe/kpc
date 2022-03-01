@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
@@ -9,11 +9,14 @@ export type Placement = ValueOf<typeof placements>
 
 export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
-const {drawer} = deepDefaults(theme, {
-    drawer: {
-        get transition() { return theme.transition.large },
-        get boxShadow() { return theme.boxShadow }
-    } 
+const defaults = {
+    get transition() { return theme.transition.large },
+    get boxShadow() { return theme.boxShadow }
+};
+
+let drawer: any;
+setDefault(() => {
+    drawer = deepDefaults(theme, {drawer: defaults}).drawer;
 });
 
 export function makeStyles(overlay: boolean) {

@@ -9,8 +9,7 @@ order: 25
 > 需要`fixHeader`固定表头才能生效
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Table, TableColumn, Button, ButtonGroup} from 'kpc';
 
 <div class="wrapper">
     <ButtonGroup>
@@ -67,27 +66,4 @@ export default class extends Component {
         this.refs.table.scrollToRowByKey('name 25');
     }
 }
-```
-
-```vue-data
-data() {
-    return {
-        data
-    }
-},
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data
-    };
-    this.scrollToRowByIndex = this.scrollToRowByIndex.bind(this);
-    this.scrollToRowByKey = this.scrollToRowByKey.bind(this);
-}
-```
-
-```angular-properties
-private data = data;
 ```

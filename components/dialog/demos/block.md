@@ -84,8 +84,8 @@ data() {
 
 ```jsx
 import React from 'react';
-import Button from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
+import Button from 'kpc';
+import Dialog from 'kpc';
 import './index.styl';
 
 export default class Demo extends React.Component {

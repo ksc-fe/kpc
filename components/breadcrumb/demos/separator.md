@@ -6,12 +6,11 @@ order: 1
 通过`separator`属性或者`separator`扩展点可以指定分隔符
 
 ```vdt
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
-import {Icon} from 'kpc/components/icon';
+import {Breadcrumb, BreadcrumbItem, Icon} from 'kpc';
 
 <Breadcrumb>
     <b:separator>
-        <b class="separator">=></b>
+        <Icon class="ion-ios-arrow-thin-right separator" size="large" />
     </b:separator>
     <BreadcrumbItem to="/">
         <Icon class="ion-home" /> item 1
@@ -28,6 +27,7 @@ import {Icon} from 'kpc/components/icon';
 ```styl
 .separator
     color #ffa133
+    vertical-align middle
 i
     margin-right 3px
 ```

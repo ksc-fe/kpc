@@ -10,7 +10,7 @@ import {useSearchable} from './useSearchable';
 export class SelectMenu extends Component<{values: any[]}> {
     static template = template;
 
-    public select: Select = inject(SELECT)!;
+    public select: Select<any, boolean> = inject(SELECT)!;
     private card = useCard(this.select.label.activeIndices);
     private searchable = useSearchable();
 }

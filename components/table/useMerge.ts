@@ -1,10 +1,10 @@
 import {useInstance, Props} from 'intact';
-import type {Table, TableRowKey} from './table';
+import type {Table, TableRowKey, TableCheckType} from './table';
 import type {TableColumnProps} from './column';
 
-export type TableMerge<T = any> = (
+export type TableMerge<T = any, CheckType = 'checkbox'> = (
     row: T,
-    column: Props<TableColumnProps> | null,
+    column: CheckType extends 'none' ? Props<TableColumnProps> : Props<TableColumnProps> | null,
     rowIndex: number,
     columnIndex: number
 ) => TableMergeConfig | undefined
@@ -24,7 +24,7 @@ export type TableGrid = TableGridItem[][];
 export function useMerge(
     getCols: () => Props<TableColumnProps>[],
 ) {
-    const instance = useInstance() as Table;
+    const instance = useInstance() as Table<any, TableRowKey, TableCheckType>;
     let grid: TableGrid = [];
 
     function handleSpans() {

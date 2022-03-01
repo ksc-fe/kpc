@@ -1,17 +1,20 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults}  from '../../styles/utils';
 import '../../styles/global';
 
-const {card} = deepDefaults(theme, {
-    card: {
-        border: '1px solid #e5e5e5',
-        padding: '16px',
-        boxShadow: '0 0 20px 0 rgba(0, 0, 0, .06)',
-        headerHeight: '48px',
-        headerFontSize: '14px',
-        bgColor: '#fff',
-    },
+const defaults = {
+    border: '1px solid #e5e5e5',
+    padding: '16px',
+    boxShadow: '0 0 20px 0 rgba(0, 0, 0, .06)',
+    headerHeight: '48px',
+    headerFontSize: '14px',
+    bgColor: '#fff',
+};
+
+let card: any;
+setDefault(() => {
+    card = deepDefaults(theme, {card: defaults}).card;
 });
 
 export function makeStyles() {

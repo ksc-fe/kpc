@@ -13,7 +13,7 @@ order: 0
 > 如需渲染包裹元素，请做如下配置
 > ```js
 > // @code 
-> import {configure} from 'kpc/components/utils';
+> import {configure} from 'kpc';
 >
 > // 该配置全局生效
 > configure({useWrapper: true});
@@ -21,7 +21,7 @@ order: 0
 
 
 ```vdt
-import {Tooltip} from 'kpc/components/tooltip';
+import {Tooltip} from 'kpc';
 
 <div>
     <Tooltip content="hello">

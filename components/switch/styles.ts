@@ -1,57 +1,60 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes} from '../../styles/utils';
 import '../../styles/global';
 
-const {switch: kswitch} = deepDefaults(theme, {
-    switch: {
-        get transition() { return theme.transition.middle },
-        bgColor: `#fff`,
-        fontSize: `12px`,
-        get color() { return theme.color.text },
-        checkedBgColor: `#fff`,
-        handleBorderRadius: `100%`,
-        get handleBgColor() { return theme.color.border },
-        get border() { return `1px solid ${theme.color.border}` },
+const defaults = {
+    get transition() { return theme.transition.middle },
+    bgColor: `#fff`,
+    fontSize: `12px`,
+    get color() { return theme.color.text },
+    checkedBgColor: `#fff`,
+    handleBorderRadius: `100%`,
+    get handleBgColor() { return theme.color.border },
+    get border() { return `1px solid ${theme.color.border}` },
 
-        // checked
-        checked: {
-            get borderColor() { return theme.color.primary },
-            get color() { return theme.color.primary },
-            get bgColor() { return theme.color.primary },
-        },
+    // checked
+    checked: {
+        get borderColor() { return theme.color.primary },
+        get color() { return theme.color.primary },
+        get bgColor() { return theme.color.primary },
+    },
 
-        // default
-        default: {
-            width: `36px`,
-            height: `18px`,
-            padding: `2px`,
-        },
+    // default
+    default: {
+        width: `36px`,
+        height: `18px`,
+        padding: `2px`,
+    },
 
-        // large
-        large: {
-            width: `52px`,
-            height: `26px`,
-            padding: `2px`,
-        },
+    // large
+    large: {
+        width: `52px`,
+        height: `26px`,
+        padding: `2px`,
+    },
 
-        // small
-        small: {
-            width: `32px`,
-            height: `16px`,
-            padding: `2px`,
-        },
+    // small
+    small: {
+        width: `32px`,
+        height: `16px`,
+        padding: `2px`,
+    },
 
-        // mini
-        mini: {
-            width: `24px`,
-            height: `12px`,
-            padding: `1px`,
-        },
+    // mini
+    mini: {
+        width: `24px`,
+        height: `12px`,
+        padding: `1px`,
+    },
 
-        // disabled
-        get disabledBgColor() { return theme.color.disabledBg },
-    }
+    // disabled
+    get disabledBgColor() { return theme.color.disabledBg },
+};
+
+let kswitch: any;
+setDefault(() => {
+    kswitch = deepDefaults(theme, {switch: defaults}).switch;
 });
 
 export function makeStyles() {

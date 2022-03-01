@@ -6,7 +6,7 @@ order: 3
 指定`multiple`支持多选
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" multiple>
@@ -20,4 +20,19 @@ import {Select, Option} from 'kpc/components/select';
     </Select>
     You selected: {JSON.stringify(this.get('day'))} 
 </div>
+```
+
+```ts
+interface Props {
+   day?: string[]
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            day: [] 
+        } as Props;
+    }
+}
 ```

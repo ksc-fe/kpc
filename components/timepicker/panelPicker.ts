@@ -19,7 +19,14 @@ import {
     typeDefs,
 } from './constants';
 
-export class PanelPicker extends BasePicker<TimepickerProps, TimepickerEvents, TimepickerBlocks> {
+export class PanelPicker<
+    Multipe extends boolean = false,
+    Range extends boolean = false,
+> extends BasePicker<
+    TimepickerProps<Multipe, Range>,
+    TimepickerEvents,
+    TimepickerBlocks
+> {
     static template = template; 
     static typeDefs = typeDefs;
 

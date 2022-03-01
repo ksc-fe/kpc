@@ -6,7 +6,7 @@ order: 1.1
 添加`inInnerText`属性，可以在进度条上展示百分比
 
 ```vdt
-import {Progress} from 'kpc/components/progress';
+import {Progress} from 'kpc';
 
 <div>
     <Progress percent="0" showInnerText={true} showOuterText={false} />

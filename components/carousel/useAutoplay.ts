@@ -7,7 +7,7 @@ export function useAutoplay(next: () => void) {
     let timer: number;
     let ms: number;
 
-    instance.on('$receive:autoplay', (v) => {
+    instance.on('$receive:autoplay', v => {
         if (v === true) {
             ms = 5000;
         } else {

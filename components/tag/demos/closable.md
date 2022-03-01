@@ -11,7 +11,7 @@ order: 1
 > 需要自己维护`closed`属性，或者通过`v-if`来控制组件
 
 ```vdt
-import {Tag} from 'kpc/components/tag';
+import {Tag} from 'kpc';
 
 <div>
     <Tag v-for={this.get('tags')}
@@ -20,7 +20,7 @@ import {Tag} from 'kpc/components/tag';
         closable
     >{$value}</Tag>
     <Tag disabled closable>disabled</Tag>
-    <Tag closable ev-close={e => e.preventDefault()}>prevent default</Tag>
+    <Tag closable ev-close={this.prevent}>prevent default</Tag>
 </div>
 ```
 
@@ -30,12 +30,22 @@ import {Tag} from 'kpc/components/tag';
 ```
 
 ```ts
+import {TagProps} from 'kpc';
+
+interface Props {
+    tags: TagProps['type'][]
+}
+
 export default class extends Component {
     static template = template;
     static defaults() {
         return {
             tags: ['default', 'primary', 'success', 'warning', 'danger']
-        }
+        } as Props;
+    }
+
+    prevent(e: MouseEvent) {
+        e.preventDefault();
     }
 }
 ```

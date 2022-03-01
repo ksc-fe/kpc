@@ -7,7 +7,7 @@ order: 1.1
 定义不同的内容
 
 ```vdt
-import {Transfer, Input, Select, Option} from 'kpc';
+import {Transfer, Input, Select, Option, Tag} from 'kpc';
 
 <div>
     <Transfer data={this.get('data')} 
@@ -56,9 +56,10 @@ import {Transfer, Input, Select, Option} from 'kpc';
 import {bind} from 'kpc';
 
 interface Props {
-    policy: string
+    policy?: string | null
     data: DataItem[]
-    keywords: string
+    keywords?: string
+    value?: string[]
 }
 
 type DataItem = {
@@ -94,8 +95,9 @@ export default class extends Component<Props> {
         return {
             policy: 'all',
             data: [],
-            keywords: ''
-        }
+            keywords: '',
+            value: [],
+        } as Props;
     }
 
     private originData: DataItem[] | null = null;
@@ -109,7 +111,8 @@ export default class extends Component<Props> {
 
     @bind
     fetch() {
-        mockApi(this.get('policy')).then(data => {
+        mockApi(this.get('policy')!).then(data => {
+            if (this.$unmounted) return;
             this.originData = data;
             this.filter();
         });
@@ -130,28 +133,34 @@ export default class extends Component<Props> {
 
 ```vue-script
 created() {
-    this._fetch();
+    this.fetch();
 },
 watch: {
     policy: function() {
-        this._fetch();
+        this.fetch();
     },
     keywords: function() {
-        this._filter();
+        this.filter();
     },
 },
 ```
 
 ```react-methods
+private $unmounted: boolean = false;
+
 componentDidMount() {
-    this._fetch();
+    this.fetch();
 }
 
-setState(state, cb) {
+componentWillUnmount() {
+    this.$unmounted = true;
+}
+
+setState<K extends keyof Props>(state: Pick<Props, K>, cb?: () => void) {
     if ('policy' in state) {
-        super.setState(state, this._fetch);
+        super.setState(state, this.fetch);
     } else if ('keywords' in state) {
-        super.setState(state, this._filter);
+        super.setState(state, this.filter);
     } else {
         super.setState(state, cb);
     }

@@ -12,7 +12,7 @@ order: 0
 5. `loaded` 子选项已经加载完成，当节点做异步加载时，将不会对该节点调用`load`方法，详见“动态加载数据”
 
 ```vdt
-import {Cascader} from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <div>
     <Cascader data={this.get('data')} v-model="value" />
@@ -24,11 +24,16 @@ import {Cascader} from 'kpc/components/cascader';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value?: string[] | null
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
         return {
+            value: null as string[] | null,
             data: [
                 {
                     value: 'beijing',

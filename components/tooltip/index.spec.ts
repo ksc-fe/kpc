@@ -5,7 +5,6 @@ import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
-import Vue from 'vue';
 import {Tooltip} from './';
 import {Radio} from '../radio';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
@@ -57,29 +56,29 @@ describe('Tooltip', () => {
         instance.set('position', 'left');
         await wait();
         contains('k-right');
-        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+        eql(arrow.offsetTop, Math.round(tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2));
 
         instance.set('position', 'right');
         await wait();
         contains('k-left');
-        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+        eql(arrow.offsetTop, Math.round(tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2));
 
         instance.set('position', 'top');
         await wait();
         contains('k-bottom');
-        eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
+        eql(arrow.offsetLeft, Math.round(tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2));
 
         instance.set('position', 'bottom');
         await wait();
         contains('k-top');
-        eql(arrow.offsetLeft, tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2);
+        eql(arrow.offsetLeft, Math.round(tooltipContent.offsetWidth / 2 - arrow.offsetWidth / 2));
 
         instance.set('position', 'custom');
         await wait();
         instance.getPosition = () => ({my: 'left bottom', at: 'left top'});
         instance.forceUpdate();
         await wait();
-        eql(arrow.offsetLeft, width / 2 - arrow.offsetWidth / 2);
+        eql(arrow.offsetLeft, Math.round(width / 2 - arrow.offsetWidth / 2));
 
         instance.getPosition = () => ({my: 'left+100 bottom', at: 'left top'});
         instance.forceUpdate();
@@ -89,7 +88,7 @@ describe('Tooltip', () => {
         instance.getPosition = () => ({my: 'left top', at: 'right top'});
         instance.forceUpdate();
         await wait();
-        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+        eql(arrow.offsetTop, Math.floor(tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2));
 
         instance.getPosition = () => ({my: 'left top+30', at: 'right top'});
         instance.forceUpdate();

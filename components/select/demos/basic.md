@@ -7,7 +7,7 @@ order: 0
 `loading`属性来标示加载状态
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <div style="margin-bottom: 16px;">
@@ -24,4 +24,19 @@ import {Select, Option} from 'kpc/components/select';
     </div>
     <Select loading></Select>
 </div>
+```
+
+```ts
+interface Props {
+    day?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            day: null,
+        } as Props;
+    }
+}
 ```

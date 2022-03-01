@@ -1,52 +1,55 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
-const {slider} = deepDefaults(theme, {
-    slider:  {
-        get transition() { return theme.transition.middle },
-        height: '4px',
-        
-        bgColor: '#e5e5e5',
-        get barColor() { return theme.color.primary },
-        borderRadius: '2px',
+const defaults = {
+    get transition() { return theme.transition.middle },
+    height: '4px',
+    
+    bgColor: '#e5e5e5',
+    get barColor() { return theme.color.primary },
+    borderRadius: '2px',
 
-        thumb: {
-            height: '12px',
-            width: '12px',
-            get border() { return `2px solid ${slider.barColor}` },
-            borderRadius: '50%',
-            bgColor: '#fff',
-            hoverTransform: 'scale(1.5)',
-            hoverBgColor: '#fff',
-            disabledBgColor: '#fff',
-        },
+    thumb: {
+        height: '12px',
+        width: '12px',
+        get border() { return `2px solid ${slider.barColor}` },
+        borderRadius: '50%',
+        bgColor: '#fff',
+        hoverTransform: 'scale(1.5)',
+        hoverBgColor: '#fff',
+        disabledBgColor: '#fff',
+    },
 
-        endPadding: '10px 0 0',
+    endPadding: '10px 0 0',
 
-        disabled: {
-            get color() { return theme.color.disabled },
-            get bgColor() { return theme.color.disabledBg },
-        },
+    disabled: {
+        get color() { return theme.color.disabled },
+        get bgColor() { return theme.color.disabledBg },
+    },
 
-        // spinnerWidth: '124px',
-        spinnerGap: '16px',
+    // spinnerWidth: '124px',
+    spinnerGap: '16px',
 
-        point: {
-            width: '8px',
-            get height() { return slider.point.width },
-            bgColor: '#fff',
-            borderRadius: '50%',
-            get border() { return `2px solid ${slider.bgColor}` },
-            get activeBorderColor() { return slider.barColor },
-        },
+    point: {
+        width: '8px',
+        get height() { return slider.point.width },
+        bgColor: '#fff',
+        borderRadius: '50%',
+        get border() { return `2px solid ${slider.bgColor}` },
+        get activeBorderColor() { return slider.barColor },
+    },
 
-        marks: {
-            height: '26px',
-            get activeColor() { return theme.color.primary },
-        }
+    marks: {
+        height: '26px',
+        get activeColor() { return theme.color.primary },
     }
+};
+
+let slider: any;
+setDefault(() => {
+    slider = deepDefaults(theme, {slider: defaults}).slider;
 });
 
 export function makeStyles() {

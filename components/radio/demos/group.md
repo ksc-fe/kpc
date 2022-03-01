@@ -6,7 +6,7 @@ order: 1
 和浏览器原生行为一样，给`Radio`指定相同的`name`，它们便组成了单选框组。
 
 ```vdt
-import {Radio} from 'kpc/components/radio';
+import {Radio} from 'kpc';
 
 <div>
     <Radio name="language" trueValue="Javascript" v-model="language">Javascript</Radio>
@@ -20,12 +20,15 @@ import {Radio} from 'kpc/components/radio';
 .k-radio
     margin-right 20px
 ```
+
 ```ts
 export default class extends Component {
     static template = template;
     
-    static defaults = () => ({
-        language: 'Javascript'
-    });
+    static defaults() {
+        return {
+            language: 'Javascript'
+        }
+    };
 }
 ```

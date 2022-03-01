@@ -7,8 +7,7 @@ order: 0
 值不让它超出该范围
 
 ```vdt
-import {Slider} from 'kpc/components/slider';
-import {Button} from 'kpc/components/button';
+import {Slider, Button} from 'kpc';
 
 <div>
     <Slider v-model="value1" min={this.get('min')} max={this.get('max')} unit="MB"/>
@@ -18,11 +17,11 @@ import {Button} from 'kpc/components/button';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
-    value1: number
-    value2: number
+    value1?: number
+    value2?: number
     min: number
     max: number
 }

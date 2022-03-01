@@ -1,39 +1,42 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
-const {tree} = deepDefaults(theme, {
-    tree: {
-        get transition() { return theme.transition.middle },
-        fontSize: '12px',
-        lineHeight: '24px',
-        get hoverColor() { return theme.color.primary },
-        get disabledColor() { return theme.color.disabled },
+const defaults = {
+    get transition() { return theme.transition.middle },
+    fontSize: '12px',
+    lineHeight: '24px',
+    get hoverColor() { return theme.color.primary },
+    get disabledColor() { return theme.color.disabled },
 
-        textPadding: `0 3px`,
-        marginLeft: '10px',
-        paddingLeft: '6px',
-        iconWidth: '21px',
-        get iconColor() { return theme.color.placeholder },
-        checkboxGap: `8px`,
-        get leafIndent() { return tree.iconWidth },
-        get borderRadius() { return theme.borderRadius },
+    textPadding: `0 3px`,
+    marginLeft: '10px',
+    paddingLeft: '6px',
+    iconWidth: '21px',
+    get iconColor() { return theme.color.placeholder },
+    checkboxGap: `8px`,
+    get leafIndent() { return tree.iconWidth },
+    get borderRadius() { return theme.borderRadius },
 
-        // selected
-        selected: {
-            get bgColor() { return palette(theme.color.primary, -4) },
-        },
+    // selected
+    selected: {
+        get bgColor() { return palette(theme.color.primary, -4) },
+    },
 
-        // draggable
-        dragging: {
-            get border() { return `1px solid ${theme.color.primary}` },
-            get bgColor() { return theme.color.bg },
-            // get bgColor() { return palette(theme.color.warning, -4) },
-        },
+    // draggable
+    dragging: {
+        get border() { return `1px solid ${theme.color.primary}` },
+        get bgColor() { return theme.color.bg },
+        // get bgColor() { return palette(theme.color.warning, -4) },
+    },
 
-        get line() { return `1px dashed ${theme.color.border}` },
-    }
+    get line() { return `1px dashed ${theme.color.border}` },
+};
+
+let tree: any;
+setDefault(() => {
+    tree = deepDefaults(theme, {tree: defaults}).tree;
 });
 
 export function makeStyles() {

@@ -9,7 +9,7 @@ order: 0
 > 选中状态的判定条件是`value === trueValue`，对于值为对象的情况要注意。
 
 ```vdt
-import {Radio} from 'kpc/components/radio';
+import {Radio} from 'kpc';
 
 <div>
     <Radio v-model="value">radio</Radio>
@@ -21,5 +21,16 @@ import {Radio} from 'kpc/components/radio';
 ```styl
 .k-radio
     margin-right 20px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value: false
+        }
+    }
+}
 ```
 

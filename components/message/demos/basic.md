@@ -7,20 +7,26 @@ order: 0
 提示默认会在5s后自动关闭
 
 ```vdt
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {ButtonGroup, Button} from 'kpc';
 
 <ButtonGroup>
-    <Button v-for={['info', 'error', 'warning', 'success']}
+    <Button v-for={this.get('types')}
         ev-click={this.showMessage.bind(this, $value)}
     >{$value}</Button>
 </ButtonGroup>
 ```
 
 ```ts
-import {Message} from 'kpc/components/message';
+import {Message} from 'kpc';
 
 export default class extends Component {
     static template = template;
+
+    static defaults() {
+        return {
+            types: ['info', 'error', 'warning', 'success'] as const
+        }
+    }
 
     showMessage(type: 'info' | 'error' | 'warning' | 'success') {
         Message[type](type);

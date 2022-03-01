@@ -23,7 +23,6 @@ export function useInput(
         const color = tinycolor(hex);
 
         if (color.isValid()) {
-            console.log(color.toHsv());
             hsv.set(color.toHsv());
         }
     }

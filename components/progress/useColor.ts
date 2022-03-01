@@ -12,7 +12,7 @@ export function useColor() {
         if (!color) return;
 
         if (isFunction(color)) {
-            backGroundColor.set(color.call(self, percent!));
+            backGroundColor.set(color(percent as number));
         } else if (isArray(color)) {
             const item = color.find((v) => v.percent === percent);
             if (item && item.color) {

@@ -6,8 +6,8 @@ order: 2
 通过`dot`扩展点，可以自定义轴点的内容
 
 ```vdt
-import {Timeline, TimelineItem} from 'kpc/components/timeline';
-import {Icon} from 'kpc/components/icon';
+import {Timeline, TimelineItem} from 'kpc';
+import {Icon} from 'kpc';
 
 <Timeline>
     <TimelineItem type="success">

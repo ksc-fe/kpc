@@ -7,7 +7,7 @@ order: 4.1
 让它不要真正去过滤结果。
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <Select multiple filterable filter={() => true} ev-input={this.search}>
     <Option v-for={this.get('users')} 
@@ -17,7 +17,7 @@ import {Select, Option} from 'kpc/components/select';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     users: any[]
@@ -29,13 +29,13 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             users: []
-        }
+        } as Props;
     }
 
     private lastFetchId = 0;
 
     @bind
-    search(e: InputEvent) {
+    search(e: Event) {
         const keywords = (e.target as HTMLInputElement).value.trim();
 
         if (!keywords) return;
@@ -55,18 +55,4 @@ export default class extends Component<Props> {
 beforeCreate() {
     this.lastFetchId = 0;
 },
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {users: []};
-    this.search = this.search.bind(this);
-    this.lastFetchId = 0;
-}
-```
-
-```angular-properties
-private users = [];
-private lastFetchId = 0;
 ```

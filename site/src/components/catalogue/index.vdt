@@ -1,0 +1,18 @@
+import {makeStyles} from './styles';
+import {Affix, Tabs, Tab} from 'kpc';
+
+<div class={{catalogue: true, [makeStyles()]: true}}>
+    <Affix top={100}>
+        <Tabs v-model="value" vertical size="small">
+            <Tab v-for={this.get('data')} 
+                class={{
+                    'item': true,
+                    'senior': $value.level === 1,
+                }}
+                ev-click={this.scrollTo.bind(this, $value)}
+                style={{paddingLeft: $value.level * 16 + 'px'}}
+                value={$value.id}
+            >{$value.text}</Tab>
+        </Tabs>
+    </Affix>
+</div>

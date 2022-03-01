@@ -1,18 +1,21 @@
 import {css, keyframes} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 
-const {spin} = deepDefaults(theme, {
-    spin:  {
-        width: `40px`,
-        get color() { return theme.color.primary },
-        strokeWidth: 6,
+const defaults = {
+    width: `40px`,
+    get color() { return theme.color.primary },
+    strokeWidth: 6,
 
-        largeWidth: `48px`,
-        smallWidth: `32px`,
-        miniWidth: `24px`,
-    }
+    largeWidth: `48px`,
+    smallWidth: `32px`,
+    miniWidth: `24px`,
+};
+
+let spin: any;
+setDefault(() => {
+    spin = deepDefaults(theme, {spin: defaults}).spin;
 });
 
 export function makeStyles() {

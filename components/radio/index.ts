@@ -3,15 +3,15 @@ import {bind} from '../utils';
 import template from './index.vdt';
 import type {CommonInputHTMLAttributes, Events} from '../types';
 
-export interface RadioProps extends CommonInputHTMLAttributes {
+export interface RadioProps<Value = false, True = true> extends CommonInputHTMLAttributes {
     disabled?: boolean
-    value?: any 
-    trueValue?: any 
+    value?: Value | True
+    trueValue?: True 
 }
 
-export interface RadioEvents {
+export interface RadioEvents<True = true> {
     click: [MouseEvent]
-    change: [any, MouseEvent]
+    change: [True, MouseEvent]
 }
 
 const typeDefs: Required<TypeDefs<Omit<RadioProps, keyof CommonInputHTMLAttributes>>> = {
@@ -30,7 +30,10 @@ const events: Events<RadioEvents> = {
     change: true,
 };
 
-export class Radio extends Component<RadioProps, RadioEvents> {
+export class Radio<
+    Value = false,
+    True = true
+> extends Component<RadioProps<Value, True>, RadioEvents<True>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -51,7 +54,7 @@ export class Radio extends Component<RadioProps, RadioEvents> {
         if (!disabled && value !== trueValue) {
             this.set('value', trueValue);
             this.trigger('click', e);
-            this.trigger('change', trueValue, e);
+            this.trigger('change', trueValue!, e);
         } else {
             this.trigger('click', e);
         }

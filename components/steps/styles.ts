@@ -1,81 +1,84 @@
 import {css, cx} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults}  from '../../styles/utils';
 import '../../styles/global';
 
-const {steps} = deepDefaults(theme, {
-    steps: {
-        get transition() { return theme.transition.middle },
-        get height() { return theme.default.height }, 
-        get bgColor() { return theme.color.bg }, 
-        gutter: '10px',
-        gapTop: '-2px',
+const defaults = {
+    get transition() { return theme.transition.middle },
+    get height() { return theme.default.height }, 
+    get bgColor() { return theme.color.bg }, 
+    gutter: '10px',
+    gapTop: '-2px',
 
-        // head
-        head: {
-            innerWidth: '16px',
-            get innerBorder() { return `1px solid ${theme.color.placeholder}` },
-            iconFontSize: '24px',
-            paddingRight: '10px',
-        },
-
-        main: {
-            get color() { return theme.color.text }, 
-            get titlePaddingRight() { return steps.head.paddingRight },
-            contentFontSize: '12px',
-        },
-
-        // done
-        done: {
-           get headColor() { return theme.color.primary }, 
-           get headInnerBorderColor() { return theme.color.primary },
-           headInnerBgColor: 'transparent',
-           get mainColor() { return theme.color.primary },
-           get simpleColor() { return theme.color.text }, 
-        },
-
-        // active
-        active: {
-            headColor: '#fff',
-            get headInnerBorderColor() { return theme.color.primary }, 
-            get headInnerBgColor() { return theme.color.primary },
-            get mainColor() { return theme.color.primary }, 
-            get simpleColor() { return theme.color.primary }, 
-        },
-
-        // error
-        error: {
-            get headColor() { return theme.color.danger }, 
-            get headInnerBorderColor() { return theme.color.danger }, 
-            headInnerBgColor: 'transparent',
-            get mainColor() { return theme.color.danger }, 
-            get simpleColor() { return theme.color.danger }, 
-        },
-
-        // line
-        line: {
-            bgColor: '#fff',
-            mainContentGap: '5px 0 0',
-            get tailBgColor() { return theme.color.placeholder },
-            get doneTailBgColor() { return theme.color.primary }, 
-            innerWidth: '32px',
-            innerLineHeight: '30px',
-            innerFontSize: '18px',
-            headTop: '16px',
-            titleFontSize: '14px',
-            titleGopTop: '16px',
-            iconLineHeight: '30px',
-            tailTop: '16px',
-            width: '160px',
-        },
-
-        // simple
-        simple: {
-            fontSize: '14px',
-            get color() { return theme.color.disabled }, 
-            headPaddingRight: '6px',
-        }
+    // head
+    head: {
+        innerWidth: '16px',
+        get innerBorder() { return `1px solid ${theme.color.placeholder}` },
+        iconFontSize: '24px',
+        paddingRight: '10px',
     },
+
+    main: {
+        get color() { return theme.color.text }, 
+        get titlePaddingRight() { return steps.head.paddingRight },
+        contentFontSize: '12px',
+    },
+
+    // done
+    done: {
+       get headColor() { return theme.color.primary }, 
+       get headInnerBorderColor() { return theme.color.primary },
+       headInnerBgColor: 'transparent',
+       get mainColor() { return theme.color.primary },
+       get simpleColor() { return theme.color.text }, 
+    },
+
+    // active
+    active: {
+        headColor: '#fff',
+        get headInnerBorderColor() { return theme.color.primary }, 
+        get headInnerBgColor() { return theme.color.primary },
+        get mainColor() { return theme.color.primary }, 
+        get simpleColor() { return theme.color.primary }, 
+    },
+
+    // error
+    error: {
+        get headColor() { return theme.color.danger }, 
+        get headInnerBorderColor() { return theme.color.danger }, 
+        headInnerBgColor: 'transparent',
+        get mainColor() { return theme.color.danger }, 
+        get simpleColor() { return theme.color.danger }, 
+    },
+
+    // line
+    line: {
+        bgColor: '#fff',
+        mainContentGap: '5px 0 0',
+        get tailBgColor() { return theme.color.placeholder },
+        get doneTailBgColor() { return theme.color.primary }, 
+        innerWidth: '32px',
+        innerLineHeight: '30px',
+        innerFontSize: '18px',
+        headTop: '16px',
+        titleFontSize: '14px',
+        titleGopTop: '16px',
+        iconLineHeight: '30px',
+        tailTop: '16px',
+        width: '160px',
+    },
+
+    // simple
+    simple: {
+        fontSize: '14px',
+        get color() { return theme.color.disabled }, 
+        headPaddingRight: '6px',
+    }
+};
+
+let steps: any;
+setDefault(() => {
+    steps = deepDefaults(theme, {steps: defaults}).steps;
 });
 
 const stepStatus = ['done', 'active', 'error'] as const; 

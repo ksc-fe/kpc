@@ -20,14 +20,14 @@ import {Split, Table, TableColumn, Tabs, Tab, FormItem, Button, Icon} from 'kpc'
                 fixHeader
                 ref="table"
                 rowCheckable={false}
-                v-model:checkedKeys="checkedKeys"
+                checkedKeys={this.get('checkedKeys')}
                 ev-clickRow={this._onClickRow}
                 ev-$change:checkedKeys={this._togglePanel}
             >
                 <TableColumn title="名称" key="name" />
                 <TableColumn title="网段" key="ip" />
                 <TableColumn title="操作" key="op">
-                    <b:template params={[value, index]} >
+                    <b:template args="[value, index]" >
                         <a>删除</a> 
                     </b:template>
                 </TableColumn>
@@ -44,7 +44,7 @@ import {Split, Table, TableColumn, Tabs, Tab, FormItem, Button, Icon} from 'kpc'
                 <Tab value="data">流量统计</Tab>
                 <Tab value="tag">标签</Tab>
             </Tabs>
-            <div v-if={this.get('tab') === 'detail'} class="tab-panel">
+            <div v-if={this.get('tab') === 'detail' && this.get('selectedData')} class="tab-panel">
                 <FormItem label="创建时间：">2018-09-28 17:31:25</FormItem>
                 <FormItem label="弹性IP：">{this.get('selectedData.ip')}</FormItem>
                 <FormItem label="名称：">{this.get('selectedData.name')}</FormItem>
@@ -99,10 +99,10 @@ import {nextTick} from 'intact';
 
 interface Props {
     data: DataItem[]
-    tab: string
-    size: string
+    tab?: string
+    size?: string
     selectedData?: DataItem
-    checkedKeys: string[]
+    checkedKeys?: number[]
 }
 
 type DataItem = {
@@ -110,22 +110,24 @@ type DataItem = {
     ip: string
 }
 
+const data =  range(0, 10).map(item => {
+    return {
+        name: 'name ' + item,
+        ip: '127.0.0.' + item
+    };
+});
+
 export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
         return {
-            data: range(0, 10).map(item => {
-                return {
-                    name: 'name ' + item,
-                    ip: '127.0.0.' + item
-                };
-            }),
+            data,
             tab: 'detail',
             size: '0px',
             selectedData: undefined,
             checkedKeys: [],
-        }
+        } as Props;
     }
 
     @bind
@@ -140,11 +142,14 @@ export default class extends Component<Props> {
     }
 
     @bind
-    _togglePanel(keys: string[]) {
-        if (keys.length === 1) {
+    _togglePanel(keys: number[] | undefined) {
+        if (keys!.length === 1) {
             // 只选中一行时，展开详情面板
             const data = this.refs.table.getCheckedData()[0];
-            this.set('selectedData', data);
+            this.set({
+                selectedData: data,
+                checkedKeys: keys,
+            });
             this._open();
         } else {
             this._close();
@@ -152,8 +157,8 @@ export default class extends Component<Props> {
     }
 
     @bind
-    _onClickRow(data: DataItem, index: number, key: string) {
-        let checkedKeys = this.get('checkedKeys');
+    _onClickRow(data: DataItem, index: number, key: number) {
+        let checkedKeys = this.get('checkedKeys')!;
         if (checkedKeys.length === 1 && checkedKeys[0] === key) {
             // 如果只选中了一行，再次点击当前行，则取消选中
             checkedKeys = [];
@@ -169,54 +174,19 @@ export default class extends Component<Props> {
 }
 ```
 
-```vue-data
-data() {
-    return {
-        data: range(0, 10).map(item => {
-            return {
-                name: 'name ' + item,
-                ip: '127.0.0.' + item
-            };
-        }),
-        tab: 'detail',
-        size: '0px',
-        selectedData: {},
-        checkedKeys: [],
-    }
-},
-```
-
 ```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data: range(0, 10).map(item => {
-            return {
-                name: 'name ' + item,
-                ip: '127.0.0.' + item
-            };
-        }),
-        tab: 'detail',
-        size: '0px',
-        selectedData: {},
-        checkedKeys: [],
-    };
-    this._classNames = this._classNames.bind(this);
-    this._close = this._close.bind(this);
-    this._open = this._open.bind(this);
-    this._togglePanel = this._togglePanel.bind(this);
+@bind
+_onClickRow(data: DataItem, index: number, key: number) {
+    let checkedKeys = this.state.checkedKeys!;
+    if (checkedKeys.length === 1 && checkedKeys[0] === key) {
+        // 如果只选中了一行，再次点击当前行，则取消选中
+        checkedKeys = [];
+    } else {
+        // 否则只选中当前行
+        checkedKeys = [key];
+    }
+    this.setState({checkedKeys}, () => {
+        this._togglePanel(checkedKeys);
+    });
 }
-```
-
-```angular-properties
-private data = range(0, 10).map(item => {
-    return {
-        name: 'name ' + item,
-        ip: '127.0.0.' + item
-    };
-});
-private tab = 'detail';
-private size = '0px';
-private selectedData = {};
-private checkedKeys = [];
 ```

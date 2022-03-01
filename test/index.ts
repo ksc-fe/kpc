@@ -2,17 +2,17 @@ import {matchSnapshot} from 'chai-karma-snapshot';
 // import 'babel-polyfill';
 // import '../styles/kpc.styl';
 import './test.styl';
-// import mx from '../components/diagram/mxgraph/mx';
+import mx from '../components/diagram/mxgraph/mx';
 
 chai.use(matchSnapshot);
 
 // disable POINTER because it is always false on Mac
-// mx.mxClient.IS_POINTER = false;
+mx.mxClient.IS_POINTER = false;
 
 // require all test files (files that ends with .spec.js)
-// const testsContext = require.context('../components/', true, /index\.spec\.ts/);
-const testsContext = require.context('../components/', true, /(diagram)\/index\.spec\.ts/);
+const testsContext = require.context('../components/', true, /index\.spec\.ts/);
+// const testsContext = require.context('../components/', true, /(tooltip)\/index\.spec\.ts/);
 testsContext.keys().forEach(testsContext);
 
 // test demos
-// require('./demos');
+require('./demos');

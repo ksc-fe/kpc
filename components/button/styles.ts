@@ -1,6 +1,6 @@
 import {css, cx} from '@emotion/css';
-import {ButtonProps} from './index';
-import {theme, ThemeValue} from '../../styles/theme';
+import { ButtonProps, Button } from './index';
+import {theme, ThemeValue, setDefault} from '../../styles/theme';
 import {deepDefaults, palette, getLeft, darken}  from '../../styles/utils';
 import '../../styles/global';
 
@@ -66,13 +66,15 @@ const btnStyles = {
 type TypesWithoutActive = Exclude<Types, 'active'>
 const btnTypeStyles = types.reduce((memo, type) => {
     if (type !== 'active') {
-        const color = theme.color;
+        // const color = theme.color;
         memo[type] = {
             color: '#fff',
-            get bgColor() { return color[type as TypesWithoutActive] },
-            get borderColor() { return color[type as TypesWithoutActive] },
-            get hoverBorderColor() { return palette(color[type as TypesWithoutActive], -1) },
-            get ghostColor() { return color[type as TypesWithoutActive] },
+            get bgColor() {
+                return theme.color[type as TypesWithoutActive]
+            },
+            get borderColor() { return theme.color[type as TypesWithoutActive] },
+            get hoverBorderColor() { return palette(theme.color[type as TypesWithoutActive], -1) },
+            get ghostColor() { return theme.color[type as TypesWithoutActive] },
         };
 
     }
@@ -89,52 +91,55 @@ const btnActiveStyles: TypeStyles = {
 };
 
 const btnSizeStyles = sizes.reduce((memo, size) => {
-    const defaultStyle = theme[size];
+    // const defaultStyle = theme[size];
     memo[size] = {
-        get fontSize() { return defaultStyle.fontSize },
-        get height() { return defaultStyle.height },
-        get padding() { return `0 ${defaultStyle.padding}` },
+        get fontSize() { return theme[size].fontSize },
+        get height() { return theme[size].height },
+        get padding() { return `0 ${theme[size].padding}` },
     };
 
     return memo; 
 }, {} as {[key in Sizes]: SizeStyles});
 
-const {button} = deepDefaults(theme, {
-    button: deepDefaults(
-        {
-            get transition() { return theme.transition.middle },
-            active: btnActiveStyles,
-            secondary: {
-                get color() { return theme.color.primary },
-                get borderColor() { return theme.color.primary },
-                get hoverBgColor() { return palette(theme.color.primary, -4) },
-                get activeBgColor() { return palette(theme.color.primary, -3) },
-            },
-            link: {
-                get color() { return theme.color.link },
-                get hoverColor() { return theme.color.linkHover },
-            },
-
-            // ButtonGroup
-            group: {
-                primary: {
-                    get borderColor() { return darken(button.primary.borderColor, 3) }
-                },
-                warning: {
-                    get borderColor() { return darken(button.warning.borderColor, 3) },
-                },
-                danger: {
-                    get borderColor() { return darken(button.danger.borderColor, 3) },
-                },
-                success: {
-                    get borderColor() { return darken(button.success.borderColor, 3) },
-                },
-            }
+const defaults = deepDefaults(
+    {
+        get transition() { return theme.transition.middle },
+        active: btnActiveStyles,
+        secondary: {
+            get color() { return theme.color.primary },
+            get borderColor() { return theme.color.primary },
+            get hoverBgColor() { return palette(theme.color.primary, -4) },
+            get activeBgColor() { return palette(theme.color.primary, -3) },
         },
-        btnStyles,
-        btnTypeStyles,
-        btnSizeStyles,
-    )
+        link: {
+            get color() { return theme.color.link },
+            get hoverColor() { return theme.color.linkHover },
+        },
+
+        // ButtonGroup
+        group: {
+            primary: {
+                get borderColor() { return darken(button.primary.borderColor, 3) }
+            },
+            warning: {
+                get borderColor() { return darken(button.warning.borderColor, 3) },
+            },
+            danger: {
+                get borderColor() { return darken(button.danger.borderColor, 3) },
+            },
+            success: {
+                get borderColor() { return darken(button.success.borderColor, 3) },
+            },
+        }
+    },
+    btnStyles,
+    btnTypeStyles,
+    btnSizeStyles,
+);
+
+let button: any;
+setDefault(() => {
+    button = deepDefaults(theme, {button: defaults}).button;
 });
 
 export {button};

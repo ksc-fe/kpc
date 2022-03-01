@@ -1,5 +1,5 @@
 import BasicDemo from '~/components/message/demos/basic';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Message} from './';
 
 describe('Message', () => {

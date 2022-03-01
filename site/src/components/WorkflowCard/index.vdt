@@ -1,0 +1,10 @@
+import {makeStyles} from './styles';
+
+const {children, title} = this.get();
+
+<div class={makeStyles()}>
+    <div class="title">{title}</div>
+    <div class="content">
+        {children}
+    </div>
+</div>

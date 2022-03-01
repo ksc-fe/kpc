@@ -50,5 +50,11 @@ interface Props {
 
 export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            firstName: '',
+            lastName: '',
+        }
+    }
 }
 ```

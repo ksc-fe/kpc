@@ -5,14 +5,11 @@ order: 5.2
 
 通过`menu`扩展点，我们可以定义整个菜单的内容
 
-> 此时需要给`Select`添加`allowUnmatch`属性，否则组件判断`value`不在可选的`Option`中时，会清空`value`值
-
 ```vdt
 import {Select, Table, TableColumn, Input, Button, Icon} from 'kpc';
 
 <Select value={this.text()}
     class="custom-select"
-    allowUnmatch
     ref="select"
 >
     <b:menu>
@@ -51,11 +48,11 @@ import {Select, Table, TableColumn, Input, Button, Icon} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     values: DataItem[]
-    keywords: string
+    keywords?: string
     data: DataItem[]
 }
 
@@ -80,7 +77,7 @@ export default class extends Component<Props> {
                 {name: 'Bing', domain: 'cn.bing.com'},
                 {name: 'Github', domain: 'www.github.com'},
             ]
-        }
+        } as Props;
     }
 
     text() {
@@ -96,7 +93,7 @@ export default class extends Component<Props> {
 
     filter() {
         const data = this.get('data');
-        let keywords = this.get('keywords');
+        let keywords = this.get('keywords')!;
         keywords = keywords.trim().toLowerCase();
 
         if (!keywords) return data;

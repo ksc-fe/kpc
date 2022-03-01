@@ -53,17 +53,17 @@ export default class extends Component<Props> {
     }
 
     @bind
-    _onSort(sort: TableSortValue<'name' | 'age'>) {
+    _onSort(sort: TableSortValue<'name' | 'age'> | undefined) {
         console.log(sort);
         const data = oData.slice(0);
-        if (sort.type) {
+        if (sort!.type) {
             data.sort((a, b) => {
-                return sort.type === 'desc' ? 
-                    (a[sort.key!] > b[sort.key!] ? -1 : 1) : 
-                    (a[sort.key!] > b[sort.key!] ? 1 : -1);
+                return sort!.type === 'desc' ? 
+                    (a[sort!.key!] > b[sort!.key!] ? -1 : 1) : 
+                    (a[sort!.key!] > b[sort!.key!] ? 1 : -1);
             });
         }
-        this.set({data, sort});
+        this.set({data, sort: sort!});
     }
 }
 ```

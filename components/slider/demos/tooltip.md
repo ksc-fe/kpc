@@ -3,21 +3,21 @@ title: 展示提示气泡
 order: 6
 ---
 
-给组件添加`isShowTooltip`可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过`tooltip`扩展点自定义展示内容；
+给组件添加`showTooltip`可以在滑块上展示气泡提示，默认展示当前值，我们也可以通过`tooltip`扩展点自定义展示内容；
 当添加`always`属性时，将一直展示提示气泡。通过`tooltipProps`可以设置`Tooltip`的所有属性
 
 > `tooltip`扩展点和`Tooltip`组件的`content`扩展点行为一样，如果你传入空的内容，则不会展示气泡
 
 ```vdt
-import {Slider} from 'kpc/components/slider';
+import {Slider} from 'kpc';
 
 <div>
-    <Slider v-model="value1" min={50} max={500} isShowTooltip />
-    <Slider v-model="values" isRange isShowTooltip />
+    <Slider v-model="value1" min={50} max={500} showTooltip />
+    <Slider v-model="values" range showTooltip />
     <Slider v-model="value2" min={1} max={12}
-        isShowInput={false}
+        showInput={false}
         marks={this.get('marks')}
-        isShowTooltip
+        showTooltip
         always
     >
         <b:tooltip args="value">
@@ -25,7 +25,7 @@ import {Slider} from 'kpc/components/slider';
         </b:tooltip>
     </Slider>
     <Slider v-model="value3" min={50} max={500}
-        isShowTooltip
+        showTooltip
         always
         tooltipProps={{'theme': 'light', 'size': 'small'}}
     />
@@ -33,11 +33,14 @@ import {Slider} from 'kpc/components/slider';
 ```
 
 ```ts
+import {SliderMarks} from 'kpc';
+
 interface Props {
-    value1: number
-    values: [number, number]
-    value2: number
-    value3: number
+    value1?: number
+    values?: [number, number]
+    value2?: number
+    value3?: number
+    marks: SliderMarks 
 }
 
 export default class extends Component<Props> {
@@ -63,7 +66,7 @@ export default class extends Component<Props> {
                 11: '2年',
                 12: '3年',
             }
-        }
+        } as Props;
     }
 }
 ```

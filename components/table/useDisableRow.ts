@@ -1,11 +1,11 @@
 import {useInstance} from 'intact';
-import type {Table, TableRowKey} from './table';
+import type {Table, TableRowKey, TableCheckType} from './table';
 import type {useTree} from './useTree';
 
 export function useDisableRow(
     loopData: ReturnType<typeof useTree>['loopData'],
 ) {
-    const instance = useInstance() as Table;
+    const instance = useInstance() as Table<any, TableRowKey>;
     let enabledKeys: TableRowKey[] = [];
     let disabledKeys: TableRowKey[] = [];
     let allKeys: TableRowKey[] = [];

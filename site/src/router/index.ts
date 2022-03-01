@@ -17,17 +17,17 @@ export default new Router<RouteResult>([
             return {Page: (await import('../pages/index')).default}
         }
     },
-    // {
-        // path: /^(?:\/kpc)?(\/docs\/design\/.*)$/,
-        // action: async (context) => {
-            // return {
-                // Page: (await import('../pages/design')).default,
-                // data: {
-                    // path: context.params[0]
-                // }
-            // };
-        // }
-    // },
+    {
+        path: /^(\/docs\/design\/.*)$/,
+        action: async (context) => {
+            return {
+                Page: (await import('../pages/design')).default,
+                data: {
+                    path: context.params[0] as string
+                }
+            };
+        }
+    },
     // {
         // path: /^(?:\/kpc)?(\/docs\/blogs\/.*)$/,
         // action: async (context) => {
@@ -56,7 +56,62 @@ export default new Router<RouteResult>([
         // // }
     // // },
     {
-        path: '/iframe\/(.*)/',
+        path: '/demo\/(.*)/',
+        action: async (context) => {
+            return {
+                Page: (await import('../pages/demo')).default,
+                data: {
+                    path: context.params[0] as string,
+                }
+            }
+        }
+    },
+    {
+        path: '/iframe/:frameName',
+        action: async (context) => {
+            return {
+                Page: (await import(`../pages/iframe/${context.params.frameName}/index`)).default,
+                data: {
+                    path: context.params[0] as string,
+                }
+            }
+        }
+    },
+    {
+        path: '/resource',
+        action: async (context) => {
+            return {
+                Page: (await import(`../pages/resource/index`)).default,
+                data: {
+                    path: context.params[0] as string,
+                }
+            }
+        }
+    },
+    {
+        path: '/solution',
+        action: async (context) => {
+            return {
+                Page: (await import(`../pages/solution/index`)).default,
+                data: {
+                    path: context.params[0] as string,
+                }
+            }
+        }
+    },
+    {
+        path: '/design',
+        action: async (context) => {
+            return {
+                Page: (await import(`../pages/designdoc/index`)).default,
+                data: {
+                    path: context.params[0] as string,
+                }
+            }
+        }
+    },
+    {
+        path: '/demo\/(.*)/',
         action: async (context) => {
             return {
                 Page: (await import('../pages/demo')).default,

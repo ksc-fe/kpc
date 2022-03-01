@@ -1,5 +1,5 @@
 import ClosableDemo from '~/components/tag/demos/closable';
-import {mount, unmount, wait} from 'test/utils';
+import {mount, unmount, wait} from '../../test/utils';
 
 describe('Tag', () => {
     afterEach(() => unmount());

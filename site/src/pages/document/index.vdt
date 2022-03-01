@@ -1,16 +1,18 @@
-import Button from 'components/button';
-/* import Link from 'components/link'; */
-/* import Badge from 'components/badge'; */
+import {Button, Badge, Aside} from 'kpc';
+import {makeStyles} from './styles';
+import {Link} from '../../components/link';
+import {Catalogue} from '../../components/catalogue';
 
 const Article = this.get('Article');
 
-let currentNav = {};
-/* let demos = this.get('demos') || []; */
+if (!Article) return <div>Loading...</div>;
 
-function Catalog(props) {
+let currentNav = {};
+
+const Catalog = (props) => {
     let isEmpty = true;
 
-    const lis = props.value.forEach((value) => {
+    const lis = props.value.map((value) => {
         if (!value.disabled) isEmpty = false;
         return <li
             class={{
@@ -24,7 +26,7 @@ function Catalog(props) {
             }}
             v-if={!value.disabled}
         >
-            <a href={`/${value.path}/`}>
+            <Link href={`/${value.path}/`}>
                 {(() => {
                     const matches = value.path.match(/components\/([^\/]+)/);
                     if (matches) {
@@ -41,7 +43,7 @@ function Catalog(props) {
                         }
                     }
                 })()}
-            </a>
+            </Link>
         </li>
     });
     if (isEmpty) return;
@@ -74,7 +76,25 @@ if (sidebar) {
     }
 }
 
-<t:super navIndex="document" class="document-page fixed-aside" {...$props}>
+<t:super navIndex="document" class={{
+    "document-page fixed-aside": true,
+    [makeStyles()]: true,
+}} {...$props}>
+    <b:aside>
+        <Aside class={{expanded: this.get('expanded')}} fixed width="260px" theme="white">
+            <div class="aside-wrapper">
+                <template v-for={_sidebar}>
+                    {Catalog($value)}
+                </template>
+                <div class="aside-border transition"></div>
+            </div>
+            <Button icon
+                ev-click={() => this.set('expanded', !this.get('expanded'))}
+            >
+                <i class="k-icon ion-android-menu"></i>
+            </Button>
+        </Aside>
+    </b:aside>
     <b:content>
         <article>
             <div class="article-head">
@@ -87,7 +107,10 @@ if (sidebar) {
                     上修正该文档
                 </div>
             </div>
-            <Article ref="article" />
+            <Article ref={this.articleRef} />
+            <Catalogue data={this.get('catalogue')}
+                v-model="catalogueId"
+            />
         </article>
     </b:content>
 </t:super>

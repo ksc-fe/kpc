@@ -1,47 +1,115 @@
-import {Layout, Header, Aside, Body, Button, Icon, Tabs, Tab} from 'kpc';
+import {
+    Layout, Header, Body, Icon, Tabs, Tab,
+    Dropdown, DropdownMenu, DropdownItem,
+    Button,
+} from 'kpc';
 import {makeHeaderStyles} from './styles';
+import {Link} from '../components/link';
+import {Transition} from 'intact';
 
 const nav = [
     {
-        title: '资源',
-        href: '/docs/resources/',
-        index: 'resources',
-    },
-    {
         title: '设计',
-        href: '/docs/design/language/',
-        index: 'design'
+        href: '/design',
+        index: 'design',
     },
+    /* { */
+        /* title: '组件', */
+        /* href: '/docs/design/language/', */
+        /* index: 'design' */
+    /* }, */
     {
         title: '组件',
-        href: '/docs/getting-started/',
+        href: '/docs/vue/',
         index: 'document'
     },
     {
-        title: 'Blog',
-        href: '/docs/blogs/design/',
-        index: 'blog'
+        title: '资源',
+        href: '/resource',
+        index: 'resource'
     },
     {
-        title: '定制主题',
-        href: 'https://kpc-theme.ksyun.com/',
-        isOpen: true,
+        title: '解决方案',
+        href: '/solution',
+        index: 'solution'
     }
 ];
 
+const {themeColor, colorList, curLang} = this.get();
+
 <Layout class={$props.className}>
     <Header fixed class={makeHeaderStyles()}>
-        <div class="logo"></div>
+        <div class="logo" ev-click={() => window.location.href = '/'}></div>
         <div class="main">
-            <Tabs size="large">
+            <Tabs size="large" value={$props.navIndex}>
                 <Tab v-for={nav}
                     value={$value.index}
                     to={$value.href}
                 >{$value.title}</Tab>
+                <Tab>
+                    <div class="lang-wrapper">
+                        <div class="lang-box">
+                            <div 
+                                class={{active: curLang === 'cn'}} 
+                                ev-click={this.setLang.bind(this, 'cn')}
+                            >zh-CN</div>
+                            <div 
+                                class={{active: curLang === 'en'}} 
+                                ev-click={this.setLang.bind(this, 'en')}
+                            >en-US</div>
+                        </div>    
+                    </div>
+                </Tab>
             </Tabs>
+            <Dropdown trigger="click"
+                container={dom => dom}
+                position={{my: 'right top', at: 'right bottom'}}
+            >
+                <Button type="none" icon class="menu-btn">
+                    <Icon class="ion-navicon" size="large" />
+                </Button>
+                <DropdownMenu class="nav-menu-list">
+                    <DropdownItem v-for={nav}
+                        class={{
+                            active: $value.index === $props.navIndex
+                        }}
+                        ev-select={() => Link.to($value.href)}
+                    >{$value.title}</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
+            <div class="theme-color-box" 
+                ev-mouseenter={this.showColorList} 
+                ev-mouseleave={this.hideColorList}
+            >
+                <div class="cur-color">
+                    <div 
+                        class="color-item" 
+                        style={{background: themeColor}} 
+                    ></div>
+                </div>
+                <Transition name="k-slidedown">
+                    <div class="theme-color-option" v-if={this.get('showThemeColor')}>
+                        <div v-for={colorList}>
+                            <div 
+                                class="color-item" 
+                                style={{background: $value}} 
+                                ev-click={this.handleColorChange.bind(this, $value)}
+                            >
+                                <Icon 
+                                    v-if={themeColor === $value} 
+                                    class="icon ion-checkmark-round"
+                                ></Icon>
+                            </div>
+                        </div>
+                    </div>
+                </Transition>
+            </div>
         </div>
     </Header>
     <Layout>
+        <template>
+            <b:aside />
+        </template>
         <Body>
             <template>
                 <b:content />

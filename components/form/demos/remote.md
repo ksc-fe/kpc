@@ -6,8 +6,7 @@ order: 4
 要完成异步验证（例如：通过后端接口判断用户名是否重复），只需要在验证规则函数中返回`Promise`即可
 
 ```vdt
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
+import {Form, FormItem, Input} from 'kpc';
 
 <Form ref="form">
     <FormItem label="用户名" value={this.get('userName')}
@@ -31,6 +30,11 @@ import {Input} from 'kpc/components/input';
 ```ts
 export default class extends Component<{userName?: string}> {
     static template = template;
+    static defaults() {
+        return {
+            userName: ''
+        }
+    }
 
     validateUserName(value: string) {
         // mock api

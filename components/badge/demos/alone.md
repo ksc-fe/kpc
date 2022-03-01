@@ -6,8 +6,7 @@ order: 3
 不给组件指定子元素，可以展示单独的徽标
 
 ```vdt
-import {Badge} from 'kpc/components/badge';
-import {Button} from 'kpc/components/button';
+import {Badge, Button} from 'kpc';
 
 <div>
     <Badge />

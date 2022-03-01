@@ -1,90 +1,93 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 import {ColorFormats} from 'tinycolor2';
 
-const {colorpicker} = deepDefaults(theme, {
-    colorpicker: {
-        get height() { return theme.default.height },
-        width: '100px',
-        get border() { return `1px solid ${theme.color.border}` },
-        get borderRadius() { return theme.borderRadius },
-        cursor: 'pointer',
-        bgColor: '#fff',
-        padding: '4px',
-        get innerBorderRadius() { return theme.borderRadius },
+const defaults = {
+    get height() { return theme.default.height },
+    width: '100px',
+    get border() { return `1px solid ${theme.color.border}` },
+    get borderRadius() { return theme.borderRadius },
+    cursor: 'pointer',
+    bgColor: '#fff',
+    padding: '4px',
+    get innerBorderRadius() { return theme.borderRadius },
 
-        // size
-        large: {
-            get height() { return theme.large.height },
-            width: '120px',
-        },
-        small: {
-            get height() { return theme.small.height },
-            width: '70px',
-        },
-        mini: {
-            get height() { return theme.mini.height },
-            width: '50px',
-            padding: '2px',
-        },
+    // size
+    large: {
+        get height() { return theme.large.height },
+        width: '120px',
+    },
+    small: {
+        get height() { return theme.small.height },
+        width: '70px',
+    },
+    mini: {
+        get height() { return theme.mini.height },
+        width: '50px',
+        padding: '2px',
+    },
 
-        // panel
-        panel: {
-            padding: '10px',
-            width: '220px',
-            fontSize: '11px',
-            saturationHeight: '150px',
-            circle: {
-                width: '4px',
-                boxShadow: '0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(167, 41, 41, 0.4)',
-            },
-            gutter: '4px',
+    // panel
+    panel: {
+        padding: '10px',
+        width: '220px',
+        fontSize: '11px',
+        saturationHeight: '150px',
+        circle: {
+            width: '4px',
+            boxShadow: '0 0 0 1.5px #fff, inset 0 0 1px 1px rgba(0,0,0,.3), 0 0 1px 2px rgba(167, 41, 41, 0.4)',
         },
-        slider: {
-            height: '10px',
-            borderRadius: '0',
-            cursor: 'default',
-            thumb: {
-                width: '4px',
-                height: '8px',
-                border: 'none',
-                borderRadius: '1px',
-                boxShadow: 'rgba(0, 0, 0, .6) 0 0 2px',
-                hover: {
-                    transform: 'none',
-                    cursor: 'default',
-                    bgColor: '#fff',
-                }
+        gutter: '4px',
+    },
+    slider: {
+        height: '10px',
+        borderRadius: '0',
+        cursor: 'default',
+        thumb: {
+            width: '4px',
+            height: '8px',
+            border: 'none',
+            borderRadius: '1px',
+            boxShadow: 'rgba(0, 0, 0, .6) 0 0 2px',
+            hover: {
+                transform: 'none',
+                cursor: 'default',
+                bgColor: '#fff',
             }
-        },
-        color: {
-            width: '24px',
-            height: '24px',
-            borderRadius: '3px',
-            boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25)',
-        },
-        input: {
-            height: '20px',
-            padding: '0 3px',
-            textPadding: '3px 0', 
-        },
-        presets: {
-            delimiter: `1px solid #eee`,
-            width: '16px',
-            height: '16px',
-            borderRadius: '3px',
-            boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, .15)',
-        },
+        }
+    },
+    color: {
+        width: '24px',
+        height: '24px',
+        borderRadius: '3px',
+        boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, .15), inset 0 0 4px rgba(0, 0, 0, .25)',
+    },
+    input: {
+        height: '20px',
+        padding: '0 3px',
+        textPadding: '3px 0', 
+    },
+    presets: {
+        delimiter: `1px solid #eee`,
+        width: '16px',
+        height: '16px',
+        borderRadius: '3px',
+        boxShadow: 'inset 0 0 0 1px rgba(0, 0, 0, .15)',
+    },
 
-        // disabled
-        disabled: {
-            get bgColor() { return theme.color.disabledBg },
-            get borderColor() { return theme.color.disabledBorder },
-            cursor: 'not-allowed',
-        },
-    }
+    // disabled
+    disabled: {
+        get bgColor() { return theme.color.disabledBg },
+        get borderColor() { return theme.color.disabledBorder },
+        cursor: 'not-allowed',
+    },
+};
+
+let colorpicker: any;
+setDefault(() => {
+    colorpicker = deepDefaults(theme, {colorpicker: defaults}).colorpicker;
 });
 
 const _sizes = ['large', 'small', 'mini'] as const;

@@ -107,27 +107,6 @@ export default class Demo extends Component {
 }
 ```
 
-```vue-data
-data() {
-    return {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        data: Array.apply(null, {length: 100}),
-    };
-}
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        data: Array.apply(null, {length: 100}),
-    };
-}
-```
-
 ```angular-properties
 private expandedKeys = [];
 private selectedKey = '3-1';

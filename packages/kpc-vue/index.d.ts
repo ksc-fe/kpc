@@ -1,5 +1,5 @@
 /*!
- * kpc v2.0.0-alpha.1
+ * @king-design v2.0.0-beta.0
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -8,6 +8,8 @@
  * https://ksc-fe.github.io/kpc/
  */
 export { _$, localize } from './i18n';
+export { bind } from './components/utils';
+export { setTheme } from './styles/theme';
 export * from './components/affix';
 export * from './components/badge';
 export * from './components/breadcrumb';
@@ -53,4 +55,7 @@ export * from './components/transfer';
 export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
-export declare const version = "2.0.0-alpha.1";
+export declare const version = "2.0.0-beta.1";
+
+
+export {normalize} from 'intact-vue';

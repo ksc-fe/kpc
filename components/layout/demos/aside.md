@@ -1,6 +1,7 @@
 ---
 title: 侧边栏布局
 order: 1
+iframe: 350
 ---
 
 侧边栏布局，导航条和侧边栏为左右关系，通常需要展开收起侧边栏，给`Aside`添加`collapse`属性即可
@@ -33,7 +34,7 @@ import {
             </MenuItem>
             <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
             <MenuItem key="3">
-                <i class="k-icon ion-heart"></i>menu 3
+                <Icon class="ion-heart" />menu 3
                 <Menu>
                     <MenuItem key="3-1">sub menu 1</MenuItem>
                     <MenuItem key="3-2">sub menu 2</MenuItem>
@@ -77,11 +78,11 @@ import {
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
-    expandedKeys: string[]
-    selectedKey: string
+    expandedKeys?: string[]
+    selectedKey?: string
     collapse: boolean
 }
 

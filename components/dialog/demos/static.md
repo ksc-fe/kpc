@@ -17,7 +17,7 @@ import {Button, ButtonGroup} from 'kpc';
 <div>
     <ButtonGroup>
         <Button 
-            v-for={['success', 'warning', 'error', 'confirm']}
+            v-for={this.get('types')}
             ev-click={this.showDialog.bind(this, $value)}
         >Show {$value[0].toUpperCase() + $value.substring(1)} Dialog</Button>
     </ButtonGroup>
@@ -25,7 +25,7 @@ import {Button, ButtonGroup} from 'kpc';
     <br />
     <ButtonGroup>
         <Button 
-            v-for={['success', 'warning', 'error', 'confirm']}
+            v-for={this.get('types')}
             ev-click={this.showDialogWithTitle.bind(this, $value)}
         >Show {$value[0].toUpperCase() + $value.substring(1)} Dialog with Title</Button>
     </ButtonGroup>
@@ -37,8 +37,17 @@ import {Dialog, Message} from 'kpc';
 
 type Type = 'success' | 'warning' | 'error' | 'confirm'
 
-export default class extends Component {
+interface Props {
+    types: Type[]
+}
+
+export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            types: ['success', 'warning', 'error', 'confirm']
+        } as Props;
+    }
 
     showDialog(type: Type) {
         Dialog[type]({

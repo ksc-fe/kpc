@@ -11,15 +11,15 @@ order: 1
 > 此时应该在js中定义该对象，然后模板中引用它。
 
 ```vdt
-import {Checkbox} from 'kpc/components/checkbox';
+import {Checkbox} from 'kpc';
 
 <div>
     <Checkbox v-model="value1">默认值: {JSON.stringify(this.get('value1'))}</Checkbox>
     <Checkbox v-model="value2" trueValue="checked">
         指定选中时取值为"checked": {JSON.stringify(this.get('value2'))}
     </Checkbox>
-    <Checkbox v-model="value3" trueValue={0} falseValue={this.get("uncheckedValue")}>
-        指定非选中时取值为对象：{JSON.stringify(this.get('value3'))}
+    <Checkbox v-model="value3" trueValue={this.get("checkedValue")} falseValue={0}>
+        指定选中时取值为对象：{JSON.stringify(this.get('value3'))}
     </Checkbox>
 </div>
 ```
@@ -30,13 +30,24 @@ import {Checkbox} from 'kpc/components/checkbox';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    value1?: boolean
+    value2?: boolean | string 
+    value3?: number | object
+    checkedValue: object
+}
+export default class extends Component<Props> {
     static template = template;
 
-    static defaults = () => ({
-        uncheckedValue: {
-            unchecked: true
-        }
-    });
+    static defaults() {
+        return {
+            value1: false,
+            value2: false,
+            value3: 0,
+            checkedValue: {
+                checked: true
+            }
+        } as Props;
+    };
 }
 ```

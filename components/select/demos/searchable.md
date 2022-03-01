@@ -9,7 +9,7 @@ order: 10
 同样我们可以通过`values / value`扩展点定义展示的选择结果
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" searchable>
@@ -45,8 +45,8 @@ import {Select, Option} from 'kpc/components/select';
 
 ```ts
 interface Props {
-    day: string | null
-    days: string[]
+    day?: string | null
+    days?: string[]
 }
 
 export default class extends Component<Props> {
@@ -55,7 +55,7 @@ export default class extends Component<Props> {
         return {
             day: null,
             days: []
-        };
+        } as Props;
     };
 }
 ```

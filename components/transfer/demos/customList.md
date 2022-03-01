@@ -54,8 +54,8 @@ import {Message, bind} from 'kpc';
 interface Props {
     users: User[]
     rooms: Room[]
-    checkedUsers: User[]
-    checkedRooms: Room[]
+    checkedUsers?: User[]
+    checkedRooms?: Room[]
 }
 
 type User = {
@@ -93,23 +93,23 @@ export default class extends Component<Props> {
             ],
             checkedUsers: [],
             checkedRooms: [],
-        }
+        } as Props;
     }
 
     @bind
     enableAdd() {
-        return this.get('checkedUsers').length && this.get('checkedRooms').length === 1;
+        return !!this.get('checkedUsers')!.length && this.get('checkedRooms')!.length === 1;
     }
 
     @bind
     enableRemove() {
-        return this.get('checkedRooms').length;
+        return !!this.get('checkedRooms')!.length;
     }
 
     @bind
     onAdd() {
-        const users = this.get('checkedUsers');
-        const room = this.get('checkedRooms')[0];
+        const users = this.get('checkedUsers')!;
+        const room = this.get('checkedRooms')![0];
 
         if (users.length > 2) {
             return Message.error('当前房间最多容纳两人');
@@ -125,7 +125,7 @@ export default class extends Component<Props> {
 
     @bind
     onRemove() {
-        const rooms = this.get('checkedRooms');
+        const rooms = this.get('checkedRooms')!;
         
         rooms.forEach(room => {
             room.users.forEach(user => {
@@ -141,8 +141,8 @@ export default class extends Component<Props> {
 
 ```vue-methods
 onAdd() {
-    const users = this.checkedUsers;
-    const room = this.checkedRooms[0];
+    const users = this.checkedUsers!;
+    const room = this.checkedRooms![0];
 
     if (users.length > 2) {
         return Message.error('当前房间最多容纳两人');

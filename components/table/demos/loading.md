@@ -6,16 +6,11 @@ order: 21
 给`Table`添加`loading`属性，即可展示加载状态
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-import {Checkbox} from 'kpc/components/checkbox';
+import {Table, TableColumn, Checkbox} from 'kpc';
 
 <div>
     <Table 
-        data={[
-            {a: '第一行', b: '哈哈1'}, 
-            {a: '第二行', b: '哈哈2'},
-            {a: '第三行', b: '哈哈3'}
-        ]}
+        data={this.get('data')}
         loading={this.get('loading')}
     >
         <TableColumn key="a" title="表头1" />
@@ -32,13 +27,20 @@ import {Checkbox} from 'kpc/components/checkbox';
 
 ```ts
 interface Props {
-    loading: boolean
+    loading?: boolean
 }
 
 export default class extends Component<Props> {
     static template = template;
     static defaults() {
-        return {loading: true};
+        return {
+            loading: true,
+            data: [
+                {a: '第一行', b: '哈哈1'}, 
+                {a: '第二行', b: '哈哈2'},
+                {a: '第三行', b: '哈哈3'}
+            ]
+        };
     }
 }
 ```

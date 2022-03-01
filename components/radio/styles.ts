@@ -1,27 +1,30 @@
 import {css} from '@emotion/css';
 import {deepDefaults, darken} from '../../styles/utils';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
 
-const {radio} = deepDefaults(theme, {
-    radio: {
-        width: '14px',
-        get transition() { return theme.transition.small },
-        get borderColor() {
-            return theme.color.darkBorder;
-        },
-        bgColor: '#fff',
-        textGap: '8px',
-        innerWidth: '8px',
-        get checkedColor() { return theme.color.primary },
+const defaults = {
+    width: '14px',
+    get transition() { return theme.transition.small },
+    get borderColor() {
+        return theme.color.darkBorder;
+    },
+    bgColor: '#fff',
+    textGap: '8px',
+    innerWidth: '8px',
+    get checkedColor() { return theme.color.primary },
 
-        disabled: {
-            get color() { return theme.color.disabled },
-            get borderColor() { return theme.color.disabledBorder },
-            get bgColor() { return theme.color.disabledBg },
-            get innerColor() { return theme.color.disabledBorder },
-        }
+    disabled: {
+        get color() { return theme.color.disabled },
+        get borderColor() { return theme.color.disabledBorder },
+        get bgColor() { return theme.color.disabledBg },
+        get innerColor() { return theme.color.disabledBorder },
     }
+};
+
+let radio: any;
+setDefault(() => {
+    radio = deepDefaults(theme, {radio: defaults}).radio;
 });
 
 export function makeStyles() {

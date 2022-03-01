@@ -1,39 +1,42 @@
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 import {deepDefaults}  from '../../styles/utils';
 
-export type Mode = 'horizontal' | 'vertical'
+export type Mode = 'horizontal' | 'vertical';
 
 export const kls = (className: string): string => `k-split-${className}`;
 
-const {split} = deepDefaults(theme, {
-    split: {
-        splitLineSize: '6px',
-        dragLinesSize: '1px',
-        dragLinesCount: 5,
-        dragLiensGutter: 5,
-        get bgColor() { return theme.color.bg },
-        get baseBorder() { return `1px solid ${theme.color.border}` },
-        get transition() { return theme.transition.middle },
-        get boderColor() { return theme.color.border },
-        get dragLineMargin(): string {
-            return `-${split.dragLinesCount * (split.dragLiensGutter + 1) / 2}px`;
-        },
-        boxShadow(direction: Mode) {
-            let i = 1;
-            let tmp = [];
-            while(i <= split.dragLinesCount) {
-                const shadowVal = direction === 'horizontal'
-                    ? `0 ${i * split.dragLiensGutter}px 0 0`
-                    : `${i * split.dragLiensGutter}px 0 0 0`;
-                tmp.push(`${shadowVal} ${split.boderColor}`);
-                i++;
-            }
-            
-            return `${tmp.join(',')}`;
+const defaults = {
+    splitLineSize: '6px',
+    dragLinesSize: '1px',
+    dragLinesCount: 5,
+    dragLiensGutter: 5,
+    get bgColor() { return theme.color.bg },
+    get baseBorder() { return `1px solid ${theme.color.border}` },
+    get transition() { return theme.transition.middle },
+    get boderColor() { return theme.color.border },
+    get dragLineMargin(): string {
+        return `-${split.dragLinesCount * (split.dragLiensGutter + 1) / 2}px`;
+    },
+    boxShadow(direction: Mode) {
+        let i = 1;
+        let tmp = [];
+        while(i <= split.dragLinesCount) {
+            const shadowVal = direction === 'horizontal'
+                ? `0 ${i * split.dragLiensGutter}px 0 0`
+                : `${i * split.dragLiensGutter}px 0 0 0`;
+            tmp.push(`${shadowVal} ${split.boderColor}`);
+            i++;
         }
-    } 
+        
+        return `${tmp.join(',')}`;
+    }
+};
+
+let split: any;
+setDefault(() => {
+    split = deepDefaults(theme, {split: defaults}).split;
 });
 
 export function makeStyles() {

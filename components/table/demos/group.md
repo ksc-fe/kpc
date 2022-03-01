@@ -14,44 +14,37 @@ order: 18
 > `group`改变时，你应该同步更新当前属性值(`sort`也一样)
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div class='tables'>
     <Table data={this.get('data')} 
-        v-model:group="group"
+        group={this.get('group')}
         ev-$change:group={this._onChangeGroup}
         ref="__test1"
         rowKey={row => row.name}
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
-            group={[ 
-                {label: '全部', value: ''},
-                {label: '运行中', value: 'active'},
-                {label: '已关闭', value: 'stopped'}
-            ]}
+            group={this.get('statusGroup')}
         >
-            <b:template args="data">
+            <b:template args="[data]">
                 <span>{data.status === 'active' ? '运行中' : '已关闭'}</span>
             </b:template>
         </TableColumn>
     </Table>
 
     <Table data={this.get('multipleData')} 
-        v-model:group="multipleGroup"
+        group={this.get('multipleGroup')}
         ev-$change:group={this._onChangeMultipleGroup}
         ref="__test2"
         rowKey={row => row.name}
     >
         <TableColumn title='名称' key='name' />
         <TableColumn title='状态' key='status' 
-            group={[ 
-                {label: '运行中', value: 'active'},
-                {label: '已关闭', value: 'stopped'}
-            ]}
+            group={this.get('multipleStatusGroup')}
             multiple
         >
-            <b:template args="data">
+            <b:template args="[data]">
                 <span>{data.status === 'active' ? '运行中' : '已关闭'}</span>
             </b:template>
         </TableColumn>
@@ -66,13 +59,15 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```
 
 ```ts
-import {bind, TableGroupValue} from 'kpc';
+import {bind, TableGroupValue, TableColumnGroupItem} from 'kpc';
 
 interface Props {
     data: DataItem[]
+    group?: TableGroupValue
+    statusGroup: TableColumnGroupItem[] 
     multipleData: DataItem[]
-    group: TableGroupValue
-    multipleGroup: TableGroupValue
+    multipleGroup?: TableGroupValue
+    multipleStatusGroup: TableColumnGroupItem[]
 }
 
 type DataItem = {
@@ -92,18 +87,27 @@ export default class extends Component<Props> {
         return {
             data: oData, 
             group: {status: ''},
+            statusGroup: [
+                {label: '全部', value: ''},
+                {label: '运行中', value: 'active'},
+                {label: '已关闭', value: 'stopped'}
+            ],
             multipleData: oData,
             multipleGroup: {status: []},
-        }
+            multipleStatusGroup: [
+                {label: '运行中', value: 'active'},
+                {label: '已关闭', value: 'stopped'}
+            ]
+        } as Props;
     }
 
     @bind
-    _onChangeGroup(group: TableGroupValue) {
+    _onChangeGroup(group?: TableGroupValue) {
         console.log(group);
         const data = oData.filter(item => {
             let matched = true;
-            for (let key in group) {
-                const value = group[key];
+            for (let key in group!) {
+                const value = group![key];
                 if (value && item[key as keyof DataItem] !== value) {
                     matched = false;
                     break;
@@ -112,16 +116,16 @@ export default class extends Component<Props> {
             return matched;
         });
 
-        this.set('data', data);
+        this.set({data, group});
     }
 
     @bind
-    _onChangeMultipleGroup(group: TableGroupValue) {
+    _onChangeMultipleGroup(group?: TableGroupValue) {
         console.log(group);
         const data = oData.filter(item => {
             let matched = true;
-            for (let key in group) {
-                const value = group[key];
+            for (let key in group!) {
+                const value = group![key];
                 if (value.length && value.indexOf(item[key as keyof DataItem]) === -1) {
                     matched = false;
                     break;
@@ -130,71 +134,7 @@ export default class extends Component<Props> {
             return matched;
         });
 
-        this.set('multipleData', data);
+        this.set({multipleData: data, multipleGroup: group});
     }
 }
-```
-
-```vue-data
-data() {
-    return {
-        data: oData, 
-        group: {status: ''},
-        multipleData: oData,
-        multipleGroup: {status: []},
-        scheme: {
-            name: '名称',
-            status: {
-                title: '状态',
-                template: function(data) {
-                    return <span>{data.status === 'active' ? '运行中' : '已关闭'}</span>
-                },
-                group: [
-                    {label: '全部', value: ''},
-                    {label: '运行中', value: 'active'},
-                    {label: '已关闭', value: 'stopped'},
-                ]
-            }
-        },
-    }
-},
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        "data": oData,
-        "group": {
-            "status": ""
-        },
-        "multipleData": oData,
-        "multipleGroup": {
-            "status": []
-        }
-    };
-    this._onChangeGroup = this._onChangeGroup.bind(this);
-    this._onChangeMultipleGroup = this._onChangeMultipleGroup.bind(this);
-}
-```
-
-```angular-properties
-private data = oData;
-private group = {status: ''};
-private multipleData = oData;
-private multipleGroup = {status: []};
-private scheme = {
-    name: '名称',
-    status: {
-        title: '状态',
-        template: function(data) {
-            return data.status === 'active' ? '运行中' : '已关闭';
-        },
-        group: [
-            {label: '全部', value: ''},
-            {label: '运行中', value: 'active'},
-            {label: '已关闭', value: 'stopped'},
-        ]
-    }
-};
 ```

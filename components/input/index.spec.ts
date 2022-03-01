@@ -1,5 +1,5 @@
 import BasicDemo from '~/components/input/demos/basic';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import SearchDemo from '~/components/input/demos/search';
 import FrozenDemo from '~/components/input/demos/frozen';
 

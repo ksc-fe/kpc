@@ -15,44 +15,46 @@ export type {
     DataItem as TreeDataItem,
 };
 
-export interface TreeProps {
-    data?: DataItem[]
-    filter?: Filter 
+export interface TreeProps<K extends Key = Key> {
+    data?: DataItem<K>[]
+    filter?: Filter<K>
     uncorrelated?: boolean
-    checkedKeys?: Key[]
-    expandedKeys?: Key[]
+    checkedKeys?: K[]
+    expandedKeys?: K[]
     defaultExpandAll?: boolean
     selectable?: boolean
-    selectedKeys?: Key[]
+    selectedKeys?: K[]
     multiple?: boolean
     checkbox?: boolean
-    load?: (node: Node) => DataItem[] | Promise<DataItem[]>
+    load?: (node: Node<K>) => Promise<void> | void 
     showLine?: boolean
     draggable?: boolean
-    allowDrag?: (node: Node) => boolean 
-    allowDrop?: (node: Node) => boolean 
+    allowDrag?: (node: Node<K>) => boolean 
+    allowDrop?: (node: Node<K>) => boolean 
 }
 
-export interface TreeEvents {
-    denydrag: [Node]
-    denydrop: [Node]
-    dragend: [DragEndData]
+export interface TreeEvents<K extends Key> {
+    denydrag: [Node<K>]
+    denydrop: [Node<K>]
+    dragend: [DragEndData<K>]
     transitionEnd: []
 }
 
-export interface TreeBlocks {
-    label: [DataItem, Node, number]
+export interface TreeBlocks<K extends Key> {
+    label: [DataItem<K>, Node<K>, number]
 }
 
-type DragEndData = {
-    srcNode: Node
-    toNode: Node
+type DragEndData<K extends Key> = {
+    srcNode: Node<K>
+    toNode: Node<K>
     mode: Mode
 }
 
-type Filter = (data: DataItem, node: Node) => boolean;
+export type TreeDragEndData<K extends Key = Key> = DragEndData<K>
 
-const typeDefs: Required<TypeDefs<TreeProps>> = {
+type Filter<K extends Key> = (data: DataItem<K>, node: Node<K>) => boolean;
+
+const typeDefs: Required<TypeDefs<TreeProps<Key>>> = {
     data: Array,
     filter: Function,
     uncorrelated: Boolean,
@@ -70,19 +72,19 @@ const typeDefs: Required<TypeDefs<TreeProps>> = {
     allowDrop: Function,
 };
 
-const defaults = (): Partial<TreeProps> => ({
+const defaults = (): Partial<TreeProps<Key>> => ({
     selectable: true,
     showLine: true,
 });
 
-const events: Events<TreeEvents> = {
+const events: Events<TreeEvents<Key>> = {
     denydrag: true,
     denydrop: true,
     dragend: true,
     transitionEnd: true, 
 };
 
-export class Tree extends Component<TreeProps, TreeEvents, TreeBlocks> {
+export class Tree<K extends Key = Key> extends Component<TreeProps<K>, TreeEvents<K>, TreeBlocks<K>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
@@ -104,24 +106,24 @@ export class Tree extends Component<TreeProps, TreeEvents, TreeBlocks> {
         return this.selected.getSelectedData();
     }
 
-    public expand(key: Key) {
+    public expand(key: K) {
         const expandedKeys = this.expanded.get();
         expandedKeys.add(key);
-        this.set('expandedKeys', Array.from(expandedKeys));
+        this.set('expandedKeys', Array.from(expandedKeys) as K[]);
     }
 
-    public shrink(key: Key) {
+    public shrink(key: K) {
         const expandedKeys = this.expanded.get();
         expandedKeys.delete(key);
-        this.set('expandedKeys', Array.from(expandedKeys));
+        this.set('expandedKeys', Array.from(expandedKeys) as K[]);
     }
 
     public getNodes() {
-        return this.nodes.getNodes();
+        return this.nodes.getNodes() as Node<K>[];
     }
 
     @bind
-    private onClick(node: Node) {
+    private onClick(node: Node<K>) {
         if (node.data.disabled) return;
 
         const {selectable, checkbox} = this.get();

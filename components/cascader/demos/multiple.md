@@ -6,7 +6,7 @@ order: 8
 给组件添加`multiple`属性，即可支持多选
 
 ```vdt
-import {Cascader} from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <div>
     <Cascader data={this.get('data')} v-model="values" multiple />
@@ -20,6 +20,7 @@ export default class extends Component {
 
     static defaults() {
         return {
+            values: [] as string[][],
             data: [
                 {
                     value: 'beijing',

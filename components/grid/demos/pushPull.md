@@ -9,7 +9,7 @@ order: 2.1
 2. `push` 定义列距离左边界的栅格数
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <Row> 
     <Col span="18" push="6">1 col-18 push-6</Col>

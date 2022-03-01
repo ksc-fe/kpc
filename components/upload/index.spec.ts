@@ -3,7 +3,7 @@ import BasicDemo from '~/components/upload/demos/basic';
 import DragDemo from '~/components/upload/demos/drag';
 import GalleryDemo from '~/components/upload/demos/gallery';
 import ManuallyDemo from '~/components/upload/demos/manually';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Upload} from './';
 import {RequestError} from './';
 import {bind} from '../utils';

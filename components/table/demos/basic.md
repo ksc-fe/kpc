@@ -7,25 +7,24 @@ order: 0
 组件定义表格结构，详见”定义表格结构“说明
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
-const data = [{a: 'Cell 1-1', b: 'Cell 1-2'}, {a: 'Cell 2-1', b: 'Cell 2-2'}];
-
-<Table data={data} resizable>
+<Table data={this.get('data')} resizable>
     <TableColumn key="a" title="Title 1" />
     <TableColumn key="b" title="Title 2" />
 </Table>
 ```
 
-```styl
-.k-table
-    margin-bottom 20px
-```
-
-```vue-data
-data() {
-    return {
-        data: [{a: 'Cell 1-1', b: 'Cell 1-2'}, {a: 'Cell 2-1', b: 'Cell 2-2'}]
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            data: [
+                {a: 'Cell 1-1', b: 'Cell 1-2'},
+                {a: 'Cell 2-1', b: 'Cell 2-2'}
+            ]
+        };
     }
-},
+}
 ```

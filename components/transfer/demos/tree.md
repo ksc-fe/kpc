@@ -42,10 +42,10 @@ import {bind, Tree, TreeNode} from 'kpc';
 
 interface Props {
     data: DataItem[]
-    leftCheckedKeys: string[]
-    rightCheckedKeys: string[],
-    leftExpandedKeys: string[],
-    rightExpandedKeys: string[],
+    leftCheckedKeys?: string[]
+    rightCheckedKeys?: string[],
+    leftExpandedKeys?: string[],
+    rightExpandedKeys?: string[],
     leftData: DataItem[],
     rightData: DataItem[]
 }
@@ -103,7 +103,7 @@ export default class extends Component<Props> {
             rightExpandedKeys: [],
             leftData: [],
             rightData: []
-        };
+        } as Props;
     }
 
     init() {
@@ -128,12 +128,12 @@ export default class extends Component<Props> {
 
     @bind
     enableAdd() {
-        return this.get('leftCheckedKeys').length > 0;
+        return this.get('leftCheckedKeys')!.length > 0;
     }
 
     @bind
     enableRemove() {
-        return this.get('rightCheckedKeys').length > 0;
+        return this.get('rightCheckedKeys')!.length > 0;
     }
 
     @bind
@@ -148,14 +148,14 @@ export default class extends Component<Props> {
         this.set({leftData: to, rightData: from, rightCheckedKeys: []});
     }
 
-    moveData(tree: Tree, from: DataItem[], to: DataItem[]) {
+    moveData(tree: Tree<string>, from: DataItem[], to: DataItem[]) {
         from = this.deepClone(from);
         to = this.deepClone(to);
-        const loop = (children: TreeNode[] | null, from: DataItem[] | null | undefined, to: DataItem[]) => {
+        const loop = (children: TreeNode<string>[] | null, from: DataItem[] | null | undefined, to: DataItem[]) => {
             if (!children) return;
 
             let deleteCount = 0;
-            children.forEach((node: TreeNode, index: number) => {
+            children.forEach((node: TreeNode<string>, index: number) => {
                 const data = node.data as DataItem;
                 if (node.checked) {
                     // remove from `from` 
@@ -233,72 +233,5 @@ set(data) {
     for (let key in data) {
         this[key] = data[key];
     }
-}
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    const data = [
-        {
-            "label": "database",
-            "key": "database",
-            "children": [
-                {
-                    "label": "table1",
-                    "key": "table1",
-                    "children": [
-                        {
-                            "label": "class",
-                            "key": "class"
-                        },
-                        {
-                            "label": "student",
-                            "key": "student"
-                        }
-                    ]
-                },
-                {
-                    "label": "table2",
-                    "key": "table2",
-                    "children": [
-                        {
-                            "label": "id",
-                            "key": "id"
-                        },
-                        {
-                            "label": "name",
-                            "key": "name"
-                        }
-                    ]
-                }
-            ]
-        }
-    ];
-    const allKeys = [];
-    const loop = (children => {
-        if (children) {
-            children.forEach(item => {
-                allKeys.push(item.key);
-                loop(item.children);
-            });
-        }
-    });
-    loop(data);
-
-    this.state = {
-        data,
-        leftExpandedKeys: allKeys,
-        rightExpandedKeys: allKeys,
-        leftData: this.deepClone(data),
-        rightData: []
-    };
-
-    this.enableAdd = this.enableAdd.bind(this);
-    this.enableRemove = this.enableRemove.bind(this);
-    this.onAdd = this.onAdd.bind(this);
-    this.onRemove = this.onRemove.bind(this);
-    this.moveData = this.moveData.bind(this);
-    this.deepClone = this.deepClone.bind(this);
 }
 ```

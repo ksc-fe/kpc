@@ -1,6 +1,6 @@
 import {createRef, useInstance, onMounted, onBeforeUnmount} from 'intact';
 import {useState} from '../../hooks/useState';
-import type {Table, TableRowKey} from './';
+import type {Table, TableRowKey, TableCheckType} from './';
 import {toggleArray} from '../utils';
 import {useReceive} from '../../hooks/useReceive';
 import type {TableGrid} from './useMerge';
@@ -26,7 +26,7 @@ export function useChecked(
     getGrid: () => TableGrid,
     loopData: ReturnType<typeof useTree>['loopData'],
 ) {
-    const instance = useInstance() as Table;
+    const instance = useInstance() as Table<any, TableRowKey, TableCheckType>;
     let allStatus: RowStatus[] = [];
 
     function isChecked(key: TableRowKey) {

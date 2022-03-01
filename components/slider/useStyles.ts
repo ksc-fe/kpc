@@ -12,11 +12,11 @@ export function useStyles(showValue: State<Value>) {
     let thumbSecondStyle: Style;
 
     function updateStyle() {
-        const {max, min, isRange} = instance.get();
+        const {max, min, range} = instance.get();
         const total = max! - min!;
 
         if (total > 0) {
-            if (isRange) {
+            if (range) {
                 const [first, second] = showValue.value as [number, number];
                 barStyle = {
                     width: toPercent(Math.abs(second - first), total),

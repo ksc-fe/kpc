@@ -7,10 +7,11 @@ import {error} from 'intact-shared';
 import {isEqualArray} from '../utils';
 import {useState} from '../../hooks/useState';
 
-export type Value = number | [number, number];
+export type Value<Range extends boolean = boolean> =
+    Range extends true ? [number, number] : number
 
 export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean) {
-    const instance = useInstance() as Slider;
+    const instance = useInstance() as Slider<boolean>;
     const showValue = useState<Value>(instance.get('value')!, isEqualValue);
 
     useReceive<Slider>(['min', 'max', 'step', 'value'], () => {
@@ -39,10 +40,10 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     }
 
     function getFixedValue(value: Value): Value {
-        const {min, isRange} = instance.get();
+        const {min, range} = instance.get();
 
         let fixedValue: Value;
-        if (isRange) {
+        if (range) {
             if (!Array.isArray(value)) {
                 const tmp = fix(value);
                 fixedValue = [tmp, tmp];

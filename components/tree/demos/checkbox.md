@@ -10,17 +10,14 @@ order: 1
 选中的叶子节点
 
 ```vdt
-import {Tree} from 'kpc/components/tree';
-import {Button} from 'kpc/components/button';
-
-const data = this.get('data');
+import {Tree, Button} from 'kpc';
 
 <div>
     <Button ev-click={this.getCheckedData}>get checked data</Button>
     <Button ev-click={this.getCheckedLeavesData}>get checked leaves data</Button>
     <br />
     <br />
-    <Tree data={data} 
+    <Tree data={this.get('data')} 
         selectable={false}
         checkbox
         ref="tree"
@@ -35,7 +32,7 @@ const data = this.get('data');
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;

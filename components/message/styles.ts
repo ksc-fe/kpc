@@ -1,34 +1,37 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
-const {message} = deepDefaults(theme, {
-    message: {
-        get transition() { return theme.transition.middle },
-        top: `10px`,
-        transform: `translateY(-10px)`,
-        get bgColor() { return theme.color.bg },
-        get borderRadius() { return theme.borderRadius },
-        gap: `10px`,
-        boxShadow: 'none',
-        padding: `7px 33px 8px 8px`,
-        closeFontSize: `26px`,
-        fontSize: '12px',
-        get color() { return theme.color.ghost },
-        minWidth: '400px',
-        maxWidth: '700px',
-        minHeight: '32px',
-        textAlign: 'left',
-        get border() { return `1px solid ${theme.color.border}` },
+const defaults = {
+    get transition() { return theme.transition.middle },
+    top: `10px`,
+    transform: `translateY(-10px)`,
+    get bgColor() { return theme.color.bg },
+    get borderRadius() { return theme.borderRadius },
+    gap: `10px`,
+    boxShadow: 'none',
+    padding: `7px 33px 8px 8px`,
+    closeFontSize: `26px`,
+    fontSize: '12px',
+    get color() { return theme.color.ghost },
+    minWidth: '400px',
+    maxWidth: '700px',
+    minHeight: '32px',
+    textAlign: 'left',
+    get border() { return `1px solid ${theme.color.border}` },
 
-        icon: {
-            color: `inherit`,
-            fontSize: `14px`,
-            left: `16px`,
-            top: `8px`,
-        },
-    }
+    icon: {
+        color: `inherit`,
+        fontSize: `14px`,
+        left: `16px`,
+        top: `8px`,
+    },
+};
+
+let message: any;
+setDefault(() => {
+    message = deepDefaults(theme, {message: defaults}).message;
 });
 
 export function makeMessagesStyles() {

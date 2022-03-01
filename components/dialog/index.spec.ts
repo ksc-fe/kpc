@@ -1,12 +1,11 @@
 import {Component} from 'intact';
 import {Dialog, BaseDialog, DialogProps} from './';
-import {getElement, mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {getElement, mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import BasicDemo from '~/components/dialog/demos/basic';
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 import TerminateDemo from '~/components/dialog/demos/terminate';
 import DestroyDemo from '~/components/dialog/demos/destroy';
-import Vue from 'vue';
 
 describe('Dialog', () => {
     afterEach((done) => {
@@ -195,7 +194,7 @@ describe('Dialog', () => {
         dispatchEvent(element.firstChild as HTMLElement, 'click');
         await wait();
         const dialog = getElement('.k-dialog')!;
-        const top = parseInt(dialog.style.top);
+        const top = Math.round(parseFloat(dialog.style.top));
         const header = getElement('.k-dialog-header')!;
         dispatchEvent(header, 'mousedown', {which: 1, clientY: 0});
         dispatchEvent(document, 'mousemove', {clientY: -1});

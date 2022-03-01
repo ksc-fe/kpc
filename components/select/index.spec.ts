@@ -4,10 +4,10 @@ import ClearableDemo from '~/components/select/demos/clearable';
 import FilterDemo from '~/components/select/demos/filterable';
 import GroupDemo from '~/components/select/demos/group';
 import CreatableDemo from '~/components/select/demos/creatable';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Tooltip} from '../tooltip';
 import {Component} from 'intact';
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from '../select';
 import SearchableDemo from '~/components/select/demos/searchable';
 
 describe('Select', () => {
@@ -49,7 +49,7 @@ describe('Select', () => {
         const close = element.querySelector('.k-select-close') as HTMLElement;
         close.click();
         await wait();
-        expect(instance.get('days').length).to.eql(2);
+        expect(instance.get('days')!.length).to.eql(2);
     });
 
     it('clearable', async () => {
@@ -62,7 +62,7 @@ describe('Select', () => {
         clear1.click();
         clear2.click();
         await wait();
-        expect(instance.get('day')).to.eql('');
+        expect(instance.get('day')).to.eql(null);
         expect(instance.get('days')).to.eql([]);
         unmount();
 

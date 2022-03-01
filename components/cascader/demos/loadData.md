@@ -22,7 +22,7 @@ import {Cascader} from 'kpc';
 import {CascaderData} from 'kpc';
 
 interface Props {
-    data: CascaderData[]
+    data: CascaderData<string>[]
 }
 
 export default class extends Component {
@@ -45,7 +45,7 @@ export default class extends Component {
         };
     }
 
-    loadData(item: CascaderData) {
+    loadData(item: CascaderData<string>) {
         return new Promise<void>(resolve => {
             setTimeout(() => {
                 switch (item.value) {

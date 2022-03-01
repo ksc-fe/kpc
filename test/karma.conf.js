@@ -31,7 +31,7 @@ module.exports = function (config) {
         reporters: ['mocha', 'coverage-istanbul'],
         files: [
             './index.ts',
-            '**/__snapshots__/**/*.md',
+            './__snapshots__/**/*.md',
             {
                 pattern: `${output.path}/**/*`,
                 watched: false,
@@ -40,7 +40,7 @@ module.exports = function (config) {
         ],
         preprocessors: {
             './index.ts': ['webpack', 'sourcemap'],
-            '**/__snapshots__/**/*.md': ['snapshot'],
+            './__snapshots__/**/*.md': ['snapshot'],
         },
         webpack: {...webpackConfig().toConfig(), output},
         coverageIstanbulReporter: {

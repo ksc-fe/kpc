@@ -1,10 +1,10 @@
 import ClearableDemo from '~/components/rate/demos/clearable';
 import BasicDemo from '~/components/rate/demos/basic';
 import DisabledDemo from '~/components/rate/demos/disabled';
-import {mount, unmount, dispatchEvent, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 
 describe('Rate', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should change value on click', async () => {
         const [instance, element] = mount(BasicDemo);

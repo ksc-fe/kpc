@@ -9,17 +9,39 @@ order: 2
 > `@since v1.1.0` `step`不能隐藏“秒”，可以通过`showFomart`或`format`来格式化时间字符串
 
 ```vdt
-import {Timepicker} from 'kpc/components/timepicker';
+import {Timepicker} from 'kpc';
 
 <div>
-    <Timepicker class="time" v-model="time" step="00:30:00"/>
+    <Timepicker class="time"
+        v-model="time"
+        step="00:30:00"
+    />
     You selected: {JSON.stringify(this.get('time'))}
     <br /><br />
-    <Timepicker v-model="timeArray" multiple clearable
+    <Timepicker v-model="timeArray"
+        multiple
+        clearable
         step="00:30:00" 
         min="09:00:00"
         max="18:00:00"
     />
     You selected: {JSON.stringify(this.get('timeArray'))}
 </div>
+```
+
+```ts
+interface Props {
+    time?: string | null
+    timeArray?: string[]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            time: null,
+            timeArray: []
+        } as Props;
+    };
+}
 ```

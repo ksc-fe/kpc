@@ -28,7 +28,7 @@ import {Affix, Button} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
+import {bind} from 'kpc';
 
 interface Props {
     bottom: number
@@ -54,58 +54,10 @@ export default class extends Component<Props> {
     _exclude() {
         // when this demo is not in the viewport
         // don't fix it
-        const {top} = this.refs.node.getBoundingClientRect();
+        const {top} = (this.refs.node as HTMLElement).getBoundingClientRect();
         const viewport = document.documentElement.clientHeight;
 
         return top > viewport; 
-    }
-}
-```
-
-```jsx
-import React from 'react';
-import ReactDom from 'react-dom';
-import Affix from 'kpc-react/components/affix';
-import Button from 'kpc-react/components/button';
-import './index.styl';
-
-export default class Demo extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            bottom: 0
-        };
-        this._shouldFix = this._shouldFix.bind(this);
-        this._exclude = this._exclude.bind(this);
-    }
-
-    _shouldFix() {
-        // when scroll top greater than or equal to 100
-        // fix it at 150px from top
-        return window.pageYOffset >= 100;
-    }
-    
-    _exclude() {
-        // when this demo is not in the viewport
-        // don't fix it
-        const node = ReactDom.findDOMNode(this); 
-        const {top} = node.getBoundingClientRect();
-        const viewport = document.documentElement.clientHeight;
-    
-        return top > viewport; 
-    }
-    
-    render() {
-        return (
-            <div>
-                <Affix top={150} shouldFix={this._shouldFix}>
-                    <Button type="primary">fix at 150px from the top while scroll top 100px</Button>
-                </Affix>
-                <Affix bottom={this.state.bottom} exclude={this._exclude}>
-                    <Button type="primary">fix at the bottom only while this demo is in viewport</Button>
-                </Affix>
-            </div>
-        )
     }
 }
 ```

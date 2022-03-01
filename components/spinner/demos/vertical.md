@@ -6,7 +6,7 @@ order: 3
 添加`vertical`属性，即可实现控制按钮竖直排列的数字输入框
 
 ```vdt
-import {Spinner} from 'kpc/components/spinner';
+import {Spinner} from 'kpc';
 
 <div>
     <Spinner max={5} min={-5} vertical size="large" />

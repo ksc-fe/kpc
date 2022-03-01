@@ -1,11 +1,14 @@
 import {css} from '@emotion/css';
-import {theme} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 import {breakpoints, responsiveMap} from './constants';
 
-const {grid} = deepDefaults(theme, {
-    grid: {  }
+const defaults = {};
+
+let grid: any;
+setDefault(() => {
+    grid = deepDefaults(theme, {grid: defaults}).grid;
 });
 
 export function makeRowStyles() {

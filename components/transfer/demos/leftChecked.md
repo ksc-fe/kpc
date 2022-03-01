@@ -6,7 +6,7 @@ order: 2
 通过`leftCheckedKeys`属性，我们可以控制左侧已选项，`rightCheckedKeys`同理
 
 ```vdt
-import {Transfer} from 'kpc/components/transfer';
+import {Transfer} from 'kpc';
 
 <div>
     <Transfer data={this.get('data')} 
@@ -43,16 +43,6 @@ data() {
         checked: [0, 2]
     }
 },
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data: data,
-        checked: [0, 2]
-    };
-}
 ```
 
 ```angular-properties

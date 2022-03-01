@@ -14,18 +14,18 @@ import {BaseSelect, BaseSelectProps, BaseSelectEvents, BaseSelectBlocks} from '.
 import {_$} from '../../i18n';
 import {useEqualWidth} from './useEqualWidth';
 
-export interface SelectProps extends BaseSelectProps {
+export interface SelectProps<T = string, Multipe extends boolean = boolean> extends BaseSelectProps<T, Multipe> {
     filter?: (keywords: string, props: any) => boolean 
     searchable?: boolean
     creatable?: boolean
     labelMap?: Map<any, Children> 
     card?: boolean
-    autoDisableArrow: boolean
+    autoDisableArrow?: boolean
 }
 
 export interface SelectEvents extends BaseSelectEvents { }
 
-export interface SelectBlocks extends BaseSelectBlocks {
+export interface SelectBlocks<T> extends BaseSelectBlocks<T> {
     menu: null 
 }
 
@@ -44,7 +44,10 @@ const defaults = (): Partial<SelectProps> => ({
     labelMap: new Map(),
 });
 
-export class Select extends BaseSelect<SelectProps, SelectEvents, SelectBlocks> {
+export class Select<
+    T = string,
+    Multipe extends boolean = false
+> extends BaseSelect<SelectProps<T, Multipe>, SelectEvents, SelectBlocks<T>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;

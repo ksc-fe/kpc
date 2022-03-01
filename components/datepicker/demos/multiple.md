@@ -6,7 +6,7 @@ order: 4
 添加`multiple`属性，即可支持日期多选。
 
 ```vdt
-import {Datepicker} from 'kpc/components/datepicker';
+import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker multiple v-model="date" clearable />
@@ -28,4 +28,29 @@ import {Datepicker} from 'kpc/components/datepicker';
     You selected: {JSON.stringify(this.get('datetimeRange'))}
     <br /><br />
 </div>
+```
+
+```ts
+interface Props {
+    date?: string[]
+    datetime?: string[]
+    year?: string[]
+    month?: string[]
+    dateRange?: [string, string][]
+    datetimeRange?: [string, string][]
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            date: [],
+            datetime: [],
+            year: [],
+            month: [],
+            dateRange: [],
+            datetimeRange: [],
+        } as Props;
+    }
+}
 ```

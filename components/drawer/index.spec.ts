@@ -1,7 +1,7 @@
 import BasicDemo from '~/components/drawer/demos/basic';
 import PlacementDemo from '~/components/drawer/demos/placement';
 import overlayDemo from '~/components/drawer/demos/overlay';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 
 describe('Drawer', () => {
     afterEach((done) => {

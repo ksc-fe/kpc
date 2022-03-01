@@ -11,13 +11,13 @@ order: 4
 > 当`formatter / parser`和`prefix / suffix`同时定义时，前者的优先级更高
 
 ```vdt
-import {Spinner} from 'kpc/components/spinner';
+import {Spinner} from 'kpc';
 
 <div>
     <Spinner vertical 
         v-model='money'
-        formatter={value => ('￥' + value).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-        parser={value => +value.replace(/￥|,/g, '')}
+        formatter={this.formater}
+        parser={this.parser}
     />
     <Spinner vertical 
         prefix="增长率 "
@@ -33,12 +33,27 @@ import {Spinner} from 'kpc/components/spinner';
 ```
 
 ```ts
-export default class extends Component  {
+interface Props {
+    money?: number
+    percent?: number
+}
+
+export default class extends Component<Props>  {
     static template = template;
 
-    static defaults = () => ({
-        money: 1000,
-        percent: 78,
-    });
+    static defaults() {
+        return {
+            money: 1000,
+            percent: 78,
+        };
+    };
+
+    formater(value: number) {
+        return ('￥' + value).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    parser(value: string) {
+        return +value.replace(/￥|,/g, '')
+    }
 }
 ```

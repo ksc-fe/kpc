@@ -3,7 +3,7 @@ import RangeDemo from '~/components/timepicker/demos/range';
 import StepDemo from '~/components/timepicker/demos/step';
 import StepRangeDemo from '~/components/timepicker/demos/stepRange';
 import FormatDemo from '~/components/timepicker/demos/format';
-import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Timepicker} from 'kpc';
 import {Component} from 'intact';
 
@@ -26,10 +26,10 @@ describe('Timepicker', () => {
         next.click();
         await wait();
         expect(dropdown.innerHTML).to.matchSnapshot();
-        expect(instance.get('time')).to.be.undefined;
+        expect(instance.get('time')).to.be.null;
         next.click();
         await wait();
-        expect(instance.get('time')).to.be.undefined;
+        expect(instance.get('time')).to.be.null;
         expect(dropdown.innerHTML).to.matchSnapshot();
         const ok = dropdown.querySelector('.k-btn') as HTMLElement;
         ok.click();
@@ -63,6 +63,14 @@ describe('Timepicker', () => {
         await wait();
         expect(instance.get('timeArray')).to.eql(['01:00:00']);
         expect(dropdown.innerHTML).to.matchSnapshot();
+
+        // clear
+        picker2.querySelector<HTMLElement>('.k-select-clear')!.click();
+        await wait();
+        expect(instance.get('timeArray')).to.eql([]);
+        ok2.click();
+        await wait();
+        expect(instance.get('timeArray')).to.eql(['00:00:00']);
 
         // set value
         instance.set('timeArray', ['03:03:03', '03:03:04']);

@@ -6,7 +6,7 @@ order: 1
 通过`size`可以指定组件的尺寸：`large`, `default`, `small`, `mini`
 
 ```vdt
-import {Pagination} from 'kpc/components/pagination';
+import {Pagination} from 'kpc';
 
 <div>
     <Pagination total={200} size="large" />
