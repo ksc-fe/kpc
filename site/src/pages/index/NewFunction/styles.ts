@@ -1,7 +1,7 @@
 import {css} from '@emotion/css';
 import {mainBlock, fullfill, center} from '../../../styles/default';
 
-export function makeStyles() {
+export function makeStyles(themeColor: string) {
     return css`
         background: #ffffff;
 		${mainBlock(544)};
@@ -94,7 +94,7 @@ export function makeStyles() {
 						align-items: center;
 					}
 					& > .k-btn:hover {
-						color: #0091ea;
+						color: ${themeColor};
 					}
 					.comp-content {
 						${fullfill()}
@@ -181,12 +181,6 @@ export function makeStyles() {
 						}
 						.rate-box {
 							padding-top: 2px;
-						}
-						.radio-box {
-							.k-active {
-								background: #0191EA;
-								color: #ffffff;
-							}
 						}
 						.slider-radio-box {
 							margin-top: 15px;

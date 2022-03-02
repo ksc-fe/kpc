@@ -5,6 +5,9 @@ import color_process_logo from '../../imgs/color_process_logo.png';
 import axure_img from '../../imgs/axure_img.png';
 import sketch_img from '../../imgs/sketch_img.png';
 import rectangle from '../../imgs/rectangle.png';
+import kingvision_logo from '../../imgs/k_vision.png';
+import iconFonts from '../../imgs/icon-fonts.png';
+import iconSize from '../../imgs/icon-size.png';
 import {WorkflowCard} from '../../components/WorkflowCard/';
 
 const pricipleList = [
@@ -73,12 +76,14 @@ const pricipleList = [
                                 <div>
                                     <div class="card-title">灵感与素材</div>
                                     <div class="card-item">
-                                        <img src={rectangle} />
-                                        <div>Axure组件库</div>
+                                        <img 
+                                            src={kingvision_logo} 
+                                            style="width: 96px; height: 22px;"
+                                        />
                                     </div>
                                     <div class="card-item">
-                                        <img src={rectangle} />
-                                        <div>Axure组件库</div>
+                                        <img src={iconFonts} />
+                                        <div>Fonts库</div>
                                     </div>
                                 </div>
                             </div>
@@ -99,7 +104,7 @@ const pricipleList = [
                                 <div>
                                     <div class="card-title">可用性检查</div>
                                     <div class="card-item">
-                                        <img src={axure_img} />
+                                        <img src={iconSize} />
                                         <div>度量衡工具</div>
                                     </div>
                                 </div>
@@ -117,8 +122,7 @@ const pricipleList = [
                         <div class="tool-item process-box">
                             <img src={color_process_logo} />
                         </div>
-                        <div class="tool-item">
-                            {/* TODO */}
+                        <div class="tool-item expect-box">
                         </div>
                     </div>
                     <div class="principle">

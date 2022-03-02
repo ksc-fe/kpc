@@ -1,0 +1,43 @@
+import {makeStyles} from './styles';
+import {Icon} from 'kpc';
+
+const {show, imgList, baseWidth, curImgIndex} = this.get();
+
+const left = curImgIndex == 0 
+    ? baseWidth 
+    : -(curImgIndex) * 950 + baseWidth;
+
+const imgBoxStyle = {
+    transform: `translateX(${left}px)`
+};
+
+<div 
+    class={makeStyles()} 
+    v-if={show}
+    ev-click={this.handleShadowClick.bind(this)}
+>
+    <div class="img-wrapper">
+        <div class="img-box" style={imgBoxStyle}>
+            <div v-for={imgList} class="img-item">
+                <div class="img-with-shadow">
+                    <img src={$value} />
+                    <div class={{active: $key === curImgIndex}}></div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="icon-arrow arrow-left" 
+            ev-click={this.handleLeftArrowClick.bind(this)}
+            v-if={curImgIndex < imgList.length - 1}
+        >
+            <Icon class="icon ion-chevron-left"></Icon>
+        </div>
+        <div
+            class="icon-arrow arrow-right" 
+            ev-click={this.handleRightArrowClick.bind(this)}
+            v-if={curImgIndex > 0}
+        >
+            <Icon class="icon ion-chevron-right"></Icon>
+        </div>        
+    </div>
+</div>

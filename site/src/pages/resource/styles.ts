@@ -3,6 +3,7 @@ import global, {mainBlock} from '../../styles/default';
 import resource_bg from '../../imgs/resource_bg.png';
 import color_process_bg from '../../imgs/color_process_bg.png';
 import workflow_bg from '../../imgs/workflow_bg.png';
+import color_process_expect from '../../imgs/expect.png';
 
 export function makeStyles() {
 
@@ -74,6 +75,7 @@ export function makeStyles() {
                 img {
                     width: 27px;
                     height: 27px;
+                    border-radius: 4px;
                 }
                 & > div:last-child {
                     padding-left: 14px;
@@ -125,6 +127,10 @@ export function makeStyles() {
                     }
                     .process-box {
                         background-image: url(${color_process_bg});
+                    }
+                    .expect-box {
+                        background-image: url(${color_process_expect});
+                        background-size: cover;
                     }
                 }
                 .priciples {

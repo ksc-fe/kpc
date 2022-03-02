@@ -29,8 +29,11 @@ const {themeColor} = this.get();
                 </div>
             </div>            
         </div>
-        <NewFunction></NewFunction>
-        <BestPractice ref={this.bestPrac}></BestPractice>
+        <NewFunction themeColor={themeColor}></NewFunction>
+        <BestPractice 
+            themeColor={themeColor}
+            ref={this.bestPrac}
+        ></BestPractice>
         <ColorProcess></ColorProcess>
         <KingVersion></KingVersion>
         <Footer></Footer>

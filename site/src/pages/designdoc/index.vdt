@@ -18,8 +18,7 @@ import {Menu, MenuItem} from 'kpc';
             </div>
             <div class="content-box">
                 <div class="content">
-                    主标题H1
-                    <hr />
+                    内容部分
                 </div>
             </div>
         </div>
