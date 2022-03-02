@@ -12,7 +12,7 @@ const NUMS = os.cpus().length;
 const globExp = resolvePath('./@(docs|components)/**/*.md');
 // const globExp = resolvePath('./@(components)/**/*.md');
 // const globExp = resolvePath('./@(docs|components)/card/**/*.md');
-// const globExp = resolvePath('./@(docs|components)/table/demos/basic.md');
+// const globExp = resolvePath('./@(docs|components)/design_new/about.md');
 
 function prepare() {
     return new Promise(resolve => {

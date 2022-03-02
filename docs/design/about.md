@@ -1,4 +1,9 @@
-# 关于KingDesign
+---
+title: 关于KingDesign1
+order: 0.1
+sidebar: design
+category: 思想
+---
 
 KingDesign设计系统是⾦⼭云基于多年的企业级产品设计开发经验，以⾦⼭云设计语⾔为基础，⽤于企业级产品的开源设计系统，该系统由组件、开发、设计资源、⼯具、解决⽅案、设计指南组成，⽤户可使⽤KingDesign设计系统快速构建⼀致的数字产品。
 
