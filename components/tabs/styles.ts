@@ -81,6 +81,9 @@ export function makeStyles() {
             color: ${tabs.color};
             position: relative;
             vertical-align: middle;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             &:hover,
             &.k-active {
                 color: ${tabs.activeColor};

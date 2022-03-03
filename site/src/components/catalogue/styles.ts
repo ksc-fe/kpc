@@ -14,6 +14,9 @@ export function makeStyles() {
                 border-left: 1px solid ${theme.color.border};
                 .k-tab {
                     text-align: left;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 .k-tabs-active-bar {
                     left: 0;

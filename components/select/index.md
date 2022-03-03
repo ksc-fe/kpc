@@ -11,7 +11,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 当前选择的元素，可用`v-model`双向绑定 | `*` | `""` |
+| value | 当前选择的元素，可用`v-model`双向绑定 | `any` | `""` |
 | multiple | 是否支持多选 | `boolean` | `false` |
 | filterable | 是否支持筛选 | `boolean` | `false` |
 | loading | 数据加载状态 | `boolean` | `false` |

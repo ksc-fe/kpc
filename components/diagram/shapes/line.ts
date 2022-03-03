@@ -10,10 +10,10 @@ export interface DLineProps extends DBaseProps {
     endArrow?: Arrow
     startPoint?: Point
     endPoint?: Point
-    exit?: Point
-    entry?: Point
     from?: Key
     to?: Key
+    exit?: Point
+    entry?: Point
 }
 
 type Arrow = 
@@ -57,7 +57,6 @@ const arrows: Arrow[] = [
 
 const typeDefs: Required<TypeDefs<DLineProps>> = {
     ...DBase.typeDefs,
-    strokeStyle: ['solid', 'dashed', 'dotted'],
     type: ['rounded', 'sharp', 'curved', 'straight'],
     startArrow: arrows,
     endArrow: arrows,
