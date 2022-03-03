@@ -8,12 +8,10 @@ order: 2
 ```vdt
 import {Checkbox} from 'kpc';
 
-const length = this.getLength();
-
 <div>
-    <Checkbox indeterminate={length > 0 && length < 3}
+    <Checkbox indeterminate={this.getLength() > 0 && this.getLength() < 3}
         value={length === 3}
-        ev-$change:value={this._toggleSelectAll}
+        ev-$change:value={this.toggleSelectAll}
     >全选</Checkbox>
     <hr />
     <Checkbox v-for={this.get('options')}
@@ -50,7 +48,7 @@ export default class extends Component<Props> {
     };
 
     @bind
-    _toggleSelectAll(checked?: boolean) {
+    toggleSelectAll(checked?: boolean) {
         if (checked) {
             this.set('languages', ['Javascript', 'C++', 'PHP']);
         } else {
@@ -61,19 +59,5 @@ export default class extends Component<Props> {
     getLength() {
         return this.get('languages')!.length;
     }
-}
-```
-
-```vue-script
-computed: {
-    length(): number {
-        return this.getLength();
-    }
-},
-```
-
-```angular-methods
-get length() {
-    return this.getLength();
 }
 ```

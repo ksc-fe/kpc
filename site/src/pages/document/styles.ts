@@ -4,7 +4,7 @@ import {makeStyles as makeTableStyles} from 'kpc/components/table/styles';
 
 export function makeStyles() {
     return css`
-        a {
+        a, a code {
             color: ${theme.color.link};
             text-decoration: none;
             &:hover {
@@ -186,6 +186,7 @@ export function makeStyles() {
             }
         }
         .api {
+            font-size: 12px;
             .k-table {
                 ${makeTableStyles()}
             }

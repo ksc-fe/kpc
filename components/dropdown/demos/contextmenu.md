@@ -3,13 +3,7 @@ title: 右键菜单
 order: 7
 ---
 
-将`DropdownMenu`作为顶层元素，而不是`Dropdown`的子元素，然后指定`of`属性为事件对象，即可以实现
-跟随鼠标位置的弹出菜单
-
-> 这里将`position`属性指定为`left+1`是为了避免弹出菜单立即被选中第一项
-
-> `React`下事件对象会复用，我们不能在异步函数中调用事件对象的属性和方法，如果需要保留事件
-> 对象，需要调用`event.persist()`方法 https://reactjs.org/docs/events.html#event-pooling
+指定`trigger`为`contextmenu`即可实现右键菜单功能
 
 ```vdt
 import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
