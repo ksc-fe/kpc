@@ -1,4 +1,8 @@
-# King Design设计系统价值
+---
+title: 设计价值
+order: 20
+sidebar: design
+---
 
 ## 1. 什么是King Design设计系统？
 
@@ -10,19 +14,19 @@ King Design设计系统的发展和维护主要是为了⽀持⾦⼭云业务产
 
 King Design是产品体验和设计战略的核⼼。如何促进产品转换成商业价值，产品体验是其中最有影响的因素之⼀。
 
-![1](/imgs/design_new/value/1.png)
+![1](/imgs/design/value/1.jpg)
 
 结合⾦⼭云产品设计特性以及企业级⽤户体验，我们搭建了适合企业级的设计系统。
 
-![2](/imgs/design_new/value/2.png)
+![2](/imgs/design/value/2.jpg)
 
 ## 3. King Design设计系统赋能
 
 **“设计需要融⼊⼈类的⾏为中去，设计本身就存在于⾏为当中” ——— 深泽直⼈**
 
-![3](/imgs/design_new/value/3.png)
+![3](/imgs/design/value/3.jpg)
 
-# 如何提升企业价值：客户忠诚度+⽣产⼒+品牌价值
+如何提升企业价值：客户忠诚度+⽣产⼒+品牌价值
 
 
 

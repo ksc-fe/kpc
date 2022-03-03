@@ -4,8 +4,6 @@ import vue_logo from '../../../imgs/vue_logo.png';
 import vue_logo_active from '../../../imgs/vue_logo_active.png';
 import react_logo from '../../../imgs/react_logo.png';
 import react_logo_active from '../../../imgs/react_logo_active.png';
-import angular_logo from '../../../imgs/angular_logo.png';
-import angular_logo_active from '../../../imgs/angular_logo_active.png';
 import {ThemeFrame} from '../../../components/ThemeFrame';
 import {bind} from 'kpc/components/utils';
 
@@ -18,13 +16,46 @@ type SupportLang = {
 };
 
 const vueTemplate = 
-`<div>
-    placeholder1
-    placeholder2
-</div>`;
+`<template>
+    <div>
+        placeholder1
+        placeholder2
+    </div>
+</template>
+<script lang="ts">
+    import Vue from 'vue';
+    import {Button} from '@king-design/vue-legacy';
+
+    export default Vue.extend({
+        components: {
+            Button
+        },
+    });
+</script>`;
+
+const vue3Template = 
+`<template>
+    <div>
+        placeholder1
+        placeholder2
+    </div>
+</template>
+<script lang="ts">
+    import {defineComponent} from 'vue';
+    import {Button} from '@king-design/vue';
+
+    export default defineComponent({
+        components: {
+            Button
+        },
+    });
+</script>`;
 
 const reactTemplate = 
-`export default class Demo extends React.Component {
+`import React from 'react';
+import {Button} from '@king-design/react';
+
+export default class Demo extends React.Component {
     render() {
         return (
             <div>
@@ -35,24 +66,13 @@ const reactTemplate =
     }
 }`;
 
-const angularTemplate = 
-`@Component({
-    selector: 'app-demo',
-    template: \`
-        <div>
-            placeholder1
-            placeholder2
-        </div>
-    \`,
-})`;
-
 const templateMap = {
     vue: vueTemplate,
     react: reactTemplate,
-    angular: angularTemplate
+    vue3: vue3Template
 }
 
-const getTemplate = (type: 'vue' | 'react' | 'angular'): Function => {    
+const getTemplate = (type: 'vue' | 'react' | 'vue3'): Function => {    
     return (buttonStatus: string, contentInput: string, iconPosition: string) => {
         const isLeft =  iconPosition == 'left';
         const button = `<Button type="BUTTON_TYPE">BUTTON_CONTENT</Button>`
@@ -112,7 +132,13 @@ const defaults = (): Partial<BestPracticeProps> => ({
             activeSrc: vue_logo_active,
             isActive: true,
             codeTemplate: getTemplate('vue')
-
+        },
+        {
+            title: 'Vue3',
+            src: vue_logo,
+            activeSrc: vue_logo_active,
+            isActive: false,
+            codeTemplate: getTemplate('vue3')
         },
         {
             title: 'React',
@@ -120,13 +146,6 @@ const defaults = (): Partial<BestPracticeProps> => ({
             activeSrc: react_logo_active,
             isActive: false,
             codeTemplate: getTemplate('react')
-        },
-        {
-            title: 'Angular',
-            src: angular_logo,
-            activeSrc: angular_logo_active,
-            isActive: false,
-            codeTemplate: getTemplate('angular')
         }
     ],
     themeColor: ''

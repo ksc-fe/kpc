@@ -16,6 +16,9 @@ export function makeStyles() {
             background-repeat: no-repeat;
             background-position: 400px -12px;
             display: flex;
+            img {
+                cursor: pointer;
+            }
             & > div:first-child {
                 flex-grow: 1;
                 width: 0;

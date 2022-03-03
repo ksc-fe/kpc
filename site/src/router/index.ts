@@ -55,19 +55,6 @@ export default new Router<RouteResult>([
             // // }
         // // }
     // // },
-
-    {
-        path: /^(?:\/kpc)?(\/docs\/design_new\/.*)$/,
-        action: async (context) => {
-            return {
-                Page: (await import('../pages/design_new')).default,
-                data: {
-                    path: context.params[0] as string
-                }
-            };
-        }
-    },
-
     {
         path: '/demo\/(.*)/',
         action: async (context) => {

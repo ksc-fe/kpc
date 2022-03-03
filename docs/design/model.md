@@ -1,4 +1,9 @@
-# King Design体验度量模型
+---
+title: 体验度量
+order: 60
+sidebar: design
+category: 设计评估
+---
 
 
 
@@ -10,7 +15,7 @@
 
 体验度量(Experience Metrics)是⼀种测量或评价产品体验的⽅法，它建⽴在⼀套可靠的测量体系上，即:如果每次使⽤同⼀系列的测量对被测试事物进⾏测试，应该可以得出可⽐较的结果。
 
-img1
+![1](/imgs/design/model/1.jpg)
 
 > “If you can’t measure it，you can’t manage it. 如果你不能很好地度量它，也就⽆法有效地管理它”—— Peter F. Drucker 现代管理学之⽗
 
@@ -48,7 +53,7 @@ img1
 
 为了有效，⾼效和令⼈满意地执⾏任务，其他常⽤⽤户体验标准如:
 
-img2
+![2](/imgs/design/model/2.jpg)
 
 为了达到产品⾼效，统⼀，灵活和有活⼒的体验，结合国际⽤户体验平均指标，我们制定了4个衡量维度来帮助产品达到预期的影响⼒，即：设计规范性、使⽤流畅性、性能稳定性、⽤户满意度。
 
@@ -56,7 +61,7 @@ img2
 
 ## 3. 产品体验全⽅位度量：⾦⼭云产品体验度量模型K‐MUX
 
-img3
+![3](/imgs/design/model/3.jpg)
 
 
 
@@ -96,7 +101,7 @@ img3
 
 之后，我们对“产品体验质量总分”进⾏评级维度转换，相对应的评级维度有：⽤户接受度，产品体验质量评级，⽤户推荐值NPS。
 
-img4
+![4](/imgs/design/model/4.jpg)
 
 评分等级参考⽂献《5 WAYS TO INTERPRET A SUS SCORE》2018，该度量⼯程采集样本为10000例，时间跨度为30年。
 

@@ -56,6 +56,10 @@ export function makeStyles() {
             .info-box {
                 display: flex;
                 align-items: center;
+                a {
+                    text-decoration: none;
+                    color: #000000;
+                }
                 & > div:first-child { 
                     font-size: 12px;
                     color: #70768C;

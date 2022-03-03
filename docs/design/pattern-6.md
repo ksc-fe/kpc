@@ -1,4 +1,9 @@
-# 反馈
+---
+title: 反馈
+order: 56
+sidebar: design
+category: 设计模式
+---
 
 
 
@@ -10,7 +15,7 @@
 
 在反馈设计时，遵循以下原则：
 
-img1
+![1](/imgs/design/pattern/6-1.png)
 
 ### 及时
 
@@ -38,11 +43,11 @@ img1
 
 反馈状态有助于传达信息，通常与颜⾊和图标相对应，为⽤户提供⼀致的体验。
 
-img2
+![2](/imgs/design/pattern/6-2.png)
 
 ### 如何使⽤
 
-img3
+![3](/imgs/design/pattern/6-3.png)
 
 
 
@@ -50,11 +55,11 @@ img3
 
 反馈有以下⼏种类型：
 
-img4
+![4](/imgs/design/pattern/6-4.png)
 
 ### 如何使⽤
 
-img5
+![5](/imgs/design/pattern/6-5.png)
 
 
 
@@ -68,7 +73,7 @@ img5
 
 \- ⼀个⻚⾯尽量只有⼀个横幅
 
-img6
+![6](/imgs/design/pattern/6-6.png)
 
 
 
@@ -78,7 +83,7 @@ Toast是⽤户操作后的轻量反馈⽅式，⼀般出现在⽤户完成创建
 
 Toast由消息图标 + 提示⽂案 + “X”关闭按钮组成，提示⽂案应简洁明了，消息图标应与Toast传达的意思保持⼀致，帮助⽤户理解消息。
 
-img7
+![7](/imgs/design/pattern/6-7.png)
 
 **出现⽅式**
 
@@ -89,7 +94,7 @@ img7
 
 Toast设计中注意，同类型Toast不要⼀起出现，采⽤合并显示的⽅式
 
-img8
+![8](/imgs/design/pattern/6-8.png)
 
 
 
@@ -103,7 +108,7 @@ Tooltip⽤于对某个字段显示帮助提示或内容的操作说明。
 
 Tooltip包含 标题 + 正⽂。
 
-img9
+![9](/imgs/design/pattern/6-9.png)
 
 
 
@@ -111,7 +116,7 @@ img9
 
 弹窗⽤户展示⽤户操作后的反馈，属于强反馈。
 
-img10
+![10](/imgs/design/pattern/6-10.png)
 
 **组成**
 

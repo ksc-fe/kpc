@@ -23,7 +23,7 @@ export class Card extends Component {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    init() {
-        
+    goHref() {
+        window.location.href = this.get('href');
     }
 }

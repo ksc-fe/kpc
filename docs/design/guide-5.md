@@ -1,4 +1,10 @@
-# 对⽐度要求
+---
+title: 对⽐度要求
+order: 45
+sidebar: design
+category: 设计指南
+---
+
 
 
 
@@ -16,7 +22,7 @@
 
 
 
-img1
+![1](/imgs/design/guide/5-1.jpg)
 
 
 
@@ -30,7 +36,7 @@ img1
 
 
 
-img2
+![2](/imgs/design/guide/5-2.jpg)
 
 
 
@@ -68,7 +74,7 @@ img2
 
 
 
-img3
+![3](/imgs/design/guide/5-3.jpg)
 
 
 
@@ -84,7 +90,7 @@ img3
 
 
 
-img4
+![4](/imgs/design/guide/5-4.jpg)
 
 
 
@@ -94,7 +100,7 @@ img4
 
 
 
-img5
+![5](/imgs/design/guide/5-5.jpg)
 
 
 
@@ -104,7 +110,7 @@ img5
 
 
 
-img6
+![6](/imgs/design/guide/5-6.jpg)
 
 
 
@@ -112,7 +118,7 @@ img6
 
 
 
-img7
+![7](/imgs/design/guide/5-7.jpg)
 
 
 
@@ -120,7 +126,7 @@ img7
 
 
 
-img8
+![8](/imgs/design/guide/5-8.jpg)
 
 
 
@@ -136,7 +142,7 @@ img8
 
 
 
-img9
+![9](/imgs/design/guide/5-9.jpg)
 
 
 
@@ -146,7 +152,7 @@ img9
 
 
 
-img10
+![10](/imgs/design/guide/5-10.jpg)
 
 
 
@@ -156,7 +162,7 @@ img10
 
 
 
-img11
+![11](/imgs/design/guide/5-11.jpg)
 
 
 
@@ -166,7 +172,7 @@ img11
 
 
 
-img12
+![12](/imgs/design/guide/5-12.jpg)
 
 
 
@@ -176,7 +182,7 @@ img12
 
 
 
-img13
+![13](/imgs/design/guide/5-13.jpg)
 
 
 
@@ -190,7 +196,7 @@ img13
 
 
 
-img14
+![14](/imgs/design/guide/5-14.jpg)
 
 
 
