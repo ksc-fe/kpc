@@ -4,8 +4,14 @@ import {position} from '../position';
 import {scrollbarWidth} from '../position';
 import {SHOW} from './constants';
 
+type Hooks = {
+    onStart?: (scrollBarWidth: number | undefined) => void
+    onEnd?: () => void
+}
+
 const dialogs = new Set<BaseDialog>();
 let originalStyle: string | null = null;
+let hooks: Hooks | null = null; 
 
 export function useFixBody(elementRef: RefObject<HTMLDivElement>) {
     const instance = useInstance() as BaseDialog;
@@ -36,6 +42,10 @@ export function useFixBody(elementRef: RefObject<HTMLDivElement>) {
     }
 }
 
+export function setHooks(h: Hooks | null) {
+    hooks = h;
+}
+
 function onOpen(dialog: BaseDialog) {
     const body = document.body;
     if (dialogs.size === 0) {
@@ -46,6 +56,9 @@ function onOpen(dialog: BaseDialog) {
         const scrollBarWidth = shouldFixBody();
         if (scrollBarWidth) {
             bodyStyle.paddingRight = `${scrollBarWidth}px`;
+        }
+        if (hooks && hooks.onStart) {
+            hooks.onStart(scrollBarWidth);
         }
     }
     dialogs.add(dialog);
@@ -60,6 +73,9 @@ function onClosed(dialog: BaseDialog) {
             body.setAttribute('style', originalStyle);
         } else {
             body.removeAttribute('style');
+        }
+        if (hooks && hooks.onEnd) {
+            hooks.onEnd();
         }
     }
 }

@@ -45,4 +45,20 @@ sidebar: doc
     12. `Add` 新增`suffix`扩展点，来自定义输入框后面展示的内容
     13. `Change` 修改`selectStart`时间为`selecting`，并且触发场景更符合实际用途
     14. `Remove` 删除`change`时间，因为目前的默认事件`change:value`(Vue)或`onChangeValue`(React)即可满足需求
-
+5. Dialog / Drawer
+    1. `Change` 用于修正`body`的配置从`configure`全局配置移到`Dialog`的静态方法`setHooks`上，详见文档说明
+    2. `Add` 新增`content`扩展点，用于定义整个弹层内容 
+6. Dropdown 
+    1. `Add` `position`属性支持`"top" | "bottom" | "left" | "right"`快速定位
+    2. `Change` 原来`DropdownMenu`上的事件移至`Dropdown`上
+    3. `Change` `DropdownMenu`现在不能脱离`Dropdown`单独使用
+7. Form
+    1. `Remove` 删除`model`属性，使用`value`直接指定要验证的值
+    2. `Remove` 删除`isDirty`属性，用不着
+    3. `Remove` 删除`force`属性，因为现在只要`value`变化，就会重新验证
+8. Grid
+    1. Row
+        1. `Remove` 删除`flex`，现在能用`flex`布局，尽量使用`flex`布局
+9. Icon
+    1. `Add` 新增`rotate`属性，可以展示旋转动画
+    2. `Add` 新增`hoverable`属性，可以具有`hover`效果

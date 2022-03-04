@@ -20,9 +20,8 @@ sidebar: doc
 | fluid | 是否宽度100% | `Boolean` | `false` |
 | htmlType | 按钮`<button>`元素的`type` | `String` | `"button"` |
 | tagName | 按钮渲染后的实际html元素，例如我们可以传入`"a"`来渲染成超链接 | `String` | `button` |
-| tagProps | 当指定`tagName`时，该属性将传给`tagName`指定的元素 | `Object` | `undefind` |
-| value | 对于`radio`类型的按钮组，我们可以给每个按钮指定一个选中时的值 | `*` | `undefined` |
-| name | 对于`radio`类型的按钮组，我们给`radio`指定`name`属性 | `String` | `undefined` |
+| value | 对于`radio/checkbox`类型的按钮组，我们可以给每个按钮指定一个选中时的值 | `*` | `undefined` |
+| name | 对于`radio/checkbox`类型的按钮组，我们给`input`指定`name`属性 | `String` | `undefined` |
 | ghost | 展示透明背景的按钮 | `Boolean` | `false` |
 
 ## ButtonGroup
@@ -32,6 +31,7 @@ sidebar: doc
 | vertical | 是否垂直排列按钮组 | `Boolean` | `false` |
 | checkType | 指定按钮组为单选或复选类型，此时需要给每个按钮指定`value`来作为选中的值 | `"radio"` &#124; `"checkbox"` &#124; `"none"` | `"none"` |
 | value | 对于`radio`和`checkbox`类型按钮组，该值表示选中的按钮的值，可以使用`v-model`进行双向绑定 | `*` | `undefined` |
+| fluid | 是否宽度100% | `Boolean` | `false` |
 
 # 方法
 

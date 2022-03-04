@@ -41,18 +41,25 @@ export type Shortcut = {
     label: (() => string | VNode) | string | VNode 
     value: () => Value | [Value, Value]
 }
+export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
 ```
 
-# 静态方法
+# 扩展点
 
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| getDateString | 将日期对象转为形如`2019-02-01 12:00:00`的字符串 | 1. `date` 将要转化的日期对象 <br /> 2. `type` `"year"`： 只返回年份；`"month"`：返回年份和月份；`"datetime"`：返回日期和时间字符串；`*`：否则返回日期字符串 | `String` |
-| createDate | 传入形如`2019-02-01 12:00:00`或`2019-02-01`的字符串，返回日期对象（跨浏览器） | `dateString` | `Date` |
+## Select
+
+| 名称 | 说明 | 参数 |
+| --- | --- | --- |
+| value | 自定义选择结果的展示 | `value, label` |
+| values | 自定义多选的选择结果的展示 | `values, labels` |
+| prefix | 自定义输入款前面展示的内容 | - |
+| suffix | 自定义输入框后面展示的内容 | - |
 
 # 事件
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| selectStart | 该事件尽在范围选择(`range`)，并且只选择了第一个值时触发 | `dateString` |
+| show | 菜单弹出时触发 | - |
+| hide | 菜单隐藏时触发 | - |
+| selecting | 该事件尽在范围选择(`range`)触发，表示用户正在操作选择，可能只选了一个值，或者正在修改日期的时间 | `(value: [Dayjs, Dayjs?]) => void` |
 | change | 当用户操作完成且值`value`变化时触发 | `dateString` |

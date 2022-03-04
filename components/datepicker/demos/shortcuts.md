@@ -5,8 +5,8 @@ order: 0.1
 
 通过`shortcuts`属性可以指定快捷方式，数组的成员为对象，形如：`{label, value}`:
 
-1. `label` `String | vNode | Function` 指定要展示的文案，可以是返回文案的函数
-2. `value` `Function` 指定选中后的值（日期对象），如果是范围选择，返回数组
+1. `label` `string | VNode | (() => string | VNode)` 指定要展示的文案，可以是返回文案的函数
+2. `value` `() => Value | [Value, Value]` 指定选中后的值（日期对象），如果是范围选择，返回数组
 
 组件内置了一些快捷方式，可以直接使用，如本例所示
 

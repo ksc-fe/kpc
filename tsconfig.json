@@ -49,7 +49,7 @@
     "paths": {
         "~/*": ["site/data/*"],
         "kpc/*": ["*"],
-        "kpc": ["./"],
+        "kpc": ["./index.ts"],
         "@king-design/react": ["./packages/kpc-react"],
         "@king-design/react/*": ["./packages/kpc-react/*"],
         "@king-design/vue-legacy": ["./packages/kpc-vue"],

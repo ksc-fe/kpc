@@ -1,6 +1,6 @@
 import template from './layout.vdt';
 import {Component} from 'intact';
-import {setTheme, bind} from 'kpc';
+import {setTheme, bind, Dialog} from 'kpc';
 
 export interface LayoutProps {
     version: string
@@ -15,6 +15,23 @@ const colorList = [
     '#FF7F22',
     '#2238FF'
 ];
+
+Dialog.setHooks({
+    onStart(scrollBarWidth) {
+        if (scrollBarWidth) {
+            const header = document.querySelector<HTMLElement>('.k-layout-header');
+            if (header) {
+                header.style.paddingRight = `${scrollBarWidth}px`;
+            }
+        } 
+    },
+    onEnd() {
+        const header = document.querySelector<HTMLElement>('.k-layout-header');
+        if (header) {
+            header.style.paddingRight = '0';
+        }
+    }
+});
 
 export default class Layout<T extends LayoutProps = LayoutProps> extends Component<T> {
     static template = template;

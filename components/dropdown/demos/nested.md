@@ -7,9 +7,7 @@ order: 4
 我们还可以通过`trigger`单独子菜单触发方式。
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
-import {Button} from 'kpc';
-import {Icon} from 'kpc';
+import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 
 <div>
     <Dropdown trigger="click">
