@@ -5,8 +5,7 @@ iframe: 400
 ---
 
 给`Header`和`Aside`分别添加`fixed`属性，即可固定顶部或者侧边栏，组件会自动添加相应样式，无需手动
-添加样式。另外我们可以通过给`Aside`添加`size`属性，来控制侧边栏的宽度，给属性会自动应用到子组件
-`Menu`中
+添加样式。另外我们可以通过给`Aside`添加`width`属性，来控制侧边栏的宽度
 
 ```vdt
 import {
@@ -18,7 +17,7 @@ import {
 } from 'kpc';
 
 <Layout class="layout">
-    <Aside collapse={this.get('collapse')} fixed theme="white">
+    <Aside collapse={this.get('collapse')} fixed theme="white" width="260px">
         <div class="logo">LOGO</div>
         <Menu
             v-model:expandedKeys="expandedKeys" 

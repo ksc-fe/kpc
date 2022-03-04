@@ -27,6 +27,6 @@ sidebar: doc
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| moveStart | 开始拖动面板分割线时触发 | `Event` |
-| moving | 拖动面板分割线的过程中触发 | `Event` |
-| moveEnd | 拖动面板分割线结束时触发 | `Event` |
+| moveStart | 开始拖动面板分割线时触发 | `(e: MouseEvent) => void` |
+| moving | 拖动面板分割线的过程中触发 | `(e: MouseEvent) => void` |
+| moveEnd | 拖动面板分割线结束时触发 | `(e?: MouseEvent) => void` |

@@ -23,5 +23,4 @@ sidebar: doc
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| change | 当点击组件导致值变化时触发，与`$change:value`事件有所不同的是，该事件只会触发一次，而且一定是用户点击行为触发的 | `(value: any, e: MouseEvent) => void` |
-| click | 原生`click`事件 | `(e: MouseEvent) => void` |
+| change | 当点击组件导致值变化时触发 | `(value: any, e: MouseEvent) => void` |

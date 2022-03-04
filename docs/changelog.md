@@ -62,3 +62,36 @@ sidebar: doc
 9. Icon
     1. `Add` 新增`rotate`属性，可以展示旋转动画
     2. `Add` 新增`hoverable`属性，可以具有`hover`效果
+10. Input
+    1. `Add` 新增`inline`属性，用于展示内联输入款
+11. Layout
+    1. Header
+        1. `Add` 新增`height`属性，用于指定头部的高度
+        2. `Add` 新增`theme`属性，用于指定头部的主题色
+    2. Aside
+        1. `Add` 新增`theme`属性，用于指定侧边栏的主题色
+        2. `Add` 新增`width`属性，用于指定侧边栏的宽度
+        3. `Remove` 删除`size`属性，用`width`指定更灵活
+12. Menu
+    1. `Add` `theme`新增白色主题`white`
+13. Message
+    1. `Remove` 删除`key`属性，不再支持当做组件的使用方式
+    2. `Remove` 删除`value`属性，不再支持当做组件的使用方式
+14. Select
+    1. `Remove` 删除`keywords`属性，`filter`函数中会直接传入`keywords`，这个属性没太大必要
+    2. `Remove` 删除`allowUnmatch`属性，这个属性之前存在是为了和原生`select`保持一致，但经常造成误解，故去掉。现在设置的逻辑可以理解为都是`allowUnmatch=true`的情况，即：不检查`value`是否一定在`Options`中存在
+    3. `Remove` 删除`position`属性，这个属性没必要
+    4. `Change` `autoDisableIcon`更名为`autoDisableArrow`
+    5. `Add` 新增`creatable`属性，支持在输入不在`Options`中的值时，创建一个选项
+    6. `Add` 新增`labelMap`属性，用于定义在`label`缺失时，建立一个自定义的映射，来正确展示`label`
+15. Slider
+    1. `Change` `isShowEnd`更名为`showEnd`
+    2. `Change` `isShowInput`更名为`showInput`
+    3. `Add` 新增`points`属性，用于自定义间隔点，可以任意指定哪些点要展示间隔
+    4. `Add` 新增`spinnerProps`属性，用于定义内置的`Spinner`的属性
+    5. `Remove` 删除`spinnerPrefix`属性，用`spinnerProps`代替
+    6. `Remove` 删除`spinnerSuffix`属性，用`spinnerProps`代替
+16. Table
+    1. `Remove` 删除`container`属性，用处不大
+    2. `Remove` 删除`defaultWidth`属性，用处不大
+    3. `Remove` 删除`defaultWidthMap`属性，用处不大

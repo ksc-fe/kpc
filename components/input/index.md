@@ -21,16 +21,12 @@ sidebar: doc
 | disabled | 是否禁用 | `Boolean` | `false` |
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | rows | 当`type = "textarea"`时，默认展示文本行数 | `Number` &#124; `String` | `2` |
-| spellcheck | `textarea`是否进行拼写检查 | `Boolean` | `false` |
-| fluid | 是否宽度100% | `Boolean` | `false` |
 | autoWidth | 是否宽度随输入的文本的长度变化而变化 | `Boolean` | `false` |
+| fluid | 是否宽度100% | `Boolean` | `false` |
 | width | 指定宽度，组件会加上单位`px` | `String`  &#124; `Number` | `undefined` |
-| tabindex | 原生`tabindex`属性 | `String` | `undefined` |
-| autocomplete | 原生`autocomplete`属性 | `String` | `undefined` |
-| nativeProps | 原生`input`或`textarea`上的属性 | `Object` | `undefined` |
 | stackClearIcon | 是否将清空按钮覆盖在`suffix`按钮上展示来节省空间 | `Boolean` | `false` |
 | frozenOnInput | 是否在输入的过程中冻结`value`更新到视图 | `Boolean` | `false` |
-
+| inline | 是否展示内联模式 | `boolean` | `flase` |
 
 ## Search
 

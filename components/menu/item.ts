@@ -2,16 +2,16 @@ import {Component, TypeDefs, inject, provide, VNode, Key} from 'intact';
 import {ROOT_MENU, MENU, Menu, MenuProps} from './menu'
 import {Dropdown, DropdownMenu} from '../dropdown';
 import template from './item.vdt';
-import {bind, isExternalLink} from '../utils';
+import {bind} from '../utils';
 import {useState} from '../../hooks/useState';
 import {useHighlight} from './useHighlight';
 import {useExpanded} from './useExpanded';
 import {useDropdown} from './useDropdown';
-import {useRouter} from '../../hooks/useRouter';
+import {useRouter, navigate} from '../../hooks/useRouter';
 
 export interface MenuItemProps {
     key: Key 
-    to?: string
+    to?: string | object
     dot?: boolean
     disabled?: boolean
 }
@@ -26,7 +26,7 @@ const typeDefs: Required<TypeDefs<MenuItemProps>> = {
         type: [String, Number],
         required: true,
     },
-    to: String,
+    to: [String, Object],
     dot: Boolean,
     disabled: Boolean,
 };
@@ -65,14 +65,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
 
         if (!hasSubMenu) {
             this.trigger('select', this, e);
-            if (to) {
-                const router = this.router.value;
-                if (router && !isExternalLink(to)) {
-                    router.push(to!);
-                } else {
-                    location.href = to!;
-                }
-            }
+            navigate(this.router.value, to);
         }
     }
 }

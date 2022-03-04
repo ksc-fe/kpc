@@ -8,8 +8,7 @@ order: 5.1
 > 存在`value`扩展点时，不能指定`filterable`来筛选
 
 ```vdt
-import {Select, Option} from 'kpc';
-import {Icon} from 'kpc';
+import {Select, Option, Icon} from 'kpc';
 
 <div>
     <div class="item">
@@ -37,7 +36,7 @@ import {Icon} from 'kpc';
                 <Icon class={$value} />
             </Option>
             <b:value args="[value, label]">
-                <Icon class={value} />
+                <Icon class={value} style="vertical-align: middle;" />
                 <span class="c-middle">{value}</span>
             </b:value>
         </Select>

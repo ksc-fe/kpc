@@ -40,7 +40,7 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 选中的值 | `*` | `undefined` |
+| value | 选中的值 | `any` | `undefined` |
 | label | 该值有两个作用，1. 当`children`不存在时，作为展示文案；2. 作为筛选的内容，不存在时，则使用`children`的文本作为筛选内容 | `String`  | `undefined` |
 | disabled | 是否禁用该项选择 | `Boolean` | `false` |
 
@@ -48,7 +48,7 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label | 分组标签名 | `String` &#124; `Number` &#124; `vNode` | `""` |
+| label | 分组标签名 | `String` &#124; `Number` &#124; `VNode` | `undefined` |
 
 
 # 扩展点
@@ -57,8 +57,8 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| value | 自定义选择结果的展示 | `value, label` |
-| values | 自定义多选的选择结果的展示 | `values, labels` |
+| value | 自定义选择结果的展示 | <code>value: any, label: string &#124; number &#124 VNode</code> |
+| values | 自定义多选的选择结果的展示 | <code>value: any[], label: (string &#124 number &#124 VNode)[]</code> |
 | prefix | 自定义输入款前面展示的内容 | - |
 | suffix | 自定义输入框后面展示的内容 | - |
 | menu | 自定义整个菜单的内容 | - |
@@ -69,14 +69,6 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 | --- | --- |
 | label | 定义复杂的分组标签名 |
 
-# 方法
-
-## Select
-
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| show | 展开菜单 | - | `undefined` |
-| hide | 隐藏菜单 | - | `undefined` |
 
 # 事件
 

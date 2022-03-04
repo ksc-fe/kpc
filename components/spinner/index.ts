@@ -9,8 +9,8 @@ import {useChange} from './useChange';
 import type {Events} from '../types';
 
 export interface SpinnerProps {
-    disabled?: boolean,
     value?: number,
+    disabled?: boolean,
     max?: number,
     min?: number,
     step?: number | StepObject | StepFunction,
@@ -39,8 +39,8 @@ type Formatter = (value: number) => string
 type Parser = (value: string) => number
 
 const typeDefs: Required<TypeDefs<SpinnerProps>> = {
-    disabled: Boolean,
     value: Number,
+    disabled: Boolean,
     max: Number,
     min: Number,
     step: [Number, Object, Function],

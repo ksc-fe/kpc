@@ -8,6 +8,7 @@
  * in Vue, find the $router
  */
 import {useInstance, createRef, onMounted} from 'intact';
+import {isExternalLink} from '../components/utils';
 
 export function useRouter() {
     const instance = useInstance()!;
@@ -18,6 +19,16 @@ export function useRouter() {
     });
 
     return ref;
+}
+
+export function navigate(router: any, to?: string | object) {
+    if (to) {
+        if (router && !isExternalLink(to)) {
+            router.push(to!);
+        } else {
+            location.href = to as string;
+        }
+    }
 }
 
 function findRouter(instance: any): any {

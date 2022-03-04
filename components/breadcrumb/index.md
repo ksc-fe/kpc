@@ -17,7 +17,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| to | 指定超链接地址 | `String` | `undefined` |
+| to | 指定超链接地址 | `string` &#124; `object` | `undefined` |
 
 # 扩展点
 

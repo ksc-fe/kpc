@@ -58,6 +58,7 @@ export interface TableProps<
     resizable?: boolean
     minColWidth?: number
     widthStoreKey?: string
+    draggable?: boolean
 }
 
 export interface TableEvents<T = any, K extends TableRowKey = number> {
@@ -114,6 +115,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     resizable: Boolean,
     minColWidth: Number,
     widthStoreKey: String,
+    draggable: Boolean,
 };
 
 const defaults = (): Partial<TableProps> => ({
