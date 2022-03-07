@@ -46,10 +46,14 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| value | 自定义选择结果的展示 | `value, label` |
-| values | 自定义多选的选择结果的展示 | `values, labels` |
+| value | 自定义选择结果的展示 | `([value: any, label: Children]) => Children` |
+| values | 自定义多选的选择结果的展示 | `([values: any[], labels: Children[]]) => Children` |
 | prefix | 自定义输入框前面展示的内容 | - |
 | suffix | 自定义输入框后面展示的内容 | - |
+
+```ts
+import {Children} from 'intact';
+```
 
 # 事件
 

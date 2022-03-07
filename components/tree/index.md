@@ -9,73 +9,100 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| data | 要渲染的数据 | `Object` | `undefined` |
-| expandedKeys | 通过`key`指定展开的数据节点 | `Array` | `undefined` |
-| checkedKeys | 通过`key`指定勾选的数据节点 | `Array` | `undefined` |
-| selectedKeys | 通过`key`指定选中的数据节点 | `Array` | `undefined` |
+| data | 要渲染的数据 | `TreeDataItem<K>[]` | `undefined` |
+| filter | 指定节点过滤函数，返回`true`则展示，否则过滤掉 | `(data: TreeDataItem<K>, node: Node<K>) => boolean` | `undefined` |
+| uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `Boolean` | `false` |
+| checkedKeys | 通过`key`指定勾选的数据节点 | `K[]` | `undefined` |
+| expandedKeys | 通过`key`指定展开的数据节点 | `K[]` | `undefined` |
+| defaultExpandAll | 是否默认展开所有节点 | `Boolean` | `false` |
+| selectable | 节点是否可选中，默认为`true`可选中 | `Boolean` | `true` |
+| selectedKeys | 通过`key`指定选中的数据节点 | `K[]` | `undefined` |
 | multiple | `selectedKeys`是否支持多选 | `Boolean` | `false` |
 | checkbox | 是否展示复选框 | `Boolean` | `false` |
-| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | `Function` | `undefined` |
-| filter | 指定节点过滤函数，返回`true`则展示，否则过滤掉 | `Function` | `undefined` |
+| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
+| showLine | 是否展示左侧对齐线 | `boolean` | `true` |
 | draggable | 是否支持拖拽 | `Boolean` | `false` |
-| allowDrag | 指定哪些节点可拖拽 | `Function` | `undefined` |
-| allowDrop | 指定哪些节点可以插入子节点 | `Function` | `undefined` |
-| uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `Boolean` | `false` |
-| selectable | 节点是否可选中，默认为`true`可选中 | `Boolean` | `true` |
-| defaultExpandAll | 是否默认展开所有节点 | `Boolean` | `false` |
+| allowDrag | 指定哪些节点可拖拽 | `(node: TreeNode<K>) => boolean` | `undefined` |
+| allowDrop | 指定哪些节点可以插入子节点 | `(node: TreeNode<K>) => boolean` | `undefined` |
 
-## 实例属性
+```ts
+import {Key, Children} from 'intact';
 
-| 属性 | 说明 | 类型 |
-| --- | --- | --- |
-| root | 组件实例的根节点对象实例，通过它可以往根节点追加节点 | `Node` |
+export type TreeDataItem<K extends Key> = {
+    label?: Children 
+    key?: K
+    disabled?: boolean
+    loaded?: boolean
+    children?: TreeDataItem<K>[]
+}
 
-## Node对象
+export class TreeNode<K extends Key> {
+    data: TreeDataItem<K>;
+    parent: TreeNode<K> | null;
+    key: K;
+    checked: boolean;
+    indeterminate: boolean;
+    children: TreeNode<K>[] | null;
+    loaded: boolean | null | undefined;
+    filter: boolean;
+    constructor(data: TreeDataItem<K>, parent: TreeNode<K> | null, key: K);
+}
+```
 
-组件内部使用`Node`对象来维护节点的状态
+## TreeNode对象
+
+组件内部使用`TreeNode`对象来维护节点的状态
 
 ### 属性
 
 | 属性 | 说明 | 类型 |
 | --- | --- | --- |
+| data | 节点的原始数据 | `TreeDataItem<K>` |
+| parent | 节点的父节点 | `TreeDataItem<K>` &#124; `null` |
+| key | 节点的key | `K` |
 | checked | 节点是否已选中 | `Boolean` |
 | indeterminate | 节点是否半选中 | `Boolean` |
-| data | 节点的原始数据 | `Object` |
-| parent | 节点的父节点 | `Object` &#124; `undefined` |
-| key | 节点的key | `String` |
-| children | 节点的子节点 | `Array` &#124; `undefined` |
-| tree | 指向`Tree`组件实例 | `Tree` |
+| children | 节点的子节点 | `TreeNode<K>` &#124; `null` |
 | loaded | 是否已经完成异步加载 | `Boolean` &#124; `undefined` |
+| filter | 是否在搜索时被过滤掉了 | `boolean` | `false` |
 
-### 方法
-
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| append | 追加子节点 | 要追加的子节点数据，或子节点数据数组 | `undefined` |
-| remove | 删除节点 | - | `undefined` |
 
 # 扩展点
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| label | 自定义节点渲染内容 | `data, node` |
+| label | 自定义节点渲染内容 | `([data: TreeDataItem<K>, node: TreeNode<K>, index: number]) => Children` |
 
 # 方法
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
-| getCheckedData | 获取勾选的节点数据 | `onlyLeaf` 是否只返回叶子节点 | `Array` |
-| getSelectedData | 获取选中的节点数据 | - | `Array` |
-| expand | 展开节点 | `key` 要展开的节点的key | `undefined` |
-| shrink | 收起节点 | `key` 要收起的节点的key | `undefined` |
-| toggleSelect | 选中或取消选中节点 | `key` 节点的key | `undefined` |
+| getCheckedData | 获取勾选的节点数据 |  `(leafOnly: boolean = false) => TreeDataItem<K>[]`: `onlyLeaf` 是否只返回叶子节点 | `TreeDataItem<K>[]` |
+| getSelectedData | 获取选中的节点数据 | - | `TreeDataItem<K>[]` |
+| expand | 展开节点 | `(key: K) => void`，`key` 要展开的节点的key | `undefined` |
+| shrink | 收起节点 | `(key: K) => void`，`key` 要收起的节点的key | `undefined` |
+| getNodes | 返回一级节点  | `() => TreeNode<K>[]` | `TreeNode<K>[]` 一级节点数组 |
 
 # 事件
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| click:node | 点击节点触发 | `Node, Event` |
-| rightclick:node | 右键点击节点触发 | `Node, Event` |
-| dragend | 拖拽完成触发 | `{srcNode: '源节点', toNode: '目标节点', mode: '插入模式, -1: 插入节点前面, 1: 插入节点后面, 0: 插入节点内部', tree: '整颗节点树'}` |
-| denydrag | 拖拽不允许拖拽的节点触发 | `Node` |
-| denydrop | 插入到不允许插入的节点时触发 | `Node` |
+| dragend | 拖拽完成触发 | `DragEndData<K>`，`{srcNode: '源节点', toNode: '目标节点', mode: '插入模式, Before: 插入节点前面, After: 插入节点后面, Inner: 插入节点内部'}` |
+| denydrag | 拖拽不允许拖拽的节点触发 | `TreeNode<K>` |
+| denydrop | 插入到不允许插入的节点时触发 | `TreeNode<K>` |
+
+```ts
+import {Key} from 'intact';
+
+type DragEndData<K extends Key> = {
+    srcNode: TreeNode<K>
+    toNode: TreeNode<K>
+    mode: TreeMode
+}
+
+export enum TreeMode {
+    Before,
+    After,
+    Inner
+}
+```

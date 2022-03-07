@@ -3,19 +3,20 @@ title: 导出表格
 order: 22
 ---
 
-调用`Table`的`exportTable([data, [filename]])`方法，可以导出当前表格内容成`csv`格式。导出的文本
-默认为当前单元格下的`textContent`内容，当需要自定义导出文本时，我们可以给`TableColumn`指定`exportCell`
-函数来返回要导出的单元格内容。当需要自定义导出标题时，我们可以给当前列`TableColumn`组件添加`exportTitle`
-属性来指定。另外如果给当前列设置`ignore`属性，则会忽略该列内容，例如：本例中我们忽略”操作“栏内容
+调用`Table`的`exportTable: (data: T[] = this.get('data'), filename = 'table') => Promise<string>`方法，
+可以导出当前表格内容成`csv`格式。导出的文本默认为当前单元格下的`textContent`内容，当需要自定义导出文本时，
+我们可以给`TableColumn`指定`exportCell`函数来返回要导出的单元格内容。当需要自定义导出标题时，我们可以给
+当前列`TableColumn`组件添加`exportTitle`属性来指定。另外如果给当前列设置`ignore`属性，则会忽略该列内容，
+例如：本例中我们忽略”操作“栏内容
 
-1. `data` 要导出的数据，默认为当前表格的数据
+1. `data` 要导出的数据，默认为当前表格的数据，我们可以利用传入自定义的`data`数据来全量导出，而非仅仅当前
+    表格的内容
 2. `filename` 下载的文件名，默认为`table`
 
 > 对于合并了表头和单元格的表格，不支持导出（csv格式文件不能合并单元格）
 
 ```vdt
-import {Table, TableColumn} from 'kpc';
-import {Button} from 'kpc';
+import {Table, TableColumn, Button} from 'kpc';
 
 <div>
     <Button type="primary" ev-click={this.exportTable}>导出表格</Button>

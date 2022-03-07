@@ -7,7 +7,7 @@ order: 17
 
 `{ key: '当前排序的列的key', type: '当前排序方式（desc: 降序，asc: 升序）' }`
 
-当该列可排序时，只需要在定义表格结构的`scheme`或者`TableColumn`中加入`sortable`并且取值为`true`即可
+当该列可排序时，只需要在`TableColumn`中加入`sortable`即可
 
 当排序方式改变时，可以监听默认事件`$change:sort`来执行自定义排序逻辑
 

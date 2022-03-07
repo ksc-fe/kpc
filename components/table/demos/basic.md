@@ -3,7 +3,7 @@ title: 基本用法
 order: 0
 ---
 
-上面是一个简单的`Table`，通过`data`属性设置表格展示的数据，通过`scheme`属性或者`TableColumn`
+一个简单的`Table`，通过`data`属性设置表格展示的数据，通过`TableColumn`
 组件定义表格结构，详见”定义表格结构“说明
 
 ```vdt

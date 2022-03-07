@@ -9,7 +9,7 @@ import {useShowImage} from './useShowImage';
 import type {RequestError} from './ajaxUploader';
 import type {Events} from '../types';
 
-export type {RequestError};
+export type {RequestError, UploadFileStatus};
 
 export interface UploadProps {
     accept?: string

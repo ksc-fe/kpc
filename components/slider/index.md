@@ -44,7 +44,7 @@ type Marks = Record<MarkKey, MarkValue>
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| tooltip | 当展示提示气泡，定义气泡的内容，和`Tooltip`组件行为一样，如果你传入空的内容，则不会展示气泡 | 当前组件取值`value` |
+| tooltip | 当展示提示气泡，定义气泡的内容，和`Tooltip`组件行为一样，如果你传入空的内容，则不会展示气泡 | <code>(value: number &#124; [number, number]) => Children</code> |
 
 # 事件
 

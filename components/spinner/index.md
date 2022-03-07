@@ -37,4 +37,4 @@ export type StepFunction = (value: number) => number
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| change | `value`值变化时触发，与默认事件`$change:value`不同的是，该事件仅在`input` `change`事件触发或者点击加减按钮改变`value`时触发 | `value` |
+| change | `value`值变化时触发，与默认事件`$change:value`不同的是，该事件仅在`input` `change`事件触发或者点击加减按钮改变`value`时触发 | `(value: number) => void` |

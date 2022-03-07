@@ -44,7 +44,7 @@ sidebar: doc
     11. `Add` 新增`prefix`扩展点，来自定义输入框前面展示的内容
     12. `Add` 新增`suffix`扩展点，来自定义输入框后面展示的内容
     13. `Change` 修改`selectStart`时间为`selecting`，并且触发场景更符合实际用途
-    14. `Remove` 删除`change`时间，因为目前的默认事件`change:value`(Vue)或`onChangeValue`(React)即可满足需求
+    14. `Remove` 删除`change`事件，因为目前的默认事件`change:value`(Vue)或`onChangeValue`(React)即可满足需求
 5. Dialog / Drawer
     1. `Change` 用于修正`body`的配置从`configure`全局配置移到`Dialog`的静态方法`setHooks`上，详见文档说明
     2. `Add` 新增`content`扩展点，用于定义整个弹层内容 
@@ -52,6 +52,7 @@ sidebar: doc
     1. `Add` `position`属性支持`"top" | "bottom" | "left" | "right"`快速定位
     2. `Change` 原来`DropdownMenu`上的事件移至`Dropdown`上
     3. `Change` `DropdownMenu`现在不能脱离`Dropdown`单独使用
+    4. `Change` 弹层位置默认左侧对齐，而并非之前的居中对齐，如果你想居中对齐，指定`position="bottom"`即可
 7. Form
     1. `Remove` 删除`model`属性，使用`value`直接指定要验证的值
     2. `Remove` 删除`isDirty`属性，用不着
@@ -92,6 +93,67 @@ sidebar: doc
     5. `Remove` 删除`spinnerPrefix`属性，用`spinnerProps`代替
     6. `Remove` 删除`spinnerSuffix`属性，用`spinnerProps`代替
 16. Table
-    1. `Remove` 删除`container`属性，用处不大
-    2. `Remove` 删除`defaultWidth`属性，用处不大
-    3. `Remove` 删除`defaultWidthMap`属性，用处不大
+    1. Table
+        1. `Remove` 删除`scheme`属性，统一用`TableColumn`来定义表格结构
+        2. `Remove` 删除`container`属性，用处不大
+        3. `Remove` 删除`defaultWidth`属性，用处不大
+        4. `Remove` 删除`noDataTemplate`属性，统一用`empty`扩展点代替
+        5. `Remove` 删除`defaultWidthMap`属性，用处不大
+        6. `Remove` 删除`checkedKey`属性，不管单选或多选，统一用数组`checkedKeys`属性代替
+        7. `Remove` 删除`$change:checked`事件，统一用`$change:checkedKeys`代替
+        8. `Remove` 删除`changeWidth`事件，用处不大
+        9. `Remove` 删除`isChecked`方法，可以自行根据`checkedKeys`判断
+        10. `Remove` 删除`isCheckedAll`方法，可以自行根据`checkedKeys`判断
+        11. `Remove` 删除`checkRow`方法，可以通过`checkedKeys`来控制
+        12. `Remove` 删除`uncheckRow`方法，可以通过`checkedKeys`来控制
+        13. `Remove` 删除`expandRow`方法，可以通过`expandedKeys`来控制
+        14. `Remove` 删除`shrinkRow`方法，可以通过`expandedKeys`来控制
+        15. `Remove` 删除`refreshHeader`方法，这个方法现在没必要了
+        16. `Add` 新增`tooltipContainer`，指定行提示层插入的位置
+        17. `Change` `removeCheckedKeyOnRowDestroyed`更名为`keepStatus`，取值与之前相反
+        18. `Change` `storeWidth`更名为`storeWidthKey`
+        19. `Change` `click:row`更名为`clickRow`
+    2. TableColumn
+        1. `Remove` 删除`template`属性，统一用`template`或者`default`扩展点代替
+        2. `Change` `key`现在支持数字开头的字符串
+        3. `Add` 新增`exportCell`属性，用于定义在导出表格时，该列实际导出的内容
+17. Tabs
+    1. `Remove` 删除`data`属性，统一用`Tab`来定义选项卡
+18. Timepicker
+    1. `Add` 新增`hideIcon`属性，支持隐藏输入框后面的图标
+    2. `Add` 新增`inline`属性，支持内联模式
+    3. `Add` 新增`fluid`属性，可以展示`100%`宽度的按钮组
+    4. `Add` 新增`width`属性，可以指定宽度
+    5. `Remove` 删除`change`事件，因为目前的默认事件`change:value`(Vue)或`onChangeValue`(React)即可满足需求
+    6. `Change` 当前日期不会滑动即改变`value`值，而是点击`确定`按钮才改变
+19. Tooltip
+    1. `Change` `canHover`更名为`hoverable`
+    2. `Remove` 删除`transition`属性，没有自定义动画的必要 
+20. Transfer
+    > Transfer目前操作的是`key`(`data[0].key`)而非之前完整的一项数据对象(`data[0]`)
+    1. `Change` `value`接受的是`key`对应的取值组成的数组，而非完整数据项
+    2. `Add` 新增`leftCheckedKeys`属性，代替之前的`leftChecked`
+    3. `Add` 新增`rightCheckedKeys`属性，代替之前的`rightChecked`
+    4. `Remove` 删除`leftChecked`属性，用`leftCheckedKeys`代替
+    5. `Remove` 删除`rightChecked`属性，用`rightCheckedKeys`代替
+21. Tree
+    1. `Remove` 删除`toggleSelect`方法，通过数据`checkedKeys`控制选中状态
+    2. `Add` 新增`getNodes`方法，用于获取一级节点数组
+    3. `Add`  新增`showLine`属性，是否展示左侧对齐线
+    4. `TreeNode`
+        1. `Remove` 删除`append`方法，通过数据`data`控制组件的数据
+        2. `Remove` 删除`remove`方法，通过数据`data`控制组件的数据
+        3. `Remove` 删除`tree`属性
+    5. `Remove` 删除`click:node`属性，通过自定义`label`内容来绑定`click`事件
+    6. `Remove` 删除`rightclick:node`属性，通过自定义`label`内容来绑定`contextmenu`事件
+22. TreeSelect
+    1. `Remove` 删除`keywords`属性，`filter`函数中会直接传入`keywords`，这个属性没太大必要
+    2. `Remove` 删除`position`属性，这个属性没必要
+    3. `Add`  新增`showLine`属性，是否展示`Tree`左侧对齐线
+    4. `Add` 新增`value`扩展点，来自定义结果展示
+    5. `Add` 新增`values`扩展点，来自定义多选时结果展示
+    6. `Add` 新增`prefix`扩展点，来自定义输入框前面展示的内容
+    7. `Add` 新增`suffix`扩展点，来自定义输入框后面展示的内容
+    8. `Add` 新增`show`事件，菜单弹出时触发
+    9. `Add` 新增`hide`事件，菜单隐藏时触发
+

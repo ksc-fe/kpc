@@ -11,7 +11,6 @@ sidebar: doc
 | --- | --- | --- | --- |
 | value | 当前选择的元素，可用`v-model`双向绑定 | `Value` &#124; `Value[]` &#124; `[Value, Value]`  &#124; `[Value, Value][]` | `""` |
 | multiple | 是否支持多选 | `boolean` | `false` |
-| filterable | 是否支持筛选 | `boolean` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | name | 表单元素的`name` | `string` | `undefined` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
@@ -26,8 +25,8 @@ sidebar: doc
 | format | 指定日期格式化字符串 | `string` | `YYYY-MM-DD HH:mm:ss` |
 | valueFormat | 指定`value`值日期格式化字符串 | `string` | `undefined` |
 | showFormat | 指定展示的日期格式化字符串 | `string` | `undefined` |
-| max | 最大可选日期，可以为日期字符串或日期对象 | `Value` | `undefind` |
-| min | 最小可选日期，可以为日期字符串或日期对象 | `Value` | `undefind` |
+| max | 最大可选日期 | `Value` | `undefind` |
+| min | 最小可选日期 | `Value` | `undefind` |
 | disabledDate | 该属性值是一个函数，用于定义那些日期被禁止选择，函数参数为日期字符串，返回`true`则表示禁用该日期 | `(v: Dayjs) => boolean` | `undefined` |
 | type | 组件类型：`"date"` 只选择日期；`"datetime"` 选择日期和时间；`"year"` 选择年份；`"month"` 选择月份 | `"date"` &#124; `"datetime"` &#124; `"year"` &#124; `"month"` | `"date"` |
 | shortcuts | 指定快捷方式 | `Shortcut[]` | `undefined` |
@@ -50,10 +49,14 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| value | 自定义选择结果的展示 | `value, label` |
-| values | 自定义多选的选择结果的展示 | `values, labels` |
+| value | 自定义选择结果的展示 | `([value: any, label: Children]) => Children` |
+| values | 自定义多选的选择结果的展示 | `([values: any[], labels: Children[]]) => Children` |
 | prefix | 自定义输入款前面展示的内容 | - |
 | suffix | 自定义输入框后面展示的内容 | - |
+
+```ts
+import {Children} from 'intact';
+```
 
 # 事件
 
@@ -62,4 +65,3 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 | show | 菜单弹出时触发 | - |
 | hide | 菜单隐藏时触发 | - |
 | selecting | 该事件尽在范围选择(`range`)触发，表示用户正在操作选择，可能只选了一个值，或者正在修改日期的时间 | `(value: [Dayjs, Dayjs?]) => void` |
-| change | 当用户操作完成且值`value`变化时触发 | `dateString` |

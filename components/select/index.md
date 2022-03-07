@@ -57,11 +57,15 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| value | 自定义选择结果的展示 | <code>value: any, label: string &#124; number &#124 VNode</code> |
-| values | 自定义多选的选择结果的展示 | <code>value: any[], label: (string &#124 number &#124 VNode)[]</code> |
+| value | 自定义选择结果的展示 | `([value: any, label: Children]) => Children` |
+| values | 自定义多选的选择结果的展示 | `([values: any[], labels: Children[]]) => Children` |
 | prefix | 自定义输入款前面展示的内容 | - |
 | suffix | 自定义输入框后面展示的内容 | - |
 | menu | 自定义整个菜单的内容 | - |
+
+```ts
+import {Children} from 'intact';
+```
 
 ## OptionGroup
 
