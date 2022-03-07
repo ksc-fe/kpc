@@ -12,7 +12,7 @@ import {Affix, Tabs, Tab} from 'kpc';
                 ev-click={this.scrollTo.bind(this, $value)}
                 style={{paddingLeft: $value.level * 16 + 'px'}}
                 value={$value.id}
-            >{$value.text}</Tab>
+            ><span innerHTML={$value.text}></span></Tab>
         </Tabs>
     </Affix>
 </div>
