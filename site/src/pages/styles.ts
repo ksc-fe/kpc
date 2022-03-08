@@ -30,6 +30,9 @@ export function makeHeaderStyles() {
                 display: flex;
                 align-items: center;
             }
+            .k-tabs-active-bar {
+                display: none;
+            }
             .k-tab {
                 color: #000;
             }

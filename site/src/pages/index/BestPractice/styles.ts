@@ -2,10 +2,6 @@ import {css} from '@emotion/css';
 import {mainBlock, center} from '../../../styles/default';
 
 export function makeStyles(themeColor: string) {
-
-    console.clear()
-    console.log(themeColor)
-
     return css`
         background: #F0F4FA;
         ${mainBlock(657)};

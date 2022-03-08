@@ -12,6 +12,10 @@ export function makeStyles() {
         letter-spacing: -0.05em;
         color: #5B5A5A;
         font-size: 14px;
+        a {
+            color: #5B5A5A;
+            text-decoration: none;
+        }
         .footer-box {
             width: 100%;
             display: flex;
@@ -35,7 +39,7 @@ export function makeStyles() {
                     margin-bottom: 30px;
                 }
                 span {
-                    margin-right: 70px;
+                    margin-right: 50px;
                 }
             }
             .info-right {

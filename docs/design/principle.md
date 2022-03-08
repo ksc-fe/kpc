@@ -1,4 +1,8 @@
-# King Design设计原则
+---
+title: 设计原则
+order: 30
+sidebar: design
+---
 
 ## 为什么需要设计系统？
 
@@ -26,7 +30,7 @@ King Design设计系统帮助企业解决开发过程中协作和沟通的核⼼
 
 为了更适⽤于企业级产品的开发和使⽤，通过⼤量中后台场景的实践，King Design设计系统提炼出以下设计原则。
 
-![1](/imgs/design_new/principle/1.png)
+![1](/imgs/design/principle/1.jpg)
 
 ### ⾼效 Efficiency
 

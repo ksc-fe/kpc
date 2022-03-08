@@ -10,7 +10,7 @@ import {Transition} from 'intact';
 const nav = [
     {
         title: '设计',
-        href: '/design',
+        href: '/docs/design/about/',
         index: 'design',
     },
     /* { */

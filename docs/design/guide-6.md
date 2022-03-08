@@ -1,4 +1,10 @@
-# 可访问性要求
+---
+title: 可访问性要求
+order: 46
+sidebar: design
+category: 设计指南
+---
+
 
 
 
@@ -24,7 +30,7 @@
 
 
 
-img1
+![1](/imgs/design/guide/6-1.jpg)
 
 
 
@@ -78,7 +84,7 @@ King Design根据⾃身适⽤的产品与场景，结合国际可访性指标，
 
 
 
-img2
+![2](/imgs/design/guide/6-2.jpg)
 
 
 
@@ -88,7 +94,7 @@ img2
 
 
 
-img3
+![3](/imgs/design/guide/6-3.jpg)
 
 
 
@@ -112,7 +118,7 @@ img3
 
 
 
-img4
+![4](/imgs/design/guide/6-4.jpg)
 
 
 
@@ -122,7 +128,7 @@ img4
 
 
 
-img5
+![5](/imgs/design/guide/6-5.jpg)
 
 
 
@@ -130,7 +136,7 @@ img5
 
 
 
-img6
+![6](/imgs/design/guide/6-6.jpg)
 
 
 
@@ -140,7 +146,7 @@ img6
 
 
 
-img7
+![7](/imgs/design/guide/6-7.jpg)
 
 
 
@@ -150,7 +156,7 @@ img7
 
 
 
-img8
+![8](/imgs/design/guide/6-8.jpg)
 
 
 
@@ -172,7 +178,7 @@ img8
 
 
 
-img9
+![9](/imgs/design/guide/6-9.jpg)
 
 
 
@@ -182,7 +188,7 @@ img9
 
 
 
-img10
+![10](/imgs/design/guide/6-10.jpg)
 
 
 
@@ -238,7 +244,7 @@ img10
 
 
 
-img11
+![11](/imgs/design/guide/6-11.jpg)
 
 
 
@@ -274,7 +280,7 @@ img11
 
 
 
-img12
+![12](/imgs/design/guide/6-12.jpg)
 
 
 
@@ -294,7 +300,7 @@ img12
 
 
 
-img13
+![13](/imgs/design/guide/6-13.jpg)
 
 
 
@@ -306,7 +312,7 @@ img13
 
 
 
-img14
+![14](/imgs/design/guide/6-14.jpg)
 
 
 
