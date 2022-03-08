@@ -100,7 +100,7 @@ const templateList = [
 
 const {showImgBox, curImgList} = this.get();
 
-<t:super class={makeStyles()}>
+<t:super class={makeStyles()} navIndex="solution">
     <b:content>
         <div class="solution-nav">
             <div class="content">

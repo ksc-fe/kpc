@@ -44,9 +44,12 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
    
     private path: string | null = null;
     private examples: NodeListOf<HTMLDivElement> | null = null;
-    private articleRef = createRef<Article>();
+    protected articleRef = createRef<Article>();
 
-    init() {
+    async init() {
+        // for debug
+        (window as any).__page = this;
+
         const updateArticle = async () => {
             let path = this.get('path').replace('index.html', '').replace('\\', '/');
             path = path.slice(0, -1);
@@ -58,13 +61,17 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
                 Article: Article,
                 expanded: false,
             });
-            nextTick(() => {
-                window.scrollTo(0, 0);
-                this.updateCatalogue();
-            });
+            if (this.$mounted) {
+                nextTick(() => {
+                    window.scrollTo(0, 0);
+                    this.updateCatalogue();
+                });
+            }
         };
 
-        this.on('$receive:path', updateArticle);
+        this.watch('path', updateArticle, {inited: true});
+
+        return await updateArticle();
     }
 
     beforeMount() {
@@ -73,6 +80,11 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
             this.set('hasRead', true);
             localStorage.setItem(process.version, '1');
         }
+    }
+
+    mounted() {
+        window.scrollTo(0, 0);
+        this.updateCatalogue();
     }
 
     updateCatalogue() {

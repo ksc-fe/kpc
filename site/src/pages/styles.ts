@@ -30,11 +30,15 @@ export function makeHeaderStyles() {
                 display: flex;
                 align-items: center;
             }
-            .k-tabs-active-bar {
-                display: none;
-            }
             .k-tab {
-                color: #000;
+                a {
+                    color: inherit;
+                    &:before {
+                        content: '';
+                        position: absolute;
+                        inset: 0;
+                    }
+                }
             }
             .lang-wrapper {
                 height: 100%;
@@ -122,6 +126,17 @@ export function makeHeaderStyles() {
                 }
             }
         }
+    `
+}
 
+export function makeLayoutStyles() {
+    return css`
+        a, a code {
+            color: ${theme.color.link};
+            text-decoration: none;
+            &:hover {
+                color: ${theme.color.linkHover};
+            }
+        }
     `
 }

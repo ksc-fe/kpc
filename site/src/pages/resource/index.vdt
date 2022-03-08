@@ -33,7 +33,7 @@ const pricipleList = [
     },
 ];
 
-<t:super class={makeStyles()}>
+<t:super class={makeStyles()} navIndex="resource">
     <b:content>
         <div class="source-nav">
             <div class="content">

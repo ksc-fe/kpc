@@ -99,7 +99,7 @@ if (sidebar) {
     <b:content>
         <article>
             <div class="article-head">
-                <div class="title">{currentNav.title}</div>
+                <div class="title" id="article-title">{currentNav.title}</div>
                 <div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" 

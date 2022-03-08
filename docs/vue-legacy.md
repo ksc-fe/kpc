@@ -62,16 +62,21 @@ export default {
 # 注意事项
 
 1. 不支持 [Multiple values](https://vuejs.org/v2/guide/class-and-style.html#Multiple-Values) style
+
     ```vue
     <Button v-bind:style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></Button>
     ```
+
 2. 不要在KPC组件上直接做动画，如果要动画，可以包一层div
+
     ```vue
     <transition name="fade">
         <Button v-if="show">default</Button>
     </transition>
     ```
+
     可以包一层div
+
     ```vue
     <transition name="fade">
         <div v-if="show">
