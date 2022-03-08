@@ -70,9 +70,10 @@ export function useSlide(
             if (oldIndex === length - 1 && newIndex === 0) {
                 // the current item is the last one and the next item is the first one,
                 // we set translate to the first cloned item immediately without transition
-                await setTranslate(itemsWithCloned[0], false);
+                await setTranslate(itemsWithCloned[(itemsWithCloned.length - length) / 2 - 1], false);
             } else if (oldIndex === 0 && newIndex === length - 1) {
-                await setTranslate(itemsWithCloned[itemsWithCloned.length - 1], false);
+                const lengthWithCloned = itemsWithCloned.length;
+                await setTranslate(itemsWithCloned[lengthWithCloned - (lengthWithCloned - length) / 2], false);
             }
         }
 
