@@ -34,7 +34,7 @@ const {themeColor, colorList, curLang} = this.get();
 
 <Layout class={{[$props.className]: $props.className, [makeLayoutStyles()]: true}}>
     <Header fixed class={makeHeaderStyles()}>
-        <div class="logo" ev-click={() => window.location.href = '/'}></div>
+        <div class="logo" ev-click={() => Link.to('/')}></div>
         <div class="main">
             <Tabs size="large" value={$props.navIndex}>
                 <Tab v-for={nav} value={$value.index}>

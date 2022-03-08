@@ -22,8 +22,8 @@ export function makeStyles() {
             .nav-bg {
                z-index: 1;
                background-image: url(${index_nav_bg});
-               background-position: 63px 0px;
                background-repeat: no-repeat;
+               background-size: cover;
             }
             
             .nav-content-box {
