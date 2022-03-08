@@ -19,9 +19,6 @@ import {Select, Option, Icon} from 'kpc';
             >
                 <div style={{borderBottom: `1px ${$value} #666`}} class="line"></div>
             </Option>
-            <b:value args="[value, label]">
-                <div style={{borderBottom: `1px ${value} #666`}}></div>
-            </b:value>
         </Select>
         <div style={{border: `1px ${this.get('type')} #b2b2b2`}} class="rect">
             Rectangle
@@ -58,7 +55,7 @@ import {Select, Option, Icon} from 'kpc';
 ```
 
 ```styl
-/.line
+/.k-select-option .line
     margin-top 16px
 .item
     margin-bottom 16px
