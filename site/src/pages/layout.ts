@@ -16,6 +16,8 @@ const colorList = [
     '#2238FF'
 ];
 
+let themeColor = colorList[0];
+
 Dialog.setHooks({
     onStart(scrollBarWidth) {
         if (scrollBarWidth) {
@@ -38,7 +40,7 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
     
     static defaults = (): Partial<LayoutProps> => ({
         version: 'v1.1.1',
-        themeColor: colorList[0],
+        themeColor: themeColor,
         colorList: colorList,
         showThemeColor: false,
         curLang: 'cn',
@@ -47,6 +49,7 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
     handleColorChange(color: string) {
         if(this.get('themeColor') !== color){
             this.set('themeColor', color);
+            themeColor = color;
             this.set('showThemeColor', false);
             setTheme({
                 color: {primary: color}
