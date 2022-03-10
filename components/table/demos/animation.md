@@ -62,8 +62,8 @@ export default class extends Component<Props> {
             
     @bind
     addRow() {
-        let {num, data} = this.get();
-        data = data.slice();
+        const num = this.get('num');
+        const data = this.get('data').slice();
         data.push({
             a: `Cell ${num}-1`, 
             b: `Cell ${num}-2`, 
@@ -77,8 +77,7 @@ export default class extends Component<Props> {
 
     @bind
     removeRow() {
-        let {data} = this.get();
-        data = data.slice();
+        const data = this.get('data').slice();
         data.shift();
         this.set({data});
     }
