@@ -10,7 +10,7 @@ import {Tabs, Tab} from 'kpc/components/tabs';
             return <div class={`example ${Demo.data.index}`}
                 id={Demo.data.index}
             >
-                <div class="title">{Demo.data.setting.title}</div>
+                <div class="example-title">{Demo.data.setting.title}</div>
                 <div class="example-opera">
                     <Demo.default /> 
                 </div>

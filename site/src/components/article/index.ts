@@ -2,7 +2,6 @@ import {Component, render, createVNode as h} from 'intact';
 import template from './index.vdt';
 import axios from 'axios';
 import stylusCompile from '../../libs/stylus';
-import './index.styl';
 import React from 'react';
 import {Blockquote} from '../blockquote';
 

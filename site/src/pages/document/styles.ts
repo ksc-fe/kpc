@@ -148,7 +148,7 @@ export function makeStyles() {
             border: 1px solid #eee;
             font-size: 12px;
             position: relative;
-            .title {
+            .example-title {
                 position: absolute;
                 top: -13px;
                 left: 15px;
