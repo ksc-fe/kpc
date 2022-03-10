@@ -8,22 +8,22 @@ order: 0
 
 1. 给`FormItem`添加`value`属性，指定需要验证的数据。如果不指定，则不会进行任何验证
 2. 给`FormItem`添加`rules`属性，指定需要验证的规则。如果不指定，则不会进行任何验证。内置的验证规则如下：
-    1. `required {Boolean}`：必须填写
-    2. `digits {Boolean}`： 请输入数字
-    3. `email {Boolean}`: 请输入正确的邮箱地址
-    4. `url {Boolean}`: 请输入正确的网址
+    1. `required {boolean}`：必须填写
+    2. `digits {boolean}`： 请输入数字
+    3. `email {boolean}`: 请输入正确的邮箱地址
+    4. `url {boolean}`: 请输入正确的网址
         > 该规则可以验证IP地址，但是会排除`192.168.X.X | 192.254.X.X | 172.16.0.0 - 172.31.255.255 | 10.X.X.X | 172.X.X.X`这类保留IP地址
-    5. `date {Boolean}`：请输入正确的日期
-    6. `dateISO {Boolean}`：请输入正确的日期（YYYY-MM-DD）
-    7. `number {Boolean}`：请输入正确的数
-    8. `maxLength {Number}`：如果检验的值是数组：最多选择n项；如果检验的值是字符串：最多输入n个字符
-    9. `minLength {Number}`：同上（检验最少长度）
-    10. `rangeLength {Array<Number>}`：同上，检验长度的范围
-    11. `max {Number}`：请输入不大于n的数
-    12. `min {Number}`：请输入不小于n的数
-    13. `range {Array<Number>}`：请输入min到max之间的数
-    14. `step {Number}`：请输入步长为n的数
-    15. `equalTo {String}`：两次输入不一致
+    5. `date {boolean}`：请输入正确的日期
+    6. `dateISO {boolean}`：请输入正确的日期（YYYY-MM-DD）
+    7. `number {boolean}`：请输入正确的数
+    8. `maxLength {number}`：如果检验的值是数组：最多选择n项；如果检验的值是字符串：最多输入n个字符
+    9. `minLength {number}`：同上（检验最少长度）
+    10. `rangeLength {Array<number>}`：同上，检验长度的范围
+    11. `max {number}`：请输入不大于n的数
+    12. `min {number}`：请输入不小于n的数
+    13. `range {Array<number>}`：请输入min到max之间的数
+    14. `step {number}`：请输入步长为n的数
+    15. `equalTo {string}`：两次输入不一致
 3. 给`FormItem`添加`messages`属性，指定验证失败时展示的错误提示。默认内容如上所示
 4. 给`FormItem`添加`classNames`属性，指定验证失败时错误元素需要额外添加的`className`，默认不添加
 

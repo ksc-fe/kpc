@@ -3,7 +3,7 @@ title: 表头是否可拖动
 order: 20
 ---
 
-`resizable`：表头是否可拖动，类型`Boolean`，`false`(默认)。`Table`支持持久化存储列宽信息，只需要通过
+`resizable`：表头是否可拖动，类型`boolean`，`false`(默认)。`Table`支持持久化存储列宽信息，只需要通过
 `widthStoreKey`指定保存到`localStorage`中的`key`就可以了，这样下次渲染`Table`时会使用上次的列宽信息
 进行渲染
 

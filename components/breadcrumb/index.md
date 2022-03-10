@@ -11,7 +11,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| separator | 指定分隔符 | `String` | `undefined` |
+| separator | 指定分隔符 | `string` | `undefined` |
 
 ## BreadcrumbItem
 

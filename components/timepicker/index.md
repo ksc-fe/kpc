@@ -10,7 +10,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 当前选中的时间字符串，可用`v-model`双向绑定，你可以传入任意合法的日期，组件最终都会处理成时间字符串，日期信息将被忽略 | `Value` &#124; `Value[]` &#124; `[Value, Value]`  &#124; `[Value, Value][]` | `""` |
-| multiple | 是否支持多选 | `Boolean` | `false` |
+| multiple | 是否支持多选 | `boolean` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | name | 表单元素的`name` | `string` | `undefined` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
@@ -28,7 +28,7 @@ sidebar: doc
 | max | 最大可选时间 | `Value` | `undefind` |
 | min | 最小可选时间 | `Value` | `undefind` |
 | disabledDate | 该属性值是一个函数，用于定义那些日期被禁止选择，函数参数为日期字符串，返回`true`则表示禁用该日期 | `(v: Dayjs) => boolean` | `undefined` |
-| step | 固定时间点的步长 | `String` | `undefined` |
+| step | 固定时间点的步长 | `string` | `undefined` |
 
 ```ts
 import {Dayjs} from 'dayjs';

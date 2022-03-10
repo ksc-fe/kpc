@@ -3,7 +3,7 @@ title: 自定义颜色
 order: 3
 ---
 
-通过`color`设置进度条颜色， 类型`String` | `Array` | `Function`。
+通过`color`设置进度条颜色， 类型`string` | `Array` | `Function`。
 
 如果`color`设置为`Array`类型，它的数据格式如下：
 

@@ -11,9 +11,9 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| labelWidth | 定义所有子孙`FormItem`组件的`label`宽度 | `String` &#124; `Number` | `undefined` |
+| labelWidth | 定义所有子孙`FormItem`组件的`label`宽度 | `string` &#124; `number` | `undefined` |
 | layout | 指定表单布局方式 | `"horizontal"` &#124; `"vertical"` &#124; `"inline"` | `"horizontal"` |
-| starOnRequired | 当`FormItem`必填时，是否在`label`前面展示`*` | `Boolean` | `false` |
+| starOnRequired | 当`FormItem`必填时，是否在`label`前面展示`*` | `boolean` | `false` |
 | size | 定义表单之间的间隔大小 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 
 ## FormItem
@@ -25,10 +25,10 @@ sidebar: doc
 | messages | 指定验证失败时错误提示文案 | `Record<string, Message>` | `undefined` |
 | classNames | 指定验证失败时添加的className | `Record<string, Classname>` | `undefined` |
 | errorClassName | 指定验证失败时统一添加的className，不管是哪个规则导致的失败 | `string` | `undefined` |
-| label | 指定表单每一项前面展示的标题 | `String` | `undefined` |
-| htmlFor | 指定`label`的`for`属性 | `String` | `undefined` | 
-| hideLabel | 是否隐藏`label`，默认会展示`label`，即使该属性为空，也会展示占位元素 | `Boolean` | `false` |
-| fluid | `FormItem`的宽度默认是被子元素撑开的，添加该属性可以渲染`100%`的宽度 | `Boolean` | `false` |
+| label | 指定表单每一项前面展示的标题 | `string` | `undefined` |
+| htmlFor | 指定`label`的`for`属性 | `string` | `undefined` | 
+| hideLabel | 是否隐藏`label`，默认会展示`label`，即使该属性为空，也会展示占位元素 | `boolean` | `false` |
+| fluid | `FormItem`的宽度默认是被子元素撑开的，添加该属性可以渲染`100%`的宽度 | `boolean` | `false` |
 
 ```ts
 type Method = (value: any, param: any) => boolean | string

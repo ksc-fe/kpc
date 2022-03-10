@@ -28,11 +28,11 @@ export type Value = PrimitiveValue | BreakpointValue;
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| span | 栅格所占宽度，可选值为0到24的整数 | `String` &#124; `Number` | `24` |
-| offset | 栅格左侧偏移量 | `String` &#124; `Number` | `0` |
-| order | 定义列的顺序，会自动启用`flex`布局 | `String` &#124; `Number` | `0` |
-| pull | 定义列距离右边界的栅格数 | `String` &#124; `Number` | `0` |
-| push | 定义列距离左边界的栅格数 | `String` &#124; `Number` | `0` |
+| span | 栅格所占宽度，可选值为0到24的整数 | `string` &#124; `number` | `24` |
+| offset | 栅格左侧偏移量 | `string` &#124; `number` | `0` |
+| order | 定义列的顺序，会自动启用`flex`布局 | `string` &#124; `number` | `0` |
+| pull | 定义列距离右边界的栅格数 | `string` &#124; `number` | `0` |
+| push | 定义列距离左边界的栅格数 | `string` &#124; `number` | `0` |
 | xs | 响应式宽度 `<576px` | `BreakpointValue` | `undefined` |
 | sm | 响应式宽度 `≥576px` | `BreakpointValue` | `undefined` |
 | md | 响应式宽度 `≥768px` | `BreakpointValue` | `undefined` |

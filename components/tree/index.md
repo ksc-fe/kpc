@@ -11,17 +11,17 @@ sidebar: doc
 | --- | --- | --- | --- |
 | data | 要渲染的数据 | `TreeDataItem<K>[]` | `undefined` |
 | filter | 指定节点过滤函数，返回`true`则展示，否则过滤掉 | `(data: TreeDataItem<K>, node: Node<K>) => boolean` | `undefined` |
-| uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `Boolean` | `false` |
+| uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `boolean` | `false` |
 | checkedKeys | 通过`key`指定勾选的数据节点 | `K[]` | `undefined` |
 | expandedKeys | 通过`key`指定展开的数据节点 | `K[]` | `undefined` |
-| defaultExpandAll | 是否默认展开所有节点 | `Boolean` | `false` |
-| selectable | 节点是否可选中，默认为`true`可选中 | `Boolean` | `true` |
+| defaultExpandAll | 是否默认展开所有节点 | `boolean` | `false` |
+| selectable | 节点是否可选中，默认为`true`可选中 | `boolean` | `true` |
 | selectedKeys | 通过`key`指定选中的数据节点 | `K[]` | `undefined` |
-| multiple | `selectedKeys`是否支持多选 | `Boolean` | `false` |
-| checkbox | 是否展示复选框 | `Boolean` | `false` |
+| multiple | `selectedKeys`是否支持多选 | `boolean` | `false` |
+| checkbox | 是否展示复选框 | `boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
 | showLine | 是否展示左侧对齐线 | `boolean` | `true` |
-| draggable | 是否支持拖拽 | `Boolean` | `false` |
+| draggable | 是否支持拖拽 | `boolean` | `false` |
 | allowDrag | 指定哪些节点可拖拽 | `(node: TreeNode<K>) => boolean` | `undefined` |
 | allowDrop | 指定哪些节点可以插入子节点 | `(node: TreeNode<K>) => boolean` | `undefined` |
 
@@ -60,10 +60,10 @@ export class TreeNode<K extends Key> {
 | data | 节点的原始数据 | `TreeDataItem<K>` |
 | parent | 节点的父节点 | `TreeDataItem<K>` &#124; `null` |
 | key | 节点的key | `K` |
-| checked | 节点是否已选中 | `Boolean` |
-| indeterminate | 节点是否半选中 | `Boolean` |
+| checked | 节点是否已选中 | `boolean` |
+| indeterminate | 节点是否半选中 | `boolean` |
 | children | 节点的子节点 | `TreeNode<K>` &#124; `null` |
-| loaded | 是否已经完成异步加载 | `Boolean` &#124; `undefined` |
+| loaded | 是否已经完成异步加载 | `boolean` &#124; `undefined` |
 | filter | 是否在搜索时被过滤掉了 | `boolean` | `false` |
 
 

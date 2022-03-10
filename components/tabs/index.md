@@ -15,7 +15,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 被选中的选项卡,使用`v-model`进行双向绑定 | `T = any` | `undefined`|
-| vertical | 垂直排列 | `Boolean` | `undefined` |
+| vertical | 垂直排列 | `boolean` | `undefined` |
 | size | 选项卡尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | type | 选项卡类型 | `"default"` &#124; `"card"` &#124; `"border-card"` &#124; `"no-border-card"` | `"default"` |
 | closable | 是否展示选项卡关闭按钮 | `boolean` | `false` |
@@ -26,8 +26,8 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 选中的值 | `any` | `undefined` |
-| disabled | 是否禁用 | `Boolean` | `false` |
-| to | 点击标签的跳转地址 | `String` | `undefined` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| to | 点击标签的跳转地址 | `string` | `undefined` |
 | closable | 是否展示选项卡关闭按钮 | `boolean` | `false` |
 
 # 事件

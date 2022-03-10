@@ -41,14 +41,14 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 选中的值 | `any` | `undefined` |
-| label | 该值有两个作用，1. 当`children`不存在时，作为展示文案；2. 作为筛选的内容，不存在时，则使用`children`的文本作为筛选内容 | `String`  | `undefined` |
-| disabled | 是否禁用该项选择 | `Boolean` | `false` |
+| label | 该值有两个作用，1. 当`children`不存在时，作为展示文案；2. 作为筛选的内容，不存在时，则使用`children`的文本作为筛选内容 | `string`  | `undefined` |
+| disabled | 是否禁用该项选择 | `boolean` | `false` |
 
 ## OptionGroup
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label | 分组标签名 | `String` &#124; `Number` &#124; `VNode` | `undefined` |
+| label | 分组标签名 | `string` &#124; `number` &#124; `VNode` | `undefined` |
 
 
 # 扩展点
