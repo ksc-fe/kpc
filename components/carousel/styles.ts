@@ -4,7 +4,7 @@ import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
-    transition: `.5s ease`,
+    get transition() { return theme.transition.large },
     height: `300px`,
 
     indicator: {

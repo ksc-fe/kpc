@@ -8,6 +8,7 @@ const sizes = ['small', 'large'] as const;
 export const themes = ['light', 'dark', 'white'] as const;
 
 const defaults = {
+    get transition() { return theme.transition.large },
     get color() { return menu.item.color },
     get bgColor() { return menu.bgColor },
     light: {
@@ -40,7 +41,7 @@ export function makeLayoutStyles() {
         display: flex;
         flex-direction: column;
         flex: 1;
-        transition: padding-left ${theme.transition};
+        transition: padding-left ${layout.transition};
         &.k-has-aside {
             flex-direction: row;
         }
@@ -60,7 +61,7 @@ export function makeHeaderStyles() {
         color: ${layout.color};
         background: ${layout.bgColor};
         left: 0;
-        transition: left ${theme.transition};
+        transition: left ${layout.transition};
         &.k-fixed {
             position: fixed;
             left: 0;
@@ -84,7 +85,7 @@ export function makeHeaderStyles() {
 
 export function makeAsideStyles() {
     return css`
-        transition: width ${theme.transition};
+        transition: width ${layout.transition};
         display: flex;
         flex-direction: column;
         background: ${layout.bgColor};

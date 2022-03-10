@@ -13,7 +13,7 @@ import {Select, Table, TableColumn, Input, Button, Icon} from 'kpc';
     ref="select"
 >
     <b:menu>
-        <Input placeholder="请输入关键字" size="small" fluid v-model="keywords">
+        <Input placeholder="请输入关键字" size="small" fluid v-model="keywords" waveDisabled={true}>
             <b:suffix><Icon class="ion-ios-search" /></b:suffix>
         </Input>
         <Table data={this.filter()}

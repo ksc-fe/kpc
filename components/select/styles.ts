@@ -13,6 +13,7 @@ type SizeStyles = {
 
 const defaults = deepDefaults(
     {
+        get transition() { return theme.transition.middle },
         width: `300px`,
         get height() { return theme.default.height },
         bgColor: '#fff',
@@ -138,7 +139,7 @@ export default function makeStyles() {
         outline: none;
         border: ${select.border};
         background: ${select.bgColor};
-        transition: border ${theme.transition}, background ${theme.transition}, box-shadow ${theme.transition};
+        transition: border ${select.transition}, background ${select.transition}, box-shadow ${select.transition};
         border-radius: ${select.borderRadius};
         .k-select-main {
             flex: 1;
@@ -163,7 +164,7 @@ export default function makeStyles() {
         // clearable
         .k-select-clear {
             opacity: 0;
-            transition: opacity ${theme.transition}, color ${theme.transition} !important;
+            transition: opacity ${select.transition}, color ${select.transition} !important;
             pointer-events: none;
             position: absolute;
             z-index: 1;
@@ -180,12 +181,12 @@ export default function makeStyles() {
         }
         .k-select-suffix-icon {
             display: inline-block;
-            transition: opacity ${theme.transition};
+            transition: opacity ${select.transition};
         }
 
         .k-select-arrow {
             display: inline-block;
-            transition: transform ${theme.transition};
+            transition: transform ${select.transition};
             &.k-disabled {
                 color: ${select.disabledArrowColor};
             }
@@ -195,7 +196,7 @@ export default function makeStyles() {
         &.k-dropdown-open {
             border: ${select.focusBorder};
             .k-select-arrow {
-                transform: rotate(180deg);
+                transform: rotateX(180deg);
             }
         }
         &:focus {
@@ -278,7 +279,7 @@ export function makeMenuStyles() {
         max-height: ${select.menuMaxHeight};
         overflow: auto;
         &:not([class*="-active"]) {
-            transition: left ${theme.transition}, top ${theme.transition};
+            transition: left ${select.transition}, top ${select.transition};
         }
         .k-select-empty {
             padding: ${select.empty.padding};

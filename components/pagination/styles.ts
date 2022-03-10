@@ -69,7 +69,7 @@ export function makeStyles() {
         }
         .k-pagination-ellipsis {
             background-color: transparent;
-            border: none;
+            border-color: transparent;
         }
         .k-btns {
             .k-btn {

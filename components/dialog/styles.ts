@@ -7,6 +7,7 @@ const defaults = {
     width: '800px',
     bgColor: '#fff',
     get borderRadius() { return theme.borderRadius },
+    get transition() { return theme.transition.large },
     padding: '0',
     margin: '0 20px',
     get color() { return theme.color.text },
@@ -87,8 +88,8 @@ export function makeDialogStyles() {
         &.transition-enter-active,
         &.transition-leave-active,
         &.transition-appear-active {
-            // transition: transform ${theme.transition}, opacity ${theme.transition};
-            transition: all ${theme.transition};
+            // transition: transform ${dialog.transition}, opacity ${dialog.transition};
+            transition: all ${dialog.transition};
         }
         &.transition-enter-from,
         &.transition-leave-to,
@@ -126,6 +127,10 @@ export function makeDialogStyles() {
             top: ${dialog.header.closeTop};
             .k-icon {
                 font-size: ${dialog.header.closeIconFontSize};
+                &:hover:after {
+                    width: ${dialog.header.closeHoverWidth};
+                    height: ${dialog.header.closeHoverWidth};
+                }
             }
         }
 

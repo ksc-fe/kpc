@@ -7,7 +7,7 @@ const defaults = {
     width: '14px',
     get borderColor() { return theme.color.darkBorder },
     get borderRadius() { return theme.borderRadius },
-    get transition() { return theme.transition },
+    get transition() { return theme.transition.small },
     bgColor: '#fff',
     
     // text

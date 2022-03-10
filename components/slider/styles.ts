@@ -4,6 +4,7 @@ import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
+    get transition() { return theme.transition.middle },
     height: '4px',
     
     bgColor: '#e5e5e5',
@@ -78,19 +79,19 @@ export function makeStyles() {
             position: absolute;
             height: 100%;
             border-radius: ${slider.borderRadius};
-            transition: all ${theme.transition};
+            transition: all ${slider.transition};
         }
         .k-slider-thumb-wrapper {
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
-            transition: left ${theme.transition};
+            transition: left ${slider.transition};
             z-index: 1;
         }
         .k-slider-thumb {
             height: ${slider.thumb.height};
             width: ${slider.thumb.width};
-            transition: all ${theme.transition};
+            transition: all ${slider.transition};
             border: ${slider.thumb.border};
             border-radius: ${slider.thumb.borderRadius};
             background-color: ${slider.thumb.bgColor};

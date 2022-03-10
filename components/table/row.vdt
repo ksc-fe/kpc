@@ -1,3 +1,4 @@
+import {TransitionGroup} from 'intact';
 import {getClassAndStyleForFixed} from './useFixedColumns';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
@@ -88,9 +89,11 @@ cols.forEach((props, columnIndex) => {
     );
 });
 
+const rows = <TransitionGroup name="k-fade-expand">{vNodes}</TransitionGroup>
+
 // for performance, no normalize
 <template>
-    {createElementVNode(2, 'tr', vNodes, 8 /* HasKeyedChildren */, cx(classNameObj), {
+    {createElementVNode(2, 'tr', rows, 2, cx(classNameObj), {
         'data-key': key,
         'ev-mouseenter': this.onMouseEnter,
         'ev-mouseleave': this.onMouseLeave,
