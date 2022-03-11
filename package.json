@@ -127,7 +127,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.32",
     "karma-webpack": "^5.0.0",
-    "ks3": "^0.5.0",
+    "ks3": "^0.5.2",
     "lerna": "^4.0.0",
     "marked": "^2.0.3",
     "mermaid": "^8.3.1",

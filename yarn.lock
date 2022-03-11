@@ -8227,10 +8227,10 @@ klona@^2.0.4:
   resolved "https://registry.npmjs.org/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
   integrity sha512-pJiBpiXMbt7dkzXe8Ghj/u4FfXOOa98fPW+bihOJ4SjnoijweJrNThJfd3ifXpXhREjpoF2mZVH1GfS9LV3kHQ==
 
-ks3@^0.5.0:
-  version "0.5.1"
-  resolved "https://registry.npmjs.org/ks3/-/ks3-0.5.1.tgz#e883a7dc89a07e2132930a82fcf6d54b9072c77e"
-  integrity sha512-Axx2usnw6YPfp/zGqcm8mmxs0YdNaMfd/EH8ENAzU8Y29oz2Yvjre2enVdZdu+DuSJbh9ZdzCFJDLRlML7OpBQ==
+ks3@^0.5.2:
+  version "0.5.2"
+  resolved "https://registry.npmmirror.com/ks3/-/ks3-0.5.2.tgz#c5ceff3b98f7f2df4e8f9d81db6fb18bc44552d2"
+  integrity sha512-lqik1niY0QCMckYf50iE+XFuNqB8VhghEbouLn+mSzo1DTXCryefeITt+7aKDKOe5bl+R/0cU4Vc9HcIIftPHg==
   dependencies:
     async "^0.9.0"
     colorful "^2.1.0"
