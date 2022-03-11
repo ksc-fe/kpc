@@ -51,6 +51,9 @@ export function makeStyles(themeColor: string) {
 					justify-content: space-between;
 					color: #4B4B4B;
 					font-size: 16px;
+					img {
+						cursor: pointer;
+					}
 					& > div {
 						background: #FFFFFF;
 						border-radius: 8px;

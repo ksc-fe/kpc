@@ -155,6 +155,15 @@ export function makeStyles() {
                     .priciple-item:not(:last-child) {
                         border-bottom: 1px solid #B0BDC8;
                     }
+                    .priciple-item, .priciple-item i {
+                        transition: all .25s linear;
+                    }
+                    .priciple-item:hover {
+                        color: #0191EA;
+                        i {
+                            color: #0191EA;
+                        }
+                    }
                 }
             }
         }
