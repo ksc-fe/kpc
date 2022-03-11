@@ -158,7 +158,7 @@
     "thread-loader": "^3.0.4",
     "ts-loader": "^9.2.6",
     "typescript": "^4.2.4",
-    "universal-router": "^9.0.1",
+    "universal-router": "^9.1.0",
     "url-loader": "^4.1.1",
     "vdt-loader": "^3.0.0-beta.1",
     "webpack": "5.37.1",

@@ -13082,9 +13082,9 @@ unist-util-visit@^1.1.0:
   dependencies:
     unist-util-visit-parents "^2.0.0"
 
-universal-router@^9.0.1:
+universal-router@^9.1.0:
   version "9.1.0"
-  resolved "https://registry.npmjs.org/universal-router/-/universal-router-9.1.0.tgz#f3732ccdbf22e9c1a8620aeb0d704401b25c43ee"
+  resolved "https://registry.npmmirror.com/universal-router/-/universal-router-9.1.0.tgz#f3732ccdbf22e9c1a8620aeb0d704401b25c43ee"
   integrity sha512-lvD+R3Qb36Ld9suZuQW2hGJ1PfrRRxd568GM2thw/wByLurQUvqEOImE/lLjgeS5lhvcwuhc4vDt1JNO9q3S/g==
   dependencies:
     path-to-regexp "^6.2.0"
