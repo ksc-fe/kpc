@@ -74,7 +74,7 @@ const pricipleList = [
                                     </div>
                                 </div>
                                 <div>
-                                    <div class="card-title">灵感与素材</div>
+                                    <div class="card-title">更多KD资源</div>
                                     <div class="card-item">
                                         <img 
                                             src={kingvision_logo} 
@@ -83,7 +83,7 @@ const pricipleList = [
                                     </div>
                                     <div class="card-item">
                                         <img src={iconFonts} />
-                                        <div>Fonts库</div>
+                                        <div>Fonts库（敬请期待）</div>
                                     </div>
                                 </div>
                             </div>
