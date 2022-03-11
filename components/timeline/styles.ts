@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {theme, ThemeValue, setDefault} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, Sizes, sizes, palette}  from '../../styles/utils';
 import '../../styles/global';
 
@@ -8,7 +8,7 @@ type ValueOf<T extends readonly any[]> = T[number]
 export type Types = ValueOf<typeof types>
 
 type TypeStyles = {
-    color: ThemeValue<string>
+    color: string
 }
 
 type SizeStyles = {

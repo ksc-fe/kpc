@@ -1,5 +1,5 @@
 import {css, cx} from '@emotion/css';
-import {theme, ThemeValue, setDefault} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette}  from '../../styles/utils';
 import {IconProps} from './index';
 import {Sizes, Colors} from '../types';
