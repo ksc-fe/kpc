@@ -6,6 +6,7 @@ import '../../styles/global';
 const sizes = ['large', 'small'] as const;
 
 const defaults = {
+    get transition() { return theme.transition.large },
     width: '200px',
     bgColor: '#262626',
     fontSize: '14px',
@@ -90,7 +91,7 @@ export function makeMenuStyles() {
     return css`
         &.k-menu {
             width: ${menu.width};
-            transition: width ${theme.transition};
+            transition: width ${menu.transition};
             background: ${menu.bgColor};
             font-size: ${menu.fontSize};
         }
@@ -243,7 +244,7 @@ export function makeItemStyles() {
         .k-menu-title {
             cursor: pointer;
             height: ${menu.item.height};
-            transition: all ${theme.transition};
+            transition: all ${menu.transition};
             &:hover {
                 color: ${menu.item.hoverColor};
             }
@@ -254,7 +255,7 @@ export function makeItemStyles() {
             align-items: center;
         }
         .k-menu-arrow {
-            transition: transform ${theme.transition};
+            transition: transform ${menu.transition};
             margin-left: ${menu.icon.gap};
         }
 

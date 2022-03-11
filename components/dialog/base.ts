@@ -10,7 +10,7 @@ import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {useDraggable} from './useDraggable';
 import {useEscClosable} from './useEscClosable';
 import {SHOW, HIDE, DIALOG} from './constants';
-import {useFixBody} from './useFixBody';
+import {useFixBody, setHooks} from './useFixBody';
 import type {Events} from '../types';
 
 export interface BaseDialogProps {
@@ -100,6 +100,7 @@ export class BaseDialog<
     static typeDefs = typeDefs;
     static defaults = defaults;
     static events = events;
+    static setHooks = setHooks;
 
     public dialogRef = createRef<HTMLDivElement>();
 

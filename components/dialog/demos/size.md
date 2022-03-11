@@ -4,7 +4,7 @@ order: 0.2
 ---
 
 添加`size`属性，定义如下尺寸：`large`, `default`，`small`，`mini`；另外你也可以通过`width`属性，给弹窗指定宽度，
-如果该值为`Number`类型，则默认单位为`px`，`String`类型时，你需要指定单位
+如果该值为`number`类型，则默认单位为`px`，`string`类型时，你需要指定单位
 
 > `width`优先级高于`size`
 

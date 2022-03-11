@@ -3,10 +3,10 @@ title: 列固定
 order: 14
 ---
 
-给`TableColumn`或者`scheme`添加`fixed`属性，可以将列固定，其中`left`固定在左侧，`right`固定在右侧；
+给`TableColumn`添加`fixed`属性，可以将列固定，其中`left`固定在左侧，`right`固定在右侧；
 固定的列依然支持`resizable`表头拖动，`stickHeader`表头吸顶，以及`fixHeader`表头固定
 
-> 固定列通过`position: sticky`来实现，所以对于不是首列或者尾列的列，需要指定它们之前或之后的列的固定宽度`width`来
+> 固定列通过`position: sticky`来实现，所以对于非首/尾列，需要指定它们之前或之后的列的固定宽度`width`来
 > 帮助该列来确定固定的位置 
 
 ```vdt

@@ -13,6 +13,7 @@ import type {Events} from '../types';
 export type {
     Node as TreeNode,
     DataItem as TreeDataItem,
+    Mode as TreeMode,
 };
 
 export interface TreeProps<K extends Key = Key> {

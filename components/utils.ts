@@ -159,7 +159,7 @@ export function getRestProps<T>(component: Component<T>, props = component.get()
 }
 
 const externalLinkReg = /^(https?:)?\/\//;
-export function isExternalLink(to?: string) {
+export function isExternalLink(to?: string | object): to is string {
     if (!isString(to)) return false;
     return externalLinkReg.test(to);
 }

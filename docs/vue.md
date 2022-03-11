@@ -63,12 +63,15 @@ export default {
 # 注意事项
 
 1. 不要在KPC组件上直接做动画，如果要动画，可以包一层div
+
     ```vue
     <transition name="fade">
         <Button v-if="show">default</Button>
     </transition>
     ```
+
     可以包一层div
+
     ```vue
     <transition name="fade">
         <div v-if="show">

@@ -7,8 +7,7 @@ order: 2
 鼠标离开触发器，弹层就会消失，如果我们需要鼠标能离开触发器并悬浮在弹层上，需要添加`canHover`属性
 
 ```vdt
-import {Tooltip} from 'kpc';
-import {ButtonGroup, Button} from 'kpc';
+import {Tooltip, ButtonGroup, Button} from 'kpc';
 
 <ButtonGroup>
     <Tooltip content="hover">

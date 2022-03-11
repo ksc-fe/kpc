@@ -16,7 +16,9 @@ export class Link extends Component<LinkProps> {
 
     @bind
     goTo(e: MouseEvent) {
-        e.preventDefault();
+        if (!e.metaKey) {
+            e.preventDefault();
+        }
         history.push(this.get('href'));
     }
 }

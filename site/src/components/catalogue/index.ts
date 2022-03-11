@@ -13,7 +13,7 @@ type DataItem = {
     id: string
 }
 
-const TOP = 74;
+const TOP = 84;
 
 export class Catalogue extends Component<CatalogueProps> {
     static template = template;
@@ -33,7 +33,7 @@ export class Catalogue extends Component<CatalogueProps> {
         if (!dom) return;
 
         const top = dom!.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo(0, top - 74);
+        window.scrollTo(0, top - TOP);
     }
 
     @bind

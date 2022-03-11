@@ -4,6 +4,7 @@ import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
+    get transition() { return theme.transition.middle },
     fontSize: '12px',
     tip: {
         gap: '16px',
@@ -149,7 +150,7 @@ export function makeStyles() {
                 border-radius: ${upload.drag.borderRadius};
                 cursor: pointer;
                 text-align: center;
-                transition: border-color ${theme.transition};
+                transition: border-color ${upload.transition};
                 &:hover {
                     border-color: ${upload.drag.hoverBorderColor};
                 }
@@ -198,7 +199,7 @@ export function makeStyles() {
                 right: ${upload.gallery.close.right};
                 display: inline-block;
                 opacity: 0;
-                transition: opacity ${theme.transition};
+                transition: opacity ${upload.transition};
                 pointer-events: none;
                 .k-icon {
                     font-size: ${upload.gallery.close.fontSize};
@@ -206,7 +207,7 @@ export function makeStyles() {
             }
             .k-upload-icons {
                 opacity: 0;
-                transition: opacity ${theme.transition};
+                transition: opacity ${upload.transition};
             }
             &:hover {
                 .k-upload-icons {

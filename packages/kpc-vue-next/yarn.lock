@@ -503,29 +503,29 @@ import-fresh@^3.1.0:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-intact-shared@^3.0.0-beta.20:
-  version "3.0.0-beta.20"
-  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.0-beta.20.tgz#fb0300ee67a2eda886fab93a235a79ae7146a41d"
-  integrity sha512-EcxmuYmEtAGBgdrvZx1JFHh+eggECH0Q/i0/Rw7U8eqWqobeHjq1mvZeN48gzdVofhLzsNhXqhmRFl3NwW5Unw==
+intact-shared@^3.0.0-beta.21:
+  version "3.0.0-beta.21"
+  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.0-beta.21.tgz#95c6794145e32d9270c3b116921cd295c94a32a6"
+  integrity sha512-38mPzdjet3NZ+DCpalraioAPl7c5fE5cbK7fOfajA5i0U6z1gKtLQrbVY6tsG49oIIPeRcZU41XKYDUkH4FabQ==
 
-intact-vue-next@^3.0.0-beta.20:
-  version "3.0.0-beta.20"
-  resolved "https://registry.npmmirror.com/intact-vue-next/-/intact-vue-next-3.0.0-beta.20.tgz#c5e8eb310f8777bf1cee85061cdcb778f9002b4b"
-  integrity sha512-G30+7ba6QL+/1Xk9YDu1LmJnftjSBHdesQhLuQ5TObgP59RzeEMUFSM9C7ICNLPKLbfpxZV3K9zo5UN1E0omsw==
+intact-vue-next@^3.0.0-beta.21:
+  version "3.0.0-beta.21"
+  resolved "https://registry.npmjs.org/intact-vue-next/-/intact-vue-next-3.0.0-beta.21.tgz#5e0862c89d4e600270586d3baa75aae56e21a46d"
+  integrity sha512-W155Bhl+JEmn77xh2pKVFyyNrOrSo1FhzHNFWCB/+4S0Dg7dLVYOA25U/EI5MiZsfIINLILJxb/7ipaRsAaAUQ==
   dependencies:
-    intact "^3.0.0-beta.20"
+    intact "^3.0.0-beta.21"
     tslib "^2.3.1"
 
-intact@^3.0.0-beta.20:
-  version "3.0.0-beta.20"
-  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.0-beta.20.tgz#e03050d9c56ef0081763d4fdde3e564fe3e93745"
-  integrity sha512-CtaRtT76CB4f1midUJ3No1gnaHgmdoI6JtXEi5r6p38w4thONLc8sHRJes3Aj2o0AW10Nb5xk6lJPCSM1t6b3g==
+intact@^3.0.0-beta.21:
+  version "3.0.0-beta.21"
+  resolved "https://registry.npmjs.org/intact/-/intact-3.0.0-beta.21.tgz#5b1546958656ab910745bf0ae7dcab1db8faddea"
+  integrity sha512-23vXw/jCT8MOWoeRYeT7ZtEBnr8RkF0YsH+h9vqefnfC2w1Uy8hmHoeyh5sRbhC3JWTopcsrag7F27NsLAA62A==
   dependencies:
-    intact-shared "^3.0.0-beta.20"
-    misstime "^3.0.0-beta.20"
+    intact-shared "^3.0.0-beta.21"
+    misstime "^3.0.0-beta.21"
     tslib "^2.2.0"
-    vdt "^3.0.0-beta.20"
-    vdt-compiler "^3.0.0-beta.20"
+    vdt "^3.0.0-beta.21"
+    vdt-compiler "^3.0.0-beta.21"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -598,12 +598,12 @@ minimist@^1.2.0, minimist@^1.2.5:
   resolved "https://registry.nlark.com/minimist/download/minimist-1.2.5.tgz#67d66014b66a6a8aaa0c083c5fd58df4e4e97602"
   integrity sha1-Z9ZgFLZqaoqqDAg8X9WN9OTpdgI=
 
-misstime@^3.0.0-beta.20:
-  version "3.0.0-beta.20"
-  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.0-beta.20.tgz#a7efad9e09062c954d2d72bf20b0c239bc0dc5cc"
-  integrity sha512-JW1vOq6O9hp2+tQjYRN3/u6xoXxPz4ay9MHwMsw/dseoUdUDLdViuDX5mCSazypPya1+c21DcQm6d/iAzhuLiA==
+misstime@^3.0.0-beta.21:
+  version "3.0.0-beta.21"
+  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.0-beta.21.tgz#037e900e85e1c3609037d8f5e01871838f7773ba"
+  integrity sha512-LXBoFDTbC+d5EkjdSJumb/IYrPWs5uTyk5ETYsjqRLFvZXSuOts9/R9467NDWQtYqxqAOkg7a/wBzj2/PH3YJQ==
   dependencies:
-    intact-shared "^3.0.0-beta.20"
+    intact-shared "^3.0.0-beta.21"
 
 monaco-editor@^0.26.1:
   version "0.26.1"
@@ -749,22 +749,22 @@ tslib@^2.2.0, tslib@^2.3.1:
   resolved "https://registry.npmmirror.com/tslib/download/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-vdt-compiler@^3.0.0-beta.20:
-  version "3.0.0-beta.20"
-  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.0-beta.20.tgz#784e6e18c070e45864325bee4efb51ac8705f0bb"
-  integrity sha512-vfPWmwsGMbyzk9mXYw5qvzESgRyajrtfLE1TjipaY7BtBvCWq8Bq7iRmnuVpGPQlfbMy3YISNm8eRG0sDaLEiQ==
+vdt-compiler@^3.0.0-beta.21:
+  version "3.0.0-beta.21"
+  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.0-beta.21.tgz#e28873060fb75043e95ab66352adb01e16b60f36"
+  integrity sha512-TWlql4pM8o2iRMguwRtdxAds3yHyvFAvmZES/wMYDoUHsmjYylsZk6PLghh16oAsdY+OocEETW51nvP5Yk7FGw==
   dependencies:
-    intact-shared "^3.0.0-beta.20"
-    misstime "^3.0.0-beta.20"
+    intact-shared "^3.0.0-beta.21"
+    misstime "^3.0.0-beta.21"
     tslib "^2.2.0"
 
-vdt@^3.0.0-beta.20:
-  version "3.0.0-beta.20"
-  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.0-beta.20.tgz#4e0660a65857abdbaaffe7ba3aa65e73b18e2455"
-  integrity sha512-h48gSLd3mOKtwDU/N7iMh3qEqGKOlG+KACsU5x8J2B23eSRW7Ik4Y2zWoIGuy/7jBY/AAFeTX/r+raSjjZmwvA==
+vdt@^3.0.0-beta.21:
+  version "3.0.0-beta.21"
+  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.0-beta.21.tgz#a7af9227d7000d9d6b53bac1b648be2fbb99c70e"
+  integrity sha512-FKfn2D80fLPwZqMcTMD+M8VM9MYBn7VGZdS5vwVT5QND320nqq7fQUuc4y2iasMDBimtOd7C7MS2Ndoju94xGQ==
   dependencies:
-    intact-shared "^3.0.0-beta.20"
-    misstime "^3.0.0-beta.20"
+    intact-shared "^3.0.0-beta.21"
+    misstime "^3.0.0-beta.21"
     tslib "^2.2.0"
 
 vue-loader@^16.1.2:

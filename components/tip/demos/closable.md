@@ -19,7 +19,7 @@ import {Tip} from 'kpc';
         type={$value}
         closable
     >{$value}</Tip>
-    <Tip closable>
+    <Tip closable border="dashed">
         custom closing content
         <b:close>No longer show</b:close>
     </Tip>

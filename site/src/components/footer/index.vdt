@@ -1,5 +1,6 @@
 import {makeStyles} from './styles';
 import {Row, Col} from 'kpc';
+import {Link} from '../link';
 
 <div class={makeStyles()} style={{background: this.get('bgColor')}}>
     <div class="footer-box">
@@ -11,7 +12,7 @@ import {Row, Col} from 'kpc';
                 <Col class="info-left" span="12">
                     <div class="title">一个设计系统，为企业提效而生</div>
                     <div>
-                        <span>联系我们：ksc_ued@kingsoft.com</span>
+                        <span>联系我们：<a href="mailto:ksc_ued@kingsoft.com">ksc_ued@kingsoft.com</a></span>
                         <span>关注我们：微信公众号“⾦⼭云⽤户体验设计”</span>
                     </div>
                 </Col>
@@ -21,17 +22,16 @@ import {Row, Col} from 'kpc';
                             <div class="title">快速访问</div>
                             <div class="link-list">
                                 <div>
-                                    <a href="/docs/design/language/">组件语言</a>
-                                </div>
-                                <div>开发</div>
-                                <div>
-                                    <a href="/docs/design/about/">设计</a>
+                                    <Link href="/docs/design/about/">设计</Link>
                                 </div>
                                 <div>
-                                    <a href="/resource">资源</a>
+                                    <Link href="/docs/vue/">组件</Link>
                                 </div>
                                 <div>
-                                    <a href="/solution">解决方案</a>
+                                    <Link href="/resource">资源</Link>
+                                </div>
+                                <div>
+                                    <Link href="/solution">解决方案</Link>
                                 </div>
                                 <div>Color-Process</div>
                             </div>
@@ -41,9 +41,13 @@ import {Row, Col} from 'kpc';
                         <Col span="24">
                             <div class="title">相关链接</div>
                             <div class="link-list">
-                                <div>KingVision</div>
                                 <div>
-                                    <a href="https://www.ksyun.com/">金山云</a>
+                                    <a href="http://vision.ksyun.com/#/icon-reposition" target="_blank">
+                                        KingVision
+                                    </a>
+                                </div>
+                                <div>
+                                    <a target="_blank" href="https://www.ksyun.com/">金山云</a>
                                 </div>
                             </div>
                         </Col>

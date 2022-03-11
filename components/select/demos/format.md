@@ -8,8 +8,7 @@ order: 5.1
 > 存在`value`扩展点时，不能指定`filterable`来筛选
 
 ```vdt
-import {Select, Option} from 'kpc';
-import {Icon} from 'kpc';
+import {Select, Option, Icon} from 'kpc';
 
 <div>
     <div class="item">
@@ -20,9 +19,6 @@ import {Icon} from 'kpc';
             >
                 <div style={{borderBottom: `1px ${$value} #666`}} class="line"></div>
             </Option>
-            <b:value args="[value, label]">
-                <div style={{borderBottom: `1px ${value} #666`}}></div>
-            </b:value>
         </Select>
         <div style={{border: `1px ${this.get('type')} #b2b2b2`}} class="rect">
             Rectangle
@@ -37,7 +33,7 @@ import {Icon} from 'kpc';
                 <Icon class={$value} />
             </Option>
             <b:value args="[value, label]">
-                <Icon class={value} />
+                <Icon class={value} style="vertical-align: middle;" />
                 <span class="c-middle">{value}</span>
             </b:value>
         </Select>
@@ -59,7 +55,7 @@ import {Icon} from 'kpc';
 ```
 
 ```styl
-/.line
+/.k-select-option .line
     margin-top 16px
 .item
     margin-bottom 16px

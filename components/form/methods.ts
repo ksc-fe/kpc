@@ -138,7 +138,12 @@ export const messages: Record<string, Message> = {
 
 export const classNames: Record<string, ClassName> = {};
 
-export const addMethod = function(name: string, method: Method, message?: Message, className?: ClassName) {
+export const addMethod = function(
+    name: string,
+    method: Method,
+    message?: Message,
+    className?: ClassName
+) {
     methods[name] = method;
     messages[name] = message !== undefined ? message : messages[name];
     if (className) {

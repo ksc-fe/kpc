@@ -22,7 +22,6 @@ import {isNullOrUndefined} from 'intact-shared';
 
 export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
     value?: Multipe extends true ? V[] : Attach
-    // value?: any 
     multiple?: Multipe 
     filterable?: boolean
     loading?: boolean

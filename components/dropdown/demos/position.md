@@ -3,12 +3,11 @@ title: 菜单位置
 order: 2
 ---
 
-通过`position`属性，可以定义菜单相对触发器的位置。位置对象中`my`指菜单，`at`指触发器
+通过`position`属性，可以定义菜单相对触发器的位置。位置对象中`my`指菜单，`at`指触发器。
+通过`"top" | "bottom" | "left" | "right" `可以快速定位上下左右四个方向
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
-import {Button} from 'kpc';
-import {Icon} from 'kpc';
+import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 
 <div>
     <Dropdown position={{my: 'left top', at: 'left bottom+5'}}>
@@ -33,7 +32,7 @@ import {Icon} from 'kpc';
         </DropdownMenu>
     </Dropdown>
 
-    <Dropdown position={{my: 'center bottom-5', at: 'center top'}}>
+    <Dropdown position="top">
         <Button type="primary">
             top center <Icon class="ion-ios-arrow-down" />
         </Button>

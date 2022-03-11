@@ -3,8 +3,8 @@ title: 禁用行可选
 order: 9
 ---
 
-`disableRow`：禁用某一行可选状态，类型：`Function`，默认：`function(data, index) { return false }`，该函数
-如果返回`true`，则表示禁用该行可选
+`disableRow`：禁用某一行可选状态，类型：`(data: T, index: number, key: TableRowKey) => boolean`，
+默认：`(data: T, index: number) => false`，该函数如果返回`true`，则表示禁用该行可选
 
 对于`disabled`的行，它的选中状态不会随全选/反全选而改变
 

@@ -1,9 +1,7 @@
 import {makeStyles} from './styles';
 
 const classNameObj = {
-    'document-page': true,
     'design-page': true,
-    'fixed-aside': true,
     [makeStyles()]: true
 };
 

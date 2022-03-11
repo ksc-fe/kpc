@@ -4,6 +4,7 @@ import {deepDefaults}  from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
+    get transition() { return theme.transition.middle },
     get height() { return theme.default.height }, 
     get bgColor() { return theme.color.bg }, 
     gutter: '10px',
@@ -332,7 +333,7 @@ export function makeStepStyles() {
         }
         .k-step-inner,
         .k-step-main {
-            transition: all ${theme.transition};
+            transition: all ${steps.transition};
         }
     `;
 }

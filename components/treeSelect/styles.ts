@@ -4,6 +4,7 @@ import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
+    get transition() { return theme.transition.middle },
     maxHeight: `400px`,
     padding: `3px 6px`,
 };
@@ -20,7 +21,7 @@ export function makeStyles() {
         padding: ${treeSelect.padding};
         overflow: auto;
         &:not([class*="-active"]) {
-            transition: left ${theme.transition}, top ${theme.transition};
+            transition: left ${treeSelect.transition}, top ${treeSelect.transition};
         }
     `;
 }

@@ -19,7 +19,7 @@ import {Select, Option} from 'kpc';
         <Option value="Sunday">星期天</Option>
     </Select>
     Day: {this.get('day')}
-    <br />
+    <br /><br />
     <Select v-model="days" filterable multiple creatable style="margin-right: 10px">
         <Option value="Monday">星期一</Option>
         <Option value="Tuesday">星期二</Option>

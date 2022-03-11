@@ -3,7 +3,7 @@ import {
     Dropdown, DropdownMenu, DropdownItem,
     Button,
 } from 'kpc';
-import {makeHeaderStyles} from './styles';
+import {makeHeaderStyles, makeLayoutStyles} from './styles';
 import {Link} from '../components/link';
 import {Transition} from 'intact';
 
@@ -13,11 +13,6 @@ const nav = [
         href: '/docs/design/about/',
         index: 'design',
     },
-    /* { */
-        /* title: '组件', */
-        /* href: '/docs/design/language/', */
-        /* index: 'design' */
-    /* }, */
     {
         title: '组件',
         href: '/docs/vue/',
@@ -37,15 +32,14 @@ const nav = [
 
 const {themeColor, colorList, curLang} = this.get();
 
-<Layout class={$props.className}>
+<Layout class={{[$props.className]: $props.className, [makeLayoutStyles()]: true}}>
     <Header fixed class={makeHeaderStyles()}>
-        <div class="logo" ev-click={() => window.location.href = '/'}></div>
+        <div class="logo" ev-click={() => Link.to('/')}></div>
         <div class="main">
             <Tabs size="large" value={$props.navIndex}>
-                <Tab v-for={nav}
-                    value={$value.index}
-                    to={$value.href}
-                >{$value.title}</Tab>
+                <Tab v-for={nav} value={$value.index}>
+                    <Link href={$value.href}>{$value.title}</Link>
+                </Tab>
                 {
                 // 语言切换功能
                 /* <Tab>

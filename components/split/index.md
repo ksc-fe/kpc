@@ -10,10 +10,10 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | mode | 指定分割模式，`horizontal`水平分割；`vertical`垂直分割 | `"horizontal"` &#124; `"vertical"` | `"horizontal"` |
-| firstSize | 指定第一个面板的大小，需要带单位 | `String` | `"auto"` |
-| lastSize | 指定第二个面板的大小，需要带单位 | `String` | `"auto"` |
-| min | 指定面板最小尺寸，不用带单位，可以通过百分比指定 | `Number` &#124; `String` | `0` |
-| max | 指定面板最大尺寸，不用带单位，可以通过百分比指定 | `Number` &#124; `String` | `"100%-6"` |
+| firstSize | 指定第一个面板的大小，需要带单位 | `string` | `"auto"` |
+| lastSize | 指定第二个面板的大小，需要带单位 | `string` | `"auto"` |
+| min | 指定面板最小尺寸，不用带单位，可以通过百分比指定 | `number` &#124; `string` | `0` |
+| max | 指定面板最大尺寸，不用带单位，可以通过百分比指定 | `number` &#124; `string` | `"100%-6"` |
 
 # 扩展点
 
@@ -27,6 +27,6 @@ sidebar: doc
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| moveStart | 开始拖动面板分割线时触发 | `Event` |
-| moving | 拖动面板分割线的过程中触发 | `Event` |
-| moveEnd | 拖动面板分割线结束时触发 | `Event` |
+| moveStart | 开始拖动面板分割线时触发 | `(e: MouseEvent) => void` |
+| moving | 拖动面板分割线的过程中触发 | `(e: MouseEvent) => void` |
+| moveEnd | 拖动面板分割线结束时触发 | `(e?: MouseEvent) => void` |

@@ -63,6 +63,7 @@ export interface InputProps<V extends Value = Value> extends InputHTMLAttributes
     stackClearIcon?: boolean
     frozenOnInput?: boolean
     inline?: boolean
+    waveDisabled?: boolean
 }
 
 export interface InputEvents {
@@ -95,6 +96,7 @@ const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> 
     stackClearIcon: Boolean,
     frozenOnInput: Boolean,
     inline: Boolean,
+    waveDisabled: Boolean,
 }
 
 const defaults = (): Partial<InputProps> => ({

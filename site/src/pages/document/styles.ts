@@ -4,15 +4,12 @@ import {makeStyles as makeTableStyles} from 'kpc/components/table/styles';
 
 export function makeStyles() {
     return css`
-        a {
-            color: ${theme.color.link};
-            text-decoration: none;
-            &:hover {
-                color: ${theme.color.linkHover};
-            }
-        }
         h1, h2, h3, h4, h5 {
             font-weight: 400;
+            color: #000;
+        }
+        h1 {
+            font-size: 2em;
         }
         blockquote {
             margin: 1em 0;
@@ -65,6 +62,7 @@ export function makeStyles() {
                 color: #333;
                 &:hover {
                     background: #f3f3f3;
+                    color: #333;
                 }
                 span {
                     margin-left: 5px;
@@ -96,7 +94,7 @@ export function makeStyles() {
                 align-items: center;
                 margin-bottom: 27px;
                 .title {
-                    font-size: 26px;
+                    font-size: 30px;
                     line-height: 28px;
                     font-weight: 400;
                     color: #000;
@@ -150,13 +148,14 @@ export function makeStyles() {
             border: 1px solid #eee;
             font-size: 12px;
             position: relative;
-            .title {
+            .example-title {
                 position: absolute;
                 top: -13px;
                 left: 15px;
                 background: #fff;
                 padding: 0 10px;
                 font-size: 16px;
+                color: #000;
             }
         }
         .example-opera {
@@ -186,6 +185,7 @@ export function makeStyles() {
             }
         }
         .api {
+            font-size: 12px;
             .k-table {
                 ${makeTableStyles()}
             }

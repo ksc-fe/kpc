@@ -22,8 +22,7 @@ export type {
     DropdownMenuEvents,
     DropdownMenuBlocks,
 };
-// Don't export the generic type class, because it will let
-// the type inferring break down
+// Don't export the generic type class, because it will break down the type inference 
 // declare class _Dropdown extends BaseDropdown<
     // DropdownProps,
     // DropdownEvents,

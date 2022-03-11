@@ -100,17 +100,6 @@ export default new Router<RouteResult>([
         }
     },
     {
-        path: '/design',
-        action: async (context) => {
-            return {
-                Page: (await import(`../pages/designdoc/index`)).default,
-                data: {
-                    path: context.params[0] as string,
-                }
-            }
-        }
-    },
-    {
         path: '/demo\/(.*)/',
         action: async (context) => {
             return {

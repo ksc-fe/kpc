@@ -3,9 +3,8 @@ title: 行选中
 order: 4
 ---
 
-通过`checkedKeys`来控制哪些列被选中，默认他们的取值
-为行的索引或索引数组。但我们也可以通过`rowKey`函数为每一行指定唯一的`key`，此时他们的取值为`key`值
-或`key`值的数组
+通过`checkedKeys`来控制哪些列被选中，默认他们的取值为行`key`组成的数组。通过`rowKey`函数为每一行
+指定唯一的`key`，否则`key`和行号`index`等价
 
 ```vdt
 import {Table, TableColumn} from 'kpc';

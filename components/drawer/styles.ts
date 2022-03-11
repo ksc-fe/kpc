@@ -10,7 +10,7 @@ export type Placement = ValueOf<typeof placements>
 export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
 const defaults = {
-    get transition() { return theme.transition },
+    get transition() { return theme.transition.large },
     get boxShadow() { return theme.boxShadow }
 };
 

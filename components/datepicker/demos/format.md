@@ -14,7 +14,7 @@ order: 3.1
 展示的日期，通过`valueFormat`格式化`value`值，并且它们的优先级比`format`高
 
 > 如果你想给组件传入初始`value`值，但是该字符串不是默认格式，则必须指定`format`或者`valueFormat`。同时该
-> 属性也可以作用于`maxDate` `minDate`属性
+> 属性也可以作用于`max` `min`属性
 
 ```vdt
 import {Datepicker} from 'kpc';

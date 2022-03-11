@@ -3,7 +3,6 @@ import {Dialog, BaseDialog, DialogProps} from './';
 import {getElement, mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import BasicDemo from '~/components/dialog/demos/basic';
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
-import AsyncOpenDemo from '~/components/dialog/demos/asyncOpen';
 import TerminateDemo from '~/components/dialog/demos/terminate';
 import DestroyDemo from '~/components/dialog/demos/destroy';
 
@@ -172,20 +171,6 @@ describe('Dialog', () => {
         dispatchEvent(dialog.querySelector('.k-dialog-ok')!, 'click');
         await wait();
         expect(dialog.className).to.eql(className);
-    });
-
-    it('async open', async function() {
-        this.timeout(0);
-
-        const [instance, element] = mount(AsyncOpenDemo);
-
-        dispatchEvent(element.firstChild as HTMLElement, 'click');
-        expect(getElement('.k-dialog')).to.be.undefined;
-
-        await wait(3000);
-        const dialog = expectDialog();
-        // close
-        dispatchEvent(dialog.querySelector('.k-dialog-ok') as HTMLElement, 'click');
     });
 
     it('drag', async () => {

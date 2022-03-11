@@ -3,8 +3,8 @@ title: 基础使用
 order: 0
 ---
 
-基础用法，通过`v-model`双向绑定，值为时间字符串，并非`Date`对象。添加`multiple`属性可以支持多选；
-通过`min` `max`属性可以指定最小最大可选时间
+基础用法，通过`v-model`双向绑定，值为任意合法的日期或时间字符串，组件最终都会处理成时间字符串，
+日期信息将被忽略。添加`multiple`属性可以支持多选；通过`min` `max`属性可以指定最小最大可选时间
 
 ```vdt
 import {Timepicker} from 'kpc';

@@ -11,7 +11,7 @@ import {Card} from 'kpc';
 <div>
     <Card title="用户信息">
         <b:extra>
-            数据继承
+            数据采集
         </b:extra>
         <div>11111</div>
         <div>11111</div>

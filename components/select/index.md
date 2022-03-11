@@ -11,37 +11,44 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 当前选择的元素，可用`v-model`双向绑定 | `*` | `""` |
-| multiple | 是否支持多选 | `Boolean` | `false` |
-| disabled | 是否禁用 | `Boolean` | `false` |
-| clearable | 是否可清空 | `Boolean` | `false` |
-| filterable | 是否支持筛选 | `Boolean` | `false` |
-| filter | 当支持筛选时，可以自定义筛选规则 | `Function` | `(keywords, props) => ...` |
-| creatable | 是否支持创建新的选项，可以配合`filterable`使用 | `Boolean` | `false` |
-| keywords | 如果支持筛选，当前关键词 | `String` | `undefined` |
-| placeholder | 占位文案 | `String` | `"请选择"` |
+| value | 当前选择的元素，可用`v-model`双向绑定 | `any` | `""` |
+| multiple | 是否支持多选 | `boolean` | `false` |
+| filterable | 是否支持筛选 | `boolean` | `false` |
+| loading | 数据加载状态 | `boolean` | `false` |
+| disabled | 是否禁用 | `boolean` | `false` |
+| name | 表单元素的`name` | `string` | `undefined` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
-| fluid | 是否宽度100% | `Boolean` | `false` |
-| width | 指定宽度，组件自动添加单位`px` | `Number` &#124; `String` | `undefined` | 
-| container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Function` &#124; `String` | `undefined` |
-| inline | 展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开 | `Boolean` | `false` |
-| loading | 数据加载状态 | `Boolean` | `false` |
-| position | 定义弹层的位置 | `Object` | `{my: 'left top+8', at: 'left bottom'}` |
-| searchable | 是否将在弹出菜单中展示搜索框 | `Boolean` | `false` |
+| hideIcon | 是否隐藏后面的图标 | `boolean` | `false` |
+| clearable | 是否可清空 | `boolean` | `false` |
+| fluid | 是否宽度100% | `boolean` | `false` |
+| inline | 展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开 | `boolean` | `false` |
+| placeholder | 占位文案 | `string` | `"请选择"` |
+| container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
+| width | 指定宽度，组件自动添加单位`px` | `number` &#124; `string` | `undefined` | 
+| filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, props: any) => boolean` | `(keywords: string, props: any) => props.label.toLowerCase().includes(keywords) || props.value.toLowerCase().includes(keywords)` |
+| searchable | 是否将在弹出菜单中展示搜索框 | `boolean` | `false` |
+| creatable | 是否支持创建新的选项，可以配合`filterable`使用 | `boolean` | `false` |
+| labelMap | 建立值`value`到展示标签`label`的映射，可以在`value`不在`Option`集合中时，依然能够正确展示相应的`label` | `Map<any, string>` | `new Map()` |
+| card | 是否展示`card`模式 | `boolean` | `false` |
+| autoDisableArrow | 是否在没有更多可选项时，给箭头一个`disabled`状态来提示用户 | `boolean` | `false` |
+
+```ts
+export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
+```
 
 ## Option
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 选中的值 | `*` | `undefined` |
-| label | 该值有两个作用，1. 当`children`不存在时，作为展示文案；2. 作为筛选的内容，不存在时，则使用`children`的文本作为筛选内容 | `String`  | `undefined` |
-| disabled | 是否禁用该项选择 | `Boolean` | `false` |
+| value | 选中的值 | `any` | `undefined` |
+| label | 该值有两个作用，1. 当`children`不存在时，作为展示文案；2. 作为筛选的内容，不存在时，则使用`children`的文本作为筛选内容 | `string`  | `undefined` |
+| disabled | 是否禁用该项选择 | `boolean` | `false` |
 
 ## OptionGroup
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label | 分组标签名 | `String` &#124; `Number` &#124; `vNode` | `""` |
+| label | 分组标签名 | `string` &#124; `number` &#124; `VNode` | `undefined` |
 
 
 # 扩展点
@@ -50,9 +57,15 @@ sidebar: doc
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| value | 自定义选择结果的展示 | `value, label` |
-| values | 自定义多选的选择结果的展示 | `values, labels` |
+| value | 自定义选择结果的展示 | `([value: any, label: Children]) => Children` |
+| values | 自定义多选的选择结果的展示 | `([values: any[], labels: Children[]]) => Children` |
+| prefix | 自定义输入款前面展示的内容 | - |
+| suffix | 自定义输入框后面展示的内容 | - |
 | menu | 自定义整个菜单的内容 | - |
+
+```ts
+import {Children} from 'intact';
+```
 
 ## OptionGroup
 
@@ -60,14 +73,6 @@ sidebar: doc
 | --- | --- |
 | label | 定义复杂的分组标签名 |
 
-# 方法
-
-## Select
-
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| show | 展开菜单 | - | `undefined` |
-| hide | 隐藏菜单 | - | `undefined` |
 
 # 事件
 

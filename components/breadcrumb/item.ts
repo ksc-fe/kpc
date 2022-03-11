@@ -1,15 +1,14 @@
 import {Component, TypeDefs, VNode} from 'intact';
 import {bind} from '../utils';
 import template from './item.vdt';
-import {isExternalLink} from '../utils';
-import {useRouter} from '../../hooks/useRouter';
+import {useRouter, navigate} from '../../hooks/useRouter';
 
 export interface BreadcrumbItemProps {
-    to?: string,
+    to?: string | object,
 }
 
 const typeDefs: Required<TypeDefs<BreadcrumbItemProps>> = {
-    to: String,
+    to: [String, Object],
 };
 
 export class BreadcrumbItem extends Component<BreadcrumbItemProps> {
@@ -20,15 +19,6 @@ export class BreadcrumbItem extends Component<BreadcrumbItemProps> {
 
     @bind
     private onClick(): void  {
-        const to = this.get('to');
-
-        if (to) {
-            const router = this.router.value;
-            if (router && !isExternalLink(to)) {
-                router.push(to!);
-            } else {
-                window.location.href = to!;
-            }
-        }
+        navigate(this.router.value, this.get('to'));
     }
 }

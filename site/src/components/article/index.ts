@@ -1,9 +1,9 @@
-import {Component} from 'intact';
+import {Component, render, createVNode as h} from 'intact';
 import template from './index.vdt';
 import axios from 'axios';
 import stylusCompile from '../../libs/stylus';
-import './index.styl';
 import React from 'react';
+import {Blockquote} from '../blockquote';
 
 const version = process.version;
 
@@ -41,6 +41,8 @@ export interface ArticleProps {
 export default class Article extends Component<ArticleProps> {
     static template = template;
 
+    private blockquote: HTMLElement | null = null;
+
     init() {
         const {demos, contents} = this.get();
 
@@ -73,5 +75,20 @@ export default class Article extends Component<ArticleProps> {
             examples: examples,
             contents: _contents,
         });
+    }
+
+    mounted() {
+        const eventDom = document.getElementById(encodeURIComponent('事件'));
+        if (eventDom) {
+            const blockquote = this.blockquote = document.createElement('div');
+            eventDom.parentNode!.insertBefore(blockquote, eventDom.nextElementSibling);
+            render(h(Blockquote), blockquote);
+        }
+    }
+
+    beforeUnmount() {
+        if (this.blockquote) {
+            render(null, this.blockquote);
+        }
     }
 }

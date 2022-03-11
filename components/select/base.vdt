@@ -1,7 +1,7 @@
 import {TransitionGroup, Transition} from 'intact';
 import {Input} from '../input';
 import {Icon} from '../icon';
-import {isNullOrUndefined} from 'intact-shared';
+import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
 import makeStyles from './styles';
 import {Dropdown} from '../dropdown';
 import {getRestProps, addStyle} from '../utils';
@@ -67,6 +67,7 @@ const {onFocusout, triggerRef} = this.focusout;
                     inline
                     key="input"
                     readonly={!_show}
+                    waveDisabled={true}
                 />
                 <div class="k-select-placeholder c-ellipsis"
                     v-else-if={!filterable && !hasValue}
@@ -90,7 +91,13 @@ const {onFocusout, triggerRef} = this.focusout;
                                 <div class="k-select-tag"
                                     v-for={label}
                                     v-for-value="$label"
-                                    key={$label}
+                                    key={
+                                        isStringOrNumber($label) ? 
+                                            $label :
+                                            isStringOrNumber(value[$key]) ?
+                                                value[$key] :
+                                                undefined
+                                    }
                                 >
                                     <span class="k-select-text">
                                         <b:value params={[value[$key], $label]}>
@@ -117,6 +124,7 @@ const {onFocusout, triggerRef} = this.focusout;
                         size={size}
                         key="filter"
                         readonly={!_show}
+                        waveDisabled={true}
                     />
                 </div>
             </TransitionGroup>

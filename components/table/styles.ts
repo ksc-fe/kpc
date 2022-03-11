@@ -4,6 +4,7 @@ import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
+    get transition() { return theme.transition.large },
     border: `1px solid #e5e5e5`,
     fontSize: `12px`,
     bgColor: `#fff`,
@@ -82,6 +83,11 @@ export function makeStyles() {
             // border-collapse: collapse;
             border-spacing: 0;
             table-layout: fixed;
+            
+            td, 
+            th{
+                transition: all ${table.transition};  
+            }
         }
 
         // thead
@@ -132,6 +138,7 @@ export function makeStyles() {
                 }
                 &:last-of-type td {
                     border-bottom: none;
+                    border-bottom-color: transparent;
                 }
             }
         }
@@ -152,7 +159,7 @@ export function makeStyles() {
             &:after {
                 content: '';
                 display: block;
-                transition: box-shadow ${theme.transition};
+                transition: box-shadow ${table.transition};
                 position: absolute;
                 top: 0;
                 bottom: 0px;
@@ -233,7 +240,7 @@ export function makeStyles() {
                 // position: absolute;
                 // top: -1px;
                 // left: 2px;
-                transition: transform ${theme.transition};
+                transition: transform ${table.transition};
             }
             &.k-dropdown-open .k-icon {
                 transform: rotate(180deg);
@@ -306,7 +313,7 @@ export function makeStyles() {
         // }
         .k-table-arrow {
             margin-right: ${table.arrow.gap};
-            transition: transform ${theme.transition};
+            transition: transform ${table.transition};
             position: relative;
             top: -1px;
         }

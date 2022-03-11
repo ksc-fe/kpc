@@ -1,5 +1,6 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
+import {Link} from '../link';
 
 export interface CardProps {
     mainTitle: string
@@ -24,6 +25,6 @@ export class Card extends Component {
     static defaults = defaults;
 
     goHref() {
-        window.location.href = this.get('href');
+        Link.to(this.get('href'));
     }
 }
