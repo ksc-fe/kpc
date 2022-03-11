@@ -7,7 +7,7 @@ sidebar: doc
 `King-Design`采用基于`@emotion/css`的css-in-js技术来实现样式渲染，这种方式赋予了我们在运行时即可以修改
 主题的功能。
 
-## `setTheme`函数
+# `setTheme`函数
 
 组件库暴露一个`setTheme`函数，可以让我们动态设置主题，该函数类型如下
 
@@ -19,14 +19,14 @@ export declare type Theme = {
 };
 ```
 
-## 默认样式配置
+# 默认样式配置
 
 组件默认样式配置分两部分
 
 1. 全局配置：修改会影响全局
 2. 组件配置：修改仅仅影响当前组件
 
-### 全局配置
+## 全局配置
 
 ```js
 import {palette} from '@king-design/react/styles/utils';
@@ -89,11 +89,11 @@ function defaultTheme => ({
 
 > `palette`是个调色板函数，可以将一个颜色分别加深和变浅调出4个梯度的颜色
 
-### 组件配置
+## 组件配置
 
 组件配置分散在各个组件所在的样式文件下，配置较多，请参考源码：如：[`Button`](https://github.com/ksc-fe/kpc/blob/v2/components/button/styles.ts)
 
-## 用法
+# 用法
 
 我们可以通过`setTheme`改变上述默认主题配置，例如：我们如下操作，将主题色改为红色
 
