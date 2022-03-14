@@ -11,7 +11,7 @@ export function makeStyles() {
         width: 100%;
         height: 100%;
         .img-wrapper {
-            margin-top: 120px;
+            /* margin-top: 120px; */
             position: relative;
         }
         .img-box {

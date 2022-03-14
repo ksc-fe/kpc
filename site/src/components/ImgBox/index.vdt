@@ -27,15 +27,15 @@ const imgBoxStyle = {
         </div>
         <div
             class="icon-arrow arrow-left" 
-            ev-click={this.handleLeftArrowClick.bind(this)}
-            v-if={curImgIndex < imgList.length - 1}
+            ev-click={this.handleRightArrowClick.bind(this)}
+            v-if={curImgIndex > 0}
         >
             <Icon class="icon ion-chevron-left"></Icon>
         </div>
         <div
             class="icon-arrow arrow-right" 
-            ev-click={this.handleRightArrowClick.bind(this)}
-            v-if={curImgIndex > 0}
+            ev-click={this.handleLeftArrowClick.bind(this)}
+            v-if={curImgIndex < imgList.length - 1}
         >
             <Icon class="icon ion-chevron-right"></Icon>
         </div>        
