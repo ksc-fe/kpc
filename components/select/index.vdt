@@ -50,7 +50,7 @@ const isGroup = Array.isArray(self.get('data.0.data'));
 const labelObj = scope.labelObj || {
     // only show value as label when allowUnmatch or loading is true, #40 #529
     label: (loading || allowUnmatch) && isStringOrNumber(value) ? value : null,
-    labels: loading && multiple && Array.isArray(value) ? value : [],
+    labels: (loading || allowUnmatch) && Array.isArray(value) ? value.slice() : [],
 };
 let groupIndex = 0;
 let hasData = isGroup;
@@ -67,7 +67,9 @@ const setHasOnlyOneValidOptionAndSelected = active => {
 const allShowedValues = [];
 
 const WrapCheckbox = (props) => {
-    return <Checkbox v-model="_checkedKeys" trueValue={{ props.value }}>{{ props.children }}</Checkbox>
+    return <Checkbox v-model="_checkedKeys" trueValue={{ props.value }}
+        ev-click={{ self._resetSearch }}
+    >{{ props.children }}</Checkbox>
 };
 
 const Options = props => {
@@ -160,8 +162,13 @@ const OptionsVNodes = ({children}) => {
             vNode = _Vdt.miss.clone(vNode);
             vNode.props = props;
         } else if (vNode.tag === OptionGroup) {
-            hasData = true;
             let props = vNode.props;
+            // if none of childern meet the filter, the group label will not be displayed
+            // #579
+            if (!self.handleGroupProps(props.children, vNode)) {
+                return hc('', vNode.key);
+            }
+            hasData = true;
             props = {
                 ...props,
                 children: <OptionsVNodes>{{ props.children }}</OptionsVNodes>
@@ -370,8 +377,8 @@ if (hasValue && (!allowUnmatch && labelObj.label == null && !labelObj.labels.len
                         disabled={{ disabled }}
                         placeholder={{ !hasValue ? _placeholder : '' }}
                         ref="input"
-                        autoWidth
                         size={{ size }}
+                        autoWidth
                     />
                 </Animate>
             </Animate>

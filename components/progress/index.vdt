@@ -4,7 +4,7 @@ import {getRestProps} from '../utils';
 const {
     type, className, percent, _status: status, size,
     isOuterText, isInnerText, strokeWidth,
-    children
+    children, color
 } = self.get();
 
 const classNameObj = {
@@ -18,7 +18,7 @@ const classNameObj = {
 <div class={{ classNameObj }} {{ ...getRestProps(self) }}>
     <div class="k-container" v-if={{ type === 'bar' }}>
         <div  class="k-content">
-            <div class="k-bg" style={{ {width: percent + '%'} }}>
+            <div class="k-bg" style={{ {width: percent + '%', backgroundColor: self.getColor(color) }}}>
                 <div class="k-inner-text" v-if={{ isInnerText }}>
                     {{ percent }} %
                 </div>

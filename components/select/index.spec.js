@@ -7,17 +7,17 @@ import AllowUnmatchDemo from '~/components/select/demos/allowUnmatch';
 import {mount, unmount, dispatchEvent, getElement, wait} from 'test/utils';
 import Tooltip from 'kpc/components/tooltip';
 import Intact from 'intact';
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option, OptionGroup} from 'kpc/components/select';
 import SearchableDemo from '~/components/select/demos/searchable';
 import AutoDisableIconDemo from '~/components/select/demos/autoDisableIcon';
 
 describe('Select', () => {
     let instance;
 
-    afterEach((done) => {
-        unmount(instance);
-        setTimeout(done, 400);
-    });
+    // afterEach((done) => {
+        // unmount(instance);
+        // setTimeout(done, 400);
+    // });
 
     it('should select value correctly', () => {
         instance = mount(BasicDemo);
@@ -388,4 +388,43 @@ describe('Select', () => {
         instance.set('day', 'Monday');
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
+
+    it('should not show the group label when none of childern meet the filter', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Select v-model="day" filterable>
+                    <OptionGroup label="工作日">
+                        <Option value="Monday">星期一</Option>
+                        <Option value="Tuesday">星期二</Option>
+                        <Option value="Wednesday">星期三</Option>
+                        <Option value="Thursday">星期四</Option>
+                        <Option value="Friday">星期五</Option>
+                    </OptionGroup>
+                    <OptionGroup label="休息日">
+                        <Option value="Saturday">星期六</Option>
+                        <Option value="Sunday">星期天</Option>
+                    </OptionGroup>
+                </Select>
+            `;
+            defaults() {
+                return {
+                    day: ''
+                }
+            }
+            _init() {
+                this.Select = Select;
+                this.Option = Option;
+                this.OptionGroup = OptionGroup;
+            }
+        }
+
+        instance = mount(Demo);
+        const input = instance.element.querySelector('.k-inner');
+        input.value = '白色';
+        dispatchEvent(input, 'input');
+        const dropdown = getElement('.k-select-dropdown');
+        const group = dropdown.querySelector('.k-group');
+        expect(group).to.eql(null);
+    })
 });

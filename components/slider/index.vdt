@@ -9,7 +9,7 @@ const {
     step, _isDragging, _isFirst,
     _isSecond, _sliderValue, always,
     isShowStop, marks, showTooltip,
-    tooltipProps,
+    tooltipProps, spinnerPrefix, spinnerSuffix,
 } = self.get();
 
 const classNameObj = {
@@ -187,6 +187,8 @@ if (always) {
             ref="spinner"
             vertical
             ev-change={{ self._onChange }}
+            prefix={{ spinnerPrefix }}
+            suffix={{ spinnerSuffix }}
         />
     </div>
 </div>

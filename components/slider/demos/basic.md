@@ -11,7 +11,7 @@ import Slider from 'kpc/components/slider';
 import Button from 'kpc/components/button';
 
 <div>
-    <Slider v-model="value1" min={{ self.get('min') }} max={{ self.get('max') }}/>
+    <Slider v-model="value1" min={{ self.get('min') }} max={{ self.get('max') }} spinnerSuffix="MB"/>
     <Slider v-model="value2" min={{ 50 }} max={{ 500 }} ref="__test" />
     <Button ev-click={{ self._changeRange }}>Change Range Randomly</Button>
 </div>

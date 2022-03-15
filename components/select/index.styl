@@ -105,14 +105,19 @@
     .k-values
         display inline-block
         line-height 1
+        width: 100%
         // remove margin if we specified values extension point
         &.k-with-values
             margin 0
+        .k-input
+            max-width: 100%
+            overflow: hidden
     .k-select-tag
         padding $select-multiple-tag-padding 
         background $select-multiple-tag-bg-color
         // border 1px solid $disabled-border-color
         border-radius $select-multiple-tag-border-radius 
+        word-break break-all
         &
         .k-text
         .k-icon

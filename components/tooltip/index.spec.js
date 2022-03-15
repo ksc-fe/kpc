@@ -295,7 +295,7 @@ describe('Tooltip', () => {
             @Intact.template()
             static template = `
                 <div>
-                    <Tooltip v-model="show"content="hello">
+                    <Tooltip v-model="show" content="hello">
                         <div ref="test">test</div>
                     </Tooltip>
                 </div>
@@ -306,14 +306,15 @@ describe('Tooltip', () => {
             }
             _mount() {
                 const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                this.element.parentNode.style.height = `${windowHeight * 2}px`;
+                const style = this.element.parentNode.style;
+                style.height = `${windowHeight * 2}px`;
             }
         }
 
         instance = mount(Demo);
 
         await wait(500);
-        window.scrollTo(0, 10000);
+        window.scrollTo(0, document.scrollingElement.scrollHeight);
 
         instance.set('show', true);
 

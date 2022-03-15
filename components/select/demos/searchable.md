@@ -29,11 +29,6 @@ import {Select, Option} from 'kpc/components/select';
         <Option value="Friday">星期五</Option>
         <Option value="Saturday">星期六</Option>
         <Option value="Sunday">星期天</Option>
-        <b:values params="value">
-            <div class="k-value">
-                已选择{{ value.length }}项 / 共7项
-            </div>
-        </b:values>
     </Select>
 </div>
 ```

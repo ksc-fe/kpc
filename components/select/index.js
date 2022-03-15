@@ -4,7 +4,7 @@ import '../../styles/kpc.styl';
 import './index.styl';
 import Option from './option';
 import Group from './group';
-import {selectInput, _$, isStringOrNumber, toggleArray} from '../utils';
+import {selectInput, _$, isStringOrNumber, toggleArray, getTextByChildren} from '../utils';
 import {dispatchEvent} from '../datepicker/utils';
 
 const {isEqual} = Intact.utils;
@@ -172,7 +172,7 @@ export default class Select extends Intact {
         if (!value) {
             this._onBlur();
             if (this.get('searchable') && this.get('multiple')) {
-                // set the _checkedKeys to value
+                // set the _checkedKeys by value
                 this.set('_checkedKeys', this.get('value') || []);
             }
         }
@@ -186,11 +186,17 @@ export default class Select extends Intact {
      * in this case, we do nothing, otherwise we reset it
      */
     _onBlur() {
-        const {keywords, allowUnmatch} = this.get();
+        const {keywords, allowUnmatch, multiple} = this.get();
         if (allowUnmatch && keywords != null) {
-            this.set({
-                value: keywords,
-            });
+            if (!multiple) {
+                this.set({
+                    value: keywords,
+                });
+            } else {
+                let values = this.get('value');
+                values = toggleArray(values, keywords);
+                this.set('value', values);
+            }
         }
 
         // this.timer = setTimeout(() => {
@@ -293,6 +299,29 @@ export default class Select extends Intact {
         }
 
         return {active, valid};
+    }
+
+    handleGroupProps (children) {
+        const {filterable, keywords, filter, searchable} = this.get();
+        let valid = false;
+        if (!filterable && !searchable) {
+            valid = true;
+        } else {
+            valid = children.some(item => {
+                let props = item.props;
+                if (item.tag === Group) {
+                    return this.handleGroupProps(props.children);
+                } else {
+                    const label = props.label || getTextByChildren(props.children);
+                    props = {
+                        ...props,
+                        label
+                    }
+                    return filter.call(this, keywords, props);
+                }
+            })
+        }
+        return valid;
     }
 
     /**

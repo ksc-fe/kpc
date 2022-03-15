@@ -5,6 +5,7 @@ import Intact from 'intact';
 import template from './index.vdt';
 import '../../styles/kpc.styl';
 import './index.styl';
+import {isFunction} from '../utils';
 
 function fixPercent(percent) {
     if (percent > 100) percent = 100;
@@ -23,6 +24,7 @@ export default class Progress extends Intact{
         isInnerText: Boolean,
         status: ['active', 'success', 'error', 'normal', 'warning'],
         strokeWidth: Number,
+        color: [String, Function, Array]
     }
 
     defaults() {
@@ -34,7 +36,7 @@ export default class Progress extends Intact{
             isInnerText: false,
             status: 'active',
             strokeWidth: 4,
-
+            color: undefined,
             _status: 'active',
         };
     }
@@ -51,6 +53,19 @@ export default class Progress extends Intact{
             }
             this.set('_status', status, {silent: true});
         });
+    }
+
+    getColor (color) {
+        if (!color) return '';
+        const percent = this.get('percent');
+        if (isFunction(color)) {
+            return color.call(this, percent);
+        } else if (Array.isArray(color)) {
+            const item = color.find((v) => v.percent === percent);
+            return item ? item.color : '';
+        } else {
+            return color;
+        }
     }
 }
 

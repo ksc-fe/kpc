@@ -131,7 +131,7 @@ describe('Table', () => {
         expect(mergeCheckboxTable.get('checkedKeys')).deep.eql([2, 3, 4]);
         expect(mergeCheckboxTable.element.outerHTML).to.matchSnapshot();
 
-       
+
         const [ , tr11,  , tr22] = mergeRadioTable.element.querySelectorAll('.k-tbody tr');
         expect(mergeRadioTable.get('checkedKey')).deep.eql([0, 1]);
         expect(mergeRadioTable.element.outerHTML).to.matchSnapshot();
@@ -362,7 +362,7 @@ describe('Table', () => {
         const test = async (rows) => {
             await wait(200);
             elements.forEach(el => {
-                expect(el.scrollTop).to.eql(height * rows + rows);
+                expect(el.scrollTop).to.eql(height * rows + 1);
             });
         };
 
@@ -519,6 +519,35 @@ describe('Table', () => {
         instance.set('showIndeterminate', true);
         expect(instance.element.innerHTML).to.matchSnapshot();
         instance.set('showIndeterminate', false);
+        expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should expand on table that has fixed columns', () => {
+         class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Table data={{ self.get('data') }} expandedKeys={{ [0] }}>
+                    <TableColumn key="a" fixed="left" />
+                    <b:expand>
+                        <div>xxxxxx</div>
+                    </b:expand>
+                </Table>
+            `;
+            defaults() {
+                return {
+                    data: [
+                        {a: 1},
+                        {a: 2},
+                    ],
+                };
+            }
+            _init() {
+                this.Table = Table;
+                this.TableColumn = TableColumn;
+            }
+        }
+
+        instance = mount(Demo);
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
 });

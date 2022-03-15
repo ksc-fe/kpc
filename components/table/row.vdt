@@ -17,23 +17,25 @@ const {
 const normalize = Intact.normalize;
 
 const rowInGrid = self.rowInGrid = [];
+const spanColumnsInfo = self.spanColumnsInfo = {};
+
 if (merge) {
     grid.push(rowInGrid);
+    firstCloumnRowSpans.push(spanColumnsInfo)
 }
 
 let columnIndex = -1;
 
 const combinedScheme = checkType !== 'none' ? Object.assign({ checkType: {key: '$check'} }, scheme) : scheme;
-self.spanColumnsInfo = firstCloumnRowSpans;
 
 <tr class={{ {[className]: className, 'k-dragging': dragKey === rowKey} }}
     ev-click={{ self._onClick }}
     ev-mouseenter={{ self._onMouseEnter }}
     ev-mouseleave={{ self._onMouseLeave }}
     draggable={{ draggable ? true : undefined }}
-    ev-dragstart={{ self._onDragStart }}
-    ev-dragend={{ self._onDragEnd }}
-    ev-dragover={{ self._onDragOver }}
+    ev-dragstart={{ draggable ? self._onDragStart : undefined }}
+    ev-dragend={{ draggable ? self._onDragEnd : undefined }}
+    ev-dragover={{ draggable ? self._onDragOver : undefined }}
 >
     {{ __u.map(combinedScheme, (item, schemeKey) => {
         columnIndex++;
@@ -61,7 +63,9 @@ self.spanColumnsInfo = firstCloumnRowSpans;
                     rowInGrid.push(current);
 
                     if(columnIndex === 0 && checkType !== 'none'){
-                        firstCloumnRowSpans.push(firstCloumnRowSpans[index - 1])
+                        const spanColumns = firstCloumnRowSpans[index - 1];
+                        spanColumnsInfo.spanRowKeys = spanColumns.spanRowKeys;
+                        spanColumnsInfo.spanIndexs = spanColumns.spanIndexs;
                     }
                     return;
                 }
@@ -73,8 +77,14 @@ self.spanColumnsInfo = firstCloumnRowSpans;
             if(columnIndex === 0 && checkType !== 'none'){
                 const firstColumnRowspan = spans.rowspan || 1;
                 const endRowIndex = index + firstColumnRowspan; 
-                const spanColumnsInfo = firstColumnRowspan > 1 ? {spanRowKeys: rowKeys.slice(index, endRowIndex), spanIndexs:  Array.from(new Array(endRowIndex).keys()).slice(index)} : {spanRowKeys: rowKey, spanIndexs: index};
-                firstCloumnRowSpans.push(spanColumnsInfo)
+                const spanColumns = firstColumnRowspan > 1 ? {
+                        spanRowKeys: rowKeys.slice(index, endRowIndex), 
+                        spanIndexs:  Array.from(new Array(endRowIndex).keys()).slice(index)
+                    } : {
+                        spanRowKeys: rowKey, spanIndexs: index
+                    };
+                spanColumnsInfo.spanRowKeys = spanColumns.spanRowKeys;
+                spanColumnsInfo.spanIndexs = spanColumns.spanIndexs;
             }
         }
         let td;

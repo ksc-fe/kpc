@@ -10,6 +10,7 @@ import {Button} from 'kpc/components/button';
 import {mount, unmount, dispatchEvent} from 'test/utils';
 import LayoutDemo from '~/components/diagram/demos/layout';
 import mx from './mxgraph';
+import Vue from 'vue';
 
 const {mxClient} = mx;
 const downName = mxClient.IS_POINTER ? 'pointerdown' : 'mousedown';
@@ -379,6 +380,41 @@ describe('Diagram', () => {
         expect(instance.element.innerHTML).to.matchSnapshot();
         instance.set('type', 'sharp');
         expect(instance.element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should ignore empty text when render DLayout', () => {
+        const error = console.error;
+        const spy = sinon.spy();
+        console.error = (...args) => {
+            error.apply(console, args);
+            spy();
+        };
+
+        const Test = {
+            template: `
+                <Diagram>
+                    <DRectangle>
+                        <DStackLayout>
+                            <DDiamond><div>test</div></DDiamond>
+                            <DDiamond><div>test</div></DDiamond>
+                        </DStackLayout>
+                    </DRectangle>
+                </Diagram>
+            `,
+            components: {
+                Diagram, DDiamond, DRectangle, DStackLayout,
+            }
+        };
+
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const app = new Vue({
+            render: h => h('Test'),
+            components: {Test},
+        }).$mount(container);
+
+        expect(spy.callCount).to.equal(0);
     });
 });
 
