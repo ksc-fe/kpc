@@ -13,10 +13,10 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | content | 提示内容 | `string` &#124; `VNode` | `undefined` |
-| duration | 提示展示多长时间后自动关闭，当传入0时，提示将会一直展示。单位ms | `Number` | `5000` |
+| duration | 提示展示多长时间后自动关闭，当传入0时，提示将会一直展示。单位ms | `number` | `5000` |
 | type | 提示类型 | `"info"` &#124; `"error"` &#124; `"success"` &#124; `"warning"` | `"info"` |
-| closable | 是否展示关闭按钮 | `Boolean` | `true` |
-| hideIcon | 是否隐藏文字前面的icon | `Boolean` | `false` |
+| closable | 是否展示关闭按钮 | `boolean` | `true` |
+| hideIcon | 是否隐藏文字前面的icon | `boolean` | `false` |
 
 # 静态方法
 

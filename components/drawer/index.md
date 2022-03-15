@@ -12,19 +12,19 @@ sidebar: doc
 | title | 弹窗标题 | `string` | `"提示"` |
 | value | 弹窗是否展示出来 | `boolean` | `false` |
 | size | 弹窗尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
-| loading | “确定”按钮是否为加载状态 | `Boolean` | `false` |
-| disabledOk | “确定”按钮是否为禁用状态 | `Boolean` | `false` |
-| okText | “确定”按钮文案 | `String` | `"确定"` |
-| cancelText | “取消”按钮文案 | `String` | `"取消"` |
+| loading | “确定”按钮是否为加载状态 | `boolean` | `false` |
+| disabledOk | “确定”按钮是否为禁用状态 | `boolean` | `false` |
+| okText | “确定”按钮文案 | `string` | `"确定"` |
+| cancelText | “取消”按钮文案 | `string` | `"取消"` |
 | ok | “确定”按钮点击后自定义回调函数 | `() => void` | `undefined` |
 | cancel | “取消”按钮点击后自定义回调函数 | `() => void` | `undefined` |
 | container | 指定弹层插入的位置，默认会追加到`body`中，你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
-| hideClose | 是否隐藏右上角关闭按钮 | `Boolean` | `false` |
-| overlay | 是否展示遮罩层 | `Boolean` | `true` |
-| closable | 点击遮罩层是否可以关闭弹窗 | `Boolean` | `true` |
+| hideClose | 是否隐藏右上角关闭按钮 | `boolean` | `false` |
+| overlay | 是否展示遮罩层 | `boolean` | `true` |
+| closable | 点击遮罩层是否可以关闭弹窗 | `boolean` | `true` |
 | terminate | 指定在用户点击“关闭”按钮，点击遮罩层或者按ESC键时的回调函数 | `() => void` | `undefined` |
-| escClosable | 是否按ESC时关闭弹窗 | `Boolean` | `true` |
-| width | 指定弹窗宽度，`Number`类型时，单位为`px`；`String`类型时，需要指定单位 | `Number` &#124; `String` | `undefined` |
+| escClosable | 是否按ESC时关闭弹窗 | `boolean` | `true` |
+| width | 指定弹窗宽度，`number`类型时，单位为`px`；`string`类型时，需要指定单位 | `number` &#124; `string` | `undefined` |
 | mode | 指定主体元素在关闭状态下的渲染方式，`"destroy"`代表直接销毁，`"hide"`代表只是隐藏 | `"destroy"` &#124; `"hide"` | `"hide"` |
 | placement | 自定义位置 | `"top"` &#124; `"bottom"` &#124;`"left"` &#124;`"right"`|`"right"`|
 

@@ -6,10 +6,7 @@ order: 0
 有如下几种类型：默认按钮，主按钮，次按钮，警告按钮，危险按钮，成功按钮，文字按钮，超链接按钮
 
 ```vdt
-import {Button} from 'kpc/components/button';
-import {Wave} from 'kpc/components/wave';
-import {Select, Option} from 'kpc/components/select';
-import {Input} from 'kpc/components/input';
+import {Button, Wave, Select, Option, Input} from 'kpc';
 
 <div>
     <Select v-model="day">
@@ -42,4 +39,22 @@ import {Input} from 'kpc/components/input';
     margin-right 20px
 .k-select, .k-input
     margin-bottom 20px
+```
+
+```ts
+interface Props {
+    value?: string
+    day?: string | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+
+    static defaults() {
+        return {
+            value: '',
+            day: null,
+        } as Props
+    }
+}
 ```

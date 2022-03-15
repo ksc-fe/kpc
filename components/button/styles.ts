@@ -1,6 +1,6 @@
 import {css, cx} from '@emotion/css';
 import { ButtonProps, Button } from './index';
-import {theme, ThemeValue, setDefault} from '../../styles/theme';
+import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette, getLeft, darken}  from '../../styles/utils';
 import '../../styles/global';
 
@@ -11,17 +11,17 @@ type Types = ValueOf<typeof types>
 type Sizes = ValueOf<typeof sizes>
 
 type TypeStyles = {
-    color: ThemeValue<string>
-    bgColor: ThemeValue<string>
-    borderColor: ThemeValue<string>
-    hoverBorderColor: ThemeValue<string>
-    ghostColor: ThemeValue<string>
+    color: string
+    bgColor: string
+    borderColor: string
+    hoverBorderColor: string
+    ghostColor: string
 }
 
 type SizeStyles = {
-    fontSize: ThemeValue<string>
-    height: ThemeValue<string>
-    padding: ThemeValue<string>
+    fontSize: string
+    height: string
+    padding: string
 }
 
 export const types = ['primary', 'warning', 'danger', 'active', 'success'] as const;

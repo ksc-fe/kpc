@@ -59,6 +59,7 @@ export * from './components/transfer';
 export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
+export * from './components/wave';
 
 export const version = '2.0.0-beta.1';
 

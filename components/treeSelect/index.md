@@ -26,11 +26,11 @@ sidebar: doc
 | container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
 | width | 指定宽度，组件自动添加单位`px` | `number` &#124; `string` | `undefined` | 
 | data | 要渲染的数据 | `TreeDataItem<K>[]` | `undefined` |
-| uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `Boolean` | `false` |
+| uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
 | showLine | 是否展示`Tree`的对齐线 | `boolean` | `true` |
-| defaultExpandAll | 是否默认展开所有节点 | `Boolean` | `true` |
-| checkbox | 是否展示复选框 | `Boolean` | `false` |
+| defaultExpandAll | 是否默认展开所有节点 | `boolean` | `true` |
+| checkbox | 是否展示复选框 | `boolean` | `false` |
 | filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, data: TreeDataItem<K>) => boolean` | `undefined` |
 
 ```ts

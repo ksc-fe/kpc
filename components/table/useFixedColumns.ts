@@ -41,7 +41,10 @@ export function useFixedColumns(
     callbacks.push(setScrollPosition);
 
     instance.on('$receive:children', handleFixedColumns);
-    watchState(widthMap, handleFixedColumns);
+    watchState(widthMap, () => {
+        handleFixedColumns();
+        updateScrollPositionOnResize();
+    });
     
     const throttleUpdate = throttle(() => {
         if (instance.$unmounted) return;
@@ -122,13 +125,12 @@ export function useFixedColumns(
         );
     }
 
-
     function updateScrollPositionOnResize() {
         const scrollDom = scrollRef.value!;     
         if (scrollDom.scrollWidth - scrollDom.offsetWidth <= 0) {
             scrollPosition.set(null);
         } else {
-            scrollPosition.set('left');
+            setScrollPosition(scrollRef.value!.scrollLeft);
         }
     }
 
