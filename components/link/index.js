@@ -5,6 +5,7 @@ const externalRegExp = /^(https?:)?\/\//;
 
 export default class Link extends Intact {
     static history = undefined;
+    static baseUrl = undefined;
 
     @Intact.template()
     get template() { return template; }
@@ -39,6 +40,9 @@ export default class Link extends Intact {
                     window.open(url);
                 }
             } else {
+                if (Link.baseUrl) {
+                    url = Link.baseUrl + url;
+                }
                 // if the href is equal to the current href, then do nothing
                 const {pathname, search} = history.location;
                 if (pathname + search === url) return;

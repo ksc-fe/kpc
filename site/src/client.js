@@ -43,6 +43,8 @@ let unlisten;
 function init(router) {
     if (unlisten) unlisten();
 
+    Link.baseUrl = router.baseUrl;
+
     unlisten = history.listen(async ({pathname}, action) => {
         $app.showLoading();
         const {Page, data} = await router.resolve({pathname});

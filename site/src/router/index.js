@@ -1,10 +1,16 @@
 import Router from 'universal-router';
 
-// const routes = require.context('./', false, /\.router.js$/).keys().map(key => {
-    // return {
-        // path: ``
-    // }
-// })
+function getVersion() {
+    const pathname = location.pathname;
+    const versionRE = /^(\/v(?:\d.?)+)\/.*/;
+    const matches = pathname.match(versionRE);
+    if (matches) {
+        return matches[1];
+    }
+    return '';
+}
+
+export const version = getVersion();
 
 export default new Router([
     {
@@ -73,4 +79,6 @@ export default new Router([
             };
         }
     },
-]);
+], {
+    baseUrl: version,
+});
