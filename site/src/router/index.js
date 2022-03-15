@@ -1,11 +1,13 @@
 import Router from 'universal-router';
 
 function getVersion() {
-    const pathname = location.pathname;
-    const versionRE = /^(\/v(?:\d.?)+)\/.*/;
-    const matches = pathname.match(versionRE);
-    if (matches) {
-        return matches[1];
+    if (typeof location !== 'undefined') {
+        const pathname = location.pathname;
+        const versionRE = /^(\/v(?:\d.?)+)\/.*/;
+        const matches = pathname.match(versionRE);
+        if (matches) {
+            return matches[1];
+        }
     }
     return '';
 }
