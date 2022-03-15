@@ -13,6 +13,7 @@ import {Button, Icon} from 'kpc';
 <div>
     <Button icon><Icon class="ion-ios-search" /></Button>
     <Button icon circle><Icon class="ion-ios-search" /></Button>
+    <Button icon circle type="none"><Icon class="ion-ios-search" /></Button>
     <Button type="danger" size="large" icon circle><Icon class="ion-ios-search" size="large" /></Button>
     <Button type="primary"><Icon class="ion-ios-search" size="small" />搜索</Button>
     <Button circle type='primary'><Icon class="ion-ios-search" size="small" />搜索</Button>

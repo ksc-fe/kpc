@@ -40,6 +40,7 @@ export function defualtTheme() {
             placeholder: '#b2b2b2',
             get link() { return theme.color.primary },
             get linkHover() { return palette(theme.color.primary, -1) }, 
+            get hoverBg() { return palette(theme.color.primary, -4) }, 
             disabled: '#ccc',
             disabledBg: '#f2f2f2',
             disabledBorder: '#ccc',

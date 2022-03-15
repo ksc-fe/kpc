@@ -60,6 +60,9 @@ export function makeStyles() {
             color: ${scrollSelect.item.color};
             cursor: pointer;
             white-space: nowrap;
+            &:hover {
+                background: ${theme.color.hoverBg};
+            }
             &.k-active {
                 color: ${scrollSelect.item.activeColor};
                 font-size: ${scrollSelect.item.activeFontSize};

@@ -43,5 +43,5 @@ import {Icon} from 'kpc';
     transition transform .25s ease-in-out
 .k-dropdown-open
     .k-icon
-        transform rotate(180deg)
+        transform rotateX(180deg)
 ```

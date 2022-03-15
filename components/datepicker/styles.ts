@@ -11,7 +11,7 @@ const defaults = {
     item: {
         gutter: `7px`,
         height: `24px`,
-        get hoverBgColor() { return theme.color.bg },
+        get hoverBgColor() { return theme.color.hoverBg },
         get exceedColor() { return theme.color.disabled },
         get todayBorder() { return `1px solid ${theme.color.border}` },
         get borderRadius() { return theme.borderRadius },
