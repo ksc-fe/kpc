@@ -310,6 +310,7 @@ function getFileName(file, code) {
                 filename = 'angular.ts';
                 break;
             case 'react':
+            case 'tsx':
                 filename = 'react.tsx';
                 break;
             default:
@@ -331,7 +332,7 @@ function parseCodes(file, codes) {
     const hasLangMap = {
         styl: 'hasStylus',
         vue: 'hasVue',
-        jsx: 'hasReact',
+        tsx: 'hasReact',
         angular: 'hasAngular',
     };
 
