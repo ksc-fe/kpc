@@ -5,11 +5,20 @@ const highlight = require("highlight.js");
 const {toVue2, toVue3} = require('./intact2vue');
 const intact2react = require('./intact2react');
 const intact2angular = require('./intact2angular');
-const {root, writeFile} = require('../utils');
+const {root, writeFile, publicPath} = require('../utils');
 const path = require('path');
 
 const renderer = new marked.Renderer();
 const codeRenderer = renderer.code;
+const isProd = process.env.NODE_ENV === 'production';
+
+if (isProd) {
+    const image = renderer.image;
+    renderer.image = (href, title, text) => {
+        href = path.join(publicPath, href);
+        return image.call(renderer, href, title, text);
+    }
+}
 
 renderer.table = (header, body) => {
     return `<div class="k-table k-grid">
