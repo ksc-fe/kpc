@@ -4,6 +4,7 @@ import axios from 'axios';
 import stylusCompile from '../../libs/stylus';
 import React from 'react';
 import {Blockquote} from '../blockquote';
+import {BlockquoteSlot} from '../blockquote/slot';
 
 const version = process.version;
 
@@ -42,6 +43,7 @@ export default class Article extends Component<ArticleProps> {
     static template = template;
 
     private blockquote: HTMLElement | null = null;
+    private blockquoteSlot: HTMLElement | null = null;
 
     init() {
         const {demos, contents} = this.get();
@@ -84,11 +86,41 @@ export default class Article extends Component<ArticleProps> {
             eventDom.parentNode!.insertBefore(blockquote, eventDom.nextElementSibling);
             render(h(Blockquote), blockquote);
         }
+
+        const slotDom = document.getElementById(encodeURIComponent('扩展点'));
+        if (slotDom) {
+            const blockquote = this.blockquoteSlot = document.createElement('div');
+            slotDom.parentNode!.insertBefore(blockquote, slotDom.nextElementSibling);
+            // find the first slot name from table
+            const table = siblings(slotDom, 'k-table');
+            let name: string | null = null;
+            if (table) {
+                name = table.querySelector<HTMLElement>('tbody td')!.textContent;
+            }
+            render(h(BlockquoteSlot, {name: name || 'name'}), blockquote);
+        }
     }
 
     beforeUnmount() {
-        if (this.blockquote) {
-            render(null, this.blockquote);
+        removeBlockquote(this.blockquote);
+        removeBlockquote(this.blockquoteSlot);
+    }
+}
+
+function removeBlockquote(blockquote: HTMLElement | null) {
+    if (blockquote) {
+        render(null, blockquote);
+        blockquote.parentNode!.removeChild(blockquote);
+    }
+}
+
+function siblings(dom: HTMLElement, className: string) {
+    let nextElementSibling: Element | null = dom;
+    while (nextElementSibling = nextElementSibling.nextElementSibling) {
+        if (nextElementSibling.classList.contains(className)) {
+            return nextElementSibling;
         }
     }
+
+    return null;
 }
