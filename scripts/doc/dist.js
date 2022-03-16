@@ -1,5 +1,5 @@
-const {resolve: resolvePath, writeFile, handleError, rm} = require('../utils');
-const {dest, destServer, webpackConfigServer, webpackConfigClient, webpackConfigDll} = require('./webpack');
+const {resolve: resolvePath, writeFile, handleError, rm, dest, destServer} = require('../utils');
+const {webpackConfigServer, webpackConfigClient, webpackConfigDll} = require('./webpack');
 const path = require('path');
 const webpack = require('webpack');
 const {prepare} = require('./generate');
@@ -50,25 +50,28 @@ function buildDll() {
 }
 
 function staticize(data) {
-    const render = require(path.join(destServer, './render.js')).default;
+    // const render = require(path.join(destServer, './render.js')).default;
     const indexFile = path.join(dest, './index.html');
     return fs.readFile(indexFile, 'utf-8').then(contents => {
         // add /index.html /docs/resources/index.html
         data = [
             ...data,
             {metadata: {}, file: {isDemo: false, relative: ''}},
-            {metadata: {}, file: {isDemo: false, relative: 'docs/resources'}},
+            {metadata: {}, file: {isDemo: false, relative: 'resources'}},
+            {metadata: {}, file: {isDemo: false, relative: 'solutions'}},
+            {metadata: {}, file: {isDemo: false, relative: 'iframe/button'}},
+            {metadata: {}, file: {isDemo: false, relative: 'iframe/colorProcess'}},
         ];
         return Promise.all(data.map(({metadata, file}) => {
             if (!metadata.iframe && file.isDemo) return;
 
-            const filePath = metadata.iframe ? `iframe/${file.relative}` : file.relative;
-            return render(`/${filePath ? filePath + '/' : ''}`).then(({content}) => {
-                content = contents.replace(`<div id="page"></div>`, () => {
-                    return `<div id="page">${content}</div>`;
-                });
-                return writeFile(path.join(dest, filePath, 'index.html'), content);
-            });
+            const filePath = metadata.iframe ? `demo/${file.relative}` : file.relative;
+            // return render(`/${filePath ? filePath + '/' : ''}`).then(({content}) => {
+                // content = contents.replace(`<div id="page"></div>`, () => {
+                    // return `<div id="page">${content}</div>`;
+                // });
+                return writeFile(path.join(dest, filePath, 'index.html'), contents);
+            // });
         }));
     });
 }

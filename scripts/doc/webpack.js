@@ -79,8 +79,8 @@ exports.webpackConfigClient = (production, theme = 'default') => {
         config.output
             .filename('[name].[contenthash].js')
             .chunkFilename('static/chunk/[contenthash].js')
-            .publicPath('//damife.ks3-cn-beijing.ksyun.com/kpc/');
-        config.devtool('none');
+            .publicPath('//damife.ks3-cn-beijing.ksyuncs.com/kpc/');
+        // config.devtool('none');
         config.module.rules
             .get('file').uses.get('file')
             .options({

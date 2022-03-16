@@ -70,7 +70,10 @@ themes.forEach(theme => {
     gulp.task(task, () => buildClient(theme));
 });
 
-gulp.task('doc:build:webpack', (cb) => gulpMultiProcess(parallelTasks, cb));
+// gulp.task('doc:build:webpack', (cb) => gulpMultiProcess(parallelTasks, cb));
+gulp.task('doc:build:webpack', () => {
+    return buildClient('default');
+});
 
 gulp.task('doc:build:dll', buildDll);
 
@@ -80,8 +83,7 @@ function staticizeDoc() {
 
 gulp.task('copy:imgs', () => {
     return gulp.src([
-        resolve('./site/src/imgs/design/*'),
-        resolve('./site/src/imgs/favicon.ico'),
+        resolve('./site/src/imgs/**/*'),
     ], {base: resolve('./site/src')})
         .pipe(gulp.dest(dest));
 });
