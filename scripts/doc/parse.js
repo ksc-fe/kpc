@@ -15,7 +15,7 @@ const isProd = process.env.NODE_ENV === 'production';
 if (isProd) {
     const image = renderer.image;
     renderer.image = (href, title, text) => {
-        href = path.join(publicPath, href);
+        href = publicPath.slice(0, -1) + href;
         return image.call(renderer, href, title, text);
     }
 }
