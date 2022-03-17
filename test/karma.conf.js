@@ -2,7 +2,7 @@ const {webpackConfig} = require('./webpack');
 const path = require('path');
 
 console.log(
-    '\x1b[33m%s\x1b[0m', 
+    '\x1b[33m%s\x1b[0m',
     `If the documents of components has not been built
 please run:
 	npx gulp doc:prepare
@@ -14,7 +14,8 @@ module.exports = function (config) {
         browsers: process.env.UPDATE || process.env.CI ? ['MyChromeHeadless'] : undefined,
         customLaunchers: {
             'MyChromeHeadless': {
-                base: 'ChromeHeadless',
+                // base: 'ChromeHeadless',
+                base: 'Chrome',
                 flags: ['--window-size=1920,1080'],
             }
         },
@@ -33,7 +34,7 @@ module.exports = function (config) {
             'karma-mocha-reporter',
             'karma-sinon-chai',
             'karma-coverage-istanbul-reporter',
-            // 'karma-jasmine', 
+            // 'karma-jasmine',
             'karma-chrome-launcher',
             'karma-snapshot',
             'karma-mocha-snapshot',

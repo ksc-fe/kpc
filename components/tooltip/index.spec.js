@@ -83,7 +83,7 @@ describe('Tooltip', () => {
 
         instance.getPosition = () => ({my: 'left top', at: 'right top'});
         instance.update();
-        eql(arrow.offsetTop, tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2);
+        eql(arrow.offsetTop, Math.floor(tooltipContent.offsetHeight / 2 - arrow.offsetHeight / 2));
 
         instance.getPosition = () => ({my: 'left top+30', at: 'right top'});
         instance.update();

@@ -51,7 +51,7 @@
 ```
 
 ```
-"<div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 2%; left: 51%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 51%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>51</div></div><div class=\"k-handle-wrapper\" style=\"left: 53%;\"><div class=\"k-handle k-active\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>53</div></div></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div>"
+"<div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 3%; left: 50%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 50%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>50</div></div><div class=\"k-handle-wrapper\" style=\"left: 53%;\"><div class=\"k-handle k-active\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>53</div></div></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div>"
 ```
 
 ```
@@ -63,7 +63,7 @@
 ```
 
 ```
-"<div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 2%; left: 48%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 48%;\"><div class=\"k-handle k-active\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>48</div></div><div class=\"k-handle-wrapper\" style=\"left: 50%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>50</div></div></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div>"
+"<div class=\"k-slider-wrapper\"><div class=\"k-bar-wrapper\"><div class=\"k-wrapper\"><div class=\"k-bar\" style=\"width: 3%; left: 48%;\"></div><div class=\"k-handle-wrapper\" style=\"left: 48%;\"><div class=\"k-handle k-active\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>48</div></div><div class=\"k-handle-wrapper\" style=\"left: 51%;\"><div class=\"k-handle\" tabindex=\"0\"></div><!--placeholder--><div class=\"k-dropdown-menu k-tooltip-content k-dark\" style=\"display: none;\"><i class=\"k-arrow\"></i>51</div></div></div></div><div class=\"k-box\"><span>0</span><span>100</span></div></div>"
 ```
 
 #### `disabled`
