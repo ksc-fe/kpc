@@ -7,7 +7,7 @@ exports.addTheme = (config, theme) => {
             ...options,
             import: resolve(`./styles/themes/${theme}/index.styl`),
         }));
-    } 
+    }
 
     return config;
 }

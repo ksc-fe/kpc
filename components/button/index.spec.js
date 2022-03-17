@@ -43,7 +43,7 @@ describe('Button', () => {
 
         const el = instance.element;
         el.focus();
-        // test color of focus style 
+        // test color of focus style
         await wait(500); // has transition
         expect(getComputedStyle(el).color).to.eql('rgb(10, 94, 238)');
         dispatchEvent(el, 'mouseup');

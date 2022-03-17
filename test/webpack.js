@@ -5,6 +5,7 @@ const {addStyle} = require('../build/webpack/style');
 const {addMonaco} = require('../build/webpack/monaco');
 const {resolve} = require('../build/utils');
 const {destData} = require('../build/doc/webpack');
+const {addTheme} = require('../build/webpack/theme');
 
 exports.webpackConfig = () => {
     const config = genConfig();
@@ -59,4 +60,5 @@ function addConfig(config) {
     addThread(config);
     addStyle(config);
     addMonaco(config);
+    // addTheme(config, 'ksyun');
 }

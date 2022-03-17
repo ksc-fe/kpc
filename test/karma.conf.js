@@ -14,9 +14,9 @@ module.exports = function (config) {
         browsers: process.env.UPDATE || process.env.CI ? ['MyChromeHeadless'] : undefined,
         customLaunchers: {
             'MyChromeHeadless': {
-                // base: 'ChromeHeadless',
-                base: 'Chrome',
-                flags: ['--window-size=1920,1080'],
+                base: 'ChromeHeadless',
+                // base: 'Chrome',
+                flags: ['--window-size=1920,1080', '--force-device-scale-factor=1'],
             }
         },
         frameworks: ['mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],

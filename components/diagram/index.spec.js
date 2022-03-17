@@ -41,9 +41,9 @@ class Demo extends Intact {
 describe('Diagram', () => {
     let instance;
 
-    // afterEach(() => {
-        // unmount(instance);
-    // });
+    afterEach(() => {
+        unmount(instance);
+    });
 
     it('should update type of DFlowLayout', () => {
         class Component extends Demo {
