@@ -6,7 +6,7 @@ module.exports = function (config) {
         customLaunchers: {
             'MyChromeHeadless': {
                 base: 'ChromeHeadless',
-                flags: ['--window-size=1920,1080'],
+                flags: ['--window-size=1920,1080', '--force-device-scale-factor=1'],
             }
         },
         frameworks: ['mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],
@@ -24,7 +24,7 @@ module.exports = function (config) {
             'karma-mocha-reporter',
             'karma-sinon-chai',
             'karma-coverage-istanbul-reporter',
-            // 'karma-jasmine', 
+            // 'karma-jasmine',
             'karma-chrome-launcher',
             'karma-snapshot',
             'karma-mocha-snapshot',
