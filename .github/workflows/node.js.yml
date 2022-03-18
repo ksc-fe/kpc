@@ -28,6 +28,7 @@ jobs:
     - run: yarn --immutable
     - run: yarn lerna exec -- "yarn --immutable"
     - run: yarn gulp doc:prepare
+    - run: yarn build
     - run: yarn test:all
     - run: codecov
       env: 
