@@ -133,7 +133,7 @@ describe('Tooltip', () => {
         expect(content1).eql(content);
 
         dispatchEvent(canHover, 'mouseleave');
-        await wait(500);
+        await wait(600);
         expect(content.style.display).to.eql('none')
     });
 
@@ -193,7 +193,7 @@ describe('Tooltip', () => {
         expect(getElement('.k-tooltip-content')).eql(content);
 
         dispatchEvent(content, 'mouseleave');
-        await wait(500);
+        await wait(600);
         expect(getElement('.k-tooltip-content')).eql(content);
     });
 
