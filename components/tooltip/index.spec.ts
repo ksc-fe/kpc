@@ -113,7 +113,7 @@ describe('Tooltip', () => {
 
         // should hide when click document
         document.body.click();
-        await wait(300);
+        await wait(400);
         expect(content.style.display).to.eql('none')
     });
 
@@ -123,10 +123,10 @@ describe('Tooltip', () => {
         dispatchEvent(canHover, 'mouseenter');
         await wait();
         dispatchEvent(canHover, 'mouseleave');
-        await wait(300);
+        await wait(400);
         const content = getElement('.k-tooltip-content')!;
         dispatchEvent(content, 'mouseenter');
-        await wait(300);
+        await wait(400);
         const content1 = getElement('.k-tooltip-content');
 
         //  should not hide when hover from button to tooltip content    
@@ -142,7 +142,7 @@ describe('Tooltip', () => {
 
         const [btn] =  Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
         btn.click();
-        await wait(300);
+        await wait(400);
         const content = getElement('.k-tooltip-content') as HTMLElement;
         // ignore the arrow, because it may change className to adapt to the direction
         expect(content.querySelector<HTMLElement>('.k-slider')!.outerHTML).to.matchSnapshot();
@@ -163,7 +163,7 @@ describe('Tooltip', () => {
         expect((content.querySelector('.k-tooltip-buttons') as HTMLElement).outerHTML).to.matchSnapshot();
 
         (content.querySelector('.k-btn') as HTMLElement).click();
-        await wait(300);
+        await wait(400);
         expect(content.style.display).eql('none');
 
         dispatchEvent(element.firstElementChild!, 'click');
@@ -172,7 +172,7 @@ describe('Tooltip', () => {
         const [, btn] = Array.from<HTMLElement>(content.querySelectorAll('.k-btn'));
         btn.click();
 
-        await wait(300);
+        await wait(400);
         expect(content.style.display).eql('none');
         expect(cancelCb.callCount).eql(1);
         expect(okCb.callCount).eql(1);
@@ -185,11 +185,11 @@ describe('Tooltip', () => {
         expect(content.textContent).eql('hello');
 
         document.body.click();
-        await wait(300);
+        await wait(400);
         expect(getElement('.k-tooltip-content')).eql(content);
 
         (element.querySelector('span') as HTMLElement).click();
-        await wait(300);
+        await wait(400);
         expect(getElement('.k-tooltip-content')).eql(content);
 
         dispatchEvent(content, 'mouseleave');
@@ -300,7 +300,7 @@ describe('Tooltip', () => {
         expect(content!.textContent).eql('hello');
 
         i.set('disabled', true);
-        await wait(300);
+        await wait(400);
         content = getElement('.k-tooltip-content');
         expect(content).eql(undefined);
 

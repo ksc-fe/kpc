@@ -53,14 +53,14 @@ describe('Form', () => {
         const [input, input1] = Array.from<HTMLElement>(element.querySelectorAll('input'));
         instance.set<{'descriptions.0': string}>('descriptions.0', '1');
         dispatchEvent(input, 'focusout');
-        await wait(300);
+        await wait(400);
         expect(element.innerHTML).to.matchSnapshot();
 
         instance.set<{'descriptions.0': string}>('descriptions.0', 'a');
         expect(element.innerHTML).to.matchSnapshot();
         instance.set<{'descriptions.1': string}>('descriptions.1', 'a');
         dispatchEvent(input1, 'focusout');
-        await wait(300);
+        await wait(400);
         expect(element.innerHTML).to.matchSnapshot();
         instance.set<{'descriptions.1': string}>('descriptions.1', 'b');
         expect(element.innerHTML).to.matchSnapshot();
@@ -90,14 +90,14 @@ describe('Form', () => {
         await wait();
         let res = await form.validate();
         expect(res).to.be.false;
-        await wait(300);
+        await wait(400);
         expect(element.innerHTML).to.matchSnapshot();
 
         i.set('userName', 'b');
         await wait();
         res = await form.validate();
         expect(res).to.be.true;
-        await wait(300);
+        await wait(400);
         expect(element.innerHTML).to.matchSnapshot();
     });
 

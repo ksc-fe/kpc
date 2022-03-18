@@ -80,7 +80,7 @@ describe('Dropdown', () => {
         const dropdown = getElement('.k-dropdown-menu')!;
         const [, , , hoverItem, clickItem] = dropdown.querySelectorAll<HTMLElement>(':scope > .k-dropdown-item');
         clickItem.click();
-        await wait(300);
+        await wait(400);
         const clickSubDropdown = getElement('.k-dropdown-menu')!;
         expect(clickSubDropdown.innerHTML).to.matchSnapshot();
 
@@ -271,7 +271,7 @@ describe('Dropdown', () => {
         const [instance, element] = mount(Demo);
 
         dispatchEvent(instance.refs.trigger, 'mouseenter');
-        await wait(300);
+        await wait(400);
 
         const dropdown = getElement('.k-dropdown-menu')!;
         const [, item] = dropdown.querySelectorAll<HTMLElement>('.k-dropdown-item');

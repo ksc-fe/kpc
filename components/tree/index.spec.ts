@@ -18,15 +18,15 @@ describe('Tree', () => {
         const [, icon1, icon2] = element.querySelectorAll('.k-icon') as NodeListOf<HTMLElement>;
 
         icon2.click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
 
         icon1.click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
 
         icon1.click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
     });
 
@@ -51,7 +51,7 @@ describe('Tree', () => {
         const [, , icon1] = element.querySelectorAll('.k-icon') as NodeListOf<HTMLElement>;
         // expand
         icon1.click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
         const data2 = tree.getCheckedData(true);
         expect(data2.length).to.eql(2);
@@ -105,20 +105,20 @@ describe('Tree', () => {
 
         const [btn1, btn2] = element.querySelectorAll('.k-btn') as NodeListOf<HTMLElement>;
         btn1.click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('data')).to.have.length(3);
         expect(instance.get('data')).to.matchSnapshot();
 
         btn2.click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
         const [, checkbox] = element.querySelectorAll('.k-checkbox') as NodeListOf<HTMLElement>;
         checkbox.click();
         await wait();
         const [,,, btn3] = element.querySelectorAll('.k-btn') as NodeListOf<HTMLElement>;
         btn3.click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
 
         // uncheck and remove
@@ -126,7 +126,7 @@ describe('Tree', () => {
         checkbox1.click();
         await wait();
         (checkbox1.parentNode!.querySelector('.k-btn:nth-child(2)') as HTMLElement).click();
-        await wait(300);
+        await wait(400);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('data')).to.matchSnapshot();
     });
@@ -163,7 +163,7 @@ describe('Tree', () => {
         // disable select and click on disabled selectable text should expand the tree
         tree.set('selectable', false);
         text1.click();
-        await wait(300);
+        await wait(400);
         expect(tree.getSelectedData().length).to.eql(0);
         expect(element.outerHTML).to.matchSnapshot();
     });
@@ -181,7 +181,7 @@ describe('Tree', () => {
         const [instance, element] = mount(DraggableDemo);
 
         instance.set('expandedKeys', ['2', '2-1', '1', '1-1']);
-        await wait(300);
+        await wait(400);
 
         // can not drag disabled item
         const disabled = element.querySelector('.k-disabled') as HTMLElement;
@@ -249,5 +249,5 @@ async function dragInsert(srcElement: HTMLElement, toElement: HTMLElement, mode?
 
     await wait(700);
     dispatchEvent(toElement, 'dragend');
-    await wait(300);
+    await wait(400);
 }
