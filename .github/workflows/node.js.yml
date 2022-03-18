@@ -24,9 +24,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: yarn global add codecov
-    - run: yarn --immutable
-    - run: yarn lerna exec -- "yarn --immutable"
+    - run: yarn global add codecov lerna
+    - run: lerna exec --parallel -- "yarn --immutable"
     - run: yarn gulp doc:prepare
     - run: yarn build
     - run: yarn test:all
