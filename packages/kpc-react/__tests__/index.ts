@@ -40,7 +40,7 @@ describe('React Demos', () => {
 
     testDemos(reactReq, async (Demo) => {
         const [instance, element] = mount(wrap(Demo as any));
-        await wait();
+        await wait(0);
         expect(element.innerHTML).to.matchSnapshot();
     });
 });
