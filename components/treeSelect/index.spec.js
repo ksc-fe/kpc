@@ -40,7 +40,7 @@ describe('TreeSelect', () => {
         expect(instance.get('values')).to.eql(['1.1']);
 
         instance.set('values', ['1']);
-        await wait(300)
+        await wait(1000)
         expect(dropdown.innerHTML).to.matchSnapshot();
         expect(instance.element.innerHTML).to.matchSnapshot();
     });
