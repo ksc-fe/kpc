@@ -26,7 +26,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: yarn global add codecov
     - run: yarn --immutable
-    - run: yarn lerna exec -- yarn --immutable
+    - run: yarn lerna exec -- "yarn --immutable"
     - run: yarn gulp doc:prepare
     - run: yarn test:all
     - run: codecov
