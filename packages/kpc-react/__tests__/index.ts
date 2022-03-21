@@ -14,11 +14,11 @@ const testsContext = require.context('./components/', true, /.*\.spec\.tsx?/);
 testsContext.keys().forEach(testsContext);
 
 // const reactReq = require.context('~/components/', true, /^((?!(affix|code|layout)).)*\/demos\/.*react\.tsx$/);
-const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*react\.tsx$/);
-// const reactReq = require.context('~/components/', true, /button\/demos\/.*react\.tsx$/);
+// const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*react\.tsx$/);
+const reactReq = require.context('~/components/', true, /datepicker\/demos\/.*react\.tsx$/);
 
 describe('React Demos', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     function wrap(Demo: any) {
         return class extends Component {
