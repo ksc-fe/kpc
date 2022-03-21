@@ -70,9 +70,8 @@ if (hasInputValue) {
         ev-mouseleave={mouseleave}
     >
         <div v-if={autoWidth}
-            class="k-input-fake"
             ref={fakeRef}
-            style="font-size: 24px;"
+            style="font-size: 24px; white-space: nowrap;"
         >{'请选择时间'}</div>
 
         {do {
