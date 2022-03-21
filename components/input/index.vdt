@@ -109,7 +109,7 @@ if (hasInputValue) {
             <div v-if={autoWidth}
                 class="k-input-fake"
                 ref={fakeRef}
-                style="font-size: 12px;"
+                style="font-size: 24px;"
             >{'请选择时间'}</div>
         </div>
         {do {
