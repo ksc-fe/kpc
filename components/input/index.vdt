@@ -109,7 +109,8 @@ if (hasInputValue) {
             <div v-if={autoWidth}
                 class="k-input-fake"
                 ref={fakeRef}
-            >{!hasValue ? placeholder : inputValue}</div>
+                style="font-size: 12px;"
+            >{'请选择时间'}</div>
         </div>
         {do {
             if ($blocks.append) {
