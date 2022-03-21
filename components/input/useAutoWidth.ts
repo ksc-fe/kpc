@@ -16,6 +16,7 @@ export function useAutoWidth() {
             const _width = fakeRef.value!.offsetWidth || 1;
             console.log(fakeRef.value);
             console.log(JSON.stringify(fakeRef.value!.getBoundingClientRect()));
+            console.log(getComputedStyle(fakeRef.value!).font);
             width.set(_width);
         }
     }

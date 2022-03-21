@@ -290,6 +290,7 @@ export function makeStyles() {
 
         // fake dom for get value's width
         .k-input-fake {
+            display: inline-block;
             position: absolute;
             visibility: hidden;
             top: 0;
