@@ -14,15 +14,7 @@ export function useAutoWidth() {
     function adjustWidth() {
         if (instance.get('autoWidth')) {
             const _width = fakeRef.value!.offsetWidth || 1;
-            const elem = fakeRef.value!;
-
-            setTimeout(() => {
-                console.log(elem);
-                console.log(JSON.stringify(fakeRef.value!.getBoundingClientRect()));
-                console.log(getComputedStyle(fakeRef.value!).font);
-                console.log(JSON.stringify(getComputedStyle(fakeRef.value!)));
-                width.set(_width);
-            } , 100);
+            width.set(_width);
         }
     }
 

@@ -69,11 +69,6 @@ if (hasInputValue) {
         ev-mouseenter={mouseenter}
         ev-mouseleave={mouseleave}
     >
-        <div v-if={autoWidth}
-            ref={fakeRef}
-            style="font-size: 24px; white-space: nowrap;"
-        >{'请选择时间'}</div>
-
         {do {
             if ($blocks.prepend) {
                 // if the children of this block is text node
@@ -111,6 +106,10 @@ if (hasInputValue) {
                 />{' '}
                 <b:suffix />
             </div>
+            <div v-if={autoWidth}
+                class="k-input-fake"
+                ref={fakeRef}
+            >{!hasValue ? placeholder : inputValue}</div>
         </div>
         {do {
             if ($blocks.append) {

@@ -24,15 +24,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    # - run: yarn global add codecov
+    - run: yarn global add codecov
     - run: yarn --immutable
     # - run: yarn lerna exec -- "yarn --immutable"
     - run: cd ./packages/kpc-react && yarn --immutable && cd ../../
-    # - run: cd ./packages/kpc-vue && yarn --immutable && cd ../../
-    # - run: cd ./packages/kpc-vue-next && yarn --immutable && cd ../../
+    - run: cd ./packages/kpc-vue && yarn --immutable && cd ../../
+    - run: cd ./packages/kpc-vue-next && yarn --immutable && cd ../../
     - run: yarn gulp doc:prepare
     - run: yarn build
     - run: yarn test:all
-    # - run: codecov
+    - run: codecov
       env: 
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
