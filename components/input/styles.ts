@@ -292,7 +292,7 @@ export function makeStyles() {
         .k-input-fake {
             display: inline-block;
             position: absolute;
-            visibility: hidden;
+            // visibility: hidden;
             top: 0;
             white-space: nowrap;
         }
