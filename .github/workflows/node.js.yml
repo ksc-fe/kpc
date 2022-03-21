@@ -29,13 +29,13 @@ jobs:
     # - run: yarn lerna exec -- "yarn --immutable"
     # - run: cd ./packages/kpc-react && yarn --immutable && cd ../../
     # - run: cd ./packages/kpc-vue && yarn --immutable && cd ../../
-    - run: cd ./packages/kpc-vue-next && yarn --immutable && cd ../../
+    # - run: cd ./packages/kpc-vue-next && yarn --immutable && cd ../../
     - run: yarn gulp doc:prepare
     - run: yarn build
     # - run: yarn test:all
     # - run: npx lerna exec --scope @king-design/react --- npm run test 
     # - run: npx lerna exec --scope @king-design/vue-legacy -- npm run test 
-    - run: npx lerna exec --scope @king-design/vue -- npm run test 
+    # - run: npx lerna exec --scope @king-design/vue -- npm run test 
     - run: npx lerna exec --scope @king-design/intact -- npm run test
     - run: codecov
       env: 
