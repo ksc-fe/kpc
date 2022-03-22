@@ -88,7 +88,7 @@
 ```
 
 ```
-"<div class=\"k-select-main\"><input type=\"hidden\" value=\"00:00:00\"><div class=\"k-input k-fluid k-inline css-56x9ya\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"00:00\" type=\"text\" readonly=\"\" value=\"00:00\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-183f70f\"></i></span></span>"
+"<div class=\"k-select-main\"><input type=\"hidden\" value=\"00:00:00\"><div class=\"k-input k-fluid k-inline css-56x9ya\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"00:00\" type=\"text\" readonly=\"\" value=\"00:00\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-time css-183f70f\"></i></span></span>"
 ```
 
 ```

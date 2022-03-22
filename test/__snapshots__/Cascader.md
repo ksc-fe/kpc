@@ -7,7 +7,7 @@
 ```
 
 ```
-"<div class=\"k-select k-cascader css-u2afkm\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyangxian\"><div class=\"k-select-placeholder c-ellipsis k-fade-leave-from k-fade-leave-active\">请选择</div><div class=\"k-select-value c-ellipsis k-fade-enter-from k-fade-enter-active\">湖南 / 岳阳市 / 岳阳县</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-183f70f\"></i></span></span></div><!--portal-->
+"<div class=\"k-select k-cascader css-u2afkm\" tabindex=\"0\" kpc-click-animating=\"true\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"hunan,yueyang,yueyangxian\"><div class=\"k-select-placeholder c-ellipsis k-fade-leave-from k-fade-leave-active\">请选择</div><div class=\"k-select-value c-ellipsis k-fade-enter-from k-fade-enter-active\">湖南 / 岳阳市 / 岳阳县</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-183f70f\"></i></span></span></div><!--portal-->
     You selected: [\"hunan\",\"yueyang\",\"yueyangxian\"]<br><br><div class=\"k-select k-cascader css-u2afkm\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-rotate ion-load-c css-183f70f\"></i></span></span></div><!--portal-->"
 ```
 
