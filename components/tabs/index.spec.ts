@@ -14,7 +14,7 @@ describe('Tabs', () => {
 
         // add tab
         instance._add();
-        await wait(400);
+        await wait(500);
         expect(tabs.outerHTML).to.matchSnapshot();
 
         // prev & next

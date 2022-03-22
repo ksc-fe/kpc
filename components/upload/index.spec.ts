@@ -52,7 +52,7 @@ describe('Upload', () => {
         unmount();
         respond = xhr => { xhr.respond(200) };
         this.xhr.restore();
-        setTimeout(done, 400);
+        setTimeout(done, 500);
     });
 
     it('basic', function(done) {

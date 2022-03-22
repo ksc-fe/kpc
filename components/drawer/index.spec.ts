@@ -6,7 +6,7 @@ import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils'
 describe('Drawer', () => {
     afterEach((done) => {
         unmount();
-        setTimeout(done, 400);
+        setTimeout(done, 500);
     });
 
     it('should show drawer correctly', async function() {
@@ -20,10 +20,10 @@ describe('Drawer', () => {
         const drawer = getElement('.k-dialog-wrapper')!;
         expect(drawer.innerHTML).to.matchSnapshot();
         
-        await wait(400);
+        await wait(500);
         //hide
         getElement('.k-dialog-overlay')!.click();
-        await wait(400);
+        await wait(500);
         expect(getElement('.k-drawer')).to.be.undefined;
     });
 
@@ -58,13 +58,13 @@ describe('Drawer', () => {
         expect(overlay).to.be.undefined;
         await wait(200);
         dispatchEvent(document, 'click');
-        await wait(400);
+        await wait(500);
         const dialog = getElement('.k-dialog-wrapper')!;
         expect(dialog.innerHTML).to.matchSnapshot();
 
         const btn = dialog.querySelector('.k-dialog-ok') as HTMLElement;
         btn.click();
-        await wait(400);
+        await wait(500);
         expect(getElement('.k-drawer')).to.be.undefined;
     });
 });

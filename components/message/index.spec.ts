@@ -42,7 +42,7 @@ describe('Message', () => {
         expect(message1).eql(message);
 
         dispatchEvent(message, 'mouseleave');
-        await wait(400);
+        await wait(500);
         message1 = getElement('.k-message');
         expect(message1).eql(message);
 

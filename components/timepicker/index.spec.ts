@@ -11,15 +11,16 @@ describe('Timepicker', () => {
 
     afterEach(async () => {
         unmount();
-        await wait(400);
+        await wait(500);
     });
 
-    it('select time', async () => {
+    it('select time', async function() {
+        this.timeout(0);
         const [instance, element] = mount(BasicDemo);
 
         const [picker1, picker2] = element.querySelectorAll('.k-select') as NodeListOf<HTMLElement>;
         picker1.click();
-        await wait(400);
+        await wait(500);
         let dropdown = getElement('.k-time-content')!;
         expect(dropdown.innerHTML).to.matchSnapshot();
         const next = dropdown.querySelector('.k-scroll-select-item:nth-child(11)') as HTMLElement;
@@ -33,18 +34,18 @@ describe('Timepicker', () => {
         expect(dropdown.innerHTML).to.matchSnapshot();
         const ok = dropdown.querySelector('.k-btn') as HTMLElement;
         ok.click();
-        await wait(400);
+        await wait(500);
         expect(instance.get('time')).to.eql('02:00:00');
         expect(dropdown.style.display).to.eql('none');
         // set time
         instance.set('time', '03:03:03');
         picker1.click();
-        await wait(400);
+        await wait(500);
         expect(dropdown.innerHTML).to.matchSnapshot();
 
         // multiple
         picker2.click();
-        await wait(400);
+        await wait(500);
         dropdown = getElement('.k-time-content')!;
         dropdown.querySelector<HTMLElement>('.k-scroll-select-item:nth-child(11)')!.click();
         const ok2 = dropdown.querySelector('.k-btn') as HTMLElement;
@@ -83,7 +84,7 @@ describe('Timepicker', () => {
 
         const picker = element.querySelector('.k-select') as HTMLElement;
         picker.click();
-        await wait(400);
+        await wait(500);
         const dropdown = getElement('.k-time-content')!;
         expect(dropdown.innerHTML).to.matchSnapshot();
         const [start, end] = dropdown.querySelectorAll<HTMLElement>('.k-datepicker-calendar-wrapper');

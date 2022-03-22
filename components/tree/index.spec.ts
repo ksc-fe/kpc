@@ -18,15 +18,15 @@ describe('Tree', () => {
         const [, icon1, icon2] = element.querySelectorAll('.k-icon') as NodeListOf<HTMLElement>;
 
         icon2.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
 
         icon1.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
 
         icon1.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
     });
 
@@ -51,7 +51,7 @@ describe('Tree', () => {
         const [, , icon1] = element.querySelectorAll('.k-icon') as NodeListOf<HTMLElement>;
         // expand
         icon1.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         const data2 = tree.getCheckedData(true);
         expect(data2.length).to.eql(2);
@@ -163,7 +163,7 @@ describe('Tree', () => {
         // disable select and click on disabled selectable text should expand the tree
         tree.set('selectable', false);
         text1.click();
-        await wait(400);
+        await wait(500);
         expect(tree.getSelectedData().length).to.eql(0);
         expect(element.outerHTML).to.matchSnapshot();
     });
@@ -181,7 +181,7 @@ describe('Tree', () => {
         const [instance, element] = mount(DraggableDemo);
 
         instance.set('expandedKeys', ['2', '2-1', '1', '1-1']);
-        await wait(400);
+        await wait(500);
 
         // can not drag disabled item
         const disabled = element.querySelector('.k-disabled') as HTMLElement;
@@ -249,5 +249,5 @@ async function dragInsert(srcElement: HTMLElement, toElement: HTMLElement, mode?
 
     await wait(700);
     dispatchEvent(toElement, 'dragend');
-    await wait(400);
+    await wait(500);
 }

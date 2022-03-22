@@ -9,7 +9,7 @@ import DestroyDemo from '~/components/dialog/demos/destroy';
 describe('Dialog', () => {
     afterEach((done) => {
         unmount();
-        setTimeout(done, 400);
+        setTimeout(done, 500);
     });
 
     function expectDialog() {
