@@ -12,7 +12,8 @@ import {RANGE} from './useDraggable';
 describe('Tree', () => {
     afterEach(() => unmount());
 
-    it('expand and shrink', async () => {
+    it('expand and shrink', async function() {
+        this.timeout(0);
         const [instance, element] = mount(BasicDemo);
 
         const [, icon1, icon2] = element.querySelectorAll('.k-icon') as NodeListOf<HTMLElement>;

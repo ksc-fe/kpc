@@ -56,6 +56,7 @@ module.exports = function (config) {
             mocha: {
                 reporter: 'html',
                 ui: 'bdd',
+                timeout: 5000,
                 // allowUncaught: true,
             }
         },
