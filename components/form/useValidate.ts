@@ -82,7 +82,7 @@ export function useValidate(
                         return [
                             false,
                             result || getErrorMessage(ruleName),
-                            getErrorMessage(ruleName),
+                            getErrorClassName(ruleName),
                         ];
                     }
                 }
@@ -94,7 +94,7 @@ export function useValidate(
                     message = err;
                 } else if (err) {
                     message = err.message || getErrorMessage(err.name);
-                    className = err.className || getErrorMessage(err.name);
+                    className = err.className || getErrorClassName(err.name);
                 }
 
                 return [false, message!, className!];

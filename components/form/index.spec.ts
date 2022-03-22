@@ -1,4 +1,4 @@
-import BasicDemo from '~/components/form/demos/basic';
+import BasicDemo, {data as basicDemoData} from '~/components/form/demos/basic';
 import CustomDemo from '~/components/form/demos/custom';
 import VariableDemo from '~/components/form/demos/variable';
 import RemoteDemo from '~/components/form/demos/remote';
@@ -24,7 +24,7 @@ describe('Form', () => {
     afterEach(() => unmount());
 
     it('validate', async () => {
-        const [instance, element] = mount(BasicDemo);
+        const [instance, element] = mount(BasicDemo, null, basicDemoData);
         const form = instance.refs.form as Form;
 
         await instance.handleSubmit();
