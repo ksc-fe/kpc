@@ -105,20 +105,20 @@ describe('Tree', () => {
 
         const [btn1, btn2] = element.querySelectorAll('.k-btn') as NodeListOf<HTMLElement>;
         btn1.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('data')).to.have.length(3);
         expect(instance.get('data')).to.matchSnapshot();
 
         btn2.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         const [, checkbox] = element.querySelectorAll('.k-checkbox') as NodeListOf<HTMLElement>;
         checkbox.click();
         await wait();
         const [,,, btn3] = element.querySelectorAll('.k-btn') as NodeListOf<HTMLElement>;
         btn3.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
 
         // uncheck and remove
@@ -126,7 +126,7 @@ describe('Tree', () => {
         checkbox1.click();
         await wait();
         (checkbox1.parentNode!.querySelector('.k-btn:nth-child(2)') as HTMLElement).click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('data')).to.matchSnapshot();
     });

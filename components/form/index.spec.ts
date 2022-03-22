@@ -90,14 +90,14 @@ describe('Form', () => {
         await wait();
         let res = await form.validate();
         expect(res).to.be.false;
-        await wait(400);
+        await wait(500);
         expect(element.innerHTML).to.matchSnapshot();
 
         i.set('userName', 'b');
         await wait();
         res = await form.validate();
         expect(res).to.be.true;
-        await wait(400);
+        await wait(500);
         expect(element.innerHTML).to.matchSnapshot();
     });
 

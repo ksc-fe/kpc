@@ -43,14 +43,14 @@ describe('Transfer', () => {
         expect(element.outerHTML).to.matchSnapshot();
         const [remove, add] = element.querySelectorAll('.k-btn') as NodeListOf<HTMLElement>;
         add.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         const rightFirst = element.querySelector('.k-transfer-panel:nth-child(3) .k-transfer-list .k-checkbox') as HTMLElement;
         rightFirst.click();
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
         remove.click();
-        await wait(400);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
     });
 
@@ -100,12 +100,13 @@ describe('Transfer', () => {
         expect(tree.get('leftCheckedKeys')).to.eql([]);
     });
 
-    it('filter', async () => {
+    it('filter', async function() {
+        this.timeout(0);
         const [instance, element] = mount(LabelDemo);
         
         const transfer = instance.refs.__test as Transfer;
         transfer.set('leftKeywords', '0');
-        await wait(400);
+        await wait(500);
         expect(element.innerHTML).to.matchSnapshot();
 
         const checkAll = element.querySelector('.k-transfer-title .k-checkbox') as HTMLElement;
@@ -114,7 +115,7 @@ describe('Transfer', () => {
         expect(element.innerHTML).to.matchSnapshot();
 
         transfer.set('leftKeywords', '');
-        await wait(400);
+        await wait(500);
         expect(element.innerHTML).to.matchSnapshot();
 
         checkAll.click();
@@ -124,7 +125,7 @@ describe('Transfer', () => {
         transfer.set('leftKeywords', '0');
         await wait();
         transfer.set('leftKeywords', '');
-        await wait(400);
+        await wait(500);
         expect(element.innerHTML).to.matchSnapshot();
     });
 });

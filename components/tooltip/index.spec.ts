@@ -117,7 +117,9 @@ describe('Tooltip', () => {
         expect(content.style.display).to.eql('none')
     });
 
-    it('should be hoverable', async () => {
+    it('should be hoverable', async function() {
+        this.timeout(0);
+
         const [, element] = mount(TriggerDemo);
         const [, , canHover] = Array.from(element.querySelectorAll('.k-btn'));
         dispatchEvent(canHover, 'mouseenter');
@@ -133,7 +135,7 @@ describe('Tooltip', () => {
         expect(content1).eql(content);
 
         dispatchEvent(canHover, 'mouseleave');
-        await wait(600);
+        await wait(800);
         expect(content.style.display).to.eql('none')
     });
 
