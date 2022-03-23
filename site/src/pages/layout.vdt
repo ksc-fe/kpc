@@ -20,12 +20,12 @@ const nav = [
     },
     {
         title: '资源',
-        href: '/resource',
+        href: '/resources',
         index: 'resource'
     },
     {
         title: '解决方案',
-        href: '/solution',
+        href: '/solutions',
         index: 'solution'
     }
 ];

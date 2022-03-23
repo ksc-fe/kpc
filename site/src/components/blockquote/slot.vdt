@@ -1,0 +1,10 @@
+const {name} = this.get();
+
+<blockquote>
+    <p>
+        React下，以下扩展点都对应组件的属性名，如：
+        <code>{name}</code>
+        ->
+        <code>{`slot${name.charAt(0).toUpperCase() + name.substring(1)}`}</code>
+    </p>
+</blockquote>

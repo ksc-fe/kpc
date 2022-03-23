@@ -78,7 +78,7 @@ if (hasInputValue) {
                 <div class={{
                     "k-input-prepend": true, 
                     "k-input-padding": isTextBlock(children)
-            }}>{children}</div>
+                }}>{children}</div>
             }
         }}
         <div class="k-input-wrapper">

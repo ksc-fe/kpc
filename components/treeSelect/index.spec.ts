@@ -21,7 +21,7 @@ describe('TreeSelect', () => {
         (dropdown.querySelector('.k-tree-text') as HTMLElement).click();
         expect(instance.get('value')).to.eql('1');
 
-        await wait(300);
+        await wait(500);
         expect(getElement('.k-tree-select-menu')).to.be.undefined;
     });
 
@@ -39,7 +39,7 @@ describe('TreeSelect', () => {
         expect(instance.get('values')).to.eql(['1.1']);
 
         instance.set('values', ['1']);
-        await wait(300)
+        await wait(500)
         expect(dropdown.innerHTML).to.matchSnapshot();
         expect(element.innerHTML).to.matchSnapshot();
     });
@@ -73,7 +73,7 @@ describe('TreeSelect', () => {
         const input = element.querySelector('.k-input-inner') as HTMLInputElement;
         input.value = 'first';
         dispatchEvent(input, 'input');
-        await wait(300);
+        await wait(500);
         expect(dropdown.innerHTML).to.matchSnapshot();
 
         const [, text2] = dropdown.querySelectorAll('.k-tree-text');
@@ -103,11 +103,11 @@ describe('TreeSelect', () => {
         await wait();
         dispatchEvent(select, 'focusout');
 
-        await wait(300);
+        await wait(500);
         expect(element.querySelector('.k-form-error')).to.be.null;
 
         dispatchEvent(select, 'click');
-        await wait(300);
+        await wait(500);
         expect(element.querySelector('.k-form-error')).not.to.be.null;
     });
 });

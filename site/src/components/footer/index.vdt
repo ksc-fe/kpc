@@ -28,10 +28,10 @@ import {Link} from '../link';
                                     <Link href="/docs/vue/">组件</Link>
                                 </div>
                                 <div>
-                                    <Link href="/resource">资源</Link>
+                                    <Link href="/resources">资源</Link>
                                 </div>
                                 <div>
-                                    <Link href="/solution">解决方案</Link>
+                                    <Link href="/solutions">解决方案</Link>
                                 </div>
                                 <div>Color-Process</div>
                             </div>

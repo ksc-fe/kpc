@@ -13,7 +13,7 @@ import SearchableDemo from '~/components/select/demos/searchable';
 describe('Select', () => {
     afterEach((done) => {
         unmount();
-        setTimeout(done, 400);
+        setTimeout(done, 500);
     });
 
     it('should select value correctly', async () => {

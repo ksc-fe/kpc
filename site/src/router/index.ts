@@ -90,7 +90,7 @@ export default new Router<RouteResult>([
         }
     },
     {
-        path: '/resource',
+        path: '/resources',
         action: async (context) => {
             return {
                 Page: (await import(`../pages/resource/index`)).default,
@@ -101,7 +101,7 @@ export default new Router<RouteResult>([
         }
     },
     {
-        path: '/solution',
+        path: '/solutions',
         action: async (context) => {
             return {
                 Page: (await import(`../pages/solution/index`)).default,

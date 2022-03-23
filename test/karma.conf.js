@@ -24,7 +24,8 @@ module.exports = function (config) {
         customLaunchers: {
             'MyChromeHeadless': {
                 base: 'ChromeHeadless',
-                flags: ['--window-size=1920,1080'],
+                flags: ['--window-size=1920,1080', '--force-device-scale-factor=1'],
+                // flags: ['--window-size=1920,1080'],
             }
         },
         frameworks: ['webpack', 'mocha', 'sinon-chai', 'snapshot', 'mocha-snapshot'],
@@ -55,6 +56,7 @@ module.exports = function (config) {
             mocha: {
                 reporter: 'html',
                 ui: 'bdd',
+                timeout: 5000,
                 // allowUncaught: true,
             }
         },

@@ -9,7 +9,7 @@ import {Cascader} from './';
 describe('Cascader', () => {
     afterEach(async () => {
         unmount();
-        await wait(400);
+        await wait(500);
     });
 
     it('basic test', async function() {

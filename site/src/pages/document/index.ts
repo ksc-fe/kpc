@@ -108,7 +108,7 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
                 }),
                 ...catalogs,
             ],
-            catalogueId: isDoc ? 'article-head' : 'demos',
+            catalogueId: isDoc ? 'article-title' : 'demos',
         });
     }
 }

@@ -11,11 +11,11 @@ describe('Menu', () => {
 
         const title = element.querySelector('.k-expanded .k-menu-title') as HTMLElement;
         title.click();
-        await wait(300);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('expandedKeys')).to.eql([]);
         title.click();
-        await wait(300);
+        await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('expandedKeys')).to.eql(['3']);
     });
