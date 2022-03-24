@@ -9,14 +9,14 @@ import {Link} from '../link';
                 <Col span="24"><div class="logo"></div></Col>
             </Row>
             <Row class="info-box">
-                <Col class="info-left" span="12">
+                <Col class="info-left" lg="12" xl="24">
                     <div class="title">一个设计系统，为企业提效而生</div>
                     <div>
                         <span>联系我们：<a href="mailto:ksc_ued@kingsoft.com">ksc_ued@kingsoft.com</a></span>
                         <span>关注我们：微信公众号“⾦⼭云⽤户体验设计”</span>
                     </div>
                 </Col>
-                <Col class="info-right" span="12">
+                <Col class="info-right" lg="12" xl="24">
                     <Row class="quick-access-box">
                         <Col span="24">
                             <div class="title">快速访问</div>
@@ -28,10 +28,10 @@ import {Link} from '../link';
                                     <Link href="/docs/vue/">组件</Link>
                                 </div>
                                 <div>
-                                    <Link href="/resource">资源</Link>
+                                    <Link href="/resources">资源</Link>
                                 </div>
                                 <div>
-                                    <Link href="/solution">解决方案</Link>
+                                    <Link href="/solutions">解决方案</Link>
                                 </div>
                                 <div>Color-Process</div>
                             </div>

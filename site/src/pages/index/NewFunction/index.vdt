@@ -98,24 +98,19 @@ const treeData = [
                             </Button>
                             <div class="comp-content" v-if={curComponentsGroup == 0}>
                                 <div class="input-select">
-                                    <div class="comp-item">
-                                        <Button type="primary" class="comp-list-btn">Button</Button>
-                                    </div>
-                                    <div class="comp-item switch-box">
-                                        <Switch width="48" height="22"></Switch>
-                                    </div>
+                                    <Button type="primary" class="comp-list-btn">Button</Button>
+                                    <Switch />
                                 </div>
                                 <div class="select-input">
-                                    <div class="comp-item select-box">
-                                        <Select fluid placeholder="选择一项">
-                                            <Option value="1">设计部门</Option>
-                                            <Option value="2">开发部门</Option>
-                                            <Option value="3">产品部门</Option>
-                                        </Select>
-                                    </div>
-                                    <div class="comp-item input-box">
-                                        <Input placeholder="请输入" />
-                                    </div>
+                                    <Input placeholder="请输入">
+                                        <b:prepend>
+                                            <Select fluid placeholder="选择一项" inline>
+                                                <Option value="1">设计部门</Option>
+                                                <Option value="2">开发部门</Option>
+                                                <Option value="3">产品部门</Option>
+                                            </Select>
+                                        </b:prepend>
+                                    </Input>
                                 </div>
                             </div>
                             <div class="comp-content" v-if={curComponentsGroup == 1}>

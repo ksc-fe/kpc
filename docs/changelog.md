@@ -6,6 +6,20 @@ sidebar: doc
 
 ## v2.0.0-beta.2
 
+### 全局变更
+
+1. 底层到组件库全面采用`TypeScript`重写，来支持类型检测
+2. 组件库使用`Hooks`的思想来拆分逻辑，提高维护性
+3. 使用`@emotion/css`的css-in-js方案取代之前的`stylus`方案，支持运行时切换主题
+4. 重新设计组件事件`Event`和扩展点`Slot`的属性名，使其满足TS的类型检测
+    1. React
+        1. 默认事件名由之前的`on$change-value`形式，变为`onChangeValue`形式
+        2. 扩展点名由之前的`b-value`形式，变为`slotValue`形式
+    2. Vue
+        1. 默认事件名由之前的`@$change:value`形式，变为`@changeValue`形式
+
+### 组件变更
+
 1. Breadcrumb
     1. BreadcrumbItem
         1. `Remove` 删除`separator`属性，统一用`Breadcrumb`的`separator`属性代替 

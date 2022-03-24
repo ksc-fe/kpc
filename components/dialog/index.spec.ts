@@ -9,7 +9,7 @@ import DestroyDemo from '~/components/dialog/demos/destroy';
 describe('Dialog', () => {
     afterEach((done) => {
         unmount();
-        setTimeout(done, 400);
+        setTimeout(done, 500);
     });
 
     function expectDialog() {
@@ -142,10 +142,9 @@ describe('Dialog', () => {
 
     it('demos test', async function() {
         this.timeout(0);
-        const req = require.context('~/components/dialog/demos', true, /^((?!async).)*index\.ts$/i);
+        const req = require.context('~/components/dialog/demos', true, /^((?!static).)*index\.ts$/i);
         for (const item of req.keys()) {
             if (!item.startsWith('.')) continue;
-            if (/static/.test(item)) continue;
 
             const Demo = req(item).default;
             const [instance, element] = mount(Demo);

@@ -20,7 +20,7 @@ describe('Colorpicker', () => {
 
     afterEach(async function() {
         unmount();
-        await wait(400);
+        await wait(500);
     });
 
     it('should select color by saturation', async function() {

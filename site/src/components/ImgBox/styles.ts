@@ -11,23 +11,25 @@ export function makeStyles() {
         width: 100%;
         height: 100%;
         .img-wrapper {
-            /* margin-top: 120px; */
             position: relative;
+            height: 100%;
         }
         .img-box {
             display: flex;
             align-items: center;
             transform: translateX(0px);
             transition: transform .5s ease-in-out;
+            height: 100%;
             & > div {
                 flex-shrink: 0;
             }
             .img-item {
-                width: 950px;
                 text-align: center;
+                margin: 0 25px;
                 img {
                     margin: 0 auto;
-                    width: 900px;
+                    max-width: 900px;
+                    max-height: calc(100vh - 100px);
                     display: block;
                 }
             }
@@ -56,7 +58,8 @@ export function makeStyles() {
             align-items: center;
             justify-content: center;
             color: #fff;
-            top: 300px;
+            top: 50%;
+            margin-top: -25px;
             cursor: pointer;
             transition: all .25s linear;
             .icon {

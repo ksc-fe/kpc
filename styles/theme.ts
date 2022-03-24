@@ -1,9 +1,8 @@
 import { palette, deepDefaults, deepExtends } from './utils';
 
-export type ThemeValue<T> = T; // | (() => T) | (() => ThemeValue<T>) 
-export type Theme = {[name: string]: ThemeValue<string> | ThemeValue<number> | Theme};
+export type Theme = {[name: string]: string | number | Theme};
 
-export function defualtTheme() {
+export function defaultTheme() {
     return {
         large: {
             height: '40px',
@@ -26,7 +25,6 @@ export function defualtTheme() {
             padding: '8px',
         },
         color: {
-            lightBlack: '#737373',
             primary: '#0091ea',
             warning: '#ff9800',
             danger: '#ff4133',
@@ -43,6 +41,7 @@ export function defualtTheme() {
             disabled: '#ccc',
             disabledBg: '#f2f2f2',
             disabledBorder: '#ccc',
+            lightBlack: '#737373',
         },
         borderRadius: '2px',
         boxShadow: '0 0 4px 0 rgba(0, 0, 0, .3)',
@@ -60,9 +59,9 @@ export function defualtTheme() {
     }    
 }
 
-let theme = defualtTheme();
+let theme = defaultTheme();
 export function resetTheme() {
-    theme = defualtTheme();
+    theme = defaultTheme();
 }
 export {theme};
 

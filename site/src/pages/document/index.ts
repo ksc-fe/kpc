@@ -90,11 +90,15 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
     updateCatalogue() {
         const Article = this.get('Article');
         const demos = this.articleRef.value!.get('demos') as any[];
+        const setting = this.articleRef.value!.get('setting') as any;
         const catalogs = Article.data.catalogs;
+        const isDoc = this.path!.startsWith('/docs/');
 
         this.set({
             catalogue: [
-                {text: '示例', level: 1, id: 'demos'},
+                isDoc ? 
+                    {text: setting.title, level: 1, id: 'article-title'} :
+                    {text: '示例', level: 1, id: 'demos'},
                 ...demos.map(({data}) => {
                     return {
                         text: data.setting.title,
@@ -104,7 +108,7 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
                 }),
                 ...catalogs,
             ],
-            catalogueId: 'demos',
+            catalogueId: isDoc ? 'article-title' : 'demos',
         });
     }
 }

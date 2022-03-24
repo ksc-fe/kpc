@@ -83,4 +83,5 @@ module.exports = {
     destData: resolve('./site/data'),
     dest: resolve('./site/dist'),
     destServer: resolve('./site/.dist'),
+    publicPath: '//damife.ks3-cn-beijing.ksyuncs.com/kpc/',
 };

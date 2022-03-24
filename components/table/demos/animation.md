@@ -8,15 +8,17 @@ order: 20
 ```vdt
 import {Table, TableColumn, Button} from 'kpc';
 
-const {data, num, isShow} = this.get();
-
 <div>
     <Button type="primary" ev-click={this.addRow}>增加一行</Button>
     <Button type="primary" ev-click={this.removeRow}>删除一行</Button>
-    <Button type="primary" ev-click={this.toggleColumn}>{isShow ? '删除' : '增加'}一列</Button>
-    <Table data={data} resizable rowKey={row => row.a}>
+    <Button type="primary" ev-click={this.toggleColumn}>
+        <template v-if={this.get('isShow')}>删除</template>
+        <template v-else>增加</template>
+        一列
+    </Button>
+    <Table data={this.get('data')} resizable rowKey={row => row.a}>
         <TableColumn key="a" title="Title 1" />
-        {isShow && <TableColumn key="b" title="Title 2"/>}
+        <TableColumn v-if={this.get('isShow')} key="b" title="Title 2"/>
         <TableColumn key="c" title="Title 3" />
     </Table>
 </div>

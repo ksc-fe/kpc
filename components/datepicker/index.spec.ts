@@ -20,7 +20,7 @@ const month = now.getMonth();
 describe('Datepicker', () => {
     afterEach(async () => {
         unmount();
-        await wait(400);
+        await wait(500);
     });
 
     describe('Pick', () => {

@@ -83,5 +83,36 @@ export function makeStyles() {
                 background-image: url(${footer_logo});
             }
         }
+
+        @media (max-width: 768px) {
+            height: auto; 
+            .footer-table {
+                height: auto;
+                .info-box {
+                    height: auto;
+                }
+                .info-left {
+                    border: none;
+                    .title {
+                        font-size: 24px;
+                    }
+                    span {
+                        display: block;
+                    }
+                }
+                .info-right {
+                    .k-row {
+                        padding: 20px;
+                        &:first-child {
+                            border: none;
+                        }
+                    }
+                }
+            }
+            .copy-right-info {
+                padding: 20px;
+                height: auto;
+            }
+        }
     `
 }

@@ -1,5 +1,5 @@
 const genConfig = require('../webpack');
-const {resolve: resolvePath, destData, dest, destServer} = require('../utils');
+const {resolve: resolvePath, destData, dest, destServer, publicPath} = require('../utils');
 const {version} = require('../../package.json');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -79,8 +79,8 @@ exports.webpackConfigClient = (production, theme = 'default') => {
         config.output
             .filename('[name].[contenthash].js')
             .chunkFilename('static/chunk/[contenthash].js')
-            .publicPath('//damife.ks3-cn-beijing.ksyun.com/kpc/');
-        config.devtool('none');
+            .publicPath(publicPath);
+        // config.devtool('none');
         config.module.rules
             .get('file').uses.get('file')
             .options({

@@ -4,6 +4,7 @@ import type {Table, TableRowKey} from './table';
 import type {TableColumn} from './column';
 import {useState} from '../../hooks/useState';
 import {debounce} from '../utils';
+import {scrollbarWidth} from '../position';
 
 const hasLocalStorage = typeof localStorage !== 'undefined';
 
@@ -73,7 +74,13 @@ export function useWidth(
         if (resizable) {
             const hasBorder = type === 'grid' || type === 'border';
             const _tableWidth = tableRef.value!.offsetWidth;
-            const containerWidth = scrollRef.value!.offsetWidth + (hasBorder ? -2 : 0);
+            const container = scrollRef.value!;
+            let containerWidth = container.offsetWidth + (hasBorder ? -2 : 0);
+            // detect whether the table has vertical scrollbar or not
+            if (container.scrollHeight > container.clientHeight) {
+                containerWidth = containerWidth - scrollbarWidth();
+            }
+
             if (_tableWidth < containerWidth) {
                 tableWidth.set(isMount ? null : containerWidth);
 

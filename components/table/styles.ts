@@ -199,6 +199,9 @@ export function makeStyles() {
             .k-affix-wrapper {
                 overflow: hidden;
             }
+            &.k-fixed {
+                position: relative;
+            }
         }
 
         // type

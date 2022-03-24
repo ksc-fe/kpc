@@ -29,7 +29,9 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                                     case 'index.styl': return 'index.styl (Stylus)';
                                     case 'index.vue': return 'Vue (Legacy)';
                                     case 'next.vue': return 'Vue';
-                                    case 'react.tsx': return 'React';
+                                    case 'react.tsx': 
+                                    case 'index.tsx':
+                                        return 'React';
                                 }
                             })()}</span>
                         </Tab>

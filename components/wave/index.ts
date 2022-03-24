@@ -1,3 +1,4 @@
+// @reference: https://github.com/ant-design/ant-design/blob/master/components/_util/wave.tsx
 import {Component, TypeDefs, findDomFromVNode, VNode} from 'intact';
 import {isArray} from 'intact-shared';
 import {bind} from '../utils';

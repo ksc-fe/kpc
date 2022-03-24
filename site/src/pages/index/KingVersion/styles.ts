@@ -56,5 +56,31 @@ export function makeStyles() {
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            display: block;
+            padding: 0 20px;
+            height: auto;
+            .king-vis-wrapper {
+                width: auto !important;
+                flex-direction: column;
+                img {
+                    max-width: 100%;
+                }
+                & > div:first-child {
+                    width: auto;
+                }
+                .vis-description {
+                    margin-bottom: 20px;
+                }
+                & > div:last-child {
+                    width: auto;
+                    & > div {
+                        background-position: center;
+                        height: 260px;
+                    }
+                }
+            }
+        }
     `
 }

@@ -10,7 +10,7 @@ import {Checkbox} from 'kpc';
 
 <div>
     <Checkbox indeterminate={this.getLength() > 0 && this.getLength() < 3}
-        value={length === 3}
+        value={this.getLength() === 3}
         ev-$change:value={this.toggleSelectAll}
     >全选</Checkbox>
     <hr />

@@ -5,7 +5,6 @@ import nav_logo from '../../imgs/nav_logo.png';
 import index_nav_bg from '../../imgs/index_nav_bg.png';
 
 export function makeStyles() {
-
     return css`
         font-family: ${global.fontFamily};
         .nav {
@@ -33,24 +32,22 @@ export function makeStyles() {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                .nav-content {
-                    width: ${global.contentWidth}px;
-                }
             }
 
             .nav-content {
+                width: ${global.contentWidth}px;
                 & > div:first-child {
                     margin-top: 53px;
                     margin-bottom: 22px;
                     width: 154px;
                     height: 29px;
-                    background-image: url(${design_system});
+                    background: url(${design_system}) no-repeat;
                 }
                 & > div:nth-child(2) {
                     margin-bottom: 20px;
                     width: 443px;
                     height: 74px;
-                    background-image: url(${nav_logo});
+                    background: url(${nav_logo}) no-repeat;
                 }
                 & > div:nth-child(3) {
                     font-size: 24px;
@@ -76,6 +73,30 @@ export function makeStyles() {
 
             .btn-github {
                 margin-left: 5px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                .nav-content {
+                    width: auto;
+                    & > div:nth-child(2) {
+                        width: 300px;
+                        background-size: contain;
+                        background-position: center;
+                    }
+                }
+            }
+            .new-fn-box {
+                .card-wrapper {
+                    height: auto;
+                    > div:first-child {
+                        .card-box {
+                            position: relative;
+                            display: block;
+                        }
+                    }
+                }
             }
         }
     `

@@ -26,7 +26,7 @@ const {
     draggable,
 } = this.get();
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
-const {setScrollPosition, scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
+const {scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
 const {scrollRef} = this.scroll;
 const {stickHeader, excludeStickHeader, elementRef, headRef} = this.stickyHeader;
 const classNameObj = {

@@ -46,5 +46,16 @@ export function makeStyles() {
             height: 176px;
             margin-top: 36px;
         }
+
+        @media (max-width: 768px) {
+            width: auto;
+            display: block;
+            margin-right: 0;
+            margin-bottom: 20px;
+            padding: 20px;
+            .content-box {
+                height: auto;
+            }
+        }
     `;
 }
