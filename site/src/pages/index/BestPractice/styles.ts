@@ -44,6 +44,7 @@ export function makeStyles(themeColor: string) {
                         img {
                             margin: 20px auto 5px auto;
                             display: block;
+                            width: 40px;
                         }
                         text-align: center;
                     }
@@ -160,6 +161,49 @@ export function makeStyles(themeColor: string) {
                         }
                         .radius-value:last-child {
                             padding-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            display: block;
+            padding: 0 20px;
+            height: auto;
+            .best-box {
+                width: auto !important;
+                & > div:first-child {
+                    .title-box {
+                        padding: 20px;
+                    }
+                }
+
+                & > div:nth-child(2) {
+                    .imgs-box {
+                        width: auto;
+                    }
+                }
+
+                & > div:last-child {
+                    flex-direction: column;
+                    height: auto;
+                    .code-pen {
+                        width: auto;
+                        margin-right: 0;
+                    }
+                    .optional-box {
+                        flex-direction: column;
+                        width: auto;
+                        margin: 12px 0 20px;
+                    }
+                    .left {
+                        height: 100px;
+                    }
+                    .right {
+                        padding-left: 20px;
+                        .item:last-of-type {
+                            margin-bottom: 0;
                         }
                     }
                 }
