@@ -76,7 +76,7 @@ export function makeStyles() {
                 & > div:last-child {
                     width: auto;
                     & > div {
-                        background-position: center;
+                        background-position: left center;
                         height: 260px;
                     }
                 }

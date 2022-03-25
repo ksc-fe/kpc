@@ -63,7 +63,6 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
             });
             if (this.$mounted) {
                 nextTick(() => {
-                    window.scrollTo(0, 0);
                     this.updateCatalogue();
                 });
             }
@@ -83,7 +82,6 @@ export default class Document<T extends DocumentProps = DocumentProps> extends L
     }
 
     mounted() {
-        window.scrollTo(0, 0);
         this.updateCatalogue();
     }
 

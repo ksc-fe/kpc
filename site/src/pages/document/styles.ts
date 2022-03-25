@@ -100,6 +100,8 @@ export function makeStyles() {
                     color: #000;
                     margin: 19px 0;
                     flex: 1;
+                    white-space: nowrap;
+                    margin-right: 16px;
                 }
                 .edit-link {
                     color: #999;
