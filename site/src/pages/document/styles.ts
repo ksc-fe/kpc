@@ -202,7 +202,7 @@ export function makeStyles() {
             }
             .k-layout-aside {
                 transform: translateX(-260px);
-                transition: transform ${theme.transition};
+                transition: transform ${theme.transition.middle};
                 &.expanded {
                     transform: translateX(0);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
