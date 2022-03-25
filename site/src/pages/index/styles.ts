@@ -55,24 +55,10 @@ export function makeStyles() {
                     margin-bottom: 33px;
                 }
                 & > div:last-child {
-                    display: flex;
                     .k-btn {
-                        width: 108px;
-                        height: 40px;
                         margin-right: 16px;
-                        display: flex;
-                        align-items: center;
-                        font-family: Roboto;
-                        font-size: 14px;
-                        img {
-                            margin-right: 7px;
-                        }
                     }
                 }
-            }
-
-            .btn-github {
-                margin-left: 5px;
             }
         }
 
@@ -84,17 +70,6 @@ export function makeStyles() {
                         width: 300px;
                         background-size: contain;
                         background-position: center;
-                    }
-                }
-            }
-            .new-fn-box {
-                .card-wrapper {
-                    height: auto;
-                    > div:first-child {
-                        .card-box {
-                            position: relative;
-                            display: block;
-                        }
                     }
                 }
             }

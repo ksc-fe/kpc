@@ -100,6 +100,8 @@ export function makeStyles() {
                     color: #000;
                     margin: 19px 0;
                     flex: 1;
+                    white-space: nowrap;
+                    margin-right: 16px;
                 }
                 .edit-link {
                     color: #999;
@@ -200,7 +202,7 @@ export function makeStyles() {
             }
             .k-layout-aside {
                 transform: translateX(-260px);
-                transition: transform ${theme.transition};
+                transition: transform ${theme.transition.middle};
                 &.expanded {
                     transform: translateX(0);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
@@ -208,7 +210,7 @@ export function makeStyles() {
                 .k-btn {
                     display: block;
                     position: absolute;
-                    top: 50px;
+                    top: 66px;
                     right: 0;
                     transform: translateX(100%);
                     border: none;

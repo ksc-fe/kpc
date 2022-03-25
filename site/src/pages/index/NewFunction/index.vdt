@@ -67,7 +67,7 @@ const treeData = [
                     <Card
                         mainTitle="资源"
                         subTitle="为整条产品设计链路提效"
-                        href="/resource"
+                        href="/resources"
                     >
                         <div class="resource-box">
                             <div class="white-card">
