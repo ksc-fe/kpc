@@ -210,7 +210,7 @@ export function makeStyles() {
                 .k-btn {
                     display: block;
                     position: absolute;
-                    top: 50px;
+                    top: 66px;
                     right: 0;
                     transform: translateX(100%);
                     border: none;
