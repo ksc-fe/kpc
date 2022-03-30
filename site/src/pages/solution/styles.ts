@@ -8,14 +8,14 @@ export function makeStyles() {
         font-family: ${global.fontFamily};
         .solution-nav {
             ${mainBlock(260)};
-            padding-top: 64px;
             background: #F1F6FA;
-            background-image: url(${solution_bg});
-            background-repeat: no-repeat;
-            background-position: -30px 0px;
             .content {
                 display: flex;
+                padding-top: 64px;
                 align-items: center;
+                background-image: url(${solution_bg});
+                background-repeat: no-repeat;
+                background-position: right bottom;
                 .nav-title {
                     & > div:first-child {
                         font-size: 44px;
@@ -67,6 +67,30 @@ export function makeStyles() {
                         .k-icon {
                             font-size: 25px;
                         }
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .solution-nav {
+                .content  {
+                    padding-left: 20px;
+                }
+            } 
+            .solution-content {
+                .solution-row {
+                    flex-direction: column;
+                    padding: 0 16px;
+                }
+                .solution-item {
+                    width: auto;
+                    & > div:first-child {
+                        width: auto;
+                        height: auto;
+                    }
+                    img {
+                        width: 100%;
                     }
                 }
             }

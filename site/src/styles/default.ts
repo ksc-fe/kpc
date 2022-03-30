@@ -18,6 +18,11 @@ export const mainBlock = (height: number) => {
         & > div:first-child {
             width: ${global.contentWidth}px;
         }
+        @media (max-width: 768px) {
+            & > div:first-child {
+                width: 100%;
+            }
+        }
     `;
 }
 

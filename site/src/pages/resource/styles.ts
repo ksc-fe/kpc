@@ -11,14 +11,14 @@ export function makeStyles() {
         font-family: ${global.fontFamily};
         .source-nav {
             ${mainBlock(260)};
-            padding-top: 64px;
             background: #F1F6FA;
-            background-image: url(${resource_bg});
-            background-repeat: no-repeat;
-            background-position: 750px 10px;
             .content {
                 display: flex;
+                padding-top: 64px;
                 align-items: center;
+                background-image: url(${resource_bg});
+                background-repeat: no-repeat;
+                background-position: right bottom;
                 .nav-title {
                     & > div:first-child {
                         font-size: 44px;
@@ -154,6 +154,52 @@ export function makeStyles() {
                     }
                     .priciple-item:not(:last-child) {
                         border-bottom: 1px solid #B0BDC8;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .source-nav {
+                .content {
+                    padding-left: 20px;
+                }
+            }
+            .source-content {
+                height: auto;
+                padding: 8px;
+                .content-top {
+                    height: auto;
+                }
+                .main-title {
+                    padding: 26px 16px;
+                }
+                .secondary-title {
+                    padding-left: 16px;
+                }
+                .workflow-box {
+                    flex-direction: column;
+                    padding: 8px;
+                    height: auto;
+                    width: 100%;
+                    align-items: normal;
+                }
+                .card-content-box {
+                    height: auto;
+                    flex-direction: column;
+                }
+
+                .content-bottom {
+                    height: auto;
+                    flex-direction: column;
+                    .tool-box {
+                        padding: 26px 16px;
+                        margin-right: 0;
+                    }
+                    .principle {
+                        width: auto;
+                        margin-top: 20px;
+                        padding: 26px 16px;
                     }
                 }
             }

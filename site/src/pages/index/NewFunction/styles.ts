@@ -104,8 +104,7 @@ export function makeStyles(themeColor: string) {
 							padding-top: 8px;
 						}
 						.comp-list-btn {
-							width: 120px;
-							height: 40px;
+                            margin-right: 20px;
 						}
 						.select-box {
 							.k-select {
@@ -171,11 +170,6 @@ export function makeStyles(themeColor: string) {
 								height: 32px;
 							}
 						}
-						.slider-box {
-							.k-slider {
-								width: 170px;
-							}
-						}
 						.rate-box, .radio-box {
 							padding-left: 20px;
 						}
@@ -197,7 +191,6 @@ export function makeStyles(themeColor: string) {
 							.comp-item {
 								height: 100%;
 								flex-grow: 1;
-								width: 0;
 							}
 						}
 						.input-select {
@@ -324,5 +317,51 @@ export function makeStyles(themeColor: string) {
 				}
 			}
 		}
+
+
+        @media (max-width: 768px) {
+            display: block;
+            padding: 0 20px;
+            height: auto;
+            .new-fn-box {
+                width: auto !important;
+                .card-wrapper {
+                    height: auto;
+                    > div:first-child {
+                        .card-box {
+                            position: relative;
+                            display: block;
+                        }
+                    }
+                    .resource-box {
+                        gap: 12px;
+                    }
+                    .component-box {
+                        .comp-content {
+                            padding: 35px 12px 12px;
+                            .select-box {
+                                .k-select {
+                                    width: 60px;
+                                }
+                            }
+                        }
+                    }
+                    .animate-box {
+                        display: block;
+                        .animate-left {
+                            width: auto;
+                            height: 176px;
+                        }
+                        .animate-right {
+                            width: auto;
+                            margin-top: 12px;
+                        }
+                    }
+                }
+                .arrow-btn {
+                    display: none;
+                }
+            }
+        }
     `
 }

@@ -171,5 +171,34 @@ export function makeStyles() {
                 }
             }
         }
+
+        @media (max-width: 768px) {
+            display: block;
+            padding: 0 20px;
+            height: auto;
+            .cp-content {
+                width: auto !important;
+                flex-direction: column;
+                img {
+                    max-width: 100%;
+                }
+                .color-box {
+                    .color-wrapper {
+                        width: auto;
+                    }
+                }
+                & > div:last-child {
+                    width: auto;
+                }
+                .cp-box {
+                    display: block;
+                    height: auto;
+                    margin: 12px 0 20px;
+                    & > div:first-child {
+                        height: 20px;
+                    }
+                }
+            }
+        }
     `
 }
