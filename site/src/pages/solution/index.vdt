@@ -38,64 +38,56 @@ import ob_3 from '../../imgs/industry/ob_3.png';
 import ob_4 from '../../imgs/industry/ob_4.png';
 
 const templateList = [
-    [
-        {
-            name: '通用-表单',
-            img: tpl_1,
-            templateList: [form_1, form_2]
-        },
-        {
-            name: '通用-登录',
-            img: tpl_2,
-            templateList: [login_1, login_2]
-        },
-        {
-            name: '通用-个人中心',
-            img: tpl_3,
-            templateList: [personal_1]
-        },
-    ],
-    [
-        {
-            name: '通用-列表',
-            img: tpl_4,
-            templateList: [list_1]
-        },
-        {
-            name: '通用-详情',
-            img: tpl_5,
-            templateList: [detail_1]
-        },
-        {
-            name: '通用-总览',
-            img: tpl_6,
-            templateList: [overview_1, overview_2]
-        },
-    ],
-    [
-        {
-            name: '行业-监控',
-            img: tpl_7,
-            templateList: [ob_1, ob_2, ob_3, ob_4]
-        },
-        {
-            name: '行业-教育',
-            img: tpl_8,
-            templateList: [edu_1, edu_2, edu_3]
-        },
-        {
-            name: '行业-人工智能',
-            img: tpl_9,
-            templateList: [ai_1, ai_2, ai_3, ai_4]
-        },
-    ],
-    [
-        {
-            name: '行业-IOT',
-            img: tpl_10,
-            templateList: [iot_1, iot_2, iot_3, iot_4]
-        }
-    ],
+    {
+        name: '通用-表单',
+        img: tpl_1,
+        templateList: [form_1, form_2]
+    },
+    {
+        name: '通用-登录',
+        img: tpl_2,
+        templateList: [login_1, login_2]
+    },
+    {
+        name: '通用-个人中心',
+        img: tpl_3,
+        templateList: [personal_1]
+    },
+    {
+        name: '通用-列表',
+        img: tpl_4,
+        templateList: [list_1]
+    },
+    {
+        name: '通用-详情',
+        img: tpl_5,
+        templateList: [detail_1]
+    },
+    {
+        name: '通用-总览',
+        img: tpl_6,
+        templateList: [overview_1, overview_2]
+    },
+    {
+        name: '行业-监控',
+        img: tpl_7,
+        templateList: [ob_1, ob_2, ob_3, ob_4]
+    },
+    {
+        name: '行业-教育',
+        img: tpl_8,
+        templateList: [edu_1, edu_2, edu_3]
+    },
+    {
+        name: '行业-人工智能',
+        img: tpl_9,
+        templateList: [ai_1, ai_2, ai_3, ai_4]
+    },
+    {
+        name: '行业-IOT',
+        img: tpl_10,
+        templateList: [iot_1, iot_2, iot_3, iot_4]
+    }
 ];
 
 const {showImgBox, curImgList} = this.get();
@@ -112,8 +104,8 @@ const {showImgBox, curImgList} = this.get();
         </div>
         <div class="solution-content">
             <div>
-                <div class="solution-row" v-for={templateList}>
-                    <div class="solution-item" v-for={$value}>
+                <div class="solution-row">
+                    <div class="solution-item" v-for={templateList}>
                         <div>
                             <img 
                                 src={$value.img} 

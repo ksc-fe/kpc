@@ -108,6 +108,12 @@ export function makeStyles() {
                         }
                     }
                 }
+                .link-list {
+                    gap: 20px;
+                    > div {
+                        margin-right: 0;
+                    }
+                }
             }
             .copy-right-info {
                 padding: 20px;

@@ -195,6 +195,15 @@ export function makeStyles() {
                     .tool-box {
                         padding: 26px 16px;
                         margin-right: 0;
+                        .tool-item {
+                            max-width: 500px;
+                        }
+                        .process-box {
+                            padding-left: 15px;
+                        }
+                        .expect-box {
+                            background-position: -24px;
+                        }
                     }
                     .principle {
                         width: auto;

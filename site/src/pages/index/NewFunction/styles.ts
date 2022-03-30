@@ -58,6 +58,7 @@ export function makeStyles(themeColor: string) {
 						display: flex;
 						align-items: center;
 						padding: 0 22px;
+                        gap: 10px;
 						& > div:first-child {
 							flex-grow: 1;
 						}
@@ -343,6 +344,15 @@ export function makeStyles(themeColor: string) {
                                 .k-select {
                                     width: 60px;
                                 }
+                            }
+                            .slider-radio-box {
+                                flex-direction: column;
+                                gap: 10px;
+                                margin: 0 0 15px;
+                                align-items: start;
+                            }
+                            .radio-box {
+                                padding-left: 0;
                             }
                         }
                     }
