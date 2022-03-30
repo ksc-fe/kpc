@@ -12,12 +12,15 @@ export const rotate = keyframes`
 `;
 
 export const waveEffect = keyframes`
-    100% {
-        top: -3px;
-        right: -3px;
-        bottom: -3px;
-        left: -3px;
+    90% {
         opacity: 0.4;
+    }
+    100% {
+        top: -4px;
+        right: -4px;
+        bottom: -4px;
+        left: -4px;
+        opacity: 0.05;
         border: 1px solid var(--var-wave-color);
     }
 `;
