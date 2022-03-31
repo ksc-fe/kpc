@@ -264,7 +264,7 @@ export function makeItemStyles() {
             > .k-menu-title {
                 color: ${menu.item.hoverColor};
                 .k-menu-arrow {
-                    transform: rotate(180deg);
+                    transform: rotateX(180deg);
                 }
             }
         }

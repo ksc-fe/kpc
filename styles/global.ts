@@ -153,9 +153,10 @@ injectGlobal`
             right: 0;
             bottom: 0;
             left: 0;
-            opacity: 0;
-            border-radius: inherit;
-            animation: ${waveEffect} 0.2s ease;
+            opacity: 0.6;
+            border-radius: 4px;
+            z-index: 2;
+            animation: ${waveEffect} 0.15s ease-in;
             animation-fill-mode: forwards;
         }
     }

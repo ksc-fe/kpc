@@ -56,6 +56,7 @@ const treeNodes = (nodes) => {
                 <div class={labelClassNameObj}>
                     <Icon class="k-tree-icon ion-android-arrow-dropdown" 
                         v-if={node.children && node.loaded !== false}
+                        hoverable
                         ev-click={(e) => {
                             // it may be in dropdownMenu, e.g. TreeSelect
                             e._ignore = true;
