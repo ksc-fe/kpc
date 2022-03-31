@@ -159,5 +159,11 @@ injectGlobal`
             animation: ${waveEffect} 0.15s ease-in;
             animation-fill-mode: forwards;
         }
+        &.k-circle,
+        &.k-radio-wrapper {
+            &:after {
+                border-radius: calc(${theme.large.height} / 2);
+            }
+        }
     }
 `;

@@ -1,5 +1,6 @@
 import {getRestProps} from '../utils';
 import makeStyles from './styles';
+import {Wave} from '../wave';
 
 const {
     className, disabled, falseValue, 
@@ -44,18 +45,20 @@ const events = [
     ev-keypress={this.onKeypress}
     {...events}
 >
-    <span class="k-checkbox-wrapper">
-        <input
-            type="checkbox" 
-            checked={isChecked}
-            value={trueValue}
-            v-model-true={trueValue}
-            v-model-false={falseValue}
-            disabled={disabled}
-            tabindex="-1"
-            ref={this.inputRef}
-            {...getRestProps(this, rest)}
-        />
-    </span>
+    <Wave disabled={disabled}>
+        <span class="k-checkbox-wrapper">
+            <input
+                type="checkbox" 
+                checked={isChecked}
+                value={trueValue}
+                v-model-true={trueValue}
+                v-model-false={falseValue}
+                disabled={disabled}
+                tabindex="-1"
+                ref={this.inputRef}
+                {...getRestProps(this, rest)}
+            />
+        </span>
+    </Wave>
     <span class="k-checkbox-text" v-if={children}>{children}</span>
 </label>
