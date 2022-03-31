@@ -31,18 +31,18 @@ export class Wave extends Component<WaveProps> {
         const children = this.get('children') as VNode;
         if (process.env.NODE_ENV !== 'production') {
             if (!children || (isArray(children) && children.length > 1)) {
-                throw new Error('Wave must receive one Element children');
+                throw new Error('Wave must receive only one Element children');
             }
         }
         return children;
     };
 
-    private instance: Element | null = null;
+    private instance: HTMLElement | null = null;
 
     @bind
     mounted() {
         const children = this.get('children') as VNode;
-        const node = findDomFromVNode(children, true) as Element;
+        const node = findDomFromVNode(children, true) as HTMLElement;
         if (!node || node.nodeType !== 1) {
             return;
         }
@@ -72,7 +72,7 @@ export class Wave extends Component<WaveProps> {
 
         this.resetAnimation();
         // Input is not border, so set to defalut border color
-        const isInput = instance?.classList.contains('k-input-wrapper');
+        const isInput = instance!.classList.contains('k-input-wrapper');
         if (!isInput) {
             const getNodeComputedStyle = getComputedStyle(instance!);
             const borderWidth = getNodeComputedStyle.getPropertyValue('border-top-width') || 
@@ -91,7 +91,7 @@ export class Wave extends Component<WaveProps> {
                 !/rgba\((?:\d*, ){3}0\)/.test(borderColor) && // any transparent rgba color
                 borderColor !== 'transparent'
             ) {
-                document.documentElement.style.setProperty('--var-wave-color', borderColor);
+                instance!.style.setProperty('--var-wave-color', borderColor);
             }
         } else {
             // fix: 点击输入框中的icon时，此时输入框不需要动效
@@ -105,8 +105,11 @@ export class Wave extends Component<WaveProps> {
 
     @bind
     resetAnimation() {
-        document.documentElement.style.removeProperty('--var-wave-color');
-        this.instance?.removeEventListener('animationend', this.resetAnimation);
-        this.instance?.setAttribute(animatingName, 'false');
+        const node = this.instance;
+        if (!node) return;
+
+        node.style.removeProperty('--var-wave-color');
+        node.removeEventListener('animationend', this.resetAnimation);
+        node.setAttribute(animatingName, 'false');
     }
 }

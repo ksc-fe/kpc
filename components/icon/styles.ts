@@ -17,11 +17,6 @@ const defaults = {
         small: '14px',
         mini: '12px',
     },
-
-    hover: {
-        get bgColor() { return theme.color.hoverBg },
-        padding: '2px'
-    }
 };
 
 let icon: typeof defaults;
@@ -51,8 +46,7 @@ export default function makeStyles(color?: string) {
                 &.k-${color} {
                     color: ${_color};
                     &.k-hoverable:hover {
-                        color: ${_color};
-                        background: ${palette(_color, -4)};
+                        color: ${palette(_color, -2)};
                     }
                 }
             ` 
@@ -68,21 +62,14 @@ export default function makeStyles(color?: string) {
 
         // hoverable
         &.k-hoverable {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
-            padding: ${icon.hover.padding};
-            aspect-ratio: 1;
-            width: calc(1em + ${icon.hover.padding} * 2);
+            transition: color ${icon.transition};
             &:hover {
                 color: ${theme.color.primary};
-                background: ${icon.hover.bgColor};
             }
             ${color && `
                 &:hover {
-                    color: ${color};
-                    background: ${palette(color, -4)} !important;
+                    color: ${palette(color, -2)} !important;
                 }
             `}
         }

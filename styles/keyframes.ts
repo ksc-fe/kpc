@@ -21,6 +21,5 @@ export const waveEffect = keyframes`
         bottom: -4px;
         left: -4px;
         opacity: 0.05;
-        border: 1px solid var(--var-wave-color);
     }
 `;

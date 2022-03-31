@@ -120,6 +120,9 @@ export function makeStyles() {
             transition: opacity ${input.transition};
             pointer-events: none;
             color: ${input.clearIconColor};
+            + * {
+                margin-left: ${input.clearIconGap};
+            }
         }
         &:hover .k-input-clear.k-input-show {
             opacity: 1;

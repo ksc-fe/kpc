@@ -149,15 +149,13 @@ injectGlobal`
             display: block;
             content: '';
             position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
+            inset: -1px;
             opacity: 0.6;
             border-radius: 4px;
             z-index: 2;
-            animation: ${waveEffect} 0.15s ease-in;
+            animation: ${waveEffect} .15s ease-in;
             animation-fill-mode: forwards;
+            border: 1px solid var(--var-wave-color);
         }
         &.k-circle,
         &.k-radio-wrapper {
