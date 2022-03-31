@@ -61,26 +61,25 @@ const inputProps = {
 if (hasInputValue) {
     inputProps.value = inputValue;
 }
-
-<Wave disabled={waveDisabled}>
-    <div class={classNameObj}
-        style={width != null ? addStyle(style, {width: `${width}px`}) : style} 
-        ev-click={click}
-        ev-mouseenter={mouseenter}
-        ev-mouseleave={mouseleave}
-    >
-        {do {
-            if ($blocks.prepend) {
-                // if the children of this block is text node
-                // we add a padding to the wrapper node
-                // so we handle this block manually
-                const children = $blocks.prepend(noop);
-                <div class={{
-                    "k-input-prepend": true, 
-                    "k-input-padding": isTextBlock(children)
-                }}>{children}</div>
-            }
-        }}
+<div class={classNameObj}
+    style={width != null ? addStyle(style, {width: `${width}px`}) : style} 
+    ev-click={click}
+    ev-mouseenter={mouseenter}
+    ev-mouseleave={mouseleave}
+>
+    {do {
+        if ($blocks.prepend) {
+            // if the children of this block is text node
+            // we add a padding to the wrapper node
+            // so we handle this block manually
+            const children = $blocks.prepend(noop);
+            <div class={{
+                "k-input-prepend": true, 
+                "k-input-padding": isTextBlock(children)
+        }}>{children}</div>
+        }
+    }}
+    <Wave disabled={waveDisabled || disabled}>
         <div class="k-input-wrapper">
             <div class="k-input-prefix" v-if={$blocks.prefix}>
                 <b:prefix />
@@ -111,14 +110,14 @@ if (hasInputValue) {
                 ref={fakeRef}
             >{!hasValue ? placeholder : inputValue}</div>
         </div>
-        {do {
-            if ($blocks.append) {
-                const children = $blocks.append(noop);
-                <div class={{
-                    "k-input-append": true, 
-                    "k-input-padding": isTextBlock(children)
-                }}>{children}</div>
-            }
-        }}
-    </div>
-</Wave>
+    </Wave>
+    {do {
+        if ($blocks.append) {
+            const children = $blocks.append(noop);
+            <div class={{
+                "k-input-append": true, 
+                "k-input-padding": isTextBlock(children)
+            }}>{children}</div> 
+        }
+    }}
+</div>

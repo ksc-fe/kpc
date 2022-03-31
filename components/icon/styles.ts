@@ -19,7 +19,7 @@ const iconStyles = {
     },
 
     hover: {
-        get bgColor() { return palette(theme.color.primary, -4) },
+        get bgColor() { return theme.color.hoverBg },
         padding: '2px'
     }
 };
@@ -60,9 +60,6 @@ export default function makeStyles(color?: string) {
                     color: ${_color};
                     &.k-hoverable:hover {
                         color: ${palette(_color, -2)};
-                        &:after {
-                            display: none;
-                        }
                     }
                 }
             ` 

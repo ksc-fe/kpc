@@ -62,16 +62,17 @@ export class Wave extends Component<WaveProps> {
     private onClick(e: Event) {
         const {instance} = this;
         const {disabled} = this.get();
+        const node = e.target as HTMLElement;
         if (disabled ||
             instance!.getAttribute('disabled') || 
             instance!.className.indexOf('disabled') >= 0 ||
-            isHidden(e.target as HTMLElement)) {
+            isHidden(node)) {
             return;
         }
 
         this.resetAnimation();
         // Input is not border, so set to defalut border color
-        const isInput = instance?.classList.contains('k-input');
+        const isInput = instance?.classList.contains('k-input-wrapper');
         if (!isInput) {
             const getNodeComputedStyle = getComputedStyle(instance!);
             const borderWidth = getNodeComputedStyle.getPropertyValue('border-top-width') || 
@@ -92,6 +93,10 @@ export class Wave extends Component<WaveProps> {
             ) {
                 document.documentElement.style.setProperty('--var-wave-color', borderColor);
             }
+        } else {
+            // fix: 点击输入框中的icon时，此时输入框不需要动效
+            const isClickIcon = node.classList.contains('k-icon');
+            if (isClickIcon) return;
         }
 
         instance!.addEventListener('animationend', this.resetAnimation);
