@@ -29,7 +29,7 @@ const defaults = {
     },
 };
 
-let message: any;
+let message: typeof defaults;
 setDefault(() => {
     message = deepDefaults(theme, {message: defaults}).message;
 });

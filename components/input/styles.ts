@@ -62,7 +62,7 @@ const defaults = deepDefaults(
     }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
 )
 
-let input: any;
+let input: typeof defaults;
 setDefault(() => {
     input = deepDefaults(theme, {input: defaults}).input;
 })

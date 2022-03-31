@@ -15,7 +15,7 @@ const defaults = {
     },
 };
 
-let rate: any;
+let rate: typeof defaults;
 setDefault(() => {
     rate = deepDefaults(theme, {rate: defaults}).rate;
 });

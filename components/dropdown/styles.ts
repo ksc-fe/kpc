@@ -22,7 +22,7 @@ const defaults = {
     }
 };
 
-let dropdown: any;
+let dropdown: typeof defaults;
 setDefault(() => {
     dropdown = deepDefaults(theme, {dropdown: defaults}).dropdown;
 });

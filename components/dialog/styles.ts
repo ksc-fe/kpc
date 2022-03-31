@@ -61,7 +61,7 @@ const defaults = {
     },
 };
 
-let dialog: any;
+let dialog: typeof defaults;
 setDefault(() => {
     dialog = deepDefaults(theme, {dialog: defaults}).dialog;
 });

@@ -33,7 +33,7 @@ const defaults = {
     },
 };
 
-let form: any;
+let form: typeof defaults;
 setDefault(() => {
     form = deepDefaults(theme, {form: defaults}).form;
 });

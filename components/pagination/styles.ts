@@ -52,7 +52,7 @@ const defaults = deepDefaults(
     }, {} as Record<Sizes, SizeStyles>)
 );
 
-let pagination: any;
+let pagination: typeof defaults;
 setDefault(() => {
     pagination = deepDefaults(theme, {pagination: defaults}).pagination;
 });

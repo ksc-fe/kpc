@@ -78,7 +78,7 @@ const defaults = {
     }
 };
 
-let menu: any;
+let menu: typeof defaults;
 setDefault(() => {
     menu = deepDefaults(theme, {menu: defaults}).menu;
 });

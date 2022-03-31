@@ -62,7 +62,7 @@ const defaults = {
     draggingOpacity: `.4`,
 };
 
-let table: any;
+let table: typeof defaults;
 setDefault(() => {
     table = deepDefaults(theme, {table: defaults}).table;
 });

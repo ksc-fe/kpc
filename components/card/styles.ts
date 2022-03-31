@@ -12,7 +12,7 @@ const defaults = {
     bgColor: '#fff',
 };
 
-let card: any;
+let card: typeof defaults;
 setDefault(() => {
     card = deepDefaults(theme, {card: defaults}).card;
 });

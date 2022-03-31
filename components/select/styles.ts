@@ -124,7 +124,7 @@ const defaults = deepDefaults(
     }, {} as Record<Sizes, SizeStyles>)
 );
 
-let select: any;
+let select: typeof defaults;
 setDefault(() => {
     select = deepDefaults(theme, {select: defaults}).select;
 });

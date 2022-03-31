@@ -25,7 +25,7 @@ const defaults = {
     }
 };
 
-let scrollSelect: any;
+let scrollSelect: typeof defaults;
 setDefault(() => {
     scrollSelect = deepDefaults(theme, {scrollSelect: defaults}).scrollSelect;
 });

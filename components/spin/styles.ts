@@ -13,7 +13,7 @@ const defaults = {
     miniWidth: `24px`,
 };
 
-let spin: any;
+let spin: typeof defaults;
 setDefault(() => {
     spin = deepDefaults(theme, {spin: defaults}).spin;
 });

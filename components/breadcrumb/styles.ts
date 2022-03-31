@@ -12,7 +12,7 @@ const defaults = {
     activeColor: `#262626`,
 };
 
-let breadcrumb: any;
+let breadcrumb: typeof defaults;
 setDefault(() => {
     breadcrumb = deepDefaults(theme, {breadcrumb: defaults}).breadcrumb;
 });

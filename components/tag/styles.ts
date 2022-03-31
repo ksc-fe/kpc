@@ -63,7 +63,7 @@ const defaults = deepDefaults(
     }, {} as {[key in Exclude<Types, 'disabled'>]: TypeStyles}),
 );
 
-let tag: any;
+let tag: typeof defaults;
 setDefault(() => {
     tag = deepDefaults(theme, {tag: defaults}).tag;
 });

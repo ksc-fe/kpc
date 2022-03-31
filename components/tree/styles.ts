@@ -34,7 +34,7 @@ const defaults = {
     get line() { return `1px dashed ${theme.color.border}` },
 };
 
-let tree: any;
+let tree: typeof defaults;
 setDefault(() => {
     tree = deepDefaults(theme, {tree: defaults}).tree;
 });

@@ -114,6 +114,11 @@ const defaults = deepDefaults(
         link: {
             get color() { return theme.color.link },
             get hoverColor() { return theme.color.linkHover },
+            get hoverBgColor() { return theme.color.hoverBg },
+        },
+
+        none: {
+            get hoverBgColor() { return theme.color.bg },
         },
 
         // ButtonGroup
@@ -137,7 +142,7 @@ const defaults = deepDefaults(
     btnSizeStyles,
 );
 
-let button: any;
+let button: typeof defaults;
 setDefault(() => {
     button = deepDefaults(theme, {button: defaults}).button;
 });
@@ -222,6 +227,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 color: ${link.color};
                 &:hover {
                     color: ${link.hoverColor};
+                    background: ${link.hoverBgColor};
                 }
             }
 
@@ -237,13 +243,16 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
 
             &.k-none,
             &.k-link {
+                background: transparent;
                 &, &:hover {
                     border: none;
-                    background: transparent;
                 }
                 &.k-active {
                     color: ${theme.color.primary};
                 }
+            }
+            &.k-none:hover {
+                background: ${button.none.hoverBgColor};
             }
 
             ${sizes.map(size => {

@@ -74,7 +74,7 @@ const defaults = {
     }
 };
 
-let upload: any;
+let upload: typeof defaults;
 setDefault(() => {
     upload = deepDefaults(theme, {upload: defaults}).upload;
 });

@@ -6,7 +6,7 @@ import {breakpoints, responsiveMap} from './constants';
 
 const defaults = {};
 
-let grid: any;
+let grid: typeof defaults;
 setDefault(() => {
     grid = deepDefaults(theme, {grid: defaults}).grid;
 });

@@ -62,9 +62,9 @@ const defaults = {
     }
 };
 
-let progress: any;
+let progress: typeof defaults;
 setDefault(() => {
-  progress = deepDefaults(theme, {progress: defaults}).progress;
+    progress = deepDefaults(theme, {progress: defaults}).progress;
 });
 
 export function makeStyles() {

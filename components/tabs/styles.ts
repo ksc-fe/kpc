@@ -64,7 +64,7 @@ const defaults = deepDefaults(
     }, {} as Record<Sizes, SizeStyles>)
 );
 
-let tabs: any;
+let tabs: typeof defaults;
 setDefault(() => {
     tabs = deepDefaults(theme, {tabs: defaults}).tabs;
 });

@@ -47,7 +47,7 @@ const defaults = {
     }
 };
 
-let slider: any;
+let slider: typeof defaults;
 setDefault(() => {
     slider = deepDefaults(theme, {slider: defaults}).slider;
 });

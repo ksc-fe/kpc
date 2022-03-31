@@ -8,7 +8,7 @@ import '../../styles/fonts/iconfont';
 import '../../styles/fonts/ionicons';
 import '../../styles/global';
 
-const iconStyles = {
+const defaults = {
     get transition() { return theme.transition.small },
 
     fontSize: {
@@ -24,9 +24,7 @@ const iconStyles = {
     }
 };
 
-const defaults = iconStyles;
-
-let icon: any;
+let icon: typeof defaults;
 setDefault(() => {
     icon = deepDefaults(theme, {icon: defaults}).icon;
 });

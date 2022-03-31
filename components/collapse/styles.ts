@@ -19,7 +19,7 @@ const defaults = {
     }
 };
 
-let collapse: any;
+let collapse: typeof defaults;
 setDefault(() => {
     collapse = deepDefaults(theme, {collapse: defaults}).collapse;
 });

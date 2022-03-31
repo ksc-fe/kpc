@@ -55,7 +55,7 @@ const defaults = deepDefaults(
     sizeStyles
 );
 
-let timeline: any;
+let timeline: typeof defaults;
 setDefault(() => {
     timeline = deepDefaults(theme, {timeline: defaults}).timeline;
 });
