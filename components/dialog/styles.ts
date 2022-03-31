@@ -127,10 +127,6 @@ export function makeDialogStyles() {
             top: ${dialog.header.closeTop};
             .k-icon {
                 font-size: ${dialog.header.closeIconFontSize};
-                &:hover:after {
-                    width: ${dialog.header.closeHoverWidth};
-                    height: ${dialog.header.closeHoverWidth};
-                }
             }
         }
 
