@@ -19,7 +19,7 @@ const iconStyles = {
     },
 
     hover: {
-        get bgColor() { return theme.color.hoverBg },
+        get bgColor() { return theme.color.bg },
         padding: '2px'
     }
 };
@@ -59,7 +59,10 @@ export default function makeStyles(color?: string) {
                 &.k-${color} {
                     color: ${_color};
                     &.k-hoverable:hover {
-                        color: ${palette(_color, -2)};
+                        // color: ${palette(_color, -2)};
+                        &:after {
+                            background: ${palette(_color, -4)};
+                        }
                     }
                 }
             ` 
@@ -82,7 +85,7 @@ export default function makeStyles(color?: string) {
             cursor: pointer;
             transition: color ${icon.transition};
             &:hover {
-                color: ${theme.color.primary};
+                // color: ${theme.color.primary};
                 &:after {
                     content: '';
                     position: absolute;
@@ -93,7 +96,10 @@ export default function makeStyles(color?: string) {
             }
             ${color && `
                 &:hover {
-                    color: ${palette(color, -2)} !important;
+                    // color: ${palette(color, -2)} !important;
+                    &:after {
+                        background: ${palette(color, -4)} !important;
+                    }
                 }
             `}
         }
