@@ -45,7 +45,7 @@ export function defaultTheme() {
             lightBlack: '#737373',
         },
         borderRadius: '2px',
-        boxShadow: '0 0 4px 0 rgba(0, 0, 0, .3)',
+        boxShadow: '0 0 16px 0 rgba(0, 0, 0, .1)',
         fontSize: '12px',
         lineHeight: 1.5,
     

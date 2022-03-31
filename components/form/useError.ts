@@ -3,11 +3,14 @@ import type {FormItem} from './item';
 import {useState, watchState} from '../../hooks/useState';
 import {messages as globalMessages, classNames as globalClassNames} from './methods';
 import {isFunction} from 'intact-shared';
+import {createContext} from '../context';
 
 // enum MessageOrClassname {
     // Message,
     // ClassName,
 // }
+
+export const context = createContext();
 
 export function useError() {
     const instance = useInstance() as FormItem;

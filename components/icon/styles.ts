@@ -19,7 +19,7 @@ const iconStyles = {
     },
 
     hover: {
-        get bgColor() { return theme.color.bg },
+        get bgColor() { return theme.color.hoverBg },
         padding: '2px'
     }
 };
@@ -44,12 +44,6 @@ export default function makeStyles(color?: string) {
             return css`
                 &.k-${size} {
                     font-size: ${fontSize};
-                    &.k-hoverable:hover{
-                        &:after {
-                            width: calc(${fontSize} + ${icon.hover.padding});
-                            height: calc(${fontSize} + ${icon.hover.padding});
-                        }
-                    }
                 }
             `
         })}
@@ -59,10 +53,8 @@ export default function makeStyles(color?: string) {
                 &.k-${color} {
                     color: ${_color};
                     &.k-hoverable:hover {
-                        // color: ${palette(_color, -2)};
-                        &:after {
-                            background: ${palette(_color, -4)};
-                        }
+                        color: ${_color};
+                        background: ${palette(_color, -4)};
                     }
                 }
             ` 
@@ -78,28 +70,21 @@ export default function makeStyles(color?: string) {
 
         // hoverable
         &.k-hoverable {
-            position: relative;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: color ${icon.transition};
+            padding: ${icon.hover.padding};
+            aspect-ratio: 1;
+            width: calc(1em + ${icon.hover.padding} * 2);
             &:hover {
-                // color: ${theme.color.primary};
-                &:after {
-                    content: '';
-                    position: absolute;
-                    width: calc(${icon.fontSize.default} + ${icon.hover.padding});
-                    height: calc(${icon.fontSize.default} + ${icon.hover.padding});
-                    background: ${icon.hover.bgColor};
-                }
+                color: ${theme.color.primary};
+                background: ${icon.hover.bgColor};
             }
             ${color && `
                 &:hover {
-                    // color: ${palette(color, -2)} !important;
-                    &:after {
-                        background: ${palette(color, -4)} !important;
-                    }
+                    color: ${color};
+                    background: ${palette(color, -4)} !important;
                 }
             `}
         }

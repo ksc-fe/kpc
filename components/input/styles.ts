@@ -14,7 +14,8 @@ const defaults = deepDefaults(
         bgColor: '#fff',
         get color() { return theme.color.text },
         get focusBorder() { return `1px solid ${theme.color.primary}` },
-        get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
+        // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
+        get hoverBorder() { return `1px solid ${theme.color.primary}` },
         get borderRadius() { return theme.borderRadius },
         get placeholderColor() { return theme.color.placeholder },
 
@@ -115,19 +116,10 @@ export function makeStyles() {
 
         // clearable
         .k-input-clear {
-            display: inline-block;
-            vertical-align: top;
-            cursor: pointer;
             opacity: 0;
             transition: opacity ${input.transition};
             pointer-events: none;
             color: ${input.clearIconColor};
-            &:hover {
-                color: ${theme.color.primary};
-            }
-            + * {
-                margin-left: ${input.clearIconGap};
-            }
         }
         &:hover .k-input-clear.k-input-show {
             opacity: 1;

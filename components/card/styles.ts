@@ -6,7 +6,7 @@ import '../../styles/global';
 const defaults = {
     border: '1px solid #e5e5e5',
     padding: '16px',
-    boxShadow: '0 0 20px 0 rgba(0, 0, 0, .06)',
+    boxShadow: '0 0 8px 0 rgba(0, 0, 0, .05)',
     headerHeight: '48px',
     headerFontSize: '14px',
     bgColor: '#fff',

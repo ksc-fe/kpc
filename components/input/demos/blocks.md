@@ -32,13 +32,13 @@ import {Input, Button, Icon} from 'kpc';
     </Input>
     <Input placeholder="please enter">
         <b:prefix><Icon class="k-icon-internet" /></b:prefix>
-        <b:suffix><Icon class="k-icon-search" /></b:suffix>
+        <b:suffix><Icon class="ion-ios-search" hoverable /></b:suffix>
     </Input>
     <Input placeholder="please enter">
         <b:prepend>http://</b:prepend>
         <b:append>.com</b:append>
         <b:prefix><Icon class="k-icon-internet" /></b:prefix>
-        <b:suffix><Icon class="k-icon-search" /></b:suffix>
+        <b:suffix><Icon class="ion-ios-search" hoverable /></b:suffix>
     </Input>
 </div>
 ```

@@ -5,11 +5,15 @@ export interface ProviderProps<T> {
     value?: T 
 }
 
+export interface ConsumerProps<T> {
+    defaultValue?: T
+}
+
 type ProviderConstructor<T> = ComponentConstructor<Component<ProviderProps<T>>> 
-type ConsumerConstructor = ComponentConstructor<Component<{}>> 
+type ConsumerConstructor<T> = ComponentConstructor<Component<ConsumerProps<T>>> 
 
 let id = 0;
-export function createContext<T = any>(defaultValue?: T): {Provider: ProviderConstructor<T>, Consumer: ConsumerConstructor} {
+export function createContext<T = any>(defaultValue?: T): {Provider: ProviderConstructor<T>, Consumer: ConsumerConstructor<T>} {
     const injectionKey = `$Context-${id++}`;
 
     class Provider extends Component<ProviderProps<T>> {
@@ -27,10 +31,10 @@ export function createContext<T = any>(defaultValue?: T): {Provider: ProviderCon
         }
     }
 
-    class Consumer extends Component {
-        static template = consumertemplate;
+    class Consumer extends Component<ConsumerProps<T>> {
+        static template = consumerTemplate;
 
-        private ref =  inject(injectionKey) as RefObject<T | undefined>;
+        private ref = inject(injectionKey, null);
     }
 
     return {Provider, Consumer};
@@ -40,8 +44,11 @@ function providerTemplate(this: Component) {
     return this.$props.children;
 }
 
-function consumertemplate(this: Component & {ref: RefObject<any>}) {
-    return (this.$props.children as unknown as Function)(this.ref.value);
+function consumerTemplate(this: Component & {ref: RefObject<any>}) {
+    const ref = this.ref;
+    const props = this.$props as any;
+    const value = ref && ref.value || props && props.value;
+    return (this.$props.children as unknown as Function)(value);
 }
 
 // Maybe like legency context api of React
