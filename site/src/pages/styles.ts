@@ -119,7 +119,7 @@ export function makeHeaderStyles() {
                     display: block;
                 }
                 .nav-menu-list {
-                    width: 120px;
+                    width: 100%;
                     .active {
                         color: ${theme.color.primary};
                     }

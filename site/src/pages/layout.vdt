@@ -59,7 +59,7 @@ const {themeColor, colorList, curLang} = this.get();
             </Tabs>
             <Dropdown trigger="click"
                 container={dom => dom}
-                position={{my: 'center top', at: 'center bottom'}}
+                position={{my: 'center top+17', at: 'center bottom', collision: 'flipfit'}}
             >
                 <Button type="none" icon class="menu-btn">
                     <Icon class="ion-navicon" size="large" />
