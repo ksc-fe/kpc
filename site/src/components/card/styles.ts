@@ -11,6 +11,9 @@ export function makeStyles() {
         padding: 24px 48px;
         font-family: PingFang SC;
         vertical-align: top;
+        &:hover {
+            box-shadow: 0 0 16px rgba(0, 0, 0, .1);
+        }
         .title {
             height: 45px;
             display: flex;
