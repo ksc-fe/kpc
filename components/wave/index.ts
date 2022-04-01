@@ -1,32 +1,34 @@
 // @reference: https://github.com/ant-design/ant-design/blob/master/components/_util/wave.tsx
-import {Component, TypeDefs, findDomFromVNode, VNode} from 'intact';
+import {Component, TypeDefs, findDomFromVNode, VNode, nextTick} from 'intact';
 import {isArray} from 'intact-shared';
 import {bind} from '../utils';
-
-const animatingName = 'kpc-click-animating';
+import {makeStyles} from './styles';
+import {theme} from '../../styles/theme';
 
 function isHidden(element: HTMLElement) {
     return !element || element.offsetParent === null || element.hidden;
 }
 
-function isNotGrey(color: string) {
-    const match = (color || '').match(/rgba?\((\d*), (\d*), (\d*)(, [\d.]*)?\)/);
-    if (match && match[1] && match[2] && match[3]) {
-      return !(match[1] === match[2] && match[2] === match[3]);
-    }
-    return true;
-}
-
 export interface WaveProps {
     disabled?: boolean
+    color?: string
+    inset?: string
 }
 
 const typeDefs: Required<TypeDefs<WaveProps>> = {
     disabled: Boolean,
+    color: String,
+    inset: String,
 };
+
+const defaults = (): Partial<WaveProps> => ({
+    color: theme.color.primary,
+    inset: '0px'
+});
 
 export class Wave extends Component<WaveProps> {
     static typeDefs = typeDefs;
+    static defaults = defaults;
     static template = function(this: Wave) {
         const children = this.get('children') as VNode;
         if (process.env.NODE_ENV !== 'production') {
@@ -38,6 +40,8 @@ export class Wave extends Component<WaveProps> {
     };
 
     private instance: HTMLElement | null = null;
+    private className: string = makeStyles(this.get('color')!, this.get('inset')!);
+    private timer: number = 0;
 
     @bind
     mounted() {
@@ -63,44 +67,22 @@ export class Wave extends Component<WaveProps> {
         const {instance} = this;
         const {disabled} = this.get();
         const node = e.target as HTMLElement;
+        const isInput = instance!.classList.contains('k-input-wrapper');
         if (disabled ||
             instance!.getAttribute('disabled') || 
             instance!.className.indexOf('disabled') >= 0 ||
-            isHidden(node)) {
+            isHidden(node!) ||
+            // fix: 点击输入框中的icon时，此时输入框不需要动效
+            (isInput && node!.classList.contains('k-icon'))) {
             return;
         }
 
         this.resetAnimation();
-        // Input is not border, so set to defalut border color
-        const isInput = instance!.classList.contains('k-input-wrapper');
-        if (!isInput) {
-            const getNodeComputedStyle = getComputedStyle(instance!);
-            const borderWidth = getNodeComputedStyle.getPropertyValue('border-top-width') || 
-            getNodeComputedStyle.getPropertyValue('border-width');
-            if (borderWidth === '0px') return;
-
-            const borderColor = getNodeComputedStyle.getPropertyValue('border-top-color') ||
-                getNodeComputedStyle.getPropertyValue('border-color') ||
-                getNodeComputedStyle.getPropertyValue('background-color');
-            // Not white or transparent 
-            if (
-                borderColor &&
-                borderColor !== '#ffffff' &&
-                borderColor !== 'rgb(255, 255, 255)' &&
-                isNotGrey(borderColor) &&
-                !/rgba\((?:\d*, ){3}0\)/.test(borderColor) && // any transparent rgba color
-                borderColor !== 'transparent'
-            ) {
-                instance!.style.setProperty('--var-wave-color', borderColor);
-            }
-        } else {
-            // fix: 点击输入框中的icon时，此时输入框不需要动效
-            const isClickIcon = node.classList.contains('k-icon');
-            if (isClickIcon) return;
-        }
-
+      
         instance!.addEventListener('animationend', this.resetAnimation);
-        instance!.setAttribute(animatingName, 'true');
+        this.timer = window.setTimeout(() => {        
+            instance!.classList.add(this.className);
+        });
     }
 
     @bind
@@ -108,8 +90,8 @@ export class Wave extends Component<WaveProps> {
         const node = this.instance;
         if (!node) return;
 
-        node.style.removeProperty('--var-wave-color');
+        node.classList.contains(this.className) && node.classList.remove(this.className);
         node.removeEventListener('animationend', this.resetAnimation);
-        node.setAttribute(animatingName, 'false');
+        clearTimeout(this.timer);
     }
 }

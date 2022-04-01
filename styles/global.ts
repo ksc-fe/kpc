@@ -1,6 +1,5 @@
 import {injectGlobal, css} from '@emotion/css';
 import {theme} from './theme';
-import {waveEffect} from './keyframes';
 import {palette}  from '../styles/utils';
 
 const slideDirections = {
@@ -141,27 +140,5 @@ injectGlobal`
     .c-middle {
         display: inline-block;
         vertical-align: middle;
-    }
-
-    [kpc-click-animating='true'] {
-        position: relative;
-        &::after {
-            display: block;
-            content: '';
-            position: absolute;
-            inset: -1px;
-            opacity: 0.6;
-            border-radius: 4px;
-            z-index: 2;
-            animation: ${waveEffect} .15s ease-in;
-            animation-fill-mode: forwards;
-            border: 1px solid var(--var-wave-color);
-        }
-        &.k-circle,
-        &.k-radio-wrapper {
-            &:after {
-                border-radius: calc(${theme.large.height} / 2);
-            }
-        }
     }
 `;
