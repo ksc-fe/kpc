@@ -5,6 +5,9 @@ export function makeStyles(themeColor: string) {
     return css`
         background: #ffffff;
 		${mainBlock(544)};
+		.white-card:hover {
+			box-shadow: 0 0 16px rgba(0, 0, 0, .1);
+		}
 		.new-fn-box {
 			.title-box {
 				margin-top: 34px;
@@ -26,14 +29,18 @@ export function makeStyles(themeColor: string) {
 			}
 			.card-wrapper {
 				position: relative;
-				height: 335px;
-				margin-top: 62px;
+				height: 355px;
+				margin-top: 42px;
 				
 				& > div:first-child {
 					overflow: hidden;
 					height: 100%;
 					position: relative;
+					width: 1220px;
+					margin-left: -10px;
 					.card-box {
+						margin-left: 10px;
+						padding: 10px 0;
 						left: 0;
 						top: 0;
 						position: absolute;
@@ -41,6 +48,9 @@ export function makeStyles(themeColor: string) {
 						white-space: nowrap;
 						display: inline-block;	
 						transition: left .5s ease-out;
+						& > div {
+							height: 335px;
+						}
 					}
 				}
 
@@ -51,6 +61,21 @@ export function makeStyles(themeColor: string) {
 					justify-content: space-between;
 					color: #4B4B4B;
 					font-size: 16px;
+					img {
+						cursor: pointer;
+					}
+					.comp-download {
+						img {
+							border: 1px solid transparent;
+							border-radius: 8px;
+						}
+						img:hover {
+							border-color: #36acef;
+						}
+						img:active {
+							border-color: #0079c9;
+						}
+					}
 					& > div {
 						background: #FFFFFF;
 						border-radius: 8px;
@@ -299,13 +324,20 @@ export function makeStyles(themeColor: string) {
 					line-height: 54px;
 					transform: translateY(-50%);
 					text-align: center;
-					background: linear-gradient(110.56deg, #EFF3FA 33.16%, rgba(239, 243, 250, 0) 76.18%);
 					border: 1px solid #D1D1D1;
 					box-sizing: border-box;
 					border-radius: 50%;
 					.k-icon {
 						color: #5A5A68;
 						margin-right: 0;
+						transition: all .2s cubic-bezier(0.25, 0.1, 0.25, 1);
+					}
+					&:hover {
+						background: #0091ea;
+						border-color: #0091ea;
+						.k-icon {
+							color: #ffffff;
+						}	
 					}
 				}
 

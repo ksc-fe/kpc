@@ -101,6 +101,9 @@ export function makeHeaderStyles() {
                         box-shadow: 0px 4px 20px rgba(108, 103, 103, 0.25);
                         box-sizing: border-box;
                     }
+                    .color-item:hover {
+                        box-shadow: 0 0 16px rgba(0, 0, 0, .1);
+                    }
                 }
             }
 

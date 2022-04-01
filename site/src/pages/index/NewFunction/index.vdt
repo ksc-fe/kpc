@@ -12,6 +12,7 @@ import sketch_img from '../../../imgs/sketch_img.png';
 import axure_img from '../../../imgs/axure_img.png';
 import rectangle from '../../../imgs/rectangle.png';
 import menu_header from '../../../imgs/menu_header.png';
+import {getAxure, getSketch} from '../../resource/index';
 
 const {cardLeft, totalCards, curCardNum, cardsPerPage, 
     animationType, bezierValue, curTabIndex, textTop, 
@@ -69,15 +70,15 @@ const treeData = [
                         href="/resources"
                     >
                         <div class="resource-box">
-                            <div>
+                            <div class="white-card">
                                 <div>组件下载</div>
-                                <div>
-                                    <img src={axure_img} />
-                                    <img src={sketch_img} />
+                                <div class="comp-download">
+                                    <img src={axure_img} ev-click={getAxure} />
+                                    <img src={sketch_img} ev-click={getSketch} />
                                     <img src={rectangle} />
                                 </div>
                             </div>
-                            <div>
+                            <div class="white-card">
                                 <div>更多KD资源</div>
                                 <div>
                                     <img src={king_version_logo} />
@@ -90,7 +91,7 @@ const treeData = [
                         subTitle="即开即用，为品牌焕发新活力"
                         href="/docs/vue/"
                     >
-                        <div class="component-box">
+                        <div class="component-box white-card">
                             <Button class="refresh-btn" type="none" ev-click={this.changeComponentsGroup}>
                                 <Icon class="icon ion-refresh" style={{color: themeColor}}></Icon>
                                 <span>换一换</span>
@@ -167,13 +168,13 @@ const treeData = [
                         href="/docs/design/model-1/"
                     >
                         <div class="animate-box">
-                            <div class="animate-left">
+                            <div class="animate-left white-card">
                                 <BezierBox
                                     ev-valueChange={this.handleBezierValChange} 
                                     value={bezierValue}
                                 ></BezierBox>
                             </div>
-                            <div class="animate-right">
+                            <div class="animate-right white-card">
                                 <div>
                                     <div class="animate-title">曲线选择：</div>
                                     <div>
@@ -207,10 +208,18 @@ const treeData = [
                     </Card>
                 </div>
             </div>
-            <Button v-if={canPrev} class="arrow-btn prev-arrow" ev-click={this.handlePrevClick}>
+            <Button 
+                v-if={canPrev} 
+                class="arrow-btn prev-arrow" 
+                ev-click={this.handlePrevClick}
+            >
                 <Icon class="icon ion-chevron-left"></Icon>
             </Button>
-            <Button v-if={canNext} class="arrow-btn next-arrow" ev-click={this.handleNextClick}>
+            <Button 
+                v-if={canNext} 
+                class="arrow-btn next-arrow" 
+                ev-click={this.handleNextClick}
+            >
                 <Icon class="icon ion-chevron-right"></Icon>
             </Button>
         </div>
