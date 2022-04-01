@@ -83,6 +83,9 @@ export function makeMessageStyles() {
             position: absolute;
             right: 0;
             top: 0;
+            &:hover {
+                background: none;
+            }
             .k-icon {
                 font-size: ${message.closeFontSize};
             }
