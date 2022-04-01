@@ -58,7 +58,7 @@ const defaults = deepDefaults(
         },
         tag: {
             margin: `3px 8px 3px 0`,
-            padding: `2px 8px`,
+            padding: `5px 8px`,
             get borderRadius() { return theme.borderRadius },
             get bgColor() { return theme.color.bg },
             disabledBgColor: '#eee',

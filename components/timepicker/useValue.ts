@@ -9,7 +9,7 @@ import {
 } from '../datepicker/basepicker';
 import type {useDisabled} from '../datepicker/useDisabled';
 import type {usePanel} from '../datepicker/usePanel';
-import {NOW} from './constants';
+import {NOW_START, NOW_END} from './constants';
 import {PanelFlags} from '../datepicker/usePanel';
 
 export function useValue(
@@ -47,7 +47,7 @@ export function useValue(
     });
 
     function getPlaceholderDates(): StateValueItem {
-        return instance.get('range') ? [NOW, NOW] : NOW;
+        return instance.get('range') ? [NOW_START, NOW_END] : NOW_START;
     }
 
     function onChangeTimeByStep(v: string, flag: PanelFlags) {
