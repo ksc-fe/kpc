@@ -53,11 +53,10 @@ const handle = (
 
 const {removeFile} = this.files;
 const closeBtn = (value, index, icon) => (
-    <Button type="none" icon size="mini" class="k-upload-close"
+    <Icon class={{"k-upload-close": true, [icon]: true}}
         ev-click={() => removeFile(value, index)}
-    >
-        <Icon class={icon} />
-    </Button>
+        hoverable
+    />
 );
 
 const {show, close, image, isShow} = this.showImage;

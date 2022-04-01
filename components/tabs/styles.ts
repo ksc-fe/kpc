@@ -48,7 +48,7 @@ const defaults = deepDefaults(
 
         // no-border-card
         noBorderCard: {
-            bgColor: `#eee`,
+            get bgColor() { return theme.color.bg },
             gutter: `4px`,
         }
     },
@@ -226,10 +226,10 @@ export function makeStyles() {
                     right: 0;
                 }
             }
-            .k-vertical {
+            &.k-vertical {
                 border-right: none;
-                .k-tab {
-                    margin-top: ${tabs.noBorderCard.gutter};
+                .k-tab:not(:first-of-type) {
+                    margin: ${tabs.noBorderCard.gutter} 0 0;
                 }
                 .k-tabs-active-bar {
                     border: none;

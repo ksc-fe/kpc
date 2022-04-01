@@ -149,7 +149,7 @@ injectGlobal`
             display: block;
             content: '';
             position: absolute;
-            inset: -1px;
+            inset: 0px;
             opacity: 0.6;
             border-radius: 4px;
             z-index: 2;

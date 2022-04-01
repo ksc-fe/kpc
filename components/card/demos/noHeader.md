@@ -10,12 +10,12 @@ import {Card} from 'kpc';
 
 <div>
     <Card>
-        <div>11111</div>
-        <div>11111</div>
+        <div>卡片内容</div>
+        <div>卡片内容</div>
     </Card>
     <Card type="border">
-        <div>11111</div>
-        <div>11111</div>
+        <div>卡片内容</div>
+        <div>卡片内容</div>
     </Card>
 </div>
 ```
