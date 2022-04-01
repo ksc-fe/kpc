@@ -4,10 +4,6 @@ import {bind} from '../utils';
 import {makeStyles} from './styles';
 import {theme} from '../../styles/theme';
 
-// function isHidden(element: HTMLElement) {
-    // return !element || element.offsetParent === null || element.hidden;
-// }
-
 export interface WaveProps {
     disabled?: boolean
     color?: string
@@ -66,16 +62,10 @@ export class Wave extends Component<WaveProps> {
         const {instance} = this;
         const {disabled} = this.get();
         const node = e.target as HTMLElement;
-        const isInput = instance!.classList.contains('k-input-wrapper');
 
-        if (
-            // disabled ||
-            // instance!.getAttribute('disabled') || 
-            // instance!.className.indexOf('disabled') >= 0 ||
-            // isHidden(node!) ||
-            // fix: 点击输入框中的icon时，此时输入框不需要动效
-            isInput && node!.classList.contains('k-icon')
-        ) return;
+        // fix: 点击输入框中的icon时，此时输入框不需要动效
+        const isInput = instance!.classList.contains('k-input-wrapper');
+        if (isInput && node!.classList.contains('k-icon')) return;
 
         this.resetAnimation();
       
@@ -90,7 +80,7 @@ export class Wave extends Component<WaveProps> {
         const node = this.instance;
         if (!node) return;
 
-        node.classList.contains(this.className) && node.classList.remove(this.className);
+        node.classList.remove(this.className);
         node.removeEventListener('animationend', this.resetAnimation);
         clearTimeout(this.timer);
     }
