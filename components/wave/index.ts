@@ -65,7 +65,7 @@ export class Wave extends Component<WaveProps> {
 
         // fix: 点击输入框中的icon时，此时输入框不需要动效
         const isInput = instance!.classList.contains('k-input-wrapper');
-        if (isInput && node!.classList.contains('k-icon')) return;
+        if (disabled || isInput && node!.classList.contains('k-icon')) return;
 
         this.resetAnimation();
       
