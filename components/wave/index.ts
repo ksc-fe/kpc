@@ -1,13 +1,12 @@
-// @reference: https://github.com/ant-design/ant-design/blob/master/components/_util/wave.tsx
 import {Component, TypeDefs, findDomFromVNode, VNode, nextTick} from 'intact';
 import {isArray} from 'intact-shared';
 import {bind} from '../utils';
 import {makeStyles} from './styles';
 import {theme} from '../../styles/theme';
 
-function isHidden(element: HTMLElement) {
-    return !element || element.offsetParent === null || element.hidden;
-}
+// function isHidden(element: HTMLElement) {
+    // return !element || element.offsetParent === null || element.hidden;
+// }
 
 export interface WaveProps {
     disabled?: boolean
@@ -68,14 +67,15 @@ export class Wave extends Component<WaveProps> {
         const {disabled} = this.get();
         const node = e.target as HTMLElement;
         const isInput = instance!.classList.contains('k-input-wrapper');
-        if (disabled ||
-            instance!.getAttribute('disabled') || 
-            instance!.className.indexOf('disabled') >= 0 ||
-            isHidden(node!) ||
+
+        if (
+            // disabled ||
+            // instance!.getAttribute('disabled') || 
+            // instance!.className.indexOf('disabled') >= 0 ||
+            // isHidden(node!) ||
             // fix: 点击输入框中的icon时，此时输入框不需要动效
-            (isInput && node!.classList.contains('k-icon'))) {
-            return;
-        }
+            isInput && node!.classList.contains('k-icon')
+        ) return;
 
         this.resetAnimation();
       

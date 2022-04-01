@@ -3,7 +3,7 @@ import {Icon} from '../icon';
 import {makeButtonStyles} from './styles';
 import {DynamicButton} from './dynamicButton';
 import {Wave} from '../wave';
-import {theme} from '../../styles/theme';
+import {button as theme} from './styles';
 
 let {
     type, className, size, icon, circle, ref, key, tabindex,
@@ -63,10 +63,13 @@ const loadingIcon = (
 const buttonGroup = this.buttonGroup;
 const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
 const isCheckType = checkType !== 'none';
-const waveInset = '-1px';
-const waveColor = theme.color[type === 'default' || type === "secondary" ? 'primary' : type]
+const typeStyles = theme[type];
+const waveColor = typeStyles && typeStyles.borderColor || theme.primary.borderColor;
 
-<Wave disabled={loading || type === 'none' || type === 'link'} inset={waveInset} color={waveColor}>
+<Wave disabled={loading || type === 'none' || type === 'link'}
+    inset="-1px"
+    color={waveColor}
+>
     <DynamicButton 
         class={classNameObj}
         tagName={tagName}
