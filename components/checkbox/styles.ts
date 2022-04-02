@@ -43,7 +43,7 @@ const defaults = {
     }
 };
 
-let checkbox: any;
+let checkbox: typeof defaults;
 setDefault(() => {
     checkbox = deepDefaults(theme, {checkbox: defaults}).checkbox;
 });

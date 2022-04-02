@@ -36,14 +36,14 @@ import {Button, ButtonGroup} from 'kpc';
         <Button type="primary">重启</Button>
     </ButtonGroup>
     <br /><br />
-    <p>radio按钮组</p>
+    <p>单选按钮组</p>
     <ButtonGroup checkType="radio" v-model="city">
         <Button value="beijing">北京</Button>
         <Button value="shanghai" ref="__radioShanghai">上海</Button>
         <Button value="guangzhou">广州</Button>
         <Button value="shenzhen">深圳</Button>
     </ButtonGroup>
-    <p>checkbox按钮组</p>
+    <p>多选按钮组</p>
     <ButtonGroup checkType="checkbox" v-model="cities">
         <Button value="beijing" size="small">北京</Button>
         <Button value="shanghai" size="small" ref="__checkboxShanghai">上海</Button>

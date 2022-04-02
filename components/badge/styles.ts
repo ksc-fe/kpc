@@ -14,7 +14,7 @@ const defaults = {
     textColor: '#fff',
 };
 
-let badge: any;
+let badge: typeof defaults;
 setDefault(() => {
     badge = deepDefaults(theme, {badge: defaults}).badge;
 });

@@ -8,7 +8,7 @@ import '../../styles/fonts/iconfont';
 import '../../styles/fonts/ionicons';
 import '../../styles/global';
 
-const iconStyles = {
+const defaults = {
     get transition() { return theme.transition.small },
 
     fontSize: {
@@ -17,16 +17,9 @@ const iconStyles = {
         small: '14px',
         mini: '12px',
     },
-
-    hover: {
-        get bgColor() { return palette(theme.color.primary, -4) },
-        padding: '2px'
-    }
 };
 
-const defaults = iconStyles;
-
-let icon: any;
+let icon: typeof defaults;
 setDefault(() => {
     icon = deepDefaults(theme, {icon: defaults}).icon;
 });
@@ -44,12 +37,6 @@ export default function makeStyles(color?: string) {
             return css`
                 &.k-${size} {
                     font-size: ${fontSize};
-                    &.k-hoverable:hover{
-                        &:after {
-                            width: calc(${fontSize} + ${icon.hover.padding});
-                            height: calc(${fontSize} + ${icon.hover.padding});
-                        }
-                    }
                 }
             `
         })}
@@ -60,9 +47,6 @@ export default function makeStyles(color?: string) {
                     color: ${_color};
                     &.k-hoverable:hover {
                         color: ${palette(_color, -2)};
-                        &:after {
-                            display: none;
-                        }
                     }
                 }
             ` 
@@ -78,21 +62,10 @@ export default function makeStyles(color?: string) {
 
         // hoverable
         &.k-hoverable {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
             transition: color ${icon.transition};
             &:hover {
                 color: ${theme.color.primary};
-                &:after {
-                    content: '';
-                    position: absolute;
-                    width: calc(${icon.fontSize.default} + ${icon.hover.padding});
-                    height: calc(${icon.fontSize.default} + ${icon.hover.padding});
-                    background: ${icon.hover.bgColor};
-                }
             }
             ${color && `
                 &:hover {

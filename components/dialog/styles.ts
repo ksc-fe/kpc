@@ -61,7 +61,7 @@ const defaults = {
     },
 };
 
-let dialog: any;
+let dialog: typeof defaults;
 setDefault(() => {
     dialog = deepDefaults(theme, {dialog: defaults}).dialog;
 });
@@ -127,10 +127,6 @@ export function makeDialogStyles() {
             top: ${dialog.header.closeTop};
             .k-icon {
                 font-size: ${dialog.header.closeIconFontSize};
-                &:hover:after {
-                    width: ${dialog.header.closeHoverWidth};
-                    height: ${dialog.header.closeHoverWidth};
-                }
             }
         }
 

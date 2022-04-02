@@ -3,7 +3,7 @@ import type {TimepickerProps} from './';
 import {useState} from '../../hooks/useState';
 import type {useDisabled} from '../datepicker/useDisabled';
 import type {useFormats} from './useFormats';
-import {NOW} from './constants'
+import {NOW_START, NOW_END} from './constants'
 import {Dayjs} from 'dayjs';
 import {useReceive} from '../../hooks/useReceive';
 
@@ -28,9 +28,9 @@ export function useStep(
 
         if (step) {
             const data: Option[] = [];
-            const maxValue = maxDate.value || NOW.hour(23).minute(59).second(59);
+            const maxValue = maxDate.value || NOW_END;
             const stepValue = parseTime(step);
-            let value = minDate.value || NOW;
+            let value = minDate.value || NOW_START;
 
             const push = (value: Dayjs) => {
                 data.push({

@@ -23,9 +23,10 @@ type Position = {
     my?: string | [string, string]
     at?: string | [string, string]
     collision?: Collision | [Collision, Collision] 
+    collisionDirection?: ['left'] | ['top'] | ['left', 'top']
 }
 
-type Collision = 'left' | 'top' | 'none'
+type Collision = 'fit' | 'flip' | 'flipfit' | 'none'
 
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
 ```

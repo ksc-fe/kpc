@@ -57,7 +57,7 @@ const defaults = {
     }
 };
 
-let datepicker: any;
+let datepicker: typeof defaults;
 setDefault(() => {
     datepicker = deepDefaults(theme, {datepicker: defaults}).datepicker;
 });

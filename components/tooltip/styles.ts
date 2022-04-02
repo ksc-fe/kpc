@@ -31,7 +31,7 @@ const defaults = {
     smallPadding: '4px',
 };
 
-let tooltip: any;
+let tooltip: typeof defaults;
 setDefault(() => {
     tooltip = deepDefaults(theme, {tooltip: defaults}).tooltip;
 });

@@ -1,48 +1,47 @@
-// @reference: https://github.com/ant-design/ant-design/blob/master/components/_util/wave.tsx
-import {Component, TypeDefs, findDomFromVNode, VNode} from 'intact';
+import {Component, TypeDefs, findDomFromVNode, VNode, nextTick} from 'intact';
 import {isArray} from 'intact-shared';
 import {bind} from '../utils';
-
-const animatingName = 'kpc-click-animating';
-
-function isHidden(element: HTMLElement) {
-    return !element || element.offsetParent === null || element.hidden;
-}
-
-function isNotGrey(color: string) {
-    const match = (color || '').match(/rgba?\((\d*), (\d*), (\d*)(, [\d.]*)?\)/);
-    if (match && match[1] && match[2] && match[3]) {
-      return !(match[1] === match[2] && match[2] === match[3]);
-    }
-    return true;
-}
+import {makeStyles} from './styles';
+import {theme} from '../../styles/theme';
 
 export interface WaveProps {
     disabled?: boolean
+    color?: string
+    inset?: string
 }
 
 const typeDefs: Required<TypeDefs<WaveProps>> = {
     disabled: Boolean,
+    color: String,
+    inset: String,
 };
+
+const defaults = (): Partial<WaveProps> => ({
+    color: theme.color.primary,
+    inset: '0px'
+});
 
 export class Wave extends Component<WaveProps> {
     static typeDefs = typeDefs;
+    static defaults = defaults;
     static template = function(this: Wave) {
         const children = this.get('children') as VNode;
         if (process.env.NODE_ENV !== 'production') {
             if (!children || (isArray(children) && children.length > 1)) {
-                throw new Error('Wave must receive one Element children');
+                throw new Error('Wave must receive only one Element children');
             }
         }
         return children;
     };
 
-    private instance: Element | null = null;
+    private instance: HTMLElement | null = null;
+    private className: string = makeStyles(this.get('color')!, this.get('inset')!);
+    private timer: number = 0;
 
     @bind
     mounted() {
         const children = this.get('children') as VNode;
-        const node = findDomFromVNode(children, true) as Element;
+        const node = findDomFromVNode(children, true) as HTMLElement;
         if (!node || node.nodeType !== 1) {
             return;
         }
@@ -62,46 +61,27 @@ export class Wave extends Component<WaveProps> {
     private onClick(e: Event) {
         const {instance} = this;
         const {disabled} = this.get();
-        if (disabled ||
-            instance!.getAttribute('disabled') || 
-            instance!.className.indexOf('disabled') >= 0 ||
-            isHidden(e.target as HTMLElement)) {
-            return;
-        }
+        const node = e.target as HTMLElement;
+
+        // fix: 点击输入框中的icon时，此时输入框不需要动效
+        const isInput = instance!.classList.contains('k-input-wrapper');
+        if (disabled || isInput && node!.classList.contains('k-icon')) return;
 
         this.resetAnimation();
-        // Input is not border, so set to defalut border color
-        const isInput = instance?.classList.contains('k-input');
-        if (!isInput) {
-            const getNodeComputedStyle = getComputedStyle(instance!);
-            const borderWidth = getNodeComputedStyle.getPropertyValue('border-top-width') || 
-            getNodeComputedStyle.getPropertyValue('border-width');
-            if (borderWidth === '0px') return;
-
-            const borderColor = getNodeComputedStyle.getPropertyValue('border-top-color') ||
-                getNodeComputedStyle.getPropertyValue('border-color') ||
-                getNodeComputedStyle.getPropertyValue('background-color');
-            // Not white or transparent 
-            if (
-                borderColor &&
-                borderColor !== '#ffffff' &&
-                borderColor !== 'rgb(255, 255, 255)' &&
-                isNotGrey(borderColor) &&
-                !/rgba\((?:\d*, ){3}0\)/.test(borderColor) && // any transparent rgba color
-                borderColor !== 'transparent'
-            ) {
-                document.documentElement.style.setProperty('--var-wave-color', borderColor);
-            }
-        }
-
+      
         instance!.addEventListener('animationend', this.resetAnimation);
-        instance!.setAttribute(animatingName, 'true');
+        this.timer = window.setTimeout(() => {        
+            instance!.classList.add(this.className);
+        });
     }
 
     @bind
     resetAnimation() {
-        document.documentElement.style.removeProperty('--var-wave-color');
-        this.instance?.removeEventListener('animationend', this.resetAnimation);
-        this.instance?.setAttribute(animatingName, 'false');
+        const node = this.instance;
+        if (!node) return;
+
+        node.classList.remove(this.className);
+        node.removeEventListener('animationend', this.resetAnimation);
+        clearTimeout(this.timer);
     }
 }

@@ -13,7 +13,7 @@ const defaults = {
     }
 };
 
-let editable: any;
+let editable: typeof defaults;
 setDefault(() => {
     editable = deepDefaults(theme, {editable: defaults}).editable;
 });

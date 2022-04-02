@@ -3,10 +3,10 @@ import {strPad, range} from '../utils';
 import {_$} from '../../i18n';
 import {StateValueItem} from './basepicker';
 
-export function getNowDate() {
+export function getNowDate(isEnd?: boolean) {
     // only date without time
     const now = new Date();
-    clearTime(now);
+    isEnd ? endTime(now) : clearTime(now);
 
     return dayjs(now);
 }
@@ -16,6 +16,13 @@ export function clearTime(date: Date) {
     date.setMinutes(0);
     date.setSeconds(0);
     date.setMilliseconds(0);
+}
+
+export function endTime(date: Date) {
+    date.setHours(23);
+    date.setMinutes(59);
+    date.setSeconds(59);
+    date.setMilliseconds(999);
 }
 
 export function isEqual(

@@ -36,8 +36,9 @@ export function makeStyles() {
             }
             .solution-row {
                 display: flex;
-                justify-content: space-between;
                 margin-top: 20px;
+                flex-wrap: wrap;
+                gap: 24px;
             }
             .solution-item {
                 width: 384px;

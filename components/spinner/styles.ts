@@ -37,7 +37,7 @@ const defaults = {
     }
 };
 
-let spinner: any;
+let spinner: typeof defaults;
 setDefault(() => {
     spinner = deepDefaults(theme, {spinner: defaults}).spinner;
 });

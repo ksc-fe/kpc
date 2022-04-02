@@ -27,7 +27,7 @@ const defaults = {
     // bodyMargin: '0 20px',
 };
 
-let layout: any;
+let layout: typeof defaults;
 setDefault(() => {
     layout = deepDefaults(theme, {layout: defaults}).layout;
 });

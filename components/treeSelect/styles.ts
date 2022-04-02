@@ -9,7 +9,7 @@ const defaults = {
     padding: `3px 6px`,
 };
 
-let treeSelect: any;
+let treeSelect: typeof defaults;
 setDefault(() => {
     treeSelect = deepDefaults(theme, {treeSelect: defaults}).treeSelect;
 });

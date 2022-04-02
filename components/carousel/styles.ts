@@ -34,7 +34,7 @@ const defaults = {
     }
 };
 
-let carousel: any;
+let carousel: typeof defaults;
 setDefault(() => {
     carousel = deepDefaults(theme, {carousel: defaults}).carousel;
 });

@@ -52,7 +52,7 @@ const defaults = {
     get disabledBgColor() { return theme.color.disabledBg },
 };
 
-let kswitch: any;
+let kswitch: typeof defaults;
 setDefault(() => {
     kswitch = deepDefaults(theme, {switch: defaults}).switch;
 });

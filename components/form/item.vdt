@@ -3,6 +3,7 @@ import {Tooltip} from '../tooltip';
 import {Icon} from '../icon';
 import {Transition} from 'intact';
 import {makeItemStyles} from './styles';
+import {context as ErrorContext} from './useError';
 
 const {
     className, children, label,
@@ -49,7 +50,11 @@ const {ellipsis, message, errorRef} = this.error;
         <b:label>{label}</b:label>
     </label>
     <div class="k-form-content">
-        <b:content>{children}</b:content>
+        <ErrorContext.Provider value={isDirty && !isValid}>
+            <template>
+                <b:content>{children}</b:content>
+            </template>
+        </ErrorContext.Provider>
         <Transition key="error" name="k-fade" >
             <div v-if={isDirty && !isValid}
                 class={{

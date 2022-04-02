@@ -85,7 +85,7 @@ const defaults = {
     },
 };
 
-let colorpicker: any;
+let colorpicker: typeof defaults;
 setDefault(() => {
     colorpicker = deepDefaults(theme, {colorpicker: defaults}).colorpicker;
 });

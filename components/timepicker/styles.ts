@@ -18,7 +18,7 @@ const defaults = {
     },
 };
 
-let timepicker: any;
+let timepicker: typeof defaults;
 setDefault(() => {
     timepicker = deepDefaults(theme, {timepicker: defaults}).timepicker;
 });

@@ -76,7 +76,7 @@ const defaults = {
     }
 };
 
-let steps: any;
+let steps: typeof defaults;
 setDefault(() => {
     steps = deepDefaults(theme, {steps: defaults}).steps;
 });

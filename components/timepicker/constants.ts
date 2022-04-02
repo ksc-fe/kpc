@@ -10,8 +10,9 @@ import {TypeDefs} from 'intact';
 
 export const YEAR_FORMAT = 'YYYY-MM-DD ';
 export const TIME_FORMAT = 'HH:mm:ss';
-export const NOW = getNowDate();
-export const PREFIX = NOW.format(YEAR_FORMAT);
+export const NOW_START = getNowDate();
+export const NOW_END = getNowDate(true);
+export const PREFIX = NOW_START.format(YEAR_FORMAT);
 
 export interface TimepickerProps<
     M extends boolean = boolean,

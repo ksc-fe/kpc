@@ -207,14 +207,21 @@ export function makeStyles(themeColor: string) {
                         flex-direction: column;
                         width: auto;
                         margin: 12px 0 20px;
+                        padding: 20px;
                     }
                     .left {
                         height: 100px;
+                        width: 100%;
                     }
                     .right {
                         padding-left: 20px;
-                        .item:last-of-type {
-                            margin-bottom: 0;
+                        .item {
+                            &:last-of-type {
+                                margin-bottom: 0;
+                            }
+                            > div:first-child {
+                                width: 80px;
+                            }
                         }
                     }
                 }

@@ -14,7 +14,8 @@ const defaults = deepDefaults(
         bgColor: '#fff',
         get color() { return theme.color.text },
         get focusBorder() { return `1px solid ${theme.color.primary}` },
-        get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
+        // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
+        get hoverBorder() { return `1px solid ${theme.color.primary}` },
         get borderRadius() { return theme.borderRadius },
         get placeholderColor() { return theme.color.placeholder },
 
@@ -61,7 +62,7 @@ const defaults = deepDefaults(
     }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
 )
 
-let input: any;
+let input: typeof defaults;
 setDefault(() => {
     input = deepDefaults(theme, {input: defaults}).input;
 })
@@ -115,16 +116,10 @@ export function makeStyles() {
 
         // clearable
         .k-input-clear {
-            display: inline-block;
-            vertical-align: top;
-            cursor: pointer;
             opacity: 0;
             transition: opacity ${input.transition};
             pointer-events: none;
             color: ${input.clearIconColor};
-            &:hover {
-                color: ${theme.color.primary};
-            }
             + * {
                 margin-left: ${input.clearIconGap};
             }

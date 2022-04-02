@@ -10,14 +10,3 @@ export const rotate = keyframes`
         transform: rotate(360deg);
     }
 `;
-
-export const waveEffect = keyframes`
-    100% {
-        top: -3px;
-        right: -3px;
-        bottom: -3px;
-        left: -3px;
-        opacity: 0.4;
-        border: 1px solid var(--var-wave-color);
-    }
-`;

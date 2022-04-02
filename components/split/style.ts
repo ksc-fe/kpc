@@ -34,7 +34,7 @@ const defaults = {
     }
 };
 
-let split: any;
+let split: typeof defaults;
 setDefault(() => {
     split = deepDefaults(theme, {split: defaults}).split;
 });

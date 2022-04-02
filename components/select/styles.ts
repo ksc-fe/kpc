@@ -20,7 +20,8 @@ const defaults = deepDefaults(
         get fontSize() { return theme.default.fontSize },
         get border() { return `1px solid ${theme.color.border}` },
         get focusBorder() { return `1px solid ${theme.color.primary}` },
-        get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
+        // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
+        get hoverBorder() { return `1px solid ${theme.color.primary}` },
         get iconColor() { return theme.color.placeholder },
         get activeColor() { return theme.color.primary },
         get borderRadius() { return theme.borderRadius },
@@ -57,7 +58,7 @@ const defaults = deepDefaults(
         },
         tag: {
             margin: `3px 8px 3px 0`,
-            padding: `4px 8px`,
+            padding: `5px 8px`,
             get borderRadius() { return theme.borderRadius },
             get bgColor() { return theme.color.bg },
             disabledBgColor: '#eee',
@@ -123,7 +124,7 @@ const defaults = deepDefaults(
     }, {} as Record<Sizes, SizeStyles>)
 );
 
-let select: any;
+let select: typeof defaults;
 setDefault(() => {
     select = deepDefaults(theme, {select: defaults}).select;
 });
@@ -147,6 +148,7 @@ export default function makeStyles() {
         .k-select-prefix,
         .k-select-suffix {
             color: ${select.iconColor};
+            position: relative;
         }
         .k-select-suffix {
             margin-left: ${select.suffixGap};
@@ -168,6 +170,9 @@ export default function makeStyles() {
             pointer-events: none;
             position: absolute;
             z-index: 1;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
         &:hover {
             border: ${select.hoverBorder};

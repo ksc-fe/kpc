@@ -14,7 +14,7 @@ const defaults = {
     get boxShadow() { return theme.boxShadow }
 };
 
-let drawer: any;
+let drawer: typeof defaults;
 setDefault(() => {
     drawer = deepDefaults(theme, {drawer: defaults}).drawer;
 });

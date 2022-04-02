@@ -1,5 +1,6 @@
 import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
+import {Wave} from '../wave';
 
 const {
     className, disabled, trueValue, style,
@@ -41,17 +42,19 @@ const events = [
     ev-keypress={this.onKeypress}
     ev-click={this.fixClick}
 >
-    <span class="k-radio-wrapper">
-        <input
-            { ...getRestProps(this, rest) }
-            type="radio"
-            disabled={disabled}
-            value={trueValue}
-            tabindex="-1"
-            ref={this.elementRef}
-            checked={isChecked}
-            ev-click={this.onClick}
-        />
-    </span>
+    <Wave disabled={disabled}>
+        <span class="k-radio-wrapper">
+            <input
+                { ...getRestProps(this, rest) }
+                type="radio"
+                disabled={disabled}
+                value={trueValue}
+                tabindex="-1"
+                ref={this.elementRef}
+                checked={isChecked}
+                ev-click={this.onClick}
+            />
+        </span>
+    </Wave>
     <span class="k-radio-text" v-if={children}>{children}</span>
 </label>

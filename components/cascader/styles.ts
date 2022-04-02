@@ -25,7 +25,7 @@ const defaults = {
     }
 };
 
-let cascader: any;
+let cascader: typeof defaults;
 setDefault(() => {
     cascader = deepDefaults(theme, {cascader: defaults}).cascader;
 });

@@ -34,7 +34,7 @@ const defaults = {
     get line() { return `1px dashed ${theme.color.border}` },
 };
 
-let tree: any;
+let tree: typeof defaults;
 setDefault(() => {
     tree = deepDefaults(theme, {tree: defaults}).tree;
 });
@@ -88,8 +88,10 @@ export function makeStyles() {
             width: ${tree.iconWidth};
             text-align: center;
             color: ${tree.iconColor};
-            transform: rotate(-90deg);
-            transition: transform ${tree.transition};
+            &:before {
+                transform: rotate(-90deg);
+                transition: transform ${tree.transition};
+            }
         }
 
         .k-tree-checkbox {
@@ -115,7 +117,7 @@ export function makeStyles() {
                 }
             }
             &.k-expanded {
-                > .k-tree-label .k-tree-icon {
+                > .k-tree-label .k-tree-icon:before {
                     transform: rotate(0);
                 }
             }

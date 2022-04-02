@@ -18,13 +18,14 @@ const defaults = {
         height: `30px`,
         get color() { return theme.color.text },
         get activeColor() { return theme.color.primary },
+        get hoverBgColor() { return theme.color.bg },
         activeFontSize: `1.1em`,
         get disabledColor() { return theme.color.disabled },
         border: `1px solid #e5e5e5`,
     }
 };
 
-let scrollSelect: any;
+let scrollSelect: typeof defaults;
 setDefault(() => {
     scrollSelect = deepDefaults(theme, {scrollSelect: defaults}).scrollSelect;
 });
@@ -60,6 +61,9 @@ export function makeStyles() {
             color: ${scrollSelect.item.color};
             cursor: pointer;
             white-space: nowrap;
+            &:hover {
+                background: ${scrollSelect.item.hoverBgColor };
+            }
             &.k-active {
                 color: ${scrollSelect.item.activeColor};
                 font-size: ${scrollSelect.item.activeFontSize};

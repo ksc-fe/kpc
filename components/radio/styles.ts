@@ -6,9 +6,8 @@ import '../../styles/global';
 const defaults = {
     width: '14px',
     get transition() { return theme.transition.small },
-    get borderColor() {
-        return theme.color.darkBorder;
-    },
+    get borderColor() { return theme.color.darkBorder; },
+    get hoverBorderColor() { return theme.color.primary; },
     bgColor: '#fff',
     textGap: '8px',
     innerWidth: '8px',
@@ -22,7 +21,7 @@ const defaults = {
     }
 };
 
-let radio: any;
+let radio: typeof defaults;
 setDefault(() => {
     radio = deepDefaults(theme, {radio: defaults}).radio;
 });

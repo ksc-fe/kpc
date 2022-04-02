@@ -12,7 +12,7 @@ const defaults = {
     get padding() { return `6px ${theme.default.padding}` },
 };
 
-let tip: any;
+let tip: typeof defaults;
 setDefault(() => {
     tip = deepDefaults(theme, {tip: defaults}).tip;
 });

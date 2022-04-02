@@ -39,7 +39,7 @@ const defaults = {
     }
 };
 
-let transfer: any;
+let transfer: typeof defaults;
 setDefault(() => {
     transfer = deepDefaults(theme, {transfer: defaults}).transfer;
 });

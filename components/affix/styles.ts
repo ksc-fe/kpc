@@ -7,7 +7,7 @@ const defaults = {
     zIndex: 9
 };
 
-let affix: any;
+let affix: typeof defaults;
 setDefault(() => {
     affix = deepDefaults(theme, {affix: defaults}).affix;
 });
