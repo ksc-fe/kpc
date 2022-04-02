@@ -33,10 +33,8 @@ export function makeStyles() {
         cursor: pointer;
         vertical-align: middle;
         .k-radio-wrapper {
-            display: inline-block;
             width: ${radio.width};
             height: ${radio.width};
-            vertical-align: middle;
             border: 1px solid ${radio.borderColor};
             border-radius: 50%;
             transition: all ${radio.transition} ;
@@ -68,8 +66,6 @@ export function makeStyles() {
             position: absolute;
         }    
         .k-radio-text {
-            vertical-align: middle;
-            display: inline-block;
             margin-left: ${radio.textGap};
             flex: 0 1 auto;
         }

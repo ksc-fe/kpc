@@ -55,10 +55,8 @@ export default function makeStyles() {
         cursor: pointer;
         vertical-align: middle;
         .k-checkbox-wrapper {
-            display: inline-block;
             width: ${checkbox.width};
             height: ${checkbox.width}; 
-            vertical-align: middle;
             border: 1px solid ${checkbox.borderColor}; 
             border-radius: ${checkbox.borderRadius};
             position: relative;
@@ -94,9 +92,7 @@ export default function makeStyles() {
             margin: 0;
         }
         .k-checkbox-text {
-            vertical-align: middle;
             margin-left: ${checkbox.text.gap};
-            display: inline-block;
             flex: 0 1 auto;
         }
 
