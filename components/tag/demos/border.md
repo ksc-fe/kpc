@@ -13,8 +13,9 @@ import {Tag} from 'kpc';
         <Tag v-for={this.get('types')}
             type={$value}
             border={border}
+            closable
         >{$value}</Tag>
-        <Tag disabled border={border}>disabled</Tag>
+        <Tag disabled closable border={border}>disabled</Tag>
     </div>
 </div>
 ```
