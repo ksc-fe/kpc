@@ -1,7 +1,14 @@
 import {css} from '@emotion/css';
 import {mainBlock, center} from '../../../styles/default';
 
-export function makeStyles() {
+export function makeStyles(colorList: any[]) {
+    
+    const boxShadowColorList: string[] = colorList.map((item: any) => {
+        return item.color.includes('linear-gradient')
+            ? item.color.match(/#\w{6}/)[0]
+            : item.color
+    });
+
     return css`
         background: linear-gradient(94.17deg, #F1DEFF 35.58%, rgba(0, 194, 255, 0) 99.19%);
         ${mainBlock(450)};
@@ -71,6 +78,9 @@ export function makeStyles() {
                     border-bottom: 1px solid #000000;
                     font-family: Roboto;
                 }
+                & > div:last-child a:hover {
+                    color: #0191EA;
+                }
             }
             .color-box {
                 padding-top: 20px;
@@ -106,13 +116,24 @@ export function makeStyles() {
                                 color: #737373;
                             }
                         }
+                        ${(() => {
+                            return boxShadowColorList.map((color: string, index: number) =>  {
+                                return  `
+                                    .color-item:nth-child(${index + 1}) {
+                                        & > div:first-child:hover {
+                                            box-shadow: 0 0 16px ${color};
+                                        }
+                                    }
+                                `;
+                            })
+                        })()}
                     }
                     .color-swtich-box {
                         width: 69px;
                         margin-top: 10px;
                         .theme-type-switch {
                             width: 60px;
-                            height: 17px;
+                            height: 20px;
                             background: #777777;
                             border-radius: 4px;
                             overflow: hidden;

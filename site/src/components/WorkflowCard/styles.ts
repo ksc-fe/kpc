@@ -1,4 +1,5 @@
 import {css} from '@emotion/css';
+import global from '../../styles/default';
 
 export function makeStyles() {
 
@@ -6,6 +7,9 @@ export function makeStyles() {
         background: #FFFFFF;
         border-radius: 4px;
         display: inline-block;
+        &:hover {
+            box-shadow: ${global.cardBoxShadow};
+        }
         .title {
             height: 40px;
             line-height: 40px;

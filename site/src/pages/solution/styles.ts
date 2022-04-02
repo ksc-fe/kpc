@@ -50,6 +50,9 @@ export function makeStyles() {
                     height: 240px;
                     background: #EFF3FA;
                     border-radius: 8px;
+                    &:hover {
+                        box-shadow: ${global.cardBoxShadow};
+                    }
                 }
                 & > div:last-child {
                     display: flex;

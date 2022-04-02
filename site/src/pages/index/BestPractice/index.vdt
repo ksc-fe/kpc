@@ -57,13 +57,13 @@ const {codeContent, buttonRadiusMax, buttonRadiusMin,
                     <ThemeFrame
                         href="./iframe/button"
                         ref={this.iframeBoxRef}
-                        height="40"
+                        height="60"
                     ></ThemeFrame>
                 </div>
                 <div class="right">
                     <div class="item">
                         <div>内容：</div>
-                        <div>
+                        <div class="input-box">
                             <Input v-model="contentInput" maxlength="20" />
                         </div>
                     </div>

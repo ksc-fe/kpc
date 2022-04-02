@@ -33,7 +33,7 @@ const getColorItemStyle = (value) => {
     }
 };
 
-<div class={makeStyles()}>
+<div class={makeStyles(colorList)}>
     <div class="cp-content">
         <div>
             <div class="cp-logo">
@@ -46,7 +46,7 @@ const getColorItemStyle = (value) => {
             <div class="info-box">
                 <div>支持</div>
                 <div>
-                    <a href="https://www.w3.org/TR/WCAG22/">WCAG2.2</a>
+                    <a href="https://www.w3.org/TR/WCAG22/">符合WCAG2.2国际可访问性标准</a>
                 </div>
             </div>
             <div class="color-box">

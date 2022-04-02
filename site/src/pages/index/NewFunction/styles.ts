@@ -1,12 +1,12 @@
 import {css} from '@emotion/css';
-import {mainBlock, fullfill, center} from '../../../styles/default';
+import global, {mainBlock, fullfill, center} from '../../../styles/default';
 
 export function makeStyles(themeColor: string) {
     return css`
         background: #ffffff;
 		${mainBlock(544)};
 		.white-card:hover {
-			box-shadow: 0 0 16px rgba(0, 0, 0, .1);
+			box-shadow: ${global.cardBoxShadow};
 		}
 		.new-fn-box {
 			.title-box {

@@ -55,6 +55,11 @@ export function makeStyles() {
                     color: #0191EA;
                 }
             }
+            .visit-king-vision {
+                width: 370px;
+                height: 61px;
+                justify-content: flex-start;
+            }
         }
 
         @media (max-width: 768px) {
