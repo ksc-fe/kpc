@@ -63,20 +63,15 @@ export function makeStyles(colorList: any[]) {
             .info-box {
                 display: flex;
                 align-items: center;
-                a {
-                    text-decoration: none;
-                    color: #000000;
-                }
                 & > div:first-child { 
-                    font-size: 12px;
-                    color: #70768C;
-                    margin-right: 20px;
-                }
-                & > div:last-child { 
                     font-size: 14px;
                     color: #000000;
-                    border-bottom: 1px solid #000000;
                     font-family: Roboto;
+                    a {
+                        text-decoration: none;
+                        color: #000000;
+                        border-bottom: 1px solid #000000;
+                    }
                 }
                 & > div:last-child a:hover {
                     color: #0191EA;

@@ -70,10 +70,7 @@ export function makeStyles(themeColor: string) {
 							border-radius: 8px;
 						}
 						img:hover {
-							border-color: #36acef;
-						}
-						img:active {
-							border-color: #0079c9;
+							box-shadow: ${global.cardBoxShadow};
 						}
 					}
 					& > div {
