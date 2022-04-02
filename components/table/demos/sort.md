@@ -17,6 +17,7 @@ import {Table, TableColumn} from 'kpc';
 <Table data={this.get('data')} 
     sort={this.get('sort')}
     ev-$change:sort={this._onSort}
+    rowKey={item => item.name}
 >
     <TableColumn title='姓名' key='name' sortable />
     <TableColumn title='年龄' key='age' sortable />

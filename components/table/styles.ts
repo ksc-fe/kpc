@@ -5,6 +5,7 @@ import '../../styles/global';
 
 const defaults = {
     get transition() { return theme.transition.large },
+    // transition: '15000s',
     border: `1px solid #e5e5e5`,
     fontSize: `12px`,
     bgColor: `#fff`,
@@ -137,7 +138,7 @@ export function makeStyles() {
                     background: ${table.tbody.hoverBgcolor};
                 }
                 &:last-of-type td {
-                    border-bottom: none;
+                    // border-bottom: none;
                     border-bottom-color: transparent;
                 }
             }
@@ -303,6 +304,7 @@ export function makeStyles() {
         }
         .k-table-expand {
             border-top: ${table.border};
+            box-sizing: content-box;
         }
 
         // select

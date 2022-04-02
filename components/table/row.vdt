@@ -89,7 +89,8 @@ cols.forEach((props, columnIndex) => {
     );
 });
 
-const rows = <TransitionGroup name="k-fade-expand">{vNodes}</TransitionGroup>
+const rows = <TransitionGroup name="k-fade-expand" move={false}>{vNodes}</TransitionGroup>
+/* const rows = vNodes; */
 
 // for performance, no normalize
 <template>
