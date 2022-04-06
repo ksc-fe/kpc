@@ -340,6 +340,8 @@ describe('Tooltip', () => {
 
         await wait(500);
         const content = getElement('.k-tooltip-content')!;
+        console.log(content.outerHTML);
+        console.log(JSON.stringify(content.getBoundingClientRect()));
         expect(content.getBoundingClientRect().top < 0).to.be.true;
     });
 });
