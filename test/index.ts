@@ -15,4 +15,4 @@ const testsContext = require.context('../components/', true, /index\.spec\.ts/);
 testsContext.keys().forEach(testsContext);
 
 // test demos
-// require('./demos');
+require('./demos');
