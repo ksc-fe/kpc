@@ -7347,6 +7347,11 @@ intact-shared@^3.0.0-beta.21:
   resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.0-beta.21.tgz#95c6794145e32d9270c3b116921cd295c94a32a6"
   integrity sha512-38mPzdjet3NZ+DCpalraioAPl7c5fE5cbK7fOfajA5i0U6z1gKtLQrbVY6tsG49oIIPeRcZU41XKYDUkH4FabQ==
 
+intact-shared@^3.0.0-beta.22:
+  version "3.0.0-beta.22"
+  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.0-beta.22.tgz#a359a3a5eddf03a55393a9bdf73d72f8c5b3d02c"
+  integrity sha512-cgknmXOcoLeqczvKPscSScQ5ZGuXLovE4Qro+I7o+ipiWynUSg8K2BLDM2rQRjsgOA5aSBofddpQHbXXOK6RAQ==
+
 intact@^3.0.0-beta.21:
   version "3.0.0-beta.21"
   resolved "https://registry.npmjs.org/intact/-/intact-3.0.0-beta.21.tgz#5b1546958656ab910745bf0ae7dcab1db8faddea"
@@ -7357,6 +7362,17 @@ intact@^3.0.0-beta.21:
     tslib "^2.2.0"
     vdt "^3.0.0-beta.21"
     vdt-compiler "^3.0.0-beta.21"
+
+intact@^3.0.0-beta.22:
+  version "3.0.0-beta.22"
+  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.0-beta.22.tgz#23b979c8b00587a73d6ca79c36d96954b7ab6804"
+  integrity sha512-FawvsmnqI6+UAd7LdcetO0tRgnMownYaX2DroezR5qazZNAJsqJ0RTfxv5IEQvOVRF9bzrk4hIuTGnbBC+RtkQ==
+  dependencies:
+    intact-shared "^3.0.0-beta.22"
+    misstime "^3.0.0-beta.22"
+    tslib "^2.2.0"
+    vdt "^3.0.0-beta.22"
+    vdt-compiler "^3.0.0-beta.22"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9129,6 +9145,13 @@ misstime@^3.0.0-beta.21:
   integrity sha512-LXBoFDTbC+d5EkjdSJumb/IYrPWs5uTyk5ETYsjqRLFvZXSuOts9/R9467NDWQtYqxqAOkg7a/wBzj2/PH3YJQ==
   dependencies:
     intact-shared "^3.0.0-beta.21"
+
+misstime@^3.0.0-beta.22:
+  version "3.0.0-beta.22"
+  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.0-beta.22.tgz#d34bac96d0b1feb99b727dbd75c9d14551fd4376"
+  integrity sha512-XCAV+ve+NKoFYHPjhi7RuCMdfWwGyBL0MgcomJrzcb6kH37qo3n7/FZkc/3DVR26Le2M/d3KssaMJJJW4WFc+A==
+  dependencies:
+    intact-shared "^3.0.0-beta.22"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13281,6 +13304,15 @@ vdt-compiler@^3.0.0-beta.21:
     misstime "^3.0.0-beta.21"
     tslib "^2.2.0"
 
+vdt-compiler@^3.0.0-beta.22:
+  version "3.0.0-beta.22"
+  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.0-beta.22.tgz#3ae080a3186bf767144da685add95a1250b271dd"
+  integrity sha512-qzHCsvmdtud2QyNe5LwPHwlkALqP04RO5hM5kqMqy7RLP05S79vM0C+iQzk0PkbmiPdJ+K8kPYpXMUbQ2hcKjQ==
+  dependencies:
+    intact-shared "^3.0.0-beta.22"
+    misstime "^3.0.0-beta.22"
+    tslib "^2.2.0"
+
 vdt-loader@^3.0.0-beta.1:
   version "3.0.0-beta.1"
   resolved "https://registry.npmjs.org/vdt-loader/-/vdt-loader-3.0.0-beta.1.tgz#d4c01eb810e0efcf8659c27718ebaeb00b0ef4fc"
@@ -13297,6 +13329,15 @@ vdt@^3.0.0-beta.21:
   dependencies:
     intact-shared "^3.0.0-beta.21"
     misstime "^3.0.0-beta.21"
+    tslib "^2.2.0"
+
+vdt@^3.0.0-beta.22:
+  version "3.0.0-beta.22"
+  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.0-beta.22.tgz#c4f88eb935ce73a5dd668ae3a499ad8bd5974025"
+  integrity sha512-5zdtm6A26A/wKyH68ujtDfDIsgz/7smYJFG6XaV14VspjvbCJBzoYUAuiUgq/7FjZgLEG5aldsmeEX0/HvoDOQ==
+  dependencies:
+    intact-shared "^3.0.0-beta.22"
+    misstime "^3.0.0-beta.22"
     tslib "^2.2.0"
 
 verror@1.10.0:
