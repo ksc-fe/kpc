@@ -38,7 +38,7 @@ const {onFocusout, triggerRef} = this.focusout;
 
 <ErrorContext.Consumer defaultValue={false}>
     {isInvalid => {
-        return <Wave disabled={disabled || isInvalid} inset="-2px">
+        return <Wave disabled={disabled || isInvalid || inline} inset="-2px">
             <Dropdown
                 trigger="click"
                 ref={this.dropdownRef}
