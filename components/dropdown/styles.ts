@@ -73,7 +73,7 @@ export function makeItemStyles() {
         // checkbox / radio
         .k-checkbox,
         .k-radio {
-            display: block;
+            display: flex;
             margin: 0 -${getRight(dropdown.item.padding)} 0 -${getLeft(dropdown.item.padding)};
             padding: ${dropdown.item.padding};
         }

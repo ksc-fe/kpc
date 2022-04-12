@@ -5,7 +5,9 @@ const global = {
 
     contentWidth: 1200,
 
-    fontFamily: 'PingFang SC'
+    fontFamily: 'PingFang SC',
+
+    cardBoxShadow: '0px 0px 16px rgba(0, 0, 0, .1)'
     
 }
 

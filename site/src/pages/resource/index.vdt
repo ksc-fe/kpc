@@ -10,7 +10,7 @@ import iconFonts from '../../imgs/icon-fonts.png';
 import iconSize from '../../imgs/icon-size.png';
 import {WorkflowCard} from '../../components/WorkflowCard/';
 import {Link} from '../../components/link';
-import {getAxure, getSketch} from './index';
+import {getAxure, getSketch, getFigma} from './index';
 
 const pricipleList = [
     {
@@ -76,7 +76,10 @@ const pricipleList = [
                                         <img src={sketch_img} />
                                         <div>Sketch组件库</div>
                                     </div>
-                                    <div class="card-item">
+                                    <div 
+                                        class="card-item"
+                                        ev-click={getFigma}
+                                    >
                                         <img src={rectangle} />
                                         <div>Figma组件库</div>
                                     </div>
@@ -103,8 +106,16 @@ const pricipleList = [
                                 <div>
                                     <div class="card-title">组件套件</div>
                                     <div class="card-item">
-                                        <img src={axure_img} />
-                                        <div>Axure组件库</div>
+                                        <Link href="https://github.com/ksc-fe/kpc">
+                                            <div class="code-resource">
+                                                <div class="github-logo">
+                                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M6.50002 0.541664C4.93648 0.525776 3.4306 1.13133 2.31333 2.22523C1.19607 3.31914 0.558836 4.81189 0.541687 6.37541C0.547712 7.61105 0.945198 8.81298 1.67705 9.80857C2.40891 10.8042 3.43748 11.5422 4.61502 11.9167C4.91294 11.9708 5.02127 11.7921 5.02127 11.635V10.6437C3.36377 10.9958 3.01169 9.86374 3.01169 9.86374C2.90135 9.50836 2.66677 9.20456 2.35085 9.00791C1.80919 8.65041 2.39419 8.65583 2.39419 8.65583C2.58141 8.68086 2.76055 8.74795 2.91815 8.85208C3.07575 8.95621 3.20773 9.09467 3.30419 9.25708C3.47228 9.54856 3.7481 9.76239 4.07228 9.85256C4.39645 9.94272 4.74307 9.902 5.03752 9.73916C5.0678 9.44254 5.20213 9.16621 5.41669 8.95916C4.09502 8.81291 2.70835 8.31458 2.70835 6.0775C2.69653 5.49395 2.91215 4.92868 3.3096 4.50125C3.12859 4.00024 3.14997 3.44842 3.36919 2.96291C3.36919 2.96291 3.87294 2.80583 4.99419 3.55875C5.97021 3.29866 6.99733 3.29866 7.97335 3.55875C9.11085 2.80583 9.59835 2.96291 9.59835 2.96291C9.81757 3.44842 9.83895 4.00024 9.65794 4.50125C10.0646 4.92085 10.2919 5.48232 10.2917 6.06666C10.2917 8.30916 8.89419 8.80208 7.58335 8.94833C7.72689 9.08768 7.83776 9.25711 7.908 9.44442C7.97825 9.63174 8.00611 9.83229 7.9896 10.0317V11.6296C7.9896 11.8192 8.09794 11.9708 8.39585 11.9112C9.57006 11.5345 10.5952 10.7963 11.3247 9.80207C12.0543 8.80788 12.4511 7.60856 12.4584 6.37541C12.4412 4.81189 11.804 3.31914 10.6867 2.22523C9.56944 1.13133 8.06356 0.525776 6.50002 0.541664Z" fill="#000"/>
+                                                    </svg>
+                                                </div>
+                                                <div>代码资源</div>
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -131,6 +142,7 @@ const pricipleList = [
                         </div>
                         <div class="tool-item process-box">
                             <img src={color_process_logo} />
+                            <span>（敬请期待）</span>
                         </div>
                         <div class="tool-item expect-box">
                         </div>

@@ -96,7 +96,7 @@ describe('Timepicker', () => {
         expect(dropdown.innerHTML).to.matchSnapshot();
         dropdown.querySelector<HTMLElement>('.k-btn')!.click();
         await wait();
-        expect(instance.get('time')).to.eql(['01:00:00', '02:00:00']);
+        expect(instance.get('time')).to.eql(['01:00:00', '01:59:59']);
     });
 
     it('step', async () => {
@@ -123,7 +123,7 @@ describe('Timepicker', () => {
         (start.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
         await wait();
         expect(dropdown.innerHTML).to.matchSnapshot();
-        (end.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
+        (end.querySelector('.k-disabled')!.nextElementSibling as HTMLElement).click();
         await wait();
         expect(dropdown.innerHTML).to.matchSnapshot();
         dropdown.querySelector<HTMLElement>('.k-btn')!.click();
@@ -166,7 +166,7 @@ describe('Timepicker', () => {
         expect(content.innerHTML).to.matchSnapshot();
         content.querySelector<HTMLElement>('.k-btn')!.click();
         await wait();
-        expect(instance.get('time3')).eql(['00:30:00.000', '01:00:00.000']);
+        expect(instance.get('time3')).eql(['00:30:00.000', '00:30:00.000']);
         expect(input3.innerHTML).to.matchSnapshot();
     });
 

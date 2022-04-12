@@ -33,7 +33,7 @@ const getColorItemStyle = (value) => {
     }
 };
 
-<div class={makeStyles()}>
+<div class={makeStyles(colorList)}>
     <div class="cp-content">
         <div>
             <div class="cp-logo">
@@ -44,9 +44,10 @@ const getColorItemStyle = (value) => {
             </div>
             <p class="cp-desc">KD设计系统置入了<strong>实时颜色算法</strong>，并提供多元化的主题配色板，在这里你可以实时预览你的灵感和业务场景情绪板。</p>
             <div class="info-box">
-                <div>支持</div>
                 <div>
+                    <span>符合</span>
                     <a href="https://www.w3.org/TR/WCAG22/">WCAG2.2</a>
+                    <span>国际可访问性标准</span>
                 </div>
             </div>
             <div class="color-box">

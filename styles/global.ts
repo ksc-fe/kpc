@@ -112,8 +112,9 @@ injectGlobal`
         }
     }
     .k-fade-in-left-move {
-        opacity: 1;
-        transform: translate3d(0, 0, 0);
+        // opacity: 1;
+        transition: transform ${theme.transition.large};
+        // transition: transform 15000s;
     }
 
     .k-fade-expand-enter-from,
@@ -125,9 +126,9 @@ injectGlobal`
         transition: all ${theme.transition.large};  
         background: ${palette(theme.color.primary, -4)} !important;
     }
-    .k-fade-expand-move {
-        opacity: 1;
-    }
+    // .k-fade-expand-move {
+        // opacity: 1;
+    // }
 
     .c-ellipsis {
         white-space: nowrap;

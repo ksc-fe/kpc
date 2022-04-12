@@ -1,4 +1,4 @@
-import {useInstance, onMounted, onUpdated, findDomFromVNode} from 'intact';
+import {useInstance, onMounted, onUpdated, findDomFromVNode, nextTick} from 'intact';
 import type {Tabs} from './';
 import {useState} from '../../hooks/useState';
 
@@ -42,7 +42,8 @@ export function useActiveBar() {
     } 
 
     onMounted(generateStyle);
-    onUpdated(generateStyle);
+    // Tabs maybe embed into Transition, therefore handle style nextTick
+    onUpdated(() => nextTick(generateStyle));
 
     return styles;
 }

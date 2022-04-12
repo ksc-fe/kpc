@@ -51,6 +51,9 @@ export class Tag<
     @bind
     private onClose(e: MouseEvent): void {
         e.stopPropagation();
+
+        if (this.get('disabled')) return;
+
         this.trigger('close', e);
         if (!e.defaultPrevented) {
             this.set('closed', true);

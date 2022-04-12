@@ -71,7 +71,7 @@ const thead = (
                     <FixedColumnsContext.Provider value={offsetMap}>
                         <thead>
                             <tr v-for={columns}>
-                                <TransitionGroup name="k-fade-expand">
+                                <TransitionGroup name="k-fade-expand" move={false}>
                                     <th v-if={$key === 0 && checkType !== 'none'}
                                         {...getClassAndStyleForFixed({
                                             fixed: hasFixedLeft ? 'left' : false,

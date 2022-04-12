@@ -17,6 +17,7 @@ sidebar: doc
         2. 扩展点名由之前的`b-value`形式，变为`slotValue`形式
     2. Vue
         1. 默认事件名由之前的`@$change:value`形式，变为`@changeValue`形式
+5. 默认主题改变，使用之前的`ksyun`主题作为默认主题，原来的默认主题不再支持
 
 ### 组件变更
 

@@ -60,7 +60,7 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
                     transition: all .25s ease-in-out;
                 }
                 & > div: hover {
-                    color: #fff;
+                    color: ${theme.textColor};
                 }
                 & > div:last-child {
                     width: 60px;
