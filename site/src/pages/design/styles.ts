@@ -4,14 +4,17 @@ export function makeStyles() {
     return css`
         &.design-page {
             img {
-                max-width: 100%;
+                display: block;
+                width: 100%;
+                max-width: 990px;
             }
             .api {
                 font-size: 14px;
             }
             article {
-                max-width: 990px;
-                margin: 0 auto !important;
+                line-height: 2;
+                // max-width: 990px;
+                // margin: 0 auto !important;
             }
         }
     `

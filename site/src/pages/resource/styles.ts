@@ -4,9 +4,9 @@ import resource_bg from '../../imgs/resource_bg.png';
 import color_process_bg from '../../imgs/color_process_bg.png';
 import workflow_bg from '../../imgs/workflow_bg.png';
 import color_process_expect from '../../imgs/expect.png';
+import {theme} from 'kpc/styles/theme';
 
 export function makeStyles() {
-
     return css`
         font-family: ${global.fontFamily};
         .source-nav {
@@ -145,6 +145,7 @@ export function makeStyles() {
                         display: flex;
                         align-items: center;
                         padding-left: 40px;
+                        transition: box-shadow ${theme.transition.large};
                     }
                     .tool-item:hover {
                         box-shadow: ${global.cardBoxShadow};

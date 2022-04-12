@@ -11,6 +11,7 @@ export function makeHeaderStyles() {
             box-shadow: 0px 1px 1px rgba(176, 176, 176, 0.63);
             color: #000;
             backdrop-filter: blur(20px);
+            -moz-backdrop-filter: blur(20px);
             justify-content: space-between; 
             .logo {
                 background-image: url(${headerLogo});

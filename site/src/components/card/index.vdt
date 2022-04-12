@@ -6,7 +6,7 @@ const {children, mainTitle, subTitle} = this.get();
 <div class={makeStyles()}>
     <div class="title">
         <div>{mainTitle}</div>
-        <Button type="primary" ev-click={this.goHref.bind(this)}>
+        <Button type="none" icon circle ev-click={this.goHref.bind(this)}>
             <Icon class="icon ion-chevron-right"></Icon>
         </Button>
     </div>

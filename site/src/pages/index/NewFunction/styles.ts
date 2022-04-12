@@ -1,13 +1,17 @@
 import {css} from '@emotion/css';
 import global, {mainBlock, fullfill, center} from '../../../styles/default';
+import {theme} from 'kpc/styles/theme';
 
 export function makeStyles(themeColor: string) {
     return css`
         background: #ffffff;
 		${mainBlock(544)};
-		.white-card:hover {
-			box-shadow: ${global.cardBoxShadow};
-		}
+        .white-card {
+            transition: box-shadow ${theme.transition.large};
+            &:hover {
+                box-shadow: ${global.cardBoxShadow};
+            }
+        }
 		.new-fn-box {
 			.title-box {
 				margin-top: 34px;

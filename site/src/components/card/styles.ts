@@ -1,4 +1,5 @@
 import {css} from '@emotion/css';
+import {theme} from 'kpc/styles/theme';
 
 export function makeStyles() {
     return css`
@@ -11,8 +12,9 @@ export function makeStyles() {
         padding: 24px 48px;
         font-family: PingFang SC;
         vertical-align: top;
+        transition: box-shadow ${theme.transition.large};
         &:hover {
-            box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+            box-shadow: 0 0 8px rgba(0, 0, 0, .15);
         }
         .title {
             height: 45px;
@@ -23,17 +25,20 @@ export function makeStyles() {
             & > div:first-child {
                 flex-grow: 1;
             }
-            button {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                color: #16325C;
-                background: #EFF3FA;
-                border: none;
-                .k-icon {
-                    margin-right: 0;
-                }
+            .k-btn:hover {
+                background: #fff;
             }
+            // button {
+                // width: 40px;
+                // height: 40px;
+                // border-radius: 50%;
+                // color: #16325C;
+                // background: #EFF3FA;
+                // border: none;
+                // .k-icon {
+                    // margin-right: 0;
+                // }
+            // }
         }
         .sub-title {
             font-size: 16px;

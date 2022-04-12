@@ -85,12 +85,13 @@ export function makeStyles() {
             max-width: 100%;
             article {
                 position: relative;
-                padding: 15px 20px;
+                padding: 15px 40px;
                 margin-right: 200px;
+                border-rardius: 50%;
             }
             .article-head {
                 display: flex;
-                border-bottom: 1px solid #c4c4c4;
+                border-bottom: 1px solid #e4e4e4;
                 align-items: center;
                 margin-bottom: 27px;
                 .title {

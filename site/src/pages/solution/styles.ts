@@ -1,6 +1,7 @@
 import {css} from '@emotion/css';
 import global, {mainBlock} from '../../styles/default';
 import solution_bg from '../../imgs/solution_bg.png';
+import {theme} from 'kpc/styles/theme';
 
 export function makeStyles() {
 
@@ -51,6 +52,7 @@ export function makeStyles() {
                     height: 240px;
                     background: #EFF3FA;
                     border-radius: 8px;
+                    transition: box-shadow ${theme.transition.large};
                     &:hover {
                         box-shadow: ${global.cardBoxShadow};
                     }
