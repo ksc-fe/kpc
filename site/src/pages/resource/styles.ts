@@ -72,6 +72,7 @@ export function makeStyles() {
                 padding-left: 9px;
                 color: #434343;
                 margin-bottom: 12px;
+                cursor: pointer;
                 img {
                     width: 27px;
                     height: 27px;
@@ -93,6 +94,12 @@ export function makeStyles() {
                     border: 1px solid #ccc;
                     ${center()};
                     background: #fff;
+                    margin-right: 14px;
+                }
+                .code-resource {
+                    display: flex;
+                    align-items: center;
+                    color: #434343;
                 }
             }
             .workflow-box {

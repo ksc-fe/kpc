@@ -79,7 +79,7 @@ const defaults = (): Partial<ColorProcessProps> => ({
         },
         'burset 62': {
             mainColor: 'linear-gradient(165.2deg, #E83025 10.45%, #FF7A00 78.4%)',
-            textColor: '#000000',
+            textColor: '#ffffff',
             collectionsColor: '#000000'
         }
     },

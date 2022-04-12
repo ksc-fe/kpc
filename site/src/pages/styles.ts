@@ -85,6 +85,7 @@ export function makeHeaderStyles() {
                         top: 65px;
                         background: #ffffff;
                         box-shadow: 0px 4px 20px rgba(108, 103, 103, 0.25);
+                        border-radius: 4px;
                         & > div {
                             height: 62px;
                             ${center()};
