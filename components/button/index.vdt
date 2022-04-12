@@ -67,7 +67,7 @@ const typeStyles = theme[type];
 const waveColor = typeStyles && typeStyles.borderColor || theme.primary.borderColor;
 
 <Wave disabled={loading || disabled || type === 'none' || type === 'link'}
-    inset="-1px"
+    inset="-2px"
     color={waveColor}
 >
     <DynamicButton 

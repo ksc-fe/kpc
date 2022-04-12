@@ -4,7 +4,7 @@ import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
-    inset: '-4px',
+    inset: '-3px',
 };
 
 let wave: typeof defaults;
@@ -15,7 +15,10 @@ setDefault(() => {
 export function makeStyles(color: string, inset: string) {
     const waveEffect = keyframes`
         100% {
-            inset: calc(${inset} + ${wave.inset});
+            top: calc(${inset} + ${wave.inset});
+            bottom: calc(${inset} + ${wave.inset});
+            left: calc(${inset} + ${wave.inset});
+            right: calc(${inset} + ${wave.inset});
             opacity: 0.05;
         }
     `;
@@ -26,18 +29,21 @@ export function makeStyles(color: string, inset: string) {
             display: block;
             content: '';
             position: absolute;
-            inset: ${inset};
-            opacity: 0.6;
+            top: ${inset};
+            bottom: ${inset};
+            left: ${inset};
+            right: ${inset};
+            opacity: 0.4;
             border-radius: 4px;
             z-index: 2;
-            animation: ${waveEffect} .15s ease-in;
+            animation: ${waveEffect} .2s ease-in;
             animation-fill-mode: forwards;
             border: 2px solid ${color};
         }
         &.k-circle,
         &.k-radio-wrapper {
             &:after {
-                border-radius: calc(${theme.large.height} / 2);
+                border-radius: calc(${theme.large.height} / 2 + 4px);
             }
         }
     `;
