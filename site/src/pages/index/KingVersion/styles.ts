@@ -59,14 +59,15 @@ export function makeStyles() {
                 width: 370px;
                 height: 61px;
                 justify-content: flex-start;
-                background: linear-gradient(90deg, #0079FB, #15A3FB, #0079FB) no-repeat;
-                background-size: 630px 61px;
-  	            background-position: -260px 0;
-  	            transition: background-position 0.3s linear;
+                font-size: 18px;
+                // background: linear-gradient(90deg, #0079FB, #15A3FB, #0079FB) no-repeat;
+                // background-size: 630px 61px;
+                  // background-position: -260px 0;
+                  // transition: background-position 0.3s linear;
             }
-            .visit-king-vision:hover {
-                background-position: 0 0;
-            }
+            // .visit-king-vision:hover {
+                // background-position: 0 0;
+            // }
         }
 
         @media (max-width: 768px) {

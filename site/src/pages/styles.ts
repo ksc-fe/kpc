@@ -15,8 +15,8 @@ export function makeHeaderStyles() {
             justify-content: space-between; 
             .logo {
                 background-image: url(${headerLogo});
-                width: 174px;
-                height: 37px;
+                width: 181px;
+                height: 40px;
                 background-size: cover;
                 margin-left: 22px;
                 cursor: pointer;
@@ -115,7 +115,7 @@ export function makeHeaderStyles() {
 
             @media (max-width: 768px) {
                 .logo {
-                    width: 30px;
+                    width: 50px;
                 }
                 .k-tabs {
                     display: none;

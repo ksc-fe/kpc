@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import footer_logo from '../../imgs/footer_logo.png';
+import footer_logo from '../../imgs/header_logo.png';
 import {mainBlock} from '../../styles/default';
 
 export function makeStyles() {
@@ -78,9 +78,10 @@ export function makeStyles() {
             padding-left: 16px;
             border-bottom: ${tableBorder};
             .logo {
-                width: 173px;
-                height: 33px;
+                width: 181px;
+                height: 40px;
                 background-image: url(${footer_logo});
+                background-size: cover;
             }
         }
 

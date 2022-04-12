@@ -320,34 +320,15 @@ export function makeStyles(themeColor: string) {
 				.arrow-btn {
 					position: absolute;
 					top: 50%;
-					width: 54px;
-					height: 54px;
-					line-height: 54px;
 					transform: translateY(-50%);
-					text-align: center;
-					border: 1px solid #D1D1D1;
-					box-sizing: border-box;
-					border-radius: 50%;
-					.k-icon {
-						color: #5A5A68;
-						margin-right: 0;
-						transition: all .2s cubic-bezier(0.25, 0.1, 0.25, 1);
-					}
-					&:hover {
-						background: #0091ea;
-						border-color: #0091ea;
-						.k-icon {
-							color: #ffffff;
-						}	
-					}
 				}
 
 				.next-arrow {
-					right: -87px;
+					right: -60px;
 				}
 
 				.prev-arrow {
-					left: -87px;
+					left: -60px;
 				}
 			}
 		}
@@ -362,9 +343,13 @@ export function makeStyles(themeColor: string) {
                 .card-wrapper {
                     height: auto;
                     > div:first-child {
+                        width: 100%;
                         .card-box {
                             position: relative;
                             display: block;
+                            > div {
+                                height: auto;
+                            }
                         }
                     }
                     .resource-box {

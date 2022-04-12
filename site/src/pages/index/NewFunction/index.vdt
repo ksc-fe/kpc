@@ -211,6 +211,9 @@ const treeData = [
             <Button 
                 v-if={canPrev} 
                 class="arrow-btn prev-arrow" 
+                icon
+                circle
+                size="large"
                 ev-click={this.handlePrevClick}
             >
                 <Icon class="icon ion-chevron-left"></Icon>
@@ -218,6 +221,9 @@ const treeData = [
             <Button 
                 v-if={canNext} 
                 class="arrow-btn next-arrow" 
+                icon
+                circle
+                size="large"
                 ev-click={this.handleNextClick}
             >
                 <Icon class="icon ion-chevron-right"></Icon>
