@@ -45,7 +45,7 @@ const events = [
     ev-keypress={this.onKeypress}
     {...events}
 >
-    <Wave disabled={disabled}>
+    <Wave disabled={disabled} inset="-2px">
         <span class="k-checkbox-wrapper">
             <input
                 type="checkbox" 

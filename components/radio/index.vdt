@@ -42,7 +42,7 @@ const events = [
     ev-keypress={this.onKeypress}
     ev-click={this.fixClick}
 >
-    <Wave disabled={disabled}>
+    <Wave disabled={disabled} inset="-2px">
         <span class="k-radio-wrapper">
             <input
                 { ...getRestProps(this, rest) }

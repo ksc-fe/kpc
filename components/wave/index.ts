@@ -18,7 +18,7 @@ const typeDefs: Required<TypeDefs<WaveProps>> = {
 
 const defaults = (): Partial<WaveProps> => ({
     color: theme.color.primary,
-    inset: '0px'
+    inset: '-1px'
 });
 
 export class Wave extends Component<WaveProps> {
