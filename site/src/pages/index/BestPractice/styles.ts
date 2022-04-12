@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {mainBlock, center} from '../../../styles/default';
+import global, {mainBlock, center} from '../../../styles/default';
 
 export function makeStyles(themeColor: string) {
     return css`
@@ -48,6 +48,9 @@ export function makeStyles(themeColor: string) {
                         }
                         text-align: center;
                     }
+                    & > div:not(.active):hover {
+                        background: #E5EAF4;
+                    }
                     & > div.active {
                         color: #ffffff;
                         background: ${themeColor};
@@ -92,6 +95,9 @@ export function makeStyles(themeColor: string) {
                     background: #FFFFFF;
                     padding: 27px 28px 27px 19px;
                     display: flex;
+                    &:hover {
+                        box-shadow: ${global.cardBoxShadow};
+                    }
                 }
                 .left {
                     width: 326px;
@@ -128,6 +134,11 @@ export function makeStyles(themeColor: string) {
                 .right {
                     padding-left: 60px;
                     padding-top: 15px;
+                    .input-box {
+                        input:hover {
+                            border-color: #36acef;
+                        }
+                    }
                     .item {
                         display: flex;
                         align-items: center;
@@ -145,10 +156,10 @@ export function makeStyles(themeColor: string) {
                             }
                         }
                     }
-                    .k-select {
+                    /* .k-select {
                         border-color: #F0F4FA;
                         background: #F0F4FA;
-                    }
+                    } */
                     .radius-box {
                         display: flex;
                         align-items: center;

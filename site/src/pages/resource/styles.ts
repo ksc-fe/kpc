@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import global, {mainBlock} from '../../styles/default';
+import global, {mainBlock, center} from '../../styles/default';
 import resource_bg from '../../imgs/resource_bg.png';
 import color_process_bg from '../../imgs/color_process_bg.png';
 import workflow_bg from '../../imgs/workflow_bg.png';
@@ -72,6 +72,7 @@ export function makeStyles() {
                 padding-left: 9px;
                 color: #434343;
                 margin-bottom: 12px;
+                cursor: pointer;
                 img {
                     width: 27px;
                     height: 27px;
@@ -79,6 +80,26 @@ export function makeStyles() {
                 }
                 & > div:last-child {
                     padding-left: 14px;
+                }
+                &:hover {
+                    background: #E5EAF4;
+                }
+                &:active {
+                    background: #DAE3EF;
+                }
+                .github-logo {
+                    width: 27px;
+                    height: 27px;
+                    border-radius: 4px;
+                    border: 1px solid #ccc;
+                    ${center()};
+                    background: #fff;
+                    margin-right: 14px;
+                }
+                .code-resource {
+                    display: flex;
+                    align-items: center;
+                    color: #434343;
                 }
             }
             .workflow-box {
@@ -125,8 +146,15 @@ export function makeStyles() {
                         align-items: center;
                         padding-left: 40px;
                     }
+                    .tool-item:hover {
+                        box-shadow: ${global.cardBoxShadow};
+                    }
                     .process-box {
                         background-image: url(${color_process_bg});
+                        span {
+                            color: #626262;
+                            margin-left: 10px;
+                        }
                     }
                     .expect-box {
                         background-image: url(${color_process_expect});

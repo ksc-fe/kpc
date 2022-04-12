@@ -1,7 +1,7 @@
 import {makeStyles} from './styles';
 import {Footer} from '../../components/footer/';
 import {ImgBox} from '../../components/ImgBox/';
-import {Icon} from 'kpc';
+import {Icon, Button} from 'kpc';
 import tpl_1 from '../../imgs/tpl_1.png';
 import tpl_2 from '../../imgs/tpl_2.png';
 import tpl_3 from '../../imgs/tpl_3.png';
@@ -117,7 +117,9 @@ const {showImgBox, curImgList} = this.get();
                                 <div>{$value.name}</div>
                             </div>
                             <div class="download-icon">
-                                <Icon class='icon ion-ios-download-outline'></Icon>
+                                <Button icon type="none">
+                                    <Icon class='icon ion-ios-download-outline'></Icon>
+                                </Button>
                             </div>
                         </div>
                     </div>

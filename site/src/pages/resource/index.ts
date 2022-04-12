@@ -10,6 +10,10 @@ export const getSketch = (): void => {
     Link.to('https://damife.ks3-cn-beijing.ksyuncs.com/kpc/KingDesing-1.4.1.sketch');
 };
 
+export const getFigma = (): void => {
+    Link.to('https://www.figma.com/file/Uo5AKEmBXT4HOD41CDWliK/King-Design-V1.0.0?node-id=0%3A1');
+};
+
 export default class Index extends Layout {
     static template = template;
 

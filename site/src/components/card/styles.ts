@@ -12,7 +12,7 @@ export function makeStyles() {
         font-family: PingFang SC;
         vertical-align: top;
         &:hover {
-            box-shadow: 0 0 16px rgba(0, 0, 0, .1);
+            box-shadow: 0 0 8px rgba(0, 0, 0, .1);
         }
         .title {
             height: 45px;
