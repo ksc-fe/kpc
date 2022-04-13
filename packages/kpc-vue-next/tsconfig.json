@@ -1,8 +1,13 @@
 {
     // "extends": "../../tsconfig",
     "compilerOptions": {
-        "outDir": "./build",
+        // "outDir": "./build",
         "esModuleInterop": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "declaration": true,
+        "strict": true,
+        "moduleResolution": "node",
         "paths": {
             "vue": ["./node_modules/vue"],
             "kpc-vue-next": ["./"],
@@ -11,7 +16,8 @@
         }
     },
     "include": [
-        "../../typings",
-        "../../test/utils.ts"
+        // "../../typings",
+        // "../../test/utils.ts",
+        "./install.ts"
     ]
 }
