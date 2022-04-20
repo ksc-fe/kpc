@@ -1,5 +1,5 @@
 /*!
- * @king-design v2.0.0-beta.0
+ * @king-design v2.0.0-beta.1
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
