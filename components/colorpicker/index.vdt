@@ -4,7 +4,10 @@ import {makeStyles} from './styles';
 import {ColorpickerPanel} from './panel';
 import {Dropdown, DropdownMenu} from '../dropdown';
 
-const {className, transition, presets, value, size, disabled} = this.get();
+const {
+    className, transition, presets,
+    value, size, disabled, container
+} = this.get();
 
 const classNameObj = {
     'k-colorpicker': true,
@@ -19,6 +22,7 @@ const classNameObj = {
         position={{my: 'left top+8', at: 'left bottom', collision: 'flip'}}
         trigger="click"
         disabled={disabled}
+        container={container}
     >
         <div class="k-colorpicker-color">
             <div class="k-colorpicker-inner" style={{backgroundColor: value}}></div>
