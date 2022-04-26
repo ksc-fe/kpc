@@ -22,7 +22,7 @@ const {className, children, span, style, offset, push, pull, order} = this.get()
         return (
             <div class={classNameObj} {...getRestProps(this)} style={newStyle}>
                 {gutter ? 
-                    <div class={className}>{children}</div> :
+                    <div class={{'k-col-wrapper': true, [className]: className}}>{children}</div> :
                     children
                 }
             </div>

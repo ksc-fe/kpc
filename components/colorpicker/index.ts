@@ -1,12 +1,14 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
+import {Container} from '../portal';
 
 export interface ColorpickerProps {
     value: string
     presets?: string[]
     size?: Sizes
     disabled?: boolean
+    container?: Container
 }
 
 export interface ColorpickerEvents { }
@@ -19,6 +21,7 @@ const typeDefs: Required<TypeDefs<ColorpickerProps>> = {
     presets: Array,
     size: sizes,
     disabled: Boolean,
+    container: [Function, String],
 };
 
 const defaults = (): Partial<ColorpickerProps> => ({

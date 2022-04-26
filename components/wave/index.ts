@@ -35,8 +35,13 @@ export class Wave extends Component<WaveProps> {
     };
 
     private instance: HTMLElement | null = null;
-    private className: string = makeStyles(this.get('color')!, this.get('inset')!);
+    private className!: string;
     private timer: number = 0;
+
+    private initClassName() {
+        const {color, inset} = this.get();
+        this.className = makeStyles(color || theme.color.primary, inset!);
+    }
 
     @bind
     mounted() {
@@ -59,11 +64,13 @@ export class Wave extends Component<WaveProps> {
 
     @bind
     private onClick(e: Event) {
+        this.initClassName();
+
         const {instance} = this;
         const {disabled} = this.get();
         const node = e.target as HTMLElement;
 
-        // fix: 点击输入框中的icon时，此时输入框不需要动效
+        // 点击输入框中的icon时，此时输入框不需要动效
         const isInput = instance!.classList.contains('k-input-wrapper');
         if (disabled || isInput && node!.classList.contains('k-icon')) return;
 
