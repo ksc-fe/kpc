@@ -12,7 +12,7 @@ export function makeStyles() {
                 font-size: 14px;
             }
             article {
-                line-height: 2;
+                line-height: 1.8;
                 // max-width: 990px;
                 // margin: 0 auto !important;
             }

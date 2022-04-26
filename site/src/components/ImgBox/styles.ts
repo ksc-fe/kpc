@@ -50,7 +50,7 @@ export function makeStyles() {
                 opacity: 0;
             }
         }
-        .icon-arrow {
+        /* .icon-arrow {
             position: absolute;
             width: 50px;
             height: 50px;
@@ -65,6 +65,11 @@ export function makeStyles() {
             .icon {
                 font-size: 35px;
             }
+        } */
+        .icon-arrow {
+            position: absolute;
+            top: 50%;
+            margin-top: -25px;
         }
         .icon-arrow:hover {
             color: #0191EA;

@@ -1,5 +1,5 @@
 ---
-title: 可访问性设置
+title: 布局
 order: 41
 sidebar: design
 category: 设计指南

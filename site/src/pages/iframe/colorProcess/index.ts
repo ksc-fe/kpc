@@ -19,6 +19,7 @@ export type ThemeValue = {
     mainColor: string
     textColor: string
     collectionsColor: string
+    opacity: number
 }
 interface Theme {
     [index: string]: ThemeValue
@@ -65,22 +66,26 @@ const defaults = (): Partial<ColorProcessProps> => ({
         'New Era': {
             mainColor: '#6E64E0',
             textColor: '#ffffff',
-            collectionsColor: '#ffffff'
+            collectionsColor: '#ffffff',
+            opacity: 0.7
         },
         'Ocean': {
             mainColor: '#258AE8',
             textColor: '#ffffff',
-            collectionsColor: '#ffffff'
+            collectionsColor: '#ffffff',
+            opacity: 0.7
         },
         'Techno': {
             mainColor: '#25E8D0',
             textColor: '#000000',
-            collectionsColor: '#000000'
+            collectionsColor: '#000000',
+            opacity: 0.5
         },
         'burset 62': {
             mainColor: 'linear-gradient(165.2deg, #E83025 10.45%, #FF7A00 78.4%)',
             textColor: '#ffffff',
-            collectionsColor: '#000000'
+            collectionsColor: '#000000',
+            opacity: 0.7
         }
     },
     curTheme: 'New Era'

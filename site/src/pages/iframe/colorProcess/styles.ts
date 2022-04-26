@@ -44,6 +44,9 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
             .header-logo {
                 display: flex;
                 padding-left: 25px;
+                img {
+                    width: 320px;
+                }
             }
             .header-menu {
                 display: flex;
@@ -58,8 +61,13 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
                     align-items: center;
                     justify-content: center;
                     transition: all .25s ease-in-out;
+                    color: ${theme.textColor};
                 }
-                & > div: hover {
+                & > div:not(:last-child) {
+                    opacity: ${theme.opacity};
+                }
+                & > div:not(:last-child):hover {
+                    opacity: 1;
                     color: ${theme.textColor};
                 }
                 & > div:last-child {

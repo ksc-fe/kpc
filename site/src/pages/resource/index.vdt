@@ -1,16 +1,16 @@
 import {makeStyles} from './styles';
 import {Footer} from '../../components/footer/';
 import {Icon} from 'kpc';
-import color_process_logo from '../../imgs/color_process_logo.png';
-import axure_img from '../../imgs/axure_img.png';
-import sketch_img from '../../imgs/sketch_img.png';
+import sketch_img from '../../imgs/sketch_transparent.png';
 import rectangle from '../../imgs/rectangle.png';
-import kingvision_logo from '../../imgs/k_vision.png';
+import kingvision_icon from '../../imgs/kingvision_icon.png';
+import axure_icon from '../../imgs/axure_icon.png';
 import iconFonts from '../../imgs/icon-fonts.png';
 import iconSize from '../../imgs/icon-size.png';
 import {WorkflowCard} from '../../components/WorkflowCard/';
 import {Link} from '../../components/link';
-import {getAxure, getSketch, getFigma} from './index';
+import github_icon from '../../imgs/github_icon.png';
+import {getAxure, getSketch, getFigma, getWeights} from './index';
 
 const pricipleList = [
     {
@@ -41,15 +41,15 @@ const pricipleList = [
             <div class="content">
                 <div class="nav-title">
                     <div>资源</div>
-                    <div>为你的整条产品设计链路提效</div>
+                    <div>生态设计工具与研发资源，快速支持业务</div>
                 </div>
             </div>
         </div>
         <div class="source-content">
             <div>
                 <div class="content-top">
-                    <div class="main-title">时刻准备为你的工作流提效</div>
-                    <div class="secondary-title">一站式产品设计流程</div>
+                    <div class="main-title">产品，设计，开发，测试，全链路加速产品开发</div>
+                    <div class="secondary-title">构建专业的企业级数字产品</div>
                     <div class="workflow-box">
                         <WorkflowCard title="原型设计">
                             <div class="card-content-box">
@@ -59,7 +59,7 @@ const pricipleList = [
                                         class="card-item" 
                                         ev-click={getAxure}
                                     >
-                                        <img src={axure_img} />
+                                        <img src={axure_icon} />
                                         <div>Axure组件库</div>
                                     </div>
                                 </div>
@@ -73,7 +73,9 @@ const pricipleList = [
                                         class="card-item" 
                                         ev-click={getSketch}
                                     >
-                                        <img src={sketch_img} />
+                                        <div class="sketch-img-box">
+                                            <img src={sketch_img} />
+                                        </div>
                                         <div>Sketch组件库</div>
                                     </div>
                                     <div 
@@ -88,10 +90,10 @@ const pricipleList = [
                                     <div class="card-title">更多KD资源</div>
                                     <div class="card-item">
                                         <Link href="http://vision.ksyun.com/#/icon-reposition">
-                                            <img 
-                                                src={kingvision_logo} 
-                                                style="width: 96px; height: 22px;"
-                                            />
+                                            <div class="code-resource">
+                                                <img src={kingvision_icon} />
+                                                <div style="padding-left: 14px;">KingVision素材库</div>
+                                            </div>
                                         </Link>
                                     </div>
                                     <div class="card-item">
@@ -108,11 +110,7 @@ const pricipleList = [
                                     <div class="card-item">
                                         <Link href="https://github.com/ksc-fe/kpc">
                                             <div class="code-resource">
-                                                <div class="github-logo">
-                                                    <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M6.50002 0.541664C4.93648 0.525776 3.4306 1.13133 2.31333 2.22523C1.19607 3.31914 0.558836 4.81189 0.541687 6.37541C0.547712 7.61105 0.945198 8.81298 1.67705 9.80857C2.40891 10.8042 3.43748 11.5422 4.61502 11.9167C4.91294 11.9708 5.02127 11.7921 5.02127 11.635V10.6437C3.36377 10.9958 3.01169 9.86374 3.01169 9.86374C2.90135 9.50836 2.66677 9.20456 2.35085 9.00791C1.80919 8.65041 2.39419 8.65583 2.39419 8.65583C2.58141 8.68086 2.76055 8.74795 2.91815 8.85208C3.07575 8.95621 3.20773 9.09467 3.30419 9.25708C3.47228 9.54856 3.7481 9.76239 4.07228 9.85256C4.39645 9.94272 4.74307 9.902 5.03752 9.73916C5.0678 9.44254 5.20213 9.16621 5.41669 8.95916C4.09502 8.81291 2.70835 8.31458 2.70835 6.0775C2.69653 5.49395 2.91215 4.92868 3.3096 4.50125C3.12859 4.00024 3.14997 3.44842 3.36919 2.96291C3.36919 2.96291 3.87294 2.80583 4.99419 3.55875C5.97021 3.29866 6.99733 3.29866 7.97335 3.55875C9.11085 2.80583 9.59835 2.96291 9.59835 2.96291C9.81757 3.44842 9.83895 4.00024 9.65794 4.50125C10.0646 4.92085 10.2919 5.48232 10.2917 6.06666C10.2917 8.30916 8.89419 8.80208 7.58335 8.94833C7.72689 9.08768 7.83776 9.25711 7.908 9.44442C7.97825 9.63174 8.00611 9.83229 7.9896 10.0317V11.6296C7.9896 11.8192 8.09794 11.9708 8.39585 11.9112C9.57006 11.5345 10.5952 10.7963 11.3247 9.80207C12.0543 8.80788 12.4511 7.60856 12.4584 6.37541C12.4412 4.81189 11.804 3.31914 10.6867 2.22523C9.56944 1.13133 8.06356 0.525776 6.50002 0.541664Z" fill="#000"/>
-                                                    </svg>
-                                                </div>
+                                                <img src={github_icon} />
                                                 <div>代码资源</div>
                                             </div>
                                         </Link>
@@ -123,8 +121,8 @@ const pricipleList = [
                         <WorkflowCard title="测试阶段">
                             <div class="card-content-box">
                                 <div>
-                                    <div class="card-title">可用性检查</div>
-                                    <div class="card-item">
+                                    <div class="card-title">产品可用性度量</div>
+                                    <div class="card-item" ev-click={getWeights}>
                                         <img src={iconSize} />
                                         <div>度量衡工具</div>
                                     </div>
@@ -138,19 +136,16 @@ const pricipleList = [
                     <div class="tool-box">
                         <div>
                             <div class="title">工具</div>
-                            <div>KD设计系统2.0打造了全新的组件语言和工具</div>
+                            <div>更多的设计资源创造更高的产品价值</div>
                         </div>
-                        <div class="tool-item process-box">
-                            <img src={color_process_logo} />
-                            <span>（敬请期待）</span>
-                        </div>
+                        <div class="tool-item process-box"></div>
                         <div class="tool-item expect-box">
                         </div>
                     </div>
                     <div class="principle">
                         <div>
                             <div class="title">原则与方法论</div>
-                            <div>KD设计系统2.0打造了全新的组件语言和工具</div>
+                            <div>以人机界面设计指南为设计核心</div>
                         </div>
                         <div class="priciples">
                             <div 

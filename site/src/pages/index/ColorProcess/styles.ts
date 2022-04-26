@@ -198,6 +198,9 @@ export function makeStyles(colorList: any[]) {
                 img {
                     max-width: 100%;
                 }
+                .cp-desc {
+                    width: 100%;
+                }
                 .color-box {
                     .color-wrapper {
                         width: auto;

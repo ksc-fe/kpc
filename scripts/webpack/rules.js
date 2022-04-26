@@ -79,7 +79,7 @@ module.exports = (config) => {
                 .end()
             .end()
         .rule('file')
-            .test(/\.(woff2?|eot|ttf|otf|svg|jpg|png)(\?.*)?$/)
+            .test(/\.(woff2?|eot|ttf|otf|svg|jpg|png|mp4)(\?.*)?$/)
             .use('file')
                 .loader('file-loader')
                 .options({

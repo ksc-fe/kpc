@@ -1,6 +1,7 @@
 import {makeStyles} from './styles';
 import {Row, Col} from 'kpc';
 import {Link} from '../link';
+import qrcode from '../../imgs/qrcode.png';
 
 <div class={makeStyles()} style={{background: this.get('bgColor')}}>
     <div class="footer-box">
@@ -10,10 +11,13 @@ import {Link} from '../link';
             </Row>
             <Row class="info-box">
                 <Col class="info-left" md="12" sm="24">
-                    <div class="title">一个设计系统，为企业提效而生</div>
-                    <div>
-                        <span>联系我们：<a href="mailto:ksc_ued@kingsoft.com">ksc_ued@kingsoft.com</a></span>
-                        <span>关注我们：微信公众号“⾦⼭云⽤户体验设计”</span>
+                    <div class="title">用于企业级产品和数字体验的开源设计系统</div>
+                    <div class="qrcode-box">
+                        <img src={qrcode} width="90" height="90" />
+                        <div>
+                            <div>联系我们：<a href="mailto:ksc_ued@kingsoft.com">ksc_ued@kingsoft.com</a></div>
+                            <div>关注我们：微信公众号“⾦⼭云⽤户体验设计”</div>
+                        </div>
                     </div>
                 </Col>
                 <Col class="info-right" md="12" sm="24">

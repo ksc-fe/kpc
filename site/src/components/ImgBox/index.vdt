@@ -1,11 +1,11 @@
 import {makeStyles} from './styles';
-import {Icon} from 'kpc';
+import {Icon, Button} from 'kpc';
 
-const {show, imgList, baseWidth, curImgIndex} = this.get();
+const {show, imgList, baseWidth, curImgIndex, imgWidth} = this.get();
 
 const left = curImgIndex == 0 
     ? baseWidth 
-    : -(curImgIndex) * 950 + baseWidth;
+    : -(curImgIndex) * imgWidth + baseWidth;
 
 const imgBoxStyle = {
     transform: `translateX(${left}px)`
@@ -25,19 +25,25 @@ const imgBoxStyle = {
                 </div>
             </div>
         </div>
-        <div
-            class="icon-arrow arrow-left" 
-            ev-click={this.handleRightArrowClick.bind(this)}
+        <Button 
+            icon
+            circle
+            size="large"
+            class="icon-arrow arrow-left"
             v-if={curImgIndex > 0}
+            ev-click={this.handleRightArrowClick.bind(this)}
         >
             <Icon class="icon ion-chevron-left"></Icon>
-        </div>
-        <div
-            class="icon-arrow arrow-right" 
+        </Button>
+        <Button 
+            icon
+            circle
+            size="large"
+            class="icon-arrow arrow-right"
             ev-click={this.handleLeftArrowClick.bind(this)}
             v-if={curImgIndex < imgList.length - 1}
         >
             <Icon class="icon ion-chevron-right"></Icon>
-        </div>        
+        </Button>
     </div>
 </div>
