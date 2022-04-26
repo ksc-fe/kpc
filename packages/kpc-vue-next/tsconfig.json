@@ -16,8 +16,7 @@
         }
     },
     "include": [
-        // "../../typings",
-        // "../../test/utils.ts",
-        "./install.ts"
+        "../../typings",
+        "../../test/utils.ts"
     ]
 }

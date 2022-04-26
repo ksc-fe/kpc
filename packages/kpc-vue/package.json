@@ -12,16 +12,6 @@
     "king-design",
     "kpc"
   ],
-  "files": [
-    "components",
-    "hooks",
-    "i18n",
-    "styles",
-    "dist",
-    "index.js",
-    "install.js",
-    "index.d.ts"
-  ],
   "author": "Javey <jiawei23716@sina.com>",
   "homepage": "https://design.ksyun.com",
   "license": "MIT",
@@ -47,7 +37,7 @@
     "dayjs": "^1.10.7",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
-    "intact-vue": "^3.0.0-beta.22",
+    "intact-vue": "^3.0.0-beta.23",
     "monaco-editor": "^0.26.1",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.1",
