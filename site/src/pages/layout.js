@@ -59,4 +59,10 @@ export default class extends Intact {
         this.border.style.width = `${width}px`;
         this.border.style.left = `${left}px`;
     }
+
+    onChangeVersion(c, v) {
+        if (v === 'v2') {
+            location.href = '/';
+        }
+    }
 }

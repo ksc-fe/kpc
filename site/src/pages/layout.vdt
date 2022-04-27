@@ -71,9 +71,13 @@ const nav = [
                         </DropdownMenu>
                     </Dropdown>
                     <div class="line"></div>
-                    {{ /*<Select v-model="version" width="100" size="small">
-                        <Option value="v1.1.1">v1.1.1</Option>
-                    </Select> */ }}
+                    <Select value="v1" width="70" size="small"
+                        container=".header-wrapper"
+                        ev-$change:value={{ self.onChangeVersion }}
+                    >
+                        <Option value="v1">v1</Option>
+                        <Option value="v2">v2</Option>
+                    </Select>
                     <Select v-model="theme" inline container=".header-wrapper">
                         <Option value="kpc">默认主题</Option>
                         <Option value="ksyun">ksyun</Option>
