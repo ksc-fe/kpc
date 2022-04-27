@@ -77,7 +77,7 @@ console.log(colorList);
             </Dropdown>
             <Select width="70" container={dom => dom} value="v2"
                 size="small"
-                $ev-$change:value={this.onChangeVersion}
+                ev-$change:value={this.onChangeVersion}
                 class="versions"
             >
                 <Option value="v1">v1</Option>
