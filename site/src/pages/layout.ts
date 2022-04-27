@@ -73,4 +73,11 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
     setLang(langType: string) {
         this.set('curLang', langType);
     }
+
+    @bind
+    onChangeVersion(version: string) {
+        if (version === 'v1') {
+            location.href = '/v1/';
+        }
+    }
 }

@@ -41,6 +41,9 @@ export function makeHeaderStyles() {
                     }
                 }
             }
+            .k-select.versions {
+                background: transparent;
+            }
             .lang-wrapper {
                 height: 100%;
                 display: flex;
@@ -77,10 +80,11 @@ export function makeHeaderStyles() {
                 .theme-color-box {
                     font-size: 14px;
                     position: relative;
-                    width: 100px;
                     height: 100%;
                     display: flex;
                     align-items: center;
+                    padding: 0 16px;
+                    white-space: nowrap;
                     &:hover {
                         background: #ffffff;
                         & > div:first-child {
@@ -88,12 +92,10 @@ export function makeHeaderStyles() {
                         }
                     }
                     & > div:first-child {
-                        position: absolute;
-                        left: -25px;
                         display: flex;
                         align-items: center;
                         height: 100%;
-                        padding-left: 10px;
+                        padding-right: 10px;
                     }
                     .cur-color {
                         height: 100%;
