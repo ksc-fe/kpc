@@ -3,11 +3,11 @@ import Layout from '../layout';
 import {Link} from '../../components/link';
 
 export const getAxure = (): void => {
-    location.href = 'https://damife.ks3-cn-beijing.ksyuncs.com/kpc/KingDesign.rplib';
+    location.href = 'https://damife.ks3-cn-beijing.ksyuncs.com/kpc/KingDesign-Axure.zip';
 };
 
 export const getSketch = (): void => {
-    location.href = 'https://damife.ks3-cn-beijing.ksyuncs.com/kpc/KingDesing-1.4.1.sketch';
+    location.href = 'https://damife.ks3-cn-beijing.ksyuncs.com/kpc/KingDesign-Sketch.zip';
 };
 
 export const getFigma = (): void => {
