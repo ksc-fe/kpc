@@ -7393,29 +7393,29 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-intact-react@^3.0.0-beta.23:
-  version "3.0.0-beta.23"
-  resolved "https://registry.npmmirror.com/intact-react/-/intact-react-3.0.0-beta.23.tgz#5e76f8be617ae55074f01da3ad5398b88e03870b"
-  integrity sha512-U3u0EG1/BZyj+SgUd4rWXWeE6eVglgMeZtn4zv7aPm1oMGu7uyN59Ig95NxKOIicejuCF6a+r2SaCZq6bZ0dIA==
+intact-react@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/intact-react/-/intact-react-3.0.0.tgz#b2140a74e164ef73c091b7675f04663cb64acb43"
+  integrity sha512-jl6C0xZyZK5M05aRupdmHBhxBWUXTNlDoP7hNFJuVNKBv85JYJMegYkOlDd1bjkMRFCWkkc29WczHpEzar3Qcg==
   dependencies:
-    intact "^3.0.0-beta.23"
+    intact "^3.0.0"
     tslib "^2.3.1"
 
-intact-shared@^3.0.0-beta.23:
-  version "3.0.0-beta.23"
-  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.0-beta.23.tgz#19d6b25304cf8f48c2faa096c3e786348f91d354"
-  integrity sha512-/O+uCObBHPkRWaWyntXzSF6g9FLY31tEF/CflwdOqMWSGT+R3ZwQVsm/16HFu43x5zG+oO2I8WvWQoXjZRx9Dw==
+intact-shared@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/intact-shared/-/intact-shared-3.0.0.tgz#48140eb13249ab68efb308656a4470650c910f26"
+  integrity sha512-rUKIu6UUX+KiYR06qGvaDb1qwB4M78LSVwya9edOfdqAN/45MXYJF9rARCiy+u7qfMq2uenoyZ2y74Znr8aPnA==
 
-intact@^3.0.0-beta.23:
-  version "3.0.0-beta.23"
-  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.0-beta.23.tgz#7830d177928bd5b901a605f79394843960f20ef6"
-  integrity sha512-BEeGkd3tcm4ktrOrg6Rz30CuoHPy/gDNus9grzGQ8q0i2UJAyWZTjccXF7ui005yVoAVwgv1kOMVwInjs1wq7w==
+intact@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/intact/-/intact-3.0.0.tgz#1f0e7f6db877c8106bf15b1c8784043adbf3c46b"
+  integrity sha512-OZQdOvDxE8c4O/pF4nqvC1h4mQu15cQieD4lLKjIUv+JnwNS+WijGXz2uhxB6O7v5J9SjWfj+4vYye8ELwYojw==
   dependencies:
-    intact-shared "^3.0.0-beta.23"
-    misstime "^3.0.0-beta.23"
+    intact-shared "^3.0.0"
+    misstime "^3.0.0"
     tslib "^2.2.0"
-    vdt "^3.0.0-beta.23"
-    vdt-compiler "^3.0.0-beta.23"
+    vdt "^3.0.0"
+    vdt-compiler "^3.0.0"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9190,12 +9190,12 @@ minizlib@^2.0.0, minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
-misstime@^3.0.0-beta.23:
-  version "3.0.0-beta.23"
-  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.0-beta.23.tgz#956e1ca761f636ddc00580bed4326634ec48914d"
-  integrity sha512-V8AI7oGzBM6bQF3dNarQNJbAHk5/XiCdek+XPANM+bIvKlp8yuIijt9jZN9A/QCMzhspY0SOJn//6bgz5cwcng==
+misstime@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/misstime/-/misstime-3.0.0.tgz#6d7dee858d68d03b21fabe6f295ae386f3018759"
+  integrity sha512-MaOSbMIpKNC3DKhHHwlVK01Iy4cijNC2dO4kiYhDnaC1moL6viP6eZZo+gN2CODbe2QeWDt3x/sXSKPCIiNeRA==
   dependencies:
-    intact-shared "^3.0.0-beta.23"
+    intact-shared "^3.0.0"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13390,13 +13390,13 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vdt-compiler@^3.0.0-beta.23:
-  version "3.0.0-beta.23"
-  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.0-beta.23.tgz#a1a82a3915eb00ac170bba492f8baf64f043d9ed"
-  integrity sha512-HbmYsSDsLgFfDHFr+EvVzYfnTmWsCYq3I4wdvm3PHdNsXEcx/waeCAmg6PnJ6GKM54ZxasVXMLi8RqAKbyXH/Q==
+vdt-compiler@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vdt-compiler/-/vdt-compiler-3.0.0.tgz#ea680f07dc381759b8ebb163ccaa2805ab04bde8"
+  integrity sha512-LKBDzLZbLMG9z67WttOBprxDpI5BFVWXevDP+KPUeLgC9JaQc0OrNda1tyozSPqikuLvKHIsm/XfO7L3zix9iw==
   dependencies:
-    intact-shared "^3.0.0-beta.23"
-    misstime "^3.0.0-beta.23"
+    intact-shared "^3.0.0"
+    misstime "^3.0.0"
     tslib "^2.2.0"
 
 vdt-loader@^3.0.0-beta.1:
@@ -13408,13 +13408,13 @@ vdt-loader@^3.0.0-beta.1:
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-vdt@^3.0.0-beta.23:
-  version "3.0.0-beta.23"
-  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.0-beta.23.tgz#1aa3be7d5e22ad403a0e58ba26a83ef9d32fb727"
-  integrity sha512-TDmVBSxPyvakgnWTkdJfxp9Lvx8iRIlw4HcKuMdByFAQN+pJHXk/ZsULl4CVZYk3C0bRg0K4ijDiHZiiYWJFNw==
+vdt@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vdt/-/vdt-3.0.0.tgz#74f0cf6ede2740f48d36ac7599e73586374b885b"
+  integrity sha512-8p2P6FWISBVa150baW6GGIWPmhFyYB3eExMjHmlJwjMIQ+sSKF3X5aqVtg4AFCVA5VALbSJ5z/jLhxIV7lNjTg==
   dependencies:
-    intact-shared "^3.0.0-beta.23"
-    misstime "^3.0.0-beta.23"
+    intact-shared "^3.0.0"
+    misstime "^3.0.0"
     tslib "^2.2.0"
 
 verror@1.10.0:
