@@ -9,23 +9,22 @@ order: 6
 > 不要将该组件用于表单中，因为它本身就会渲染成独立的表单
 
 ```vdt
-import {Search} from 'kpc/components/input';
+import {Search} from 'kpc';
 
 <div>
-    <Search ev-submit={{ self._search }} />
+    <Search ev-submit={this.search} />
     <br />
-    <Search type="line" ev-submit={{ self._search }} />
+    <Search type="line" ev-submit={this.search} />
 </div>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
-    _search(keywords) {
+    search(keywords: string) {
         Message.success('Search by keywords: ' + keywords);
     }
 }

@@ -9,51 +9,47 @@ order: 1
 > 参考`jQuery-UI`实现https://api.jqueryui.com/position/
 
 ```vdt
-import Tooltip from 'kpc/components/tooltip';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import {Form, FormItem} from 'kpc/components/form';
-import {Select, Option} from 'kpc/components/select';
-import {Spinner} from 'kpc/components/spinner';
+import {Tooltip, ButtonGroup, Button, Form, FormItem, Select, Option, Spinner} from 'kpc';
 
 <Form>
     <FormItem label="position:">
         <ButtonGroup checkType="radio" v-model="position">
             <Button 
-                v-for={{ ['left', 'right', 'top', 'bottom', 'custom'] }}
-                value={{ value }}
-            >{{ value }}</Button>
+                v-for={['left', 'right', 'top', 'bottom', 'custom']}
+                value={$value}
+            >{$value}</Button>
         </ButtonGroup>
     </FormItem>
-    <template v-if={{ self.get('position') === 'custom' }}>
+    <template v-if={this.get('position') === 'custom'}>
         <FormItem label="my:">
             x: <Select width="100" v-model="pos.myX">
                 <Option 
-                    v-for={{ self.get('xAxisKeywords') }} 
-                    value={{ value }}
-                >{{ value }}</Option>
+                    v-for={this.get('xAxisKeywords')} 
+                    value={$value}
+                >{$value}</Option>
             </Select>
             <Spinner vertical v-model="pos.myXOffset" />
             y: <Select width="100" v-model="pos.myY">
                 <Option 
-                    v-for={{ self.get('yAxisKeywords') }} 
-                    value={{ value }}
-                >{{ value }}</Option>
+                    v-for={this.get('yAxisKeywords')} 
+                    value={$value}
+                >{$value}</Option>
             </Select>
             <Spinner vertical v-model="pos.myYOffset" />
         </FormItem>
         <FormItem label="at:">
             x: <Select width="100" v-model="pos.atX">
                 <Option 
-                    v-for={{ self.get('xAxisKeywords') }} 
-                    value={{ value }}
-                >{{ value }}</Option>
+                    v-for={this.get('xAxisKeywords')} 
+                    value={$value}
+                >{$value}</Option>
             </Select>
             <Spinner vertical v-model="pos.atXOffset" />
             y: <Select width="100" v-model="pos.atY">
                 <Option 
-                    v-for={{ self.get('yAxisKeywords') }} 
-                    value={{ value }}
-                >{{ value }}</Option>
+                    v-for={this.get('yAxisKeywords')} 
+                    value={$value}
+                >{$value}</Option>
             </Select>
             <Spinner vertical v-model="pos.atYOffset" />
         </FormItem>
@@ -61,12 +57,12 @@ import {Spinner} from 'kpc/components/spinner';
     <FormItem key="opera" fluid>
         <div class="opera">
             <Tooltip
-                content={{ self.getContent() }}
-                position={{ self.getPosition() }}
+                content={this.getContent()}
+                position={this.getPosition()}
                 always
-                value={{ true }}
+                value={true}
                 container=".opera"
-                canHover
+                hoverable
             >
                 <Button>at</Button>
             </Tooltip>
@@ -87,12 +83,27 @@ import {Spinner} from 'kpc/components/spinner';
     white-space nowrap
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+interface Props  {
+    position: 'left' | 'bottom' | 'right' | 'top' | 'custom'
+    xAxisKeywords: string[]
+    yAxisKeywords: string[]
+    pos: Pos
+}
+type Pos = { 
+    myX: string
+    myXOffset: number
+    myY: string
+    myYOffset: number
+    atX: string
+    atXOffset: number
+    atY: string
+    atYOffset: number
+}
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             position: 'left',
             xAxisKeywords: ['left', 'center', 'right'],
@@ -107,12 +118,12 @@ export default class extends Intact {
                 atY: 'top',
                 atYOffset: 0,
             },
-        }
+        } as Props;
     }
 
     getPosition() {
         const position = this.get('position');
-        const getNumStr = num => num > 0 ? `+${num}` : num === 0 ? '' : num;
+        const getNumStr = (num: number) => num > 0 ? `+${num}` : num === 0 ? '' : num;
 
         if (position === 'custom') {
             const pos = this.get('pos');

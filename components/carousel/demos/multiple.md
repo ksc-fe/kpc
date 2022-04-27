@@ -10,9 +10,9 @@ order: 3
 > 该特性只对`effect="slide"`有效
 
 ```vdt
-import {Carousel, CarouselItem} from 'kpc/components/carousel';
+import {Carousel, CarouselItem} from 'kpc';
 
-<Carousel clonedAmount={{ 2 }}>
+<Carousel clonedAmount={2}>
     <CarouselItem class="one">1</CarouselItem>
     <CarouselItem class="two">2</CarouselItem>
     <CarouselItem class="three">3</CarouselItem>
@@ -21,8 +21,6 @@ import {Carousel, CarouselItem} from 'kpc/components/carousel';
 ```
 
 ```styl
-@require('~kpc/styles/themes/default.styl')
-
 .k-carousel-item
     color #fff
     line-height 300px
@@ -31,11 +29,11 @@ import {Carousel, CarouselItem} from 'kpc/components/carousel';
     width 500px
     margin 0 16px
 .one
-    background $success-color
+    background #36b342 
 .two
-    background $danger-color
+    background #ff4133
 .three
-    background $primary-color
+    background #0091ea 
 .four
-    background $warning-color
+    background #ff9800 
 ```

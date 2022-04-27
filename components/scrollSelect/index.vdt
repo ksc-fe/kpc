@@ -1,41 +1,38 @@
+import {makeStyles} from './styles';
 import {getRestProps} from '../utils';
 
-const {
-    value, _list, disabled, disable,
-    _translate, _marginTop, _dragging
-} = self.get();
+const {value, disabled, disable} = this.get();
 
 const classNameObj = {
-    "k-scroll-select": true, 
-    "k-dragging": _dragging,
-    "k-disabled": disabled,
+    'k-scroll-select': true, 
+    'k-dragging': this.mouseEvents.dragging.value,
+    'k-disabled': disabled,
+    [makeStyles()]: true,
 }
 
-<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
-    <div class="k-wrapper"
-        style={{ {
-            transform: `translateY(${_translate}px)`,
-            marginTop: `${_marginTop}px`,
-        } }}
-        ev-mousedown={{ !disabled ? self._dragStart : undefined }}
-        ev-wheel={{ !disabled ? self._onWheel : undefined }}
-        ref="wrapper"
+const {onStart, onWheel, onClick} = this.mouseEvents;
+
+<div {...getRestProps(this)} class={classNameObj}>
+    <div class="k-scroll-select-wrapper"
+        style={{
+            transform: `translateY(${this.translate.translate.value}px)`,
+            marginTop: `${this.mouseEvents.marginTop.value}px`,
+        }}
+        ev-mousedown={!disabled ? onStart : null}
+        ev-wheel={!disabled ? onWheel : null}
     >
         <div
-            class={{ {
-                "k-scroll-item": true,
-                "k-active": item.value === value,
-                "k-disabled": disabled || disable && disable.call(self, item.value), 
-            } }}
-            v-for={{ _list }}
-            v-for-value="item"
-            ev-click={{ !disabled ? self._select.bind(self, item, key) : undefined }}
-            key={{ item.key }}
-            ref={{ key === 0 ? (dom) => self.refs.item = dom : undefined }}
-        >{{ item.label }}</div>
+            class={{
+                "k-scroll-select-item": true,
+                "k-active": $value.value === value,
+                "k-disabled": disabled || disable && disable.call(this, $value.value), 
+            }}
+            v-for={this.list.data.value}
+            ev-click={!disabled ? onClick.bind(this, $value, $key) : null}
+        >{$value.label}</div>
     </div>
-    <div class="k-append" v-if={{ blocks.append }}>
+    <div class="k-scroll-select-append" v-if={$blocks.append}>
         <b:append />
     </div>
-    <div class="k-border"></div>
+    <div class="k-scroll-select-border"></div>
 </div>

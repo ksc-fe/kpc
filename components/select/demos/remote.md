@@ -3,36 +3,40 @@ title: 远程搜索
 order: 4.1
 ---
 
-监听`$change:keywords`事件，可以在关键词变化时进行远程搜索，此时需要将过滤函数设为`() => true`
+监听`input`事件，可以在关键词变化时进行远程搜索，此时需要将过滤函数设为`() => true`
 让它不要真正去过滤结果。
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
-<Select multiple filterable filter={{ () => true }} ev-$change:keywords={{ self.search }}>
-    <Option v-for={{ self.get('users') }} 
-        value={{ value.login.username }}
-    >{{ value.name.first }} {{ value.name.last }}</Option>
+<Select multiple filterable filter={() => true} ev-input={this.search}>
+    <Option v-for={this.get('users')} 
+        value={$value.login.username}
+    >{$value.name.first} {$value.name.last}</Option>
 </Select>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind} from 'kpc';
+
+interface Props {
+    users: any[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             users: []
-        }
+        } as Props;
     }
 
-    _init() {
-        this.lastFetchId = 0;
-    }
+    private lastFetchId = 0;
 
-    search(select, keywords) {
-        console.log(keywords);
+    @bind
+    search(e: Event) {
+        const keywords = (e.target as HTMLInputElement).value.trim();
 
         if (!keywords) return;
 
@@ -51,18 +55,4 @@ export default class extends Intact {
 beforeCreate() {
     this.lastFetchId = 0;
 },
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {users: []};
-    this.search = this.search.bind(this);
-    this.lastFetchId = 0;
-}
-```
-
-```angular-properties
-private users = [];
-private lastFetchId = 0;
 ```

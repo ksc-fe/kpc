@@ -1,43 +1,37 @@
-import Icon from '../icon';
-import Button from '../button';
-import Intact from 'intact';
+import {Icon} from '../icon';
+import {Button} from '../button';
+import {makeAlertStyles} from './styles';
 
-const normalize = Intact.normalize;
-
-let {
+const {
     type, content, hideIcon, 
-    hideFooter, showClose, _title
-} = self.get();
+    hideFooter, hideClose, title
+} = this.get();
 
-if (normalize) {
-    content = normalize(content);
-}
+const classNameObj = {
+    'k-alert-dialog': true,
+    [`k-${type}`]: true,
+    'k-with-title': title,
+    [makeAlertStyles()]: true,
+};
 
-<t:parent class={{ {[`k-${type}`]: true, 'k-alert-dialog': true, 'k-with-title': _title} }}
-    hideClose={{ !showClose }}
->
+<t:super class={classNameObj}>
+    <b:header />
     <b:body>
-        <div class="k-tip-icon">
-            <Icon class={{ {
+        <div class="k-dialog-tip-icon">
+            <Icon class={{
                 "ion-ios-checkmark": type === 'success',
                 "ion-ios-information": type === 'warning',
                 "ion-ios-close": type === 'error',
                 "ion-ios-help": type === 'confirm',
-            } }} v-if={{ !hideIcon }} />
+            }} v-if={!hideIcon} />
         </div>
-        <div class="k-content-wrapper">
-            <div class="k-title" v-if={{ _title }}>{{ _title }}</div>
-            {{ content }}
+        <div class="k-alert-dialog-wrapper">
+            <div class="k-alert-dialog-title" v-if={title}>{title}</div>
+            {content}
         </div>
     </b:body>
     <b:footer>
-        <Button class="k-cancel" ev-click={{ self.cancel }}
-            v-if={{ type === 'confirm' && !hideFooter }}
-        >{{ self.get('cancelText') }}</Button>
-        <Button class="k-ok" type="primary" ev-click={{ self.ok }} 
-            loading={{ self.get('loading') }}
-            disabled={{ self.get('disabledOk') }}
-            v-if={{ !hideFooter }}
-        >{{ self.get('okText') }}</Button>
+        <template v-if={hideFooter}></template>
+        <template v-else>{$super()}</template>
     </b:footer>
-</t:parent>
+</t:super>

@@ -12,51 +12,61 @@ order: 0.1
 > 你将选择不到弹窗元素
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup>
         <Button 
-            v-for={{ ['success', 'warning', 'error', 'confirm'] }}
-            ev-click={{ self.showDialog.bind(self, value) }}
-        >Show {{ value[0].toUpperCase() + value.substring(1) }} Dialog</Button>
+            v-for={this.get('types')}
+            ev-click={this.showDialog.bind(this, $value)}
+        >Show {$value[0].toUpperCase() + $value.substring(1)} Dialog</Button>
     </ButtonGroup>
     <br />
     <br />
     <ButtonGroup>
         <Button 
-            v-for={{ ['success', 'warning', 'error', 'confirm'] }}
-            ev-click={{ self.showDialogWithTitle.bind(self, value) }}
-        >Show {{ value[0].toUpperCase() + value.substring(1) }} Dialog with Title</Button>
+            v-for={this.get('types')}
+            ev-click={this.showDialogWithTitle.bind(this, $value)}
+        >Show {$value[0].toUpperCase() + $value.substring(1)} Dialog with Title</Button>
     </ButtonGroup>
 </div>
 ```
 
-```js
-import Dialog from 'kpc/components/dialog';
+```ts
+import {Dialog, Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+type Type = 'success' | 'warning' | 'error' | 'confirm'
+
+interface Props {
+    types: Type[]
+}
+
+export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            types: ['success', 'warning', 'error', 'confirm']
+        } as Props;
+    }
 
-    showDialog(type) {
+    showDialog(type: Type) {
         Dialog[type]({
             content: type,
         }).then(() => {
-            console.log('clicked ok button');
+            Message.info('clicked ok button');
         }, () => {
-            console.log('clicked cancel button');
+            Message.info('clicked cancel button');
         });
     }
 
-    showDialogWithTitle(type) {
+    showDialogWithTitle(type: Type) {
         Dialog[type]({
             title: type[0].toUpperCase() + type.substring(1),
             content: type + ' dialog',
         }).then(() => {
-            console.log('clicked ok button');
+            Message.info('clicked ok button');
         }, () => {
-            console.log('clicked cancel button');
+            Message.info('clicked cancel button');
         });
     }
 }

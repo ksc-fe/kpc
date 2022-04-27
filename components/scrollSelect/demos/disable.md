@@ -7,29 +7,28 @@ order: 2
 本例中，我们可以传入`disable`函数来禁用闰年选项
 
 ```vdt
-import ScrollSelect from 'kpc/components/scrollSelect';
+import {ScrollSelect} from 'kpc';
 
 <ScrollSelect
-    data={{ self.generateData }}
+    data={this.generateData}
     v-model="value"
-    disable={{ self.disable }}
+    disable={this.disable}
 />
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             value: 2018
         };
     }
 
-    generateData(value) {
+    generateData(value: number) {
         const start = value - 5;
-        return Array.apply(null, {length: 10})
+        return Array.apply(null, {length: 10} as unknown[])
             .map((v, i) => {
                 const year = start + i; 
                 return {
@@ -39,7 +38,7 @@ export default class extends Intact {
             });
     }
 
-    disable(value) {
+    disable(value: number) {
         // 排除闰年
         return value % 4 === 0 && (value % 100 !== 0 || value % 400 === 0);
     }

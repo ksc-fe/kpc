@@ -6,9 +6,9 @@ order: 3
 通过给`Dropdown`和`DropdownItem`添加`disabled`属性，可以分别禁用菜单和菜单项。
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem} from 'kpc';
+import {Button} from 'kpc';
+import {Icon} from 'kpc';
 
 <div>
     <Dropdown disabled>
@@ -43,5 +43,5 @@ import Icon from 'kpc/components/icon';
     transition transform .25s ease-in-out
 .k-dropdown-open
     .k-icon
-        transform rotate(180deg)
+        transform rotateX(180deg)
 ```

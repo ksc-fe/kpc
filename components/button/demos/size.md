@@ -6,8 +6,7 @@ order: 4
 通过`size`属性可以指定按钮的尺寸：`large`, `default`,`small`, `mini`。
 
 ```vdt
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Button, Icon} from 'kpc';
 
 <div>
     <Button size="large">large</Button>

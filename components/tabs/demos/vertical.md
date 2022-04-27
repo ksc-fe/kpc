@@ -6,7 +6,7 @@ order: 6
 `Tabs`添加`vertical`属性。
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs v-model="tab" vertical>
@@ -40,12 +40,11 @@ import {Tabs, Tab} from 'kpc/components/tabs';
     background #f1f1f5
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             tab: 'rulein'
         }

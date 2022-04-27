@@ -1,10 +1,38 @@
-const {children} = self.get();
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {makeStyles} from './styles';
 
-<t:parent class="k-component-tip">
+const {children, closable, type, disabled} = this.get();
+const classNameObj = {
+    'k-tip': true,
+    [makeStyles()]: true,
+};
+
+<t:super class={classNameObj} name="k-fade">
     <b:body>
-        <div v-if={{ blocks.title }} class="k-title">
-            <b:title />
+        <div class="k-tip-wrapper">
+            <div v-if={$blocks.title} class="k-tip-title">
+                <b:title />
+            </div>
+            {children}
         </div>
-        {{ children }}
-    </b:body>
-</t:parent>
+    </b:body> 
+    <b:_close>
+        <Button v-if={closable}
+            type={!$blocks.close ? 'none' : 'link'}
+            icon={!$blocks.close}
+            ev-click={this.onClose}
+            class="k-tip-close"
+        >
+            <template>
+                <b:close>
+                    <Icon class="ion-ios-close-empty"
+                        size="large"
+                        color={type}
+                        hoverable={!disabled}
+                    />
+                </b:close>
+            </template>
+        </Button>
+    </b:_close>
+</t:super>

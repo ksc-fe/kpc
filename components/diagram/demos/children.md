@@ -10,9 +10,9 @@ order: 5
 
 ```vdt
 import {Diagram, DTreeLayout, DRectangle, DLine} from 'kpc/components/diagram';
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
-const cities = self.get('cities');
+const cities = this.get('cities');
 
 <Diagram>
     <DTreeLayout>
@@ -20,8 +20,8 @@ const cities = self.get('cities');
             <div class="container">
                 <div>始发站</div>
                 <Select v-model="from" fluid>
-                    <Option v-for={{ cities }} value={{ value.value }}>
-                        {{ value.name }}
+                    <Option v-for={cities} value={$value.value}>
+                        {$value.name}
                     </Option>
                 </Select>
             </div>
@@ -30,8 +30,8 @@ const cities = self.get('cities');
             <div class="container">
                 <div>终点站</div>
                 <Select v-model="to" fluid>
-                    <Option v-for={{ cities }} value={{ value.value }}>
-                        {{ value.name }}
+                    <Option v-for={cities} value={$value.value}>
+                        {$value.name}
                     </Option>
                 </Select>
             </div>
@@ -48,12 +48,11 @@ const cities = self.get('cities');
     margin-top 8px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             cities: [
                 {name: '北京', value: 'beijing'},

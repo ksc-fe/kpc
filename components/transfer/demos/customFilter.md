@@ -7,20 +7,17 @@ order: 1.1
 定义不同的内容
 
 ```vdt
-import Transfer from 'kpc/components/transfer';
-import Input from 'kpc/components/input';
-import {Select, Option} from 'kpc/components/select';
-import Tag from 'kpc/components/tag';
+import {Transfer, Input, Select, Option, Tag} from 'kpc';
 
 <div>
-    <Transfer data={{ self.get('data') }} 
+    <Transfer data={this.get('data')} 
         filterable
         keyName="name"
         v-model="value"
         ref="__test"
     >
-        <b:filter params="type">
-            <Input v-if={{ type === 'left' }} size="small"
+        <b:filter args="type">
+            <Input v-if={type === 'left'} size="small"
                 placeholder="请输入"
                 clearable
                 v-model="keywords"
@@ -34,28 +31,47 @@ import Tag from 'kpc/components/tag';
                 </b:prepend>
             </Input>
         </b:filter>
-        <b:label params="data, index, type">
+        <b:label args="[data, index, type]">
             <div>
                 <div>
-                    {{ data.name }}
-                    <Tag type="warning" size="mini" v-if={{ data.policy === 'system' }}>系统策略</Tag>
+                    {data.name}
+                    <Tag type="warning" size="mini" v-if={data.policy === 'system'}>系统策略</Tag>
                 </div>
-                <p>{{ data.members }}人 / {{ data.desc }}</p>
+                <p>{data.members}人 / {data.desc}</p>
             </div>
         </b:label>
     </Transfer>
-    <p>You selected: {{ JSON.stringify(self.get('value')) }}</p>
+    <p>You selected: {JSON.stringify(this.get('value'))}</p>
 </div>
 ```
 
 ```styl
 .k-tag
     margin-left 5px
+.k-select
+    width 100px
 ```
 
-```js
-function mockApi(policy) {
-    const data = [
+```ts
+import {bind} from 'kpc';
+
+interface Props {
+    policy?: string | null
+    data: DataItem[]
+    keywords?: string
+    value?: string[]
+}
+
+type DataItem = {
+    name: string
+    policy: string
+    members: number
+    desc: string
+    disabled?: boolean
+}
+
+function mockApi(policy: string) {
+    const data: DataItem[] = [
         {name: 'AdministratorAccess', policy: 'system', 'members': 11, desc: '管理所有资源的权限'},
         {name: 'OSSFullAccess', policy: 'common', 'members': 11, desc: '管理所有资源的权限'},
         {name: 'SupportFullAccess', policy: 'common', 'members': 11, desc: '管理所有资源的权限'},
@@ -64,7 +80,7 @@ function mockApi(policy) {
         {name: 'CommonAccess', policy: 'common', 'members': 11, desc: '管理所有资源的权限'},
     ];
 
-    return new Promise(resolve => {
+    return new Promise<DataItem[]>(resolve => {
         setTimeout(() => {
             if (policy === 'all') resolve(data);
             else resolve(data.filter(item => item.policy === policy));
@@ -72,38 +88,44 @@ function mockApi(policy) {
     });
 }
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             policy: 'all',
-            data: []
-        }
+            data: [],
+            keywords: '',
+            value: [],
+        } as Props;
     }
 
-    _init() {
+    private originData: DataItem[] | null = null;
+
+    init() {
         // when policy changed, fetch data
-        this.on('$change:policy', this._fetch);
-        this.on('$change:keywords', this._filter);
-        this._fetch();
+        this.watch('policy', this.fetch);
+        this.watch('keywords', this.filter);
+        this.fetch();
     }
 
-    _fetch() {
-        mockApi(this.get('policy')).then(data => {
+    @bind
+    fetch() {
+        mockApi(this.get('policy')!).then(data => {
+            if (this.$unmounted) return;
             this.originData = data;
-            this._filter();
+            this.filter();
         });
     }
-
-    _filter() {
+    
+    @bind
+    filter() {
         const keywords = this.get('keywords');
         const data = keywords ? 
-            this.originData.filter(data => {
+            this.originData!.filter(data => {
                 return data.name.includes(keywords);
             }) :
-            this.originData;
+            this.originData!;
         this.set('data', data);
     }
 }
@@ -111,28 +133,34 @@ export default class extends Intact {
 
 ```vue-script
 created() {
-    this._fetch();
+    this.fetch();
 },
 watch: {
     policy: function() {
-        this._fetch();
+        this.fetch();
     },
     keywords: function() {
-        this._filter();
+        this.filter();
     },
 },
 ```
 
 ```react-methods
+private $unmounted: boolean = false;
+
 componentDidMount() {
-    this._fetch();
+    this.fetch();
 }
 
-setState(state, cb) {
+componentWillUnmount() {
+    this.$unmounted = true;
+}
+
+setState<K extends keyof Props>(state: Pick<Props, K>, cb?: () => void) {
     if ('policy' in state) {
-        super.setState(state, this._fetch);
+        super.setState(state, this.fetch);
     } else if ('keywords' in state) {
-        super.setState(state, this._filter);
+        super.setState(state, this.filter);
     } else {
         super.setState(state, cb);
     }

@@ -1,20 +1,23 @@
 ---
 title: 侧边栏布局
 order: 1
+iframe: 350
 ---
 
 侧边栏布局，导航条和侧边栏为左右关系，通常需要展开收起侧边栏，给`Aside`添加`collapse`属性即可
 控制侧边栏的展开收起状态。组件会自动给侧边栏下的菜单组件`Menu`应用相同的`collapse`属性
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
-import {Button} from 'kpc/components/button';
+import {
+    Layout, Header, Aside, Body, Footer,
+    Menu, MenuItem,
+    Icon,
+    Breadcrumb, BreadcrumbItem,
+    Button,
+} from 'kpc';
 
 <Layout class="layout">
-    <Aside collapse={{ self.get('collapse') }}>
+    <Aside collapse={this.get('collapse')}>
         <div class="logo">LOGO</div>
         <Menu
             v-model:expandedKeys="expandedKeys" 
@@ -31,7 +34,7 @@ import {Button} from 'kpc/components/button';
             </MenuItem>
             <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
             <MenuItem key="3">
-                <i class="k-icon ion-heart"></i>menu 3
+                <Icon class="ion-heart" />menu 3
                 <Menu>
                     <MenuItem key="3-1">sub menu 1</MenuItem>
                     <MenuItem key="3-2">sub menu 2</MenuItem>
@@ -44,7 +47,7 @@ import {Button} from 'kpc/components/button';
     </Aside>
     <Layout>
         <Header>
-            <Button type="none" size="large" style="height: 64px" ev-click={{ self._toggle }}>
+            <Button type="none" size="large" style="height: 64px" ev-click={this.toggle}>
                 <Icon class="ion-navicon" size="30"/>
             </Button>
         </Header>
@@ -69,17 +72,24 @@ import {Button} from 'kpc/components/button';
     margin 17px 20px
 .k-breadcrumb
     margin 20px 0
-.k-aside.k-collapsed
+.k-layout-aside.k-collapsed
     .logo
         margin 17px 5px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind} from 'kpc';
+
+interface Props {
+    expandedKeys?: string[]
+    selectedKey?: string
+    collapse: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
@@ -87,7 +97,8 @@ export default class extends Intact {
         };
     }
 
-    _toggle() {
+    @bind
+    toggle() {
         this.set('collapse', !this.get('collapse'));
     }
 }

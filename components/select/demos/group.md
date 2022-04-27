@@ -7,10 +7,10 @@ order: 6
 `OptionGroup`支持`label`扩展点，用来定义复杂的分组标签展示
 
 ```vdt
-import {Select, Option, OptionGroup} from 'kpc/components/select';
+import {Select, Option, OptionGroup} from 'kpc';
 
 <div>
-    <Select v-model="day">
+    <Select v-model="day" filterable>
         <OptionGroup label="工作日">
             <Option value="Monday">星期一</Option>
             <Option value="Tuesday">星期二</Option>
@@ -23,7 +23,7 @@ import {Select, Option, OptionGroup} from 'kpc/components/select';
             <Option value="Sunday">星期天</Option>
         </OptionGroup>
     </Select>
-    <Select v-model="day" card>
+    <Select v-model="day" card filterable>
         <OptionGroup label="工作日">
             <Option value="Monday">星期一</Option>
             <Option value="Tuesday">星期二</Option>
@@ -43,9 +43,24 @@ import {Select, Option, OptionGroup} from 'kpc/components/select';
 ```styl
 .k-select
     margin-right 10px
-/.k-select-dropdown
+/.k-select-menu
     .ion-wineglass
         margin-right 8px
     .k-tab
         text-align right
+```
+
+```ts
+interface Props {
+   day?: string | null
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            day: null
+        } as Props;
+    }
+}
 ```

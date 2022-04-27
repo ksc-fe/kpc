@@ -1,11 +1,9 @@
 const webpack = require('webpack');
-const genConfig = require('../build/webpack');
-const addThread = require('../build/webpack/thread');
-const {addStyle} = require('../build/webpack/style');
-const {addMonaco} = require('../build/webpack/monaco');
-const {resolve} = require('../build/utils');
-const {destData} = require('../build/doc/webpack');
-const {addTheme} = require('../build/webpack/theme');
+const genConfig = require('../scripts/webpack');
+const addThread = require('../scripts/webpack/thread');
+const {addStyle} = require('../scripts/webpack/style');
+const {addMonaco} = require('../scripts/webpack/monaco');
+const {resolve, destData} = require('../scripts/utils');
 
 exports.webpackConfig = () => {
     const config = genConfig();
@@ -13,9 +11,9 @@ exports.webpackConfig = () => {
     if (process.env.UPDATE || process.env.CI) {
         config
             .module
-                .rule('istanbulJs')
-                    .test(/^((?!(spec|mxgraph)).)*\.js$/)
-                    .include.add(resolve('./components')).end()
+                .rule('istanbulTs')
+                    .test(/^((?!(spec|mxgraph)).)*\.ts$/)
+                    .include.add(resolve('./components')).add(resolve('./hooks')).end()
                     .enforce('post')
                     .use('istanbul')
                         .loader('istanbul-instrumenter-loader')
@@ -26,37 +24,20 @@ exports.webpackConfig = () => {
                     .test(/^((?!site).)*\.vdt$/)
                     .enforce('post')
                     .use('istanbul')
-                        .merge(config.module.rules.get('istanbulJs').uses.get('istanbul').entries())
+                        .merge(config.module.rules.get('istanbulTs').uses.get('istanbul').entries())
                         .end()
                     .end()
                 .end()
     }
 
-    config
-        .resolve
-            .alias
-                .set('~', destData)
-                .end()
-            .end()
-        .devtool('#inline-source-map')
+    config.devtool('inline-source-map')
 
     addConfig(config);
 
     return config;
 }
 
-exports.webpackConfigReact = () => {
-    const config = genConfig();
-
-    config.resolve.alias.set('~', destData).set('intact$', 'intact-react');
-    config.devtool('#inline-source-map');
-
-    addConfig(config);
-
-    return config;
-}
-
-function addConfig(config) {
+const addConfig = exports.addConfig = function(config) {
     addThread(config);
     addStyle(config);
     addMonaco(config);

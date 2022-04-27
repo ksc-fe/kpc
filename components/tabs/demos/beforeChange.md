@@ -8,18 +8,20 @@ order: 7
 > 支持异步函数
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
-    <Tabs v-model="tab" beforeChange={{ self.beforeChange }}>
+    <Tabs v-model="tab"
+        beforeChange={this.beforeChange}
+    >
         <Tab value="rulein">入站规则</Tab>
         <Tab value="ruleout">出站规则</Tab>
         <Tab value="relatedVM">关联云主机</Tab>
     </Tabs>
 
     <div class="content">
-        <div v-if={{ self.get('tab') === 'rulein' }}>入站规则</div>
-        <div v-else-if={{ self.get('tab') === 'ruleout' }}>出站规则</div>
+        <div v-if={this.get('tab') === 'rulein'}>入站规则</div>
+        <div v-else-if={this.get('tab') === 'ruleout'}>出站规则</div>
         <div v-else>关联云主机</div> 
     </div>
 </div>
@@ -30,21 +32,20 @@ import {Tabs, Tab} from 'kpc/components/tabs';
     margin 20px
 ```
 
-```js
-import Dialog from 'kpc/components/dialog';
+```ts
+import {Dialog} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             tab: 'ruleout',
         }
     }
 
-    beforeChange(value) {
-        return new Promise(resolve => {
+    beforeChange(value: string) {
+        return new Promise<boolean>(resolve => {
             Dialog.confirm({
                 content: `Are you sure to change to "${value}"`
             }).then(() => {

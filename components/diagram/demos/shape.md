@@ -15,43 +15,56 @@ import {
     DHexagon, DTriangle, DCylinder, DCloud,
     DDocument, DCallout,
 } from 'kpc/components/diagram';
-import {Button, ButtonGroup} from 'kpc/components/button'
+import {Button, ButtonGroup} from 'kpc';
 
-const states = self.get('states');
+const states = this.get('states');
 <div>
     <ButtonGroup checkType="checkbox" v-model="selectedStates">
-        <Button v-for={{ states }} value={{ key }}>
-            {{ key }}
+        <Button v-for={states} value={$key}>
+            {$key}
         </Button>
     </ButtonGroup>
     <br />
     <Diagram>
         <DStackLayout spacing="20" wrap="500" border="20">
-            <DRectangle {{ ...states }} /> 
-            <DSquare {{ ...states }} />
-            <DCircle {{ ...states }} />
-            <DEllipse {{ ...states }} />
-            <DImage src="https://design.ksyun.com/fonts/logo.png" {{ ...states }} />
-            <DText label="text" {{ ...states }} />
-            <DDiamond {{ ...states }} />
-            <DParallelogram {{ ...states }} />
-            <DHexagon {{ ...states }} />
-            <DTriangle {{ ...states }} />
-            <DCylinder {{ ...states }} />
-            <DCloud {{ ...states }} />
-            <DDocument {{ ...states }} />
-            <DCallout {{ ...states }} />
+            <DRectangle {...states} /> 
+            <DSquare {...states} />
+            <DCircle {...states} />
+            <DEllipse {...states} />
+            <DImage src="https://design.ksyun.com/fonts/logo.png" {...states} />
+            <DText label="text" {...states} />
+            <DDiamond {...states} />
+            <DParallelogram {...states} />
+            <DHexagon {...states} />
+            <DTriangle {...states} />
+            <DCylinder {...states} />
+            <DCloud {...states} />
+            <DDocument {...states} />
+            <DCallout {...states} />
         </DStackLayout>
     </Diagram>
 </div>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+interface Props {
+    states: States
+    selectedStates: (keyof States)[]
+}
+
+type States = {
+    selectable: boolean
+    movable: boolean
+    connectable: boolean
+    resizable: boolean
+    rotable: boolean
+    editable: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             states: {
                 selectable: false,
@@ -65,11 +78,11 @@ export default class extends Intact {
         }
     }
 
-    _init() {
-        this.on('$change:selectedStates', (c, v) => {
-            const states = {};
+    init() {
+        this.on('$change:selectedStates', (v) => {
+            const states = {} as States;
             for (let key in this.get('states')) {
-                states[key] = v.indexOf(key) > -1;
+                states[key as keyof States] = v.indexOf(key as keyof States) > -1;
             }
             this.set('states', states);
         });

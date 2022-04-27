@@ -1,11 +1,13 @@
 import {addStyle, getRestProps} from '../utils';
-import Spin from '../spin';
+import {Spin} from '../spin';
+import {makeStyles} from './styles';
 
-let {width, height, className, style, loading} = self.get();
+let {width, height, className, style} = this.get();
 
 const classNameObj = {
     'k-code': true,
     [className]: className,
+    [makeStyles()]: true,
 };
 
 if (width || height) {
@@ -19,9 +21,12 @@ if (width || height) {
     style = addStyle(style, _style);
 }
 
-<div class={{ classNameObj }} 
-    {{ ...getRestProps(self) }}
-    style={{ style }}
+const {elementRef, loading} = this.editor;
+
+<div class={classNameObj} 
+    {...getRestProps(this)}
+    style={style}
+    ref={elementRef}
 >
-    <Spin center overlay size="small" v-if={{ loading }} />
+    <Spin center overlay size="small" v-if={loading.value} />
 </div>

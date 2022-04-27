@@ -6,17 +6,16 @@ order: 2
 子菜单的触发的方式默认是`click`点击展开，通过设置`trigger`属性为`hover`，可以指定为移入展开
 
 ```vdt
-import Cascader from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
-<Cascader data={{ self.get('data') }} trigger="hover" />
+<Cascader data={this.get('data')} trigger="hover" />
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {

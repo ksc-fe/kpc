@@ -6,20 +6,19 @@ order: 0.1
 添加`placement`属性，定义如下位置：`top`,`bottom`,`left`,`right`。默认`right`从右侧出现
 
 ```vdt
-import Drawer from 'kpc/components/drawer';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Drawer, Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup>
-        <Button v-for={{ self.get('showList') }} 
-            ev-click={{ self.showDrawer.bind(self, value.key) }}
-        >{{ value.value }}</Button>
+        <Button v-for={this.get('showList')}
+            ev-click={this.showDrawer.bind(self, $value.key)}
+        >{$value.value}</Button>
     </ButtonGroup>
 
     <Drawer v-model='show'
         title='Drawer Title' 
         ref='__demoTwo' 
-        placement={{ self.get('showPosition') }} 
+        placement={this.get('showPosition')}
         size='small'
     >
         Drawer Body
@@ -27,32 +26,50 @@ import {Button, ButtonGroup} from 'kpc/components/button';
 </div>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind, DrawerProps} from 'kpc';
+
+interface Props {
+    show?: boolean
+    showPosition: DrawerProps['placement'] 
+    showList: ListItem[]
+}
+
+type ListItem = {
+    key: DrawerProps['placement'] 
+    value: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             show: false,
             showPosition: 'right',
-            showList: [{
-                key: 'top',
-                value: '从上侧出现'
-            }, {
-                key: 'bottom',
-                value: '从下侧出现'
-            }, {
-                key: 'left',
-                value: '从左侧出现'
-            }, {
-                key: 'right',
-                value: '从右侧出现'
-            },]
-        }
+            showList: [
+                {
+                    key: 'top',
+                    value: '从上侧出现'
+                },
+                {
+                    key: 'bottom',
+                    value: '从下侧出现'
+                },
+                {
+                    key: 'left',
+                    value: '从左侧出现'
+                },
+                {
+                    key: 'right',
+                    value: '从右侧出现'
+                }
+            ]
+        } as Props;
     }
 
-    showDrawer(value) {
+    @bind
+    showDrawer(value: DrawerProps['placement']) {
         this.set({
             'showPosition': value,
             'show': true

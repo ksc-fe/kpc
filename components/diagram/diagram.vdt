@@ -1,28 +1,16 @@
-import {mapChildren} from '../utils';
-import {DShape} from './shapes/shape';
-import {DLayout} from './layouts/layout';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
 
-const {children, className, style} = self.get();
+const {className, children} = this.get();
+const classNameObj = {
+    'k-diagram': true,
+    [className]: className,
+    [makeStyles()]: true,
+};
 
-<div class={{ {"k-diagram": true, [className]: className} }} 
-    style={{ style }} 
-    {{ ...getRestProps(self) }}
->
-    <div class="k-scheme" key="scheme">
-        {{ mapChildren(children, vNode => {
-            if (vNode.tag) {
-                const proto = vNode.tag.prototype;
-                if (proto instanceof DShape || proto instanceof DLayout) {
-                    vNode.props = {
-                        ...vNode.props, 
-                        _diagram: self,
-                        _parent: self,
-                    };
-                }
-            }
-            return vNode;
-        }) }}
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-diagram-scheme">
+        {children}
     </div>
-    <div class="k-canvas" key="canvas" ref="canvas"></div>
+    <div class="k-diagram-canvas" ref={this.canvasRef}></div>
 </div>

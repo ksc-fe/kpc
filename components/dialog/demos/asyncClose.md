@@ -7,20 +7,18 @@ order: 6
 指定一个函数来去掉默认函数行为，此时你可以自己控制弹窗的关闭情况。`cancel`属性同理。
 
 ```vdt
-import Dialog from 'kpc/components/dialog';
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import {Dialog, Form, FormItem, Input, Button} from 'kpc';
 
 <div>
     <Button type="primary"
-        ev-click={{ self.set.bind(self, 'show', true) }}
+        ev-click={this.set.bind(this, 'show', true)}
     >Close Dialog Asynchronously</Button>
     <Dialog v-model="show" title="Customized ok callback"
-        ok={{ self.ok }}
+        ref="dialog"
+        ok={this.ok}
     >
         <Form ref="form">
-            <FormItem model="code" rules={{ {required: true, digits: true} }} label="Code:">
+            <FormItem value={this.get('code')} rules={{required: true, digits: true}} label="Code:">
                 <Input placeholder="please enter digits" v-model="code" />
             </FormItem>
         </Form>
@@ -28,22 +26,35 @@ import {Button} from 'kpc/components/button';
 </div>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {bind, Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    show?: boolean
+    code?: string
+}
+
+export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            show: false,
+            code: ''
+        };
+    }
 
-    async ok(dialog) {
+    private timer: number | undefined;
+
+    @bind
+    async ok() {
         // validate the form firstly
         const valid = await this.refs.form.validate();
         if (valid) {
             // make the ok button show loading
-            dialog.showLoading(); 
+            this.refs.dialog.showLoading(); 
             // mock api
-            new Promise((resolve, reject) => {
-                setTimeout(() => {
+            new Promise<void>((resolve, reject) => {
+                this.timer = window.setTimeout(() => {
                     if (Math.random() > 0.5) {
                         resolve();
                     } else {
@@ -52,14 +63,18 @@ export default class extends Intact {
                 }, 2000);
             }).then(() => {
                 // if success, close dialog 
-                dialog.hideLoading();
-                dialog.close();
+                this.refs.dialog.hideLoading();
+                this.refs.dialog.close();
             }, () => {
                 // if error, don't close dialog
-                dialog.hideLoading();
+                this.refs.dialog.hideLoading();
                 Message.error('error occured');
             });
         }
+    }
+
+    beforeUnmount() {
+        window.clearTimeout(this.timer);
     }
 }
 ```

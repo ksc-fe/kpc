@@ -8,16 +8,31 @@ order: 1.1
 通过对象`Object`设置，此时`key`表示小于当前值时`step`的取值，其中`$`代表`Number.POSITIVE_INFINITY`
 
 ```vdt
-import Slider from 'kpc/components/slider';
+import {Slider} from 'kpc';
 
-<Slider v-model="value1" min={{ 0 }} max={{ 500 }}
-    step={{ {
+<Slider v-model="value1" min={0} max={500}
+    step={{
         // 0~100 step: 10
         '100': 10,
         // 100~500 step: 50
         '500': 50
-    } }}
+    }}
     showTooltip
-    isShowStop
+    points 
 />
+```
+
+```ts
+interface Props {
+    value1?: number
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value1: 0,
+        };
+    }
+}
 ```

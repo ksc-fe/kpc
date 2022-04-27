@@ -1,0 +1,82 @@
+import {getRestProps} from '../utils';
+import {Tooltip} from '../tooltip';
+import {Icon} from '../icon';
+import {Transition} from 'intact';
+import {makeItemStyles} from './styles';
+import {context as ErrorContext} from './useError';
+
+const {
+    className, children, label,
+    hideLabel, htmlFor, errorClassName,
+    rules, fluid, 
+} = this.get();
+const {isDirty: {value: isDirty}, onChange, onFocusout} = this.dirty;
+const {
+    isValid: {value: isValid},
+    errorClassName: {value: customErrorClassName},
+} = this.validateHook;
+
+const classNameObj = {
+    'k-form-item': true,
+    'k-invalid': isDirty && !isValid,
+    'k-valid': isDirty && isValid,
+    [className]: className,
+    'k-fluid': fluid,
+    [makeItemStyles()]: true,
+};
+
+const starOnRequired = this.form && this.form.get('starOnRequired');
+const labelWidth = this.form && this.form.get('labelWidth');
+let labelStyle;
+if (labelWidth != null) {
+    if (/^\d+$/.test(labelWidth)) {
+        labelStyle = {width: labelWidth + 'px'};
+    } else {
+        labelStyle = {width: labelWidth};
+    }
+}
+
+const {ellipsis, message, errorRef} = this.error;
+
+<div {...getRestProps(this)}
+    class={classNameObj}
+    ev-change={onChange}
+    ev-focusout={onFocusout}
+>
+    <label for={htmlFor} class="k-form-label" v-if={!hideLabel}
+        style={labelStyle}
+    >
+        <span class="k-form-star" v-if={starOnRequired && rules && rules.required}>*</span>
+        <b:label>{label}</b:label>
+    </label>
+    <div class="k-form-content">
+        <ErrorContext.Provider value={isDirty && !isValid}>
+            <template>
+                <b:content>{children}</b:content>
+            </template>
+        </ErrorContext.Provider>
+        <Transition key="error" name="k-fade" >
+            <div v-if={isDirty && !isValid}
+                class={{
+                    "k-form-error": true,
+                    [errorClassName]: errorClassName,
+                    [customErrorClassName]: customErrorClassName,
+                    'k-ellipsis': ellipsis.value
+                }}
+            >
+                <div class="k-error-message c-ellipsis" ref={errorRef}>
+                    {message.value}
+                </div>
+                <Tooltip hoverable position="bottom">
+                    <Icon class="ion-ios-information-outline k-form-error-more" size="small" />
+                    <b:content>
+                        {message.value}
+                    </b:content>
+                </Tooltip>
+            </div>
+        </Transition>
+    </div>
+    <div class="k-form-append" v-if={$blocks.append}>
+        <b:append /> 
+    </div>
+</div>

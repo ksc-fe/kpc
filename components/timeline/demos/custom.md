@@ -6,11 +6,12 @@ order: 2
 通过`dot`扩展点，可以自定义轴点的内容
 
 ```vdt
-import {Timeline, TimelineItem} from 'kpc/components/timeline';
+import {Timeline, TimelineItem} from 'kpc';
+import {Icon} from 'kpc';
 
 <Timeline>
     <TimelineItem type="success">
-        <b:dot><i class="ion-trophy"></i></b:dot>
+        <b:dot><Icon class="ion-trophy"></Icon></b:dot>
         August
     </TimelineItem>
     <TimelineItem>July</TimelineItem>

@@ -6,8 +6,8 @@ order: 2
 添加`size`属性，定义如下尺寸：`large`, `default`，`small`，`mini`
 
 ```vdt
-import Input from 'kpc/components/input';
-import Button from 'kpc/components/button';
+import {Input} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
     <Input size="large" value="large" />
@@ -21,7 +21,6 @@ import Button from 'kpc/components/button';
     </Input>
     <Input size="small" placeholder="please enter">
         <b:prefix><i class="ion-earth"></i></b:prefix>
-        <b:suffix><i class="ion-ios-search"></i></b:suffix>
         <b:append><Button size="small" icon type="primary"><i class="ion-ios-search"></i></Button></b:append>
     </Input>
     <Input size="small" placeholder="please enter" clearable>

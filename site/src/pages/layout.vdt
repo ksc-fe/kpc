@@ -1,88 +1,118 @@
-import Link from 'kpc/components/link';
-import {Select, Option} from 'kpc/components/select';
-import {Button} from 'kpc/components/button';
-import {Icon} from 'kpc/components/icon';
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
+import {
+    Layout, Header, Body, Icon, Tabs, Tab,
+    Dropdown, DropdownMenu, DropdownItem,
+    Button,
+} from 'kpc';
+import {makeHeaderStyles, makeLayoutStyles} from './styles';
+import {Link} from '../components/link';
+import {Transition} from 'intact';
 
 const nav = [
     {
-        title: '资源',
-        href: '/docs/resources/',
-        index: 'resources',
-    },
-    {
         title: '设计',
-        href: '/docs/design/language/',
-        index: 'design'
+        href: '/docs/design/about/',
+        index: 'design',
     },
     {
         title: '组件',
-        href: '/docs/getting-started/',
+        href: '/docs/vue/',
         index: 'document'
     },
     {
-        title: 'Blog',
-        href: '/docs/blogs/design/',
-        index: 'blog'
+        title: '资源',
+        href: '/resources',
+        index: 'resource'
     },
     {
-        title: '定制主题',
-        href: 'https://kpc-theme.ksyun.com/',
-        isOpen: true,
+        title: '解决方案',
+        href: '/solutions',
+        index: 'solution'
     }
 ];
 
-<div class={{ {'main-wrapper': true, [scope.className]: scope.className} }}>
-    <div class="header-wrapper" class={{ {
-        'header-wrapper': true, 
-        'header-shadow': scope.pageIndex !== 'index'
-    } }} ref="header">
-        <header>
-            <b:header>
-                <div class="king-logo">
-                    <Link class="logo" href="/"></Link>
-                    <Link class="king" href="/">KPC</Link>
+const {themeColor, colorList, curLang} = this.get();
+
+console.log(colorList);
+
+<Layout class={{[$props.className]: $props.className, [makeLayoutStyles()]: true}}>
+    <Header fixed class={makeHeaderStyles()}>
+        <div class="logo" ev-click={() => Link.to('/')}></div>
+        <div class="main">
+            <Tabs size="large" value={$props.navIndex}>
+                <Tab v-for={nav} value={$value.index}>
+                    <Link href={$value.href}>{$value.title}</Link>
+                </Tab>
+                {
+                // 语言切换功能
+                /* <Tab>
+                    <div class="lang-wrapper">
+                        <div class="lang-box">
+                            <div 
+                                class={{active: curLang === 'cn'}} 
+                                ev-click={this.setLang.bind(this, 'cn')}
+                            >zh-CN</div>
+                            <div 
+                                class={{active: curLang === 'en'}} 
+                                ev-click={this.setLang.bind(this, 'en')}
+                            >en-US</div>
+                        </div>    
+                    </div>
+                </Tab> */}
+            </Tabs>
+            <Dropdown trigger="click"
+                container={dom => dom}
+                position={{my: 'center top+17', at: 'center bottom', collision: 'flipfit'}}
+            >
+                <Button type="none" icon class="menu-btn">
+                    <Icon class="ion-navicon" size="large" />
+                </Button>
+                <DropdownMenu class="nav-menu-list">
+                    <DropdownItem v-for={nav}
+                        class={{
+                            active: $value.index === $props.navIndex
+                        }}
+                        ev-select={() => Link.to($value.href)}
+                    >{$value.title}</DropdownItem>
+                </DropdownMenu>
+            </Dropdown>
+            <div class="theme-color-box" 
+                ev-mouseenter={this.showColorList} 
+                ev-mouseleave={this.hideColorList}
+            >
+                <div>主题色</div>
+                <div class="cur-color">
+                    <div 
+                        class="color-item" 
+                        style={{background: themeColor}} 
+                    ></div>
                 </div>
-                <div class="right">
-                    <nav>
-                        <Link v-for={{ nav }}
-                            class={{ {
-                                active: value.index === scope.navIndex
-                            } }}
-                            href={{ `${value.href}` }}
-                            isReplace={{ !value.isOpen }}
-                        >{{ value.title }}</Link>
-                        <div class="border"></div>
-                    </nav>
-                    <Dropdown container=".header-wrapper"
-                        trigger="click"
-                        position={{ {my: 'right top', at: 'right bottom'} }}
-                    >
-                        <Button type="none" icon class="menu-btn">
-                            <Icon class="ion-navicon" size="large" />
-                        </Button>
-                        <DropdownMenu class="nav-menu-list">
-                            <DropdownItem v-for={{ nav }}
-                                class={{ {
-                                    active: value.index === scope.navIndex
-                                } }}
-                                ev-select={{ () => Link.to({href: value.href, isReplace: true}) }}
-                            >{{ value.title }}</DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                    <div class="line"></div>
-                    {{ /*<Select v-model="version" width="100" size="small">
-                        <Option value="v1.1.1">v1.1.1</Option>
-                    </Select> */ }}
-                    <Select v-model="theme" inline container=".header-wrapper">
-                        <Option value="kpc">默认主题</Option>
-                        <Option value="ksyun">ksyun</Option>
-                    </Select>
-                </div>
-            </b:header>
-        </header>
-    </div>
-    <div class="content-wrapper" ref="wrapper">
-        <b:content />
-    </div>
-</div>
+                <Transition name="k-slidedown">
+                    <div class="theme-color-option" v-if={this.get('showThemeColor')}>
+                        <div v-for={colorList}>
+                            <div 
+                                class="color-item" 
+                                style={{background: $value}} 
+                                ev-click={this.handleColorChange.bind(this, $value)}
+                            >
+                                <Icon 
+                                    v-if={themeColor === $value} 
+                                    class="icon ion-checkmark-round"
+                                ></Icon>
+                            </div>
+                        </div>
+                    </div>
+                </Transition>
+            </div>
+        </div>
+    </Header>
+    <Layout>
+        <template>
+            <b:aside />
+        </template>
+        <Body>
+            <template>
+                <b:content />
+            </template>
+        </Body>
+    </Layout>
+</Layout>

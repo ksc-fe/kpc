@@ -6,16 +6,14 @@ order: 1.1
 添加`multiple`属性，可以支持节点多选，通过`getCheckedData()`方法，可以获取选中的节点数据
 
 ```vdt
-import Tree from 'kpc/components/tree';
-import Button from 'kpc/components/button';
-
-const data = self.get('data');
+import {Tree} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
-    <Button ev-click={{ self._getSelectedData }}>get selected data</Button>
+    <Button ev-click={this.getSelectedData}>get selected data</Button>
     <br />
     <br />
-    <Tree data={{ data }} 
+    <Tree data={this.get('data')} 
         ref="tree"
         v-model:selectedKeys="selectedKeys"
         v-model:expandedKeys="expandedKeys"
@@ -29,12 +27,13 @@ const data = self.get('data');
     margin-right 16px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind} from 'kpc';
+
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {
@@ -84,7 +83,8 @@ export default class extends Intact {
         }
     }
 
-    _getSelectedData() {
+    @bind
+    getSelectedData() {
         console.log(this.refs.tree.getSelectedData());
     }
 }

@@ -2,6 +2,7 @@
 title: Intact中使用
 order: 0
 sidebar: doc
+disabled: true
 ---
 
 # 准备工作

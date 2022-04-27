@@ -1,153 +1,105 @@
 # `Dialog`
 
+#### `should show dialog correctly`
+
+```
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">
+        Dialog Body 
+        <div class=\"k-select css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+```
+
 #### `should show correctly when render with value is true`
 
 ```
-"<div class=\"k-overlay c-fade-appear\"></div><div class=\"k-wrapper\" style=\"display: block;\"><div class=\"k-dialog animate-appear\" style=\"left: ; top: ;\"><div class=\"k-header k-dialog-header\"><span class=\"k-title\">提示</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">test</div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div></div></div>"
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">提示</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">test</div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 
-#### `should prepend conent to block correctly`
+#### `show dialog as instance`
 
 ```
-"
-                            dialog footer
-                            <button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button>"
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">提示</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">Dialog Instance 1</div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 
 #### `basic test`
 
 ```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">
         Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-#### `methods test`
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok k-loading k-disabled\" tabindex=\"-1\" type=\"button\"><i class=\"k-icon ion-load-c icon-loading\"></i><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok k-disabled\" tabindex=\"-1\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+        <div class=\"k-select css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
 ```
 
 #### `demos test`
 
 ```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Customized ok callback</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\"><form class=\"k-form k-horizontal css-11cgyra\" novalidate=\"true\"><div class=\"k-form-item css-1frgjei\"><label class=\"k-form-label\">Code:</label><div class=\"k-form-content\"><div class=\"k-input css-1cug0ah\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"please enter digits\" type=\"text\"></div></div></div></div></form></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
+```
+
+```
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">
         Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+        <div class=\"k-select css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
 ```
 
 ```
-"<div class=\"k-header k-dialog-header\"><div class=\"k-title\"><i class=\"ion-person\"></i>
-                Custom Header
-            </div><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
+"<div class=\"k-dialog-overlay\" style=\"display: none;\"></div><div class=\"k-dialog css-1dwyv26\" style=\"display: none;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">No Footer</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">body</div></div>"
+```
 
+```
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\"><div class=\"k-input css-1cug0ah\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" type=\"text\"></div></div></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
+```
+
+```
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">Dialog Body</div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
+```
+
+```
+"<div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\"><div class=\"k-input css-1cug0ah\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" type=\"text\"></div></div></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
+```
+
+```
+"<div class=\"k-dialog-overlay\" style=\"display: none;\"></div><div class=\"k-dialog css-1dwyv26\" style=\"width: ; display: none;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">
+        width: 
+    </div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
+```
+
+```
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">
         Dialog Body 
-
-        </div><div class=\"k-footer c-clearfix k-dialog-footer\">
-            Custom Footer
-            <button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">Dialog Body</div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Extends Dialog</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Hello
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-                Size: large</div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Dialog Body 
-    </div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-#### `async close`
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Customized ok callback</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\"><form class=\"k-form k-horizontal\" novalidate=\"\"><div class=\"k-form-item\"><label class=\"k-label\">Code:</label><div class=\"k-content\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"please enter digits\"></div></div></div></div></form></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
-
-#### `async open`
-
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Async Open Dialog</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Hello KPC</div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+    </div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 
 #### `static methods`
 
 ```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\"></span></div><div class=\"k-body k-dialog-body\"><div class=\"k-tip-icon\"><i class=\"k-icon ion-ios-checkmark\"></i></div><div class=\"k-content-wrapper\">test</div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog k-alert-dialog k-success css-1bhaz69 k-mini css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"></div><div class=\"k-dialog-body\"><div class=\"k-dialog-tip-icon\"><i class=\"k-icon ion-ios-checkmark css-x0ey6t\"></i></div><div class=\"k-alert-dialog-wrapper\">test</div></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 
 ```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\"></span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\"><div class=\"k-tip-icon\"></div><div class=\"k-content-wrapper\">test</div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog k-alert-dialog k-confirm css-1bhaz69 k-mini css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\"><div class=\"k-dialog-tip-icon\"></div><div class=\"k-alert-dialog-wrapper\">test</div></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 
 ```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\"></span></div><div class=\"k-body k-dialog-body\"><div class=\"k-tip-icon\"><i class=\"k-icon ion-ios-close\"></i></div><div class=\"k-content-wrapper\"><div class=\"k-title\">error</div>test</div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+"<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog k-alert-dialog k-error k-with-title css-1bhaz69 k-mini css-1dwyv26 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"></div><div class=\"k-dialog-body\"><div class=\"k-dialog-tip-icon\"><i class=\"k-icon ion-ios-close css-x0ey6t\"></i></div><div class=\"k-alert-dialog-wrapper\"><div class=\"k-alert-dialog-title\">error</div>test</div></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 
-#### `should only hide body`
+#### `should remove body`
 
 ```
-"<div class=\"k-overlay\" style=\"display: none;\"></div><div class=\"k-wrapper\"><div class=\"k-dialog\" style=\"display: none;\"><div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div></div></div>"
+"<div class=\"k-dialog-overlay\" style=\"\"></div><div class=\"k-dialog css-1dwyv26\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\"><div class=\"k-input css-1cug0ah\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" type=\"text\"></div></div></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 
-```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
-```
+#### `should not close when click and move outside`
 
 ```
-"<div class=\"k-overlay\" style=\"display: none;\"></div><div class=\"k-wrapper\" style=\"display: none;\"><div class=\"k-dialog\" style=\"display: none;\"><div class=\"k-header k-dialog-header\"><span class=\"k-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\"><div class=\"k-input\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\"></div></div></div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div></div></div>"
+"<div class=\"k-dialog-overlay\" style=\"\"></div><div class=\"k-dialog css-1dwyv26\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-12uxt25\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-x0ey6t\"></i></button></div><div class=\"k-dialog-body\">
+        Dialog Body 
+        <div class=\"k-select css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
 ```
 
-#### `"after each" hook`
+#### `async open`
 
 ```
-"<div class=\"k-header k-dialog-header\"><span class=\"k-title\">Async Open Dialog</span><button class=\"k-btn k-none k-btn-icon k-close\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty\"></i></button></div><div class=\"k-body k-dialog-body\">
-        Hello KPC</div><div class=\"k-footer c-clearfix k-dialog-footer\"><button class=\"k-btn k-default k-cancel\" tabindex=\"0\" type=\"button\"><span>取消</span></button><button class=\"k-btn k-primary k-ok\" tabindex=\"0\" type=\"button\"><span>确定</span></button></div>"
+"<div class=\"k-dialog-overlay\" style=\"\"></div><div class=\"k-dialog css-1f4goo5\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Async Open Dialog</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-1do08rc\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-ios-close-empty css-1ai1ziz\"></i></button></div><div class=\"k-dialog-body\">
+        Hello KPC</div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-1do08rc\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-1do08rc\" tabindex=\"0\" type=\"button\">取消</button></div></div>"
 ```
 

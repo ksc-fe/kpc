@@ -8,11 +8,8 @@ order: 2.1
 1. `pull` 定义列距离右边界的栅格数
 2. `push` 定义列距离左边界的栅格数
 
-> 通过`pull`和`push`排序可以有比较好的浏览器兼容性，当然如果你无需支持IE9及以下的浏览器，可以
-> 使用flex布局的order进行排序
-
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <Row> 
     <Col span="18" push="6">1 col-18 push-6</Col>

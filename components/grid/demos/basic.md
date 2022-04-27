@@ -6,7 +6,7 @@ order: 0
 将`Col`嵌套在`Row`中，然后用`span`属性定义所占的宽度，宽度为百分比，每一份是`1/24`
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
     <Row> 

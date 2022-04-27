@@ -7,16 +7,16 @@ order: 4
 事件。你还可以通过`okText`和`cancelText`属性指定按钮文案
 
 ```vdt
-import Tooltip from 'kpc/components/tooltip';
-import Button from 'kpc/components/button';
+import {Tooltip} from 'kpc';
+import {Button} from 'kpc';
 
 <div>
     <Tooltip content="确定删除？"
         confirm
         theme="light"
         trigger="click"
-        ev-ok={{ self.ok  }}
-        ev-cancel={{ self.cancel }}
+        ev-ok={this.ok}
+        ev-cancel={this.cancel}
         ref="__test"
     >
         <Button>删除</Button>
@@ -24,11 +24,10 @@ import Button from 'kpc/components/button';
 </div>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
     ok() {

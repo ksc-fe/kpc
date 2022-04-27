@@ -8,39 +8,38 @@ order: 3
 事件定义左右穿梭的逻辑
 
 ```vdt
-import Transfer from 'kpc/components/transfer';
-import Checkbox from 'kpc/components/checkbox';
+import {Transfer, Checkbox} from 'kpc';
 
 <div>
     <Transfer 
-        enableAdd={{ self.enableAdd }}
-        enableRemove={{ self.enableRemove }}
-        ev-add={{ self.onAdd }}
-        ev-remove={{ self.onRemove }}
+        enableAdd={this.enableAdd}
+        enableRemove={this.enableRemove}
+        ev-add={this.onAdd}
+        ev-remove={this.onRemove}
     >
-        <b:header params="type">
-            <div v-if={{ type === 'left' }}>未分配</div>
+        <b:header args="type">
+            <div v-if={type === 'left'}>未分配</div>
             <div v-else>标准双人间</div>
         </b:header>
-        <b:list params="type">
-            <template v-if={{ type === 'left' }}>
-                <div class="k-item" v-for={{ self.get('users') }}>
+        <b:list args="type">
+            <template v-if={type === 'left'}>
+                <div class="k-transfer-item" v-for={this.get('users')}>
                     <Checkbox v-model="checkedUsers" 
-                        trueValue={{ value }} 
-                        disabled={{ !!value.room }}
+                        trueValue={$value} 
+                        disabled={!!$value.room}
                     >
-                        {{ value.name }}
-                        <span v-if={{ value.room }}>（{{ value.room.name }}）</span>
+                        {$value.name}
+                        <span v-if={$value.room}>（{$value.room.name}）</span>
                     </Checkbox>
                 </div>
             </template>
             <template v-else>
-                <div class="k-item" v-for={{ self.get('rooms') }}>
+                <div class="k-transfer-item" v-for={this.get('rooms')}>
                     <Checkbox v-model="checkedRooms" 
-                        trueValue={{ value }}
+                        trueValue={$value}
                     >
-                        {{ value.name }}
-                        <span>（当前人数：{{ value.users.length }}）</span>
+                        {$value.name}
+                        <span>（当前人数：{$value.users.length}）</span>
                     </Checkbox>
                 </div>
             </template>
@@ -49,14 +48,32 @@ import Checkbox from 'kpc/components/checkbox';
 </div>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message, bind} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    users: User[]
+    rooms: Room[]
+    checkedUsers?: User[]
+    checkedRooms?: Room[]
+}
+
+type User = {
+    name: string
+    id: number
+    room: Room | null
+}
+
+type Room = {
+    name: string
+    id: number
+    users: User[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             users: [
                 {name: '刘一', id: 1, room: null},
@@ -76,20 +93,23 @@ export default class extends Intact {
             ],
             checkedUsers: [],
             checkedRooms: [],
-        }
+        } as Props;
     }
 
+    @bind
     enableAdd() {
-        return this.get('checkedUsers').length && this.get('checkedRooms').length === 1;
+        return !!this.get('checkedUsers')!.length && this.get('checkedRooms')!.length === 1;
     }
 
+    @bind
     enableRemove() {
-        return this.get('checkedRooms').length;
+        return !!this.get('checkedRooms')!.length;
     }
 
+    @bind
     onAdd() {
-        const users = this.get('checkedUsers');
-        const room = this.get('checkedRooms')[0];
+        const users = this.get('checkedUsers')!;
+        const room = this.get('checkedRooms')![0];
 
         if (users.length > 2) {
             return Message.error('当前房间最多容纳两人');
@@ -103,8 +123,9 @@ export default class extends Intact {
         this.set({'checkedUsers': [], 'checkedRooms': []});
     }
 
+    @bind
     onRemove() {
-        const rooms = this.get('checkedRooms');
+        const rooms = this.get('checkedRooms')!;
         
         rooms.forEach(room => {
             room.users.forEach(user => {
@@ -120,8 +141,8 @@ export default class extends Intact {
 
 ```vue-methods
 onAdd() {
-    const users = this.checkedUsers;
-    const room = this.checkedRooms[0];
+    const users = this.checkedUsers!;
+    const room = this.checkedRooms![0];
 
     if (users.length > 2) {
         return Message.error('当前房间最多容纳两人');

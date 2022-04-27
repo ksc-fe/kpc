@@ -7,25 +7,30 @@ order: 5
 指定`label`，以便组件知道筛选的内容，当然你也可以通过`filter`指定过滤函数。
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
+import {Select, Option} from 'kpc';
 
 <Select v-model="day" filterable>
-    <Option v-for={{ self.get('data') }} value={{ value.value }} label={{ value.label }}>
+    <Option v-for={this.get('data')} value={$value.value} label={$value.label}>
         <div>
-            <span>{{ value.label }}</span>
-            <span style="float: right; color: #ccc">{{ value.value }}</span>
+            <span>{$value.label}</span>
+            <span style="float: right; color: #ccc">{$value.value}</span>
         </div>
     </Option>
 </Select>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+interface Props {
+    day?: string | null
+    data: any[]
+}
+
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
+            day: null,
             data: [
                 {label: '星期一', value: 'Monday'},
                 {label: '星期二', value: 'Tuesday'},
@@ -35,7 +40,7 @@ export default class extends Intact {
                 {label: '星期六', value: 'Saturday'},
                 {label: '星期天', value: 'Sunday'},
             ]
-        }
+        } as Props;
     }
 }
 ```

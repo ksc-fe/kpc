@@ -7,11 +7,11 @@ order: 1
 会居中展示，`center`属性在该情况下将被忽略
 
 ```vdt
-import Spin from 'kpc/components/spin';
-import {Table, TableColumn} from 'kpc/components/table';
+import {Spin} from 'kpc';
+import {Table, TableColumn} from 'kpc';
 
 <div class="wrapper">
-    <Table data={{ self.get('data') }}>
+    <Table data={this.get('data')}>
         <TableColumn key="a" title="表头1" />
         <TableColumn key="b" title="表头2" />
     </Table>
@@ -24,12 +24,11 @@ import {Table, TableColumn} from 'kpc/components/table';
     position relative
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {a: '第一行', b: '哈哈2'}, 

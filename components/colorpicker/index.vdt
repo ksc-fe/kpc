@@ -1,32 +1,34 @@
-import Tooltip from '../tooltip';
-import Panel from './panel';
+import {Tooltip} from '../tooltip';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {ColorpickerPanel} from './panel';
+import {Dropdown, DropdownMenu} from '../dropdown';
 
-const {className, transition, presets, value, size, style, disabled} = self.get();
+const {
+    className, transition, presets,
+    value, size, disabled, container
+} = this.get();
 
 const classNameObj = {
     'k-colorpicker': true,
     [className]: className,
     [`k-${size}`]: size !== 'default',
     'k-disabled': disabled,
+    [makeStyles()]: true,
 };
 
-<div class={{ classNameObj }} style={{ style }} {{ ...getRestProps(self) }}>
-    <Tooltip
-        class="k-colorpicker-content"
-        position={{ {my: 'left top+8', at: 'left bottom', collision: 'flip'} }}
+<div class={classNameObj} {...getRestProps(this)}>
+    <Dropdown
+        position={{my: 'left top+8', at: 'left bottom', collision: 'flip'}}
         trigger="click"
-        showArrow={{ false }}
-        theme="light"
-        transition={{ transition }}
-        ev-show={{ self._onShow }}
-        disabled={{ disabled }}
+        disabled={disabled}
+        container={container}
     >
-        <div class="k-color">
-            <div class="k-inner" style={{ {backgroundColor: value} }}></div>
+        <div class="k-colorpicker-color">
+            <div class="k-colorpicker-inner" style={{backgroundColor: value}}></div>
         </div>
-        <b:content>
-            <Panel v-model="value" presets={{ presets }} />
-        </b:content>
-    </Tooltip>
+        <DropdownMenu class="k-colorpicker-content">
+            <ColorpickerPanel v-model="value" presets={presets} />
+        </DropdownMenu>
+    </Dropdown>
 </div>

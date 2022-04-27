@@ -11,22 +11,25 @@ order: 1.2
 标识该子节点已经加载完成，无需再次加载
 
 ```vdt
-import Tree from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
-const data = self.get('data');
-
-<Tree data={{ data }} 
+<Tree data={this.get('data')} 
     checkbox
-    load={{ self._loadData }}
+    load={this.loadData}
 />
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind, TreeProps, TreeNode} from 'kpc';
+
+interface Props {
+    data: NonNullable<TreeProps['data']>
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {
@@ -40,13 +43,17 @@ export default class extends Intact {
         }
     }
 
-    _loadData(node) {
-        return new Promise(resolve => {
+    @bind
+    loadData(node: TreeNode<never>) {
+        return new Promise<void>(resolve => {
             setTimeout(() => {
-                resolve([
+                node.data.children = [
                     {label: 'child1', children: []},
                     {label: 'child2'},
-                ]);
+                ];
+                this.set('data', [...this.get('data')]);
+
+                resolve();
             }, 1000);
         });
     }

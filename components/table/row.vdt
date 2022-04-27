@@ -1,161 +1,107 @@
-import Checkbox from '../checkbox';
-import Radio from '../radio';
-import Intact from 'intact';
-import {noop, isStringOrNumber, getTextByChildren, getRestProps, mapChildren} from '../utils';
-import {isInvisible} from './utils';
-import Button from '../button';
-import Icon from '../icon';
+import {TransitionGroup} from 'intact';
+import {getClassAndStyleForFixed} from './useFixedColumns';
+import {Checkbox} from '../checkbox';
+import {Radio} from '../radio';
+import {TableCell} from './cell';
+import {createElementVNode, className as cx} from 'intact';
 
 const {
-    className, checkType, rowKey,
-    disabled, onlyRight, scheme,
-    value, onlyLeft, index, merge,
-    level, indent, children, grid,
-    checked, draggable, dragKey, 
-    rowKeys, firstCloumnRowSpans
-} = self.get();
-const normalize = Intact.normalize;
+    cols, data, checkType, hasFixedLeft,
+    checked, disabled, className, merge,
+    grid, index: rowIndex, indeterminate,
+    allDisabled, selected, /* hidden,  */spreaded,
+    hasChildren, indent, key, offsetMap,
+    draggable, draggingKey,
+} = this.get();
+const classNameObj = {
+    'k-disabled': disabled,
+    'k-checked': checked,
+    'k-selected': selected,
+    /* 'k-hidden': hidden, */
+    'k-spreaded': spreaded,
+    'k-dragging': draggingKey === key,
+    [className]: className,
+};
 
-const rowInGrid = self.rowInGrid = [];
-const spanColumnsInfo = self.spanColumnsInfo = {};
+const getGridItem = (columnIndex) => {
+    return grid[rowIndex]?.[columnIndex] || {render: true, spans: null};
+};
 
-if (merge) {
-    grid.push(rowInGrid);
-    firstCloumnRowSpans.push(spanColumnsInfo)
+const vNodes = [];
+
+const pushCheckTypeVNode = (children) => {
+    const {render, spans} = getGridItem(0);
+    if (!render) return;
+
+    vNodes.push(
+        <td key="$checktype"
+            {...getClassAndStyleForFixed({
+                fixed: hasFixedLeft ? 'left' : false,
+                className: 'k-table-check'
+            }, 0)}
+            {...spans}
+        >{children}</td>
+    )
+};
+
+if (checkType === 'checkbox') {
+    pushCheckTypeVNode(
+        <Checkbox 
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            indeterminate={indeterminate}
+            ev-$change:value={this.onChangeChecked}
+        />
+    );
+} else if (checkType === 'radio') {
+    pushCheckTypeVNode(
+        <Radio
+            value={indeterminate ? false : checked}
+            disabled={allDisabled}
+            ev-$change:value={this.onChangeChecked}
+        />
+    );
 }
 
-let columnIndex = -1;
+const columnIndexOffset = checkType !== 'none' ? 1 : 0;
+cols.forEach((props, columnIndex) => {
+    const {render, spans} = getGridItem(columnIndex + columnIndexOffset);
+    if (!render) return;
 
-const combinedScheme = checkType !== 'none' ? Object.assign({ checkType: {key: '$check'} }, scheme) : scheme;
+    const columnKey = props.key;
 
-<tr class={{ {[className]: className, 'k-dragging': dragKey === rowKey} }}
-    ev-click={{ self._onClick }}
-    ev-mouseenter={{ self._onMouseEnter }}
-    ev-mouseleave={{ self._onMouseLeave }}
-    draggable={{ draggable ? true : undefined }}
-    ev-dragstart={{ draggable ? self._onDragStart : undefined }}
-    ev-dragend={{ draggable ? self._onDragEnd : undefined }}
-    ev-dragover={{ draggable ? self._onDragOver : undefined }}
->
-    {{ __u.map(combinedScheme, (item, schemeKey) => {
-        columnIndex++;
-        let spans;
-        if (merge) {
-            if (columnIndex > 0) {
-                const prevCell = rowInGrid[columnIndex - 1];
-                if (prevCell && prevCell.colspan > 1) {
-                    const current = {
-                        rowspan: prevCell.rowspan,
-                        colspan: prevCell.colspan - 1,
-                    };
-                    rowInGrid.push(current);
-                    return;
-                }
-            }
-            if (index > 0) {
-                const prevRow = grid[index - 1];
-                const aboveCell = prevRow[columnIndex];
-                if (aboveCell && aboveCell.rowspan > 1) {
-                    const current = { 
-                        rowspan: aboveCell.rowspan - 1,
-                        colspan: aboveCell.colspan,
-                    }
-                    rowInGrid.push(current);
+    vNodes.push(
+        <TableCell
+            props={props}
+            columnIndex={columnIndex}
+            rowIndex={rowIndex}
+            data={data}
+            offset={offsetMap[columnKey]}
+            checkType={checkType}
+            indent={indent}
+            grid={grid}
+            colspan={spans ? spans.colspan : undefined}
+            rowspan={spans ? spans.rowspan : undefined}
+            onClickArrow={this.onClickArrow}
+            hasChildren={hasChildren}
+            key={columnKey}
+        />
+    );
+});
 
-                    if(columnIndex === 0 && checkType !== 'none'){
-                        const spanColumns = firstCloumnRowSpans[index - 1];
-                        spanColumnsInfo.spanRowKeys = spanColumns.spanRowKeys;
-                        spanColumnsInfo.spanIndexs = spanColumns.spanIndexs;
-                    }
-                    return;
-                }
-            }
+const rows = <TransitionGroup name="k-fade-expand" move={false}>{vNodes}</TransitionGroup>
+/* const rows = vNodes; */
 
-            spans = merge.call(self, value, item, index, columnIndex);
-            rowInGrid.push(spans);
-            
-            if(columnIndex === 0 && checkType !== 'none'){
-                const firstColumnRowspan = spans.rowspan || 1;
-                const endRowIndex = index + firstColumnRowspan; 
-                const spanColumns = firstColumnRowspan > 1 ? {
-                        spanRowKeys: rowKeys.slice(index, endRowIndex), 
-                        spanIndexs:  Array.from(new Array(endRowIndex).keys()).slice(index)
-                    } : {
-                        spanRowKeys: rowKey, spanIndexs: index
-                    };
-                spanColumnsInfo.spanRowKeys = spanColumns.spanRowKeys;
-                spanColumnsInfo.spanIndexs = spanColumns.spanIndexs;
-            }
-        }
-        let td;
-        if (item.template) {
-            if (typeof item.template === 'function') {
-                td = item.template.call(self, value, index);
-                // for Intact-Vue
-                if (normalize) {
-                    td = normalize(td);
-                }
-            } else {
-                td = item.template;
-            }
-        } else if (item.blockFn) {
-            td = item.blockFn.call(self, noop, value, index);
-        } else if (value[schemeKey] !== undefined) {
-            td = value[schemeKey];
-        } else {
-            let obj = value,
-                keys = schemeKey.split('.'),
-                i = 0;
-            while (obj != null && i < keys.length) {
-                obj = obj[keys[i++]];
-            }
-            td = (i && i === keys.length) ? obj : null;
-        }
-     
-        if(columnIndex===0 && checkType !== 'none' ){
-            return  checkType === 'checkbox' ? <td {{ ...spans }}
-                        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }} 
-                        data-column={{ spans && spans.rowspan > 1 ? "k-first-column" : undefined  }}
-                    >
-                        <Checkbox name="k-table-checkbox"
-                            indeterminate={{ self._isHalfChecked() }}
-                            value={{ self._isAllChecked() }}
-                            ev-$change:value={{ self._onChangeChecked }}
-                            disabled={{ self._isDisabled() }}
-                        />
-                    </td> : <td {{ ...spans }}
-                        class={{ {"k-th-check": true, 'k-invisible': onlyRight} }}
-                    >
-                        <Radio name="k-table-radio"
-                            value={{ self._isAllChecked() }}
-                            ev-$change:value={{ self._onChangeChecked }}
-                            disabled={{ self._isDisabled() }}
-                        />
-                    </td>
-        }else{
-            const isFirstEleColumn = checkType === 'none' ? columnIndex === 0 : columnIndex === 1;
-
-            return <td title={{ getTextByChildren(td) || undefined }}
-                    data-ignore={{ item.ignore ? '' : undefined }}
-                    className={{ {
-                        'k-invisible': isInvisible(onlyLeft, onlyRight, item),
-                        [`k-${item.align}`]: item.align,
-                        [item.className]: item.className,
-                    } }}
-                    key={{ schemeKey }}
-                    {{ ...spans }}
-                    style={{ {paddingLeft: isFirstEleColumn && level ? level * indent + 'px' : undefined } }}
-                >
-                    <Button type="none" icon circle size="mini" 
-                        v-if={{ isFirstEleColumn && children }}
-                        class="k-table-arrow"
-                        ev-click={{ self._onToggleSpreadRow }}
-                    >
-                        <Icon class="ion-ios-arrow-right" size="small" />
-                    </Button>
-                    {{ typeof td === 'boolean' ? String(td) : td }}
-                </td>
-        }
-       
-    }) }}
-</tr>
+// for performance, no normalize
+<template>
+    {createElementVNode(2, 'tr', rows, 2, cx(classNameObj), {
+        'data-key': key,
+        'ev-mouseenter': this.onMouseEnter,
+        'ev-mouseleave': this.onMouseLeave,
+        'ev-click': this.onClick,
+        'ev-dragstart': draggable ? this.onRowDragStart : null,
+        'ev-dragover': draggable ? this.onRowDragOver : null,
+        'ev-dragend': draggable ? this.onRowDragEnd : null,
+        'draggable': draggable ? true : null,
+    })}
+</template>

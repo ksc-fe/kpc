@@ -8,10 +8,12 @@ iframe: 400
 添加样式
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {
+    Layout, Header, Aside, Body, Footer,
+    Menu, MenuItem,
+    Icon,
+    Breadcrumb, BreadcrumbItem
+} from 'kpc';
 
 <Layout class="layout">
     <Header fixed>
@@ -38,7 +40,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
         </Menu>
     </Header>
     <Layout>
-        <Aside fixed>
+        <Aside fixed theme="light">
             <Menu
                 v-model:expandedKeys="expandedKeys" 
                 v-model:selectedKey="selectedKey"
@@ -71,7 +73,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div v-for={{ self.get('data') }}>content</div>
+            <div v-for={this.get('data')}>content</div>
         </Body>
     </Layout>
 </Layout>
@@ -91,39 +93,17 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
     margin 20px 0
 ```
 
-```js
-export default class Demo extends Intact {
-    @Intact.template()
+```ts
+export default class Demo extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
-            data: Array.apply(null, {length: 100}),
+            data: Array.apply(null, {length: 100} as unknown[]),
         };
     }
-}
-```
-
-```vue-data
-data() {
-    return {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        data: Array.apply(null, {length: 100}),
-    };
-}
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        data: Array.apply(null, {length: 100}),
-    };
 }
 ```
 

@@ -6,27 +6,16 @@ order: 1
 不指定`title`属性和相关的扩展点，则不会展示头部
 
 ```vdt
-import Card from 'kpc/components/card';
-import {Row, Col} from 'kpc/components/grid';
+import {Card} from 'kpc';
 
 <div>
     <Card>
-        <Row>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-        </Row>
+        <div>卡片内容</div>
+        <div>卡片内容</div>
     </Card>
     <Card type="border">
-        <Row>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-        </Row>
+        <div>卡片内容</div>
+        <div>卡片内容</div>
     </Card>
 </div>
 ```

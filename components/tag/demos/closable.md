@@ -11,17 +11,16 @@ order: 1
 > 需要自己维护`closed`属性，或者通过`v-if`来控制组件
 
 ```vdt
-import Tag from 'kpc/components/tag';
+import {Tag} from 'kpc';
 
 <div>
-    <Tag v-for={{ self.get('tags') }}
-        key={{ value }}
-        type={{ value }}
+    <Tag v-for={this.get('tags')}
+        key={$value}
+        type={$value}
         closable
-        ev-close={{ self.onClose.bind(self, key) }}
-    >{{ value }}</Tag>
+    >{$value}</Tag>
     <Tag disabled closable>disabled</Tag>
-    <Tag closable ev-close={{ self.preventDefault }}>prevent default</Tag>
+    <Tag closable ev-close={this.prevent}>prevent default</Tag>
 </div>
 ```
 
@@ -30,29 +29,23 @@ import Tag from 'kpc/components/tag';
     margin-right 16px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {TagProps} from 'kpc';
+
+interface Props {
+    tags: TagProps['type'][]
+}
+
+export default class extends Component {
     static template = template;
-
-    defaults() {
-        return {tags: ['default', 'primary', 'success', 'warning', 'danger']};
+    static defaults() {
+        return {
+            tags: ['default', 'primary', 'success', 'warning', 'danger']
+        } as Props;
     }
 
-    onClose(index) {
-        const tags = this.get('tags').slice(0);
-        tags.splice(index, 1);
-        this.set('tags', tags);
-    }
-
-    preventDefault(e) {
+    prevent(e: MouseEvent) {
         e.preventDefault();
     }
-}
-```
-
-```vue-methods
-onClose(index) {
-    this.tags.splice(index, 1);
 }
 ```

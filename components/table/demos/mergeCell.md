@@ -3,7 +3,7 @@ title: 合并单元格
 order: 15
 ---
 
-通过`merge`属性指定一个函数来定义合并单元格的逻辑，函数返回的结果`{colspan, rowspan}`用来定义单元格占用的行列数。
+通过`merge`属性指定一个函数来定义合并单元格的逻辑，函数返回的结果`{colspan?: number, rowspan?: number}`用来定义单元格占用的行列数。
 组件传入函数的参数如下：
 
 1. `row` 当前行数据
@@ -11,23 +11,28 @@ order: 15
 3. `rowIndex` 当前行索引
 4. `columnIndex` 当前列索引
 
-> 合并多选框时，可以通过`checkedKeys`来设置选中行，多选框是支持半选状态的；合并单选框时，与合并多选框不同的是，单选框是不支持半选状态的，只要一行被选中，那么整个合并行都会被选中，可以通过`checkedKey`来设置选中的合并行，但是`checkedKey`的值必须为合并的可选行的`key`组成的数组，否则不生效。注意：禁选行和选中行默认没有给出高亮，如果需要请自行设置高亮。
+> 合并多选框时，可以通过`checkedKeys`来设置选中行，多选框是支持半选状态的；
+> 合并单选框时，与合并多选框不同的是，单选框是不支持半选状态的，只要一行被选中，
+> 那么整个合并行都会被选中
+> 
+> 注意：禁选行和选中行默认没有给出高亮，如果需要请自行设置高亮。
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div class='merge-cell'>
-    <Table data={{ self.get('data') }}
+    <Table data={this.get('data')}
         checkType="checkbox" 
-        checkedKeys={{ [3] }}
+        checkedKeys={[3]}
         type="grid"
         resizable
-        merge={{ self.merge }}
+        merge={this.merge}
+        disableRow={this.disableRow}
         ref="__test1"
     >
-        <TableColumn title="Weekday" key='weekday' fixed="left"/>
+        <TableColumn title="Weekday" key='weekday' fixed="left" />
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="Time" key="forenoonTime" fixed="left" />
+            <TableColumn title="Time" key="forenoonTime" />
             <TableColumn title="Class 1" key='class1' />
             <TableColumn title="Class 2" key='class2' />
             <TableColumn title="Class 3" key='class3' />
@@ -40,17 +45,18 @@ import {Table, TableColumn} from 'kpc/components/table';
             <TableColumn title="Time" key="afternoonTime" fixed="right" />
         </TableColumn>
     </Table>
-    <Table data={{ self.get('data') }}
+    <Table data={this.get('data')}
         checkType="radio"
-        checkedKey={{ [0, 1] }} 
+        checkedKeys={[0, 1]} 
         type="grid"
         resizable
-        merge={{ self.merge }}
+        merge={this.merge}
+        disableRow={this.disableRow}
         ref="__test2"
     >
-        <TableColumn title="Weekday" key='weekday' fixed="left"/>
+        <TableColumn title="Weekday" key='weekday' fixed="left" />
         <TableColumn title="Forenoon" key="forenoon">
-            <TableColumn title="Time" key="forenoonTime" fixed="left" />
+            <TableColumn title="Time" key="forenoonTime" />
             <TableColumn title="Class 1" key='class1' />
             <TableColumn title="Class 2" key='class2' />
             <TableColumn title="Class 3" key='class3' />
@@ -69,14 +75,36 @@ import {Table, TableColumn} from 'kpc/components/table';
 ```styl
 .k-table
     margin-bottom 20px
+    tr.k-checked td
+        background antiquewhite
+    tr.k-disabled td
+        background #eaeaea
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind, TableColumnProps} from 'kpc';
+
+interface Props {
+    data: DataItem[]
+}
+
+type DataItem = {
+    weekday: string
+    class1: string
+    class2: string
+    class3: string
+    class4: string
+    class5: string
+    class6: string
+    class7: string
+    forenoonTime: string
+    afternoonTime: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {
@@ -155,21 +183,29 @@ export default class extends Intact {
         };
     }
 
-    merge(row, column, rowIndex, columnIndex) {
+    @bind
+    merge(row: DataItem, column: TableColumnProps | null, rowIndex: number, columnIndex: number) {
+        if (columnIndex === 0) {
+            // is check column
+            if (rowIndex === 0) {
+                return {
+                    rowspan: 2,
+                    colspan: 1,
+                }
+            }
+
+            if (rowIndex === 2) {
+                return {
+                    rowspan: 3,
+                    colspan: 1,
+                }
+            }
+
+            return;
+        }
+
         const data = this.get('data');
-        if(columnIndex===0 && rowIndex===0){
-            return {
-                rowspan: 2,
-                colspan: 1,
-            }
-        }
-        if(columnIndex===0 && rowIndex===2){
-            return {
-                rowspan: 3,
-                colspan: 1,
-            }
-        }
-        if (column.key === 'forenoonTime' || column.key === 'afternoonTime') {
+        if (column!.key === 'forenoonTime' || column!.key === 'afternoonTime') {
             return {
                 rowspan: data.length,
                 colspan: 1,
@@ -177,18 +213,23 @@ export default class extends Intact {
         }
 
         // merge the same classes horizontally
-        const columns = [];
-        for (let i = 1; i <= 7; i++) columns.push(`class${i}`);
+        const columns: (keyof DataItem)[] = [];
+        for (let i = 1; i <= 7; i++) columns.push(`class${i}` as keyof DataItem);
 
         let colspan = 1;
-        const value = row[column.key];
-        for (let i = columns.indexOf(column.key) + 1; i < 7; i++) {
+        const value = row[column!.key as keyof DataItem];
+        for (let i = columns.indexOf(column!.key as keyof DataItem) + 1; i < 7; i++) {
             const nextValue = row[columns[i]];
             if (nextValue !== value) break;
             colspan++;
         }
 
         return {colspan};
+    }
+
+    @bind
+    disableRow(data: DataItem, index: number) {
+        return index === 1 || index === 5;
     }
 }
 ```

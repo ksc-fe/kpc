@@ -1,43 +1,45 @@
 import {Button} from '../button';
+import {Icon} from '../icon';
 import {Input} from '../input';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
 
-const {
-    className, disabled, max, min,
-    style, size, vertical, _value, width,
-} = self.get();
-
+const {className, disabled, size, vertical, value, width} = this.get();
 const classNameObj = {
     'k-spinner': true,
     'k-disabled': disabled,
     [`k-${size}`]: size !== 'default',
     [className]: className,
     'k-vertical': vertical,
+    [makeStyles()]: true,
 };
+const {decrease, increase, changeValue, onFocusin} = this.change;
 
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    <Button icon ev-click={{ self._decrease }}
-        disabled={{ self._disableDecrease() }}
-        class="k-left"
-        size={{ size }}
+<div class={classNameObj} {...getRestProps(this)}>
+    <Button icon ev-click={decrease}
+        disabled={this.isDisabledDecrease()}
+        class="k-spinner-btn k-left"
+        size={size}
     >
-        <i v-if={{ !vertical }} class="k-icon ion-ios-minus-empty"></i>
-        <i v-else class="ion-ios-arrow-down"></i>
+        <Icon v-if={!vertical} class="k-spinner-icon ion-ios-minus-empty" />
+        <Icon v-else class="k-spinner-icon ion-ios-arrow-down" />
     </Button>
-    <Input disabled={{ disabled }} 
-        ev-change={{ self._changeValue }}
-        value={{ _value }}
-        ev-input={{ self._onInput }}
-        size={{ size }}
-        width={{ width }}
-        ev-focus={{ self._onFocus }}
+    <Input
+        class="k-spinner-input"
+        disabled={disabled} 
+        ev-change={changeValue}
+        ev-focusin={onFocusin}
+        value={this.value.showValue.value}
+        ev-input={this.onInput}
+        size={size}
+        width={width}
     />
-    <Button icon ev-click={{ self._increase }}
-        disabled={{ self._disableIncrease() }}
-        class="k-right"
-        size={{ size }}
+    <Button icon ev-click={increase}
+        disabled={this.isDisabledIncrease()}
+        class="k-spinner-btn k-right"
+        size={size}
     >
-        <i v-if={{ !vertical }} class="k-icon ion-ios-plus-empty"></i>
-        <i v-else class="ion-ios-arrow-up"></i>
+        <Icon v-if={!vertical} class="k-spinner-icon ion-ios-plus-empty" />
+        <Icon v-else class="k-spinner-icon ion-ios-arrow-up" />
     </Button>
 </div>

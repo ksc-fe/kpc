@@ -6,14 +6,14 @@ order: 1
 通过`presets`定义组件的预选颜色，置为空数组时`[]`则不会展示预选颜色
 
 ```vdt
-import Colorpicker from 'kpc/components/colorpicker';
+import {Colorpicker} from 'kpc';
 
 <div>
     <Colorpicker v-model="color1"
-        presets={{ ['transparent', 'red', '#d99123', 'rgb(255, 51, 33)', 'hsl(126, 54%, 46%)'] }}
+        presets={['transparent', 'red', '#d99123', 'rgb(255, 51, 33)', 'hsl(126, 54%, 46%)']}
     />
     <Colorpicker v-model="color2"
-        presets={{ [] }}
+        presets={[]}
     />
 </div>
 ```
@@ -23,12 +23,11 @@ import Colorpicker from 'kpc/components/colorpicker';
     margin-right 16px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             color1: '#36acef',
             color2: '#d99123'

@@ -9,23 +9,22 @@ order: 25
 > 需要`fixHeader`固定表头才能生效
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Table, TableColumn, Button, ButtonGroup} from 'kpc';
 
 <div class="wrapper">
     <ButtonGroup>
-        <Button ev-click={{ self.scrollToRowByIndex }}>Scroll to the 20th row</Button>
-        <Button ev-click={{ self.scrollToRowByKey }}>Scroll to the "name 25" row</Button>
+        <Button ev-click={this.scrollToRowByIndex}>Scroll to the 20th row</Button>
+        <Button ev-click={this.scrollToRowByKey}>Scroll to the "name 25" row</Button>
     </ButtonGroup>
     <Table fixHeader="300"
-        data={{ self.get('data') }}
+        data={this.get('data')}
         ref="table"
-        rowKey={{ item => item.name }}
+        rowKey={item => item.name}
     >
         <TableColumn title="Name" key="name" fixed="left" />
         <TableColumn title="IP" key="ip" />
         <TableColumn title="Operation" key="op" fixed="right">
-            <b:template params="data">
+            <b:template args="[data]">
                 <a>Remove</a> 
             </b:template>
         </TableColumn>
@@ -38,8 +37,8 @@ import {Button, ButtonGroup} from 'kpc/components/button';
     margin-bottom 16px
 ```
 
-```js
-import {range} from 'kpc/components/utils';
+```ts
+import {range, bind} from 'kpc/components/utils';
 
 const data =  range(1, 100).map(item => {
     return {
@@ -48,45 +47,23 @@ const data =  range(1, 100).map(item => {
     };
 });
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: data
         }
     }
 
+    @bind
     scrollToRowByIndex() {
         this.refs.table.scrollToRowByIndex(19);
     }
 
+    @bind
     scrollToRowByKey() {
         this.refs.table.scrollToRowByKey('name 25');
     }
 }
-```
-
-```vue-data
-data() {
-    return {
-        data
-    }
-},
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data
-    };
-    this.scrollToRowByIndex = this.scrollToRowByIndex.bind(this);
-    this.scrollToRowByKey = this.scrollToRowByKey.bind(this);
-}
-```
-
-```angular-properties
-private data = data;
 ```

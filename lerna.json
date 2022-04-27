@@ -1,7 +1,9 @@
 {
   "packages": [
     "./",
-    "packages/*"
+    "packages/kpc-react",
+    "packages/kpc-vue-next",
+    "packages/kpc-vue"
   ],
-  "version": "1.5.2"
+  "version": "2.0.0"
 }

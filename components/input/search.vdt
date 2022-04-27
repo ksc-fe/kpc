@@ -1,32 +1,41 @@
-import Input from './';
-import Icon from '../icon';
-import Button from '../button';
+import {Input} from './';
+import {Icon} from '../icon';
+import {Button} from '../button';
 import {getRestProps} from '../utils';
+import {makeSearchStyles} from './styles';
 
 const {
-    className, _open, 
-    placeholder, value, type, size
-} = self.get();
+    className, placeholder, value,
+    type, size, open, 
+} = this.get();
+
+const isTypeNotDefault = type !== 'default';
 
 const classNameObj = {
     'k-search': true,
     [className]: className,
-    'k-open': _open,
-    'k-hide': !_open,
-    [`k-${type}`]: type !== 'default',
+    'k-open': open,
+    'k-hide': !open,
+    [`k-${type}`]: isTypeNotDefault,
+    [makeSearchStyles()]: true,
 };
 
-<form {{ ...getRestProps(self) }} class={{ classNameObj }} ev-submit={{ self._onSubmit }}>
+<form {...getRestProps(this)} 
+    class={classNameObj}
+    ev-submit={this.onSubmit}
+    ref={this.elementRef}
+>
     <Input clearable
-        ref="input" 
-        placeholder={{ _open ? placeholder : undefined }}
-        value={{ _open ? value : undefined }}
-        ev-$change:value={{ self._onChangeValue }}
-        readonly={{ !_open }}
-        size={{ size }}
+        ref={this.inputRef}
+        placeholder={open ? placeholder : undefined}
+        value={open ? value : undefined}
+        ev-$change:value={this.onChangeValue}
+        readonly={!open}
+        size={size}
         class="k-with-suffix"
+        waveDisabled={isTypeNotDefault}
     />
-    <Button icon type="none" ev-click={{ self._onClickBtn }} size={{ size }}>
+    <Button icon type="none" ev-click={this.onClickBtn} size={size}>
         <Icon class="k-icon-search k-search-icon" />
     </Button>
 </form>

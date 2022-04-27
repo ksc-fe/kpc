@@ -1,34 +1,166 @@
-import {Row, Col} from 'kpc/components/grid';
-import {Card} from 'kpc/components/card';
-import {Icon} from 'kpc/components/icon';
+import {makeStyles} from './styles';
+import {Footer} from '../../components/footer/';
+import {Icon} from 'kpc';
+import sketch_img from '../../imgs/sketch_transparent.png';
+import rectangle from '../../imgs/rectangle.png';
+import kingvision_icon from '../../imgs/kingvision_icon.png';
+import axure_icon from '../../imgs/axure_icon.png';
+import iconFonts from '../../imgs/icon-fonts.png';
+import iconSize from '../../imgs/icon-size.png';
+import {WorkflowCard} from '../../components/WorkflowCard/';
+import {Link} from '../../components/link';
+import github_icon from '../../imgs/github_icon.png';
+import {getAxure, getSketch, getFigma, getWeights} from './index';
 
-<t:parent navIndex="resources" class="resource-page">
+const pricipleList = [
+    {
+        title: 'KingDesign设计原则',
+        link: '/docs/design/principle/'
+    },
+    {
+        title: '可访问性设计',
+        link: '/docs/design/guide-6/'
+    },
+    {
+        title: '体验度量',
+        link: '/docs/design/model/'
+    },
+    {
+        title: '字体和排版',
+        link: '/docs/design/guide-4/'
+    },
+    {
+        title: '使用适合间距',
+        link: '/docs/design/guide-3/'
+    },
+];
+
+<t:super class={makeStyles()} navIndex="resource">
     <b:content>
-        <Row gutter="40">
-            <Col lg="8">
-                <Card type="none">
-                    <Icon class="axure" />
-                    <h3>King Design for Axure</h3>
-                    <p>组件库基于Axure 9设计制作</p>
-                    <a class="action" href="https://damife.ks3-cn-beijing.ksyun.com/kpc/KingDesign1.4.1.rplib">下载资源</a>
-                </Card>
-            </Col>
-            <Col lg="8">
-                <Card type="none">
-                    <Icon class="sketch"/>
-                    <h3>King Design for Sketch</h3>
-                    <p>组件库基于Sketch 60设计制作</p>
-                    <a class="action" href="https://damife.ks3-cn-beijing.ksyun.com/kpc/KingDesing-1.4.1.sketch">下载资源</a>
-                </Card>
-            </Col>
-            <Col lg="8">
-                <Card type="none">
-                    <Icon class="vision" />
-                    <h3>King Vision</h3>
-                    <p>金山云视觉库，开源的原创ICON及素材图</p>
-                    <a class="action" href="http://vision.ksyun.com" target="_blank">立即查看</a>
-                </Card>
-            </Col>
-        </Row>
+        <div class="source-nav">
+            <div class="content">
+                <div class="nav-title">
+                    <div>资源</div>
+                    <div>生态设计工具与研发资源，快速支持业务</div>
+                </div>
+            </div>
+        </div>
+        <div class="source-content">
+            <div>
+                <div class="content-top">
+                    <div class="main-title">产品，设计，开发，测试，全链路加速产品开发</div>
+                    <div class="secondary-title">构建专业的企业级数字产品</div>
+                    <div class="workflow-box">
+                        <WorkflowCard title="原型设计">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">组件库</div>
+                                    <div 
+                                        class="card-item" 
+                                        ev-click={getAxure}
+                                    >
+                                        <img src={axure_icon} />
+                                        <div>Axure组件库</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                        <WorkflowCard title="UI/UE设计">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">组件库</div>
+                                    <div 
+                                        class="card-item" 
+                                        ev-click={getSketch}
+                                    >
+                                        <div class="sketch-img-box">
+                                            <img src={sketch_img} />
+                                        </div>
+                                        <div>Sketch组件库</div>
+                                    </div>
+                                    <div 
+                                        class="card-item"
+                                        ev-click={getFigma}
+                                    >
+                                        <img src={rectangle} />
+                                        <div>Figma组件库</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="card-title">更多KD资源</div>
+                                    <div class="card-item">
+                                        <Link href="http://vision.ksyun.com/#/icon-reposition">
+                                            <div class="code-resource">
+                                                <img src={kingvision_icon} />
+                                                <div style="padding-left: 14px;">KingVision素材库</div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                    <div class="card-item">
+                                        <img src={iconFonts} />
+                                        <div>Fonts库（敬请期待）</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                        <WorkflowCard title="开发阶段">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">组件套件</div>
+                                    <div class="card-item">
+                                        <Link href="https://github.com/ksc-fe/kpc">
+                                            <div class="code-resource">
+                                                <img src={github_icon} />
+                                                <div>代码资源</div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                        <WorkflowCard title="测试阶段">
+                            <div class="card-content-box">
+                                <div>
+                                    <div class="card-title">产品可用性度量</div>
+                                    <div class="card-item" ev-click={getWeights}>
+                                        <img src={iconSize} />
+                                        <div>度量衡工具</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </WorkflowCard>
+                    </div>
+                    <div class="line"></div>
+                </div>
+                <div class="content-bottom">
+                    <div class="tool-box">
+                        <div>
+                            <div class="title">工具</div>
+                            <div>更多的设计资源创造更高的产品价值</div>
+                        </div>
+                        <div class="tool-item process-box"></div>
+                        <div class="tool-item expect-box">
+                        </div>
+                    </div>
+                    <div class="principle">
+                        <div>
+                            <div class="title">原则与方法论</div>
+                            <div>以人机界面设计指南为设计核心</div>
+                        </div>
+                        <div class="priciples">
+                            <div 
+                                class="priciple-item" 
+                                v-for={pricipleList} 
+                                ev-click={this.goDoc.bind(this, $value.link)}
+                            >
+                                <span>{$value.title}</span>
+                                <Icon class="icon ion-chevron-right"></Icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Footer bgColor="#FAFAFA"></Footer>
     </b:content>
-</t:parent>
+</t:super>

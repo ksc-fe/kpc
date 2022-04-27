@@ -1,42 +1,44 @@
-import Icon from '../icon';
+import {linkEvent} from 'intact';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {Icon} from '../icon';
 
-const {
-    _value, count, className, 
-    disabled, half
-} = self.get();
+const {className, count, disabled, half} = this.get();
+const {activeValue, onClick, onMouseEnter, onMouseLeaveComponent} = this.activeValue;
 
 const classNameObj = {
     'k-rate': true,
     'k-disabled': disabled,
     [className]: className,
+    [makeStyles()]: true,
 };
 
 const icon = <b:icon><Icon class="ion-android-star" /></b:icon>
+const rateIcon = function(className, step) {
+    return (
+        <div class={className}
+            ev-click={linkEvent(step, onClick)}
+            ev-mouseenter={linkEvent(step, onMouseEnter)}
+        >{icon}</div>
+    );
+};
 
-<div {{ ...getRestProps(self) }} class={{ classNameObj }}
-    ev-mouseleave={{ self.onMouseLeaveComponent }}
->
-    {{ (() => {
-        const ret = [];
-        for (let i = 0; i < count; i++) {
-            const className = _value >= i + 1 ? 
-                'k-full' : _value === i + 0.5 ? 
-                    'k-half' : null;
-            const halfStep = half ? i + 0.5 : i + 1;
-            ret.push(
-                <div class={{ {"k-item": true, [className]: className } }}>
-                    <div class="k-first" 
-                        ev-click={{ self.onClick.bind(self, halfStep) }}
-                        ev-mouseenter={{ self.onMouseEnter.bind(self, halfStep) }}
-                    >{{ icon }}</div>
-                    <div class="k-second" 
-                        ev-click={{ self.onClick.bind(self, i + 1) }}
-                        ev-mouseenter={{ self.onMouseEnter.bind(self, i + 1) }}
-                    >{{ icon }}</div>
-                </div>
-            );
-        }
-        return ret;
-    })() }}
-</div>
+const items = [];
+for(let i = 0; i < count; i++) {
+    const className = activeValue.value >= i + 1 ? 
+        'k-full' : activeValue.value === i + 0.5 ? 
+            'k-half' : null;
+    const halfStep = half ? i + 0.5 : i + 1;
+    const item = (
+        <div class={{"k-rate-item": true, [className]: className}}>
+            {rateIcon("k-rate-first", halfStep)}
+            {rateIcon("k-rate-second", i + 1)}
+        </div>
+    );
+    items.push(item);
+}
+
+<div {...getRestProps(this)}
+    class={classNameObj} 
+    ev-mouseleave={onMouseLeaveComponent}
+>{items}</div>

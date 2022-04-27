@@ -7,23 +7,28 @@ order: 0
 提示默认会在5s后自动关闭
 
 ```vdt
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {ButtonGroup, Button} from 'kpc';
 
 <ButtonGroup>
-    <Button v-for={{ ['info', 'error', 'warning', 'success'] }}
-        ev-click={{ self.showMessage.bind(self, value) }}
-    >{{ value }}</Button>
+    <Button v-for={this.get('types')}
+        ev-click={this.showMessage.bind(this, $value)}
+    >{$value}</Button>
 </ButtonGroup>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
-    showMessage(type) {
+    static defaults() {
+        return {
+            types: ['info', 'error', 'warning', 'success'] as const
+        }
+    }
+
+    showMessage(type: 'info' | 'error' | 'warning' | 'success') {
         Message[type](type);
     }
 }

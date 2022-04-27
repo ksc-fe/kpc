@@ -6,16 +6,27 @@ order: 0
 标签类型：`default`, `primary`, `success`, `warning` `danger`
 
 ```vdt
-import Tip from 'kpc/components/tip';
+import {Tip} from 'kpc';
 
 <div>
-    <Tip v-for={{ ['default', 'primary', 'success', 'warning', 'danger'] }}
-        type={{ value }}
-    >{{ value }}</Tip>
+    <Tip v-for={this.get('types')}
+        type={$value}
+    >{$value}</Tip>
 </div>
 ```
 
 ```styl
-.k-tag
+.k-tip
     margin-bottom 8px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            types: ['default', 'primary', 'success', 'warning', 'danger'] as const
+        };
+    }
+}
 ```

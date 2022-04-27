@@ -1,81 +1,99 @@
+import {getClassAndStyleForFixed} from './useFixedColumns';
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
+import {Button} from '../button';
+import {Icon} from '../icon';
 import {Checkbox} from '../checkbox';
-import {Radio} from '../radio';
-import {isStringOrNumber, getRestProps} from '../utils';
-import Intact from 'intact';
+import {makeGroupMenuStyles} from './styles';
+import {isStringOrNumber, get} from 'intact-shared';
+import {context as GroupContext} from './useGroup';
+import {context as SortableContext} from './useSortable';
+import {linkEvent} from 'intact';
+import {context as TableContext} from './useColumns';
+import {context as ResizableContext} from './useResizable';
+import {context as FixedColumnsContext} from './useFixedColumns';
+import {stopPropagation} from '../utils';
 
-const normalize = Intact.normalize;
+const {title, fixed, group, multiple, key, sortable, cols, rows} = this.get();
+const {onSelect, isChecked, getGroupText} = this.group;
 
-let {
-    title, key, group, multiple, ignore,
-    sortable, $parent, _show, className, align,
-    cols, rows, invisible, exportTitle
-} = self.get();
+<TableContext.Consumer>
+    {checkType => {
+        return <GroupContext.Consumer>
+            {({group: currentGroup, onChange}) => {
+                return <SortableContext.Consumer>
+                    {({sort, onChange: onChangeSort}) => {
+                        return <ResizableContext.Consumer>
+                            {({resizable, onStart}) => {
+                                return <FixedColumnsContext.Consumer>
+                                    {(offsetMap) => {
+                                        const {className, style} = getClassAndStyleForFixed(this.get(), offsetMap[key], checkType);
+                                        const classNameObj = {
+                                            'k-column-sortable': sortable,
+                                            [className]: className,
+                                        }
 
-const width = self.width;
+                                        const groupValue = currentGroup && currentGroup[key];
+                                        const groupText = getGroupText(groupValue);
 
-const {sort, resizable, container} = $parent.get();
-const groupText = group && self._getGroupText() || '';
+                                        const type = sort && sort.key === key && sort.type;
 
-const thTitle = isStringOrNumber(title) ? title + groupText : undefined;
-title = normalize ? normalize(title) : title;
+                                        let checked;
+                                        return <th className={classNameObj}
+                                            style={style}
+                                            title={isStringOrNumber(title) ? title + (groupText || '') : null}
+                                            ev-click={sortable ? linkEvent(key, onChangeSort) : null}
+                                            colspan={cols}
+                                            rowspan={rows}
+                                            ref={this.elementRef}
+                                        >
+                                            <div v-if={resizable && this.$vNode.props.prevVNode}
+                                                class="k-table-resize"
+                                                ev-mousedown={e => {
+                                                    e._vNode = this.$vNode;
+                                                    onStart(e);
+                                                }} 
+                                            />
+                                            <div class="k-table-title">
+                                                <div class="k-table-title-text c-ellipsis">
+                                                    <b:title>{title}</b:title>
+                                                    {groupText}
+                                                </div>
+                                                <Dropdown v-if={group}
+                                                    position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
+                                                    key="dropdown"
+                                                >
+                                                    <Button icon size="mini" class="k-table-group"
+                                                        ev-click={stopPropagation}
+                                                    >
+                                                        <Icon class="ion-android-arrow-dropdown" />
+                                                    </Button>
+                                                    <DropdownMenu class={{"k-table-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
+                                                        <DropdownItem v-for={group}
+                                                            ev-select={() => onSelect($value.value, groupValue, onChange)}
+                                                            hideOnSelect={!multiple}
+                                                            class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                                                        >
+                                                            <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
+                                                            <span v-else>{$value.label}</span>
+                                                        </DropdownItem>
+                                                    </DropdownMenu>
+                                                </Dropdown>
+                                                <div v-if={sortable}
+                                                    class={{'k-column-sort': true, [`k-${type}`]: type}}
+                                                >
+                                                    <Icon class="ion-android-arrow-dropup k-asc" />
+                                                    <Icon class="ion-android-arrow-dropdown k-desc" />
+                                                </div>
+                                            </div>
+                                        </th>
+                                    }}
+                                </FixedColumnsContext.Consumer>
+                            }}
+                        </ResizableContext.Consumer>
+                    }}
+                </SortableContext.Consumer>
+            }}
+        </GroupContext.Consumer>
+    }}
+</TableContext.Consumer>
 
-<th {{ ...getRestProps(self) }}
-    title={{ thTitle }}
-    class={{ {
-        'k-sortable': sortable,
-        [className]: className,
-        [`k-${align}`]: align,
-        'k-invisible': invisible,
-    } }}
-    ev-click={{ self.onClick }}
-    data-ignore={{ ignore ? '' : undefined }}
-    colspan={{ cols && cols > 1 && cols || undefined }}
-    rowspan={{ rows && rows > 1 && rows || undefined }}
->
-    <div v-if={{ resizable }} class="k-resize" 
-        data-text={{ exportTitle }}
-        ev-mousedown={{ self.onDragStart }}
-        ev-click={{ self._stopPropagation }} 
-    ></div>
-    <div class={{ {"k-th": true, "k-group-show": _show} }} data-text={{ !resizable ? exportTitle : undefined }}>
-        <div v-if={{ !group }} class="c-ellipsis">
-            <b:title>{{ title }}</b:title>
-        </div>
-        <div class="k-group" v-if={{ group }}>
-            <Dropdown container={{ container }}>
-                <i class="k-arrow ion-ios-arrow-down"></i>
-                <DropdownMenu class={{ {'k-table-dropdown': true, 'k-multiple': multiple} }}
-                    ev-$change:value={{ self._onChangeShow }}
-                >
-                    <DropdownItem v-for={{ group }} 
-                        class={{ {'k-active': self._isChecked(value.value)} }}
-                        ev-select={{ self._onSelect.bind(self, value.value) }}
-                        hideOnSelect={{ !multiple }}
-                    >
-                        <Checkbox name="key" v-if={{ multiple }}
-                            value={{ self._isChecked(value.value) }}
-                        >{{ value.label }}</Checkbox>
-                        <span v-else>{{ value.label }}</span>
-                    </DropdownItem>
-                </DropdownMenu>
-            </Dropdown>
-            <div class="c-ellipsis">
-                <b:title>{{ title }}</b:title>
-                {{ groupText }}
-            </div>
-        </div>
-        {{ do {
-            if (sortable) {
-                const type = key === sort.key ? sort.type : '';
-                <div class={{ {'k-sort': true, [`k-${type}`]: type} }}>
-                    <i class={{ {
-                        'k-icon': true,
-                        [`icon-${type}`]: type,
-                        'icon-sortable': !type,
-                    } }}></i>
-                </div>
-            }
-        } }}
-    </div>
-</th>

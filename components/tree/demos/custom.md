@@ -16,23 +16,20 @@ order: 2
 组件默认会生成一个`root`节点对象，你可以通过它往根节点追加子节点
 
 ```vdt
-import Tree from 'kpc/components/tree';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Tree, Button, ButtonGroup} from 'kpc';
 
-const data = self.get('data');
+const data = this.get('data');
 
 <div class="wrapper">
-    <div class="c-clearfix">
-        <ButtonGroup>
-            <Button icon size="small" ev-click={{ self._appendToRoot }}>+</Button>
-        </ButtonGroup>
-    </div>
-    <Tree data={{ data }} ref="tree" checkbox>
-        <b:label params="data, node">
-            <span class="k-text">{{ data.label }}</span>
-            <ButtonGroup v-if={{ !data.disabled }}>
-                <Button icon size="small" ev-click={{ self._append.bind(self, node) }}>+</Button>
-                <Button icon size="small" ev-click={{ self._remove.bind(self, node) }}>-</Button>
+    <ButtonGroup class="root-btns">
+        <Button icon size="small" ev-click={this.appendToRoot}>+</Button>
+    </ButtonGroup>
+    <Tree data={data} ref="tree" checkbox selectable={false}>
+        <b:label args="[data, node, index]">
+            <div class="text">{data.label}</div>
+            <ButtonGroup v-if={!data.disabled}>
+                <Button icon size="small" ev-click={this.append.bind(this, data, node, index)}>+</Button>
+                <Button icon size="small" ev-click={this.remove.bind(this, data, node, index)}>-</Button>
             </ButtonGroup>
         </b:label>
     </Tree>
@@ -42,20 +39,28 @@ const data = self.get('data');
 ```styl
 .wrapper
     width 300px
-.k-btns
-    float right
-.k-node > .k-label:after
-    display table
-    clear both
-    content ''
+.root-btns
+    display flex
+    justify-content flex-end
+    margin-right 26px
+.k-tree-text
+    display flex
+    .text
+        flex 1
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind, TreeDataItem, TreeNode} from 'kpc';
+
+interface Props {
+    data: TreeDataItem<string | number>[]
+}
+
+let uniqueId = 0;
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {
@@ -101,20 +106,44 @@ export default class extends Intact {
         }
     }
 
-    _append(node) {
-        node.append({
+    @bind
+    append(data: TreeDataItem<string | number>, node: TreeNode<string>, index: number, e: Event) {
+        e.stopPropagation();
+
+        const children = data.children || (data.children = []);
+        children.push({
             label: 'Appended node',
+            key: uniqueId++,
         });
+        this.set({data: [
+            ...this.get('data')
+        ]});
+
+        // expand the node
+        this.refs.tree.expand(node.key);
     }
 
-    _remove(node) {
-        node.remove();
+    @bind
+    remove(data: TreeDataItem<string>, node: TreeNode<string>, index: number, e: Event) {
+        e.stopPropagation();
+
+        const children = node.parent ? node.parent.data.children : this.get('data');
+        children!.splice(index, 1);
+        this.set({data: [
+            ...this.get('data'),
+        ]});
     }
 
-    _appendToRoot() {
-        this.refs.tree.root.append({
-            label: 'Appended root node'
-        });
+    @bind
+    appendToRoot() {
+        const data = this.get('data');
+        this.set({data: [
+            ...data,
+            {
+                label: 'Appended root node',
+                key: uniqueId++,
+            }
+        ]});
     }
 }
 ```

@@ -1,35 +1,41 @@
-import {addStyle, getRestProps} from '../utils';
+import {linkEvent} from 'intact';
+import {getRestProps, addStyle} from '../utils';
+import {makeStepStyles} from './styles';
+import {context as StepsContext} from './context';
 
-const {
-    children, selected, done, 
-    title, index, width, error,
-    className, style
-} = self.get();
+const {children, title, index, className, style} = this.get();
 
-const classNameObj = {
-    'k-step': true,
-    'k-active': selected,
-    'k-done': done,
-    'k-error': error,
-    [className]: className,
-};
+<StepsContext.Consumer>
+    {({value, status, width, onChange}) => {
+        const selected = value === index;
+        const error = selected && status === 'error';
+        const classNameObj = {
+            'k-step': true,
+            'k-active': selected,
+            'k-done': value > index,
+            'k-error': error,
+            [className]: className,
+            [makeStepStyles()]: true,
+        };
 
-<div {{ ...getRestProps(self) }} 
-    class={{ classNameObj }}
-    style={{ addStyle(style, {width: width}) }} 
->
-    <div class="k-tail"></div>
-    <div class="k-wrapper">
-        <div class="k-head">
-            <div class="k-inner">
-                {{ /* <i class="ion-ios-checkmark-empty k-icon" v-if={{ done }}></i> */ }}
-                <i class="ion-ios-close-empty k-icon" v-if={{ error }}></i>
-                <span v-else>{{ index + 1 }}</span>
+        return <div {...getRestProps(this)} 
+            class={classNameObj}
+            style={addStyle(style, {width})} 
+            ev-click={linkEvent(index, onChange)}
+        >
+            <div class="k-step-tail"></div>
+            <div class="k-step-wrapper">
+                <div class="k-step-head">
+                    <div class="k-step-inner">
+                        <i class="k-step-icon ion-ios-close-empty" v-if={error}></i>
+                        <span v-else>{index + 1}</span>
+                    </div>
+                </div>
+                <div class="k-step-main">
+                    <div class="k-step-title">{title}</div>
+                    <div class="k-step-content">{children}</div>
+                </div>
             </div>
         </div>
-        <div class="k-main">
-            <div class="k-title">{{ title }}</div>
-            <div class="k-content">{{ children }}</div>
-        </div>
-    </div>
-</div>
+    }}
+</StepsContext.Consumer>

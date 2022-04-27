@@ -8,7 +8,7 @@ order: 1.1
 使用计算属性，例如`100%-10` `50%+10`
 
 ```vdt
-import Split from 'kpc/components/split';
+import {Split} from 'kpc';
 
 <Split min="40" max="50%+10" firstSize="80px">
     <b:first><div class="panel">left</div></b:first>

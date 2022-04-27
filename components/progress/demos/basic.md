@@ -6,7 +6,7 @@ order: 0
 通过`percent`指定当前进度条百分比
 
 ```vdt
-import Progress from 'kpc/components/progress';
+import {Progress} from 'kpc';
 
 <div>
     <Progress percent="50" />

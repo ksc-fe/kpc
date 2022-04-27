@@ -7,42 +7,35 @@ order: 3
 调整面板的大小，来模拟显示和隐藏面板的效果
 
 ```vdt
-import Split from 'kpc/components/split';
-import {Table, TableColumn} from 'kpc/components/table';
-import {Pagination} from 'kpc/components/pagination';
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {FormItem} from 'kpc/components/form';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Split, Table, TableColumn, Tabs, Tab, FormItem, Button, Icon} from 'kpc';
 
 <div class="split-container">
     <Split mode="vertical"
         v-model:lastSize="size"
-        class={{ {closed: self.get('size') === '0px'} }}
-        min={{ 10 }}
+        class={{closed: this.get('size') === '0px'}}
+        min={10}
     >
         <b:first>
-            <Table data={{ self.get('data') }}
+            <Table data={this.get('data')}
                 fixHeader
                 ref="table"
-                rowCheckable={{ false }}
-                v-model:checkedKeys="checkedKeys"
-                ev-click:row={{ self._onClickRow }}
-                ev-$change:checkedKeys={{ self._togglePanel }}
+                rowCheckable={false}
+                checkedKeys={this.get('checkedKeys')}
+                ev-clickRow={this._onClickRow}
+                ev-$change:checkedKeys={this._togglePanel}
             >
                 <TableColumn title="名称" key="name" />
                 <TableColumn title="网段" key="ip" />
                 <TableColumn title="操作" key="op">
-                    <b:template params="data">
+                    <b:template args="[value, index]" >
                         <a>删除</a> 
                     </b:template>
                 </TableColumn>
             </Table>
-            <Pagination total={{ 100 }} size="small" />
         </b:first>
         <b:last>
             <Button type="none" icon class="close"
-                ev-click={{ self._close }}
+                ev-click={this._close}
             >
                 <Icon class="ion-ios-close-empty" size="40" />
             </Button>
@@ -51,10 +44,10 @@ import Icon from 'kpc/components/icon';
                 <Tab value="data">流量统计</Tab>
                 <Tab value="tag">标签</Tab>
             </Tabs>
-            <div v-if={{ self.get('tab') === 'detail' }} class="tab-panel">
+            <div v-if={this.get('tab') === 'detail' && this.get('selectedData')} class="tab-panel">
                 <FormItem label="创建时间：">2018-09-28 17:31:25</FormItem>
-                <FormItem label="弹性IP：">{{ self.get('selectedData.ip') }}</FormItem>
-                <FormItem label="名称：">{{ self.get('selectedData.name') }}</FormItem>
+                <FormItem label="弹性IP：">{this.get('selectedData.ip')}</FormItem>
+                <FormItem label="名称：">{this.get('selectedData.name')}</FormItem>
             </div>
         </b:last>
         <b:drag>
@@ -65,8 +58,6 @@ import Icon from 'kpc/components/icon';
 ```
 
 ```styl
-@require('~kpc/styles/themes/default.styl')
-@require('~kpc/components/table/variables.styl')
 
 .split-container
     height 500px 
@@ -80,6 +71,9 @@ import Icon from 'kpc/components/icon';
         flex-direction column
     .k-table
         flex 1
+        height 100%
+    .k-table-wrapper 
+        height 100%
     .k-pagination
         padding 10px
         border-top 1px solid $table-border-color
@@ -99,28 +93,44 @@ import Icon from 'kpc/components/icon';
         position relative
         z-index 1
 ```
-```js
-import {range} from 'kpc/components/utils';
+```ts
+import {range, bind} from 'kpc/components/utils';
+import {nextTick} from 'intact';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    data: DataItem[]
+    tab?: string
+    size?: string
+    selectedData?: DataItem
+    checkedKeys?: number[]
+}
+
+type DataItem = {
+    name: string
+    ip: string
+}
+
+const data =  range(0, 10).map(item => {
+    return {
+        name: 'name ' + item,
+        ip: '127.0.0.' + item
+    };
+});
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
-            data: range(0, 10).map(item => {
-                return {
-                    name: 'name ' + item,
-                    ip: '127.0.0.' + item
-                };
-            }),
+            data,
             tab: 'detail',
             size: '0px',
             selectedData: undefined,
             checkedKeys: [],
-        }
+        } as Props;
     }
 
+    @bind
     _close() {
         this.set('size', '0px');
     }
@@ -131,79 +141,52 @@ export default class extends Intact {
         }
     }
 
-    _togglePanel(table, keys) {
-        if (keys.length === 1) {
+    @bind
+    _togglePanel(keys: number[] | undefined) {
+        if (keys!.length === 1) {
             // 只选中一行时，展开详情面板
-            const data = table.getCheckedData()[0];
-            this.set('selectedData', data);
+            const data = this.refs.table.getCheckedData()[0];
+            this.set({
+                selectedData: data,
+                checkedKeys: keys,
+            });
             this._open();
         } else {
             this._close();
         }
     }
 
-    _onClickRow(data, index, key) {
-        const checkedKeys = this.get('checkedKeys');
+    @bind
+    _onClickRow(data: DataItem, index: number, key: number) {
+        let checkedKeys = this.get('checkedKeys')!;
         if (checkedKeys.length === 1 && checkedKeys[0] === key) {
             // 如果只选中了一行，再次点击当前行，则取消选中
-            key = [];
+            checkedKeys = [];
         } else {
             // 否则只选中当前行
-            key = [key];
+            checkedKeys = [key];
         }
-        this.set('checkedKeys', key);
+        this.set('checkedKeys', checkedKeys);
+        nextTick(() => {
+            this._togglePanel(checkedKeys);
+        });
     }
 }
-```
-
-```vue-data
-data() {
-    return {
-        data: range(0, 10).map(item => {
-            return {
-                name: 'name ' + item,
-                ip: '127.0.0.' + item
-            };
-        }),
-        tab: 'detail',
-        size: '0px',
-        selectedData: {},
-        checkedKeys: [],
-    }
-},
 ```
 
 ```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        data: range(0, 10).map(item => {
-            return {
-                name: 'name ' + item,
-                ip: '127.0.0.' + item
-            };
-        }),
-        tab: 'detail',
-        size: '0px',
-        selectedData: {},
-        checkedKeys: [],
-    };
-    this._classNames = this._classNames.bind(this);
-    this._close = this._close.bind(this);
-    this._open = this._open.bind(this);
-    this._togglePanel = this._togglePanel.bind(this);
+@bind
+_onClickRow(data: DataItem, index: number, key: number) {
+    let checkedKeys = this.state.checkedKeys!;
+    if (checkedKeys.length === 1 && checkedKeys[0] === key) {
+        // 如果只选中了一行，再次点击当前行，则取消选中
+        checkedKeys = [];
+    } else {
+        // 否则只选中当前行
+        checkedKeys = [key];
+    }
+    this.setState({checkedKeys}, () => {
+        this._togglePanel(checkedKeys);
+    });
 }
-```
-
-```angular-properties
-private data = range(0, 10).map(item => {
-    return {
-        name: 'name ' + item,
-        ip: '127.0.0.' + item
-    };
-});
-private tab = 'detail';
-private size = '0px';
-private selectedData = {};
-private checkedKeys = [];
 ```

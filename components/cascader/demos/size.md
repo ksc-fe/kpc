@@ -6,12 +6,12 @@ order: 4
 组件提供4中尺寸：`large` `default` `small` `mini`
 
 ```vdt
-import Cascader from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <div>
-    <Cascader v-for={{ ['large', 'default', 'small', 'mini'] }} 
-        size={{ value }}
-        data={{ self.get('data') }} 
+    <Cascader v-for={this.get('sizes')} 
+        size={$value}
+        data={this.get('data')} 
     />
 </div>
 ```
@@ -21,13 +21,13 @@ import Cascader from 'kpc/components/cascader';
     margin-right 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
+            sizes: ['large', 'default', 'small', 'mini'] as const,
             data: [
                 {
                     value: 'beijing',

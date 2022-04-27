@@ -20,51 +20,45 @@ order: 3
 原始位置。（该布局具有随机性）
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
-import {Form, FormItem} from 'kpc/components/form';
 import {Diagram, DRectangle, DCircle, DDiamond, DHexagon, DLine} from 'kpc/components/diagram';
-import {Spinner} from 'kpc/components/spinner';
-import {Checkbox} from 'kpc/components/checkbox';
+import {Button, ButtonGroup, Form, FormItem, Spinner, Checkbox} from 'kpc';
 
-const Layout = ({layout, props, children}) => {
-    return h(layout, {...props}, children);
-};
-
-const currentLayout = self.get('layouts')[self.get('layout')];
+const Layout = this.Layout;
+const currentLayout = this.get('layouts')[this.get('layout')];
 
 <div>
     <Form labelWidth="150">
         <FormItem label="Layout">
             <ButtonGroup v-model="layout" checkType="radio">
-                <Button v-for={{ self.get('layouts') }}
-                    value={{ key }}
-                >{{ value.Layout.displayName }}</Button>
+                <Button v-for={this.get('layouts')}
+                    value={$key}
+                >{$value.Layout.displayName}</Button>
             </ButtonGroup>
         </FormItem>
-        <FormItem v-for={{ currentLayout.props }} label={{ key }}>
-            {{ (() => {
-                const type = typeof value;
-                const model = `layouts.${self.get('layout')}.props.${key}`;
+        <FormItem v-for={currentLayout.props} label={$key}>
+            {(() => {
+                const type = typeof $value;
+                const model = `layouts.${this.get('layout')}.props.${$key}`;
 
                 switch (type) {
                     case 'number':
-                        return <Spinner v-model={{ model }} />;
+                        return <Spinner v-model={model} />;
                     case 'boolean':
-                        return <Checkbox v-model={{ model }} />;
+                        return <Checkbox v-model={model} />;
                     case 'string':
-                        return <ButtonGroup v-model={{ model }} checkType="radio">
-                            <Button v-for={{ currentLayout.Layout.propTypes[key] }} 
-                                value={{ value }}
-                            >{{ value }}</Button>
+                        return <ButtonGroup v-model={model} checkType="radio">
+                            <Button v-for={currentLayout.Layout.typeDefs[$key]} 
+                                value={$value}
+                            >{$value}</Button>
                         </ButtonGroup>
                 }
-            })() }}
+            })()}
         </FormItem>
         <FormItem>
             <Diagram>
                 <DRectangle width="300" height="200" strokeStyle="dotted">
-                    <Layout layout={{ currentLayout.Layout }}
-                        props={{ currentLayout.props }}
+                    <Layout layout={currentLayout.Layout}
+                        props={currentLayout.props}
                     >
                         <DRectangle key="1" rounded="5" />
                         <DDiamond key="2" />
@@ -86,14 +80,38 @@ const currentLayout = self.get('layouts')[self.get('layout')];
     margin-bottom 8px
 ```
 
-```js
-import {DFlowLayout, DTreeLayout, DRadialLayout, DStackLayout, DPartitionLayout, DCircleLayout, DOrganicLayout} from 'kpc/components/diagram';
+```ts
+import {createVNode as h, Children, ComponentConstructor} from 'intact';
+import {
+    DFlowLayout,
+    DTreeLayout,
+    DRadialLayout,
+    DStackLayout,
+    DPartitionLayout,
+    DCircleLayout,
+    DOrganicLayout,
+    DLayout,
+    DLayoutProps,
+} from 'kpc/components/diagram';
 
-export default class extends Intact {
-    @Intact.template()
+type LayoutProps = {
+    layout: ComponentConstructor 
+    props: DLayoutProps
+    children: Children
+}
+
+interface Props {
+    layout: string
+}
+
+const Layout = ({layout, props, children}: LayoutProps) => {
+    return h(layout, {...props}, children);
+};
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             layout: 'tree',
             layouts: {
@@ -128,6 +146,8 @@ export default class extends Intact {
             },
         };
     }
+
+    private Layout = Layout;
 }
 ```
 

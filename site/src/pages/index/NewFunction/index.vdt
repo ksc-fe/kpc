@@ -1,0 +1,233 @@
+import {makeStyles} from './styles';
+import {Card} from '../../../components/card';
+import {
+    Button, Icon, Select, Option, 
+    Switch, Input, Tabs, Tab, Slider,
+    Menu, MenuItem, Rate, ButtonGroup,
+    Spinner, Tree
+} from 'kpc';
+import {BezierBox} from '../../../components/BezierBox'
+import king_version_logo from '../../../imgs/king_version_logo.png';
+import sketch_img from '../../../imgs/sketch_img.png';
+import axure_img from '../../../imgs/axure_img.png';
+import rectangle from '../../../imgs/rectangle.png';
+import menu_header from '../../../imgs/header_logo.png';
+import {getAxure, getSketch, getFigma} from '../../resource/index';
+
+const {cardLeft, totalCards, curCardNum, cardsPerPage, 
+    animationType, bezierValue, curTabIndex, textTop, 
+    transition, curComponentsGroup, curTreeValue, 
+    selectedMenu, themeColor} = this.get();
+
+const canNext = totalCards > curCardNum;
+const canPrev = curCardNum > cardsPerPage;
+
+const textTransitionStyle = {
+    transition: transition,
+    transform: `translateY(${textTop}px)`
+};
+
+const buttonTransitionStyle = {
+    transition: transition
+}
+
+const treeData = [
+    {
+        label: 'UED部门',
+        children: [
+            {
+                label: 'UI设计小组',
+                children: [
+                    {
+                        label: '设计师小绿'
+                    },
+                    {
+                        label: '设计师小蓝',
+                        key: '设计师小蓝'
+                    },
+                ]
+            }
+        ]
+    }
+];
+
+<div class={makeStyles(themeColor)}>
+    <div className='new-fn-box'>
+        <div class="title-box">
+            <div>全新功能，全新体验</div>
+            <div>多样的设计资源助力团队提速</div>
+        </div>
+        <div class="card-wrapper">
+            <div>
+                <div
+                    class="card-box" 
+                    style={{left: `-${cardLeft}px`}}
+                    ref={this.cardBoxRef}
+                >
+                    <Card
+                        mainTitle="资源"
+                        subTitle="生态设计工具与资源"
+                        href="/resources"
+                    >
+                        <div class="resource-box">
+                            <div class="white-card">
+                                <div>组件下载</div>
+                                <div class="comp-download">
+                                    <img src={axure_img} ev-click={getAxure} />
+                                    <img src={sketch_img} ev-click={getSketch} />
+                                    <img src={rectangle} ev-click={getFigma} />
+                                </div>
+                            </div>
+                            <div class="white-card">
+                                <div>更多KD资源</div>
+                                <div class="resource-img-box">
+                                    <img src={king_version_logo} />
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                    <Card
+                        mainTitle="组件"
+                        subTitle="高复用组件，快速构建你的网站和用户界面"
+                        href="/docs/vue/"
+                    >
+                        <div class="component-box white-card">
+                            <Button class="refresh-btn" type="none" ev-click={this.changeComponentsGroup}>
+                                <Icon class="icon ion-refresh" style={{color: themeColor}}></Icon>
+                                <span>换一换</span>
+                            </Button>
+                            <div class="comp-content" v-if={curComponentsGroup == 0}>
+                                <div class="input-select">
+                                    <Button type="primary" class="comp-list-btn">Button</Button>
+                                    <Switch />
+                                </div>
+                                <div class="select-input">
+                                    <Input placeholder="请输入">
+                                        <b:prepend>
+                                            <Select fluid placeholder="选择一项" inline>
+                                                <Option value="1">设计部门</Option>
+                                                <Option value="2">开发部门</Option>
+                                                <Option value="3">产品部门</Option>
+                                            </Select>
+                                        </b:prepend>
+                                    </Input>
+                                </div>
+                            </div>
+                            <div class="comp-content" v-if={curComponentsGroup == 1}>
+                                <div class="menu-tree-box">
+                                    <div class="tree-box">
+                                        <Tree 
+                                            data={treeData} 
+                                            selectable={false} 
+                                            checkbox
+                                            defaultExpandAll
+                                            v-model:checkedKeys="curTreeValue"
+                                        ></Tree>
+                                    </div>
+                                    <div class="menu-box">
+                                        <Menu theme="light" v-model:selectedKey="selectedMenu">
+                                            <b:header>
+                                                <img src={menu_header} width="80" />
+                                            </b:header>
+                                            <MenuItem key="1">首页</MenuItem>
+                                            <Menu>
+                                                <MenuItem key="11">概览</MenuItem>
+                                                <MenuItem key="12">文档</MenuItem>
+                                            </Menu>
+                                        </Menu>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comp-content" v-if={curComponentsGroup == 2}>
+                                <div>
+                                    <div class="comp-item slider-box">
+                                        <Slider showInput={false}></Slider>
+                                    </div>
+                                    <div class="comp-item rate-box">
+                                        <Rate value={2.5} half />
+                                    </div>
+                                </div>
+                                <div class="slider-radio-box">
+                                    <div class="comp-item">
+                                        <Spinner></Spinner>
+                                    </div>
+                                    <div class="comp-item radio-box">
+                                        <ButtonGroup checkType="radio" value={'beijing'}>
+                                            <Button value="beijing">北京</Button>
+                                            <Button value="shanghai">上海</Button>
+                                            <Button value="guangzhou">广州</Button>
+                                        </ButtonGroup>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                    <Card
+                        mainTitle="动效"
+                        subTitle="重构数字体验感知"
+                        href="/docs/design/model-1/"
+                    >
+                        <div class="animate-box">
+                            <div class="animate-left white-card">
+                                <BezierBox
+                                    ev-valueChange={this.handleBezierValChange} 
+                                    value={bezierValue}
+                                ></BezierBox>
+                            </div>
+                            <div class="animate-right white-card">
+                                <div>
+                                    <div class="animate-title">曲线选择：</div>
+                                    <div>
+                                        <Select v-model="animationType" fluid placeholder="选择曲线">
+                                            <Option value="1">轻柔缓动</Option>
+                                            <Option value="2">效率至上</Option>
+                                            <Option value="3">优雅主义</Option>
+                                        </Select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <Tabs v-model="curTabIndex">
+                                        <Tab value="1">Tab1</Tab>
+                                        <Tab value="2">Tab2</Tab>
+                                    </Tabs>
+                                    <div class="tab-content">
+                                        <div v-if={curTabIndex == 1}>
+                                            <Button type="primary" style={buttonTransitionStyle}>Button</Button>
+                                            <Button type="secondary" style={buttonTransitionStyle}>Button</Button>
+                                        </div>
+                                        <div v-if={curTabIndex == 2}>
+                                            <div 
+                                                style={textTransitionStyle} 
+                                                class="tab-text"
+                                            >优秀又合适的动效，总是能给产品体验带来更多可能。</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Card>
+                </div>
+            </div>
+            <Button 
+                v-if={canPrev} 
+                class="arrow-btn prev-arrow" 
+                icon
+                circle
+                size="large"
+                ev-click={this.handlePrevClick}
+            >
+                <Icon class="icon ion-chevron-left"></Icon>
+            </Button>
+            <Button 
+                v-if={canNext} 
+                class="arrow-btn next-arrow" 
+                icon
+                circle
+                size="large"
+                ev-click={this.handleNextClick}
+            >
+                <Icon class="icon ion-chevron-right"></Icon>
+            </Button>
+        </div>
+    </div>
+</div>

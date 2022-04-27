@@ -7,7 +7,7 @@ order: 1
 可以是按钮组纵向排列。给`ButtonGroup`添加`checkType`属性，可以使按钮组拥有单选或复选能力。
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup>
@@ -36,14 +36,14 @@ import {Button, ButtonGroup} from 'kpc/components/button';
         <Button type="primary">重启</Button>
     </ButtonGroup>
     <br /><br />
-    <p>radio按钮组</p>
+    <p>单选按钮组</p>
     <ButtonGroup checkType="radio" v-model="city">
         <Button value="beijing">北京</Button>
         <Button value="shanghai" ref="__radioShanghai">上海</Button>
         <Button value="guangzhou">广州</Button>
         <Button value="shenzhen">深圳</Button>
     </ButtonGroup>
-    <p>checkbox按钮组</p>
+    <p>多选按钮组</p>
     <ButtonGroup checkType="checkbox" v-model="cities">
         <Button value="beijing" size="small">北京</Button>
         <Button value="shanghai" size="small" ref="__checkboxShanghai">上海</Button>
@@ -58,16 +58,20 @@ import {Button, ButtonGroup} from 'kpc/components/button';
     margin-right 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+interface Props {
+    city?: string
+    cities?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             city: 'beijing',
-            cities: [],
-        };
-    }
+            cities: []
+        } as Props;
+    } 
 }
 ```

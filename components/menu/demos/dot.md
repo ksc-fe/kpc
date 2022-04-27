@@ -8,23 +8,22 @@ order: 1.1
 添加头部信息
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem, Icon} from 'kpc';
 
 <Menu 
     v-model:expandedKeys="expandedKeys"
     v-model:selectedKey="selectedKey"
-    dot 
+    dot={true} 
     theme="light"
 >
     <b:header><Icon class="ion-star" />Header</b:header>
-    <MenuItem key="1" ev-select={{ self.onSelect }}>menu 1</MenuItem>
+    <MenuItem key="1" ev-select={this.onSelect}>menu 1</MenuItem>
     <MenuItem key="2" disabled>menu 2</MenuItem>
-    <MenuItem key="3" dot={{ false }}>
+    <MenuItem key="3" dot={false}>
         <Icon class="ion-heart" />menu 3
         <Menu>
-            <MenuItem key="3-1">sub menu 1</MenuItem>
-            <MenuItem key="3-2">sub menu 2</MenuItem>
+            <MenuItem key="3-1" ev-select={this.onSelect}>sub menu 1</MenuItem>
+            <MenuItem key="3-2" ev-select={this.onSelect}>sub menu 2</MenuItem>
             <MenuItem key="3-3" disabled>sub menu 3</MenuItem>
             <MenuItem key="3-4">sub menu 4</MenuItem>
         </Menu>
@@ -33,19 +32,20 @@ import Icon from 'kpc/components/icon';
 </Menu>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {MenuItem} from 'kpc';
+
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             expandedKeys: ['3'],
             selectedKey: '3-1',
         };
     }
 
-    onSelect(item) {
+    onSelect(item: MenuItem) {
         console.log('key', item.get('key'));
     }
 }

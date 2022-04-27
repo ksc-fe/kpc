@@ -5,17 +5,16 @@ order: 3
 
 
 ```vdt
-import Colorpicker from 'kpc/components/colorpicker';
+import {Colorpicker} from 'kpc';
 
 <Colorpicker v-model="color" disabled />
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             color: '#d99123'
         }

@@ -3,12 +3,12 @@ title: 基础用法
 order: 0
 ---
 
-通过添加`to`属性，来展示超链接
+通过添加`to`属性，来设置超链接
 
 > `to`属性支持`vue-router`或者`react-router` `push`方法参数用法
 
 ```vdt
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Breadcrumb, BreadcrumbItem} from 'kpc';
 
 <Breadcrumb>
     <BreadcrumbItem to="#/">item 1</BreadcrumbItem>

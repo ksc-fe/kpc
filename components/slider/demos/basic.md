@@ -7,22 +7,29 @@ order: 0
 值不让它超出该范围
 
 ```vdt
-import Slider from 'kpc/components/slider';
-import Button from 'kpc/components/button';
+import {Slider, Button} from 'kpc';
 
 <div>
-    <Slider v-model="value1" min={{ self.get('min') }} max={{ self.get('max') }} spinnerSuffix="MB"/>
-    <Slider v-model="value2" min={{ 50 }} max={{ 500 }} ref="__test" />
-    <Button ev-click={{ self._changeRange }}>Change Range Randomly</Button>
+    <Slider v-model="value1" min={this.get('min')} max={this.get('max')} unit="MB"/>
+    <Slider v-model="value2" min={50} max={500} ref="__test" />
+    <Button ev-click={this._changeRange}>Change Range Randomly</Button>
 </div>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind} from 'kpc';
+
+interface Props {
+    value1?: number
+    value2?: number
+    min: number
+    max: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             'value1': 60,
             'value2': 277,
@@ -31,6 +38,7 @@ export default class extends Intact {
         }
     }
 
+    @bind
     _changeRange() {
         const max = Math.floor(Math.random() * 100);
         const min = Math.floor(Math.random() * max);

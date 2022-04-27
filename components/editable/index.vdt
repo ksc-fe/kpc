@@ -1,12 +1,13 @@
-import Input from '../input';
 import {getRestProps} from '../utils';
-import Icon from '../icon';
+import {Input} from '../input';
+import {Icon} from '../icon';
+import {makeStyles} from './styles';
 
 const {
-    editing, value, validate,
-    disabled, style, tip,
-    children, invalid, className
-} = self.get();
+    children, className, editing, 
+    value, validate, disabled, 
+    tip, invalid
+} = this.get();
 
 const classNameObj = {
     'k-editable': true,
@@ -14,20 +15,24 @@ const classNameObj = {
     'k-disabled': disabled,
     'k-invalid': invalid,
     [className]: className,
+    [makeStyles()]: true
 };
 
-<div {{ ...getRestProps(self) }} class={{ classNameObj }}>
-    <Icon class="k-icon-edit k-edit" title={{ tip }}
-        v-if={{ !disabled && !editing }}
-        ev-click={{ self._edit }}
+<div {...getRestProps(this)} class={classNameObj}>
+    <Icon class="k-icon-edit k-editable-icon" title={tip}
+        v-if={!disabled && !editing}
+        ev-click={this.edit}
+        hoverable
     />
     <div class="c-ellipsis">
-        {{ !editing ? children :
-            <Input size="small" defaultValue={{ value }} 
-                ev-blur={{ self._onBlur }}
-                ev-keydown={{ self._onKeydown }}
-                ref="input"
-            />
-        }}
+        <template v-if={!editing}>{children}</template>
+        <Input v-else
+            size="small"
+            defaultValue={value} 
+            ev-blur={this.onBlur}
+            ev-keydown={this.onKeydown}
+            ref={this.inputRef}
+            frozenOnInput
+        />
     </div>
 </div>

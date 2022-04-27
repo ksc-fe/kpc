@@ -8,13 +8,13 @@ order: 1
 > 此时必须初始化绑定的属性为数组，否则`Checkbox`将类似`radio`一样只能单选
 
 ```vdt
-import Checkbox from 'kpc/components/checkbox';
+import {Checkbox} from 'kpc';
 
 <div>
     <Checkbox name="languages" trueValue="Javascript" v-model="languages">Javascript</Checkbox>
     <Checkbox name="languages" trueValue="C++" v-model="languages">C++</Checkbox>
     <Checkbox name="languages" trueValue="PHP" v-model="languages">PHP</Checkbox>
-    Your selected: {{ JSON.stringify(self.get('languages')) }}
+    Your selected: {JSON.stringify(this.get('languages'))}
 </div>
 ```
 
@@ -23,16 +23,15 @@ import Checkbox from 'kpc/components/checkbox';
     margin-right 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             // 必须初始化为数组
-            languages: []
-        };
-    }
+            languages: [] as string[]
+        }
+    };
 }
 ```

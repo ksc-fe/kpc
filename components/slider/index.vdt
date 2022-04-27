@@ -1,194 +1,114 @@
-import Spinner from '../spinner';
-import Tooltip from '../tooltip';
+import {linkEvent} from 'intact';
+import {Spinner} from '../spinner';
+import {Tooltip} from '../tooltip';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
 
 const {
-    value, min, max, className,
-    disabled, isRange, animate,
-    isShowInput, isShowEnd, unit,
-    step, _isDragging, _isFirst,
-    _isSecond, _sliderValue, always,
-    isShowStop, marks, showTooltip,
-    tooltipProps, spinnerPrefix, spinnerSuffix,
-} = self.get();
+    disabled, className, max,
+    min, unit, showInput,
+    range, step, value,
+    spinnerProps, showEnd,
+    showTooltip, animate, forceStep
+} = this.get();
+const {
+    onStart, trackRef, dragging,
+    firstThumbRef, secondThumbRef,
+    onFocusin
+} = this.draggable;
 
 const classNameObj = {
     'k-slider': true,
     'k-disabled': disabled,
+    'k-dragging': dragging.value || !animate,
     [className]: className,
-    'k-dragging': _isDragging || !animate,
-    'k-show-input': isShowInput && !isRange,
-    'k-show-end': isShowEnd,
+    [makeStyles()]: true,
 };
 
-const sliderWidth = max - min;
-const toPercent = (value) => value / sliderWidth * 100 + '%';
-let barStyle;
-let handleStartStyle;
-let handleEndStyle;
-if (sliderWidth) {
-    if (isRange) {
-        barStyle = {
-            width: toPercent(Math.abs(_sliderValue[1] - _sliderValue[0])),
-            left: toPercent(Math.min(_sliderValue[0], _sliderValue[1]) - min),
-        };
-        handleStartStyle = {
-            left: toPercent(_sliderValue[0] - min),
-        };
-        handleEndStyle = {
-            left: toPercent(_sliderValue[1] - min),
-        };
-    } else {
-        barStyle = {
-            width: toPercent(_sliderValue - min),
-        };
-        handleStartStyle = {
-            left: toPercent(_sliderValue - min),
-        };
-    }
-} else {
-    barStyle = {width: '100%', left: '0'};
-    handleStartStyle = {left: '100%'};
-    handleEndStyle = {left: '0'};
-}
-
-const tooltip = (value) => {
-    return <b:tooltip args={{ [value] }}>{{ value }}</b:tooltip>;
-};
-const _tooltipProps = {
-    container: dom => dom.parentElement,
-    canHover: true,
-    always,
-    ...tooltipProps,
-};
-if (always) {
-    _tooltipProps.value = true;
-}
-
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    <div class="k-slider-wrapper">
-        <div class="k-bar-wrapper"
-            ev-click={{ self._clickWrapper }} 
-        >
-            <div class="k-wrapper" 
-                ref={{ dom => self.$slider = dom }}
+const {barStyle, thumbFirstStyle, thumbSecondStyle} = this.styles();
+const {onSpinnerChange} = this.value;
+const {onKeydown, onKeyup} = this.keyboard;
+const {firstTooltipRef, secondTooltipRef, getTooltipProps, hide} = this.tooltip;
+const tooltipProps = getTooltipProps();
+const tooltip = value => <b:tooltip params={value}>{value}</b:tooltip>
+const createThumb = (thumbStyle, isFirst, ref, value, tooltipRef) => {
+    return (
+        <div class="k-slider-thumb-wrapper" style={thumbStyle}>
+            <Tooltip
+                disabled={!showTooltip}
+                ref={tooltipRef}
+                {...tooltipProps}
+                class="k-slider-tooltip"
             >
-                <div class="k-bar" style={{ barStyle }}></div>
-                <div class="k-handle-wrapper" style={{ handleStartStyle }}>
-                    <Tooltip ref="tooltip1"
-                        disabled={{ !showTooltip }}
-                        {{ ..._tooltipProps }}
-                    >
-                        <div
-                            class={{ {
-                                "k-handle": true, 
-                                "k-active": (_isFirst && _sliderValue[1] === self._max) || 
-                                    (_isSecond && value[0] !== self._min)
-                            } }}
-                            ref={{ dom => self.$sliderFirstBtn = dom }}
-                            ev-mousedown={{ isRange ? 
-                                self._onDrag.bind(self, '_isFirst') : 
-                                self._onDrag.bind(self, undefined)
-                            }}
-                            ev-click={{ self._stopPropagation }}
-                            tabindex={{ disabled ? "-1" : "0" }}
-                            ev-keydown={{ isRange ? 
-                                self._onKeydown.bind(self, '_isFirst') :
-                                self._onKeydown.bind(self, undefined)
-                            }}
-                            ev-keyup={{ self._onKeyUp }}
-                            ev-focusin={{ self._onFocusin.bind(self, '_isFirst') }}
-                            ev-focusout={{ self._onFocusout.bind(self, '_isFirst') }}
-                        ></div>
-                        <b:content>{{ tooltip(isRange ? value[0] : value) }}</b:content>
-                    </Tooltip>
-                </div>
-                <div class="k-handle-wrapper" v-if={{ isRange }}
-                    style={{ handleEndStyle }}
-                >
-                    <Tooltip ref="tooltip2" 
-                        disabled={{ !showTooltip }}
-                        {{ ..._tooltipProps }}
-                    >
-                        <div
-                            class={{ {
-                                "k-handle": true,
-                                "k-active": (_isSecond && _sliderValue[0] === self._min) || 
-                                    (_isFirst && _sliderValue[1] !== self._max)
-                            } }}
-                            ref={{ dom => self.$sliderSecondBtn = dom }}
-                            ev-mousedown={{ self._onDrag.bind(self, "_isSecond") }}
-                            tabindex={{ disabled ? "-1" : "0" }}
-                            ev-keydown={{ self._onKeydown.bind(self, '_isSecond') }}
-                            ev-focusin={{ self._onFocusin.bind(self, '_isSecond') }}
-                            ev-focusout={{ self._onFocusout.bind(self, '_isSecond') }}
-                            ev-click={{ self._stopPropagation }}
-                        ></div>
-                        <b:content>{{ tooltip(value[1]) }}</b:content>
-                    </Tooltip>
-                </div>
-                {{ (() => {
-                    if (isShowStop && step) {
-                        const ret = [];
-                        const total = max - min;
-                        let i = min;
-                        while (true) {
-                            let [step] = self._getStep(i, 'increase');
-                            i = i + step;
-                            if (Number(i.toFixed(10)) >= max) {
-                                break
-                            }
+                <div class="k-slider-thumb"
+                    tabindex={disabled ? '-1' : '0'}
+                    ev-mousedown={onStart} 
+                    ev-focusin={linkEvent(isFirst, onFocusin)}
+                    ev-focusout={hide}
+                    ev-keydown={onKeydown}
+                    ev-keyup={onKeyup}
+                    ref={ref}
+                ></div>
+                <b:content>{tooltip(value)}</b:content>
+            </Tooltip>
+        </div>
+    );
+};
 
-                            ret.push(<i class="k-point" 
-                                style={{ {left: ((i - min) / total * 100) + '%'} }}
-                            ></i>);
-                        }
-                        return ret;
-                    }
-                })() }} 
+const {onClickTrack, setOneValue} = this.click;
+const points = this.points();
+const marks = this.marks();
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-slider-main">
+        <div class="k-slider-track-wrapper" ev-click={onClickTrack}>
+            <div class="k-slider-track" ref={trackRef}>
+                <div class="k-slider-bar" style={barStyle}></div>
+                {createThumb(
+                    thumbFirstStyle,
+                    true,
+                    firstThumbRef,
+                    range ? value[0] : value,
+                    firstTooltipRef,
+                )}
+                <template v-if={range}>
+                    {createThumb(
+                        thumbSecondStyle,
+                        false,
+                        secondThumbRef,
+                        value[1],
+                        secondTooltipRef,
+                    )}
+                </template>
+                <i v-for={points} 
+                    class={{'k-slider-point': true, 'k-active': $value.active}}
+                    style={$value.style}
+                ></i>
             </div>
         </div>
-        <div class="k-box" v-if={{ isShowEnd && !marks }}>
-            <span ev-click={{ self._setOneValue.bind(self, min) }}>{{ min + unit }} </span>
-            <span ev-click={{ self._setOneValue.bind(self, max) }}>{{ max + unit }}</span>
+        <div class="k-slider-marks" v-if={marks.length}>
+            <span v-for={marks}
+                style={$value.style}
+                ev-click={linkEvent($value.value, setOneValue)}
+                class={{'k-active': $value.active}}
+            >{$value.text}</span>
         </div>
-        <div class="k-marks" v-if={{ marks }}>{{ do {
-            // const counts = step ? Math.floor((max - min) / step) : (max - min);
-            const ret = [];
-            for (let key in marks) {
-                const mark = marks[key];
-                const isActive = !isRange ? key == value : value.find(v => v == key) !== undefined;
-                let text = mark;
-                if (Array.isArray(mark)) {
-                    text = isActive && mark[1] ? mark[1] : mark[0];
-                }
-                ret.push(
-                    <span
-                        style={{ {
-                            left: ((key - min) / (max - min) * 100) + '%'
-                        } }}
-                        ev-click={{ self._setOneValue.bind(self, key) }}
-                        class={{ {'k-active': isActive} }}
-                    >{{ text }}</span>
-                );
-            }
-            ret;
-        } }}</div>
+        <div class="k-slider-ends" v-else-if={showEnd}>
+            <span ev-click={linkEvent(min, setOneValue)}>{min + unit}</span>
+            <span ev-click={linkEvent(max, setOneValue)}>{max + unit}</span>
+        </div>
     </div>
-    <div class="k-spinner-wrapper"
-        v-if={{ isShowInput && !isRange }}
-    >
+    <div class="k-slider-spinner" v-if={showInput && !range}>
         <Spinner
-            disabled={{ disabled }} 
-            max={{ max }} 
-            min={{ min }}
-            v-model="_inputValue"
-            step={{ step || 0.01 }} 
-            ref="spinner"
+            disabled={disabled}
+            max={max}
+            min={min}
+            step={step || 0.01}
             vertical
-            ev-change={{ self._onChange }}
-            prefix={{ spinnerPrefix }}
-            suffix={{ spinnerSuffix }}
+            value={value}
+            suffix={unit}
+            forceStep={!!step && forceStep}
+            ev-$change:value={onSpinnerChange}
+            {...spinnerProps}
         />
     </div>
 </div>

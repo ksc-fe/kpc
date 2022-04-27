@@ -7,45 +7,45 @@ order: 4
 `start` `end` `center` `between` `around` `evenly`
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
-    <h5>居左 start</h5>
+    <h4>居左 start</h4>
     <Row justify="start"> 
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
     </Row>
-    <h5>居右 end</h5>
+    <h4>居右 end</h4>
     <Row justify="end"> 
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
     </Row>
-    <h5>居中 center</h5>
+    <h4>居中 center</h4>
     <Row justify="center"> 
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
     </Row>
-    <h5>平均分布，顶边 between</h5>
+    <h4>平均分布，顶边 between</h4>
     <Row justify="between"> 
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
     </Row>
-    <h5>平均分布，与边界的距离是两个子元素的一半 around</h5>
+    <h4>平均分布，与边界的距离是两个子元素的一半 around</h4>
     <Row justify="around"> 
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
     </Row>
-    <h5>平均分布，间距（包括边界）相等 evenly</h5>
+    <h4>平均分布，间距（包括边界）相等 evenly</h4>
     <Row justify="evenly"> 
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
@@ -68,6 +68,6 @@ import {Row, Col} from 'kpc/components/grid';
     margin-bottom 20px
     padding 10px 0
     background #e5e5e5
-h5
+h4
     margin-bottom 8px
 ```

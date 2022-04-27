@@ -14,29 +14,35 @@ order: 1
 
 
 ```vdt
-import Transfer from 'kpc/components/transfer';
+import {Transfer} from 'kpc';
 
-<Transfer data={{ self.get('data') }} 
-    filter={{ self.filter }}
+<Transfer data={this.get('data')} 
+    filter={this.filter}
     filterable
     keyName="name"
     ref="__test"
 >
-    <b:label params="data, index, type">
+    <b:label args="[data, index, type]">
         <div>
-            <div>{{ data.name }}</div>
-            <p>{{ data.desc }} | {{ data.ip }}</p>
+            <div>{data.name}</div>
+            <p>{data.desc} | {data.ip}</p>
         </div>
     </b:label>
 </Transfer>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+type DataItem = {
+    name: string
+    desc: string
+    ip: string
+    disabled?: boolean
+}
+
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {name: '主机名0', desc: '前端服务器0', ip: '192.168.1.0'},
@@ -48,7 +54,7 @@ export default class extends Intact {
         }
     }
 
-    filter(data, keywords) {
+    filter(data: DataItem, keywords: string) {
         return data.name.includes(keywords) || 
             data.desc.includes(keywords) ||
             data.ip.includes(keywords);

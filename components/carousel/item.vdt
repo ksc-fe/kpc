@@ -1,27 +1,21 @@
+import {Transition} from 'intact';
 import {getRestProps} from '../utils';
+import {makeItemStyles} from './styles';
 
-const {
-    className, children, value,
-    _parent, _isCloned
-} = self.get();
-
-const active = _parent._isActive(value);
+const {className, children, value, cloned} = this.get();
+const parent = this.$senior;
+const active = parent.isActive(value);
 const classNameObj = {
     'k-carousel-item': true,
     [className]: className,
     'k-active': active,
-    'k-cloned': _isCloned,
+    'k-cloned': cloned,
+    [makeItemStyles()]: true,
 };
-const isSlide = _parent._isSlide();
+const isSlide = parent.get('effect') === 'slide';
 
-<Animate class={{ classNameObj }}
-    a:show={{ isSlide || active }}
-    a:disabled={{ isSlide }}
-    a:transition="k-fade"
-    a:continuity={{ false }}
-    {{ ...getRestProps(self) }}
->
-    <template>
-        <b:children>{{ children }}</b:children>
-    </template>
-</Animate>
+<Transition show={active || isSlide} name="k-carousel-fade">
+    <div class={classNameObj} {...getRestProps(this)}>
+        {children}
+    </div>
+</Transition>

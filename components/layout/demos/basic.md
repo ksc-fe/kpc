@@ -1,6 +1,7 @@
 ---
 title: 上下布局
 order: 0
+iframe: 350
 ---
 
 1. `Layout`: 布局容器，其下可嵌套`Header` `Aside` `Body` `Footer`以及`Layout`，可以放置任何容器中
@@ -14,13 +15,13 @@ order: 0
 > 布局组件采用`flex`实现，请注意[浏览器兼容性](https://caniuse.com/#search=flex)，IE需要10及以上
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
+import {Layout, Header, Aside, Body, Footer} from 'kpc';
+import {Menu, MenuItem} from 'kpc';
+import {Icon} from 'kpc';
+import {Breadcrumb, BreadcrumbItem} from 'kpc';
 
 <Layout class="layout">
-    <Header>
+    <Header class="header">
         <div class="logo">LOGO</div>
         <Menu type="horizontal">
             <MenuItem key="1">menu 1</MenuItem>
@@ -44,7 +45,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
         </Menu>
     </Header>
     <Layout>
-        <Aside>
+        <Aside theme="light">
             <Menu
                 v-model:expandedKeys="expandedKeys" 
                 v-model:selectedKey="selectedKey"
@@ -89,20 +90,17 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
     height 30px
     line-height 30px
     text-align center
-    color #fff
     background gray
-    float left
-    margin 17px 20px
+    margin 0 20px
 .k-breadcrumb
     margin 20px 0
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             expandedKeys: [],
             selectedKey: '3-1',

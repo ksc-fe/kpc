@@ -1,34 +1,38 @@
-import {getRestProps} from '../utils';
-import BreadcrumbItem from './item';
+import {getRestProps, mapChildren} from '../utils';
+import {BreadcrumbItem} from './item';
+import makeStyles from './styles';
 
-const {children, separator, className} = self.get();
+const {children, separator, className} = this.get();
 
 const classNameObj = {
     'k-breadcrumb': true,
     [className]: className,
+    [makeStyles()]: true,
 };
 
-const _children = children ? (Array.isArray(children) ? children : [children]) : children;
-
-const _separator = <b:separator>{{ separator }}</b:separator>
-
-// maybe the last BreadcrumbItem is not the last vNode
-let lastItem;
-const vNodes = __u.map(_children, (vNode, index) => {
+const separatorVNode = (
+    <span class="k-breadcrumb-separator">
+        <b:separator>{separator}</b:separator>
+    </span>
+);
+const vNodes = [];
+let lastIndex = -1;
+let separatorAmount = 0;
+mapChildren(children, (vNode, index) => {
+    vNodes.push(vNode);
     if (vNode.tag === BreadcrumbItem) {
-        let props;
-        if (_separator != null && vNode.props.separator == null) {
-            props = {separator: _separator};
-        }
-        lastItem = _Vdt.miss.clone(vNode, props);
-        return lastItem; 
+        lastIndex = index;
+        separatorAmount++;
+        vNodes.push(separatorVNode);
     }
-    return vNode;
 });
-if (lastItem) {
-    lastItem.props = {...lastItem.props, separator: null};
+// remove the last BreadcrumbItem's separator,
+// because it may have other vNodes follow the last BreadcrumbItem.
+// we record the last separator's index and splice array like bellow to remove it
+if (lastIndex > -1) {
+    vNodes.splice(lastIndex + separatorAmount, 1);
 }
 
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    {{ vNodes }} 
+<div class={classNameObj} {...getRestProps(this)}>
+    {vNodes}
 </div>

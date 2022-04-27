@@ -7,9 +7,7 @@ order: 0
 通过`trigger`属性来指定它们。
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 
 <div>
     <Dropdown>
@@ -44,5 +42,5 @@ import Icon from 'kpc/components/icon';
     transition transform .25s ease-in-out
 .k-dropdown-open
     .k-icon
-        transform rotate(180deg)
+        transform rotateX(180deg)
 ```

@@ -3,52 +3,56 @@ title: 当前页码
 order: 4
 ---
 
-通过`current`可以指定当前页码，当页码改变时，会触发默认事件`$change:current`和`$changed:current`，
-我们可以指定相应的回调函数。
-
-如果同时改变组件的`current`和`limit`，可以通过绑定`change`事件来处理逻辑，它在两者同时改变时
+如果同时改变组件的`value`和`limit`，可以通过绑定`change`事件来处理逻辑，它在两者同时改变时
 只会触发一次
 
 ```vdt
-import Pagination from 'kpc/components/pagination';
+import {Pagination} from 'kpc';
 
 <div>
-    <Pagination total={{ 200 }} 
-        current={{ self.get('current1') }}
-        ev-$change:current={{ self._fetch1 }} 
+    <Pagination total={200} 
+        value={this.get('value1')}
+        ev-$change:value={this._fetch1} 
     />
     <br /><br />
-    <Pagination total={{ 200 }} 
-        v-model:current="current2"
+    <Pagination total={200} 
+        v-model="value2"
         v-model:limit="limit"
-        ev-change={{ self._fetch2 }}
+        ev-change={this._fetch2}
     />
 </div>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message, bind, PaginationChangeData} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    value1: number
+    value2?: number
+    limit?: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
-            current1: 1, 
-            current2: 1,
+            value1: 1, 
+            value2: 1,
             limit: 20
-        }
-    };
-
-    _fetch1(c, current) {
-        // fetch data
-        this.set('current1', current);
-        Message.info(`current page: ${current}`);
+        } as Props;
     }
 
-    _fetch2({current, limit}) {
-        Message.info(`current page: ${current}, limit: ${limit}`);
+    @bind
+    _fetch1(v?: number) {
+        // fetch data
+        this.set('value1', v!);
+        Message.info(`value page: ${v!}`);
+    }
+
+    @bind
+    _fetch2({value, limit}: PaginationChangeData) {
+        Message.info(`value page: ${value}, limit: ${limit}`);
     }
 }
 ```

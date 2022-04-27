@@ -1,53 +1,55 @@
-import Button from 'components/button';
-import Link from 'components/link';
-import Badge from 'components/badge';
+import {Button, Badge, Aside} from 'kpc';
+import {makeStyles} from './styles';
+import {Link} from '../../components/link';
+import {Catalogue} from '../../components/catalogue';
 
-const Article = self.get('Article');
+const Article = this.get('Article');
+
+if (!Article) return <div>Loading...</div>;
 
 let currentNav = {};
-let demos = self.get('demos') || [];
 
-function Catalog(props) {
+const Catalog = (props) => {
     let isEmpty = true;
 
-    const lis = __u.map(props.value, (value) => {
+    const lis = props.value.map((value) => {
         if (!value.disabled) isEmpty = false;
         return <li
-            class={{ {
+            class={{
                 active: (() => {
-                    const path = self.path.slice(1);
+                    const path = this.path.slice(1);
                     if (path === value.path) {
                         currentNav = value;
                         return true;
                     }
                 })()
-            } }}
-            v-if={{ !value.disabled }}
+            }}
+            v-if={!value.disabled}
         >
-            <Link href={{ `/${value.path}/` }}>
-                {{ do {
+            <Link href={`/${value.path}/`}>
+                {(() => {
                     const matches = value.path.match(/components\/([^\/]+)/);
                     if (matches) {
                         const name = matches[1];
-                        [
+                        return [
                             name[0].toUpperCase() + name.substring(1),
-                            <span>{{ value.title }}</span>
+                            <span>{value.title}</span>
                         ];
                     } else {
                         if (value.title === '更新日志') {
-                            <Badge disabled={{ !!self.get('hasRead') }}>{{ value.title }}</Badge>
+                            return <Badge disabled={!!this.get('hasRead')}>{value.title}</Badge>
                         } else {
-                            value.title;
+                            return value.title;
                         }
                     }
-                } }}
+                })()}
             </Link>
         </li>
     });
     if (isEmpty) return;
     return <div class="catalog-section">
-        <h5 v-if={{ props.key !== undefined }}>{{ props.key }}</h5>
-        <ul>{{ lis }}</ul>
+        <h5 v-if={props.key !== undefined}>{props.key}</h5>
+        <ul>{lis}</ul>
     </div>
 }
 
@@ -74,49 +76,42 @@ if (sidebar) {
     }
 }
 
-<t:parent navIndex="document" class="document-page fixed-aside" {{ ...scope }}>
-    <b:content>
-        <aside class={{ {expanded: self.get('expanded')} }}>
+<t:super navIndex="document" {...$props} class={{
+    "document-page fixed-aside": true,
+    [$props.className]: $props.className,
+    [makeStyles()]: true,
+}}>
+    <b:aside>
+        <Aside class={{expanded: this.get('expanded')}} fixed width="260px" theme="white">
             <div class="aside-wrapper">
-                <Catalog key={{ value.key }} value={{ value.value }} v-for={{ _sidebar }} />
+                <template v-for={_sidebar}>
+                    {Catalog($value)}
+                </template>
                 <div class="aside-border transition"></div>
             </div>
             <Button icon
-                ev-click={{ self.set.bind(self, 'expanded', !self.get('expanded')) }}
+                ev-click={() => this.set('expanded', !this.get('expanded'))}
             >
                 <i class="k-icon ion-android-menu"></i>
             </Button>
-        </aside>
+        </Aside>
+    </b:aside>
+    <b:content>
         <article>
             <div class="article-head">
-                <div class="title">{{ currentNav.title }}</div>
+                <div class="title" id="article-title">{currentNav.title}</div>
                 <div class="edit-link">
                     如果你发现文档有问题，请帮忙在
                     <a target="_blank" 
-                        href={{ `https://github.com/ksc-fe/kpc/blob/master/${currentNav.path}` }}
+                        href={`https://github.com/ksc-fe/kpc/blob/master/${currentNav.path}`}
                     >github</a>
                     上修正该文档
                 </div>
             </div>
-            <Article ref="article" />
+            <Article ref={this.articleRef} />
+            <Catalogue data={this.get('catalogue')}
+                v-model="catalogueId"
+            />
         </article>
-        <div class="table-of-contents" v-if={{ demos }}
-            ref="tableContents"
-        >
-            <ul>
-                <li v-if={{ demos.length > 0 }} class="aside-border-nav"></li>
-                <li v-for={{ demos }}
-                    class={{ {
-                        "c-ellipsis-dot": true,
-                        'active': self.get('activeExample') == value.data.index
-                    } }}
-                    ev-click={{ self._scrollToView.bind(self, value) }}
-                >
-                    {{ value.data.setting.title }}
-                </li>
-            </ul>
-            <div v-if={{ false }} class="aside-border transition" style={{ self.get('borderStyle') }}></div>
-            <div class="aside-dot transition" style={{ self.get('borderStyle') || 'display:none' }}></div>
-        </div>
     </b:content>
-</t:parent>
+</t:super>

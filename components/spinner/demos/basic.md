@@ -6,7 +6,7 @@ order: 0
 使用`v-model`进行双向数据绑定，`disabled`禁用组件
 
 ```vdt
-import Spinner from 'kpc/components/spinner';
+import {Spinner} from 'kpc';
 
 <div>
     <Spinner v-model="value" />
@@ -17,4 +17,19 @@ import Spinner from 'kpc/components/spinner';
 ```styl
 .k-spinner
     margin-right 20px
+```
+
+```ts
+interface Props {
+    value?: number
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            value: 0,
+        };
+    }
+}
 ```

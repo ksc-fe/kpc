@@ -6,17 +6,28 @@ order: 2
 添加`collapse`属性，可以使菜单呈现折叠状态
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Switch} from 'kpc/components/switch';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem, Switch, Icon} from 'kpc';
 
 <div>
-    <Switch on="收起" off="展开" v-model="isCollapse" width="60" style="margin-right: 16px;" />
-    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"/>
+    <Switch v-model="collapse"
+        on="收起"
+        off="展开"
+        width="60"
+        style="margin-right: 16px;"
+    />
+    <Switch value={this.get('theme')}
+        ev-$change:value={this.setTheme}
+        on="light"
+        off="dark"
+        width="60"
+        trueValue="light"
+        falseValue="dark"
+    />
     <br /><br />
     <Menu v-model:expandedKeys="expandedKeys" 
-        collapse={{ self.get('isCollapse') }}
-        theme={{ self.get('theme') }}
+        collapse={this.get('collapse')}
+        theme={this.get('theme')}
+        ref="__test"
     >
         <MenuItem key="1"><Icon class="ion-flag" />menu 1</MenuItem>
         <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
@@ -35,20 +46,30 @@ import Icon from 'kpc/components/icon';
                 </MenuItem>
             </Menu>
         </MenuItem>
-        <MenuItem key="4"><Icon class="ion-gear-b" />menu 4</MenuItem>
+        <MenuItem key="4" to="/"><Icon class="ion-gear-b" />menu 4</MenuItem>
     </Menu>
 </div>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {MenuProps, bind} from 'kpc';
+
+interface Props extends MenuProps { }
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
-            expandedKeys: ['3']
-        };
+            expandedKeys: ['3'],
+            collapse: false,
+            theme: 'dark'
+        } as MenuProps;
+    }
+
+    @bind
+    setTheme(theme?: string) {
+        this.set('theme', theme as MenuProps['theme']);
     }
 }
 ```

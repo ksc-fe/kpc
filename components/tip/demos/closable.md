@@ -11,15 +11,15 @@ order: 1
 > 需要自己维护`closed`属性，或者通过`v-if`来控制组件
 
 ```vdt
-import Tip from 'kpc/components/tip';
+import {Tip} from 'kpc';
 
 <div>
-    <Tip v-for={{ ['default', 'primary', 'success', 'warning', 'danger'] }}
-        key={{ value }}
-        type={{ value }}
+    <Tip v-for={this.get('types')}
+        key={$value}
+        type={$value}
         closable
-    >{{ value }}</Tip>
-    <Tip closable>
+    >{$value}</Tip>
+    <Tip closable border="dashed">
         custom closing content
         <b:close>No longer show</b:close>
     </Tip>
@@ -27,6 +27,17 @@ import Tip from 'kpc/components/tip';
 ```
 
 ```styl
-.k-tag
+.k-tip
     margin-bottom 8px
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            types: ['default', 'primary', 'success', 'warning', 'danger'] as const
+        };
+    }
+}
 ```

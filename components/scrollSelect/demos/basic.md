@@ -11,23 +11,23 @@ order: 0
 、滚动进行选择
 
 ```vdt
-import ScrollSelect from 'kpc/components/scrollSelect';
+import {ScrollSelect} from 'kpc';
 
 <ScrollSelect
-    data={{ self.get('data') }}
+    data={this.get('data')}
     v-model="value"
 />
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
-            data: Array.apply(null, {length: 12})
-                .map((v, i) => ({label: i + 1 + '月', value: i}))
+            data: Array.apply(null, {length: 12} as unknown[])
+                .map((v, i) => ({label: i + 1 + '月', value: i})),
+            value: 0
         };
     }
 }

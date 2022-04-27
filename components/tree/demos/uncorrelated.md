@@ -7,11 +7,9 @@ order: 1.01
 单独控制互不影响，此时你可以指定`checkedKeys`自由控制`checkbox`选中状态
 
 ```vdt
-import Tree from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
-const data = self.get('data');
-
-<Tree data={{ data }} 
+<Tree data={this.get('data')} 
     checkbox
     v-model:checkedKeys="checkedKeys"
     uncorrelated
@@ -23,12 +21,11 @@ const data = self.get('data');
     margin-right 16px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {

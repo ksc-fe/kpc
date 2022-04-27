@@ -1,43 +1,38 @@
-import Button from '../button';
+import {Icon} from '../icon';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {Transition} from 'intact';
 
 const {
-    className, children, type,
+    className, children, type, border,
     disabled, closable, closed, size
-} = self.get();
-
-if (closed) return;
+} = this.get();
 
 const classNameObj = {
-    'k-tag': true,
+    'k-tag': !$props.className,
     [className]: className,
     [`k-${type}`]: type !== 'default',
     [`k-${size}`]: size !== 'default',
+    [`k-${border}`]: border,
     'k-disabled': disabled,
     'k-closable': closable,
-    [scope.className]: scope.className,
+    [makeStyles()]: true,
+    [$props.className]: $props.className,
 };
 
-<Animate
-    {{ ...getRestProps(self) }}
-    a:disabled={{ disabled }}
-    a:transition="c-fade" 
-    class={{ classNameObj }}
->
-    <template>
-        <b:body>{{ children }}</b:body>
-    </template>
-    <Button type="none" v-if={{ closable }} 
-        icon={{ !blocks.close }}
-        class={{ {"k-close": true, "k-custom": blocks.close} }}
-        disabled={{ disabled }}
-        ev-click={{ self._close }}
-        size={{ size }}
+<Transition name={$props.name || 'k-scale'}>
+    <div v-if={!closed}
+        class={classNameObj}
+        {...getRestProps(this)}
     >
-        <template>
-            <b:close>
-                <i class="k-icon ion-ios-close-empty"></i>
-            </b:close>
-        </template>
-    </Button>
-</Animate>
+        <b:body>{children}</b:body>
+        <b:_close>
+            <Icon class="k-tag-close ion-ios-close-empty"
+                color={type}
+                hoverable={!disabled}
+                v-if={closable}
+                ev-click={this.onClose}
+            />
+        </b:_close>
+    </div>
+</Transition>

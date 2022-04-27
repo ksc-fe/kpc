@@ -1,0 +1,68 @@
+import {makeStyles} from './styles';
+import {Row, Col} from 'kpc';
+import {Link} from '../link';
+import qrcode from '../../imgs/qrcode.png';
+
+<div class={makeStyles()} style={{background: this.get('bgColor')}}>
+    <div class="footer-box">
+        <div class="footer-table">
+            <Row class="footer-logo-box">
+                <Col span="24"><div class="logo"></div></Col>
+            </Row>
+            <Row class="info-box">
+                <Col class="info-left" md="12" sm="24">
+                    <div class="title">用于企业级产品和数字体验的开源设计系统</div>
+                    <div class="qrcode-box">
+                        <img src={qrcode} width="90" height="90" />
+                        <div>
+                            <div>联系我们：<a href="mailto:ksc_ued@kingsoft.com">ksc_ued@kingsoft.com</a></div>
+                            <div>关注我们：微信公众号“⾦⼭云⽤户体验设计”</div>
+                        </div>
+                    </div>
+                </Col>
+                <Col class="info-right" md="12" sm="24">
+                    <Row class="quick-access-box">
+                        <Col span="24">
+                            <div class="title">快速访问</div>
+                            <div class="link-list">
+                                <div>
+                                    <Link href="/docs/design/about/">设计</Link>
+                                </div>
+                                <div>
+                                    <Link href="/docs/vue/">组件</Link>
+                                </div>
+                                <div>
+                                    <Link href="/resources">资源</Link>
+                                </div>
+                                <div>
+                                    <Link href="/solutions">解决方案</Link>
+                                </div>
+                                <div>Color-Process</div>
+                            </div>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col span="24">
+                            <div class="title">相关链接</div>
+                            <div class="link-list">
+                                <div>
+                                    <a href="http://vision.ksyun.com/#/icon-reposition" target="_blank">
+                                        KingVision
+                                    </a>
+                                </div>
+                                <div>
+                                    <a target="_blank" href="https://www.ksyun.com/">金山云</a>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </Col>
+            </Row>
+            <Row>
+                <Col span="24" class="copy-right-info">
+                    ©北京金山云网络技术有限公司   2021 Ksyun All Rights Reserved Kingsoft Corp.      京ICP证120829号      京ICP备 12032080号
+                </Col>
+            </Row>
+        </div>
+    </div>
+</div>

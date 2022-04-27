@@ -6,22 +6,20 @@ order: 2
 通过`indeterminate`属性可以控制`Checkbox`的半选中状态
 
 ```vdt
-import Checkbox from 'kpc/components/checkbox';
-
-const length = self.get('languages').length;
+import {Checkbox} from 'kpc';
 
 <div>
-    <Checkbox indeterminate={{ length > 0 && length < 3 }}
-        value={{ length === 3 }}
-        ev-$change:value={{ self._toggleSelectAll }}
+    <Checkbox indeterminate={this.getLength() > 0 && this.getLength() < 3}
+        value={this.getLength() === 3}
+        ev-$change:value={this.toggleSelectAll}
     >全选</Checkbox>
     <hr />
-    <Checkbox v-for={{ self.get('options') }}
+    <Checkbox v-for={this.get('options')}
         name="languages" 
-        trueValue={{ value }}
+        trueValue={$value}
         v-model="languages"
-    >{{ value }}</Checkbox>
-    Your selected: {{ JSON.stringify(self.get('languages')) }}
+    >{$value}</Checkbox>
+    Your selected: {JSON.stringify(this.get('languages'))}
 </div>
 ```
 
@@ -30,55 +28,36 @@ const length = self.get('languages').length;
     margin-right 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind} from 'kpc';
+
+interface Props {
+    languages?: string[]
+    options: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             // 必须初始化为数组
             languages: [],
             options: ['Javascript', 'C++', 'PHP'],
-        };
-    }
+        } as Props;
+    };
 
-    _toggleSelectAll(c, checked) {
+    @bind
+    toggleSelectAll(checked?: boolean) {
         if (checked) {
             this.set('languages', ['Javascript', 'C++', 'PHP']);
         } else {
             this.set('languages', []);
         }
     }
-}
-```
 
-```vue-template
-<div>
-    <Checkbox :indeterminate="length > 0 && length < 3"
-        :value="length === 3"
-        @$change:value="_toggleSelectAll"
-    >全选</Checkbox>
-    <hr />
-    <Checkbox v-for="(value, key) in options"
-        name="languages" 
-        :trueValue="value"
-        v-model="languages"
-    >{{ value }}</Checkbox>
-    Your selected: {{ languages }}
-</div>
-```
-
-```vue-script
-computed: {
-    length() {
-        return this.languages.length;
+    getLength() {
+        return this.get('languages')!.length;
     }
-},
-```
-
-```angular-methods
-get length() {
-    return this.languages.length;
 }
 ```

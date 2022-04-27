@@ -4,7 +4,7 @@ order: 7
 ---
 
 如果数据项中的`children`属性为空数组`[]`，则代表该项子数据为动态加载的，此时可以指定`loadData`
-属性来定义动态加载的逻辑，组件会将当前展开项的数据当做参数`item`传入，你只需要更新`item`的`children`
+属性来定义动态加载的逻辑，组件会将当前展开项的数据当做参数`data`传入，你只需要更新`data`的`children`
 属性即可，该函数的返回值为`Promise`对象
 
 组件默认遇到`children`为`[]`空数组的情况就会去进行异步加载，你可以通过`loaded`属性设为`true`来
@@ -13,17 +13,22 @@ order: 7
 > 对于已经加载完成的数据，组件会修改原始数据，往数据上添加`loaded = true`
 
 ```vdt
-import Cascader from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
-<Cascader data={{ self.get('data') }} loadData={{ self.loadData }}/>
+<Cascader data={this.get('data')} loadData={this.loadData} />
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {CascaderData} from 'kpc';
+
+interface Props {
+    data: CascaderData<string>[]
+}
+
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {
@@ -40,8 +45,8 @@ export default class extends Intact {
         };
     }
 
-    loadData(item) {
-        return new Promise(resolve => {
+    loadData(item: CascaderData<string>) {
+        return new Promise<void>(resolve => {
             setTimeout(() => {
                 switch (item.value) {
                     case 'beijing':

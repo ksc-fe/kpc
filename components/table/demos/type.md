@@ -6,17 +6,17 @@ order: 19
 通过`type`设置表格的类型：`default` | `border` | `grid`
 
 ```vdt
-import Table from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
-    <Table scheme={{ {a: '类型', b: '属性'} }}
-        data={{ self.get('data1') }}
-        type="border" 
-    />
-    <Table scheme={{ {a: '类型', b: '属性'} }}
-        data={{ self.get('data2') }}
-        type="grid" 
-    />
+    <Table data={this.get('data1')} type="border">
+        <TableColumn key="a" title="Type" />
+        <TableColumn key="b" title="Value" />
+    </Table>
+    <Table data={this.get('data2')} type="grid">
+        <TableColumn key="a" title="Type" />
+        <TableColumn key="b" title="Value" />
+    </Table>
 </div>
 ```
 
@@ -25,15 +25,14 @@ import Table from 'kpc/components/table';
     margin-bottom 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
-            data1: [{a: 'border类型', b: 'type="border"'}],
-            data2: [{a: 'grid类型', b: 'type="grid"'}] 
+            data1: [{a: 'type', b: 'border'}],
+            data2: [{a: 'type', b: 'grid'}] 
         }
     }
 }

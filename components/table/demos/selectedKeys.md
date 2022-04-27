@@ -8,21 +8,21 @@ order: 5
 抛出`$change:selectedKeys`事件，我们可以通过`getSelectedData`来获取高亮行的数据
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
 <div>
-    <Table data={{ self.get('data') }} 
+    <Table data={this.get('data')} 
         rowSelectable
-        ev-$change:selectedKeys={{ self._onSelectedKeysChanged }}
-        rowCheckable={{ false }}
+        ev-$change:selectedKeys={this.onSelectedKeysChanged}
+        rowCheckable={false}
         ref="__test1"
     >
         <TableColumn key="a" title="表头1" />
         <TableColumn key="b" title="表头2" />
     </Table>
-    <Table data={{ self.get('data') }}
+    <Table data={this.get('data')}
         rowSelectable="multiple"
-        rowCheckable={{ false }}
+        rowCheckable={false}
         ref="__test2"
     >
         <TableColumn key="a" title="表头1" />
@@ -36,19 +36,21 @@ import {Table, TableColumn} from 'kpc/components/table';
     margin-bottom: 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind, Table} from 'kpc';
+
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
-            data: [{a: '第一行', b: '哈哈2'}, {a: '第二行', b: '哈哈2'}]
+            data: [{a: '第一行', b: '哈哈'}, {a: '第二行', b: '哈哈'}]
         };
     }
 
-    _onSelectedKeysChanged(table) {
-        console.log(table.getSelectedData());
+    @bind
+    onSelectedKeysChanged() {
+        console.log((this.refs.__test1 as Table).getSelectedData());
     }
 }
 ```

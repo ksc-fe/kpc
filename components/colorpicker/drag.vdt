@@ -1,5 +1,3 @@
-const {children, className} = self.get();
-
-<div class={{ {'k-drag': true, [className]: className} }}
-    ev-mousedown={{ self._dragStart }}
->{{ children }}</div>
+<div class="k-colorpicker-drag k-colorpicker-text"
+    ev-mousedown={this.drag.start}
+>{this.get('children')}</div>

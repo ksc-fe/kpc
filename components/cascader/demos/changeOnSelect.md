@@ -6,21 +6,25 @@ order: 3
 添加`changeOnSelect`属性，即可使组件选择即改变`value`，这样可以只选中父级
 
 ```vdt
-import Cascader from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <div>
-    <Cascader data={{ self.get('data') }} v-model="value" changeOnSelect />
-    You selected: {{ JSON.stringify(self.get('value')) }}
+    <Cascader data={this.get('data')} v-model="value" changeOnSelect />
+    You selected: {JSON.stringify(this.get('value'))}
 </div>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+interface Props {
+    value?: string[] | null
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
+            value: null as string[] | null,
             data: [
                 {
                     value: 'beijing',

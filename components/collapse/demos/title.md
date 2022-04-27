@@ -6,7 +6,7 @@ order: 2
 使用`title`扩展点，可以定义复杂的标题内容
 
 ```vdt
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc';
 
 <Collapse v-model="value">
     <CollapseItem>
@@ -34,4 +34,19 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
 .ion-cube
     margin-right 8px
     vertical-align middle
+```
+
+```ts
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value: ['$0']
+        }
+    }
+}
 ```

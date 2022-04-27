@@ -8,84 +8,43 @@ order: 1
 弹出更多错误提示。
 
 ```vdt
-import Editable from 'kpc/components/editable';
+import {Editable} from 'kpc';
 
 <div>
-    <Editable v-model="value" validate={{ value => /\d+/.test(value) }}
+    <Editable v-model="value" validate={value => /\d+/.test(value)}
         ref="__test1"
-        ev-change={{ self._onChange }}
-    >{{ self.get('value') }}</Editable>
+        ev-change={this._onChange}
+    >{this.get('value')}</Editable>
     <br />
-    <Editable v-model="value" validate={{ /\d+/ }}
+    <Editable v-model="value" validate={/\d+/}
         ref="__test2"
-    >{{ self.get('value') }}</Editable>
+    >{this.get('value')}</Editable>
     <br />
-    <Editable v-model="value" validate="\d+"
-        ev-error={{ self._showErrorTip }}
+    <Editable v-model="value" validate="\\d+"
+        ev-error={this._showErrorTip}
         ref="__test3"
-    >{{ self.get('value') }}</Editable>
+    >{this.get('value')}</Editable>
 </div>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
-    defaults() {
-        return {value: 100};
+    static defaults() {
+        return {
+            value: '100' 
+        };
     }
 
-    _showErrorTip(c, value) {
+    _showErrorTip() {
         Message.error('Please enter digits.');
     }
 
-    _onChange(c, newValue, oldValue) {
+    _onChange(newValue: string, oldValue?: string) {
         console.log(newValue, oldValue);
-    }
-} 
-```
-
-```ts
-import {Component, ViewChild} from '@angular/core';
-import Message from 'kpc/components/message';
-
-@Component({
-    selector: 'app-demo',
-    template: `
-        <div>
-            <k-editable [(value)]="value" 
-                [validate]="_validate"
-                (change)="_onChange($event)"
-            >{{ value }}</k-editable>
-            <br />
-            <k-editable [(value)]="value" 
-                [validate]="regExp"
-            >{{ value }}</k-editable>
-            <br />
-            <k-editable [(value)]="value"
-                validate="\\d+"
-                (error)="_showErrorTip($event)"
-            >{{ value }}</k-editable>
-        </div>
-    `,
-})
-export class AppDemoComponent {
-    private value = 100;
-    private regExp = /\d+/;
-
-    _showErrorTip([c, value]) {
-        Message.error('Please enter digits.');
-    }
-    
-    _onChange([c, newValue, oldValue]) {
-        console.log(newValue, oldValue);
-    }
-
-    _validate = (value) => {
-        return this.regExp.test(value);
     }
 }
 ```

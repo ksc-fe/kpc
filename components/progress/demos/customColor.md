@@ -3,23 +3,22 @@ title: 自定义颜色
 order: 3
 ---
 
-通过`color`设置进度条颜色， 类型`String` | `Array` | `Function`。
+通过`color`设置进度条颜色， 类型`string` | `Array` | `Function`。
 
 如果`color`设置为`Array`类型，它的数据格式如下：
 
  `{ percent: '需要设置的百分比值' , color: '对应的进度条颜色'}`
 
 ```vdt
-import Progress from 'kpc/components/progress';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Progress, Button, ButtonGroup} from 'kpc';
 
 <div>
-    <Progress percent={{ self.get('percent') }} color={{ self.get('color') }}/>
-    <Progress percent={{ self.get('percent') }} color={{ self.get('colors') }}/>
-    <Progress percent={{ self.get('percent') }} color={{ self.setColor }}/>
+    <Progress percent={this.get('percent')} color={this.get('color')}/>
+    <Progress percent={this.get('percent')} color={this.get('colors')}/>
+    <Progress percent={this.get('percent')} color={this.setColor}/>
     <ButtonGroup>
-        <Button size="mini" icon ev-click={{ self.add }}>+</Button>
-        <Button size="mini" icon ev-click={{ self.minus }}>-</Button>
+        <Button size="mini" icon ev-click={this.add}>+</Button>
+        <Button size="mini" icon ev-click={this.minus}>-</Button>
     </ButtonGroup>
 </div>
 ```
@@ -31,12 +30,24 @@ import {ButtonGroup, Button} from 'kpc/components/button';
     margin-right 5px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind} from 'kpc';
+
+interface Props {
+    color: string
+    colors: Color[]
+    percent: number
+}
+
+type Color = {
+    color: string
+    percent: number
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             color: '#ff9800',
             colors: [
@@ -49,25 +60,26 @@ export default class extends Intact {
         }
     }
 
+    @bind
     add() {
         if (this.get('percent') >= 100) return;
 
         this.set('percent', this.get('percent') + 25);
     }
 
+    @bind
     minus() {
         if (this.get('percent') <= 0) return;
 
         this.set('percent', this.get('percent') - 25);
     }
 
-    setColor(percent) {
+    setColor(percent: number) {
         if (percent <= 50) {
             return '#D1FDD5';
         } else {
             return '#36B342';
         }
     }
-
 }
 ```

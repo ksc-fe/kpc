@@ -1,51 +1,44 @@
-import MoveWrapper from '../moveWrapper';
-import Button from '../button';
+import {Button} from '../button';
+import makeStyles from './styles';
 
 const {
-    children, value, trigger, showArrow, confirm,
-    canHover, className, _feedback, transition,
-    container, theme, disabled, always, size,
-} = self.get();
-
-const events = {};
-if ((canHover || confirm) && trigger === 'hover' && !always) {
-    events['ev-mouseenter'] = self.show;
-    events['ev-mouseleave'] = self.hide.bind(self, false);
-}
+    showArrow, confirm, className,
+    theme, hoverable, trigger,
+    value, cancelText, okText,
+    size, always,
+} = this.dropdown.get();
+const {children} = this.get();
+const {arrowRef, arrowType} = this.arrow;
 
 const classNameObj = {
-    "k-dropdown-menu": true,
-    "k-tooltip-content": true, 
-    'k-cannot-hover': trigger === 'hover' && !canHover && !confirm,
-    [className]: className,
+    'k-tooltip-content': true,
+    'k-hoverable': hoverable || trigger === 'click',
+    'k-always': always,
     [`k-${theme}`]: true,
     [`k-${size}`]: size !== 'default',
+    [className]: className,
+    [makeStyles()]: true,
 };
 
-<MoveWrapper container={{ container }}>
-    <Animate a:show={{ value && !disabled && !self.isEmptyChildren }}
-        class={{ classNameObj }}
-        a:transition={{ transition }}
-        ref="menu"
-        {{ ...events }}
-        a:delayDestroy={{ false }}
-        a:enterStart={{ self._onShow }}
-        ev-a:leaveStart={{ self._removeDocumentEvents }}
-        ev-mousedown={{ self._onMouseDown }}
-    >
-        <i v-if={{ showArrow }}
-            class={{ {
-                "k-arrow": true,
-                [`k-${_feedback[_feedback.important]}`]: _feedback.important,
-            } }}
-            ref="arrow"
+<t:super
+    value={!!value && !this.isEmptyChildren}
+    transition={{name: 'k-fade', onEnter: this.onEnter}}
+    class={classNameObj}
+>
+    <b:children>
+        {children}
+        <i v-if={showArrow}
+            class={{
+                "k-tooltip-arrow": true,
+                [`k-${arrowType.value}`]: arrowType.value,
+            }}
+            ref={arrowRef}
         ></i>
-        {{ children }}
-        <div class="k-buttons" v-if={{ confirm }}>
+        <div class="k-tooltip-buttons" v-if={confirm}>
             <b:buttons>
-                <Button ev-click={{ self._cancel }} size="small">{{ self.get('cancelText') }}</Button>
-                <Button type="primary" ev-click={{ self._ok }} size="small">{{ self.get('okText') }}</Button>
+                <Button type="primary" ev-click={this.ok} size="small">{okText}</Button>
+                <Button ev-click={this.cancel} size="small">{cancelText}</Button>
             </b:buttons>
         </div>
-    </Animate>
-</MoveWrapper>
+    </b:children>
+</t:super>

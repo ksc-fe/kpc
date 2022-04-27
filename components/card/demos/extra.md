@@ -6,9 +6,7 @@ order: 2
 使用`extra`扩展点，可以在头部右侧追加内容
 
 ```vdt
-import Card from 'kpc/components/card';
-import {Row, Col} from 'kpc/components/grid';
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Card, Tabs, Tab} from 'kpc';
 
 <div>
     <Card title="用户信息">
@@ -18,13 +16,8 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                 <Tab value="2">数据采集</Tab>
             </Tabs>
         </b:extra>
-        <Row>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-        </Row>
+        <div>卡片内容</div>
+        <div>卡片内容</div>
     </Card>
     <Card title="用户信息" type="border">
         <b:extra>
@@ -33,13 +26,8 @@ import {Tabs, Tab} from 'kpc/components/tabs';
                 <Tab value="2">数据采集</Tab>
             </Tabs>
         </b:extra>
-        <Row>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-            <Col span="8">登录账号：test</Col>
-        </Row>
+        <div>卡片内容</div>
+        <div>卡片内容</div>
     </Card>
 </div>
 ```

@@ -1,29 +1,31 @@
-import MoveWrapper from '../moveWrapper';
+import {Transition} from 'intact';
+import {makeMenuStyles} from './styles';
 
-const {children, value, trigger, className, transition, container} = self.get();
+const {value, trigger, container} = this.dropdown.get();
+const {children, className} = this.get();
 
-const events = {};
-// no matter what the trigger is, we should show menu when enter it.
-// for this case: hover trigger nests click trigger
-events['ev-mouseenter'] = self.show;
-if (trigger === 'hover') {
-    events['ev-mouseleave'] = self.hide.bind(self, false);
-}
+const classNameObj = {
+    'k-dropdown-menu': true,
+    [className]: className,
+    [$props.className]: $props.className,
+    [makeMenuStyles()]: true,
+};
 
-<MoveWrapper ref="wrapper" _parent={{ self }} container={{ container }}>
-    <Animate a:show={{ value }}
-        class={{ {"k-dropdown-menu": true, [className]: className} }}
-        a:transition={{ transition }}
-        a:appear={{ true }}
-        ref="menu"
-        {{ ...events }}
-        a:delayDestroy={{ false }}
-        a:enterStart={{ self._onShow }}
-        ev-a:leaveStart={{ self._removeDocumentEvents }}
-        ev-mousedown={{ self._onMouseDown }}
+const transition = $props.transition || {css: false, ...this.transition};
+
+<Transition 
+    show={'value' in $props ? $props.value : !!value}
+    appear={true}
+    {...transition}
+>
+    <div
+        class={classNameObj}
+        ev-mouseenter={this.onMouseEnter}
+        ev-mouseleave={trigger === 'hover' ? this.onMouseLeave : null}
+        ref={this.elementRef}
     >
-        <template>
-            <b:children>{{ children }}</b:children>
-        </template>
-    </Animate>
-</MoveWrapper>
+        <b:children>
+            {children}
+        </b:children>
+    </div>
+</Transition>

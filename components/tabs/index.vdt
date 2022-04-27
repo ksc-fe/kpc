@@ -1,60 +1,48 @@
-import Tab from './tab';
-import Button from '../button';
+import {Button} from '../button';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
 
+const {className, children, vertical, size, type} = this.get();
 const {
-    className, data, value, children,
-    vertical, size, type,
-    _activeBarStyle, _scroll, _left,
-    _prev, _next
-} = self.get();
-
+    isScroll, left, enablePrev, enableNext,
+    prev, next, scrollRef, wrapperRef
+} = this.scroll;
 const classNameObj = {
     'k-tabs': true,
-    [className]: className,
-    [`k-${size}`]: size !== 'default',
+    [`k-${size}`]: size,
     'k-vertical': vertical,
     'k-tabs-card': type === 'no-border-card',
     [`k-tabs-${type}`]: type !== 'default',
-    [`k-is-scroll`]: _scroll
+    [`k-is-scroll`]: isScroll.value,
+    [className]: className,
+    [makeStyles()]: true,
 };
 
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    <Button class="k-prev" type="none" icon
-        v-if={{ _scroll }}
+<div class={classNameObj} {...getRestProps(this)}>
+    <Button class="k-tabs-prev" type="none" icon
+        v-if={isScroll.value}
         key="prev" 
-        size={{ size }}
-        disabled={{ !_prev }}
-        ev-click={{ self._prev }}
+        size={size}
+        disabled={!enablePrev.value}
+        ev-click={prev}
     >
         <i class="ion-ios-arrow-left"></i>
     </Button>
-    <div class="k-scroll c-clearfix" ref="scroll">
-        <div class="k-wrapper" ref="wrapper" style={{ {transform: `translateX(${_left}px)`} }}>
-            <a v-for={{ data }}
-                class={{ {
-                    'k-tab': true, 
-                    'k-active': item.value === value,
-                } }}
-                v-for-value="item"
-                ev-click={{ self._changeTab.bind(self, item) }}
-            >{{ item.text }}</a>
-            {{ __u.map(children ? (Array.isArray(children) ? children : [children]) : children, vNode => {
-                if (vNode.tag === Tab) {
-                    vNode.props = {...vNode.props, _value: value, _parent: self};
-                    vNode.$ = true;
-                }
-                return vNode;
-            }) }}
-            <div class="k-active-bar" style={{ _activeBarStyle }}></div>
+    <div class="k-tabs-scroll c-clearfix" ref={scrollRef}>
+        <div class="k-tabs-wrapper"
+            ref={wrapperRef}
+            style={{transform: `translateX(${left.value}px)`}}
+        >
+            {children}
+            <div class="k-tabs-active-bar" style={this.activeBar.value}></div>
         </div>
     </div>
-    <Button class="k-next" type="none" icon
-        v-if={{ _scroll }}
+    <Button class="k-tabs-next" type="none" icon
+        v-if={isScroll.value}
         key="next" 
-        size={{ size }}
-        disabled={{ !_next }}
-        ev-click={{ self._next }}
+        size={size}
+        disabled={!enableNext.value}
+        ev-click={next}
     >
         <i class="ion-ios-arrow-right"></i>
     </Button>

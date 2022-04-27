@@ -6,7 +6,7 @@ order: 4
 添加`noBorder`属性，可以展示无边框的简洁样式
 
 ```vdt
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc';
 
 <Collapse v-model="value" noBorder>
     <CollapseItem title="设计语言">
@@ -29,13 +29,17 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
 </Collapse>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
-    static template = template;
+```ts
+interface Props {
+    value?: string[]
+}
 
-    defaults() {
-        return {value: ['$0']};
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value: ['$0']
+        }
     }
 }
 ```

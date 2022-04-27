@@ -1,2 +1,9 @@
-<t:parent navIndex="design" class="document-page design-page fixed-aside">
-</t:parent>
+import {makeStyles} from './styles';
+
+const classNameObj = {
+    'design-page': true,
+    [makeStyles()]: true
+};
+
+<t:super navIndex="design" class={classNameObj}>
+</t:super>

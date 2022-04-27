@@ -1,18 +1,22 @@
 import {getRestProps, addStyle} from '../utils';
+import {makeStyles} from './styles';
 
-const {children, className, style, _style, _containerStyle} = self.get();
+const {children, className, style} = this.get();
+const {style: _style, containerStyle} = this.style;
 
 const classNameObj = {
     'k-affix': true,
-    'k-fixed': _style,
+    'k-fixed': _style.value,
     [className]: className,
+    [makeStyles()]: true,
 };
 
-<div class={{ classNameObj }}
-    {{ ...getRestProps(self) }}
-    style={{ addStyle(style, _containerStyle) }}
+<div class={classNameObj}
+    {...getRestProps(this)}
+    style={addStyle(style, containerStyle.value)}
+    ref={this.elementRef}
 >
-    <div style={{ _style }}>
-        {{ children }}
+    <div style={_style.value} class="k-affix-wrapper">
+        {children}
     </div>
 </div>

@@ -9,12 +9,12 @@ order: 7
 本例中，上面的`Input`你接着输入`d`，`value`会立即更新成`#dddddd`，但是下面的`Input`不会
 
 ```vdt
-import {Input} from 'kpc/components/input';
+import {Input} from 'kpc';
 
 <div>
-    <Input value={{ self.get('value') }} ev-input={{ self._onInput }} />
+    <Input value={this.get('value')} ev-input={this.onInput} />
     <br />
-    <Input frozenOnInput value={{ self.get('value') }} ev-input={{ self._onInput }} />
+    <Input frozenOnInput value={this.get('value')} ev-input={this.onInput} />
 </div>
 ```
 
@@ -23,21 +23,26 @@ import {Input} from 'kpc/components/input';
     margin 5px
 ```
 
-```js
+```ts
 import tinycolor from 'tinycolor2';
+import {bind} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    value: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             value: '#ddd'
         };
     }
 
-    _onInput(e) {
-        const value = e.target.value.trim();
+    @bind
+    onInput(e: InputEvent) {
+        const value = (e.target as HTMLInputElement).value.trim();
         const color = tinycolor(value);
         if (color.isValid()) {
             const newValue = color.toHexString();

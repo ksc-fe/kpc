@@ -1,4 +1,3 @@
-import './main';
 import router from './router';
 import App from 'kpc/components/app';
 

@@ -7,38 +7,38 @@ order: 5
 `top` `bottom` `middle` `stretch` `baseline`
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
-    <h5>顶端对齐 top</h5>
+    <h4>顶端对齐 top</h4>
     <Row align="top" justify="center"> 
         <Col span="4" style="height: 100px">col-4</Col>
         <Col span="4" style="height: 60px">col-4</Col>
         <Col span="4" style="height: 80px">col-4</Col>
         <Col span="4" style="height: 40px">col-4</Col>
     </Row>
-    <h5>底部对齐 bottom</h5>
+    <h4>底部对齐 bottom</h4>
     <Row align="bottom" justify="center"> 
         <Col span="4" style="height: 100px">col-4</Col>
         <Col span="4" style="height: 60px">col-4</Col>
         <Col span="4" style="height: 80px">col-4</Col>
         <Col span="4" style="height: 40px">col-4</Col>
     </Row>
-    <h5>居中对齐 middle</h5>
+    <h4>居中对齐 middle</h4>
     <Row align="middle" justify="center"> 
         <Col span="4" style="height: 100px">col-4</Col>
         <Col span="4" style="height: 60px">col-4</Col>
         <Col span="4" style="height: 80px">col-4</Col>
         <Col span="4" style="height: 40px">col-4</Col>
     </Row>
-    <h5>撑开成容器高度 stretch</h5>
+    <h4>撑开成容器高度 stretch</h4>
     <Row align="stretch" justify="center" style="height: 100px;"> 
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
         <Col span="4">col-4</Col>
     </Row>
-    <h5>基线对齐 baseline</h5>
+    <h4>基线对齐 baseline</h4>
     <Row align="baseline" justify="center"> 
         <Col span="4" style="height: 100px; font-size: 20px">col-4</Col>
         <Col span="4" style="height: 60px; font-size: 16px">col-4</Col>
@@ -61,6 +61,6 @@ import {Row, Col} from 'kpc/components/grid';
     margin-bottom 20px
     padding 10px 0
     background #e5e5e5
-h5
+h4
     margin-bottom 8px
 ```

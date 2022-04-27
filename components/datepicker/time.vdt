@@ -1,21 +1,34 @@
-import {Row, Col} from '../grid';
-import ScrollSelect from '../scrollSelect';
+import {ScrollSelect} from '../scrollSelect';
+import {hours, minutes, seconds} from './constants';
+import {makeTimeStyles} from './styles';
 
-const {data, _value, value, disabledItems} = self.get();
+const value = this.value.value;
+const {disableHours, disableMinutes, disableSeconds, disableItem} = this.disabled;
+const classNameObj = {
+    'k-datepicker-time': true,
+    [makeTimeStyles()]: true,
+}
 
-const span = data.length ? 24 / data.length : 0;
-const append = <b:append />
-
-<Row class="k-scroll-select-group">
-    <Col span={{ span }} v-for={{ data }} v-for-value="item">
-        <ScrollSelect
-            data={{ item }}
-            value={{ value && value[key] }}
-            ev-$change:_value={{ self._onChangeValue.bind(self, key) }}
-            disable={{ self._disable.bind(self, key) }}
-            disabled={{ disabledItems[key] }}
-        >
-            <b:append v-if={{ key !== data.length - 1 }}>{{ append }}</b:append>
-        </ScrollSelect>
-    </Col>
-</Row>
+<div class={classNameObj}>
+    <ScrollSelect
+        data={hours}
+        value={value.h}
+        ev-$change:value={this.changeHour}
+        disabled={disableHours.value}
+        disable={v => disableItem(v, 'h')}
+    />
+    <ScrollSelect
+        data={minutes}
+        value={value.m}
+        ev-$change:value={this.changeMinute}
+        disabled={disableMinutes.value}
+        disable={v => disableItem(v, 'm')}
+    />
+    <ScrollSelect
+        data={seconds}
+        value={value.s}
+        ev-$change:value={this.changeSecond}
+        disabled={disableSeconds.value}
+        disable={v => disableItem(v, 's')}
+    />
+</div>

@@ -11,14 +11,13 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| separator | 指定分隔符 | `String` | `undefined` |
+| separator | 指定分隔符 | `string` | `undefined` |
 
 ## BreadcrumbItem
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| to | 指定超链接地址 | `String` | `undefined` |
-| separator | 指定分隔符，会覆盖`Breadcrumb`中的定义 | `String` | `">"` |
+| to | 指定超链接地址 | `string` &#124; `object` | `undefined` |
 
 # 扩展点
 
@@ -26,10 +25,4 @@ sidebar: doc
 
 | 名称 | 说明 |
 | --- | --- |
-| separator | 扩展分隔符 |
-
-## BreadcrumbItem
-
-| 名称 | 说明 |
-| --- | --- |
-| separator | 扩展分隔符，优先级高于`Breadcrumb`中的定义 |
+| separator | 指定分隔符 |

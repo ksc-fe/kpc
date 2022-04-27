@@ -7,80 +7,31 @@ order: 3
 另外你可以通过`center`属性来指定该栏内容是否居中展示
 
 ```vdt
-import {Card, CardColumn} from 'kpc/components/card';
-import Icon from 'kpc/components/icon';
-import {Row, Col} from 'kpc/components/grid';
+import {Card, CardColumn, Icon} from 'kpc';
 
 <div>
-    <Row gutter="16">
-        <Col span="6">
-            <Card>
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
-        <Col span="6">
-            <Card>
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
-        <Col span="6">
-            <Card>
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
-        <Col span="6">
-            <Card>
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
-    </Row>
-    <Row gutter="16">
-        <Col span="6">
-            <Card type="border">
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
-        <Col span="6">
-            <Card type="border">
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
-        <Col span="6">
-            <Card type="border">
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
-        <Col span="6">
-            <Card type="border">
-                <CardColumn width="60px" center>
-                    <Icon class="ion-person" size="large"/>
-                </CardColumn>
-                <CardColumn>用户名：test</CardColumn>
-            </Card>
-        </Col>
+    <Card>
+        <CardColumn width="60px" center>
+            <Icon class="ion-person" size="large"/>
+        </CardColumn>
+        <CardColumn>用户名：test</CardColumn>
+    </Card>
 
-    </Row>
+    <Card>
+        <CardColumn width="60px" center>
+            <Icon class="ion-person" size="large"/>
+        </CardColumn>
+        <CardColumn>用户名：test</CardColumn>
+    </Card>
+
+    <Card type="border">
+        <CardColumn width="60px" center>
+            <Icon class="ion-person" size="large"/>
+        </CardColumn>
+        <CardColumn>用户名：test</CardColumn>
+    </Card>
+    
+
 </div>
 ```
 

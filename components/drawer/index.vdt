@@ -1,7 +1,16 @@
-<t:parent class={{ {'k-drawer': true, [`k-${self.get('placement')}`]: true} }} >
+import {makeStyles} from './styles';
+
+const {placement, overlay} = this.get();
+const classNameObj = {
+    'k-drawer': true,
+    [`k-${placement}`]: true,
+    [makeStyles(overlay)]: true
+};
+
+<t:super class={classNameObj}>
     <b:content>
         <div class='k-drawer-content'>
-            {{ parent() }}
+            {$super()}
         </div>
     </b:content>
-</t:parent>
+</t:super>

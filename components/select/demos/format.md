@@ -8,50 +8,46 @@ order: 5.1
 > 存在`value`扩展点时，不能指定`filterable`来筛选
 
 ```vdt
-import {Select, Option} from 'kpc/components/select';
-import {Icon} from 'kpc/components/icon';
+import {Select, Option, Icon} from 'kpc';
 
 <div>
     <div class="item">
         <span class="label">border:</span>
         <Select v-model="type">
-            <Option v-for={{ ['solid', 'dashed', 'dotted'] }}
-                value={{ value }}
+            <Option v-for={['solid', 'dashed', 'dotted']}
+                value={$value}
             >
-                <div style={{ {borderBottom: `1px ${value} #666`} }} class="line"></div>
+                <div style={{borderBottom: `1px ${$value} #666`}} class="line"></div>
             </Option>
-            <b:value params="value, label">
-                <div style={{ {borderBottom: `1px ${value} #666`} }} class="line"></div>
-            </b:value>
         </Select>
-        <div style={{ {border: `1px ${self.get('type')} #b2b2b2`} }} class="rect">
+        <div style={{border: `1px ${this.get('type')} #b2b2b2`}} class="rect">
             Rectangle
         </div>
     </div>
     <div class="item">
         <span class="label">multiple:</span>
         <Select v-model="icons" multiple>
-            <Option v-for={{ ['ion-chatbubble', 'ion-person-stalker', 'ion-beer', 'ion-camera'] }}
-                value={{ value }}
+            <Option v-for={['ion-chatbubble', 'ion-person-stalker', 'ion-beer', 'ion-camera']}
+                value={$value}
             >
-                <Icon class={{ value }} />
+                <Icon class={$value} />
             </Option>
-            <b:value params="value, label">
-                <Icon class={{ value }} />
-                <span class="c-middle">{{ value }}</span>
+            <b:value args="[value, label]">
+                <Icon class={value} style="vertical-align: middle;" />
+                <span class="c-middle">{value}</span>
             </b:value>
         </Select>
     </div>
     <div class="item">
         <span class="label">multiple values:</span>
         <Select v-model="icons1" multiple>
-            <Option v-for={{ ['ion-chatbubble', 'ion-person-stalker', 'ion-beer', 'ion-camera'] }}
-                value={{ value }}
+            <Option v-for={['ion-chatbubble', 'ion-person-stalker', 'ion-beer', 'ion-camera']}
+                value={$value}
             >
-                <Icon class={{ value }} />
+                <Icon class={$value} />
             </Option>
-            <b:values params="values, labels">
-                <div class="k-value">已选择{{ values.length }}项 / 总共4项</div>
+            <b:values args="[values, labels]">
+                <div class="k-value">已选择{values.length}项 / 总共4项</div>
             </b:values>
         </Select>
     </div>
@@ -59,7 +55,7 @@ import {Icon} from 'kpc/components/icon';
 ```
 
 ```styl
-/.line
+/.k-select-option .line
     margin-top 16px
 .item
     margin-bottom 16px
@@ -80,12 +76,11 @@ import {Icon} from 'kpc/components/icon';
     margin-right 6px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {type: 'dashed', icons: ['ion-camera'], icons1: []};
     }
 }

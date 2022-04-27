@@ -1,25 +1,32 @@
+import {directClone} from 'intact';
 import {mapChildren, getRestProps} from '../utils';
 import {Menu} from '../menu';
+import {makeAsideStyles} from './styles';
 
 const {
-    className, children, style,
-    collapse, fixed, size
-} = self.get();
+    className, children, collapse,
+    fixed, theme,
+} = this.get();
 
 const vNodes = mapChildren(children, vNode => {
     if (vNode.tag === Menu) {
-        vNode = _Vdt.miss.clone(vNode, {collapse, size});
-        return <div class="k-wrapper">{{ vNode }}</div>
+        let vNodeClone = directClone(vNode);
+        vNodeClone.props = {...vNode.props, collapse};
+        return <div class="k-layout-wrapper">{vNodeClone}</div>
     }
     return vNode
 });
 
 const classNameObj = {
-    'k-aside': true,
+    'k-layout-aside': true,
     'k-collapsed': collapse,
     'k-fixed': fixed,
-    [`k-${size}`]: size !== 'default',
+    [`k-${theme}`]: true,
     [className]: className,
+    [makeAsideStyles()]: true,
 };
 
-<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ vNodes }}</div>
+<div {...getRestProps(this)}
+    class={classNameObj}
+    style={this.getStyles()}
+>{vNodes}</div>

@@ -1,29 +1,29 @@
+import {Transition} from 'intact';
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
 
-const {size, center, className, overlay} = self.get();
+const {size, center, className, overlay} = this.get();
 
 const classNameObj = {
     'k-spin': true,
     [`k-${size}`]: size !== 'default',
     'k-center': !overlay && center,
-    [className]: className,
     'k-overlay': overlay,
+    [className]: className,
+    [makeStyles()]: true,
 };
 
 const canvas = (
-    <div class="k-canvas">
+    <div class="k-spin-canvas">
         <b:canvas>
             <svg viewBox="0 0 120 120">
-                <circle cx="60" cy="60" class="k-circle" r="57"></circle>
+                <circle cx="60" cy="60" class="k-spin-circle" r="57"></circle>
             </svg>
         </b:canvas>
     </div>
 );
 
-<Animate class={{ classNameObj }}
-    {{ ...getRestProps(self) }}
-    a:transition="c-fade"
->
-    <div class="k-wrapper" v-if={{ overlay }}>{{ canvas }}</div>
-    <template v-else>{{ canvas }}</template>
-</Animate>
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-spin-wrapper" v-if={overlay}>{canvas}</div>
+    <template v-else>{canvas}</template>
+</div>

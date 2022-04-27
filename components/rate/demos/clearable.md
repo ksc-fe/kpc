@@ -6,18 +6,19 @@ order: 2
 添加`clearable`属性可以使组件在再次点击后清空值
 
 ```vdt
-import Rate from 'kpc/components/rate';
+import {Rate} from 'kpc';
 
 <Rate v-model="value" clearable />
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
-        return {value: 2};
+    static defaults() {
+        return {
+            value: 2
+        };
     }
 }
 ```

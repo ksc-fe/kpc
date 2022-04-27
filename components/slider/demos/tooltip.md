@@ -9,35 +9,44 @@ order: 6
 > `tooltip`扩展点和`Tooltip`组件的`content`扩展点行为一样，如果你传入空的内容，则不会展示气泡
 
 ```vdt
-import Slider from 'kpc/components/slider';
+import {Slider} from 'kpc';
 
 <div>
-    <Slider v-model="value1" min={{ 50 }} max={{ 500 }} showTooltip />
-    <Slider v-model="values" isRange showTooltip />
-    <Slider v-model="value2" min={{ 1 }} max={{ 12 }}
-        isShowInput={{ false }}
-        marks={{ self.get('marks') }}
+    <Slider v-model="value1" min={50} max={500} showTooltip />
+    <Slider v-model="values" range showTooltip />
+    <Slider v-model="value2" min={1} max={12}
+        showInput={false}
+        marks={this.get('marks')}
         showTooltip
         always
     >
-        <b:tooltip params="value">
-            <span v-if={{ value > 9 }}>满{{ value - 9 }}年，优惠{{ (value - 9) * 2 }}个月</span>
+        <b:tooltip args="value">
+            <span v-if={value > 9}>满{value - 9}年，优惠{(value - 9) * 2}个月</span>
         </b:tooltip>
     </Slider>
-    <Slider v-model="value3" min={{ 50 }} max={{ 500 }}
+    <Slider v-model="value3" min={50} max={500}
         showTooltip
         always
-        tooltipProps={{ {'theme': 'light', 'size': 'small'} }}
+        tooltipProps={{'theme': 'light', 'size': 'small'}}
     />
 </div>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {SliderMarks} from 'kpc';
+
+interface Props {
+    value1?: number
+    values?: [number, number]
+    value2?: number
+    value3?: number
+    marks: SliderMarks 
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             value1: 277,
             values: [50, 76],
@@ -57,7 +66,7 @@ export default class extends Intact {
                 11: '2年',
                 12: '3年',
             }
-        }
+        } as Props;
     }
 }
 ```

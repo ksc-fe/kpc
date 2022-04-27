@@ -5,22 +5,24 @@ iframe: 400
 ---
 
 给`Header`和`Aside`分别添加`fixed`属性，即可固定顶部或者侧边栏，组件会自动添加相应样式，无需手动
-添加样式。另外我们可以通过给`Aside`添加`size`属性，来控制侧边栏的宽度，给属性会自动应用到子组件
-`Menu`中
+添加样式。另外我们可以通过给`Aside`添加`width`属性，来控制侧边栏的宽度
 
 ```vdt
-import {Layout, Header, Aside, Body, Footer} from 'kpc/components/layout';
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
-import {Breadcrumb, BreadcrumbItem} from 'kpc/components/breadcrumb';
-import {Button} from 'kpc/components/button';
+import {
+    Layout, Header, Aside, Body, Footer,
+    Menu, MenuItem,
+    Icon,
+    Breadcrumb, BreadcrumbItem,
+    Button,
+} from 'kpc';
 
 <Layout class="layout">
-    <Aside collapse={{ self.get('collapse') }} fixed size="large">
+    <Aside collapse={this.get('collapse')} fixed theme="white" width="260px">
         <div class="logo">LOGO</div>
         <Menu
             v-model:expandedKeys="expandedKeys" 
             v-model:selectedKey="selectedKey"
+            theme="white"
         >
             <MenuItem key="1">
                 <Icon class="ion-flag" />menu 1
@@ -33,7 +35,7 @@ import {Button} from 'kpc/components/button';
             </MenuItem>
             <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
             <MenuItem key="3">
-                <i class="k-icon ion-heart"></i>menu 3
+                <Icon class="k-icon ion-heart" />menu 3
                 <Menu>
                     <MenuItem key="3-1">sub menu 1</MenuItem>
                     <MenuItem key="3-2">sub menu 2</MenuItem>
@@ -45,8 +47,8 @@ import {Button} from 'kpc/components/button';
         </Menu>
     </Aside>
     <Layout>
-        <Header fixed>
-            <Button type="none" size="large" style="height: 64px" ev-click={{ self._toggle }}>
+        <Header fixed theme="white">
+            <Button type="none" size="large" style="height: 64px" ev-click={this.toggle}>
                 <Icon class="ion-navicon" size="30"/>
             </Button>
         </Header>
@@ -55,7 +57,7 @@ import {Button} from 'kpc/components/button';
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div v-for={{ self.get('data') }}>content</div>
+            <div v-for={this.get('data')}>content</div>
         </Body>
     </Layout>
 </Layout>
@@ -72,52 +74,37 @@ import {Button} from 'kpc/components/button';
     transition all .25s ease-in-out
 .k-breadcrumb
     margin 20px 0
-.k-aside.k-collapsed
+.k-layout-aside.k-collapsed
     .logo
         margin 17px 5px
 ```
 
-```js
-export default class Demo extends Intact {
-    @Intact.template()
+```ts
+import {bind} from 'kpc';
+
+interface Props {
+    expandedKeys?: string[]
+    selectedKey?: string
+    collapse: boolean
+    data: any[]
+}
+
+export default class Demo extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
             collapse: false,
-            data: Array.apply(null, {length: 100}),
+            data: Array.apply(null, {length: 100} as unknown[]),
         };
     }
 
-    _toggle() {
+    @bind
+    toggle() {
         this.set('collapse', !this.get('collapse'));
     }
-}
-```
-
-```vue-data
-data() {
-    return {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        collapse: false,
-        data: Array.apply(null, {length: 100}),
-    };
-},
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    this.state = {
-        expandedKeys: [],
-        selectedKey: '3-1',
-        collapse: false,
-        data: Array.apply(null, {length: 100}),
-    };
-    this._toggle = this._toggle.bind(this);
 }
 ```
 

@@ -1,0 +1,20 @@
+import {Select, Option} from '../select';
+import {Icon} from '../icon';
+import {_$} from '../../i18n';
+
+const {className, value, placeholder, ...rest} = this.get();
+const options = this.step.options.value;
+
+<Select
+    v-model="value"
+    {...rest}
+    placeholder={placeholder || _$('请选择时间')}
+    filterable
+    class={className}
+>
+    <Option v-for={options} value={$value.value}>{$value.label}</Option>
+    <b:suffix>
+        <Icon class="k-icon-time" />
+    </b:suffix>
+</Select>
+

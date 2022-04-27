@@ -7,11 +7,11 @@ order: 1
 可以单独禁用该项
 
 ```vdt
-import Cascader from 'kpc/components/cascader';
+import {Cascader} from 'kpc';
 
 <div>
-    <Cascader data={{ self.get('data') }} disabled/>
-    <Cascader data={{ self.get('data') }} />
+    <Cascader data={this.get('data')} disabled/>
+    <Cascader data={this.get('data')} />
 </div>
 ```
 
@@ -20,12 +20,11 @@ import Cascader from 'kpc/components/cascader';
     margin-right 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {

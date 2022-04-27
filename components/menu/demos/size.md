@@ -6,26 +6,42 @@ order: 4
 通过`size`属性，可以定义菜单的尺寸：`large` `default` `small`
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import {Switch} from 'kpc/components/switch';
-import {ButtonGroup, Button} from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem, Switch, ButtonGroup, Button, Icon} from 'kpc';
 
 <div>
-    <Switch on="收起" off="展开" v-model="isCollapse" width="60" />
-    <Switch on="light" off="dark" v-model="theme" width="60" trueValue="light" falseValue="dark"  />
-    <Switch on="horizontal" off="vertical" v-model="type" width="100" trueValue="horizontal" falseValue="vertical" />
-    <ButtonGroup checkType="radio" v-model="size">
+    <Switch v-model="collapse"
+        on="收起"
+        off="展开" 
+        width="60"
+        trueValue={true}
+        falseValue={false}
+    />
+    <ButtonGroup checkType="radio"
+        v-model="theme"
+    >
+        <Button value="light">light</Button>
+        <Button value="dark">dark</Button>
+        <Button value="white">white</Button>
+    </ButtonGroup>
+    <Switch v-model="type"
+        on="horizontal" off="vertical"
+        width="100"
+        trueValue="horizontal"
+        falseValue="vertical"
+    />
+    <ButtonGroup v-model="size"
+        checkType="radio"
+    >
         <Button value="large">large</Button>
         <Button value="default">default</Button>
         <Button value="small">small</Button>
     </ButtonGroup>
     <br /><br />
     <Menu v-model:expandedKeys="expandedKeys" 
-        collapse={{ self.get('isCollapse') }}
-        theme={{ self.get('theme') }}
-        size={{ self.get('size') }}
-        type={{ self.get('type') }}
+        collapse={this.get('collapse')}
+        theme={this.get('theme')}
+        size={this.get('size')}
+        type={this.get('type')}
     >
         <b:header><Icon class="ion-star" />Header</b:header>
         <MenuItem key="1"><Icon class="ion-flag" />menu 1</MenuItem>
@@ -55,16 +71,20 @@ import Icon from 'kpc/components/icon';
     margin-right 16px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import type {MenuProps} from 'kpc';
+
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             expandedKeys: ['3'],
             size: 'large',
-        };
+            theme: 'light',
+            type: 'vertical',
+            collapse: false,
+        } as MenuProps;
     }
 }
 ```

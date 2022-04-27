@@ -14,24 +14,23 @@ order: 24
 > 如果数据中恰好存在`children`字段，但是你又不想展示树形表格，将`childrenKey`设为`false`即可
 
 ```vdt
-import {Table, TableColumn} from 'kpc/components/table';
+import {Table, TableColumn} from 'kpc';
 
-<Table data={{ self.get('data') }} rowKey={{ data => data.name }}>
+<Table data={this.get('data')} rowKey={data => data.name}>
     <TableColumn key="name" title="Name" />
     <TableColumn key="size" title="Size">
-        <b:template params="data">
-            {{ data.size }}MB
+        <b:template args="[data]">
+            {data.size}MB
         </b:template>
     </TableColumn>
 </Table>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {

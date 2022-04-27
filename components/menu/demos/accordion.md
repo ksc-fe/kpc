@@ -6,10 +6,11 @@ order: 1.1
 添加`accordion`属性，可以使菜单每次只能展开一项
 
 ```vdt
-import {Menu, MenuItem} from 'kpc/components/menu';
-import Icon from 'kpc/components/icon';
+import {Menu, MenuItem, Icon} from 'kpc';
 
-<Menu v-model:expandedKeys="expandedKeys" accordion>
+<Menu v-model:expandedKeys="expandedKeys"
+    accordion
+>
     <MenuItem key="1">
         <Icon class="ion-flag" />menu 1
         <Menu>
@@ -50,12 +51,15 @@ import Icon from 'kpc/components/icon';
 </Menu>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+interface Props {
+    expandedKeys?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             expandedKeys: ['3']
         };

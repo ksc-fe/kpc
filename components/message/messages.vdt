@@ -1,0 +1,10 @@
+import {TransitionGroup, Transition} from 'intact';
+import {makeMessagesStyles} from './styles';
+
+<div class={{"k-messages": true, [makeMessagesStyles()]: true}}>
+    <TransitionGroup>
+        <template v-for={this.messages} key={$value.key}>
+            {$value}
+        </template>
+    </TransitionGroup>
+</div>

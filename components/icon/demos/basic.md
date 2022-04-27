@@ -9,12 +9,12 @@ order: 0
 数字或这数字字符串自定义图标的大小
 
 ```vdt
-import Icon from 'kpc/components/icon';
+import {Icon} from 'kpc';
 
 <div>
-    <Icon v-for={{ ['36', 'large', 'default', 'small', 'mini'] }}
+    <Icon v-for={['36', 'large', 'default', 'small', 'mini']}
          class="ion-happy-outline" 
-         size={{ value }}
+         size={$value}
     />
 </div>
 ```

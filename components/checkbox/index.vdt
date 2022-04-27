@@ -1,20 +1,24 @@
 import {getRestProps} from '../utils';
+import makeStyles from './styles';
+import {Wave} from '../wave';
 
 const {
     className, disabled, falseValue, 
     children, value, trueValue, style,
-    ref, key, indeterminate, title, ...rest
-} = self.get();
+    indeterminate, title, ...rest
+} = this.get();
+
+const isChecked = this.isChecked();
 
 const classNameObj = {
     'k-checkbox': true,
     'k-disabled': disabled,
-    'k-checked': self.isChecked(),
-    [className]: className,
+    'k-checked': isChecked,
     'k-indeterminate': indeterminate,
+    [className]: className,
+    [makeStyles()]: true
 };
 
-// let evClick;
 const events = [
     'ev-click', 'ev-change',
     'ev-mouseenter', 'ev-mouseleave'
@@ -32,30 +36,29 @@ const events = [
     return memo;
 }, {});
 
-<label class={{ classNameObj }} style={{ style }} 
-    tabindex={{ disabled ? null : "0" }}
-    ev-keypress={{ self._onKeypress }}
-    {{ ...events }}
-    title={{ title }}
-    ev-click={{ self._fixClick }}
+<label 
+    class={classNameObj}
+    style={style} 
+    tabindex={disabled ? null : "0"}
+    title={title}
+    ev-click={this.onClick}
+    ev-keypress={this.onKeypress}
+    {...events}
 >
-    <span class="k-wrapper">
-        <input type="checkbox" disabled={{ disabled }}
-            checked={{ _detectCheckboxChecked(self, 'value', trueValue) }}
-			value={{ trueValue }}
-            v-model-true={{ trueValue }}
-            v-model-false={{ falseValue }}
-            tabindex="-1"
-            {{ ...getRestProps(self, rest) }}
-            ev-click={{ 
-                // (e) => {
-                    // _setCheckboxModel(self, 'value', trueValue, falseValue, e, $this);
-                    // evClick && evClick(e);
-                // } 
-                self._onClick
-            }}
-            ref="input"
-        />
-    </span>
-    <span class="k-text" v-if={{ children }}>{{ children }}</span>
+    <Wave disabled={disabled} inset="-2px">
+        <span class="k-checkbox-wrapper">
+            <input
+                type="checkbox" 
+                checked={isChecked}
+                value={trueValue}
+                v-model-true={trueValue}
+                v-model-false={falseValue}
+                disabled={disabled}
+                tabindex="-1"
+                ref={this.inputRef}
+                {...getRestProps(this, rest)}
+            />
+        </span>
+    </Wave>
+    <span class="k-checkbox-text" v-if={children}>{children}</span>
 </label>

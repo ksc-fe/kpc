@@ -1,82 +1,108 @@
-import Checkbox from '../checkbox';
+import {Transition, TransitionGroup, linkEvent} from 'intact';
+import {Checkbox} from '../checkbox';
 import {getRestProps} from '../utils';
-import {BEFORE, AFTER, INNER} from './constants';
+import {makeStyles} from './styles';
+import {Icon} from '../icon';
+import {Mode} from './useDraggable';
 
-const {checkbox, load, className, draggable, _draggingNode, selectable} = self.get();
-const {expandedKeys, selectedKeys, _node, _mode, expandAnimationCallbacks} = self;
+const {className, checkbox, showLine, selectable, draggable} = this.get();
+const expandedKeys = this.expanded.get();
+const toggleExpanded = this.expanded.toggle;
+const toggleChecked = this.checked.toggle;
+const selectedKeys = this.selected.get();
+const toggleSelected = this.selected.toggle;
+const {onDragStart, onDragOver, onDragEnd, draggingKey, overKey, mode} = this.draggable;
+const treeNodes = (nodes) => {
+    return nodes.map((node, index) => {
+        if (!node.filter) return; 
 
-const useMoveAnimation = !!_draggingNode;
-
-const TreeNodes = ({data}) => {
-    return __u.map(data, value => {
-        if (!value.filter) return;
-
-        const key = value.key;
+        const key = node.key;
         const expanded = expandedKeys.has(key);
+        const data = node.data;
+        const disabled = data.disabled;
         const selected = selectable && selectedKeys.has(key);
-        const disabled = value.data.disabled;
+        const classNameObj = {
+            'k-tree-node': true,
+            'k-expanded': expanded,
+            'k-disabled': disabled,
+            'k-selected': selected,
+            'k-dragging': key === draggingKey.value,
+        };
+        const labelClassNameObj = {
+            'k-tree-label': true,
+            'k-tree-leaf': !node.children,
+        };
+        if (key === overKey.value) {
+            switch (mode.value) {
+                case Mode.Before:
+                    labelClassNameObj['k-before'] = true;
+                    break;
+                case Mode.After:
+                    labelClassNameObj['k-after'] = true;
+                    break;
+                case Mode.Inner:
+                    labelClassNameObj['k-inner'] = true;
+                    break;
+            }
+        }
 
-        return <Animate
-            a:move={{ false }}
-            {{ ...expandAnimationCallbacks }}
-            class={{ {
-                "k-node": true,
-                "k-expanded": expanded, 
-                "k-disabled": disabled,
-                "k-selected": selected,
-                "k-dragging": _draggingNode && _draggingNode.key === key,
-            } }}
-            key={{ key }}
-        >
-            <div
-                class={{ {
-                    "k-label": true, 
-                    "k-leaf": !value.children,
-                    "k-insert-before": _node && _node.key === key && _mode === BEFORE,
-                    "k-insert-after": _node && _node.key === key && _mode === AFTER,
-                    "k-insert-inner": _node && _node.key === key && _mode === INNER,
-                } }}
-                ev-mousedown={{ self._onMouseDown.bind(self, value) }}
-                ev-dragover={{ self._onDragOver.bind(self, value) }}
+        return (
+            <div key={key} class={classNameObj}
+                draggable={draggable ? true : null}
+                ev-dragstart={draggable && linkEvent(node, onDragStart)}
+                ev-dragover={draggable && linkEvent(node, onDragOver)}
+                ev-dragend={draggable && onDragEnd}
             >
-                <i class="k-icon ion-android-arrow-dropdown"
-                    ev-click={{ self._toggleExpand.bind(self, value, expanded) }}
-                    v-if={{ value.children && value.loaded !== false }}
-                ></i>
-                <i class="k-icon ion-load-c icon-loading" v-if={{ value.loaded === false }}></i>
-                <Checkbox v-if={{ checkbox }} 
-                    disabled={{ value.data.disabled }}
-                    ev-click={{ self._toggleCheck.bind(self, value) }}
-                    value={{ value.checked }}
-                    indeterminate={{ value.indeterminate }}
-                />
-                <b:label args={{ [value.data, value] }}>
-                    <span class="k-text" 
-                        ev-click={{ self._onClick.bind(self, value) }}
-                        ev-contextmenu={{ self._onRightClick.bind(self, value) }}
-                    >{{ value.data.label }}</span>
-                </b:label>
+                <div class={labelClassNameObj}>
+                    <Icon class="k-tree-icon ion-android-arrow-dropdown" 
+                        v-if={node.children && node.loaded !== false}
+                        hoverable
+                        ev-click={(e) => {
+                            // it may be in dropdownMenu, e.g. TreeSelect
+                            e._ignore = true;
+                            toggleExpanded(node);
+                        }}
+                    />
+                    <Icon class="k-tree-icon ion-load-c" rotate
+                        v-if={node.loaded === false}
+                    />
+                    <Checkbox v-if={checkbox} 
+                        value={node.checked}
+                        disabled={disabled}
+                        indeterminate={node.indeterminate}
+                        ev-$change:value={() => toggleChecked(node)}
+                        class="k-tree-checkbox"
+                    />
+                    <div class="k-tree-text c-ellipsis"
+                        ev-click={linkEvent(node, this.onClick)}
+                    >
+                        <b:label params={[data, node, index]}>
+                            {data.label}
+                        </b:label>
+                    </div>
+                </div>
+                <Transition {...this.transition}>
+                    <div class="k-tree" v-if={expanded && node.children}>
+                        <TransitionGroup {...this.transition}>
+                            {treeNodes(node.children)}
+                        </TransitionGroup>
+                    </div>
+                </Transition>
             </div>
-            <Animate 
-                a:move={{ useMoveAnimation }}
-                {{ ...expandAnimationCallbacks }}
-                v-if={{ expanded }}
-                class="k-tree"
-                key="tree"
-            > 
-                <TreeNodes data={{ value.children }} />
-            </Animate>
-        </Animate>
+        );
     });
 };
 
-<Animate class={{ {"k-tree": true, [className]: className} }}
-    {{ ...getRestProps(self) }}
-    draggable={{ draggable ? "true" : undefined }}
-    a:disabled={{ true }}
-    ev-dragstart={{ draggable && self._onDragStart }}
-    ev-dragend={{ draggable && self._onDragEnd }}
-    a:move={{ useMoveAnimation }}
->
-    <TreeNodes data={{ self.root.children }} />
-</Animate>
+const classNameObj = {
+    'k-tree': true,
+    'k-line': showLine,
+    'k-selectable': selectable,
+    [className]: className,
+    [makeStyles()]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <TransitionGroup {...this.transition}>
+        {treeNodes(this.nodes.getNodes())}
+    </TransitionGroup>
+</div>

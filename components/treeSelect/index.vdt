@@ -1,41 +1,44 @@
-import Tree from '../tree';
 import {DropdownMenu} from '../dropdown';
+import {Tree} from '../tree';
+import {makeStyles} from './styles';
 
 const {
-    data, value, multiple, checkbox,
-    _treeCheckedKeys, load, filterable,
-    defaultExpandAll, uncorrelated,
-} = self.get();
+    data, uncorrelated, load, showLine,
+    defaultExpandAll, checkbox, multiple,
+    filterable,
+} = this.get();
 
-self._initLabels();
-const {label, labels} = self;
+const {
+    selectedKeys, checkedKeys, treeRef, 
+    onChangeCheckedKeys, onChangeSelectedKeys,
+} = this.value;
 
-const Menu = (
-    <DropdownMenu
-        ref="menu"
-        class={{ {
-            'k-select-dropdown': true,
-            'k-tree-select-dropdown': true,
-        } }}
-        ev-$changed:value={{ self._position }}
-        ev-$change:value={{ self._onChangeShow }}
-    >
-        <Tree data={{ data }}
-            defaultExpandAll={{ defaultExpandAll }}
-            uncorrelated={{ uncorrelated }}
-            v-model:selectedKeys="_selectedKeys"
-            checkedKeys={{ _treeCheckedKeys }}
-            ev-$changed:checkedKeys={{ self._onCheckedKeysChange }}
-            ev-click:node={{ self._select }}
-            multiple={{ multiple }}
-            checkbox={{ checkbox }}
-            selectable={{ !checkbox }}
-            ev-transitionEnd={{ self._refreshPosition }}
-            ref="tree"
-            load={{ load }}
-            filter={{ filterable ? self._filter : undefined }}
-        />
-    </DropdownMenu>
-) 
+<t:super>
+    <b:base-menu>
+        <DropdownMenu class={{
+            'k-tree-select-menu': true,
+            [makeStyles()]: true,
+        }}>
+            <Tree 
+                ref={treeRef}
+                data={data}
 
-<t:parent Menu={{ Menu }} labelObj={{ {label, labels} }} />
+                selectedKeys={selectedKeys.value}
+                ev-$change:selectedKeys={onChangeSelectedKeys}
+
+                checkedKeys={checkedKeys.value}
+                ev-$change:checkedKeys={onChangeCheckedKeys}
+
+                defaultExpandAll={defaultExpandAll}
+                uncorrelated={uncorrelated}
+                checkbox={checkbox}
+                multiple={multiple}
+                selectable={!checkbox}
+                load={load}
+                filter={filterable ? this.filter : null}
+
+                ev-transitionEnd={this.position}
+            /> 
+        </DropdownMenu>
+    </b:base-menu>
+</t:super>

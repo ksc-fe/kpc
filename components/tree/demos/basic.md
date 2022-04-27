@@ -15,51 +15,62 @@ order: 0
 你可以通过`expandedKeys`指定哪些节点展开，当你展开子节点时，需要指定父节点也展开
 
 ```vdt
-import Tree from 'kpc/components/tree';
+import {Tree} from 'kpc';
 
 <Tree
-    data={{ [
-        {
-            label: 'First floor-1',
-            children: [
+    data={this.get('data')}
+    expandedKeys={['2', '2-1']} 
+/>
+```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            data: [
                 {
-                    label: 'Second floor-1.1',
+                    label: 'First floor-1',
                     children: [
                         {
-                            label: 'Third floor-1.1.1'
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            label: 'First floor-2',
-            key: '2',
-            children: [
-                {
-                    label: 'Second floor-2.1',
-                    children: [
-                        {
-                            label: 'Third floor-2.1.1',
-                            key: '2-1' 
-                        },
-                        {
-                            label: 'Third floor-2.1.2'
+                            label: 'Second floor-1.1',
+                            children: [
+                                {
+                                    label: 'Third floor-1.1.1'
+                                }
+                            ]
                         }
                     ]
                 },
                 {
-                    label: 'Second floor-2.2',
-                    disabled: true,
+                    label: 'First floor-2',
+                    key: '2',
                     children: [
                         {
-                            label: 'Third floor-2.2.1'
+                            label: 'Second floor-2.1',
+                            children: [
+                                {
+                                    label: 'Third floor-2.1.1',
+                                    key: '2-1' 
+                                },
+                                {
+                                    label: 'Third floor-2.1.2'
+                                }
+                            ]
+                        },
+                        {
+                            label: 'Second floor-2.2',
+                            disabled: true,
+                            children: [
+                                {
+                                    label: 'Third floor-2.2.1'
+                                }
+                            ]
                         }
                     ]
                 }
             ]
         }
-    ] }}
-    expandedKeys={{ ['2', '2-1'] }} 
-/>
+    }
+}
 ```

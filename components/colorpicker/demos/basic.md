@@ -6,22 +6,21 @@ order: 0
 组件接收任意合法的颜色字符串当做`value`值
 
 ```vdt
-import Colorpicker from 'kpc/components/colorpicker';
+import {Colorpicker} from 'kpc';
 
 <div>
     <Colorpicker v-model="color" />
-    <span style={{ {color: self.get('color'), marginLeft: '10px', verticalAlign: 'middle'} }}>
+    <span style={{color: this.get('color'), marginLeft: '10px', verticalAlign: 'middle'}}>
         Hello, Colorpicker!
     </span>
 </div>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             color: '#d99123'
         }

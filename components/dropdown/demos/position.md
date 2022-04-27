@@ -3,15 +3,14 @@ title: 菜单位置
 order: 2
 ---
 
-通过`position`属性，可以定义菜单相对触发器的位置。位置对象中`my`指菜单，`at`指触发器
+通过`position`属性，可以定义菜单相对触发器的位置。位置对象中`my`指菜单，`at`指触发器。
+通过`"top" | "bottom" | "left" | "right" `可以快速定位上下左右四个方向
 
 ```vdt
-import {Dropdown, DropdownMenu, DropdownItem} from 'kpc/components/dropdown';
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 
 <div>
-    <Dropdown position={{ {my: 'left top', at: 'left bottom+5'} }}>
+    <Dropdown position={{my: 'left top', at: 'left bottom+5'}}>
         <Button type="primary">
             left <Icon class="ion-ios-arrow-down" />
         </Button>
@@ -22,7 +21,7 @@ import Icon from 'kpc/components/icon';
         </DropdownMenu>
     </Dropdown>
 
-    <Dropdown position={{ {my: 'right top', at: 'right bottom+5'} }}>
+    <Dropdown position={{my: 'right top', at: 'right bottom+5'}}>
         <Button type="primary">
             right <Icon class="ion-ios-arrow-down" />
         </Button>
@@ -33,7 +32,7 @@ import Icon from 'kpc/components/icon';
         </DropdownMenu>
     </Dropdown>
 
-    <Dropdown position={{ {my: 'center bottom-5', at: 'center top'} }}>
+    <Dropdown position="top">
         <Button type="primary">
             top center <Icon class="ion-ios-arrow-down" />
         </Button>
@@ -54,5 +53,5 @@ import Icon from 'kpc/components/icon';
     transition transform .25s ease-in-out
 .k-dropdown-open
     .k-icon
-        transform rotate(180deg)
+        transform rotateX(180deg)
 ```

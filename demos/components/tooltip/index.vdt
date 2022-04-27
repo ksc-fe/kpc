@@ -1,0 +1,12 @@
+import {Tooltip} from 'kpc/components/tooltip';
+
+/* <Tooltip content="hello"> */
+    /* hover the text */
+/* </Tooltip> */
+<div style={{position: 'relative'}}>
+    <Tooltip content="hello xxxx" always value={true} canHover 
+        container={dom => dom.parentElement}
+    >
+        always show this tootip 
+    </Tooltip>
+</div>

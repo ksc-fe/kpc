@@ -7,7 +7,7 @@ order: 5
 其中`no-border-card`适用于具有背景色的场景
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs type="card" v-model="tab">
@@ -36,12 +36,11 @@ import {Tabs, Tab} from 'kpc/components/tabs';
     background #f1f1f5
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             tab: 'rulein'
         };

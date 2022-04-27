@@ -6,7 +6,7 @@ order: 2
 给`Col`添加`offset`属性可以使列相对本来的位置向右偏移相应的列数
 
 ```vdt
-import {Row, Col} from 'kpc/components/grid';
+import {Row, Col} from 'kpc';
 
 <div>
     <Row class="no-gutter"> 

@@ -1,115 +1,150 @@
-import {_$} from '../utils';
-import Slider from '../slider';
-import Input from '../input';
 import {Row, Col} from '../grid';
-import Drag from './drag';
+import {Slider} from '../slider';
+import {Input} from '../input';
+import {makePanelStyles, makeAlphaBgColor} from './styles';
+import {linkEvent} from 'intact';
+import {Mode} from './useInput';
+import {ColorpickerDrag as Drag} from './drag';
 
-const {value, presets, _mode} = self.get();
-const {_hex: hex, _rgb: rgb, _hsv: hsv, _hsl: hsl} = self;
-const alpha = +(rgb.a * 100).toFixed(5); 
+const {value, presets} = this.get();
+const classNameObj = {
+    'k-colorpicker-panel': true,
+    [makePanelStyles()]: true,
+}
+const {
+    hex: {value: hex},
+    hsv: {value: hsv},
+    rgb: {value: rgb},
+    hsl: {value: hsl},
+    changeHue,
+    changeAlpha,
+    setValue
+} = this.value;
+const {start, areaRef} = this.pointer;
+const {
+    onInputHex, mode, changeMode, changeColor,
+    onStart, onEnd, dragging, setInputValue,
+} = this.input;
+const alpha = Math.round(rgb.a * 100);
 
-<div class="k-color-panel">
-    <div class="k-saturation"
-        ev-mousedown={{ self._onMouseDown }}
-        ref="saturation"
-        style={{ {backgroundColor: `hsl(${hsl.h}, 100%, 50%)`} }}
+<div class={classNameObj}>
+    <div class="k-colorpicker-saturation"
+        style={{backgroundColor: `hsl(${hsv.h}, 100%, 50%)`}}
+        ev-mousedown={start}
+        ref={areaRef}
     >
-        <div class="k-white"></div>
-        <div class="k-black"></div>
-        <div class="k-pointer" style={{ {
-            left: `${hsv.s * 100}%`,
-            top: `${-hsv.v * 100 + 100}%`,
-        } }}>
-            <div class="k-circle"></div>
+        <div class="k-colorpicker-white"></div>
+        <div class="k-colorpicker-black"></div>
+        <div class="k-colorpicker-pointer"
+            style={{
+                left: `${hsv.s * 100}%`,
+                top: `${-hsv.v * 100 + 100}%`,
+            }}
+        >
+            <div class="k-colorpicker-circle"></div>
         </div>
     </div>
-    <div class="k-controls">
-        <div class="k-sliders">
-            <Slider class="k-hue" 
-                isShowInput={{ false }} 
-                isShowEnd={{ false }} 
-                value={{ hsl.h }}
-                ev-$change:value={{ self._onChangeHue }}
-                step={{ 0 }}
-                max={{ 360 }}
-                ref="hueSlider"
+    <div class="k-colorpicker-controls">
+        <div class="k-colorpicker-sliders">
+            <Slider class="k-colorpicker-hue"
+                showInput={false}
+                showEnd={false}
+                step={0}
+                max={360}
+                value={hsv.h}
+                ev-$change:value={changeHue}
+                animate={!dragging.value}
             />
-            <Slider class="k-alpha" 
-                isShowInput={{ false }}
-                isShowEnd={{ false }} 
-                value={{ rgb.a }}
-                ev-$change:value={{ self._onChangeAlpha }}
-                step={{ 0 }}
-                max={{ 1 }}
-                ref="alphaSlider"
+            <Slider 
+                class={{
+                    "k-colorpicker-alpha k-colorpicker-alpha-bg": true,
+                    [makeAlphaBgColor(rgb)]: true,
+                }}
+                showInput={false}
+                showEnd={false}
+                step={0}
+                max={1}
+                value={rgb.a}
+                ev-$change:value={changeAlpha}
+                animate={!dragging.value}
             />
         </div>
-        <div class="k-color-wrapper k-alpha-bg">
-            <div class="k-color" style={{ {backgroundColor: value} }}></div>
+        <div class="k-colorpicker-color-wrapper k-colorpicker-alpha-bg">
+            <div class="k-colorpicker-color" style={{backgroundColor: value}}></div>
         </div>
     </div>
     <Row gutter="6">
         <Col span="8">
-            <Input fluid size="small" value={{ hex }}
-                ev-input={{ self._onInputHex }}
-                ev-change={{ self._forceUpdate }}
+            <Input fluid size="small"
                 frozenOnInput
+                class="k-colorpicker-input" 
+                value={hex}
+                ev-input={onInputHex}
             />
-            <div class="k-text">Hex</div>
+            <div class="k-colorpicker-text">Hex</div>
         </Col>
-        {{ (() => {
+        {(() => {
             let params;
             let color;
             let method;
             let max;
-            if (_mode === 'rgb') {
+            if (mode.value === Mode.RGB) {
                 params = ['r', 'g', 'b'];
                 color = rgb;
-                method = self._changeRgb;
+                method = this._changeRgb;
                 max = 255;
             } else {
-                params = ['h', 's', 'v'];
-                color = {h: hsv.h, s: hsv.s * 100, v: hsv.v * 100};
-                method = self._changeHsv;
+                params = ['h', 's', 'l'];
+                color = {h: hsl.h, s: hsl.s * 100, l: hsl.l * 100};
+                method = this._changeHsv;
                 max = 100;
             }
             return params.map(value => {
                 const v = Math.round(color[value]);
+                const realMax = value === 'h' ? 359 : max;
                 return (
                     <Col span="4">
-                        <Input fluid size="small" value={{ v }} 
-                            ev-input={{ method.bind(self, value) }} 
-                            ev-change={{ self._forceUpdate }}
+                        <Input fluid size="small"
+                            value={v} 
+                            class="k-colorpicker-input" 
+                            ev-input={setInputValue.bind(null, value, realMax)}
                         />
-                        <Drag class="k-text" max={{ value === 'h' ? 359 : max }} value={{ v }}
-                            ev-dragStart={{ self._onDragStart }}
-                            ev-$change:value={{ (c, v) => {
-                                self._setValue(value, _mode !== 'rgb' && value !== 'h' ? v / 100 : v);
-                            } }}
-                            ev-dragEnd={{ self._onDragEnd }}
-                            ev-click={{ self._changeMode }}
-                        >{{ value.toUpperCase() }}</Drag>
+                        <Drag value={v}
+                            max={realMax}
+                            ev-$change:value={changeColor.bind(null, value)}
+                            ev-click={changeMode}
+                            onStart={onStart}
+                            onEnd={onEnd}
+                        >
+                            {value.toUpperCase()}
+                            {value === 's' || value === 'l' ? '%' : null}
+                        </Drag>
                     </Col>
                 ); 
             });
-        })() }}
+        })()}
         <Col span="4">
-            <Input fluid size="small" value={{ alpha }} 
-                ev-input={{ self._changeAlpha }} 
-                ev-change={{ self._forceUpdate }}
+            <Input fluid size="small"
+                value={alpha} 
+                class="k-colorpicker-input" 
+                ev-input={setInputValue.bind(null, 'a', 100)}
             />
-            <Drag class="k-text" max={{ 100 }} value={{ alpha }}
-                ev-dragStart={{ self._onDragStart }}
-                ev-$change:value={{ (c, v) => self._setValue('a', v / 100) }}
-                ev-dragEnd={{ self._onDragEnd }}
+            <Drag value={alpha}
+                max={100}
+                ev-$change:value={changeColor.bind(null, 'a')}
+                onStart={onStart}
+                onEnd={onEnd}
             >A</Drag>
         </Col>
     </Row>
-    <div class="k-presets" v-if={{ presets && presets.length }}>
-        <div class="k-color k-alpha-bg" v-for={{ presets }} 
-            ev-click={{ self.set.bind(self, 'value', value) }}
+    <div class="k-colorpicker-presets" v-if={presets && presets.length}>
+        <div class="k-colorpicker-preset-color-wrapper k-colorpicker-alpha-bg"
+            v-for={presets}
+            ev-click={linkEvent($value, setValue)}
         >
-            <div style={{ {backgroundColor: value} }} class="k-color-item"></div>
+            <div style={{backgroundColor: $value}} 
+                class="k-colorpicker-preset-color"
+            ></div>
         </div>
     </div>
 </div>

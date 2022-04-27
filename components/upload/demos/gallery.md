@@ -8,26 +8,25 @@ order: 2
 [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)
 
 ```vdt
-import Upload from 'kpc/components/upload';
+import {Upload} from 'kpc';
 
 <Upload multiple
-    action="//jsonplaceholder.typicode.com/posts/"
+    action="//fakestoreapi.com/products"
     type="gallery"
-    limit={{ 3 }}
+    limit={3}
     accept=".jpg, .png"
-    ev-error={{ self._onError }}
+    ev-error={this._onError}
 />
 ```
 
-```js
-import Dialog from 'kpc/components/dialog';
-import Message from 'kpc/components/message';
+```ts
+import {Dialog, Message, bind, RequestError} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
-    _onError(err) {
+    @bind
+    _onError(err: Error | RequestError) {
         Message.error(err.message);
     }
 }

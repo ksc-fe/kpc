@@ -1,0 +1,8 @@
+import {Form, FormItem} from 'kpc/components/form';
+import {Input} from 'kpc/components/input';
+
+<Form>
+    <FormItem label="Input" value={this.get('model.input')} rules={{required: true}}>
+        <Input v-model="model.input" />
+    </FormItem>
+</Form>

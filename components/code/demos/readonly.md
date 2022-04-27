@@ -3,23 +3,21 @@ title: 只读
 order: 1
 ---
 
-添加`readonly`属性，置为只读状态
+添加`readOnly`属性，置为只读状态
 
 ```vdt
-import Code from 'kpc/components/code';
+import {Code} from 'kpc/components/code';
 
-<Code v-model="value" height="200px" readonly />
+<Code v-model="value" height="200px" readOnly />
 ```
 
-```js
+```ts
 const code = `function test() {
     console.log('hello world');
 }`;
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
-
-    defaults() {
+    static defaults() {
         return {
             value: code
         }

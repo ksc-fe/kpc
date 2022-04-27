@@ -16,38 +16,27 @@ order: 1
 > 参数传给验证方法。当然我们还可以指定任意值，只要不是`false`就行，因为`false`代表不验证
 
 ```vdt
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
-import {Button} from 'kpc/components/button';
+import {Form, FormItem, Input, Button} from 'kpc';
 
 <Form>
     <FormItem label="描述">
-        <FormItem v-for={{ self.get('descriptions') }}
-            model={{ `descriptions[${key}]` }}
+        <FormItem v-for={this.get('descriptions')}
+            value={$value}
             hideLabel
-            rules={{ {
+            rules={{
                 required: true, 
                 // 自定义全局规则
                 letter: true,
-                // 自定义局部规则，所有描述必须不重复
-                unique: (value) => {
-                    let count = 0;
-                    self.get('descriptions').find(item => {
-                        if (item === value) count++;
-                        return count > 1;
-                    });
-
-                    // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
-                    return count === 1 || '不能相同';
-                }
-            } }}
+                // 自定义局部规则: 所有描述必须不重复
+                unique: this.unique 
+            }}
         >
-            <Input v-model={{ `descriptions[${key}]` }} />    
+            <Input v-model={`descriptions[${$key}]`} />    
             <b:append>
-                <Button ev-click={{ self.remove.bind(self, key) }}>删除</Button>
+                <Button ev-click={this.remove.bind(self, $key)}>删除</Button>
             </b:append>
         </FormItem>
-        <Button ev-click={{ self.add }}>添加</Button>
+        <Button ev-click={this.add}>添加</Button>
     </FormItem>
 </Form>
 ```
@@ -66,117 +55,42 @@ import {Button} from 'kpc/components/button';
             width auto
 ```
 
-```js
-import {Form} from 'kpc/components/form';
+```ts
+import {Form, bind} from 'kpc';
+
+interface Props {
+    descriptions: string[]
+}
 
 // 添加全局规则
-Form.addMethod('letter', (value, item, param) => {
+Form.addMethod('letter', (value, param) => {
     return /^[a-z|A-Z]+$/.test(value);
 }, '只能输入字母');
 
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component<Props> {
     static template = template;
-
-    defaults() {
+    static defaults() {
         return {
             descriptions: ['', '']
         }
-    }
+    };
 
+    @bind
     add() {
         this.set('descriptions', this.get('descriptions').concat(''));
     }
 
-    remove(index) {
+    @bind
+    remove(index: number) {
         const descriptions = this.get('descriptions').slice(0);
         descriptions.splice(index, 1);
         this.set('descriptions', descriptions);
     }
-}
-```
 
-```vue-methods
-add() {
-    this.descriptions.push('');
-}
-remove(index) {
-    this.descriptions.splice(index, 1);
-}
-```
-
-```react-methods
-// 注入_context上下文
-static childContextTypes = {
-    _context: () => {}
-}
-
-getChildContext() {
-    return {
-        _context: this
-    }
-}
-
-add() {
-    this.setState({descriptions: this.state.descriptions.concat('')});
-}
-```
-
-```ts
-import {Component} from '@angular/core';
-import {Form} from 'kpc/components/form';
-
-// 添加全局规则
-Form.addMethod('letter', (value, item, param) => {
-    return /^[a-z|A-Z]+$/.test(value);
-}, '只能输入字母');
-
-@Component({
-    selector: 'app-demo',
-    template: `
-        <k-form>
-            <k-form-item label="标签">
-                <k-form-item
-                    *ngFor="let value of descriptions; let i = index; trackBy: trackArray"
-                    model="descriptions[{{ i }}]"
-                    [hideLabel]="true"
-                    [rules]="{
-                        required: true, 
-                        letter: true,
-                        unique: unique
-                    }"
-                    [force]="true"
-                >
-                    <k-input [(value)]="descriptions[i]"></k-input>    
-                    <ng-template #append>
-                        <k-button (click)="remove(i)">删除</k-button>
-                    </ng-template>
-                </k-form-item>
-                <k-button (click)="add()">添加</k-button>
-            </k-form-item>
-        </k-form>
-    `,
-    styleUrls: ['./index.styl'],
-})
-export class AppDemoComponent {
-    private descriptions = ["", ""];
-
-    add() {
-        this.descriptions = this.descriptions.concat('');
-    }
-    
-    remove(index) {
-        this.descriptions.splice(index, 1);
-    }
-
-    trackArray(index) {
-        return index;
-    }
-
-    // 局部验证规则
-    unique = (value) => {
+    @bind
+    unique(value: string) {
         let count = 0;
-        this.descriptions.find(item => {
+        this.get('descriptions').find(item => {
             if (item === value) count++;
             return count > 1;
         });
@@ -185,4 +99,144 @@ export class AppDemoComponent {
         return count === 1 || '不能相同';
     }
 }
+```
+
+```vue-template
+<Form>
+    <FormItem label="描述">
+        <FormItem v-for="($value, $key) in descriptions"
+            :model="`descriptions[${$key}]`"
+            hideLabel
+            :rules="{
+                required: true, 
+                // 自定义全局规则
+                letter: true,
+                // 自定义局部规则，所有描述必须不重复
+                unique: unique 
+            }"
+        >
+            <Input v-model="descriptions[$key]" />    
+            <template slot="append">
+                <Button @click="remove($key)">删除</Button>
+            </template>
+        </FormItem>
+        <Button @click="add">添加</Button>
+    </FormItem>
+</Form>
+```
+
+```vue-methods
+add() {
+    this.descriptions.push('');
+}
+remove(index: number) {
+    this.descriptions.splice(index, 1);
+}
+```
+
+```react-methods
+add() {
+    this.setState({descriptions: this.state.descriptions.concat('')});
+}
+
+onInput(index: number, v?: string) {
+    const descriptions = this.state.descriptions.slice(0);
+    descriptions[index] = v!;
+    this.setState({descriptions});
+}
+
+render() {
+    return (
+        <Form>
+            <FormItem label="描述">
+                {this.state.descriptions.map(($value, $key) => {
+                    return (
+                        <FormItem
+                            slotAppend={<Button onClick={this.remove.bind(self, $key)}>删除</Button>}
+                            value={$value}
+                            hideLabel
+                            rules={{
+                                required: true, 
+                                // 自定义全局规则
+                                letter: true,
+                                // 自定义局部规则，所有描述必须不重复
+                                unique: this.unique 
+                            }}
+                        >
+                            <Input value={this.state.descriptions[$key]} 
+                                onChangeValue={this.onInput.bind(this, $key)}
+                            />    
+                        </FormItem>
+                    )
+                })}
+                <Button onClick={this.add}>添加</Button>
+            </FormItem>
+        </Form>
+    )
+}
+```
+
+```angular
+// import {Component} from '@angular/core';
+// import {Form} from 'kpc';
+// 
+// // 添加全局规则
+// Form.addMethod('letter', (value, item, param) => {
+//     return /^[a-z|A-Z]+$/.test(value);
+// }, '只能输入字母');
+// 
+// @Component({
+//     selector: 'app-demo',
+//     template: `
+//         <k-form>
+//             <k-form-item label="标签">
+//                 <k-form-item
+//                     *ngFor="let value of descriptions; let i = index; trackBy: trackArray"
+//                     [value]="value"
+//                     [hideLabel]="true"
+//                     [rules]="{
+//                         required: true, 
+//                         letter: true,
+//                         unique: unique
+//                     }"
+//                     [force]="true"
+//                 >
+//                     <k-input [(value)]="descriptions[i]"></k-input>    
+//                     <ng-template #append>
+//                         <k-button (click)="remove(i)">删除</k-button>
+//                     </ng-template>
+//                 </k-form-item>
+//                 <k-button (click)="add()">添加</k-button>
+//             </k-form-item>
+//         </k-form>
+//     `,
+//     styleUrls: ['./index.styl'],
+// })
+// export class AppDemoComponent {
+//     private descriptions = ["", ""];
+// 
+//     add() {
+//         this.descriptions = this.descriptions.concat('');
+//     }
+//     
+//     remove(index) {
+//         this.descriptions.splice(index, 1);
+//     }
+// 
+//     trackArray(index) {
+//         return index;
+//     }
+// 
+//     // 局部验证规则
+//     unique = (value) => {
+//         let count = 0;
+//         this.descriptions.find(item => {
+//             if (item === value) count++;
+//             return count > 1;
+//         });
+// 
+//         // 直接返回错误文案，或者也可以单独定义messages为{unique: '不能相同'}
+//         return count === 1 || '不能相同';
+//     }
+// }
 ```

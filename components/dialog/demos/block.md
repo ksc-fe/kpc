@@ -6,21 +6,18 @@ order: 1
 组件提供了`header`和`footer`扩展点（block），通过它们可以自定义头部和底部。有时候我们可能想
 完整去掉整个底部`footer`，这可以通过置空`footer-wrapper`这个扩展点做到。
 
-> 可以通过`parent()`引用到组件定义的默认内容
-
 > vue会忽略所有空`slot`，所以如果要重置`footer-wrapper`可以传一个空`div`代替
 
 ```vdt
-import Button from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
+import {Button, Dialog} from 'kpc';
 
 <div>
-    <Button ev-click={{ self.set.bind(self, 'show', true) }}
+    <Button ev-click={this.set.bind(this, 'show', true)}
         type="primary"
     >Show Dialog</Button>
-    <Button ev-click={{ self.set.bind(self, 'show1', true) }}
+    <Button ev-click={this.set.bind(this, 'show1', true)}
         type="primary"
-    >Show No Footer Dialog</Button>
+    >Show Dialog without Footer</Button>
     <Dialog v-model="show">
         <b:header>
             <div class="k-title">
@@ -33,7 +30,7 @@ import Dialog from 'kpc/components/dialog';
 
         <b:footer>
             Custom Footer
-            {{ parent() }}
+            {$super()}
         </b:footer>
     </Dialog>
     <Dialog v-model="show1" title="No Footer">
@@ -62,9 +59,8 @@ import Dialog from 'kpc/components/dialog';
 
         <template slot="footer">
             Custom Footer
-            <!-- vue不支持parent()引用，我们需要重新定义按钮 -->
-            <Button @click="show = false">取消</Button>
             <Button type="primary" @click="show = false">确认</Button>
+            <Button @click="show = false">取消</Button>
         </template>
     </Dialog>
     <Dialog v-model="show1" title="No Footer">
@@ -83,14 +79,16 @@ data() {
 },
 ```
 
-```jsx
+```tsx
 import React from 'react';
-import Button from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
+import {Button, Dialog} from '@king-design/react';
 import './index.styl';
 
 export default class Demo extends React.Component {
-    state = {}
+    state = {
+        show: false,
+        show1: false,
+    }
 
     render() {
         return (
@@ -102,7 +100,7 @@ export default class Demo extends React.Component {
                     type="primary"
                 >Show No Footer Dialog</Button>
                 <Dialog value={this.state.show}
-                    ev$change-value={(c, show) => this.setState({show})}
+                    onChangeValue={(show) => this.setState({show})}
                     b-header={
                         <div className="k-title">
                             <i className="ion-person"></i>
@@ -112,15 +110,15 @@ export default class Demo extends React.Component {
                     b-footer={
                         <React.Fragment>
                             Custom Footer
-                            <Button onClick={() => this.setState({show: false})}>取消</Button>
                             <Button type="primary" onClick={() => this.setState({show: false})}>确认</Button>
+                            <Button onClick={() => this.setState({show: false})}>取消</Button>
                         </React.Fragment>
                     }
                 >
                     Dialog Body 
                 </Dialog>
                 <Dialog value={this.state.show1}
-                    on$change-value={(c, show1) => this.setState({show1})}
+                    onChangeValue={(show1) => this.setState({show1})}
                     title="No Footer"
                     b-body="body"
                     b-footer-wrapper=""
@@ -129,50 +127,5 @@ export default class Demo extends React.Component {
             </div>
         )
     }
-}
-```
-
-```ts
-import {Component} from '@angular/core';
-
-@Component({
-    selector: 'app-demo',
-    template: `
-        <div>
-            <k-button (click)="set('show', true)"
-                type="primary"
-            >Show Dialog</k-button>
-            <k-button (click)="set('show1', true)"
-                type="primary"
-            >Show No Footer Dialog</k-button>
-            <k-dialog [(value)]="show">
-                <ng-template #header>
-                    <div class="k-title">
-                        <i class="ion-person"></i>
-                        Custom Header
-                    </div>
-                </ng-template>
-        
-                Dialog Body 
-        
-                <ng-template #footer>
-                    Custom Footer
-                    <k-button (click)="show = false">取消</k-button>
-                    <k-button type="primary" (click)="show = false">确认</k-button>
-                </ng-template>
-            </k-dialog>
-            <k-dialog [(value)]="show1" title="No Footer">
-                <ng-template #body>body</ng-template>
-                <ng-template #footer_wrapper></ng-template>
-            </k-dialog>
-        </div>
-    `,
-    styleUrls: ['./index.styl'],
-})
-export class AppDemoComponent {
-    private show;
-    private show1;
-
-    set(key, value) { this[key] = value; }
 }
 ```

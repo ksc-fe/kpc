@@ -1,14 +1,19 @@
 import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {Wave} from '../wave';
+
 const {
     className, disabled, trueValue, style,
     children, value, ref, key, title, ...rest
-} = self.get();
+} = this.get();
+const isChecked = value === trueValue;
 
 const classNameObj = {
     'k-radio': true,
     'k-disabled': disabled,
-    'k-checked': self.isChecked(),
+    'k-checked': isChecked,
     [className]: className,
+    [makeStyles()]: true,
 };
 
 // let evClick;
@@ -29,28 +34,27 @@ const events = [
     return memo;
 }, {});
 
-<label class={{ classNameObj }} style={{ style }}
-    tabindex={{ disabled ? "-1" : "0" }}
-    ev-keypress={{ self._onKeypress }}
-    {{ ...events }}
-    title={{ title }}
-    ev-click={{ self._fixClick }}
+<label {...events}
+    class={classNameObj}
+    style={style}
+    title={title}
+    tabindex={disabled ? "-1" : "0"}
+    ev-keypress={this.onKeypress}
+    ev-click={this.fixClick}
 >
-    <span class="k-wrapper">
-        <input type="radio" disabled={{ disabled }}
-            value={{ trueValue }}
-            tabindex="-1"
-            {{ ...getRestProps(self, rest) }}
-            ref="input"
-            checked={{ value === trueValue }}
-            ev-click={{ 
-                // (e) => {
-                    // _setCheckboxModel(self, 'value', trueValue, false, e, $this);
-                    // evClick && evClick(e);
-                // } 
-                self._onClick
-            }}
-        />
-    </span>
-    <span class="k-text" v-if={{ children }}>{{ children }}</span>
+    <Wave disabled={disabled} inset="-2px">
+        <span class="k-radio-wrapper">
+            <input
+                { ...getRestProps(this, rest) }
+                type="radio"
+                disabled={disabled}
+                value={trueValue}
+                tabindex="-1"
+                ref={this.elementRef}
+                checked={isChecked}
+                ev-click={this.onClick}
+            />
+        </span>
+    </Wave>
+    <span class="k-radio-text" v-if={children}>{children}</span>
 </label>

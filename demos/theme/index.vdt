@@ -1,0 +1,45 @@
+import {Button} from 'kpc/components/Button';
+import {Table, TableColumn} from 'kpc/components/table';
+import {Switch} from 'kpc/components/switch';
+import {makeStyles} from './styles';
+
+const Async = this.get('Async');
+
+<div class={makeStyles()}>
+    <div class="card">
+        <Switch ev-$change:value={this.changeTheme} />
+    </div>
+    <div class="card">
+        <Button>default</Button>
+        <Button type="primary">primary</Button>
+        <Button type="secondary">secondary</Button>
+        <Button type="warning">warning</Button>
+        <Button type="danger">danger</Button>
+        <Button type="success">success</Button>
+        <Button type="none">none</Button>
+        <Button type="link">link</Button>
+    </div>
+    <div class="card">
+        <Button ev-click={this.addAsyncComponent}>Async</Button>
+        <Async v-if={Async} />
+    </div>
+    <div class="card">
+        <Table data={[1, 2, 3]} checkedKeys={[0, 1]} showIndeterminate>
+            <TableColumn title="Title 1" key="title1">
+                <b:template args="[data]">
+                    Row {data}
+                </b:template>
+            </TableColumn>
+            <TableColumn title="Title 2" key="title2">
+                <b:template args="[data]">
+                    Row {data}
+                </b:template>
+            </TableColumn>
+            <TableColumn title="Title 3" key="title3">
+                <b:template args="[data]">
+                    Row {data}
+                </b:template>
+            </TableColumn>
+        </Table>
+    </div>
+</div>

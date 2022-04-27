@@ -8,32 +8,41 @@ order: 7
 `cancel`属性为同一函数
 
 ```vdt
-import Button from 'kpc/components/button';
-import Dialog from 'kpc/components/dialog';
+import {Dialog, Button} from 'kpc';
 
 <div>
-    <Button ev-click={{ self.onClick }} type="primary">Show Dialog</Button>
+    <Button ev-click={this.onClick} type="primary">Show Dialog</Button>
     <Dialog v-model="show" title="Dialog Title" ref="__demo"
-        terminate={{ self._terminate }}
-        cancel={{ self._terminate }}
+        terminate={this.terminate}
+        cancel={this.terminate}
     >
         Dialog Body 
     </Dialog>
 </div>
 ```
 
-```js
-import Dialog from 'kpc/components/dialog';
+```ts
+import {Dialog, bind} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    show?: boolean
+}
+
+export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            show: false
+        }
+    }
 
+    @bind
     onClick() {
         this.set('show', true);
     }
 
-    _terminate() {
+    @bind
+    terminate() {
         Dialog.confirm({
             content: 'Are you sure you want to close the dialog?'
         }).then(() => {

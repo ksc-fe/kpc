@@ -1,24 +1,26 @@
 import {getRestProps} from '../utils';
+import {makeItemStyles} from './styles';
 
-const {className, children, type, size} = self.get();
+const {className, children, type, size} = this.get();
 
 const classNameObj = {
-    'k-item': true,
+    'k-timeline-item': true,
     [className]: className,
     [`k-${type}`]: true,
     [`k-${size}`]: size !== 'default',
+    [makeItemStyles()]: true,
 };
 
-<div class={{ classNameObj }} {{ ...getRestProps(self) }}>
-    <div class="k-indicator">
-        <div class="k-dot">
+<div class={classNameObj} {...getRestProps(this)}>
+    <div class="k-timeline-indicator">
+        <div class="k-timeline-dot">
             <b:dot>
-                <div class="k-circle"></div>
+                <div class="k-timeline-circle"></div>
             </b:dot>
         </div>
-        <div class="k-line"></div>
+        <div class="k-timeline-line"></div>
     </div>
-    <div class="k-content">
-        {{ children }}
+    <div class="k-timeline-content">
+        {children}
     </div>
 </div>

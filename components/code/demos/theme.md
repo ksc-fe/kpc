@@ -8,16 +8,16 @@ order: 2
 > 切换主题会引入相应的css文件，所以它是全局生效的，并不能对单个实例引用不同主题
 
 ```vdt
-import Code from 'kpc/components/code';
-import {ButtonGroup, Button} from 'kpc/components/button';
+import {Code} from 'kpc/components/code';
+import {ButtonGroup, Button} from 'kpc';
 
 <div>
     主题：<ButtonGroup v-model="theme" checkType="radio">
-        <Button v-for={{ ['vs', 'vs-dark', 'hc-black'] }}
-            value={{ value }}
-        >{{ value }}</Button>
+        <Button v-for={['vs', 'vs-dark', 'hc-black']}
+            value={$value}
+        >{$value}</Button>
     </ButtonGroup>
-    <Code v-model="value" height="200px" theme={{ self.get('theme') }} />
+    <Code v-model="value" height="200px" theme={this.get('theme')} />
 </div>
 ```
 
@@ -26,18 +26,19 @@ import {ButtonGroup, Button} from 'kpc/components/button';
     margin-bottom 10px
 ```
 
-```js
+```ts
+import type {CodeProps} from 'kpc/components/code';
+
 const code = `function test() {
     console.log('hello world');
 }`;
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             value: code,
-            theme: 'vs'
+            theme: 'vs' as CodeProps['theme']
         }
     }
 }

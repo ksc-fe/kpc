@@ -8,7 +8,7 @@ order: 1
 > 手风琴风格的`value`依然是`Array`类型
 
 ```vdt
-import {Collapse, CollapseItem} from 'kpc/components/collapse';
+import {Collapse, CollapseItem} from 'kpc';
 
 <Collapse v-model="value" accordion>
     <CollapseItem title="设计语言">
@@ -31,12 +31,15 @@ import {Collapse, CollapseItem} from 'kpc/components/collapse';
 </Collapse>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+interface Props {
+    value?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {value: ['$0']};
     }
 }

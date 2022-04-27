@@ -7,50 +7,56 @@ order: 4
 数组的形式传给事件回调函数，如果图形添加了`data`属性，则我们可以通过图形对象获取到该数据`shape.data`
 
 ```vdt
-import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc/components/diagram';
+import {Diagram, DTreeLayout, DCircle, DLine} from 'kpc/components/diagram';
 
-const loop = (children, parent, disabled) => {
-    const ret = [];
-    for (let i = 0; i < children.length; i++) {
-        const data = children[i];
-
-        // if parent is disabled, disable all children
-        if (!disabled && data.disabled) disabled = true; 
-
-        ret.push(
-            <DCircle key={{ data.key }} 
-                label={{ data.key }} 
-                selectable={{ !disabled }}
-                data={{ data }}
-            />
-        );
-
-        // add line if it has parent
-        if (parent) {
-            ret.push(<DLine from={{ parent.key }} to={{ data.key }} type="rounded" />);
-        }
-        if (data.children) {
-            ret.push(...loop(data.children, data, disabled));
-        }
-    }
-    return ret;
-}
-
-<Diagram ev-selectionChanged={{ self._onSelect }}>
+<Diagram ev-selectionChanged={this.onSelect}>
     <DTreeLayout type="vertical">
-        {{ loop([self.get('data')]) }}
+        <DCircle v-for={this.get('nodes')}
+            key={$value.key}
+            label={$value.label}
+            selectable={$value.selectable}
+            data={$value.data}
+        />
+        <DLine v-for={this.get('lines')}
+            from={$value.from}
+            to={$value.to}
+            type="rounded"
+        />
     </DTreeLayout>
 </Diagram>
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    data: DataItem
+    nodes: Node[]
+    lines: Line[]
+}
+
+type DataItem = {
+    key: string
+    children?: DataItem[]
+    disabled?: boolean
+}
+
+type Node = {
+    key: string
+    label: string
+    selectable: boolean
+    data: DataItem
+}
+
+type Line = {
+    from: string
+    to: string
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: {
                 key: 'Database',
@@ -79,11 +85,44 @@ export default class extends Intact {
                         ]
                      },
                 ] 
-            }
-        }
+            },
+            nodes: [],
+            lines: [],
+        } as Props;
     }
 
-    _onSelect(shapes) {
+    init() {
+        const nodes: Node[] = [];
+        const lines: Line[] = [];
+        const loop = (children: DataItem[], parent?: DataItem, disabled?: boolean) => {
+            for (let i = 0; i < children.length; i++) {
+                const data = children[i];
+
+                // if parent is disabled, disable all children
+                if (!disabled && data.disabled) disabled = true; 
+
+                nodes.push({
+                    key: data.key, 
+                    label: data.key,
+                    selectable: !disabled,
+                    data: data
+                });
+
+                // add line if it has parent
+                if (parent) {
+                    lines.push({from: parent.key, to: data.key});
+                }
+                if (data.children) {
+                    loop(data.children, data, disabled);
+                }
+            }
+        };
+        loop([this.get('data')]);
+
+        this.set({nodes, lines});
+    }
+
+    onSelect(shapes: any[]) {
         if (!shapes.length) {
             Message.info('You selected nothing.');
         } else {
@@ -94,119 +133,7 @@ export default class extends Intact {
 }
 ```
 
-```vue
-<template>
-    <Diagram @selectionChanged="_onSelect">
-        <DTreeLayout type="vertical">
-            <DCircle v-for="node in nodes"
-                :key="node.key"
-                :label="node.label"
-                :selectable="node.selectable"
-                :data="node.data"
-            />
-            <DLine v-for="line in lines"
-                :from="line.from"
-                :to="line.to"
-                type="rounded"
-            />
-        </DTreeLayout>
-    </Diagram>
-</template>
-<script>
-import {Diagram, DTreeLayout, DCircle, DLine, DText} from 'kpc/components/diagram';
-import Message from 'kpc/components/message';
-
-export default {
-    components: {
-        Diagram, DTreeLayout, DCircle, DLine, DText
-    },
-    data() {
-        return {
-            "data": {
-                "key": "Database",
-                "children": [
-                    {
-                        "key": "Table1",
-                        "children": [
-                            {
-                                "key": "Column1-1"
-                            },
-                            {
-                                "key": "Column1-2"
-                            }
-                        ]
-                    },
-                    {
-                        "key": "Table2",
-                        "disabled": true,
-                        "children": [
-                            {
-                                "key": "Column2-1"
-                            },
-                            {
-                                "key": "Column2-2"
-                            }
-                        ]
-                    }
-                ]
-            },
-            nodes: [],
-            lines: [],
-        }
-    },
-
-    watch: {
-        data: {
-            immediate: true,
-            handler() {
-                const nodes = [];
-                const lines = [];
-                const loop = (children, parent, disabled) => {
-                    for (let i = 0; i < children.length; i++) {
-                        const data = children[i];
-
-                        // if parent is disabled, disable all children
-                        if (!disabled && data.disabled) disabled = true; 
-
-                        nodes.push({
-                            key: data.key, 
-                            label: data.key,
-                            selectable: !disabled,
-                            data: data
-                        });
-
-                        // add line if it has parent
-                        if (parent) {
-                            lines.push({from: parent.key, to: data.key});
-                        }
-                        if (data.children) {
-                            loop(data.children, data, disabled);
-                        }
-                    }
-                };
-                loop([this.data]);
-
-                this.nodes = nodes;
-                this.lines = lines;
-            }
-        }
-    },
-
-    methods: {
-        _onSelect(shapes) {
-            if (!shapes.length) {
-                Message.info('You selected nothing.');
-            } else {
-                const data = shapes[0].data;
-                Message.info(`You selected ${data.key}.`);
-            }
-        },
-    },
-}
-</script>
-```
-
-```ts
+```angular
 import {Component} from '@angular/core';
 import Message from 'kpc-angular/components/message';
 

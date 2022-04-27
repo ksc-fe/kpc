@@ -8,29 +8,32 @@ order: 6
 触发`denydrag`和`denydrop`事件来告知用户
 
 ```vdt
-import Tree from 'kpc/components/tree';
-import Input from 'kpc/components/input';
+import {Tree, Input} from 'kpc';
 
 <Tree 
     draggable
-    ev-dragend={{ self._onDragEnd }}
-    allowDrag={{ self._allowDrag }}
-    allowDrop={{ self._allowDrop }}
-    ev-denydrag={{ self._onDenyDrag }}
-    ev-denydrop={{ self._onDenyDrop }}
-    data={{ self.get('data') }}
+    ev-dragend={this.onDragEnd}
+    allowDrag={this.allowDrag}
+    allowDrop={this.allowDrop}
+    ev-denydrag={this.onDenyDrag}
+    ev-denydrop={this.onDenyDrop}
+    v-model:data='data'
     v-model:expandedKeys="expandedKeys"
 />
 ```
 
-```js
-import Message from 'kpc/components/message';
+```ts
+import {Message, TreeDataItem, TreeNode, TreeDragEndData} from 'kpc';
 
-export default class extends Intact {
-    @Intact.template()
+interface Props {
+    data?: TreeDataItem<string>[]
+    expandedKeys?: string[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {
@@ -89,24 +92,24 @@ export default class extends Intact {
         };
     }
 
-    _onDragEnd(data) {
+    onDragEnd(data: TreeDragEndData<string>) {
         console.log(data);
     }
 
-    _allowDrag(node) {
+    allowDrag(node: TreeNode<string>) {
         return node.key !== '1-1-1';
     }
 
-    _allowDrop(node) {
+    allowDrop(node: TreeNode<string>) {
         return node.key !== '1-1-1';
     }
 
-    _onDenyDrag(node) {
-        Message.error(node.data.label);
+    onDenyDrag(node: TreeNode<string>) {
+        Message.error(`Cannot drag node: ${node.data.label}.`);
     }
 
-    _onDenyDrop(node) {
-        Message.error(node.data.label);
+    onDenyDrop(node: TreeNode<string>) {
+        Message.error(`Cannot drop to node: ${node.data.label}.`);
     }
 }
 ```

@@ -1,256 +1,110 @@
-import Button from '../button';
-import ScrollSelect from '../scrollSelect';
-import Time from './time';
-import {Row, Col} from '../grid';
-import {strPad, _$} from '../utils';
-import {
-    isEqual, isLT, isGT, getDateString,
-    getTimeString, createDate, getYearBase,
-    yearArray, monthArray
-} from './utils';
-import {Tabs, Tab} from '../tabs';
-import Icon from '../icon';
-import dayjs from 'dayjs';
+import {Transition} from 'intact';
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {_$} from '../../i18n';
+import {makeCalendarStyles} from './styles';
+import {getNowDate} from './helpers';
 
-const {
-    dayClassNames,
-    multiple, onMouseEnterDay,
-    type, hours, minutes, seconds, 
-    disabledHours, disabledMinutes, disabledSeconds,
-    _isShowYearPicker, _isShowMonthPicker, _isShowDatePicker,
-    _isSelectTime, _now, _showDate,
-    _focusDate, _id,
-} = self.get();
-
-const {value, values} = self._getRealValue();
-const valueDate = value || _now;
-const showDate = _showDate || valueDate;
-const _showYear = Math.floor(showDate.get('year') / 10);
-
-let yearMonthFormat = _$('yearMonthFormat');
-if (yearMonthFormat === 'yearMonthFormat') {
-    yearMonthFormat = 'YYYY MM';
-}
-
-const isYearOrMonth = self._isYearOrMonth();
-
-<div 
-    class={{ {
-        "k-calendar-wrapper": true,
-        "k-datetime": type === 'datetime',
-    } }}
-    tabindex="0"
-    ev-keydown={{ self._onKeydown }}
->
-    <b:title />
-    <Tabs type="border-card" v-if={{ type === 'datetime' }} 
-        value={{ _isSelectTime ? "time" : "date" }}
-        ev-$change:value={{ self._onChangeTab }}
+const type = this.type.value;
+const isYear = type === 'year';
+const isYearOrMonth = isYear || type === 'month';
+const classNameObj = {
+    'k-datepicker-calendar': true,
+    [makeCalendarStyles()]: true,
+};
+const now = getNowDate();
+const {focusDate, reset: resetFocusDate} = this.datepicker.focusDate;
+const getItems = (data, onClick) => {
+    return <div v-for={data}
+        class={{
+            "k-calendar-item": true,
+            "k-exceed": $value.isExceed,
+            "k-active": $value.isActive,
+            "k-today": $value.isToday,
+            "k-disabled": $value.isDisabled, 
+            "k-hover": $value.isHover,
+            "k-in-range": $value.isInRange,
+        }}
+        ev-click={
+            !$value.isDisabled ? e => {
+                e._ignore = true;
+                onClick($value.value);
+            } : null
+        }
+        ev-mouseenter={() => focusDate.set($value.value)}
     >
-        <Tab value="date">{{ value ? getDateString(valueDate.toDate()) : '0000-00-00' }}</Tab>
-        <Tab value="time">{{ value ? getTimeString(valueDate.toDate()) : '00:00:00' }}</Tab>
-    </Tabs>
-    <div v-if={{ !_isSelectTime }} class="k-date-picker">
-        <div class="k-month-year-btn c-clearfix">
-            <div class="k-left-btns">
-                <Button icon type="none" size="small" class="k-prev"
-                    tagName="div" tabindex={{ null }} 
-                    ev-click={{ self.prevYear }}
-                >
-                    <Icon class="ion-ios-arrow-left" size="small" />
-                    <Icon class="ion-ios-arrow-left" size="small" />
-                </Button>
-                <Button icon type="none" size="small" class="k-prev"
-                    tagName="div" tabindex={{ null }} 
-                    ev-click={{ self.prevMonth }}
-                    v-if={{ _isShowDatePicker }}
-                >
-                    <Icon class="ion-ios-arrow-left" size="small" />
-                </Button>
-            </div>
-            <div class="k-right-btns">
-                <Button icon type="none" size="small" class="k-next"
-                    tagName="div" tabindex={{ null }} 
-                    ev-click={{ self.nextYear }}
-                >
-                    <Icon class="ion-ios-arrow-right" size="small" />
-                    <Icon class="ion-ios-arrow-right" size="small" />
-                </Button>
-                <Button icon type="none" size="small" class="k-next"
-                    tagName="div" tabindex={{ null }} 
-                    ev-click={{ self.nextMonth }}
-                    v-if={{ _isShowDatePicker }}
-                >
-                    <Icon class="ion-ios-arrow-right" size="small" />
-                </Button>
-            </div>
-            <div class="k-text-wrapper">
-                <span class="k-text" 
-                    v-if={{ _isShowYearPicker }}
-                >{{ _$(`{n}年 - {m}年`, {n: _showYear * 10, m: _showYear * 10 + 9}) }}</span>
-                <span v-else>
-                    <span class="k-text"
-                        ev-click={{ self.showYearPicker }}
-                    >{{ _$(`${showDate.get('year')}年`) }}</span>
-                    <span class="k-text" 
-                        ev-click={{ isYearOrMonth ? undefined : self.showMonthPicker }}
-                    >{{ _$(`${showDate.get('month') + 1}月`) }}</span>
-                </span>
-            </div>
+        <div class="k-value">{$value.label}</div>
+    </div>
+};
+
+const {getDays, onClick: onClickDay} = this.days;
+const {
+    getDateLabel,
+    prevMonth, nextMonth,
+    prevYear, nextYear,
+    prevTenYears, nextTenYears
+} = this.showDate;
+
+<div class={classNameObj}>
+    <div class="k-datepicker-month">
+        <div class="k-left-btns">
+            <Button icon type="none" size="small" class="k-prev"
+                tagName="div"
+                ev-click={isYear ? prevTenYears : prevYear}
+            >
+                <Icon class="ion-ios-arrow-left" size="small" />
+                <Icon class="ion-ios-arrow-left" size="small" />
+            </Button>
+            <Button icon type="none" size="small" class="k-prev"
+                tagName="div"
+                ev-click={prevMonth}
+                v-if={!isYearOrMonth}
+            >
+                <Icon class="ion-ios-arrow-left" size="small" />
+            </Button>
         </div>
-        <div class="k-weekdays" v-if={{ _isShowDatePicker }}>
-            <div class="k-weekday"
-                v-for={{ [_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')] }}
-            >{{ value }}</div>
+        <div class="k-month-values">
+            <template v-if={!isYear}>
+                <span v-for={getDateLabel()}
+                     class="k-month-value" 
+                     ev-click={$value.onClick}
+                >{$value.value}</span>
+            </template>
+            <span v-else class="k-month-value">
+                {this.years.getYearLabel()} 
+            </span>
         </div>
-        <div class="k-calendar" v-if={{ _isShowDatePicker }}
-            ev-mouseleave={{ self._onMouseLeaveDays }}
-        >
-            {{ function() {
-                const ret = [];
-                // dayjs is immutable, so we use js Date
-                const start = showDate.toDate();
-                const month = start.getMonth();
-                start.setDate(1);
-                start.setHours(0);
-                start.setMinutes(0);
-                start.setSeconds(0);
-                const startWeekday = start.getDay(); 
-                start.setDate(1 - startWeekday);
-
-                for (let i = 0; i < 42; i++) {
-                    const dayjsDate = dayjs(start);
-                    const _date = start.getDate();
-                    const _month = start.getMonth();
-                    const disabled = self._isDisabledDate(dayjsDate); 
-                    const isOut = _month !== month;
-                    const classNames = dayClassNames ? 
-                        dayClassNames.call(self, dayjsDate, isOut) : 
-                        null;
-                    ret.push(
-                        <div 
-                            class={{ {
-                                "k-day": true,
-                                "k-out": isOut,
-                                "k-active": !isOut && values.find(value => {
-                                    return isEqual(value, dayjsDate, 'date');
-                                }),
-                                "k-today": isEqual(_now, dayjsDate, 'date'),
-                                "k-disabled": disabled, 
-                                "k-hover": isEqual(_focusDate, dayjsDate, 'date'),
-                                ...classNames
-                            } }}
-                            ev-click={{ !disabled && self.select.bind(self, dayjsDate) }}
-                            ev-mouseenter={{ self._onMouseEnter.bind(self, dayjsDate, isOut) }}
-                        >{{ _date }}</div>
-                    );
-                    start.setDate(start.getDate() + 1);
-                }
-                const result = [];
-                for (let i = 0; i < 6; i++) {
-                    result.push(<div>{{ ret.slice(7 * i, 7 * (i + 1)) }}</div>)
-                }
-
-                return result;
-            }() }}
-        </div>
-
-        <div class="k-calendar">
-            <div v-if={{ _isShowMonthPicker }}>
-                {{ function() {
-                    const ret = [];
-                    const start = showDate.toDate();
-                    for (let i = 0; i < 12; i++) {
-                        const _month = i;
-                        const disabled = self._isDisabledMonth(_month);
-                        start.setMonth(_month);
-                        const dayjsDate = dayjs(start);
-                        ret.push(
-                            <div
-                                class={{ {
-                                    "k-month-year": true,
-                                    "k-disabled": disabled,
-                                    "k-active": isEqual(value, dayjsDate, 'month'),
-                                    "k-today": isEqual(_now, dayjsDate, 'month'),
-                                    "k-hover": isEqual(_focusDate, dayjsDate, 'month')
-                                } }}
-                                ev-click={{ !disabled && self.onChangeMonth.bind(self, _month) }}
-                                ev-mouseenter={{ self._onMouseEnter.bind(self, dayjsDate, false) }}
-                            > {{ _month + 1 }}月</div>
-                        )
-                    }
-                    const result = [];
-                    for (let i = 0; i < 3; i++) {
-                        result.push(<div class='k-month-year-row'> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
-                    }
-                    return  result;
-                }() }}
-            </div>
-
-            <div v-if={{ _isShowYearPicker }}>
-                {{ function() {
-                    const ret = [];
-                    const start = showDate.toDate();
-                    start.setFullYear(_showYear * 10 - 1);
-                    for (let i = 0; i < 12; i++) {
-                        const dayjsDate = dayjs(start);
-                        const _year = start.getFullYear();
-                        const disabled = self._isDisabledYear(_year);
-                        const isOut = Math.floor(_year / 10) !== _showYear;
-                        ret.push(
-                            <div
-                                class={{ {
-                                    "k-month-year": true,
-                                    "k-disabled": disabled,
-                                    "k-out": isOut,
-                                    "k-active": !isOut && isEqual(value, dayjsDate, 'year'),
-                                    "k-today": isEqual(_now, dayjsDate, 'year'),
-                                    "k-hover": isEqual(_focusDate, dayjsDate, 'year')
-                                } }}
-                                ev-click={{ !disabled && self.onChangeYear.bind(self, _year) }}
-                                ev-mouseenter={{ self._onMouseEnter.bind(self, dayjsDate, isOut) }}
-                            >{{ _year }}</div>
-                        );
-                        start.setFullYear(start.getFullYear() + 1);
-                    }
-                    const result = [];
-                    for (let i = 0; i < 3; i++) {
-                        result.push(<div class='k-month-year-row'> {{ ret.slice(4 * i, 4 * (i + 1)) }}</div>)
-                    }
-                    return result;
-                }() }}
-            </div>
+        <div class="k-right-btns">
+            <Button icon type="none" size="small" class="k-next"
+                tagName="div"
+                ev-click={nextMonth}
+                v-if={!isYearOrMonth}
+            >
+                <Icon class="ion-ios-arrow-right" size="small" />
+            </Button>
+            <Button icon type="none" size="small" class="k-next"
+                tagName="div"
+                ev-click={isYear ? nextTenYears : nextYear}
+            >
+                <Icon class="ion-ios-arrow-right" size="small" />
+                <Icon class="ion-ios-arrow-right" size="small" />
+            </Button>
         </div>
     </div>
-    <div v-else class="k-time-picker" key="time" ev-wheel={{ self._onWheel }}>
-        <b:time-body>
-            <Time
-                data={{ [
-                    hours.map(v => strPad(v, 2)),
-                    minutes.map(v => strPad(v, 2)),
-                    seconds.map(v => strPad(v, 2)),
-                ] }}
-                value={{ value ||
-                    // if exists _id, it indicate that this is a range time selection of Timepicker
-                    // we don't let Time to trigger $change:value in initial
-                    // otherwise the start time will be disabled due to the end time is 00:00:00
-                    // #119
-                    self.get('_id') ? 
-                        [
-                            strPad(valueDate.hour(), 2),
-                            strPad(valueDate.minute(), 2),
-                            strPad(valueDate.second(), 2),
-                        ] : 
-                        ['', '', '']
-                }}
-                disabledItems={{ [disabledHours, disabledMinutes, disabledSeconds] }}
-                ev-change={{ self.onChangeTime }}
-                min={{ self._getMinDate() }}
-                max={{ self._getMaxDate() }}
-                date={{ scope.date || valueDate }}
-                isDisabledTime={{ self._isDisabledTime }}
-            >
-            </Time>
-        </b:time-body>
+    <template v-if={!isYearOrMonth}>
+        <div class="k-weekdays">
+            <div class="k-weekday"
+                v-for={[_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')]}
+            >{$value}</div>
+        </div>
+        <div class="k-days" ev-mouseleave={resetFocusDate}>
+            {getItems(getDays(now), onClickDay)}
+        </div>
+    </template>
+    <div v-else class="k-years" ev-mouseleave={resetFocusDate}>
+        {isYear ?
+            getItems(this.years.getYears(now), this.years.onClick) :
+            getItems(this.months.getMonths(now), this.months.onClick)
+        }
     </div>
 </div>

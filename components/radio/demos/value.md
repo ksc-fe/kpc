@@ -8,15 +8,15 @@ order: 2
 > 和`Checkbox`一样，判定选中状态时，当值为对象比较的是引用地址
 
 ```vdt
-import Radio from 'kpc/components/radio';
+import {Radio} from 'kpc';
 
 <div>
-    <Radio v-model="value1">默认值：{{ JSON.stringify(self.get('value1')) }}</Radio>
+    <Radio v-model="value1">默认值：{ JSON.stringify(this.get('value1')) }</Radio>
     <Radio v-model="value2" trueValue="checked">
-        指定选中时的取值为"checked": {{ JSON.stringify(self.get('value2')) }}
+        指定选中时的取值为"checked": { JSON.stringify(this.get('value2')) }
     </Radio>
-    <Radio v-model="value3" trueValue={{ self.get('checkedValue') }}>
-        指定选中时的取值为对象：{{ JSON.stringify(self.get('value3')) }}
+    <Radio v-model="value3" trueValue={ this.get('checkedValue') }>
+        指定选中时的取值为对象：{ JSON.stringify(this.get('value3')) }
     </Radio>
 </div>
 ```
@@ -26,17 +26,19 @@ import Radio from 'kpc/components/radio';
     margin-right 20px
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template
+```ts
+export default class extends Component {
     static template = template;
-
-    defaults() {
+    
+    static defaults() {
         return {
+            value1: false,
+            value2: false,
+            value3: false,
             checkedValue: {
                 test: 1
             }
-        };
-    }
+        }
+    };
 }
 ```

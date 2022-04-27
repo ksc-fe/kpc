@@ -13,7 +13,7 @@ order: 4
 > 属性也可以作用于`max` `min`属性
 
 ```vdt
-import Timepicker from 'kpc/components/timepicker';
+import {Timepicker} from 'kpc';
 
 <div>
     <Timepicker 
@@ -22,13 +22,13 @@ import Timepicker from 'kpc/components/timepicker';
         max="03:02 pm" 
         format="hh:mm a"
     />
-    <span>You selected: {{ self.get('time1') }}</span>
+    <span>You selected: {this.get('time1')}</span>
     <br /><br />
     <Timepicker v-model="time2"
         step="00:30:00"
         showFormat="HH:mm"
     />
-    <span>You selected: {{ self.get('time2') }}</span>
+    <span>You selected: {this.get('time2')}</span>
     <br /><br />
     <Timepicker
         v-model="time3"
@@ -38,8 +38,27 @@ import Timepicker from 'kpc/components/timepicker';
         valueFormat="HH:mm:ss.SSS"
         showFormat="HH:mm"
     />
-    <span>You selected: {{ JSON.stringify(self.get('time3')) }}</span>
+    <span>You selected: {JSON.stringify(this.get('time3'))}</span>
 </div>
+```
+
+```ts
+interface Props {
+    time1?: string | null
+    time2?: string | null
+    time3?: [string, string] | null
+}
+
+export default class extends Component<Props> {
+    static template = template;
+    static defaults() {
+        return {
+            time1: null,
+            time2: null,
+            time3: null
+        } as Props;
+    };
+}
 ```
 
 [1]: https://github.com/iamkun/dayjs/blob/dev/docs/en/API-reference.md#list-of-all-available-formats

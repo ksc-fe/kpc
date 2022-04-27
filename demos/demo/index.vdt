@@ -1,12 +1,15 @@
-<div class="demo-page">
-	<div class="search">搜索框</div>
-    <div class="map" id="map" ref="map"></div>
-    <div class="locations" 
-        ev-touchstart={{ self._onTouchStart }}
-        ev-touchmove={{ self._onTouchMove }}
-    >
-        <div class="location" v-for={{ self.get('locations') }}>
-            {{ value.name }}
-        </div>
-    </div>
-</div>
+import A from './a';
+import bTemplate from './b.vdt';
+
+<template>
+    <A ref={this.aRef} value="from demo" ev-$change:count={this.onChangeCount}>
+        <b:test>
+            aaaa
+            {$super()}
+            bbbbb
+            {this.a}
+        </b:test>
+    </A>
+    <t:bTemplate name="jjjj" />
+    {this.get('value')}
+</template>

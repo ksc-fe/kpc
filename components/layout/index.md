@@ -11,12 +11,15 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| fixed | 是否固定头部 | `Boolean` | `false` |
+| fixed | 是否固定头部 | `boolean` | `false` |
+| theme | 主题颜色 | `"dark"` &#124; `"light"` &#124; `"white"` | `"dark"` |
+| height | 高度 | `string` &#124; `number` | `"64px"` |
 
 ## Aside
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| fixed | 是否固定侧边栏 | `Boolean` | `false` |
-| size | 侧边栏宽度 | `"large"` &#124; `"default"` &#124; `"small"` | `"default"` |
-| collapse | 是否收起侧边栏 | `Boolean` | `false` |
+| fixed | 是否固定侧边栏 | `boolean` | `false` |
+| collapse | 是否收起侧边栏 | `boolean` | `false` |
+| theme | 主题颜色 | `"dark"` &#124; `"light"` &#124; `"white"` | `"dark"` |
+| width | 宽度 | `string` &#124; `number` | `"200px"` |

@@ -8,29 +8,28 @@ order: 6
 作为参数传给事件回调函数
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
-import {Button, ButtonGroup} from 'kpc/components/button';
+import {Tabs, Tab, Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup v-model="size" checkType="radio">
-        <Button v-for={{ ['large', 'default', 'small', 'mini'] }}
-            value={{ value }}
-        >{{ value }}</Button>
+        <Button v-for={['large', 'default', 'small', 'mini']}
+            value={$value}
+        >{$value}</Button>
     </ButtonGroup>
     <br /><br />
-    <Button ev-click={{ self._add }}>新增Tab</Button>
+    <Button ev-click={this._add}>新增Tab</Button>
     <Tabs v-model="tab"
-        closable={{ self.get('tabs').length > 1 }}
-        ev-remove={{ self._remove }}
-        v-for={{ ['default', 'card', 'border-card', 'no-border-card'] }}
-        type={{ value }}
-        size={{ self.get('size') }}
+        closable={this.get('tabs').length > 1}
+        ev-remove={this._remove}
+        v-for={this.get('types')}
+        type={$value}
+        size={this.get('size')}
     >
-        <Tab v-for={{ self.get('tabs') }}
-            value={{ value.value }}
-            key={{ value.value }}
-            closable={{ value.value !== 10 }}
-        >{{ value.label }}</Tab>
+        <Tab v-for={this.get('tabs')}
+            value={$value.value}
+            key={$value.value}
+            closable={$value.value !== 10}
+        >{$value.label}</Tab>
     </Tabs>
 </div>
 ```
@@ -42,13 +41,26 @@ import {Button, ButtonGroup} from 'kpc/components/button';
     background #f1f1f5
 ```
 
-```js
+```ts
+import {bind, TabsProps} from 'kpc';
+
+interface Props {
+    tab?: number
+    tabs: TabItem[]
+    size: TabsProps['size'] 
+    types: TabsProps['type'][]
+}
+
+type TabItem = {
+    value: number
+    label: string
+}
+
 let id = 3;
-export default class extends Intact {
-    @Intact.template()
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             tab: 1,
             tabs: [
@@ -57,10 +69,12 @@ export default class extends Intact {
                 {value: 3, label: 'Tab 3'},
             ],
             size: 'large',
-        }
+            types: ['default', 'card', 'border-card', 'no-border-card']
+        } as Props;
     }
 
-    _remove(value) {
+    @bind
+    _remove(value: number) {
         const tabs = this.get('tabs').slice(0);
         const index = tabs.findIndex(item => item.value === value);
         tabs.splice(index, 1);
@@ -69,12 +83,13 @@ export default class extends Intact {
         let tab = this.get('tab');
         if (value === tab) {
             const item = tabs[index] || tabs[index - 1];
-            tab = item ? item.value : null;
+            tab = item ? item.value : undefined;
         }
 
         this.set({tabs, tab});
     }
 
+    @bind
     _add() {
         const tabs = this.get('tabs').slice(0);
         id++;

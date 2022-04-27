@@ -1,155 +1,112 @@
-import Input from '../input';
-import Dropdown, {DropdownItem, DropdownMenu} from '../dropdown';
+import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
+import {Icon} from '../icon';
+import {_$} from '../../i18n';
+import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 
-const {
-    data, className, style, value, trigger,
-    changeOnSelect, format, filterable,
-    keywords, _show,
-} = self.get();
-
-const labelObj = {
-    label: null,
-    labels: [],
-    values: [],
+const {data, trigger, filterable} = this.get();
+const baseMenuStyles = makeMenuStyles();
+const classNameObj = {
+    'k-cascader-menu': true,
+    [baseMenuStyles]: true,
 };
 
-let hasData = false;
-
-const Options = (props) => {
-    const data = props.data || [];
-    const level = props.level;
-    const parentShowed = props.parentShowed;
-    const ret = [];
-
-    // show loading
+const {values, isShowed, isSelected, onSelect, toggleShowedValue} = this.value;
+const Options = (data, level, loaded) => {
     if (!data.length) {
-        if (!props.loaded) {
-            return <i class="ion-load-c icon-loading"></i>
+        if (!loaded) {
+            return <Icon class="ion-load-c k-cascader-loading" rotate />
         } else {
-            return <div class="k-no-data">无数据</div>
+            return <div class="k-cascader-empty">{_$('无数据')}</div>
         }
     }
 
-    data.forEach((item, index) => {
-        const {active, selected} = self.handleProps(item, labelObj, level);
+    return data.map((item, index) => {
+        const value = item.value;
+        const showed = isShowed(value, level);
+        const selected = isSelected(value, level);
+        const children = item.children;
 
         const Item = () => {
-            const events = {};
-            events['ev-click'] = self._onClick.bind(self, item, level);
-            if (trigger === 'hover') {
-                events['ev-mouseenter'] = self._onClick.bind(self, item, level);
-            }
-            if (!changeOnSelect) {
-                events['ev-select'] = self._onSelect;
-            }
-
             return (
                 <DropdownItem
-                    disabled={{ item.disabled }}
-                    class={{ {'k-active': active} }}
-                    {{ ...events }}
+                    disabled={item.disabled}
+                    class={{
+                        'k-cascader-option': true,
+                        'k-active': showed,
+                        'k-selected': selected,
+                    }}
+                    ev-select={onSelect.bind(null, value, level)}
                 >
-                    {{ item.template ? item.template(item, index) : item.label }}
-                    <i v-if={{ item.children }} class="k-arrow ion-ios-arrow-right"></i>
+                    {item.label}
+                    <Icon v-if={children}
+                        class="k-cascader-arrow ion-ios-arrow-right"
+                    /> 
                 </DropdownItem>
             );
         };
 
-        const show = parentShowed && active;
-        ret.push(
-            !item.children ? 
-                <Item /> :
-                <Dropdown 
-                    position={{ {my: 'left top', at: 'right top', collisionDirection: ['left']} }}
+        return (
+            children ?
+                <Dropdown
+                    position={this.positionObj}
                     of="parent"
-                    disabled={{ item.disabled }}
-                    trigger={{ trigger }}
-                    value={{ show }}
+                    disabled={item.disabled}
+                    trigger={trigger}
+                    value={showed}
+                    ev-$changed:value={toggleShowedValue.bind(null, value, level)}
+                    ev-show={this.load.bind(null, item)}
                 >
-                    <Item />
-                    <DropdownMenu
-                        class={{ {
-                            "k-select-dropdown": true,
-                            "k-cascader-dropdown": true,
-                        } }}
-                        ev-show={{ self._onSubMenuShow.bind(self, item) }}
-                    >
-                        <Options
-                            data={{ item.children }} 
-                            level={{ level + 1 }} 
-                            parentShowed={{ show }}
-                            v-if={{ // for performance, don't render children if they are hidden or unselected
-                                show || selected
-                            }}
-                            loaded={{ item.loaded }}
-                        />
+                    {Item()}
+                    <DropdownMenu class={classNameObj}>
+                        {showed ? Options(children, level + 1, item.loaded) : null}
                     </DropdownMenu>
-                </Dropdown>
+                </Dropdown> :
+                Item()
         );
     });
-
-    return ret;
 }
 
-let Menu
-if (!filterable || !keywords) {
-    Menu = (
-        <DropdownMenu
-            ref="cascader"
-            class={{ {
-                "k-select-dropdown": true,
-                "k-cascader-dropdown": true,
-            } }}
-            ev-$change:value={{ self._onChangeShow }}
-            key="cascader"
+const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
+<t:super class="k-cascader">
+    <b:base-menu>
+        <DropdownMenu 
+            v-if={!filterable || !keywords}
+            class={classNameObj}
+            key="common"
         >
-            <Options
-                data={{ data }}
-                level={{ 0 }}
-                parentShowed={{ _show }}
-                loaded={{ true }}
-            />
+            {Options(data, 0, true)}
         </DropdownMenu>
-    );
-} else {
-    Menu = (
-        <DropdownMenu ev-$changed:value={{ self._position }}
-            ref="menu"
-            class={{ {
-                "k-select-dropdown": true,
-                "k-cascader-filterable-dropdown": true, 
-            } }}
-            ev-$change:value={{ self._onChangeShow }}
-            key="filterable"
+        <DropdownMenu v-else
+            key="filter"
+            class={{
+                'k-cascader-filter': true,
+                [baseMenuStyles]: true,
+                [makeFilterMenuStyles()]: true,
+            }}
         >
-            {{ (() => {
-                const items = self._filter();
-                if (!items.length) return <div class="k-no-data">无匹配数据</div>
-                return <DropdownItem v-for={{ items }}
-                    ev-select={{ self._selectByFilter.bind(self, value) }}
-                    disabled={{ value.disabled }}
-                >{{ do {
-                    // highlight keywords
-                    const label = value.map(item => item.label).join(' / ');
-                    const labels = label.split(keywords);
-                    const length = labels.length; 
-                    labels.map((item, index) => {
-                        const ret = [item];
-                        if (index !== length - 1) {
-                            ret.push(<em>{{ keywords }}</em>);
-                        }
-                        return ret;
-                    });
-                } }}</DropdownItem>
-            })() }}
+            {(() => {
+                const items = filter();
+                if (!items.length) return <div class="k-cascader-empty">{_$('无匹配数据')}</div>
+
+                return <DropdownItem v-for={items}
+                    ev-select={selectByFilter.bind(null, $value)}
+                    disabled={$value.disabled}
+                >
+                    {(() => {
+                        // highlight keywords
+                        const label = $value.map(item => item.label).join(' / ');
+                        const labels = label.split(keywords);
+                        const length = labels.length; 
+                        return labels.map((item, index) => {
+                            const ret = [item];
+                            if (index !== length - 1) {
+                                ret.push(<em>{keywords}</em>);
+                            }
+                            return ret;
+                        });
+                    })()}
+                </DropdownItem>
+            })()} 
         </DropdownMenu>
-    )
-}
-
-labelObj.label = blocks.format ? 
-    <b:format args={{ [labelObj.values] }}>{{ do {
-        labelObj.values.map(value => value.label).join(' / ')
-    } }}</b:format> : 
-    format.call(this, labelObj.values);
-
-<t:parent Menu={{ Menu }} class="k-cascader" labelObj={{ labelObj }} />
+    </b:base-menu>
+</t:super>

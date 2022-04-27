@@ -1,11 +1,12 @@
 import {getRestProps} from '../utils';
 
-const {to, separator, children, className} = self.get();
+const {to, children, className} = this.get();
+const classNameObj = {
+    'k-breadcrumb-item': true,
+    [className]: className,
+};
 
-<div class={{ {"k-item": true, [className]: className} }} {{ ...getRestProps(self) }}>
-    <a v-if={{ to }} ev-click={{ self.onClick }} class="k-item-link">{{ children }}</a>
-    <span v-else class="k-item-link">{{ children }}</span>
-    <span v-if={{ separator != null }} class="k-separator">
-        <b:separator>{{ separator }}</b:separator>
-    </span>
+<div class={classNameObj} {...getRestProps(this)}>
+    <a v-if={to} ev-click={this.onClick} class="k-breadcrumb-link">{children}</a>
+    <span v-else class="k-breadcrumb-link">{children}</span>
 </div>

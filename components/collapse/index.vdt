@@ -1,28 +1,32 @@
-import CollapseItem from './item';
+import {CollapseItem} from './item';
 import {mapChildren, getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {isNullOrUndefined} from 'intact-shared';
+import {directClone} from 'intact';
 
-const {className, value, children, arrow, noBorder} = self.get();
+const {children, className, arrow, noBorder} = this.get();
 
 const classNameObj = {
     'k-collapse': true,
+    [makeStyles()]: true,
     [className]: className,
     'k-left': arrow === 'left',
     'k-border': !noBorder,
 };
 
-let index = 0;
-const _children = mapChildren(children, vNode => {
-    if (vNode.tag === CollapseItem) {
-        const props = vNode.props;
-        const _props = {_parent: self};
-        if (props.value == null) {
-            _props.value = `$${index++}`;
+const _children = mapChildren(children, (vNode, index) => {
+    if(vNode.tag === CollapseItem) {
+        const props = {...vNode.props};
+        if (isNullOrUndefined(props.value)) {
+            props.value = `$${index}`;
         }
+        const clonedVNode = directClone(vNode);
+        clonedVNode.props = props;
 
-        vNode.props = {...props, ..._props};
-        vNode.$ = true;
+        return clonedVNode; 
     }
+
     return vNode;
 });
 
-<div {{ ...getRestProps(self) }} class={{ classNameObj }}>{{ _children }}</div>
+<div class={classNameObj} {...getRestProps(this)}>{_children}</div>

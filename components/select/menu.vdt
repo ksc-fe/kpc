@@ -1,0 +1,91 @@
+import {DropdownMenu} from '../dropdown';
+import {_$} from '../../i18n';
+import {makeMenuStyles} from './styles';
+import {isEmptyChildren, eachChildren} from '../utils';
+import {OptionGroup} from './group';
+import {noop, isFunction} from 'intact-shared';
+import {Input} from '../input';
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {context} from './useSearchable';
+import {Tabs, Tab} from '../tabs';
+
+let {children, className} = this.get();
+const {card, searchable, multiple} = this.select.get();
+
+const classNameObj = {
+    'k-select-menu': true,
+    'k-card': card,
+    'k-searchable': searchable,
+    [className]: className,
+    [makeMenuStyles()]: true,
+}
+
+if (card) {
+    const {process, activeIndex} = this.card;
+    const {labels, group} = process(children);
+    children = (
+        <template>
+            <Tabs vertical type="border-card"
+                value={activeIndex.value}
+                ev-$change:value={activeIndex.set}
+            > 
+                <Tab v-for={labels} value={$key}>
+                    {isFunction($value) /* is <b:label> block */ ? $value(noop) : $value}
+                </Tab>
+            </Tabs>
+            {group}
+        </template>
+    );
+}
+
+if (isEmptyChildren(children)) {
+    children = (
+        <div v-else class="k-select-empty">
+            {_$('无数据')}
+        </div>
+    );
+}
+
+if (searchable) {
+    const {selectAll, toggleSelect, unselectAll, confirm, checkedKeys} = this.searchable;
+    const {onInput, keywords} = this.select.input;
+    const {Provider} = context;
+
+    children = (
+        <Provider value={checkedKeys}>
+            <div class="k-select-header">
+                <Input fluid size="small" placeholder={_$('请输入关键字')}
+                    value={keywords.value}
+                    ev-$change:value={onInput}
+                    clearable
+                    waveDisabled={true}
+                >
+                    <b:suffix><Icon class="ion-ios-search" /></b:suffix>
+                </Input>
+                <div class="k-select-op" v-if={multiple}>
+                    <Button type="link" size="small"
+                        ev-click={selectAll}
+                    >{_$('全选')}</Button>  
+                    <Button type="link" size="small"
+                        ev-click={toggleSelect}
+                    >{_$('反选')}</Button> 
+                    <Button type="link" size="small"
+                        ev-click={unselectAll}
+                    >{_$('清空')}</Button>  
+                </div>
+            </div>
+            <div class="k-select-body">
+                {children}
+            </div>
+            <div class="k-select-footer" v-if={multiple}>
+                <Button type="primary" size="small" ev-click={confirm}>{_$('确定')}</Button>
+                <Button size="small" ev-click={this.select.hide}>{_$('取消')}</Button>
+            </div>
+        </Provider>
+    );
+}
+
+<DropdownMenu class={classNameObj}>
+    {children}
+</DropdownMenu>

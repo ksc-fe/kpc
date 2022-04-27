@@ -8,12 +8,12 @@ order: 1
 你不需要宽高相等的图标按钮，而仅仅是带图标的文字按钮，去掉`icon`属性即可。
 
 ```vdt
-import Button from 'kpc/components/button';
-import Icon from 'kpc/components/icon';
+import {Button, Icon} from 'kpc';
 
 <div>
     <Button icon><Icon class="ion-ios-search" /></Button>
     <Button icon circle><Icon class="ion-ios-search" /></Button>
+    <Button icon circle type="none"><Icon class="ion-ios-search" /></Button>
     <Button type="danger" size="large" icon circle><Icon class="ion-ios-search" size="large" /></Button>
     <Button type="primary"><Icon class="ion-ios-search" size="small" />搜索</Button>
     <Button circle type='primary'><Icon class="ion-ios-search" size="small" />搜索</Button>

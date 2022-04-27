@@ -1,0 +1,8 @@
+import {Link} from '../link';
+
+<blockquote>
+    <p>
+        默认事件没有在此注明，请参考 
+        <Link href="/docs/event/">默认事件</Link>
+    </p>
+</blockquote>

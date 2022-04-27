@@ -6,29 +6,28 @@ order: 4
 与【完全自定义】示例一样，`Transfer`也可以与`Tree`结合使用
 
 ```vdt
-import Transfer from 'kpc/components/transfer';
-import Tree from 'kpc/components/tree';
+import {Transfer, Tree} from 'kpc';
 
 <Transfer
-    enableAdd={{ self.enableAdd }}
-    enableRemove={{ self.enableRemove }}
-    ev-add={{ self.onAdd }}
-    ev-remove={{ self.onRemove }}
+    enableAdd={this.enableAdd}
+    enableRemove={this.enableRemove}
+    ev-add={this.onAdd}
+    ev-remove={this.onRemove}
 >
-    <b:header params="type">
-        <div v-if={{ type === 'left' }}>请选择</div>
+    <b:header args="type">
+        <div v-if={type === 'left'}>请选择</div>
         <div v-else>已选择</div>
     </b:header>
-    <b:list params="type">
-        <Tree v-if={{ type === 'left' }}
-            data={{ self.get('leftData') }}
+    <b:list args="type">
+        <Tree v-if={type === 'left'}
+            data={this.get('leftData')}
             checkbox
             v-model:checkedKeys="leftCheckedKeys"
             v-model:expandedKeys="leftExpandedKeys"
             ref="left"
         />
         <Tree v-else
-            data={{ self.get('rightData') }}
+            data={this.get('rightData')}
             checkbox
             v-model:checkedKeys="rightCheckedKeys"
             v-model:expandedKeys="rightExpandedKeys"
@@ -38,12 +37,29 @@ import Tree from 'kpc/components/tree';
 </Transfer>
 ```
 
-```js
-export default class extends Intact {
-    @Intact.template()
+```ts
+import {bind, Tree, TreeNode} from 'kpc';
+
+interface Props {
+    data: DataItem[]
+    leftCheckedKeys?: string[]
+    rightCheckedKeys?: string[],
+    leftExpandedKeys?: string[],
+    rightExpandedKeys?: string[],
+    leftData: DataItem[],
+    rightData: DataItem[]
+}
+
+type DataItem = {
+    label: string
+    key: string
+    children?: DataItem[]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
-    defaults() {
+    static defaults() {
         return {
             data: [
                 {
@@ -87,14 +103,14 @@ export default class extends Intact {
             rightExpandedKeys: [],
             leftData: [],
             rightData: []
-        };
+        } as Props;
     }
 
-    _init() {
+    init() {
         // expand all nodes
         const data = this.get('data');
-        const allKeys = [];
-        const loop = (children => {
+        const allKeys: string[] = [];
+        const loop = ((children: DataItem[] | undefined)=> {
             if (children) {
                 children.forEach(item => {
                     allKeys.push(item.key);
@@ -110,31 +126,37 @@ export default class extends Intact {
         });
     }
 
+    @bind
     enableAdd() {
-        return this.get('leftCheckedKeys').length > 0;
+        return this.get('leftCheckedKeys')!.length > 0;
     }
 
+    @bind
     enableRemove() {
-        return this.get('rightCheckedKeys').length > 0;
+        return this.get('rightCheckedKeys')!.length > 0;
     }
 
+    @bind
     onAdd() {
         const {from, to} = this.moveData(this.refs.left, this.get('leftData'), this.get('rightData'));
         this.set({leftData: from, rightData: to, leftCheckedKeys: []});
     }
 
+    @bind
     onRemove() {
         const {from, to} = this.moveData(this.refs.right, this.get('rightData'), this.get('leftData'));
         this.set({leftData: to, rightData: from, rightCheckedKeys: []});
     }
 
-    moveData(tree, from, to) {
+    moveData(tree: Tree<string>, from: DataItem[], to: DataItem[]) {
         from = this.deepClone(from);
         to = this.deepClone(to);
-        const loop = (children, from, to) => {
+        const loop = (children: TreeNode<string>[] | null, from: DataItem[] | null | undefined, to: DataItem[]) => {
+            if (!children) return;
+
             let deleteCount = 0;
-            children.forEach((node, index) => {
-                const data = node.data;
+            children.forEach((node: TreeNode<string>, index: number) => {
+                const data = node.data as DataItem;
                 if (node.checked) {
                     // remove from `from` 
                     if (from) {
@@ -146,7 +168,7 @@ export default class extends Intact {
                     if (!newData) {
                         to.push(this.deepClone(data));
                     } else {
-                        loop(node.children, null, newData.children);
+                        loop(node.children, null, newData.children!);
                     }
                 } else if (node.indeterminate) {
                     let newData = to.find(item => item.key === data.key);
@@ -154,31 +176,31 @@ export default class extends Intact {
                         newData = {...data, children: []};
                         to.push(newData);
                     }
-                    loop(node.children, from[index - deleteCount].children, newData.children);
+                    loop(node.children, from![index - deleteCount].children, newData.children!);
                 }
             });
         };
 
-        loop(tree.root.children, from, to);
+        loop(tree.getNodes(), from, to);
 
         return {from, to};
     }
 
-    deepClone(data) {
+    deepClone<T>(data: T): T {
         if (data == null) return data;
 
         if (Array.isArray(data)) {
             return data.map(item => {
                 return this.deepClone(item);
-            });
+            }) as unknown as T;
         } 
 
         if (typeof data === 'object') {
-            const ret = {};
+            const ret: any = {};
             for (let key in data) {
                 ret[key] = this.deepClone(data[key]);
             }           
-            return ret;
+            return ret as T;
         }
 
         return data;
@@ -211,74 +233,5 @@ set(data) {
     for (let key in data) {
         this[key] = data[key];
     }
-}
-```
-
-```react-methods
-constructor(props) {
-    super(props);
-    const data = [
-        {
-            "label": "database",
-            "key": "database",
-            "children": [
-                {
-                    "label": "table1",
-                    "key": "table1",
-                    "children": [
-                        {
-                            "label": "class",
-                            "key": "class"
-                        },
-                        {
-                            "label": "student",
-                            "key": "student"
-                        }
-                    ]
-                },
-                {
-                    "label": "table2",
-                    "key": "table2",
-                    "children": [
-                        {
-                            "label": "id",
-                            "key": "id"
-                        },
-                        {
-                            "label": "name",
-                            "key": "name"
-                        }
-                    ]
-                }
-            ]
-        }
-    ];
-    const allKeys = [];
-    const loop = (children => {
-        if (children) {
-            children.forEach(item => {
-                allKeys.push(item.key);
-                loop(item.children);
-            });
-        }
-    });
-    loop(data);
-
-    this.state = {
-        data,
-        leftCheckedKeys: [],
-        rightCheckedKeys: [],
-        leftExpandedKeys: allKeys,
-        rightExpandedKeys: allKeys,
-        leftData: this.deepClone(data),
-        rightData: []
-    };
-
-    this.enableAdd = this.enableAdd.bind(this);
-    this.enableRemove = this.enableRemove.bind(this);
-    this.onAdd = this.onAdd.bind(this);
-    this.onRemove = this.onRemove.bind(this);
-    this.moveData = this.moveData.bind(this);
-    this.deepClone = this.deepClone.bind(this);
 }
 ```

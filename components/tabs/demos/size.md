@@ -6,7 +6,7 @@ order: 3
 通过`size`可以定义尺寸: `default` `large` `small` `mini`
 
 ```vdt
-import {Tabs, Tab} from 'kpc/components/tabs';
+import {Tabs, Tab} from 'kpc';
 
 <div>
     <Tabs size="large" value="1">

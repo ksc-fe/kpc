@@ -7,11 +7,10 @@ order: 3
 必填的`FormItem`标签前面将自动添加`*`
 
 ```vdt
-import {Form, FormItem} from 'kpc/components/form';
-import {Input} from 'kpc/components/input';
+import {Form, FormItem, Input} from 'kpc';
 
 <Form starOnRequired>
-    <FormItem rules={{ {required: true} }} label="姓名">
+    <FormItem rules={{required: true}} label="姓名">
         <Input />
     </FormItem>
     <FormItem>
@@ -27,17 +26,4 @@ import {Input} from 'kpc/components/input';
         width 100%
         .k-input
             width 100%
-```
-
-```react-methods
-// 注入_context上下文
-static childContextTypes = {
-    _context: () => {}
-}
-
-getChildContext() {
-    return {
-        _context: this
-    }
-}
 ```

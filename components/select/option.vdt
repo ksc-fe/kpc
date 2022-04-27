@@ -1,0 +1,48 @@
+import {Transition} from 'intact';
+import {DropdownItem} from '../dropdown';
+import {isNullOrUndefined} from 'intact-shared';
+import {isEmptyChildren} from '../utils';
+import {Icon} from '../icon';
+import {Checkbox} from '../checkbox';
+import {context} from './useSearchable';
+
+const {children, className, disabled, label} = this.get();
+const {multiple, searchable} = this.select.get();
+
+const isActive = this.isActive();
+const classNameObj = {
+    'k-select-option': true,
+    [className]: className,
+    'k-active': isActive,
+};
+
+let _children = isEmptyChildren(children) ? label : children;
+if (searchable && multiple) {
+    const {Consumer} = context;
+    const children = _children;
+    _children = (
+        <Consumer>
+            {value => (
+                <Checkbox
+                    value={value.value}
+                    ev-$change:value={value.set}
+                    trueValue={this.get('value')}
+                >{children}</Checkbox>
+            )}
+        </Consumer>
+    );
+}
+
+<DropdownItem
+    class={classNameObj}
+    ev-select={searchable && multiple ? null : this.onSelect}
+    disabled={disabled}
+    hideOnSelect={!multiple}
+>
+    {_children}
+    <Transition name="k-scale" v-if={!searchable}>
+        <Icon v-if={multiple && isActive}
+            class="k-select-checkmark ion-ios-checkmark-empty"
+        />
+    </Transition>
+</DropdownItem>
