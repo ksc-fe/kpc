@@ -1,5 +1,6 @@
 import template from './index.vdt';
 import Layout from '../layout';
+import {Link} from '../../components/link';
 
 export default class Index extends Layout {
     static template = template;
@@ -21,5 +22,9 @@ export default class Index extends Layout {
 
     handleBoxClose() {
         this.set<boolean>('showImgBox', false);
+    }
+
+    downloadSketch(info: any) {
+        Link.to(`https://damife.ks3-cn-beijing.ksyuncs.com/kpc/${info.downloadFileName}`);
     }
 }

@@ -1,78 +1,102 @@
 import {css} from '@emotion/css';
 import global, {mainBlock} from '../../styles/default';
-import solution_bg from '../../imgs/solution_bg.png';
+import solution_bg from '../../imgs/solution_bg.jpg';
 import {theme} from 'kpc/styles/theme';
 
 export function makeStyles() {
-
     return css`
         font-family: ${global.fontFamily};
         .solution-nav {
             ${mainBlock(260)};
-            background: #F1F6FA;
+            background-image: url(${solution_bg});
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: cover;
             .content {
                 display: flex;
-                padding-top: 64px;
                 align-items: center;
-                background-image: url(${solution_bg});
-                background-repeat: no-repeat;
-                background-position: right bottom;
                 .nav-title {
+                    color: #000000;
                     & > div:first-child {
                         font-size: 44px;
-                        color: #000000;
                     }
                     & > div:last-child {
-                        color: #797979;
                         font-size: 16px;
                     }
                 }
             }
         }
         .solution-content {
+            background: #F7F8FA;
+            padding-bottom: 40px;
             ${mainBlock(1030)};
             height: auto;
             & > div {
-                padding-top: 32px;
+                padding-top: 20px;
             }
-            .solution-row {
+            .solution-title {
+                font-family: PingFangSC-Regular;
+                font-size: 16px;
+                color: #000000;
+                margin-bottom: 30px;
+                margin-top: 10px;
+            }
+            .solution-box {
                 display: flex;
-                margin-top: 20px;
                 flex-wrap: wrap;
-                gap: 24px;
             }
             .solution-item {
-                width: 384px;
+                width: 285px;
+                height: 310px;
+                background: #ffffff;
+                margin-bottom: 20px;
+                border-radius: 10px;
                 img {
-                    width: 384px;
-                    border-radius: 8px;
+                    width: 100%;
+                    border-radius: 10px 10px 0 0;
+                    cursor: pointer;
                 }
+                transition: box-shadow ${theme.transition.middle};
+            &:hover {
+                box-shadow: ${global.cardBoxShadow};
+            }
+            }
+            .solution-item:not(:nth-child(4)) {
+                margin-right: 20px;
+            }
+            .solution-item:hover {
+                box-shadow: ${global.cardBoxShadow};
+            }
+
+            .solution-info {
+                padding: 20px;
                 & > div:first-child {
-                    width: 384px;
-                    height: 240px;
-                    background: #EFF3FA;
-                    border-radius: 8px;
-                    transition: box-shadow ${theme.transition.large};
-                    &:hover {
-                        box-shadow: ${global.cardBoxShadow};
-                    }
+                    font-size: 16px;
                 }
                 & > div:last-child {
                     display: flex;
-                    padding: 15px 0;
                     align-items: center;
-                    .title-box {
-                        flex-grow: 1;
-                        & > div:first-child {
-                            font-size: 18px;
-                            color: #000000;
-                        }
-                    }
-                    .download-icon {
+                    .sketch-logo {
+                        width: 32px;
+                        height: 32px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 1px solid #E6E6E6;
+                        border-radius: 6px;
                         cursor: pointer;
-                        .k-icon {
-                            font-size: 25px;
-                        }
+                        transition: background ${theme.transition.middle};
+                    }
+                    .sketch-logo:hover {
+                        background: #F3F3F3;
+                        border-color: #F3F3F3;
+                    }
+                    .solution-desc {
+                        flex-grow: 1;
+                        color: #8A8A8A;
+                    }
+                    img {
+                        width: 70%;
                     }
                 }
             }
@@ -83,21 +107,24 @@ export function makeStyles() {
                 .content  {
                     padding-left: 20px;
                 }
-            } 
+            }
+            .solution-title {
+                padding-left: 20px;
+            }
             .solution-content {
                 .solution-row {
                     flex-direction: column;
                     padding: 0 16px;
                 }
+            }
+            .solution-box {
+                padding: 0 20px;
+            }
+            .solution-content {
                 .solution-item {
-                    width: auto;
-                    & > div:first-child {
-                        width: auto;
-                        height: auto;
-                    }
-                    img {
-                        width: 100%;
-                    }
+                    margin: 0 0 20px 0 !important;
+                    width: 100%;
+                    height: 340px;
                 }
             }
         }

@@ -5,7 +5,8 @@ export interface ImgBoxProps {
     imgList: any[]
     show: boolean
     curImgIndex: number
-    baseWidth: number
+    baseWidth: number,
+    imgWidth: number
 }
 
 export interface ImgBoxEvents {
@@ -17,6 +18,7 @@ const typeDefs: Required<TypeDefs<ImgBoxProps>> = {
     show: Boolean,
     curImgIndex: Number,
     baseWidth: Number,
+    imgWidth: Number
 };
 
 
@@ -24,7 +26,8 @@ const defaults = (): Partial<ImgBoxProps> => ({
     imgList: [],
     show: false,
     curImgIndex: 0,
-    baseWidth: 0
+    baseWidth: 0,
+    imgWidth: 950
 });
 
 export class ImgBox extends Component<ImgBoxProps, ImgBoxEvents> {
@@ -47,7 +50,20 @@ export class ImgBox extends Component<ImgBoxProps, ImgBoxEvents> {
         this.set('curImgIndex', this.get('curImgIndex') - 1);
     }
 
+    setBaseWidth() {
+        this.set('baseWidth', Math.round((document.body.clientWidth - this.get('imgWidth')) / 2));
+    }
+
     init() {
-        this.set('baseWidth', Math.round((document.body.clientWidth - 950) / 2));
+        const handleWindowResize = this.setBaseWidth.bind(this);
+
+        this.watch('show', (v: boolean) => {
+            if(v) {
+                this.setBaseWidth();
+                window.addEventListener('resize', handleWindowResize);
+            } else {
+                window.removeEventListener('resize', handleWindowResize);
+            }
+        });
     }
 }

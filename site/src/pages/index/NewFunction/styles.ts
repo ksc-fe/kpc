@@ -7,11 +7,14 @@ export function makeStyles(themeColor: string) {
         background: #ffffff;
 		${mainBlock(544)};
         .white-card {
-            transition: box-shadow ${theme.transition.large};
+            transition: box-shadow ${theme.transition.middle};
             &:hover {
                 box-shadow: ${global.cardBoxShadow};
             }
         }
+		.resource-img-box img {
+			width: 170px;
+		}
 		.new-fn-box {
 			.title-box {
 				margin-top: 34px;
@@ -70,8 +73,10 @@ export function makeStyles(themeColor: string) {
 					}
 					.comp-download {
 						img {
-							border: 1px solid transparent;
 							border-radius: 8px;
+							width: 48px;
+							height: 48px;
+							transition: box-shadow ${theme.transition.middle};
 						}
 						img:hover {
 							box-shadow: ${global.cardBoxShadow};
@@ -338,6 +343,9 @@ export function makeStyles(themeColor: string) {
             display: block;
             padding: 0 20px;
             height: auto;
+			.resource-img-box img {
+				width: 140px;
+			}
             .new-fn-box {
                 width: auto !important;
                 .card-wrapper {

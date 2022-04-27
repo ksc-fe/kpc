@@ -74,6 +74,9 @@ export function makeStyles() {
             display: block;
             padding: 0 20px;
             height: auto;
+            .visit-king-vision, .vis-description {
+                width: 100% !important;
+            }
             .king-vis-wrapper {
                 width: auto !important;
                 flex-direction: column;

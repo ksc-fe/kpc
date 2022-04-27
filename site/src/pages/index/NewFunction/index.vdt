@@ -11,8 +11,8 @@ import king_version_logo from '../../../imgs/king_version_logo.png';
 import sketch_img from '../../../imgs/sketch_img.png';
 import axure_img from '../../../imgs/axure_img.png';
 import rectangle from '../../../imgs/rectangle.png';
-import menu_header from '../../../imgs/menu_header.png';
-import {getAxure, getSketch} from '../../resource/index';
+import menu_header from '../../../imgs/header_logo.png';
+import {getAxure, getSketch, getFigma} from '../../resource/index';
 
 const {cardLeft, totalCards, curCardNum, cardsPerPage, 
     animationType, bezierValue, curTabIndex, textTop, 
@@ -54,8 +54,8 @@ const treeData = [
 <div class={makeStyles(themeColor)}>
     <div className='new-fn-box'>
         <div class="title-box">
-            <div>全新的功能，为企业提效而生</div>
-            <div>让设计师/工程师快速上手</div>
+            <div>全新功能，全新体验</div>
+            <div>多样的设计资源助力团队提速</div>
         </div>
         <div class="card-wrapper">
             <div>
@@ -66,7 +66,7 @@ const treeData = [
                 >
                     <Card
                         mainTitle="资源"
-                        subTitle="为整条产品设计链路提效"
+                        subTitle="生态设计工具与资源"
                         href="/resources"
                     >
                         <div class="resource-box">
@@ -75,12 +75,12 @@ const treeData = [
                                 <div class="comp-download">
                                     <img src={axure_img} ev-click={getAxure} />
                                     <img src={sketch_img} ev-click={getSketch} />
-                                    <img src={rectangle} />
+                                    <img src={rectangle} ev-click={getFigma} />
                                 </div>
                             </div>
                             <div class="white-card">
                                 <div>更多KD资源</div>
-                                <div>
+                                <div class="resource-img-box">
                                     <img src={king_version_logo} />
                                 </div>
                             </div>
@@ -88,7 +88,7 @@ const treeData = [
                     </Card>
                     <Card
                         mainTitle="组件"
-                        subTitle="即开即用，为品牌焕发新活力"
+                        subTitle="高复用组件，快速构建你的网站和用户界面"
                         href="/docs/vue/"
                     >
                         <div class="component-box white-card">
@@ -127,7 +127,7 @@ const treeData = [
                                     <div class="menu-box">
                                         <Menu theme="light" v-model:selectedKey="selectedMenu">
                                             <b:header>
-                                                <img src={menu_header} />
+                                                <img src={menu_header} width="80" />
                                             </b:header>
                                             <MenuItem key="1">首页</MenuItem>
                                             <Menu>
@@ -164,7 +164,7 @@ const treeData = [
                     </Card>
                     <Card
                         mainTitle="动效"
-                        subTitle="为产品体验增加更多可能"
+                        subTitle="重构数字体验感知"
                         href="/docs/design/model-1/"
                     >
                         <div class="animate-box">
