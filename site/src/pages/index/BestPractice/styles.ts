@@ -156,10 +156,6 @@ export function makeStyles(themeColor: string) {
                             }
                         }
                     }
-                    /* .k-select {
-                        border-color: #F0F4FA;
-                        background: #F0F4FA;
-                    } */
                     .radius-box {
                         display: flex;
                         align-items: center;

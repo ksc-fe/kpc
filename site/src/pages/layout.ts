@@ -8,6 +8,7 @@ export interface LayoutProps {
     colorList: string[]
     showThemeColor: boolean
     curLang: string
+    videoLevel?: number
 }
 
 const colorList = [
@@ -44,9 +45,10 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
         colorList: colorList,
         showThemeColor: false,
         curLang: 'cn',
+        videoLevel: 0
     });
 
-    handleColorChange(color: string) {
+    public handleColorChange(color: string) {
         if(this.get('themeColor') !== color){
             this.set('themeColor', color);
             themeColor = color;

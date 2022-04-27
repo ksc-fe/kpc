@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import global, {mainBlock, center} from '../../styles/default';
-import resource_bg from '../../imgs/resource_bg.png';
+import resource_bg from '../../imgs/resource_bg.jpg';
 import color_process_bg from '../../imgs/color_process_bg.png';
 import workflow_bg from '../../imgs/workflow_bg.png';
 import color_process_expect from '../../imgs/expect.png';
@@ -11,21 +11,21 @@ export function makeStyles() {
         font-family: ${global.fontFamily};
         .source-nav {
             ${mainBlock(260)};
-            background: #F1F6FA;
+            background-image: url(${resource_bg});
+            background-repeat: no-repeat;
+            background-position: right bottom;
+            background-size: cover;
+            padding-left: 20px;
             .content {
                 display: flex;
-                padding-top: 64px;
                 align-items: center;
-                background-image: url(${resource_bg});
-                background-repeat: no-repeat;
-                background-position: right bottom;
+                
                 .nav-title {
+                    color: #000000;
                     & > div:first-child {
                         font-size: 44px;
-                        color: #000000;
                     }
                     & > div:last-child {
-                        color: #797979;
                         font-size: 16px;
                     }
                 }
@@ -43,7 +43,7 @@ export function makeStyles() {
                 color: #000000;
                 font-weight: 600;
                 font-size: 24px;
-                padding: 26px 0px 9px 40px;
+                padding: 26px 0px 0px 40px;
             }
             .secondary-title {
                 padding-left: 40px;
@@ -91,7 +91,6 @@ export function makeStyles() {
                     width: 27px;
                     height: 27px;
                     border-radius: 4px;
-                    border: 1px solid #ccc;
                     ${center()};
                     background: #fff;
                     margin-right: 14px;
@@ -100,6 +99,20 @@ export function makeStyles() {
                     display: flex;
                     align-items: center;
                     color: #434343;
+                    & > div:last-child {
+                        padding-left: 14px;
+                    }
+                }
+                .sketch-img-box {
+                    width: 27px;
+                    height: 27px;
+                    border-radius: 4px;
+                    ${center()};
+                    background: #fff;
+                    img {
+                        width: 70%;
+                        height: 70%;
+                    }
                 }
             }
             .workflow-box {
@@ -145,13 +158,14 @@ export function makeStyles() {
                         display: flex;
                         align-items: center;
                         padding-left: 40px;
-                        transition: box-shadow ${theme.transition.large};
+                        transition: box-shadow ${theme.transition.middle};
                     }
                     .tool-item:hover {
                         box-shadow: ${global.cardBoxShadow};
                     }
                     .process-box {
                         background-image: url(${color_process_bg});
+                        background-size: contain;
                         span {
                             color: #626262;
                             margin-left: 10px;
@@ -185,7 +199,7 @@ export function makeStyles() {
                         border-bottom: 1px solid #B0BDC8;
                     }
                     .priciple-item, .priciple-item i {
-                        transition: all .25s linear;
+                        transition: color .25s linear;
                     }
                     .priciple-item:hover {
                         color: #0191EA;
@@ -198,11 +212,6 @@ export function makeStyles() {
         }
 
         @media (max-width: 768px) {
-            .source-nav {
-                .content {
-                    padding-left: 20px;
-                }
-            }
             .source-content {
                 height: auto;
                 padding: 8px;

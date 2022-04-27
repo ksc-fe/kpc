@@ -12,7 +12,7 @@ export function makeStyles() {
         padding: 24px 48px;
         font-family: PingFang SC;
         vertical-align: top;
-        transition: box-shadow ${theme.transition.large};
+        transition: box-shadow ${theme.transition.middle};
         &:hover {
             box-shadow: 0 0 8px rgba(0, 0, 0, .15);
         }

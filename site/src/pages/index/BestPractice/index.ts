@@ -73,7 +73,7 @@ const templateMap = {
 }
 
 const getTemplate = (type: 'vue' | 'react' | 'vue3'): Function => {    
-    return (buttonStatus: string, contentInput: string, iconPosition: string) => {
+    return (buttonStatus: string, contentInput: string, iconPosition: string): string => {
         const isLeft =  iconPosition == 'left';
         const button = `<Button type="BUTTON_TYPE">BUTTON_CONTENT</Button>`
             .replace('BUTTON_TYPE', buttonStatus)

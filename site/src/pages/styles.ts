@@ -1,21 +1,21 @@
 import {css} from '@emotion/css';
 import headerLogo from '../imgs/header_logo.png';
 import headerLogo2x from '../imgs/header_logo_x2.png';
-import {center, fullfill} from '../styles/default';
+import {center} from '../styles/default';
 import {theme} from 'kpc/styles/theme';
 
 export function makeHeaderStyles() {
     return css`
         &.k-layout-header {
-            background: rgba(255, 255, 255, 0.6);
-            box-shadow: 0px 1px 1px rgba(176, 176, 176, 0.63);
+            background: rgba(255, 255, 255, 0.65);
+            box-shadow: 0px 1px 4px 0px rgba(11, 11, 11, 0.2);
             color: #000;
             backdrop-filter: blur(20px);
             -moz-backdrop-filter: blur(20px);
             justify-content: space-between; 
             .logo {
                 background-image: url(${headerLogo});
-                width: 181px;
+                width: 182px;
                 height: 40px;
                 background-size: cover;
                 margin-left: 22px;
@@ -68,16 +68,37 @@ export function makeHeaderStyles() {
                 height: 100%;
                 display: flex;
                 align-items: center;
+                .k-tabs {
+                    margin-right: 40px;
+                    .k-tab {
+                        color: #000000;
+                    }
+                }
                 .theme-color-box {
+                    font-size: 14px;
                     position: relative;
                     width: 100px;
                     height: 100%;
+                    display: flex;
+                    align-items: center;
                     &:hover {
                         background: #ffffff;
+                        & > div:first-child {
+                            background: #ffffff;
+                        }
+                    }
+                    & > div:first-child {
+                        position: absolute;
+                        left: -25px;
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        padding-left: 10px;
                     }
                     .cur-color {
-                        ${fullfill()};
+                        height: 100%;
                         ${center()};
+                        flex-grow: 1;
                     }
                     .theme-color-option {
                         width: 100%;
@@ -87,9 +108,13 @@ export function makeHeaderStyles() {
                         background: #ffffff;
                         box-shadow: 0px 4px 20px rgba(108, 103, 103, 0.25);
                         border-radius: 4px;
+                        overflow: hidden;
                         & > div {
                             height: 62px;
                             ${center()};
+                        }
+                        & > div:hover {
+                            background: #F8F8F8;
                         }
                     }
                     .color-item {
@@ -111,6 +136,7 @@ export function makeHeaderStyles() {
 
             .menu-btn {
                 display: none;
+                margin-right: 20px;
             }
 
             @media (max-width: 768px) {

@@ -8,7 +8,7 @@ export function makeStyles() {
 
     return css`
         background: #FFFFFF;
-        ${mainBlock(337)};
+        ${mainBlock(420)};
         letter-spacing: -0.05em;
         color: #5B5A5A;
         font-size: 14px;
@@ -36,10 +36,19 @@ export function makeStyles() {
                 .title {
                     font-size: 30px;
                     color: #000000;
-                    margin-bottom: 30px;
+                    margin-bottom: 16px;
                 }
                 span {
                     margin-right: 50px;
+                }
+                .qrcode-box {
+                    display: flex;
+                    & > div {
+                        padding-left: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-around;
+                    }
                 }
             }
             .info-right {
