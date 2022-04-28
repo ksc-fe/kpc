@@ -10,7 +10,7 @@ const {codeContent, buttonRadiusMax, buttonRadiusMin,
     <div class="best-box">
         <div>
             <div class="title-box">
-                <div class="main-title">DevOps最佳实践，忠于原生增强原生</div>
+                <div class="main-title">忠于原生增强原生，多框架支持</div>
                 <div class="sub-title">在保持浏览器原生特性的基础上增强交互能力，支持</div>
                 <div class="sub-title">按需加载、主题定制，国际化等特性</div>
             </div>
