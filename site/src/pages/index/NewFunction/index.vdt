@@ -81,7 +81,9 @@ const treeData = [
                             <div class="white-card">
                                 <div>更多KD资源</div>
                                 <div class="resource-img-box">
-                                    <img src={king_version_logo} />
+                                    <a target="_blank" href="http://vision.ksyun.com/">
+                                        <img src={king_version_logo} />
+                                    </a>
                                 </div>
                             </div>
                         </div>
