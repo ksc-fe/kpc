@@ -955,12 +955,6 @@
 "<div><div class=\"k-progress k-bar k-active css-e22hlt\"><div class=\"k-progress-container\"><div class=\"k-progress-content\"><div class=\"k-progress-bg\" style=\"width: 25%; background: rgb(255, 152, 0);\"></div></div></div><div class=\"k-progress-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active css-e22hlt\"><div class=\"k-progress-container\"><div class=\"k-progress-content\"><div class=\"k-progress-bg\" style=\"width: 25%; background: rgb(156, 214, 251);\"></div></div></div><div class=\"k-progress-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active css-e22hlt\"><div class=\"k-progress-container\"><div class=\"k-progress-content\"><div class=\"k-progress-bg\" style=\"width: 25%; background: rgb(209, 253, 213);\"></div></div></div><div class=\"k-progress-text\"><span>25%</span></div></div><div class=\"k-btns css-16i9d0z\"><button class=\"k-btn k-mini k-btn-icon css-12uxt25\" tabindex=\"0\" type=\"button\">+</button><button class=\"k-btn k-mini k-btn-icon css-12uxt25\" tabindex=\"0\" type=\"button\">-</button></div></div>"
 ```
 
-####     `Progress customColor`
-
-```
-"<div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(255, 152, 0);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(156, 214, 251);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-progress k-bar k-active\"><div class=\"k-container\"><div class=\"k-content\"><div class=\"k-bg\" style=\"width: 25%; background-color: rgb(209, 253, 213);\"></div></div></div><div class=\"k-text\"><span>25%</span></div></div><div class=\"k-btns\"><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>+</span></button><button class=\"k-btn k-default k-btn-icon k-mini\" tabindex=\"0\" type=\"button\"><span>-</span></button></div></div>"
-```
-
 ####     `Progress innerText`
 
 ```
@@ -1085,12 +1079,6 @@
 "<div><div class=\"k-select css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down k-disabled css-x0ey6t\"></i></span></span></div><!--portal--><div class=\"k-select css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><i class=\"k-icon k-hoverable k-select-clear ion-ios-close css-x0ey6t\"></i><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div>"
 ```
 
-####     `Select autoDisableIcon`
-
-```
-"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b k-color-disabled\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
-```
-
 ####     `Select basic`
 
 ```
@@ -1179,6 +1167,12 @@
 
 ```
 "<div><div class=\"k-select k-large css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--><div class=\"k-select css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--><div class=\"k-select k-small css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--><div class=\"k-select k-mini css-1mhb480\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div>"
+```
+
+####     `Select autoDisableIcon`
+
+```
+"<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b k-color-disabled\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
 ```
 
 ##   `slider`
@@ -1529,12 +1523,6 @@
 
 ```
 "<div><div class=\"k-table css-of6c5k\"><div class=\"k-table-wrapper\"><table><colgroup><col width=\"40\"><col><col></colgroup><thead><tr><th rowspan=\"1\"><label class=\"k-checkbox k-indeterminate css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th><th title=\"表头1\" colspan=\"1\" rowspan=\"1\"><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\">表头1</div></div></th><th title=\"表头2\" colspan=\"1\" rowspan=\"1\"><div class=\"k-table-resize\"></div><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\">表头2</div></div></th></tr></thead><tbody><tr class=\"k-checked\" data-key=\"0\"><td class=\"k-table-check\"><label class=\"k-checkbox k-checked css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr data-key=\"1\"><td class=\"k-table-check\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div></div>"
-```
-
-####     `Table showIndeterminate`
-
-```
-"<div><div class=\"k-table\"><div class=\"k-table-wrapper\"><div class=\"k-thead\"><div class=\"k-thead-wrapper\" style=\"padding-right: 0px;\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><thead><tr><th minwidth=\"40\"><label class=\"k-checkbox k-indeterminate\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th><th title=\"表头1\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">表头1</div></div></th><th title=\"表头2\"><div class=\"k-resize\"></div><div class=\"k-th\"><div class=\"c-ellipsis\">表头2</div></div></th></tr></thead></table></div></div><div class=\"k-tbody\"><table><colgroup><col class=\"k-th-check\"><col><col></colgroup><tbody><tr class=\"k-checked\"><td class=\"k-th-check\"><label class=\"k-checkbox k-checked\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"true\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr><td class=\"k-th-check\"><label class=\"k-checkbox\" tabindex=\"0\"><span class=\"k-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" name=\"k-table-checkbox\" value=\"true\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div></div></div>"
 ```
 
 ####     `Table sort`
