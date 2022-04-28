@@ -1,7 +1,7 @@
 <div align="center">
 
 <a href="https://design.ksyun.com" rel="nofollow">
-    <img src="/site/src/imgs/header_logo_x2.png" alt="LOGO" width="150">
+    <img src="/site/src/imgs/header_logo_x2.png" alt="LOGO" />
 </a>
 
 <p></p>
