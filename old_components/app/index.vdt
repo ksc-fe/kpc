@@ -1,8 +1,0 @@
-import Spin from '../spin';
-
-<div class="k-app">
-    {{ self.get('view') }}
-    <b:loading>
-        <Spin key="loading" center size="large" v-if={{ self.get('loading') }}/>
-    </b:loading>
-</div>

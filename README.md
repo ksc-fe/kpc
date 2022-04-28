@@ -1,18 +1,18 @@
 <div align="center">
 
-<a href="https://ksc-fe.github.io/kpc/" rel="nofollow">
-    <img src="/site/src/imgs/logo.png" alt="LOGO" width="150">
+<a href="https://design.ksyun.com" rel="nofollow">
+    <img src="/site/src/imgs/header_logo_x2.png" alt="LOGO" />
 </a>
 
 <p></p>
 
 [![Build Status](https://github.com/ksc-fe/kpc/workflows/Node.js%20CI/badge.svg?branch=master)](https://github.com/ksc-fe/kpc/actions?query=workflow%3A%22Node.js+CI%22)
 [![Codecov](https://codecov.io/gh/ksc-fe/kpc/branch/master/graphs/badge.svg)](https://codecov.io/gh/ksc-fe/kpc/branch/master)
-[![gzip size: js](http://img.badgesize.io/https://cdn.jsdelivr.net/npm/kpc/dist/kpc.min.js?compression=gzip&label=gzip%20size:%20js)](https://cdn.jsdelivr.net/npm/kpc/dist/)
-[![gzip size: css](http://img.badgesize.io/https://cdn.jsdelivr.net/npm/kpc/dist/kpc.css?compression=gzip&label=gzip%20size:%20css)](https://cdn.jsdelivr.net/npm/kpc/dist/)
+[![npm](https://img.shields.io/npm/v/@king-design/vue.svg)](https://www.npmjs.com/package/@king-design/vue)
 
-[![npm](https://img.shields.io/npm/dm/kpc.svg)](https://www.npmjs.com/package/kpc)
-[![npm](https://img.shields.io/npm/v/kpc.svg)](https://www.npmjs.com/package/kpc)
+[![npm](https://img.shields.io/npm/dm/@king-design/react.svg?label=react%20download)](https://www.npmjs.com/package/@king-design/react)
+[![npm](https://img.shields.io/npm/dm/@king-design/vue.svg?label=vue3%20download)](https://www.npmjs.com/package/@king-design/vue)
+[![npm](https://img.shields.io/npm/dm/@king-design/vue-legacy.svg?label=vue2%20download)](https://www.npmjs.com/package/@king-design/vue-legacy)
 
 </div>
 
@@ -20,11 +20,11 @@ English | [简体中文](./README-zh_CN.md)
 
 ## Features 
 
-* Support multiple frameworks: [Intact][1] / [Vue][2] / [React][3] / [Angular][4].
-* Complete custom theme system.
-* 360° locate popup layer.
+* Support multiple frameworks: [Intact][1] / [Vue][2] / [React][3].
+* Support TypeScript.
+* Change theme on runtime. 
 * Declarative form validation.
-* Excellent [documents](https://ksc-fe.github.io/kpc/) and design
+* Excellent [documents](https://design.ksyun.com) and design
 * 90% coverage unit tests.
 
 ## Browsers Support
@@ -38,7 +38,11 @@ English | [简体中文](./README-zh_CN.md)
 ### Installation
 
 ```shell
-npm install kpc-vue --save
+# Vue3
+npm install @king-design/vue --save
+
+# Vue2
+npm install @king-desing/vue-legacy --save
 ```
 
 ### Usage 
@@ -48,7 +52,7 @@ npm install kpc-vue --save
     <Button>Hello</Button>
 </template>
 <script>
-import {Button} from 'kpc-vue';
+import {Button} from '@king-design/vue';
 
 export default {
     components: {
@@ -63,114 +67,16 @@ export default {
 ### Installation 
 
 ```shell
-npm install kpc-react --save
+npm install @king-design/react--save
 ```
 
 ### Usage 
 
 ```jsx
-import React from 'react';
-import {Button} from 'kpc-react';
+import {Button} from '@king-design/react';
 
-class App extends React.Component {
-    render() {
-        return <Button>Hello</Button>
-    }
-}
-```
-
-## Intact
-
-### Installation 
-
-```shell
-npm install kpc --save
-```
-
-### Usage 
-
-```js
-import {Button} from 'kpc';
-
-<Button>Hello</Button>
-```
-
-## Angular
-
-Read [more][5]
-
-### Installation 
-
-```shell
-npm install kpc-angular -S
-```
-
-### Configure `webpack.config.js`
-
-You need use `@angular-builders/custom-webapck` to configure webpack, if your project initialized by Angular CLI.
-
-```js
-const path = require('path');
-
-module.exports = function(config) {
-  config.module.rules.find(rule => {
-    if (rule.test.toString() === '/\\.css$/') {
-      rule.exclude.push(path.resolve(__dirname, 'node_modules/kpc-angular'));
-      return true;
-    }
-  });
-
-  return config;
-};
-```
-
-### Usage 
-
-`src/app/app.module.ts`
-
-```ts
-import { KpcBrowserModule, KpcModule } from 'kpc-angular';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    KpcBrowserModule,
-    AppRoutingModule,
-    KpcModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
-})
-export class AppModule { }
-```
-
-```ts
-import { Component, ViewEncapsulation } from '@angular/core';
-import { MessageComponent } from 'kpc-angular';
-
-@Component({
-  selector: 'app-root',
-  template: `
-    <k-button type="primary" (click)="onClick()">Hello World</k-button>
-  `,
-  style: `
-    .k-button {
-      margin: 10px;
-    }
-  `,
-  encapsulation: ViewEncapsulation.None,
-})
-export class AppComponent {
-  onClick() {
-    MessageComponent.success('Welcome to kpc world!');
-  }
+function App() {
+    return <Button>Hello</Button>
 }
 ```
 
@@ -187,10 +93,6 @@ Welcome to join us by QQ. Group Number: 529739732
 
 * [KPC Document](https://design.ksyun.com)
 * [Intact MVVM Framework][1]
-* [Vdt Template Engine](http://javey.github.io/vdt.js/)
-* [Intact-Vue Compatibility Layer](https://github.com/Javey/intact-vue)
-* [Intact-React Compatibility Layer](https://github.com/ksc-fe/intact-react)
-* [Intact-Angular Compatibility Layer](https://github.com/ksc-fe/intact-angular)
 
 ## Develop 
 

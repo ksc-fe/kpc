@@ -1,5 +1,0 @@
-const Demo = self.get('Demo');
-
-<div class={{ `example ${Demo.data.index}` }}>
-    <Demo.default />
-</div>

@@ -41,4 +41,5 @@ const addConfig = exports.addConfig = function(config) {
     addThread(config);
     addStyle(config);
     addMonaco(config);
+    // addTheme(config, 'ksyun');
 }

@@ -25,6 +25,6 @@ export default class Index extends Layout {
     }
 
     downloadSketch(info: any) {
-        Link.to(`https://damife.ks3-cn-beijing.ksyuncs.com/kpc/${info.downloadFileName}`);
+        location.href = `https://damife.ks3-cn-beijing.ksyuncs.com/kpc/${info.downloadFileName}`;
     }
 }
