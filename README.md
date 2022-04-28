@@ -10,9 +10,9 @@
 [![Codecov](https://codecov.io/gh/ksc-fe/kpc/branch/master/graphs/badge.svg)](https://codecov.io/gh/ksc-fe/kpc/branch/master)
 [![npm](https://img.shields.io/npm/v/@king-design/vue.svg)](https://www.npmjs.com/package/@king-design/vue)
 
-[![npm](https://img.shields.io/npm/dm/@king-design/react.svg)](https://www.npmjs.com/package/@king-design/react)
-[![npm](https://img.shields.io/npm/dm/@king-design/vue.svg)](https://www.npmjs.com/package/@king-design/vue)
-[![npm](https://img.shields.io/npm/dm/@king-design/vue-legacy.svg)](https://www.npmjs.com/package/@king-design/vue-legacy)
+[![npm](https://img.shields.io/npm/dm/@king-design/react.svg?label=react%20download)](https://www.npmjs.com/package/@king-design/react)
+[![npm](https://img.shields.io/npm/dm/@king-design/vue.svg?label=vue3%20download)](https://www.npmjs.com/package/@king-design/vue)
+[![npm](https://img.shields.io/npm/dm/@king-design/vue-legacy.svg?label=vue2%20download)](https://www.npmjs.com/package/@king-design/vue-legacy)
 
 </div>
 
