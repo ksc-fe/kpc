@@ -6,6 +6,7 @@ import {
     Menu, MenuItem, Rate, ButtonGroup,
     Spinner, Tree
 } from 'kpc';
+import {Link} from '../../../components/link';
 import {BezierBox} from '../../../components/BezierBox'
 import king_version_logo from '../../../imgs/king_version_logo.png';
 import sketch_img from '../../../imgs/sketch_img.png';
