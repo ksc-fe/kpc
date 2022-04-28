@@ -6,6 +6,7 @@ import {
     Menu, MenuItem, Rate, ButtonGroup,
     Spinner, Tree
 } from 'kpc';
+import {Link} from '../../../components/link';
 import {BezierBox} from '../../../components/BezierBox'
 import king_version_logo from '../../../imgs/king_version_logo.png';
 import sketch_img from '../../../imgs/sketch_img.png';
@@ -81,7 +82,9 @@ const treeData = [
                             <div class="white-card">
                                 <div>更多KD资源</div>
                                 <div class="resource-img-box">
-                                    <img src={king_version_logo} />
+                                    <Link href="http://vision.ksyun.com">
+                                        <img src={king_version_logo} />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
