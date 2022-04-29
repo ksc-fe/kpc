@@ -88,6 +88,9 @@ export function makeStyles() {
                         font-size: 16px;
                     }
                 }
+                .nav-video-box {
+                    display: none;
+                }
             }
         }
     `
