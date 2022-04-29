@@ -9,7 +9,6 @@ export function makeStyles() {
             height: 460px;
             position: relative;
             margin-top: -64px;
-
             .nav-bg, .nav-content-box {
                 width: 100%;
                 height: 100%;
@@ -17,14 +16,12 @@ export function makeStyles() {
                 left: 0;
                 top: 0;
             }
-
             .nav-bg {
                z-index: 1;
                background-image: url(${banner});
                background-repeat: no-repeat;
                background-size: 1920px 460px;
             }
-
             .nav-video-box {
                 width: 100%;
                 height: 100%;
@@ -37,7 +34,6 @@ export function makeStyles() {
                     height: 460px;
                 }    
             }
-
             .nav-content-box {
                 z-index: 10;
                 background: linear-gradient(270deg, rgba(248,252,255,0) 32%, rgba(244,249,255,0.96) 73%);
@@ -46,7 +42,6 @@ export function makeStyles() {
                 justify-content: center;
                 padding-left: 20px;
             }
-
             .nav-content {
                 width: ${global.contentWidth}px;
                 color: #000000;
