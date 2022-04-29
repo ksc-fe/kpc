@@ -32,8 +32,6 @@ const nav = [
 
 const {themeColor, colorList, curLang} = this.get();
 
-console.log(colorList);
-
 <Layout class={{[$props.className]: $props.className, [makeLayoutStyles()]: true}}>
     <Header fixed class={makeHeaderStyles()}>
         <div class="logo" ev-click={() => Link.to('/')}></div>

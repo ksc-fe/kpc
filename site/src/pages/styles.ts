@@ -162,12 +162,17 @@ export function makeHeaderStyles() {
 
 export function makeLayoutStyles() {
     return css`
+        min-width: 1240px;
         a, a code {
             color: ${theme.color.link};
             text-decoration: none;
             &:hover {
                 color: ${theme.color.linkHover};
             }
+        }
+
+        @media (max-width: 768px) {
+            min-width: auto;
         }
     `
 }
