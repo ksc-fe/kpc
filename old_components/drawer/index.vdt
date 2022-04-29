@@ -1,7 +1,0 @@
-<t:parent class={{ {'k-drawer': true, [`k-${self.get('placement')}`]: true} }} >
-    <b:content>
-        <div class='k-drawer-content'>
-            {{ parent() }}
-        </div>
-    </b:content>
-</t:parent>

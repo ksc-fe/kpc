@@ -59,6 +59,9 @@ export function makeColStyles() {
     return css`
         position: relative;
         width: 100%;
+        .k-col-wrapper {
+            height: 100%;
+        }
         ${colsStyles}
     `;
 }

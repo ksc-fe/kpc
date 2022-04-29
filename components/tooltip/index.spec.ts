@@ -38,7 +38,7 @@ describe('Tooltip', () => {
 
         // should hide
         dispatchEvent(first, 'mouseleave');
-        await wait(500);
+        await wait(600);
         expect(content.style.display).to.eql('none');
     });
 
@@ -131,7 +131,7 @@ describe('Tooltip', () => {
         await wait(500);
         const content1 = getElement('.k-tooltip-content');
 
-        //  should not hide when hover from button to tooltip content    
+        //  should not hide when move mouse from button to tooltip content    
         expect(content1).eql(content);
 
         dispatchEvent(canHover, 'mouseleave');

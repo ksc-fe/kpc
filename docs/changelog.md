@@ -4,7 +4,7 @@ order: 99
 sidebar: doc
 ---
 
-## v2.0.0-beta.2
+## v2.0.0
 
 ### 全局变更
 

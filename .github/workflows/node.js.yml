@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ v2 ]
+    branches: [ master ]
   pull_request:
-    branches: [ v2 ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -34,10 +34,10 @@ jobs:
     - run: yarn gulp doc:prepare
     - run: yarn build
     # - run: yarn test:all
+    - run: npx lerna exec --scope @king-design/intact -- npm run test
     - run: npx lerna exec --scope @king-design/react -- npm run test 
     - run: npx lerna exec --scope @king-design/vue-legacy -- npm run test 
     - run: npx lerna exec --scope @king-design/vue -- npm run test 
-    - run: npx lerna exec --scope @king-design/intact -- npm run test
     - run: codecov
       env: 
         CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

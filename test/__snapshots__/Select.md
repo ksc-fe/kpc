@@ -100,3 +100,9 @@
     Days: []"
 ```
 
+#### `should disable arrow icon if no more selections`
+
+```
+"<div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b k-color-disabled\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix k-has-value\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\" value=\"Monday\"><span class=\"k-value c-ellipsis\">星期一</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close k-show\"></i><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b k-color-disabled\"></i></span></span></div><!--placeholder--></div>"
+```
+

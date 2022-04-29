@@ -52,7 +52,7 @@ gulp.task('index', () => {
             let contents = fs.readFileSync(path, 'utf-8');
 
             // update version in copyright
-            contents = contents.replace(/\* kpc v.*/, `* kpc v${packageJson.version}`);
+            contents = contents.replace(/\* @king-design v.*/, `* @king-design v${packageJson.version}`);
 
             const startComment = '/* generate start */';
             const startIndex = contents.indexOf(startComment) + startComment.length;

@@ -1,6 +1,6 @@
 {
   "name": "@king-design/vue",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "description": "King-Design UI components for Vue3.0.",
   "keywords": [
     "component",
@@ -11,16 +11,6 @@
     "library",
     "king-design",
     "kpc"
-  ],
-  "files": [
-    "components",
-    "hooks",
-    "i18n",
-    "styles",
-    "dist",
-    "index.js",
-    "install.js",
-    "index.d.ts"
   ],
   "author": "Javey <jiawei23716@sina.com>",
   "homepage": "https://design.ksyun.com",
@@ -48,7 +38,7 @@
     "dayjs": "^1.10.7",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
-    "intact-vue-next": "^3.0.0-beta.22",
+    "intact-vue-next": "^3.0.0",
     "monaco-editor": "^0.26.1",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.1",

@@ -1,7 +1,7 @@
 import {
     Layout, Header, Body, Icon, Tabs, Tab,
     Dropdown, DropdownMenu, DropdownItem,
-    Button,
+    Button, Select, Option,
 } from 'kpc';
 import {makeHeaderStyles, makeLayoutStyles} from './styles';
 import {Link} from '../components/link';
@@ -73,6 +73,14 @@ const {themeColor, colorList, curLang} = this.get();
                     >{$value.title}</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
+            <Select width="70" container={dom => dom} value="v2"
+                size="small"
+                ev-$change:value={this.onChangeVersion}
+                class="versions"
+            >
+                <Option value="v1">v1</Option>
+                <Option value="v2">v2</Option>
+            </Select>
             <div class="theme-color-box" 
                 ev-mouseenter={this.showColorList} 
                 ev-mouseleave={this.hideColorList}
