@@ -89,7 +89,10 @@ export function makeStyles() {
                     }
                 }
                 .nav-video-box {
-                    display: none;
+                    &,
+                    & video {
+                        display: none;
+                    }
                 }
             }
         }
