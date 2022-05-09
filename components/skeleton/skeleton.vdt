@@ -1,7 +1,7 @@
 import {SkeletonItem} from './item';
 import {makeStyles, kls} from './style';
 
-const {rows, avator, animated, children, loading} = this.get();
+const {rows, avator, animated, children, loading, size} = this.get();
 
 const targetRows = (() => {
     return typeof rows !== 'number'
@@ -21,7 +21,7 @@ const getItems = () => {
 const classNameObj = {
     'k-skeleton': true,
     'k-animated': animated,
-    [makeStyles()]: true
+    [makeStyles(size)]: true
 };
 
 <div class={classNameObj} v-if={loading}>
@@ -31,8 +31,8 @@ const classNameObj = {
     <template v-else>
         <div v-if={avator} class={kls('avator-box')}>
             <SkeletonItem type="avator"></SkeletonItem>
-            <div>{getItems()}</div>
+            <div class="k-skeleton-items">{getItems()}</div>
         </div>
-        <div v-else>{getItems()}</div>
+        <div class="k-skeleton-items" v-else>{getItems()}</div>
     </template>
 </div>

@@ -6,6 +6,7 @@ export interface SkeletonProps {
     animated?: boolean
     rows?: number
     avator?: boolean
+    size?: string
 }
 
 export interface SkeletonEvents {}
@@ -16,14 +17,16 @@ const typeDefs: Required<TypeDefs<SkeletonProps>> = {
     loading: Boolean,
     animated: Boolean,
     rows: Number,
-    avator: Boolean
+    avator: Boolean,
+    size: String
 };
 
 const defaults = (): Partial<SkeletonProps> => ({
-    loading: true,
+    loading: false,
     animated: false,
-    rows: 4,
-    avator: false
+    rows: 2,
+    avator: false,
+    size: 'large'
 });
 
 export class Skeleton extends Component<SkeletonProps, SkeletonEvents, SkeletonBlocks> {

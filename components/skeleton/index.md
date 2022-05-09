@@ -7,16 +7,18 @@ sidebar: doc
 
 # 属性
 
+## Skeleton
+
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 组件取值 | `number` | `0` |
-| count | 星星的个数 | `number` | `5` |
-| disabled | 是否变为只读状态 | `boolean` | `false` |
-| half | 是否支持选中半星 | `boolean` | `false` |
-| clearable | 是否可以清空值 | `boolean` | `false` |
+| loading | 是否显示骨架屏 | `boolean` | `false` |
+| rows | 完整长度的行数 | `number` | `2` |
+| animated | 是否显示动画 | `boolean` | `false` |
+| avator | 是否显示为头像模式 | `boolean` | `false` |
+| size | 骨架屏尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 
-# 扩展点
+## SkeletonItem
 
-| 名称 | 说明 |
-| --- | --- |
-| icon | 自定义图标 |
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 骨架屏元素类型 | `"text"` &#124; `"avator"` &#124; `"image"` &#124; `"button"` &#124; `"input"` | `"text"` |

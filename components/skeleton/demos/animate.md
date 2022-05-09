@@ -1,9 +1,9 @@
 ---
-title: 基础用法
-order: 0
+title: 动画效果
+order: 3
 ---
 
-最简单的骨架屏用法，通过loading属性来控制骨架屏的显示或隐藏效果。也可以使用Spin来代替，但是在某些场景下能提供比Spin更好的视觉效果和用户体验。
+添加animated属性可显示动画效果。
 
 ```vdt
 import {Skeleton} from 'kpc';
@@ -11,7 +11,7 @@ import {Skeleton} from 'kpc';
 const {showSkeleton} = this.get();
 
 <div>
-    <Skeleton loading={showSkeleton} />
+    <Skeleton loading={showSkeleton} avator animated />
 </div>
 ```
 

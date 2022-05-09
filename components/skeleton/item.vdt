@@ -4,9 +4,7 @@ import {getRestProps} from '../utils';
 
 const {type} = this.get();
 
-const targetType = itemTypeMap.includes(type)
-    ? type
-    : 'text';
+const targetType = itemTypeMap.includes(type) ? type : 'text';
 
 const classNameObj = {
     'k-skeleton-item': true,

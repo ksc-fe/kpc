@@ -1,17 +1,13 @@
 import {deepDefaults}  from '../../styles/utils';
-import {theme, setDefault} from '../../styles/theme';
+import { theme, setDefault } from '../../styles/theme';
 import {css, keyframes} from '@emotion/css';
 import '../../styles/global';
 
 export const kls = (className: string) => `k-skeleton-${className}`;
 
-const defaults = {
-    get transition() { return theme.transition.large },
-    fontSize: '12px',
-    titleMarginRight: '8px',
-    borderPadding: '0 24px',
-    collBorder: '1px solid #eee',
+type ItemSize = 'default' | 'large' | 'small' | 'mini';
 
+const defaults = {
     item: {
         bgColor: '#dcdde0'
     }
@@ -22,9 +18,8 @@ setDefault(() => {
     skeleton = deepDefaults(theme, {skeleton: defaults}).skeleton;
 });
 
-export function makeStyles() {
+export function makeStyles(size: ItemSize) {
     return css`
-        border: 1px dotted #000;
         &.k-animated {
             .${kls('item')} > * {
                 background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
@@ -32,15 +27,17 @@ export function makeStyles() {
                 animation: ${skeletonLoading} 1.4s ease infinite;
             }
         }
-        .${kls('item')}:first-child {
-            .skeleton-item-text {
-                width: 33%;
+        .k-skeleton-items {
+            .${kls('item')}:first-child {
+                .skeleton-item-text {
+                    width: 33%;
+                }
             }
-        }
-        .${kls('item')}:last-child {
-            .skeleton-item-text {
-                width: 61%;
-            }
+            .${kls('item')}:last-child {
+                .skeleton-item-text {
+                    width: 61%;
+                }
+            }    
         }
         .${kls('avator-box')} {
             display: flex;
@@ -48,6 +45,10 @@ export function makeStyles() {
                 flex-grow: 1;
                 padding-left: 20px;
             }
+        }
+        .skeleton-item-button,
+        .skeleton-item-input {
+            height: ${theme[size].height}
         }
     `;
 }
@@ -92,12 +93,10 @@ export function makeItemStyles() {
         }
         .skeleton-item-button {
             width: 64px;
-            height: 32px;
             background: ${skeletonItem.bgColor};
         }
         .skeleton-item-input {
             width: 160px;
-            height: 32px;
             background: ${skeletonItem.bgColor};
         }
     `;
