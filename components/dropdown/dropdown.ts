@@ -249,6 +249,8 @@ export class Dropdown<
             if (!vnode) return props;
 
             const _props = vnode.props;
+            if (!_props) return props;
+
             return {
                 vnode,
                 'ev-click': _props.onClick,
