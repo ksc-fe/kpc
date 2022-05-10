@@ -50,7 +50,12 @@ describe('Tooltip', () => {
         const at = element.querySelector('.opera .k-btn') as HTMLElement;
         const {width, height, left, top} = at.getBoundingClientRect();
         const contains = (name: string) => expect(arrow.classList.contains(name)).to.be.true;
-        const eql = (a: number, b: number) => expect(Math.floor(a)).to.eql(Math.floor(b));
+        const eql = (a: number, b: number) => {
+            a = Math.floor(a);
+            b = Math.floor(b);
+            // Don't be entangled with the difference of 1 to 2 pixels
+            expect(a >= b - 1 && a <= b + 1).to.be.true;
+        };
 
         
         instance.set('position', 'left');
