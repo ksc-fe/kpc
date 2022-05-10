@@ -27,6 +27,7 @@ const i18n = {
     '五': 'Fri',
     '六': 'Sat',
     '{n}年': '{n}',
+    '{n}年 - {m}年': '{n} - {m}',
     '今天': 'Today',
     '昨天': 'Yesterday',
     '明天': 'Tomorrow',
@@ -75,7 +76,7 @@ const i18n = {
     '最多输入 {n} 个字符': 'Please enter no more than {n} character{s:n}.',
     '最少选择 {n} 项': 'Please select at least {n} item{s:n}.',
     '最少输入 {n} 个字符': 'Please enter at least {n} character{s:n}.',
-    '请选择 {n} 到 {m} 项': 'Please select {n}~{m} item{s:m}.', 
+    '请选择 {n} 到 {m} 项': 'Please select {n}~{m} item{s:m}.',
     '请输入 {n} 到 {m} 个字符': 'Please enter {n}~{m} character{s:m}.',
 
     // pagination
@@ -110,7 +111,7 @@ const i18n = {
     '请输入关键字': 'Please enter keywords',
 };
 
-export default i18n; 
+export default i18n;
 
 if (typeof global.Kpc !== 'undefined') {
     Kpc.utils.localize(i18n);

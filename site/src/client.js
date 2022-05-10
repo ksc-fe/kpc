@@ -5,7 +5,10 @@ import {createBrowserHistory} from 'history';
 import App from 'kpc/components/app';
 import Link from 'kpc/components/link';
 import serverStyleCleanup from 'node-style-loader/clientCleanup';
-import {configure} from 'kpc/components/utils';
+import {configure, localize} from 'kpc/components/utils';
+import i18n from 'kpc/i18n/en-US';
+
+// localize(i18n);
 
 configure({
     onDialogOpen(scrollbarWidth) {
