@@ -41,6 +41,7 @@ export default class Switch extends Intact {
     static events = {
         click: true,
         keypress: true,
+        change: true,
     };
 
     _dragStart(e) {
@@ -133,11 +134,19 @@ export default class Switch extends Intact {
     }
 
     check() {
-        this.set('value', this.get('trueValue'));
+        const {value, trueValue} = this.get();
+        this.set('value', trueValue);
+        if (value !== trueValue) {
+            this.trigger('change', trueValue, value);
+        }
     }
 
     uncheck() {
-        this.set('value', this.get('falseValue'));
+        const {value, falseValue} = this.get();
+        this.set('value', falseValue);
+        if (value !== falseValue) {
+            this.trigger('change', falseValue, value);
+        }
     }
 
     _handleClick(e) {

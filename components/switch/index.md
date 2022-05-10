@@ -38,3 +38,10 @@ sidebar: doc
 | isChecked | 判断是否开启 | - | `Boolean` |
 | check | 开启按钮 | - | `undefined` |
 | uncheck | 关闭按钮 | - | `undefined` |
+
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| change | 组件状态由于用户操作导致变化时触发 | `newValue, oldValue` |
+
