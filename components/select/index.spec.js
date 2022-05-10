@@ -14,10 +14,10 @@ import AutoDisableIconDemo from '~/components/select/demos/autoDisableIcon';
 describe('Select', () => {
     let instance;
 
-    // afterEach((done) => {
-        // unmount(instance);
-        // setTimeout(done, 400);
-    // });
+    afterEach((done) => {
+        unmount(instance);
+        setTimeout(done, 400);
+    });
 
     it('should select value correctly', () => {
         instance = mount(BasicDemo);
@@ -426,5 +426,34 @@ describe('Select', () => {
         const dropdown = getElement('.k-select-dropdown');
         const group = dropdown.querySelector('.k-group');
         expect(group).to.eql(null);
-    })
+    });
+
+    it('should filter when OptionGroup has only one Option', () => {
+         class Demo extends Intact {
+            @Intact.template()
+            static template = `
+                <Select v-model="day" filterable>
+                    <OptionGroup label="工作日">
+                        <Option value="Monday">星期一</Option>
+                    </OptionGroup>
+                </Select>
+            `;
+            defaults() {
+                return {
+                    day: ''
+                }
+            }
+            _init() {
+                this.Select = Select;
+                this.Option = Option;
+                this.OptionGroup = OptionGroup;
+            }
+        }
+
+        instance = mount(Demo);
+        const input = instance.element.querySelector('.k-inner');
+        input.click();
+        const dropdown = getElement('.k-select-dropdown');
+        expect(dropdown.textContent).to.eql('工作日星期一');
+    });
 });

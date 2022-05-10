@@ -307,6 +307,9 @@ export default class Select extends Intact {
         if (!filterable && !searchable) {
             valid = true;
         } else {
+            if (!Array.isArray(children)) {
+                children = [children];
+            }
             valid = children.some(item => {
                 let props = item.props;
                 if (item.tag === Group) {
