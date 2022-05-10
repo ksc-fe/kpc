@@ -19,6 +19,8 @@ const Options = (props) => {
     const data = props.data || [];
     const level = props.level;
     const parentShowed = props.parentShowed;
+    const parentActived = props.parentActived;
+    const parentSelected = props.parentSelected;
     const ret = [];
 
     // show loading
@@ -31,7 +33,7 @@ const Options = (props) => {
     }
 
     data.forEach((item, index) => {
-        const {active, selected} = self.handleProps(item, labelObj, level);
+        const {active, selected} = self.handleProps(item, labelObj, level, parentActived, parentSelected);
 
         const Item = () => {
             const events = {};
@@ -82,6 +84,8 @@ const Options = (props) => {
                                 show || selected
                             }}
                             loaded={{ item.loaded }}
+                            parentActived={{ active }}
+                            parentSelected={{ selected }}
                         />
                     </DropdownMenu>
                 </Dropdown>
@@ -108,6 +112,8 @@ if (!filterable || !keywords) {
                 level={{ 0 }}
                 parentShowed={{ _show }}
                 loaded={{ true }}
+                parentActived={{ true }}
+                parentSelected={{ true }}
             />
         </DropdownMenu>
     );

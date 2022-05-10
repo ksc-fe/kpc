@@ -73,18 +73,18 @@ export default class Cascader extends Select {
 
     _clearValue() {  }
 
-    handleProps(props, labelObj, level) {
+    handleProps(props, labelObj, level, parentActived, parentSelected) {
         const {_value, value} = this.get();
         let active = false;
         let selected = false;
 
-        if (Array.isArray(_value)) {
+        if (parentActived && Array.isArray(_value)) {
             if (_value[level] === props.value) {
                 active = true;
             }
         }
 
-        if (Array.isArray(value)) {
+        if (parentSelected && Array.isArray(value)) {
             if (value[level] === props.value) {
                 labelObj.values.push(props);
                 selected = true;

@@ -4,6 +4,8 @@ import ChangeOnSelectDemo from '~/components/cascader/demos/changeOnSelect';
 import LoadDataDemo from '~/components/cascader/demos/loadData';
 import FilterDemo from '~/components/cascader/demos/filterable';
 import {mount, unmount, dispatchEvent, getElement, getElements, wait} from 'test/utils';
+import {Cascader} from './';
+import Intact from 'intact';
 
 describe('Cascader', () => {
     let instance;
@@ -119,5 +121,64 @@ describe('Cascader', () => {
         dispatchEvent(select, 'click');
         const dropdown = getElement('.k-cascader-dropdown');
         expect(dropdown.innerHTML).to.matchSnapshot();
+    });
+
+    it('duplicated sub data', async () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<Cascader data={{ self.get('data') }} v-model="value" />`;
+
+            defaults() {
+                this.Cascader = Cascader;
+                return {
+                    value: ['beijing', 'haidian'],
+                    data: [
+                        {
+                            value: 'beijing',
+                            label: '北京',
+                            children: [
+                                {
+                                    value: 'haidian',
+                                    label: '海淀区'
+                                },
+                            ]
+                        },
+                        {
+                            value: 'hunan',
+                            label: '湖南',
+                            children: [
+                                {
+                                    value: 'haidian',
+                                    label: '海淀区'
+                                },
+                            ]
+                        },
+                    ]
+                }
+            }
+        }
+
+        instance = mount(Demo);
+
+        dispatchEvent(instance.element.querySelector('.k-wrapper'), 'click');
+
+        const [dropdown1, dropdown2] = getElements('.k-cascader-dropdown');
+        const [item1, item2] = dropdown1.querySelectorAll(':scope > .k-item');
+        expect(item1.classList.contains('k-active')).to.be.true;
+        expect(item2.classList.contains('k-active')).to.be.false;
+        const [item21] = dropdown2.querySelectorAll(':scope > .k-item');
+        expect(item21.classList.contains('k-active')).to.be.true;
+
+        dispatchEvent(item2, 'click');
+        await wait();
+
+        const dropdown3 = getElement('.k-cascader-dropdown');
+        const [item31] = dropdown3.querySelectorAll(':scope > .k-item');
+        expect(item31.classList.contains('k-active')).to.be.false;
+
+        dispatchEvent(item31, 'click');
+
+        expect(instance.get('value')).to.eql(['hunan', 'haidian']);
+        expect(instance.element.textContent).to.eql('湖南 / 海淀区');
     });
 });
