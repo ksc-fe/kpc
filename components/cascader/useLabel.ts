@@ -14,23 +14,23 @@ export function useLabel() {
         const {format} = instance.get();
         const labels: string[] = [];
         const length = value.length;
-        const loop = (data: CascaderStringData[]) => {
+        const loop = (data: CascaderStringData[], level: number) => {
+            if (level === length) return;
+
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
-                if (value.includes(item.value)) {
+                if (item.value === value[level]) {
                     labels.push(item.label); 
-                    if (labels.length === length) {
-                        return;
+
+                    const children = item.children;
+                    if (children) {
+                        loop(children, level + 1);
                     }
-                }
-                const children = item.children;
-                if (children) {
-                    loop(children);
                 }
             }
         };
 
-        loop(data);
+        loop(data, 0);
 
         return labels.length ? format!(labels) : null;
     }

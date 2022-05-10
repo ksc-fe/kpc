@@ -11,7 +11,7 @@ const classNameObj = {
 };
 
 const {values, isShowed, isSelected, onSelect, toggleShowedValue} = this.value;
-const Options = (data, level, loaded) => {
+const Options = (data, level, loaded, parentSelected) => {
     if (!data.length) {
         if (!loaded) {
             return <Icon class="ion-load-c k-cascader-loading" rotate />
@@ -23,7 +23,7 @@ const Options = (data, level, loaded) => {
     return data.map((item, index) => {
         const value = item.value;
         const showed = isShowed(value, level);
-        const selected = isSelected(value, level);
+        const selected = parentSelected && isSelected(value, level);
         const children = item.children;
 
         const Item = () => {
@@ -58,7 +58,7 @@ const Options = (data, level, loaded) => {
                 >
                     {Item()}
                     <DropdownMenu class={classNameObj}>
-                        {showed ? Options(children, level + 1, item.loaded) : null}
+                        {showed ? Options(children, level + 1, item.loaded, selected) : null}
                     </DropdownMenu>
                 </Dropdown> :
                 Item()
@@ -74,7 +74,7 @@ const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
             class={classNameObj}
             key="common"
         >
-            {Options(data, 0, true)}
+            {Options(data, 0, true, true)}
         </DropdownMenu>
         <DropdownMenu v-else
             key="filter"
