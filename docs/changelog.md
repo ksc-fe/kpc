@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.1
+
+1. `Fix` 修复国际化问题 [#728](https://github.com/ksc-fe/kpc/issues/728)
+
+### `@king-design/vue`
+1. `Fix` 修复`Table`等组件当子元素使用`v-for`时，不能正确识别的问题 [#725](https://github.com/ksc-fe/kpc/issues/725)
+2. `Fix` 修复`Dropdown`当触发元素没有`props`时，报错的问题 [#726](https://github.com/ksc-fe/kpc/issues/726)
+
 ## v2.0.0
 
 ### 全局变更
