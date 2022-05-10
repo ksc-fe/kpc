@@ -27,6 +27,7 @@ const i18n = {
     '五': 'Fri',
     '六': 'Sat',
     '{n}年': '{n}',
+    '{start}年 - {end}年': '{start} - {end}',
     '今天': 'Today',
     '昨天': 'Yesterday',
     '明天': 'Tomorrow',

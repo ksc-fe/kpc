@@ -2,6 +2,10 @@ import router, {RouteResult} from './router';
 import UniversalRouter from 'universal-router';
 import {render, createVNode as h} from 'intact';
 import {history} from './history';
+import {localize} from 'kpc';
+import i18n from 'kpc/i18n/en-US';
+
+localize(i18n);
 
 const container = document.getElementById('page');
 

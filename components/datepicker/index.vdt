@@ -76,12 +76,13 @@ const generatePanel = (flag) => {
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class="k-datepicker-shortcuts" v-if={shortcuts && shortcuts.length}>
-                <div v-for={shortcuts}
-                    class="k-datepicker-shortcut"
-                    ev-click={linkEvent($value, this.setByShortcut)}
-                >
-                    {isFunction($value.label) ? $value.label() : $value.label}
-                </div>
+                {shortcuts.map($value => {
+                    const label = isFunction($value.label) ? $value.label() : $value.label;
+                    return <div class="k-datepicker-shortcut c-ellipsis"
+                        title={label}
+                        ev-click={linkEvent($value, this.setByShortcut)}
+                    >{label}</div>
+                })}
             </div>
             <div class="k-datepicker-wrapper">
                 <div class="k-datepicker-calendars">

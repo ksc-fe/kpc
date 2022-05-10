@@ -29,8 +29,7 @@ const defaults = {
         get hoverColor() { return theme.color.primary },
         bgColor: '#fff',
         hoverBgColor: 'transparent',
-        padding: '5px 16px',
-        get height() { return theme.default.height },
+        padding: '7px 16px',
         get descColor() { return theme.color.lightBlack },
     },
 
@@ -68,7 +67,6 @@ export function makeStyles() {
             .k-checkbox {
                 color: ${transfer.title.color}; 
                 font-size: ${transfer.title.fontSize};
-                display: block;
             }
         }
         .k-transfer-count {
@@ -84,7 +82,6 @@ export function makeStyles() {
             color: ${transfer.item.color};
             background: ${transfer.item.bgColor};
             user-select: none;
-            display: table;
             width: 100%;
             &:not(.k-disabled):hover {
                 background: ${transfer.item.hoverBgColor};
@@ -95,10 +92,7 @@ export function makeStyles() {
             }
             .k-checkbox {
                 padding: ${transfer.item.padding};
-                display: table-cell;
-                height: ${transfer.item.height};
-                vertical-align: middle;
-                white-space: nowrap;
+                display: flex;
             }
             p {
                 margin: 0;
