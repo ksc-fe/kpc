@@ -181,4 +181,47 @@ describe('Cascader', () => {
         expect(instance.get('value')).to.eql(['hunan', 'haidian']);
         expect(instance.element.textContent).to.eql('湖南 / 海淀区');
     });
+
+    it('clearable', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<Cascader data={{ self.get('data') }} v-model="value" clearable />`;
+
+            defaults() {
+                this.Cascader = Cascader;
+                return {
+                    value: ['beijing', 'haidian'],
+                    data: [
+                        {
+                            value: 'beijing',
+                            label: '北京',
+                            children: [
+                                {
+                                    value: 'haidian',
+                                    label: '海淀区'
+                                },
+                            ]
+                        },
+                        {
+                            value: 'hunan',
+                            label: '湖南',
+                            children: [
+                                {
+                                    value: 'haidian',
+                                    label: '海淀区'
+                                },
+                            ]
+                        },
+                    ]
+                }
+            }
+        }
+
+        instance = mount(Demo);
+
+        dispatchEvent(instance.element.querySelector('.k-clear'), 'click');
+        dispatchEvent(instance.element.querySelector('.k-wrapper'), 'click');
+        const dropdown = getElement('.k-cascader-dropdown');
+        expect(dropdown.querySelector('.k-active')).to.be.null;
+    });
 });

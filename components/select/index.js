@@ -123,7 +123,7 @@ export default class Select extends Intact {
         if (this.get('disabled')) return;
 
         e.stopPropagation();
-        const clearV = !this._isMultiple()? '':[];
+        const clearV = !this._isMultiple() ? '' : [];
         this.set('value', clearV);
         if (!this.get('_show')) {
             this.trigger('change', clearV);

@@ -73,6 +73,13 @@ export default class Cascader extends Select {
 
     _clearValue() {  }
 
+    _onClear(e) {
+        if (this.get('disabled')) return;
+
+        super._onClear(e);
+        this.set('_value', '');
+    }
+
     handleProps(props, labelObj, level, parentActived, parentSelected) {
         const {_value, value} = this.get();
         let active = false;
