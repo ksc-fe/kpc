@@ -95,6 +95,7 @@ export default class Select extends Intact {
     }
 
     _init() {
+        this.set('_checkedKeys', this.get('value') || []);
         this.on('$change:value', (c, v) => {
             this.set('_checkedKeys', v || []);
         });
