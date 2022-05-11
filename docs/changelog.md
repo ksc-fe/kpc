@@ -6,8 +6,9 @@ sidebar: doc
 
 ## v2.0.2
 
-1. `Fix` 修复`Menu`当`collapse`展开时，收起的菜单会展开的问题 [#731](https://github.com/ksc-fe/kpc/issues/731)
-2. `Fix` 修复`Menu`当取消`selectedKey`，父菜单依然会高亮的问题 [#732](https://github.com/ksc-fe/kpc/issues/732)
+1. `Add` `Cascader`的`value`无需全局唯一，只需要当前兄弟节点之间唯一即可 [#680](https://github.com/ksc-fe/kpc/issues/680)
+2. `Fix` 修复`Menu`当`collapse`展开时，收起的菜单会展开的问题 [#731](https://github.com/ksc-fe/kpc/issues/731)
+3. `Fix` 修复`Menu`当取消`selectedKey`，父菜单依然会高亮的问题 [#732](https://github.com/ksc-fe/kpc/issues/732)
 
 ## v2.0.1
 
