@@ -67,9 +67,11 @@ const setHasOnlyOneValidOptionAndSelected = active => {
 const allShowedValues = [];
 
 const WrapCheckbox = (props) => {
-    return <Checkbox v-model="_checkedKeys" trueValue={{ props.value }}
-        ev-click={{ self._resetSearch }}
-    >{{ props.children }}</Checkbox>
+    return (
+        <Checkbox v-model="_checkedKeys" trueValue={{ props.value }}>
+            {{ props.children }}
+        </Checkbox>
+    )
 };
 
 const Options = props => {
