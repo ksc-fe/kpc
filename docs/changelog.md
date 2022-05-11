@@ -4,6 +4,16 @@ order: 99
 sidebar: doc
 ---
 
+## v1.6.0
+
+1. `Add` `Switch`新增`change`事件，仅在用户操作导致状态变更时触发 [#730](https://github.com/ksc-fe/kpc/issues/730)
+2. `Add` `Cascader`的`value`不再要求全局唯一，只需要当前兄弟节点唯一即可 [#680](https://github.com/ksc-fe/kpc/issues/680)
+3. `Fix` 修复`Cascader`在`clearable`状态下，点击清除按钮，下拉菜单依然高亮的问题 [#673](https://github.com/ksc-fe/kpc/issues/673)
+4. `Fix` 修复`Select`在`searchable`模式下，初始值`value`不会让`Checkbox`勾选的问题 [#667](https://github.com/ksc-fe/kpc/issues/667)
+5. `Fix` 修复`Select`当`OptionGroup`只有各一个`Option`时，在`filterable`模式下报错的问题 [#694](https://github.com/ksc-fe/kpc/issues/694)
+6. `Fix` 修复`Table`在`showIndeterminate`属性下，如果`data`为空，会报`Checkbox`属性不匹配的警告的问题 [#671](https://github.com/ksc-fe/kpc/issues/671)
+7. `Fix` 修复`Datepicker`国际化问题 [#722](https://github.com/ksc-fe/kpc/issues/722)
+
 ## v1.5.1
 
 1. `Add` `Message`当内容不存在时，指定最小高度 [#583](https://github.com/ksc-fe/kpc/issues/583)
