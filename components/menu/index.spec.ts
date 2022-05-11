@@ -18,8 +18,6 @@ describe('Menu', () => {
         await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('expandedKeys')).to.eql(['3']);
-
-        (window as any).instance = instance;
     });
 
     it('select', async () => {

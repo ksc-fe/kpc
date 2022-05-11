@@ -21,7 +21,7 @@ RemoteDemo.prototype.validateUserName = function(value) {
 };
 
 describe('Form', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     it('validate', async () => {
         const [instance, element] = mount(BasicDemo, null, basicDemoData);
