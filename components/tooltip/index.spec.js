@@ -54,7 +54,11 @@ describe('Tooltip', () => {
         const at = instance.element.querySelector('.opera .k-btn');
         const {width, height, left, top} = at.getBoundingClientRect();
         const contains = (name) => expect(arrow.classList.contains(name)).to.be.true;
-        const eql = (a, b) => expect(Math.round(a)).to.eql(Math.round(b));
+        const eql = (a, b) => {
+            a = Math.round(a);
+            b = Math.round(b);
+            expect(a >= b - 1 && a <= b + 1).to.eql(true);
+        };
 
         instance.set('position', 'left');
         contains('k-right');
