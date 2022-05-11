@@ -1,52 +1,57 @@
-import {useInstance, createRef, onMounted, onUpdated, onUnmounted, Key} from 'intact';
+import {useInstance, Key} from 'intact';
 import type {Menu, MenuItem} from './';
+import {useRecordParent} from '../../hooks/useRecordComponent';
 import {inArray} from '../table/useChecked';
-// import {isEqualArray} from '../utils';
+import {useState} from '../../hooks/useState';
 
-export function useHighlight(
-    rootMenu: Menu & {highlightedKeys?: Key[]},
-    parentMenuItem: MenuItem | null
-) {
-    const instance = useInstance() as MenuItem;
+export const MENU_RECORD_KEY = 'MenuKeys';
 
-    // we can not watch selectedKey on before initializing rootMenu
-    // because rootMenu has initialized
-    // so call updateStatus here
-    updateStatus(rootMenu.get('selectedKey'));
-    rootMenu.watch('selectedKey', updateStatus);
+export function useHighlight() {
+    const instance = useInstance() as Menu;
+    const menuItems = useRecordParent<MenuItem>(MENU_RECORD_KEY);
+    const highlightedKeys = useState<Key[]>([]);
 
-    function updateStatus(v: Key | undefined) {
-        const {key} = instance.get();
-        if (v !== key) return;
+    instance.watch('selectedKey', updateStatus, {presented: true});
 
-        const items = [];
-        let parentItem = parentMenuItem;
-        while (parentItem) {
-            items.push(parentItem);
-            parentItem = parentItem.parentMenuItem;
+    function updateStatus(newValue: Key | undefined) {
+        for (let i = 0; i < menuItems.length; i++) {
+            const menuItem = menuItems[i];
+            const key = menuItem.get('key');
+
+            if (newValue !== key) continue;
+
+            const items = [];
+            let parentItem = menuItem.parentMenuItem;
+            while (parentItem) {
+                items.push(parentItem);
+                parentItem = parentItem.parentMenuItem;
+            }
+            
+            const expandedKeys = new Set(instance.get('expandedKeys'));
+            highlightedKeys.set(items.map(item => {
+                const key = item.get('key');
+                expandedKeys.add(key);
+                return key;
+            }));
+            instance.set('expandedKeys', Array.from(expandedKeys))
+
+            return;
         }
-        
-        const expandedKeys = new Set(rootMenu.get('expandedKeys'));
-        const highlightedKeys = items.map(item => {
-            const key = item.get('key');
-            expandedKeys.add(key);
-            return key;
-        });
-        rootMenu.highlightedKeys = highlightedKeys;
-        rootMenu.set('expandedKeys', Array.from(expandedKeys))
+
+        highlightedKeys.set([]);
     }
 
-    function isHighlighted() {
-        return inArray(rootMenu.highlightedKeys, instance.get('key'));
+    function isHighlighted(key: Key) {
+        return inArray(highlightedKeys.value, key);
     }
 
-    function select() {
-        rootMenu.set('selectedKey', instance.get('key'));
+    function select(key: Key) {
+        instance.set('selectedKey', key);
     }
 
-    function isSelected() {
-        return rootMenu.get('selectedKey') === instance.get('key');
+    function isSelected(key: Key) {
+        return instance.get('selectedKey') === key;
     }
 
-    return {isHighlighted, updateStatus, select, isSelected};
+    return {isHighlighted, select, isSelected};
 }

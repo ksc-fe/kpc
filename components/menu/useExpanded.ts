@@ -3,7 +3,7 @@ import type {Menu, MenuItem} from './';
 import {inArray, addOrRemove} from '../table/useChecked';
 import {isDropdown} from './useDropdown';
 
-export function useExpanded(rootMenu: Menu, parentMenu: Menu & {subExpandedKeys?: Set<Key>}) {
+export function useExpanded(rootMenu: Menu, parentMenu: Menu) {
     const instance = useInstance() as MenuItem;
 
     onBeforeUnmount(removeSubExpandedKey);

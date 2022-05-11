@@ -10,7 +10,7 @@ import {makeItemStyles, makeTitleStyles} from './styles';
 const rootMenu = this.rootMenu;
 const {theme, type, dot: rootDot} = rootMenu.get();
 const {children, key, className, disabled, dot} = this.get();
-const {isHighlighted, isSelected} = this.highlight;
+const {isHighlighted, isSelected} = rootMenu.highlight;
 const {isExpanded: isExpandedKey} = this.expanded;
 const isExpanded = isExpandedKey(key);
 const {
@@ -23,8 +23,8 @@ const classNameObj = {
     [className]: className,
     'k-expanded': isExpanded, 
     'k-disabled': disabled,
-    'k-active':  isSelected(), 
-    'k-highlighted': isHighlighted(),
+    'k-active':  isSelected(key), 
+    'k-highlighted': isHighlighted(key),
     [makeItemStyles()]: true,
 };
 

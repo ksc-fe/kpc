@@ -18,27 +18,35 @@ describe('Menu', () => {
         await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('expandedKeys')).to.eql(['3']);
+
+        (window as any).instance = instance;
     });
 
     it('select', async () => {
         const [instance, element] = mount(CollapseDemo);
-        const menu = instance.refs.__test as Menu;
+
+        expect(element.innerHTML).to.matchSnapshot();
 
         const [title, disabledTitle] = element.querySelectorAll<HTMLElement>('.k-menu-title');
         title.click();
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
-        expect(menu.get('selectedKey')).to.eql('1');
+        expect(instance.get('selectedKey')).to.eql('1');
         disabledTitle.click();
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
-        expect(menu.get('selectedKey')).to.eql('1');
+        expect(instance.get('selectedKey')).to.eql('1');
 
         const subTitle = element.querySelector('.k-expanded .k-menu .k-menu-title') as HTMLElement;
         subTitle.click();
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
-        expect(menu.get('selectedKey')).to.eql('3-1');
+        expect(instance.get('selectedKey')).to.eql('3-1');
+
+        // clear
+        instance.set('selectedKey', '');
+        await wait();
+        expect(element.querySelector('.k-highlighted')).to.be.null;
     });
 
     it('collapse', async () => {

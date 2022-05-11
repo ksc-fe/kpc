@@ -24,7 +24,8 @@ import {Menu, MenuItem, Switch, Icon} from 'kpc';
         falseValue="dark"
     />
     <br /><br />
-    <Menu v-model:expandedKeys="expandedKeys" 
+    <Menu v-model:expandedKeys="expandedKeys"
+        v-model:selectedKey="selectedKey"
         collapse={this.get('collapse')}
         theme={this.get('theme')}
         ref="__test"
@@ -62,6 +63,7 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             expandedKeys: ['3'],
+            selectedKey: '3-2',
             collapse: false,
             theme: 'dark'
         } as MenuProps;

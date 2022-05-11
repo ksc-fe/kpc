@@ -4,10 +4,11 @@ import {Dropdown, DropdownMenu} from '../dropdown';
 import template from './item.vdt';
 import {bind} from '../utils';
 import {useState} from '../../hooks/useState';
-import {useHighlight} from './useHighlight';
 import {useExpanded} from './useExpanded';
 import {useDropdown} from './useDropdown';
 import {useRouter, navigate} from '../../hooks/useRouter';
+import {useRecordItem} from '../../hooks/useRecordComponent';
+import {MENU_RECORD_KEY} from './useHighlight';
 
 export interface MenuItemProps {
     key: Key 
@@ -42,23 +43,23 @@ export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
     public parentMenuItem = inject<MenuItem | null>(MENU_ITEM, null);
 
     private expanded = useExpanded(this.rootMenu, this.parentMenu);
-    private highlight = useHighlight(this.rootMenu, this.parentMenuItem);
     private dropdown = useDropdown(this.rootMenu, this.parentMenu);
     private router = useRouter();
 
     init() {
         provide(MENU_ITEM, this);
+        useRecordItem(MENU_RECORD_KEY);
     }
 
     @bind
     public onClick(hasSubMenu: Menu, e: MouseEvent) {
-        const {disabled, to} = this.get();
+        const {disabled, to, key} = this.get();
         if (disabled) return;
         
         if (hasSubMenu) {
             this.expanded.toggle();
         } else {
-            this.highlight.select();
+            this.rootMenu.highlight!.select(key);
         }
 
         this.trigger('click', e);

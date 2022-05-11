@@ -1,5 +1,6 @@
 import {Component, TypeDefs, provide, inject, Key} from 'intact';
 import template from './menu.vdt';
+import {useHighlight} from './useHighlight';
 
 export interface MenuProps<K extends Key = Key> {
     expandedKeys?: K[]
@@ -46,6 +47,8 @@ export class Menu<K extends Key = Key> extends Component<MenuProps<K>, MenuEvent
 
     public rootMenu = inject<Menu | null>(ROOT_MENU, null);
     public parentMenu = inject<Menu | null>(MENU, null);
+    public subExpandedKeys?: Set<K>;
+    public highlight?: ReturnType<typeof useHighlight>;
 
     init() {
         provide(MENU, this);
@@ -53,6 +56,7 @@ export class Menu<K extends Key = Key> extends Component<MenuProps<K>, MenuEvent
         // is root menu or not
         if (!this.rootMenu) {
             provide(ROOT_MENU, this);
+            this.highlight = useHighlight();
         }
     }
 }
