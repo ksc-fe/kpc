@@ -1,6 +1,7 @@
 import {css} from '@emotion/css';
 import global from '../../styles/default';
 import banner from '../../imgs/banner.jpg';
+import h5banner from '../../imgs/h5banner.jpg';
 
 export function makeStyles() {
     return css`
@@ -20,7 +21,7 @@ export function makeStyles() {
                z-index: 1;
                background-image: url(${banner});
                background-repeat: no-repeat;
-               background-size: 1920px 460px;
+               background-size: cover;
             }
             .nav-video-box {
                 width: 100%;
@@ -40,30 +41,50 @@ export function makeStyles() {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                padding-left: 20px;
+                padding: 0 20px;
             }
             .nav-content {
                 width: ${global.contentWidth}px;
                 color: #000000;
                 height: 100%;
                 position: relative;
+                .h5-title {
+                    display: none;
+                }
+                .web-title {
+                    display: block;
+                }
+                .h5-title {
+                    width: 100%;
+                    text-align: center;
+                }
                 & > div {
                     position: absolute;
                 }
-
-                & > div:first-child {
+                .main-title {
                     font-size: 45px;
                     font-weight: 500;
                     top: 164px;
                 }
-                & > div:nth-child(2) {
+                .sub-title {
                     font-size: 22px;
                     top: 237px;
                 }
-                & > div:nth-child(3) {
+                & > div:last-child {
                     top: 340px;
                     .k-btn {
                         margin-right: 16px;
+                    }
+                }
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .nav {
+                .nav-video-box {
+                    .nav-video-bg {
+                        width: 100%;
+                        height: auto;
                     }
                 }
             }
@@ -73,15 +94,24 @@ export function makeStyles() {
             .nav {
                 .nav-content {
                     width: 100%;
-                    & > div:first-child {
-                        font-size: 34px;
+                    .h5-title {
+                        display: block;
                     }
-                    & > div:nth-child(2) {
-                        width: 300px;
-                        background-size: contain;
-                        background-position: center;
-                        font-size: 16px;
+                    .web-title {
+                        display: none;
                     }
+                    .sub-title {
+                        margin-top: 10px;
+                    }
+                    & > div:last-child {
+                        width: 100%;
+                        text-align: center;
+                    }
+                }
+                .nav-bg {
+                    background-image: url(${h5banner});
+                    background-size: cover;
+                    background-position: center;
                 }
                 .nav-video-box {
                     &,

@@ -8,7 +8,7 @@ export function makeHeaderStyles() {
     return css`
         &.k-layout-header {
             background: rgba(255, 255, 255, 0.65);
-            box-shadow: 0px 1px 4px 0px rgba(11, 11, 11, 0.2);
+            box-shadow: 0px 2px 10px 0px rgba(11, 11, 11, 0.05);
             color: #000;
             backdrop-filter: blur(20px);
             -moz-backdrop-filter: blur(20px);

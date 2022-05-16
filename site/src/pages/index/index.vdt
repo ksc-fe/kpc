@@ -29,8 +29,10 @@ const {themeColor, videoLevel} = this.get();
             </div>
             <div class="nav-content-box">
                 <div class="nav-content">
-                    <div>KingDesign设计系统</div>
-                    <div>全局提升团队协作，高效输出行业设计解决方案</div>
+                    <div class="main-title web-title">KingDesign设计系统</div>
+                    <div class="sub-title web-title">全局提升团队协作，高效输出行业设计解决方案</div>
+                    <div class="main-title h5-title">KingDesign</div>
+                    <div class="sub-title h5-title">提高团队效率，赋能产品设计</div>
                     <div>
                         <Button type="primary" size="large" ev-click={() => Link.to("/docs/vue/")}>
                             开始使用
