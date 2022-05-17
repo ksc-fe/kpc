@@ -39,10 +39,14 @@ const getColorItemStyle = (value) => {
             <div class="cp-logo">
                 <img src={cp_logo} width="382" />
             </div>
-            <div>
+            <div class="cp-desc-box">
                 <img src={cp_desc} width="163" />
             </div>
-            <p class="cp-desc">KD设计系统置入了<strong>实时颜色算法</strong>，并提供多元化的主题配色板。</p>
+            <p class="cp-desc web-info">KD设计系统置入了<strong>实时颜色算法</strong>，并提供多元化的主题配色板。</p>
+            <p class="cp-desc h5-info">
+                <p>KD设计系统置入了<strong>实时颜色算法</strong>，</p>
+                <p>并提供多元化的主题配色板。</p>
+            </p>
             <div class="info-box">
                 <div>
                     <span>符合</span>

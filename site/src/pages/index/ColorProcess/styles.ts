@@ -13,6 +13,12 @@ export function makeStyles(colorList: any[]) {
         background: linear-gradient(94.17deg, #F1DEFF 35.58%, rgba(0, 194, 255, 0) 99.19%);
         ${mainBlock(450)};
         position: relative;
+        .web-info {
+            display: block;
+        }
+        .h5-info {
+            display: none;
+        }
         .bg-layer {
             position: absolute;
             left: 0;
@@ -192,14 +198,42 @@ export function makeStyles(colorList: any[]) {
             display: block;
             padding: 0 20px;
             height: auto;
+            .web-info {
+                display: none;
+            }
+            .h5-info {
+                display: block;
+            }
             .cp-content {
                 width: auto !important;
                 flex-direction: column;
                 img {
                     max-width: 100%;
                 }
+                .cp-desc-box {
+                    text-align: center;
+                }
+                .info-box {
+                    & > div {
+                        margin: 0 auto;
+                    }
+                    & > div:first-child { 
+                        font-size: 12px;
+                        a {
+                            border: none;
+                        }
+                    }
+                    & > div:last-child a:hover {
+                        color: #0191EA;
+                    }
+                }
                 .cp-desc {
                     width: 100%;
+                    text-align: center;
+                    font-size: 16px;
+                    & > p {
+                        margin: 0;
+                    }
                 }
                 .color-box {
                     .color-wrapper {

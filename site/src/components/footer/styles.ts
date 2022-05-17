@@ -12,6 +12,12 @@ export function makeStyles() {
         letter-spacing: -0.05em;
         color: #5B5A5A;
         font-size: 14px;
+        .web-info {
+            display: block;
+        }
+        .h5-info {
+            display: none;
+        }
         a {
             color: #5B5A5A;
             text-decoration: none;
@@ -96,6 +102,31 @@ export function makeStyles() {
 
         @media (max-width: 768px) {
             height: auto; 
+            .web-info {
+                display: none;
+            }
+            .h5-info {
+                display: block;
+            }
+            .h5-footer {
+                padding: 30px 20px 20px 20px;
+                & > div {
+                    text-align: center;
+                }
+                & > div:nth-child(2) {
+                    margin: 20px 0;
+                    font-size: 16px;
+                }
+                & > div:nth-child(4) {
+                    margin: 16px 0 30px 0;
+                    font-size: 14px;
+                }
+                & > div:last-child {
+                    font-size: 10px;
+                    color: #5B5A5A;
+                    line-height: 16px;
+                }
+            }
             .footer-table {
                 height: auto;
                 .info-box {

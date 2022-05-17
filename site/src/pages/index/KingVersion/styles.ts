@@ -11,6 +11,12 @@ export function makeStyles() {
         background-image: url(${kingVisionBgOuter});
         background-repeat: no-repeat;
         background-position: 84% 106%;
+        .web-info {
+            display: block;
+        }
+        .h5-info {
+            display: none;
+        }
         .king-vis-wrapper {
             background-image: url(${kingVisionBgInner});
             background-repeat: no-repeat;
@@ -74,6 +80,12 @@ export function makeStyles() {
             display: block;
             padding: 0 20px;
             height: auto;
+            .web-info {
+                display: none;
+            }
+            .h5-info {
+                display: block;
+            }
             .visit-king-vision, .vis-description {
                 width: 100% !important;
             }
@@ -88,6 +100,10 @@ export function makeStyles() {
                 }
                 .vis-description {
                     margin-bottom: 20px;
+                    text-align: center;
+                }
+                .main-logo, .vis-title {
+                    text-align: center;
                 }
                 & > div:last-child {
                     width: auto;

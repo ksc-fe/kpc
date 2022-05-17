@@ -13,6 +13,9 @@ export function makeStyles(themeColor: string) {
                 justify-content: center;
                 .title-box div {
                     text-align: center;
+                    .h5-info {
+                        display: none;
+                    }
                 }
                 .main-title {
                     font-weight: 600;
@@ -183,6 +186,12 @@ export function makeStyles(themeColor: string) {
                 & > div:first-child {
                     .title-box {
                         padding: 20px;
+                        .web-info {
+                            display: none;
+                        }
+                        .h5-info {
+                            display: block;
+                        }
                     }
                 }
 

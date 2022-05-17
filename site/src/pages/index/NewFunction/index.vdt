@@ -18,10 +18,12 @@ import {getAxure, getSketch, getFigma} from '../../resource/index';
 const {cardLeft, totalCards, curCardNum, cardsPerPage, 
     animationType, bezierValue, curTabIndex, textTop, 
     transition, curComponentsGroup, curTreeValue, 
-    selectedMenu, themeColor} = this.get();
+    selectedMenu, themeColor, documentWidth} = this.get();
 
 const canNext = totalCards > curCardNum;
 const canPrev = curCardNum > cardsPerPage;
+
+const componentsSubTitle = `高复用组件，快速构建你的网站${documentWidth > 768 ? '和用户界面' : ''}`;
 
 const textTransitionStyle = {
     transition: transition,
@@ -91,13 +93,13 @@ const treeData = [
                     </Card>
                     <Card
                         mainTitle="组件"
-                        subTitle="高复用组件，快速构建你的网站和用户界面"
+                        subTitle={componentsSubTitle}
                         href="/docs/vue/"
                     >
                         <div class="component-box white-card">
                             <Button class="refresh-btn" type="none" ev-click={this.changeComponentsGroup}>
                                 <Icon class="icon ion-refresh" style={{color: themeColor}}></Icon>
-                                <span>换一换</span>
+                                <span class="h5-swap-btn">换一换</span>
                             </Button>
                             <div class="comp-content" v-if={curComponentsGroup == 0}>
                                 <div class="input-select">

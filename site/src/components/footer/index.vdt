@@ -2,10 +2,12 @@ import {makeStyles} from './styles';
 import {Row, Col} from 'kpc';
 import {Link} from '../link';
 import qrcode from '../../imgs/qrcode.png';
+import h5Qrcode from '../../imgs/h5-footer-qrcode.png';
+import h5Logo from '../../imgs/h5-footer-logo.png';
 
 <div class={makeStyles()} style={{background: this.get('bgColor')}}>
     <div class="footer-box">
-        <div class="footer-table">
+        <div class="footer-table web-info">
             <Row class="footer-logo-box">
                 <Col span="24"><div class="logo"></div></Col>
             </Row>
@@ -63,6 +65,20 @@ import qrcode from '../../imgs/qrcode.png';
                     ©北京金山云网络技术有限公司   2021 Ksyun All Rights Reserved Kingsoft Corp.      京ICP证120829号      京ICP备 12032080号
                 </Col>
             </Row>
+        </div>
+        <div class="h5-footer h5-info">
+            <div class="footer-logo">
+                <img src={h5Logo} width="181" />
+            </div>
+            <div>用于企业级产品的设计系统</div>
+            <div>
+                <img src={h5Qrcode} width="160" />
+            </div>
+            <div>
+                <div>长按保存识别二维码，</div>
+                <div>关注“⾦⼭云⽤户体验设计”公众号</div>
+            </div>
+            <div>©北京金山云网络技术有限公司 2021 Ksyun All Rights Reserved Kingsoft Corp. 京ICP证120829号 京ICP备 12032080号 </div>
         </div>
     </div>
 </div>

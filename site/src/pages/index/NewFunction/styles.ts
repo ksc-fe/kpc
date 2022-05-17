@@ -381,6 +381,9 @@ export function makeStyles(themeColor: string) {
                                 padding-left: 0;
                             }
                         }
+						.h5-swap-btn {
+							color: #0091ea;
+						}
                     }
                     .animate-box {
                         display: block;

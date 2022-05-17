@@ -12,8 +12,12 @@ import {Button} from 'kpc';
             <div class="vis-title">
                 <img src={kingvisioinTitle} width="163" />
             </div>
-            <div class="vis-description">
+            <div class="vis-description web-info">
                 专业的企业级设计资源，丰富的图片与icon定制平台。
+            </div>
+            <div class="vis-description h5-info">
+                <div>专业的企业级设计资源，</div>
+                <div>丰富的图片与icon定制平台。</div>
             </div>
             <a href="http://vision.ksyun.com/#/icon-reposition" target="_blank">
                 <Button class="visit-king-vision" type="primary">访问KingVision</Button>

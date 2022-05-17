@@ -19,6 +19,7 @@ export interface NewFunctionProps {
     curTreeValue: string[]
     selectedMenu: string
     themeColor: string
+    documentWidth: number
 }
 
 const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
@@ -35,7 +36,8 @@ const typeDefs: Required<TypeDefs<NewFunctionProps>> = {
     editableText: String,
     curTreeValue: Array,
     selectedMenu: String,
-    themeColor: String
+    themeColor: String,
+    documentWidth: Number
 };
 
 const defaults = (): Partial<NewFunctionProps> => ({
@@ -52,7 +54,8 @@ const defaults = (): Partial<NewFunctionProps> => ({
     editableText: 'Editable text',
     curTreeValue: ['设计师小蓝'],
     selectedMenu: '1',
-    themeColor: ''
+    themeColor: '',
+    documentWidth: 0
 });
 
 const curveTypeMap: any = {
@@ -67,6 +70,10 @@ export class NewFunction extends Component<NewFunctionProps> {
     static defaults = defaults;
 
     private cardBoxRef = createRef<HTMLElement>();
+
+    mounted() {
+        this.set('documentWidth', document.documentElement.offsetWidth)
+    }
 
     init() {
         this.watch('animationType', (value: string) => {
