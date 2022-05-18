@@ -153,6 +153,7 @@ export function makeStyles(themeColor: string) {
 						.menu-tree-box {
 							height: 124px;
 							display: flex;
+							margin-top: 10px;
 							& > div {
 								height: 100%;
 							}
@@ -343,8 +344,19 @@ export function makeStyles(themeColor: string) {
             display: block;
             padding: 0 20px;
             height: auto;
+			.k-none:hover,
+			.k-none:active,
+			.k-none:focus {
+				background: transparent !important;
+			}
+			.k-none {
+				-webkit-tap-highlight-color: transparent;
+			}
 			.resource-img-box img {
 				width: 140px;
+			}
+			.comp-menu-box {
+				margin-top: 5px;
 			}
             .new-fn-box {
                 width: auto !important;

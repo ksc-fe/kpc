@@ -144,7 +144,7 @@ const treeData = [
                                 </div>
                             </div>
                             <div class="comp-content" v-if={curComponentsGroup == 2}>
-                                <div>
+                                <div class="comp-menu-box">
                                     <div class="comp-item slider-box">
                                         <Slider showInput={false}></Slider>
                                     </div>
