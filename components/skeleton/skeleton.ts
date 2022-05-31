@@ -22,10 +22,7 @@ const typeDefs: Required<TypeDefs<SkeletonProps>> = {
 };
 
 const defaults = (): Partial<SkeletonProps> => ({
-    loading: false,
-    animated: false,
     rows: 2,
-    avator: false,
     size: 'large'
 });
 

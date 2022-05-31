@@ -21,7 +21,8 @@ setDefault(() => {
 export function makeStyles(size: ItemSize) {
     return css`
         &.k-animated {
-            .${kls('item')} > * {
+            .${kls('item')} > div,
+            .${kls('item')} > span {
                 background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
                 background-size: 400% 100%;
                 animation: ${skeletonLoading} 1.4s ease infinite;

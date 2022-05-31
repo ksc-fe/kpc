@@ -8,7 +8,7 @@ order: 3
 ```vdt
 import {Skeleton} from 'kpc';
 
-const {showSkeleton} = this.get();
+const showSkeleton = this.get('showSkeleton');
 
 <div>
     <Skeleton loading={showSkeleton} avator animated />

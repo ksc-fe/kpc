@@ -14,7 +14,7 @@ export interface SkeletonItemEvents {}
 export interface SkeletonItemBlocks {}
 
 const typeDefs: Required<TypeDefs<SkeletonItemProps>> = {
-    type: String
+    type: itemTypeMap
 };
 
 const defaults = (): Partial<SkeletonItemProps> => ({
