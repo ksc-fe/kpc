@@ -3,7 +3,7 @@ import template from './item.vdt';
 
 type ItemType = 'text' | 'avator' | 'image' | 'button' | 'input';
 
-export const itemTypeMap: ItemType[] = ['text', 'avator', 'image', 'button', 'input'];
+export const ItemTypeMap: ItemType[] = ['text', 'avator', 'image', 'button', 'input'];
 
 export interface SkeletonItemProps {
     type?: ItemType,
@@ -14,7 +14,7 @@ export interface SkeletonItemEvents {}
 export interface SkeletonItemBlocks {}
 
 const typeDefs: Required<TypeDefs<SkeletonItemProps>> = {
-    type: itemTypeMap
+    type: ItemTypeMap
 };
 
 const defaults = (): Partial<SkeletonItemProps> => ({

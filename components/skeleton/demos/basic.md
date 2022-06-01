@@ -8,10 +8,8 @@ order: 0
 ```vdt
 import {Skeleton} from 'kpc';
 
-const showSkeleton = this.get('showSkeleton');
-
 <div>
-    <Skeleton loading={showSkeleton} />
+    <Skeleton loading={this.get('showSkeleton')} />
 </div>
 ```
 

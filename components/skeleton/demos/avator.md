@@ -8,10 +8,8 @@ avator属性可以用来将组件显示为头像模式。
 ```vdt
 import {Skeleton} from 'kpc';
 
-const showSkeleton = this.get('showSkeleton');
-
 <div>
-    <Skeleton loading={showSkeleton} avator={true} />
+    <Skeleton loading={this.get('showSkeleton')} avator={true} />
 </div>
 ```
 
