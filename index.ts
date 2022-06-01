@@ -42,6 +42,7 @@ export * from './components/radio';
 export * from './components/rate';
 export * from './components/scrollSelect';
 export * from './components/select';
+export * from './components/skeleton';
 export * from './components/slider';
 export * from './components/spin';
 export * from './components/spinner';
