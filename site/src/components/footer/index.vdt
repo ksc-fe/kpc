@@ -45,15 +45,22 @@ import h5Logo from '../../imgs/h5-footer-logo.png';
                     </Row>
                     <Row>
                         <Col span="24">
-                            <div class="title">相关链接</div>
+                            <div class="title">友情链接</div>
                             <div class="link-list">
                                 <div>
-                                    <a href="http://vision.ksyun.com/#/icon-reposition" target="_blank">
-                                        KingVision
+                                    <a href="https://www.ksyun.com/" target="_blank">
+                                        金山云官网
                                     </a>
                                 </div>
                                 <div>
-                                    <a target="_blank" href="https://www.ksyun.com/">金山云</a>
+                                    <a target="_blank" href="http://vision.ksyun.com/#/icon-reposition">
+                                        金山云素材站
+                                    </a>
+                                </div>
+                                <div>
+                                    <a target="_blank" href="https://www.uisdc.com/">
+                                        优设网
+                                    </a>
                                 </div>
                             </div>
                         </Col>
