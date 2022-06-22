@@ -48,19 +48,16 @@ import h5Logo from '../../imgs/h5-footer-logo.png';
                             <div class="title">友情链接</div>
                             <div class="link-list">
                                 <div>
-                                    <a href="https://www.ksyun.com/" target="_blank">
-                                        金山云官网
-                                    </a>
+                                    <a href="https://www.ksyun.com/" target="_blank">金山云官网</a>
                                 </div>
                                 <div>
-                                    <a target="_blank" href="http://vision.ksyun.com/#/icon-reposition">
-                                        金山云素材站
-                                    </a>
+                                    <a target="_blank" href="http://vision.ksyun.com/#/icon-reposition">金山云素材站</a>
                                 </div>
                                 <div>
-                                    <a target="_blank" href="https://www.uisdc.com/">
-                                        优设网
-                                    </a>
+                                    <a target="_blank" href="https://www.uisdc.com/">优设网</a>
+                                </div>
+                                <div>
+                                    <a target="_blank" href="https://uiiiuiii.com/">优设教育网</a>
                                 </div>
                             </div>
                         </Col>
