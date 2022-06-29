@@ -11,7 +11,7 @@ export const getSketch = (): void => {
 };
 
 export const getFigma = (): void => {
-    window.open('https://www.figma.com/file/Uo5AKEmBXT4HOD41CDWliK/King-Design-V1.0.0?node-id=0%3A1');
+    window.open('https://www.figma.com/community/file/1121633180544246876');
 };
 
 export const getWeights = (): void => {
