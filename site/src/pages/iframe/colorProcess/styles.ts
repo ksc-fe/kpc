@@ -130,10 +130,26 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
         }
         .cp-content {
             padding-left: 20px;
+            
             .img-box {
                 width: 100%;
                 height: 500px;
-                background-size: cover;
+                position: relative;
+                
+                .img-item {
+                    width: 100%;
+                    height: 500px;
+                    background-size: cover;
+                    position: absolute;
+                    top:0;
+                    left:0;
+                }
+                .img-seld {
+                    z-index: 1;
+                }
+                .img-noseld {
+                    z-index: 0;
+                }
             }
             .card-box {
                 font-family: Roboto;

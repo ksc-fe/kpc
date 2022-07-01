@@ -12,18 +12,16 @@ const {
     theme, curTheme
 } = this.get();
 
-function getBgImage() {
-    const colorMap = {
-        'New Era': colorNewEar,
-        'Ocean': color_ocean,
-        'Techno': color_techno,
-        'burset 62': color_deign62,
-    }
+const colorMap = {
+    'New Era': colorNewEar,
+    'Ocean': color_ocean,
+    'Techno': color_techno,
+    'burset 62': color_deign62,
+}
 
-    return {
-        backgroundImage: `url(${colorMap[curTheme]})`
-    }
-};
+function getSel(theme) {
+    return theme == curTheme;
+}
 
 <Layout class={makeStyles(bgTheme[curBgTheme], theme[curTheme])}>
     <Header height={headerHeight}>
@@ -64,7 +62,13 @@ function getBgImage() {
             </div>
         </Aside>
         <Body class="cp-content">
-            <div class="img-box" style={getBgImage()}></div>
+            <div class="img-box">
+                <div 
+                    class={{"img-item": true, "img-seld": getSel($key), "img-noseld": !getSel($key)}} 
+                    v-for={colorMap} 
+                    style={{backgroundImage: `url(${$value})`}}
+                ></div>
+            </div>
             <div class="card-box">
                 <Card>
                     <div class="card-title">
