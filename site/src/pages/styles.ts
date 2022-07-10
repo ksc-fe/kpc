@@ -15,7 +15,7 @@ export function makeHeaderStyles() {
             justify-content: space-between; 
             .logo {
                 background-image: url(${headerLogo});
-                width: 182px;
+                width: 226px;
                 height: 40px;
                 background-size: cover;
                 margin-left: 22px;

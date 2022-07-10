@@ -94,7 +94,7 @@ export function makeStyles(themeColor: string) {
 							flex-grow: 1;
 						}
 						& > div:last-child {
-							width: 182px;
+							width: 200px;
 							display: flex;
 							align-items: center;
 						}
