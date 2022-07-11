@@ -59,6 +59,12 @@ import h5Logo from '../../imgs/h5-footer-logo.png';
                                 <div>
                                     <a target="_blank" href="https://uiiiuiii.com/">优设教育网</a>
                                 </div>
+                                <div>
+                                    <a 
+                                        target="_blank" 
+                                        href="https://js.design/resourceDetails?id=62c6c0834835c771da15dfe0&source=ksd&plan=web"
+                                    >即时设计</a>
+                                </div>
                             </div>
                         </Col>
                     </Row>

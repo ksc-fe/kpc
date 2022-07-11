@@ -97,8 +97,12 @@ const pricipleList = [
                                         </Link>
                                     </div>
                                     <div class="card-item">
-                                        <img src={iconFonts} />
-                                        <div>Fonts库（敬请期待）</div>
+                                        <Link href="https://js.design/resourceDetails?id=62c6c0834835c771da15dfe0&source=ksd&plan=web">
+                                            <div class="code-resource">
+                                            <img src={iconFonts} />
+                                            <div>即时设计</div>
+                                            </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

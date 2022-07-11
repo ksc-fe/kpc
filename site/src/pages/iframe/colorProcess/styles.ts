@@ -45,7 +45,7 @@ export function makeStyles(bgTheme: BgThemeValue, theme: ThemeValue) {
                 display: flex;
                 padding-left: 25px;
                 img {
-                    width: 320px;
+                    width: 400px;
                 }
             }
             .header-menu {

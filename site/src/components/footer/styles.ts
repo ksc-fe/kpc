@@ -93,7 +93,7 @@ export function makeStyles() {
             padding-left: 16px;
             border-bottom: ${tableBorder};
             .logo {
-                width: 181px;
+                width: 226px;
                 height: 40px;
                 background-image: url(${footer_logo});
                 background-size: cover;
