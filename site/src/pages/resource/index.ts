@@ -14,6 +14,9 @@ export const getFigma = (): void => {
     window.open('https://www.figma.com/file/Uo5AKEmBXT4HOD41CDWliK/King-Design-V1.0.0?node-id=0%3A1');
 };
 
+export const getDesign = ():void => {
+    window.open('https://js.design/resourceDetails?id=62c6c0834835c771da15dfe0&source=ksd&plan=web')
+}
 export const getWeights = (): void => {
     location.href = 'https://damife.ks3-cn-beijing.ksyuncs.com/kpc/度量工具.xlsx';
 }

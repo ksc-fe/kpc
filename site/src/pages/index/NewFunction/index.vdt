@@ -14,7 +14,7 @@ import axure_img from '../../../imgs/axure_img.png';
 import rectangle from '../../../imgs/rectangle.png';
 import design from '../../../imgs/design_img.png'
 import menu_header from '../../../imgs/header_logo.png';
-import {getAxure, getSketch, getFigma} from '../../resource/index';
+import {getAxure, getSketch, getFigma, getDesign} from '../../resource/index';
 
 const {cardLeft, totalCards, curCardNum, cardsPerPage, 
     animationType, bezierValue, curTabIndex, textTop, 
@@ -80,7 +80,7 @@ const treeData = [
                                     <img src={axure_img} ev-click={getAxure} />
                                     <img src={sketch_img} ev-click={getSketch} />
                                     <img src={rectangle} ev-click={getFigma} />
-                                    <img src={design} ev-click={getFigma} />
+                                    <img src={design} ev-click={getDesign} />
                                 </div>
                             </div>
                             <div class="white-card">
