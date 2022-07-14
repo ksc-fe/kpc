@@ -31,6 +31,7 @@ sidebar: doc
 | labelMap | 建立值`value`到展示标签`label`的映射，可以在`value`不在`Option`集合中时，依然能够正确展示相应的`label` | `Map<any, string>` | `new Map()` |
 | card | 是否展示`card`模式 | `boolean` | `false` |
 | autoDisableArrow | 是否在没有更多可选项时，给箭头一个`disabled`状态来提示用户 | `boolean` | `false` |
+| virtualList | 是否开启虚拟列表功能 | `boolean` &#124; `"auto"` | `false` |
 
 ```ts
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
