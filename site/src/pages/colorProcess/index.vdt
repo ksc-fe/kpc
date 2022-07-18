@@ -1,0 +1,3 @@
+import {makeStyles} from './style';
+
+<div class={makeStyles()}>TODO: Color process page</div>
