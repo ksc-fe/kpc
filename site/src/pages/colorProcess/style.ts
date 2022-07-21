@@ -74,6 +74,9 @@ export function makeStyles(theme :string) {
                 .card-title {
                     font-size: 40px;
                 }
+                .k-card {
+                    background: #ececec;
+                }
                 .input {
                     margin-top: 40px;
                     margin-bottom: 20px;
@@ -218,6 +221,7 @@ export function makeStyles(theme :string) {
                 .input {
                     margin-top: 40px;
                     margin-bottom: 20px;
+                    color: white;
                 }
                 .Color-RGB {
                     // border: 1px solid black;
