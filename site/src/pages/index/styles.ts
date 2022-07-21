@@ -48,6 +48,9 @@ export function makeStyles() {
                 color: #000000;
                 height: 100%;
                 position: relative;
+                .main-title.h5-title {
+                    font-size: 40px;
+                }
                 .h5-title {
                     display: none;
                 }
