@@ -1,10 +1,10 @@
 import {css} from '@emotion/css';
-import source_nav_web from '../../imgs/font/banner-web.jpg'
-import source_nav_h5 from '../../imgs/font/banner-h5.jpg'
-import title_web from "../../imgs/font/title-web.png"
+import source_nav_web from '../../imgs/font/banner-web.jpg';
+import source_nav_h5 from '../../imgs/font/banner-h5.jpg';
+import title_web from "../../imgs/font/title-web.png";
+import text_web from "../../imgs/font/text-web.png";
+import text_h5 from "../../imgs/font/text-h5.png";
 
-import text_web from "../../imgs/font/text-web.png"
-import text_h5 from "../../imgs/font/text-h5.png"
 export function makeStyles() {
     return css`
         .source-nav {
@@ -27,12 +27,7 @@ export function makeStyles() {
             background-repeat: no-repeat;
             background-position: left ;
             background-size: cover;
-            .content {
-                // display: flex;
-                // direction: columns;
-                // align-items: center;
-                
-            }
+
             .content-img {
                 height: 151px;
                 width: 440px;
@@ -51,9 +46,9 @@ export function makeStyles() {
                     transform: translate(-50%,0);
                     bottom: 75%;
                     width: 57%;
-
                 }
             }
+
             .dowload {
                 width: 440px;
                 height: 80px;
@@ -80,10 +75,10 @@ export function makeStyles() {
                     bottom: 58%;
                     width: 57%;
                     height: 60px;
-                   
                 }
             }
         }
+
         .source-intro {
             margin: 100px auto;
             background-image: url(${text_web});
@@ -100,6 +95,7 @@ export function makeStyles() {
             background-position: right bottom;
             background-size: cover;
         }
+
         .source-designer {
             background-color: #FAFAFA;
             padding-top: 30px;
@@ -157,11 +153,6 @@ export function makeStyles() {
                             text-align: center;
                             line-height: 30px;
                             font-weight: 400;
-                            // @media (max-width: 768px) {
-                            //     font-size: 2.7%;
-                            //     line-height: 4%;
-                            //     margin-top: 10%;
-                            // }
                         }
                     }
                 }

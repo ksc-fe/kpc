@@ -15,8 +15,6 @@ interface ColorProcessProps {
 
 export default class Index extends Component<ColorProcessProps> {
     static template = template;
-
-    private color = ''
     
     static defaults = (): Partial<ColorProcessProps> => ({
         inputColor: '#0091EA',
@@ -42,29 +40,32 @@ export default class Index extends Component<ColorProcessProps> {
         else
             return color;
     }
+
     _changeColor(e: InputEvent) {
         const target = e.target as HTMLInputElement;
         const value = target.value.trim();
         if (/#[0-9A-Fa-f]{6}/i.test(value)) {
-            console.log(target.value)
             this.set('inputColor', target.value);
         } else {
             Message.error('请输入hex格式颜色值');
         }
     }
+
     _changeTheme(val: string) {
         this.set('theme', val);
     }
+
     _changeColorType(val: string) {
         this.set('colorType', val);
     }
+
     _changeContrastShow(val: boolean) {
         this.set('contrastMenu', val);
     }
+
     _switchColor() {
-        let temp = this.get('preColor');
+        const temp = this.get('preColor');
         this.set('preColor', this.get('bacColor'));
         this.set('bacColor', temp);
-
     }
 }

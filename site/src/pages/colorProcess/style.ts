@@ -1,7 +1,7 @@
 import {css} from '@emotion/css';
 
 export function makeStyles(theme :string) {
-    if(theme=='light')
+    if(theme == 'light')
         return css`
             height: 100%;
             .k-btn {
@@ -54,19 +54,23 @@ export function makeStyles(theme :string) {
                         cursor: pointer;
                         text-align: center;
                     }
-                    .themeChange {
-                        background-color: white;
+                    .theme,
+                    .colorType {
+                        & > button {
+                            background-color: white;
+                        }
+                        & > button: first-child {
+                            border-right: none;
+                        }
+                        & > button: last-child {
+                            border-left: none;
+                        }
+                        .checkout {
+                            background-color: blue;
+                            color: white;
+                        }
                     }
-                    .themeChange:first-child{
-                        border-right: none;
-                    }
-                    .themeChange:last-child{
-                        border-left: none;
-                    }
-                    .checkout {
-                        background-color: blue;
-                        color: white;
-                    }
+                    
                     
                 }
             }
@@ -193,19 +197,23 @@ export function makeStyles(theme :string) {
                         cursor: pointer;
                         text-align: center;
                     }
-                    .themeChange {
-                        background-color: white;
+                    .theme,
+                    .colorType {
+                        & > button {
+                            background-color: white;
+                        }
+                        & > button: first-child {
+                            border-right: none;
+                        }
+                        & > button: last-child {
+                            border-left: none;
+                        }
+                        .checkout {
+                            background-color: blue;
+                            color: white;
+                        }
                     }
-                    .themeChange:first-child{
-                        border-right: none;
-                    }
-                    .themeChange:last-child{
-                        border-left: none;
-                    }
-                    .checkout {
-                        background-color: blue;
-                        color: white;
-                    }
+                    
                     
                 }
             }
@@ -224,7 +232,6 @@ export function makeStyles(theme :string) {
                     color: white;
                 }
                 .Color-RGB {
-                    // border: 1px solid black;
                     display: flex;
                     align-items: center;
                     & > div: last-child {
@@ -308,8 +315,6 @@ export function changeTheme(theme: string){
     `
 }
 
-
-
 export function DiaStyles() {
     return css`
         .k-dialog-body {
@@ -323,7 +328,6 @@ export function DiaStyles() {
                 }
                 & > div: last-child {
                     font-size: 18px;
-
                 }
             }
             & > div: last-child {
