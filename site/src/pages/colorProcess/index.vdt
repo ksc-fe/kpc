@@ -1,4 +1,4 @@
-import {makeStyles, DiaStyles, changeTheme} from './style';
+import {makeStyles, DiaStyles} from './style';
 import {Layout, Header, Icon, Card, Input, Colorpicker, Dialog} from 'kpc';
 import KD_logo from '../../imgs/KD_logo.png';
 
@@ -42,7 +42,7 @@ function hexToRgb(hex) {
         green: parseInt("0x" + hex.slice(3, 5)),
         blue: parseInt("0x" + hex.slice(5, 7)),
         rgb: RGBA
-    }
+    };
 }
 
 function contrast(preColor, bacColor) {
@@ -68,7 +68,7 @@ function contrast(preColor, bacColor) {
     return ((bacLight + 0.05) / (preLight + 0.05)).toFixed(2);
 }
 
-const colorPelette = {}
+const colorPelette = {};
 for(let i in color) {
     colorPelette[i] = getColorPelette(color[i], 9, colorType);
 }
@@ -76,94 +76,83 @@ for(let i in color) {
 <Layout class={makeStyles(theme)}>
     <Header height={70}>
         <div class="header-logo">
-            <img src={KD_logo}>
+            <img src={KD_logo} />
         </div>
         <div class="header-title">颜色定制</div>
         <div class="header-options">
-           <div class="contrast">
-            <a 
-                ev-click={this._changeContrastShow.bind(this, true)}
-            >色彩对比度</a>
-            <Dialog 
-                title="色彩对比度" 
-                v-model="contrastMenu" 
-                class={DiaStyles()}
-                showClose={true}
-            >
-               
-                <div 
-                    class="content-left"
-                    style={{backgroundColor: bacColor, color: preColor}}
+            <div class="contrast">
+                <a ev-click={this._changeContrastShow.bind(this, true)}>色彩对比度</a>
+                <Dialog 
+                    title="色彩对比度" 
+                    v-model="contrastMenu" 
+                    class={DiaStyles()}
+                    showClose={true}
                 >
-                    <div>云服务器</div>
-                    <div>
-                        云服务器KEC（Kingsoft Cloud Elastic Compute）是云计算基础
-                        设施的重要组成部分，提供弹性可伸缩的计算容量，令开发者能够轻松进
-                        行互联网规模计算，部署所需服务器环境。云服务器相对物理服务器更为
-                        简单高效，可随时根据业务需要进行调配，提升运维效率。
-                    </div>
-                </div>
-                <div class="content-right">
-                    <div class="contrast-box">
-                        <div class="title">对比度</div>
-                        <div class="contrast-number">
-                            <!--TODO 对比度数值 -->
-                            <div>{contrast(preColor, bacColor)}</div>
-                            <div>: 1</div>
-                        </div>
+                    <div 
+                        class="content-left"
+                        style={{backgroundColor: bacColor, color: preColor}}
+                    >
+                        <div>云服务器</div>
                         <div>
-                            <div>正常文本</div>
-                        </div>
-                        <div>
-                            <div>大文本</div>
+                            云服务器KEC（Kingsoft Cloud Elastic Compute）是云计算基础
+                            设施的重要组成部分，提供弹性可伸缩的计算容量，令开发者能够轻松进
+                            行互联网规模计算，部署所需服务器环境。云服务器相对物理服务器更为
+                            简单高效，可随时根据业务需要进行调配，提升运维效率。
                         </div>
                     </div>
-                    <div class="choose-box">
-                        <div class='pre'>
-                            <div>前景色</div>
+                    <div class="content-right">
+                        <div class="contrast-box">
+                            <div class="title">对比度</div>
+                            <div class="contrast-number">
+                                <!--TODO 对比度数值 -->
+                                <div>{contrast(preColor, bacColor)}</div>
+                                <div>: 1</div>
+                            </div>
                             <div>
-                                <Colorpicker v-model="preColor"/>
+                                <div>正常文本</div>
+                            </div>
+                            <div>
+                                <div>大文本</div>
                             </div>
                         </div>
-                        <div>
-                            <button ev-click={this._switchColor.bind(this)}>切换</button>
-                        </div>
-                        <div class='bac'>
-                            <div>背景色</div>
+                        <div class="choose-box">
+                            <div class='pre'>
+                                <div>前景色</div>
+                                <div>
+                                    <Colorpicker v-model="preColor"/>
+                                </div>
+                            </div>
                             <div>
-                                <Colorpicker v-model="bacColor"/>
+                                <button ev-click={this._switchColor.bind(this)}>切换</button>
+                            </div>
+                            <div class='bac'>
+                                <div>背景色</div>
+                                <div>
+                                    <Colorpicker v-model="bacColor"/>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </Dialog>
-           </div>
+                </Dialog>
+            </div>
             <!--TODO:主题定制以及颜色转换-->
             <div class="theme">
                 <button 
-                    class={{
-                        "checkout": theme == 'light'
-                    }}
+                    class={{"checkout": theme == 'light'}}
                     ev-click={this._changeTheme.bind(this, 'light')}
                 >明</button>
                 <button 
-                    class={{
-                        "checkout": theme == 'dark'
-                    }}
+                    class={{"checkout": theme == 'dark'}}
                     ev-click={this._changeTheme.bind(this, 'dark')}
                 >暗</button>
             </div>
             <div class="color-type">
                 <button 
-                    class={{ 
-                        "checkout": colorType == 'HEX'
-                    }}
+                    class={{"checkout": colorType == 'HEX'}}
                     ev-click={this._changeColorType.bind(this, 'HEX')}
                 >HEX</button>
                 <button 
-                    class={{ 
-                        "checkout":colorType == 'RGB'
-                    }}
+                    class={{"checkout":colorType == 'RGB'}}
                     ev-click={this._changeColorType.bind(this, 'RGB')}
                 >RGB</button>
             </div>
