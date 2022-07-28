@@ -153,7 +153,7 @@ for(let i in color) {
                     ev-click={this._changeTheme.bind(this, 'dark')}
                 >暗</button>
             </div>
-            <div class="colorType">
+            <div class="color-type">
                 <button 
                     class={{ 
                         "checkout": colorType == 'HEX'
@@ -186,10 +186,10 @@ for(let i in color) {
                 <Colorpicker v-model="inputColor" />
                 <div>{hexToRgb(inputColor)['rgb']}</div>
             </div>
-            <div class="colorPelette">
+            <div class="color-pelette">
                 <div 
                     v-for={getColorPelette(inputColor, 9, colorType)}
-                    class="colorPeletteItem"
+                    class="color-pelette-item"
                     style={{
                         backgroundColor: colorType == 'HEX' 
                             ? $value 
@@ -212,12 +212,12 @@ for(let i in color) {
                 class="recomend" 
                 v-for={colorPelette}
             >
-                <div class="recomendItem">
-                    <div class="recomendItem-title">{$key}</div>
-                    <div class="colorPelette">
+                <div class="recomend-item">
+                    <div class="recomend-item-title">{$key}</div>
+                    <div class="color-pelette">
                         <div 
                             v-for={$value}
-                            class="colorPeletteItem"
+                            class="color-pelette-item"
                             style={{
                                 backgroundColor: colorType == 'HEX' 
                                     ? $value 

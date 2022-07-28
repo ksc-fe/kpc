@@ -55,7 +55,7 @@ export function makeStyles(theme :string) {
                         text-align: center;
                     }
                     .theme,
-                    .colorType {
+                    .color-type {
                         & > button {
                             background-color: white;
                         }
@@ -94,13 +94,13 @@ export function makeStyles(theme :string) {
                     }
                 }
                 .recomend {
-                    .recomendItem {
+                    .recomend-item {
                         margin-top: 40px;
-                        .recomendItem-title {
+                        .recomend-item-title {
                             font-size: 24px;
                             margin-bottom: 20px;
                         }
-                        .colorPelette {
+                        .color-pelette {
                             display: flex;
                             align-items: center;
                             & > div:nth-child(n+5) {
@@ -111,7 +111,7 @@ export function makeStyles(theme :string) {
                                 height:50px !important;
                                 line-height: 50px !important;
                             }
-                            .colorPeletteItem {
+                            .color-pelette-item {
                                 flex-grow: 1;
                                 width: 100px;
                                 height: 46px;
@@ -123,7 +123,7 @@ export function makeStyles(theme :string) {
                     }
                     
                 }
-                .colorPelette {
+                .color-pelette {
                     display: flex;
                     align-items: center;
                     & > div:nth-child(n+5) {
@@ -134,7 +134,7 @@ export function makeStyles(theme :string) {
                         height:50px !important;
                         line-height: 50px !important;
                     }
-                    .colorPeletteItem {
+                    .color-pelette-item {
                         flex-grow: 1;
                         width: 100px;
                         height: 46px;
@@ -198,7 +198,7 @@ export function makeStyles(theme :string) {
                         text-align: center;
                     }
                     .theme,
-                    .colorType {
+                    .color-type {
                         & > button {
                             background-color: white;
                         }
@@ -239,14 +239,14 @@ export function makeStyles(theme :string) {
                     }
                 }
                 .recomend {
-                    .recomendItem {
+                    .recomend-item {
                         margin-top: 40px;
-                        .recomendItem-title {
+                        .recomend-item-title {
                             color: white;
                             font-size: 24px;
                             margin-bottom: 20px;
                         }
-                        .colorPelette {
+                        .color-pelette {
                             display: flex;
                             align-items: center;
                             & > div:nth-child(n+5) {
@@ -257,7 +257,7 @@ export function makeStyles(theme :string) {
                                 height:50px !important;
                                 line-height: 50px !important;
                             }
-                            .colorPeletteItem {
+                            .color-pelette-item {
                                 flex-grow: 1;
                                 width: 100px;
                                 height: 46px;
@@ -269,7 +269,7 @@ export function makeStyles(theme :string) {
                     }
                     
                 }
-                .colorPelette {
+                .color-pelette {
                     display: flex;
                     align-items: center;
                     & > div:nth-child(n+5) {
@@ -280,7 +280,7 @@ export function makeStyles(theme :string) {
                         height:50px !important;
                         line-height: 50px !important;
                     }
-                    .colorPeletteItem {
+                    .color-pelette-item {
                         flex-grow: 1;
                         width: 100px;
                         height: 46px;

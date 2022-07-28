@@ -27,7 +27,6 @@ export function makeStyles() {
             background-repeat: no-repeat;
             background-position: left ;
             background-size: cover;
-
             .content-img {
                 height: 151px;
                 width: 440px;
@@ -48,7 +47,6 @@ export function makeStyles() {
                     width: 57%;
                 }
             }
-
             .dowload {
                 width: 440px;
                 height: 80px;
@@ -78,7 +76,6 @@ export function makeStyles() {
                 }
             }
         }
-
         .source-intro {
             margin: 100px auto;
             background-image: url(${text_web});
@@ -95,7 +92,6 @@ export function makeStyles() {
             background-position: right bottom;
             background-size: cover;
         }
-
         .source-designer {
             background-color: #FAFAFA;
             padding-top: 30px;
@@ -158,6 +154,5 @@ export function makeStyles() {
                 }
             }
         }
-
     `
 }
