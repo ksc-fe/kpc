@@ -1,0 +1,47 @@
+import {makeStyles} from './styles';
+import {Footer} from '../../components/footer/';
+import designer from '../../imgs/font/designer.png';
+import title_web from "../../imgs/font/title-web.png";
+import {Icon} from 'kpc';
+
+const designer_list = [
+    '宋辉', 
+    '李业鹏',
+    '刘雨凡',
+    '解磊',
+    '王鹏飞', 
+    '郭嘉琦', 
+    '张立明', 
+    '毛燕妮',
+    '冯芷欣',
+    '闫佳妮', 
+    '张婧雨', 
+    '王思雨', 
+    '刘淼'
+]
+
+<t:super class={makeStyles()} navIndex="font">
+    <b:content>
+        <div class="source-nav">
+            <div class="content">
+                <div class="content-img"></div>
+                <button class="dowload">免费下载</button>
+            </div>
+        </div>
+        <div class="source-intro"></div>
+        <div class="source-designer">
+            <div class="designer-title">     
+                <img src={designer} />    
+            </div>
+            <div class="designer-content">
+                <div class="designer-show">
+                    <div v-for={designer_list} class="designer-item">
+                        <img src={`../../imgs/font/${$value}.png`} />
+                        <div>{$value}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <Footer bgColor="white"></Footer>
+    </b:content>
+</t:super> 

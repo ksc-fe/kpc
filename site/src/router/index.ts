@@ -119,6 +119,28 @@ export default new Router<RouteResult>({
             }
         },
         {
+            path: '/font',
+            action: async (context) => {
+                return {
+                    Page: (await import(`../pages/font/index`)).default,
+                    data: {
+                        path: context.params[0] as string,
+                    }
+                }
+            }
+        },
+        {
+            path: '/colorProcess',
+            action: async (context) => {
+                return {
+                    Page: (await import(`../pages/colorProcess/index`)).default,
+                    data: {
+                        path: context.params[0] as string,
+                    }
+                }
+            }
+        },
+        {
             path: '/demo\/(.*)/',
             action: async (context) => {
                 return {
