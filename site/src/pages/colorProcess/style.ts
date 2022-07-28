@@ -34,7 +34,6 @@ export function makeStyles(theme :string) {
                     left: 50%;
                     transform: translate(-50%, -50%);
                     color: black;
-                    
                 }
                 .header-logo {
                     display: flex;
@@ -70,8 +69,6 @@ export function makeStyles(theme :string) {
                             color: white;
                         }
                     }
-                    
-                    
                 }
             }
             .cp-body {
@@ -86,7 +83,6 @@ export function makeStyles(theme :string) {
                     margin-bottom: 20px;
                 }
                 .Color-RGB {
-                    // border: 1px solid black;
                     display: flex;
                     align-items: center;
                     & > div: last-child {
@@ -120,8 +116,7 @@ export function makeStyles(theme :string) {
                                 vertical-align: middle;
                             }
                         } 
-                    }
-                    
+                    }  
                 }
                 .color-pelette {
                     display: flex;
@@ -212,9 +207,7 @@ export function makeStyles(theme :string) {
                             background-color: blue;
                             color: white;
                         }
-                    }
-                    
-                    
+                    }   
                 }
             }
             .cp-body {
@@ -267,7 +260,6 @@ export function makeStyles(theme :string) {
                             }
                         } 
                     }
-                    
                 }
                 .color-pelette {
                     display: flex;

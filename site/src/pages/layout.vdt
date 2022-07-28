@@ -9,6 +9,11 @@ import {Transition} from 'intact';
 
 const nav = [
     {
+        title: '字体',
+        href: '/font',
+        index: 'font'
+    },
+    {
         title: '设计',
         href: '/docs/design/about/',
         index: 'design',
