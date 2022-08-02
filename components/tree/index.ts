@@ -95,7 +95,7 @@ export class Tree<K extends Key = Key> extends Component<TreeProps<K>, TreeEvent
     private checked = useChecked(this.nodes.getNodes);
     private expanded = useExpanded(this.nodes.getNodes);
     private selected = useSelected(this.nodes.getNodes);
-    private filter = useFilter(this.nodes.getNodes, this.expanded.get);
+    private filter = useFilter(this.nodes.getNodes, this.expanded);
     private draggable = useDraggable();
     private transition = useTransitionEvent();
 

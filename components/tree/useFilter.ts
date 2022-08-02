@@ -2,8 +2,9 @@ import {useInstance, Key, onBeforeUpdate} from 'intact';
 import type {Tree} from './';
 import type {Node, DataItem} from './useNodes';
 import {EMPTY_OBJ, isNullOrUndefined} from 'intact-shared';
+import {Expanded} from './useExpanded';
 
-export function useFilter(getNodes: () => Node<Key>[], getExpandedKeys: () => Set<Key>) {
+export function useFilter(getNodes: () => Node<Key>[], expanded: Expanded) {
     const instance = useInstance() as Tree;
 
     instance.on('$receive:filter', refresh);
@@ -23,6 +24,11 @@ export function useFilter(getNodes: () => Node<Key>[], getExpandedKeys: () => Se
     });
 
     function refresh() {
+        if(expanded.getExpandState()) {
+            expanded.setExpandState();
+            return;
+        }
+
         const nodes = getNodes();
         const {filter} = instance.get();
         const loop = (nodes: Node<Key>[]) => {
@@ -50,7 +56,8 @@ export function useFilter(getNodes: () => Node<Key>[], getExpandedKeys: () => Se
         if (!node) return;
 
         // should expand the node 
-        getExpandedKeys().add(node.key);
+        expanded.get().add(node.key);
+        // getExpandedKeys().add(node.key);
         if (node.filter) return;
 
         node.filter = true;
