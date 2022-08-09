@@ -1,9 +1,10 @@
 import {css} from '@emotion/css';
-import source_nav_web from '../../imgs/font/banner-web.jpg';
-import source_nav_h5 from '../../imgs/font/banner-h5.jpg';
-import title_web from "../../imgs/font/title-web.png";
 import text_web from "../../imgs/font/text-web.png";
 import text_h5 from "../../imgs/font/text-h5.png";
+import new_source from '../../imgs/font/new_source.jpg'
+import new_source_h5 from '../../imgs/font/new_source_h5.png'
+import new_title from '../../imgs/font/new_title.png'
+import new_title_h5 from '../../imgs/font/new_title_h5.png'
 
 export function makeStyles() {
     return css`
@@ -11,13 +12,13 @@ export function makeStyles() {
             display: flex;
             justify-content: center;
             position: relative;
-            height: 800px;
+            height: 600px;
             width: 100%;
             overflow: hidden;
-            background-image: url(${source_nav_web});
+            background-image: url(${new_source});
             @media (max-width: 768px) {
                 overflow: hidden;
-                background-image: url(${source_nav_h5});
+                background-image: url(${new_source_h5});
                 width: 100%;
                 background-position: center;
             }
@@ -28,36 +29,37 @@ export function makeStyles() {
             background-position: left ;
             background-size: cover;
             .content-img {
-                height: 151px;
-                width: 440px;
+                height: 200px;
+                width: 320px;
                 margin-top: 26px;
                 display: flex;
                 justify-content: center;
-                background-image: url(${title_web});
+                background-image: url(${new_title});
                 background-repeat: no-repeat;
                 background-position: right bottom;
                 background-size: 100%;
                 position: absolute;
-                left: 21%;
-                bottom: 356px;
+                left: 18%;
+                bottom: 244px;
                 @media (max-width: 768px) {
                     left: 50%;
                     transform: translate(-50%,0);
-                    bottom: 75%;
-                    width: 57%;
+                    background-image: url(${new_title_h5});
+                    bottom: 47%;
+                    width: 64%;
                 }
             }
             .dowload {
-                width: 440px;
-                height: 80px;
+                width: 320px;
+                height: 40px;
                 position: absolute;
-                left: 21%;
-                bottom: 254px;
+                left: 17.8%;
+                bottom: 165px;
                 border: none;
                 background: #006FFF;
-                border-radius: 14px;
+                border-radius: 5px;
                 font-family: PingFangSC-Regular;
-                font-size: 30px;
+                font-size: 15px;
                 color: #FFFFFF;
                 font-weight: 400;
                 cursor: pointer;
@@ -68,11 +70,12 @@ export function makeStyles() {
                     background-color: #3D91FF;
                 }
                 @media (max-width: 768px) {
+                    font-size: 25px;
                     left: 50%;
                     transform: translate(-50%,0);
-                    bottom: 58%;
-                    width: 57%;
-                    height: 60px;
+                    bottom: 31%;
+                    width: 68%;
+                    height: 65px;
                 }
             }
         }

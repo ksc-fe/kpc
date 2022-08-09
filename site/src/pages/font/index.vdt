@@ -23,7 +23,7 @@ const designer_list = [
         <div class="source-nav">
             <div class="content">
                 <div class="content-img"></div>
-                <button class="dowload">免费下载</button>
+                <button class="dowload">立即下载</button>
             </div>
         </div>
         <div class="source-intro"></div>
