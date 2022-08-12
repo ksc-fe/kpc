@@ -1,0 +1,32 @@
+import {SkeletonItem} from './item';
+import {makeStyles, kls} from './style';
+
+const {rows, avator, animated, children, loading, size} = this.get();
+
+const targetRows = typeof rows !== 'number'
+    ? 3
+    : rows < 1
+        ? 1
+        : parseInt(rows);
+
+const skeletonList = Array(targetRows + 2).fill();
+const skeletonItems = <SkeletonItem v-for={skeletonList}></SkeletonItem>;
+
+const classNameObj = {
+    'k-skeleton': true,
+    'k-animated': animated,
+    [makeStyles(size)]: true
+};
+
+<div class={classNameObj} v-if={loading}>
+    <template v-if={children}>
+        <div>{children}</div>
+    </template>
+    <template v-else>
+        <div v-if={avator} class={kls('avator-box')}>
+            <SkeletonItem type="avator"></SkeletonItem>
+            <div class="k-skeleton-items">{skeletonItems}</div>
+        </div>
+        <div class="k-skeleton-items" v-else>{skeletonItems}</div>
+    </template>
+</div>

@@ -29,11 +29,15 @@ import {createApp} from 'vue';
 import {install} from '@king-design/vue/install';
 
 const app = createApp({
-    template: '<Button>Hello</Button>'
+    template: '<KButton>Hello</KButton>'
 });
 
 app.use(install);
 ```
+
+> 全量引入后，所以所有的组件命名为`KComponent`形式，例如：`KButton`，
+> 你可以在模板中使用`KButton`或者`k-button`作为元素名
+
 
 ## 按需引入
 
