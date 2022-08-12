@@ -47,11 +47,10 @@ export function useFilter(getNodes: () => Node<Key>[], getExpandedKeys: () => Se
     }
 
     function updateFilterUpward(node: Node<Key> | null) {
-        if (!node) return;
+        if (!node || node.filter) return;
 
         // should expand the node 
         getExpandedKeys().add(node.key);
-        if (node.filter) return;
 
         node.filter = true;
         updateFilterUpward(node.parent);
