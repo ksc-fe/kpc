@@ -244,10 +244,12 @@ export class Dropdown<
 
     private normalizeTriggerProps(props: any) {
         // if use kpc in react or vue, normalize props by Wrapper.props.vnode;
-        if ((this as any).$isReact || (this as any).$isVueNext) {
-            const vnode = props.vnode;
-            if (!vnode) return props;
+        const vnode = props.vnode;
+        if (!vnode) return props;
 
+        // maybe we render the intact component in react slot property, in this case
+        // the $isReact is false. so use the vnode $$typeof field as gauge
+        if (vnode.$$typeof || (this as any).$isVueNext) {
             const _props = vnode.props;
             if (!_props) return props;
 
@@ -260,9 +262,6 @@ export class Dropdown<
                 className: _props.className || _props.class /* vue-next */,
             };
         } else if ((this as any).$isVue) {
-            const vnode = props.vnode;
-            if (!vnode) return props;
-
             const data = vnode.data;
             const on = data && data.on || EMPTY_OBJ;
             const ret: Record<string, any> = {vnode};
