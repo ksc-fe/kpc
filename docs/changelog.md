@@ -6,6 +6,10 @@ sidebar: doc
 
 ## v2.0.3
 
+1. `Fix` 修复打包造成类型丢失的问题
+
+## v2.0.3
+
 1. `Add` 新增骨架屏组件`Skeleton`
 2. `Fix` 修复`Tree`在`filter`的情况下，不能折叠的问题 [#741](https://github.com/ksc-fe/kpc/issues/741)
 
