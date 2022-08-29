@@ -7415,6 +7415,11 @@ intact-shared@^3.0.3:
   resolved "https://registry.yarnpkg.com/intact-shared/-/intact-shared-3.0.3.tgz#0a573f8ed1fa6d6257cb53bc987d50b33a2a53ea"
   integrity sha512-rE8vJ58tXilAJEq+gh35cKcf1Ml7jrkW6zZBAcNJvK1bCKoY7cwxAN8b7roQdF4wYCsWlkZ39uljioAaXsjiYw==
 
+intact-shared@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.5.tgz#913832e27f8127e30f6e600f263a2075a9978406"
+  integrity sha512-Aya1+1DPWC73ZrqsKR+xdJSfoupE4WZghFlzp98vBN1hE+uIFO8hN4UEvvxmT+vFXM9pZlql5yHx7eVyIEo+og==
+
 intact@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/intact/-/intact-3.0.3.tgz#2617201236244bd9b5092cabab62eef6c60d06ec"
@@ -7425,6 +7430,17 @@ intact@^3.0.3:
     tslib "^2.2.0"
     vdt "^3.0.3"
     vdt-compiler "^3.0.3"
+
+intact@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.5.tgz#e971f30115c996abb6fd0e9718e56bfa0bdfa268"
+  integrity sha512-35N+r8OewrNUv1mJ6Zpyquq2eMaHE44Iq7hvSERJBj07ZTjVLFIboDw/9SyFFPbic4ukX3eVsno0eXogZe2Kmg==
+  dependencies:
+    intact-shared "^3.0.5"
+    misstime "^3.0.5"
+    tslib "^2.2.0"
+    vdt "^3.0.5"
+    vdt-compiler "^3.0.5"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9205,6 +9221,13 @@ misstime@^3.0.3:
   integrity sha512-dG7LsHWFRGUktKMLpMiNKwINIg4a9bfOPgwW9Y3CVfapMKgSWpJtNUkFWmW2Y5S3SuqZwtkrfXN8Dw2RY3mW/A==
   dependencies:
     intact-shared "^3.0.3"
+
+misstime@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.5.tgz#346952269a6c170eb3d1c5aee8f7f8526a28a63e"
+  integrity sha512-hOy4vQ0abNdDutyZOflUXQGRHFZJoTH13t1qiDy2i0WcjdLbVgIdZSo+y0k3Y5iBhYYnO+o35g2AJBrxMfQZIw==
+  dependencies:
+    intact-shared "^3.0.5"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13425,6 +13448,15 @@ vdt-compiler@^3.0.3:
     misstime "^3.0.3"
     tslib "^2.2.0"
 
+vdt-compiler@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.5.tgz#cf5f35df1b13154970f7d5e54bbaabf2f1540552"
+  integrity sha512-qcOFAvUR2iHWF3SUuEmW78f+IVi0a5Ed8EH/Gyin0A7UVE3uJwCoj60MCtzBpjPU5oOtqoup9/HXR8pDCpn5Bg==
+  dependencies:
+    intact-shared "^3.0.5"
+    misstime "^3.0.5"
+    tslib "^2.2.0"
+
 vdt-loader@^3.0.0-beta.1:
   version "3.0.0-beta.1"
   resolved "https://registry.npmmirror.com/vdt-loader/-/vdt-loader-3.0.0-beta.1.tgz#d4c01eb810e0efcf8659c27718ebaeb00b0ef4fc"
@@ -13441,6 +13473,15 @@ vdt@^3.0.3:
   dependencies:
     intact-shared "^3.0.3"
     misstime "^3.0.3"
+    tslib "^2.2.0"
+
+vdt@^3.0.5:
+  version "3.0.5"
+  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.5.tgz#77340f23b84ec02a03b5e0ca313270eb5d374cd1"
+  integrity sha512-v/BeZ8b2moE7M6ahj2vYPHNN8p9e4XJeRmPplj020UY15qsMj8x8jTYfG3WeGocN61+ABg6JW1GJIDE7EH6M5g==
+  dependencies:
+    intact-shared "^3.0.5"
+    misstime "^3.0.5"
     tslib "^2.2.0"
 
 verror@1.10.0:

@@ -100,7 +100,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
             }
         } else {
             mountedQueue.push(() => {
-                parentDom = this.$lastInput!.dom!.parentElement!;
+                const parentDom = this.$lastInput!.dom!.parentElement!;
                 this.initContainer(nextProps.container, parentDom, anchor);
 
                 mount(
