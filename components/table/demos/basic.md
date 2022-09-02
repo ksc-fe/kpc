@@ -7,16 +7,10 @@ order: 0
 组件定义表格结构，详见”定义表格结构“说明
 
 ```vdt
-import {Table, TableColumn, Select, Option} from 'kpc';
+import {Table, TableColumn} from 'kpc';
 
 <Table data={this.get('data')} resizable>
-    <TableColumn key="a" title="Title 1">
-        <b:template args="[data]">
-            <Select>
-                <Option value="a">test</Option>
-            </Select>
-        </b:template>
-    </TableColumn>
+    <TableColumn key="a" title="Title 1" />
     <TableColumn key="b" title="Title 2" />
 </Table>
 ```
