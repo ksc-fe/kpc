@@ -10,7 +10,7 @@ sidebar: doc
 
 ### @king-design/react
 
-1. `Fix` 修复`Table`不能通过点击单元格触发事件来删除改行的问题 [#752](https://github.com/ksc-fe/kpc/issues/752)
+1. `Fix` 修复`Table`不能通过点击单元格触发事件来删除该行的问题 [#752](https://github.com/ksc-fe/kpc/issues/752)
 
 ## v2.0.4
 
