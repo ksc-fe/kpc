@@ -202,7 +202,7 @@ export function useChecked(
     instance.on('$change:data', updateAllCheckedStatus);
 
     instance.on('clickRow', (data: any, index: number, key: TableRowKey) => {
-        if (instance.get('rowCheckable')) {
+        if (instance.get('rowCheckable') && instance.get('checkType') !== 'none') {
             toggleChecked(key, index);
         }
     });

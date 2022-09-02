@@ -39,6 +39,10 @@ export class TableCell extends Component<TableCellProps> {
                 isSame = false;
                 break;
             }
+            if (key === 'props' && nextProps.props.$blocks) {
+                isSame = false;
+                break;
+            }
         }
 
         if (!isSame) {
