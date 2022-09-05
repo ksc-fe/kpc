@@ -24,8 +24,6 @@ export function addStaticMethods(Component: typeof Dialog) {
         });
     }
 
-    // type PromiseWithDialog = Promise<void> & { dialog: AlertDialog };
-
     function show(options: AlertDialogProps = {}) {
         const dialog = new AlertDialog(options);
         dialog.show();

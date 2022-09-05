@@ -6,6 +6,8 @@ sidebar: doc
 
 ## v2.0.6
 
+1. `Add` `Dialog`静态方法新增`ref`属性，用于获取当前实例 [#754](https://github.com/ksc-fe/kpc/issues/754)
+
 ### @king-design/vue
 
 1. `Fix` 修复`Dialog`静态方法调用报错的问题 [#753](https://github.com/ksc-fe/kpc/issues/753)
