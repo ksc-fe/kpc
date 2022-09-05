@@ -11,6 +11,7 @@ export interface AlertDialogProps extends DialogProps {
 
 export type StaticMethod = (options?: AlertDialogProps) => Promise<void>
 
+
 export function addStaticMethods(Component: typeof Dialog) {
     class AlertDialog extends Component {
         static template = template;
@@ -23,10 +24,12 @@ export function addStaticMethods(Component: typeof Dialog) {
         });
     }
 
+    type PromiseWithDialog = Promise<void> & { dialog: AlertDialog };
+
     function show(options: AlertDialogProps = {}) {
-        return new Promise<void>((resolve, reject) => {
-            const dialog = new AlertDialog(options, null as unknown as VNodeComponentClass<any>, false, [], null);
-            dialog.show();
+        const dialog = new AlertDialog(options);
+        dialog.show();
+        const p = new Promise<void>((resolve, reject) => {
             dialog.on('ok', () => {
                 resolve();
             });
@@ -37,7 +40,11 @@ export function addStaticMethods(Component: typeof Dialog) {
             dialog.on('terminate', () => {
                 reject();
             });
-        });
+        }) as PromiseWithDialog;
+
+        p.dialog = dialog;
+
+        return p;
     }
 
     (['success', 'warning', 'error', 'confirm'] as const).forEach(type => {

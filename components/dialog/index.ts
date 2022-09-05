@@ -15,23 +15,19 @@ export class BaseDialog<
     public useAsComponent = false;
 
     constructor(
-        props: Props<P, BaseDialog> | null | undefined = null as unknown as P,
-        $vNode: VNodeComponentClass = null as unknown as VNodeComponentClass,
+        props: Props<P, BaseDialog> | null | undefined = null,
+        $vNode: VNodeComponentClass = createVNode(BaseDialog),
         $SVG: boolean = false,
         $mountedQueue: Function[] = [],
-        $senior: ComponentClass | null = null
+        $senior: ComponentClass | null = null,
     ) {
         super(props, $vNode, $SVG, $mountedQueue, $senior);
-    }
 
-    init() {
-        super.init();
-
-        usePosition(this.dialogRef);
-
-        if (this.$vNode) {
+        if ($vNode.tag !== BaseDialog) {
             this.useAsComponent = true;
         }
+
+        usePosition(this.dialogRef);
     }
 
     public show() {
@@ -50,7 +46,7 @@ export class BaseDialog<
             // use as intance
             const mountedQueue = this.$mountedQueue;
             this.$init(null); 
-            const vNode = this.$vNode = createVNode(BaseDialog) as VNodeComponentClass<any>;
+            const vNode = this.$vNode;
             vNode.children = this;
             this.$render(null, vNode, document.body, null, mountedQueue);
             callAll(mountedQueue);
