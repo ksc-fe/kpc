@@ -3,7 +3,7 @@ import {mount, unmount, dispatchEvent, getElement, wait} from '@/test/utils';
 import {Dialog} from '../../';
 
 describe('Dialog', () => {
-    it('test', async () => {
+    it('call static method', async () => {
         const container = document.createElement('div');
         document.body.appendChild(container);
         const vue = createApp({
@@ -12,12 +12,13 @@ describe('Dialog', () => {
             `,
             methods: {
                 test() {
-                    this.dialog = Dialog.success({
-                        content: 'test'
+                    Dialog.success({
+                        content: 'test',
+                        ref: i => this.dialog = i,
                     });
                 },
                 close() {
-                    this.dialog.dialog.close();
+                    this.dialog.close();
                 }
             }
         }).mount(container);

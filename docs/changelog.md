@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.6
+
+### @king-design/vue
+
+1. `Fix` 修复`Dialog`静态方法调用报错的问题 [#753](https://github.com/ksc-fe/kpc/issues/753)
+
 ## v2.0.5
 
 1. `Fix` 修复`Table`单元格存在组件时，组件不能更新的问题 [#751](https://github.com/ksc-fe/kpc/issues/751)

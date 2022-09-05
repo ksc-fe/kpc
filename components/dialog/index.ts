@@ -22,8 +22,13 @@ export class BaseDialog<
         $senior: ComponentClass | null = null,
     ) {
         super(props, $vNode, $SVG, $mountedQueue, $senior);
+    }
 
-        if ($vNode.tag !== BaseDialog) {
+    init() {
+        super.init();
+
+        // @ts-ignore
+        if (this.$vNode.tag !== BaseDialog) {
             this.useAsComponent = true;
         }
 

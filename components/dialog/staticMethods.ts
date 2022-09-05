@@ -7,10 +7,10 @@ export interface AlertDialogProps extends DialogProps {
     type?: 'success' | 'warning' | 'error' | 'confirm' 
     hideIcon?: boolean
     hideFooter?: boolean
+    ref?: (i: Dialog) => void
 }
 
 export type StaticMethod = (options?: AlertDialogProps) => Promise<void>
-
 
 export function addStaticMethods(Component: typeof Dialog) {
     class AlertDialog extends Component {
@@ -24,12 +24,15 @@ export function addStaticMethods(Component: typeof Dialog) {
         });
     }
 
-    type PromiseWithDialog = Promise<void> & { dialog: AlertDialog };
+    // type PromiseWithDialog = Promise<void> & { dialog: AlertDialog };
 
     function show(options: AlertDialogProps = {}) {
         const dialog = new AlertDialog(options);
         dialog.show();
-        const p = new Promise<void>((resolve, reject) => {
+
+        if (options.ref) options.ref(dialog);
+
+        return new Promise<void>((resolve, reject) => {
             dialog.on('ok', () => {
                 resolve();
             });
@@ -40,11 +43,7 @@ export function addStaticMethods(Component: typeof Dialog) {
             dialog.on('terminate', () => {
                 reject();
             });
-        }) as PromiseWithDialog;
-
-        p.dialog = dialog;
-
-        return p;
+        });
     }
 
     (['success', 'warning', 'error', 'confirm'] as const).forEach(type => {
