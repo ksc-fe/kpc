@@ -1,15 +1,22 @@
 import {makeStyles} from './styles';
 import {Footer} from '../../components/footer/';
 import designer from '../../imgs/font/designer.png';
+import initiator from '../../imgs/font/initiator.png'
+import media from '../../imgs/font/媒介支持.png';
+import cooperation from '../../imgs/font/生态合作.png';
+import fontDownLoad from '../../imgs/font/字体下载.png';
+import text_h5 from "../../imgs/font/text-h5.png";
+import title_web from "../../imgs/font/title-web.png";
+import source_nav_h5 from '../../imgs/font/banner-h5.jpg';
 
 const designer_list = [
     '宋辉', 
     '李业鹏',
     '刘雨凡',
-    '解磊',
+    '郭嘉琦',
     '王鹏飞', 
-    '郭嘉琦', 
     '张立明', 
+    '解磊',
     '毛燕妮',
     '冯芷欣',
     '闫佳妮', 
@@ -18,24 +25,212 @@ const designer_list = [
     '刘淼'
 ];
 
+const iconList = [
+    {
+        titleImg: initiator,
+        icons: [
+            {
+                icon: '1',
+                label: '金山软件'
+            },
+            {
+                icon: '2',
+                label: '金山云'
+            }
+        ]
+    },
+    {
+        titleImg: cooperation,
+        icons: [
+            {
+                icon: '3',
+                label: 'WPS Offer'
+            },
+            {
+                icon: '4',
+                label: '即时设计'
+            }
+        ]
+    },
+    {
+        titleImg: fontDownLoad,
+        icons: [
+            {
+                icon: '5',
+                label: '以方·iFont'
+            },
+            {
+                icon: '6',
+                label: '字由'
+            },
+            {
+                icon: '字加',
+                label: '字加'
+            },
+            {
+                icon: '8',
+                label: '猫啃网'
+            },
+            {
+                icon: '9',
+                label: '字库网'
+            },
+            {
+                icon: '10',
+                label: '字体下载'
+            },
+        ]
+    },
+    {
+        titleImg: media,
+        icons: [
+            {
+                icon: '11',
+                label: '国际体验设计'
+            },
+            {
+                icon: '4',
+                label: '即时设计'
+            },
+            {
+                icon: '13',
+                label: 'UI中国'
+            },
+            {
+                icon: '14',
+                label: 'ProtoPie'
+            },
+            {
+                icon: '9',
+                label: '字库网'
+            },
+            {
+                icon: '3',
+                label: 'WPS办公助手'
+            },
+            {
+                icon: '16',
+                label: '金山文档'
+            },
+            {
+                icon: '8',
+                label: '猫啃网'
+            },
+            {
+                icon: '18',
+                label: 'Sketch中文网'
+            },
+            {
+                icon: '19',
+                label: 'XD 中文网'
+            },
+            {
+                icon: '20',
+                label: '包小盒'
+            },
+            {
+                icon: '21',
+                label: 'OurSketch'
+            },
+            {
+                icon: '22',
+                label: 'UI范'
+            },
+            {
+                icon: '23',
+                label: '体验进阶'
+            },
+            {
+                icon: '24',
+                label: 'UXD笔记'
+            },
+            {
+                icon: '25',
+                label: '三分设'
+            },
+            {
+                icon: '26',
+                label: '设计达人'
+            },
+            {
+                icon: '27',
+                label: 'UX实验室'
+            },
+            {
+                icon: '29',
+                label: '庆科字体'
+            },
+            {
+                icon: '30',
+                label: '静design'
+            },
+            {
+                icon: '31',
+                label: '功夫体验设计'
+            },
+            {
+                icon: '设长',
+                label: '设长'
+            },
+            {
+                icon: '应谋鬼计',
+                label: '应谋鬼计'
+            },
+            {
+                icon: '优设网',
+                label: '优设网'
+            },
+            {
+                icon: '最设计',
+                label: '最设计'
+            },
+        ]
+    },
+];
+
 <t:super class={makeStyles()} navIndex="font">
     <b:content>
-        <div class="source-nav">
-            <div class="content">
-                <div class="content-img"></div>
-                <button class="dowload">免费下载</button>
+        <div class="font-nav">
+            <img class="bg-img" src={source_nav_h5} />
+            <div class="font-nav-content">
+                <div class="nav-content-img">
+                    <img src={title_web} />
+                    <div>
+                        <button class="nav-btn-dowload">免费下载</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="source-intro"></div>
-        <div class="source-designer">
-            <div class="designer-title">     
-                <img src={designer} />    
+        <div class="font-info">
+            <img src={text_h5} />
+        </div>
+        <div class="designer-part">
+            <div class="designer-title">
+                <img src={designer} />
+                <div></div>
             </div>
-            <div class="designer-content">
-                <div class="designer-show">
-                    <div v-for={designer_list} class="designer-item">
-                        <img src={`../../imgs/font/${$value}.png`} />
-                        <div>{$value}</div>
+            <div class="designer-list">
+                <div v-for={designer_list} class="designer-item">
+                    <img src={`../../imgs/font/${$value}.png`} />
+                    <div>{$value}</div>
+                </div>
+            </div>
+        </div>
+        <div class="icon-list-box">
+            <div class="icon-list">
+                <div class="icon-box" v-for={iconList}>
+                    <div class="icon-box-title">
+                        <div></div>
+                        <img src={$value.titleImg} />
+                        <div></div>
+                    </div>
+                    <div class="icon-wrapper">
+                        <div v-for={$value.icons} class="icon-item">
+                            <div>
+                                <img src={`../../imgs/font/${$value.icon}.png`} />
+                            </div>
+                            <div>{$value.label}</div>
+                        </div>
                     </div>
                 </div>
             </div>
