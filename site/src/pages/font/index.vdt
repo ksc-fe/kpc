@@ -196,7 +196,7 @@ const iconList = [
                 <div class="nav-content-img">
                     <img src={title_web} />
                     <div>
-                        <button class="nav-btn-dowload">免费下载</button>
+                        <button class="nav-btn-download" ev-click={this.handleDownLoad}>免费下载</button>
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ export function makeStyles() {
                     img {
                         width: 380px;
                     }
-                    .nav-btn-dowload {
+                    .nav-btn-download {
                         margin-top: 30px;
                         width: 380px;
                         height: 60px;
@@ -74,8 +74,8 @@ export function makeStyles() {
                         img {
                             width: 65%;
                         }
-                        .nav-btn-dowload {
-                            height:50px;
+                        .nav-btn-download {
+                            height: 50px;
                             width: 65%;
                         }
                     }
