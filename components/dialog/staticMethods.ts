@@ -7,6 +7,7 @@ export interface AlertDialogProps extends DialogProps {
     type?: 'success' | 'warning' | 'error' | 'confirm' 
     hideIcon?: boolean
     hideFooter?: boolean
+    ref?: (i: Dialog) => void
 }
 
 export type StaticMethod = (options?: AlertDialogProps) => Promise<void>
@@ -24,9 +25,12 @@ export function addStaticMethods(Component: typeof Dialog) {
     }
 
     function show(options: AlertDialogProps = {}) {
+        const dialog = new AlertDialog(options);
+        dialog.show();
+
+        if (options.ref) options.ref(dialog);
+
         return new Promise<void>((resolve, reject) => {
-            const dialog = new AlertDialog(options, null as unknown as VNodeComponentClass<any>, false, [], null);
-            dialog.show();
             dialog.on('ok', () => {
                 resolve();
             });

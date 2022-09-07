@@ -283,29 +283,29 @@ import-fresh@^3.1.0:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-intact-react@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/intact-react/-/intact-react-3.0.3.tgz#f61c259b8f63f2b33b7c8000e572c1fdd6279bb5"
-  integrity sha512-18+wwFYfJBsnoWYCA+Jnfq3DGyUWReAOJI1X6II2qOWocTQHkIPU35MXHE3N16mZ54DiZTXmFt7v9x+nNDdINA==
+intact-react@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/intact-react/-/intact-react-3.0.6.tgz#3ceb8a38663c241ffeceecdf4a9326d81b3901c0"
+  integrity sha512-mUCvDKbtAkSWFSu+X5iuQR5WkkNB+OgWCPMD6PkeVK3et1LU9dR8kRamU16hUFDqJBaYOPqkAsV2rZQaXtcZGA==
   dependencies:
-    intact "^3.0.3"
+    intact "^3.0.6"
     tslib "^2.3.1"
 
-intact-shared@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/intact-shared/-/intact-shared-3.0.3.tgz#0a573f8ed1fa6d6257cb53bc987d50b33a2a53ea"
-  integrity sha512-rE8vJ58tXilAJEq+gh35cKcf1Ml7jrkW6zZBAcNJvK1bCKoY7cwxAN8b7roQdF4wYCsWlkZ39uljioAaXsjiYw==
+intact-shared@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/intact-shared/-/intact-shared-3.0.6.tgz#38f5c15a318fbfeeb4dd970693c30982fc0fe860"
+  integrity sha512-1khrN23l5ufBQMEJ++iEIr7mwx5x2NLgRhJ1rXoKGRjILjyIcMiuA0WMIXdnzOXG/p2sRRPO6AMJoZoiP4RSdQ==
 
-intact@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/intact/-/intact-3.0.3.tgz#2617201236244bd9b5092cabab62eef6c60d06ec"
-  integrity sha512-UU06wsrTylVRGs/Ke956WQ3juMwRl3IWcY0n/JRRunYAb7Mb18C+4qJ32varmEj6gP7xMH7WSre+i01s/bOdtA==
+intact@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/intact/-/intact-3.0.6.tgz#9c3597faa57d28d0ffed254de4ca8a92b2dcf075"
+  integrity sha512-bhjlG2NZR+zSNWf0ldmoDs6AE4gMe2sC5ZpgxImyGHPNcrClmesDgbdOLdr2ohDi7565wx+EV1aTYo2xmU1Dqg==
   dependencies:
-    intact-shared "^3.0.3"
-    misstime "^3.0.3"
+    intact-shared "^3.0.6"
+    misstime "^3.0.6"
     tslib "^2.2.0"
-    vdt "^3.0.3"
-    vdt-compiler "^3.0.3"
+    vdt "^3.0.6"
+    vdt-compiler "^3.0.6"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -334,12 +334,12 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmmirror.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-misstime@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/misstime/-/misstime-3.0.3.tgz#6d0d84b312adbe775c14835f2f459b30e060ba3d"
-  integrity sha512-dG7LsHWFRGUktKMLpMiNKwINIg4a9bfOPgwW9Y3CVfapMKgSWpJtNUkFWmW2Y5S3SuqZwtkrfXN8Dw2RY3mW/A==
+misstime@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/misstime/-/misstime-3.0.6.tgz#8fb00691a94ac1b35019af3fd58be49807c944e6"
+  integrity sha512-5eM1Hhlu3QEu2thScOAeK1YLaEVK3WST3FIelZR5jDcnC7niAYlI/8rVYQhzPX8qaqpSCejaosklF9yvfBaevQ==
   dependencies:
-    intact-shared "^3.0.3"
+    intact-shared "^3.0.6"
 
 monaco-editor@^0.26.1:
   version "0.26.1"
@@ -444,22 +444,22 @@ tslib@^2.2.0, tslib@^2.3.1:
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-vdt-compiler@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/vdt-compiler/-/vdt-compiler-3.0.3.tgz#a4816864133ac9303f68f0226acb2829c6038828"
-  integrity sha512-IzJcYOlz4pKiFlYu7MLuQ3fmymNVOp+UzkjFhcPohBAa0neuQKKuVfKBh6aclJGM0j1ru+mX9UlQ56WusNhaKg==
+vdt-compiler@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/vdt-compiler/-/vdt-compiler-3.0.6.tgz#ec1c2565f8182870f2b1346c76c28bb42c24ac1b"
+  integrity sha512-r8QEhmUk9vVjbs5MYBcqtEXZvrnYtwwdv/5qgVder5mpdDhanRXr61uzuEaUjJoUw1lmO+UjXYT9qdvoICMEOA==
   dependencies:
-    intact-shared "^3.0.3"
-    misstime "^3.0.3"
+    intact-shared "^3.0.6"
+    misstime "^3.0.6"
     tslib "^2.2.0"
 
-vdt@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/vdt/-/vdt-3.0.3.tgz#979a0e5b83fa1e1d0b009ea12e4222840f05edc7"
-  integrity sha512-8/uxmjHaePGYucZX2GpuEkM1o6Igfs26rtBVN6AsijduTsYcNDwBJg/QvkzOe2M4mAO2NZce1D0rh/miDo0wvA==
+vdt@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/vdt/-/vdt-3.0.6.tgz#74ac97bd65db6b9772c80bfb327558aec5f45ed3"
+  integrity sha512-TsQhD8PMuGTbNPNbQp3rAZN3FWWcgZB+zdugjqB6ly44Yn4/q7janbRNcgaQoW/QJu7NHlB6liryQv1sjI/nMw==
   dependencies:
-    intact-shared "^3.0.3"
-    misstime "^3.0.3"
+    intact-shared "^3.0.6"
+    misstime "^3.0.6"
     tslib "^2.2.0"
 
 yaml@^1.7.2:

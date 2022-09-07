@@ -50,10 +50,12 @@ import {Button, Dialog} from 'kpc';
     <Button @click="show = true" type="primary">Show Dialog</Button>
     <Button @click="show1 = true" type="primary">Show No Footer Dialog</Button>
     <Dialog v-model="show">
-        <div class="k-title" slot="header">
-            <i class="ion-person"></i>
-            Custom Header
-        </div>
+        <template slot="header">
+            <div class="k-title">
+                <i class="ion-person"></i>
+                Custom Header
+            </div>
+        </template>
 
         Dialog Body 
 
@@ -65,7 +67,9 @@ import {Button, Dialog} from 'kpc';
     </Dialog>
     <Dialog v-model="show1" title="No Footer">
         <template slot="body">body</template>
-        <div slot="footer-wrapper"></div>
+        <template slot="footer-wrapper">
+            <div></div>
+        </template>
     </Dialog>
 </div>
 ```

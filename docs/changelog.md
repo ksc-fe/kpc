@@ -4,6 +4,41 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.6
+
+1. `Add` `Dialog`静态方法新增`ref`属性，用于获取当前实例 [#754](https://github.com/ksc-fe/kpc/issues/754)
+
+### @king-design/vue
+
+1. `Fix` 修复`Dialog`静态方法调用报错的问题 [#753](https://github.com/ksc-fe/kpc/issues/753)
+
+## v2.0.5
+
+1. `Fix` 修复`Table`单元格存在组件时，组件不能更新的问题 [#751](https://github.com/ksc-fe/kpc/issues/751)
+
+### @king-design/react
+
+1. `Fix` 修复`Table`不能通过点击单元格触发事件来删除该行的问题 [#752](https://github.com/ksc-fe/kpc/issues/752)
+
+## v2.0.4
+
+1. `Fix` 修复打包造成类型丢失的问题
+
+## v2.0.3
+
+1. `Add` 新增骨架屏组件`Skeleton`
+2. `Fix` 修复`Tree`在`filter`的情况下，不能折叠的问题 [#741](https://github.com/ksc-fe/kpc/issues/741)
+
+### @king-design/react
+
+1. `Fix` 修复`Tooltip`不能渲染触发元素的`className`的问题 [#749](https://github.com/ksc-fe/kpc/issues/749)
+2. `Fix` 修复`onMouseEnter`事件不能正确触发的问题 [#748](https://github.com/ksc-fe/kpc/issues/748)
+
+### @king-design/vue
+
+1. `Fix` 修复`Tooltip`某些情况下，会导致moutedQueue不匹配而报错 [#750](https://github.com/ksc-fe/kpc/issues/750)
+
+
 ## v2.0.2
 
 1. `Add` `Cascader`的`value`无需全局唯一，只需要当前兄弟节点之间唯一即可 [#680](https://github.com/ksc-fe/kpc/issues/680)

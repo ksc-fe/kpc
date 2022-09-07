@@ -1,5 +1,5 @@
 /*!
- * @king-design v2.0.2
+ * @king-design v2.0.6
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -42,6 +42,7 @@ export * from './components/radio';
 export * from './components/rate';
 export * from './components/scrollSelect';
 export * from './components/select';
+export * from './components/skeleton';
 export * from './components/slider';
 export * from './components/spin';
 export * from './components/spinner';
@@ -61,6 +62,6 @@ export * from './components/treeSelect';
 export * from './components/upload';
 export * from './components/wave';
 
-export const version = '2.0.2';
+export const version = '2.0.6';
 
 /* generate end */

@@ -25,7 +25,8 @@ function parseToVue3(template) {
             return `<template v-slot:${name}${params ? `="${params}"` : ''}`;
         })
         .replace(/vue-legacy/g, 'vue')
-        .replace(/:(\w+)\.sync/g, 'v-model:$1');
+        .replace(/:(\w+)\.sync/g, 'v-model:$1')
+        .replace(/slot="([\w\-]+)"/g, 'v-slot:$1');
 
     return template.replace(/<\/b:[\w\-]+>/g, '</template>');
 }

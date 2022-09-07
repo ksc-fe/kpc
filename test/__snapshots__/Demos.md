@@ -1175,6 +1175,38 @@
 "<div><div class=\"k-select k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b k-color-disabled\"></i></span></span></div><!--placeholder--></div><div class=\"k-select k-clearable k-with-suffix\" tabindex=\"0\"><div class=\"k-wrapper\" tabindex=\"-1\"><div class=\"k-main\"><input type=\"hidden\"><span class=\"k-placeholder c-ellipsis\">请选择</span></div><span class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i><span class=\"k-suffix-icon\"><i class=\"k-icon k-arrow ion-arrow-down-b\"></i></span></span></div><!--placeholder--></div></div>"
 ```
 
+##   `skeleton`
+
+####     `Skeleton animate`
+
+```
+"<div><div class=\"k-skeleton k-animated css-19gzphz\"><div class=\"k-skeleton-avator-box\"><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-avator\"></div></div><div class=\"k-skeleton-items\"><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div></div></div></div></div>"
+```
+
+####     `Skeleton avator`
+
+```
+"<div><div class=\"k-skeleton css-19gzphz\"><div class=\"k-skeleton-avator-box\"><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-avator\"></div></div><div class=\"k-skeleton-items\"><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div></div></div></div></div>"
+```
+
+####     `Skeleton basic`
+
+```
+"<div><div class=\"k-skeleton css-19gzphz\"><div class=\"k-skeleton-items\"><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div></div></div></div>"
+```
+
+####     `Skeleton custom`
+
+```
+"<div><div class=\"k-skeleton k-animated css-19gzphz\"><div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-image\"><svg viewBox=\"0 0 1024 1024\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M64 896V128h896v768H64z m64-128l192-192 116.352 116.352L640 448l256 307.2V192H128v576z m224-480a96 96 0 1 1-0.064 192.064A96 96 0 0 1 352 288z\"></path></svg></div></div><div style=\"display: flex; justify-content: space-between; width: 200px; margin-top: 20px;\"><div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-button\" style=\"height: 16px;\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-button\" style=\"height: 16px; margin-top: 8px;\"></div></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-button\"></div></div></div></div></div></div>"
+```
+
+####     `Skeleton rows`
+
+```
+"<div><div class=\"k-skeleton css-19gzphz\"><div class=\"k-skeleton-items\"><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div><div class=\"k-skeleton-item css-lk4fv2\"><div class=\"k-skeleton-item-box skeleton-item-text\"></div></div></div></div></div>"
+```
+
 ##   `slider`
 
 ####     `Slider basic`
