@@ -1,7 +1,6 @@
 import {css} from '@emotion/css';
-import source_nav_web from '../../imgs/font/banner.png';
+import source_nav_web from '../../imgs/font/banner.jpg';
 import source_nav_h5 from '../../imgs/font/banner-h5.jpg';
-import title_web from "../../imgs/font/title-web.png";
 import text_web from "../../imgs/font/text-web.png";
 import text_h5 from "../../imgs/font/text-h5.png";
 
