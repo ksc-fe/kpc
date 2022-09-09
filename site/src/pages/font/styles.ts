@@ -41,6 +41,7 @@ export function makeStyles() {
                         font-weight: 400;
                         cursor: pointer;
                         transition: all .25s ease-in;
+                        outline: none;
                         &:hover {
                             background-color: #3D91FF;
                         }
@@ -51,7 +52,6 @@ export function makeStyles() {
                 }
             }
             @media (max-width: 768px) {
-                /* background-image: url(${source_nav_h5}); */
                 background-image: none;
                 height: 900px;
                 position: relative;
