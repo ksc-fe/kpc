@@ -59,6 +59,7 @@ function staticize(data) {
             {metadata: {}, file: {isDemo: false, relative: ''}},
             {metadata: {}, file: {isDemo: false, relative: 'resources'}},
             {metadata: {}, file: {isDemo: false, relative: 'solutions'}},
+            {metadata: {}, file: {isDemo: false, relative: 'font'}},
             {metadata: {}, file: {isDemo: false, relative: 'iframe/button'}},
             {metadata: {}, file: {isDemo: false, relative: 'iframe/colorProcess'}},
         ];
