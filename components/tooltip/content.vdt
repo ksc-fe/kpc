@@ -28,6 +28,7 @@ const classNameObj = {
     <b:children>
         {children}
         <i v-if={showArrow}
+            key="tooltip-arrow"
             class={{
                 "k-tooltip-arrow": true,
                 [`k-${arrowType.value}`]: arrowType.value,
