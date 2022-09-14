@@ -11,6 +11,6 @@ export default class Index extends Layout {
     };
 
     handleDownLoad() {
-        
+        location.href = 'https://damife.ks3-cn-beijing.ksyuncs.com/kpc/Kingsoft_Cloud_Font.ttf';
     }
 }

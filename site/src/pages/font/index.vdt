@@ -56,16 +56,16 @@ const iconList = [
         titleImg: fontDownLoad,
         icons: [
             {
-                icon: '5',
-                label: '以方·iFont'
+                icon: '字加',
+                label: '字加'
             },
             {
                 icon: '6',
                 label: '字由'
             },
             {
-                icon: '字加',
-                label: '字加'
+                icon: '5',
+                label: '以方·iFont'
             },
             {
                 icon: '8',
@@ -85,36 +85,48 @@ const iconList = [
         titleImg: media,
         icons: [
             {
+                icon: '4',
+                label: '即时设计'
+            },
+            {
                 icon: '11',
                 label: '国际体验设计'
             },
             {
-                icon: '4',
-                label: '即时设计'
+                icon: '搜狐新闻',
+                label: '搜狐新闻'
+            },
+            {
+                icon: '网易新闻',
+                label: '网易新闻'
+            },
+            {
+                icon: '腾讯新闻',
+                label: '腾讯新闻'
+            },
+            {
+                icon: '凤凰新闻',
+                label: '凤凰新闻'
             },
             {
                 icon: '13',
                 label: 'UI中国'
             },
             {
+                icon: '9',
+                label: '心愿盒子'
+            },
+            {
                 icon: '14',
                 label: 'ProtoPie'
             },
             {
-                icon: '9',
-                label: '字库网'
-            },
-            {
-                icon: '3',
-                label: 'WPS办公助手'
-            },
-            {
-                icon: '16',
-                label: '金山文档'
-            },
-            {
                 icon: '8',
                 label: '猫啃网'
+            },
+            {
+                icon: '20',
+                label: '包小盒'
             },
             {
                 icon: '18',
@@ -125,16 +137,16 @@ const iconList = [
                 label: 'XD 中文网'
             },
             {
-                icon: '20',
-                label: '包小盒'
-            },
-            {
                 icon: '21',
                 label: 'OurSketch'
             },
             {
-                icon: '22',
-                label: 'UI范'
+                icon: '最设计',
+                label: '最设计'
+            },
+            {
+                icon: 'GrayDesign',
+                label: 'GrayDesign'
             },
             {
                 icon: '23',
@@ -145,44 +157,44 @@ const iconList = [
                 label: 'UXD笔记'
             },
             {
-                icon: '25',
-                label: '三分设'
-            },
-            {
-                icon: '26',
-                label: '设计达人'
-            },
-            {
-                icon: '27',
-                label: 'UX实验室'
-            },
-            {
-                icon: '29',
-                label: '庆科字体'
-            },
-            {
-                icon: '30',
-                label: '静design'
+                icon: '22',
+                label: 'UI范'
             },
             {
                 icon: '31',
                 label: '功夫体验设计'
             },
             {
-                icon: '设长',
-                label: '设长'
-            },
-            {
                 icon: '应谋鬼计',
                 label: '应谋鬼计'
             },
             {
-                icon: '优设网',
-                label: '优设网'
+                icon: '26',
+                label: '设计达人'
             },
             {
-                icon: '最设计',
-                label: '最设计'
+                icon: '29',
+                label: '庆科字体'
+            },
+            {
+                icon: '27',
+                label: 'UX实验室'
+            },
+            {
+                icon: '25',
+                label: '三分设'
+            },
+            {
+                icon: '30',
+                label: '静design'
+            },
+            {
+                icon: '金山范儿',
+                label: '金山范儿'
+            },
+            {
+                icon: '金山荟生活',
+                label: '金山荟生活'
             },
         ]
     },
@@ -204,18 +216,6 @@ const iconList = [
         <div class="font-info">
             <img src={text_h5} />
         </div>
-        <div class="designer-part">
-            <div class="designer-title">
-                <img src={designer} />
-                <div></div>
-            </div>
-            <div class="designer-list">
-                <div v-for={designer_list} class="designer-item">
-                    <img src={`../../imgs/font/${$value}.png`} />
-                    <div>{$value}</div>
-                </div>
-            </div>
-        </div>
         <div class="icon-list-box">
             <div class="icon-list">
                 <div class="icon-box" v-for={iconList}>
@@ -231,6 +231,20 @@ const iconList = [
                             </div>
                             <div>{$value.label}</div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="designer-box">
+            <div class="designer-part">
+                <div class="designer-title">
+                    <img src={designer} />
+                    <div></div>
+                </div>
+                <div class="designer-list">
+                    <div v-for={designer_list} class="designer-item">
+                        <img src={`../../imgs/font/${$value}.png`} />
+                        <div>{$value}</div>
                     </div>
                 </div>
             </div>
