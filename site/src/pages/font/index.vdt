@@ -44,7 +44,7 @@ const iconList = [
         icons: [
             {
                 icon: '3',
-                label: 'WPS Offer'
+                label: 'WPS Office'
             },
             {
                 icon: '4',
