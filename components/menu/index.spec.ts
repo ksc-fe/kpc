@@ -1,7 +1,8 @@
+import {Component} from 'intact';
 import CollapseDemo from '~/components/menu/demos/collapse';
 import AccordionDemo from '~/components/menu/demos/accordion';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
-import {Menu} from './';
+import {Menu, MenuItem} from './';
 
 describe('Menu', () => {
     afterEach(() => unmount());
@@ -120,4 +121,44 @@ describe('Menu', () => {
         expect(element.innerHTML).to.matchSnapshot();
         expect(instance.get('expandedKeys')).to.eql(['3-4', '3']);
     });
+
+    it('expand when set selectedKey', async () => {
+        class Demo extends Component<{list: Array<string>}> {
+            static template = `
+                var Menu = this.Menu;
+                var MenuItem = this.MenuItem;
+                <Menu
+                    v-model:expandedKeys="expandedKeys"
+                    v-model:selectedKey="selectedKey"
+                >
+                    <MenuItem key="1">
+                        <Menu>
+                            <MenuItem v-for={this.get('list')} key={$value}>{$value}</MenuItem>
+                        </Menu>
+                    </MenuItem>
+                </Menu>
+            `;
+
+            private Menu = Menu;
+
+            private MenuItem = MenuItem;
+
+            static defaults() {
+                return {
+                    expandedKeys: [],
+                    selectedKey: '1-3',
+                    list: ['1-1', '1-2']
+                };
+            }
+        }
+        const [instance] = mount(Demo);
+
+        await wait();
+        instance.set('list', ['1-1', '1-2', '1-3']);
+        
+        await wait();
+        const expandedKeys = instance.get('expandedKeys') as Array<string>;
+        expect(expandedKeys.includes('1')).to.be.true;
+
+    })
 });
