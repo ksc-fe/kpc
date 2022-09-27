@@ -30,7 +30,7 @@ const defaultValue: Value = {
 export class DatepickerTime extends Component<DatepickerTimeProps> {
     static template = template;
 
-    public value = useState<Value | null>(null);
+    public value = useState<Value>(defaultValue);
     public disabled = useDisable(this);
 
     init() {

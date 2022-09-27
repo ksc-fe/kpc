@@ -1,4 +1,4 @@
-import {useInstance, Key} from 'intact';
+import { useInstance, Key, onMounted } from 'intact';
 import type {Menu, MenuItem} from './';
 import {useRecordParent} from '../../hooks/useRecordComponent';
 import {inArray} from '../table/useChecked';
@@ -53,5 +53,15 @@ export function useHighlight() {
         return instance.get('selectedKey') === key;
     }
 
-    return {isHighlighted, select, isSelected};
+    return {isHighlighted, select, isSelected, updateStatus};
+}
+
+export function useHighlightItem() {
+    const instance = useInstance() as MenuItem;
+
+    onMounted(() => {
+        if(instance.rootMenu.get('selectedKey') == instance.get('key')) {
+            instance.rootMenu.highlight?.updateStatus(instance.get('key'));
+        }
+    });
 }

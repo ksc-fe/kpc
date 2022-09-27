@@ -833,6 +833,13 @@
                     </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-menu css-drqtdg\" style=\"display: none;\"><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\"><i class=\"k-icon ion-gear-b css-x0ey6t\"></i>menu 4</div></div></div></div></div>"
 ```
 
+####     `Menu dev`
+
+```
+"<div style=\"padding: 100px;\"><div>1-5</div><div></div><button style=\"margin: 20px 0px;\">set value</button><button style=\"margin: 20px 0px;\">set list</button><div class=\"k-menu k-dark k-vertical css-drqtdg\"><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\"><i class=\"k-icon ion-flag css-x0ey6t\"></i>menu 1
+            </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-menu css-drqtdg\" style=\"display: none;\"><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">1-1</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">1-2</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">1-3</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">1-4</div></div></div></div></div></div></div>"
+```
+
 ####     `Menu dot`
 
 ```

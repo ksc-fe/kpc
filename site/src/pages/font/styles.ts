@@ -1,6 +1,5 @@
 import {css} from '@emotion/css';
-import source_nav_web from '../../imgs/font/banner.jpg';
-import source_nav_h5 from '../../imgs/font/banner-h5.jpg';
+import source_nav_web from '../../imgs/font/banner-font.jpg';
 import text_web from "../../imgs/font/text-web.png";
 import text_h5 from "../../imgs/font/text-h5.png";
 
@@ -41,6 +40,7 @@ export function makeStyles() {
                         font-weight: 400;
                         cursor: pointer;
                         transition: all .25s ease-in;
+                        outline: none;
                         &:hover {
                             background-color: #3D91FF;
                         }
@@ -51,7 +51,6 @@ export function makeStyles() {
                 }
             }
             @media (max-width: 768px) {
-                /* background-image: url(${source_nav_h5}); */
                 background-image: none;
                 height: 900px;
                 position: relative;
@@ -63,7 +62,7 @@ export function makeStyles() {
                 .font-nav-content {
                     position: absolute;
                     left: 0;
-                    top: 0;
+                    top: 10px;
                     width: 100%;
                     height: 40%;
                     justify-content: center;
@@ -109,10 +108,14 @@ export function makeStyles() {
                 margin-bottom: 40px;
                 padding: 60px 0;
                 img {
-                    width: 60%;
+                    width: 80%;
                     height: auto;
                 }
             }
+        }
+        .designer-box {
+            background: #F7F8F9;
+            padding-top: 40px;
         }
         .designer-part {
             width: 1200px;
@@ -185,11 +188,10 @@ export function makeStyles() {
             }
         }
         .icon-list-box {
-            background: #F7F8F9;
-            padding-top: 60px;
+            /* padding-top: 60px;
             @media (max-width: 768px) {
                 padding-top: 30px;
-            }
+            } */
         }
         .icon-list {
             width: 1200px;

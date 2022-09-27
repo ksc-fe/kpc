@@ -46,6 +46,7 @@ export function makeStyles(overlay: boolean) {
             box-shadow: ${drawer.boxShadow};
             .k-dialog-body {
                 flex-grow: 1;
+                overflow: auto;
             }
         }
         

@@ -8,7 +8,7 @@ import {useExpanded} from './useExpanded';
 import {useDropdown} from './useDropdown';
 import {useRouter, navigate} from '../../hooks/useRouter';
 import {useRecordItem} from '../../hooks/useRecordComponent';
-import {MENU_RECORD_KEY} from './useHighlight';
+import {MENU_RECORD_KEY, useHighlightItem} from './useHighlight';
 
 export interface MenuItemProps {
     key: Key 
@@ -49,6 +49,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
     init() {
         provide(MENU_ITEM, this);
         useRecordItem(MENU_RECORD_KEY);
+        useHighlightItem();
     }
 
     @bind
