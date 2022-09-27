@@ -144,6 +144,7 @@ export default function makeStyles() {
         border-radius: ${select.borderRadius};
         .k-select-main {
             flex: 1;
+            min-width: 0;
         }
         .k-select-prefix,
         .k-select-suffix {
