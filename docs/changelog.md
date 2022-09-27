@@ -4,6 +4,18 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.7
+
+1. `Fix` 修复`Tooltip`的`content`，由两个元素切换成一个元素时，报错的问题 [#755](https://github.com/ksc-fe/kpc/issues/755)
+2. `Fix` 修复`Datepicker`范围选择，在一次选择过程中，再一次改变结束日期报错的问题 [#756](https://github.com/ksc-fe/kpc/issues/756)
+3. `Fix` 修复`Menu`先设置`selectedKey`，然后动态添加该菜单项，不能自动展开父级的问题 [#758](https://github.com/ksc-fe/kpc/issues/758)
+4. `Fix` 修复`Select`值超出不能隐藏的问题 [#760](https://github.com/ksc-fe/kpc/issues/760)
+
+### @king-design/vue
+
+1. `Fix` 修复嵌套的组件不能被`scoped`添加样式的问题 [#759](https://github.com/ksc-fe/kpc/issues/759)
+
+
 ## v2.0.6
 
 1. `Add` `Dialog`静态方法新增`ref`属性，用于获取当前实例 [#754](https://github.com/ksc-fe/kpc/issues/754)
