@@ -283,7 +283,7 @@ import-fresh@^3.1.0:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-intact-react@^3.0.8:
+intact-react@3.0.8:
   version "3.0.8"
   resolved "https://registry.yarnpkg.com/intact-react/-/intact-react-3.0.8.tgz#8c8674558ee90622908d4ee2a8c2ec1fa265b2d6"
   integrity sha512-vCHw2hBL7XxLe8g6nW/IcEKQoxZUM4Wn/f+k5U1LWUeU38LbGueu1hVK2DvyoNxl/Uex6uovNYfNBVKF1UEH2A==

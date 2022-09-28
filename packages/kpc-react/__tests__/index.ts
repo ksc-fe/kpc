@@ -15,7 +15,7 @@ testsContext.keys().forEach(testsContext);
 
 // const reactReq = require.context('~/components/', true, /^((?!(affix|code|layout)).)*\/demos\/.*react\.tsx$/);
 const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*react\.tsx$/);
-// const reactReq = require.context('~/components/', true, /button\/demos\/.*react\.tsx$/);
+// const reactReq = require.context('~/components/', true, /layout\/demos\/.*react\.tsx$/);
 
 describe('React Demos', () => {
     afterEach(() => unmount());
