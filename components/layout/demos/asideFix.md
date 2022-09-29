@@ -57,7 +57,9 @@ import {
                 <BreadcrumbItem>Home</BreadcrumbItem>
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
-            <div v-for={this.get('data')}>content</div>
+            <div v-for={this.get('data')}>
+                content
+            </div>
         </Body>
     </Layout>
 </Layout>
