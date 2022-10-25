@@ -60,6 +60,17 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
             const mountedQueue: Function[] = [];
             this.initContainer(nextProps.container, parentDom, anchor);
 
+            /**
+             * Because we render real elements following parent has rendered.
+             * In React, the $promises have done. Then we cannot add any promise to it.
+             * We should find the parent component who holds the $promises object, and
+             * reset it to let remaining element children add promise to it.
+             */
+            const parent = getParent(this) as any;
+            if (parent) {
+                parent.$promises.reset();
+            }
+
             mount(
                 nextProps.children as VNode,
                 this.container!,
@@ -69,7 +80,14 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
                 mountedQueue,
             );
 
-            callAll(mountedQueue);
+            // in react, we should wait for all promises to resolve
+            if (parent) {
+                (Component as any).FakePromise.all(parent.$promises).then(() => {
+                    callAll(mountedQueue);
+                });
+            } else {
+                callAll(mountedQueue);
+            }
         });
 
         super.$render(lastVNode, nextVNode, parentDom, anchor, mountedQueue);
@@ -143,3 +161,13 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         }
     }
 }
+
+function getParent($senior: Component): Component | null {
+    while ($senior = $senior.$senior as Component) {
+        if (($senior as any)._reactInternals) {
+            return $senior;
+        }
+    }
+    return null;
+}
+

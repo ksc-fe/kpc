@@ -159,7 +159,7 @@ export function useMenuKeyboard() {
         focus: (item: DropdownItem) => {
             // reset();
             const index = items.indexOf(item);
-            if (index === -1) debugger
+            // if (index === -1) debugger
             focusIndex = index;
             focusItem(item);
         }
