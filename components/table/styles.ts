@@ -63,6 +63,8 @@ const defaults = {
     draggingOpacity: `.4`,
 };
 
+const aligns = ['left', 'right', 'center'];
+
 let table: typeof defaults;
 setDefault(() => {
     table = deepDefaults(theme, {table: defaults}).table;
@@ -350,6 +352,15 @@ export function makeStyles() {
         .k-table-scrollbar-inner {
             height: 1px;
         }
+
+        // align
+        ${aligns.map(type => {
+            return css`
+                .k-align-${type} {
+                    text-align: ${type};
+                }
+            `;
+        })}
     `;
 }
 

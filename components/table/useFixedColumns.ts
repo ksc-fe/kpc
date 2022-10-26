@@ -144,7 +144,7 @@ export function useFixedColumns(
 }
 
 export function getClassAndStyleForFixed(
-    {className, fixed}: Props<TableColumnProps>,
+    {className, fixed, align}: Props<TableColumnProps>,
     offset: number,
     checkType?: TableProps['checkType'],
 ) {
@@ -153,6 +153,7 @@ export function getClassAndStyleForFixed(
         className: cx({
             [className as string]: !!className,
             [`k-fixed-${fixed}`]: !!fixed,
+            [`k-align-${align}`]: !!align,
         }),
         style: fixed ? {[fixed]: `${offset + extraOffset}px`} : null,
     };
