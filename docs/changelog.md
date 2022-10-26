@@ -4,6 +4,19 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.8
+
+1. `Fix` 修复`Table` `align`无效的问题 [#763](https://github.com/ksc-fe/kpc/issues/763)
+
+### @king-design/react
+
+1. `Fix` 修复`Drawer`渲染react元素报错的问题 [#762](https://github.com/ksc-fe/kpc/issues/762)
+
+### @king-design/vue
+
+1. `Fix` 彻底修复组件`scoped`不能正确添加样式的问题 [#759](https://github.com/ksc-fe/kpc/issues/759)
+
+
 ## v2.0.7
 
 1. `Fix` 修复`Tooltip`的`content`，由两个元素切换成一个元素时，报错的问题 [#755](https://github.com/ksc-fe/kpc/issues/755)
