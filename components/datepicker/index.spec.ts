@@ -142,32 +142,38 @@ describe('Datepicker', () => {
             const [monthValues1, monthValues2]= content.querySelectorAll<HTMLElement>('.k-month-values');
 
             nextMonth.click();
+            const monthStart = (month + 1) % 12 + 1;
+            const yearStart = year + Math.floor((month + 1) / 12);
+            const monthEnd = (month + 2) % 12 + 1;
+            const yearEnd = year + Math.floor((month + 2) / 12);
             await wait();
-            expect(monthValues1.textContent).to.eql(`${year}年${month + 1 + 1}月`);
-            expect(monthValues2.textContent).to.eql(`${year}年${month + 1 + 2}月`);
+            expect(monthValues1.textContent).to.eql(`${yearStart}年${monthStart}月`);
+            expect(monthValues2.textContent).to.eql(`${yearEnd}年${monthEnd}月`);
 
             nextYear.click();
             await wait();
-            expect(monthValues1.textContent).to.eql(`${year + 1}年${month + 1 + 1}月`);
-            expect(monthValues2.textContent).to.eql(`${year + 1}年${month + 1 + 2}月`);
+            expect(monthValues1.textContent).to.eql(`${yearStart + 1}年${monthStart}月`);
+            expect(monthValues2.textContent).to.eql(`${yearEnd + 1}年${monthEnd}月`);
 
             const [prevYear] = panel2.querySelectorAll<HTMLElement>('.k-prev');
             prevYear.click();
             await wait();
-            expect(monthValues1.textContent).to.eql(`${year}年${month + 1 + 1}月`);
-            expect(monthValues2.textContent).to.eql(`${year}年${month + 1 + 2}月`);
+            expect(monthValues1.textContent).to.eql(`${yearStart}年${monthStart}月`);
+            expect(monthValues2.textContent).to.eql(`${yearEnd}年${monthEnd}月`);
 
             // year panel
             dispatchEvent(monthValues1.firstElementChild!, 'click');
             dispatchEvent(monthValues2.firstElementChild!, 'click');
             await wait();
-            expect(monthValues1.textContent).to.eql(`${startYear}年 - ${startYear + 9}年`);
-            expect(monthValues1.textContent).to.eql(monthValues2.textContent);
+            const firstDecadeStart = Math.floor(yearStart / 10) * 10;
+            const secondDecadeStart = Math.floor(yearEnd / 10) * 10; 
+            expect(monthValues1.textContent).to.eql(`${firstDecadeStart}年 - ${firstDecadeStart + 9}年`);
+            expect(monthValues1.textContent).to.eql(`${secondDecadeStart}年 - ${secondDecadeStart + 9}年`);
 
             nextYear.click();
             await wait();
-            expect(monthValues1.textContent).to.eql(`${startYear + 10}年 - ${startYear + 19}年`);
-            expect(monthValues1.textContent).to.eql(monthValues2.textContent);
+            expect(monthValues1.textContent).to.eql(`${firstDecadeStart + 10}年 - ${secondDecadeStart + 19}年`);
+            expect(monthValues1.textContent).to.eql(`${secondDecadeStart + 10}年 - ${secondDecadeStart + 19}年`);
         });
 
         it('range year', async () => {
