@@ -38,6 +38,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     private dialog: Dialog | null = inject(DIALOG, null);
     public mountedQueue?: Function[];
     public mountedDone?: boolean;
+    public $isPortal = true;
 
     $render(
         lastVNode: VNodeComponentClass<this> | null,

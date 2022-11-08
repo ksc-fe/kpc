@@ -22,13 +22,17 @@ export function useEscClosable() {
     });
 
     function onHide() {
-        const dialog = dialogs.pop();
+        // the order is uncertain in different frameworks
+        const index = dialogs.indexOf(instance);
+        // const dialog = dialogs.pop();
         // const dialog = dialogs.shift();
         if (process.env.NODE_ENV !== 'production') {
-            if (dialog !== instance) {
-                throw new Error('The dialog has handled hide callback. It is a bug of KPC');
+            // if (dialog !== instance) {
+            if (index === -1) {
+                throw new Error('The dialog has handled hide callback. Maybe it is a bug of KPC');
             }
         }
+        dialogs.splice(0, index);
 
         if (!dialogs.length) {
             document.removeEventListener('keydown', escClose);
