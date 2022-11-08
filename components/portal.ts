@@ -6,14 +6,10 @@ import {
     createCommentVNode,
     createTextVNode,
     mount,
-    removeVNodeDom,
     patch,
     remove,
     TypeDefs,
-    provide,
     inject,
-    nextTick,
-    callAll,
 } from 'intact';
 import {isString} from 'intact-shared';
 import {DIALOG} from './dialog/constants';
@@ -50,45 +46,27 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         anchor: IntactDom | null,
         mountedQueue: Function[]
     ) {
+        /**
+         * In React, we cannot render real elements in mountedQueue.
+         * Because the rendering time of react element is uncontrollable
+         */
+
+        const nextProps = nextVNode.props!;
+        const fakeContainer = document.createDocumentFragment();
+
         mountedQueue.push(() => {
-            const nextProps = nextVNode.props!;
-            const parentDom = this.$lastInput!.dom!.parentElement!;
-            /**
-             * initialize a new mountedQueue to place the callbacks of sub-components to it,
-             * so that we can call them before the sibling components of the Portal
-             */
-            const mountedQueue: Function[] = [];
             this.initContainer(nextProps.container, parentDom, anchor);
-
-            /**
-             * Because we render real elements following parent has rendered.
-             * In React, the $promises have done. Then we cannot add any promise to it.
-             * We should find the parent component who holds the $promises object, and
-             * reset it to let remaining element children add promise to it.
-             */
-            const parent = getParent(this) as any;
-            if (parent) {
-                parent.$promises.reset();
-            }
-
-            mount(
-                nextProps.children as VNode,
-                this.container!,
-                this,
-                this.$SVG,
-                null,
-                mountedQueue,
-            );
-
-            // in react, we should wait for all promises to resolve
-            if (parent) {
-                (Component as any).FakePromise.all(parent.$promises).then(() => {
-                    callAll(mountedQueue);
-                });
-            } else {
-                callAll(mountedQueue);
-            }
+            this.container!.appendChild(fakeContainer);
         });
+
+        mount(
+            nextProps.children as VNode,
+            fakeContainer as any,
+            this,
+            this.$SVG,
+            null,
+            mountedQueue,
+        );
 
         super.$render(lastVNode, nextVNode, parentDom, anchor, mountedQueue);
     }
@@ -153,7 +131,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         if (!this.container) {
             // find the closest dialog if exists
             let tmp;
-            if ((tmp = this.dialog) && (tmp = tmp.dialogRef.value)) {
+            if ((tmp = this.dialog) && (tmp !== this.$senior) && (tmp = tmp.dialogRef.value)) {
                 this.container = tmp;
             } else {
                 this.container = document.body;
@@ -161,13 +139,3 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         }
     }
 }
-
-function getParent($senior: Component): Component | null {
-    while ($senior = $senior.$senior as Component) {
-        if (($senior as any)._reactInternals) {
-            return $senior;
-        }
-    }
-    return null;
-}
-
