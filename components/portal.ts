@@ -56,6 +56,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         const fakeContainer = document.createDocumentFragment();
 
         mountedQueue.push(() => {
+            const parentDom = this.$lastInput!.dom!.parentElement!;
             this.initContainer(nextProps.container, parentDom, anchor);
             this.container!.appendChild(fakeContainer);
         });

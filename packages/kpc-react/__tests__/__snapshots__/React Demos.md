@@ -1598,7 +1598,7 @@
 ####   `Tooltip always`
 
 ```
-"<div style=\"position: relative;\"><span class=\"k-dropdown-open\">always show this tootip</span><!--portal--><br><br><span class=\"k-dropdown-open\">don't show if content is empty</span><!--portal--></div><div class=\"k-dropdown-menu k-tooltip-content k-always k-dark css-z651tk css-1iaopr2 k-fade-enter-active k-fade-enter-to\" style=\"left: 36.6875px; top: 124px;\">hello<i class=\"k-tooltip-arrow k-top\" style=\"left: 18.6796875px\"></i></div>"
+"<div style=\"position: relative;\"><span class=\"k-dropdown-open\">always show this tootip</span><!--portal--><br><br><span class=\"k-dropdown-open\">don't show if content is empty</span><!--portal--></div><div class=\"k-dropdown-menu k-tooltip-content k-always k-dark css-z651tk css-1iaopr2 k-fade-enter-active k-fade-enter-to\" style=\"left: 36.6875px; top: 26px;\">hello<i class=\"k-tooltip-arrow k-top\" style=\"left: 18.6796875px\"></i></div>"
 ```
 
 ####   `Tooltip basic`
