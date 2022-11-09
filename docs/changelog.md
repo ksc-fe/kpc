@@ -4,6 +4,13 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.9
+
+### @king-design/react
+
+1. `Fix` 修复`Portal`类型的组件，渲染报错的问题 [#764](https://github.com/ksc-fe/kpc/issues/764)
+2. `Fix` 修复`Portal`类型的组件，事件丢失的问题 [#765](https://github.com/ksc-fe/kpc/issues/765)
+
 ## v2.0.8
 
 1. `Fix` 修复`Table` `align`无效的问题 [#763](https://github.com/ksc-fe/kpc/issues/763)
