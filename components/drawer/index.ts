@@ -15,6 +15,7 @@ const typeDefs: Required<TypeDefs<DrawerProps>> = {
 const defaults = (): Partial<DrawerProps> => ({
     ...BaseDialog.defaults(),
     placement: 'right',
+    draggable: false,
 });
 
 export class Drawer extends BaseDialog<DrawerProps> {

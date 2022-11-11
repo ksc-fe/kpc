@@ -53,6 +53,7 @@ sidebar: doc
 | escClosable | 是否按ESC时关闭弹窗 | `boolean` | `true` |
 | width | 指定弹窗宽度，`number`类型时，单位为`px`；`string`类型时，需要指定单位 | `number` &#124; `string` | `undefined` |
 | mode | 指定主体元素在关闭状态下的渲染方式，`"destroy"`代表直接销毁，`"hide"`代表只是隐藏 | `"destroy"` &#124; `"hide"` | `"hide"` |
+| draggable | 弹窗是否可拖拽 | `boolean` | `true` |
 
 ```ts
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)

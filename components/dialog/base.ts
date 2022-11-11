@@ -31,6 +31,7 @@ export interface BaseDialogProps {
     escClosable?: boolean
     width?: string | number
     mode?: 'destroy' | 'hide'
+    draggable?: boolean
 }
 
 export interface BaseDialogEvents {
@@ -68,6 +69,7 @@ const typeDefs: Required<TypeDefs<BaseDialogProps>> = {
     escClosable: Boolean,
     width: [String, Number],
     mode: ['destroy', 'hide'],
+    draggable: Boolean,
 };
 
 const defaults = (): Partial<BaseDialogProps> => ({
@@ -80,6 +82,7 @@ const defaults = (): Partial<BaseDialogProps> => ({
     closable: true,
     escClosable: true,
     mode: 'hide',
+    draggable: true,
 });
 
 const events: Events<BaseDialogEvents> = {

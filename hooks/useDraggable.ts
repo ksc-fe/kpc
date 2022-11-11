@@ -5,6 +5,7 @@ export type Options = {
     onStart?: (e: MouseEvent) => void,
     onMove: (e: MouseEvent) => void,
     onEnd?: (e?: MouseEvent) => void,
+    disable?: () => boolean,
 }
 
 export function useDraggable(options: Options) {
@@ -12,7 +13,7 @@ export function useDraggable(options: Options) {
 
     function start(e: MouseEvent) {
         // ignore if it isn't left key
-        if (e.which !== 1) return;
+        if (e.which !== 1 || options.disable?.()) return;
 
         dragging.set(true);
 
@@ -25,6 +26,8 @@ export function useDraggable(options: Options) {
     }
 
     function move(e: MouseEvent) {
+        if (options.disable?.()) return;
+
         e.preventDefault();
 
         if (dragging.value) {

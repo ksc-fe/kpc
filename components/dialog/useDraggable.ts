@@ -5,7 +5,7 @@ import type {Dialog} from './index';
 
 export function useDraggable(
     dialogRef: RefObject<HTMLDivElement>,
-    areaRef: RefObject<HTMLDivElement>
+    areaRef: RefObject<HTMLDivElement>,
 ) {
     const component = useInstance() as Dialog;
     let x = 0;
@@ -60,5 +60,7 @@ export function useDraggable(
         style.top = `${top}px`;
     }
 
-    return useBaseDraggable({onStart, onMove});
+    return useBaseDraggable({onStart, onMove, disable() {
+        return !component.get('draggable');
+    }});
 }
