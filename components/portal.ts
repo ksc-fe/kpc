@@ -132,12 +132,18 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         }
         if (!this.container) {
             // find the closest dialog if exists
-            let tmp;
-            if ((tmp = this.dialog) && (tmp !== this.$senior) && (tmp = tmp.dialogRef.value)) {
-                this.container = tmp;
-            } else {
-                this.container = document.body;
-            }
+            this.container = parentDom.closest('.k-dialog') || document.body;
+
+            /**
+             * @FIXME: We cannot get parent ref from sub component in Vue
+             */
+            // find the closest dialog if exists
+            // let tmp;
+            // if ((tmp = this.dialog) && (tmp !== this.$senior) && (tmp = tmp.dialogRef.value)) {
+                // this.container = tmp;
+            // } else {
+                // this.container = document.body;
+            // }
         }
     }
 }

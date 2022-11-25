@@ -1,6 +1,6 @@
-import {createApp, render} from 'vue';
+import {createApp, render, defineComponent} from 'vue';
 import {mount, unmount, dispatchEvent, getElement, wait} from '@/test/utils';
-import {Dialog} from '../../';
+import {Dialog, Select} from '../../';
 
 describe('Dialog', () => {
     it('call static method', async () => {
@@ -33,4 +33,30 @@ describe('Dialog', () => {
         render(null, container);
         document.body.removeChild(container);
     });
+
+    it('should mount select into dialog element rather than body', async () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+
+        const Foo = defineComponent({
+            template: `<Select />`,
+            components: { Select },
+        });
+
+        const Bar = defineComponent({
+            template: `<Dialog><Foo /></Dialog>`,
+            components: { Dialog, Foo },
+        });
+
+        const vue = createApp({
+            template: `<Bar />`,
+            components: { Bar },
+        }).mount(container);
+
+        await wait();
+        expect(document.querySelector('.k-select-menu').closest('.k-dialog')).to.be.exist;
+
+        render(null, container);
+        document.body.removeChild(container);
+   });
 });

@@ -88,6 +88,9 @@ export abstract class BaseSelect<
     E extends BaseSelectEvents = BaseSelectEvents,
     B extends BaseSelectBlocks<any> = BaseSelectBlocks<any>,
 > extends Component<T, E, B> {
+    // for intact-react, intact-vue-next and intact-vue
+    static $doubleVNodes = true;
+
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
