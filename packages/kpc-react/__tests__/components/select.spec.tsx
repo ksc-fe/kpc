@@ -36,7 +36,7 @@ describe('Select', () => {
         dropdown.querySelector<HTMLElement>('.k-dropdown-item')!.click();
 
         await wait();
-        expect(container.querySelector<HTMLInputElement>('input')!.value).to.eql('Q');
+        expect(container.querySelector<HTMLInputElement>('.k-input-inner')!.value).to.eql('Q');
 
         ReactDOM.unmountComponentAtNode(container);
         document.body.removeChild(container);
