@@ -1,10 +1,11 @@
 import {Children, useInstance, Component} from 'intact';
 import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
-import {isEmptyString} from '../utils';
+import {isEmptyString, getTextByChildren} from '../utils';
 
 type BaseLabelProps = {
     value: any,
     multiple: boolean,
+    filterable: boolean,
 }
 
 export function useBaseLabel<T, C extends Component<P>, P extends BaseLabelProps>(
@@ -41,6 +42,10 @@ export function useBaseLabel<T, C extends Component<P>, P extends BaseLabelProps
         if (isNullOrUndefined(label)) {
             label = labelMap.get(value);
         } else {
+            if (instance.get('filterable')) {
+                label = getTextByChildren(label);
+            }
+
             labelMap.set(value, label);
         }
 
