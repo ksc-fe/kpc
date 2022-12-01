@@ -41,7 +41,10 @@ describe('Drawer', () => {
                 <Drawer value={true} title="1">
                     <div className="click" onClick={click1}>click</div>
                 </Drawer>
-                <Drawer value={true} placement="left" title="2">
+                <Drawer value={true} placement="left" title="2" 
+                    onClose={() => console.log('click')}
+                    slotFooter={<Button onClick={e => console.log(1)}>click</Button>}
+                >
                     <Card>
                         <div className="click" onClick={click2}>click</div>
                     </Card>
@@ -60,7 +63,7 @@ describe('Drawer', () => {
         await wait();
         expect(click2.callCount).to.eql(1);
 
-        ReactDOM.unmountComponentAtNode(container);
-        document.body.removeChild(container);
+        // ReactDOM.unmountComponentAtNode(container);
+        // document.body.removeChild(container);
     });
 });

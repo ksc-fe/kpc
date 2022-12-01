@@ -105,13 +105,13 @@ export default class Demo extends React.Component {
                 >Show No Footer Dialog</Button>
                 <Dialog value={this.state.show}
                     onChangeValue={(show) => this.setState({show})}
-                    b-header={
+                    slotHeader={
                         <div className="k-title">
                             <i className="ion-person"></i>
                             Custom Header
                         </div>
                     }
-                    b-footer={
+                    slotFooter={
                         <React.Fragment>
                             Custom Footer
                             <Button type="primary" onClick={() => this.setState({show: false})}>确认</Button>
@@ -124,8 +124,8 @@ export default class Demo extends React.Component {
                 <Dialog value={this.state.show1}
                     onChangeValue={(show1) => this.setState({show1})}
                     title="No Footer"
-                    b-body="body"
-                    b-footer-wrapper=""
+                    slotBody="body"
+                    slotFooterWrapper=""
                 >
                 </Dialog>
             </div>

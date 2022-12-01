@@ -32,7 +32,7 @@ export function useEscClosable() {
                 throw new Error('The dialog has handled hide callback. Maybe it is a bug of KPC');
             }
         }
-        dialogs.splice(0, index);
+        dialogs.splice(index, 1);
 
         if (!dialogs.length) {
             document.removeEventListener('keydown', escClose);
