@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.11
+
+### @king-design/vue
+
+1. `Fix` 修复组合式API下，通过Ref对象，不能获取组件引用的问题 [#775](https://github.com/ksc-fe/kpc/issues/775)
+
 ## v2.0.10
 
 ### @king-design/react
