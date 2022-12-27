@@ -1,8 +1,9 @@
 import {Transition} from 'intact';
 import {makeMenuStyles} from './styles';
+import {Virtual} from '../virtualList';
 
 const {value, trigger, container} = this.dropdown.get();
-const {children, className} = this.get();
+const {children, className, virtualList} = this.get();
 
 const classNameObj = {
     'k-dropdown-menu': true,
@@ -18,14 +19,20 @@ const transition = $props.transition || {css: false, ...this.transition};
     appear={true}
     {...transition}
 >
-    <div
-        class={classNameObj}
-        ev-mouseenter={this.onMouseEnter}
-        ev-mouseleave={trigger === 'hover' ? this.onMouseLeave : null}
-        ref={this.elementRef}
+    <Virtual 
+        enableVirtualList={virtualList}
+        nativeProps={{
+            class: classNameObj,
+            'ev-mouseenter': this.onMouseEnter,
+            'ev-mouseleave': trigger === 'hover' ? this.onMouseLeave : null,
+            'ev-scroll': this.onScroll,
+            ref: this.elementRef,
+        }}
     >
-        <b:children>
-            {children}
-        </b:children>
-    </div>
+        <template>
+            <b:children>
+                {children}
+            </b:children>
+        </template>    
+    </Virtual>
 </Transition>

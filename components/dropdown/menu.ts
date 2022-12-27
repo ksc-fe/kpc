@@ -7,7 +7,9 @@ import {useMenuKeyboard} from './useKeyboard';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {FeedbackCallback} from './usePosition';
 
-export interface DropdownMenuProps { }
+export interface DropdownMenuProps {
+    virtualList?: boolean | string
+}
 export interface DropdownMenuEvents { }
 export interface DropdownMenuBlocks { }
 
