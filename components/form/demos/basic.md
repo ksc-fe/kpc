@@ -23,7 +23,7 @@ order: 0
     12. `min {number}`：请输入不小于n的数
     13. `range {Array<number>}`：请输入min到max之间的数
     14. `step {number}`：请输入步长为n的数
-    15. `equalTo {string}`：两次输入不一致
+    15. `equal {string}`：两次输入不一致
 3. 给`FormItem`添加`messages`属性，指定验证失败时展示的错误提示。默认内容如上所示
 4. 给`FormItem`添加`classNames`属性，指定验证失败时错误元素需要额外添加的`className`，默认不添加
 
