@@ -1,7 +1,8 @@
 import {_$} from '../../i18n';
 import {isNumber, isNullOrUndefined, isString} from 'intact-shared';
 
-export type Method = (value: any, param: any) => boolean | string
+export type MethodReturn = boolean | string
+export type Method = (value: any, param: any) => MethodReturn | Promise<MethodReturn> 
 export type Message = string | ((value: any, param: any) => string)
 export type ClassName = string | ((value: any, param: any) => string)
 
