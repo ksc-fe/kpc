@@ -503,29 +503,29 @@ import-fresh@^3.1.0:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-intact-shared@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/intact-shared/-/intact-shared-3.0.10.tgz#35890755c74f96c8d2627a79304b0b03e230d4bf"
-  integrity sha512-UnT16dPEZ995Rn3SCfkaTZuxpu913emvwhyRrZEozxMvfBoqWgZL6wcm7q7y4qPDYrpwi5o0n6iI1kxufx3ZdQ==
+intact-shared@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/intact-shared/-/intact-shared-3.0.12.tgz#17ba750fd0e2b604e4479b89cea6ed58c3b4227f"
+  integrity sha512-9wPBTDlZ0KNIx5ysd4xWJrlXr8TG9mKli9ajOr9zp5G2XV8kXU4XhMp6ldmZqu3grku/bAYmI4+zvxiFvpvvuA==
 
-intact-vue-next@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/intact-vue-next/-/intact-vue-next-3.0.10.tgz#f91ca930dd11f30635e6be5cfe4e9c48875c3eec"
-  integrity sha512-ikiHJjIrR2fLJMGkusrUBqTIRobWjSvYd9O09+jmP2nxTGJPics00lYki5I9GNED1z8GAXp9VpkTAJGXvb2p0Q==
+intact-vue-next@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/intact-vue-next/-/intact-vue-next-3.0.12.tgz#9899b8b74fbcbffa9ebe98aee36f56399ced84b6"
+  integrity sha512-YnqzMOZ0ezTt+8nRBtJMnx6h/7+OuHXqMWqYw9MrgQSK9sHrnvnIQZJXc7KpnJkR1TzL2aQfps0+Q9XKp4rpNQ==
   dependencies:
-    intact "^3.0.10"
+    intact "^3.0.12"
     tslib "^2.3.1"
 
-intact@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/intact/-/intact-3.0.10.tgz#eab07b631228e2cbeb1445fe2ad9ce0fbf6d45b3"
-  integrity sha512-WCG59bs8TbF4M2MtJi3jShXbsY3KlNtOOmNpF8PGeLDJjW6pLFj7wiz/EfUJvW6R08PU+ajktCQ7xIWKZhSxVA==
+intact@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/intact/-/intact-3.0.12.tgz#58a8424d0c21c16744bb5f9fd85e5145c5a6f57d"
+  integrity sha512-Bq5hChkDK/Hu0iEUCRB5uByW/oH9ODk5jvV37EiP/v1bsS8wkw4KuK/xaePlwf0A+/GmmrDojvpRYe9lo/iP6A==
   dependencies:
-    intact-shared "^3.0.10"
-    misstime "^3.0.10"
+    intact-shared "^3.0.12"
+    misstime "^3.0.12"
     tslib "^2.2.0"
-    vdt "^3.0.10"
-    vdt-compiler "^3.0.10"
+    vdt "^3.0.12"
+    vdt-compiler "^3.0.12"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -603,12 +603,12 @@ minimist@^1.2.5:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.6.tgz#8637a5b759ea0d6e98702cfb3a9283323c93af44"
   integrity sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==
 
-misstime@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/misstime/-/misstime-3.0.10.tgz#ee104f84efbbb08523d2d34689e445b0600b447c"
-  integrity sha512-JW8CCWZ79pJ2Yx1Tn5tvI17Plva0+66ufwHGMU/jTcjhKcBjzS3dA8lARJXXw54EBEO1s3CWDRA00TCOLeioAg==
+misstime@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/misstime/-/misstime-3.0.12.tgz#a6b5c6afa45a673654693b3b5a99f9b6b46d18e8"
+  integrity sha512-FY7ZAO29jVRcWDTNH21ndrBCXPO6Do4eYEzv+FwvZ1gyH88aE8hwwXn74Jy5K+Nl5/78PWKbZ+SlD0RsZs4L0Q==
   dependencies:
-    intact-shared "^3.0.10"
+    intact-shared "^3.0.12"
 
 monaco-editor@^0.26.1:
   version "0.26.1"
@@ -754,22 +754,22 @@ tslib@^2.2.0, tslib@^2.3.1:
   resolved "https://registry.npmmirror.com/tslib/download/tslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==
 
-vdt-compiler@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/vdt-compiler/-/vdt-compiler-3.0.10.tgz#96d0dfa43df4fedd60532a01401471442bf6be43"
-  integrity sha512-O/m0hAnxnUVBEn5HVsun2JV6TLYsgi6SYHn1wgXw1cCJpO51GT8dmfclPDyKTaXM9jyJ8xCPszY5JoskseLNsQ==
+vdt-compiler@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/vdt-compiler/-/vdt-compiler-3.0.12.tgz#f675b5e7b614d9e9ffe013930f978d98021668c4"
+  integrity sha512-GByiW3Kyb3UOc9dG4rjoHdWrNbez3J9cLToy/nsA4JHjMMHJ7b8FoERmwM0h2fWnUiYUvHPkJiQltBZo4HOe0Q==
   dependencies:
-    intact-shared "^3.0.10"
-    misstime "^3.0.10"
+    intact-shared "^3.0.12"
+    misstime "^3.0.12"
     tslib "^2.2.0"
 
-vdt@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/vdt/-/vdt-3.0.10.tgz#2f4b55c77d7fa555bc40352da6ed175cfbf6c824"
-  integrity sha512-hizMmpANBRXUniPNeq6LMHdJa46HxqhdWcurbmrVNMP523vpu9Wh2wnANW6nAM8sZLXTk9Z1NQhOYpEv376nLw==
+vdt@^3.0.12:
+  version "3.0.12"
+  resolved "https://registry.yarnpkg.com/vdt/-/vdt-3.0.12.tgz#7ff9d119c7d6a77d7deab04113bee623d3856ff7"
+  integrity sha512-/1TszsUj1yku65mLTOAfsIao8jWGwabNDcuzRKU1nyQm4sRc642dgYUgIrwywsGeBVcfGHpcxs+Np05VTSdtEA==
   dependencies:
-    intact-shared "^3.0.10"
-    misstime "^3.0.10"
+    intact-shared "^3.0.12"
+    misstime "^3.0.12"
     tslib "^2.2.0"
 
 vue-loader@^16.1.2:

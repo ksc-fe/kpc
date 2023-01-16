@@ -4,6 +4,23 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.11
+
+### @king-design/vue
+
+1. `Fix` 修复组合式API下，通过Ref对象，不能获取组件引用的问题 [#775](https://github.com/ksc-fe/kpc/issues/775)
+
+## v2.0.10
+
+### @king-design/react
+
+1. `Fix` 修复`Select`在`filterable`模式下，不能正确展示所选值的问题 [#774](https://github.com/ksc-fe/kpc/issues/774)
+2. `Fix` 修复组件部分原生事件不能触发的问题 [#773](https://github.com/ksc-fe/kpc/issues/773)
+
+### @king-design/vue
+
+1. `Fix` 修复`Dialog`中`Select`菜单在某些情况下会被渲染`body`标签，导致被遮挡的问题 [#772](https://github.com/ksc-fe/kpc/issues/772)
+
 ## v2.0.9
 
 ### @king-design/react
@@ -22,7 +39,6 @@ sidebar: doc
 ### @king-design/vue
 
 1. `Fix` 彻底修复组件`scoped`不能正确添加样式的问题 [#759](https://github.com/ksc-fe/kpc/issues/759)
-
 
 ## v2.0.7
 
