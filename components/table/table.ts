@@ -185,7 +185,6 @@ export class Table<
         this.scroll,
         this.width.tableRef,
         this.fixedColumns.setScrollPosition,
-        this.width.tableWidth,
     );
 
     public checkAll() {

@@ -1,10 +1,9 @@
-import {useInstance, RefObject, onMounted, onBeforeUnmount, VNodeComponentClass, createRef} from 'intact';
-import ResizeObserver from 'resize-observer-polyfill';
+import {useInstance, RefObject, onMounted, VNodeComponentClass, createRef} from 'intact';
 import type {Table, TableRowKey} from './table';
 import type {TableColumn} from './column';
 import {useState} from '../../hooks/useState';
-import {debounce} from '../utils';
 import {scrollbarWidth} from '../position';
+import {useResizeObserver} from './useResizeObserver';
 
 const hasLocalStorage = typeof localStorage !== 'undefined';
 
@@ -19,21 +18,8 @@ export function useWidth(
 
     initWidthFromStore();
 
-    let ro: ResizeObserver;
-    onMounted(() => {
-        checkTableWidth(true);
-        // use debounce instead of throttle, because if there is
-        // transition on parent container, the width is weired
-        // #342
-        ro = new ResizeObserver(debounce(() => {
-            if (instance.$unmounted) return;
-            checkTableWidth(false);
-        }, 100, true));
-        ro.observe(scrollRef.value!);
-    });
-    onBeforeUnmount(() => {
-        ro.disconnect();
-    });
+    onMounted(() => checkTableWidth(true));
+    useResizeObserver(scrollRef, () => checkTableWidth(false));
 
     // if exist widthStoreKey, we get the default width from localStorage
     function initWidthFromStore() {

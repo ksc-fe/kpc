@@ -5,13 +5,13 @@ import type {Table} from './';
 import {isStringOrNumber, isNull} from 'intact-shared';
 import {debounce} from '../utils';
 import type {useScroll} from './useScroll';
+import {useResizeObserver} from './useResizeObserver';
 
 export function useStickyScrollbar(
     elementRef: RefObject<HTMLElement>,
     {scrollRef, callbacks}: ReturnType<typeof useScroll>,
     tableRef: RefObject<HTMLElement>,
     tableScroll: (scrollLeft: number) => void,
-    tableWidth: State<number | null>,
 ) {
     const instance = useInstance() as Table;
     const stick = useState<number | null>(null);
@@ -23,13 +23,7 @@ export function useStickyScrollbar(
         stick.set(v === true ? 0 : isStringOrNumber(v) ? +v : null);
     });
 
-    watchState(tableWidth, v => {
-        if (v) {
-            tableActualWidth.set(v + 'px');
-        } else {
-            setTableActualWidth();
-        }
-    });
+    useResizeObserver(scrollRef, setTableActualWidth);
 
     onMounted(() => {
         setTableActualWidth();

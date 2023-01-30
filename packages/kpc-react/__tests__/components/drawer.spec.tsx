@@ -1,14 +1,21 @@
-import React, {createRef} from 'react';
+import React, {createRef, useState} from 'react';
 import * as ReactDOM from 'react-dom';
 import {Drawer, Card, Button} from '../../';
 import {Component} from 'intact-react';
 import {getElement, wait, dispatchEvent} from '../../../../test/utils';
 
 describe('Drawer', () => {
-    it('should render react element correctly', async () => {
-        const container = document.createElement('div');
+    let container: HTMLDivElement;
+    beforeEach(() => {
+        container = document.createElement('div');
         document.body.appendChild(container);
+    });
+    afterEach(() => {
+        ReactDOM.unmountComponentAtNode(container);
+        document.body.removeChild(container);
+    });
 
+    it('should render react element correctly', async () => {
         class Test extends Component {
             static template = `<div ref="a">test</div>`;
             mounted() {
@@ -16,23 +23,20 @@ describe('Drawer', () => {
             }
         }
 
-        ReactDOM.render(
-            <Card>
-                <Drawer>
+        function App() {
+            const [show, setShow] = useState(false);
+            return <Card>
+                <div onClick={() => setShow(true)}>show</div>
+                <Drawer value={show} mode="destroy">
                     <div><Test /></div>
                 </Drawer>
-            </Card>,
-            container
-        );
+            </Card>;
+        }
 
-        ReactDOM.unmountComponentAtNode(container);
-        document.body.removeChild(container);
+        ReactDOM.render(<App />, container);
     });
 
     it('should handle event correctly', async () => {
-        const container = document.createElement('div');
-        document.body.appendChild(container);
-
         const click1 = sinon.spy(() => console.log(1));
         const click2 = sinon.spy(() => console.log(2));
 
@@ -62,8 +66,5 @@ describe('Drawer', () => {
         dispatchEvent(element2, 'click');
         await wait();
         expect(click2.callCount).to.eql(1);
-
-        // ReactDOM.unmountComponentAtNode(container);
-        // document.body.removeChild(container);
     });
 });
