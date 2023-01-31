@@ -4,11 +4,24 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.12
+
+1. `Fix` 修复`Table`在动态添加`TableClumn` `stickScrollbar`不能自动更新宽度的问题 [#778](https://github.com/ksc-fe/kpc/issues/778)
+2. `Fix` 修复`Cascader`当内容过多时，展示异常的问题 [#783](https://github.com/ksc-fe/kpc/issues/783)
+
+### @king-design/react
+
+1. `Fix` 修复`Dropdown`类元素（`Tooltip`，`Select`等），在某些情况下销毁报错的问题 [#784](https://github.com/ksc-fe/kpc/issues/784)
+
+### @king-design/vue
+
+1. `Fix` 修复某些情况下`FormItem`获取不到父元素`Form`的问题 [#782](https://github.com/ksc-fe/kpc/issues/782)
+
 ## v2.0.11
 
 ### @king-design/vue
 
-1. `Fix` 修复组合式API下，通过Ref对象，不能获取组件引用的问题 [#775](https://github.com/ksc-fe/kpc/issues/775)
+1. `Fix` 修复组合式API下，通过Ref对象，不能获取组件引用的问题 [#776](https://github.com/ksc-fe/kpc/issues/776)
 
 ## v2.0.10
 
