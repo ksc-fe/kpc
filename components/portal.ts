@@ -14,6 +14,7 @@ import {
 import {isString} from 'intact-shared';
 import {DIALOG} from './dialog/constants';
 import type {Dialog} from './dialog';
+import {BaseDialog} from './dialog/base';
 
 export interface PortalProps {
     container?: Container
@@ -131,8 +132,13 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
             }
         }
         if (!this.container) {
-            // find the closest dialog if exists
-            this.container = parentDom.closest('.k-dialog') || document.body;
+            if (this.$senior instanceof BaseDialog) {
+                // Dialog and Drawer must be inserted into document.body
+                this.container = document.body;
+            } else {
+                // find the closest dialog if exists
+                this.container = parentDom.closest('.k-dialog') || document.body;
+            }
 
             /**
              * @FIXME: We cannot get parent ref from sub component in Vue

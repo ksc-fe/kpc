@@ -2,6 +2,9 @@ import BasicDemo from '~/components/drawer/demos/basic';
 import PlacementDemo from '~/components/drawer/demos/placement';
 import overlayDemo from '~/components/drawer/demos/overlay';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
+import {Component} from 'intact';
+import {Drawer} from '.';
+import {Dialog} from '../dialog';
 
 describe('Drawer', () => {
     afterEach((done) => {
@@ -66,5 +69,22 @@ describe('Drawer', () => {
         btn.click();
         await wait(500);
         expect(getElement('.k-drawer')).to.be.undefined;
+    });
+
+    it('nested dialog', async () => {
+        class Demo extends Component {
+            static template = `
+                const {Dialog, Drawer} = this;
+                <Drawer value={true}>
+                    <Dialog value={true} ref="dialog">Dialog</Dialog>
+                </Drawer>
+            `;
+            private Dialog = Dialog;
+            private Drawer = Drawer;
+        }
+        const [instance, element] = mount(Demo);
+
+        await wait();
+        expect(instance.refs.dialog.dialogRef.value.parentElement.parentElement).to.eql(document.body);
     });
 });
