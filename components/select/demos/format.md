@@ -34,7 +34,7 @@ import {Select, Option, Icon} from 'kpc';
             </Option>
             <b:value args="[value, label]">
                 <Icon class={value} style="vertical-align: middle;" />
-                <span class="c-middle">{value}</span>
+                <span class="middle">{value}</span>
             </b:value>
         </Select>
     </div>
@@ -67,8 +67,9 @@ import {Select, Option, Icon} from 'kpc';
     height 60px
     line-height 60px
     text-align center
-.c-middle
+.middle
     margin-left 6px
+    vertical-align middle
 .label
     display inline-block
     width 100px

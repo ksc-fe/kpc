@@ -225,6 +225,7 @@ export default function makeStyles() {
         .k-select-values {
             display: inline-block;
             margin-right: -${getRight(select.tag.margin)};
+            width: 100%;
             &.k-with-values {
                 margin: 0;
             }
@@ -237,15 +238,19 @@ export default function makeStyles() {
             border-radius: ${select.tag.borderRadius};
             margin: ${select.tag.margin};
             line-height: 1;
+            max-width: calc(100% - ${getRight(select.tag.margin)} - 1px);
+        }
+        .k-select-text {
+            max-width: calc(100% - 18px);
         }
         .k-select-close {
             margin-left: ${select.tag.delete.gap};
             font-size: ${select.tag.delete.fontSize};
             color: ${select.tag.delete.color};
         }
-        .k-select-input {
-            margin-right: ${getRight(select.tag.margin)};
-        }
+        // .k-select-input {
+            // margin-right: ${getRight(select.tag.margin)};
+        // }
 
         // size
         ${sizes.map(size => {
