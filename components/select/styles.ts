@@ -58,7 +58,7 @@ const defaults = deepDefaults(
         },
         tag: {
             margin: `3px 8px 3px 0`,
-            padding: `5px 8px`,
+            padding: `3px 8px`,
             get borderRadius() { return theme.borderRadius },
             get bgColor() { return theme.color.bg },
             disabledBgColor: '#eee',
@@ -237,11 +237,11 @@ export default function makeStyles() {
             background: ${select.tag.bgColor};
             border-radius: ${select.tag.borderRadius};
             margin: ${select.tag.margin};
-            line-height: 1;
             max-width: calc(100% - ${getRight(select.tag.margin)} - 1px);
         }
         .k-select-text {
             max-width: calc(100% - 18px);
+            word-break: break-word;
         }
         .k-select-close {
             margin-left: ${select.tag.delete.gap};

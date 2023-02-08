@@ -104,7 +104,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                                             undefined
                                                 }
                                             >
-                                                <span class="k-select-text c-ellipsis">
+                                                <span class="k-select-text">
                                                     <b:value params={[value[$key], $label]}>
                                                         {$label}
                                                     </b:value>
