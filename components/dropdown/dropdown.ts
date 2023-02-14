@@ -31,7 +31,7 @@ export const DROPDOWN = 'Dropdown';
 export const ROOT_DROPDOWN = 'RootDropdown';
 
 export interface DropdownProps {
-    trigger?: 'hover' | 'click' | 'contextmenu'
+    trigger?: 'hover' | 'click' | 'contextmenu' | 'focus'
     disabled?: boolean
     value?: boolean
     position?: Position | 'left' | 'bottom' | 'right' | 'top'
@@ -51,7 +51,7 @@ export interface DropdownEvents {
 export interface DropdownBlocks { }
 
 const typeDefs: Required<TypeDefs<DropdownProps>> = {
-    trigger: ['hover', 'click', 'contextmenu'],
+    trigger: ['hover', 'click', 'contextmenu', 'focus'],
     disabled: Boolean,
     value: Boolean,
     position: [Object, 'left', 'bottom', 'right', 'top'],
@@ -106,17 +106,7 @@ export class Dropdown<
 
         const [trigger, menu] = children as DropdownChildren;
         const triggerType = this.get('trigger');
-        const props: Record<string, Function> = {};
-
-        if (triggerType !== 'contextmenu') {
-            props['ev-click'] = this.onEnter;
-            if (triggerType === 'hover') {
-                props['ev-mouseenter'] = this.onEnter;
-                props['ev-mouseleave'] = this.onLeave;
-            }
-        } else {
-            props['ev-contextmenu'] = this.onContextMenu;
-        }
+        const props = this.initEventCallbacks(triggerType); 
 
         const clonedTrigger = isTextChildren(trigger) ? 
             createVNode('span', null, trigger) :
@@ -235,6 +225,29 @@ export class Dropdown<
         this.hide();
     }
 
+    private initEventCallbacks(trigger: DropdownProps['trigger']) {
+        const props: Record<string, Function> = {};
+
+        switch (trigger) {
+            case 'focus':
+                props['ev-focusin'] = this.onEnter;
+                props['ev-focusout'] = this.onLeave;
+                break;
+            case 'contextmenu':
+                props['ev-contextmenu'] = this.onContextMenu;
+                break;
+            default:
+                props['ev-click'] = this.onEnter;
+                if (trigger === 'hover') {
+                    props['ev-mouseenter'] = this.onEnter;
+                    props['ev-mouseleave'] = this.onLeave;
+                }
+                break;
+        }
+
+        return props;
+    }
+
     private callOriginalCallback(name: string, e: MouseEvent) {
         const callback = this.triggerProps[name];
         const callbackOnDropdown = this.get<Function>(name);
@@ -283,7 +296,10 @@ function useDocumentClickForDropdown(dropdown: Dropdown) {
     const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, (e) => {
         // case 1: if click an trigger and the trigger type is hover, ignore it
         // case 2: if right click on trigger and the trigger type is contextmenu, ignore it
+        // case 3: if click on trigger and the trigger type is focus, do nothing 
         const trigger = dropdown.get('trigger');
+        if (trigger === 'focus') return;
+
         const isHover = trigger === 'hover';
         if (isHover || trigger === 'contextmenu') {
             const triggerDom = findDomFromVNode(dropdown.$lastInput!, true) as Element;

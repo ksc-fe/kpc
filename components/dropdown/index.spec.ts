@@ -6,10 +6,10 @@ import NestedDemo from '~/components/dropdown/demos/nested';
 import ContextMenuDemo from '~/components/dropdown/demos/contextmenu';
 
 describe('Dropdown', () => {
-    afterEach((done) => {
-        unmount();
-        setTimeout(done, 500);
-    });
+    // afterEach((done) => {
+        // unmount();
+        // setTimeout(done, 500);
+    // });
 
     // it('demos test', () => {
         // const req = require.context('~/components/dropdown/demos', true, /^((?!async).)*index\.js$/i);
@@ -279,5 +279,39 @@ describe('Dropdown', () => {
         dispatchEvent(item, 'mouseenter');
         await wait();
         expect(parent.scrollTop).to.eql(item.offsetHeight * 2 - 40);
+    });
+
+    it('trigger: focus', async() => {
+        class Demo extends Component {
+            static template = `
+                const {Dropdown, DropdownMenu, DropdownItem} = this;
+                <div>
+                    <Dropdown trigger="focus">
+                        <input ref="trigger" />
+                        <DropdownMenu>
+                            <DropdownItem>test1</DropdownItem>
+                            <DropdownItem>test2</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
+            `;
+            private Dropdown = Dropdown;
+            private DropdownItem = DropdownItem;
+            private DropdownMenu = DropdownMenu;
+        }
+        const [instance] = mount(Demo);
+
+        dispatchEvent(instance.refs.trigger, 'focusin');
+        await wait(500);
+        expect(getElement('.k-dropdown-menu')).to.be.exist;
+
+        // clicking anywhere should not hide menu
+        dispatchEvent(document, 'click');
+        await wait(500);
+        expect(getElement('.k-dropdown-menu')).to.be.exist;
+
+        dispatchEvent(instance.refs.trigger, 'focusout');
+        await wait(700);
+        expect(getElement('.k-dropdown-menu')).to.not.be.exist;
     });
 });

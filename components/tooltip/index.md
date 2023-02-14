@@ -9,7 +9,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| trigger | 触发方式，`hover`为悬停触发，`click`为点击触发 | `"hover"` &#124; `"click"` | `"hover"` |
+| trigger | 触发方式，`hover`为悬停触发，`click`为点击触发 | `"hover"` &#124; `"click"` &#124; `"focus"` | `"hover"` |
 | disabled | 是否禁用整个菜单 | `boolean` | `false` |
 | value | 是否将弹出菜单展示出来，可通过`v-model`双向绑定 | `boolean` | `false` |
 | position | 菜单弹出的位置，默认在触发器正上方向上偏移`10px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'center bottom-10', at: 'center top', collision: 'flipfit'}` |
