@@ -9,6 +9,7 @@ export class Timepicker<
     Multipe extends boolean = false,
     Range extends boolean = false,
 > extends Component<TimepickerProps<Multipe, Range>, TimepickerEvents, TimepickerBlocks<Range>> {
+    static $doubleVNodes = true;
     static template(this: Timepicker) {
         const props = this.get();
         if (props.step && !props.range) {
