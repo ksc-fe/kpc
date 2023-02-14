@@ -6,10 +6,10 @@ import NestedDemo from '~/components/dropdown/demos/nested';
 import ContextMenuDemo from '~/components/dropdown/demos/contextmenu';
 
 describe('Dropdown', () => {
-    // afterEach((done) => {
-        // unmount();
-        // setTimeout(done, 500);
-    // });
+    afterEach((done) => {
+        unmount();
+        setTimeout(done, 500);
+    });
 
     // it('demos test', () => {
         // const req = require.context('~/components/dropdown/demos', true, /^((?!async).)*index\.js$/i);
