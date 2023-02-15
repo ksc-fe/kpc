@@ -5,5 +5,5 @@
     "packages/kpc-vue-next",
     "packages/kpc-vue"
   ],
-  "version": "2.0.12"
+  "version": "2.0.13-beta.0"
 }
