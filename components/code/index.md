@@ -25,4 +25,4 @@ sidebar: doc
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| ready | 组件加载并实例化完成触发 | (editor: [editor.IStandaloneCodeEditor](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html), Editor: typeof [editor](https://microsoft.github.io/monaco-editor/docs.html#modules/editor.html)) => void, Monaco: typeof [monaco](https://microsoft.github.io/monaco-editor/docs.html) |
+| ready | 组件加载并实例化完成触发 | (editor: [editor.IStandaloneCodeEditor](https://microsoft.github.io/monaco-editor/docs.html#interfaces/editor.IStandaloneCodeEditor.html), Editor: typeof [editor](https://microsoft.github.io/monaco-editor/docs.html#modules/editor.html), Monaco: typeof [monaco](https://microsoft.github.io/monaco-editor/docs.html)) => void |
