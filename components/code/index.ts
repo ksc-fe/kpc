@@ -1,6 +1,6 @@
 import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
-import type {editor} from 'monaco-editor';
+import type {editor, default as monaco} from 'monaco-editor';
 import {useEditor} from './useEditor';
 import type {Events} from '../types';
 
@@ -15,7 +15,7 @@ export interface CodeProps {
 }
 
 export interface CodeEvents {
-    ready: [editor.IStandaloneCodeEditor, typeof editor]
+    ready: [editor.IStandaloneCodeEditor, typeof editor, typeof monaco]
 }
 
 const typeDefs: Required<TypeDefs<CodeProps>> = {

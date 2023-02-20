@@ -33,7 +33,7 @@ export function useEditor() {
 
             loading.set(false);
 
-            instance.trigger('ready', codeEditor, Editor);
+            instance.trigger('ready', codeEditor, Editor, monaco);
         });
     });
 
