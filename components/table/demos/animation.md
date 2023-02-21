@@ -5,6 +5,8 @@ order: 20
 
 一个简单的`Table`，点击按钮，即可查看新增表格的动效。
 
+通过`animation`可以禁用动效，取值为`false`时，禁用行和列动画；或者通过数组分别指定禁用行和列动画，如：`[false, true]`，只禁用列动画
+
 ```vdt
 import {Table, TableColumn, Button} from 'kpc';
 
@@ -17,6 +19,11 @@ import {Table, TableColumn, Button} from 'kpc';
         一列
     </Button>
     <Table data={this.get('data')} resizable rowKey={row => row.a}>
+        <TableColumn key="a" title="Title 1" />
+        <TableColumn v-if={this.get('isShow')} key="b" title="Title 2"/>
+        <TableColumn key="c" title="Title 3" />
+    </Table>
+    <Table data={this.get('data')} resizable rowKey={row => row.a} animation={false}>
         <TableColumn key="a" title="Title 1" />
         <TableColumn v-if={this.get('isShow')} key="b" title="Title 2"/>
         <TableColumn key="c" title="Title 3" />

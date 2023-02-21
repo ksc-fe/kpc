@@ -59,6 +59,7 @@ export interface TableProps<
     minColWidth?: number
     widthStoreKey?: string
     draggable?: boolean
+    animation?: boolean | [boolean, boolean]
 }
 
 export interface TableEvents<T = any, K extends TableRowKey = number> {
@@ -116,6 +117,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     minColWidth: Number,
     widthStoreKey: String,
     draggable: Boolean,
+    animation: [Boolean, Array],
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -126,6 +128,7 @@ const defaults = (): Partial<TableProps> => ({
     childrenKey: 'children',
     indent: 32,
     minColWidth: 40,
+    animation: true,
 });
 
 const events: Events<TableEvents> = {

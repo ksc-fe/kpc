@@ -3,7 +3,7 @@ import {getClassAndStyleForFixed} from './useFixedColumns';
 import {Checkbox} from '../checkbox';
 import {Radio} from '../radio';
 import {TableCell} from './cell';
-import {createElementVNode, className as cx} from 'intact';
+import {createElementVNode, className as cx, createFragment} from 'intact';
 
 const {
     cols, data, checkType, hasFixedLeft,
@@ -11,7 +11,7 @@ const {
     grid, index: rowIndex, indeterminate,
     allDisabled, selected, /* hidden,  */spreaded,
     hasChildren, indent, key, offsetMap,
-    draggable, draggingKey,
+    draggable, draggingKey, animation,
 } = this.get();
 const classNameObj = {
     'k-disabled': disabled,
@@ -89,7 +89,9 @@ cols.forEach((props, columnIndex) => {
     );
 });
 
-const rows = <TransitionGroup name="k-fade-expand" move={false}>{vNodes}</TransitionGroup>
+const rows = animation ?
+    <TransitionGroup name="k-fade-expand" move={false}>{vNodes}</TransitionGroup> :
+    createFragment(vNodes, 8);
 /* const rows = vNodes; */
 
 // for performance, no normalize

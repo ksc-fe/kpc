@@ -35,6 +35,7 @@ export interface TableRowProps {
     onToggleSpreadRow: (key: TableRowKey) => void
     onBeforeUnmount: (key: TableRowKey) => void
     offsetMap: Record<Key, number>
+    animation: boolean
 
     draggable: boolean
     draggingKey: TableRowKey | null
