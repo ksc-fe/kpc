@@ -20,7 +20,7 @@ export interface TooltipBlocks extends BaseTooltipBlocks, TooltipContentBlocks {
     content: null
 }
 
-declare class _Tooltip extends BaseTooltip<TooltipProps, TooltipEvents, TooltipBlocks> { }
+export declare class _Tooltip extends BaseTooltip<TooltipProps, TooltipEvents, TooltipBlocks> { }
 
 function Wrapper(props: Props<TooltipProps, BaseTooltip>) {
     let {children, content, $blocks, ...rest} = props;
