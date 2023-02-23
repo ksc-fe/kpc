@@ -4,6 +4,21 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.13
+
+1. `Fix` 修复`Dialog`或者`Drawer`嵌套使用，渲染层级关系异常的问题 [#785](https://github.com/ksc-fe/kpc/issues/785)
+2. `Fix` 修复`Select`多选超长，不能折行的问题 [#787](https://github.com/ksc-fe/kpc/issues/787)
+3. `Fix` 修复`Dropdown`当`trigger="click"`时，点击菜单展示后立马隐藏的问题 [#788](https://github.com/ksc-fe/kpc/issues/788)
+4. `Fix` 修复`Tooltip`类型问题，该问题导致不能生成`.d.ts`文件 [#793](https://github.com/ksc-fe/kpc/issues/793)
+5. `Add` `Tooltip` `Dropdown`新增`focus`触发方式，用于`Input`输入时展示提示 [#789](https://github.com/ksc-fe/kpc/issues/789)
+6. `Add` `Code`组件`ready`事件，新增`monaco`对象参数 [#791](https://github.com/ksc-fe/kpc/issues/791)
+7. `Add` `Table`组件支持关闭动效`animation=false`，有时候数据变化较大，动画会导致闪动 [#792](https://github.com/ksc-fe/kpc/issues/792)
+
+### @king-design/vue-legacy
+
+1. `Fix` 修复`Timepicker`渲染报错的问题 [#790](https://github.com/ksc-fe/kpc/issues/790)
+
+
 ## v2.0.12
 
 1. `Fix` 修复`Table`在动态添加`TableClumn` `stickScrollbar`不能自动更新宽度的问题 [#778](https://github.com/ksc-fe/kpc/issues/778)
