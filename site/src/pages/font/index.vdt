@@ -235,7 +235,7 @@ const iconList = [
                 </div>
             </div>
         </div>
-        <div class="designer-box">
+        {/*<div class="designer-box">
             <div class="designer-part">
                 <div class="designer-title">
                     <img src={designer} />
@@ -248,7 +248,7 @@ const iconList = [
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*/}
         <Footer bgColor="white"></Footer>
     </b:content>
 </t:super> 
