@@ -1162,6 +1162,23 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@king-design/react@^2.0.13":
+  version "2.0.13"
+  resolved "https://registry.npmmirror.com/@king-design/react/-/react-2.0.13.tgz#f8e68b81386c7841c6837da44b41b3f6e124aa08"
+  integrity sha512-NVMuZh8SCFHWM0sJwKWHngz2+xfmvBNWcFDi3W6AaZ8PYDkNVMtmYCaxkyiCLpPCCR91N+qVg9pgzJDNYPuziw==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.16.0"
+    "@emotion/css" "^11.5.0"
+    dayjs "^1.10.7"
+    downloadjs "^1.4.7"
+    enquire.js "^2.1.6"
+    intact-react "3.0.13"
+    monaco-editor "^0.26.1"
+    mxgraphx "^4.0.7"
+    resize-observer-polyfill "^1.5.1"
+    tinycolor2 "^1.4.2"
+    tslib "^2.3.1"
+
 "@lerna/add@4.0.0":
   version "4.0.0"
   resolved "https://registry.npmmirror.com/@lerna/add/-/add-4.0.0.tgz#c36f57d132502a57b9e7058d1548b7a565ef183f"
@@ -7402,7 +7419,7 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-intact-react@^3.0.13:
+intact-react@3.0.13, intact-react@^3.0.13:
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/intact-react/-/intact-react-3.0.13.tgz#bbe9bb5afa2c67cfc058a4557ce28b7a52f30952"
   integrity sha512-RegeLioJOCneDDgg2BfPt5Zuzn0RL+FuvVhyyakc5nPvMfxKOKXY7VbvYGCV3DeYwpPPn+AmY5ZHAyoqPQCiGQ==
