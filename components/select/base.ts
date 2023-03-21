@@ -35,8 +35,7 @@ export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = 
     placeholder?: Children
     container?: Container
     width?: string | number
-
-    _show?: boolean
+    show?: boolean
 }
 
 export interface BaseSelectEvents {
@@ -68,8 +67,7 @@ const typeDefs: Required<TypeDefs<BaseSelectProps<any>>> = {
     placeholder: [String, Number],
     container: [Function, String],
     width: [String, Number],
-
-    _show: Boolean,
+    show: Boolean,
 };
 
 const defaults = (): Partial<BaseSelectProps<any>> => ({
@@ -102,7 +100,7 @@ export abstract class BaseSelect<
 
     init() {
         provide(SELECT, this);
-        useShowHideEvents('_show');
+        useShowHideEvents('show');
         // this.input = useInput();
 
         this.watch('value', this.position, {presented: true});
@@ -121,12 +119,12 @@ export abstract class BaseSelect<
 
     @bind
     show() {
-        this.set('_show', true);
+        this.set('show', true);
     }
 
     @bind
     hide() {
-        this.set('_show', false);
+        this.set('show', false);
     }
 
     public resetKeywords(keywords: State<string>) {

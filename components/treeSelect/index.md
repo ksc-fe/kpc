@@ -32,6 +32,7 @@ sidebar: doc
 | defaultExpandAll | 是否默认展开所有节点 | `boolean` | `true` |
 | checkbox | 是否展示复选框 | `boolean` | `false` |
 | filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, data: TreeDataItem<K>) => boolean` | `undefined` |
+| show | 是否展示菜单项 | `boolean` | `false` |
 
 ```ts
 import {Key, Children} from 'intact';

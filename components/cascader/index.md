@@ -29,6 +29,7 @@ sidebar: doc
 | format | 自定义结果显示，组件会将当前选择的所有数据项以数组的格式作为参数传入 | `Function` | `(values: string[]) => values.map(value => value.label).join(' / ')` |
 | loadData | 如果`data`中的`children`属性值为空数组`[]`，则可以使用该属性定义动态加载逻辑，组件会将当前选中的数据项作为参数传入 | `(data: CascaderData<V>) => any` | `undefined` |
 | filter | 如果可搜索，你可以传入`filter`改变搜索逻辑，组件会将搜索关键词和数据项作为参数传入 | `(keywords: string, data: CascaderData<V>) => boolean` | `(keywords: string, data: CascaderData<V>) => data.label.includes(keywords)` |
+| show | 是否展示菜单项 | `boolean` | `false` |
 
 ```ts
 export type CascaderData<V> = {

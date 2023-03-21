@@ -36,7 +36,7 @@ export function useValue() {
         }
     });
 
-    instance.watch('_show', value => {
+    instance.watch('show', value => {
         if (value) {
             showedValue.set(last(values.value) || []);
         }

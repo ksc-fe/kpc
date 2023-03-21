@@ -18,7 +18,7 @@ export function useFocusout() {
 
     function onFocusout(e: FocusEvent) {
         instance.trigger('focusout', e);
-        if (instance.get('_show')) {
+        if (instance.get('show')) {
             e.stopPropagation();
         }
     }

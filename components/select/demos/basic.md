@@ -11,7 +11,7 @@ import {Select, Option} from 'kpc';
 
 <div>
     <div style="margin-bottom: 16px;">
-        <Select v-model="day">
+        <Select v-model="day" show={true}>
             <Option value="Monday">星期一</Option>
             <Option value="Tuesday">星期二</Option>
             <Option value="Wednesday">星期三</Option>

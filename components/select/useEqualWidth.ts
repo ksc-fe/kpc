@@ -4,7 +4,7 @@ import type {BaseSelect} from './base';
 export function useEqualWidth() {
     const instance = useInstance() as BaseSelect;
 
-    instance.watch('_show', setWidth, {presented: true});
+    instance.watch('show', setWidth, {presented: true});
 
     function setWidth(v: boolean | undefined) {
         if (!v) return;
