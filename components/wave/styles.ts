@@ -39,6 +39,7 @@ export function makeStyles(color: string, inset: string) {
             animation: ${waveEffect} .2s ease-in;
             animation-fill-mode: forwards;
             border: 2px solid ${color};
+            pointer-events: none;
         }
         &.k-circle,
         &.k-radio-wrapper {
