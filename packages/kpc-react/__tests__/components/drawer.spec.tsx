@@ -39,6 +39,7 @@ describe('Drawer', () => {
     it('should handle event correctly', async () => {
         const click1 = sinon.spy(() => console.log(1));
         const click2 = sinon.spy(() => console.log(2));
+        const click3 = sinon.spy(() => console.log(3));
 
         ReactDOM.render(
             <div>
@@ -53,11 +54,18 @@ describe('Drawer', () => {
                         <div className="click" onClick={click2}>click</div>
                     </Card>
                 </Drawer>
+                <Drawer value={true} title="3">
+                    <div>
+                        <Card>
+                            <div className="click" onClick={click3}>click</div>
+                        </Card>
+                    </div>
+                </Drawer>
             </div>,
             container
         );
 
-        const [element1, element2] = document.querySelectorAll<HTMLElement>('.click');
+        const [element1, element2, element3] = document.querySelectorAll<HTMLElement>('.click');
 
         dispatchEvent(element1, 'click');
         await wait();
@@ -66,5 +74,9 @@ describe('Drawer', () => {
         dispatchEvent(element2, 'click');
         await wait();
         expect(click2.callCount).to.eql(1);
+
+        dispatchEvent(element3, 'click');
+        await wait();
+        expect(click3.callCount).to.eql(1);
     });
 });
