@@ -4,6 +4,16 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.14
+
+1. `Add` `Select` `Cascader` `Datepicker`组件新增`show`属性，用于自定义菜单的显隐 [#795](https://github.com/ksc-fe/kpc/issues/795)
+2. `Fix` 修复`Input`浏览器默认行为，双击选中字词不能选中的问题 [#796](https://github.com/ksc-fe/kpc/issues/796)
+3. `Fix` 修复`FormItem`嵌套使用，宽度`fluid`不能100%的问题 [#797](https://github.com/ksc-fe/kpc/issues/797)
+
+## @king-design/react
+
+1. `Fix` 修复`Dialog` `Drawer`内部元素，某些情况下事件会触发两次的问题 [#798](https://github.com/ksc-fe/kpc/issues/798)
+
 ## v2.0.13
 
 1. `Fix` 修复`Dialog`或者`Drawer`嵌套使用，渲染层级关系异常的问题 [#785](https://github.com/ksc-fe/kpc/issues/785)
