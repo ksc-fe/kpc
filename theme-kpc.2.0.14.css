@@ -62,6 +62,7 @@
 .example.components-grid-demos-responsive .k-col{line-height:40px;text-align:center;color:#fff}.example.components-grid-demos-responsive .k-col:nth-of-type(even){background:#0a5eee}.example.components-grid-demos-responsive .k-col:nth-of-type(odd){background:#4f8df8}.example.components-grid-demos-responsive .k-row{margin-bottom:20px}.example.components-grid-demos-responsive h4{margin-bottom:8px}
 .example.components-icon-demos-basic .k-icon{margin-right:8px}
 .example.components-icon-demos-color .k-icon{margin-right:8px}
+.example.components-icon-demos-icons .icons{display:-webkit-box;display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;grid-gap:10px;gap:10px;text-align:center}.example.components-icon-demos-icons .icon{width:100px}
 .example.components-input-demos-basic .k-input{margin:5px}
 .example.components-input-demos-blocks .k-input{margin:5px}
 .example.components-input-demos-clearable .k-input{margin:5px}
