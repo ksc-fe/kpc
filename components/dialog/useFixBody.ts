@@ -21,7 +21,9 @@ export function useFixBody(elementRef: RefObject<HTMLDivElement>) {
     instance.on('afterClose', onAfterLeave);
     
     onBeforeUnmount(() => {
-        if (fixedBody && instance.get('value')) {
+        // should also remove body style when dialog is removed, #805
+        // if (fixedBody && instance.get('value')) {
+        if (fixedBody) {
             // maybe HIDE event has not triggered
             onClosed(instance);
         }

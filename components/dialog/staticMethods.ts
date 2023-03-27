@@ -8,6 +8,7 @@ export interface AlertDialogProps extends DialogProps {
     hideIcon?: boolean
     hideFooter?: boolean
     ref?: (i: Dialog) => void
+    className?: string
 }
 
 export type StaticMethod = (options?: AlertDialogProps) => Promise<void>
