@@ -104,6 +104,8 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 | hideFooter | 是否隐藏底部按钮 | `boolean` | `false` |
 | ref | 传入一个函数，组件会调用该函数，将当前`Dialog`实例传入 | `(i: Dialog) => void` | `undefined` |
 | className | 样式类名 | `string` | `undefined` |
+| iconClassName | 指定icon样式名 | `string` | `undefined` |
+| icon | 自定义icon内容 | `VNode` | `undefined` |
 
 其中`Promise`对象会在点击“确定”按钮时`resolve()`，在点击“取消”按钮时`reject()`，你可以在`then()`
 中书写用户点击不同按钮的逻辑
