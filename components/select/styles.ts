@@ -24,7 +24,7 @@ const defaults = deepDefaults(
         get hoverBorder() { return `1px solid ${theme.color.primary}` },
         get iconColor() { return theme.color.placeholder },
         get activeColor() { return theme.color.primary },
-        get borderRadius() { return theme.borderRadius },
+        get borderRadius() { return theme.radius.formRadius },
         suffixGap: '10px',
         disabledArrowColor: '#e5e5e5',
 

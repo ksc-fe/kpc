@@ -105,6 +105,12 @@ let nextPage = value + 1;
 }
 
 <div class={classNameObj} {...getRestProps(this)}>
+    <template v-if={!simple}>
+        <div v-if={showTotal} class="k-pagination-total">
+            {_$('共 {n} 条', {n: total})}
+        </div>
+    </template>
+
     <ButtonGroup checkType="radio" v-model="value">
         <Button icon size={size}
             type={type}
@@ -132,10 +138,6 @@ let nextPage = value + 1;
             <span class="c-middle">{_$('跳至')}</span>
             <Input size={size} value={value} ev-change={this.goto}/>
             <span class="c-middle">{_$('页')}</span>
-        </div>
-
-        <div v-if={showTotal} class="k-pagination-total">
-            {_$('共 {n} 条', {n: total})}
-        </div>
+        </div>       
     </template>
 </div>

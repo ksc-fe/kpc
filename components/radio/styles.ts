@@ -4,7 +4,7 @@ import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
 
 const defaults = {
-    width: '14px',
+    width: '16px',
     get transition() { return theme.transition.small },
     get borderColor() { return theme.color.darkBorder; },
     get hoverBorderColor() { return theme.color.primary; },

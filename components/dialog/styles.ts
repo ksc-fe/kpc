@@ -12,14 +12,14 @@ const defaults = {
     margin: '0 20px',
     get color() { return theme.color.text },
     get fontSize() { return theme.fontSize },
-    get boxShadow() { return theme.boxShadow },
+    get boxShadow() { return theme.topBoxShadow },
 
     // header
     header: {
-        fontSize: '16px',
+        fontSize: '14px',
         get color() { return theme.color.title },
-        height: '61px',
-        border: `1px solid #eaeaea`,
+        height: '52px',
+        border: `1px solid #e2e5e8`,
         closeTop: '16px',
         closeRight: '-9px',
         closeIconFontSize: '44px',
@@ -32,9 +32,9 @@ const defaults = {
 
     // footer
     footer: {
-        padding: `20px 0`,
+        padding: `16px 0`,
         btnGap: `12px`,
-        border: `1px solid #eaeaea`,
+        border: `1px solid #e2e5e8`,
     },
 
     // transition

@@ -4,7 +4,7 @@ order: 0
 ---
 
 使用`Message`提供的静态方法，展示提示。包括：`info`, `error`, `warning`, `success`。
-提示默认会在5s后自动关闭
+提示默认会在3s后自动关闭
 
 ```vdt
 import {ButtonGroup, Button} from 'kpc';

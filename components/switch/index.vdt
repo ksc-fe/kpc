@@ -4,7 +4,7 @@ import {addStyle, getRestProps} from '../utils';
 let {
     className, style, name, on,
     off, value, trueValue, falseValue,
-    width, height, size, disabled,
+    width, height, size, disabled,plane
 } = this.get();
 
 const {start, dragging, barRef, barWidth} = this.draggable;
@@ -16,6 +16,7 @@ const classNameObj = {
     [`k-${size}`]: true,
     'k-disabled': disabled,
     'k-dragging': dragging.value,
+    'k-switch-plane': plane,
     [makeStyles()]: true,
 };
 

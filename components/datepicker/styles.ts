@@ -23,7 +23,7 @@ const defaults = {
         },
 
         disabled: {
-            color: '#ccc',
+            color: '#bec3c5',
             hoverBgColor: 'none',
         },
 

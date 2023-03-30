@@ -4,7 +4,7 @@ import {deepDefaults, palette, getLeft}  from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
-    width: '14px',
+    width: '16px',
     get borderColor() { return theme.color.darkBorder },
     get borderRadius() { return theme.borderRadius },
     get transition() { return theme.transition.small },

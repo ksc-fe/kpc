@@ -15,10 +15,11 @@ const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
 const defaults = deepDefaults(
     {
         get borderColor() { return theme.color.border },
-        get borderRadius() { return theme.borderRadius },
+        get borderRadius() { return theme.radius.formRadius },
         get fontSize() { return theme.default.fontSize },
         padding: `0 8px`,
         height: '20px',
+        background: '#f3f5f6',
         close: {
             fontSize: '20px',
             gap: '8px',
@@ -54,7 +55,8 @@ const defaults = deepDefaults(
         },
         none: {
             get bgColor() { return theme.color.bg },
-        }
+        },
+
     },
     types.reduce((memo, type) => {
         if (type === 'disabled') return memo;
@@ -76,11 +78,13 @@ export function makeStyles() {
         display: inline-flex;
         align-items: center;
         padding: ${tag.padding};
-        border: 1px solid ${tag.borderColor};
         border-radius: ${tag.borderRadius};
         font-size: ${tag.fontSize};
         height: ${tag.height};
 
+        &.k-solid {
+            background:${tag.background};
+        }
         .k-tag-close {
             font-size: ${tag.close.fontSize};
             margin-left: ${tag.close.gap};
@@ -119,7 +123,7 @@ export function makeStyles() {
 
         // border
         &.k-dashed {
-            border-style: dashed;
+            border: 1px dashed;
         }
     `;
 }

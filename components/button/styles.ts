@@ -34,7 +34,7 @@ const btnStyles = {
     lineHeight: '1.15',
     get padding() { return `0 ${theme.default.padding}` },
     get borderColor() { return theme.color.border },
-    get borderRadius() { return theme.borderRadius },
+    get borderRadius() { return '4px' },
     get fontSize() { return theme.default.fontSize },
     get height() { return theme.default.height },
     get hoverBorderColor() { return theme.color.primary },
@@ -422,7 +422,7 @@ export function makeButtonGroupStyles() {
                 &:not(:first-child) {
                     margin-left: -1px;
                     &:not(:last-child) {
-                        border-radius: 0;
+                        border-radius: 4px;
                     }
                 }
                 &:not(:only-child):first-child {

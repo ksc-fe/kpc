@@ -11,7 +11,7 @@ export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
 const defaults = {
     get transition() { return theme.transition.large },
-    get boxShadow() { return theme.boxShadow }
+    get boxShadow() { return theme.topBoxShadow }
 };
 
 let drawer: typeof defaults;

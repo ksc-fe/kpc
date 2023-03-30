@@ -16,7 +16,7 @@ const defaults = deepDefaults(
         get focusBorder() { return `1px solid ${theme.color.primary}` },
         // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
         get hoverBorder() { return `1px solid ${theme.color.primary}` },
-        get borderRadius() { return theme.borderRadius },
+        get borderRadius() { return theme.radius.formRadius },
         get placeholderColor() { return theme.color.placeholder },
 
         // clearable
@@ -49,14 +49,14 @@ const defaults = deepDefaults(
             get paddingGap() { return styles.padding },
         }
 
-        if (size === 'large') {
-            // use default padding for large size
-            Object.defineProperty(memo.large, 'paddingGap', {
-                get() {
-                    return theme.default.padding;
-                }
-            });
-        }
+        // if (size === 'large') {
+        //     // use default padding for large size
+        //     Object.defineProperty(memo.large, 'paddingGap', {
+        //         get() {
+        //             return theme.default.padding;
+        //         }
+        //     });
+        // }
 
         return memo;
     }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
@@ -112,6 +112,7 @@ export function makeStyles() {
             top: 50%;
             transform: translateY(-50%);
             z-index: 2;
+            color: ${theme.color.desText} 
         }
 
         // clearable

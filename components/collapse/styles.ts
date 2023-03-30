@@ -37,7 +37,7 @@ export function makeStyles() {
         }
 
         &.k-border {
-            border-radius: ${theme.borderRadius};
+            border-radius: ${theme.radius.cardRadius};
             padding: ${collapse.borderPadding};
             border: ${collapse.collBorder};
         }

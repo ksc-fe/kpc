@@ -63,7 +63,7 @@ export function makeStyles() {
         .k-pagination-limits,
         .k-pagination-goto,
         .k-pagination-total {
-            margin-left: ${pagination.gap};
+            margin-right: ${pagination.gap};
             display: inline-block;
             vertical-align: middle;
         }

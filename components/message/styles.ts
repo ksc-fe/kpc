@@ -22,7 +22,7 @@ const defaults = {
     get border() { return `1px solid ${theme.color.border}` },
 
     icon: {
-        color: `inherit`,
+        // color: `inherit`,
         fontSize: `14px`,
         left: `16px`,
         top: `8px`,
@@ -83,6 +83,7 @@ export function makeMessageStyles() {
             position: absolute;
             right: 0;
             top: 0;
+            color: #3c4449;
             &:hover {
                 background: none;
             }
@@ -94,15 +95,14 @@ export function makeMessageStyles() {
             position: absolute;
             left: ${message.icon.left};
             top: ${message.icon.top};
-            color: ${message.icon.color};
             font-size: ${message.icon.fontSize};
         }
-        ${(['error', 'success', 'warning'] as const).map(type => {
+        ${(['info','error', 'success', 'warning'] as const).map(type => {
             const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
                 &.k-${type} {
                     .k-message-container {
-                        color: ${color};
+                        color: ${theme.color.text};
                         border-color: ${color};
                         background: ${palette(color, -4)};
                     }
@@ -112,7 +112,18 @@ export function makeMessageStyles() {
                             color: ${palette(color, 1)}
                         }
                     }
+                    .k-message-icon {
+                        position: absolute;
+                        left: ${message.icon.left};
+                        top: ${message.icon.top};
+                        color: ${color};
+                        font-size: ${message.icon.fontSize};
+                    }
+                    .k-message-close {
+                        color: ${theme.color.desText};
+                    }
                 }
+              
             `
         })}
 

@@ -14,7 +14,12 @@ import {Tabs, Tab} from 'kpc';
         <Tab value="ruleout">出站规则</Tab>
         <Tab value="relatedVM">关联云主机</Tab>
     </Tabs>
-
+    <br />
+    <Tabs type="plane-card" v-model="tab">
+        <Tab value="rulein">入站规则</Tab>
+        <Tab value="ruleout">出站规则</Tab>
+        <Tab value="relatedVM">关联云主机</Tab>
+    </Tabs>
     <div class="content">
         <div v-if={this.get('tab') === 'rulein'}>入站规则</div>
         <div v-else-if={this.get('tab') === 'ruleout'}>出站规则</div>

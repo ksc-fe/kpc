@@ -107,8 +107,11 @@ export function makeItemStyles() {
 
         // nested
         .k-form-item {
-            display: block;
-            width: auto;
+            &,
+            .k-form-content {
+                display: block;
+                width: auto;
+            }
         }
 
         // append

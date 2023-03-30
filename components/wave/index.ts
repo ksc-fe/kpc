@@ -77,7 +77,7 @@ export class Wave extends Component<WaveProps> {
         this.resetAnimation();
       
         instance!.addEventListener('animationend', this.resetAnimation);
-        this.timer = window.setTimeout(() => {        
+        this.timer = window.setTimeout(() => {
             instance!.classList.add(this.className);
         });
     }

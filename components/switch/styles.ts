@@ -50,6 +50,12 @@ const defaults = {
 
     // disabled
     get disabledBgColor() { return theme.color.disabledBg },
+
+    // plane
+    plane: {
+        get bgColor() { return theme.color.primary},
+        get disabledBgColor() {return theme.color.ghost }
+    }
 };
 
 let kswitch: typeof defaults;
@@ -178,6 +184,49 @@ export function makeStyles() {
             .k-switch-bar {
                 width: 100%;
             }
+            
+        }
+
+        // plane
+        &.k-switch-plane{
+            .k-switch-bar,
+            .k-switch-wrapper {
+                background: #d0d5d9;
+            }
+            .k-switch-handle {
+                background: #ffffff ;
+            }
+            background: #d0d5d9;
+            &.k-checked {
+                border-color: #ffffff !important;
+                .k-switch-on {
+                    color: ${kswitch.checked.color};
+                }
+                .k-switch-handle {
+                    background: #ffffff ;
+                }
+                .k-switch-bar,
+                .k-switch-wrapper {
+                    background: ${kswitch.checked.borderColor};
+                }
+                .k-switch-bar {
+                    width: 100%;
+                }
+            }
+
+            &.k-disabled {
+                cursor: not-allowed;
+                .k-switch-bar {
+                    background: #B5E3FF;
+                }
+                .k-switch-wrapper {
+                    background: #f0f2f4;
+                }
+            }
+            .k-switch-on {
+                color: #ffffff !important;
+            }
+
         }
 
         // disabled
@@ -197,5 +246,8 @@ export function makeStyles() {
                 border-bottom-right-radius: 0;
             }
         }
+
+
+
     `;    
 }

@@ -20,7 +20,7 @@ import {bind} from 'kpc';
 
 export default class extends Component {
     static template = template;
-
+    
     @bind
     showMessage1() {
         Message.info('close after 10s', 10000);
@@ -28,7 +28,7 @@ export default class extends Component {
 
     @bind
     showMessage2() {
-        Message.info('stick message', 0);
+        Message.success('stick message', 0);
     }
 }
 ```

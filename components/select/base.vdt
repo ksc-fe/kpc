@@ -14,9 +14,7 @@ const {
     size, hideIcon, fluid,
     clearable, filterable,
     className, container,
-    inline, style, width,
-
-    _show,
+    inline, style, width, show,
 } = this.get();
 
 const classNameObj = {
@@ -44,7 +42,7 @@ const {onFocusout, triggerRef} = this.focusout;
                 ref={this.dropdownRef}
                 disabled={disabled}
                 container={container}
-                v-model="_show"
+                v-model="show"
             >
                 <div {...getRestProps(this)} 
                     class={classNameObj}
@@ -62,7 +60,7 @@ const {onFocusout, triggerRef} = this.focusout;
                         {/* TODO: Need mode on Transition */}
                         <TransitionGroup name="k-fade" appear={false}>
                             <Input v-if={!multiple && filterable}
-                                value={_show ? keywords : label}
+                                value={show ? keywords : label}
                                 ev-$change:value={onInput}
                                 disabled={disabled}
                                 placeholder={label || placeholder}
@@ -71,7 +69,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                 fluid
                                 inline
                                 key="input"
-                                readonly={!_show}
+                                readonly={!show}
                                 waveDisabled={true}
                             />
                             <div class="k-select-placeholder c-ellipsis"
@@ -128,7 +126,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                     inline
                                     size={size}
                                     key="filter"
-                                    readonly={!_show}
+                                    readonly={!show}
                                     waveDisabled={true}
                                 />
                             </div>

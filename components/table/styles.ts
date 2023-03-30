@@ -6,7 +6,7 @@ import '../../styles/global';
 const defaults = {
     get transition() { return theme.transition.large },
     // transition: '15000s',
-    border: `1px solid #e5e5e5`,
+    border: `1px solid #e2e5e8`,
     fontSize: `12px`,
     bgColor: `#fff`,
     get color() { return theme.color.text },
@@ -20,7 +20,7 @@ const defaults = {
         fontSize: `12px`,
         fontWeight: `bold`,
         textAlign: 'left',
-        height: `30px`,
+        height: `40px`,
         delimiterHeight: '12px',
         delimiterColor: '#bfbfbf',
     },
@@ -47,7 +47,7 @@ const defaults = {
     sort: {
         iconHeight: `7px`,
         gap: `10px`,
-        color: `#a6a6a6`,
+        color: `#d0d5d9`,
         disabledColor: `#ddd`,
     },
 
@@ -74,19 +74,19 @@ export function makeStyles() {
     return css`
         font-size: ${table.fontSize};
         color: ${table.color};
-        border-top: ${table.border};
+        border-top: 0;
         position: relative;
         z-index: 0;
         .k-table-wrapper {
             border-bottom: ${table.border};
             overflow: auto;
+            border-radius:4px;
         }
         table {
             width: 100%;
             // border-collapse: collapse;
             border-spacing: 0;
             table-layout: fixed;
-            
             td, 
             th{
                 transition: all ${table.transition};  
@@ -122,12 +122,13 @@ export function makeStyles() {
             &:first-of-type:before {
                 display: none;
             }
-            border-bottom: ${table.border};
+            border-bottom: 0;
         }
         .k-table-title {
             display: inline-flex;
             align-items: center;
             max-width: 100%;
+            color: ${theme.color.desText};
         }
         .k-table-title-text {
             flex: 1;

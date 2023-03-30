@@ -47,23 +47,31 @@ export function makeStyles() {
         display: inline-block;
         vertical-align: middle;
         line-height: 1;
+        &:hover {
+            border: 1px solid ${theme.color.primary};
+            border-radius: ${theme.radius.formRadius}
+        }
         .k-spinner-btn {
             vertical-align: top;
             &:hover,
             &:focus {
                 z-index: 1;
                 position: relative;
+                border:1px solid #fff ;
+                border-radius: ${theme.radius.formRadius};
+                background:#f3f5f6;
             }
-
             &.k-left {
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
                 margin-right: -1px;
+                border-right:0;
             }
             &.k-right {
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
                 margin-left: -1px;
+                border-left:0;
             }
         }
         .k-spinner-input {
@@ -73,6 +81,8 @@ export function makeStyles() {
                 text-align: center;
                 padding: 0;
                 border-radius: 0;
+                border-left:0;
+                border-right:0;
             }
         }
         .k-spinner-icon {
@@ -88,6 +98,7 @@ export function makeStyles() {
                 margin: 0;
                 height: calc(50% + 1px);
                 line-height: 50%;
+                
             }
             .k-spinner-icon {
                 line-height: 50% !important;
@@ -107,6 +118,7 @@ export function makeStyles() {
                     border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
                 }
             }
+
             ${sizes.map(size => {
                 const generate = () => `
                     .k-spinner-input {

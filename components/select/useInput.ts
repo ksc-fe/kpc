@@ -42,7 +42,7 @@ export function useInput(resetKeywords: (keywords: State<string>) => void) {
         }
     }
 
-    component.on('$changed:_show', show => {
+    component.on('$changed:show', show => {
         if (show) {
             focusInput();
             resetKeywords(keywords);

@@ -45,7 +45,7 @@ export class Message extends Component<MessageProps> {
 
     static notice(
         content: Children | Partial<MessageProps>,
-        duration: number = 5000,
+        duration: number = 3000,
         type: MessageProps['type'] ='info'
     ) {
         if (!messages) {

@@ -87,9 +87,10 @@ export function makeStyles() {
         .k-upload-tip {
             display: inline-block;
             vertical-align: middle;
+            width: 100%;
         }
         .k-upload-tip {
-            margin-left: ${upload.tip.gap};
+            margin-top: ${upload.tip.gap};
             color: ${upload.tip.color};
         }
 
