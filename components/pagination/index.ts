@@ -16,6 +16,8 @@ export interface PaginationProps {
     showTotal?: boolean,
     showGoto?: boolean,
     showLimits?: boolean,
+    disableBtn?: (page: number, limit: number) => boolean,
+    disablePage?: (page: number, limit: number) => boolean,
 }
 
 export interface PaginationEvents {
@@ -39,6 +41,8 @@ const typeDefs: Required<TypeDefs<PaginationProps>> = {
     showTotal: Boolean,
     showGoto: Boolean,
     showLimits: Boolean,
+    disableBtn: Function,
+    disablePage: Function,
 };
 
 const defaults = (): Partial<PaginationProps> => ({
@@ -132,7 +136,11 @@ export class Pagination extends Component<PaginationProps, PaginationEvents> {
 
     @bind
     private goto(e: InputEvent) {
+        const {disablePage, limit} = this.get();
         const value = parseInt((e.target as HTMLInputElement).value) || 1;
+        if (disablePage && disablePage(value, limit!)) {
+            return;
+        }
         this.changePage(value);
     }
 }

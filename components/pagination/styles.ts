@@ -93,6 +93,9 @@ export function makeStyles() {
                 width: ${pagination.goto.width};
                 margin: ${pagination.goto.gap};
             }
+            .k-input-inner {
+                text-align: center;
+            }
         }
             
         .k-select {
