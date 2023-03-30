@@ -11,10 +11,10 @@ import {Icon} from 'kpc';
 <div class="icons">
     <div class="icon" v-for={this.get('fonts')}>
         <Icon 
-            class={`k-icon-${$value}`}
+            class={'k-icon-' + $value}
             size="large"
         />
-        <div>{`k-icon-${$value}`}</div>
+        <div>{'k-icon-' + $value}</div>
     </div>
 </div>
 ```
