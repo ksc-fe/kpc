@@ -9,6 +9,7 @@ export interface ColorpickerProps {
     size?: Sizes
     disabled?: boolean
     container?: Container
+    show?: boolean
 }
 
 export interface ColorpickerEvents { }
@@ -22,6 +23,7 @@ const typeDefs: Required<TypeDefs<ColorpickerProps>> = {
     size: sizes,
     disabled: Boolean,
     container: [Function, String],
+    show: Boolean,
 };
 
 const defaults = (): Partial<ColorpickerProps> => ({
