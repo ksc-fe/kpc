@@ -1,6 +1,6 @@
-import React, {createRef, useState} from 'react';
+import React, {createRef, useState, useEffect} from 'react';
 import * as ReactDOM from 'react-dom';
-import {Drawer, Card, Button} from '../../';
+import {Drawer, Card, Button, Select, Option} from '../../';
 import {Component} from 'intact-react';
 import {getElement, wait, dispatchEvent} from '../../../../test/utils';
 
@@ -78,5 +78,29 @@ describe('Drawer', () => {
         dispatchEvent(element3, 'click');
         await wait();
         expect(click3.callCount).to.eql(1);
+    });
+
+    it('$update call before mountedQueue in $receive', async () => {
+        function App() {
+            const [state, setState] = useState(false);
+            useEffect(() => {
+                setState(true);
+            }, []);
+            return <Drawer value={true} mode="destroy">
+                <div>
+                    <Card>
+                        <div>react element</div>
+                        <Select container={parentElement => parentElement.closest('.k-dialog-body')!}>
+                            {state ? <Option value="1">1</Option> : null}
+                        </Select>
+                    </Card>
+                </div>
+            </Drawer>
+        }
+
+        ReactDOM.render(<App />, container);
+
+        await wait();
+        expect(document.querySelector<HTMLElement>('.k-dialog-body .k-select-menu')!.textContent).to.eql('1');
     });
 });
