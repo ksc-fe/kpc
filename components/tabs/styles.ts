@@ -236,8 +236,8 @@ export function makeStyles() {
             }
         }
 
-        //plane-card
-        &.k-tabs-plane-card {
+        //flat-card
+        &.k-tabs-flat-card {
             border-bottom: none;
             .k-tab {
                 margin: 0;
@@ -258,6 +258,8 @@ export function makeStyles() {
                 top: 0;
                 height: auto;
                 z-index: -1;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
+                border-radius: 4px 4px 0px 0px;
             }
             &.k-vertical {
                 border-right: none;

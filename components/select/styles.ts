@@ -99,7 +99,7 @@ const defaults = deepDefaults(
     },
     sizes.reduce((memo, size) => {
         memo[size] = {
-            get padding() { return `0 ${theme[size].padding}` },
+            get padding() { return `7px ${theme[size].padding}` },
             get height() { return theme[size].height },
             get fontSize() { return theme[size].fontSize },
             multipleGap: `1px`,
@@ -110,7 +110,7 @@ const defaults = deepDefaults(
             // use default padding for large size
             Object.defineProperty(memo.large, 'padding', {
                 get() {
-                    return `0 ${theme.default.padding}`;
+                    return `7px 16px`;
                 }
             });
             Object.defineProperty(memo.large, 'fontSize', {

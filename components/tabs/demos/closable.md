@@ -69,7 +69,7 @@ export default class extends Component<Props> {
                 {value: 3, label: 'Tab 3'},
             ],
             size: 'large',
-            types: ['default', 'card', 'border-card', 'no-border-card','plane-card']
+            types: ['default', 'card', 'border-card', 'no-border-card','flat-card']
         } as Props;
     }
 

@@ -15,7 +15,7 @@ const iconMap = {
     info: 'information',
     warning: 'alert',
     success: 'truth-circled',
-    error: 'fault',
+    error: 'fault-outline',
 };
 
 <div {...getRestProps(this)}

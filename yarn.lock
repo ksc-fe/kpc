@@ -7419,17 +7419,10 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-<<<<<<< HEAD
-intact-react@3.0.13, intact-react@^3.0.13:
-  version "3.0.13"
-  resolved "https://registry.yarnpkg.com/intact-react/-/intact-react-3.0.13.tgz#bbe9bb5afa2c67cfc058a4557ce28b7a52f30952"
-  integrity sha512-RegeLioJOCneDDgg2BfPt5Zuzn0RL+FuvVhyyakc5nPvMfxKOKXY7VbvYGCV3DeYwpPPn+AmY5ZHAyoqPQCiGQ==
-=======
 intact-react@^3.0.14:
   version "3.0.14"
   resolved "https://registry.yarnpkg.com/intact-react/-/intact-react-3.0.14.tgz#891f7e2c59fc0713648beae7b149b3f35b09a587"
   integrity sha512-41aRePRuJjg4swTpP9LKj6+ww1OudoECMq6xvBDL1CtZ9X0w7AiBomR+QJHKIiJvOszV1e2ApIIirrAvSCos0A==
->>>>>>> master
   dependencies:
     intact "^3.0.14"
     tslib "^2.3.1"

@@ -21,12 +21,14 @@ import {Steps, Step, Button} from 'kpc';
     <Button type="primary" ev-click={this.next}
         disabled={this.get('index') === 2}
     >Next Step</Button>
-
-    <Steps value={1} status="error" type="simple">
+    <br />
+    <Steps v-model="index" type="line-simple">
         <Step title="选择配置">请选择主机的配置信息</Step>
         <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
         <Step title="设置VPC" />
     </Steps>
+
+
 </div>
 ```
 

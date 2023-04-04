@@ -232,7 +232,7 @@ export function makeStyles() {
                     height: ${styles.height};
                     line-height: ${styles.height};
                     font-size: ${styles.fontSize};
-                    padding: 0 ${styles.paddingGap};
+                    padding: 7px ${styles.paddingGap};
                 }
                 .k-input-prefix {
                     left: ${styles.paddingGap};

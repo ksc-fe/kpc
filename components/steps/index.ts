@@ -5,15 +5,15 @@ export * from './step';
 
 export interface StepsProps {
     value?: number
-    status?: 'normal' | 'error'
-    type?: 'default' | 'line' | 'simple'
+    status?: 'normal' | 'error' | 'done'
+    type?: 'default' | 'line' | 'simple' | 'line-simple'
     clickable?: boolean
 }
 
 const typeDefs: Required<TypeDefs<StepsProps>> = {
     value: Number,
-    status: ['normal', 'error'],
-    type: ['default', 'line', 'simple'],
+    status: ['normal', 'error', 'done'],
+    type: ['default', 'line', 'simple','optimize', 'line-simple'],
     clickable: Boolean
 };
 

@@ -23,9 +23,9 @@ const defaults = {
 
     icon: {
         // color: `inherit`,
-        fontSize: `14px`,
+        fontSize: `18px`,
         left: `16px`,
-        top: `8px`,
+        top: `6px`,
     },
 };
 

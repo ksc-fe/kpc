@@ -28,7 +28,7 @@ export default class extends Component {
 
     @bind
     showMessage2() {
-        Message.success('stick message', 0);
+        Message.success('stick message', 100000);
     }
 }
 ```

@@ -44,81 +44,92 @@ setDefault(() => {
 
 export function makeStyles() {
     return css`
-        display: inline-block;
-        vertical-align: middle;
-        line-height: 1;
-        &:hover {
-            border: 1px solid ${theme.color.primary};
-            border-radius: ${theme.radius.formRadius}
-        }
-        .k-spinner-btn {
-            vertical-align: top;
-            &:hover,
-            &:focus {
-                z-index: 1;
-                position: relative;
-                border:1px solid #fff ;
-                border-radius: ${theme.radius.formRadius};
-                background:#f3f5f6;
-            }
-            &.k-left {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                margin-right: -1px;
-                border-right:0;
-            }
-            &.k-right {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                margin-left: -1px;
-                border-left:0;
-            }
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    color: #848F9A;
+    border:1px solid #D0D5D9;
+    border-radius: 4px;
+    &:not(.k-disabled):hover {
+        border: 1px solid ${theme.color.primary};
+        border-radius: 4px;
+        .k-spinner-btn:not(.k-disabled) {
+            background: #F3F5F6;
+            border: none
         }
         .k-spinner-input {
-            width: ${spinner.default.inputWidth};
-            vertical-align: top;
-            .k-input-inner {
-                text-align: center;
-                padding: 0;
-                border-radius: 0;
-                border-left:0;
-                border-right:0;
+            border-color: initial;
+        }
+    }
+    .k-spinner-btn {
+        vertical-align: top;
+        &:not(.k-disabled):hover,
+        &:focus {
+            z-index: 1;
+            color: ${theme.color.primary};
+        }
+
+        &.k-left {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-right: -1px;
+            border:none;
+        }
+        &.k-right {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            margin-left: -1px;
+            border:none;
+        }
+    }
+    .k-spinner-input {
+        width: ${spinner.default.inputWidth};
+        vertical-align: top;
+        .k-input-inner {
+            text-align: center;
+            padding: 0;
+            border-radius: 0;
+            border:none;
+            &:hover {
+              border: none
             }
+        }
+        &:not(.k-disabled):hover {
+            border-color: initial;
+        }
+    }
+    .k-spinner-icon {
+        font-size: ${spinner.default.iconFontSize};
+    }
+    
+    &.k-vertical {
+        position: relative;
+        font-size: 0;
+        .k-spinner-btn {
+            position: absolute;
+            right: 0;
+            margin: 0;
+            height: calc(50% + 1px);
+            line-height: 50%;
         }
         .k-spinner-icon {
-            font-size: ${spinner.default.iconFontSize};
+            line-height: 50% !important;
+            font-size: inherit !important;
         }
-        
-        &.k-vertical {
-            position: relative;
+        .k-spinner-btn.k-left {
+            bottom: 0;
+            border-radius: 0 0 ${theme.borderRadius} 0;
+        }
+        .k-spinner-btn.k-right {
+            top: 0;
+            border-radius: 0 ${theme.borderRadius} 0 0;
+        }
+        .k-spinner-input {
             font-size: 0;
-            .k-spinner-btn {
-                position: absolute;
-                right: 0;
-                margin: 0;
-                height: calc(50% + 1px);
-                line-height: 50%;
-                
+            .k-input-inner {
+                border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
             }
-            .k-spinner-icon {
-                line-height: 50% !important;
-                font-size: inherit !important;
-            }
-            .k-spinner-btn.k-left {
-                bottom: 0;
-                border-radius: 0 0 ${theme.borderRadius} 0;
-            }
-            .k-spinner-btn.k-right {
-                top: 0;
-                border-radius: 0 ${theme.borderRadius} 0 0;
-            }
-            .k-spinner-input {
-                font-size: 0;
-                .k-input-inner {
-                    border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
-                }
-            }
-
+        }
             ${sizes.map(size => {
                 const generate = () => `
                     .k-spinner-input {
