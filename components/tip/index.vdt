@@ -26,9 +26,8 @@ const classNameObj = {
         >
             <template>
                 <b:close>
-                    <Icon class="ion-ios-close-empty"
-                        size="large"
-                        color={type}
+                    <Icon class="k-icon-close"
+                        size="default"
                         hoverable={!disabled}
                     />
                 </b:close>

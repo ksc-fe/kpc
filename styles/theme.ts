@@ -20,7 +20,7 @@ export function defaultTheme() {
             padding: '8px',
         },
         mini: {
-            height: '16px',
+            height: '21px',
             fontSize: '12px',
             padding: '8px',
         },
@@ -35,7 +35,7 @@ export function defaultTheme() {
             info:'#3c4449',
             bg: '#f3f5f6',
             title: '#333',
-            darkBorder: '#b2b2b2',
+            darkBorder: '#D0D5D9',
             placeholder: '#bec3c5',
             get link() { return theme.color.primary },
             get linkHover() { return palette(theme.color.primary, -1) }, 
@@ -43,12 +43,12 @@ export function defaultTheme() {
             // get hoverBg() { return palette(theme.color.primary, -4) }, 
             disabled: '#bec3c5',
             disabledBg: '#f0f2f4',
-            disabledBorder: '#ccc',
+            disabledBorder: '#D0D5D9',
             lightBlack: '#737373',
             dark: '#151b1e',
             desText:'#848F9A'
         },
-        borderRadius: '2px',
+        borderRadius: '4px',
         boxShadow: '0 0 16px 0 rgba(0, 0, 0, .1)',
         baseBoxShadow: '0px 0px 8px rgba(0, 0, 0, 0.08)',
         middleBoxShadow: '0px 2px 16px 2px rgba(0, 0, 0, 0.08)',
@@ -67,7 +67,15 @@ export function defaultTheme() {
         radius: {
             formRadius: '4px',
             cardRadius: '6px'
+        },
+
+        tabs: {
+            large:`24px`,
+            default: `20px`,
+            small: `16px`,
+            mini: `14px`,
         }
+
     }    
 }
 

@@ -8,7 +8,7 @@ const defaults = {
         fontSize: '14px',
         gap: '8px'
     },
-    get color() { return theme.color.text },
+    get color() { return theme.color.dark },
     get padding() { return `6px ${theme.default.padding}` },
 };
 
@@ -35,10 +35,16 @@ export function makeStyles() {
         .k-tip-title {
             font-size: ${tip.title.fontSize};
             margin-bottom: ${tip.title.gap};
+            font-weight: 500
         }
 
         &.k-fade-leave-active {
             position: relative;
         }
+
+        .k-tip-close {
+            color: ${theme.color.desText} !important;
+        }
+
     `;
 }

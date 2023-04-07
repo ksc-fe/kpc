@@ -9,7 +9,7 @@ const defaults = {
     get borderRadius() { return theme.borderRadius },
     get transition() { return theme.transition.large },
     padding: '0',
-    margin: '0 20px',
+    margin: '0 24px',
     get color() { return theme.color.text },
     get fontSize() { return theme.fontSize },
     get boxShadow() { return theme.topBoxShadow },
@@ -17,23 +17,23 @@ const defaults = {
     // header
     header: {
         fontSize: '14px',
-        get color() { return theme.color.title },
+        get color() { return theme.color.dark },
         height: '52px',
         border: `1px solid #e2e5e8`,
-        closeTop: '16px',
+        closeTop: '9px',
         closeRight: '-9px',
-        closeIconFontSize: '44px',
+        closeIconFontSize: '16px',
     },
 
     // body
     body: {
-        padding: `20px`,
+        padding: `24px`,
     },
 
     // footer
     footer: {
         padding: `16px 0`,
-        btnGap: `12px`,
+        btnGap: `8px`,
         border: `1px solid #e2e5e8`,
     },
 
@@ -47,7 +47,7 @@ const defaults = {
 
     // alert dialog
     alert: {
-        padding: `0 20px`,
+        padding: `0 24px`,
         bodyMarginTop: `-25px`,
         tipIconMarginBottom: '10px',
         tipIconFontSize: '37px',
@@ -77,6 +77,7 @@ export function makeDialogStyles() {
         box-shadow: ${dialog.boxShadow};
         max-width: 100%;
         z-index: ${theme.maxZIndex};
+        font-weight: 500;
 
         // drag
         &.k-dragging {

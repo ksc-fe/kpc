@@ -48,23 +48,23 @@ const dialog = (
                         v-if={!hideClose && !$props.hideClose}
                         ev-mousedown={stopPropagation}
                     >
-                        <Icon class="ion-ios-close-empty" />
+                        <Icon class="k-icon-close" />
                     </Button>
                 </div>
                 <div class="k-dialog-body"><b:body>{children}</b:body></div>
                 <b:footer-wrapper>
                     <div class="k-dialog-footer">
                         <b:footer>
+                            <Button class="k-dialog-cancel" 
+                                type="default"
+                                ev-click={this.cancel}
+                            >{cancelText}</Button>
                             <Button class="k-dialog-ok" 
                                 type="primary"
                                 ev-click={this.ok} 
                                 loading={loading}
                                 disabled={disabledOk}
                             >{okText}</Button>
-                            <Button class="k-dialog-cancel" 
-                                type="secondary"
-                                ev-click={this.cancel}
-                            >{cancelText}</Button>
                         </b:footer>
                     </div>
                 </b:footer-wrapper>

@@ -12,7 +12,7 @@ const defaults = {
     gap: `10px`,
     boxShadow: 'none',
     padding: `7px 33px 8px 8px`,
-    closeFontSize: `26px`,
+    closeFontSize: `16px`,
     fontSize: '12px',
     get color() { return theme.color.ghost },
     minWidth: '400px',
@@ -25,7 +25,7 @@ const defaults = {
         // color: `inherit`,
         fontSize: `18px`,
         left: `16px`,
-        top: `6px`,
+        top: `7px`,
     },
 };
 
@@ -103,7 +103,7 @@ export function makeMessageStyles() {
                 &.k-${type} {
                     .k-message-container {
                         color: ${theme.color.text};
-                        border-color: ${color};
+                        border:none;
                         background: ${palette(color, -4)};
                     }
                     .k-message-close {

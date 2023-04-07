@@ -101,6 +101,9 @@ export function makeStepsStyles() {
                 border-radius: 50%;
                 text-align: center;
                 border: ${steps.head.innerBorder};
+                span {
+                    color: #b2b9bd;
+                }
             }
             .k-step-icon:before {
                 line-height: calc(${steps.head.innerWidth} - 2px);
@@ -270,6 +273,11 @@ export function makeStepsStyles() {
                 .k-step-title{
                     color:#151B1E !important;
                 }
+                &.k-step-inner {
+                    span {
+                        color: ${theme.color.primary};
+                    }
+                }
             }
             .k-active {
                 .k-step-head {
@@ -279,6 +287,11 @@ export function makeStepsStyles() {
                 }
                 .k-step-title {
                     color: ${theme.color.primary}
+                }
+                .k-step-inner {
+                    span{
+                        color: #ffffff;
+                    }
                 }
             }
             .k-error {
@@ -359,6 +372,9 @@ export function makeStepsStyles() {
                     }
                     .k-step-title {
                         padding-right: 0;
+                        &:after {
+                          display:none;
+                        }
                     }
                 }
             }
@@ -370,6 +386,12 @@ export function makeStepsStyles() {
 
                 .k-step-wrapper:after {
                     background: ${theme.color.primary};
+                    height:2px;
+                    
+                }
+                .k-step-title:after {
+                  background: ${theme.color.primary};
+                  height:2px;
                 }
 
                 .k-step-title {
@@ -378,8 +400,26 @@ export function makeStepsStyles() {
             }
             .k-active {
                 .k-step-title {
-                    color: ${theme.color.primary} 
+                    color: ${theme.color.primary};
                 }
+                .k-step-inner {
+                    span{
+                        color: #ffffff;
+                    }
+                }
+                
+
+            }
+            .k-error {
+              .k-step-wrapper {
+                  .k-step-title, .k-step-content {
+                      color: ${theme.color.danger}
+                  }
+                  .k-step-inner {
+                     font-size:24px
+                  }
+              }
+           
             }
             .k-step-wrapper {
                 display: flex
@@ -388,7 +428,7 @@ export function makeStepsStyles() {
                 content: '';
                 display: block;
                 flex: 1;
-                height: 2px;
+                height: 1px;
                 background: ${theme.color.placeholder};
                 top: ${steps.line.headTop};
                 position: relative;
@@ -419,7 +459,20 @@ export function makeStepsStyles() {
                 font-size: ${steps.line.titleFontSize};
                 padding: 0;
                 margin-top: ${steps.line.titleGopTop};
-                color: #848F9A
+                color: #848F9A;
+                display:flex;
+                &:after{
+                    content: '';
+                    display: block;
+                    flex: 1;
+                    height: 1px;
+                    background: ${theme.color.placeholder};
+                    margin-left: 15%;
+                    margin-top: 6.5%;
+
+                }
+
+              
             }
             .k-step-content {
                 margin: ${steps.line.mainContentGap};

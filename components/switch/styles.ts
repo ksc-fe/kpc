@@ -23,14 +23,14 @@ const defaults = {
     // default
     default: {
         width: `36px`,
-        height: `18px`,
+        height: `20px`,
         padding: `2px`,
     },
 
     // large
     large: {
         width: `52px`,
-        height: `26px`,
+        height: `24px`,
         padding: `2px`,
     },
 

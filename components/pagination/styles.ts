@@ -66,11 +66,13 @@ export function makeStyles() {
             margin-right: ${pagination.gap};
             display: inline-block;
             vertical-align: middle;
+            margin-left: 4px;
         }
         .k-pagination-ellipsis {
             background-color: transparent;
             border-color: transparent;
         }
+
         .k-btns {
             .k-btn {
                 width: auto !important;
@@ -79,13 +81,17 @@ export function makeStyles() {
                 margin-right: ${pagination.btn.gap};
                 &:last-of-type {
                     margin: 0 !important;
+                    border: none;
+                };
+                &:first-of-type {
+                    border:none;
                 }
             }
             .k-icon {
                 font-size: 18px;
+                color: #848F9A;
             }
         }
-
         // goto   
         .k-pagination-goto {
             .k-input {

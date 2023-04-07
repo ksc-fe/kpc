@@ -112,7 +112,8 @@ export function makeStyles() {
             top: 50%;
             transform: translateY(-50%);
             z-index: 2;
-            color: ${theme.color.desText} 
+            color: ${theme.color.desText};
+            line-height: 2px;
         }
 
         // clearable
@@ -156,6 +157,7 @@ export function makeStyles() {
             .k-input-wrapper:first-child {
                 .k-input-inner {
                     border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
+                    border-right: none;
                 }
             }
             .k-input-wrapper:last-child {
@@ -175,7 +177,7 @@ export function makeStyles() {
             white-space: nowrap;
             .k-btn {
                 margin: -1px 0;
-                border-radius: 0;
+                border-radius: 0 ${theme.borderRadius} ${theme.borderRadius} 0;
                 border: none;
             }
             // select
@@ -232,7 +234,7 @@ export function makeStyles() {
                     height: ${styles.height};
                     line-height: ${styles.height};
                     font-size: ${styles.fontSize};
-                    padding: 7px ${styles.paddingGap};
+                    padding: 0 ${styles.paddingGap};
                 }
                 .k-input-prefix {
                     left: ${styles.paddingGap};

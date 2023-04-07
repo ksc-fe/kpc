@@ -43,7 +43,7 @@ const iconMap = {
             class="k-message-close"
             ev-click={this.close}
         >
-            <Icon class="ion-ios-close-empty" />
+            <Icon class="k-icon-close" />
         </Button>
     </div>
 </div>

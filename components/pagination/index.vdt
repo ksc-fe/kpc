@@ -116,13 +116,13 @@ let nextPage = value + 1;
             type={type}
             disabled={value <= 1}
             ev-click={this.prev}
-        ><Icon class="ion-ios-arrow-left" /></Button>
+        ><Icon class="k-icon-arrow-left" /></Button>
         <template>{paginationItems}</template>
         <Button icon size={size}
             type={type}
             disabled={value >= totalPages}
             ev-click={this.next}
-        ><Icon class="ion-ios-arrow-right" /></Button>
+        ><Icon class="k-icon-arrow-right" /></Button>
     </ButtonGroup>
 
     <template v-if={!simple}>

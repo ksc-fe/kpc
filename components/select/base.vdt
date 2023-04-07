@@ -107,7 +107,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                                         {$label}
                                                     </b:value>
                                                 </span>
-                                                <Icon class="ion-ios-close k-select-close"
+                                                <Icon class="k-icon-close k-select-close"
                                                     ev-click={this.delete.bind(this, $key)}
                                                     hoverable={!disabled}
                                                 />

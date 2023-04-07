@@ -57,8 +57,8 @@ export default function makeStyles() {
         .k-checkbox-wrapper {
             width: ${checkbox.width};
             height: ${checkbox.width}; 
-            border: 1px solid ${checkbox.borderColor}; 
-            border-radius: ${checkbox.borderRadius};
+            border: 1px solid ${theme.color.disabledBorder}; 
+            border-radius: ${theme.radius.formRadius};
             position: relative;
             transition: all ${checkbox.transition};
             background: ${checkbox.bgColor};

@@ -47,7 +47,7 @@ export function makeStyles() {
     display: inline-block;
     vertical-align: middle;
     line-height: 1;
-    color: #848F9A;
+    color: #848F9A !important;
     border:1px solid #D0D5D9;
     border-radius: 4px;
     &:not(.k-disabled):hover {
@@ -113,7 +113,6 @@ export function makeStyles() {
             line-height: 50%;
         }
         .k-spinner-icon {
-            line-height: 50% !important;
             font-size: inherit !important;
         }
         .k-spinner-btn.k-left {
@@ -127,13 +126,13 @@ export function makeStyles() {
         .k-spinner-input {
             font-size: 0;
             .k-input-inner {
-                border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
+                border-radius: ${theme.borderRadius} ;
             }
         }
             ${sizes.map(size => {
                 const generate = () => `
                     .k-spinner-input {
-                        padding-right: calc(${theme[size].height} - 1px);
+                        padding-right: calc(${theme[size].height});
                         width: ${spinner.vertical[size].width};
                     }
                 `

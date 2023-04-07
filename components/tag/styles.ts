@@ -31,7 +31,7 @@ const defaults = deepDefaults(
         },
         large: {
             padding: `0px 16px`,
-            height: '32px',
+            height: '24px',
             close: {
                 fontSize: '24px',
                 gap: '12px',
@@ -39,7 +39,7 @@ const defaults = deepDefaults(
         },
         small: {
             padding: `0 4px`,
-            height: '18px',
+            height: '16px',
             close: {
                 fontSize: '18px',
                 gap: '4px'
@@ -88,6 +88,7 @@ export function makeStyles() {
         .k-tag-close {
             font-size: ${tag.close.fontSize};
             margin-left: ${tag.close.gap};
+            color: ${theme.color.desText} !important;
         }
 
         &.k-none {

@@ -58,15 +58,15 @@ const defaults = deepDefaults(
         },
         tag: {
             margin: `3px 8px 3px 0`,
-            padding: `3px 8px`,
-            get borderRadius() { return theme.borderRadius },
+            padding: `1px 8px`,
+            get borderRadius() { return theme.radius.formRadius },
             get bgColor() { return theme.color.bg },
             disabledBgColor: '#eee',
 
             delete: {
                 gap: `8px`,
                 fontSize: '14px',
-                get color() { return theme.color.placeholder },
+                get color() { return theme.color.desText },
             }
         },
 
@@ -99,7 +99,7 @@ const defaults = deepDefaults(
     },
     sizes.reduce((memo, size) => {
         memo[size] = {
-            get padding() { return `7px ${theme[size].padding}` },
+            get padding() { return `0 ${theme[size].padding}` },
             get height() { return theme[size].height },
             get fontSize() { return theme[size].fontSize },
             multipleGap: `1px`,
