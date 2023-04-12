@@ -97,7 +97,8 @@ export function makeMessageStyles() {
             top: ${message.icon.top};
             font-size: ${message.icon.fontSize};
         }
-        ${(['info','error', 'success', 'warning'] as const).map(type => {
+
+        ${(['info','error', 'success', 'warning','primary'] as const).map(type => {
             const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
                 &.k-${type} {
@@ -127,6 +128,7 @@ export function makeMessageStyles() {
             `
         })}
 
+        
         // transition
         &.transition-enter-from,
         &.transition-leave-to {

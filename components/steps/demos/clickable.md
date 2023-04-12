@@ -15,7 +15,7 @@ import {Steps, Step, Button} from 'kpc';
         <Step title="设置VPC" />
     </Steps>
     <br />
-    <Steps v-model="index" type="optimize" clickable>
+    <Steps v-model="index" type="line-compact" clickable>
         <Step title="选择配置">请选择主机的配置信息</Step>
         <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
         <Step title="设置VPC" />

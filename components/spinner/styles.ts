@@ -6,7 +6,7 @@ import '../../styles/global';
 const defaults = {
     default: {
         inputWidth: '46px',
-        iconFontSize: '24px'
+        iconFontSize: '16px'
     },
     large: {
         inputWidth: '60px',
@@ -47,14 +47,13 @@ export function makeStyles() {
     display: inline-block;
     vertical-align: middle;
     line-height: 1;
-    color: #848F9A !important;
     border:1px solid #D0D5D9;
     border-radius: 4px;
     &:not(.k-disabled):hover {
         border: 1px solid ${theme.color.primary};
         border-radius: 4px;
         .k-spinner-btn:not(.k-disabled) {
-            background: #F3F5F6;
+            background: ${theme.color.bg};
             border: none
         }
         .k-spinner-input {
@@ -74,12 +73,19 @@ export function makeStyles() {
             border-bottom-right-radius: 0;
             margin-right: -1px;
             border:none;
+            color: ${theme.color.desText};
+           
         }
         &.k-right {
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
             margin-left: -1px;
             border:none;
+            color: ${theme.color.desText};
+           
+        }
+        &.k-disabled{
+            color: ${theme.color.disabled} !important;
         }
     }
     .k-spinner-input {
@@ -101,7 +107,6 @@ export function makeStyles() {
     .k-spinner-icon {
         font-size: ${spinner.default.iconFontSize};
     }
-    
     &.k-vertical {
         position: relative;
         font-size: 0;
@@ -154,6 +159,9 @@ export function makeStyles() {
                 &:focus {
                     z-index: 0;
                 }
+            }
+            .k-right, .k-left {
+                color: ${theme.color.disabled} !important
             }
         }
 

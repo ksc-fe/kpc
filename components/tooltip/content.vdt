@@ -37,8 +37,8 @@ const classNameObj = {
         ></i>
         <div class="k-tooltip-buttons" v-if={confirm} key="tooltip-buttons">
             <b:buttons>
-                <Button type="primary" ev-click={this.ok} size="small">{okText}</Button>
                 <Button ev-click={this.cancel} size="small">{cancelText}</Button>
+                <Button type="primary" ev-click={this.ok} size="small">{okText}</Button>
             </b:buttons>
         </div>
     </b:children>

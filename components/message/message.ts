@@ -16,7 +16,7 @@ import {bind} from '../utils';
 export interface MessageProps {
     content?: Children
     duration?: number
-    type?: 'info' | 'error' | 'success' | 'warning'
+    type?: 'info' | 'error' | 'success' | 'warning' | 'primary'
     closable?: boolean
     hideIcon?: boolean
 }
@@ -24,7 +24,7 @@ export interface MessageProps {
 const typeDefs: Required<TypeDefs<MessageProps>> = {
     content: [String, VNode],
     duration: Number,
-    type: ['info', 'error', 'success', 'warning'],
+    type: ['info', 'error', 'success', 'warning','primary'],
     closable: Boolean,
     hideIcon: Boolean,
 };
@@ -64,6 +64,9 @@ export class Message extends Component<MessageProps> {
     }
     static info(content: Children | Partial<MessageProps>, duration?: number) {
         Message.notice(content, duration, 'info');
+    }
+    static primary(content: Children | Partial<MessageProps>, duration?: number) {
+        Message.notice(content, duration, 'primary');
     }
     static error(content: Children | Partial<MessageProps>, duration?: number) {
         Message.notice(content, duration, 'error');

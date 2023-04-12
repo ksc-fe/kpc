@@ -30,10 +30,10 @@ const defaults = deepDefaults(
             get bgColor() { return theme.color.disabledBg },
         },
         large: {
-            padding: `0px 16px`,
+            padding: `0px 8px`,
             height: '24px',
             close: {
-                fontSize: '24px',
+                fontSize: '20px',
                 gap: '12px',
             }
         },
@@ -41,15 +41,15 @@ const defaults = deepDefaults(
             padding: `0 4px`,
             height: '16px',
             close: {
-                fontSize: '18px',
+                fontSize: '12px',
                 gap: '4px'
             }
         },
         mini: {
-            padding: `0 1px`,
+            padding: `0 2px`,
             height: '14px',
             close: {
-                fontSize: '16px',
+                fontSize: '12px',
                 gap: '2px'
             }
         },
@@ -81,7 +81,7 @@ export function makeStyles() {
         border-radius: ${tag.borderRadius};
         font-size: ${tag.fontSize};
         height: ${tag.height};
-
+        color: rgb(204, 204, 204);
         &.k-solid {
             background:${tag.background};
         }
@@ -124,7 +124,7 @@ export function makeStyles() {
 
         // border
         &.k-dashed {
-            border: 1px dashed;
+            border:1px dashed;
         }
     `;
 }

@@ -23,28 +23,28 @@ const defaults = {
     // default
     default: {
         width: `36px`,
-        height: `20px`,
+        height: `18px`,
         padding: `2px`,
     },
 
     // large
     large: {
         width: `52px`,
-        height: `24px`,
+        height: `22px`,
         padding: `2px`,
     },
 
     // small
     small: {
         width: `32px`,
-        height: `16px`,
+        height: `14px`,
         padding: `2px`,
     },
 
     // mini
     mini: {
         width: `24px`,
-        height: `12px`,
+        height: `10px`,
         padding: `1px`,
     },
 
@@ -52,7 +52,7 @@ const defaults = {
     get disabledBgColor() { return theme.color.disabledBg },
 
     // plane
-    plane: {
+    flat: {
         get bgColor() { return theme.color.primary},
         get disabledBgColor() {return theme.color.ghost }
     }
@@ -187,8 +187,8 @@ export function makeStyles() {
             
         }
 
-        // plane
-        &.k-switch-plane{
+        // flat
+        &.k-switch-flat{
             .k-switch-bar,
             .k-switch-wrapper {
                 background: #d0d5d9;

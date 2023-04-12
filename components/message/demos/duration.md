@@ -23,12 +23,12 @@ export default class extends Component {
     
     @bind
     showMessage1() {
-        Message.info('close after 10s', 10000);
+        Message.primary('close after 10s', 10000);
     }
 
     @bind
     showMessage2() {
-        Message.success('stick message', 100000);
+        Message.success('stick message', 0);
     }
 }
 ```

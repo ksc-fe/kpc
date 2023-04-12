@@ -9,7 +9,7 @@ const {children, title, index, className, style} = this.get();
     {({value, status, width, onChange, type}) => {
         const selected = value === index;
         const error = selected && status === 'error';
-        const done = value > index && status !== 'error' && type === 'optimize'; 
+        const done = value > index && status !== 'error' && type === 'line-compact'; 
         const classNameObj = {
             'k-step': true,
             'k-active': selected,

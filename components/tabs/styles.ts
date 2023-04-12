@@ -98,6 +98,7 @@ export function makeStyles() {
             margin-left: ${tabs.closeGutter};
             position: relative;
             top: -1px;
+            color:${theme.color.desText};
         }
 
         // active-bar

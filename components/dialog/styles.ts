@@ -126,9 +126,11 @@ export function makeDialogStyles() {
             position: absolute;
             right: ${dialog.header.closeRight};
             top: ${dialog.header.closeTop};
+            color: ${theme.color.desText};
             .k-icon {
                 font-size: ${dialog.header.closeIconFontSize};
             }
+
         }
 
         // body
@@ -182,6 +184,8 @@ export function makeAlertStyles() {
             .k-dialog-header,
             .k-dialog-footer {
                 border: none;
+
+                
             }
             .k-dialog-tip-icon {
                 margin-bottom: ${dialog.alert.tipIconMarginBottom};
@@ -230,6 +234,10 @@ export function makeAlertStyles() {
                     line-height: ${dialog.alert.tipIconLineHeight};
                     font-size: ${dialog.alert.titleFontSize};
                 }
+               
+            }
+            .k-icon-close {
+                color: ${theme.color.desText} !important
             }
         }
     ` 

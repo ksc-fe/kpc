@@ -33,6 +33,7 @@ export function defaultTheme() {
             text: '#3c4449',
             ghost: '#737373',
             info:'#3c4449',
+            infomation:'#0091ea',
             bg: '#f3f5f6',
             title: '#333',
             darkBorder: '#D0D5D9',

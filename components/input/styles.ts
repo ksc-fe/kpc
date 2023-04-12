@@ -113,7 +113,6 @@ export function makeStyles() {
             transform: translateY(-50%);
             z-index: 2;
             color: ${theme.color.desText};
-            line-height: 2px;
         }
 
         // clearable
@@ -176,13 +175,13 @@ export function makeStyles() {
             text-align: center;
             white-space: nowrap;
             .k-btn {
-                margin: -1px 0;
+                margin: -2px -2px;
                 border-radius: 0 ${theme.borderRadius} ${theme.borderRadius} 0;
                 border: none;
             }
             // select
             .k-select {
-                margin: -1px;
+                margin: -1px -1px;
                 text-align: left;
             }
         }
@@ -238,9 +237,11 @@ export function makeStyles() {
                 }
                 .k-input-prefix {
                     left: ${styles.paddingGap};
+                    top: 54%;
                 }
                 .k-input-suffix {
                     right: ${styles.paddingGap};
+                    top: 54%;
                 }
                 &.k-with-prefix {
                     .k-input-inner {

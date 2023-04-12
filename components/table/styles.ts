@@ -109,6 +109,7 @@ export function makeStyles() {
             padding: ${table.thead.padding};
             position: relative;
             background: ${table.thead.bgColor};
+            line-height: normal;
             &:before {
                 content: '';
                 height: ${table.thead.delimiterHeight};

@@ -422,7 +422,7 @@ export function makeButtonGroupStyles() {
                 &:not(:first-child) {
                     margin-left: -1px;
                     &:not(:last-child) {
-                        border-radius: 4px;
+                        border-radius: 0;
                     }
                 }
                 &:not(:only-child):first-child {

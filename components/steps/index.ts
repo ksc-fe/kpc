@@ -6,14 +6,14 @@ export * from './step';
 export interface StepsProps {
     value?: number
     status?: 'normal' | 'error' | 'done'
-    type?: 'default' | 'line' | 'simple' | 'line-simple'
+    type?: 'default' | 'line' | 'simple' | 'line-compact' | 'dot'
     clickable?: boolean
 }
 
 const typeDefs: Required<TypeDefs<StepsProps>> = {
     value: Number,
     status: ['normal', 'error', 'done'],
-    type: ['default', 'line', 'simple','optimize', 'line-simple'],
+    type: ['default', 'line', 'simple','line-compact', 'dot'],
     clickable: Boolean
 };
 

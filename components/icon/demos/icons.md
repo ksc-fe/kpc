@@ -36,6 +36,11 @@ export default class extends Component {
     static defaults() {
         return {
             fonts: [
+                "information-fill",
+                "warning-fill",
+                "success-fill",
+                "error-fill",
+                "question-fill",
                 "calendar",
                 "down-squared",
                 "check",
@@ -43,7 +48,6 @@ export default class extends Component {
                 "edit",
                 "arrow-right-circled",
                 "earphone",
-                "copy",
                 "cut",
                 "folder",
                 "download",

@@ -28,12 +28,10 @@ const defaults = deepDefaults(
     {
         get fontSize() { return theme.default.fontSize }, 
         gap: '16px',
-
         btn: {
             gap: '6px',
             padding: '0 3px',
         },
-
         // goto
         goto: {
             width: '60px',
@@ -82,14 +80,29 @@ export function makeStyles() {
                 &:last-of-type {
                     margin: 0 !important;
                     border: none;
-                };
+                }
                 &:first-of-type {
                     border:none;
+                    background:none;
+                }
+                &:not(:first-child):not(:last-child){
+                     border-radius: ${theme.radius.formRadius} !important;
+                }
+                &:hover {
+                    background:#f3f5f6;
                 }
             }
             .k-icon {
                 font-size: 18px;
-                color: #848F9A;
+            }
+            &.k-disabled {
+                &, &:hover {
+                    background: #ffffff;
+                    cursor: not-allowed;
+                };
+                .k-btn {
+                    color: ${theme.color.disabled} !important;
+                }
             }
         }
         // goto   

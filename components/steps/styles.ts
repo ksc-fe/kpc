@@ -6,7 +6,11 @@ import '../../styles/global';
 const defaults = {
     get transition() { return theme.transition.middle },
     get height() { return theme.default.height }, 
-    get bgColor() { return theme.color.bg }, 
+    get bgColor() { return theme.color.bg },
+    get darkColor() {return theme.color.dark},
+    get lightDesColor () {return theme.color.desText},
+
+    lightColor:'#ffffff',
     gutter: '10px',
     gapTop: '-2px',
 
@@ -30,7 +34,8 @@ const defaults = {
        get headInnerBorderColor() { return theme.color.primary },
        headInnerBgColor: 'transparent',
        get mainColor() { return theme.color.primary },
-       get simpleColor() { return theme.color.text }, 
+       get simpleColor() { return theme.color.text },
+       get doneDesColor() { return theme.color.primary } 
     },
 
     // active
@@ -39,7 +44,8 @@ const defaults = {
         get headInnerBorderColor() { return theme.color.primary }, 
         get headInnerBgColor() { return theme.color.primary },
         get mainColor() { return theme.color.primary }, 
-        get simpleColor() { return theme.color.primary }, 
+        get simpleColor() { return theme.color.primary },
+        get activeDesColor() {return theme.color.primary} 
     },
 
     // error
@@ -49,6 +55,7 @@ const defaults = {
         headInnerBgColor: 'transparent',
         get mainColor() { return theme.color.danger }, 
         get simpleColor() { return theme.color.danger }, 
+        get errorDesColor() {return theme.color.danger }
     },
 
     // line
@@ -87,9 +94,9 @@ export function makeStepsStyles() {
     return css`
         display: flex;
         // default and line type
-        &.k-optimize,
+        &.k-line-compact,
         &.k-default,
-        &.k-line-simple,
+        &.k-dot,
         &.k-line {
             .k-step-head {
                 padding-right: ${steps.head.paddingRight};
@@ -194,6 +201,21 @@ export function makeStepsStyles() {
             .k-step:not(:first-of-type) {
                 padding-left: calc(${steps.height} / 2 + ${steps.gutter});
             }
+            // done
+            .k-done {
+                .k-step-inner {
+                    span {
+                        color: ${steps.done.doneDesColor};
+                    }
+                }
+            }
+            //active
+            .k-active
+            .k-step-inner {
+                span {
+                    color: ${steps.lightColor};
+                }
+            }
         }
         
         // line type
@@ -242,11 +264,11 @@ export function makeStepsStyles() {
                 font-size: ${steps.line.titleFontSize};
                 padding: 0;
                 margin-top: ${steps.line.titleGopTop};
-                color: #848F9A
+                color: ${steps.lightDesColor}
             }
             .k-step-content {
                 margin: ${steps.line.mainContentGap};
-                color: #848F9A
+                color: ${steps.lightDesColor}
             }
             .k-step-tail {
                 left: 0;
@@ -267,37 +289,37 @@ export function makeStepsStyles() {
                 .k-step-head {
                     &:before,
                     &:after {
-                        background: ${theme.color.primary};
+                        background: ${steps.done.doneDesColor};
                     }
                 }
                 .k-step-title{
-                    color:#151B1E !important;
+                    color: ${steps.darkColor} !important;
                 }
-                &.k-step-inner {
+                .k-step-inner {
                     span {
-                        color: ${theme.color.primary};
+                        color: ${steps.done.doneDesColor};
                     }
                 }
             }
             .k-active {
                 .k-step-head {
                     &:before {
-                        background: ${theme.color.primary};
+                        background: ${steps.active.activeDesColor};
                     }
                 }
                 .k-step-title {
-                    color: ${theme.color.primary}
+                    color: ${steps.active.activeDesColor}
                 }
                 .k-step-inner {
                     span{
-                        color: #ffffff;
+                        color: ${steps.lightColor};
                     }
                 }
             }
             .k-error {
                 .k-step-wrapper {
                     .k-step-title, .k-step-content {
-                        color: ${theme.color.danger}
+                        color: ${steps.error.errorDesColor}
                     }
                 }
                
@@ -326,16 +348,7 @@ export function makeStepsStyles() {
                 padding-right: ${steps.simple.headPaddingRight};
                 vertical-align: top;
             }
-            .k-active {
-                .k-step-title, .k-step-content {
-                    color: ${theme.color.primary}
-                }
-            }
-            .k-error {
-                .k-step-title, .k-step-content {
-                    color: ${theme.color.danger}
-                }
-            }
+        
             ${stepStatus.map(status => {
                 const styles = steps[status];
                 return css`
@@ -353,22 +366,28 @@ export function makeStepsStyles() {
         &.k-clickable {
             .k-done {
                 cursor: pointer;
-                
                 .k-step-title {
-                    color: ${theme.color.primary} !important
+                    &:hover {
+                        color: ${steps.done.doneDesColor}; 
+                    }
+                }
+                .k-step-inner{
+                    &:hover {
+                        background: #E6F7FF; 
+                    }
                 }
             }
         }
 
-        // optimize
-        &.k-optimize{
-
+        // line-compact
+        &.k-line-compact{
             .k-step {
                 width: auto !important;
                 &:last-of-type {
                     flex: 0 0 auto;
                     .k-step-wrapper {
                         display: flex;
+                        margion-top: 5px;
                     }
                     .k-step-title {
                         padding-right: 0;
@@ -376,64 +395,53 @@ export function makeStepsStyles() {
                           display:none;
                         }
                     }
+                    .k-step-head {
+                        margin-top: 5px;
+                    }
                 }
             }
             .k-done {
-
                 .k-step-inner {
-                    padding: 2px
+                    padding: 2px;
+                    border: 2px solid;
                 }
-
-                .k-step-wrapper:after {
-                    background: ${theme.color.primary};
+                .k-step-wrapper:after,.k-step-title:after {
+                    background: ${steps.done.doneDesColor};
                     height:2px;
-                    
                 }
-                .k-step-title:after {
-                  background: ${theme.color.primary};
-                  height:2px;
-                }
-
                 .k-step-title {
-                    color: #151B1E
+                    color: ${steps.darkColor};
                 }
             }
             .k-active {
                 .k-step-title {
-                    color: ${theme.color.primary};
+                    color: ${steps.active.activeDesColor};
                 }
                 .k-step-inner {
                     span{
-                        color: #ffffff;
+                        color: ${steps.lightColor};
                     }
                 }
-                
-
             }
             .k-error {
               .k-step-wrapper {
                   .k-step-title, .k-step-content {
-                      color: ${theme.color.danger}
+                      color: ${steps.error.errorDesColor}
                   }
                   .k-step-inner {
                      font-size:24px
                   }
               }
-           
             }
             .k-step-wrapper {
-                display: flex
+                display: flex;
+                align-items: center;
             }
             .k-step-wrapper:after {
                 content: '';
-                display: block;
                 flex: 1;
                 height: 1px;
                 background: ${theme.color.placeholder};
-                top: ${steps.line.headTop};
-                position: relative;
-                margin-top: 2%;
-                margin-right: 10px;
             }
             .k-step-head {
                 background: ${steps.line.bgColor};
@@ -452,6 +460,7 @@ export function makeStepsStyles() {
             .k-step-main {
                 position: relative;
                 width: ${steps.line.width};
+                margin-top: 7px;
             }
             .k-step-title {
                 line-height: ${steps.head.innerWidth};
@@ -459,28 +468,24 @@ export function makeStepsStyles() {
                 font-size: ${steps.line.titleFontSize};
                 padding: 0;
                 margin-top: ${steps.line.titleGopTop};
-                color: #848F9A;
+                color:  ${steps.lightDesColor};
                 display:flex;
+                align-items: center;
+                justify-content: space-between;
                 &:after{
                     content: '';
-                    display: block;
-                    flex: 1;
                     height: 1px;
+                    width:50%;
                     background: ${theme.color.placeholder};
-                    margin-left: 15%;
-                    margin-top: 6.5%;
-
                 }
-
-              
             }
             .k-step-content {
                 margin: ${steps.line.mainContentGap};
-                color: #848F9A
+                color:  ${steps.lightDesColor};
             }
         }
-        // line-simple
-        &.k-line-simple {
+        // dot
+        &.k-dot {
             .k-step {
                 width: auto !important;
                 &:last-of-type {
@@ -528,11 +533,11 @@ export function makeStepsStyles() {
                 font-size: ${steps.line.titleFontSize};
                 padding: 0;
                 margin-top: ${steps.line.titleGopTop};
-                color: #848F9A
+                color:  ${steps.lightDesColor};
             }
             .k-step-content {
                 margin: ${steps.line.mainContentGap};
-                color: #848F9A
+                color:  ${steps.lightDesColor};
             }
             .k-step-tail {
                 left: 0;
@@ -553,27 +558,27 @@ export function makeStepsStyles() {
                 .k-step-head {
                     &:before,
                     &:after {
-                        background: ${theme.color.primary};
+                        background: ${steps.done.doneDesColor};
                     }
                 }
                 .k-step-title{
-                    color:#151B1E !important;
+                    color:${steps.darkColor} !important;
                 }
             }
             .k-active {
                 .k-step-head {
                     &:before {
-                        background: ${theme.color.primary};
+                        background: ${steps.active.activeDesColor};
                     }
                 }
                 .k-step-title {
-                    color: ${theme.color.primary}
+                    color: ${steps.active.activeDesColor}
                 }
             }
             .k-error {
                 .k-step-wrapper {
                     .k-step-title, .k-step-content {
-                        color: ${theme.color.danger}
+                        color: ${steps.error.errorDesColor}
                     }
                 }
                

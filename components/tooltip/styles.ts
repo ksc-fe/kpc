@@ -59,7 +59,7 @@ export default function makeStyles() {
             line-height: ${tooltip.lineHeight};
             word-wrap: break-word;
             pointer-events: none;
-            box-shadow: none;
+            box-shadow: ${theme.middleBoxShadow};
             // hoverable
             &.k-hoverable,
             &.k-always {

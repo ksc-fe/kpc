@@ -12,10 +12,11 @@ const classNameObj = {
 };
 
 const iconMap = {
-    info: 'information',
-    warning: 'alert',
-    success: 'truth-circled',
-    error: 'fault-outline',
+    info: 'information-fill',
+    warning: 'warning-fill',
+    success: 'success-fill',
+    error: 'error-fill',
+    primary:'information-fill'
 };
 
 <div {...getRestProps(this)}
