@@ -11,6 +11,7 @@ order: 0
 import Drawer from 'kpc/components/drawer';
 import {Button, ButtonGroup} from 'kpc/components/button';
 import {Select, Option} from 'kpc/components/select';
+import {Timepicker} from 'kpc/components/timepicker';
 
 <div>
     <Button ev-click={{ self.set.bind(self, 'showDrawer', true) }}
@@ -21,7 +22,12 @@ import {Select, Option} from 'kpc/components/select';
             <Option value="1">Option 1</Option>
             <Option value="2">Option 2</Option>
         </Select>
+        <br />
+        <br />
+        <Timepicker />
 
+        <br />
+        <br />
         Drawer Body 
     </Drawer>
 </div>
