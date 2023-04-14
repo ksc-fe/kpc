@@ -24,7 +24,7 @@ export default class TableColumn extends Intact {
         rows: Number,
         cols: Number,
         invisible: Boolean,
-        exportTitle: String
+        exportTitle: String,
     };
 
     static events = {
@@ -56,6 +56,7 @@ export default class TableColumn extends Intact {
             // passed by parent
             $parent: undefined,
             _show: false,
+            _keywords: '',
         }
     }
 
@@ -91,7 +92,7 @@ export default class TableColumn extends Intact {
             if (~index) {
                 tmp.splice(index, 1);
             } else {
-                tmp.push(v); 
+                tmp.push(v);
             }
             this.set('value', tmp);
         } else {
@@ -100,7 +101,10 @@ export default class TableColumn extends Intact {
     }
 
     _onChangeShow(c, v) {
-        this.set('_show', v);
+        this.set({
+            _show: v,
+            _keywords: '',
+        });
     }
 
     _getGroupText() {
