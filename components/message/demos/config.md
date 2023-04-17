@@ -24,11 +24,11 @@ export default class extends Component {
     
     static defaults() {
         return {
-            types: ['info', 'error', 'warning', 'success'] as const
+            types: ['info', 'error', 'warning', 'success','primary'] as const
         }
     }
 
-    showMessage(type: 'info' | 'error' | 'warning' | 'success') {
+    showMessage(type: 'info' | 'error' | 'warning' | 'success' | 'primary') {
         Message[type]({
             content: type,
             duration: 3000,
