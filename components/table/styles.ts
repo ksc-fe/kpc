@@ -41,6 +41,8 @@ const defaults = {
         color: `#a6a6a6`,
         menuMaxHeight: '200px',
         get activeColor() { return theme.color.primary },
+        headerPadding: `8px`,
+        get headerBorder() { return `1px solid ${theme.color.bg}` },
     },
 
     // sort
@@ -370,6 +372,10 @@ export function makeGroupMenuStyles() {
         overflow: auto;
         .k-dropdown-item.k-active {
             color: ${table.group.activeColor};
+        }
+        .k-table-group-header {
+            padding: ${table.group.headerPadding};
+            border-bottom: ${table.group.headerBorder};
         }
     `
 }

@@ -10,7 +10,10 @@ export function useSortable() {
     // if the same column has been clicked three times consecutively,
     // then let the third click to reset the sort
     let count = 0;
-    function onChange(key: string) {
+    function onChange(key: string, event: Event & {_ignoreSortable?: boolean}) {
+        // ignore when click group dropdown menu
+        if (event._ignoreSortable) return;
+
         let sort = {...instance.get('sort')} as TableSortValue;
         if (sort.key === key) {
             count++;

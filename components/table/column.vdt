@@ -12,9 +12,11 @@ import {context as TableContext} from './useColumns';
 import {context as ResizableContext} from './useResizable';
 import {context as FixedColumnsContext} from './useFixedColumns';
 import {stopPropagation} from '../utils';
+import {Input} from '../input';
+import {_$} from '../../i18n';
 
 const {title, fixed, group, multiple, key, sortable, cols, rows} = this.get();
-const {onSelect, isChecked, getGroupText} = this.group;
+const {onSelect, isChecked, getGroupText, keywords, filteredGroup} = this.group;
 
 <TableContext.Consumer>
     {checkType => {
@@ -61,21 +63,35 @@ const {onSelect, isChecked, getGroupText} = this.group;
                                                 <Dropdown v-if={group}
                                                     position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
                                                     key="dropdown"
+                                                    trigger="click"
+                                                    ev-show={() => keywords.set('')}
                                                 >
                                                     <Button icon size="mini" class="k-table-group"
-                                                        ev-click={stopPropagation}
+                                                        ev-click={e => e._ignoreSortable = true}
                                                     >
                                                         <Icon class="ion-android-arrow-dropdown" />
                                                     </Button>
                                                     <DropdownMenu class={{"k-table-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
-                                                        <DropdownItem v-for={group}
-                                                            ev-select={() => onSelect($value.value, groupValue, onChange)}
-                                                            hideOnSelect={!multiple}
-                                                            class={{'k-active': (checked = isChecked($value.value, groupValue))}}
-                                                        >
-                                                            <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
-                                                            <span v-else>{$value.label}</span>
-                                                        </DropdownItem>
+                                                        <div class="k-table-group-header">
+                                                            <Input size="small" fluid
+                                                                placeholder={_$('请输入关键字')}
+                                                                value={keywords.value}
+                                                                ev-$change:value={keywords.set}
+                                                                clearable
+                                                            >
+                                                                <b:suffix><Icon class="ion-ios-search" /></b:suffix>
+                                                            </Input>
+                                                        </div>
+                                                        <div class="k-table-group-body">
+                                                            <DropdownItem v-for={filteredGroup.value}
+                                                                ev-select={() => onSelect($value.value, groupValue, onChange)}
+                                                                hideOnSelect={!multiple}
+                                                                class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                                                            >
+                                                                <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
+                                                                <span v-else>{$value.label}</span>
+                                                            </DropdownItem>
+                                                        </div>
                                                     </DropdownMenu>
                                                 </Dropdown>
                                                 <div v-if={sortable}
