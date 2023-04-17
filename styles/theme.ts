@@ -33,7 +33,6 @@ export function defaultTheme() {
             text: '#3c4449',
             ghost: '#737373',
             info:'#3c4449',
-            infomation:'#0091ea',
             bg: '#f3f5f6',
             title: '#333',
             darkBorder: '#D0D5D9',
@@ -53,7 +52,7 @@ export function defaultTheme() {
         boxShadow: '0 0 16px 0 rgba(0, 0, 0, .1)',
         baseBoxShadow: '0px 0px 8px rgba(0, 0, 0, 0.08)',
         middleBoxShadow: '0px 2px 16px 2px rgba(0, 0, 0, 0.08)',
-        topBoxShadow: '0px 4px 32px 4px rgba(0, 0, 0, 0.08);',
+        topBoxShadow: '0px 4px 32px 4px rgba(0, 0, 0, 0.08)',
         fontSize: '12px',
         lineHeight: 1.5,
         maxZIndex: 9999,
@@ -69,13 +68,6 @@ export function defaultTheme() {
             formRadius: '4px',
             cardRadius: '6px'
         },
-
-        tabs: {
-            large:`24px`,
-            default: `20px`,
-            small: `16px`,
-            mini: `14px`,
-        }
 
     }    
 }
