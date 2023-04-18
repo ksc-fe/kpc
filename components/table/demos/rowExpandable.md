@@ -5,7 +5,7 @@ order: 8
 
 通过`expand`扩展点指定行展开后的模板内容。是否支持点击该行任何区域都展开内容，
 是由`rowExpandable`控制的，默认情况下它为`true`。你也可以将它设为`false`，来自定义展开逻辑。例如：
-点击某个`icon`后展开改行，而点击其它元素无效。自定义展开逻辑，修改`expandedKeys`属性值，来指定哪些`key`对应的行展开。
+点击某个`icon`后展开该行，而点击其它元素无效。自定义展开逻辑，修改`expandedKeys`属性值，来指定哪些`key`对应的行展开。
 
 ```vdt
 import {Table, TableColumn} from 'kpc';
