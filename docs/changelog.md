@@ -4,6 +4,11 @@ order: 99
 sidebar: doc
 ---
 
+## v1.6.1
+
+1. `Add` `Table`分组`group`支持搜索 [#810](https://github.com/ksc-fe/kpc/issues/810)
+2. `Fix` 修复`Drawer`中渲染`Timepicker`，时间面板当前时间不能高亮展示的问题 [#811](https://github.com/ksc-fe/kpc/issues/811)
+
 ## v1.6.0
 
 1. `Add` `Switch`新增`change`事件，仅在用户操作导致状态变更时触发 [#730](https://github.com/ksc-fe/kpc/issues/730)
