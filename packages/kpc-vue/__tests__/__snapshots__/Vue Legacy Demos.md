@@ -1487,7 +1487,7 @@
 ####   `Select basic`
 
 ```
-"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select css-1k3uw7s k-dropdown-open\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal-->
+"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal-->
         You selected: 
     </div><div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-rotate ion-load-c css-x0ey6t\"></i></span></span></div><!--portal--></div>"
 ```

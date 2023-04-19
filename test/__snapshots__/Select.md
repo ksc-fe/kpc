@@ -3,7 +3,7 @@
 #### `should select value correctly`
 
 ```
-"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal-->
+"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select css-1k3uw7s k-dropdown-open\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal-->
         You selected: </div><div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-rotate ion-load-c css-x0ey6t\"></i></span></span></div><!--portal--></div>"
 ```
 
@@ -12,7 +12,7 @@
 ```
 
 ```
-"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select css-1k3uw7s k-dropdown-open\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"Monday\"><div class=\"k-select-placeholder c-ellipsis k-fade-leave-from k-fade-leave-active\">请选择</div><div class=\"k-select-value c-ellipsis k-fade-enter-from k-fade-enter-active\">星期一</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal-->
+"<div><div style=\"margin-bottom: 16px;\"><div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"Monday\"><div class=\"k-select-placeholder c-ellipsis k-fade-leave-from k-fade-leave-active\">请选择</div><div class=\"k-select-value c-ellipsis k-fade-enter-from k-fade-enter-active\">星期一</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal-->
         You selected: Monday</div><div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-rotate ion-load-c css-x0ey6t\"></i></span></span></div><!--portal--></div>"
 ```
 
