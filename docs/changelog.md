@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.16
+
+1. `Add` `Table`分组`group`支持搜索 [#810](https://github.com/ksc-fe/kpc/issues/810)
+
+### @king-design/react
+
+1. `Fix` 彻底修复`Portal`类组件，如：`Drawer` `Dialog`，事件不触发或者触发多次的问题 [#809](https://github.com/ksc-fe/kpc/issues/809)
+2. `Fix` 修复`Pagination`卸载的时候，如果`total`由非0变为0，导致卸载报错的问题 [#813](https://github.com/ksc-fe/kpc/issues/813)
+
 ## v2.0.15
 
 1. `Add` `Colorpicker`新增`show`属性，控制显隐状态 [#800](https://github.com/ksc-fe/kpc/issues/800)
