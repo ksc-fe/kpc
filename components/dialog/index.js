@@ -75,7 +75,11 @@ export default class Dialog extends Intact {
             // we must show element as early as possible to let other element correctly calcuate element width and height
             // #811
             if (isShow && this.get('overlay')) {
-                this.refs.wrapper.style.display = 'block';
+                const wrapper = this.refs.wrapper;
+                // maybe the wrapper does not exist, #816
+                if (wrapper) {
+                    wrapper.style.display = 'block';
+                }
             }
         });
         this.on('$changed:value', (c, isShow) => {
@@ -118,7 +122,7 @@ export default class Dialog extends Intact {
 
     _onOpen() {
         if (this.get('overlay')) {
-            // this.refs.wrapper.style.display = 'block';
+            this.refs.wrapper.style.display = 'block';
 
             const body = document.body;
             if (!body.__dialogAmount) {
