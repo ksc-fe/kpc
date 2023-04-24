@@ -16,7 +16,7 @@ const defaults = deepDefaults(
         get focusBorder() { return `1px solid ${theme.color.primary}` },
         // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
         get hoverBorder() { return `1px solid ${theme.color.primary}` },
-        get borderRadius() { return theme.borderRadius },
+        get borderRadius() { return theme.radius.formRadius },
         get placeholderColor() { return theme.color.placeholder },
 
         // clearable
@@ -49,14 +49,14 @@ const defaults = deepDefaults(
             get paddingGap() { return styles.padding },
         }
 
-        if (size === 'large') {
-            // use default padding for large size
-            Object.defineProperty(memo.large, 'paddingGap', {
-                get() {
-                    return theme.default.padding;
-                }
-            });
-        }
+        // if (size === 'large') {
+        //     // use default padding for large size
+        //     Object.defineProperty(memo.large, 'paddingGap', {
+        //         get() {
+        //             return theme.default.padding;
+        //         }
+        //     });
+        // }
 
         return memo;
     }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
@@ -112,6 +112,7 @@ export function makeStyles() {
             top: 50%;
             transform: translateY(-50%);
             z-index: 2;
+            color: ${theme.color.desText};
         }
 
         // clearable
@@ -155,6 +156,7 @@ export function makeStyles() {
             .k-input-wrapper:first-child {
                 .k-input-inner {
                     border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
+                    border-right: none;
                 }
             }
             .k-input-wrapper:last-child {
@@ -173,13 +175,13 @@ export function makeStyles() {
             text-align: center;
             white-space: nowrap;
             .k-btn {
-                margin: -1px 0;
-                border-radius: 0;
+                margin: -2px -2px;
+                border-radius: 0 ${theme.borderRadius} ${theme.borderRadius} 0;
                 border: none;
             }
             // select
             .k-select {
-                margin: -1px;
+                margin: -1px -1px;
                 text-align: left;
             }
         }
@@ -235,9 +237,11 @@ export function makeStyles() {
                 }
                 .k-input-prefix {
                     left: ${styles.paddingGap};
+                    top: 54%;
                 }
                 .k-input-suffix {
                     right: ${styles.paddingGap};
+                    top: 54%;
                 }
                 &.k-with-prefix {
                     .k-input-inner {

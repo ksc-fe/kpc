@@ -9,32 +9,32 @@ const defaults = {
     get borderRadius() { return theme.borderRadius },
     get transition() { return theme.transition.large },
     padding: '0',
-    margin: '0 20px',
+    margin: '0 24px',
     get color() { return theme.color.text },
     get fontSize() { return theme.fontSize },
-    get boxShadow() { return theme.boxShadow },
+    get boxShadow() { return theme.topBoxShadow },
 
     // header
     header: {
-        fontSize: '16px',
-        get color() { return theme.color.title },
-        height: '61px',
-        border: `1px solid #eaeaea`,
-        closeTop: '16px',
+        fontSize: '14px',
+        get color() { return theme.color.dark },
+        height: '52px',
+        border: `1px solid #e2e5e8`,
+        closeTop: '9px',
         closeRight: '-9px',
-        closeIconFontSize: '44px',
+        closeIconFontSize: '16px',
     },
 
     // body
     body: {
-        padding: `20px`,
+        padding: `24px`,
     },
 
     // footer
     footer: {
-        padding: `20px 0`,
-        btnGap: `12px`,
-        border: `1px solid #eaeaea`,
+        padding: `16px 0`,
+        btnGap: `8px`,
+        border: `1px solid #e2e5e8`,
     },
 
     // transition
@@ -47,7 +47,7 @@ const defaults = {
 
     // alert dialog
     alert: {
-        padding: `0 20px`,
+        padding: `0 24px`,
         bodyMarginTop: `-25px`,
         tipIconMarginBottom: '10px',
         tipIconFontSize: '37px',
@@ -77,6 +77,7 @@ export function makeDialogStyles() {
         box-shadow: ${dialog.boxShadow};
         max-width: 100%;
         z-index: ${theme.maxZIndex};
+        font-weight: 500;
 
         // drag
         &.k-dragging {
@@ -125,9 +126,11 @@ export function makeDialogStyles() {
             position: absolute;
             right: ${dialog.header.closeRight};
             top: ${dialog.header.closeTop};
+            color: ${theme.color.desText};
             .k-icon {
                 font-size: ${dialog.header.closeIconFontSize};
             }
+
         }
 
         // body
@@ -181,6 +184,8 @@ export function makeAlertStyles() {
             .k-dialog-header,
             .k-dialog-footer {
                 border: none;
+
+                
             }
             .k-dialog-tip-icon {
                 margin-bottom: ${dialog.alert.tipIconMarginBottom};
@@ -229,6 +234,10 @@ export function makeAlertStyles() {
                     line-height: ${dialog.alert.tipIconLineHeight};
                     font-size: ${dialog.alert.titleFontSize};
                 }
+               
+            }
+            .k-icon-close {
+                color: ${theme.color.desText} !important
             }
         }
     ` 

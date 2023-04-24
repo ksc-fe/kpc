@@ -4,7 +4,7 @@ import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
 
 const defaults = {
-    width: '14px',
+    width: '16px',
     get transition() { return theme.transition.small },
     get borderColor() { return theme.color.darkBorder; },
     get hoverBorderColor() { return theme.color.primary; },
@@ -56,7 +56,11 @@ export function makeStyles() {
                 background-color: ${radio.checkedColor};
                 transform: scale(0);
                 transition: all ${radio.transition};
-            }    
+            }
+            &:hover {
+                border: 1px solid ${theme.color.primary}
+            }
+
         }
         input {
             width: 100%;
@@ -77,7 +81,22 @@ export function makeStyles() {
                 &:before {
                     transform: scale(1);
                 }    
-            }        
+            }
+            &.k-disabled {
+                color: ${radio.disabled.color};
+                cursor: not-allowed;
+                .k-radio-wrapper {
+                    border-color: #E6F7FF;
+                    background: #E6F7FF;
+                    &:before {
+                        background: #B5E3FF;
+                    }    
+                }
+
+                input {
+                    cursor: not-allowed;
+                }
+            }            
         }            
 
         // focus

@@ -175,6 +175,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.0",
     "@emotion/css": "^11.5.0",
+    "@king-design/react": "^2.0.13",
     "dayjs": "^1.10.7",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",

@@ -13,7 +13,7 @@ const defaults = {
     gap: `10px`,
     boxShadow: 'none',
     padding: `7px 33px 8px 8px`,
-    closeFontSize: `26px`,
+    closeFontSize: `16px`,
     fontSize: '12px',
     get color() { return theme.color.ghost },
     minWidth: '400px',
@@ -23,10 +23,10 @@ const defaults = {
     get border() { return `1px solid ${theme.color.border}` },
 
     icon: {
-        color: `inherit`,
-        fontSize: `14px`,
+        // color: `inherit`,
+        fontSize: `18px`,
         left: `16px`,
-        top: `8px`,
+        top: `7px`,
     },
 };
 
@@ -85,6 +85,7 @@ export function makeMessageStyles() {
             position: absolute;
             right: 0;
             top: 0;
+            color: #3c4449;
             &:hover {
                 background: none;
             }
@@ -96,16 +97,16 @@ export function makeMessageStyles() {
             position: absolute;
             left: ${message.icon.left};
             top: ${message.icon.top};
-            color: ${message.icon.color};
             font-size: ${message.icon.fontSize};
         }
-        ${(['error', 'success', 'warning'] as const).map(type => {
+
+        ${(['info','error', 'success', 'warning','primary'] as const).map(type => {
             const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
                 &.k-${type} {
                     .k-message-container {
-                        color: ${color};
-                        border-color: ${color};
+                        color: ${theme.color.text};
+                        border:none;
                         background: ${palette(color, -4)};
                     }
                     .k-message-close {
@@ -114,10 +115,22 @@ export function makeMessageStyles() {
                             color: ${palette(color, 1)}
                         }
                     }
+                    .k-message-icon {
+                        position: absolute;
+                        left: ${message.icon.left};
+                        top: ${message.icon.top};
+                        color: ${color};
+                        font-size: ${message.icon.fontSize};
+                    }
+                    .k-message-close {
+                        color: ${theme.color.desText};
+                    }
                 }
+              
             `
         })}
 
+        
         // transition
         &.transition-enter-from,
         &.transition-leave-to {

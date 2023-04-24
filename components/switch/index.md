@@ -22,6 +22,7 @@ sidebar: doc
 | height | 开关的高度 | `number` &#124; `string` | `undefined` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | disabled | 控制禁用 | `boolean` | `false` |
+| flat | 开启面型模式 | `boolean` | `false` |
 
 # 扩展点
 

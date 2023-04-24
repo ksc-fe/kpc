@@ -15,10 +15,11 @@ const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
 const defaults = deepDefaults(
     {
         get borderColor() { return theme.color.border },
-        get borderRadius() { return theme.borderRadius },
+        get borderRadius() { return theme.radius.formRadius },
         get fontSize() { return theme.default.fontSize },
         padding: `0 8px`,
         height: '20px',
+        background: '#f3f5f6',
         close: {
             fontSize: '20px',
             gap: '8px',
@@ -29,32 +30,33 @@ const defaults = deepDefaults(
             get bgColor() { return theme.color.disabledBg },
         },
         large: {
-            padding: `0px 16px`,
-            height: '32px',
+            padding: `0px 8px`,
+            height: '24px',
             close: {
-                fontSize: '24px',
+                fontSize: '20px',
                 gap: '12px',
             }
         },
         small: {
             padding: `0 4px`,
-            height: '18px',
+            height: '16px',
             close: {
-                fontSize: '18px',
+                fontSize: '12px',
                 gap: '4px'
             }
         },
         mini: {
-            padding: `0 1px`,
+            padding: `0 2px`,
             height: '14px',
             close: {
-                fontSize: '16px',
+                fontSize: '12px',
                 gap: '2px'
             }
         },
         none: {
             get bgColor() { return theme.color.bg },
-        }
+        },
+
     },
     types.reduce((memo, type) => {
         if (type === 'disabled') return memo;
@@ -76,14 +78,17 @@ export function makeStyles() {
         display: inline-flex;
         align-items: center;
         padding: ${tag.padding};
-        border: 1px solid ${tag.borderColor};
         border-radius: ${tag.borderRadius};
         font-size: ${tag.fontSize};
         height: ${tag.height};
-
+        color: rgb(204, 204, 204);
+        &.k-solid {
+            background:${tag.background};
+        }
         .k-tag-close {
             font-size: ${tag.close.fontSize};
             margin-left: ${tag.close.gap};
+            color: ${theme.color.desText} !important;
         }
 
         &.k-none {
@@ -119,7 +124,7 @@ export function makeStyles() {
 
         // border
         &.k-dashed {
-            border-style: dashed;
+            border:1px dashed;
         }
     `;
 }

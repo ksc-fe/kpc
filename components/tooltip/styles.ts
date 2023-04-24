@@ -8,12 +8,12 @@ const defaults = {
     get color() { return theme.color.text },
     bgColor: '#fff',
     lineHeight: 1.4,
-    maxWidth: '300px',
+    maxWidth: '312px',
 
     // arrow
     arrow: {
         borderColor: 'rgba(191, 191, 191, .5)',
-        width: '8px',
+        width: '5px',
     },
 
     // confirm
@@ -23,9 +23,9 @@ const defaults = {
 
     // dark
     dark: {
-        get bgColor() { return theme.color.text },
+        get bgColor() { return theme.color.dark },
         color: '#fff',
-        get arrowBorderColor() { return theme.color.text },
+        get arrowBorderColor() { return theme.color.dark },
     },
 
     smallPadding: '4px',
@@ -59,7 +59,7 @@ export default function makeStyles() {
             line-height: ${tooltip.lineHeight};
             word-wrap: break-word;
             pointer-events: none;
-
+            box-shadow: ${theme.middleBoxShadow};
             // hoverable
             &.k-hoverable,
             &.k-always {

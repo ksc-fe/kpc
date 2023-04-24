@@ -16,7 +16,7 @@ const defaults = {
     menu: {
         minWidth: '100px',
         bgColor: '#fff',
-        get borderRadius() { return theme.borderRadius },
+        get borderRadius() { return theme.radius.formRadius },
         fontSize: '12px',
         get zIndex() { return theme.midZIndex },
     }
@@ -33,7 +33,7 @@ export function makeMenuStyles() {
         min-width: ${dropdown.menu.minWidth};
         background: ${dropdown.menu.bgColor};
         border-radius: ${dropdown.menu.borderRadius};
-        box-shadow: ${theme.boxShadow};
+        box-shadow: ${theme.middleBoxShadow};
         font-size: ${dropdown.menu.fontSize};
         z-index: ${dropdown.menu.zIndex};
         top: 0;

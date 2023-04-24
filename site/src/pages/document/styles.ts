@@ -98,7 +98,7 @@ export function makeStyles() {
                     font-size: 30px;
                     line-height: 28px;
                     font-weight: 400;
-                    color: #000;
+                    color: ${theme.color.dark};
                     margin: 19px 0;
                     flex: 1;
                     white-space: nowrap;
@@ -113,7 +113,7 @@ export function makeStyles() {
             .browser-mockup {
                 border-top: 30px solid #eee;
                 position: relative;
-                border-radius: ${theme.borderRadius};
+                border-radius: ${theme.radius.cardRadius};
                 box-shadow: ${theme.boxShadow};
                 &:before {
                     display: block;

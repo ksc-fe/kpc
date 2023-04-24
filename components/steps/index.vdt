@@ -33,6 +33,7 @@ const width = (100 / stepIndex) + '%';
     value,
     status,
     width,
+    type,
     onChange: this.changeIndex 
 }}>
     <div class={classNameObj} {...getRestProps(this)}>{steps}</div>

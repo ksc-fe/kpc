@@ -75,7 +75,6 @@ export function makeStyles() {
         position: relative;
         line-height: 1;
         .k-tab {
-            margin: ${tabs.margin};
             cursor: pointer;
             display: inline-block;
             text-align: center;
@@ -99,6 +98,7 @@ export function makeStyles() {
             margin-left: ${tabs.closeGutter};
             position: relative;
             top: -1px;
+            color:${theme.color.desText};
         }
 
         // active-bar
@@ -237,6 +237,43 @@ export function makeStyles() {
             }
         }
 
+        //flat-card
+        &.k-tabs-flat-card {
+            border-bottom: none;
+            .k-tab {
+                margin: 0;
+                &:before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    background: ${tabs.noBorderCard.bgColor};
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    z-index: -1;
+                }
+            }
+            .k-tabs-active-bar {
+                background: #fff;
+                top: 0;
+                height: auto;
+                z-index: -1;
+                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
+                border-radius: 4px 4px 0px 0px;
+            }
+            &.k-vertical {
+                border-right: none;
+                border-bottom: ${tabs.border};
+                .k-tabs-active-bar {
+                    width: auto;
+                    height: 0;
+                    left: 0;
+                    bottom: 0;
+                    right: 0;
+                }
+            }
+        }
         // scroll
         &:not(.k-vertical) {
             .k-tabs-scroll {

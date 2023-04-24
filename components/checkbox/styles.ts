@@ -4,7 +4,7 @@ import {deepDefaults, palette, getLeft}  from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
-    width: '14px',
+    width: '16px',
     get borderColor() { return theme.color.darkBorder },
     get borderRadius() { return theme.borderRadius },
     get transition() { return theme.transition.small },
@@ -24,8 +24,8 @@ const defaults = {
     inner: {
         width: '5px',
         height: '10px',
-        top: '-1px',
-        left: '4px',
+        top: '0px',
+        left: '5px',
         border: '1px solid #fff',
     },
 
@@ -39,7 +39,7 @@ const defaults = {
 
     // indeterminate
     indeterminate: {
-        innerLeft: '3px'
+        innerLeft: '4px',
     }
 };
 
@@ -57,8 +57,8 @@ export default function makeStyles() {
         .k-checkbox-wrapper {
             width: ${checkbox.width};
             height: ${checkbox.width}; 
-            border: 1px solid ${checkbox.borderColor}; 
-            border-radius: ${checkbox.borderRadius};
+            border: 1px solid ${theme.color.disabledBorder}; 
+            border-radius: ${theme.radius.formRadius};
             position: relative;
             transition: all ${checkbox.transition};
             background: ${checkbox.bgColor};
@@ -78,6 +78,9 @@ export default function makeStyles() {
                 border-left: 0;
                 transform: rotate(45deg) scale(0);
                 transition: all ${checkbox.transition};
+            }
+            &:hover {
+                border: 1px solid ${theme.color.primary}
             }
         }
 
@@ -113,11 +116,41 @@ export default function makeStyles() {
                     left: ${checkbox.indeterminate.innerLeft};
                 }
             }
+            &.k-disabled {
+                color: ${checkbox.disabled.color};
+                cursor: not-allowed;
+                .k-checkbox-wrapper {
+                    border-color: #B5E3FF;
+                    background: #B5E3FF;
+                    &:before {
+                        border-color: #ffffff;
+                    }
+                
+                }
+                input {
+                    cursor: not-allowed;
+                }
+            }
         }
         &.k-checked {
             .k-checkbox-wrapper {
                 &:before {
                     transform: rotate(45deg) scale(1);
+                }
+            }
+            &.k-disabled {
+                color: ${checkbox.disabled.color};
+                cursor: not-allowed;
+                .k-checkbox-wrapper {
+                    border-color: #B5E3FF;
+                    background: #B5E3FF;
+                    &:before {
+                        border-color: #ffffff;
+                    }
+                
+                }
+                input {
+                    cursor: not-allowed;
                 }
             }
         }

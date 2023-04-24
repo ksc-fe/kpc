@@ -12,7 +12,7 @@ const {
 } = this.get();
 const {getShowedData} = this.filter;
 const {enableAdd, enableRemove, add, remove} = this.transfer;
-const {isCheckAll, toggleCheckAll, onCheckboxChange} = this.check;
+const {isCheckAll, toggleCheckAll, onCheckboxChange,isIndeterminate} = this.check;
 
 const classNameObj = {
     'k-transfer': true,
@@ -33,6 +33,7 @@ const Panel = (model) => {
                 </div>
                 <Checkbox class="c-ellipsis" 
                     value={isCheckAll(model)}
+                    indeterminate={isIndeterminate(model)}
                     ev-click={toggleCheckAll.bind(null, model)}
                 >{title}</Checkbox>
             </b:header>

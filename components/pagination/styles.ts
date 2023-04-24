@@ -28,12 +28,10 @@ const defaults = deepDefaults(
     {
         get fontSize() { return theme.default.fontSize }, 
         gap: '16px',
-
         btn: {
             gap: '6px',
             padding: '0 3px',
         },
-
         // goto
         goto: {
             width: '60px',
@@ -63,14 +61,16 @@ export function makeStyles() {
         .k-pagination-limits,
         .k-pagination-goto,
         .k-pagination-total {
-            margin-left: ${pagination.gap};
+            margin-right: ${pagination.gap};
             display: inline-block;
             vertical-align: middle;
+            margin-left: 4px;
         }
         .k-pagination-ellipsis {
             background-color: transparent;
             border-color: transparent;
         }
+
         .k-btns {
             .k-btn {
                 width: auto !important;
@@ -79,13 +79,32 @@ export function makeStyles() {
                 margin-right: ${pagination.btn.gap};
                 &:last-of-type {
                     margin: 0 !important;
+                    border: none;
+                }
+                &:first-of-type {
+                    border:none;
+                    background:none;
+                }
+                &:not(:first-child):not(:last-child){
+                     border-radius: ${theme.radius.formRadius} !important;
+                }
+                &:hover {
+                    background:#f3f5f6;
                 }
             }
             .k-icon {
                 font-size: 18px;
             }
+            &.k-disabled {
+                &, &:hover {
+                    background: #ffffff;
+                    cursor: not-allowed;
+                };
+                .k-btn {
+                    color: ${theme.color.disabled} !important;
+                }
+            }
         }
-
         // goto   
         .k-pagination-goto {
             .k-input {

@@ -6,9 +6,10 @@ import {context as StepsContext} from './context';
 const {children, title, index, className, style} = this.get();
 
 <StepsContext.Consumer>
-    {({value, status, width, onChange}) => {
+    {({value, status, width, onChange, type}) => {
         const selected = value === index;
         const error = selected && status === 'error';
+        const done = value > index && status !== 'error' && type === 'line-compact'; 
         const classNameObj = {
             'k-step': true,
             'k-active': selected,
@@ -28,6 +29,7 @@ const {children, title, index, className, style} = this.get();
                 <div class="k-step-head">
                     <div class="k-step-inner">
                         <i class="k-step-icon ion-ios-close-empty" v-if={error}></i>
+                        <i class="k-step-icon ion-android-done" v-else-if={done}></i>
                         <span v-else>{index + 1}</span>
                     </div>
                 </div>

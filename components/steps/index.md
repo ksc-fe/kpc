@@ -13,7 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | value | 标识当前第几步，从`0`开始 | `number` | `undefined` |
 | status | 步骤条的状态 | `"normal"` &#124; `"error"` | `"normal"` |
-| type | 步骤条样式 | `"default"` &#124; `"line"` &#124; `"simple"` | `"default"` |
+| type | 步骤条样式 | `"default"` &#124; `"line"` &#124; `"simple"` &#124; `"line-compact"` &#124; `"dot"`|`"default"` 
 | clickable | 是否支持快速切换【已完成】的步骤 | `boolean` | `false` |
 
 ## Step

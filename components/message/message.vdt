@@ -12,10 +12,11 @@ const classNameObj = {
 };
 
 const iconMap = {
-    info: 'information',
-    warning: 'alert',
-    success: 'truth-circled',
-    error: 'fault',
+    info: 'information-fill',
+    warning: 'warning-fill',
+    success: 'success-fill',
+    error: 'error-fill',
+    primary:'information-fill'
 };
 
 <div {...getRestProps(this)}
@@ -43,7 +44,7 @@ const iconMap = {
             class="k-message-close"
             ev-click={this.close}
         >
-            <Icon class="ion-ios-close-empty" />
+            <Icon class="k-icon-close" />
         </Button>
     </div>
 </div>

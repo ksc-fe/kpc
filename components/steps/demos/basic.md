@@ -9,16 +9,17 @@ order: 0
 import {Steps, Step, Button} from 'kpc';
 
 <div>
-    <Steps v-model="index">
+    <Steps v-model="index" type="line-compact" >
         <Step title="选择配置">请选择主机的配置信息</Step>
         <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
         <Step title="设置VPC" />
     </Steps>
+
     <Button type="primary" ev-click={this.previous}
         disabled={this.get('index') === 0}
     >Previous Step</Button>
     <Button type="primary" ev-click={this.next}
-        disabled={this.get('index') === 2}
+        disabled={this.get('index') === 3}
     >Next Step</Button>
 </div>
 ```

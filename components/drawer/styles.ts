@@ -11,7 +11,7 @@ export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
 const defaults = {
     get transition() { return theme.transition.large },
-    get boxShadow() { return theme.boxShadow }
+    get boxShadow() { return theme.topBoxShadow }
 };
 
 let drawer: typeof defaults;
@@ -22,7 +22,7 @@ setDefault(() => {
 export function makeStyles(overlay: boolean) {
     return css`
         box-shadow: none;
-        border-radius: 0;
+        border-radius: 6px 0 0 6px;
         position: fixed !important;
         background: transparent !important;
         box-shadow: none !important;
@@ -42,6 +42,7 @@ export function makeStyles(overlay: boolean) {
             display: flex;
             background: #fff;
             flex-direction: column;
+            border-radius: 6px 0 0 6px;
             transform: translateX(0);
             box-shadow: ${drawer.boxShadow};
             .k-dialog-body {
