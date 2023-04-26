@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.6.2
+
+1. `Fix` 修复`Dialog`静态方法报错的问题 [#816](https://github.com/ksc-fe/kpc/issues/816)
+
 ## v1.6.1
 
 1. `Add` `Table`分组`group`支持搜索 [#810](https://github.com/ksc-fe/kpc/issues/810)
