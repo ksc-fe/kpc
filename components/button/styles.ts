@@ -29,12 +29,12 @@ export const types = ['primary', 'warning', 'danger', 'active', 'success'] as co
 const sizes = ['large', 'small', 'mini'] as const;
 
 const btnStyles = {
-    get color() { return theme.color.desText },
+    get color() { return theme.color.lightBlack },
     bgColor: '#fff',
     lineHeight: '1.15',
     get padding() { return `0 ${theme.default.padding}` },
     get borderColor() { return theme.color.border },
-    get borderRadius() { return '4px' },
+    get borderRadius() { return theme.borderRadius },
     get fontSize() { return theme.default.fontSize },
     get height() { return theme.default.height },
     get hoverBorderColor() { return theme.color.primary },

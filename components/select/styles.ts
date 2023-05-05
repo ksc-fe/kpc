@@ -22,9 +22,9 @@ const defaults = deepDefaults(
         get focusBorder() { return `1px solid ${theme.color.primary}` },
         // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
         get hoverBorder() { return `1px solid ${theme.color.primary}` },
-        get iconColor() { return theme.color.desText },
+        get iconColor() { return theme.color.lightBlack },
         get activeColor() { return theme.color.primary },
-        get borderRadius() { return theme.radius.formRadius },
+        get borderRadius() { return theme.borderRadius },
         suffixGap: '10px',
         disabledArrowColor: '#bec3c5',
 
@@ -59,14 +59,14 @@ const defaults = deepDefaults(
         tag: {
             margin: `3px 8px 3px 0`,
             padding: `1px 8px`,
-            get borderRadius() { return theme.radius.formRadius },
+            get borderRadius() { return theme.borderRadius },
             get bgColor() { return theme.color.bg },
-            disabledBgColor: '#eee',
+            disabledBgColor: '#f8f9fa',
 
             delete: {
                 gap: `8px`,
                 fontSize: '14px',
-                get color() { return theme.color.desText },
+                get color() { return theme.color.lightBlack },
             }
         },
 

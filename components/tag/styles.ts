@@ -15,11 +15,13 @@ const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
 const defaults = deepDefaults(
     {
         get borderColor() { return theme.color.border },
-        get borderRadius() { return theme.radius.formRadius },
+        get borderRadius() { return theme.borderRadius },
         get fontSize() { return theme.default.fontSize },
         padding: `0 8px`,
         height: '20px',
-        background: '#f3f5f6',
+        get bgColor(){
+            return theme.color.bg
+        },
         close: {
             fontSize: '20px',
             gap: '8px',
@@ -83,12 +85,12 @@ export function makeStyles() {
         height: ${tag.height};
         color: rgb(204, 204, 204);
         &.k-solid {
-            background:${tag.background};
+            background:${tag.bgColor};
         }
         .k-tag-close {
             font-size: ${tag.close.fontSize};
             margin-left: ${tag.close.gap};
-            color: ${theme.color.desText} !important;
+            color: ${theme.color.lightBlack} !important;
         }
 
         &.k-none {

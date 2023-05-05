@@ -1,5 +1,5 @@
 import {css} from '@emotion/css';
-import {deepDefaults, darken} from '../../styles/utils';
+import {deepDefaults, darken, palette} from '../../styles/utils';
 import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
 
@@ -18,6 +18,17 @@ const defaults = {
         get borderColor() { return theme.color.disabledBorder },
         get bgColor() { return theme.color.disabledBg },
         get innerColor() { return theme.color.disabledBorder },
+        checked: {
+            get borderColor() {
+                return palette(theme.color.primary, -4)
+            },
+            get bgColor() {
+                return palette(theme.color.primary, -4)
+            },
+            get innerColor() {
+                return palette(theme.color.primary, -3)
+            }
+        }
     }
 };
 
@@ -58,7 +69,7 @@ export function makeStyles() {
                 transition: all ${radio.transition};
             }
             &:hover {
-                border: 1px solid ${theme.color.primary}
+                border: 1px solid ${radio.hoverBorderColor}
             }
 
         }
@@ -81,22 +92,7 @@ export function makeStyles() {
                 &:before {
                     transform: scale(1);
                 }    
-            }
-            &.k-disabled {
-                color: ${radio.disabled.color};
-                cursor: not-allowed;
-                .k-radio-wrapper {
-                    border-color: #E6F7FF;
-                    background: #E6F7FF;
-                    &:before {
-                        background: #B5E3FF;
-                    }    
-                }
-
-                input {
-                    cursor: not-allowed;
-                }
-            }            
+            }           
         }            
 
         // focus
@@ -120,6 +116,15 @@ export function makeStyles() {
             }
             input {
                 cursor: not-allowed;
+            }
+            &.k-checked {
+                .k-radio-wrapper {
+                    border-color: ${radio.disabled.checked.borderColor};
+                    background: ${radio.disabled.checked.bgColor};
+                    &:before {
+                        background: ${radio.disabled.checked.innerColor};
+                    }    
+                }
             }
         }            
     `;

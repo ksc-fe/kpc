@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
-import {deepDefaults, sizes} from '../../styles/utils';
+import {deepDefaults, sizes, palette} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
@@ -53,8 +53,23 @@ const defaults = {
 
     // plane
     flat: {
-        get bgColor() { return theme.color.primary},
-        get disabledBgColor() {return theme.color.ghost }
+        get bgColor() {
+            return theme.color.border
+        },
+        get disabledBg() {
+            return theme.color.disabledBg
+        },
+        get disabledInnerColor(){
+            return palette(theme.color.primary, -3)
+        },
+        get disabledInnerBorderColor(){
+            return palette(theme.color.primary, -3)
+        }, 
+        onColor: `#fff`,
+        checked: {
+            bgColor: `#fff`,
+            borderColor: `#fff`,
+        }
     }
 };
 
@@ -184,49 +199,31 @@ export function makeStyles() {
             .k-switch-bar {
                 width: 100%;
             }
-            
-        }
-
-        // flat
-        &.k-switch-flat{
-            .k-switch-bar,
-            .k-switch-wrapper {
-                background: #d0d5d9;
-            }
-            .k-switch-handle {
-                background: #ffffff ;
-            }
-            background: #d0d5d9;
-            &.k-checked {
-                border-color: #ffffff !important;
-                .k-switch-on {
-                    color: ${kswitch.checked.color};
-                }
+            &.k-switch-flat {
+                border-color: ${kswitch.flat.checked.borderColor} !important;
                 .k-switch-handle {
-                    background: #ffffff ;
+                    background: ${kswitch.flat.checked.bgColor};
                 }
                 .k-switch-bar,
                 .k-switch-wrapper {
                     background: ${kswitch.checked.borderColor};
                 }
-                .k-switch-bar {
-                    width: 100%;
-                }
             }
+        }
 
-            &.k-disabled {
-                cursor: not-allowed;
-                .k-switch-bar {
-                    background: #B5E3FF;
-                }
-                .k-switch-wrapper {
-                    background: #f0f2f4;
-                }
+        // flat
+        &.k-switch-flat{
+            background:  ${kswitch.flat.bgColor};
+            .k-switch-bar,
+            .k-switch-wrapper {
+                background: ${kswitch.flat.bgColor};
+            }
+            .k-switch-handle {
+                background: ${kswitch.flat.onColor};
             }
             .k-switch-on {
-                color: #ffffff !important;
+                color:  ${kswitch.flat.onColor} !important;
             }
-
         }
 
         // disabled
@@ -237,6 +234,14 @@ export function makeStyles() {
             .k-switch-wrapper {
                 background: ${kswitch.disabledBgColor};
             }
+            &.k-switch-flat {
+                .k-switch-bar {
+                    background: ${kswitch.flat.disabledInnerColor};
+                }
+                .k-switch-wrapper {
+                    background: ${kswitch.flat.disabledInnerBorderColor};
+                }
+            }
         }
 
         &:not(.k-checked) {
@@ -246,8 +251,5 @@ export function makeStyles() {
                 border-bottom-right-radius: 0;
             }
         }
-
-
-
     `;    
 }

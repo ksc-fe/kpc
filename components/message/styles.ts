@@ -121,7 +121,7 @@ export function makeMessageStyles() {
                         font-size: ${message.icon.fontSize};
                     }
                     .k-message-close {
-                        color: ${theme.color.desText};
+                        color: ${theme.color.lightBlack};
                     }
                 }
               

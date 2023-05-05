@@ -6,9 +6,10 @@ import {deepDefaults}  from '../../styles/utils';
 const defaults = {
     title: {
         fontSize: '14px',
-        gap: '8px'
+        gap: '8px',
+        fontWeight: '500'
     },
-    get color() { return theme.color.dark },
+    get color() { return theme.color.title },
     get padding() { return `6px ${theme.default.padding}` },
 };
 
@@ -35,7 +36,7 @@ export function makeStyles() {
         .k-tip-title {
             font-size: ${tip.title.fontSize};
             margin-bottom: ${tip.title.gap};
-            font-weight: 500
+            font-weight: ${tip.title.fontWeight}
         }
 
         &.k-fade-leave-active {
@@ -43,7 +44,7 @@ export function makeStyles() {
         }
 
         .k-tip-close {
-            color: ${theme.color.desText} !important;
+            color: ${theme.color.lightBlack} !important;
         }
 
     `;

@@ -16,7 +16,7 @@ const defaults = {
     menu: {
         minWidth: '100px',
         bgColor: '#fff',
-        get borderRadius() { return theme.radius.formRadius },
+        get borderRadius() { return theme.borderRadius },
         fontSize: '12px',
         get zIndex() { return theme.midZIndex },
     }

@@ -12,12 +12,13 @@ const defaults = {
     margin: '0 24px',
     get color() { return theme.color.text },
     get fontSize() { return theme.fontSize },
-    get boxShadow() { return theme.topBoxShadow },
+    get boxShadow() { return theme.largeBoxShadow },
 
     // header
     header: {
         fontSize: '14px',
-        get color() { return theme.color.dark },
+        fontWeight: '500',
+        get color() { return theme.color.title },
         height: '52px',
         border: `1px solid #e2e5e8`,
         closeTop: '9px',
@@ -54,6 +55,7 @@ const defaults = {
         tipIconLineHeight: '37px',
 
         // with title
+        titleFontWeight: '500',
         titleTipIconFontSize: '37px',
         titleFontSize: '14px',
         wrapperPaddingLeft: '8px',
@@ -77,7 +79,6 @@ export function makeDialogStyles() {
         box-shadow: ${dialog.boxShadow};
         max-width: 100%;
         z-index: ${theme.maxZIndex};
-        font-weight: 500;
 
         // drag
         &.k-dragging {
@@ -118,6 +119,7 @@ export function makeDialogStyles() {
             font-size: ${dialog.header.fontSize};
             color: ${dialog.header.color};
             position: relative;
+            font-weight: ${dialog.header.fontWeight};
         }
         .k-dialog-title {
             display: inline-block;
@@ -126,7 +128,6 @@ export function makeDialogStyles() {
             position: absolute;
             right: ${dialog.header.closeRight};
             top: ${dialog.header.closeTop};
-            color: ${theme.color.desText};
             .k-icon {
                 font-size: ${dialog.header.closeIconFontSize};
             }
@@ -233,11 +234,9 @@ export function makeAlertStyles() {
                 .k-alert-dialog-title {
                     line-height: ${dialog.alert.tipIconLineHeight};
                     font-size: ${dialog.alert.titleFontSize};
+                    font-weight: ${dialog.alert.titleFontWeight};
                 }
                
-            }
-            .k-icon-close {
-                color: ${theme.color.desText} !important
             }
         }
     ` 

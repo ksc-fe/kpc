@@ -31,13 +31,6 @@ export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useF
         }  else {
             instance.set(`${model}CheckedKeys` as CheckedKeys, []);
         }
-         // 添加判断条件
-        if (e.target === instance.element.querySelector(`.${model}-check-all input`)!) {
-          const checked = instance.get(`${model}CheckedKeys` as CheckedKeys)!;
-          const data = getEnabledData(model);
-          const indeterminate = checked.length > 0 && checked.length < data.length;
-          instance.set(`${model}CheckAllIndeterminate`, indeterminate);
-        }
     }
 
     function isIndeterminate(model: Model) {

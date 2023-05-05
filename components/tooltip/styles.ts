@@ -23,9 +23,9 @@ const defaults = {
 
     // dark
     dark: {
-        get bgColor() { return theme.color.dark },
+        get bgColor() { return theme.color.title },
         color: '#fff',
-        get arrowBorderColor() { return theme.color.dark },
+        get arrowBorderColor() { return theme.color.title },
     },
 
     smallPadding: '4px',

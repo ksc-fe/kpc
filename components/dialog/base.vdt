@@ -56,7 +56,6 @@ const dialog = (
                     <div class="k-dialog-footer">
                         <b:footer>
                             <Button class="k-dialog-cancel" 
-                                type="default"
                                 ev-click={this.cancel}
                             >{cancelText}</Button>
                             <Button class="k-dialog-ok" 
