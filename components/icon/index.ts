@@ -8,6 +8,7 @@ export interface IconProps {
     color?: string
     rotate?: boolean
     hoverable?: boolean,
+    disabled?: boolean,
 }
 
 const typeDefs: Required<TypeDefs<IconProps>> = {
@@ -15,6 +16,7 @@ const typeDefs: Required<TypeDefs<IconProps>> = {
     color: String,
     rotate: Boolean,
     hoverable: Boolean,
+    disabled: Boolean,
 };
 
 const defaults = (): Partial<IconProps> => ({
