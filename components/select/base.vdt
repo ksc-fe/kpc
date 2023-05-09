@@ -110,6 +110,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                                 <Icon class="k-icon-close k-select-close"
                                                     ev-click={this.delete.bind(this, $key)}
                                                     hoverable={!disabled}
+                                                    disabled={disabled}
                                                 />
                                             </div>
                                         </b:values>

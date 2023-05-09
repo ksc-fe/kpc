@@ -4,6 +4,27 @@ order: 99
 sidebar: doc
 ---
 
+## v2.0.16
+
+1. `Add` `Table`分组`group`支持搜索 [#810](https://github.com/ksc-fe/kpc/issues/810)
+
+### @king-design/react
+
+1. `Fix` 彻底修复`Portal`类组件，如：`Drawer` `Dialog`，事件不触发或者触发多次的问题 [#809](https://github.com/ksc-fe/kpc/issues/809)
+2. `Fix` 修复`Pagination`卸载的时候，如果`total`由非0变为0，导致卸载报错的问题 [#813](https://github.com/ksc-fe/kpc/issues/813)
+
+## v2.0.15
+
+1. `Add` `Colorpicker`新增`show`属性，控制显隐状态 [#800](https://github.com/ksc-fe/kpc/issues/800)
+2. `Add` `Dialog`静态方法，支持自定义icon和className [#803](https://github.com/ksc-fe/kpc/issues/803)
+3. `Add` `Pagination`新增`disableBtn`和`disablePage`属性，用于禁用按钮 [#806](https://github.com/ksc-fe/kpc/issues/806)
+4. `Fix`  修复`Dialog`某些情况下，可能导致页面无法滚动的问题 [#805](https://github.com/ksc-fe/kpc/issues/805) 
+
+### @king-design/react
+
+1. `Fix` 修复`Dialog`静态方法，`content`传入`VNode`报错的问题 [#804](https://github.com/ksc-fe/kpc/issues/804)
+2. `Fix` 修复`Select`等组件某些情况下，会渲染报错的问题 [#807](https://github.com/ksc-fe/kpc/issues/807)
+
 ## v2.0.14
 
 1. `Add` `Select` `Cascader` `Datepicker`组件新增`show`属性，用于自定义菜单的显隐 [#795](https://github.com/ksc-fe/kpc/issues/795)

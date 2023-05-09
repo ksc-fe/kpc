@@ -10,7 +10,7 @@ const {
     total, size, noBorder, simple, 
     className, showTotal, showGoto,
     counts, value, limit, limits,
-    showLimits
+    showLimits, disableBtn, disablePage
 } = this.get();
 
 if (!total) return <!-- pagination -->
@@ -32,11 +32,21 @@ if (noBorder || simple) {
 const totalPages = (Math.ceil(total / limit)) || 0;
 
 const paginationButton = function(page) {
+    let disabled = false;
+    if (page !== value) {
+        if (disablePage) {
+            disabled ||= !!disablePage(page, limit);
+        }
+        if (disableBtn) {
+            disabled ||= !!disableBtn(page, limit);
+        }
+    }
     return (
         <Button type={type}
             size={size}
             icon
             value={page}
+            disabled={disabled}
         >{page}</Button>
     );
 };
@@ -105,22 +115,20 @@ let nextPage = value + 1;
 }
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <template v-if={!simple}>
-        <div v-if={showTotal} class="k-pagination-total">
-            {_$('共 {n} 条', {n: total})}
-        </div>
-    </template>
+    <div v-if={showTotal && !simple} class="k-pagination-total">
+        {_$('共 {n} 条', {n: total})}
+    </div>
 
     <ButtonGroup checkType="radio" v-model="value">
         <Button icon size={size}
-            type={type}
-            disabled={value <= 1}
+            type="none"
+            disabled={value <= 1 || !!(disablePage && disablePage(value - 1, limit))}
             ev-click={this.prev}
         ><Icon class="k-icon-arrow-left" /></Button>
         <template>{paginationItems}</template>
         <Button icon size={size}
-            type={type}
-            disabled={value >= totalPages}
+            type="none"
+            disabled={value >= totalPages || !!(disablePage && disablePage(value + 1, limit))}
             ev-click={this.next}
         ><Icon class="k-icon-arrow-right" /></Button>
     </ButtonGroup>

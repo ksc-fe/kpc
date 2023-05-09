@@ -1,6 +1,7 @@
 import BasicDemo from '~/components/pagination/demos/basic';
 import GotoDemo from '~/components/pagination/demos/goto';
 import CurrentDemo from '~/components/pagination/demos/current';
+import DisableDemo from '~/components/pagination/demos/disable';
 import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 
 describe('Pagination', () => {
@@ -74,5 +75,18 @@ describe('Pagination', () => {
         await wait();
         expect(fn.callCount).to.eql(2);
         expect(fn.lastCall.lastArg).to.eql({value: 1, limit: 50});
+    });
+
+    it('should not goto disabled page', async () => {
+        const [instance, element] = mount(DisableDemo);
+
+        const input = element.querySelector('.k-input-inner') as HTMLInputElement;
+        dispatchEvent(input, 'focus');
+        input.value = '11';
+        dispatchEvent(input, 'change');
+        dispatchEvent(input, 'blur');
+        await wait();
+        expect(input.value).to.eql('10');
+        expect(instance.get('value2')).to.eql(10);
     });
 });

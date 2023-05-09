@@ -85,36 +85,46 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         // update container if it has changed
         const lastProps = lastVNode.props!;
         const nextProps = nextVNode.props!;
-        const lastContainer = this.container!;
-        if (lastProps.container !== nextProps.container) {
-            this.initContainer(nextProps.container, parentDom, anchor);
-        }
-        const nextContainer = this.container!;
+        const update = () => {
+            const lastContainer = this.container!;
 
-        if (lastContainer === nextContainer) {
-            patch(
-                lastProps.children as VNode,
-                nextProps.children as VNode,
-                nextContainer,
-                this,
-                this.$SVG,
-                anchor,
-                mountedQueue,
-                false,
-            );
+            if (lastProps.container !== nextProps.container) {
+                this.initContainer(nextProps.container, parentDom, anchor);
+            }
+            const nextContainer = this.container!;
+
+            if (lastContainer === nextContainer) {
+                patch(
+                    lastProps.children as VNode,
+                    nextProps.children as VNode,
+                    nextContainer,
+                    this,
+                    this.$SVG,
+                    anchor,
+                    mountedQueue,
+                    false,
+                );
+            } else {
+                remove(lastProps.children as VNode, lastContainer, false);
+                mount(
+                    nextProps.children as VNode,
+                    nextContainer,
+                    this,
+                    this.$SVG,
+                    anchor,
+                    mountedQueue,
+                );
+            }
+            
+            super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
+        };
+
+        if (!this.container) {
+            // in react, sometimes $update will be called before mountedQueue in $render
+            mountedQueue.push(update);
         } else {
-            remove(lastProps.children as VNode, lastContainer, false);
-            mount(
-                nextProps.children as VNode,
-                nextContainer,
-                this,
-                this.$SVG,
-                anchor,
-                mountedQueue,
-            );
+            update();
         }
-        
-        super.$update(lastVNode, nextVNode, parentDom, anchor, mountedQueue, force);
     }
 
     $unmount(vNode: VNodeComponentClass<this>, nextVNode: VNodeComponentClass<this> | null) {

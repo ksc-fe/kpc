@@ -20,6 +20,8 @@ sidebar: doc
 | showTotal | 显示总条数 | `boolean` | `true` |
 | showGoto | 显示快速跳转框 | `boolean` | `false` |
 | showLimits | 是否显示每页条数选择框 | `boolean` | `true` |
+| disableBtn | 只禁用页码按钮，“上一页”“下一页”按钮依然可点 | `(page: number, limit: number) => boolean` | `undefined` |
+| disablePage | 同时禁用页码按钮和“上一页”“下一页”按钮 | `(page: number, limit: number) => boolean` | `undefined` |
 
 # 事件
 

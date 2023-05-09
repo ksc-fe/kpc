@@ -194,7 +194,7 @@ describe('Table', () => {
         const [table1, table2] = element.querySelectorAll<HTMLElement>('.k-table');
 
         const icon = table1.querySelector('.k-table-group') as HTMLElement;
-        dispatchEvent(icon, 'mouseenter');
+        dispatchEvent(icon, 'click');
         await wait();
         const dropdown = getElement('.k-table-group-dropdown')!;
         expect(dropdown.innerHTML).to.matchSnapshot();
@@ -206,7 +206,7 @@ describe('Table', () => {
         expect(table1.innerHTML).to.matchSnapshot();
 
         const icon2 = table2.querySelector('.k-table-group') as HTMLElement;
-        dispatchEvent(icon2, 'mouseenter');
+        dispatchEvent(icon2, 'click');
         await wait();
         const dropdown2 = getElement('.k-table-group-dropdown')!;
         expect(dropdown2.innerHTML).to.matchSnapshot();

@@ -14,7 +14,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | content | 提示内容 | `string` &#124; `VNode` | `undefined` |
 | duration | 提示展示多长时间后自动关闭，当传入0时，提示将会一直展示。单位ms | `number` | `5000` |
-| type | 提示类型 | `"info"` &#124; `"error"` &#124; `"success"` &#124; `"warning"` &#124; `"primary"` |
+| type | 提示类型 | `"info"` &#124; `"error"` &#124; `"success"` &#124; `"warning"`|
 | closable | 是否展示关闭按钮 | `boolean` | `true` |
 | hideIcon | 是否隐藏文字前面的icon | `boolean` | `false` |
 
@@ -26,7 +26,6 @@ sidebar: doc
 | error | 错误提示 | <code>(content: string &#124; VNode &#124; Partial&lt;MessageProps&gt;, duration?: number) => void</code> | - |
 | success | 成功提示 | <code>(content: string &#124; VNode &#124; Partial&lt;MessageProps&gt;, duration?: number) => void</code> | - |
 | warning | 警告提示 | <code>(content: string &#124; VNode &#124; Partial&lt;MessageProps&gt;, duration?: number) => void</code> | - |
-| primary | 主要提示 | <code>(content: string &#124; VNode &#124; Partial&lt;MessageProps&gt;, duration?: number) => void</code> | - |
 
 其中`content`和`duration`参数说明如下：
 
@@ -41,7 +40,7 @@ import {VNode} from 'intact';
 export interface MessageProps {
     content?: string | VNode 
     duration?: number
-    type?: 'info' | 'error' | 'success' | 'warning' ｜ 'primary'
+    type?: 'info' | 'error' | 'success' | 'warning'
     closable?: boolean
     hideIcon?: boolean
 }

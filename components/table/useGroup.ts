@@ -1,8 +1,9 @@
 import {useInstance} from 'intact';
-import type {TableColumn} from './column';
+import type {TableColumn, TableColumnGroupItem} from './column';
 import {isNullOrUndefined} from 'intact-shared';
 import {toggleArray} from  '../utils';
 import {createContext} from '../context';
+import {useState, watchState} from '../../hooks/useState';
 
 type ContextValue = {
     groupValue: any
@@ -13,6 +14,8 @@ export const context = createContext<ContextValue>();
 
 export function useGroup() {
     const instance = useInstance() as TableColumn;
+    const keywords = useState<string>('');
+    const filteredGroup = useState<TableColumnGroupItem[] | undefined>(instance.get('group'));
 
     function onSelect(value: any, groupValue: any, onChange: ContextValue['onChange']) {
         const {multiple, key} = instance.get();
@@ -51,5 +54,18 @@ export function useGroup() {
         return null;
     }
 
-    return {onSelect, isChecked, getGroupText};
+    watchState(keywords, (v) => {
+        const {group = []} = instance.get();
+        v = v.trim();
+        
+        if (!v) {
+            filteredGroup.set(group);
+        } else {
+            filteredGroup.set(group.filter(item => {
+                return String(item.label).includes(v) || String(item.value).includes(v);
+            }));
+        }
+    });
+
+    return {onSelect, isChecked, getGroupText, keywords, filteredGroup};
 }

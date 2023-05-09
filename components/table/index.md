@@ -19,7 +19,7 @@ sidebar: doc
 | checkedKeys | 通过`key`数组来指定哪些行被选中 | `TableRowKey[]` | `[]` |
 | rowKey | 设置每行的key | `(value: T, index: number) => TableRowKey` | `(value: T, index: number) => index` |
 | rowCheckable | 当行可选时，是否点击该行任意区域都可选中 | `boolean` | `true` |
-| disableRow | 定义行禁用可选的逻辑，返回`true`，则改行被禁用选择 | `(value: T, index: number, key: TableRowKey) => boolean` | `undefined` |
+| disableRow | 定义行禁用可选的逻辑，返回`true`，则该行被禁用选择 | `(value: T, index: number, key: TableRowKey) => boolean` | `undefined` |
 | type | 表格类型，默认左右无边框，`"border"`类型会添加边框, `"grid"`类型会展示栅格边框 | `"default"` &#124; `"border"` &#124; `"grid"` | `"default"` |
 | stripe | 相邻行是否展示不同的背景色 | `boolean` | `false` |
 | rowClassName | 通过一个函数定义行的`className`，该函数会传入该行数据，索引和`key`当做参数，返回的字符串将被设为该行的`className` | <code>(value: T, index: number, key: TableRowKey) => string &#124; undefined</code> | `undefined` |
@@ -28,9 +28,9 @@ sidebar: doc
 | loading | 是否展示加载状态 | `boolean` | `false` |
 | merge | 指定表格单元格合并逻辑 | `TableMerge` | `undefined` |
 | expandedKeys | 通过`key`来指定哪些行展开 | `TableRowKey[]` | `undefined` |
-| rowExpandable | 是否点击改行任意区域即展开 | `boolean` | `true` |
+| rowExpandable | 是否点击该行任意区域即展开 | `boolean` | `true` |
 | selectedKeys | 当`rowSelectable`取值为非`false`时，指定哪些行高亮 | `TableRowKey[]` | `undefined` |
-| rowSelectable | 是否点击行时高亮改行，取值为`multiple`时，可以同时高亮多行 | `boolean` &#124; `"single"` &#124; `"multiple"` | `false` |
+| rowSelectable | 是否点击行时高亮该行，取值为`multiple`时，可以同时高亮多行 | `boolean` &#124; `"single"` &#124; `"multiple"` | `false` |
 | childrenKey | 树形表格指定子元素键名 | `string` | `"children"` |
 | indent | 树形表格指定子元素缩进宽度 | `number` | `32` |
 | spreadKeys | 树形表格指定展开的行 | `TableRowKey[]` | `undefined` |

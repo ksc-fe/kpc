@@ -1,5 +1,6 @@
 import {Component} from 'intact';
 import {Dialog, BaseDialog, DialogProps} from './';
+import {bind} from '../utils';
 import {getElement, mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import BasicDemo from '~/components/dialog/demos/basic';
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
@@ -261,6 +262,40 @@ describe('Dialog', () => {
 
         await wait(500);
         expectDialog();
+    });
+
+    it('should remove body style when destroy', async () => {
+        class Demo extends Component<{content: string, show: boolean, onClose: Function}> {
+            static template = `
+                var Dialog = this.Dialog;
+                <div>
+                    <Dialog v-if={this.get('show')}
+                        value={this.get('show')}
+                        ev-close={this.onClose}
+                        ref="dialog"
+                    >test</Dialog>
+                </div>
+            `;
+
+            private Dialog = Dialog;
+
+            static defaults() {
+                return {
+                    show: true,
+                };
+            }
+
+            @bind
+            onClose() {
+                this.set('show', false);
+            }
+        }
+
+        const [instance, element] = mount(Demo);
+        instance.refs.dialog.close();
+
+        await wait();
+        expect(document.body.getAttribute('style')).to.be.null;
     });
 
     // it('should handle v-if and v-model at the same time correctly in Vue', async () => {

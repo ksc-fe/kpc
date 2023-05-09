@@ -23,6 +23,7 @@ const classNameObj = {
         trigger="click"
         disabled={disabled}
         container={container}
+        v-model:value="show"
     >
         <div class="k-colorpicker-color">
             <div class="k-colorpicker-inner" style={{backgroundColor: value}}></div>

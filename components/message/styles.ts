@@ -6,6 +6,7 @@ import '../../styles/global';
 const defaults = {
     get transition() { return theme.transition.middle },
     top: `10px`,
+    left: `0px`,
     transform: `translateY(-10px)`,
     get bgColor() { return theme.color.bg },
     get borderRadius() { return theme.borderRadius },
@@ -38,6 +39,7 @@ export function makeMessagesStyles() {
     return css`
         position: fixed;
         top: ${message.top};
+        left: ${message.left};
         width: 100%;
         pointer-events: none;
         z-index: ${theme.maxZIndex + 1};
@@ -98,7 +100,7 @@ export function makeMessageStyles() {
             font-size: ${message.icon.fontSize};
         }
 
-        ${(['info','error', 'success', 'warning','primary'] as const).map(type => {
+        ${(['info','error', 'success', 'warning'] as const).map(type => {
             const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
                 &.k-${type} {

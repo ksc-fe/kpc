@@ -3,11 +3,14 @@ import type {Dialog, DialogProps} from './';
 import template from './alert.vdt';
 
 export interface AlertDialogProps extends DialogProps {
-    content?: string | VNode
+    content?: string | object 
     type?: 'success' | 'warning' | 'error' | 'confirm' 
     hideIcon?: boolean
     hideFooter?: boolean
     ref?: (i: Dialog) => void
+    className?: string
+    iconClassName?: string
+    icon?: object 
 }
 
 export type StaticMethod = (options?: AlertDialogProps) => Promise<void>
@@ -25,6 +28,16 @@ export function addStaticMethods(Component: typeof Dialog) {
     }
 
     function show(options: AlertDialogProps = {}) {
+        const normalize = (Component as any).normalize;
+        if (normalize) {
+            if (options.content) {
+                options = {...options, content: normalize(options.content)};
+            }
+            if (options.icon) {
+                options = {...options, icon: normalize(options.icon)};
+            }
+        }
+
         const dialog = new AlertDialog(options);
         dialog.show();
 

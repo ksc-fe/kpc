@@ -4,7 +4,8 @@ import {makeAlertStyles} from './styles';
 
 const {
     type, content, hideIcon, 
-    hideFooter, hideClose, title
+    hideFooter, hideClose, title,
+    iconClassName, icon
 } = this.get();
 
 const classNameObj = {
@@ -18,12 +19,13 @@ const classNameObj = {
     <b:header />
     <b:body>
         <div class="k-dialog-tip-icon">
-            <Icon class={{
+            <Icon class={iconClassName || {
                 "ion-ios-checkmark": type === 'success',
                 "ion-ios-information": type === 'warning',
                 "ion-ios-close": type === 'error',
                 "ion-ios-help": type === 'confirm',
-            }} v-if={!hideIcon} />
+            }} v-if={!hideIcon && !icon} />
+            {icon}
         </div>
         <div class="k-alert-dialog-wrapper">
             <div class="k-alert-dialog-title" v-if={title}>{title}</div>
