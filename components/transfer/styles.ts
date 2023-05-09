@@ -64,9 +64,6 @@ export function makeStyles() {
                     border-radius: ${transfer.panel.borderRadius} 0 0 ${transfer.panel.borderRadius}; 
                 }
             }
-            .k-input-prefix{
-                line-height: 0;
-            }
         }
 
         .k-transfer-title {

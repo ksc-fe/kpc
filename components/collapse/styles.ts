@@ -11,6 +11,9 @@ const defaults = {
     titleMarginRight: '8px',
     borderPadding: '0 24px',
     collBorder: '1px solid #eee',
+    get largeRadius(){
+      return theme.largeRadius
+    },
 
     item: {
         borderBottom: '1px solid #e5e5e5',
@@ -37,7 +40,7 @@ export function makeStyles() {
         }
 
         &.k-border {
-            border-radius: ${theme.radius.cardRadius};
+            border-radius: ${collapse.largeRadius};
             padding: ${collapse.borderPadding};
             border: ${collapse.collBorder};
         }

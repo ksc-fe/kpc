@@ -16,7 +16,7 @@ const defaults = deepDefaults(
         get focusBorder() { return `1px solid ${theme.color.primary}` },
         // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
         get hoverBorder() { return `1px solid ${theme.color.primary}` },
-        get borderRadius() { return theme.radius.formRadius },
+        get borderRadius() { return theme.borderRadius },
         get placeholderColor() { return theme.color.placeholder },
 
         // clearable
@@ -112,7 +112,8 @@ export function makeStyles() {
             top: 50%;
             transform: translateY(-50%);
             z-index: 2;
-            color: ${theme.color.desText};
+            color: ${theme.color.lightBlack};
+            line-height: 0;
         }
 
         // clearable
@@ -237,11 +238,9 @@ export function makeStyles() {
                 }
                 .k-input-prefix {
                     left: ${styles.paddingGap};
-                    top: 54%;
                 }
                 .k-input-suffix {
                     right: ${styles.paddingGap};
-                    top: 54%;
                 }
                 &.k-with-prefix {
                     .k-input-inner {
@@ -260,6 +259,7 @@ export function makeStyles() {
                     }
                 }
             `;
+            
             if (size === 'default') return sizeClassName;
             return css`
                 &.k-${size} {

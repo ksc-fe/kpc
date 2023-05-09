@@ -8,6 +8,9 @@ const defaults = {
     get borderColor() { return theme.color.darkBorder },
     get borderRadius() { return theme.borderRadius },
     get transition() { return theme.transition.small },
+    get hoverBorder() {
+      return `1px solid ${theme.color.primary}`
+    },
     bgColor: '#fff',
     
     // text
@@ -21,6 +24,7 @@ const defaults = {
         get bgColor() { return checkbox.checked.borderColor },
     },
 
+    
     inner: {
         width: '5px',
         height: '10px',
@@ -34,7 +38,15 @@ const defaults = {
         get color() { return theme.color.disabled },
         get borderColor() { return theme.color.disabledBorder },
         get bgColor() { return theme.color.disabledBg }, 
-        get innerColor() { return theme.color.disabledBorder }, 
+        innerColor: '#fff',
+        checked:{
+          get borderColor() {
+            return palette(theme.color.primary, -3)
+          },
+          get bgColor() {
+            return palette(theme.color.primary, -3)
+          },
+        } 
     },
 
     // indeterminate
@@ -57,8 +69,8 @@ export default function makeStyles() {
         .k-checkbox-wrapper {
             width: ${checkbox.width};
             height: ${checkbox.width}; 
-            border: 1px solid ${theme.color.disabledBorder}; 
-            border-radius: ${theme.radius.formRadius};
+            border: 1px solid ${theme.color.border}; 
+            border-radius: ${theme.borderRadius};
             position: relative;
             transition: all ${checkbox.transition};
             background: ${checkbox.bgColor};
@@ -80,7 +92,7 @@ export default function makeStyles() {
                 transition: all ${checkbox.transition};
             }
             &:hover {
-                border: 1px solid ${theme.color.primary}
+                border: ${checkbox.hoverBorder}
             }
         }
 
@@ -116,21 +128,7 @@ export default function makeStyles() {
                     left: ${checkbox.indeterminate.innerLeft};
                 }
             }
-            &.k-disabled {
-                color: ${checkbox.disabled.color};
-                cursor: not-allowed;
-                .k-checkbox-wrapper {
-                    border-color: #B5E3FF;
-                    background: #B5E3FF;
-                    &:before {
-                        border-color: #ffffff;
-                    }
-                
-                }
-                input {
-                    cursor: not-allowed;
-                }
-            }
+      
         }
         &.k-checked {
             .k-checkbox-wrapper {
@@ -138,21 +136,7 @@ export default function makeStyles() {
                     transform: rotate(45deg) scale(1);
                 }
             }
-            &.k-disabled {
-                color: ${checkbox.disabled.color};
-                cursor: not-allowed;
-                .k-checkbox-wrapper {
-                    border-color: #B5E3FF;
-                    background: #B5E3FF;
-                    &:before {
-                        border-color: #ffffff;
-                    }
-                
-                }
-                input {
-                    cursor: not-allowed;
-                }
-            }
+        
         }
             
         // focus
@@ -179,6 +163,14 @@ export default function makeStyles() {
             input {
                 cursor: not-allowed;
             }
+            &.k-checked,
+            &.k-indeterminate {
+              .k-checkbox-wrapper {
+                  border-color: ${checkbox.disabled.checked.borderColor};
+                  background: ${checkbox.disabled.checked.bgColor};
+              }
+            }
+          
         }
     `;
 }

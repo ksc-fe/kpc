@@ -11,7 +11,7 @@ export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
 const defaults = {
     get transition() { return theme.transition.large },
-    get boxShadow() { return theme.topBoxShadow }
+    get boxShadow() { return theme.largeBoxShadow }
 };
 
 let drawer: typeof defaults;
@@ -22,7 +22,6 @@ setDefault(() => {
 export function makeStyles(overlay: boolean) {
     return css`
         box-shadow: none;
-        border-radius: 6px 0 0 6px;
         position: fixed !important;
         background: transparent !important;
         box-shadow: none !important;
@@ -42,9 +41,7 @@ export function makeStyles(overlay: boolean) {
             display: flex;
             background: #fff;
             flex-direction: column;
-            border-radius: 6px 0 0 6px;
             transform: translateX(0);
-            box-shadow: ${drawer.boxShadow};
             .k-dialog-body {
                 flex-grow: 1;
                 overflow: auto;
@@ -54,6 +51,7 @@ export function makeStyles(overlay: boolean) {
         ${placements.map((placement) => {
             let positionValue: string = '';
             let transformValue: string = '';
+            let borderRadius: string = '';
             placements.forEach((p) => {
                 // Set top to `0 !important` when overlay is false and placement is right or left
                 // Because dialog without overlay don't have positional parent element
@@ -76,6 +74,23 @@ export function makeStyles(overlay: boolean) {
                     : 'translateY(100%)';	
             }
 
+            switch(placement){
+                case 'right':
+                    borderRadius = `${theme.largeRadius} 0 0 ${theme.largeRadius}`
+                    break
+                case 'left':
+                    borderRadius = `0 ${theme.largeRadius} ${theme.largeRadius} 0`
+                    break
+                case 'top':
+                    borderRadius = `0 0 ${theme.largeRadius} ${theme.largeRadius}`
+                    break
+                case 'bottom':
+                    borderRadius = `${theme.largeRadius} ${theme.largeRadius} 0 0`
+                    break
+                default:
+                    break
+            }
+
             return `
                 &.k-${placement} {
                     ${positionValue}
@@ -86,6 +101,9 @@ export function makeStyles(overlay: boolean) {
                         .k-drawer-content {
                             transform: ${transformValue};
                         }
+                    }
+                    .k-drawer-content {
+                        border-radius: ${borderRadius};
                     }
                 }
             `

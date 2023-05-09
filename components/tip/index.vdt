@@ -27,7 +27,6 @@ const classNameObj = {
             <template>
                 <b:close>
                     <Icon class="k-icon-close"
-                        size="default"
                         hoverable={!disabled}
                     />
                 </b:close>

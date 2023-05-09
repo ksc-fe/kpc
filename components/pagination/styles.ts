@@ -86,23 +86,14 @@ export function makeStyles() {
                     background:none;
                 }
                 &:not(:first-child):not(:last-child){
-                     border-radius: ${theme.radius.formRadius} !important;
+                     border-radius: ${theme.borderRadius} !important;
                 }
                 &:hover {
-                    background:#f3f5f6;
+                    background: ${theme.color.hoverBg}
                 }
             }
             .k-icon {
                 font-size: 18px;
-            }
-            &.k-disabled {
-                &, &:hover {
-                    background: #ffffff;
-                    cursor: not-allowed;
-                };
-                .k-btn {
-                    color: ${theme.color.disabled} !important;
-                }
             }
         }
         // goto   

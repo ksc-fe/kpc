@@ -131,7 +131,7 @@ export function makeStyles() {
             display: inline-flex;
             align-items: center;
             max-width: 100%;
-            color: ${theme.color.desText};
+            color: ${theme.color.lightBlack};
         }
         .k-table-title-text {
             flex: 1;

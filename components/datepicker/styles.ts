@@ -23,7 +23,9 @@ const defaults = {
         },
 
         disabled: {
-            color: '#bec3c5',
+            get color() {
+              return theme.color.disabled
+            },
             hoverBgColor: 'none',
         },
 

@@ -7,8 +7,8 @@ const defaults = {
     get transition() { return theme.transition.middle },
     get height() { return theme.default.height }, 
     get bgColor() { return theme.color.bg },
-    get darkColor() {return theme.color.dark},
-    get lightDesColor () {return theme.color.desText},
+    get darkColor() {return theme.color.title},
+    get lightDesColor () {return theme.color.lightBlack},
 
     lightColor:'#ffffff',
     gutter: '10px',

@@ -6,7 +6,8 @@ import '../../styles/global';
 const defaults = {
     border: '1px solid #e5e5e5',
     padding: '16px',
-    get boxShadow() { return theme.baseBoxShadow },
+    get boxShadow() { return theme.boxShadow },
+    get largeRadius() {return theme.largeRadius},
     headerHeight: '48px',
     headerFontSize: '14px',
     bgColor: '#fff',
@@ -19,7 +20,7 @@ setDefault(() => {
 
 export function makeStyles() {
     return css`
-        border-radius: ${theme.radius.cardRadius};
+        border-radius: ${card.largeRadius};
         background: ${card.bgColor};
         .k-card-header {
             height: ${card.headerHeight};
