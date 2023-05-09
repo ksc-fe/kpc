@@ -157,7 +157,6 @@ export function makeStyles() {
             .k-input-wrapper:first-child {
                 .k-input-inner {
                     border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
-                    border-right: none;
                 }
             }
             .k-input-wrapper:last-child {
@@ -176,31 +175,32 @@ export function makeStyles() {
             text-align: center;
             white-space: nowrap;
             .k-btn {
-                margin: -2px -2px;
-                border-radius: 0 ${theme.borderRadius} ${theme.borderRadius} 0;
+                margin: -1px;
                 border: none;
+                &.k-none:hover {
+                    background: transparent;
+                }
             }
             // select
             .k-select {
-                margin: -1px -1px;
+                margin: -1px;
                 text-align: left;
             }
         }
         .k-input-prepend {
-            border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
+            &,
+            .k-btn,
             .k-select {
                 z-index: 1;
-                .k-select-wrapper {
-                    border-radius: ${theme.borderRadius} 0 0 ${theme.borderRadius};
-                }
+                border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
             }
         }
         .k-input-append {
-            border-radius: 0 ${input.borderRadius} ${input.borderRadius} 0;
+            &,
+            .k-btn,
             .k-select {
-                .k-select-wrapper {
-                    border-radius: 0 ${theme.borderRadius} ${theme.borderRadius} 0;
-                }
+                z-index: 1;
+                border-radius: 0 ${input.borderRadius} ${input.borderRadius} 0;
             }
         }
         .k-input-padding {
