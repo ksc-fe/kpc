@@ -113,7 +113,7 @@ export function makeStyles() {
             .browser-mockup {
                 border-top: 30px solid #eee;
                 position: relative;
-                border-radius: ${theme.largeRadius};
+                border-radius: ${theme.largeBorderRadius};
                 box-shadow: ${theme.boxShadow};
                 &:before {
                     display: block;

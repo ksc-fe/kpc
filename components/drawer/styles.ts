@@ -11,7 +11,7 @@ export const placements = ['top', 'right', 'bottom', 'left'] as const;
 
 const defaults = {
     get transition() { return theme.transition.large },
-    get boxShadow() { return theme.largeBoxShadow }
+    get boxShadow() { return theme.largeBoxShadow },
 };
 
 let drawer: typeof defaults;
@@ -21,7 +21,6 @@ setDefault(() => {
 
 export function makeStyles(overlay: boolean) {
     return css`
-        box-shadow: none;
         position: fixed !important;
         background: transparent !important;
         box-shadow: none !important;
@@ -42,6 +41,7 @@ export function makeStyles(overlay: boolean) {
             background: #fff;
             flex-direction: column;
             transform: translateX(0);
+            box-shadow: ${drawer.boxShadow};
             .k-dialog-body {
                 flex-grow: 1;
                 overflow: auto;
@@ -62,33 +62,24 @@ export function makeStyles(overlay: boolean) {
                     : `${p}: 0;`;
             });
 
-            if(placement === 'left' || placement === 'right') {
+            if (placement === 'left' || placement === 'right') {
                 positionValue += 'height: 100% !important;';
-                transformValue = placement === 'left'
-                    ? 'translateX(-100%)'
-                    : 'translateX(100%)';
+                if (placement === 'left') {
+                    borderRadius = `0 ${theme.largeBorderRadius} ${theme.largeBorderRadius} 0`;
+                    transformValue = 'translateX(-100%)';
+                } else {
+                    borderRadius = `${theme.largeBorderRadius} 0 0 ${theme.largeBorderRadius}`;
+                    transformValue = 'translateX(100%)';
+                }
             } else {
                 positionValue += 'width: 100% !important;';
-                transformValue = placement === 'top'
-                    ? 'translateY(-100%)'
-                    : 'translateY(100%)';	
-            }
-
-            switch(placement){
-                case 'right':
-                    borderRadius = `${theme.largeRadius} 0 0 ${theme.largeRadius}`
-                    break
-                case 'left':
-                    borderRadius = `0 ${theme.largeRadius} ${theme.largeRadius} 0`
-                    break
-                case 'top':
-                    borderRadius = `0 0 ${theme.largeRadius} ${theme.largeRadius}`
-                    break
-                case 'bottom':
-                    borderRadius = `${theme.largeRadius} ${theme.largeRadius} 0 0`
-                    break
-                default:
-                    break
+                if (placement === 'top') {
+                    borderRadius = `0 0 ${theme.largeBorderRadius} ${theme.largeBorderRadius}`;
+                    transformValue = 'translateY(-100%)';
+                } else {
+                    borderRadius = `${theme.largeBorderRadius} ${theme.largeBorderRadius} 0 0`;
+                    transformValue = 'translateY(100%)';
+                }
             }
 
             return `

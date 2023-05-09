@@ -73,6 +73,5 @@ export default function makeStyles(color?: string) {
                 }
             `}
         }
-
     `;
 }

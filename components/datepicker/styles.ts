@@ -24,7 +24,7 @@ const defaults = {
 
         disabled: {
             get color() {
-              return theme.color.disabled
+                return theme.color.disabled
             },
             hoverBgColor: 'none',
         },
