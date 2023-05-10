@@ -20,6 +20,7 @@ const {decrease, increase, changeValue, onFocusin} = this.change;
         disabled={this.isDisabledDecrease()}
         class="k-spinner-btn k-left"
         size={size}
+        type="none"
     >
         <Icon v-if={!vertical} class="k-spinner-icon k-icon-minussmall" />
         <Icon v-else class="k-spinner-icon k-icon-arrow-down" />
@@ -38,6 +39,7 @@ const {decrease, increase, changeValue, onFocusin} = this.change;
         disabled={this.isDisabledIncrease()}
         class="k-spinner-btn k-right"
         size={size}
+        type="none"
     >
         <Icon v-if={!vertical} class="k-spinner-icon k-icon-add-samll" />
         <Icon v-else class="k-spinner-icon k-icon-arrow-up" />

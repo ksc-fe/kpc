@@ -171,6 +171,9 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             white-space: nowrap;
             transition: all ${button.transition};
             line-height: ${button.lineHeight};
+            .k-icon {
+                color: inherit;
+            }
             &:hover,
             &:focus {
                 border-color: ${button.hoverBorderColor};
