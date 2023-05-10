@@ -43,7 +43,7 @@ const iconMap = {
             class="k-message-close"
             ev-click={this.close}
         >
-            <Icon class="k-icon-close" />
+            <Icon class="k-icon-close" hoverable />
         </Button>
     </div>
 </div>

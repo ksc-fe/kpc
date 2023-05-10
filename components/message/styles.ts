@@ -13,9 +13,8 @@ const defaults = {
     gap: `10px`,
     boxShadow: 'none',
     padding: `7px 33px 8px 8px`,
-    closeFontSize: `16px`,
     fontSize: '12px',
-    get color() { return theme.color.ghost },
+    get color() { return theme.color.text },
     minWidth: '400px',
     maxWidth: '700px',
     minHeight: '32px',
@@ -55,7 +54,6 @@ export function makeMessageStyles() {
         .k-message-container {
             display: inline-block;
             box-shadow: ${message.boxShadow};
-            background: ${message.bgColor};
             border-radius: ${message.borderRadius};
             margin-bottom: ${message.gap};
             pointer-events: all;
@@ -63,7 +61,6 @@ export function makeMessageStyles() {
             max-width: ${message.maxWidth};
             position: relative;
             text-align: ${message.textAlign};
-            border: ${message.border};
             min-height: ${message.minHeight};
         }
         .k-message-wrapper {
@@ -85,12 +82,8 @@ export function makeMessageStyles() {
             position: absolute;
             right: 0;
             top: 0;
-            color: #3c4449;
             &:hover {
                 background: none;
-            }
-            .k-icon {
-                font-size: ${message.closeFontSize};
             }
         }
         .k-message-icon {
@@ -100,36 +93,19 @@ export function makeMessageStyles() {
             font-size: ${message.icon.fontSize};
         }
 
-        ${(['info','error', 'success', 'warning'] as const).map(type => {
+        ${(['info', 'error', 'success', 'warning'] as const).map(type => {
             const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
                 &.k-${type} {
                     .k-message-container {
-                        color: ${theme.color.text};
-                        border:none;
                         background: ${palette(color, -4)};
                     }
-                    .k-message-close {
-                        color: ${color};
-                        &:hover {
-                            color: ${palette(color, 1)}
-                        }
-                    }
                     .k-message-icon {
-                        position: absolute;
-                        left: ${message.icon.left};
-                        top: ${message.icon.top};
                         color: ${color};
-                        font-size: ${message.icon.fontSize};
-                    }
-                    .k-message-close {
-                        color: ${theme.color.lightBlack};
                     }
                 }
-              
             `
         })}
-
         
         // transition
         &.transition-enter-from,
