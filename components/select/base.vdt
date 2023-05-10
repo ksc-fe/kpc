@@ -143,10 +143,8 @@ const {onFocusout, triggerRef} = this.focusout;
                             <b:suffix>
                                 <Icon class="ion-load-c" rotate v-if={loading} />
                                 <Icon v-else-if={!hideIcon}
-                                    class={{
-                                        "k-select-arrow ion-ios-arrow-down": true,
-                                        'k-disabled': $props.isDisableArrow 
-                                    }}
+                                    class="k-select-arrow ion-ios-arrow-down"
+                                    disabled={$props.isDisableArrow}
                                 />
                             </b:suffix>
                         </span>

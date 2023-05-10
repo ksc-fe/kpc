@@ -11,6 +11,7 @@ import '../../styles/global';
 const defaults = {
     get transition() { return theme.transition.small },
     get disabledColor() { return theme.color.disabled },
+    get color() { return theme.color.lightBlack },
     fontSize: {
         default: '16px',
         large: '22px',
@@ -29,6 +30,7 @@ export const sizes = ['large', 'small', 'mini'] as const;
 
 export default function makeStyles(color?: string) {
     return css`
+        color: ${icon.color};
         font-size: ${icon.fontSize.default};
         line-height: 1;
         // display: inline-block;
@@ -76,7 +78,7 @@ export default function makeStyles(color?: string) {
         // disabled
         &.k-disabled {
             cursor: not-allowed;
-            color: ${icon.disabledColor};
+            color: ${icon.disabledColor} !important;
         }
     `;
 }
