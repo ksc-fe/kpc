@@ -7,6 +7,7 @@ const defaults = {
     get transition() { return theme.transition.large },
     // transition: '15000s',
     border: `1px solid #e2e5e8`,
+    get borderRadius() { return theme.borderRadius },
     fontSize: `12px`,
     bgColor: `#fff`,
     get color() { return theme.color.text },
@@ -76,13 +77,12 @@ export function makeStyles() {
     return css`
         font-size: ${table.fontSize};
         color: ${table.color};
-        border-top: 0;
         position: relative;
         z-index: 0;
         .k-table-wrapper {
             border-bottom: ${table.border};
             overflow: auto;
-            border-radius:4px;
+            border-radius: ${table.borderRadius};
         }
         table {
             width: 100%;
@@ -105,6 +105,9 @@ export function makeStyles() {
             z-index: 2;
             tr {
                 height: ${table.thead.height};
+                &:not(:last-of-type) th {
+                    border-bottom: ${table.border};
+                }
             }
         }
         th {
@@ -125,7 +128,6 @@ export function makeStyles() {
             &:first-of-type:before {
                 display: none;
             }
-            border-bottom: 0;
         }
         .k-table-title {
             display: inline-flex;
@@ -215,6 +217,7 @@ export function makeStyles() {
         &.k-border,
         &.k-grid {
             .k-table-wrapper {
+                border-top: ${table.border};
                 border-left: ${table.border};
                 border-right: ${table.border};
             }
