@@ -5,72 +5,50 @@ import '../../styles/global';
 
 const defaults = {
     get transition() { return theme.transition.middle },
-    bgColor: `#fff`,
+    get bgColor() { return theme.color.border },
     fontSize: `12px`,
-    get color() { return theme.color.text },
-    checkedBgColor: `#fff`,
+    color: '#fff',
     handleBorderRadius: `100%`,
-    get handleBgColor() { return theme.color.border },
-    get border() { return `1px solid ${theme.color.border}` },
+    handleBgColor: '#fff',
 
     // checked
     checked: {
-        get borderColor() { return theme.color.primary },
-        get color() { return theme.color.primary },
         get bgColor() { return theme.color.primary },
+        get disabledBgColor() {
+            return palette(theme.color.primary, -3);
+        }
     },
 
     // default
     default: {
-        width: `36px`,
-        height: `18px`,
-        padding: `2px`,
+        width: `45px`,
+        height: `24px`,
+        padding: `3px`,
     },
 
     // large
     large: {
-        width: `52px`,
-        height: `22px`,
-        padding: `2px`,
+        width: `58px`,
+        height: `30px`,
+        padding: `3px`,
     },
 
     // small
     small: {
-        width: `32px`,
-        height: `14px`,
+        width: `30px`,
+        height: `16px`,
         padding: `2px`,
     },
 
     // mini
     mini: {
-        width: `24px`,
+        width: `18px`,
         height: `10px`,
         padding: `1px`,
     },
 
     // disabled
     get disabledBgColor() { return theme.color.disabledBg },
-
-    // plane
-    flat: {
-        get bgColor() {
-            return theme.color.border
-        },
-        get disabledBg() {
-            return theme.color.disabledBg
-        },
-        get disabledInnerColor(){
-            return palette(theme.color.primary, -3)
-        },
-        get disabledInnerBorderColor(){
-            return palette(theme.color.primary, -3)
-        }, 
-        onColor: `#fff`,
-        checked: {
-            bgColor: `#fff`,
-            borderColor: `#fff`,
-        }
-    }
 };
 
 let kswitch: typeof defaults;
@@ -87,7 +65,6 @@ export function makeStyles() {
         cursor: pointer;
         user-select: none;
         overflow: hidden;
-        border: ${kswitch.border};
         box-sizing: content-box;
         input {
             opacity: 0;
@@ -140,13 +117,12 @@ export function makeStyles() {
         &.k-dragging {
             .k-switch-bar,
             .k-switch-wrapper {
-                background: ${kswitch.checkedBgColor};
+                background: ${kswitch.checked.bgColor};
                 transition: background ${kswitch.transition};
             }
         }
         &:focus {
             outline: none;
-            border-color: ${kswitch.checked.borderColor};
         }
 
         // size
@@ -185,70 +161,32 @@ export function makeStyles() {
 
         // checked
         &.k-checked {
-            border-color: ${kswitch.checked.borderColor};
-            .k-switch-on {
-                color: ${kswitch.checked.color};
-            }
-            .k-switch-handle {
-                background: ${kswitch.checked.bgColor};
-            }
             .k-switch-bar,
             .k-switch-wrapper {
-                background: ${kswitch.checkedBgColor};
+                background: ${kswitch.checked.bgColor};
             }
             .k-switch-bar {
                 width: 100%;
-            }
-            &.k-switch-flat {
-                border-color: ${kswitch.flat.checked.borderColor} !important;
-                .k-switch-handle {
-                    background: ${kswitch.flat.checked.bgColor};
-                }
-                .k-switch-bar,
-                .k-switch-wrapper {
-                    background: ${kswitch.checked.borderColor};
-                }
-            }
-        }
-
-        // flat
-        &.k-switch-flat{
-            background:  ${kswitch.flat.bgColor};
-            .k-switch-bar,
-            .k-switch-wrapper {
-                background: ${kswitch.flat.bgColor};
-            }
-            .k-switch-handle {
-                background: ${kswitch.flat.onColor};
-            }
-            .k-switch-on {
-                color:  ${kswitch.flat.onColor} !important;
             }
         }
 
         // disabled
         &.k-disabled {
-            background: ${kswitch.disabledBgColor};
-            cursor: not-allowed;
+            &,
+            .k-switch-handle {
+                cursor: not-allowed;
+            }
+            &,
             .k-switch-bar,
             .k-switch-wrapper {
                 background: ${kswitch.disabledBgColor};
             }
-            &.k-switch-flat {
-                .k-switch-bar {
-                    background: ${kswitch.flat.disabledInnerColor};
-                }
+            &.k-checked {
+                &,
+                .k-switch-bar,
                 .k-switch-wrapper {
-                    background: ${kswitch.flat.disabledInnerBorderColor};
+                    background: ${kswitch.checked.disabledBgColor};
                 }
-            }
-        }
-
-        &:not(.k-checked) {
-            .k-switch-bar,
-            .k-switch-wrapper {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
             }
         }
     `;    

@@ -16,7 +16,6 @@ export interface SwitchProps<True = any, False = any> {
     height?: number | string
     size?: Sizes
     disabled?: boolean
-    flat?: boolean
 }
 
 export interface SwitchEvents {
@@ -40,7 +39,6 @@ const typeDefs: Required<TypeDefs<SwitchProps>> = {
     height: [Number, String],
     size: sizes,
     disabled: Boolean,
-    flat: Boolean
 };
 
 const defaults = (): Partial<SwitchProps> => ({
