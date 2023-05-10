@@ -32,7 +32,7 @@ export function defaultTheme() {
             border: '#d0d5d9',
             text: '#3c4449',
             ghost: '#737373',
-            info:'#3c4449',
+            info:'#0091ea',
             bg: '#f3f5f6',
             title: '#151b1e',
             darkBorder: '#d0d5d9',

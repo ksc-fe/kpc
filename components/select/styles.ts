@@ -22,11 +22,9 @@ const defaults = deepDefaults(
         get focusBorder() { return `1px solid ${theme.color.primary}` },
         // get hoverBorder() { return `1px solid ${theme.color.darkBorder}` },
         get hoverBorder() { return `1px solid ${theme.color.primary}` },
-        get iconColor() { return theme.color.lightBlack },
         get activeColor() { return theme.color.primary },
         get borderRadius() { return theme.borderRadius },
         suffixGap: '10px',
-        get disabledArrowColor() { return theme.color.disabled },
 
         clearGap: `8px`,
         get placeholderColor() { return theme.color.placeholder },
@@ -134,7 +132,6 @@ export default function makeStyles() {
         }
         .k-select-prefix,
         .k-select-suffix {
-            color: ${select.iconColor};
             position: relative;
         }
         .k-select-suffix {
@@ -180,9 +177,6 @@ export default function makeStyles() {
         .k-select-arrow {
             display: inline-block;
             transition: transform ${select.transition};
-            &.k-disabled {
-                color: ${select.disabledArrowColor};
-            }
         }
 
         // show
@@ -233,11 +227,7 @@ export default function makeStyles() {
         .k-select-close {
             margin-left: ${select.tag.delete.gap};
             font-size: ${select.tag.delete.fontSize};
-            color: ${select.tag.delete.color};
         }
-        // .k-select-input {
-            // margin-right: ${getRight(select.tag.margin)};
-        // }
 
         // size
         ${sizes.map(size => {

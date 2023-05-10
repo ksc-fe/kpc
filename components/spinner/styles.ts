@@ -2,8 +2,19 @@ import {css} from '@emotion/css';
 import {deepDefaults, sizes, palette} from '../../styles/utils';
 import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
+import spin from '~/components/spin';
 
 const defaults = {
+    get borderRadius() {return theme.borderRadius},
+    get border() {return `1px solid ${theme.color.border}` },
+    get hoverBorderColor() {return theme.color.primary },
+    get hoverBtnBg() { return theme.color.bg },
+    get btnHoverColor() { return theme.color.primary },
+    get disableBorderColor() {return theme.color.disabledBorder},
+    get disabledBg() {return theme.color.disabledBg},
+    get disableColor() {return theme.color.disabled},
+
+    hoverBorderRadius: '0',
     default: {
         inputWidth: '46px',
         iconFontSize: '16px'
@@ -47,61 +58,39 @@ export function makeStyles() {
         display: inline-block;
         vertical-align: middle;
         line-height: 1;
-        border:1px solid ${theme.color.border};
-        border-radius: 4px;
+        border: ${spinner.border};
+        border-radius: ${spinner.borderRadius};
         &:not(.k-disabled):hover {
-            border: 1px solid ${theme.color.primary};
-            border-radius: 4px;
-            .k-spinner-btn:not(.k-disabled) {
-                background: ${theme.color.bg};
-                border: none
+            border-color: ${spinner.hoverBorderColor};
+            .k-spinner-btn {
+                background: ${spinner.hoverBtnBg};
             }
-            .k-spinner-input {
-                border-color: initial;
+            .k-left {
+                border-top-right-radius: ${spinner.hoverBorderRadius};
+                border-bottom-right-radius: ${spinner.hoverBorderRadius};
+            }
+            .k-right {
+                border-top-left-radius: ${spinner.hoverBorderRadius};
+                border-bottom-left-radius: ${spinner.hoverBorderRadius};
             }
         }
         .k-spinner-btn {
-            vertical-align: top;
-            &:not(.k-disabled):hover,
-            &:focus {
-                z-index: 1;
-                color: ${theme.color.primary};
-            }
-
-            &.k-left {
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                margin-right: -1px;
-                border:none;
-                color: ${theme.color.lightBlack};
-            
-            }
-            &.k-right {
-                border-top-left-radius: 0;
-                border-bottom-left-radius: 0;
-                margin-left: -1px;
-                border:none;
-                color: ${theme.color.lightBlack};
-            
-            }
-            &.k-disabled{
-                color: ${theme.color.disabled} !important;
+            border:none;
+            &:not(.k-disabled):hover {
+                .k-icon {
+                    color: ${spinner.btnHoverColor};
+                }
             }
         }
         .k-spinner-input {
             width: ${spinner.default.inputWidth};
-            vertical-align: top;
             .k-input-inner {
                 text-align: center;
-                padding: 0;
-                border-radius: 0;
                 border:none;
-                &:hover {
-                border: none
+                &:hover,
+                &:focus {
+                    border: none
                 }
-            }
-            &:not(.k-disabled):hover {
-                border-color: initial;
             }
         }
         .k-spinner-icon {
@@ -154,14 +143,10 @@ export function makeStyles() {
         }
             
         &.k-disabled {
-            .k-spinner-btn {
-                &:hover,
-                &:focus {
-                    z-index: 0;
-                }
-            }
-            .k-right, .k-left {
-                color: ${theme.color.disabled} !important
+            border-color: ${spinner.disableBorderColor};
+            background: ${spinner.disabledBg};
+            .k-icon {
+                color: ${spinner.disableColor}
             }
         }
 

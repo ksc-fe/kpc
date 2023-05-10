@@ -7,7 +7,7 @@ const {type, content, children, closable, hideIcon} = this.get();
 
 const classNameObj = {
     "k-message": true,
-    [`k-${type}`]: type !== 'info',
+    [`k-${type}`]: type,
     [makeMessageStyles()]: true,
 };
 
