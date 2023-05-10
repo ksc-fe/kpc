@@ -185,8 +185,6 @@ export function makeAlertStyles() {
             .k-dialog-header,
             .k-dialog-footer {
                 border: none;
-
-                
             }
             .k-dialog-tip-icon {
                 margin-bottom: ${dialog.alert.tipIconMarginBottom};
@@ -235,8 +233,7 @@ export function makeAlertStyles() {
                     line-height: ${dialog.alert.tipIconLineHeight};
                     font-size: ${dialog.alert.titleFontSize};
                     font-weight: ${dialog.alert.titleFontWeight};
-                }
-               
+                }    
             }
         }
     ` 

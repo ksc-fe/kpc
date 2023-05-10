@@ -49,15 +49,6 @@ const defaults = deepDefaults(
             get paddingGap() { return styles.padding },
         }
 
-        // if (size === 'large') {
-        //     // use default padding for large size
-        //     Object.defineProperty(memo.large, 'paddingGap', {
-        //         get() {
-        //             return theme.default.padding;
-        //         }
-        //     });
-        // }
-
         return memo;
     }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
 )
@@ -113,7 +104,7 @@ export function makeStyles() {
             transform: translateY(-50%);
             z-index: 2;
             color: ${theme.color.lightBlack};
-            line-height: 0;
+            line-height: 1;
         }
 
         // clearable
@@ -181,7 +172,6 @@ export function makeStyles() {
                     background: transparent;
                 }
             }
-            // select
             .k-select {
                 margin: -1px;
                 text-align: left;

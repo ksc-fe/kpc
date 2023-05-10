@@ -10,7 +10,7 @@ import '../../styles/global';
 
 const defaults = {
     get transition() { return theme.transition.small },
-
+    get disabledColor() { return theme.color.disabled },
     fontSize: {
         default: '16px',
         large: '22px',
@@ -73,6 +73,10 @@ export default function makeStyles(color?: string) {
                 }
             `}
         }
-
+        // disabled
+        &.k-disabled {
+            cursor: not-allowed;
+            color: ${icon.disabledColor};
+        }
     `;
 }

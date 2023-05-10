@@ -13,3 +13,4 @@ sidebar: doc
 | color | 图标颜色 | `"default"` &#124; `"primary"` &#124; `"danger"` &#124; `"warning"` &#124; `"success"` &#124; `string` | `undefined` |
 | rotate | 是否一直旋转图标 | `boolean` | `false` |
 | hoverable | 图标是否具有`hover`效果 | `boolean` | `false` |
+| disbaled | 是否展示disabled状态 | `boolean` | `false` |

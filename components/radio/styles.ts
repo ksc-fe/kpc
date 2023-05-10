@@ -17,10 +17,9 @@ const defaults = {
         get color() { return theme.color.disabled },
         get borderColor() { return theme.color.disabledBorder },
         get bgColor() { return theme.color.disabledBg },
-        get innerColor() { return theme.color.disabledBorder },
         checked: {
             get borderColor() {
-                return palette(theme.color.primary, -4)
+                return palette(theme.color.primary, -2)
             },
             get bgColor() {
                 return palette(theme.color.primary, -4)
@@ -69,9 +68,8 @@ export function makeStyles() {
                 transition: all ${radio.transition};
             }
             &:hover {
-                border: 1px solid ${radio.hoverBorderColor}
+                border: 1px solid ${radio.hoverBorderColor};
             }
-
         }
         input {
             width: 100%;
@@ -109,10 +107,7 @@ export function makeStyles() {
             cursor: not-allowed;
             .k-radio-wrapper {
                 border-color: ${radio.disabled.borderColor};
-                background: ${radio.disabled.bgColor};
-                &:before {
-                    background: ${radio.disabled.innerColor};
-                }    
+                background: ${radio.disabled.bgColor};   
             }
             input {
                 cursor: not-allowed;

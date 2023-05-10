@@ -58,12 +58,6 @@ export function makeStyles() {
             height: ${transfer.panel.height};
             display: inline-flex;
             flex-direction: column;
-            .k-input-prepend {
-                border: none;
-                .k-select {
-                    border-radius: ${transfer.panel.borderRadius} 0 0 ${transfer.panel.borderRadius}; 
-                }
-            }
         }
 
         .k-transfer-title {

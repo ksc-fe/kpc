@@ -1,12 +1,16 @@
 import {addStyle, getRestProps} from '../utils';
 import makeStyles from './styles';
 
-const {className, style, size, color, rotate, hoverable, children} = this.get();
+const {
+    className, style, size, color,
+    rotate, hoverable, children, disabled
+} = this.get();
 
 const classNameObj = {
     'k-icon': true,
     'k-rotate': rotate,
-    'k-hoverable': hoverable,
+    'k-hoverable': !disabled && hoverable,
+    'k-disabled': disabled,
     [className]: className,
 };
 const _style = {};

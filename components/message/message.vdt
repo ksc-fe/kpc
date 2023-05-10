@@ -16,7 +16,6 @@ const iconMap = {
     warning: 'warning-fill',
     success: 'success-fill',
     error: 'error-fill',
-    primary:'information-fill'
 };
 
 <div {...getRestProps(this)}

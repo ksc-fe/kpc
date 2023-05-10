@@ -115,21 +115,19 @@ let nextPage = value + 1;
 }
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <template v-if={!simple}>
-        <div v-if={showTotal} class="k-pagination-total">
-            {_$('共 {n} 条', {n: total})}
-        </div>
-    </template>
+    <div v-if={showTotal && !simple} class="k-pagination-total">
+        {_$('共 {n} 条', {n: total})}
+    </div>
 
     <ButtonGroup checkType="radio" v-model="value">
         <Button icon size={size}
-            type={type}
+            type="none"
             disabled={value <= 1 || !!(disablePage && disablePage(value - 1, limit))}
             ev-click={this.prev}
         ><Icon class="k-icon-arrow-left" /></Button>
         <template>{paginationItems}</template>
         <Button icon size={size}
-            type={type}
+            type="none"
             disabled={value >= totalPages || !!(disablePage && disablePage(value + 1, limit))}
             ev-click={this.next}
         ><Icon class="k-icon-arrow-right" /></Button>

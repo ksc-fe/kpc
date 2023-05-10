@@ -5,11 +5,11 @@ import '../../styles/global';
 
 const defaults = {
     width: '16px',
-    get borderColor() { return theme.color.darkBorder },
+    get borderColor() { return theme.color.border },
     get borderRadius() { return theme.borderRadius },
     get transition() { return theme.transition.small },
     get hoverBorder() {
-      return `1px solid ${theme.color.primary}`
+        return `1px solid ${theme.color.primary}`
     },
     bgColor: '#fff',
     
@@ -40,12 +40,12 @@ const defaults = {
         get bgColor() { return theme.color.disabledBg }, 
         innerColor: '#fff',
         checked:{
-          get borderColor() {
-            return palette(theme.color.primary, -3)
-          },
-          get bgColor() {
-            return palette(theme.color.primary, -3)
-          },
+            get borderColor() {
+                return palette(theme.color.primary, -3)
+            },
+            get bgColor() {
+                return palette(theme.color.primary, -3)
+            },
         } 
     },
 
@@ -69,8 +69,8 @@ export default function makeStyles() {
         .k-checkbox-wrapper {
             width: ${checkbox.width};
             height: ${checkbox.width}; 
-            border: 1px solid ${theme.color.border}; 
-            border-radius: ${theme.borderRadius};
+            border: 1px solid ${checkbox.borderColor}; 
+            border-radius: ${checkbox.borderRadius};
             position: relative;
             transition: all ${checkbox.transition};
             background: ${checkbox.bgColor};

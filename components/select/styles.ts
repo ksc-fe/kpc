@@ -26,7 +26,7 @@ const defaults = deepDefaults(
         get activeColor() { return theme.color.primary },
         get borderRadius() { return theme.borderRadius },
         suffixGap: '10px',
-        disabledArrowColor: '#bec3c5',
+        get disabledArrowColor() { return theme.color.disabled },
 
         clearGap: `8px`,
         get placeholderColor() { return theme.color.placeholder },
@@ -104,20 +104,6 @@ const defaults = deepDefaults(
             get fontSize() { return theme[size].fontSize },
             multipleGap: `1px`,
             multipleMargin: `0 2px 1px 0`,
-        }
-
-        if (size === 'large') {
-            // use default padding for large size
-            Object.defineProperty(memo.large, 'padding', {
-                get() {
-                    return `7px 16px`;
-                }
-            });
-            Object.defineProperty(memo.large, 'fontSize', {
-                get() {
-                    return theme.default.fontSize;
-                }
-            });
         }
 
         return memo;
@@ -219,13 +205,6 @@ export default function makeStyles() {
             border-color: ${select.disabled.borderColor};
             .k-select-tag {
                 background: ${select.tag.disabledBgColor};
-            }
-            .k-select-close{
-                color: ${select.disabled.color};
-            }
-            .k-select-prefix,
-            .k-select-suffix {
-                color: ${theme.color.disabled};
             }
         }
 

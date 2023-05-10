@@ -31,6 +31,8 @@ const defaults = deepDefaults(
         btn: {
             gap: '6px',
             padding: '0 3px',
+            get borderRadius() { return theme.borderRadius },
+            get hoverBgColor() { return theme.color.hoverBg }
         },
         // goto
         goto: {
@@ -58,13 +60,12 @@ setDefault(() => {
 export function makeStyles() {
     return css`
         font-size: ${pagination.fontSize};
-        .k-pagination-limits,
-        .k-pagination-goto,
-        .k-pagination-total {
-            margin-right: ${pagination.gap};
+        > * {   
             display: inline-block;
             vertical-align: middle;
-            margin-left: 4px;
+            &:not(:first-child) {
+                margin-left: ${pagination.gap};
+            }
         }
         .k-pagination-ellipsis {
             background-color: transparent;
@@ -77,19 +78,12 @@ export function makeStyles() {
                 min-width: ${button.height};
                 padding: ${pagination.btn.padding};
                 margin-right: ${pagination.btn.gap};
+                border-radius: ${pagination.btn.borderRadius} !important;
                 &:last-of-type {
                     margin: 0 !important;
-                    border: none;
-                }
-                &:first-of-type {
-                    border:none;
-                    background:none;
-                }
-                &:not(:first-child):not(:last-child){
-                     border-radius: ${theme.borderRadius} !important;
                 }
                 &:hover {
-                    background: ${theme.color.hoverBg}
+                    background: ${pagination.btn.hoverBgColor};
                 }
             }
             .k-icon {
