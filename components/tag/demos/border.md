@@ -3,7 +3,7 @@ title: 边框
 order: 3
 ---
 
-通过`border`可以定义边框样式: `solid`(默认) `dashed` `none`
+通过`border`可以定义边框样式: `solid` `dashed` `none`(默认) 
 
 ```vdt
 import {Tag} from 'kpc';
@@ -40,7 +40,7 @@ export default class extends Component {
     static defaults() {
         return {
             types: ['default', 'primary', 'success', 'warning', 'danger'],
-            borders: ['dashed', 'none'],
+            borders: ['solid', 'dashed', 'none'],
         } as Props;
     }
 }

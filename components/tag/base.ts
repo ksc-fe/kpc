@@ -31,7 +31,7 @@ const typeDefs: Required<TypeDefs<TagProps>> = {
 const defaults = (): Partial<TagProps> => ({
     type: 'default',
     size: 'default',
-    border: 'solid',
+    border: 'none',
 });
 
 const events: Events<TagEvents> = {

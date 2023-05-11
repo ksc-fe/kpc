@@ -14,7 +14,7 @@ sidebar: doc
 | closed | 是否已关闭 | `boolean` | `false` |
 | disabled | 是否展示禁用状态 | `boolean` | `false` |
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
-| border | 定义边框样式 | `"solid"` &#124; `"dashed"` &#124; `"none"` | `"solid"` |
+| border | 定义边框样式 | `"solid"` &#124; `"dashed"` &#124; `"none"` | `"none"` |
 
 # 事件
 
