@@ -9,11 +9,12 @@ const defaults = {
     bgColor: '#fff',
     lineHeight: 1.4,
     maxWidth: '312px',
+    get boxShadow() { return tooltip.middleBoxShadow },
 
     // arrow
     arrow: {
-        borderColor: 'rgba(191, 191, 191, .5)',
-        width: '5px',
+        borderColor: 'rgba(221, 221, 221, .5)',
+        width: '6px',
     },
 
     // confirm
@@ -48,7 +49,7 @@ const directionMap = {
 
 export default function makeStyles() {
     const arrowLong = tooltip.arrow.width;
-    const arrowShort = `calc(${arrowLong} - 2px)`;
+    const arrowShort = `calc(${arrowLong} - 1px)`;
 
     // use &.k-tooltip-content to override css in dropdown menu
     return css`
@@ -59,7 +60,8 @@ export default function makeStyles() {
             line-height: ${tooltip.lineHeight};
             word-wrap: break-word;
             pointer-events: none;
-            box-shadow: ${theme.middleBoxShadow};
+            box-shadow: ${tooltip.boxShadow};
+
             // hoverable
             &.k-hoverable,
             &.k-always {
