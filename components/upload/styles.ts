@@ -6,11 +6,10 @@ import '../../styles/global';
 const defaults = {
     get transition() { return theme.transition.middle },
     fontSize: '12px',
+    get color() { return theme.color.lightBlack },
     tip: {
-        gap: '16px',
-        get color() { return theme.color.lightBlack }
+        gap: '8px',
     },
-    closeFontSize: '24px',
 
     // files list
     filesGap: '16px',
@@ -24,22 +23,27 @@ const defaults = {
         status: {
             // width: '16px',
             get color() { return theme.color.success },
-            gap: '8px',
             get errorColor() { return theme.color.danger },
+            offsetRight: '2px',
+        },
+        delete: {
+            width: '20px',
+            top: '7px',
+            right: '2px',
         },
         get errorColor() { return theme.color.danger },
     },
 
     // drag
     drag: {
-        get color() { return theme.color.lightBlack },
         get border() { return `1px dashed ${theme.color.border}` },
         get borderRadius() { return theme.borderRadius },
         get hoverBorderColor() { return theme.color.primary },
-        padding: `20px 0 40px 0`,
+        get bgColor() { return theme.color.bg },
+        padding: `42px 0`,
         icon: {
-            fontSize: '80px',
-            get color() { return theme.color.placeholder },
+            fontSize: '40px',
+            gap: '16px',
         },
         get overBorderColor() { return theme.color.primary },
     },
@@ -54,23 +58,17 @@ const defaults = {
         padding: '8px',
         bgColor: '#fff',
         get errorBorderColor() { return theme.color.danger },
-        close: {
-            top: '-8px',
-            right: '-8px',
-            fontSize: '18px',
-        },
         add: {
             get border() { return `1px dashed ${theme.color.border}` },
-            fontSize: '44px',
             get hoverBorderColor() { return theme.color.primary },
         }
     },
 
     // overlap
     overlap: {
-        bgColor: 'rgba(0, 0, 0, .35)',
+        bgColor: 'rgba(21, 27, 30, .5)',
         color: '#fff',
-        zoomFontSize: '24px',
+        iconGap: '16px',
     }
 };
 
@@ -83,15 +81,20 @@ export function makeStyles() {
     return css`
         font-size: ${upload.fontSize};
         position: relative;
-        .k-upload-handle,
-        .k-upload-tip {
+
+        // keep vertical align middle
+        .k-icon-upload {
+            position: relative;
+            top: -1px;
+        }
+        .k-upload-handle {
             display: inline-block;
             vertical-align: middle;
-            width: 100%;
+            color: ${upload.color};
         }
         .k-upload-tip {
             margin-top: ${upload.tip.gap};
-            color: ${upload.tip.color};
+            color: ${upload.color};
         }
 
         // filelist
@@ -100,14 +103,23 @@ export function makeStyles() {
         }
         .k-upload-file {
             margin: ${upload.file.margin};
-            padding: ${upload.file.padding};
-            border-radius: ${upload.file.borderRadius};
+            padding-right: ${upload.file.delete.width};
+            position: relative;
             &:hover {
-                background: ${upload.file.bgColor};
                 .k-upload-close {
                     display: inline-flex;
+                    position: absolute;
+                    right: ${upload.file.delete.right};
+                    top: ${upload.file.delete.top};
                 } 
+                .k-upload-file-main { 
+                    background: ${upload.file.bgColor};
+                }
             }
+        }
+        .k-upload-file-main {
+            padding: ${upload.file.padding};
+            border-radius: ${upload.file.borderRadius};
         }
         .k-upload-name {
             display: flex;
@@ -122,13 +134,10 @@ export function makeStyles() {
         }
         .k-upload-status-icon {
             color: ${upload.file.status.color};
-            margin-left: ${upload.file.status.gap};
+            margin-right: ${upload.file.status.offsetRight};
         }
         .k-upload-close {
             display: none;
-            .k-icon {
-                font-size: ${upload.closeFontSize};
-            }
         }
         .k-upload-file.k-error {
             color: ${upload.file.errorColor};
@@ -145,13 +154,13 @@ export function makeStyles() {
         // drag
         &.k-drag {
             .k-upload-handle {
-                color: ${upload.drag.color};
                 display: block;
                 border: ${upload.drag.border};
                 border-radius: ${upload.drag.borderRadius};
                 cursor: pointer;
                 text-align: center;
                 transition: border-color ${upload.transition};
+                background: ${upload.drag.bgColor};
                 &:hover {
                     border-color: ${upload.drag.hoverBorderColor};
                 }
@@ -159,9 +168,9 @@ export function makeStyles() {
             .k-upload-area {
                 padding: ${upload.drag.padding};
                 .k-icon {
+                    display: inline-block;
                     font-size: ${upload.drag.icon.fontSize};
-                    color: ${upload.drag.icon.color};
-                    line-height: 1;
+                    margin-bottom: ${upload.drag.icon.gap};
                 }
             }
             &.k-dragover {
@@ -183,10 +192,12 @@ export function makeStyles() {
             &.k-error {
                 border-color: ${upload.gallery.errorBorderColor};
             }
+            .k-upload-close {
+                display: inline-flex;
+            }
             &:hover {
-                .k-upload-close {
-                    opacity: 1;
-                    pointer-events: all;
+                .k-upload-icons {
+                    opacity: 1; 
                 }
             }
             .k-upload-img {
@@ -194,57 +205,48 @@ export function makeStyles() {
                 width: 100%;
                 height: 100%;
             }
-            .k-upload-close {
-                position: absolute;
-                top: ${upload.gallery.close.top};
-                right: ${upload.gallery.close.right};
-                display: inline-block;
-                opacity: 0;
-                transition: opacity ${upload.transition};
-                pointer-events: none;
-                .k-icon {
-                    font-size: ${upload.gallery.close.fontSize};
-                }
-            }
             .k-upload-icons {
                 opacity: 0;
                 transition: opacity ${upload.transition};
             }
-            &:hover {
-                .k-upload-icons {
-                    opacity: 1; 
-                }
-            }
         }
 
         .k-upload-picture-card {
-            display: inline-block;
+            display: inline-flex;
             width: ${upload.gallery.width};
             height: ${upload.gallery.height};
             border-radius: ${upload.gallery.borderRadius};
             border: ${upload.gallery.border};
-            text-align: center;
-            cursor: pointer;
             margin: ${upload.gallery.margin};
             background: ${upload.gallery.bgColor};
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
         .k-upload-add {
             border: ${upload.gallery.add.border};
-            font-size: ${upload.gallery.add.fontSize};
-            line-height: calc(${upload.gallery.height} - 2px);
+            // font-size: ${upload.gallery.add.fontSize};
+            // line-height: calc(${upload.gallery.height} - 2px);
+            cursor: pointer;
             &:hover {
                 border-color: ${upload.gallery.add.hoverBorderColor};
             }
         }
-
         .k-upload-overlap {
             position: absolute;
             width: 100%;
             height: 100%;
             left: 0;
             top: 0;
-            color: ${upload.overlap.color};
             background: ${upload.overlap.bgColor};
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: ${upload.overlap.iconGap};
+            color: ${upload.overlap.color};
+            .k-icon:not(:hover) {
+                color: inherit;
+            }
             .k-upload-progress {
                 position: absolute;
                 width: 100%;
@@ -252,13 +254,6 @@ export function makeStyles() {
                 padding: ${upload.gallery.padding};
                 transform: translateY(-50%);
             }
-        }
-        .k-upload-zoom {
-            display: inline-block;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: ${upload.overlap.zoomFontSize};
         }
     `;
 }

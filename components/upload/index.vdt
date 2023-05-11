@@ -38,22 +38,26 @@ const handle = (
         <b:content>
             <b:children v-if={children}>{children}</b:children>
             <template v-else-if={type !== 'gallery'}>
-                <Button type="primary" v-if={type === 'select'}>{_$('点击上传')}</Button>
+                <Button v-if={type === 'select'}>
+                    <Icon class="k-icon-upload" />
+                    {_$('点击上传')}
+                </Button>
                 <div class="k-upload-area" v-else>
-                    <Icon class="ion-upload" />
-                    <div>{_$('将文件拖到此处，或点击上传')}</div>
+                    <Icon class="k-icon-add-big" />
+                    <div innerHTML={_$('将文件拖到此处，或<a>点击上传</a>')}></div>
                 </div>
             </template>
-            <template v-else>
-                <Icon class="k-upload-picture-card k-upload-add ion-ios-plus-empty" />
-            </template>
+            <div v-else class="k-upload-picture-card k-upload-add">
+                <Icon class="k-icon-add-big" size="large" />
+                <div>{_$('上传图片')}</div>
+            </div>
         </b:content>
     </div>
 );
 
 const {removeFile} = this.files;
-const closeBtn = (value, index, icon) => (
-    <Icon class={{"k-upload-close": true, [icon]: true}}
+const closeBtn = (value, index) => (
+    <Icon class="k-upload-close k-icon-delete"
         ev-click={() => removeFile(value, index)}
         hoverable
     />
@@ -94,13 +98,14 @@ const {show, close, image, isShow} = this.showImage;
                             class="k-upload-progress"
                         />
                     </div>
-                    <div class="k-upload-overlap k-upload-icons" v-else 
-                        ev-click={linkEvent($value, show)}
-                    >
-                        <Icon class="k-upload-zoom ion-ios-eye-outline" />
+                    <div class="k-upload-overlap k-upload-icons" v-else>
+                        <Icon class="k-upload-zoom ion-ios-eye-outline" size="large"
+                            hoverable
+                            ev-click={linkEvent($value, show)}
+                        />
+                        {closeBtn($value, $key)}
                     </div>
                 </Transition>
-                {closeBtn($value, $key, 'ion-ios-close')}
             </div>
             <div key="handle" class="c-middle" v-if={!limit || files.length < limit}>
                 {handle}
@@ -120,28 +125,29 @@ const {show, close, image, isShow} = this.showImage;
                 }}
                 key={$value.uid}
             >
-                <div class="k-upload-name c-ellipsis">
-                    <Icon class="k-upload-file-icon ion-document" />
-                    <span class="k-upload-file-name">{$value.name}</span>
-                    {closeBtn($value, $key, 'ion-ios-close-empty')}
-                    <Icon class="k-upload-status-icon ion-ios-checkmark-outline" 
-                        v-if={$value.status === UploadFileStatus.Done}
-                    />
-                    <Icon class="k-upload-status-icon ion-ios-close-outline"
-                        v-else-if={$value.status === UploadFileStatus.Error}
-                    />
+                <div class="k-upload-file-main">
+                    <div class="k-upload-name c-ellipsis">
+                        <Icon class="k-upload-file-icon ion-document" />
+                        <span class="k-upload-file-name">{$value.name}</span>
+                        <Icon class="k-upload-status-icon ion-ios-checkmark-outline" 
+                            v-if={$value.status === UploadFileStatus.Done}
+                        />
+                        <Icon class="k-upload-status-icon ion-ios-close-outline"
+                            v-else-if={$value.status === UploadFileStatus.Error}
+                        />
+                    </div>
+                    <Transition {...expandAnimationCallbacks}>
+                        <Progress percent={$value.percent}
+                            size="mini"
+                            class="k-upload-progress"
+                            v-if={
+                                $value.status === UploadFileStatus.Ready || 
+                                $value.status === UploadFileStatus.Uploading
+                            }
+                        />
+                    </Transition>
                 </div>
-                <Transition {...expandAnimationCallbacks}>
-                    <Progress percent={$value.percent}
-                        size="mini"
-                        class="k-upload-progress"
-                        v-if={
-                            $value.status === UploadFileStatus.Ready || 
-                            $value.status === UploadFileStatus.Uploading
-                        }
-
-                    />
-                </Transition>
+                {closeBtn($value, $key)}
             </div>
         </TransitionGroup>
     </div>

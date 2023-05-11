@@ -101,8 +101,9 @@ const i18n = {
 
     // upload
     '点击上传': 'Click to Upload',
-    '将文件拖到此处，或点击上传': 'Drag file to this area or click to upload',
+    '将文件拖到此处，或<a>点击上传</a>': 'Drag file to this area or <a>click to upload</a>',
     '查看图片': 'View Image',
+    '上传图片': 'Upload Image',
     '超出文件数量最大限制：{limit}': 'Exceed the maximum limit of the number of files: {limit}',
     '"{name}" 超出文件最大限制：{maxSize}kb': '"{name}" exceeds the maximum size of file: {maxSize}kb',
     '"{name}" 文件类型不合法': '"{name}" invalid file type',
