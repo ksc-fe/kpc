@@ -58,6 +58,7 @@ export function makeStyles() {
             height: ${transfer.panel.height};
             display: inline-flex;
             flex-direction: column;
+            overflow: auto;
         }
 
         .k-transfer-title {
@@ -68,7 +69,6 @@ export function makeStyles() {
                 color: ${transfer.title.color}; 
                 font-size: ${transfer.title.fontSize};
             }
-            border-radius: ${transfer.panel.borderRadius}  ${transfer.panel.borderRadius} 0 0;
         }
         .k-transfer-count {
             float: right;

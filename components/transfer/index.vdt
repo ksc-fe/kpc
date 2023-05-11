@@ -12,7 +12,7 @@ const {
 } = this.get();
 const {getShowedData} = this.filter;
 const {enableAdd, enableRemove, add, remove} = this.transfer;
-const {isCheckAll, toggleCheckAll, onCheckboxChange,isIndeterminate} = this.check;
+const {isCheckAll, toggleCheckAll, onCheckboxChange, isIndeterminate} = this.check;
 
 const classNameObj = {
     'k-transfer': true,
