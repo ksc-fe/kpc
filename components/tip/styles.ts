@@ -43,9 +43,8 @@ export function makeStyles() {
             position: relative;
         }
 
-        .k-tip-close {
-            color: ${theme.color.lightBlack} !important;
+        .k-tip-close:hover {
+            background: none;
         }
-
     `;
 }
