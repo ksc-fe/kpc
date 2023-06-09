@@ -155,7 +155,7 @@ export function makeFormStyles() {
             return css`
                 &.k-${size} {
                     .k-form-item:not(:last-of-type) {
-                        margin: ${form.item[`${size}Gap` as const]}
+                        margin-bottom: ${form.item[`${size}Gap` as const]}
                     }
                     &.k-inline {
                         .k-form-item {

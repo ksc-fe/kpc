@@ -4,69 +4,53 @@ import {deepDefaults}  from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
-    get transition() { return theme.transition.middle },
-    get height() { return theme.default.height }, 
-    get bgColor() { return theme.color.bg },
-    get darkColor() {return theme.color.title},
-    get lightDesColor () {return theme.color.lightBlack},
+    gap: '10px',
+    get titleColor() { return theme.color.title },
+    get desColor() { return theme.color.lightBlack },
+    get markColor() { return theme.color.placeholder },
+    get markborder() { return `1px solid ${theme.color.placeholder}` },
+    markBgColor: '#fff',
 
-    lightColor:'#ffffff',
-    gutter: '10px',
-    gapTop: '-2px',
-
-    // head
-    head: {
-        innerWidth: '16px',
-        get innerBorder() { return `1px solid ${theme.color.placeholder}` },
-        iconFontSize: '24px',
-        paddingRight: '10px',
-    },
-
-    main: {
-        get color() { return theme.color.text }, 
-        get titlePaddingRight() { return steps.head.paddingRight },
-        contentFontSize: '12px',
+    default: {
+        get height() { return theme.default.height }, 
+        get bgColor() { return theme.color.bg },
+        markWidth: '16px',
     },
 
     // done
     done: {
-       get headColor() { return theme.color.primary }, 
-       get headInnerBorderColor() { return theme.color.primary },
-       headInnerBgColor: 'transparent',
-       get mainColor() { return theme.color.primary },
-       get simpleColor() { return theme.color.text },
-       get doneDesColor() { return theme.color.primary } 
+        get markColor() { return theme.color.primary }, 
+        get markBorderColor() { return theme.color.primary },
+        markBgColor: '#fff',
+        get mainColor() { return theme.color.primary },
     },
 
     // active
     active: {
-        headColor: '#fff',
-        get headInnerBorderColor() { return theme.color.primary }, 
-        get headInnerBgColor() { return theme.color.primary },
+        markColor: '#fff',
+        get markBorderColor() { return theme.color.primary }, 
+        get markBgColor() { return theme.color.primary },
         get mainColor() { return theme.color.primary }, 
-        get simpleColor() { return theme.color.primary },
-        get activeDesColor() {return theme.color.primary} 
     },
 
     // error
     error: {
-        get headColor() { return theme.color.danger }, 
-        get headInnerBorderColor() { return theme.color.danger }, 
-        headInnerBgColor: 'transparent',
+        get markColor() { return theme.color.danger }, 
+        get markBorderColor() { return theme.color.danger }, 
+        markBgColor: '#fff',
         get mainColor() { return theme.color.danger }, 
-        get simpleColor() { return theme.color.danger }, 
-        get errorDesColor() {return theme.color.danger }
     },
 
     // line
     line: {
-        bgColor: '#fff',
-        mainContentGap: '5px 0 0',
-        get tailBgColor() { return theme.color.placeholder },
+        markWidth: '32px',
+        markFontSize: '18px',
+        get lineColor() { return theme.color.border},
+        titleGap: '16px',
+        descGap: '4px',
+
         get doneTailBgColor() { return theme.color.primary }, 
-        innerWidth: '32px',
-        innerLineHeight: '30px',
-        innerFontSize: '18px',
+        gap: '5px',
         headTop: '16px',
         titleFontSize: '14px',
         titleGopTop: '16px',
@@ -93,531 +77,231 @@ const stepStatus = ['done', 'active', 'error'] as const;
 export function makeStepsStyles() {
     return css`
         display: flex;
-        // default and line type
-        &.k-line-compact,
-        &.k-default,
-        &.k-dot,
-        &.k-line {
-            .k-step-head {
-                padding-right: ${steps.head.paddingRight};
-            }
-            .k-step-inner {
-                width: ${steps.head.innerWidth};
-                height: ${steps.head.innerWidth}; 
-                line-height: calc(${steps.head.innerWidth} - 2px);
-                border-radius: 50%;
-                text-align: center;
-                border: ${steps.head.innerBorder};
-                span {
-                    color: #b2b9bd;
-                }
-            }
-            .k-step-icon:before {
-                line-height: calc(${steps.head.innerWidth} - 2px);
-            }
-            .k-step-main {
-                color: ${steps.main.color}; 
-            }
-            .k-step-tail {
-                position: absolute;
-            }
-            .k-step:last-of-type {
-                .k-step-tail {
-                    display: none;
-                }
-            } 
-            // step
-            ${stepStatus.map(status => {
-                const styles = steps[status];
-                return css`
-                    .k-${status} {
-                        .k-step-inner {
-                            color: ${styles.headColor};
-                            border-color: ${styles.headInnerBorderColor} !important;
-                            background: ${styles.headInnerBgColor};
-                            overflow: hidden;
-                        }
-                        .k-step-main {
-                            color: ${styles.mainColor} !important;
-                        }
-                    }
-                `
-            })} 
+
+        ${makeCommonStyles()};
+
+        &.k-default {
+            ${makeDefaultStyles()};
         }
             
-        // default and simple type
-        &.k-simple,
-        &.k-default {
-            text-align: center;
-            height: ${steps.height}; 
-            line-height: ${steps.height}; 
+        &.k-line,
+        &.k-line-compact {
+            ${makeLineStyles()};
+        }
+
+        &.k-line-compact {
+            ${makeLineCompactStyles()};
+        }
+    `;
+}
+
+function makeDefaultStyles() {
+    const defaults = steps.default;
+
+    return css`
+        text-align: center;
+        height: ${defaults.height}; 
+        background: ${defaults.bgColor};
+
+        .k-step-wrapper {
+            ${center()};
+            height: 100%;
+        }
+        .k-step-mark {
+            width: ${defaults.markWidth};
+            height: ${defaults.markWidth}; 
+            margin-right: ${steps.gap};
+        }
+        .k-step-main {
+            display: flex;
             overflow: hidden;
-            .k-step-head,
-            .k-step-main,
-            .k-step-content,
-            .k-step-inner {
-                display: inline-block;
+            white-space: nowrap;
+        }
+        .k-step-title {
+            padding-right: ${steps.gap};
+        }
+
+        // tail
+        .k-step:last-of-type {
+            .k-step-tail {
+                display: none;
             }
-            .k-step {
-                white-space: nowrap;
+        } 
+        .k-step-tail {
+            position: absolute;
+            top: 0;
+            right: calc(-1 * (${defaults.height} / 2 + ${steps.gap}));
+            width: calc(${defaults.height} / 2 + ${steps.gap});
+            height: ${defaults.height}; 
+            overflow: hidden;
+            z-index: 1;
+            &:after, &:before {
+                content: '';
+                border-width: calc(${defaults.height} / 2 + ${steps.gap});
+                border-style: solid;
+                border-color: transparent;
+                position: absolute;
+                top: calc(-1 * ${steps.gap});
             }
-            .k-step-wrapper {
-                overflow: hidden;
+            &:after {
+                border-left-color: ${defaults.bgColor};
+                left: calc(-1 * ${steps.gap});
+            }
+            &:before {
+                border-left-color: #fff;
+                left: 0;
             }
         }
-    
-        // default
-        &.k-default {
-            background: ${steps.bgColor};
-            .k-step-tail {
-                top: 0;
-                right: calc(-1 * (${steps.height} / 2 + ${steps.gutter}));
-                width: calc(${steps.height} / 2 + ${steps.gutter});
-                height: ${steps.height}; 
-                overflow: hidden;
-                z-index: 1;
-                &:after, &:before {
-                    content: '';
-                    border-width: calc(${steps.height} / 2 + ${steps.gutter});
-                    border-style: solid;
-                    border-color: transparent;
-                    position: absolute;
-                    top: calc(-1 * ${steps.gutter});
-                }
-                &:after {
-                    border-left-color: ${steps.bgColor};
-                    left: calc(-1 * ${steps.head.paddingRight});
-                }
-                &:before {
-                    border-left-color: ${steps.line.bgColor};
-                    left: 0;
-                }
+        .k-step:not(:first-of-type) {
+            padding-left: calc(${defaults.height} / 2 + ${steps.gap});
+        }
+    `
+}
+
+function makeLineStyles() {
+    const line = defaults.line;
+    return css`
+        .k-step {
+            display: flex;
+        }
+        .k-step-wrapper {
+            display: inline-block;
+            text-align: center;
+            position: relative;
+        }
+        .k-step:last-of-type {
+            flex: 0 0 auto;
+        }
+        .k-step-mark {
+            width: ${line.markWidth};
+            height: ${line.markWidth};
+            position: relative;
+            z-index: 1;
+            &, .k-icon {
+                font-size: ${line.markFontSize};
             }
-            .k-step-head,
-            .k-step-inner {
-                vertical-align: middle;
-                margin-top: ${steps.gapTop};
-            }
-            .k-step:not(:first-of-type) {
-                padding-left: calc(${steps.height} / 2 + ${steps.gutter});
-            }
-            // done
-            .k-done {
-                .k-step-inner {
-                    span {
-                        color: ${steps.done.doneDesColor};
-                    }
-                }
-            }
-            //active
-            .k-active
-            .k-step-inner {
-                span {
-                    color: ${steps.lightColor};
-                }
-            }
+        }
+        .k-step-main {
+            padding-top: ${line.titleGap};
+        }
+        .k-step-title {
+            font-size: 14px;
+            color: ${theme.color.text};
+        }
+        .k-step-content {
+            margin-top: ${line.descGap};
+            color: ${theme.color.placeholder};
         }
         
-        // line type
-        &.k-line {
-            .k-step {
-                width: auto !important;
-                &:last-of-type {
-                    flex: 0 0 auto;
-                    .k-step-wrapper {
-                        display: flex;
-                    }
-                    .k-step-title {
-                        padding-right: 0;
-                    }
-                }
-            }
-            .k-step-head {
-                background: ${steps.line.bgColor};
-                position: relative;
-                display: flex;
-                padding: 0;
-                &:before,
-                &:after {
-                    content: '';
-                    display: block;
-                    flex: 1;
-                    height: 1px;
-                    background: ${theme.color.placeholder};
-                    top: ${steps.line.headTop};
-                    position: relative;
-                }
-            }
-            .k-step-inner {
-                width: ${steps.line.innerWidth};
-                height: ${steps.line.innerWidth};
-                line-height: ${steps.line.innerLineHeight};
-                font-size: ${steps.line.innerFontSize};
-            }
-            .k-step-main {
-                position: relative;
-                width: ${steps.line.width};
-            }
-            .k-step-title {
-                line-height: ${steps.head.innerWidth};
-                background: ${steps.line.bgColor};
-                font-size: ${steps.line.titleFontSize};
-                padding: 0;
-                margin-top: ${steps.line.titleGopTop};
-                color: ${steps.lightDesColor}
-            }
-            .k-step-content {
-                margin: ${steps.line.mainContentGap};
-                color: ${steps.lightDesColor}
-            }
-            .k-step-tail {
-                left: 0;
-                right: ${steps.head.paddingRight}; 
-                top: calc(${steps.head.innerWidth} / 2);
+        // draw connected line
+        .k-step-wrapper {
+            &:before,
+            &:after {
+                content: '';
+                display: block;
                 height: 1px;
-                background: ${steps.line.tailBgColor};
+                background: ${line.lineColor};
+                width: 50%;
+                position: absolute;
+                top: calc(${line.markWidth} / 2);
             }
-            .k-step:first-of-type .k-step-head:before,
-            .k-step:last-of-type .k-step-head:after {
+            &:after {
+                right: 0;
+            }
+        }
+        .k-step {
+            &:first-of-type .k-step-wrapper:before,
+            &:last-of-type .k-step-wrapper:after {
                 background: transparent;
             }
-            // done
-            .k-done {
-                .k-step-tail {
-                    background: ${steps.line.doneTailBgColor};
-                }
-                .k-step-head {
-                    &:before,
-                    &:after {
-                        background: ${steps.done.doneDesColor};
-                    }
-                }
-                .k-step-title{
-                    color: ${steps.darkColor} !important;
-                }
-                .k-step-inner {
-                    span {
-                        color: ${steps.done.doneDesColor};
-                    }
+        }
+        .k-step-tail {
+            flex: 1;
+            height: 1px;
+            background: ${line.lineColor};
+            margin-top: calc(${line.markWidth} / 2);
+        }
+        
+        // status
+        .k-step {
+            &.k-done {
+                .k-step-tail,
+                &:not(:last-of-type) .k-step-wrapper:after,
+                &:not(:first-of-type) .k-step-wrapper:before {
+                    background: ${theme.color.primary};
                 }
             }
-            .k-active {
-                .k-step-head {
-                    &:before {
-                        background: ${steps.active.activeDesColor};
-                    }
-                }
-                .k-step-title {
-                    color: ${steps.active.activeDesColor}
-                }
-                .k-step-inner {
-                    span{
-                        color: ${steps.lightColor};
-                    }
+            &:not(:first-of-type).k-active {
+                .k-step-wrapper:before {
+                    background: ${theme.color.primary};
                 }
             }
-            .k-error {
-                .k-step-wrapper {
-                    .k-step-title, .k-step-content {
-                        color: ${steps.error.errorDesColor}
-                    }
-                }
-               
+            &.k-active .k-step-title {
+                color: ${theme.color.primary};
             }
-            .k-step-icon:before {
-                line-height: ${steps.line.iconLineHeight};
-            }
-            .k-step-wrapper {
-                display: inline-block !important;
-                text-align: center;
-            }
-            .k-step-tail {
-                right: 0;
-                top: ${steps.line.tailTop};
+            &.k-error .k-step-title {
+                color: ${theme.color.danger};
             }
         }
-    
-        // simple type
-        &.k-simple {
-            font-size: ${steps.simple.fontSize};
-            .k-step,
-            .k-step-main {
-                color: ${steps.simple.color}; 
+    `;
+}
+
+function makeLineCompactStyles() {
+    return css`
+        .k-step-wrapper {
+            display: inline-flex;
+            text-align: left;
+            &:before, &:after {
+                display: none;
             }
-            .k-step-head {
-                padding-right: ${steps.simple.headPaddingRight};
-                vertical-align: top;
-            }
-        
+        }
+        .k-step-main {
+            padding: 6px 16px 0;
+        }
+        .k-step-tail {
+            margin-right: 16px;
+        }
+    `;
+}
+
+function center(flex: 'flex' | 'inline-flex' = 'flex') {
+    return css`
+        display: ${flex};
+        align-items: center;
+        justify-content: center;
+    `;
+}
+
+export function makeCommonStyles() {
+    return css`
+        .k-step {
+            position: relative; 
+            flex: 1;
+
+            // status 
             ${stepStatus.map(status => {
                 const styles = steps[status];
                 return css`
-                    .k-${status} {
-                        .k-step-main,
-                        .k-step-inner {
-                            color: ${styles.simpleColor} !important; 
+                    &.k-${status} {
+                        .k-step-mark {
+                            color: ${styles.markColor};
+                            border-color: ${styles.markBorderColor};
+                            background: ${styles.markBgColor};
+                        }
+                        .k-step-main {
+                            color: ${styles.mainColor};
                         }
                     }
                 `
             })} 
         }
-    
-        // clickable
-        &.k-clickable {
-            .k-done {
-                cursor: pointer;
-                .k-step-title {
-                    &:hover {
-                        color: ${steps.done.doneDesColor}; 
-                    }
-                }
-                .k-step-inner{
-                    &:hover {
-                        background: #E6F7FF; 
-                    }
-                }
-            }
-        }
-
-        // line-compact
-        &.k-line-compact{
-            .k-step {
-                width: auto !important;
-                &:last-of-type {
-                    flex: 0 0 auto;
-                    .k-step-wrapper {
-                        display: flex;
-                        margion-top: 5px;
-                    }
-                    .k-step-title {
-                        padding-right: 0;
-                        &:after {
-                          display:none;
-                        }
-                    }
-                    .k-step-head {
-                        margin-top: 5px;
-                    }
-                }
-            }
-            .k-done {
-                .k-step-inner {
-                    padding: 2px;
-                    border: 2px solid;
-                }
-                .k-step-wrapper:after,.k-step-title:after {
-                    background: ${steps.done.doneDesColor};
-                    height:2px;
-                }
-                .k-step-title {
-                    color: ${steps.darkColor};
-                }
-            }
-            .k-active {
-                .k-step-title {
-                    color: ${steps.active.activeDesColor};
-                }
-                .k-step-inner {
-                    span{
-                        color: ${steps.lightColor};
-                    }
-                }
-            }
-            .k-error {
-              .k-step-wrapper {
-                  .k-step-title, .k-step-content {
-                      color: ${steps.error.errorDesColor}
-                  }
-                  .k-step-inner {
-                     font-size:24px
-                  }
-              }
-            }
-            .k-step-wrapper {
-                display: flex;
-                align-items: center;
-            }
-            .k-step-wrapper:after {
-                content: '';
-                flex: 1;
-                height: 1px;
-                background: ${theme.color.placeholder};
-            }
-            .k-step-head {
-                background: ${steps.line.bgColor};
-                position: relative;
-                display: flex;
-                padding: 10px
-              
-            }
-            .k-step-inner {
-                width: ${steps.line.innerWidth};
-                height: ${steps.line.innerWidth};
-                line-height: ${steps.line.innerLineHeight};
-                font-size: ${steps.line.innerFontSize};
-
-            }
-            .k-step-main {
-                position: relative;
-                width: ${steps.line.width};
-                margin-top: 7px;
-            }
-            .k-step-title {
-                line-height: ${steps.head.innerWidth};
-                background: ${steps.line.bgColor};
-                font-size: ${steps.line.titleFontSize};
-                padding: 0;
-                margin-top: ${steps.line.titleGopTop};
-                color:  ${steps.lightDesColor};
-                display:flex;
-                align-items: center;
-                justify-content: space-between;
-                &:after{
-                    content: '';
-                    height: 1px;
-                    width:50%;
-                    background: ${theme.color.placeholder};
-                }
-            }
-            .k-step-content {
-                margin: ${steps.line.mainContentGap};
-                color:  ${steps.lightDesColor};
-            }
-        }
-        // dot
-        &.k-dot {
-            .k-step {
-                width: auto !important;
-                &:last-of-type {
-                    flex: 0 0 auto;
-                    .k-step-wrapper {
-                        display: flex;
-                    }
-                    .k-step-title {
-                        padding-right: 0;
-                    }
-                }
-            }
-            .k-step-head {
-                background: ${steps.line.bgColor};
-                position: relative;
-                display: flex;
-                padding: 0;
-                &:before,
-                &:after {
-                    content: '';
-                    display: block;
-                    flex: 1;
-                    height: 1px;
-                    background: ${theme.color.placeholder};
-                    top: 7px;
-                    position: relative;
-                }
-            }
-            .k-step-inner {
-                width: 14px;
-                height: 14px;
-                line-height: ${steps.line.innerLineHeight};
-                font-size: ${steps.line.innerFontSize};
-                span {
-                    display: none
-                }
-            }
-            .k-step-main {
-                position: relative;
-                width: ${steps.line.width};
-            }
-            .k-step-title {
-                line-height: ${steps.head.innerWidth};
-                background: ${steps.line.bgColor};
-                font-size: ${steps.line.titleFontSize};
-                padding: 0;
-                margin-top: ${steps.line.titleGopTop};
-                color:  ${steps.lightDesColor};
-            }
-            .k-step-content {
-                margin: ${steps.line.mainContentGap};
-                color:  ${steps.lightDesColor};
-            }
-            .k-step-tail {
-                left: 0;
-                right: ${steps.head.paddingRight}; 
-                top: 7px !important;
-                height: 1px;
-                background: ${steps.line.tailBgColor};
-            }
-            .k-step:first-of-type .k-step-head:before,
-            .k-step:last-of-type .k-step-head:after {
-                background: transparent;
-            }
-            // done
-            .k-done {
-                .k-step-tail {
-                    background: ${steps.line.doneTailBgColor};
-                }
-                .k-step-head {
-                    &:before,
-                    &:after {
-                        background: ${steps.done.doneDesColor};
-                    }
-                }
-                .k-step-title{
-                    color:${steps.darkColor} !important;
-                }
-            }
-            .k-active {
-                .k-step-head {
-                    &:before {
-                        background: ${steps.active.activeDesColor};
-                    }
-                }
-                .k-step-title {
-                    color: ${steps.active.activeDesColor}
-                }
-            }
-            .k-error {
-                .k-step-wrapper {
-                    .k-step-title, .k-step-content {
-                        color: ${steps.error.errorDesColor}
-                    }
-                }
-               
-            }
-            .k-step-icon:before {
-                line-height: ${steps.line.iconLineHeight};
-            }
-            .k-step-wrapper {
-                display: inline-block !important;
-                text-align: center;
-            }
-            .k-step-tail {
-                right: 0;
-                top: ${steps.line.tailTop};
-            }
+        .k-step-mark {
+            ${center('inline-flex')};
+            border: ${steps.markborder};
+            border-radius: 50%;
+            vertical-align: top;
+            color: ${steps.markColor};
+            background: ${steps.markBgColor};
         }
     `;
 }
-
-export function makeStepStyles() {
-    return css`
-        position: relative; 
-        flex: 1;
-        .k-step-icon:before {
-            font-size: ${steps.head.iconFontSize};
-        }
-        .k-step-title {
-            display: inline-block;
-            padding-right: ${steps.main.titlePaddingRight};
-            white-space: nowrap;
-        }
-        .k-step-content {
-            font-size: ${steps.main.contentFontSize};
-        }
-        .k-step-inner,
-        .k-step-main {
-            transition: all ${steps.transition};
-        }
-    `;
-}
-
-

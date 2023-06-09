@@ -22,7 +22,7 @@ const {decrease, increase, changeValue, onFocusin} = this.change;
         size={size}
         type="none"
     >
-        <Icon v-if={!vertical} class="k-spinner-icon k-icon-minussmall" />
+        <Icon v-if={!vertical} class="k-spinner-icon k-icon-minus-small" />
         <Icon v-else class="k-spinner-icon k-icon-arrow-down" />
     </Button>
     <Input
@@ -41,7 +41,7 @@ const {decrease, increase, changeValue, onFocusin} = this.change;
         size={size}
         type="none"
     >
-        <Icon v-if={!vertical} class="k-spinner-icon k-icon-add-samll" />
+        <Icon v-if={!vertical} class="k-spinner-icon k-icon-add-small" />
         <Icon v-else class="k-spinner-icon k-icon-arrow-up" />
     </Button>
 </div>

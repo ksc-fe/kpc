@@ -1,7 +1,7 @@
 import {linkEvent} from 'intact';
 import {getRestProps, addStyle} from '../utils';
-import {makeStepStyles} from './styles';
 import {context as StepsContext} from './context';
+import {Icon} from '../icon';
 
 const {children, title, index, className, style} = this.get();
 
@@ -9,35 +9,36 @@ const {children, title, index, className, style} = this.get();
     {({value, status, width, onChange, type}) => {
         const selected = value === index;
         const error = selected && status === 'error';
-        const done = value > index && status !== 'error' && type === 'line-compact'; 
+        const done = value > index;
         const classNameObj = {
             'k-step': true,
             'k-active': selected,
-            'k-done': value > index,
+            'k-done': done,
             'k-error': error,
             [className]: className,
-            [makeStepStyles()]: true,
         };
 
         return <div {...getRestProps(this)} 
             class={classNameObj}
-            style={addStyle(style, {width})} 
-            ev-click={linkEvent(index, onChange)}
+            style={style}
         >
-            <div class="k-step-tail"></div>
-            <div class="k-step-wrapper">
-                <div class="k-step-head">
-                    <div class="k-step-inner">
-                        <i class="k-step-icon ion-ios-close-empty" v-if={error}></i>
-                        <i class="k-step-icon ion-android-done" v-else-if={done}></i>
-                        <span v-else>{index + 1}</span>
-                    </div>
+            <div class="k-step-wrapper"
+                ev-click={linkEvent(index, onChange)}
+            >
+                <div class="k-step-mark">
+                    <Icon v-if={error} class="ion-ios-close-empty" color="danger" />
+                    <Icon v-else-if={done && (type === 'line' || type === 'line-compact')}
+                        class="ion-android-done"
+                        color="primary"
+                    />
+                    <span v-else>{index + 1}</span>
                 </div>
                 <div class="k-step-main">
                     <div class="k-step-title">{title}</div>
                     <div class="k-step-content">{children}</div>
                 </div>
             </div>
+            <div class="k-step-tail"></div>
         </div>
     }}
 </StepsContext.Consumer>
