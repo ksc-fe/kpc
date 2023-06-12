@@ -188,7 +188,7 @@ export default class Select extends Intact {
      */
     _onBlur() {
         const {keywords, allowUnmatch, multiple} = this.get();
-        if (allowUnmatch && keywords != null) {
+        if (allowUnmatch && keywords && keywords.trim()) {
             if (!multiple) {
                 this.set({
                     value: keywords,
