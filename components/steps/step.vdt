@@ -26,12 +26,12 @@ const {children, title, index, className, style} = this.get();
                 ev-click={linkEvent(index, onChange)}
             >
                 <div class="k-step-mark">
-                    <Icon v-if={error} class="ion-ios-close-empty" color="danger" />
+                    <Icon v-if={error && type !== 'simple'} class="k-icon-close-big" color="danger" />
                     <Icon v-else-if={done && (type === 'line' || type === 'line-compact')}
-                        class="ion-android-done"
+                        class="k-icon-check"
                         color="primary"
                     />
-                    <span v-else>{index + 1}</span>
+                    <span v-else-if={type !== 'simple'}>{index + 1}</span>
                 </div>
                 <div class="k-step-main">
                     <div class="k-step-title">{title}</div>

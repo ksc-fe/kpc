@@ -44,26 +44,19 @@ const defaults = {
     // line
     line: {
         markWidth: '32px',
-        markFontSize: '18px',
+        markFontSize: '24px',
         get lineColor() { return theme.color.border},
         titleGap: '16px',
         descGap: '4px',
-
-        get doneTailBgColor() { return theme.color.primary }, 
-        gap: '5px',
-        headTop: '16px',
-        titleFontSize: '14px',
-        titleGopTop: '16px',
-        iconLineHeight: '30px',
-        tailTop: '16px',
-        width: '160px',
+        contentMaxWidth: '200px',
     },
 
     // simple
     simple: {
-        fontSize: '14px',
-        get color() { return theme.color.disabled }, 
-        headPaddingRight: '6px',
+        markWidth: '12px',
+        get markBgColor() { return theme.color.placeholder },
+        get doneMarkBgColor() { return theme.color.primary },
+        get errorMarkBgColor() { return theme.color.danger },
     }
 };
 
@@ -85,12 +78,17 @@ export function makeStepsStyles() {
         }
             
         &.k-line,
-        &.k-line-compact {
+        &.k-line-compact,
+        &.k-simple {
             ${makeLineStyles()};
         }
 
         &.k-line-compact {
             ${makeLineCompactStyles()};
+        }
+
+        &.k-simple {
+            ${makeSimpleStyles()};
         }
     `;
 }
@@ -191,6 +189,7 @@ function makeLineStyles() {
         .k-step-content {
             margin-top: ${line.descGap};
             color: ${theme.color.placeholder};
+            max-width: ${line.contentMaxWidth};
         }
         
         // draw connected line
@@ -247,6 +246,8 @@ function makeLineStyles() {
 }
 
 function makeLineCompactStyles() {
+    const line = defaults.line;
+
     return css`
         .k-step-wrapper {
             display: inline-flex;
@@ -256,10 +257,70 @@ function makeLineCompactStyles() {
             }
         }
         .k-step-main {
-            padding: 6px 16px 0;
+            flex: 1;
+            padding: 0 0 0 ${line.titleGap};
+        }
+        .k-step-content {
+            margin: 0;
         }
         .k-step-tail {
-            margin-right: 16px;
+            margin-right: ${line.titleGap};
+        }
+        .k-step-title {
+            display: flex;
+            align-items: center;
+            height: ${line.markWidth};
+            &:after {
+                content: '';
+                display: block;
+                flex: 1;
+                height: 1px;
+                background: ${line.lineColor};
+                margin-left: ${line.titleGap};
+            }
+        }
+        .k-step:last-of-type .k-step-title:after {
+            display: none;
+        }
+        // status
+        .k-step {
+            &.k-done {
+                .k-step-title:after {
+                    background: ${theme.color.primary};
+                }
+            }
+        }
+    `;
+}
+
+function makeSimpleStyles() {
+    const simple = defaults.simple;
+    return css`
+        .k-step-mark {
+            width: ${simple.markWidth};
+            height: ${simple.markWidth};
+            background: ${simple.markBgColor};
+        } 
+        .k-step-wrapper {
+            &:before,
+            &:after {
+                top: calc(${simple.markWidth} / 2);
+            }
+        }
+        .k-step-tail {
+            margin-top: calc(${simple.markWidth} / 2);
+        }
+        .k-step {
+            &.k-done {
+                .k-step-mark {
+                    background: ${simple.doneMarkBgColor};
+                }
+            }
+            &.k-error {
+                .k-step-mark {
+                    background: ${simple.errorMarkBgColor};
+                }
+            }
         }
     `;
 }

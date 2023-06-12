@@ -116,7 +116,7 @@ export default class extends Component {
                 "sortbig", 
                 "truth", 
                 "check", 
-                "closebig", 
+                "close-big", 
                 "add-small",
                 "minus", 
                 "close", 

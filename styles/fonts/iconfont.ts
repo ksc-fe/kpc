@@ -342,7 +342,7 @@ injectGlobal`
       content: "\\e96e";
     }
     
-    .k-icon-closebig:before {
+    .k-icon-close-big:before {
       content: "\\e96f";
     }
     
