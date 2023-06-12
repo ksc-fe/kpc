@@ -90,6 +90,13 @@ export function makeStepsStyles() {
         &.k-simple {
             ${makeSimpleStyles()};
         }
+
+        // clickable
+        &.k-clickable {
+            .k-done {
+                cursor: pointer;
+            }
+        }
     `;
 }
 
@@ -302,10 +309,14 @@ function makeSimpleStyles() {
             background: ${simple.markBgColor};
         } 
         .k-step-wrapper {
+            font-size: 0; // eliminate the gap
             &:before,
             &:after {
                 top: calc(${simple.markWidth} / 2);
             }
+        }
+        .k-step-main {
+            font-size: ${theme.default.fontSize};
         }
         .k-step-tail {
             margin-top: calc(${simple.markWidth} / 2);
