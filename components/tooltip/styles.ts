@@ -9,7 +9,7 @@ const defaults = {
     bgColor: '#fff',
     lineHeight: 1.4,
     maxWidth: '312px',
-    get boxShadow() { return tooltip.middleBoxShadow },
+    get boxShadow() { return theme.middleBoxShadow },
 
     // arrow
     arrow: {
