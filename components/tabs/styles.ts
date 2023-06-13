@@ -23,23 +23,20 @@ const defaults = deepDefaults(
         get borderColor() { return theme.color.border },
         borderWidth: '1px',
         get border() { return `${tabs.borderWidth} solid ${tabs.borderColor}` },
-        margin: `0 10px`,
         get color() { return theme.color.text },
-        closeGutter: `8px`,
-
-        // vertical
-        verticalPadding: `0 25px`,
-
-        //active
-        get activeColor() { return theme.color.primary },
-        highlight: {
-            height: `2px`,
-            // get bottom() { return `calc(-${tabs.highlight.height} / 2)` },
-            get bgColor() { return theme.color.primary },
-        },
+        closeGap: `8px`,
 
         // scroll
         navigatorWidth: `20px`,
+
+        //active
+        active: {
+            get color() { return theme.color.primary },
+            bar: {
+                height: '2px',
+                get bgColor() { return theme.color.primary },
+            }
+        },
 
         // border-card
         borderCard: {
@@ -49,14 +46,23 @@ const defaults = deepDefaults(
         // no-border-card
         noBorderCard: {
             get bgColor() { return theme.color.bg },
-            gutter: `4px`,
-        }
+        },
+
+        // define size
+        size: {
+            large: {
+                padding: '24px',
+            },
+            default: {
+                padding: '16px',
+            },
+        },
     },
     sizes.reduce((memo, size) => {
         memo[size] = {
             get fontSize() { return theme[size].fontSize },
             get height() { return theme[size].height },
-            get padding() { return `0 ${theme[size].padding}` },
+            get padding() { return `0 ${tabs.size[size as keyof typeof tabs.size]?.padding || theme[size].padding}` },
             get closeFontSize() { return closeFontSizeMap[size] },
         };
 
@@ -71,9 +77,34 @@ setDefault(() => {
 
 export function makeStyles() {
     return css`
-        border-bottom: ${tabs.border};
+        ${makeCommonStyles()};
+        ${makeScrollStyles()};
+
+        &.k-type-default {
+            ${makeDefaultStyles()}
+        }
+
+        &.k-type-card {
+            ${makeDefaultStyles()}
+            ${makeCardStyles()};
+        }
+
+        &.k-type-border-card {
+            ${makeBorderCardStyles()};
+        }
+
+        &.k-type-no-border-card {
+            ${makeNoBorderCardStyles()};
+        }
+        
+    `;
+}
+
+function makeCommonStyles() {
+    const active = tabs.active;
+    const bar = active.bar;
+    return css`
         position: relative;
-        line-height: 1;
         .k-tab {
             cursor: pointer;
             display: inline-block;
@@ -86,7 +117,7 @@ export function makeStyles() {
             text-overflow: ellipsis;
             &:hover,
             &.k-active {
-                color: ${tabs.activeColor};
+                color: ${active.color};
             }
             &.k-disabled {
                 color: ${theme.color.disabled};
@@ -94,8 +125,8 @@ export function makeStyles() {
             }
         }
         .k-tab-close {
-            margin-right: -${tabs.closeGutter};
-            margin-left: ${tabs.closeGutter};
+            margin-right: -${tabs.closeGap};
+            margin-left: ${tabs.closeGap};
             position: relative;
             top: -1px;
             color:${theme.color.lightBlack};
@@ -106,175 +137,48 @@ export function makeStyles() {
             transition: all ${tabs.transition};
             position: absolute;
             left: 0;
-            height: ${tabs.highlight.height};
-            background: ${tabs.highlight.bgColor};
-            bottom: calc(-${tabs.highlight.height} / 2); 
+            height: ${bar.height};
+            background: ${bar.bgColor};
+            bottom: calc(-${bar.height} / 2); 
         }
 
         // vertical
         &.k-vertical {
             display: inline-block;
-            border-bottom: none;
-            border-right: ${tabs.border};
             .k-tab {
                 display: block;
-                margin: 0;
-                padding: ${tabs.verticalPadding};
             }
             .k-tabs-active-bar {
                 left: auto;
                 top: 0;
-                right: calc(-${tabs.highlight.height} / 2); 
-                width: ${tabs.highlight.height};
+                right: calc(-${bar.height} / 2); 
+                width: ${bar.height};
                 height: auto;
             }
         }
 
-        // card
-        &.k-tabs-card {
-            .k-tab {
-                margin: 0;
-            }
-            .k-tabs-active-bar {
-                background: #fff;
-                top: 0;
-                height: auto;
-                z-index: -1;
-                border-left: ${tabs.border};
-                border-right: ${tabs.border};
-                &:before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    height: ${tabs.highlight.height};
-                    background: ${theme.color.primary};
-                    top: 0;
-                    left: -${tabs.borderWidth};
-                    right: -${tabs.borderWidth};
-                }
-            }
-
-            // vertical card
-            &.k-vertical {
-                .k-tabs-active-bar {
-                    left: 0;
-                    width: auto;
-                    border-left: none;
-                    border-right: none;
-                    border-top: ${tabs.border};
-                    border-bottom: ${tabs.border};
-                    &:before {
-                        width: ${tabs.highlight.height};
-                        left: 0;
-                        right: auto;
-                        bottom: 0;
-                        height: auto;
+        // size
+        ${sizes.map(size => {
+            const styles = tabs[size];
+            return `
+                &.k-size-${size} {
+                    .k-tab {
+                        font-size: ${styles.fontSize};
+                        height: ${styles.height};
+                        line-height: ${styles.height};
+                        padding: ${styles.padding};
+                    }
+                    .k-tab-close .k-icon {
+                        font-size: ${styles.closeFontSize};
                     }
                 }
-            }
-        }
+            `
+        })}
+    `
+}
 
-        // border-card
-        &.k-tabs-border-card {
-            border: ${tabs.border};
-            border-bottom: none;
-            background: ${tabs.borderCard.bgColor};
-            .k-tab {
-                margin: 0;
-            }
-            .k-tabs-active-bar {
-                background: #fff;
-                top: 0;
-                height: auto;
-                z-index: -1;
-            }
-
-            &.k-vertical {
-                border-right: none;
-                border-bottom: ${tabs.border};
-                .k-tabs-active-bar {
-                    width: auto;
-                    height: 0;
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
-                }
-            }
-        }
-
-        // no-border-card
-        &.k-tabs-no-border-card {
-            border-bottom: none;
-            .k-tab {
-                margin-right: ${tabs.noBorderCard.gutter};
-                &:before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    background: ${tabs.noBorderCard.bgColor};
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    z-index: -1;
-                }
-            }
-            .k-tabs-acitve-bar {
-                border: none;
-                &:before {
-                    left: 0;
-                    right: 0;
-                }
-            }
-            &.k-vertical {
-                border-right: none;
-                .k-tab:not(:first-of-type) {
-                    margin: ${tabs.noBorderCard.gutter} 0 0;
-                }
-                .k-tabs-active-bar {
-                    border: none;
-                }
-            }
-        }
-
-        //flat-card
-        &.k-tabs-flat-card {
-            border-bottom: none;
-            .k-tab {
-                margin: 0;
-                &:before {
-                    content: '';
-                    display: block;
-                    position: absolute;
-                    background: ${tabs.noBorderCard.bgColor};
-                    top: 0;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    z-index: -1;
-                }
-            }
-            .k-tabs-active-bar {
-                background: #fff;
-                top: 0;
-                height: auto;
-                z-index: -1;
-                box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
-                border-radius: 4px 4px 0px 0px;
-            }
-            &.k-vertical {
-                border-right: none;
-                border-bottom: ${tabs.border};
-                .k-tabs-active-bar {
-                    width: auto;
-                    height: 0;
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
-                }
-            }
-        }
-        // scroll
+function makeScrollStyles() {
+    return css`
         &:not(.k-vertical) {
             .k-tabs-scroll {
                 overflow: hidden;
@@ -311,23 +215,132 @@ export function makeStyles() {
                 padding: 0 ${tabs.navigatorWidth};
             }
         }
+    `
+}
 
-        // size
-        ${sizes.map(size => {
-            const styles = tabs[size];
-            return `
-                &.k-${size} {
-                    .k-tab {
-                        font-size: ${styles.fontSize};
-                        height: ${styles.height};
-                        line-height: ${styles.height};
-                        padding: ${styles.padding};
-                    }
-                    .k-tab-close .k-icon {
-                        font-size: ${styles.closeFontSize};
-                    }
+function makeDefaultStyles() {
+    return css`
+        border-bottom: ${tabs.border};
+        &.k-vertical {
+            border-bottom: none;
+            border-right: ${tabs.border};
+        }
+    `
+}
+
+function makeCardActiveBarCommonStyles() {
+    return css`
+        background: #fff;
+        top: 0;
+        height: auto;
+        z-index: -1;
+    `
+}
+
+function makeCardStyles() {
+    return css`
+        .k-tab {
+            margin: 0;
+        }
+        .k-tabs-active-bar {
+            ${makeCardActiveBarCommonStyles()};
+            border-left: ${tabs.border};
+            border-right: ${tabs.border};
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                height: ${tabs.active.bar.height};
+                background: ${theme.color.primary};
+                top: 0;
+                left: -${tabs.borderWidth};
+                right: -${tabs.borderWidth};
+            }
+        }
+
+        // vertical card
+        &.k-vertical {
+            .k-tabs-active-bar {
+                left: 0;
+                width: auto;
+                border-left: none;
+                border-right: none;
+                border-top: ${tabs.border};
+                border-bottom: ${tabs.border};
+                &:before {
+                    width: ${tabs.active.bar.height};
+                    left: 0;
+                    right: auto;
+                    bottom: 0;
+                    height: auto;
                 }
-            `
-        })}
-    `;
+            }
+        }
+    `
+}
+
+function makeBorderCardStyles() {
+    return css`
+        border: ${tabs.border};
+        border-bottom: none;
+        background: ${tabs.borderCard.bgColor};
+        .k-tab {
+            margin: 0;
+        }
+        .k-tabs-active-bar {
+            background: #fff;
+            top: 0;
+            height: auto;
+            z-index: -1;
+        }
+
+        &.k-vertical {
+            border-right: none;
+            border-bottom: ${tabs.border};
+            .k-tabs-active-bar {
+                width: auto;
+                height: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+        }
+    `
+}
+
+function makeNoBorderCardStyles() {
+    return css`
+        border-radius: ${theme.borderRadius};
+        .k-tab {
+            &:before {
+                content: '';
+                display: block;
+                position: absolute;
+                background: ${tabs.noBorderCard.bgColor};
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: -1;
+            }
+        }
+        .k-tabs-active-bar {
+            background: #fff;
+            top: 0;
+            height: auto;
+            z-index: -1;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
+            border-radius: 4px 4px 0px 0px;
+        }
+        &.k-vertical {
+            border-right: none;
+            .k-tabs-active-bar {
+                width: auto;
+                height: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+            }
+        }
+    `
 }

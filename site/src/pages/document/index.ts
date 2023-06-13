@@ -6,7 +6,7 @@ import type {CatalogueProps} from '../../components/catalogue';
 import type Article from '../../components/article';
 
 // export const req = require.context('~/', true, /^\.\/(components|docs)\/.*index.ts$/);
-export const req = require.context('~/', true, /^\.\/(components\/(steps|icon))\/.*index.ts$/);
+export const req = require.context('~/', true, /^\.\/(components\/(steps|icon|tabs))\/.*index.ts$/);
 
 export interface DocumentProps extends LayoutProps {
     hasRead: string | boolean | null 
