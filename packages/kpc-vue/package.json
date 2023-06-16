@@ -49,6 +49,9 @@
     "**/*/styles/fonts/*"
   ],
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.1",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "rollup": "^3.25.1",
     "vue": "^2.6.14",
     "vue-loader": "^15.9.8",
     "vue-router": "^4.0.12",

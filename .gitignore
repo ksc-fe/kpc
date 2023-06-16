@@ -23,6 +23,7 @@ packages/kpc-vue/i18n
 packages/kpc-vue/styles
 packages/kpc-vue/index*
 packages/kpc-vue/hooks
+packages/kpc-vue/bundle.js
 
 packages/kpc-vue-next/components
 packages/kpc-vue-next/i18n

@@ -1,6 +1,6 @@
 import {injectGlobal} from '@emotion/css';
 import eot from './iconfont.eot';
-import woff from './ionicons.woff';
+import woff from './iconfont.woff';
 import ttf from './iconfont.ttf';
 import svg from './iconfont.svg';
 

@@ -225,8 +225,6 @@ export function makeStyles() {
         }
         .k-upload-add {
             border: ${upload.gallery.add.border};
-            // font-size: ${upload.gallery.add.fontSize};
-            // line-height: calc(${upload.gallery.height} - 2px);
             cursor: pointer;
             &:hover {
                 border-color: ${upload.gallery.add.hoverBorderColor};

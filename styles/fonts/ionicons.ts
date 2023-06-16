@@ -12,8 +12,8 @@
 import {injectGlobal} from '@emotion/css';
 import eot from './ionicons.eot';
 import ttf from './ionicons.ttf';
-import woff from './iconfont.woff';
-import svg from './iconfont.svg';
+import woff from './ionicons.woff';
+import svg from './ionicons.svg';
 
 injectGlobal`
     @font-face {
