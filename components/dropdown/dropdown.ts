@@ -126,10 +126,7 @@ export class Dropdown<
 
         return [
             clonedTrigger,
-            // wrap the root dropdown menu to Portal to render into body
-            this.alwaysPortal || !this.rootDropdown ?
-                h(Portal, {children: menu, container: this.get('container')}) :
-                menu
+            h(Portal, {children: menu, container: this.get('container')})
         ];
     };
 
@@ -138,8 +135,6 @@ export class Dropdown<
     public rootDropdown: Dropdown | null = null;
     public showedDropdown: Dropdown | null = null;
     public positionHook = usePosition();
-
-    protected alwaysPortal = false;
 
     private timer: number | undefined = undefined;
     private triggerProps: any = null;
@@ -294,9 +289,10 @@ export class Dropdown<
 function useDocumentClickForDropdown(dropdown: Dropdown) {
     const elementRef = () => findDomFromVNode(dropdown.menuVNode!, true) as Element;
     const [addDocumentClick, removeDocumentClick] = useDocumentClick(elementRef, (e) => {
-        // case 1: if click an trigger and the trigger type is hover, ignore it
-        // case 2: if right click on trigger and the trigger type is contextmenu, ignore it
-        // case 3: if click on trigger and the trigger type is focus, do nothing 
+        // case 1: if click a trigger and its trigger type is hover, ignore it
+        // case 2: if right click on a trigger and its trigger type is contextmenu, ignore it
+        // case 3: if click on a trigger and its trigger type is focus, do nothing 
+        // case 3: if click on sub-dropdown, we should also show the parent dropdown, so ignore it
         const trigger = dropdown.get('trigger');
         if (trigger === 'focus') return;
 
@@ -310,11 +306,24 @@ function useDocumentClickForDropdown(dropdown: Dropdown) {
             }
         }
 
+        if (isSubDropdownElement(e.target as Element, dropdown)) return;
+
         dropdown.hide(true);
     }, true);
 
     dropdown.on('show', addDocumentClick);
     dropdown.on('hide', removeDocumentClick);
+}
+
+function isSubDropdownElement(elem: Element, dropdown: Dropdown): boolean {
+    const showedDropdown = dropdown.showedDropdown;
+    if (!showedDropdown) return false;
+
+    const subMenuElement = findDomFromVNode(showedDropdown.menuVNode!, true) as Element;
+    if (containsOrEqual(subMenuElement, elem)) {
+        return true;
+    }
+    return isSubDropdownElement(elem, showedDropdown);
 }
 
 function useHideLastMenuOnShow(dropdown: Dropdown) {
