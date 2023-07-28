@@ -135,7 +135,8 @@ export default class BaseTable extends Intact {
         this.on('$changed:data', this._calcHeaderPadding);
 
         // update disabled keys when some props have changed
-        ['data', 'disableRow'].forEach(item => {
+        // #838
+        ['data', 'children'].forEach(item => {
             this.on(`$change:${item}`, this._updateDisabledKeys);
         });
         ['fixHeader', 'scheme', 'children'].forEach(item => {
