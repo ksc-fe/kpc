@@ -145,3 +145,7 @@ export type TableColumnGroupItem = {
 | clickRow | 点击某行触发 | `(data: T, index: number, key: TableRowKey) => void` |
 | dragstart | 行拖动开始 | `(data: {key: TableRowKey, from: number}) => void` |
 | dragend | 行拖动结束 | `(data: {key: TableRowKey, from: number, to: number}) => void` |
+| checkRow | 手动选中某行触发 | `(data: T, index: number, key: TableRowKey) => void` |
+| uncheckRow | 手动取消选中某行触发 | `(data: T, index: number, key: TableRowKey) => void` |
+| checkAll | 手动全选触发 | `() => void` |
+| uncheckAll | 手动取消全选触发 | `() => void` |
