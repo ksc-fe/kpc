@@ -36,29 +36,44 @@ describe('Table', () => {
         const spy = sinon.spy((v: number[]) => console.log(v));
         table.on('$change:checkedKeys', spy);
 
+        const spyCheckRow = sinon.spy((data: any, index: number, key: string) => console.log('checkRow', data, index, key));
+        table.on('checkRow', spyCheckRow);
+        const spyUncheckRow = sinon.spy((data: any, index: number, key: string) => console.log('uncheckRow', data, index, key));
+        table.on('uncheckRow', spyUncheckRow);
+        const spyCheckAll = sinon.spy(() => console.log('checkAll'));
+        table.on('checkAll', spyCheckAll);
+        const spyUncheckAll = sinon.spy(() => console.log('uncheckAll'));
+        table.on('uncheckAll', spyUncheckAll);
+
         // click row
         const [tr1, tr2] = element.querySelectorAll<HTMLElement>('tbody tr');
         tr1.click();
         await wait();
         expect(table.get('checkedKeys')).to.eql([0]);
+        expect(spyCheckRow.callCount).to.eql(1);
         tr2.click();
         await wait();
         expect(table.get('checkedKeys')).to.eql([0, 1]);
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.All);
+        expect(spyCheckRow.callCount).to.eql(2);
+        expect(spyCheckAll.callCount).to.eq(0);
 
         tr1.click();
         await wait();
         expect(table.get('checkedKeys')).to.eql([1]);
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.Indeterminate);
+        expect(spyUncheckRow.callCount).to.eql(1);
 
         const all = element.querySelector('.k-checkbox') as HTMLElement;
         all.click();
         await wait();
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.All);
+        expect(spyCheckAll.callCount).to.eql(1);
         all.click();
         await wait();
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.None);
         expect(table.get('checkedKeys')).to.eql([]);
+        expect(spyUncheckAll.callCount).to.eql(1);
 
         expect(spy.callCount).to.eql(5);
         // clear data of table should only trigger $change:checked event once, #407

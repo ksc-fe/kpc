@@ -66,6 +66,10 @@ export interface TableEvents<T = any, K extends TableRowKey = number> {
     clickRow: [T, number, K]
     dragstart: [{key: K, from: number}]
     dragend: [{key: K, from: number, to: number}]
+    checkRow: [T, number, K]
+    uncheckRow: [T, number, K]
+    checkAll: []
+    uncheckAll: []
 }
 
 export interface TableBlocks<T = unknown> {
@@ -135,6 +139,10 @@ const events: Events<TableEvents> = {
     clickRow: true,
     dragstart: true,
     dragend: true,
+    checkRow: true,
+    uncheckRow: true,
+    checkAll: true,
+    uncheckAll: true,
 };
 
 export class Table<

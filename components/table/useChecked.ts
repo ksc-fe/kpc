@@ -36,8 +36,13 @@ export function useChecked(
     function toggleChecked(key: TableRowKey, rowIndex: number) {
         if (instance.get('checkType') === 'checkbox') {
             instance.set('checkedKeys', toggleArray(instance.get('checkedKeys'), key));
+
+            // trigger check event for checkbox,
+            // radio check event trigger in onChangeChecked function
+            triggerEvent(isChecked(key), key, rowIndex);
         } else {
             if (isChecked(key)) return;
+
             const grid = getGrid();
             const gridRow = grid[rowIndex];
             if (gridRow) {
@@ -46,7 +51,7 @@ export function useChecked(
                     rowIndex--;
                 }
             }
-            onChangeChecked(rowIndex, true);
+            onChangeChecked(rowIndex, true, key);
         }
     }
 
@@ -66,6 +71,7 @@ export function useChecked(
 
     function toggleCheckedAll(v: boolean) {
         instance.set('checkedKeys', getCheckedAllOrUncheckedAllKeys(v));
+        instance.trigger(v ? 'checkAll' : 'uncheckAll');
     }
 
     /**
@@ -152,7 +158,7 @@ export function useChecked(
         }
     }
 
-    function onChangeChecked(rowIndex: number, v: boolean) {
+    function onChangeChecked(rowIndex: number, v: boolean, key: TableRowKey) {
         // should check or uncheck all grouped rows
         const checkType = instance.get('checkType');
         const checkedKeys = (instance.get('checkedKeys') || []).slice();
@@ -190,10 +196,18 @@ export function useChecked(
         }
 
         instance.set('checkedKeys', checkedKeys);
+
+        // onChangeChecked will be called in clickRow and check in Row component
+        triggerEvent(v, key, rowIndex);
     }
 
     function getAllStatus() {
         return allStatus;
+    }
+
+    function triggerEvent(isChecked: boolean, key: TableRowKey, rowIndex: number) {
+        const data = instance.get('data')!;
+        instance.trigger(isChecked ? 'checkRow' : 'uncheckRow', data[rowIndex], rowIndex, key);
     }
 
     instance.on('$receive:children', updateAllCheckedStatus);

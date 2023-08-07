@@ -25,7 +25,7 @@ export interface TableRowProps {
     index: number
     disabled: boolean
     allDisabled: boolean
-    onChangeChecked: (index: number, checked: boolean) => void
+    onChangeChecked: (index: number, checked: boolean, key: TableRowKey) => void
     grid: TableGrid
     selected: boolean
     // hidden: boolean
@@ -91,8 +91,8 @@ export class TableRow extends Component<TableRowProps> {
 
     @bind
     onChangeChecked(v: boolean) {
-        const {index, onChangeChecked} = this.get();
-        onChangeChecked(index, v);
+        const {index, key, onChangeChecked} = this.get();
+        onChangeChecked(index, v, key);
     }
 
     @bind
