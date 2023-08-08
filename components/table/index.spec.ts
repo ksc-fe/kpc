@@ -235,6 +235,13 @@ describe('Table', () => {
         await wait();
         expect(instance.get('multipleGroup')).to.eql({status: ['active', 'stopped']});
         expect(table2.innerHTML).to.matchSnapshot();
+
+        // update group
+        instance.set('statusGroup', [{label: 'label', value: 'value'}]);
+        dispatchEvent(icon, 'click');
+        await wait(500);
+        const newDropdown= getElement('.k-table-group-dropdown')!;
+        expect(newDropdown.innerHTML).to.matchSnapshot();
     });
 
     it('fix columns', async () => {
