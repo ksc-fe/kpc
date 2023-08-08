@@ -60,6 +60,7 @@ export interface TableProps<
     widthStoreKey?: string
     draggable?: boolean
     animation?: boolean | [boolean, boolean]
+    hideHeader?: boolean
 }
 
 export interface TableEvents<T = any, K extends TableRowKey = number> {
@@ -122,6 +123,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     widthStoreKey: String,
     draggable: Boolean,
     animation: [Boolean, Array],
+    hideHeader: Boolean,
 };
 
 const defaults = (): Partial<TableProps> => ({

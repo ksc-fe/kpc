@@ -43,6 +43,7 @@ sidebar: doc
 | widthStoreKey | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `string` | `undefined` |
 | draggable | 表格行是否可拖动 | `boolean` | `false` |
 | animation | 是否开启动效，默认开启。可以通过`true` `false`全部设置，或者通过数组单独设置行和列的动效 | `boolean` &#124 `[boolean, boolean]` | `true` |
+| hideHeader | 是否隐藏表头 | `boolean` | `false` |
 
 ```ts
 import {Props} from 'intact';

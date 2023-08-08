@@ -23,7 +23,7 @@ const {
     rowClassName, group, sort, loading,
     merge, childrenKey, indent, tooltipPosition,
     tooltipContainer, showIndeterminate, resizable,
-    draggable, animation: _animation,
+    draggable, animation: _animation, hideHeader,
 } = this.get();
 const animation = !Array.isArray(_animation) ? [_animation, _animation] : _animation;
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
@@ -64,7 +64,7 @@ const hasFixedLeft = getHasFixedLeft();
 const {getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
 const allCheckedStatus = getAllCheckedStatus(); 
 const offsetMap = getOffsetMap();
-const thead = (
+const thead = hideHeader ? null : (
     <TableContext.Provider value={checkType}>
         <GroupContext.Provider value={{group, onChange: this.onChangeGroup}}>
             <SortableContext.Provider value={{sort, onChange: this.sortable.onChange}}>
