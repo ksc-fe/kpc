@@ -12,7 +12,7 @@ export interface TabsProps<T = any> {
     value?: T;
     vertical?: boolean;
     size?: Sizes;
-    type?: 'default' | 'card' | 'border-card' | 'no-border-card' | 'flat-card';
+    type?: 'default' | 'card' | 'flat-card';
     closable?: boolean;
     beforeChange?: (value: T) => boolean | Promise<boolean>;
 }
@@ -25,7 +25,7 @@ const typeDefs: Required<TypeDefs<TabsProps>> = {
     value: null,
     vertical: Boolean,
     size: sizes,
-    type: ['default', 'card', 'border-card', 'no-border-card', 'flat-card'],
+    type: ['default', 'card', 'flat-card'],
     closable: Boolean,
     beforeChange: Function,
 };

@@ -37,8 +37,6 @@ import {Tabs, Tab, Button, ButtonGroup} from 'kpc';
 ```styl
 .k-tabs
     margin 16px 0
-.k-no-border-card
-    background #f1f1f5
 ```
 
 ```ts
@@ -69,7 +67,7 @@ export default class extends Component<Props> {
                 {value: 3, label: 'Tab 3'},
             ],
             size: 'large',
-            types: ['default', 'card', 'border-card', 'no-border-card', 'flat-card']
+            types: ['default', 'card', 'flat-card']
         } as Props;
     }
 

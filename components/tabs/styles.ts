@@ -38,16 +38,6 @@ const defaults = deepDefaults(
             }
         },
 
-        // border-card
-        borderCard: {
-            get bgColor() { return theme.color.bg },
-        },
-
-        // no-border-card
-        noBorderCard: {
-            get bgColor() { return theme.color.bg },
-        },
-
         card: {
             get bgColor() { return theme.color.bg },
         },
@@ -95,14 +85,6 @@ export function makeStyles() {
         &.k-type-card {
             ${makeDefaultStyles()}
             ${makeCardStyles()};
-        }
-
-        &.k-type-border-card {
-            ${makeBorderCardStyles()};
-        }
-
-        &.k-type-no-border-card {
-            ${makeNoBorderCardStyles()};
         }
 
         &.k-type-flat-card {
@@ -198,8 +180,8 @@ function makeScrollStyles() {
                 padding-bottom: 1px;
                 margin-bottom: -1px;
             }
-            &.k-tabs-border-card,
-            &.k-tabs-no-border-card {
+            &.k-type-card,
+            &.k-type-flat-card {
                 .k-tabs-scroll {
                     padding-bottom: 0;
                     margin-bottom: 0;
@@ -303,72 +285,6 @@ function makeCardStyles() {
                 width: 100%;
                 left: 0;
                 border-radius: ${theme.borderRadius} 0px 0px ${theme.borderRadius};
-            }
-        }
-    `
-}
-
-function makeBorderCardStyles() {
-    return css`
-        border: ${tabs.border};
-        border-bottom: none;
-        background: ${tabs.borderCard.bgColor};
-        .k-tab {
-            margin: 0;
-        }
-        .k-tabs-active-bar {
-            background: #fff;
-            top: 0;
-            height: auto;
-            z-index: -1;
-        }
-
-        &.k-vertical {
-            border-right: none;
-            border-bottom: ${tabs.border};
-            .k-tabs-active-bar {
-                width: auto;
-                height: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-            }
-        }
-    `
-}
-
-function makeNoBorderCardStyles() {
-    return css`
-        border-radius: ${theme.borderRadius};
-        .k-tab {
-            &:before {
-                content: '';
-                display: block;
-                position: absolute;
-                background: ${tabs.noBorderCard.bgColor};
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                z-index: -1;
-            }
-        }
-        .k-tabs-active-bar {
-            background: #fff;
-            top: 0;
-            height: auto;
-            z-index: -1;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
-            border-radius: 4px 4px 0px 0px;
-        }
-        &.k-vertical {
-            border-right: none;
-            .k-tabs-active-bar {
-                width: auto;
-                height: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
             }
         }
     `

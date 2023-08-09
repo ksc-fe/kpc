@@ -11,7 +11,6 @@ const classNameObj = {
     'k-tabs': true,
     [`k-size-${size}`]: size,
     'k-vertical': vertical,
-    /* 'k-tabs-card': type === 'no-border-card', */
     [`k-type-${type}`]: true,
     [`k-is-scroll`]: isScroll.value,
     [className]: className,
