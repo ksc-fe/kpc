@@ -5,35 +5,36 @@ import '../../styles/global';
 
 const defaults = {
     get transition() { return theme.transition.middle },
-    height: '4px',
+    height: '6px',
 
-    bgColor: '#e5e5e5',
+    bgColor: '#F0F2F4',
     get barColor() { return theme.color.primary },
     borderRadius: '2px',
 
     thumb: {
-        height: '12px',
-        width: '12px',
-        get border() { return `2px solid ${slider.barColor}` },
+        height: '16px',
+        width: '16px',
+        get border() { return `4px solid #fff` },
         borderRadius: '50%',
-        bgColor: '#fff',
-        hoverTransform: 'scale(1.5)',
-        hoverBgColor: '#fff',
-        disabledBgColor: '#fff',
+        get bgColor() { return slider.barColor },
+        hoverTransform: 'scale(1.25)',
+        get hoverBgColor() { return slider.barColor },
+        boxShadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.08)',
     },
 
     endPadding: '10px 0 0',
 
     disabled: {
         get color() { return theme.color.disabled },
-        get bgColor() { return theme.color.disabledBg },
+        // might be calculate according to the bar color
+        bgColor: '#B5E3FF',
     },
 
     // spinnerWidth: '124px',
     spinnerGap: '16px',
 
     point: {
-        width: '8px',
+        width: '10px',
         get height() { return slider.point.width },
         bgColor: '#fff',
         borderRadius: '50%',
@@ -89,12 +90,14 @@ export function makeStyles() {
             z-index: 1;
         }
         .k-slider-thumb {
+            box-sizing: content-box;
             height: ${slider.thumb.height};
             width: ${slider.thumb.width};
             transition: all ${slider.transition};
             border: ${slider.thumb.border};
             border-radius: ${slider.thumb.borderRadius};
             background-color: ${slider.thumb.bgColor};
+            box-shadow: ${slider.thumb.boxShadow};
             outline: none;
             &:hover,
             &:focus {
@@ -135,10 +138,11 @@ export function makeStyles() {
                 cursor: not-allowed;
             }
             .k-slider-bar {
-                background-color: ${slider.disabled.color};
+                background-color: ${slider.disabled.bgColor};
             }
             .k-slider-thumb {
-                border-color: ${slider.disabled.color};
+                border-color: #fff;
+                background-color: ${slider.disabled.bgColor};
                 &:hover,
                 &:focus {
                     background-color: ${slider.disabled.bgColor};
