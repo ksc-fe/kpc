@@ -17,7 +17,7 @@ export interface SliderProps<Range extends boolean = boolean> {
     max?: number
     min?: number
     value?: Value<Range>
-    range?: Range 
+    range?: Range
     unit?: string
     showEnd?: boolean
     showInput?: boolean
@@ -81,7 +81,7 @@ const events: Events<SliderEvents> = {
 };
 
 export class Slider<
-    Range extends boolean = false 
+    Range extends boolean = false
 > extends Component<SliderProps<Range>, SliderEvents<Range>, SliderBlocks<Range>> {
     static template = template;
     static typeDefs = typeDefs;

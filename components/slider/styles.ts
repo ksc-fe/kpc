@@ -6,7 +6,7 @@ import '../../styles/global';
 const defaults = {
     get transition() { return theme.transition.middle },
     height: '4px',
-    
+
     bgColor: '#e5e5e5',
     get barColor() { return theme.color.primary },
     borderRadius: '2px',
@@ -112,6 +112,10 @@ export function makeStyles() {
         }
         .k-slider-spinner {
             margin-left: ${slider.spinnerGap};
+        }
+        .k-slider-spinner-sep {
+            display: inline-block;
+            margin: auto 8px;
         }
 
         // dragging
