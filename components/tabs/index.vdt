@@ -4,7 +4,7 @@ import {makeStyles} from './styles';
 
 const {className, children, vertical, size, type} = this.get();
 const {
-    isScroll, left, enablePrev, enableNext,
+    isScroll, offset, enablePrev, enableNext,
     prev, next, scrollRef, wrapperRef
 } = this.scroll;
 const classNameObj = {
@@ -21,17 +21,17 @@ const classNameObj = {
 <div class={classNameObj} {...getRestProps(this)}>
     <Button class="k-tabs-prev" type="none" icon
         v-if={isScroll.value}
-        key="prev" 
+        key="prev"
         size={size}
         disabled={!enablePrev.value}
         ev-click={prev}
     >
-        <i class="ion-ios-arrow-left"></i>
+        <i class={vertical ? "ion-ios-arrow-up" : "ion-ios-arrow-left"}></i>
     </Button>
     <div class="k-tabs-scroll c-clearfix" ref={scrollRef}>
         <div class="k-tabs-wrapper"
             ref={wrapperRef}
-            style={{transform: `translateX(${left.value}px)`}}
+            style={{transform: vertical ? `translateY(${offset.value}px)` : `translateX(${offset.value}px)`}}
         >
             {children}
             <div class="k-tabs-active-bar" style={this.activeBar.value}></div>
@@ -39,11 +39,11 @@ const classNameObj = {
     </div>
     <Button class="k-tabs-next" type="none" icon
         v-if={isScroll.value}
-        key="next" 
+        key="next"
         size={size}
         disabled={!enableNext.value}
         ev-click={next}
     >
-        <i class="ion-ios-arrow-right"></i>
+        <i class={vertical ? "ion-ios-arrow-down" : "ion-ios-arrow-right"}></i>
     </Button>
 </div>

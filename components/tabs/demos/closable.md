@@ -47,7 +47,7 @@ import {bind, TabsProps} from 'kpc';
 interface Props {
     tab?: number
     tabs: TabItem[]
-    size: TabsProps['size'] 
+    size: TabsProps['size']
     types: TabsProps['type'][]
 }
 
@@ -69,7 +69,7 @@ export default class extends Component<Props> {
                 {value: 3, label: 'Tab 3'},
             ],
             size: 'large',
-            types: ['default', 'card', 'border-card', 'no-border-card']
+            types: ['default', 'card', 'border-card', 'no-border-card', 'flat-card']
         } as Props;
     }
 

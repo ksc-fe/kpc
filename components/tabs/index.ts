@@ -9,23 +9,23 @@ import type {Events} from '../types';
 export * from './tab';
 
 export interface TabsProps<T = any> {
-    value?: T
-    vertical?: boolean
-    size?: Sizes
-    type?: 'default' | 'card' | 'border-card' | 'no-border-card' | 'flat-card'
-    closable?: boolean
-    beforeChange?: (value: T) => boolean | Promise<boolean>
+    value?: T;
+    vertical?: boolean;
+    size?: Sizes;
+    type?: 'default' | 'card' | 'border-card' | 'no-border-card' | 'flat-card';
+    closable?: boolean;
+    beforeChange?: (value: T) => boolean | Promise<boolean>;
 }
 
 export interface TabsEvents<T = any> {
-    remove: [T]
+    remove: [T];
 }
 
 const typeDefs: Required<TypeDefs<TabsProps>> = {
     value: null,
     vertical: Boolean,
     size: sizes,
-    type: ['default', 'card', 'border-card', 'no-border-card','flat-card'],
+    type: ['default', 'card', 'border-card', 'no-border-card', 'flat-card'],
     closable: Boolean,
     beforeChange: Function,
 };
@@ -37,7 +37,7 @@ const defaults = (): Partial<TabsProps> => ({
 
 const events: Events<TabsEvents> = {
     remove: true,
-}
+};
 
 export class Tabs<T = any> extends Component<TabsProps<T>, TabsEvents<T>> {
     static template = template;
@@ -62,15 +62,14 @@ export class Tabs<T = any> extends Component<TabsProps<T>, TabsEvents<T>> {
         // but let the page to change it by passing the value prop
         if (!tabProps.to) {
             this.set('value', tabProps.value);
-        // } else if (this.$router) {
+            // } else if (this.$router) {
             // this.$router.push(item.to);
         } else {
             window.location.href = tabProps.to as string;
         }
     }
-    
+
     public remove(value: T) {
         this.trigger('remove', value);
     }
 }
-

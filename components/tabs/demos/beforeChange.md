@@ -1,6 +1,6 @@
 ---
 title: 定义卡片切换前的拦截函数
-order: 7
+order: 8
 ---
 
 给`Tabs`添加`beforeChange`函数，来定义卡片切换之前的逻辑，如果该函数返回`true`则成功切换，否则忽略本次切换
@@ -22,7 +22,7 @@ import {Tabs, Tab} from 'kpc';
     <div class="content">
         <div v-if={this.get('tab') === 'rulein'}>入站规则</div>
         <div v-else-if={this.get('tab') === 'ruleout'}>出站规则</div>
-        <div v-else>关联云主机</div> 
+        <div v-else>关联云主机</div>
     </div>
 </div>
 ```

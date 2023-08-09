@@ -17,7 +17,7 @@ sidebar: doc
 | value | 被选中的选项卡,使用`v-model`进行双向绑定 | `T = any` | `undefined`|
 | vertical | 垂直排列 | `boolean` | `undefined` |
 | size | 选项卡尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
-| type | 选项卡类型 | `"default"` &#124; `"card"` &#124; `"border-card"` &#124; `"no-border-card"` | `"default"` |
+| type | 选项卡类型 | `"default"` &#124; `"card"` &#124; `"border-card"` &#124; `"no-border-card"` &#124; `"flat-card"` | `"default"` |
 | closable | 是否展示选项卡关闭按钮 | `boolean` | `false` |
 | beforeChange | 切换选项卡之前的拦截函数，如果该函数返回`false`则阻止本次切换，支持异步函数，参数为当前`Tab` `value` | <code>(value: T) => boolean &#124; Promise&lt;boolean&gt;</code> | `undefined` |
 

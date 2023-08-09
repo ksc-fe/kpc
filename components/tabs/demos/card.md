@@ -25,6 +25,11 @@ import {Tabs, Tab} from 'kpc';
         <Tab value="ruleout">出站规则</Tab>
         <Tab value="relatedVM">关联云主机</Tab>
     </Tabs>
+    <Tabs type="flat-card" v-model="tab">
+        <Tab value="rulein">入站规则</Tab>
+        <Tab value="ruleout">出站规则</Tab>
+        <Tab value="relatedVM">关联云主机</Tab>
+    </Tabs>
 </div>
 ```
 
