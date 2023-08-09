@@ -64,6 +64,7 @@ export interface InputProps<V extends Value = Value> extends InputHTMLAttributes
     frozenOnInput?: boolean
     inline?: boolean
     waveDisabled?: boolean
+    resize?: 'none' | 'vertical' | 'horizontal' | 'both'
 }
 
 export interface InputEvents {
@@ -97,12 +98,14 @@ const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> 
     frozenOnInput: Boolean,
     inline: Boolean,
     waveDisabled: Boolean,
+    resize: ['none', 'vertical', 'horizontal', 'both'],
 }
 
 const defaults = (): Partial<InputProps> => ({
     type: 'text', // text | textarea
     size: 'default',
     rows: 2,
+    resize: 'vertical',
 });
 
 const events: Events<InputEvents> = {

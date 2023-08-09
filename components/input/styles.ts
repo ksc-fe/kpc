@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
+import {Input} from './';
 
 const defaults = deepDefaults(
     {
@@ -282,6 +283,15 @@ export function makeStyles() {
             line-height: 1.5;
             vertical-align: top;
         }
+        ${(Input.typeDefs.resize as string[]).map(type => {
+            return css`
+                &.k-resize-${type} {
+                    .k-textarea {
+                        resize: ${type};
+                    }
+                }
+            `
+        })}
 
         // fake dom for get value's width
         .k-input-fake {
