@@ -218,7 +218,8 @@ const {
 const {
     value: pageValue,
     limit: pageLimit,
-    onChange: onPageChange
+    onChange: onPageChange,
+    paginationRef,
 } = this.pagination;
 
 <div class={classNameObj} ref={elementRef}>
@@ -240,6 +241,7 @@ const {
         </table>
     </div>
     <Pagination v-if={pagination}
+        ref={paginationRef}
         total={data ? data.length : 0}
         size="small"
         {...(isObject(pagination) ? pagination : EMPTY_OBJ)}

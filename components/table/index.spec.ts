@@ -20,12 +20,13 @@ import MergeCellDemo from '~/components/table/demos/mergeCell';
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Icon} from '../icon';
 import {useChecked, AllCheckedStatus} from './useChecked';
+import PaginationDemo from '~/components/table/demos/pagination';
 
 describe('Table', () => {
-    // afterEach(() => {
-        // unmount();
-        // localStorage.removeItem('resizableTable');
-    // });
+    afterEach(() => {
+        unmount();
+        localStorage.removeItem('resizableTable');
+    });
 
     it('check & uncheck', async () => {
         const [instance, element] = mount(BasicDemo);
@@ -78,7 +79,7 @@ describe('Table', () => {
         expect(spy.callCount).to.eql(5);
         // clear data of table should only trigger $change:checked event once, #407
         all.click();
-        table.set('data', []);
+        instance.set<{data: any[]}>('data', []);
         await wait();
         expect(spy.callCount).to.eql(7);
     });
@@ -580,5 +581,54 @@ describe('Table', () => {
 
         await wait();
         expect(update.callCount).to.eql(1);
+    });
+
+    it('pagination', async () => {
+        const [instance, element] = mount(PaginationDemo);
+        const table = instance.refs.table as Table;
+        const pagination = table.pagination.paginationRef;
+        const spy = sinon.spy();
+
+        table.on('changePage', spy);
+
+        // check all
+        table.checkAll(); 
+        expect(table.getCheckedData()).to.have.length(10);
+
+        // next page
+        table.set('pagination', { value: 2 });
+        (table as any).trigger('$receive:pagination');
+        await wait();
+        expect(table.getCheckedData()).to.have.length(0);
+
+        // check all again
+        table.checkAll(); 
+        expect(table.getCheckedData()).to.have.length(10);
+
+        // change limit
+        table.set('pagination', { value: 1, limit: 20 });
+        (table as any).trigger('$receive:pagination');
+        await wait();
+        expect(table.getCheckedData()).to.have.length(10);
+
+        // check all again
+        table.checkAll(); 
+        expect(table.getCheckedData()).to.have.length(20);
+
+        // change limit from pagination
+        pagination.value!.set('limit', 10);
+        await wait();
+        expect(table.getCheckedData()).to.have.length(10);
+        // FIXME: Pagination component should no trigger change event multiple times
+        // when we set value and limit at the same time
+        expect(spy.callCount).to.eql(4);
+        expect(spy.lastCall.lastArg).to.eql({value: 1, limit: 10});
+
+        // change page from pagination
+        await wait();
+        pagination.value!.changePage(2);
+        expect(table.getCheckedData()).to.have.length(0);
+        expect(spy.callCount).to.eql(5);
+        expect(spy.lastCall.lastArg).to.eql({value: 2, limit: 10});
     });
 });

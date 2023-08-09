@@ -1,4 +1,4 @@
-import {useInstance} from 'intact';
+import {useInstance, createRef} from 'intact';
 import type {Table, TableRowKey, TableCheckType} from './table';
 import {useState} from '../../hooks/useState';
 import {Pagination, PaginationChangeData} from '../pagination';
@@ -12,9 +12,7 @@ export function usePagination() {
     const data = useState<any[] | undefined>(instance.get('data'));   
     const value = useState<number>(defaultPagination.value!);
     const limit = useState<number>(defaultPagination.limit!);
-
-    // maybe this is useless, only for test
-    instance.on('$change:data', handleData);
+    const paginationRef =  createRef<Pagination>(); // for unit test
 
     useReceive<Table>(['data', 'pagination'], () => {
         handleData();
@@ -69,5 +67,5 @@ export function usePagination() {
         instance.trigger('changePage', data);
     }
 
-    return { data, value, limit, onChange };
+    return { data, value, limit, onChange, paginationRef };
 }

@@ -165,7 +165,8 @@ export class Table<
     static defaults = defaults;
     static events = events;
 
-    private pagination = usePagination();
+    // use public for unit test to get paginationRef
+    public pagination = usePagination();
     private tree = useTree(this.pagination.data);
     private columns = useColumns();
     private scroll = useScroll();
