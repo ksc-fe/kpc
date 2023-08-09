@@ -22,10 +22,10 @@ import {Icon} from '../icon';
 import {useChecked, AllCheckedStatus} from './useChecked';
 
 describe('Table', () => {
-    afterEach(() => {
-        unmount();
-        localStorage.removeItem('resizableTable');
-    });
+    // afterEach(() => {
+        // unmount();
+        // localStorage.removeItem('resizableTable');
+    // });
 
     it('check & uncheck', async () => {
         const [instance, element] = mount(BasicDemo);

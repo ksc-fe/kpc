@@ -1,6 +1,6 @@
 ---
 title: 隐藏表头
-order: 0
+order: 29
 ---
 
 添加`hideHeader`属性，即可隐藏表头

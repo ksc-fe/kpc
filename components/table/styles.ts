@@ -363,6 +363,11 @@ export function makeStyles() {
                 }
             `;
         })}
+
+        // pagination
+        > .k-pagination {
+            margin: 16px 0;
+        }
     `;
 }
 

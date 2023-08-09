@@ -1,6 +1,6 @@
 import {eachChildren} from '../utils';
 import {makeStyles} from './styles';
-import {isStringOrNumber, isNull} from 'intact-shared';
+import {isStringOrNumber, isNull, isObject, EMPTY_OBJ} from 'intact-shared';
 import {getClassAndStyleForFixed} from './useFixedColumns';
 import {Affix} from '../affix';
 import {TableRow} from './row';
@@ -16,6 +16,7 @@ import {Tooltip} from '../tooltip';
 import {AllCheckedStatus} from './useChecked';
 import {context as ResizableContext} from './useResizable';
 import {context as FixedColumnsContext} from './useFixedColumns';
+import {Pagination} from '../pagination';
 
 const {
     data, children, className, fixHeader,
@@ -24,6 +25,7 @@ const {
     merge, childrenKey, indent, tooltipPosition,
     tooltipContainer, showIndeterminate, resizable,
     draggable, animation: _animation, hideHeader,
+    pagination,
 } = this.get();
 const animation = !Array.isArray(_animation) ? [_animation, _animation] : _animation;
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
@@ -213,6 +215,12 @@ const {
     onScroll: onScrollbarScroll,
     tableActualWidth,
 } = this.stickyScrollbar;
+const {
+    value: pageValue,
+    limit: pageLimit,
+    onChange: onPageChange
+} = this.pagination;
+
 <div class={classNameObj} ref={elementRef}>
     <div class="k-table-wrapper" style={style} ref={scrollRef}>
         <Affix v-if={!isNull(stickHeader.value)}
@@ -231,6 +239,14 @@ const {
             <template>{tbody}</template>
         </table>
     </div>
+    <Pagination v-if={pagination}
+        total={data ? data.length : 0}
+        size="small"
+        {...(isObject(pagination) ? pagination : EMPTY_OBJ)}
+        value={pageValue.value}
+        limit={pageLimit.value}
+        ev-change={onPageChange}
+    />
     <Transition name="k-fade">
         <Spin v-if={loading} overlay size="small" class="k-table-spin" />
     </Transition>

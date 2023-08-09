@@ -57,7 +57,7 @@
 ```
 "<div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 1</div></div></div><div class=\"k-menu-item k-active css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 2</div></div></div><div class=\"k-menu-item k-disabled css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 3</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">
                     sub menu 4
-                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-drqtdg css-1iaopr2\" style=\"display: none;\"><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
+                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><!--portal--></div>"
 ```
 
 ```
@@ -75,7 +75,7 @@
 ```
 "<div class=\"k-menu-item k-active css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 1</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 2</div></div></div><div class=\"k-menu-item k-disabled css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 3</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">
                     sub menu 4
-                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-drqtdg css-1iaopr2\" style=\"display: none;\"><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-kt9fag\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
+                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><!--portal--></div>"
 ```
 
 #### `accordion`

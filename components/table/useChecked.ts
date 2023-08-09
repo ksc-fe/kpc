@@ -1,5 +1,5 @@
 import {createRef, useInstance, onMounted, onBeforeUnmount} from 'intact';
-import {useState} from '../../hooks/useState';
+import {useState, State, watchState} from '../../hooks/useState';
 import type {Table, TableRowKey, TableCheckType} from './';
 import {toggleArray} from '../utils';
 import {useReceive} from '../../hooks/useReceive';
@@ -25,6 +25,7 @@ export function useChecked(
     isDisabledKey: (key: TableRowKey) => boolean,
     getGrid: () => TableGrid,
     loopData: ReturnType<typeof useTree>['loopData'],
+    data: State<any[] | undefined>,
 ) {
     const instance = useInstance() as Table<any, TableRowKey, TableCheckType>;
     let allStatus: RowStatus[] = [];
@@ -99,9 +100,9 @@ export function useChecked(
     function updateAllCheckedStatus() {
         allStatus = [];
 
-        const {data, rowKey, checkType, merge} = instance.get();
+        const {rowKey, checkType, merge} = instance.get();
 
-        if (!data || !data.length) return;
+        if (!data.value || !data.value.length) return;
 
         const allKeys = getAllKeys();
         allKeys.forEach((key) => {
@@ -206,14 +207,14 @@ export function useChecked(
     }
 
     function triggerEvent(isChecked: boolean, key: TableRowKey, rowIndex: number) {
-        const data = instance.get('data')!;
-        instance.trigger(isChecked ? 'checkRow' : 'uncheckRow', data[rowIndex], rowIndex, key);
+        instance.trigger(isChecked ? 'checkRow' : 'uncheckRow', data.value![rowIndex], rowIndex, key);
     }
 
     instance.on('$receive:children', updateAllCheckedStatus);
     instance.on('$change:checkedKeys', updateAllCheckedStatus);
     // for draggable
-    instance.on('$change:data', updateAllCheckedStatus);
+    watchState(data, updateAllCheckedStatus);
+    // instance.on('$change:data', updateAllCheckedStatus);
 
     instance.on('clickRow', (data: any, index: number, key: TableRowKey) => {
         if (instance.get('rowCheckable') && instance.get('checkType') !== 'none') {

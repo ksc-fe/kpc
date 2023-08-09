@@ -44,6 +44,7 @@ sidebar: doc
 | draggable | 表格行是否可拖动 | `boolean` | `false` |
 | animation | 是否开启动效，默认开启。可以通过`true` `false`全部设置，或者通过数组单独设置行和列的动效 | `boolean` &#124 `[boolean, boolean]` | `true` |
 | hideHeader | 是否隐藏表头 | `boolean` | `false` |
+| pagination | 是否支持分页 | `boolean` &#124; `PaginationProps` | `false` |
 
 ```ts
 import {Props} from 'intact';
@@ -75,6 +76,22 @@ type Position = {
 type Collision = 'left' | 'top' | 'none'
 
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
+
+export interface PaginationProps {
+    size?: Sizes,
+    counts?: number | string,
+    total?: number,
+    value?: number,
+    limit?: number,
+    limits?: number[],
+    noBorder?: boolean,
+    simple?: boolean,
+    showTotal?: boolean,
+    showGoto?: boolean,
+    showLimits?: boolean,
+    disableBtn?: (page: number, limit: number) => boolean,
+    disablePage?: (page: number, limit: number) => boolean,
+}
 ```
 
 ## TableColumn
