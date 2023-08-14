@@ -12,7 +12,7 @@ describe('Steps', () => {
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
 
-        const [step1, step2] = element.querySelectorAll<HTMLElement>('.k-step');
+        const [step1, step2] = element.querySelectorAll<HTMLElement>('.k-step-wrapper');
         step1.click();
         await wait();
         expect(element.innerHTML).to.matchSnapshot();

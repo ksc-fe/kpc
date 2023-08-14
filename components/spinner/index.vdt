@@ -13,7 +13,8 @@ const classNameObj = {
     'k-vertical': vertical,
     [makeStyles()]: true,
 };
-const {decrease, increase, changeValue, onFocusin} = this.change;
+const {decrease, increase, onChangeValue, onFocusin} = this.change;
+const {showValue, onInput} = this.value;
 
 <div class={classNameObj} {...getRestProps(this)}>
     <Button icon ev-click={decrease}
@@ -21,6 +22,7 @@ const {decrease, increase, changeValue, onFocusin} = this.change;
         class="k-spinner-btn k-left"
         size={size}
         type="none"
+        tabindex="-1"
     >
         <Icon v-if={!vertical} class="k-spinner-icon k-icon-minus-small" />
         <Icon v-else class="k-spinner-icon k-icon-arrow-down" />
@@ -28,10 +30,10 @@ const {decrease, increase, changeValue, onFocusin} = this.change;
     <Input
         class="k-spinner-input"
         disabled={disabled} 
-        ev-change={changeValue}
+        ev-change={onChangeValue}
         ev-focusin={onFocusin}
-        value={this.value.showValue.value}
-        ev-input={this.onInput}
+        value={showValue.value}
+        ev-input={onInput}
         size={size}
         width={width}
     />
@@ -40,6 +42,7 @@ const {decrease, increase, changeValue, onFocusin} = this.change;
         class="k-spinner-btn k-right"
         size={size}
         type="none"
+        tabindex="-1"
     >
         <Icon v-if={!vertical} class="k-spinner-icon k-icon-add-small" />
         <Icon v-else class="k-spinner-icon k-icon-arrow-up" />

@@ -71,23 +71,19 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
         return minMaxStep(value, min, max!, forceStep ? step : null);
     }
 
-    function onSpinnerChange(v: number) {
+    function onSpinnerChange(v: Value) {
         showValue.set(v);
         instance.set({value: v});
     }
 
     function onLeftSpinnerChange(v: number) {
-        const anotherValue = (showValue.value as Value<true>)[1];
-        const newValue = [v, anotherValue] as Value<true>;
-        showValue.set(newValue);
-        instance.set({value: newValue})
+        const secondValue = (showValue.value as Value<true>)[1];
+        onSpinnerChange([v, Math.max(v, secondValue)]);
     }
 
     function onRightSpinnerChange(v: number) {
-        const anotherValue = (showValue.value as Value<true>)[0];
-        const newValue = [anotherValue, v] as Value<true>;
-        showValue.set(newValue);
-        instance.set({value: newValue})
+        const firstValue = (showValue.value as Value<true>)[0];
+        onSpinnerChange([Math.min(v, firstValue), v]);
     }
 
     function triggerChangeEvent(oldValue: Value) {

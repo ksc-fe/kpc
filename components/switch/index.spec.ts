@@ -1,4 +1,5 @@
 import BasicDemo from '~/components/switch/demos/basic';
+import DisabledDemo from '~/components/switch/demos/disabled';
 import ValueDemo from '~/components/switch/demos/value';
 import WidthHeightDemo from '~/components/switch/demos/widthHeight';
 import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
@@ -9,7 +10,7 @@ describe('Switch', () => {
     it('change value by clicking', async () => {
         const [instance, element] = mount(BasicDemo);
 
-        const [el, disabledEl] = element.querySelectorAll<HTMLElement>('.k-switch');
+        const [el] = element.querySelectorAll<HTMLElement>('.k-switch');
         el.click();
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
@@ -23,8 +24,19 @@ describe('Switch', () => {
         handle.click();
         await wait();
         expect(instance.get('value')).to.be.false;
+    });
 
-        disabledEl.click();
+    it('disabled', async () => {
+        const [instance, element] = mount(DisabledDemo);
+
+        const el = element.querySelector<HTMLDivElement>('.k-switch')!;
+        el.click();
+        await wait();
+        expect(element.outerHTML).to.matchSnapshot();
+
+        dispatchEvent(el, 'mousedown', {which: 1, clientX: 0});
+        dispatchEvent(document, 'mousemove', {clientX: 30});
+        dispatchEvent(document, 'mouseup', {clientX: 30});
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
     });
@@ -32,7 +44,7 @@ describe('Switch', () => {
     it('change value by draging', async () => {
         const [instance, element] = mount(BasicDemo);
 
-        const [el, disabledEl] = element.querySelectorAll<HTMLElement>('.k-switch-handle');
+        const [el] = element.querySelectorAll<HTMLElement>('.k-switch-handle');
         dispatchEvent(el, 'mousedown', {which: 1, clientX: 0});
         dispatchEvent(document, 'mousemove', {clientX: 1});
         await wait();
@@ -62,13 +74,6 @@ describe('Switch', () => {
         dispatchEvent(document, 'mouseup', {clientX: 0});
         await wait();
         expect(instance.get('value')).to.be.true;
-
-        // disabled
-        dispatchEvent(disabledEl, 'mousedown', {which: 1, clientX: 0});
-        dispatchEvent(document, 'mousemove', {clientX: 30});
-        dispatchEvent(document, 'mouseup', {clientX: 30});
-        await wait();
-        expect(element.outerHTML).to.matchSnapshot();
     });
 
     it('drag switch which has custom width and height', async () => {

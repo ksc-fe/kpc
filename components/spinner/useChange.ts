@@ -24,7 +24,7 @@ export function useChange(
         fixAndTriggerChange(Number((value! - step).toFixed(10)), 0);
     }
 
-    function changeValue(e: Event) {
+    function onChangeValue(e: Event) {
         fixAndTriggerChange(
             (e.target as HTMLInputElement).value.trim(),
             instance.get('value')!,
@@ -42,5 +42,5 @@ export function useChange(
         }
     }
 
-    return {increase, decrease, changeValue, onFocusin};
+    return {increase, decrease, onChangeValue, onFocusin};
 }

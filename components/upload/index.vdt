@@ -101,7 +101,7 @@ const {show, close, image, isShow} = this.showImage;
                     <div class="k-upload-overlap k-upload-icons" v-else>
                         <Icon class="k-upload-zoom ion-ios-eye-outline" size="large"
                             hoverable
-                            ev-click={linkEvent($value, show)}
+                            ev-click={() => show($value)}
                         />
                         {closeBtn($value, $key)}
                     </div>

@@ -51,7 +51,8 @@ describe('Slider', () => {
     it('range test', async () => {
         const [instance, element] = mount(RangeDemo);
 
-        const windowWidth = 800; //document.documentElement.clientWidth;
+        // const windowWidth = 800; //document.documentElement.clientWidth;
+        const windowWidth = element.querySelector('.k-slider-main')!.clientWidth;
         const [first, second] = element.querySelectorAll<HTMLElement>('.k-slider-thumb');
 
         // drag
@@ -87,6 +88,36 @@ describe('Slider', () => {
         instance.set<number>('values', 1);
         await wait();
         expect(instance.get('values')).eql([1, 1]);
+
+        // increase first value
+        const increaseBtn = element.querySelector('.k-right') as HTMLElement;
+        increaseBtn.click();
+        await wait();
+        expect(instance.get('values')).eql([2, 2]);
+
+        // should disable second spinner's decrease button
+        const decreaseBtn = element.querySelector('.k-spinner:last-of-type .k-left') as HTMLElement;
+        decreaseBtn.click();
+        await wait();
+        expect(instance.get('values')).eql([2, 2]);
+
+        // input value
+        const [firstInput, secondInput] = element.querySelectorAll<HTMLInputElement>('.k-input-inner');
+        dispatchEvent(firstInput, 'focusin');
+        firstInput.value = '5';
+        dispatchEvent(firstInput, 'input');
+        firstInput.value = '50';
+        dispatchEvent(firstInput, 'input');
+        dispatchEvent(firstInput, 'change');
+        dispatchEvent(secondInput, 'focusin');
+        await wait();
+        secondInput.value = '6';
+        dispatchEvent(secondInput, 'input');
+        secondInput.value = '60';
+        dispatchEvent(secondInput, 'input');
+        dispatchEvent(secondInput, 'change');
+        await wait();
+        expect(instance.get('values')).eql([50, 60]);
     });
 
     it('keyboard operation for basic', async () => {

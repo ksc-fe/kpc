@@ -69,7 +69,7 @@ describe('Upload', () => {
             remove.click();
             await wait();
             let dialog = getElement('.k-dialog')!;
-            const [, cancel] = dialog.querySelectorAll('.k-dialog-footer .k-btn');
+            const cancel = dialog.querySelector('.k-dialog-footer .k-dialog-cancel');
             (cancel as HTMLDivElement).click();
             await wait(500);
             expect(element.innerHTML).to.matchSnapshot();
@@ -77,7 +77,7 @@ describe('Upload', () => {
             remove.click();
             await wait();
             dialog = getElement('.k-dialog')!;
-            const [ok] = dialog.querySelectorAll('.k-dialog-footer .k-btn');
+            const ok = dialog.querySelector('.k-dialog-footer .k-dialog-ok');
             (ok as HTMLDivElement).click();
             await wait(500);
             expect(element.innerHTML).to.matchSnapshot();
@@ -132,7 +132,7 @@ describe('Upload', () => {
             await wait(1000);
             expect(element.innerHTML.replace(/blob:[^"]*/g, '')).to.matchSnapshot();
 
-            const view = element.querySelector('.k-upload-overlap') as HTMLElement;
+            const view = element.querySelector('.k-upload-zoom') as HTMLElement;
             view.click();
             await wait();
             const dialog = getElement('.k-dialog')!;
@@ -157,7 +157,7 @@ describe('Upload', () => {
         this.timeout(0);
         const [instance, element] = mount(ManuallyDemo);
 
-        const upload = instance.$lastInput!.children as Upload;
+        const upload = instance.refs.instance as Upload;
         upload.on('success', async () => {
             await wait(500);
             expect(element.innerHTML).to.matchSnapshot();

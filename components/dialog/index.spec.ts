@@ -87,7 +87,7 @@ describe('Dialog', () => {
         }
 
         const [instance] = mount(Demo);
-        expect(getElement('.k-dialog-footer')!.innerText).to.eql('dialog footer 确定取消');
+        expect(getElement('.k-dialog-footer')!.innerText).to.eql('dialog footer 取消确定');
     });
 
     it('basic test', async () => {
@@ -193,7 +193,7 @@ describe('Dialog', () => {
         Dialog.success({content: 'test'}).then(cb);
         await wait();
         let dialog = expectDialog();
-        dialog.querySelector<HTMLElement>('.k-btn')!.click();
+        dialog.querySelector<HTMLElement>('.k-dialog-ok')!.click();
         await wait();
         expect(cb.callCount).to.eql(1);
 
@@ -209,7 +209,7 @@ describe('Dialog', () => {
         Dialog.error({title: 'error', content: 'test'});
         await wait();
         dialog = expectDialog();
-        dialog.querySelector<HTMLElement>('.k-btn')!.click();
+        dialog.querySelector<HTMLElement>('.k-dialog-ok')!.click();
 
         const cb2 = sinon.spy();
         Dialog.confirm({content: 'test', closable: false}).then(() => {}, cb2);
@@ -218,7 +218,7 @@ describe('Dialog', () => {
         overlay.click();
         await wait();
         expect(cb2.callCount).to.eql(0);
-        getElement('.k-dialog')!.querySelector<HTMLElement>('.k-btn')!.click();
+        getElement('.k-dialog')!.querySelector<HTMLElement>('.k-dialog-ok')!.click();
     });
 
     it('should double check for closing dialog', async () => {

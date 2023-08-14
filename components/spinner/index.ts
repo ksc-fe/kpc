@@ -88,13 +88,4 @@ export class Spinner extends Component<SpinnerProps, SpinnerEvents> {
         const {value, max, disabled} = this.get();
         return disabled || value! >= max!;
     }
-
-    // we need change value as long as the input is valid, #213
-    @bind
-    private onInput(e: InputEvent) {
-        const val = (e.target as HTMLInputElement).value;
-        const {value} = this.value.getFixedValue(val.trim(), this.get('value')!);
-        this.value.showValue.set(val);
-        this.set({value});
-    }
 }

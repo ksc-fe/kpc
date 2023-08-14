@@ -60,7 +60,15 @@ export function useValue(
         return {valueString, value};
     }
 
-    return {showValue, fixValue, getFixedValue};
+    // we need change value as long as the input is valid, #213
+    function onInput(e: InputEvent) {
+        const val = (e.target as HTMLInputElement).value;
+        const {value} = getFixedValue(val.trim(), instance.get('value')!);
+        showValue.set(val);
+        instance.set({value});
+    }
+
+    return {showValue, fixValue, getFixedValue, onInput};
 }
 
 /**

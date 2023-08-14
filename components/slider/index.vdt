@@ -98,32 +98,35 @@ const marks = this.marks();
         </div>
     </div>
     <div class="k-slider-spinner" v-if={showInput}>
-        <Spinner
-            disabled={disabled}
-            max={max}
-            min={min}
-            step={step || 0.01}
-            vertical
-            value={range ? value[0] : value}
-            suffix={unit}
-            forceStep={!!step && forceStep}
-            ev-$change:value={range ? onLeftSpinnerChange : onSpinnerChange}
-            {...spinnerProps}
-        />
-        <template v-if={range}>
-            <span class="k-slider-spinner-sep">-</span>
-            <Spinner
-                disabled={disabled}
-                max={max}
-                min={min}
-                step={step || 0.01}
-                vertical
-                value={range ? value[1] : value}
-                suffix={unit}
-                forceStep={!!step && forceStep}
-                ev-$change:value={onRightSpinnerChange}
-                {...spinnerProps}
-            />
-        </template>
+        {(() => {
+            const props = {
+                disabled,
+                min,
+                max,
+                step: step || 0.01,
+                vertical: true,
+                suffix: unit,
+                forceStep: !!step && forceStep,
+            };
+
+            return <template>
+                <Spinner
+                    {...props}
+                    value={range ? value[0] : value}
+                    ev-$change:value={range ? onLeftSpinnerChange : onSpinnerChange}
+                    {...spinnerProps}
+                />
+                <template v-if={range}>
+                    <span class="k-slider-spinner-sep">-</span>
+                    <Spinner
+                        {...props}
+                        min={value[0]}
+                        value={range ? value[1] : value}
+                        ev-$change:value={onRightSpinnerChange}
+                        {...spinnerProps}
+                    />
+                </template>
+            </template>
+        })()}
     </div>
 </div>
