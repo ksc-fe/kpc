@@ -27,6 +27,7 @@ sidebar: doc
 | stackClearIcon | 是否将清空按钮覆盖在`suffix`按钮上展示来节省空间 | `boolean` | `false` |
 | frozenOnInput | 是否在输入的过程中冻结`value`更新到视图 | `boolean` | `false` |
 | inline | 是否展示内联模式 | `boolean` | `flase` |
+| resize | 指定textarea输入框拖动调整大小的方向，默认只能垂直方向调整 | `"none"` &#124; `"vertical"` &#124; `"horizontal"` &#124; `"both"`' | `"vertical"` |
 
 ## Search
 

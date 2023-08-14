@@ -20,6 +20,7 @@ import MergeCellDemo from '~/components/table/demos/mergeCell';
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Icon} from '../icon';
 import {useChecked, AllCheckedStatus} from './useChecked';
+import PaginationDemo from '~/components/table/demos/pagination';
 
 describe('Table', () => {
     afterEach(() => {
@@ -36,34 +37,49 @@ describe('Table', () => {
         const spy = sinon.spy((v: number[]) => console.log(v));
         table.on('$change:checkedKeys', spy);
 
+        const spyCheckRow = sinon.spy((data: any, index: number, key: string) => console.log('checkRow', data, index, key));
+        table.on('checkRow', spyCheckRow);
+        const spyUncheckRow = sinon.spy((data: any, index: number, key: string) => console.log('uncheckRow', data, index, key));
+        table.on('uncheckRow', spyUncheckRow);
+        const spyCheckAll = sinon.spy(() => console.log('checkAll'));
+        table.on('checkAll', spyCheckAll);
+        const spyUncheckAll = sinon.spy(() => console.log('uncheckAll'));
+        table.on('uncheckAll', spyUncheckAll);
+
         // click row
         const [tr1, tr2] = element.querySelectorAll<HTMLElement>('tbody tr');
         tr1.click();
         await wait();
         expect(table.get('checkedKeys')).to.eql([0]);
+        expect(spyCheckRow.callCount).to.eql(1);
         tr2.click();
         await wait();
         expect(table.get('checkedKeys')).to.eql([0, 1]);
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.All);
+        expect(spyCheckRow.callCount).to.eql(2);
+        expect(spyCheckAll.callCount).to.eq(0);
 
         tr1.click();
         await wait();
         expect(table.get('checkedKeys')).to.eql([1]);
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.Indeterminate);
+        expect(spyUncheckRow.callCount).to.eql(1);
 
         const all = element.querySelector('.k-checkbox') as HTMLElement;
         all.click();
         await wait();
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.All);
+        expect(spyCheckAll.callCount).to.eql(1);
         all.click();
         await wait();
         expect(checked.getAllCheckedStatus()).eql(AllCheckedStatus.None);
         expect(table.get('checkedKeys')).to.eql([]);
+        expect(spyUncheckAll.callCount).to.eql(1);
 
         expect(spy.callCount).to.eql(5);
         // clear data of table should only trigger $change:checked event once, #407
         all.click();
-        table.set('data', []);
+        instance.set<{data: any[]}>('data', []);
         await wait();
         expect(spy.callCount).to.eql(7);
     });
@@ -220,6 +236,13 @@ describe('Table', () => {
         await wait();
         expect(instance.get('multipleGroup')).to.eql({status: ['active', 'stopped']});
         expect(table2.innerHTML).to.matchSnapshot();
+
+        // update group
+        instance.set('statusGroup', [{label: 'label', value: 'value'}]);
+        dispatchEvent(icon, 'click');
+        await wait(500);
+        const newDropdown= getElement('.k-table-group-dropdown')!;
+        expect(newDropdown.innerHTML).to.matchSnapshot();
     });
 
     it('fix columns', async () => {
@@ -558,5 +581,54 @@ describe('Table', () => {
 
         await wait();
         expect(update.callCount).to.eql(1);
+    });
+
+    it('pagination', async () => {
+        const [instance, element] = mount(PaginationDemo);
+        const table = instance.refs.table as Table;
+        const pagination = table.pagination.paginationRef;
+        const spy = sinon.spy();
+
+        table.on('changePage', spy);
+
+        // check all
+        table.checkAll(); 
+        expect(table.getCheckedData()).to.have.length(10);
+
+        // next page
+        table.set('pagination', { value: 2 });
+        (table as any).trigger('$receive:pagination');
+        await wait();
+        expect(table.getCheckedData()).to.have.length(0);
+
+        // check all again
+        table.checkAll(); 
+        expect(table.getCheckedData()).to.have.length(10);
+
+        // change limit
+        table.set('pagination', { value: 1, limit: 20 });
+        (table as any).trigger('$receive:pagination');
+        await wait();
+        expect(table.getCheckedData()).to.have.length(10);
+
+        // check all again
+        table.checkAll(); 
+        expect(table.getCheckedData()).to.have.length(20);
+
+        // change limit from pagination
+        pagination.value!.set('limit', 10);
+        await wait();
+        expect(table.getCheckedData()).to.have.length(10);
+        // FIXME: Pagination component should no trigger change event multiple times
+        // when we set value and limit at the same time
+        expect(spy.callCount).to.eql(4);
+        expect(spy.lastCall.lastArg).to.eql({value: 1, limit: 10});
+
+        // change page from pagination
+        await wait();
+        pagination.value!.changePage(2);
+        expect(table.getCheckedData()).to.have.length(0);
+        expect(spy.callCount).to.eql(5);
+        expect(spy.lastCall.lastArg).to.eql({value: 2, limit: 10});
     });
 });

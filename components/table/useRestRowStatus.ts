@@ -29,7 +29,10 @@ export function useRestRowStatus(
         }
     }
 
-    function omit(type: 'checkedKeys' | 'selectedKeys' | 'spreadKeys' | 'expandedKeys', keys: TableRowKey[]) {
+    function omit(
+        type: 'checkedKeys' | 'selectedKeys' | 'spreadKeys' | 'expandedKeys',
+        keys: TableRowKey[]
+    ) {
         let originKeys = instance.get(type);
         if (!originKeys) return;
 

@@ -43,6 +43,8 @@ sidebar: doc
 | widthStoreKey | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `string` | `undefined` |
 | draggable | 表格行是否可拖动 | `boolean` | `false` |
 | animation | 是否开启动效，默认开启。可以通过`true` `false`全部设置，或者通过数组单独设置行和列的动效 | `boolean` &#124 `[boolean, boolean]` | `true` |
+| hideHeader | 是否隐藏表头 | `boolean` | `false` |
+| pagination | 是否支持分页 | `boolean` &#124; `PaginationProps` | `false` |
 
 ```ts
 import {Props} from 'intact';
@@ -74,6 +76,22 @@ type Position = {
 type Collision = 'left' | 'top' | 'none'
 
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
+
+export interface PaginationProps {
+    size?: Sizes,
+    counts?: number | string,
+    total?: number,
+    value?: number,
+    limit?: number,
+    limits?: number[],
+    noBorder?: boolean,
+    simple?: boolean,
+    showTotal?: boolean,
+    showGoto?: boolean,
+    showLimits?: boolean,
+    disableBtn?: (page: number, limit: number) => boolean,
+    disablePage?: (page: number, limit: number) => boolean,
+}
 ```
 
 ## TableColumn
@@ -145,3 +163,7 @@ export type TableColumnGroupItem = {
 | clickRow | 点击某行触发 | `(data: T, index: number, key: TableRowKey) => void` |
 | dragstart | 行拖动开始 | `(data: {key: TableRowKey, from: number}) => void` |
 | dragend | 行拖动结束 | `(data: {key: TableRowKey, from: number, to: number}) => void` |
+| checkRow | 手动选中某行触发 | `(data: T, index: number, key: TableRowKey) => void` |
+| uncheckRow | 手动取消选中某行触发 | `(data: T, index: number, key: TableRowKey) => void` |
+| checkAll | 手动全选触发 | `() => void` |
+| uncheckAll | 手动取消全选触发 | `() => void` |

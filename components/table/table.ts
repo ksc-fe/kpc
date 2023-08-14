@@ -20,6 +20,8 @@ import {useStickyScrollbar} from './useStickyScrollbar';
 import {useWidth} from './useWidth';
 import {useScroll} from './useScroll';
 import type {Events} from '../types';
+import type {PaginationProps, PaginationChangeData} from '../pagination';
+import { usePagination } from './usePagination';
 
 export interface TableProps<
     T = any,
@@ -60,12 +62,19 @@ export interface TableProps<
     widthStoreKey?: string
     draggable?: boolean
     animation?: boolean | [boolean, boolean]
+    hideHeader?: boolean
+    pagination?: boolean | PaginationProps
 }
 
 export interface TableEvents<T = any, K extends TableRowKey = number> {
     clickRow: [T, number, K]
     dragstart: [{key: K, from: number}]
     dragend: [{key: K, from: number, to: number}]
+    checkRow: [T, number, K]
+    uncheckRow: [T, number, K]
+    checkAll: []
+    uncheckAll: []
+    changePage: [PaginationChangeData]
 }
 
 export interface TableBlocks<T = unknown> {
@@ -118,6 +127,8 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     widthStoreKey: String,
     draggable: Boolean,
     animation: [Boolean, Array],
+    hideHeader: Boolean,
+    pagination: [Boolean, Object],
 };
 
 const defaults = (): Partial<TableProps> => ({
@@ -135,6 +146,11 @@ const events: Events<TableEvents> = {
     clickRow: true,
     dragstart: true,
     dragend: true,
+    checkRow: true,
+    uncheckRow: true,
+    checkAll: true,
+    uncheckAll: true,
+    changePage: true,
 };
 
 export class Table<
@@ -149,7 +165,9 @@ export class Table<
     static defaults = defaults;
     static events = events;
 
-    private tree = useTree();
+    // use public for unit test to get paginationRef
+    public pagination = usePagination();
+    private tree = useTree(this.pagination.data);
     private columns = useColumns();
     private scroll = useScroll();
     private stickyHeader = useStickyHeader(this.scroll.callbacks);
@@ -169,20 +187,27 @@ export class Table<
         this.scroll,
         this.width.widthMap,
     );
-    private disableRow = useDisableRow(this.tree.loopData);
-    private merge = useMerge(this.columns.getCols);
+    private disableRow = useDisableRow(
+        this.tree.loopData,
+        this.pagination.data,
+    );
+    private merge = useMerge(
+        this.columns.getCols,
+        this.pagination.data,
+    );
     private checked = useChecked(
         this.disableRow.getEnableKeys,
         this.disableRow.getAllKeys,
         this.disableRow.isDisabledKey,
         this.merge.getGrid,
         this.tree.loopData,
+        this.pagination.data,
     );
     private sortable = useSortable();
     private expandable = useExpandable();
     private selected = useSelected();
     private resetRowStatus = useRestRowStatus(this.disableRow.getAllKeys);
-    private draggable = useDraggable();
+    private draggable = useDraggable(this.pagination.data);
     private stickyScrollbar = useStickyScrollbar(
         this.stickyHeader.elementRef,
         this.scroll,

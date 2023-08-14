@@ -1,9 +1,9 @@
 import {useInstance, nextTick} from 'intact';
 import type {Table, TableRowKey} from './table';
-import {useState} from '../../hooks/useState';
+import {useState, State} from '../../hooks/useState';
 import type {TableRow} from './row';
 
-export function useDraggable() {
+export function useDraggable(data: State<unknown[] | undefined>) {
     const instance = useInstance() as Table<any, TableRowKey>;
     const draggingKey = useState<TableRowKey | null>(null);
 
@@ -17,7 +17,7 @@ export function useDraggable() {
         const key = tableRow.get('key');
         draggingKey.set(key);
 
-        originData = instance.get('data')!;
+        originData = data.value!;
 
         instance.trigger('dragstart', {
             key,
@@ -33,20 +33,23 @@ export function useDraggable() {
         if (newIndex === draggingIndex) return;
 
         // swap data
-        const data = instance.get('data')!.slice();
-        const item = data.splice(draggingIndex, 1)[0];
-        data.splice(newIndex, 0, item);
+        const newData = data.value!.slice();
+        const item = newData.splice(draggingIndex, 1)[0];
+        newData.splice(newIndex, 0, item);
 
         draggingIndex = newIndex;
 
-        instance.set('data', data);
+        data.set(newData);
     }
     
     function onRowDragEnd(e: MouseEvent, tableRow: TableRow) {
         e.preventDefault();
-        instance.set('data', originData);
+        // revert to origin data, then set to new data to trigger animation
+        const newData = data.value;
+        data.set(originData);
 
         nextTick(() => {
+            data.set(newData);
             draggingKey.set(null);
             instance.trigger('dragend', {
                 key: tableRow.get('key'),

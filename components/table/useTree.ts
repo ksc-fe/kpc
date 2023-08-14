@@ -2,8 +2,9 @@ import {useInstance} from 'intact';
 import type {Table, TableRowKey} from './table';
 import {inArray} from './useChecked';
 import {toggleArray} from '../utils';
+import { State } from '../../hooks/useState';
 
-export function useTree() {
+export function useTree(data: State<any[] | undefined>) {
     const instance = useInstance() as Table;
 
     function isSpreaded(key: TableRowKey) {
@@ -18,8 +19,8 @@ export function useTree() {
         cb: (value: any, index: number, level: number, meta: T | null) => T,
         shouldBreak: boolean = false,
     ) {
-        const {childrenKey, data} = instance.get();
-        loopDataWithChildrenKey(data, childrenKey, cb, shouldBreak);
+        const {childrenKey} = instance.get();
+        loopDataWithChildrenKey(data.value, childrenKey, cb, shouldBreak);
     }
 
     return {isSpreaded, toggleSpreadRow, loopData};

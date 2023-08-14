@@ -1,6 +1,7 @@
 import {useInstance, Props} from 'intact';
 import type {Table, TableRowKey, TableCheckType} from './table';
 import type {TableColumnProps} from './column';
+import { State, watchState } from '../../hooks/useState';
 
 export type TableMerge<T = any, CheckType = 'checkbox'> = (
     row: T,
@@ -23,6 +24,7 @@ export type TableGrid = TableGridItem[][];
 
 export function useMerge(
     getCols: () => Props<TableColumnProps>[],
+    data: State<unknown[] | undefined>,
 ) {
     const instance = useInstance() as Table<any, TableRowKey, TableCheckType>;
     let grid: TableGrid = [];
@@ -30,11 +32,11 @@ export function useMerge(
     function handleSpans() {
         grid = [];
 
-        const {merge, data, checkType} = instance.get();
-        if (!data || !data.length || !merge) return;
+        const {merge, checkType} = instance.get();
+        if (!data.value || !data.value.length || !merge) return;
 
         const cols = getCols();
-        data.forEach((data, rowIndex) => {
+        data.value.forEach((data, rowIndex) => {
             const currentRow: TableGridItem[] = [];
             grid.push(currentRow);
 
@@ -99,6 +101,7 @@ export function useMerge(
     }
 
     instance.on('$receive:children', handleSpans);
+    watchState(data, handleSpans);
 
     return {getGrid};
 }

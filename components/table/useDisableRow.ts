@@ -1,9 +1,11 @@
 import {useInstance} from 'intact';
 import type {Table, TableRowKey, TableCheckType} from './table';
 import type {useTree} from './useTree';
+import { State, watchState } from '../../hooks/useState';
 
 export function useDisableRow(
     loopData: ReturnType<typeof useTree>['loopData'],
+    data: State<any[] | undefined>,
 ) {
     const instance = useInstance() as Table<any, TableRowKey>;
     let enabledKeys: TableRowKey[] = [];
@@ -47,8 +49,7 @@ export function useDisableRow(
     }
 
     instance.on('$receive:children', setDisabledKeys);
-    // for draggable
-    instance.on('$change:data', setDisabledKeys);
+    watchState(data, setDisabledKeys);
 
     return {isDisabled, getEnableKeys, isDisabledKey, getAllKeys};
 }

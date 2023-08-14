@@ -33,7 +33,8 @@ setDefault(() => {
 export function makeMenuStyles() {
     return css`
         min-width: ${cascader.width} !important;
-        min-height: ${cascader.height};
+        height: ${cascader.height};
+        overflow: auto;
         .k-cascader-arrow {
             float: right;
             height: 100%;

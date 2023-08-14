@@ -17,6 +17,8 @@ export function useGroup() {
     const keywords = useState<string>('');
     const filteredGroup = useState<TableColumnGroupItem[] | undefined>(instance.get('group'));
 
+    instance.on('$receive:group', (group) => filteredGroup.set(group));
+
     function onSelect(value: any, groupValue: any, onChange: ContextValue['onChange']) {
         const {multiple, key} = instance.get();
 
