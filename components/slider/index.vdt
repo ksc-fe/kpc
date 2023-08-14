@@ -26,7 +26,7 @@ const classNameObj = {
 };
 
 const {barStyle, thumbFirstStyle, thumbSecondStyle} = this.styles();
-const {onSpinnerChange} = this.value;
+const {onSpinnerChange, onLeftSpinnerChange, onRightSpinnerChange} = this.value;
 const {onKeydown, onKeyup} = this.keyboard;
 const {firstTooltipRef, secondTooltipRef, getTooltipProps, hide} = this.tooltip;
 const tooltipProps = getTooltipProps();
@@ -42,7 +42,7 @@ const createThumb = (thumbStyle, isFirst, ref, value, tooltipRef) => {
             >
                 <div class="k-slider-thumb"
                     tabindex={disabled ? '-1' : '0'}
-                    ev-mousedown={onStart} 
+                    ev-mousedown={onStart}
                     ev-focusin={linkEvent(isFirst, onFocusin)}
                     ev-focusout={hide}
                     ev-keydown={onKeydown}
@@ -79,7 +79,7 @@ const marks = this.marks();
                         secondTooltipRef,
                     )}
                 </template>
-                <i v-for={points} 
+                <i v-for={points}
                     class={{'k-slider-point': true, 'k-active': $value.active}}
                     style={$value.style}
                 ></i>
@@ -97,18 +97,33 @@ const marks = this.marks();
             <span ev-click={linkEvent(max, setOneValue)}>{max + unit}</span>
         </div>
     </div>
-    <div class="k-slider-spinner" v-if={showInput && !range}>
+    <div class="k-slider-spinner" v-if={showInput}>
         <Spinner
             disabled={disabled}
             max={max}
             min={min}
             step={step || 0.01}
             vertical
-            value={value}
+            value={range ? value[0] : value}
             suffix={unit}
             forceStep={!!step && forceStep}
-            ev-$change:value={onSpinnerChange}
+            ev-$change:value={range ? onLeftSpinnerChange : onSpinnerChange}
             {...spinnerProps}
         />
+        <template v-if={range}>
+            <span class="k-slider-spinner-sep">-</span>
+            <Spinner
+                disabled={disabled}
+                max={max}
+                min={min}
+                step={step || 0.01}
+                vertical
+                value={range ? value[1] : value}
+                suffix={unit}
+                forceStep={!!step && forceStep}
+                ev-$change:value={onRightSpinnerChange}
+                {...spinnerProps}
+            />
+        </template>
     </div>
 </div>

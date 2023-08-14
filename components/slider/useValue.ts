@@ -29,7 +29,7 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     }
 
     function fixValue(value: Value, fixShowValue: boolean) {
-        const fixedValue = getFixedValue(value); 
+        const fixedValue = getFixedValue(value);
         showValue.set(fixShowValue ? fixedValue: value);
         setValue(fixedValue);
     }
@@ -60,7 +60,7 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     function fix(value: number): number {
         const {max, forceStep} = instance.get();
         const [step, min] = getStep(value);
-        
+
         if (min > max!) {
             if (process.env.NODE_ENV !== 'production') {
                 error(`[Slider] min must less than or equal to max, but got min: ${min} max: ${max}`);
@@ -76,6 +76,20 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
         instance.set({value: v});
     }
 
+    function onLeftSpinnerChange(v: number) {
+        const anotherValue = (showValue.value as Value<true>)[1];
+        const newValue = [v, anotherValue] as Value<true>;
+        showValue.set(newValue);
+        instance.set({value: newValue})
+    }
+
+    function onRightSpinnerChange(v: number) {
+        const anotherValue = (showValue.value as Value<true>)[0];
+        const newValue = [anotherValue, v] as Value<true>;
+        showValue.set(newValue);
+        instance.set({value: newValue})
+    }
+
     function triggerChangeEvent(oldValue: Value) {
         const {value} = instance.get();
         if (isEqualValue(value!, oldValue)) return;
@@ -86,6 +100,8 @@ export function useValue(getStep: NormalizedGetStep, getDragging: () => boolean)
     return {
         showValue,
         onSpinnerChange,
+        onLeftSpinnerChange,
+        onRightSpinnerChange,
         setValue,
         triggerChangeEvent,
         fixValue,
