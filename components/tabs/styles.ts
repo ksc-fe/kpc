@@ -21,13 +21,13 @@ const defaults = deepDefaults(
     {
         get transition() { return theme.transition.middle },
         get borderColor() { return theme.color.border },
-        borderWidth: '1px',
+        borderWidth: '0px',
         get border() { return `${tabs.borderWidth} solid ${tabs.borderColor}` },
         get color() { return theme.color.text },
         closeGap: `8px`,
 
         // scroll
-        navigatorWidth: `20px`,
+        navigatorWidth: `32px`,
 
         //active
         active: {
@@ -38,13 +38,11 @@ const defaults = deepDefaults(
             }
         },
 
-        // border-card
-        borderCard: {
+        card: {
             get bgColor() { return theme.color.bg },
         },
 
-        // no-border-card
-        noBorderCard: {
+        flatCard: {
             get bgColor() { return theme.color.bg },
         },
 
@@ -89,14 +87,9 @@ export function makeStyles() {
             ${makeCardStyles()};
         }
 
-        &.k-type-border-card {
-            ${makeBorderCardStyles()};
+        &.k-type-flat-card {
+            ${makeFlatCardStyles()};
         }
-
-        &.k-type-no-border-card {
-            ${makeNoBorderCardStyles()};
-        }
-        
     `;
 }
 
@@ -139,7 +132,7 @@ function makeCommonStyles() {
             left: 0;
             height: ${bar.height};
             background: ${bar.bgColor};
-            bottom: calc(-${bar.height} / 2); 
+            bottom: calc(-${bar.height} / 2);
         }
 
         // vertical
@@ -151,7 +144,7 @@ function makeCommonStyles() {
             .k-tabs-active-bar {
                 left: auto;
                 top: 0;
-                right: calc(-${bar.height} / 2); 
+                right: calc(-${bar.height} / 2);
                 width: ${bar.height};
                 height: auto;
             }
@@ -187,8 +180,8 @@ function makeScrollStyles() {
                 padding-bottom: 1px;
                 margin-bottom: -1px;
             }
-            &.k-tabs-border-card,
-            &.k-tabs-no-border-card {
+            &.k-type-card,
+            &.k-type-flat-card {
                 .k-tabs-scroll {
                     padding-bottom: 0;
                     margin-bottom: 0;
@@ -203,7 +196,6 @@ function makeScrollStyles() {
             .k-tabs-next {
                 position: absolute;
                 top: 0;
-                width: ${tabs.navigatorWidth} !important;
             }
             .k-tabs-prev {
                 left: 0;
@@ -213,6 +205,43 @@ function makeScrollStyles() {
             }
             &.k-is-scroll {
                 padding: 0 ${tabs.navigatorWidth};
+            }
+        }
+
+        &.k-vertical {
+            height: 100%;
+
+            .k-tabs-scroll {
+                overflow: hidden;
+                position: relative;
+                // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
+                padding-bottom: 1px;
+                margin-bottom: -1px;
+                height: 100%
+            }
+            .k-tabs-wrapper {
+                white-space: nowrap;
+                /* float: left; */
+                transition: transform ${tabs.transition};
+            }
+
+            .k-is-scroll {
+                padding: ${tabs.navigatorWidth} 0;
+            }
+
+            .k-tabs-prev,
+            .k-tabs-next {
+                position: absolute;
+                width: 100%;
+            }
+            .k-tabs-prev {
+                top: 0;
+            }
+            .k-tabs-next {
+                bottom: 0;
+            }
+            &.k-is-scroll {
+                padding: ${tabs.navigatorWidth} 0;
             }
         }
     `
@@ -239,22 +268,50 @@ function makeCardActiveBarCommonStyles() {
 
 function makeCardStyles() {
     return css`
+        background-color: ${tabs.card.bgColor};
         .k-tab {
             margin: 0;
         }
         .k-tabs-active-bar {
             ${makeCardActiveBarCommonStyles()};
-            border-left: ${tabs.border};
-            border-right: ${tabs.border};
-            &:before {
-                content: '';
+            border-radius: ${theme.borderRadius} ${theme.borderRadius} 0px 0px;
+            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.08);
+        }
+
+        // vertical card
+        &.k-vertical {
+            .k-tabs-active-bar {
+                ${makeCardActiveBarCommonStyles()};
+                width: 100%;
+                left: 0;
+                border-radius: ${theme.borderRadius} 0px 0px ${theme.borderRadius};
+            }
+        }
+    `
+}
+
+function makeFlatCardStyles() {
+    return css`
+        background-color: ${tabs.card.bgColor};
+        .k-tab {
+            margin: 0;
+        }
+        .k-tabs-active-bar {
+            top: 0;
+            height: auto;
+            z-index: -1;
+            background: transparent;
+
+            &::before {
+                content: "";
                 display: block;
                 position: absolute;
-                height: ${tabs.active.bar.height};
-                background: ${theme.color.primary};
-                top: 0;
-                left: -${tabs.borderWidth};
-                right: -${tabs.borderWidth};
+                background: #fff;
+                margin-top: 2px;
+                height: calc(100% - 4px);
+                left: 0;
+                width: 100%;
+                border-radius: ${theme.borderRadius};
             }
         }
 
@@ -262,85 +319,8 @@ function makeCardStyles() {
         &.k-vertical {
             .k-tabs-active-bar {
                 left: 0;
-                width: auto;
-                border-left: none;
-                border-right: none;
-                border-top: ${tabs.border};
-                border-bottom: ${tabs.border};
-                &:before {
-                    width: ${tabs.active.bar.height};
-                    left: 0;
-                    right: auto;
-                    bottom: 0;
-                    height: auto;
-                }
+                width: 100%;
             }
         }
-    `
-}
-
-function makeBorderCardStyles() {
-    return css`
-        border: ${tabs.border};
-        border-bottom: none;
-        background: ${tabs.borderCard.bgColor};
-        .k-tab {
-            margin: 0;
-        }
-        .k-tabs-active-bar {
-            background: #fff;
-            top: 0;
-            height: auto;
-            z-index: -1;
-        }
-
-        &.k-vertical {
-            border-right: none;
-            border-bottom: ${tabs.border};
-            .k-tabs-active-bar {
-                width: auto;
-                height: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-            }
-        }
-    `
-}
-
-function makeNoBorderCardStyles() {
-    return css`
-        border-radius: ${theme.borderRadius};
-        .k-tab {
-            &:before {
-                content: '';
-                display: block;
-                position: absolute;
-                background: ${tabs.noBorderCard.bgColor};
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                z-index: -1;
-            }
-        }
-        .k-tabs-active-bar {
-            background: #fff;
-            top: 0;
-            height: auto;
-            z-index: -1;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
-            border-radius: 4px 4px 0px 0px;
-        }
-        &.k-vertical {
-            border-right: none;
-            .k-tabs-active-bar {
-                width: auto;
-                height: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-            }
-        }
-    `
+    `;
 }
