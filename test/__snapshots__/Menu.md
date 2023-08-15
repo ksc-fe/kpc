@@ -57,11 +57,7 @@
 ```
 "<div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 1</div></div></div><div class=\"k-menu-item k-active css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 2</div></div></div><div class=\"k-menu-item k-disabled css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 3</div></div></div><div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">
                     sub menu 4
-<<<<<<< HEAD
-                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-r2yyya css-7sngro\" style=\"display: none;\"><div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
-=======
                     </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><!--portal--></div>"
->>>>>>> v2
 ```
 
 ```
@@ -79,11 +75,7 @@
 ```
 "<div class=\"k-menu-item k-active css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 1</div></div></div><div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 2</div></div></div><div class=\"k-menu-item k-disabled css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">sub menu 3</div></div></div><div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">
                     sub menu 4
-<<<<<<< HEAD
-                    </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><div class=\"k-dropdown-menu k-menu k-dark css-r2yyya css-7sngro\" style=\"display: none;\"><div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 1</div></div></div><div class=\"k-menu-item css-12cqrel\"><div class=\"k-menu-title css-r08qjw\"><div class=\"k-menu-name\">option 2</div></div></div></div></div>"
-=======
                     </div><i class=\"k-menu-arrow ion-ios-arrow-down\"></i></div><!--portal--></div>"
->>>>>>> v2
 ```
 
 #### `accordion`

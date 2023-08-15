@@ -3,10 +3,7 @@
 #### `basic test`
 
 ```
-"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div><div class=\"k-dropdown-item k-cascader-option k-active k-dropdown-open css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro k-slideright-enter-active\" style=\"left: 140px; top: 0px;\"><div class=\"k-dropdown-item k-cascader-option css-vj004t\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div><div class=\"k-dropdown-item k-cascader-option css-vj004t\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div></div>"
-=======
-"<div class=\"k-dropdown-item k-cascader-option css-1s8b3lx\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option k-active k-dropdown-open css-1s8b3lx\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal-->"
->>>>>>> v2
+"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option k-active k-dropdown-open css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal-->"
 ```
 
 ```
@@ -15,19 +12,11 @@
 ```
 
 ```
-<<<<<<< HEAD
-"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div><div class=\"k-dropdown-item k-cascader-option k-active k-selected k-dropdown-open css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro k-slidedown-enter-active\" style=\"left: 140px; top: 0px;\"><div class=\"k-dropdown-item k-cascader-option css-vj004t\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div><div class=\"k-dropdown-item k-cascader-option k-active k-selected k-dropdown-open css-vj004t\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro k-slidedown-enter-active\" style=\"left: 140px; top: 0px;\"><div class=\"k-dropdown-item k-cascader-option css-vj004t\">岳阳楼区</div><div class=\"k-dropdown-item k-cascader-option k-active k-selected css-vj004t\">岳阳县</div></div></div>"
+"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option k-active k-selected k-dropdown-open css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal-->"
 ```
 
 ```
-"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div><div class=\"k-dropdown-item k-cascader-option k-active k-selected k-dropdown-open css-vj004t\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro k-slidedown-enter-active\" style=\"left: 140px; top: 0px;\"><div class=\"k-dropdown-item k-cascader-option css-vj004t\">岳阳楼区</div><div class=\"k-dropdown-item k-cascader-option k-active k-selected css-vj004t\">岳阳县</div></div>"
-=======
-"<div class=\"k-dropdown-item k-cascader-option css-1s8b3lx\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option k-active k-selected k-dropdown-open css-1s8b3lx\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal-->"
-```
-
-```
-"<div class=\"k-dropdown-item k-cascader-option css-1s8b3lx\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option k-active k-selected k-dropdown-open css-1s8b3lx\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal-->"
->>>>>>> v2
+"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option k-active k-selected k-dropdown-open css-vj004t\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal-->"
 ```
 
 ```
@@ -51,11 +40,7 @@
 ```
 
 ```
-<<<<<<< HEAD
-"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div><div class=\"k-dropdown-item k-cascader-option css-vj004t\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div>"
-=======
-"<div class=\"k-dropdown-item k-cascader-option css-1s8b3lx\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option css-1s8b3lx\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal-->"
->>>>>>> v2
+"<div class=\"k-dropdown-item k-cascader-option css-vj004t\">长沙市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option css-vj004t\">岳阳市<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal-->"
 ```
 
 ```
@@ -65,11 +50,7 @@
 #### `filter`
 
 ```
-<<<<<<< HEAD
-"<div class=\"k-dropdown-item k-cascader-option k-hover css-vj004t\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div><div class=\"k-dropdown-item k-cascader-option css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><div class=\"k-dropdown-menu k-cascader-menu css-1cjbnmg css-7sngro\" style=\"display: none;\"></div>"
-=======
-"<div class=\"k-dropdown-item k-cascader-option k-hover css-1s8b3lx\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option css-1s8b3lx\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-x0ey6t\"></i></div><!--portal-->"
->>>>>>> v2
+"<div class=\"k-dropdown-item k-cascader-option k-hover css-vj004t\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal-->"
 ```
 
 ```

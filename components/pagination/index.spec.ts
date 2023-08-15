@@ -5,7 +5,7 @@ import DisableDemo from '~/components/pagination/demos/disable';
 import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 
 describe('Pagination', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo);

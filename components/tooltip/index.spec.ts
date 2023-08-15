@@ -339,7 +339,7 @@ describe('Tooltip', () => {
         const [i] = mount(Demo);
 
         await wait(500);
-        window.scrollTo(0, 10000);
+        window.scrollTo(0, document.body.offsetHeight);
 
         i.set('show', true);
 
