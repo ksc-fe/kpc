@@ -1,0 +1,30 @@
+$auge-prefix: 'auge';
+
+$space-prefix-cls: #{$auge-prefix}-space;
+$space-item-prefix-cls: #{$auge-prefix}-space-item;
+
+.#{$space-prefix-cls} {
+  display: inline-flex;
+  &-vertical {
+    flex-direction: column;
+  }
+  &-align {
+    &-center {
+      align-items: center;
+    }
+    &-start {
+      align-items: flex-start;
+    }
+    &-end {
+      align-items: flex-end;
+    }
+    &-baseline {
+      align-items: baseline;
+    }
+  }
+}
+.#{$space-prefix-cls} {
+  &-rtl {
+    direction: rtl;
+  }
+}
