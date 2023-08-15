@@ -12,8 +12,8 @@ mx.mxClient.IS_POINTER = false;
 const testsContext = require.context('./components/', true, /.*\.spec\.ts/);
 testsContext.keys().forEach(testsContext);
 
-const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*next\.vue$/);
-// const reactReq = require.context('~/components/', true, /button\/demos\/.*next\.vue$/);
+const vueReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/demos\/.*next\.vue$/);
+// const vueReq = require.context('~/components/', true, /select\/demos\/.*next\.vue$/);
 
 describe('Vue Next Demos', () => {
     afterEach(() => unmount());
@@ -35,8 +35,8 @@ describe('Vue Next Demos', () => {
         }
     }
 
-    testDemos(reactReq, async (Demo) => {
-        const [instance, element] = mount(wrap(Demo as any));
+    testDemos(vueReq, async (Demo: any) => {
+        const [instance, element] = mount(wrap(Demo));
         await wait();
         // FIXME: I don't why the width of `autoWidth` input is an unexpected value
         // while we run test on Github Actions.

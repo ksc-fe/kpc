@@ -11,7 +11,7 @@ const NUMS = os.cpus().length;
 // const globExp = './@(docs|components)/**/*.md';
 const globExp = resolvePath('./@(docs|components)/**/*.md');
 // const globExp = resolvePath('./@(components)/**/*.md');
-// const globExp = resolvePath('./@(docs|components)/card/demos/extra.md');
+// const globExp = resolvePath('./@(docs|components)/transfer/demos/tree.md');
 // const globExp = resolvePath('./@(docs|components)/design_new/about.md');
 
 function prepare() {

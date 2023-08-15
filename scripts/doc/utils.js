@@ -51,3 +51,5 @@ exports.getDefaults = function getDefaults(js) {
         // return data;
     }
 }
+
+exports.methodRegExp = /^(\s*)(?:(?:get|set|async|static) )?(\w+)(?:<\w+>)?\(.*?\)(:[^{]*)? {$/;

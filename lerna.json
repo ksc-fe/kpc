@@ -1,9 +1,8 @@
 {
   "packages": [
     "./",
-    "packages/kpc-react",
-    "packages/kpc-vue-next",
-    "packages/kpc-vue"
+    "packages/*"
   ],
-  "version": "3.0.0-beta.0"
+  "version": "3.0.0-beta.0",
+  "npmClient": "yarn"
 }

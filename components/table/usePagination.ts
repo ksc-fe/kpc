@@ -3,7 +3,7 @@ import type {Table, TableRowKey, TableCheckType} from './table';
 import {useState} from '../../hooks/useState';
 import {Pagination, PaginationChangeData} from '../pagination';
 import {isObject} from 'intact-shared';
-import { useReceive } from 'kpc/hooks/useReceive';
+import { useReceive } from '../../hooks/useReceive';
 
 const defaultPagination = Pagination.defaults();
 
