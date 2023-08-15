@@ -16,8 +16,8 @@ import {Switch} from 'kpc';
         <b:on><i class="ion-ios-checkmark-empty"></i></b:on>
         <b:off><i class="ion-ios-close-empty"></i></b:off>
     </Switch>
-     <Switch on="开" off="关" flat/>
-    <Switch value={true} flat>
+     <Switch on="开" off="关" />
+    <Switch value={true}>
         <b:on><i class="ion-ios-checkmark-empty"></i></b:on>
         <b:off><i class="ion-ios-close-empty"></i></b:off>
     </Switch>
