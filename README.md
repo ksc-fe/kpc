@@ -96,7 +96,7 @@ Welcome to join us by QQ. Group Number: 529739732
 
 ## Develop 
 
-> Require `node@10` and `npm@6.9` or above.
+> Require `node@10 ~ node@14` and `npm@6.9` or above.
 
 ```shell
 git clone https://github.com/ksc-fe/kpc.git
