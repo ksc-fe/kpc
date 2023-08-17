@@ -210,11 +210,21 @@ describe('Select', () => {
         const dropdown = getElement('.k-select-dropdown');
         const [selectAll, toggleSelect, unselectAll] = dropdown.querySelectorAll('.k-select-op .k-btn');
         const [confirm, cancel] = dropdown.querySelectorAll('.k-select-footer .k-btn');
+        const input = dropdown.querySelector('.k-inner');
 
         // select all
         selectAll.click();
         confirm.click();
         expect(instance.get('days')).have.length(7);
+
+        // select searched items
+        select.click();
+        unselectAll.click();
+        input.value = 'm'
+        dispatchEvent(input, 'input');
+        selectAll.click();
+        confirm.click();
+        expect(instance.get('days')).have.length(1);
 
         // unselect all
         select.click();
@@ -225,7 +235,6 @@ describe('Select', () => {
         // toggle select
         select.click();
         instance.set('days', ['Monday', 'Tuesday']);
-        const input = dropdown.querySelector('.k-inner');
         input.value = 's'
         dispatchEvent(input, 'input');
         toggleSelect.click();

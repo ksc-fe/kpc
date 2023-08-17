@@ -126,7 +126,7 @@ exports.webpackConfigDevServer = () => {
 
     config.devServer
         .hot(true)
-        .port(4567)
+        .port(4568)
         .host('0.0.0.0')
         .stats('errors-only')
         .set('liveReload', false)

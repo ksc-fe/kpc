@@ -345,11 +345,11 @@ export default class Select extends Intact {
     }
 
     _selectAll(allShowedValues) {
-        this.set('_checkedKeys', addKeys(this.get('value'), allShowedValues));
+        this.set('_checkedKeys', addKeys(this.get('_checkedKeys'), allShowedValues));
     }
 
     _unselectAll(allShowedValues) {
-        this.set('_checkedKeys', removeKeys(this.get('value'), allShowedValues));
+        this.set('_checkedKeys', removeKeys(this.get('_checkedKeys'), allShowedValues));
     }
 
     _toggleSelect(allShowedValues) {
