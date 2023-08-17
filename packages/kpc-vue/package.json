@@ -1,6 +1,6 @@
 {
   "name": "kpc-vue",
-  "version": "1.6.3-beta.0",
+  "version": "1.6.3",
   "description": "KPC components for Vue.",
   "keywords": [
     "component",
