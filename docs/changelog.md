@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v1.6.3
+
+1. `Fix` 修复`Select`在“可创建”模式下，可能创建空选项的问题 [#830](https://github.com/ksc-fe/kpc/issues/830)
+2. `Fix` 修复`Select`在多选`searchable`模式下，某些情况，全选并非选择筛选出来的项的问题 [#821](https://github.com/ksc-fe/kpc/issues/821)
+3. `Fix` 修复`Select`在多选模式下，更新`Option`然后更新`value`，旧值依然展示的问题 [#835](https://github.com/ksc-fe/kpc/issues/835)
+4. `Fix` 修复`Select`在卡片分组模式下，卡片选项过多，展示异常的问题 [#837](https://github.com/ksc-fe/kpc/issues/837)
+5. `Fix` 修复`Table`在某些情况下，全选依然会选择到`disabled`行的问题 [#838](https://github.com/ksc-fe/kpc/issues/838)
+
 ## v1.6.2
 
 1. `Fix` 修复`Dialog`静态方法报错的问题 [#816](https://github.com/ksc-fe/kpc/issues/816)
