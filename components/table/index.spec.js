@@ -159,7 +159,7 @@ describe('Table', () => {
         const {__test1, __test2} = instance.refs;
 
         const icon = __test1.element.querySelector('.k-arrow');
-        dispatchEvent(icon, 'mouseenter');
+        dispatchEvent(icon, 'click');
         const dropdown = getElement('.k-table-dropdown');
         expect(dropdown.innerHTML).to.matchSnapshot();
 
@@ -168,7 +168,7 @@ describe('Table', () => {
         expect(__test1.element.outerHTML).to.matchSnapshot();
 
         const icon2 = __test2.element.querySelector('.k-arrow');
-        dispatchEvent(icon2, 'mouseenter');
+        dispatchEvent(icon2, 'click');
         const dropdown2 = getElement('.k-table-dropdown');
         expect(dropdown.innerHTML).to.matchSnapshot();
 

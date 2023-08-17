@@ -87,7 +87,7 @@
 #### `group`
 
 ```
-"<div class=\"k-item k-active\"><span>全部</span></div><div class=\"k-item\"><span>运行中</span></div><div class=\"k-item\"><span>已关闭</span></div>"
+"<div class=\"k-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请输入关键字\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"k-icon ion-ios-search\"></i></div></div></div></div><div class=\"k-grou-body\"><div class=\"k-item k-active\"><span>全部</span></div><div class=\"k-item\"><span>运行中</span></div><div class=\"k-item\"><span>已关闭</span></div></div>"
 ```
 
 ```
@@ -95,7 +95,7 @@
 ```
 
 ```
-"<div class=\"k-item\"><span>全部</span></div><div class=\"k-item k-active\"><span>运行中</span></div><div class=\"k-item\"><span>已关闭</span></div>"
+"<div class=\"k-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid\"><div class=\"k-wrapper\"><input class=\"k-inner\" type=\"text\" placeholder=\"请输入关键字\"><div class=\"k-suffix\"><i class=\"k-icon k-clear ion-ios-close\"></i> <i class=\"k-icon ion-ios-search\"></i></div></div></div></div><div class=\"k-grou-body\"><div class=\"k-item\"><span>全部</span></div><div class=\"k-item k-active\"><span>运行中</span></div><div class=\"k-item\"><span>已关闭</span></div></div>"
 ```
 
 ```
