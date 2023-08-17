@@ -8,10 +8,10 @@ import {Cascader} from './';
 import {Component} from 'intact';
 
 describe('Cascader', () => {
-    afterEach(async () => {
-        unmount();
-        await wait(500);
-    });
+    // afterEach(async () => {
+        // unmount();
+        // await wait(500);
+    // });
 
     it('basic test', async function() {
         const [instance, element] = mount(BasicDemo);
@@ -204,5 +204,61 @@ describe('Cascader', () => {
         
         expect(instance.get('value')).to.eql(['hunan', 'haidian']);
         expect(element.textContent).to.eql('湖南 / 海淀区');
+    });
+
+    it('specify fields', async () => {
+        class Demo extends Component {
+            static template = `
+                const {Cascader} = this;
+                <Cascader data={this.get('data')}
+                    v-model="value"
+                    fields={{value: 'v', label: 'l', children: 'c'}}
+                />
+            `;
+            static defaults() {
+                return {
+                    value: [],
+                    data: [
+                        {
+                            v: 'beijing',
+                            l: '北京',
+                            c: [
+                                {
+                                    v: 'haidian',
+                                    l: '海淀区'
+                                },
+                            ]
+                        },
+                        {
+                            v: 'hunan',
+                            l: '湖南',
+                            c: [
+                                {
+                                    v: 'haidian',
+                                    l: '海淀区'
+                                },
+                            ]
+                        },
+                    ]
+                }
+            }
+            private Cascader = Cascader;
+        }
+
+        const [instance, element] = mount(Demo);
+        const select = element;
+        select.click();
+        await wait();
+        const dropdown1 = getElement('.k-cascader-menu')!;
+        const [item1] = dropdown1.querySelectorAll<HTMLElement>(':scope > .k-dropdown-item');
+        item1.click();
+        await wait();
+        expect(dropdown1.innerHTML).to.matchSnapshot();
+        const dropdown2 = getElement('.k-cascader-menu')!;
+        const [item11,] = dropdown2.querySelectorAll<HTMLElement>(':scope > .k-dropdown-item');
+        item11.click();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(instance.get('value')).to.eql(['beijing', 'haidian']);
     });
 });

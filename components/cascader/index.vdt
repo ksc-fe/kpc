@@ -3,12 +3,13 @@ import {Icon} from '../icon';
 import {_$} from '../../i18n';
 import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 
-const {data, trigger, filterable} = this.get();
+const {data, trigger, filterable, fields} = this.get();
 const baseMenuStyles = makeMenuStyles();
 const classNameObj = {
     'k-cascader-menu': true,
     [baseMenuStyles]: true,
 };
+const getField = this.fields;
 
 const {values, isShowed, isSelected, onSelect, toggleShowedValue} = this.value;
 const Options = (data, level, loaded, parentSelected) => {
@@ -21,15 +22,15 @@ const Options = (data, level, loaded, parentSelected) => {
     }
 
     return data.map((item, index) => {
-        const value = item.value;
+        const value = getField(item, 'value');
         const showed = isShowed(value, level);
         const selected = parentSelected && isSelected(value, level);
-        const children = item.children;
+        const children = getField(item, 'children');
 
         const Item = () => {
             return (
                 <DropdownItem
-                    disabled={item.disabled}
+                    disabled={getField(item, 'disabled')}
                     class={{
                         'k-cascader-option': true,
                         'k-active': showed,
@@ -37,7 +38,7 @@ const Options = (data, level, loaded, parentSelected) => {
                     }}
                     ev-select={onSelect.bind(null, value, level)}
                 >
-                    {item.label}
+                    {getField(item, 'label')}
                     <Icon v-if={children}
                         class="k-cascader-arrow ion-ios-arrow-right"
                     /> 
@@ -50,7 +51,7 @@ const Options = (data, level, loaded, parentSelected) => {
                 <Dropdown
                     position={this.positionObj}
                     of="parent"
-                    disabled={item.disabled}
+                    disabled={getField(item, 'disabled')}
                     trigger={trigger}
                     value={showed}
                     ev-$changed:value={toggleShowedValue.bind(null, value, level)}
@@ -94,7 +95,7 @@ const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
                 >
                     {(() => {
                         // highlight keywords
-                        const label = $value.map(item => item.label).join(' / ');
+                        const label = $value.map(item => getField(item, 'label')).join(' / ');
                         const labels = label.split(keywords);
                         const length = labels.length; 
                         return labels.map((item, index) => {

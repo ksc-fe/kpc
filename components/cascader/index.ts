@@ -7,22 +7,39 @@ import {useValue} from './useValue';
 import {useLabel} from './useLabel';
 import {useLoad} from './useLoad';
 import {useFilterable} from './useFilterable';
+import { useFields } from './useFields';
 
-export interface CascaderProps<V = any, Multipe extends boolean = boolean> extends BaseSelectProps<V[], Multipe> {
-    data?: CascaderData<V>[]
+export interface CascaderProps<
+    V = any,
+    Multipe extends boolean = boolean,
+    Data extends BaseCascaderData = CascaderData<V>
+> extends BaseSelectProps<V[], Multipe> {
+    data?: Data[],
     trigger?: 'click' | 'hover'
     changeOnSelect?: boolean
     format?: (labels: string[]) => string
-    loadData?: (data: CascaderData<V>) => any 
-    filter?: (keywords: string, data: CascaderData<V>) => boolean,
+    loadData?: (data: Data) => any 
+    filter?: (keywords: string, data: Data) => boolean,
+    fields?: CascaderFields<Data>,
 }
 
-export type CascaderData<V> = {
+export type CascaderFields<Data> = {
+    value?: keyof Data,
+    label?: keyof Data,
+    children?: keyof Data,
+    disabled?: keyof Data,
+}
+
+export interface BaseCascaderData {
+    loaded?: boolean
+    // [key: string]: any
+}
+
+export interface CascaderData<V> extends BaseCascaderData {
     value: V 
     label: string
-    disabled?: boolean
-    loaded?: boolean
     children?: CascaderData<V>[]
+    disabled?: boolean
 }
 
 export interface CascaderEvents extends BaseSelectEvents { }
@@ -37,6 +54,7 @@ const typeDefs: Required<TypeDefs<CascaderProps>> = {
     format: Function,
     loadData: Function,
     filter: Function,
+    fields: Object,
 };
 
 const defaults = (): Partial<CascaderProps> => ({
@@ -44,21 +62,26 @@ const defaults = (): Partial<CascaderProps> => ({
     data: [],
     trigger: 'click',
     format: (labels: string[]) => labels.join(' / '),
-    filter: (keywords: string, data: CascaderData<any>) => data.label.includes(keywords),
 });
 
 export class Cascader<
     V = any,
     Multipe extends boolean = false,
-> extends BaseSelect<CascaderProps<V, Multipe>, CascaderEvents, CascaderBlocks<V>> {
+    Data extends BaseCascaderData = CascaderData<V>
+> extends BaseSelect<CascaderProps<V, Multipe, Data>, CascaderEvents, CascaderBlocks<V>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
 
+    private fields = useFields();
     private value = useValue();
-    private label = useLabel();
-    private load = useLoad();
-    private filterable = useFilterable(this.input.keywords, this.value.setValue);
+    private label = useLabel(this.fields);
+    private load = useLoad(this.fields);
+    private filterable = useFilterable(
+        this.input.keywords,
+        this.value.setValue,
+        this.fields
+    );
     private positionObj = {my: 'left top', at: 'right top', collisionDirection: ['left']};
 
     protected getPlaceholder() {

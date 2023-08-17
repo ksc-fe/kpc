@@ -30,6 +30,7 @@ sidebar: doc
 | loadData | 如果`data`中的`children`属性值为空数组`[]`，则可以使用该属性定义动态加载逻辑，组件会将当前选中的数据项作为参数传入 | `(data: CascaderData<V>) => any` | `undefined` |
 | filter | 如果可搜索，你可以传入`filter`改变搜索逻辑，组件会将搜索关键词和数据项作为参数传入 | `(keywords: string, data: CascaderData<V>) => boolean` | `(keywords: string, data: CascaderData<V>) => data.label.includes(keywords)` |
 | show | 是否展示菜单项 | `boolean` | `false` |
+| fields | 指定`value` `label` `children` `disabled`字段名 | `CascaderFields<CascaderData<any>>` | `{ value: 'value', label: 'label', children: 'children', disabled: 'disabled' }` |
 
 ```ts
 export type CascaderData<V> = {
@@ -38,6 +39,13 @@ export type CascaderData<V> = {
     disabled?: boolean
     loaded?: boolean
     children?: CascaderData<V>[]
+}
+
+export type CascaderFields<Data> = {
+    value?: keyof Data,
+    label?: keyof Data,
+    children?: keyof Data,
+    disabled?: keyof Data,
 }
 
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
