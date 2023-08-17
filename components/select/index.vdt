@@ -349,7 +349,7 @@ if (hasValue && (!allowUnmatch && labelObj.label == null && !labelObj.labels.len
                         {{ labelObj.label }}
                     </b:value>
                 </span>
-                <Animate a:tag="span" a:transition="c-fade" class={{ {
+                <Animate a:tag="span" a:disabled class={{ {
                     "k-values": true,
                     "k-with-values": blocks.values,
                 } }} v-else>

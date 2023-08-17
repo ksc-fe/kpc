@@ -14,10 +14,10 @@ import AutoDisableIconDemo from '~/components/select/demos/autoDisableIcon';
 describe('Select', () => {
     let instance;
 
-    afterEach((done) => {
-        unmount(instance);
-        setTimeout(done, 400);
-    });
+    // afterEach((done) => {
+        // unmount(instance);
+        // setTimeout(done, 400);
+    // });
 
     it('should select value correctly', () => {
         instance = mount(BasicDemo);
@@ -109,6 +109,34 @@ describe('Select', () => {
         const deleteBtn = instance.element.querySelector('.k-select-tag .k-icon');
         deleteBtn.click();
         expect(instance.get('days')).to.eql(['Tuesday']);
+    });
+
+    it('update options then update value, #835', () => {
+        class Demo extends Intact {
+            @Intact.template()
+            static template = `<div>
+                <Select v-model="value" multiple>
+                    <Option v-for={{ self.get('data') }} value={{ value.value }}>{{ value.label }}</Option>
+                </Select>
+            </div>`
+
+            defaults() {
+                return {
+                    data: [{ value: 1, label: 'option 1' }],
+                    value: [1],
+                }
+            }
+
+            _init() {
+                this.Select = Select;
+                this.Option = Option;
+            }
+        }
+
+        instance = mount(Demo);
+        instance.set('data', [{value: 2, label: 'option 2'}]);
+        instance.set('value', [2]);
+        expect(instance.element.textContent).to.eql('option 2');
     });
 
     it('filterable', () => {
