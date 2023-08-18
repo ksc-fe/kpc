@@ -90,13 +90,20 @@ gulp.task('copy:cname', () => {
         .pipe(gulp.dest(dest));
 });
 
+// copy package.json for getting the version in website
+gulp.task('copy:package.json', () => {
+     return gulp.src(resolve('./package.json'))
+        .pipe(gulp.dest(dest));
+});
+
 gulp.task('doc:build', gulp.series(
     gulp.parallel('doc:clean:dist', 'doc:clean:data'),
     'doc:prepare',
     'doc:build:webpack',
     staticizeDoc,
     // gulp.parallel('copy:imgs', 'copy:cname')
-    'copy:imgs'
+    'copy:imgs',
+    'copy:package.json'
 ));
 
 gulp.task('doc:upload', upload);
