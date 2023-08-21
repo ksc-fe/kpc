@@ -6,6 +6,7 @@ import {isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
 import {useAutoWidth} from './useAutoWidth';
 import {useFrozen} from './useFrozen';
 import {CommonInputHTMLAttributes, Events} from '../types';
+import {useAutoRows} from './useAutoRows';
 export * from './search';
 
 type HTMLInputTypes =
@@ -56,7 +57,7 @@ export interface InputProps<V extends Value = Value> extends InputHTMLAttributes
     clearable?: boolean
     disabled?: boolean
     size?: Sizes
-    rows?: string | number
+    rows?: string | number | 'auto' | AutoRows
     autoWidth?: boolean
     fluid?: boolean
     width?: number | string
@@ -66,6 +67,11 @@ export interface InputProps<V extends Value = Value> extends InputHTMLAttributes
     waveDisabled?: boolean
     resize?: 'none' | 'vertical' | 'horizontal' | 'both'
 }
+
+export type AutoRows = {
+    min?: number
+    max?: number
+} 
 
 export interface InputEvents {
     clear: [MouseEvent]
@@ -90,7 +96,7 @@ const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> 
     clearable: Boolean,
     disabled: Boolean,
     size: sizes,
-    rows: [String, Number],
+    rows: [String, Number, 'auto', Object],
     autoWidth: Boolean,
     fluid: Boolean,
     width: [Number, String],
@@ -124,6 +130,7 @@ export class Input<V extends Value = Value> extends Component<InputProps<V>, Inp
     private inputRef = createRef<HTMLInputElement>();
     private autoWidth = useAutoWidth();
     private frozen = useFrozen();
+    private autoRows = useAutoRows(this.inputRef);
 
     focus() {
         this.inputRef.value!.focus();

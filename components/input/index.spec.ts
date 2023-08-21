@@ -2,9 +2,10 @@ import BasicDemo from '~/components/input/demos/basic';
 import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import SearchDemo from '~/components/input/demos/search';
 import FrozenDemo from '~/components/input/demos/frozen';
+import AutoRowsDemo from '~/components/input/demos/autoRows';
 
 describe('Input', () => {
-    afterEach(() => {unmount()});
+    // afterEach(() => {unmount()});
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo); 
@@ -69,5 +70,35 @@ describe('Input', () => {
         dispatchEvent(input2, 'blur');
         await wait();
         expect(input2.value).to.eql('#112233');
+    });
+
+    it('should auto expand or shrink textarea', async () => {
+        const [instance, element] = mount(AutoRowsDemo);
+        const [textarea1, textarea2] = element.querySelectorAll('textarea');
+        // const lineHeight = parseInt(getComputedStyle(textarea1).lineHeight);
+
+        instance.set<string>('value1', 'a\nb');
+        await wait();
+        expect(textarea1.style.height).to.eql('50px');
+
+        instance.set<string>('value1', 'a');
+        await wait();
+        expect(textarea1.style.height).to.eql('32px');
+
+        instance.set<string>('value2', 'a');
+        await wait();
+        expect(textarea2.style.height).to.eql('68px');
+
+        instance.set<string>('value2', 'a\nb\nc')
+        await wait();
+        expect(textarea2.style.height).to.eql('68px');
+
+        instance.set<string>('value2', 'a\nb\nc\nd')
+        await wait();
+        expect(textarea2.style.height).to.eql('86px');
+
+        instance.set<string>('value2', 'a\nb\nc\nd\ne\nf\ng\nh')
+        await wait();
+        expect(textarea2.style.height).to.eql('104px');
     });
 });

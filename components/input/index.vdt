@@ -1,7 +1,7 @@
 import {Icon} from '../icon';
 import {addStyle, isTextBlock, getRestProps} from '../utils';
 import {makeStyles} from './styles';
-import {noop, isNullOrUndefined} from 'intact-shared';
+import {noop, isNullOrUndefined, isStringOrNumber} from 'intact-shared';
 import {Wave} from '../wave';
 import {context as ErrorContext} from '../form/useError';
 
@@ -24,6 +24,8 @@ const {
     startInput, onInput, endInput
 } = this.frozen;
 
+const isNotAutoRows = isStringOrNumber(rows) && rows !== 'auto';
+
 const classNameObj = {
     'k-input': true,
     [`k-${size}`]: size !== 'default',
@@ -36,12 +38,14 @@ const classNameObj = {
     'k-fluid': fluid,
     'k-stack-clear': stackClearIcon,
     'k-inline': inline,
-    [`k-resize-${resize}`]: type === 'textarea',
+    [`k-resize-${resize}`]: type === 'textarea' && isNotAutoRows,
+    [`k-resize-none`]: type === 'textarea' && !isNotAutoRows,
     [className]: className,
     [makeStyles()]: true,
 }
 
 const {fakeRef, width: {value: fakeWidth}} = this.autoWidth;
+const height = this.autoRows;
 
 const inputValue = frozenOnInput && inputing ? originalValue : value;
 const hasInputValue = !isNullOrUndefined(inputValue);
@@ -96,7 +100,8 @@ if (hasInputValue) {
                     <textarea v-else 
                         {...inputProps}
                         class="k-input-inner k-textarea"
-                        rows={rows}
+                        rows={isNotAutoRows ? rows : 1}
+                        style={height.value ? addStyle(inputProps.style, { height: height.value + 'px' }) : inputProps.style}
                     ></textarea>
                     <div class="k-input-suffix" v-if={$blocks.suffix || clearable && !disabled}>
                         <Icon v-if={clearable && !disabled}
