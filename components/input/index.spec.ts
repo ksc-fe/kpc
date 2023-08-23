@@ -5,7 +5,7 @@ import FrozenDemo from '~/components/input/demos/frozen';
 import AutoRowsDemo from '~/components/input/demos/autoRows';
 
 describe('Input', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => {unmount()});
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo); 

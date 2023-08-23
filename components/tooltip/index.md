@@ -21,7 +21,7 @@ sidebar: doc
 | always | 是否一直保持当前展示/隐藏状态 | `boolean` | `false` |
 | size | 弹层尺寸 | `"default"` &#124; `"small"` | `"default"` |
 | confirm | 带“确认”和“取消”按钮的确认弹层 | `boolean` | `false` |
-| onText | `confirm`模式下的“确认”按钮文案 | `string` | `"确认"` |
+| okText | `confirm`模式下的“确认”按钮文案 | `string` | `"确认"` |
 | cancelText | `confirm`模式下的“取消”按钮文案 | `string` | `"取消"` |
 | content | 指定提示的内容，当然你也可以用`content`扩展点指定 | `string` &#124; `VNode` | `undefined` |
 
