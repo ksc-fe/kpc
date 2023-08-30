@@ -7,9 +7,10 @@ import {useAutoWidth} from './useAutoWidth';
 import {useFrozen} from './useFrozen';
 import {CommonInputHTMLAttributes, Events} from '../types';
 import {useAutoRows} from './useAutoRows';
+import { useShowPassword } from './useShowPassword';
 export * from './search';
 
-type HTMLInputTypes =
+export type HTMLInputTypes =
     | 'textarea' // for textarea
     | 'button'
     | 'checkbox'
@@ -66,6 +67,7 @@ export interface InputProps<V extends Value = Value> extends InputHTMLAttributes
     inline?: boolean
     waveDisabled?: boolean
     resize?: 'none' | 'vertical' | 'horizontal' | 'both'
+    showPassword?: boolean
 }
 
 export type AutoRows = {
@@ -105,6 +107,7 @@ const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> 
     inline: Boolean,
     waveDisabled: Boolean,
     resize: ['none', 'vertical', 'horizontal', 'both'],
+    showPassword: Boolean,
 }
 
 const defaults = (): Partial<InputProps> => ({
@@ -131,6 +134,7 @@ export class Input<V extends Value = Value> extends Component<InputProps<V>, Inp
     private autoWidth = useAutoWidth();
     private frozen = useFrozen();
     private autoRows = useAutoRows(this.inputRef);
+    private showPassword = useShowPassword();
 
     focus() {
         this.inputRef.value!.focus();

@@ -130,6 +130,11 @@ export function makeStyles() {
             pointer-events: all;
         }
 
+        // show password
+        .k-input-show-password {
+            color: ${input.clearIconColor};
+        }
+
         // stack clear icon
         &.k-stack-clear {
             .k-input-clear {

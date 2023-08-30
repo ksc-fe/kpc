@@ -44,6 +44,13 @@ const classNameObj = {
     [makeStyles()]: true,
 }
 
+const {
+    isShow: isShowPassword,
+    toggleShow: toggleShowPassword,
+    type: showPasswordType,
+    showIcon: showPasswordIcon,
+} = this.showPassword;
+
 const {fakeRef, width: {value: fakeWidth}} = this.autoWidth;
 const height = this.autoRows;
 
@@ -95,7 +102,7 @@ if (hasInputValue) {
                     <input v-if={type !== 'textarea'}
                         {...inputProps}
                         class="k-input-inner" 
-                        type={type}
+                        type={showPasswordType.value}
                     />
                     <textarea v-else 
                         {...inputProps}
@@ -103,7 +110,17 @@ if (hasInputValue) {
                         rows={isNotAutoRows ? rows : 1}
                         style={height.value ? addStyle(inputProps.style, { height: height.value + 'px' }) : inputProps.style}
                     ></textarea>
-                    <div class="k-input-suffix" v-if={$blocks.suffix || clearable && !disabled}>
+                    <div class="k-input-suffix" v-if={$blocks.suffix || clearable && !disabled || showPasswordIcon.value}>
+                        <template v-if={showPasswordIcon.value}>
+                            <Icon hoverable
+                                class={{
+                                    "k-input-show-password": true,
+                                    "ion-eye-disabled": !isShowPassword.value,
+                                    "ion-eye": isShowPassword.value,
+                                }}
+                                ev-click={toggleShowPassword}
+                            />{' '}
+                        </template>
                         <Icon v-if={clearable && !disabled}
                             class={{
                                 "k-input-clear ion-ios-close": true, 
