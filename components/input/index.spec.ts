@@ -3,9 +3,11 @@ import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import SearchDemo from '~/components/input/demos/search';
 import FrozenDemo from '~/components/input/demos/frozen';
 import AutoRowsDemo from '~/components/input/demos/autoRows';
+import PasswordDemo from '~/components/input/demos/password';
+import {Input} from './';
 
 describe('Input', () => {
-    afterEach(() => {unmount()});
+    // afterEach(() => {unmount()});
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo); 
@@ -100,5 +102,40 @@ describe('Input', () => {
         instance.set<string>('value2', 'a\nb\nc\nd\ne\nf\ng\nh')
         await wait();
         expect(textarea2.style.height).to.eql('104px');
+    });
+
+    it('should show or hide password', async () => {
+        const [instance, element] = mount(PasswordDemo);
+        const input = element.querySelector<HTMLInputElement>('input')!;
+        const icon = element.querySelector<HTMLElement>('.k-icon')!;
+        const inputInstance = instance.refs.__demo as Input;
+
+        icon.click();
+        await wait();
+        expect(input.type).to.eql('text');
+        expect(element.innerHTML).to.matchSnapshot();
+
+        icon.click();
+        await wait();
+        expect(input.type).to.eql('password');
+        expect(element.innerHTML).to.matchSnapshot();
+
+        // simulate receive type
+        inputInstance.$props.type = 'number';
+        (inputInstance as any).trigger('$receive:type', 'number');
+        await wait();
+        expect(input.type).to.eql('number');
+        expect(icon.parentElement!.parentElement).to.eql(null);
+        expect(element.innerHTML).to.matchSnapshot();
+
+        // simulate receive showPassword
+        inputInstance.$props.type = 'password';
+        inputInstance.$props.showPassword = false;
+        (inputInstance as any).trigger('$receive:type', 'password');
+        (inputInstance as any).trigger('$receive:showPassword', false);
+        await wait();
+        expect(input.type).to.eql('password');
+        expect(element.querySelector<HTMLElement>('.k-icon')).to.eql(null);
+        expect(element.innerHTML).to.matchSnapshot();
     });
 });

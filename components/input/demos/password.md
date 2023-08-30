@@ -8,5 +8,5 @@ order: 9
 ```vdt
 import {Input} from 'kpc';
 
-<Input placeholder="password" type="password" showPassword />
+<Input placeholder="password" type="password" showPassword ref="__demo" />
 ```
