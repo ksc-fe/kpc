@@ -7,7 +7,7 @@ import PasswordDemo from '~/components/input/demos/password';
 import {Input} from './';
 
 describe('Input', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => {unmount()});
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo); 
