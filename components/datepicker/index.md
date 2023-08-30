@@ -31,6 +31,7 @@ sidebar: doc
 | type | 组件类型：`"date"` 只选择日期；`"datetime"` 选择日期和时间；`"year"` 选择年份；`"month"` 选择月份 | `"date"` &#124; `"datetime"` &#124; `"year"` &#124; `"month"` | `"date"` |
 | shortcuts | 指定快捷方式 | `Shortcut[]` | `undefined` |
 | show | 是否展示菜单项 | `boolean` | `false` |
+| position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
 
 ```ts
 import {Dayjs} from 'dayjs';
@@ -41,6 +42,16 @@ export type Shortcut = {
     label: (() => string | VNode) | string | VNode 
     value: () => Value | [Value, Value]
 }
+
+type Position = {
+    my?: string | [string, string]
+    at?: string | [string, string]
+    collision?: Collision | [Collision, Collision] 
+    collisionDirection?: ['left'] | ['top'] | ['left', 'top']
+}
+
+type Collision = 'fit' | 'flip' | 'flipfit' | 'none'
+
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
 ```
 

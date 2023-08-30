@@ -31,6 +31,7 @@ sidebar: doc
 | filter | 如果可搜索，你可以传入`filter`改变搜索逻辑，组件会将搜索关键词和数据项作为参数传入 | `(keywords: string, data: CascaderData<V>) => boolean` | `(keywords: string, data: CascaderData<V>) => data.label.includes(keywords)` |
 | show | 是否展示菜单项 | `boolean` | `false` |
 | fields | 指定`value` `label` `children` `disabled`字段名 | `CascaderFields<CascaderData<any>>` | `{ value: 'value', label: 'label', children: 'children', disabled: 'disabled' }` |
+| position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
 
 ```ts
 export type CascaderData<V> = {
@@ -47,6 +48,15 @@ export type CascaderFields<Data> = {
     children?: keyof Data,
     disabled?: keyof Data,
 }
+
+type Position = {
+    my?: string | [string, string]
+    at?: string | [string, string]
+    collision?: Collision | [Collision, Collision] 
+    collisionDirection?: ['left'] | ['top'] | ['left', 'top']
+}
+
+type Collision = 'fit' | 'flip' | 'flipfit' | 'none'
 
 export type Container = string | ((parentDom: Element, anchor: Node | null) => Element)
 ```
