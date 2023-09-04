@@ -307,7 +307,9 @@ export function makeStyles() {
         }
         &.k-auto-width {
             width: auto;
+            max-width: 100%;
             .k-input-inner {
+                max-width: 100%;
                 box-sizing: content-box;
             }
         }

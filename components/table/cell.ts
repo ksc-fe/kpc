@@ -35,11 +35,10 @@ export class TableCell extends Component<TableCellProps> {
 
         let isSame = true;
         for (const key in lastProps) {
-            if (lastProps[key] !== nextProps[key]) {
-                isSame = false;
-                break;
-            }
-            if (key === 'props' && nextProps.props.$blocks) {
+            if (
+                lastProps[key] !== nextProps[key] ||
+                key === 'props' && nextProps.props.$blocks
+            ) {
                 isSame = false;
                 break;
             }
