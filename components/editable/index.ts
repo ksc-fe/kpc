@@ -58,9 +58,23 @@ export class Editable<
     @bind
     private edit() {
         this.set('editing', true);
-        nextTick(() => {
-            this.inputRef.value!.select();
-        });
+        /**
+         * Intact will update in nextTick, but Vue will call
+         * call updated method in nextTick of this nextTick
+         * so we should do it after two nextTicks
+         * https://github.com/ksc-fe/kpc/issues/847
+         *
+         * use binding this.select to Input $mounted event instead
+         */
+        // nextTick(() => {
+            // nextTick(() => {
+                // this.inputRef.value!.select();
+            // });
+        // });
+    }
+
+    @bind select() {
+        this.inputRef.value!.select();
     }
 
     @bind
