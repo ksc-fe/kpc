@@ -32,7 +32,7 @@ export type CascaderFields<Data> = {
 
 export interface BaseCascaderData {
     loaded?: boolean
-    // [key: string]: any
+    [key: string]: any
 }
 
 export interface CascaderData<V> extends BaseCascaderData {

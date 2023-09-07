@@ -54,7 +54,7 @@ const Options = (data, level, loaded, parentSelected) => {
                     disabled={getField(item, 'disabled')}
                     trigger={trigger}
                     value={showed}
-                    ev-$changed:value={toggleShowedValue.bind(null, value, level)}
+                    ev-$change:value={toggleShowedValue.bind(null, value, level)}
                     ev-show={this.load.bind(null, item)}
                 >
                     {Item()}

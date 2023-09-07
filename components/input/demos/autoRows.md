@@ -30,3 +30,15 @@ import {Input} from 'kpc';
     />
 </div>
 ```
+
+```ts
+export default class extends Component {
+    static template = template;
+    static defaults() {
+        return {
+            value1: '',
+            value2: '',
+        }
+    }
+}
+```

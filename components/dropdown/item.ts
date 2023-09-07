@@ -52,14 +52,14 @@ export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvent
     select() {
         if (this.parentDropdown) return;
 
+        this.trigger('select');
+
         if (this.get('hideOnSelect')) {
             // hide all dropdowns
             let dropdown = this.dropdown;
             do { dropdown!.hide(true); }
             while (dropdown = dropdown!.dropdown);
         }
-
-        this.trigger('select');
     }
 
     hasSubMenu() {
