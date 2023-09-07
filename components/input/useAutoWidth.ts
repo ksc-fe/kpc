@@ -1,4 +1,4 @@
-import {useInstance, createRef, onMounted} from 'intact';
+import {useInstance, createRef, onMounted, nextTick} from 'intact';
 import type {Input} from './';
 import {useState} from '../../hooks/useState';
 
@@ -13,10 +13,19 @@ export function useAutoWidth() {
 
     function adjustWidth() {
         if (instance.get('autoWidth')) {
-            const _width = fakeRef.value!.offsetWidth || 1;
-            width.set(_width);
+            nextTick(() => {
+                const fakeElem = fakeRef.value!;
+                if (isVisible(fakeElem)) {
+                    const _width = fakeElem.offsetWidth || 1;
+                    width.set(_width);
+                }
+            });
         }
     }
 
     return {fakeRef, width};
+}
+
+function isVisible(elem: HTMLDivElement) {
+    return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
 }

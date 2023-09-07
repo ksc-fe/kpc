@@ -67,7 +67,7 @@ const inputProps = {
     placeholder,
     disabled,
     ref: this.inputRef,
-    style: autoWidth ? {width: fakeWidth + 'px'} : undefined,
+    style: autoWidth && fakeWidth ? {width: fakeWidth + 'px'} : undefined,
 };
 // if we pass value to input element, the input is controlled and the
 // defaultValue does not work

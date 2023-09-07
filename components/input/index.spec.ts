@@ -1,10 +1,12 @@
 import BasicDemo from '~/components/input/demos/basic';
-import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
+import {mount, unmount, dispatchEvent, wait, getElement} from '../../test/utils';
 import SearchDemo from '~/components/input/demos/search';
 import FrozenDemo from '~/components/input/demos/frozen';
 import AutoRowsDemo from '~/components/input/demos/autoRows';
 import PasswordDemo from '~/components/input/demos/password';
 import {Input} from './';
+import {Dialog} from '../dialog';
+import { Component } from 'intact';
 
 describe('Input', () => {
     afterEach(() => {unmount()});
@@ -137,5 +139,31 @@ describe('Input', () => {
         expect(input.type).to.eql('password');
         expect(element.querySelector<HTMLElement>('.k-icon')).to.eql(null);
         expect(element.innerHTML).to.matchSnapshot();
+    });
+
+    it('should set width when dialog show and input mounted', async () => {
+        class Demo extends Component<{show: boolean}> {
+            static template = `
+                var Dialog = this.Dialog;
+                var Input = this.Input;
+                <Dialog value={this.get('show')}>
+                    <Input autoWidth placeholder="test" v-if={this.get('show')} />
+                </Dialog>
+            `;
+            static defaults() {
+                return {
+                    show: false,
+                };
+            }
+            private Dialog = Dialog;
+            private Input = Input;
+        }
+
+        const [instance] = mount(Demo);
+        instance.set('show', true);
+        await wait(50);
+        const dialog = getElement('.k-dialog')!;
+        const width = parseInt(dialog.querySelector<HTMLInputElement>('.k-input-inner')!.style.width);
+        expect(width).to.gt(1);
     });
 });
