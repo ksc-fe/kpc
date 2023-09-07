@@ -14,9 +14,9 @@ export function useAutoWidth() {
     function adjustWidth() {
         if (instance.get('autoWidth')) {
             nextTick(() => {
-                const fakeElem = fakeRef.value!;
+                const fakeElem = fakeRef.value;
                 if (isVisible(fakeElem)) {
-                    const _width = fakeElem.offsetWidth || 1;
+                    const _width = fakeElem!.offsetWidth || 1;
                     width.set(_width);
                 }
             });
@@ -26,6 +26,6 @@ export function useAutoWidth() {
     return {fakeRef, width};
 }
 
-function isVisible(elem: HTMLDivElement) {
-    return !!(elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
+function isVisible(elem: HTMLDivElement | null) {
+    return elem && (elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length);
 }

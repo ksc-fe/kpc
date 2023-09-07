@@ -52,6 +52,7 @@ export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvent
     select() {
         if (this.parentDropdown) return;
 
+        // trigger select event firstly for Cascader update values
         this.trigger('select');
 
         if (this.get('hideOnSelect')) {
