@@ -4,7 +4,7 @@ order: 99
 sidebar: doc
 ---
 
-## v2.0.17
+## v2.1.0
 
 1. `Add` `Cascader`数据超长时，默认限制最大高度，展示滚动条 [#833](https://github.com/ksc-fe/kpc/issues/833)
 2. `Add` `Cascader`支持自定义字段，可以自定义传入的数据结构 [#819](https://github.com/ksc-fe/kpc/issues/819)
