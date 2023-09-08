@@ -9,13 +9,13 @@ sidebar: doc
 1. `Add` `Cascader`数据超长时，默认限制最大高度，展示滚动条 [#833](https://github.com/ksc-fe/kpc/issues/833)
 2. `Add` `Cascader`支持自定义字段，可以自定义传入的数据结构 [#819](https://github.com/ksc-fe/kpc/issues/819)
 3. `Add` `Table`增加选中、取消选中、选中全部、取消选中全部4个事件 [#836](https://github.com/ksc-fe/kpc/issues/836)
-4. `Fix` `Table`当异步设置`group`属性时无效的问题 [#840](https://github.com/ksc-fe/kpc/issues/840) 
-5. `Add` `Table`支持显隐表头 [#825](https://github.com/ksc-fe/kpc/issues/825)
-6. `Add` `Table`支持展示翻页 [#839](https://github.com/ksc-fe/kpc/issues/839)
-7. `Add` `Input` `textarea`支持设置鼠标拖动改变大小的方向，默认只能垂直拖动 [#829](https://github.com/ksc-fe/kpc/issues/829)
-8. `Add` `Inout` `textarea`支持设置最大最小行数 [#829](https://github.com/ksc-fe/kpc/issues/829)
-9. `Add` `Input` `password`支持显隐密码 [#826](https://github.com/ksc-fe/kpc/issues/826)
-10. `Add` `Dropdown`类组件(`Select` `Datepicker` `Cascader`等)新增`position`属性，用于自定义菜单弹出位置，及边界碰撞逻辑 [#848](https://github.com/ksc-fe/kpc/issues/848)
+4. `Add` `Table`支持显隐表头 [#825](https://github.com/ksc-fe/kpc/issues/825)
+5. `Add` `Table`支持展示翻页 [#839](https://github.com/ksc-fe/kpc/issues/839)
+6. `Add` `Input` `textarea`支持设置鼠标拖动改变大小的方向，默认只能垂直拖动 [#829](https://github.com/ksc-fe/kpc/issues/829)
+7. `Add` `Inout` `textarea`支持设置最大最小行数 [#829](https://github.com/ksc-fe/kpc/issues/829)
+8. `Add` `Input` `password`支持显隐密码 [#826](https://github.com/ksc-fe/kpc/issues/826)
+9. `Add` `Dropdown`类组件(`Select` `Datepicker` `Cascader`等)新增`position`属性，用于自定义菜单弹出位置，及边界碰撞逻辑 [#848](https://github.com/ksc-fe/kpc/issues/848)
+10. `Fix` `Table`当异步设置`group`属性时无效的问题 [#840](https://github.com/ksc-fe/kpc/issues/840) 
 11. `Fix` 修复`Select`在`filterable`下，输入会超出组件边界的问题 [#823](https://github.com/ksc-fe/kpc/issues/823)
 12. `Fix` 修复`Input` `autoWidth`某些情况下，不能正确设置宽度的问题 [#850](https://github.com/ksc-fe/kpc/issues/850)
 
@@ -27,7 +27,7 @@ sidebar: doc
 ### @king-design/react
 
 1. `Fix` 修复`Cascader`选择后，菜单不能正确隐藏的问题 [#849](https://github.com/ksc-fe/kpc/issues/849)
-2. `Fix` 修复状态变更，必定触发整个组件数更新的问题，该问题会导致无谓的渲染操作
+2. `Fix` 修复状态变更，必定触发整个组件树更新的问题，该问题会导致无谓的渲染操作
 3. `Fix` 修复组件`mounted`事件执行顺序不对的问题，该问题会导致某些组件展示无谓的动画效果
 4. `Fix` 修复组件某些情况下渲染顺序错乱的问题 [#834](https://github.com/ksc-fe/kpc/issues/834)
 
