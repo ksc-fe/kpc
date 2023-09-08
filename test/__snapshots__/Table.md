@@ -77,7 +77,7 @@
 #### `group`
 
 ```
-"<div class=\"k-table-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid css-1cug0ah\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"请输入关键字\" type=\"text\"><div class=\"k-input-suffix\"><i class=\"k-icon k-hoverable k-input-clear ion-ios-close css-x0ey6t\"></i> <i class=\"k-icon ion-ios-search css-x0ey6t\"></i></div></div></div></div><div class=\"k-table-group-body\"><div class=\"k-dropdown-item k-active css-1s8b3lx\"><span>全部</span></div><div class=\"k-dropdown-item css-1s8b3lx\"><span>运行中</span></div><div class=\"k-dropdown-item css-1s8b3lx\"><span>已关闭</span></div></div>"
+"<div class=\"k-table-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid css-1j9tfcu\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"请输入关键字\"><div class=\"k-input-suffix\"><i class=\"k-icon k-hoverable k-input-clear ion-ios-close css-x0ey6t\"></i> <i class=\"k-icon ion-ios-search css-x0ey6t\"></i></div></div></div></div><div class=\"k-table-group-body\"><div class=\"k-dropdown-item k-active css-1s8b3lx\"><span>全部</span></div><div class=\"k-dropdown-item css-1s8b3lx\"><span>运行中</span></div><div class=\"k-dropdown-item css-1s8b3lx\"><span>已关闭</span></div></div>"
 ```
 
 ```
@@ -85,7 +85,7 @@
 ```
 
 ```
-"<div class=\"k-table-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid css-1cug0ah\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"请输入关键字\" type=\"text\"><div class=\"k-input-suffix\"><i class=\"k-icon k-hoverable k-input-clear ion-ios-close css-x0ey6t\"></i> <i class=\"k-icon ion-ios-search css-x0ey6t\"></i></div></div></div></div><div class=\"k-table-group-body\"><div class=\"k-dropdown-item css-1s8b3lx\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-checkbox-text\">运行中</span></label></div><div class=\"k-dropdown-item css-1s8b3lx\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-checkbox-text\">已关闭</span></label></div></div>"
+"<div class=\"k-table-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid css-1j9tfcu\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"请输入关键字\"><div class=\"k-input-suffix\"><i class=\"k-icon k-hoverable k-input-clear ion-ios-close css-x0ey6t\"></i> <i class=\"k-icon ion-ios-search css-x0ey6t\"></i></div></div></div></div><div class=\"k-table-group-body\"><div class=\"k-dropdown-item css-1s8b3lx\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-checkbox-text\">运行中</span></label></div><div class=\"k-dropdown-item css-1s8b3lx\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span><span class=\"k-checkbox-text\">已关闭</span></label></div></div>"
 ```
 
 ```
@@ -97,7 +97,7 @@
 ```
 
 ```
-"<div class=\"k-table-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid css-1cug0ah\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"请输入关键字\" type=\"text\"><div class=\"k-input-suffix\"><i class=\"k-icon k-hoverable k-input-clear ion-ios-close css-x0ey6t\"></i> <i class=\"k-icon ion-ios-search css-x0ey6t\"></i></div></div></div></div><div class=\"k-table-group-body\"><div class=\"k-dropdown-item css-1s8b3lx\"><span>label</span></div></div>"
+"<div class=\"k-table-group-header\"><div class=\"k-input k-small k-with-suffix k-clearable k-fluid css-1j9tfcu\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"请输入关键字\"><div class=\"k-input-suffix\"><i class=\"k-icon k-hoverable k-input-clear ion-ios-close css-x0ey6t\"></i> <i class=\"k-icon ion-ios-search css-x0ey6t\"></i></div></div></div></div><div class=\"k-table-group-body\"><div class=\"k-dropdown-item css-1s8b3lx\"><span>label</span></div></div>"
 ```
 
 #### `fix columns`
