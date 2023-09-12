@@ -2,6 +2,7 @@ import {useInstance, findDomFromVNode} from 'intact';
 import type {Dropdown} from './';
 import {Options, position, Feedback} from '../position';
 import {noop} from 'intact-shared';
+import {isObject} from 'intact-shared';
 
 export type FeedbackCallback = (feedback: Feedback) => void;
 
@@ -16,7 +17,14 @@ export function usePosition() {
     });
 
     (['of', 'position'] as const).forEach(item => {
-        instance.watch(item, () => {
+        instance.watch(item, (newValue, oldValue) => {
+            // return if object is the same
+            if (
+                isObject(newValue) && isObject(oldValue) &&
+                JSON.stringify(newValue) === JSON.stringify(oldValue)
+            )  {
+                return;
+            }
             if (instance.get('value')) {
                 handle(noop);
             }

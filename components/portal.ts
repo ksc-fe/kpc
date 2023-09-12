@@ -46,7 +46,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         nextVNode: VNodeComponentClass<this>,
         parentDom: Element,
         anchor: IntactDom | null,
-        mountedQueue: Function[]
+        mountedQueue: Function[] & { priority?: Function[] } // in React, it has priority property to add some prior functions
     ) {
         /**
          * In React, we cannot render real elements in mountedQueue.
@@ -56,7 +56,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         const nextProps = nextVNode.props!;
         const fakeContainer = document.createDocumentFragment();
 
-        mountedQueue.push(() => {
+        (mountedQueue.priority || mountedQueue).push(() => {
             const parentDom = this.$lastInput!.dom!.parentElement!;
             this.initContainer(nextProps.container, parentDom, anchor);
             this.container!.appendChild(fakeContainer);
@@ -79,7 +79,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         nextVNode: VNodeComponentClass<this>,
         parentDom: Element, 
         anchor: IntactDom | null,
-        mountedQueue: Function[],
+        mountedQueue: Function[] & { priority?: Function[] },
         force: boolean, 
     ) {
         // update container if it has changed
@@ -121,7 +121,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
 
         if (!this.container) {
             // in react, sometimes $update will be called before mountedQueue in $render
-            mountedQueue.push(update);
+            (mountedQueue.priority || mountedQueue).push(update);
         } else {
             update();
         }

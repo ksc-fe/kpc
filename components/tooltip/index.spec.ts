@@ -330,16 +330,19 @@ describe('Tooltip', () => {
             static defaults = () => ({show: false});
             Tooltip = Tooltip;
             mounted() {
-                const element = findDomFromVNode(this.$lastInput!, true) as Element;
-                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-                (element.parentNode as HTMLElement).style.height = `${windowHeight * 2}px`;
+                const element = findDomFromVNode(this.$lastInput!, true) as HTMLElement;
+                const style = element.style;
+                style.position = 'fixed';
+                style.top = '-200px';
+                // const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                // (element.parentNode as HTMLElement).style.height = `${windowHeight * 2}px`;
             }
         }
 
         const [i] = mount(Demo);
 
-        await wait(500);
-        window.scrollTo(0, document.body.offsetHeight);
+        // await wait(500);
+        // window.scrollTo(0, 10000);
 
         i.set('show', true);
 

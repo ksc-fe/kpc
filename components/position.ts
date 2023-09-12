@@ -1,3 +1,5 @@
+import { isArray } from 'intact-shared';
+
 export type Options = {
     of?: Window | HTMLElement | Document | MouseEvent 
     at?: string | [string, string]
@@ -265,7 +267,9 @@ export default function position(elem: HTMLElement, options: Options) {
     } = getDimensions(target);
     const basePosition = Object.assign({}, targetOffset);
     // don't detect collison if the target is not in viewport
-    const collision = isInViewport(targetRect) ? (options.collision as string || 'flip').split(' ') : ['none', 'none'];
+    const collision = isInViewport(targetRect)
+        ? (!isArray(options.collision) ? (options.collision || 'flip').split(' ') : options.collision)
+        : ['none', 'none'];
     const offsets = {} as {my: [string, string], at: [string, string]};
     const within = getWithinInfo(options.within);
     const scrollInfo = getScrollInfo(within);

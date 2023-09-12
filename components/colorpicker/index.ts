@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 import {Container} from '../portal';
+import {Dropdown, DropdownProps} from '../dropdown';
 
 export interface ColorpickerProps {
     value: string
@@ -10,6 +11,7 @@ export interface ColorpickerProps {
     disabled?: boolean
     container?: Container
     show?: boolean
+    position?: DropdownProps['position']
 }
 
 export interface ColorpickerEvents { }
@@ -24,6 +26,7 @@ const typeDefs: Required<TypeDefs<ColorpickerProps>> = {
     disabled: Boolean,
     container: [Function, String],
     show: Boolean,
+    position: Dropdown.typeDefs.position,
 };
 
 const defaults = (): Partial<ColorpickerProps> => ({
@@ -33,6 +36,7 @@ const defaults = (): Partial<ColorpickerProps> => ({
         '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF'
     ], 
     size: 'default',
+    position: {collision: 'fit'},
 });
 
 export class Colorpicker extends Component<ColorpickerProps, ColorpickerEvents> {

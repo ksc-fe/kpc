@@ -71,3 +71,13 @@
 "<div class=\"k-cascader-empty\">无数据</div>"
 ```
 
+#### `specify fields`
+
+```
+"<div class=\"k-dropdown-item k-cascader-option k-active k-dropdown-open css-vj004t\">北京<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow ion-ios-arrow-right css-73bv35\"></i></div><!--portal-->"
+```
+
+```
+"<div class=\"k-select-main\"><input type=\"hidden\" value=\"beijing,haidian\"><div class=\"k-select-placeholder c-ellipsis k-fade-leave-from k-fade-leave-active\">请选择</div><div class=\"k-select-value c-ellipsis k-fade-enter-from k-fade-enter-active\">北京 / 海淀区</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-73bv35\"></i></span></span>"
+```
+

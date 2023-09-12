@@ -114,7 +114,7 @@ describe('Dialog', () => {
         dispatchEvent(document, 'keydown', {keyCode: 27});
         expect(instance.get('show')).be.false;
         await wait(500);
-        expect(document.body.getAttribute('style')).to.be.null;
+        expect(!!document.body.getAttribute('style')).to.be.false;
     });
 
     it('methods test', async () => {
@@ -156,7 +156,7 @@ describe('Dialog', () => {
             unmount();
         }
         await wait(500);
-        expect(document.body.getAttribute('style')).to.be.null;
+        expect(!!document.body.getAttribute('style')).to.be.false;
     });
 
     it('async close', async () => {

@@ -12,7 +12,7 @@ import {SELECT} from './constants';
 import type {Input} from '../input';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {bind} from '../utils';
-import {Dropdown} from '../dropdown';
+import {Dropdown, DropdownProps} from '../dropdown';
 import {State} from '../../hooks/useState';
 import {useInput} from './useInput';
 import {Container} from '../portal';
@@ -36,6 +36,7 @@ export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = 
     container?: Container
     width?: string | number
     show?: boolean
+    position?: DropdownProps['position']
 }
 
 export interface BaseSelectEvents {
@@ -68,6 +69,7 @@ const typeDefs: Required<TypeDefs<BaseSelectProps<any>>> = {
     container: [Function, String],
     width: [String, Number],
     show: Boolean,
+    position: Dropdown.typeDefs.position,
 };
 
 const defaults = (): Partial<BaseSelectProps<any>> => ({

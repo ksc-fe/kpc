@@ -25,7 +25,7 @@ const defaults = deepDefaults(
         clearIconGap: '3px',
         
         // textarea
-        get textareaPadding() { return `5px ${input.paddingGap}` },
+        get textareaPadding() { return `6px ${input.paddingGap}` },
 
         // group
         get groupBgColor() { return theme.color.bg },
@@ -121,6 +121,11 @@ export function makeStyles() {
         &:hover .k-input-clear.k-input-show {
             opacity: 1;
             pointer-events: all;
+        }
+
+        // show password
+        .k-input-show-password {
+            color: ${input.clearIconColor};
         }
 
         // stack clear icon
@@ -296,7 +301,9 @@ export function makeStyles() {
         }
         &.k-auto-width {
             width: auto;
+            max-width: 100%;
             .k-input-inner {
+                max-width: 100%;
                 box-sizing: content-box;
             }
         }

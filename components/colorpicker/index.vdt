@@ -6,7 +6,8 @@ import {Dropdown, DropdownMenu} from '../dropdown';
 
 const {
     className, transition, presets,
-    value, size, disabled, container
+    value, size, disabled, container,
+    position,
 } = this.get();
 
 const classNameObj = {
@@ -19,7 +20,7 @@ const classNameObj = {
 
 <div class={classNameObj} {...getRestProps(this)}>
     <Dropdown
-        position={{my: 'left top+8', at: 'left bottom', collision: 'flip'}}
+        position={position}
         trigger="click"
         disabled={disabled}
         container={container}

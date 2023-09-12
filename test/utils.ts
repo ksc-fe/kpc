@@ -152,7 +152,7 @@ export function nextFrame() {
 
 export function fakeError() {
     const error = console.error;
-    const spy = sinon.spy((...args: any[])=> error.apply(console, args));
+    const spy = sinon.spy((...args: any[]) => error.apply(console, args));
     console.error = spy;
     return (msg: string) => {
         expect(spy.calledWith(msg)).to.be.true;

@@ -33,6 +33,7 @@ sidebar: doc
 | checkbox | 是否展示复选框 | `boolean` | `false` |
 | filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, data: TreeDataItem<K>) => boolean` | `undefined` |
 | show | 是否展示菜单项 | `boolean` | `false` |
+| position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
 
 ```ts
 import {Key, Children} from 'intact';
@@ -47,6 +48,14 @@ export type TreeDataItem<K extends Key> = {
     children?: TreeDataItem<K>[]
 }
 
+type Position = {
+    my?: string | [string, string]
+    at?: string | [string, string]
+    collision?: Collision | [Collision, Collision] 
+    collisionDirection?: ['left'] | ['top'] | ['left', 'top']
+}
+
+type Collision = 'fit' | 'flip' | 'flipfit' | 'none'
 ```
 
 # 扩展点

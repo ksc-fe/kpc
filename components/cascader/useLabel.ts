@@ -3,11 +3,14 @@ import type {Cascader, CascaderData} from './';
 import {useState, watchState} from '../../hooks/useState';
 import {isNullOrUndefined} from 'intact-shared';
 import {useBaseLabel} from '../select/useBaseLabel';
+import type {useFields} from './useFields';
 
 // treat value as string
 type CascaderStringData = CascaderData<string>
 
-export function useLabel() {
+export function useLabel(
+    getField: ReturnType<typeof useFields>
+) {
     const instance = useInstance() as Cascader;
 
     function findLabel(data: CascaderStringData[], value: string[]) {
@@ -19,10 +22,10 @@ export function useLabel() {
 
             for (let i = 0; i < data.length; i++) {
                 const item = data[i];
-                if (item.value === value[level]) {
-                    labels.push(item.label); 
+                if (getField(item, 'value') === value[level]) {
+                    labels.push(getField(item, 'label')); 
 
-                    const children = item.children;
+                    const children = getField(item, 'children');
                     if (children) {
                         loop(children, level + 1);
                     }

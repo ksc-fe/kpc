@@ -33,6 +33,7 @@ const classNameObj = {
             ev-keydown={this.onKeydown}
             ref={this.inputRef}
             frozenOnInput
+            ev-$mounted={this.select}
         />
     </div>
 </div>
