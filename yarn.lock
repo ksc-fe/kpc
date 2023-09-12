@@ -1162,6 +1162,23 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@king-design/react@^3.0.0-beta.0":
+  version "3.0.0-beta.0"
+  resolved "https://registry.npmjs.org/@king-design/react/-/react-3.0.0-beta.0.tgz#e0f240fe7e956919e0ea9abd40774c0e86576c71"
+  integrity sha512-zUs/S4vpkPhjpK9DGvuHGKnveSbhQVw7QQgr47JHday4XbzWljW2ztEyvS+wrJvn3chRJODxXArrxZPbsjcgdw==
+  dependencies:
+    "@babel/runtime-corejs3" "^7.16.0"
+    "@emotion/css" "^11.5.0"
+    dayjs "^1.10.7"
+    downloadjs "^1.4.7"
+    enquire.js "^2.1.6"
+    intact-react "3.0.16"
+    monaco-editor "^0.26.1"
+    mxgraphx "^4.0.7"
+    resize-observer-polyfill "^1.5.1"
+    tinycolor2 "^1.4.2"
+    tslib "^2.3.1"
+
 "@lerna/add@4.0.0":
   version "4.0.0"
   resolved "https://registry.npmmirror.com/@lerna/add/-/add-4.0.0.tgz#c36f57d132502a57b9e7058d1548b7a565ef183f"
@@ -7402,6 +7419,14 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
+intact-react@3.0.16:
+  version "3.0.16"
+  resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.16.tgz#1d62936cabddc1b2f6ec96311f684e3fd57981ad"
+  integrity sha512-BQsWudl/RAVmZFppXJfWz8YRPDaJdTcaDTw7y00ouoWQZAhhWVUTWtkV2KZEDHT5YZShR9qpiPdv+018m6wkhw==
+  dependencies:
+    intact "^3.0.16"
+    tslib "^2.3.1"
+
 intact-react@^3.0.18:
   version "3.0.18"
   resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.18.tgz#709102ea317f420aefce885e19d0b988f6d2a756"
@@ -7416,7 +7441,7 @@ intact-shared@^3.0.18:
   resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.18.tgz#e85eac4cccd75fef8fda928eb1a5109d2afac4e7"
   integrity sha512-OVd3Z3ll5CX+s9zssuEs1xypwnQrVN2st3Zl3ILn77Q27mdsrVuecmQSG1ZViPdwvLaEw2zkwe1LEldAGUSv8Q==
 
-intact@^3.0.18:
+intact@^3.0.16, intact@^3.0.18:
   version "3.0.18"
   resolved "https://registry.npmjs.org/intact/-/intact-3.0.18.tgz#2cbbc87026d974dd325d0593c62888753646a391"
   integrity sha512-5IaFvSnitW1qnX3d9Olbrw/rO0+Sw1BeWrWNkIj6LJKbd27DYpLj7gpIxGKY7nzjlmP1zqOM1MSm5718trOS1A==
