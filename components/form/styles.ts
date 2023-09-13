@@ -7,9 +7,9 @@ const defaults = {
     item: {
         gap: `24px`,
         labelWidth: `80px`,
-        get labelLineHeight() { return theme.default.height },
+        get labelHeight() { return theme.default.height },
         labelTextAlign: 'right',
-        labelGap: '10px',
+        labelGap: '16px',
         get starColor() { return theme.color.danger },
         starGap: '3px',
 
@@ -40,29 +40,27 @@ setDefault(() => {
 
 export function makeItemStyles() {
     return css`
-        display: table;
+        display: flex;
         position: relative;
-        table-layout: fixed;
         &:not(:last-of-type) {
             margin-bottom: ${form.item.gap};
         }
-        &.k-fluid {
-            width: 100%;
+        &.k-fluid > .k-form-content {
+            flex: 1;
         }
         .k-form-label {
-            display: table-cell;
+            display: flex;
+            align-items: center;
+            justify-content: ${form.item.labelTextAlign === 'right' ? 'end' : 'start'};
             width: ${form.item.labelWidth};
-            text-align: ${form.item.labelTextAlign};
             padding-right: ${form.item.labelGap};
-            line-height: ${form.item.labelLineHeight};
+            max-height: ${form.item.labelHeight};
         }
         .k-form-star {
             color: ${form.item.starColor};
             margin-right: ${form.item.starGap};
         }
         .k-form-content {
-            display: table-cell;
-            vertical-align: middle;
             position: relative;
         }
 
@@ -106,17 +104,15 @@ export function makeItemStyles() {
         }
 
         // nested
-        .k-form-item {
-            &,
-            .k-form-content {
-                display: block;
-                width: auto;
-            }
-        }
+        // .k-form-item {
+            // &,
+            // .k-form-content {
+                // width: auto;
+            // }
+        // }
 
         // append
         .k-form-append {
-            display: table-cell;
             padding: ${form.item.appendPadding};
             vertical-align: middle;
         }
@@ -128,7 +124,7 @@ export function makeFormStyles() {
         // layout
         &.k-inline {
             .k-form-item {
-                display: inline-block;
+                display: inline-flex;
                 vertical-align: top;
                 margin-right: ${form.item.inlineGap};
             }
@@ -137,15 +133,14 @@ export function makeFormStyles() {
             }
         }
         &.k-vertical {
-            .k-form-item,
-            .k-form-label,
-            .k-form-content {
-                display: block;
+            .k-form-item {
+                flex-direction: column;
             }
             .k-form-label {
                 width: auto;
                 text-align: left;
-                line-height: inherit;
+                padding: 0;
+                justify-content: start;
                 margin-bottom: ${form.item.verticalLabelGap};
             }
         }
