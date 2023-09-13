@@ -96,7 +96,7 @@ export default class extends Component<Props> {
                 { value: 19, label: 'Table 19'},
                 { value: 20, label: 'Table 20'},
             ],
-            size: 'large',
+            size: 'default',
             types: ['default', 'card', 'flat-card']
         } as Props;
     }

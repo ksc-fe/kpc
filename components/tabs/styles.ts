@@ -45,11 +45,13 @@ const defaults = deepDefaults(
 
         card: {
             get bgColor() { return theme.color.bg },
+            get borderRadius() { return theme.borderRadius },
         },
 
-        flatCard: {
-            get bgColor() { return theme.color.bg },
-        },
+        // flatCard: {
+            // get bgColor() { return theme.color.bg },
+            // get borderRadius() { return theme.borderRadius },
+        // },
 
         // define size
         size: {
@@ -184,29 +186,39 @@ function makeCommonStyles() {
 
 function makeScrollStyles() {
     return css`
-        &:not(.k-vertical) {
+        overflow: hidden;
+        .k-tabs-scroll {
+            overflow: hidden;
+            position: relative;
+            // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
+            padding-bottom: 1px;
+            margin-bottom: -1px;
+        }
+        &.k-type-card,
+        &.k-type-flat-card {
             .k-tabs-scroll {
-                overflow: hidden;
-                position: relative;
-                // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
-                padding-bottom: 1px;
-                margin-bottom: -1px;
+                padding-bottom: 0;
+                margin-bottom: 0;
             }
-            &.k-type-card,
-            &.k-type-flat-card {
-                .k-tabs-scroll {
-                    padding-bottom: 0;
-                    margin-bottom: 0;
-                }
+        }
+        .k-tabs-wrapper {
+            white-space: nowrap;
+            transition: transform ${tabs.transition};
+        }
+        .k-tabs-prev,
+        .k-tabs-next {
+            position: absolute;
+            &:not(.k-disabled) {
+                box-shadow: ${theme.boxShadow};
             }
+        }
+
+        &:not(.k-vertical) {
             .k-tabs-wrapper {
-                white-space: nowrap;
                 float: left;
-                transition: transform ${tabs.transition};
             }
             .k-tabs-prev,
             .k-tabs-next {
-                position: absolute;
                 top: 0;
             }
             .k-tabs-prev {
@@ -218,29 +230,16 @@ function makeScrollStyles() {
         }
 
         &.k-vertical {
-            height: 100%;
-
+            &,
             .k-tabs-scroll {
-                overflow: hidden;
-                position: relative;
-                // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
-                padding-bottom: 1px;
-                margin-bottom: -1px;
-                height: 100%;
+                height: 100%
             }
-            .k-tabs-wrapper {
-                white-space: nowrap;
-                /* float: left; */
-                transition: transform ${tabs.transition};
-            }
+
             /* increase specificity, making sure the width is working */
-            &.k-is-scroll {
-                .k-tabs-prev,
-                .k-tabs-next {
-                    position: absolute;
-                    width: 100%;
-                    left: 0;
-                }
+            .k-tabs-prev,
+            .k-tabs-next {
+                width: 100%;
+                left: 0;
             }
             .k-tabs-prev {
                 top: 0;
@@ -254,46 +253,46 @@ function makeScrollStyles() {
 
 function makeDefaultStyles() {
     return css`
-        &:not(.k-vertical) .k-tab {
-            border-bottom: ${tabs.border};
-        }
-        &.k-vertical .k-tab {
+        border-bottom: ${tabs.border};
+        &.k-vertical {
             border-bottom: none;
             border-right: ${tabs.border};
         }
     `;
 }
 
-function makeCardActiveBarCommonStyles() {
+function makeCardCommonStyles() {
     return css`
-        background: #fff;
-        top: 0;
-        height: auto;
-        z-index: -1;
-    `;
+        border-radius: ${tabs.card.borderRadius};
+        background-color: ${tabs.card.bgColor};
+        padding: 0 2px;
+        &.k-vertical {
+            padding: 2px 0;
+        }
+        .k-tabs-active-bar {
+            background: #fff;
+            top: 0;
+            height: auto;
+            z-index: -1;
+        }
+    `
 }
 
 function makeCardStyles() {
+    const borderRadius = tabs.card.borderRadius;
     return css`
-        border-top-left-radius: ${theme.borderRadius};
-        border-top-right-radius: ${theme.borderRadius};
-        background-color: ${tabs.card.bgColor};
-        .k-tab {
-            margin: 0;
-        }
+        ${makeCardCommonStyles()};
         .k-tabs-active-bar {
-            ${makeCardActiveBarCommonStyles()};
-            border-radius: ${theme.borderRadius} ${theme.borderRadius} 0px 0px;
-            box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.08);
+            border-radius: ${borderRadius} ${borderRadius} 0px 0px;
+            box-shadow: ${theme.boxShadow};
         }
 
         // vertical card
         &.k-vertical {
             .k-tabs-active-bar {
-                ${makeCardActiveBarCommonStyles()};
                 width: 100%;
                 left: 0;
-                border-radius: ${theme.borderRadius} 0px 0px ${theme.borderRadius};
+                border-radius: ${borderRadius} 0px 0px ${borderRadius};
             }
         }
     `;
@@ -301,36 +300,18 @@ function makeCardStyles() {
 
 function makeFlatCardStyles() {
     return css`
-        border-top-left-radius: ${theme.borderRadius};
-        border-top-right-radius: ${theme.borderRadius};
-        background-color: ${tabs.card.bgColor};
-        .k-tab {
-            margin: 0;
-        }
+        ${makeCardCommonStyles()};
         .k-tabs-active-bar {
-            top: 0;
-            height: auto;
-            z-index: -1;
-            background: transparent;
-
-            &::before {
-                content: '';
-                display: block;
-                position: absolute;
-                background: #fff;
-                top: 2px;
-                height: calc(100% - 4px);
-                left: 0;
-                width: 100%;
-                border-radius: ${theme.borderRadius};
-            }
+            top: 2px;
+            height: calc(100% - 4px);
+            border-radius: ${tabs.card.borderRadius};
         }
 
         // vertical card
         &.k-vertical {
             .k-tabs-active-bar {
-                left: 0;
-                width: 100%;
+                left: 2px;
+                width: calc(100% - 4px);
             }
         }
     `;
