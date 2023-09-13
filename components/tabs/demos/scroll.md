@@ -8,7 +8,7 @@ order: 7
 ```vdt
 import {Tabs, Tab, Button, ButtonGroup} from 'kpc';
 
-<div>
+<div style="width: 600px;">
     <ButtonGroup v-model="size" checkType="radio">
         <Button v-for={['large', 'default', 'small', 'mini']}
             value={$value}
