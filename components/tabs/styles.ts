@@ -4,30 +4,35 @@ import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 
 type SizeStyles = {
-    fontSize: string,
-    height: string,
-    padding: string,
-    closeFontSize: string,
-}
+    fontSize: string;
+    height: string;
+    padding: string;
+    closeFontSize: string;
+    navigatorWidth: string;
+};
 
 const closeFontSizeMap: Record<Sizes, string> = {
     large: '24px',
     default: '20px',
     small: '18px',
     mini: '16px',
-}
+};
+
+const navigatorWidthMap: Record<Sizes, string> = {
+    large: theme.large.height,
+    default: theme.default.height,
+    small: theme.small.height,
+    mini: theme.mini.height,
+};
 
 const defaults = deepDefaults(
     {
         get transition() { return theme.transition.middle },
-        get borderColor() { return theme.color.border },
-        borderWidth: '0px',
+        get borderColor() { return '#f0f2f4' },
+        borderWidth: '1px',
         get border() { return `${tabs.borderWidth} solid ${tabs.borderColor}` },
         get color() { return theme.color.text },
         closeGap: `8px`,
-
-        // scroll
-        navigatorWidth: `32px`,
 
         //active
         active: {
@@ -62,6 +67,8 @@ const defaults = deepDefaults(
             get height() { return theme[size].height },
             get padding() { return `0 ${tabs.size[size as keyof typeof tabs.size]?.padding || theme[size].padding}` },
             get closeFontSize() { return closeFontSizeMap[size] },
+            // scroll
+            get navigatorWidth() { return navigatorWidthMap[size] },
         };
 
         return memo;
@@ -83,7 +90,6 @@ export function makeStyles() {
         }
 
         &.k-type-card {
-            ${makeDefaultStyles()}
             ${makeCardStyles()};
         }
 
@@ -122,7 +128,7 @@ function makeCommonStyles() {
             margin-left: ${tabs.closeGap};
             position: relative;
             top: -1px;
-            color:${theme.color.lightBlack};
+            color: ${theme.color.lightBlack};
         }
 
         // active-bar
@@ -132,7 +138,7 @@ function makeCommonStyles() {
             left: 0;
             height: ${bar.height};
             background: ${bar.bgColor};
-            bottom: calc(-${bar.height} / 2);
+            bottom: 0;
         }
 
         // vertical
@@ -144,7 +150,7 @@ function makeCommonStyles() {
             .k-tabs-active-bar {
                 left: auto;
                 top: 0;
-                right: calc(-${bar.height} / 2);
+                right: 0;
                 width: ${bar.height};
                 height: auto;
             }
@@ -164,10 +170,16 @@ function makeCommonStyles() {
                     .k-tab-close .k-icon {
                         font-size: ${styles.closeFontSize};
                     }
+                    &:not(.k-vertical).k-is-scroll {
+                        padding: 0 ${styles.navigatorWidth};
+                    }
+                    &.k-vertical.k-is-scroll {
+                        padding: ${styles.navigatorWidth} 0;
+                    }
                 }
-            `
+            `;
         })}
-    `
+    `;
 }
 
 function makeScrollStyles() {
@@ -203,9 +215,6 @@ function makeScrollStyles() {
             .k-tabs-next {
                 right: 0;
             }
-            &.k-is-scroll {
-                padding: 0 ${tabs.navigatorWidth};
-            }
         }
 
         &.k-vertical {
@@ -217,22 +226,21 @@ function makeScrollStyles() {
                 // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
                 padding-bottom: 1px;
                 margin-bottom: -1px;
-                height: 100%
+                height: 100%;
             }
             .k-tabs-wrapper {
                 white-space: nowrap;
                 /* float: left; */
                 transition: transform ${tabs.transition};
             }
-
-            .k-is-scroll {
-                padding: ${tabs.navigatorWidth} 0;
-            }
-
-            .k-tabs-prev,
-            .k-tabs-next {
-                position: absolute;
-                width: 100%;
+            /* increase specificity, making sure the width is working */
+            &.k-is-scroll {
+                .k-tabs-prev,
+                .k-tabs-next {
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                }
             }
             .k-tabs-prev {
                 top: 0;
@@ -240,21 +248,20 @@ function makeScrollStyles() {
             .k-tabs-next {
                 bottom: 0;
             }
-            &.k-is-scroll {
-                padding: ${tabs.navigatorWidth} 0;
-            }
         }
-    `
+    `;
 }
 
 function makeDefaultStyles() {
     return css`
-        border-bottom: ${tabs.border};
-        &.k-vertical {
+        &:not(.k-vertical) .k-tab {
+            border-bottom: ${tabs.border};
+        }
+        &.k-vertical .k-tab {
             border-bottom: none;
             border-right: ${tabs.border};
         }
-    `
+    `;
 }
 
 function makeCardActiveBarCommonStyles() {
@@ -263,11 +270,13 @@ function makeCardActiveBarCommonStyles() {
         top: 0;
         height: auto;
         z-index: -1;
-    `
+    `;
 }
 
 function makeCardStyles() {
     return css`
+        border-top-left-radius: ${theme.borderRadius};
+        border-top-right-radius: ${theme.borderRadius};
         background-color: ${tabs.card.bgColor};
         .k-tab {
             margin: 0;
@@ -287,11 +296,13 @@ function makeCardStyles() {
                 border-radius: ${theme.borderRadius} 0px 0px ${theme.borderRadius};
             }
         }
-    `
+    `;
 }
 
 function makeFlatCardStyles() {
     return css`
+        border-top-left-radius: ${theme.borderRadius};
+        border-top-right-radius: ${theme.borderRadius};
         background-color: ${tabs.card.bgColor};
         .k-tab {
             margin: 0;
@@ -303,11 +314,11 @@ function makeFlatCardStyles() {
             background: transparent;
 
             &::before {
-                content: "";
+                content: '';
                 display: block;
                 position: absolute;
                 background: #fff;
-                margin-top: 2px;
+                top: 2px;
                 height: calc(100% - 4px);
                 left: 0;
                 width: 100%;
