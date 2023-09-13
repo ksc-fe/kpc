@@ -1,4 +1,10 @@
-import {useInstance, createRef, onMounted, onUpdated, onUnmounted} from 'intact';
+import {
+    useInstance,
+    createRef,
+    onMounted,
+    onUpdated,
+    onUnmounted,
+} from 'intact';
 import {useState} from '../../hooks/useState';
 import type {Tabs} from './';
 import {useResizeObserver} from '../../hooks/useResizeObserver';
@@ -8,7 +14,7 @@ export function useScroll() {
     const scrollRef = createRef<HTMLElement>();
     const wrapperRef = createRef<HTMLElement>();
     const isScroll = useState<boolean>(false);
-    const left = useState<number>(0);
+    const offset = useState<number>(0);
     const enablePrev = useState<boolean>(false);
     const enableNext = useState<boolean>(false);
 
@@ -18,77 +24,130 @@ export function useScroll() {
 
     instance.watch('value', scrollActiveToView, {presented: true});
 
-    function refresh() {
+    function getLength() {
         const {vertical} = instance.get();
-        if (vertical) return;
 
-        const scrollWidth = scrollRef.value!.offsetWidth;
-        const wrapperWidth = wrapperRef.value!.offsetWidth;
+        if (vertical) {
+            return {
+                scrollLength: scrollRef.value!.offsetHeight,
+                wrapperLength: wrapperRef.value!.offsetHeight,
+            };
+        }
 
-        isScroll.set(scrollWidth < wrapperWidth);
-        updateTransition(left.value, scrollWidth, wrapperWidth);
+        return {
+            scrollLength: scrollRef.value!.offsetWidth,
+            wrapperLength: wrapperRef.value!.offsetWidth,
+        };
+    }
+
+    function refresh() {
+        const {scrollLength, wrapperLength} = getLength();
+
+        isScroll.set(scrollLength < wrapperLength);
+        updateTransition(offset.value, scrollLength, wrapperLength);
     }
 
     function updateTransition(
-        _left = left.value,
-        scrollWidth = scrollRef.value!.offsetWidth,
-        wrapperWidth = wrapperRef.value!.offsetWidth,
+        _offset: number,
+        scrollLength: number,
+        wrapperLength: number
     ) {
         let prev = true;
         let next = true;
-        if (_left >= 0) {
-            _left = 0;
+        if (_offset >= 0) {
+            _offset = 0;
             prev = false;
-        } else if (_left <= scrollWidth - wrapperWidth) {
-            _left = scrollWidth - wrapperWidth;
+        } else if (_offset <= scrollLength - wrapperLength) {
+            _offset = scrollLength - wrapperLength;
             next = false;
         }
 
-        left.set(_left);
+        offset.set(_offset);
         enablePrev.set(prev);
         enableNext.set(next);
     }
 
     function prev() {
-        const scrollWidth = scrollRef.value!.offsetWidth;
-        updateTransition(left.value + scrollWidth);
+        const {scrollLength, wrapperLength} = getLength();
+
+        updateTransition(
+            offset.value + scrollLength,
+            scrollLength,
+            wrapperLength
+        );
     }
 
     function next() {
-        const scrollWidth = scrollRef.value!.offsetWidth;
-        updateTransition(left.value - scrollWidth);
+        const {scrollLength, wrapperLength} = getLength();
+
+        updateTransition(
+            offset.value - scrollLength,
+            scrollLength,
+            wrapperLength
+        );
     }
 
     function scrollActiveToView() {
         const {vertical} = instance.get();
-        if (vertical) return;
 
-        const activeTab = scrollRef.value!.querySelector('.k-tab.k-active') as HTMLElement;
+        const activeTab = scrollRef.value!.querySelector(
+            '.k-tab.k-active'
+        ) as HTMLElement;
         if (activeTab) {
-            let _left = left.value;
+            let _offset = offset.value;
             // don't use getBoundingClientRect, it has transform and will return digital number
-            const activeRect = {
-                left: activeTab.offsetLeft,
-                width: activeTab.offsetWidth
-            };
-            const scrollRect = {
-                width: scrollRef.value!.offsetWidth
-            };
-            const wrapperRect = {
-                left: wrapperRef.value!.offsetLeft,
-                width: wrapperRef.value!.offsetWidth
-            };
-            const x = activeRect.left - wrapperRect.left;
-            if (_left + x <= 0) {
-                _left = -x;
-            } else if (x + activeRect.width + _left > scrollRect.width) {
-                _left = -x - activeRect.width + scrollRect.width;
+            let activeRect: {offset: number; length: number};
+            let scrollRect: {length: number};
+            let wrapperRect: {offset: number; length: number};
+
+            if (vertical) {
+                activeRect = {
+                    offset: activeTab.offsetTop,
+                    length: activeTab.offsetHeight,
+                };
+                scrollRect = {
+                    length: scrollRef.value!.offsetHeight,
+                };
+                wrapperRect = {
+                    offset: wrapperRef.value!.offsetTop,
+                    length: wrapperRef.value!.offsetHeight,
+                };
+            } else {
+                activeRect = {
+                    offset: activeTab.offsetLeft,
+                    length: activeTab.offsetWidth,
+                };
+                scrollRect = {
+                    length: scrollRef.value!.offsetWidth,
+                };
+                wrapperRect = {
+                    offset: wrapperRef.value!.offsetLeft,
+                    length: wrapperRef.value!.offsetWidth,
+                };
             }
-            left.set(_left);
+            const offsetDelta = activeRect.offset - wrapperRect.offset;
+            if (_offset + offsetDelta <= 0) {
+                _offset = -offsetDelta;
+            } else if (
+                offsetDelta + activeRect.length + _offset >
+                scrollRect.length
+            ) {
+                _offset = -offsetDelta - activeRect.length + scrollRect.length;
+            }
+            offset.set(_offset);
         } else {
-            left.set(0);
+            offset.set(0);
         }
     }
 
-    return {isScroll, left, enablePrev, enableNext, prev, next, scrollRef, wrapperRef};
+    return {
+        isScroll,
+        offset,
+        enablePrev,
+        enableNext,
+        prev,
+        next,
+        scrollRef,
+        wrapperRef,
+    };
 }

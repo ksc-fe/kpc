@@ -4,30 +4,35 @@ import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 
 type SizeStyles = {
-    fontSize: string,
-    height: string,
-    padding: string,
-    closeFontSize: string,
-}
+    fontSize: string;
+    height: string;
+    padding: string;
+    closeFontSize: string;
+    navigatorWidth: string;
+};
 
 const closeFontSizeMap: Record<Sizes, string> = {
     large: '24px',
     default: '20px',
     small: '18px',
     mini: '16px',
-}
+};
+
+const navigatorWidthMap: Record<Sizes, string> = {
+    large: theme.large.height,
+    default: theme.default.height,
+    small: theme.small.height,
+    mini: theme.mini.height,
+};
 
 const defaults = deepDefaults(
     {
         get transition() { return theme.transition.middle },
-        get borderColor() { return theme.color.border },
+        get borderColor() { return '#f0f2f4' },
         borderWidth: '1px',
         get border() { return `${tabs.borderWidth} solid ${tabs.borderColor}` },
         get color() { return theme.color.text },
         closeGap: `8px`,
-
-        // scroll
-        navigatorWidth: `20px`,
 
         //active
         active: {
@@ -38,15 +43,15 @@ const defaults = deepDefaults(
             }
         },
 
-        // border-card
-        borderCard: {
+        card: {
             get bgColor() { return theme.color.bg },
+            get borderRadius() { return theme.borderRadius },
         },
 
-        // no-border-card
-        noBorderCard: {
-            get bgColor() { return theme.color.bg },
-        },
+        // flatCard: {
+            // get bgColor() { return theme.color.bg },
+            // get borderRadius() { return theme.borderRadius },
+        // },
 
         // define size
         size: {
@@ -64,6 +69,8 @@ const defaults = deepDefaults(
             get height() { return theme[size].height },
             get padding() { return `0 ${tabs.size[size as keyof typeof tabs.size]?.padding || theme[size].padding}` },
             get closeFontSize() { return closeFontSizeMap[size] },
+            // scroll
+            get navigatorWidth() { return navigatorWidthMap[size] },
         };
 
         return memo;
@@ -85,18 +92,12 @@ export function makeStyles() {
         }
 
         &.k-type-card {
-            ${makeDefaultStyles()}
             ${makeCardStyles()};
         }
 
-        &.k-type-border-card {
-            ${makeBorderCardStyles()};
+        &.k-type-flat-card {
+            ${makeFlatCardStyles()};
         }
-
-        &.k-type-no-border-card {
-            ${makeNoBorderCardStyles()};
-        }
-        
     `;
 }
 
@@ -129,7 +130,7 @@ function makeCommonStyles() {
             margin-left: ${tabs.closeGap};
             position: relative;
             top: -1px;
-            color:${theme.color.lightBlack};
+            color: ${theme.color.lightBlack};
         }
 
         // active-bar
@@ -139,7 +140,7 @@ function makeCommonStyles() {
             left: 0;
             height: ${bar.height};
             background: ${bar.bgColor};
-            bottom: calc(-${bar.height} / 2); 
+            bottom: 0;
         }
 
         // vertical
@@ -151,7 +152,7 @@ function makeCommonStyles() {
             .k-tabs-active-bar {
                 left: auto;
                 top: 0;
-                right: calc(-${bar.height} / 2); 
+                right: 0;
                 width: ${bar.height};
                 height: auto;
             }
@@ -171,39 +172,54 @@ function makeCommonStyles() {
                     .k-tab-close .k-icon {
                         font-size: ${styles.closeFontSize};
                     }
+                    &:not(.k-vertical).k-is-scroll {
+                        padding: 0 ${styles.navigatorWidth};
+                    }
+                    &.k-vertical.k-is-scroll {
+                        padding: ${styles.navigatorWidth} 0;
+                    }
                 }
-            `
+            `;
         })}
-    `
+    `;
 }
 
 function makeScrollStyles() {
     return css`
-        &:not(.k-vertical) {
+        overflow: hidden;
+        .k-tabs-scroll {
+            overflow: hidden;
+            position: relative;
+            // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
+            padding-bottom: 1px;
+            margin-bottom: -1px;
+        }
+        &.k-type-card,
+        &.k-type-flat-card {
             .k-tabs-scroll {
-                overflow: hidden;
-                position: relative;
-                // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
-                padding-bottom: 1px;
-                margin-bottom: -1px;
+                padding-bottom: 0;
+                margin-bottom: 0;
             }
-            &.k-tabs-border-card,
-            &.k-tabs-no-border-card {
-                .k-tabs-scroll {
-                    padding-bottom: 0;
-                    margin-bottom: 0;
-                }
+        }
+        .k-tabs-wrapper {
+            white-space: nowrap;
+            transition: transform ${tabs.transition};
+        }
+        .k-tabs-prev,
+        .k-tabs-next {
+            position: absolute;
+            &:not(.k-disabled) {
+                box-shadow: ${theme.boxShadow};
             }
+        }
+
+        &:not(.k-vertical) {
             .k-tabs-wrapper {
-                white-space: nowrap;
                 float: left;
-                transition: transform ${tabs.transition};
             }
             .k-tabs-prev,
             .k-tabs-next {
-                position: absolute;
                 top: 0;
-                width: ${tabs.navigatorWidth} !important;
             }
             .k-tabs-prev {
                 left: 0;
@@ -211,11 +227,28 @@ function makeScrollStyles() {
             .k-tabs-next {
                 right: 0;
             }
-            &.k-is-scroll {
-                padding: 0 ${tabs.navigatorWidth};
+        }
+
+        &.k-vertical {
+            &,
+            .k-tabs-scroll {
+                height: 100%
+            }
+
+            /* increase specificity, making sure the width is working */
+            .k-tabs-prev,
+            .k-tabs-next {
+                width: 100%;
+                left: 0;
+            }
+            .k-tabs-prev {
+                top: 0;
+            }
+            .k-tabs-next {
+                bottom: 0;
             }
         }
-    `
+    `;
 }
 
 function makeDefaultStyles() {
@@ -225,122 +258,61 @@ function makeDefaultStyles() {
             border-bottom: none;
             border-right: ${tabs.border};
         }
-    `
+    `;
 }
 
-function makeCardActiveBarCommonStyles() {
+function makeCardCommonStyles() {
     return css`
-        background: #fff;
-        top: 0;
-        height: auto;
-        z-index: -1;
+        border-radius: ${tabs.card.borderRadius};
+        background-color: ${tabs.card.bgColor};
+        padding: 0 2px;
+        &.k-vertical {
+            padding: 2px 0;
+        }
+        .k-tabs-active-bar {
+            background: #fff;
+            top: 0;
+            height: auto;
+            z-index: -1;
+        }
     `
 }
 
 function makeCardStyles() {
+    const borderRadius = tabs.card.borderRadius;
     return css`
-        .k-tab {
-            margin: 0;
-        }
+        ${makeCardCommonStyles()};
         .k-tabs-active-bar {
-            ${makeCardActiveBarCommonStyles()};
-            border-left: ${tabs.border};
-            border-right: ${tabs.border};
-            &:before {
-                content: '';
-                display: block;
-                position: absolute;
-                height: ${tabs.active.bar.height};
-                background: ${theme.color.primary};
-                top: 0;
-                left: -${tabs.borderWidth};
-                right: -${tabs.borderWidth};
-            }
+            border-radius: ${borderRadius} ${borderRadius} 0px 0px;
+            box-shadow: ${theme.boxShadow};
         }
 
         // vertical card
         &.k-vertical {
             .k-tabs-active-bar {
+                width: 100%;
                 left: 0;
-                width: auto;
-                border-left: none;
-                border-right: none;
-                border-top: ${tabs.border};
-                border-bottom: ${tabs.border};
-                &:before {
-                    width: ${tabs.active.bar.height};
-                    left: 0;
-                    right: auto;
-                    bottom: 0;
-                    height: auto;
-                }
+                border-radius: ${borderRadius} 0px 0px ${borderRadius};
             }
         }
-    `
+    `;
 }
 
-function makeBorderCardStyles() {
+function makeFlatCardStyles() {
     return css`
-        border: ${tabs.border};
-        border-bottom: none;
-        background: ${tabs.borderCard.bgColor};
-        .k-tab {
-            margin: 0;
-        }
+        ${makeCardCommonStyles()};
         .k-tabs-active-bar {
-            background: #fff;
-            top: 0;
-            height: auto;
-            z-index: -1;
+            top: 2px;
+            height: calc(100% - 4px);
+            border-radius: ${tabs.card.borderRadius};
         }
 
+        // vertical card
         &.k-vertical {
-            border-right: none;
-            border-bottom: ${tabs.border};
             .k-tabs-active-bar {
-                width: auto;
-                height: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
+                left: 2px;
+                width: calc(100% - 4px);
             }
         }
-    `
-}
-
-function makeNoBorderCardStyles() {
-    return css`
-        border-radius: ${theme.borderRadius};
-        .k-tab {
-            &:before {
-                content: '';
-                display: block;
-                position: absolute;
-                background: ${tabs.noBorderCard.bgColor};
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                z-index: -1;
-            }
-        }
-        .k-tabs-active-bar {
-            background: #fff;
-            top: 0;
-            height: auto;
-            z-index: -1;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.08);
-            border-radius: 4px 4px 0px 0px;
-        }
-        &.k-vertical {
-            border-right: none;
-            .k-tabs-active-bar {
-                width: auto;
-                height: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
-            }
-        }
-    `
+    `;
 }
