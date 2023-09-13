@@ -8,7 +8,7 @@ order: 6
 作为参数传给事件回调函数
 
 ```vdt
-import {Tabs, Tab, Button, ButtonGroup} from 'kpc';
+import {Tabs, Tab, Button, ButtonGroup, Icon} from 'kpc';
 
 <div>
     <ButtonGroup v-model="size" checkType="radio">
@@ -29,7 +29,10 @@ import {Tabs, Tab, Button, ButtonGroup} from 'kpc';
             value={$value.value}
             key={$value.value}
             closable={$value.value !== 10}
-        >{$value.label}</Tab>
+        >
+            <Icon class="k-icon-paper" size={this.get('size')} style="margin-right: 8px;" />
+            {$value.label}
+        </Tab>
     </Tabs>
 </div>
 ```

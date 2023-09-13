@@ -107,14 +107,12 @@ function makeCommonStyles() {
     return css`
         position: relative;
         .k-tab {
+            display: inline-flex;
             cursor: pointer;
-            display: inline-block;
             text-align: center;
+            align-items: center;
             color: ${tabs.color};
-            position: relative;
-            vertical-align: middle;
             white-space: nowrap;
-            overflow: hidden;
             text-overflow: ellipsis;
             &:hover,
             &.k-active {
@@ -128,8 +126,6 @@ function makeCommonStyles() {
         .k-tab-close {
             margin-right: -${tabs.closeGap};
             margin-left: ${tabs.closeGap};
-            position: relative;
-            top: -1px;
             color: ${theme.color.lightBlack};
         }
 
@@ -238,7 +234,7 @@ function makeScrollStyles() {
             /* increase specificity, making sure the width is working */
             .k-tabs-prev,
             .k-tabs-next {
-                width: 100%;
+                width: 100% !important;
                 left: 0;
             }
             .k-tabs-prev {
