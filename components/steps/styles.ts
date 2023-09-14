@@ -60,6 +60,14 @@ const defaults = {
         get markBgColor() { return theme.color.placeholder },
         get doneMarkBgColor() { return theme.color.primary },
         get errorMarkBgColor() { return theme.color.danger },
+    },
+
+    // vertical
+    vertical: {
+        line: {
+            minHeight: '100px',
+            padding: '16px',
+        }
     }
 };
 
@@ -192,7 +200,9 @@ function makeArrow(isVertical: boolean) {
 }
 
 function makeLineStyles() {
-    const line = defaults.line;
+    const line = steps.line;
+    const top = `calc(${line.markWidth} / 2 - ${line.lineWidth} / 2)`;
+
     return css`
         .k-step {
             display: flex;
@@ -229,34 +239,32 @@ function makeLineStyles() {
         }
         
         // draw connected line
-        &:not(.k-vertical) {
-            .k-step-wrapper {
-                &:before,
-                &:after {
-                    content: '';
-                    display: block;
-                    height: 1px;
-                    background: ${line.lineColor};
-                    width: 50%;
-                    position: absolute;
-                    top: calc(${line.markWidth} / 2);
-                }
-                &:after {
-                    right: 0;
-                }
-            }
-            .k-step {
-                &:first-of-type .k-step-wrapper:before,
-                &:last-of-type .k-step-wrapper:after {
-                    background: transparent;
-                }
-            }
-            .k-step-tail {
-                flex: 1;
-                height: 1px;
+        .k-step-wrapper {
+            &:before,
+            &:after {
+                content: '';
+                display: block;
+                height: ${line.lineWidth};
                 background: ${line.lineColor};
-                margin-top: calc(${line.markWidth} / 2);
+                width: 50%;
+                position: absolute;
+                top: ${top};
             }
+            &:after {
+                right: 0;
+            }
+        }
+        .k-step {
+            &:first-of-type .k-step-wrapper:before,
+            &:last-of-type .k-step-wrapper:after {
+                background: transparent;
+            }
+        }
+        .k-step-tail {
+            flex: 1;
+            height: ${line.lineWidth};
+            background: ${line.lineColor};
+            margin-top: ${top};
         }
         
         // status
@@ -284,7 +292,7 @@ function makeLineStyles() {
 }
 
 function makeLineCompactStyles() {
-    const line = defaults.line;
+    const line = steps.line;
 
     return css`
         .k-step-wrapper {
@@ -313,7 +321,7 @@ function makeLineCompactStyles() {
                 content: '';
                 display: block;
                 flex: 1;
-                height: 1px;
+                height: ${line.lineWidth};
                 background: ${line.lineColor};
                 margin-left: ${line.titleGap};
             }
@@ -333,7 +341,9 @@ function makeLineCompactStyles() {
 }
 
 function makeSimpleStyles() {
-    const simple = defaults.simple;
+    const simple = steps.simple;
+    const top = `calc(${simple.markWidth} / 2 - ${steps.line.lineWidth} / 2)`;
+
     return css`
         .k-step-mark {
             width: ${simple.markWidth};
@@ -344,14 +354,14 @@ function makeSimpleStyles() {
             font-size: 0; // eliminate the gap
             &:before,
             &:after {
-                top: calc(${simple.markWidth} / 2);
+                top: ${top};
             }
         }
         .k-step-main {
             font-size: ${theme.default.fontSize};
         }
         .k-step-tail {
-            margin-top: calc(${simple.markWidth} / 2);
+            margin-top: ${top};
         }
         .k-step {
             &.k-done {
@@ -411,6 +421,8 @@ export function makeCommonStyles() {
 }
 
 export function makeVerticalStyles() {
+    const verticalLine = steps.vertical.line;
+
     return css`
         &.k-vertical {
             &.k-default {
@@ -433,11 +445,13 @@ export function makeVerticalStyles() {
                 ${makeArrow(true)};
             }
 
-            &.k-line {
+            &.k-line,
+            &.k-line-compact,
+            &.k-simple {
                 flex-direction: column;
                 .k-step {
                     flex: none;
-                    min-height: 160px;
+                    min-height: ${verticalLine.minHeight};
                 }
                 .k-step-wrapper {
                     display: flex;
@@ -445,13 +459,25 @@ export function makeVerticalStyles() {
                     text-align: left;
                 }
                 .k-step-main {
-                    padding: 0 16px;
+                    flex: 1;
+                    padding: 0 0 ${verticalLine.padding} ${verticalLine.padding};
+                }
+                .k-step-title {
+                    line-height: ${steps.line.markWidth};
+                    &:after {
+                        display: none;
+                    }
                 }
                 
-                // line
+                // connected line
+                .k-step-wrapper {
+                    &:before, &:after {
+                        display: none;
+                    }
+                }
                 .k-step-tail {
                     position: absolute;
-                    left: calc(${steps.line.markWidth} / 2);
+                    left: calc(${steps.line.markWidth} / 2 - ${steps.line.lineWidth} / 2);
                     height: 100%;
                     width: ${steps.line.lineWidth};
                     background: ${steps.line.lineColor};
@@ -460,6 +486,14 @@ export function makeVerticalStyles() {
                     .k-step-tail {
                         display: none;
                     }
+                }
+            }
+            &.k-simple {
+                .k-step-tail {
+                    left: calc(${steps.simple.markWidth} / 2 - ${steps.line.lineWidth} / 2);
+                }
+                .k-step-title {
+                    line-height: ${steps.simple.markWidth};
                 }
             }
         }

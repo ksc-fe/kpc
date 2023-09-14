@@ -15,6 +15,7 @@ sidebar: doc
 | status | 步骤条的状态 | `"normal"` &#124; `"error"` | `"normal"` |
 | type | 步骤条样式 | `"default"` &#124; `"line"` &#124; `"simple"` &#124; `"line-compact"` |`"default"` 
 | clickable | 是否支持快速切换【已完成】的步骤 | `boolean` | `false` |
+| vertical | 是否垂直排列 | `boolean` | `false` |
 
 ## Step
 

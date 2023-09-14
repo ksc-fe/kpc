@@ -3,7 +3,9 @@ title: 垂直排列
 order: 4
 ---
 
-`Steps`嵌套`Step`即可实现步骤条，用`v-model`双向绑定当前指向哪一步，索引从`0`开始
+添加`vertical`属性，即可垂直排列
+
+> `line` `line-compact`垂直排列模式下，展示相同
 
 ```vdt
 import {Steps, Step, Button} from 'kpc';
@@ -21,6 +23,18 @@ import {Steps, Step, Button} from 'kpc';
         <Step title="设置VPC" />
     </Steps>
 
+    <Steps v-model="index" vertical type="line-compact">
+        <Step title="选择配置">请选择主机的配置信息</Step>
+        <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
+        <Step title="设置VPC" />
+    </Steps>
+
+    <Steps v-model="index" vertical type="simple">
+        <Step title="选择配置">请选择主机的配置信息</Step>
+        <Step title="选择弹性IP">请选择主机弹性IP的配置信息</Step>
+        <Step title="设置VPC" />
+    </Steps>
+
     <Button type="primary" ev-click={this.previous}
         disabled={this.get('index') === 0}
     >Previous Step</Button>
@@ -33,7 +47,7 @@ import {Steps, Step, Button} from 'kpc';
 ```styl
 .demo-wrapper
     display flex
-    gap 10px
+    gap 24px
 ```
 
 ```ts
