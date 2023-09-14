@@ -1,0 +1,13 @@
+import {Icon} from '../icon';
+import {Button} from '../button';
+import {getRestProps} from '../utils';
+
+const {children, className, style} = this.get();
+
+const classNameObj = {
+    [className]: className,
+}
+
+<div class={classNameObj} ev-click={this.onClick}>
+   <Icon class="ion-ios-copy-outline" />
+</div>
