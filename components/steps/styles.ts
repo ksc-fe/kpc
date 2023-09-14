@@ -67,6 +67,9 @@ const defaults = {
         line: {
             minHeight: '100px',
             padding: '16px',
+        },
+        simple: {
+            titleGap: '8px',
         }
     }
 };
@@ -427,8 +430,9 @@ export function makeVerticalStyles() {
         &.k-vertical {
             &.k-default {
                 height: auto;
-                width: 32px;
+                width: ${steps.default.height};
                 writing-mode: vertical-rl;
+                letter-spacing: 1px;
                 .k-step-wrapper {
                     width: 100%;
                     padding: ${steps.default.padding} 0;
@@ -463,7 +467,9 @@ export function makeVerticalStyles() {
                     padding: 0 0 ${verticalLine.padding} ${verticalLine.padding};
                 }
                 .k-step-title {
-                    line-height: ${steps.line.markWidth};
+                    display: flex;
+                    align-items: center;
+                    height: ${steps.line.markWidth};
                     &:after {
                         display: none;
                     }
@@ -493,7 +499,8 @@ export function makeVerticalStyles() {
                     left: calc(${steps.simple.markWidth} / 2 - ${steps.line.lineWidth} / 2);
                 }
                 .k-step-title {
-                    line-height: ${steps.simple.markWidth};
+                    height: ${steps.simple.markWidth};
+                    margin-bottom: ${steps.vertical.simple.titleGap};
                 }
             }
         }
