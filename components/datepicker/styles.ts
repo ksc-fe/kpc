@@ -149,20 +149,22 @@ export function makeCalendarStyles() {
             align-items: center;
             cursor: pointer;
             position: relative;
-            border-radius: ${datepicker.item.borderRadius};
-            &.k-hover {
+            .k-value {
+                border-radius: ${datepicker.item.borderRadius};
+            }
+            &.k-hover .k-value {
                 background: ${datepicker.item.hoverBgColor};
             }
             &.k-exceed {
                 color: ${datepicker.item.exceedColor};
             }
-            &.k-today {
+            &.k-today .k-value {
                 border: ${datepicker.item.todayBorder};
             }
             &.k-active {
                 background: ${datepicker.item.active.bgColor};
                 color: ${datepicker.item.active.color};
-                &.k-today {
+                &.k-today .k-value {
                     border-color: ${datepicker.item.active.todayBorderColor};
                 }
             }
@@ -185,6 +187,10 @@ export function makeCalendarStyles() {
             }
             .k-value {
                 flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100%;
             }
         }
         .k-days {
