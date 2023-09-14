@@ -48,10 +48,11 @@ const defaults = deepDefaults(
             get borderRadius() { return theme.borderRadius },
         },
 
-        // flatCard: {
+        flatCard: {
             // get bgColor() { return theme.color.bg },
             // get borderRadius() { return theme.borderRadius },
-        // },
+            padding: '2px',
+        },
 
         // define size
         size: {
@@ -261,10 +262,6 @@ function makeCardCommonStyles() {
     return css`
         border-radius: ${tabs.card.borderRadius};
         background-color: ${tabs.card.bgColor};
-        padding: 0 2px;
-        &.k-vertical {
-            padding: 2px 0;
-        }
         .k-tabs-active-bar {
             background: #fff;
             top: 0;
@@ -295,19 +292,23 @@ function makeCardStyles() {
 }
 
 function makeFlatCardStyles() {
+    const padding = tabs.flatCard.padding;
     return css`
         ${makeCardCommonStyles()};
+        padding: 0 ${padding};
+
         .k-tabs-active-bar {
-            top: 2px;
-            height: calc(100% - 4px);
+            top: ${padding};
+            height: calc(100% - ${padding} * 2);
             border-radius: ${tabs.card.borderRadius};
         }
 
         // vertical card
         &.k-vertical {
+            padding: ${padding} 0;
             .k-tabs-active-bar {
-                left: 2px;
-                width: calc(100% - 4px);
+                left: ${padding};
+                width: calc(100% - ${padding} * 2);
             }
         }
     `;
