@@ -26,10 +26,10 @@ if (card) {
     const {labels, group} = process(children);
     children = (
         <template>
-            <Tabs vertical type="border-card"
+            <Tabs vertical type="card"
                 value={activeIndex.value}
                 ev-$change:value={activeIndex.set}
-            > 
+            >
                 <Tab v-for={labels} value={$key}>
                     {isFunction($value) /* is <b:label> block */ ? $value(noop) : $value}
                 </Tab>
@@ -66,13 +66,13 @@ if (searchable) {
                 <div class="k-select-op" v-if={multiple}>
                     <Button type="link" size="small"
                         ev-click={selectAll}
-                    >{_$('全选')}</Button>  
+                    >{_$('全选')}</Button>
                     <Button type="link" size="small"
                         ev-click={toggleSelect}
-                    >{_$('反选')}</Button> 
+                    >{_$('反选')}</Button>
                     <Button type="link" size="small"
                         ev-click={unselectAll}
-                    >{_$('清空')}</Button>  
+                    >{_$('清空')}</Button>
                 </div>
             </div>
             <div class="k-select-body">

@@ -19,12 +19,7 @@ import {Tabs, Tab} from 'kpc';
         <Tab value="ruleout">出站规则</Tab>
         <Tab value="relatedVM">关联云主机</Tab>
     </Tabs>
-    <Tabs v-model="tab" vertical type="border-card">
-        <Tab value="rulein">入站规则</Tab>
-        <Tab value="ruleout">出站规则</Tab>
-        <Tab value="relatedVM">关联云主机</Tab>
-    </Tabs>
-    <Tabs v-model="tab" vertical type="no-border-card">
+    <Tabs v-model="tab" vertical type="flat-card">
         <Tab value="rulein">入站规则</Tab>
         <Tab value="ruleout">出站规则</Tab>
         <Tab value="relatedVM">关联云主机</Tab>
@@ -35,9 +30,6 @@ import {Tabs, Tab} from 'kpc';
 ```styl
 .k-tabs
     margin-right 16px
-.k-no-border-card
-    padding 10px
-    background #f1f1f5
 ```
 
 ```ts

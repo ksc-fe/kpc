@@ -48,7 +48,7 @@ const defaults = {
         get lineColor() { return theme.color.border},
         titleGap: '16px',
         descGap: '4px',
-        contentMaxWidth: '200px',
+        contentWidth: '200px',
     },
 
     // simple
@@ -173,6 +173,7 @@ function makeLineStyles() {
             display: inline-block;
             text-align: center;
             position: relative;
+            width: ${line.contentWidth};
         }
         .k-step:last-of-type {
             flex: 0 0 auto;
@@ -196,7 +197,6 @@ function makeLineStyles() {
         .k-step-content {
             margin-top: ${line.descGap};
             color: ${theme.color.placeholder};
-            max-width: ${line.contentMaxWidth};
         }
         
         // draw connected line
@@ -259,6 +259,7 @@ function makeLineCompactStyles() {
         .k-step-wrapper {
             display: inline-flex;
             text-align: left;
+            width: auto;
             &:before, &:after {
                 display: none;
             }
