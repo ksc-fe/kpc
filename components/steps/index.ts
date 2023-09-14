@@ -8,13 +8,15 @@ export interface StepsProps {
     status?: 'normal' | 'error' | 'done'
     type?: 'default' | 'line' | 'simple' | 'line-compact' | 'dot'
     clickable?: boolean
+    vertical?: boolean
 }
 
 const typeDefs: Required<TypeDefs<StepsProps>> = {
     value: Number,
     status: ['normal', 'error', 'done'],
     type: ['default', 'line', 'simple','line-compact', 'dot'],
-    clickable: Boolean
+    clickable: Boolean,
+    vertical: Boolean,
 };
 
 const defaults = (): Partial<StepsProps> => ({

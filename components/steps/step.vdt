@@ -6,7 +6,7 @@ import {Icon} from '../icon';
 const {children, title, index, className, style} = this.get();
 
 <StepsContext.Consumer>
-    {({value, status, width, onChange, type}) => {
+    {({value, status, onChange, type}) => {
         const selected = value === index;
         const error = selected && status === 'error';
         const done = value > index;
