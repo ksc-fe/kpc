@@ -1,8 +1,7 @@
 import {Component, TypeDefs, createRef, watch, nextTick, onMounted, RefObject} from 'intact';
 import {Sizes, sizes} from '../../styles/utils';
 import template from './index.vdt';
-import {bind} from '../utils';
-import {isNullOrUndefined, EMPTY_OBJ} from 'intact-shared';
+import {bind, selectValue} from '../utils';
 import {useAutoWidth} from './useAutoWidth';
 import {useFrozen} from './useFrozen';
 import {CommonInputHTMLAttributes, Events} from '../types';
@@ -145,14 +144,7 @@ export class Input<V extends Value = Value> extends Component<InputProps<V>, Inp
     }
 
     select() {
-        const input = this.inputRef.value!;
-        if (input.select) {
-            input.select();
-        } else if (input.setSelectionRange) {
-            // mobile safari
-            input.focus();
-            input.setSelectionRange(0, input.value.length);
-        }
+        selectValue(this.inputRef.value!);
     }
 
     @bind

@@ -19,7 +19,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Tooltip} from 'kpc';
             <Tooltip content="disabled">
                 <DropdownItem disabled>item 3</DropdownItem>
             </Tooltip>
-            <Dropdown position={{my: 'left top', at: 'right top'}}>
+            <Dropdown position={{my: 'left top', at: 'right top'}} trigger="click">
                 <Tooltip content="This is a nested Dropdown.">
                     <DropdownItem>item 4</DropdownItem>
                 </Tooltip>

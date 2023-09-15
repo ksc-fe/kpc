@@ -1,13 +1,15 @@
-import {Icon} from '../icon';
-import {Button} from '../button';
-import {getRestProps} from '../utils';
+import { Icon } from '../icon';
+import { getRestProps } from '../utils';
+import { Wrapper } from '../wrapper';
 
-const {children, className, style} = this.get();
+const { children, className } = this.get();
 
 const classNameObj = {
+    [`k-copy`]: true,
     [className]: className,
 }
 
-<div class={classNameObj} ev-click={this.onClick}>
-   <Icon class="ion-ios-copy-outline" />
-</div>
+<Wrapper ev-click={this.copy} class={classNameObj} {...getRestProps(this)}>
+    <template v-if={children}>{children}</template>
+    <Icon v-else class="k-icon-clone" hoverable />
+</Wrapper>

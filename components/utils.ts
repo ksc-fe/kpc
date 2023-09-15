@@ -357,3 +357,13 @@ export function nextFrame(fn: () => void) {
         requestAnimationFrame(fn);
     });
 }
+
+export function selectValue(elem: HTMLInputElement | HTMLTextAreaElement) {
+    if (elem.select) {
+        elem.select();
+    } else if (elem.setSelectionRange) {
+        // mobile safari
+        elem.focus();
+        elem.setSelectionRange(0, elem.value.length);
+    }
+}

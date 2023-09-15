@@ -1,57 +1,76 @@
-/** @format */
-
 import { Message } from '../message';
-import { useState } from '../../hooks/useState';
+import { useInstance } from 'intact';
+import type { Copy } from './';
+import { selectValue } from '../utils';
 
-export function useCopy(text: string) {
-  const succeeded = useState<boolean>(false);
+export function useCopy() {
+    const instance = useInstance() as Copy;
 
-  const onSuccess = () => {
-    Message.success({
-      content: 'success',
-    });
-  };
-  const onError = () => {
-    Message.error({
-      content: 'errorTip',
-    });
-  };
+    return () => {
+        const { text } = instance.get();
 
-  const startCopy = () => {
-    const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
-    const $textarea = document.createElement('textarea');
-    $textarea.style.fontSize = '12pt';
-    $textarea.style.border = '0';
-    $textarea.style.padding = '0';
-    $textarea.style.margin = '0';
-    $textarea.style.position = 'absolute';
-    $textarea.style[isRTL ? 'right' : 'left'] = '-9999px';
-    let yPosition = window.pageYOffset || document.documentElement.scrollTop;
-    $textarea.style.top = `${yPosition}px`;
-    $textarea.setAttribute('readonly', '');
-    $textarea.value = text;
-    document.body.appendChild($textarea);
-    try {
-      if (navigator.clipboard) {
-        succeeded.set(Boolean(navigator.clipboard.writeText(text)));
-      } else {
-        succeeded.set(Boolean(document.execCommand('copy')));
-      }
-      onSuccess();
-      document.body.removeChild($textarea);
-      // if (success) success.call();
-    } catch (err) {
-      succeeded.set(false);
-      onError();
-      document.body.removeChild($textarea);
-      // if (error) error.call();
-    }
-  };
-
-  return {
-    succeeded,
-    startCopy,
-    onSuccess,
-    onError,
-  };
+        if (clipboardCopy(text) || commandCopy(text)) {
+            Message.success({ content: '复制成功' });
+        } else {
+            Message.error({ content: '复制失败' });
+        }
+    };
 }
+
+// @reference: https://github.com/zenorocha/clipboard.js/blob/master/src/common/create-fake-element.js
+function createFakeElement(value: string) {
+    const isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+    const fakeElement = document.createElement('textarea');
+    // Prevent zooming on iOS
+    fakeElement.style.fontSize = '12pt';
+    // Reset box model
+    fakeElement.style.border = '0';
+    fakeElement.style.padding = '0';
+    fakeElement.style.margin = '0';
+    // Move element out of screen horizontally
+    fakeElement.style.position = 'absolute';
+    fakeElement.style[isRTL ? 'right' : 'left'] = '-9999px';
+    // Move element to the same position vertically
+    let yPosition = window.pageYOffset || document.documentElement.scrollTop;
+    fakeElement.style.top = `${yPosition}px`;
+
+    fakeElement.setAttribute('readonly', '');
+    fakeElement.value = value;
+
+    return fakeElement;
+}
+
+function clipboardCopy(text: string) {
+    try {
+        navigator.clipboard.writeText(text);
+
+        return true;
+    } catch (e) {
+        if (process.env.NODE_ENV !== 'production') {
+            console.log(e);
+        }
+        return false;
+    }
+}
+
+function commandCopy(text: string) {
+    const fakeElement = createFakeElement(text);
+    document.body.appendChild(fakeElement);
+    selectValue(fakeElement);
+
+    let result: boolean;
+    try {
+        document.execCommand('copy');
+        result = true;
+    } catch (e) {
+        if (process.env.NODE_ENV !== 'production') {
+            console.log(e);
+        }
+        result = false;
+    }
+
+    document.body.removeChild(fakeElement);
+
+    return result;
+}
+
