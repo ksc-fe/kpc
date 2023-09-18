@@ -7,10 +7,10 @@ import ContextMenuDemo from '~/components/dropdown/demos/contextmenu';
 import TooltipDemo from '~/components/dropdown/demos/tooltip'; 
 
 describe('Dropdown', () => {
-    // afterEach((done) => {
-        // unmount();
-        // setTimeout(done, 500);
-    // });
+    afterEach((done) => {
+        unmount();
+        setTimeout(done, 500);
+    });
 
     // it('demos test', () => {
         // const req = require.context('~/components/dropdown/demos', true, /^((?!async).)*index\.js$/i);
