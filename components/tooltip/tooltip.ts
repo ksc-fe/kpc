@@ -72,6 +72,13 @@ export class Tooltip<
     static defaults = defaults;
     static events = events;
 
+    show(shouldFocus: boolean = false) {
+        if (this.get('disabled')) return;
+
+        clearTimeout(this.timer);
+        this.set('value', true);
+    }
+
     hide(immediately: boolean) {
         if (this.get('always')) return;
 

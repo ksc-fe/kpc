@@ -4,12 +4,13 @@ import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import BasicDemo from '~/components/dropdown/demos/basic';
 import NestedDemo from '~/components/dropdown/demos/nested';
 import ContextMenuDemo from '~/components/dropdown/demos/contextmenu';
+import TooltipDemo from '~/components/dropdown/demos/tooltip'; 
 
 describe('Dropdown', () => {
-    afterEach((done) => {
-        unmount();
-        setTimeout(done, 500);
-    });
+    // afterEach((done) => {
+        // unmount();
+        // setTimeout(done, 500);
+    // });
 
     // it('demos test', () => {
         // const req = require.context('~/components/dropdown/demos', true, /^((?!async).)*index\.js$/i);
@@ -281,13 +282,13 @@ describe('Dropdown', () => {
         expect(parent.scrollTop).to.eql(item.offsetHeight * 2 - 40);
     });
 
-    it('trigger: focus', async() => {
+    it('focus trigger type', async () => {
         class Demo extends Component {
             static template = `
                 const {Dropdown, DropdownMenu, DropdownItem} = this;
                 <div>
                     <Dropdown trigger="focus">
-                        <input ref="trigger" />
+                        <input ref="trigger" ev-focusin={this.onFocus} />
                         <DropdownMenu>
                             <DropdownItem>test1</DropdownItem>
                             <DropdownItem>test2</DropdownItem>
@@ -298,12 +299,14 @@ describe('Dropdown', () => {
             private Dropdown = Dropdown;
             private DropdownItem = DropdownItem;
             private DropdownMenu = DropdownMenu;
+            public onFocus = sinon.spy((e: MouseEvent) => console.log(e));
         }
         const [instance] = mount(Demo);
 
         dispatchEvent(instance.refs.trigger, 'focusin');
         await wait(500);
         expect(getElement('.k-dropdown-menu')).to.be.exist;
+        expect(instance.onFocus.callCount).to.eql(1);
 
         // clicking anywhere should not hide menu
         dispatchEvent(document, 'click');
@@ -312,6 +315,37 @@ describe('Dropdown', () => {
 
         dispatchEvent(instance.refs.trigger, 'focusout');
         await wait(700);
+        expect(getElement('.k-dropdown-menu')).to.not.be.exist;
+    });
+
+    it('wrap by tooltip', async () => {
+        const [instance, element] = mount(TooltipDemo);
+
+        dispatchEvent(element.firstChild as HTMLElement, 'mouseenter');
+        await wait();
+        const dropdown = getElement('.k-dropdown-menu')!;
+        const [item1, item2, item3, item4] = dropdown.querySelectorAll('.k-dropdown-item');
+
+        dispatchEvent(item1, 'mouseenter');
+        await wait();
+        expect(getElement('.k-tooltip-content')!.textContent).to.eql('item 1')
+
+        dispatchEvent(item1, 'mouseleave');
+        dispatchEvent(item3, 'mouseenter');
+        await wait();
+        expect(getElement('.k-tooltip-content')!.textContent).to.eql('disabled')
+
+        dispatchEvent(item3, 'mouseleave');
+        dispatchEvent(item4, 'mouseenter');
+        await wait();
+        expect(getElement('.k-tooltip-content')!.textContent).to.eql('This is a nested Dropdown.');
+
+        dispatchEvent(item4, 'click');
+        await wait();
+        expect(getElement('.k-dropdown-menu')!.textContent).to.eql('item 1item 2');
+
+        dispatchEvent(item4, 'mouseleave');
+        await wait(800);
         expect(getElement('.k-dropdown-menu')).to.not.be.exist;
     });
 });

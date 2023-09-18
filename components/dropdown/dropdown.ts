@@ -46,6 +46,8 @@ export interface DropdownEvents {
     hide: []
     mouseenter: [MouseEvent]
     mouseleave: [MouseEvent]
+    click: [MouseEvent]
+    contextmenu: [MouseEvent]
     positioned: [Feedback]
 }
 
@@ -72,6 +74,8 @@ const events: Events<DropdownEvents> = {
     hide: true,
     mouseenter: true,
     mouseleave: true,
+    click: true,
+    contextmenu: true,
     positioned: true,
 };
 
@@ -124,7 +128,7 @@ export class Dropdown<
     public showedDropdown: Dropdown | null = null;
     public positionHook = usePosition();
 
-    private timer: number | undefined = undefined;
+    protected timer: number | undefined = undefined;
 
     init() {
         provide(DROPDOWN, this);
@@ -155,6 +159,12 @@ export class Dropdown<
         clearTimeout(this.timer);
         this.set('value', true);
 
+        // should show parent dropdown
+        const parentDropdown = this.dropdown;
+        if (parentDropdown) {
+            parentDropdown.show();
+        }
+
         if (shouldFocus) {
             nextTick(() => {
                 this.focusFirst();
@@ -165,6 +175,11 @@ export class Dropdown<
     hide(immediately: boolean = false) {
         if (this.get('disabled')) return;
         if (!this.get('value')) return;
+
+        const showedDropdown = this.showedDropdown;
+        if (showedDropdown) {
+            showedDropdown.hide(immediately);
+        }
 
         if (immediately) {
             this.set('value', false);
@@ -187,6 +202,7 @@ export class Dropdown<
     @bind
     private onEnter(e: MouseEvent) {
         this.show();
+        this.trigger(e.type as 'mouseenter', e);
     }
 
     @bind 
@@ -194,11 +210,13 @@ export class Dropdown<
         e.preventDefault();
         this.set('of', e);
         this.show();
+        this.trigger('contextmenu', e);
     }
 
     @bind 
     private onLeave(e: MouseEvent) {
         this.hide();
+        this.trigger(e.type as 'mouseleave', e);
     }
 
     private initEventCallbacks() {
