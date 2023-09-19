@@ -110,6 +110,11 @@ const i18n = {
 
     // search
     '请输入关键字': 'Please enter keywords',
+
+    // copy
+    '复制成功': 'Copy successfully!',
+    '复制失败': 'Copy failed!',
+    '复制': 'Copy',
 };
 
 export default i18n; 

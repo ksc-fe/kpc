@@ -2,18 +2,33 @@ import { Message } from '../message';
 import { useInstance } from 'intact';
 import type { Copy } from './';
 import { selectValue } from '../utils';
+import { useState } from '../../hooks/useState';
+import { _$ } from '../../i18n';
 
 export function useCopy() {
     const instance = useInstance() as Copy;
+    const success = useState(false);
+    let timer: number;
 
-    return () => {
-        const { text } = instance.get();
+    return {
+        startCopy: () => {
+            const { text } = instance.get();
 
-        if (clipboardCopy(text) || commandCopy(text)) {
-            Message.success({ content: '复制成功' });
-        } else {
-            Message.error({ content: '复制失败' });
-        }
+            if (clipboardCopy(text) || commandCopy(text)) {
+                Message.success({ content: _$('复制成功') });
+                success.set(true);
+                clearTimeout(timer);
+                timer = window.setTimeout(() => {
+                    success.set(false);
+                }, 1000);
+                instance.trigger('success', text);
+            } else {
+                Message.error({ content: _$('复制失败') });
+                success.set(false);
+                instance.trigger('error');
+            }
+        },
+        success,
     };
 }
 

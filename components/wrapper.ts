@@ -10,7 +10,15 @@ import { cx } from '@emotion/css';
 
 export class Wrapper extends Component {
     static template(this: Wrapper) {
-        const { children: vNode, ...props } = this.get();
+        const { children, ...props } = this.get();
+
+        if (process.env.NODE_ENV !== 'production') {
+            if (!children || (Array.isArray(children) && children.length !== 1)) {
+                throw new Error('Component must receive one children');
+            }
+        }
+
+        const vNode = Array.isArray(children) ? children[0] : children;
         const clonedVNode = isTextChildren(vNode)
             ? createVNode('span', null, vNode)
             : directClone(vNode as VNode);

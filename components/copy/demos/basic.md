@@ -8,19 +8,5 @@ order: 0
 ```vdt
 import {Copy} from 'kpc';
 
-<div>
-    <Copy text={this.get('content')} />
-</div>
-```
-
-```ts
-export default class extends Component {
-    static template = template;
-
-    static defaults() {
-        return {
-            content: '123'
-        }
-    }
-}
+<Copy text="Hello King Desgin!" />
 ```

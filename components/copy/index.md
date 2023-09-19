@@ -11,4 +11,10 @@ sidebar: doc
 | --- | --- | --- | --- |
 | text | 复制文案值 | `string` | `undefined` |
 
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| success | 复制成功时触发 | `(value: string) => void` |
+| error | 复制失败时触发 | `() => void` |
 

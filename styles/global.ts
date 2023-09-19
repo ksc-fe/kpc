@@ -50,13 +50,13 @@ injectGlobal`
     }
     .k-fade-enter-active,
     .k-fade-leave-active {
-        transition: opacity ${theme.transition.large};
+        transition: opacity ${theme.transition.large} !important;
     }
     .k-fade-leave-active:not(tr) {
         position: absolute;
     }
     .k-fade-move {
-        transition: transform ${theme.transition.large};
+        transition: transform ${theme.transition.large} !important;
     }
 
     .k-scale-enter-from,
