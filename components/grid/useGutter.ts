@@ -1,15 +1,16 @@
 import {useInstance} from 'intact';
 import {createContext} from '../context';
 import {hasDocumentAvailable, isObject, isNullOrUndefined} from 'intact-shared';
-import type * as EnquireJs from 'enquire.js';
+// import type * as EnquireJs from 'enquire.js';
+import enquire from 'enquire.js';
 import type {Row} from './row';
 import {useState} from '../../hooks/useState';
 import {Breakpoint, responsiveMap} from './constants';
 
-let enquire: typeof EnquireJs;
-if (hasDocumentAvailable) {
-    enquire = require('enquire.js');
-}
+// let enquire: typeof EnquireJs;
+// if (hasDocumentAvailable) {
+    // enquire = require('enquire.js');
+// }
 
 export const context = createContext<number>(0);
 
@@ -24,7 +25,7 @@ export function useGutter() {
         xs: false,
     });
 
-    if (enquire) {
+    if (hasDocumentAvailable) {
         for (const key in responsiveMap) {
             enquire.register(responsiveMap[key as Breakpoint], {
                 match() {
