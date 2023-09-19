@@ -40,7 +40,7 @@ const defaults = (): Partial<ProgressProps> => ({
     size: 'default',
     showOuterText: true,
     status: 'active',
-    strokeWidth: 4,
+    strokeWidth: 6,
 });
 
 export class Progress extends Component<ProgressProps> {

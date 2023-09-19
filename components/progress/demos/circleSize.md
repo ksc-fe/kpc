@@ -1,35 +1,40 @@
 ---
-title: 自定义百分比内容
-order: 5
+title: 圆形进度尺寸
+order: 6
 ---
 
-组件默认会展示当前百分比，我们可以给组件添加子元素展示任意内容
+通过`size`来指定尺寸：`default` `small` `mini`
 
 ```vdt
-import {Progress, Button, ButtonGroup} from 'kpc';
+import {Progress, ButtonGroup, Button} from 'kpc';
 
 <div>
-    <Progress percent={this.get('percent')} type="circle">
-        <div style="font-size: 14px; line-height: 20px;" v-if={this.get('percent') !== 100}>
-            正在上传<br />
-            {this.get('percent')}%
-        </div>
-        <div style="font-size: 14px; line-height: 20px; color: #4db500;" v-else>
-            上传完成
-        </div>
-    </Progress>
+    状态：
+    <ButtonGroup v-model="status" checkType="radio">
+        <Button value="active">active</Button>
+        <Button value="success">success</Button>
+        <Button value="error">error</Button>
+        <Button value="normal">normal</Button>
+        <Button value="warning">warning</Button>
+    </ButtonGroup>
+
+    进度：
     <ButtonGroup>
         <Button size="mini" icon ev-click={this.minus}>-</Button>
         <Button size="mini" icon ev-click={this.add}>+</Button>
     </ButtonGroup>
+    <br /> <br />
+
+    <Progress type="circle" percent={this.get('percent')} status={this.get('status')} />
+    <Progress type="circle" percent={this.get('percent')} status={this.get('status')} size="small" />
+    <Progress type="circle" percent={this.get('percent')} status={this.get('status')} size="mini" />
 </div>
 ```
 
 ```styl
 .k-progress
     display inline-block
-    vertical-align middle
-    margin-right 20px
+    margin 0 10px
 ```
 
 ```ts
@@ -44,7 +49,8 @@ export default class extends Component<Props> {
 
     static defaults() {
         return {
-            percent: 40
+            percent: 40,
+            status: 'active',
         };
     }
 

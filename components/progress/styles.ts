@@ -10,8 +10,7 @@ const sizes = ['small', 'mini'] as const;
 const progressBarAnimation = keyframes`
     from {
         opacity: 0.2;
-        width: 14px;
-        margin-left: 14px;
+        width: 0;
     }
     to {
         opacity: 0;
@@ -32,15 +31,18 @@ const defaults = {
     },
     bar: {
         fontColor: '#404040',
-        height: '16px',
+        height: '8px',
         textWidth: '40px',
         textMarginLeft: '16px',
         innerText: {
             fontSize: '12px',
             padding: `0 10px 0 3px`,
         },
+        outerText: {
+            height: '16px',
+        },
         small: {
-            height: '10px',
+            height: '6px',
             fontSize: '12px'
         },
         mini: {
@@ -51,13 +53,16 @@ const defaults = {
     circle: {
         width: '104px',
         fontSize: '16px',
+        iconFontSize: '50px',
         small: {
             width: '80px',
-            fontSize: '14px'
+            fontSize: '14px',
+            iconFontSize: '30px',
         },
         mini: {
-            width: '40px',
-            fontSize: '12px'
+            width: '24px',
+            fontSize: '10px',
+            iconFontSize: '14px',
         }
     }
 };
@@ -104,7 +109,7 @@ export function makeStyles() {
             }
             .k-progress-inner-text {
                 display: inline-block;
-                vertical-align: middle;
+                vertical-align: top;
                 color: #ffffff;
                 line-height: ${progress.bar.height};
                 width: 100%;
@@ -117,16 +122,10 @@ export function makeStyles() {
                 .k-progress-bg {
                     background: ${progress.stokeColor.success};
                 }
-                .k-progress-icon {
-                    color: ${progress.stokeColor.success};
-                }
             }
             &.k-error {
                 .k-progress-bg {
                     background: ${progress.stokeColor.error};
-                }
-                .k-progress-icon {
-                    color: ${progress.stokeColor.error};
                 }
             }
             &.k-warning {
@@ -162,6 +161,8 @@ export function makeStyles() {
             .k-progress-text {
                 margin-left: ${progress.bar.textMarginLeft};
                 width: ${progress.bar.textWidth};
+                line-height: ${progress.bar.outerText.height};
+                height: ${progress.bar.outerText.height};
             }
         };
 
@@ -172,43 +173,52 @@ export function makeStyles() {
             font-size: ${progress.circle.fontSize};
             .k-progress-canvas {
                 transform: rotate(-90deg);
-            };
+            }
             .k-progress-meter,
             .k-progress-value,
             .k-progress-animate {
                 fill: none;
-            };
+            }
             .k-progress-meter {
                 stroke: ${progress.stokeColor.color};
-            };
+            }
             .k-progress-value {
                 stroke: ${progress.stokeColor.normal};
                 stroke-linecap: round;
                 transition: ${progress.animation.transition};
-            };
+            }
             .k-progress-animate {
                 stroke: #fff;
                 stroke-linecap: round;
-            };
+            }
             .k-progress-text {
                 position: absolute;
                 top: 50%;
                 text-align: center;
                 width: 100%;
                 transform: translateY(-50%); 
-            };
+            }
+            .k-progress-icon {
+                font-size: ${progress.circle.iconFontSize};
+            }
 
             // status 
             &.k-success {
                 .k-progress-value {
                     stroke: ${progress.stokeColor.success};
                 }
-            };
+            }
             &.k-error {
                 .k-progress-value {
                     stroke: ${progress.stokeColor.error};
                 }
+            }
+            &.k-warning {
+                .k-progress-value {
+                    stroke: ${progress.stokeColor.warning};
+                }
             };
+
             ${sizes.map(size => {
                 const styles = progress.circle[size];
                 return css`
@@ -216,6 +226,9 @@ export function makeStyles() {
                         width: ${styles.width};
                         height: ${styles.width};
                         font-size: ${styles.fontSize};
+                        .k-progress-icon {
+                            font-size: ${styles.iconFontSize};
+                        }
                     }
                 `
             })}

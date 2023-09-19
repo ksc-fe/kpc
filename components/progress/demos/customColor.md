@@ -17,8 +17,8 @@ import {Progress, Button, ButtonGroup} from 'kpc';
     <Progress percent={this.get('percent')} color={this.get('colors')}/>
     <Progress percent={this.get('percent')} color={this.setColor}/>
     <ButtonGroup>
-        <Button size="mini" icon ev-click={this.add}>+</Button>
         <Button size="mini" icon ev-click={this.minus}>-</Button>
+        <Button size="mini" icon ev-click={this.add}>+</Button>
     </ButtonGroup>
 </div>
 ```
@@ -26,8 +26,6 @@ import {Progress, Button, ButtonGroup} from 'kpc';
 ```styl
 .k-progress
     margin 10px 0
-.k-btn
-    margin-right 5px
 ```
 
 ```ts

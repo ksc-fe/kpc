@@ -71,12 +71,41 @@ const classNameObj = {
     </svg>
     <div class="k-progress-text" v-if={children}>{children}</div>
     <div class="k-progress-text" v-else-if={showOuterText}>
-        <span v-if={status !== 'success' && status !== 'error'}>{percent}%</span>
-        <span v-else-if={status === 'success'}>
-            <Icon class="k-progress-icon k-icon-truth" />
-        </span>
-        <span v-else-if={status === 'error'}>
-            <Icon class="k-progress-icon k-icon-fault" />
-        </span>
+        { do {
+            let icon;
+            if (type !== 'circle') {
+                switch (status) {
+                    case 'success':
+                        icon = 'k-icon-success-fill';
+                        break;
+                    case 'error':
+                        icon = 'k-icon-error-fill';
+                        break;
+                    case 'warning':
+                        icon = 'k-icon-warning-fill';
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                switch (status) {
+                    case 'success':
+                        icon = 'k-icon-truth';
+                        break;
+                    case 'error':
+                    case 'warning':
+                        icon = 'k-icon-close';
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            if (icon) {
+                <Icon class={{"k-progress-icon": true, [icon]: true}} color={status === 'error' ? 'danger' : status} />
+            } else {
+                <span>{percent}%</span>
+            }
+        } } 
     </div>
 </div>
