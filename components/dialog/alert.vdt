@@ -19,12 +19,16 @@ const classNameObj = {
     <b:header />
     <b:body>
         <div class="k-dialog-tip-icon">
-            <Icon class={iconClassName || {
-                "ion-ios-checkmark": type === 'success',
-                "ion-ios-information": type === 'warning',
-                "ion-ios-close": type === 'error',
-                "ion-ios-help": type === 'confirm',
-            }} v-if={!hideIcon && !icon} />
+            <Icon 
+                v-if={!hideIcon && !icon}
+                class={iconClassName || {
+                    "k-icon-success-fill": type === 'success',
+                    "k-icon-warning-fill": type === 'warning',
+                    "k-icon-error-fill": type === 'error',
+                    "k-icon-question-fill": type === 'confirm',
+                }}
+                color={type === 'error' ? 'danger' : type === 'confirm' ? 'primary' : type}
+            />
             {icon}
         </div>
         <div class="k-alert-dialog-wrapper">
