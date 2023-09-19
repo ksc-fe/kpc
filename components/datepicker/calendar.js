@@ -203,7 +203,7 @@ export default class Calendar extends Intact {
 
     setRelativeMonth(month) {
         const date = this.getShowDate();
-        this.set('_showDate', date.add(month, 'month'));            
+        this.set('_showDate', date.add(month, 'month'));
     }
 
     setRelativeYear(year) {
@@ -233,7 +233,7 @@ export default class Calendar extends Intact {
         this.setYear(value);
         const type = this.get('type');
         if (type === 'year') {
-            this.trigger('hide'); 
+            this.trigger('hide');
         } else {
             this.set({
                 _isShowYearPicker: false,
@@ -464,10 +464,10 @@ export default class Calendar extends Intact {
         }
     }
 
-    _isDisabledDate(date) {
+    _isDisabledDate(date, opUnitType = 'date') {
         const {maxDate, minDate, disabledDate, type} = this.get();
-        return maxDate && isGT(date, maxDate) ||
-            minDate && isLT(date, minDate) ||
+        return maxDate && isGT(date, maxDate, opUnitType) ||
+            minDate && isLT(date, minDate, opUnitType) ||
             disabledDate && disabledDate.call(
                 this,
                 getDateString(date.toDate(), type), // for compatibility
@@ -477,12 +477,12 @@ export default class Calendar extends Intact {
 
     _isDisabledMonth(month) {
         const date = this.getShowDate().month(month);
-        return this._isDisabledDate(date);
+        return this._isDisabledDate(date, 'month');
     }
 
     _isDisabledYear(year) {
         const date = this.getShowDate().year(year);
-        return this._isDisabledDate(date);
+        return this._isDisabledDate(date, 'year');
     }
 
     _isDisabledTime(date) {

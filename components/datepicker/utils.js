@@ -8,7 +8,7 @@ export function getNowDate() {
     now.setMinutes(0);
     now.setSeconds(0);
     now.setMilliseconds(0);
-    
+
     return dayjs(now);
 }
 export function isEqual(a, b, type) {
@@ -18,16 +18,16 @@ export function isEqual(a, b, type) {
     return false;
 }
 
-export function isLT(a, b) {
+export function isLT(a, b, type = 'date') {
     if (a && b) {
-        return a.isBefore(b, 'date');
+        return a.isBefore(b, type);
     }
 
     return false;
 }
 
-export function isGT(a, b) {
-    return isLT(b, a);        
+export function isGT(a, b, type = 'date') {
+    return isLT(b, a, type);
 }
 
 export function getDateString(date, type) {
