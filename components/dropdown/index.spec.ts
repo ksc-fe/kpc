@@ -73,7 +73,8 @@ describe('Dropdown', () => {
         expect(dropdown.parentNode).to.exist;
     });
 
-    it('nested dropdown', async () => {
+    it('nested dropdown', async function() {
+        this.timeout(0);
         const [instance, element] = mount(NestedDemo);
 
         (element.firstElementChild as HTMLElement).click();
@@ -90,6 +91,20 @@ describe('Dropdown', () => {
         await wait(500);
         const hoverSubDropdown = getElement('.k-dropdown-menu')!;
         expect(hoverSubDropdown.innerHTML).to.matchSnapshot();
+
+        const [hoverItem1] = hoverSubDropdown.querySelectorAll<HTMLElement>('.k-dropdown-item');
+        dispatchEvent(hoverItem, 'mouseleave');
+        dispatchEvent(hoverItem1, 'mouseenter');
+        await wait(500);
+        const hoverSubDropdown1 = getElement('.k-dropdown-menu')!;
+        expect(hoverSubDropdown1.textContent).to.eql('item 1item 2');
+
+        const [hoverItem2] = hoverSubDropdown1.querySelectorAll<HTMLElement>('.k-dropdown-item');
+        dispatchEvent(hoverItem1, 'mouseleave');
+        dispatchEvent(hoverItem2, 'mouseenter');
+        await wait(1000);
+        const hoverSubDropdown2 = getElement('.k-dropdown-menu')!;
+        expect(hoverSubDropdown2 === hoverSubDropdown1).to.be.true;
     });
 
     it('hide on click document', async () => {

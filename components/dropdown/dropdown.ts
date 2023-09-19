@@ -184,6 +184,7 @@ export class Dropdown<
         if (immediately) {
             this.set('value', false);
         } else {
+            clearTimeout(this.timer);
             this.timer = window.setTimeout(() => {
                 this.set('value', false);
             }, 200);
