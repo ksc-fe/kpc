@@ -9,7 +9,7 @@ const {
     className, style, type, value, defaultValue, placeholder,
     clearable, disabled, size, rows, autoWidth, fluid,
     width, stackClearIcon, frozenOnInput, readonly, inline,
-    waveDisabled, resize,
+    waveDisabled, resize, flat,
     
     'ev-click': click,
     'ev-mounseenter': mouseenter,
@@ -38,6 +38,7 @@ const classNameObj = {
     'k-fluid': fluid,
     'k-stack-clear': stackClearIcon,
     'k-inline': inline,
+    'k-flat': flat,
     [`k-resize-${resize}`]: type === 'textarea' && isNotAutoRows,
     [`k-resize-none`]: type === 'textarea' && !isNotAutoRows,
     [className]: className,

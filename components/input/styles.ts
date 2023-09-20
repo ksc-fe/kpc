@@ -39,8 +39,13 @@ const defaults = deepDefaults(
         // search input
         search: {
             suffixMarginRight: '15px' 
-        }
+        },
 
+        // flat
+        flat: {
+            get color() { return theme.color.lightBlack },
+            get bgColor() { return theme.color.bg },
+        }
     },
     sizes.reduce((memo, size) => {
         const styles = theme[size];
@@ -207,6 +212,15 @@ export function makeStyles() {
         }
         .k-input-append  {
             border-left: none;
+        }
+
+        // flat
+        &.k-flat {
+            .k-input-inner {
+                border: none;
+                background: ${input.flat.bgColor};
+                color: ${input.flat.color};
+            }
         }
 
         // disabled
