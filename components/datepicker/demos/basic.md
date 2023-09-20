@@ -10,6 +10,7 @@ import {Datepicker} from 'kpc';
 
 <div>
     <Datepicker v-model="date" ref="__demo" />
+    <Datepicker v-model="date" flat />
     <Datepicker disabled value="2018-01-01"/>
 </div>
 ```

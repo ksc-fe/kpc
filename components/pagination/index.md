@@ -15,7 +15,7 @@ sidebar: doc
 | value | 当前页码 | `number` | `1` |
 | limit | 页面条数 | `number` | `10` |
 | limits | 页面条数 | `Array<number>` | `[10, 20, 50]` |
-| noBorder | 是否展示无边框样式，默认有边框 | `boolean` | `false` |
+| flat | 是否展示无边框样式，默认有边框 | `boolean` | `false` |
 | simple | 是否展示简洁样式 | `boolean` | `false` |
 | showTotal | 显示总条数 | `boolean` | `true` |
 | showGoto | 显示快速跳转框 | `boolean` | `false` |

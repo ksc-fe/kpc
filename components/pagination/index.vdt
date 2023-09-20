@@ -7,7 +7,7 @@ import {_$} from '../../i18n';
 import {makeStyles} from './styles';
 
 const {
-    total, size, noBorder, simple, 
+    total, size, flat, simple, 
     className, showTotal, showGoto,
     counts, value, limit, limits,
     showLimits, disableBtn, disablePage
@@ -19,15 +19,12 @@ const classNameObj = {
     'k-pagination': true,
     [className]: className,
     [`k-${size}`]: size !== 'default',
-    ['k-no-border']: noBorder,
+    ['k-flat']: flat,
     ['k-simple']: simple,
     [makeStyles()]: true,
 };
 
-let type = 'default';
-if (noBorder || simple) {
-    type = 'none';
-}
+const type = flat ? 'flat' : simple ? 'none' : 'default';
 
 const totalPages = (Math.ceil(total / limit)) || 0;
 
@@ -135,7 +132,7 @@ let nextPage = value + 1;
 
     <template v-if={!simple}>
         <div class="k-pagination-limits" v-if={showLimits}>
-            <Select v-model="limit" size={size}>
+            <Select v-model="limit" size={size} flat={flat}>
                 <Option v-for={limits} value={$value}>
                     {_$('{n} 条 / 页', {n: $value})}
                 </Option>
@@ -143,8 +140,8 @@ let nextPage = value + 1;
         </div>
 
         <div class="k-pagination-goto" v-if={showGoto}>
-            <span class="c-middle">{_$('跳至')}</span>
-            <Input size={size} value={value} ev-change={this.goto}/>
+            <span class="c-middle">{_$('前往')}</span>
+            <Input size={size} value={value} ev-change={this.goto} flat={flat} />
             <span class="c-middle">{_$('页')}</span>
         </div>       
     </template>

@@ -34,6 +34,7 @@ sidebar: doc
 | filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, data: TreeDataItem<K>) => boolean` | `undefined` |
 | show | 是否展示菜单项 | `boolean` | `false` |
 | position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
+| flat | 是否展示扁平样式 | `boolean` | `false` |
 
 ```ts
 import {Key, Children} from 'intact';

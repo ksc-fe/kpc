@@ -124,8 +124,8 @@ export function makeStyles() {
             `
         })}
 
-        // noBorder
-        &.k-no-border {
+        // flat 
+        &.k-flat {
             .k-select {
                 &,
                 &:hover,

@@ -12,9 +12,9 @@ const defaults = {
     borderRadius: '2px',
 
     thumb: {
-        height: '16px',
-        width: '16px',
-        get border() { return `4px solid #fff` },
+        height: '12px',
+        width: '12px',
+        get border() { return `3px solid #fff` },
         borderRadius: '50%',
         get bgColor() { return slider.barColor },
         hoverTransform: 'scale(1.25)',

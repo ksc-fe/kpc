@@ -94,6 +94,11 @@ const defaults = deepDefaults(
                 btnGap: `8px`,
             },
         },
+
+        // flat
+        flat: {
+            get color() { return theme.color.lightBlack },
+        },
     },
     sizes.reduce((memo, size) => {
         memo[size] = {
@@ -142,6 +147,11 @@ export default function makeStyles() {
         .k-select-placeholder {
             color: ${select.placeholderColor};
             user-select: none;
+        }
+
+        // add .k-input to increase priority
+        .k-input .k-input-inner {
+            background: transparent;
         }
 
         &.k-fluid {
@@ -250,6 +260,7 @@ export default function makeStyles() {
         &.k-flat {
             border: none;
             background: ${theme.color.bg};
+            color: ${defaults.flat.color};
             .k-select-tag {
                 background: ${select.tag.disabledBgColor};
             }

@@ -33,6 +33,7 @@ sidebar: doc
 | autoDisableArrow | 是否在没有更多可选项时，给箭头一个`disabled`状态来提示用户 | `boolean` | `false` |
 | show | 是否展示菜单项 | `boolean` | `false` |
 | position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
+| flat | 是否展示扁平样式 | `boolean` | `false` |
 
 ```ts
 type Position = {

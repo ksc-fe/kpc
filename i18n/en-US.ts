@@ -81,7 +81,7 @@ const i18n = {
 
     // pagination
     '{n} 条 / 页': '{n} / page',
-    '跳至': 'Goto',
+    '前往': 'Goto',
     '页': '',
     '共 {n} 条': 'Total {n}',
 

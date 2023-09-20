@@ -30,6 +30,7 @@ sidebar: doc
 | disabledDate | 该属性值是一个函数，用于定义那些日期被禁止选择，函数参数为日期字符串，返回`true`则表示禁用该日期 | `(v: Dayjs) => boolean` | `undefined` |
 | step | 固定时间点的步长 | `string` | `undefined` |
 | position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
+| flat | 是否展示扁平样式 | `boolean` | `false` |
 
 ```ts
 import {Dayjs} from 'dayjs';
