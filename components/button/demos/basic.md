@@ -17,6 +17,7 @@ import {Button} from 'kpc';
     <Button type="success">success</Button>
     <Button type="none">none</Button>
     <Button type="link">link</Button>
+    <Button type="flat">flat</Button>
 </div>
 ```
 

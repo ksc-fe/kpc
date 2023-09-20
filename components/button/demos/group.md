@@ -21,6 +21,11 @@ import {Button, ButtonGroup} from 'kpc';
         <Button type="danger">重启</Button>
     </ButtonGroup>
     <ButtonGroup>
+        <Button type="flat">开机</Button>
+        <Button type="flat">关机</Button>
+        <Button type="flat">重启</Button>
+    </ButtonGroup>
+    <ButtonGroup>
         <Button type="primary">
             <i class="k-icon ion-ios-arrow-left"></i>上一页
         </Button>
@@ -42,6 +47,12 @@ import {Button, ButtonGroup} from 'kpc';
         <Button value="shanghai" ref="__radioShanghai">上海</Button>
         <Button value="guangzhou">广州</Button>
         <Button value="shenzhen">深圳</Button>
+    </ButtonGroup>
+    <ButtonGroup checkType="radio" v-model="city">
+        <Button type="flat" value="beijing">北京</Button>
+        <Button type="flat" value="shanghai" ref="__radioShanghai">上海</Button>
+        <Button type="flat" value="guangzhou">广州</Button>
+        <Button type="flat" value="shenzhen">深圳</Button>
     </ButtonGroup>
     <p>多选按钮组</p>
     <ButtonGroup checkType="checkbox" v-model="cities">

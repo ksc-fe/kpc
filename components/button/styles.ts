@@ -245,7 +245,8 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             }
 
             &.k-none,
-            &.k-link {
+            &.k-link,
+            &.k-flat {
                 background: transparent;
                 &, &:hover {
                     border: none;
@@ -255,6 +256,10 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 }
             }
             &.k-none:hover {
+                background: ${button.none.hoverBgColor};
+            }
+
+            &.k-flat {
                 background: ${button.none.hoverBgColor};
             }
 

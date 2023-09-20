@@ -21,7 +21,7 @@ interface ButtonHTMLAttributes {
 }
 
 export interface ButtonProps extends ButtonHTMLAttributes {
-    type?: Colors | 'none' | 'secondary' | 'link'
+    type?: Colors | 'none' | 'secondary' | 'link' | 'flat'
     size?: Sizes,
     icon?: boolean
     circle?: boolean
@@ -42,7 +42,7 @@ export interface ButtonEvents {
 }
 
 const typeDefs: Required<TypeDefs<Omit<ButtonProps, keyof ButtonHTMLAttributes>>> = {
-    type: ['default', 'primary', 'warning', 'danger', 'success', 'none', 'secondary', 'link'],
+    type: ['default', 'primary', 'warning', 'danger', 'success', 'none', 'secondary', 'link', 'flat'],
     size: ['large', 'default', 'small', 'mini'],
     icon: Boolean,
     circle: Boolean,
