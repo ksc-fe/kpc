@@ -15,7 +15,7 @@ const {
     clearable, filterable,
     className, container,
     inline, style, width, show,
-    position,
+    position, flat,
 } = this.get();
 
 const classNameObj = {
@@ -24,6 +24,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
     'k-fluid': fluid,
     'k-inline': inline,
+    'k-flat': flat,
     [className]: className,
     [$props.className]: $props.className,
     [makeStyles()]: true,

@@ -191,17 +191,6 @@ export default function makeStyles() {
             border: ${select.focusBorder};
         }
 
-        // disabled
-        &.k-disabled {
-            color: ${select.disabled.color};
-            cursor: not-allowed;
-            background: ${select.disabled.bgColor};
-            border-color: ${select.disabled.borderColor};
-            .k-select-tag {
-                background: ${select.tag.disabledBgColor};
-            }
-        }
-
         // multiple
         .k-select-values {
             display: inline-block;
@@ -254,6 +243,26 @@ export default function makeStyles() {
             .k-select-placeholder,
             .k-select-value {
                 line-height: inherit;
+            }
+        }
+
+        // flat
+        &.k-flat {
+            border: none;
+            background: ${theme.color.bg};
+            .k-select-tag {
+                background: ${select.tag.disabledBgColor};
+            }
+        }
+
+        // disabled (should place at last)
+        &.k-disabled {
+            color: ${select.disabled.color};
+            cursor: not-allowed;
+            background: ${select.disabled.bgColor};
+            border-color: ${select.disabled.borderColor};
+            .k-select-tag {
+                background: ${select.tag.disabledBgColor};
             }
         }
     `;
