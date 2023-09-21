@@ -32,24 +32,27 @@ const defaults = deepDefaults(
         large: {
             padding: `0px 8px`,
             height: '24px',
+            get fontSize() { return theme.large.fontSize },
             close: {
-                fontSize: '20px',
-                gap: '12px',
+                fontSize: '22px',
+                gap: '6px',
             }
         },
         small: {
             padding: `0 4px`,
             height: '16px',
+            get fontSize() { return theme.small.fontSize },
             close: {
-                fontSize: '12px',
+                fontSize: '18px',
                 gap: '4px'
             }
         },
         mini: {
             padding: `0 2px`,
             height: '14px',
+            get fontSize() { return theme.mini.fontSize },
             close: {
-                fontSize: '12px',
+                fontSize: '16px',
                 gap: '2px'
             }
         },
@@ -115,6 +118,7 @@ export function makeStyles() {
                 &.k-${s} {
                     padding: ${styles.padding};
                     height: ${styles.height};
+                    font-size: ${styles.fontSize};
                     .k-tag-close {
                         font-size: ${styles.close.fontSize};
                         margin-left: ${styles.close.gap};

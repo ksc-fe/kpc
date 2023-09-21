@@ -89,7 +89,7 @@ const {onFocusout, triggerRef} = this.focusout;
                             </div>
                             <div v-else key="values">
                                 <b:values params={[value, label]}>
-                                    <Tags v-if={label && label.length} nowrap={nowrap}>
+                                    <Tags v-if={label && label.length} nowrap={nowrap} size={size}>
                                         <Tag
                                             v-for={label}
                                             v-for-value="$label"
@@ -103,6 +103,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                             closable
                                             ev-close={this.delete.bind(this, $key)}
                                             disabled={disabled}
+                                            size={size}
                                         >
                                             <template>
                                                 <b:value params={[value[$key], $label]}>

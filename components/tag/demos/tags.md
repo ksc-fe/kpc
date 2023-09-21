@@ -27,7 +27,7 @@ import {Tags, Tag, Split, Tooltip} from 'kpc';
                 closable
                 ev-close={(e) => this.remove('tags2', $value, e)}
             >{$value}</Tag>
-            <Tooltip content="test">
+            <Tooltip content="test" key="test">
                  <Tag>with tooltip</Tag>
             </Tooltip>
         </Tags>

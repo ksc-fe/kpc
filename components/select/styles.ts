@@ -7,8 +7,6 @@ type SizeStyles = {
     padding?: string,
     height: string,
     fontSize: string,
-    multipleGap: string,
-    multipleMargin: string,
 }
 
 const defaults = deepDefaults(
@@ -105,8 +103,6 @@ const defaults = deepDefaults(
             get padding() { return `0 ${theme[size].padding}` },
             get height() { return theme[size].height },
             get fontSize() { return theme[size].fontSize },
-            multipleGap: `1px`,
-            multipleMargin: `0 2px 1px 0`,
         }
 
         return memo;
@@ -203,7 +199,7 @@ export default function makeStyles() {
 
         // multiple
         .k-tags {
-            padding: 5px 0;
+            padding: 3px 0;
         }
         .k-tag {
             word-break: break-word;
@@ -243,7 +239,7 @@ export default function makeStyles() {
             border: none;
             background: ${theme.color.bg};
             color: ${defaults.flat.color};
-            .k-select-tag {
+            .k-tag {
                 background: ${select.tag.disabledBgColor};
             }
         }
@@ -254,7 +250,7 @@ export default function makeStyles() {
             cursor: not-allowed;
             background: ${select.disabled.bgColor};
             border-color: ${select.disabled.borderColor};
-            .k-select-tag {
+            .k-tag {
                 background: ${select.tag.disabledBgColor};
             }
         }

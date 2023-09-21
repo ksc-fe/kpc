@@ -45,6 +45,44 @@ import {Select, Option} from 'kpc';
         <Option value="Saturday">星期六</Option>
         <Option value="Sunday">星期天</Option>
     </Select>
+    <br /><br />
+    <Select v-model="days" size="large" multiple>
+        <Option value="Monday">星期一</Option>
+        <Option value="Tuesday">星期二</Option>
+        <Option value="Wednesday">星期三</Option>
+        <Option value="Thursday">星期四</Option>
+        <Option value="Friday">星期五</Option>
+        <Option value="Saturday">星期六</Option>
+        <Option value="Sunday">星期天</Option>
+    </Select>
+    <Select v-model="days" multiple>
+        <Option value="Monday">星期一</Option>
+        <Option value="Tuesday">星期二</Option>
+        <Option value="Wednesday">星期三</Option>
+        <Option value="Thursday">星期四</Option>
+        <Option value="Friday">星期五</Option>
+        <Option value="Saturday">星期六</Option>
+        <Option value="Sunday">星期天</Option>
+    </Select>
+    <Select v-model="days" size="small" multiple>
+        <Option value="Monday">星期一</Option>
+        <Option value="Tuesday">星期二</Option>
+        <Option value="Wednesday">星期三</Option>
+        <Option value="Thursday">星期四</Option>
+        <Option value="Friday">星期五</Option>
+        <Option value="Saturday">星期六</Option>
+        <Option value="Sunday">星期天</Option>
+    </Select>
+    <Select v-model="days" size="mini" multiple>
+        <Option value="Monday">星期一</Option>
+        <Option value="Tuesday">星期二</Option>
+        <Option value="Wednesday">星期三</Option>
+        <Option value="Thursday">星期四</Option>
+        <Option value="Friday">星期五</Option>
+        <Option value="Saturday">星期六</Option>
+        <Option value="Sunday">星期天</Option>
+    </Select>
+
 </div>
 ```
 
@@ -56,13 +94,15 @@ import {Select, Option} from 'kpc';
 ```ts
 interface Props {
    day?: string | null
+   days?: string[]
 }
 
 export default class extends Component {
     static template = template;
     static defaults() {
         return {
-            day: null
+            day: null,
+            days: [],
         } as Props;
     }
 }
