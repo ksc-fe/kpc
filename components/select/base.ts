@@ -19,6 +19,7 @@ import {Container} from '../portal';
 import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
 import {isNullOrUndefined} from 'intact-shared';
+import { useNowrap } from './useNowrap';
 
 export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
     value?: Multipe extends true ? V[] : Attach
@@ -38,6 +39,7 @@ export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = 
     show?: boolean
     position?: DropdownProps['position']
     flat?: boolean
+    nowrap?: boolean
 }
 
 export interface BaseSelectEvents {
@@ -72,6 +74,7 @@ const typeDefs: Required<TypeDefs<BaseSelectProps<any>>> = {
     show: Boolean,
     position: Dropdown.typeDefs.position,
     flat: Boolean,
+    nowrap: Boolean,
 };
 
 const defaults = (): Partial<BaseSelectProps<any>> => ({
@@ -101,6 +104,7 @@ export abstract class BaseSelect<
     public dropdownRef = createRef<Dropdown>(); 
     public input = useInput(this.resetKeywords);
     private focusout = useFocusout();
+    private nowrap = useNowrap();
 
     init() {
         provide(SELECT, this);

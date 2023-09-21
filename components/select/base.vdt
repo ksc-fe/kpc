@@ -7,6 +7,7 @@ import {Dropdown} from '../dropdown';
 import {getRestProps, addStyle} from '../utils';
 import {Wave} from '../wave';
 import {context as ErrorContext} from '../form/useError';
+import {Tag} from '../tag';
 
 const {
     value, multiple,
@@ -15,7 +16,7 @@ const {
     clearable, filterable,
     className, container,
     inline, style, width, show,
-    position, flat,
+    position, flat, nowrap,
 } = this.get();
 
 const classNameObj = {
@@ -25,6 +26,7 @@ const classNameObj = {
     'k-fluid': fluid,
     'k-inline': inline,
     'k-flat': flat,
+    'k-nowrap': nowrap,
     [className]: className,
     [$props.className]: $props.className,
     [makeStyles()]: true,
@@ -35,6 +37,7 @@ const label = this.getLabel();
 const hasValue = this.hasValue();
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 const {onFocusout, triggerRef} = this.focusout;
+const {containerRef} = this.nowrap;
 
 <ErrorContext.Consumer defaultValue={false}>
     {isInvalid => {
@@ -58,7 +61,7 @@ const {onFocusout, triggerRef} = this.focusout;
                     <div class="k-select-prefix" v-if={$blocks.prefix}>
                         <b:prefix />
                     </div>
-                    <div class="k-select-main">
+                    <div class="k-select-main" ref={containerRef}>
                         <input type="hidden" value={value} name={name} key="hidden-input" />
                         {/* TODO: Need mode on Transition */}
                         <TransitionGroup name="k-fade" appear={false}>
@@ -95,9 +98,10 @@ const {onFocusout, triggerRef} = this.focusout;
                                 <TransitionGroup name="k-fade">
                                     <template>
                                         <b:values params={[value, label]}>
-                                            <div class="k-select-tag"
+                                            <Tag
                                                 v-for={label}
                                                 v-for-value="$label"
+                                                size="small"
                                                 key={
                                                     isStringOrNumber($label) ? 
                                                         $label :
@@ -105,18 +109,15 @@ const {onFocusout, triggerRef} = this.focusout;
                                                             value[$key] :
                                                             undefined
                                                 }
+                                                closable
+                                                ev-close={this.delete.bind(this, $key)}
                                             >
                                                 <span class="k-select-text">
                                                     <b:value params={[value[$key], $label]}>
                                                         {$label}
                                                     </b:value>
                                                 </span>
-                                                <Icon class="k-icon-close k-select-close"
-                                                    ev-click={this.delete.bind(this, $key)}
-                                                    hoverable={!disabled}
-                                                    disabled={disabled}
-                                                />
-                                            </div>
+                                            </Tag>
                                         </b:values>
                                     </template>
                                 </TransitionGroup>

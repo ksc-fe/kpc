@@ -19,7 +19,7 @@ export interface TagEvents {
 
 export interface TagBlocks { }
 
-const typeDefs: Required<TypeDefs<TagProps>> = {
+export const typeDefs: Required<TypeDefs<TagProps>> = {
     type: ['default', 'primary', 'danger', 'success', 'warning'],
     closable: Boolean,
     closed: Boolean,

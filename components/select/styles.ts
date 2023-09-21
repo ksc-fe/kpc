@@ -276,6 +276,15 @@ export default function makeStyles() {
                 background: ${select.tag.disabledBgColor};
             }
         }
+
+        // nowrap
+        &.k-nowrap {
+            .k-select-text {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overlay: ellipsis;
+            }
+        }
     `;
 }
 

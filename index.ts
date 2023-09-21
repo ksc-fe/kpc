@@ -24,6 +24,7 @@ export * from './components/cascader';
 export * from './components/checkbox';
 export * from './components/collapse';
 export * from './components/colorpicker';
+export * from './components/copy';
 export * from './components/datepicker';
 export * from './components/dialog';
 export * from './components/drawer';
@@ -61,7 +62,6 @@ export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
 export * from './components/wave';
-export * from './components/copy';
 
 export const version = '3.0.0-beta.0';
 

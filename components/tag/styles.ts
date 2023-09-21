@@ -57,6 +57,9 @@ const defaults = deepDefaults(
             get bgColor() { return theme.color.bg },
         },
 
+        tags: {
+            gap: '8px',
+        }
     },
     types.reduce((memo, type) => {
         if (type === 'disabled') return memo;
@@ -72,6 +75,8 @@ let tag: typeof defaults;
 setDefault(() => {
     tag = deepDefaults(theme, {tag: defaults}).tag;
 });
+
+export { tag };
 
 export function makeStyles() {
     return css`
@@ -121,6 +126,21 @@ export function makeStyles() {
         // border
         &.k-dashed {
             border-style: dashed;
+        }
+    `;
+}
+
+export function makeTagsStyles() {
+    return css`
+        display: flex;
+        flex-wrap: wrap;
+        gap: ${defaults.tags.gap};
+        &.k-nowrap {
+            flex-wrap: nowrap;
+        }
+        .k-tags-more {
+            cursor: default;
+            font-family: monospace;
         }
     `;
 }

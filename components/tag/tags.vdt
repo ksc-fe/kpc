@@ -1,0 +1,31 @@
+import { TransitionGroup } from 'intact';
+import { getRestProps } from '../utils';
+import { makeTagsStyles } from './styles';
+import { Tag } from './';
+import { Tooltip } from '../tooltip';
+import { Tags } from './tags';
+
+const { className, nowrap, size, border } = this.get();
+
+const classNameObj = {
+    'k-tags': true,
+    'k-nowrap': nowrap,
+    [makeTagsStyles()]: true,
+    [className]: className,
+}
+
+const { containerRef, children, hiddenChildren } = this.nowrap;
+
+<div class={classNameObj} {...getRestProps(this)} ref={containerRef}>
+    <TransitionGroup name="k-fade">
+        {children.value}
+    </TransitionGroup>
+    <Tooltip v-if={hiddenChildren.value.length} hoverable theme="light" class="k-tags-more-tooltip">
+        <Tag key="$more" class="k-tags-more" size={size} border={border}>
+            +{hiddenChildren.value.length}
+        </Tag>
+        <b:content>
+            <Tags>{hiddenChildren.value}</Tags>
+        </b:content>
+    </Tooltip>
+</div>

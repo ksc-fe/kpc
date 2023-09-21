@@ -1,5 +1,6 @@
 import {makeStyles} from './style';
 import {kls} from './style';
+import { MemoBlock } from './memo';
 
 const {mode} = this.get();
 const {firstSize, lastSize} = this.size;
@@ -20,7 +21,11 @@ const stylePropName = mode === 'horizontal' ? 'width' : 'height';
         ref={firstRef}
         style={{[stylePropName]: firstSize.value}}
     >
-        <b:first />
+        <MemoBlock block={$blocks.first}>
+            <template>
+                <b:first />
+            </template>
+        </MemoBlock>
     </div>
     <div class={kls('line-wrapper')} ev-mousedown={start}>
         <b:drag>
@@ -33,6 +38,10 @@ const stylePropName = mode === 'horizontal' ? 'width' : 'height';
         style={{[stylePropName]: lastSize.value}}
         ref={lastRef}
     >
-        <b:last />
+        <MemoBlock block={$blocks.last}>
+            <template>
+                <b:last />
+            </template>
+        </MemoBlock>
     </div>
 </div>

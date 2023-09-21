@@ -9,7 +9,7 @@ const defaults = {
 
     bgColor: '#F0F2F4',
     get barColor() { return theme.color.primary },
-    borderRadius: '2px',
+    get borderRadius() { return theme.borderRadius },
 
     thumb: {
         height: '12px',

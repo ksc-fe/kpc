@@ -1,5 +1,7 @@
 import {TagProps, TagEvents, TagBlocks, Tag as BaseTag} from './base';
 
+export * from './tags';
+
 export type {TagProps, TagEvents, TagBlocks}
 
 // export declare class _Tag extends BaseTag<
