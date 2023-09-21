@@ -202,30 +202,12 @@ export default function makeStyles() {
         }
 
         // multiple
-        .k-select-values {
-            display: inline-block;
-            margin-right: -${getRight(select.tag.margin)};
-            width: 100%;
-            &.k-with-values {
-                margin: 0;
-            }
+        .k-tags {
+            padding: 5px 0;
         }
-        .k-select-tag {
-            display: inline-flex;
-            align-items: center;
-            padding: ${select.tag.padding};
-            background: ${select.tag.bgColor};
-            border-radius: ${select.tag.borderRadius};
-            margin: ${select.tag.margin};
-            max-width: calc(100% - ${getRight(select.tag.margin)} - 1px);
-        }
-        .k-select-text {
-            max-width: calc(100% - 18px);
+        .k-tag {
             word-break: break-word;
-        }
-        .k-select-close {
-            margin-left: ${select.tag.delete.gap};
-            font-size: ${select.tag.delete.fontSize};
+            height: auto;
         }
 
         // size

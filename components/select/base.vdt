@@ -7,7 +7,7 @@ import {Dropdown} from '../dropdown';
 import {getRestProps, addStyle} from '../utils';
 import {Wave} from '../wave';
 import {context as ErrorContext} from '../form/useError';
-import {Tag} from '../tag';
+import {Tags, Tag} from '../tag';
 
 const {
     value, multiple,
@@ -37,7 +37,6 @@ const label = this.getLabel();
 const hasValue = this.hasValue();
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 const {onFocusout, triggerRef} = this.focusout;
-const {containerRef} = this.nowrap;
 
 <ErrorContext.Consumer defaultValue={false}>
     {isInvalid => {
@@ -61,7 +60,7 @@ const {containerRef} = this.nowrap;
                     <div class="k-select-prefix" v-if={$blocks.prefix}>
                         <b:prefix />
                     </div>
-                    <div class="k-select-main" ref={containerRef}>
+                    <div class="k-select-main">
                         <input type="hidden" value={value} name={name} key="hidden-input" />
                         {/* TODO: Need mode on Transition */}
                         <TransitionGroup name="k-fade" appear={false}>
@@ -88,39 +87,31 @@ const {containerRef} = this.nowrap;
                                     {label}
                                 </b:value>
                             </div>
-                            <div v-else
-                                class={{
-                                    "k-select-values": true,
-                                    "k-with-values": $blocks.values,
-                                }}
-                                key="values"
-                            >
-                                <TransitionGroup name="k-fade">
-                                    <template>
-                                        <b:values params={[value, label]}>
-                                            <Tag
-                                                v-for={label}
-                                                v-for-value="$label"
-                                                size="small"
-                                                key={
-                                                    isStringOrNumber($label) ? 
-                                                        $label :
-                                                        isStringOrNumber(value[$key]) ?
-                                                            value[$key] :
-                                                            undefined
-                                                }
-                                                closable
-                                                ev-close={this.delete.bind(this, $key)}
-                                            >
-                                                <span class="k-select-text">
-                                                    <b:value params={[value[$key], $label]}>
-                                                        {$label}
-                                                    </b:value>
-                                                </span>
-                                            </Tag>
-                                        </b:values>
-                                    </template>
-                                </TransitionGroup>
+                            <div v-else key="values">
+                                <b:values params={[value, label]}>
+                                    <Tags v-if={label && label.length} nowrap={nowrap}>
+                                        <Tag
+                                            v-for={label}
+                                            v-for-value="$label"
+                                            key={
+                                                isStringOrNumber($label) ? 
+                                                    $label :
+                                                    isStringOrNumber(value[$key]) ?
+                                                        value[$key] :
+                                                        undefined
+                                            }
+                                            closable
+                                            ev-close={this.delete.bind(this, $key)}
+                                            disabled={disabled}
+                                        >
+                                            <template>
+                                                <b:value params={[value[$key], $label]}>
+                                                    {$label}
+                                                </b:value>
+                                            </template>
+                                        </Tag>
+                                    </Tags>
+                                </b:values>
                                 <Input v-if={filterable}
                                     class="k-select-input"
                                     value={keywords}

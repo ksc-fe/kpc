@@ -9,7 +9,6 @@ import {
 import template from './base.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {SELECT} from './constants';
-import type {Input} from '../input';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {bind} from '../utils';
 import {Dropdown, DropdownProps} from '../dropdown';
@@ -19,7 +18,6 @@ import {Container} from '../portal';
 import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
 import {isNullOrUndefined} from 'intact-shared';
-import { useNowrap } from './useNowrap';
 
 export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
     value?: Multipe extends true ? V[] : Attach
@@ -104,7 +102,6 @@ export abstract class BaseSelect<
     public dropdownRef = createRef<Dropdown>(); 
     public input = useInput(this.resetKeywords);
     private focusout = useFocusout();
-    private nowrap = useNowrap();
 
     init() {
         provide(SELECT, this);
