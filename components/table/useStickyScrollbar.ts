@@ -5,7 +5,7 @@ import type {Table} from './';
 import {isStringOrNumber, isNull} from 'intact-shared';
 import {debounce} from '../utils';
 import type {useScroll} from './useScroll';
-import {useResizeObserver} from './useResizeObserver';
+import {useResizeObserver} from '../../hooks/useResizeObserver';
 
 export function useStickyScrollbar(
     elementRef: RefObject<HTMLElement>,
@@ -23,7 +23,7 @@ export function useStickyScrollbar(
         stick.set(v === true ? 0 : isStringOrNumber(v) ? +v : null);
     });
 
-    useResizeObserver(scrollRef, setTableActualWidth);
+    useResizeObserver(scrollRef, setTableActualWidth, true);
 
     onMounted(() => {
         setTableActualWidth();

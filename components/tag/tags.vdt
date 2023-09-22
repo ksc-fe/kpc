@@ -21,7 +21,7 @@ const { containerRef, children, hiddenChildren } = this.nowrap;
         {children.value}
     </TransitionGroup>
     <template v-else>{children.value}</template>
-    <Tooltip v-if={hiddenChildren.value.length} hoverable theme="light" class="k-tags-more-tooltip">
+    <Tooltip v-if={hiddenChildren.value.length} hoverable theme="light" class="k-tags-tooltip">
         <Tag key="$more" class="k-tags-more" size={size} border={border}>
             +{hiddenChildren.value.length}
         </Tag>

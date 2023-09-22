@@ -140,6 +140,7 @@ export function makeTagsStyles() {
         flex-wrap: wrap;
         gap: ${defaults.tags.gap};
         &.k-nowrap {
+            overflow: hidden;
             flex-wrap: nowrap;
         }
         .k-tag {

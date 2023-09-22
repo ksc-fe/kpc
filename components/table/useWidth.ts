@@ -3,7 +3,7 @@ import type {Table, TableRowKey} from './table';
 import type {TableColumn} from './column';
 import {useState} from '../../hooks/useState';
 import {scrollbarWidth} from '../position';
-import {useResizeObserver} from './useResizeObserver';
+import {useResizeObserver} from '../../hooks/useResizeObserver';
 
 const hasLocalStorage = typeof localStorage !== 'undefined';
 
@@ -19,7 +19,7 @@ export function useWidth(
     initWidthFromStore();
 
     onMounted(() => checkTableWidth(true));
-    useResizeObserver(scrollRef, () => checkTableWidth(false));
+    useResizeObserver(scrollRef, () => checkTableWidth(false), true);
 
     // if exist widthStoreKey, we get the default width from localStorage
     function initWidthFromStore() {

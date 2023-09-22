@@ -1,4 +1,12 @@
-import { NonNullableRefObject, VNodeComponentClass, VNode, useInstance, createRef, findDomFromVNode, onBeforeMount } from 'intact';
+import {
+    NonNullableRefObject,
+    VNodeComponentClass,
+    VNode,
+    useInstance,
+    createRef,
+    findDomFromVNode,
+    onBeforeMount,
+} from 'intact';
 import type { Tags } from './tags';
 import { eachChildren } from '../utils';
 import { isStringOrNumber } from 'intact-shared';
@@ -6,7 +14,7 @@ import { useState } from '../../hooks/useState';
 import { tag as tagStyles } from './styles';
 import { getLeft, getRight } from '../../styles/utils';
 import { useReceive } from '../../hooks/useReceive';
-import { useResizeObserver } from '../table/useResizeObserver';
+import { useResizeObserver } from '../../hooks/useResizeObserver';
 
 export function useNowrap() {
     const instance = useInstance() as Tags;
@@ -52,8 +60,16 @@ export function useNowrap() {
             vNodes.push(..._originVNodes);
         }
 
-        hiddenChildren.set(_originVNodes.slice(vNodes.length))
-        children.set(vNodes);
+        /**
+         * refresh function will be called in ResizeObserver,
+         * state changed will cause container's width to change,
+         * and a error will throw (ResizeObserver loop completed with undelivered notifications)
+         * so we call setState in requestAnimationFrame
+         */
+        requestAnimationFrame(() => {
+            hiddenChildren.set(_originVNodes.slice(vNodes.length))
+            children.set(vNodes);
+        });
     }
 
     return { containerRef, children, hiddenChildren }
