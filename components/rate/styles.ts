@@ -52,6 +52,7 @@ export function makeStyles() {
         }
         .k-icon {
             font-size: ${rate.iconFontSize};
+            color: inherit;
         }
             
         // disabled
