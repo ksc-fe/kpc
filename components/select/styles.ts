@@ -257,6 +257,13 @@ export default function makeStyles() {
 
         // nowrap
         &.k-nowrap {
+            .k-select-values {
+                display: flex;
+                align-items: center;
+            }
+            .k-tags {
+                flex: 1;
+            }
             .k-select-text {
                 white-space: nowrap;
                 overflow: hidden;

@@ -20,7 +20,7 @@ import {Select, Option} from 'kpc';
     </Select>
     Day: {this.get('day')}
     <br /><br />
-    <Select v-model="days" filterable multiple creatable style="margin-right: 10px">
+    <Select v-model="days" filterable multiple creatable style="margin-right: 10px" nowrap>
         <Option value="Monday">星期一</Option>
         <Option value="Tuesday">星期二</Option>
         <Option value="Wednesday">星期三</Option>

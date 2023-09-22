@@ -5,11 +5,12 @@ import { Tag } from './';
 import { Tooltip } from '../tooltip';
 import { Tags } from './tags';
 
-const { className, nowrap, size, border } = this.get();
+const { className, nowrap, size, border, draggable } = this.get();
 
 const classNameObj = {
     'k-tags': true,
     'k-nowrap': nowrap,
+    'k-draggable': draggable,
     [makeTagsStyles()]: true,
     [className]: className,
 }

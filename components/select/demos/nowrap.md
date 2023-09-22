@@ -9,7 +9,9 @@ order: 12
 import {Select, Option} from 'kpc';
 
 <div>
-    <Select multiple nowrap value={['Monday', 'Tuesday', 'Wednesday', 'Thursday']}>
+    <Select multiple filterable clearable nowrap
+        value={['Monday', 'Tuesday', 'Wednesday', 'Thursday']}
+    >
         <Option value="Monday">星期一</Option>
         <Option value="Tuesday">星期二</Option>
         <Option value="Wednesday">星期三</Option>
