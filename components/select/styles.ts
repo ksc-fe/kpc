@@ -137,7 +137,7 @@ export default function makeStyles() {
         }
         .k-select-suffix {
             margin-left: ${select.suffixGap};
-            margin-top: 2px;
+            // margin-top: 1px;
         }
 
         .k-select-placeholder {

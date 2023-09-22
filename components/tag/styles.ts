@@ -23,6 +23,11 @@ const defaults = deepDefaults(
         close: {
             fontSize: '20px',
             gap: '8px',
+            /**
+             * fix the width to calculate the width for nowrap tags,
+             * otherwise the width will be decided by font font-icons loaded
+             */
+            width: '7px',
         },
         disabled: {
             get color() { return theme.color.disabled },
@@ -94,6 +99,7 @@ export function makeStyles() {
         .k-tag-close {
             font-size: ${tag.close.fontSize};
             margin-left: ${tag.close.gap};
+            width: ${tag.close.width};
         }
 
         &.k-none {
@@ -140,8 +146,8 @@ export function makeTagsStyles() {
         display: flex;
         flex-wrap: wrap;
         gap: ${defaults.tags.gap};
+        position: relative;
         &.k-nowrap {
-            overflow: hidden;
             flex-wrap: nowrap;
         }
         .k-tag {

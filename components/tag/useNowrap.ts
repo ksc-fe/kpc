@@ -52,7 +52,7 @@ export function useNowrap() {
                 // estimate the "more" element's with for performance
                 const width = estimateMoreElementWidth(length - index - 1);
 
-                if (offset + width < containerWidth) {
+                if (offset + width <= containerWidth) {
                     vNodes.push(vNode);
                 }
             });
