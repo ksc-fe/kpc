@@ -2,6 +2,8 @@ import { Component, TypeDefs } from 'intact';
 import template from './tags.vdt';
 import { useNowrap } from './useNowrap';
 import { TagProps, typeDefs as tagTypeDefs } from './base';
+import { useChildren } from './useChildren';
+import { useDraggable } from './useDraggable';
 
 export interface TagsProps extends Pick<TagProps, 'size' | 'border'> {
     nowrap?: boolean 
@@ -25,5 +27,7 @@ export class Tags extends Component<TagsProps> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private nowrap = useNowrap();
+    private children = useChildren();
+    private draggable = useDraggable(this.children);
+    private nowrap = useNowrap(this.draggable);
 }

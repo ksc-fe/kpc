@@ -8,8 +8,8 @@ import { isTextChildren } from './utils';
 import { EMPTY_OBJ, isFunction } from 'intact-shared';
 import { cx } from '@emotion/css';
 
-export class Wrapper extends Component {
-    static template(this: Wrapper) {
+export class Virtual extends Component<any> {
+    static template(this: Virtual) {
         const { children, ...props } = this.get();
 
         if (process.env.NODE_ENV !== 'production') {
@@ -32,7 +32,7 @@ export class Wrapper extends Component {
             [props.className!]: !!props.className,
         });
 
-        clonedVNode.props = { ...vNodeProps, ...eventProps, className };
+        clonedVNode.props = { ...props, ...vNodeProps, ...eventProps, className };
         clonedVNode.className = className;
 
         return clonedVNode;
@@ -90,9 +90,9 @@ export class Wrapper extends Component {
 
     private callEvent(name: string, e: MouseEvent) {
         const callback = this.vNodeProps[name];
-        const callbackOnFake = this.get<Function>(name);
+        const callbackOnVirtual = this.get<Function>(name);
         if (isFunction(callback)) callback(e);
-        if (isFunction(callbackOnFake)) callbackOnFake(e);
+        if (isFunction(callbackOnVirtual)) callbackOnVirtual(e);
     }
 }
 

@@ -21,7 +21,7 @@ import {Portal, PortalProps} from '../portal';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {usePosition, FeedbackCallback} from './usePosition';
 import type {Events} from '../types';
-import { Wrapper } from '../wrapper';
+import { Virtual } from '../virtual';
 
 export type Position = Options 
 export type PositionShorthand = 'left' | 'bottom' | 'right' | 'top'
@@ -117,7 +117,7 @@ export class Dropdown<
         this.menuVNode = menu;
 
         return [
-            h(Wrapper, props, trigger),
+            h(Virtual, props, trigger),
             h(Portal, {children: menu, container: this.get('container')})
         ];
     };

@@ -4,6 +4,7 @@ import { makeTagsStyles } from './styles';
 import { Tag } from './';
 import { Tooltip } from '../tooltip';
 import { Tags } from './tags';
+import { Virtual } from '../virtual';
 
 const { className, nowrap, size, border, draggable } = this.get();
 
@@ -16,12 +17,13 @@ const classNameObj = {
 }
 
 const { containerRef, children, hiddenChildren } = this.nowrap;
+const vNodes = children.value;
 
 <div class={classNameObj} {...getRestProps(this)} ref={containerRef}>
     <TransitionGroup name="k-fade" v-if={!nowrap}>
-        {children.value}
+        {vNodes}
     </TransitionGroup>
-    <template v-else>{children.value}</template>
+    <template v-else>{vNodes}</template>
     <Tooltip v-if={hiddenChildren.value.length} hoverable theme="light" class="k-tags-tooltip">
         <Tag key="$more" class="k-tags-more" size={size} border={border}>
             +{hiddenChildren.value.length}

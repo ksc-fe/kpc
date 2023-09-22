@@ -181,19 +181,22 @@ export function findChildren(children: Children, callback: MapCallback<boolean>)
     if (isInvalid(children)) return found;
 
     let index = -1;
-    const loop = (children: ValidVNode | NormalizedChildren[] | Children[]) => {
+    const loop = (children: ValidVNode | NormalizedChildren[] | Children[]): boolean => {
         if (Array.isArray(children)) {
             for (let i = 0; i < children.length; i++) {
                 const vNode = children[i];
                 if (isInvalid(vNode)) continue;
                 if (loop(vNode)) {
                     found = vNode as ValidVNode;
-                    break;
+                    return true;
                 }
             }
-        } else {
-            return callback(children, ++index);
+        } else if (callback(children, ++index)) {
+            found = children as ValidVNode;
+            return true;
         }
+
+        return false;
     }
 
     loop(children);

@@ -6,35 +6,29 @@ import {
     createRef,
     findDomFromVNode,
     onBeforeMount,
+    nextTick,
 } from 'intact';
 import type { Tags } from './tags';
-import { eachChildren } from '../utils';
-import { isStringOrNumber } from 'intact-shared';
-import { useState } from '../../hooks/useState';
+import { useState, State, watchState } from '../../hooks/useState';
 import { tag as tagStyles } from './styles';
 import { getLeft, getRight } from '../../styles/utils';
 import { useReceive } from '../../hooks/useReceive';
 import { useResizeObserver } from '../../hooks/useResizeObserver';
 
-export function useNowrap() {
+export function useNowrap(originVNodes: State<VNode[]>) {
     const instance = useInstance() as Tags;
     const containerRef = createRef<HTMLDivElement>();
     const children = useState<VNode[]>([]);
     const hiddenChildren = useState<VNode[]>([]);
-    const originVNodes = createRef<VNode[]>([]);
     const estimateMoreElementWidth = useEstimateMoreElementWidth();
     const offsetMap = useChildrenOffset(originVNodes);
 
-    instance.watch('children', (v) => {
-        originVNodes.value = [];
-        eachChildren(v, (vNode) => {
-            if (isStringOrNumber(vNode)) return;
-            originVNodes.value.push(vNode);
-        })
-        children.set(originVNodes.value);
+    watchState(originVNodes, (v) => {
+        children.set(v);
+        nextTick(refresh);
     });
 
-    instance.watch('children', refresh, { presented: true })
+    // instance.watch('children', refresh, { presented: true })
     useResizeObserver(containerRef, refresh);
 
     function refresh() {
@@ -75,11 +69,12 @@ export function useNowrap() {
     return { containerRef, children, hiddenChildren }
 }
 
-function useChildrenOffset(vNodes: NonNullableRefObject<VNode[]>) {
+function useChildrenOffset(vNodes: State<VNode[]>) {
     const instance = useInstance() as Tags;
     const map: Map<VNode, number> = new Map();
 
-    instance.watch('children', updateMap, { presented: true })
+    // instance.watch('children', updateMap, { presented: true })
+    watchState(vNodes, () => nextTick(updateMap));
 
     function updateMap() {
         map.clear();

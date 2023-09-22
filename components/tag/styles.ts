@@ -147,6 +147,7 @@ export function makeTagsStyles() {
         flex-wrap: wrap;
         gap: ${defaults.tags.gap};
         position: relative;
+        overflow: hidden;
         &.k-nowrap {
             flex-wrap: nowrap;
         }
