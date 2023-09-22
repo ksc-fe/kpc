@@ -3,7 +3,8 @@ title: 标签组
 order: 4
 ---
 
-通过`border`可以定义边框样式: `solid` `dashed` `none`(默认) 
+使用`Tags`包裹`Tag`可以展示标签组，给`Tags`指定`nowrap`可以让标签自适应仅展示成一行，超出的部分会隐藏，
+同时会展示隐藏的数量
 
 ```vdt
 import {Tags, Tag, Split, Tooltip} from 'kpc';

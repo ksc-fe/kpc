@@ -7,6 +7,8 @@ sidebar: doc
 
 # 属性
 
+## Tag
+
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 组件类型 | `"default"` &#124; `"primary"` &#124; `"success"` &#124; `"warning"` &#124; `"danger"` | `"default"` |
@@ -15,6 +17,14 @@ sidebar: doc
 | disabled | 是否展示禁用状态 | `boolean` | `false` |
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | border | 定义边框样式 | `"solid"` &#124; `"dashed"` &#124; `"none"` | `"none"` |
+
+## Tags
+
+| 属性 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| size | 定义“更多”标签尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| border | 定义“更多”标签边框样式 | `"solid"` &#124; `"dashed"` &#124; `"none"` | `"none"` |
+| nowrap |  是否单行展示标签组，超出的部分会隐藏，仅展示隐藏数量 | `boolean` | `flase` |
 
 # 事件
 

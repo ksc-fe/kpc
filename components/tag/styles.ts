@@ -50,7 +50,8 @@ const defaults = deepDefaults(
         mini: {
             padding: `0 2px`,
             height: '14px',
-            get fontSize() { return theme.mini.fontSize },
+            // get fontSize() { return theme.mini.fontSize },
+            fontSize: '11px',
             close: {
                 fontSize: '16px',
                 gap: '2px'
