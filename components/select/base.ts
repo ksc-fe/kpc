@@ -110,7 +110,6 @@ export abstract class BaseSelect<
     init() {
         provide(SELECT, this);
         useShowHideEvents('show');
-        // this.input = useInput();
 
         this.watch('value', this.position, {presented: true});
     }

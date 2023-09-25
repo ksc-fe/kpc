@@ -16,9 +16,9 @@ export function useDraggable(originVNodes: State<VNode[]>) {
     const children = useState<VNode[]>([]);
     const draggingKey = useState<Key | null>(null);
 
-    let draggingIndex: number;
-    let originIndex: number;
-    let lastOverIndex: number; /* let the dragover event only trigger once when tags changed order */
+    let draggingIndex: number = -1;
+    let originIndex: number = -1;
+    let lastOverIndex: number = -1; /* let the dragover event only trigger once when tags changed order */
 
     watchState(originVNodes, render);
     watchState(draggingKey, render);
@@ -57,6 +57,9 @@ export function useDraggable(originVNodes: State<VNode[]>) {
     function onOver(e: MouseEvent, key: Key, index: number) {
         e.preventDefault();
         e.stopPropagation();
+
+        // Dragging the tag of another tags drag to this tags should be ignored
+        if (draggingIndex === -1) return;
 
         if (lastOverIndex === index) return;
         lastOverIndex = index;

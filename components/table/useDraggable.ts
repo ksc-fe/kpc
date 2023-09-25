@@ -30,6 +30,8 @@ export function useDraggable(data: State<unknown[] | undefined>) {
         e.preventDefault();
         e.stopPropagation();
 
+        if (draggingKey.value === null) return;
+
         const newIndex = tableRow.get('index');
         if (newIndex === draggingIndex) return;
 

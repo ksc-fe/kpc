@@ -17,7 +17,7 @@ import {Tags, Tag, Tooltip} from 'kpc';
         </Tooltip>
     </Tags>
     <br />
-    <Tags draggable nowrap class="nowrap">
+    <Tags draggable nowrap style="width: 300px;">
         <Tag v-for={this.get('tags2')}
             key={$value}
             type={$value}
@@ -27,11 +27,6 @@ import {Tags, Tag, Tooltip} from 'kpc';
         </Tooltip>
     </Tags>
 </div>
-```
-
-```styl
-.nowrap
-    width: 300px
 ```
 
 ```ts
