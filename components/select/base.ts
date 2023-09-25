@@ -18,6 +18,7 @@ import {Container} from '../portal';
 import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
 import {isNullOrUndefined} from 'intact-shared';
+import { useDraggable } from './useDraggble';
 
 export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
     value?: Multipe extends true ? V[] : Attach
@@ -104,6 +105,7 @@ export abstract class BaseSelect<
     public dropdownRef = createRef<Dropdown>(); 
     public input = useInput(this.resetKeywords);
     private focusout = useFocusout();
+    private draggable = useDraggable();
 
     init() {
         provide(SELECT, this);

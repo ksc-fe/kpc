@@ -370,3 +370,11 @@ export function selectValue(elem: HTMLInputElement | HTMLTextAreaElement) {
         elem.setSelectionRange(0, elem.value.length);
     }
 }
+
+export function swap(list: any[], from: number, to: number) {
+    const newList = list.slice(0);
+    const item = newList.splice(from, 1)[0];
+    newList.splice(to, 0, item);
+
+    return newList;
+}

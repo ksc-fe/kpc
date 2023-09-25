@@ -11,9 +11,18 @@ export interface TagsProps extends Pick<TagProps, 'size' | 'border'> {
     draggable?: boolean
 }
 
+export type TagsDragStartParam = {
+    key: Key
+    from: number
+}
+
+export type TagsDragEndParam = TagsDragStartParam & {
+    to: number
+} 
+
 export interface TagsEvents {
-    dragstart: [{key: Key, from: number}]
-    dragend: [{key: Key, from: number, to: number}]
+    dragstart: [TagsDragStartParam]
+    dragend: [TagsDragEndParam]
 }
 
 const typeDefs: Required<TypeDefs<TagsProps>> = {

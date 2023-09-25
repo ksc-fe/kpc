@@ -6,7 +6,7 @@ import {
     Key,
 } from 'intact';
 import type { Tags } from './tags';
-import { nextFrame, debounce } from '../utils';
+import { nextFrame, debounce, swap } from '../utils';
 import { useState, watchState, State } from '../../hooks/useState';
 import { Virtual } from '../virtual';
 import { cx } from '@emotion/css';
@@ -58,17 +58,16 @@ export function useDraggable(originVNodes: State<VNode[]>) {
         e.preventDefault();
         e.stopPropagation();
 
-        console.log(`before: index ${index}, lastOverIndex ${lastOverIndex}, draggingIndex ${draggingIndex}`);
         if (lastOverIndex === index) return;
         lastOverIndex = index;
-        console.log(`middle: index ${index}, lastOverIndex ${lastOverIndex}, draggingIndex ${draggingIndex}`);
 
         if (index === draggingIndex) return;
-        console.log(`after: index ${index}, lastOverIndex ${lastOverIndex}, draggingIndex ${draggingIndex}`);
 
-        const vNodes = originVNodes.value.slice(0);
-        const vNode = vNodes.splice(draggingIndex, 1)[0];
-        vNodes.splice(index, 0, vNode);
+        // if the tag has move transition, you cannot drag over it before transition ended.
+        const dom = findDomFromVNode(children.value[index], true) as HTMLElement;
+        if (dom.classList.contains('k-fade-move')) return;
+
+        const vNodes = swap(originVNodes.value, draggingIndex, index);
 
         lastOverIndex = draggingIndex;
         draggingIndex = index;

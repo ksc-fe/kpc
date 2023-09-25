@@ -20,6 +20,7 @@ import {Select, Option} from 'kpc';
         <Option value="Saturday">星期六</Option>
         <Option value="Sunday">星期天</Option>
     </Select>
+    {JSON.stringify(this.get('days1'))}
     <br /><br />
     <Select multiple draggable nowrap
         v-model="days2"
@@ -32,6 +33,7 @@ import {Select, Option} from 'kpc';
         <Option value="Saturday">星期六</Option>
         <Option value="Sunday">星期天</Option>
     </Select>
+    {JSON.stringify(this.get('days2'))}
 </div>
 ```
 

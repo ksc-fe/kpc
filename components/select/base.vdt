@@ -94,6 +94,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                         nowrap={nowrap}
                                         size={size}
                                         draggable={draggable}
+                                        ev-dragend={this.draggable}
                                     >
                                         <Tag
                                             v-for={label}
@@ -103,7 +104,7 @@ const {onFocusout, triggerRef} = this.focusout;
                                                     $label :
                                                     isStringOrNumber(value[$key]) ?
                                                         value[$key] :
-                                                        undefined
+                                                        $key
                                             }
                                             closable
                                             ev-close={this.delete.bind(this, $key)}

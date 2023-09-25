@@ -25,6 +25,7 @@ sidebar: doc
 | size | 定义“更多”标签尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | border | 定义“更多”标签边框样式 | `"solid"` &#124; `"dashed"` &#124; `"none"` | `"none"` |
 | nowrap |  是否单行展示标签组，超出的部分会隐藏，仅展示隐藏数量 | `boolean` | `flase` |
+| draggable | 标签是否支持拖动排序 | `boolean` | `false` |
 
 # 事件
 

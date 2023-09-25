@@ -2,6 +2,7 @@ import {useInstance, nextTick} from 'intact';
 import type {Table, TableRowKey} from './table';
 import {useState, State} from '../../hooks/useState';
 import type {TableRow} from './row';
+import {swap} from '../utils';
 
 export function useDraggable(data: State<unknown[] | undefined>) {
     const instance = useInstance() as Table<any, TableRowKey>;
@@ -33,9 +34,7 @@ export function useDraggable(data: State<unknown[] | undefined>) {
         if (newIndex === draggingIndex) return;
 
         // swap data
-        const newData = data.value!.slice();
-        const item = newData.splice(draggingIndex, 1)[0];
-        newData.splice(newIndex, 0, item);
+        const newData = swap(data.value!, draggingIndex, newIndex);
 
         draggingIndex = newIndex;
 
