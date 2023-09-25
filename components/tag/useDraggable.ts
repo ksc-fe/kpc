@@ -58,10 +58,13 @@ export function useDraggable(originVNodes: State<VNode[]>) {
         e.preventDefault();
         e.stopPropagation();
 
+        console.log(`before: index ${index}, lastOverIndex ${lastOverIndex}, draggingIndex ${draggingIndex}`);
         if (lastOverIndex === index) return;
         lastOverIndex = index;
+        console.log(`middle: index ${index}, lastOverIndex ${lastOverIndex}, draggingIndex ${draggingIndex}`);
 
         if (index === draggingIndex) return;
+        console.log(`after: index ${index}, lastOverIndex ${lastOverIndex}, draggingIndex ${draggingIndex}`);
 
         const vNodes = originVNodes.value.slice(0);
         const vNode = vNodes.splice(draggingIndex, 1)[0];

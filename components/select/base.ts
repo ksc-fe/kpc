@@ -38,6 +38,7 @@ export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = 
     position?: DropdownProps['position']
     flat?: boolean
     nowrap?: boolean
+    draggable?: boolean
 }
 
 export interface BaseSelectEvents {
@@ -73,6 +74,7 @@ const typeDefs: Required<TypeDefs<BaseSelectProps<any>>> = {
     position: Dropdown.typeDefs.position,
     flat: Boolean,
     nowrap: Boolean,
+    draggable: Boolean,
 };
 
 const defaults = (): Partial<BaseSelectProps<any>> => ({

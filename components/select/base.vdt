@@ -17,6 +17,7 @@ const {
     className, container,
     inline, style, width, show,
     position, flat, nowrap,
+    draggable,
 } = this.get();
 
 const classNameObj = {
@@ -89,7 +90,11 @@ const {onFocusout, triggerRef} = this.focusout;
                             </div>
                             <div v-else key="values" class="k-select-values">
                                 <b:values params={[value, label]}>
-                                    <Tags v-if={label && label.length} nowrap={nowrap} size={size}>
+                                    <Tags v-if={label && label.length}
+                                        nowrap={nowrap}
+                                        size={size}
+                                        draggable={draggable}
+                                    >
                                         <Tag
                                             v-for={label}
                                             v-for-value="$label"

@@ -8,12 +8,11 @@ import { Virtual } from '../virtual';
 
 const { className, nowrap, size, border, draggable } = this.get();
 
-const tagsClassName = makeTagsStyles();
 const classNameObj = {
     'k-tags': true,
     'k-nowrap': nowrap,
     'k-draggable': draggable,
-    [tagsClassName]: true,
+    [makeTagsStyles()]: true,
     [className]: className,
 }
 
@@ -34,7 +33,7 @@ const vNodes = children.value;
         key="$tooltip"
         hoverable
         theme="light"
-        class={{"k-tags-tooltip": true, [tagsClassName]: true}}
+        class="k-tags-tooltip"
     >
         <Tag key="$more"
             class={{"k-tags-more": true, 'c-hidden': !hiddenChildren.value.length}}
@@ -44,7 +43,7 @@ const vNodes = children.value;
             +{hiddenChildren.value.length}
         </Tag>
         <b:content>
-            {hiddenChildren.value}
+            <div class={classNameObj}>{hiddenChildren.value}</div>
         </b:content>
     </Tooltip>
 </div>
