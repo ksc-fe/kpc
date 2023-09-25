@@ -1,23 +1,13 @@
 import {
-    NonNullableRefObject,
-    VNodeComponentClass,
     VNode,
     useInstance,
-    createRef,
     findDomFromVNode,
-    onBeforeMount,
     createVNode as h,
     Key,
-    onBeforeUpdate,
 } from 'intact';
 import type { Tags } from './tags';
-import { eachChildren } from '../utils';
-import { isStringOrNumber } from 'intact-shared';
+import { nextFrame, debounce } from '../utils';
 import { useState, watchState, State } from '../../hooks/useState';
-import { tag as tagStyles } from './styles';
-import { getLeft, getRight } from '../../styles/utils';
-import { useReceive } from '../../hooks/useReceive';
-import { useResizeObserver } from '../../hooks/useResizeObserver';
 import { Virtual } from '../virtual';
 import { cx } from '@emotion/css';
 
@@ -27,45 +17,75 @@ export function useDraggable(originVNodes: State<VNode[]>) {
     const draggingKey = useState<Key | null>(null);
 
     let draggingIndex: number;
+    let originIndex: number;
+    let lastOverIndex: number; /* let the dragover event only trigger once when tags changed order */
 
     watchState(originVNodes, render);
     watchState(draggingKey, render);
 
     function render() {
-        children.set(originVNodes.value.map((vNode, index) => {
+        const { draggable } = instance.get();
+        children.set(!draggable ? originVNodes.value : originVNodes.value.map((vNode, index) => {
             const key = vNode.key!;
             return h(Virtual, {
                 'ev-dragstart': () => onStart(key, index),
-                'ev-dragover': () => onOver(key, index),
-                'ev-dragend': onEnd,
+                'ev-dragover': (e: MouseEvent) => onOver(e, key, index),
+                'ev-dragend': (e: MouseEvent) => onEnd(e),
                 key,
-                draggable: true,
+                draggable, 
                 className: cx({
                     'k-dragging': key === draggingKey.value, 
+                    'k-draggable': draggable,
                 })
             }, vNode); 
         }));
+
     }
 
     function onStart(key: Key, index: number) {
-        draggingIndex = index;
-        draggingKey.set(key); 
+        draggingIndex = originIndex = index;
+        nextFrame(() => {
+            draggingKey.set(key); 
+        });
+
+        instance.trigger('dragstart', {
+            key,
+            from: index,
+        });
     }
 
-    function onOver(key: Key, index: number) {
+    function onOver(e: MouseEvent, key: Key, index: number) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (lastOverIndex === index) return;
+        lastOverIndex = index;
+
         if (index === draggingIndex) return;
 
         const vNodes = originVNodes.value.slice(0);
         const vNode = vNodes.splice(draggingIndex, 1)[0];
         vNodes.splice(index, 0, vNode);
 
+        lastOverIndex = draggingIndex;
         draggingIndex = index;
 
         originVNodes.set(vNodes);
     }
 
-    function onEnd() {
+    function onEnd(e: MouseEvent) {
+        e.preventDefault();
+
+        instance.trigger('dragend', {
+            key: draggingKey.value!,
+            from: originIndex,
+            to: draggingIndex,
+        });
+
         draggingKey.set(null);
+        lastOverIndex = -1;
+        draggingIndex = -1;
+        originIndex = -1;
     }
 
     return children;

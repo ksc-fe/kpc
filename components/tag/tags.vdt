@@ -8,28 +8,43 @@ import { Virtual } from '../virtual';
 
 const { className, nowrap, size, border, draggable } = this.get();
 
+const tagsClassName = makeTagsStyles();
 const classNameObj = {
     'k-tags': true,
     'k-nowrap': nowrap,
     'k-draggable': draggable,
-    [makeTagsStyles()]: true,
+    [tagsClassName]: true,
     [className]: className,
 }
 
 const { containerRef, children, hiddenChildren } = this.nowrap;
 const vNodes = children.value;
 
+/**
+ * We should always render Tooltip in nowrap mode, otherwise it will be removed while we close one tag.
+ * Because we will render all tags to calculate the width
+ */
 <div class={classNameObj} {...getRestProps(this)} ref={containerRef}>
     <TransitionGroup name="k-fade" v-if={!nowrap}>
         {vNodes}
     </TransitionGroup>
     <template v-else>{vNodes}</template>
-    <Tooltip v-if={hiddenChildren.value.length} hoverable theme="light" class="k-tags-tooltip">
-        <Tag key="$more" class="k-tags-more" size={size} border={border}>
+    <Tooltip
+        v-if={nowrap}
+        key="$tooltip"
+        hoverable
+        theme="light"
+        class={{"k-tags-tooltip": true, [tagsClassName]: true}}
+    >
+        <Tag key="$more"
+            class={{"k-tags-more": true, 'c-hidden': !hiddenChildren.value.length}}
+            size={size}
+            border={border}
+        >
             +{hiddenChildren.value.length}
         </Tag>
         <b:content>
-            <Tags>{hiddenChildren.value}</Tags>
+            {hiddenChildren.value}
         </b:content>
     </Tooltip>
 </div>

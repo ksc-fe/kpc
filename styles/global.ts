@@ -136,7 +136,7 @@ injectGlobal`
         text-overflow: ellipsis;
     }
     .c-hidden {
-        display: none;
+        display: none !important;
     }
     .c-middle {
         display: inline-block;

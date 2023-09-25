@@ -11,7 +11,7 @@ import {
     createVNode,
     nextTick,
 } from 'intact';
-import {bind, isTextChildren} from '../utils';
+import {bind, isTextChildren, getRestProps} from '../utils';
 import {EMPTY_OBJ, isFunction, noop} from 'intact-shared';
 import {Options, position, Feedback} from '../position';
 import {cx} from '@emotion/css';
@@ -110,15 +110,17 @@ export class Dropdown<
 
         const [trigger, menu] = children as DropdownChildren;
         const props = this.initEventCallbacks(); 
-        if (this.get('value')) {
-            props.className = 'k-dropdown-open';
-        }
+        let {className, value, container} = this.get();
+        className = cx({
+            'k-dropdown-open': value,
+            [className!]: !!className,
+        });
     
         this.menuVNode = menu;
 
         return [
-            h(Virtual, props, trigger),
-            h(Portal, {children: menu, container: this.get('container')})
+            h(Virtual, {...props, ...getRestProps(this), className}, trigger),
+            h(Portal, {children: menu, container})
         ];
     };
 

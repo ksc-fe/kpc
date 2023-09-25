@@ -8,7 +8,17 @@ import {Tags, Tag, Tooltip} from 'kpc';
 
 <div>
     <Tags draggable>
-        <Tag v-for={this.get('tags')}
+        <Tag v-for={this.get('tags1')}
+            key={$value}
+            type={$value}
+        >{$value}</Tag>
+        <Tooltip content="test" key="test">
+             <Tag>with tooltip</Tag>
+        </Tooltip>
+    </Tags>
+    <br />
+    <Tags draggable nowrap class="nowrap">
+        <Tag v-for={this.get('tags2')}
             key={$value}
             type={$value}
         >{$value}</Tag>
@@ -19,18 +29,25 @@ import {Tags, Tag, Tooltip} from 'kpc';
 </div>
 ```
 
+```styl
+.nowrap
+    width: 300px
+```
+
 ```ts
 import {TagProps} from 'kpc';
 
 interface Props {
-    tags: Required<TagProps>['type'][]
+    tags1: Required<TagProps>['type'][]
+    tags2: Required<TagProps>['type'][]
 }
 
 export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {
-            tags: ['default', 'primary', 'success', 'warning', 'danger'],
+            tags1: ['default', 'primary', 'success', 'warning', 'danger'],
+            tags2: ['default', 'primary', 'success', 'warning', 'danger'],
         } as Props;
     }
 }

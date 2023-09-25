@@ -138,6 +138,11 @@ export function makeStyles() {
         &.k-dashed {
             border-style: dashed;
         }
+
+        // draggable
+        &.k-dragging {
+            opacity: 0;
+        }
     `;
 }
 
@@ -160,6 +165,11 @@ export function makeTagsStyles() {
         .k-tags-more {
             cursor: default;
             font-family: monospace;
+        }
+
+        // draggable
+        .k-tag.k-draggable {
+            cursor: move;
         }
     `;
 }

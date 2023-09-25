@@ -8,6 +8,8 @@ import { isTextChildren } from './utils';
 import { EMPTY_OBJ, isFunction } from 'intact-shared';
 import { cx } from '@emotion/css';
 
+const reactEventReg = /on[A-Z]/;
+
 export class Virtual extends Component<any> {
     static template(this: Virtual) {
         const { children, ...props } = this.get();
@@ -22,6 +24,7 @@ export class Virtual extends Component<any> {
         const clonedVNode = isTextChildren(vNode)
             ? createVNode('span', null, vNode)
             : directClone(vNode as VNode);
+
         const vNodeProps = this.vNodeProps = this.getVNodeProps(clonedVNode.props || EMPTY_OBJ);
         const eventProps = this.getEventProps();
 
@@ -51,25 +54,23 @@ export class Virtual extends Component<any> {
             const _props = vnode.props;
             if (!_props) return props;
 
-            return {
-                vnode,
-                'ev-click': _props.onClick,
-                'ev-mouseenter': _props.onMouseEnter,
-                'ev-mouseleave': _props.onMouseLeave,
-                'ev-contextmenu': _props.onContextMenu,
-                className: _props.className || _props.class /* vue-next */,
-            };
+            const events: Record<string, Function> = {};
+            for (let key in _props) {
+                if (reactEventReg.test(key)) {
+                    events[`ev-${key.substring(2).toLowerCase()}`] = _props[key];
+                }
+            }
+
+            return {...props, ...events, className: _props.className || _props.class /* vue-next */};
         } else if ((this as any).$isVue) {
             const data = vnode.data;
             const on = data && data.on || EMPTY_OBJ;
-            const ret: Record<string, any> = { vnode };
-            ['click', 'mouseenter', 'mouseleave', 'contextmenu'].forEach(event => {
-                const method = on[event];
-                if (method) {
-                    ret[`ev-${event}`] = method;
-                }
-            });
-            return ret;
+            const events: Record<string, Function> = {};
+            for (let key in on) {
+                events[`ev-${key}`] = on[key];
+            }
+
+            return {...props, ...events};
         }
 
         return props;
