@@ -35,8 +35,8 @@ export class DropdownMenu<
     @bind
     protected onMouseEnter(e: MouseEvent) {
         const dropdown = this.dropdown!; 
-        dropdown!.show();
-        dropdown!.trigger('mouseenter', e);
+        dropdown.show();
+        dropdown.trigger('mouseenter', e);
     }
 
     @bind

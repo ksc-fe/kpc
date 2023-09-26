@@ -11,7 +11,7 @@ import {
     createVNode,
     nextTick,
 } from 'intact';
-import {bind, isTextChildren} from '../utils';
+import {bind, isTextChildren, getRestProps} from '../utils';
 import {EMPTY_OBJ, isFunction, noop} from 'intact-shared';
 import {Options, position, Feedback} from '../position';
 import {cx} from '@emotion/css';
@@ -21,6 +21,7 @@ import {Portal, PortalProps} from '../portal';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {usePosition, FeedbackCallback} from './usePosition';
 import type {Events} from '../types';
+import { Virtual } from '../virtual';
 
 export type Position = Options 
 export type PositionShorthand = 'left' | 'bottom' | 'right' | 'top'
@@ -45,6 +46,8 @@ export interface DropdownEvents {
     hide: []
     mouseenter: [MouseEvent]
     mouseleave: [MouseEvent]
+    click: [MouseEvent]
+    contextmenu: [MouseEvent]
     positioned: [Feedback]
 }
 
@@ -71,6 +74,8 @@ const events: Events<DropdownEvents> = {
     hide: true,
     mouseenter: true,
     mouseleave: true,
+    click: true,
+    contextmenu: true,
     positioned: true,
 };
 
@@ -104,28 +109,18 @@ export class Dropdown<
         }
 
         const [trigger, menu] = children as DropdownChildren;
-        const triggerType = this.get('trigger');
-        const props = this.initEventCallbacks(triggerType); 
-
-        const clonedTrigger = isTextChildren(trigger) ? 
-            createVNode('span', null, trigger) :
-            directClone(trigger);
-        const triggerProps = this.triggerProps = this.normalizeTriggerProps(trigger.props || EMPTY_OBJ);
-        // add a className for opening status
-        let className = trigger.className || triggerProps.className;
+        const props = this.initEventCallbacks(); 
+        let {className, value, container} = this.get();
         className = cx({
-            [className]: className,
-            'k-dropdown-open': this.get('value'),
+            'k-dropdown-open': value,
+            [className!]: !!className,
         });
-
-        clonedTrigger.props = {...triggerProps, ...props, className};
-        clonedTrigger.className = className;
-
+    
         this.menuVNode = menu;
 
         return [
-            clonedTrigger,
-            h(Portal, {children: menu, container: this.get('container')})
+            h(Virtual, {...props, ...getRestProps(this), className}, trigger),
+            h(Portal, {children: menu, container})
         ];
     };
 
@@ -135,8 +130,7 @@ export class Dropdown<
     public showedDropdown: Dropdown | null = null;
     public positionHook = usePosition();
 
-    private timer: number | undefined = undefined;
-    private triggerProps: any = null;
+    protected timer: number | undefined = undefined;
 
     init() {
         provide(DROPDOWN, this);
@@ -167,6 +161,12 @@ export class Dropdown<
         clearTimeout(this.timer);
         this.set('value', true);
 
+        // should show parent dropdown
+        const parentDropdown = this.dropdown;
+        if (parentDropdown) {
+            parentDropdown.show();
+        }
+
         if (shouldFocus) {
             nextTick(() => {
                 this.focusFirst();
@@ -178,9 +178,15 @@ export class Dropdown<
         if (this.get('disabled')) return;
         if (!this.get('value')) return;
 
+        const showedDropdown = this.showedDropdown;
+        if (showedDropdown) {
+            showedDropdown.hide(immediately);
+        }
+
         if (immediately) {
             this.set('value', false);
         } else {
+            clearTimeout(this.timer);
             this.timer = window.setTimeout(() => {
                 this.set('value', false);
             }, 200);
@@ -198,29 +204,27 @@ export class Dropdown<
 
     @bind
     private onEnter(e: MouseEvent) {
-        this.callOriginalCallback(e.type === 'click' ? 'ev-click' : 'ev-mouseenter', e);
-
         this.show();
+        this.trigger(e.type as 'mouseenter', e);
     }
 
     @bind 
     private onContextMenu(e: MouseEvent) {
-        this.callOriginalCallback('ev-contextmenu', e);
-
         e.preventDefault();
         this.set('of', e);
         this.show();
+        this.trigger('contextmenu', e);
     }
 
     @bind 
     private onLeave(e: MouseEvent) {
-        this.callOriginalCallback('ev-mouseleave', e);
-
         this.hide();
+        this.trigger(e.type as 'mouseleave', e);
     }
 
-    private initEventCallbacks(trigger: DropdownProps['trigger']) {
-        const props: Record<string, Function> = {};
+    private initEventCallbacks() {
+        const trigger = this.get('trigger');
+        const props: Record<string, Function | string> = {};
 
         switch (trigger) {
             case 'focus':
@@ -237,48 +241,6 @@ export class Dropdown<
                     props['ev-mouseleave'] = this.onLeave;
                 }
                 break;
-        }
-
-        return props;
-    }
-
-    private callOriginalCallback(name: string, e: MouseEvent) {
-        const callback = this.triggerProps[name];
-        const callbackOnDropdown = this.get<Function>(name);
-        if (isFunction(callback)) callback(e);
-        if (isFunction(callbackOnDropdown)) callbackOnDropdown(e);
-    }
-
-    private normalizeTriggerProps(props: any) {
-        // if use kpc in react or vue, normalize props by Wrapper.props.vnode;
-        const vnode = props.vnode;
-        if (!vnode) return props;
-
-        // maybe we render the intact component in react slot property, in this case
-        // the $isReact is false. so use the vnode $$typeof field as gauge
-        if (vnode.$$typeof || (this as any).$isVueNext) {
-            const _props = vnode.props;
-            if (!_props) return props;
-
-            return {
-                vnode,
-                'ev-click': _props.onClick,
-                'ev-mouseenter': _props.onMouseEnter,
-                'ev-mouseleave': _props.onMouseLeave,
-                'ev-contextmenu': _props.onContextMenu,
-                className: _props.className || _props.class /* vue-next */,
-            };
-        } else if ((this as any).$isVue) {
-            const data = vnode.data;
-            const on = data && data.on || EMPTY_OBJ;
-            const ret: Record<string, any> = {vnode};
-            ['click', 'mouseenter', 'mouseleave', 'contextmenu'].forEach(event => {
-                const method = on[event];
-                if (method) {
-                    ret[`ev-${event}`] = method;
-                }
-            });
-            return ret;
         }
 
         return props;

@@ -5,6 +5,7 @@ import {useItemKeyboard, MenuKeyboardMethods} from './useKeyboard';
 import {Dropdown, DROPDOWN} from './dropdown';
 import {DropdownMenu, DROPDOWN_MENU} from './menu';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
+import { Dropdown as ExportDropdown, DropdownMenu as ExportDropdownMenu } from '.';
 
 export interface DropdownItemProps {
     disabled?: boolean
@@ -64,10 +65,19 @@ export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvent
     }
 
     hasSubMenu() {
-        // TODO: wrapped by Tooltip
-        const parent = this.$senior;
-        if (parent instanceof Dropdown) {
-            return parent
+        // wrapped by Dropdown rather than DropdownMenu
+        let parent = this.$senior;
+        while (parent) {
+            // Tooltip extends Dropdown, it's also a instance of Dropdown
+            // so use constructor to detect
+            // if (parent instanceof DropdownMenu) {
+            if (parent.constructor === ExportDropdownMenu) {
+                return; 
+            }
+            if (parent.constructor === ExportDropdown) {
+                return parent;
+            }
+            parent = parent.$senior;
         }
     }
 

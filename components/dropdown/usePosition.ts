@@ -21,6 +21,8 @@ export function usePosition() {
             // return if object is the same
             if (
                 isObject(newValue) && isObject(oldValue) &&
+                // is not event object
+                !(newValue instanceof Event) &&
                 JSON.stringify(newValue) === JSON.stringify(oldValue)
             )  {
                 return;
