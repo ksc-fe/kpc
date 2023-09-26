@@ -9,6 +9,7 @@ import {useDropdown} from './useDropdown';
 import {useRouter, navigate} from '../../hooks/useRouter';
 import {useRecordItem} from '../../hooks/useRecordComponent';
 import {MENU_RECORD_KEY, useHighlightItem} from './useHighlight';
+import {Events} from '../types';
 
 export interface MenuItemProps {
     key: Key 
@@ -32,11 +33,17 @@ const typeDefs: Required<TypeDefs<MenuItemProps>> = {
     disabled: Boolean,
 };
 
+const events: Events<MenuItemEvents> = {
+    click: true,
+    select: true,
+};
+
 export const MENU_ITEM = 'MenuItem';
 
 export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
     static template = template;
     static typeDefs = typeDefs;
+    static events = events;
 
     public rootMenu = inject<Menu>(ROOT_MENU)!;
     public parentMenu = inject<Menu>(MENU)!;
