@@ -1,0 +1,31 @@
+import {Icon} from '../icon';
+import makeStyles from "./styles";
+
+const { type, title, content } = this.get();
+
+const iconMap = {
+    info: 'information-fill',
+    warning: 'warning-fill',
+    success: 'success-fill',
+    error: 'error-fill',
+};
+
+const classNameObj = {
+    [makeStyles()]: true,
+    'k-popover': true,
+    [`k-${type}`]: iconMap[type]
+}
+
+<div class={classNameObj}>
+    <div v-if={type} class={`k-popover-icon-wrapper`}>
+        <Icon class={`k-icon-${iconMap[type]} k-popover-icon`} />
+    </div>
+    <div class="k-popover-content-wrapper">
+        <div class="k-popover-title" v-if={title || $blocks.title}>
+            <b:title>{ title }</b:title>
+        </div>
+        <div v-if={content || $blocks.content} class="k-popover-content">
+            <b:content>{ content }</b:content>
+        </div>
+    </div>
+</div>
