@@ -14,7 +14,7 @@ module.exports = (config) => {
                 // .end()
             .alias
                 // .set('vue$', 'vue/dist/vue.js')
-                .set('intact$', 'intact/dist/index.esm')
+                .set('intact$', resolve('node_modules/intact/dist/index.esm.js'))
                 .set('kpc$', resolve('index.ts'))
                 .set('kpc', root)
                 .set('@king-design/vue-legacy', resolve('packages/kpc-vue'))
