@@ -1,0 +1,50 @@
+# `Popover`
+
+#### `should handle popover correctly`
+
+```
+"<div class=\"k-tooltip-buttons\"><button class=\"k-btn k-small css-55gqps\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-small css-55gqps\" tabindex=\"0\" type=\"button\">确定</button></div>"
+```
+
+#### `should handle title/content slot correctly`
+
+```
+<div
+  class="k-popover-title"
+>
+  是否确认
+  <span
+    style="color: red;"
+  >
+    删除
+  </span>
+  ？
+</div>
+```
+
+```
+<div
+  class="k-popover-content"
+>
+  <span
+    style="color: red;"
+  >
+    删除
+  </span>
+  是一个危险操作，请谨慎操作
+        
+</div>
+```
+
+#### `should handle buttons slot correctly`
+
+```
+"<div class=\"k-tooltip-buttons\"><button class=\"k-btn k-small css-55gqps\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-small css-55gqps\" tabindex=\"0\" type=\"button\">永久删除</button><button class=\"k-btn k-primary k-small css-55gqps\" tabindex=\"0\" type=\"button\">移到回收站</button></div>"
+```
+
+#### `should handle confirm tooltip corectly`
+
+```
+"<div class=\"k-tooltip-buttons\"><button class=\"k-btn k-small css-55gqps\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-small css-55gqps\" tabindex=\"0\" type=\"button\">确定</button></div>"
+```
+
