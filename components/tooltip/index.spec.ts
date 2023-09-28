@@ -6,7 +6,6 @@ import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
 import {Tooltip} from './';
-import {Radio} from '../radio';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 
 describe('Tooltip', () => {
@@ -351,5 +350,28 @@ describe('Tooltip', () => {
         console.log(content.outerHTML);
         console.log(JSON.stringify(content.getBoundingClientRect()));
         expect(content.getBoundingClientRect().top < 0).to.be.true;
+    });
+
+    it('should add className', async () => {
+        class Demo extends Component {
+            static template = `
+                const Tooltip = this.Tooltip;
+                <div>
+                    <Tooltip content="hello" class="a">
+                        <div ref="test" class="b">test</div>
+                    </Tooltip>
+                </div>
+            `;
+            Tooltip = Tooltip;
+        }
+
+        const [instance, element] = mount(Demo);
+        const trigger = instance.refs.test;
+        expect(trigger.className).to.eql('b a');
+
+        dispatchEvent(trigger, 'mouseenter');
+        await wait();
+        const dropdown = getElement('.k-tooltip-content')!;
+        expect(dropdown.classList.contains('a')).to.be.true;
     });
 });
