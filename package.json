@@ -3,6 +3,9 @@
   "version": "3.0.0-beta.0",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
+  "engines": {
+    "node": "^16"
+  },
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "snapshots": "cross-env UPDATE=1 npm run test",
