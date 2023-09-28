@@ -4,7 +4,7 @@
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
   "engines": {
-    "node": "^16"
+    "node": "^14 || ^16"
   },
   "scripts": {
     "test": "karma start test/karma.conf.js",
