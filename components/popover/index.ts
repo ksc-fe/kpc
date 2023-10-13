@@ -5,10 +5,10 @@ import { PopoverContent, PopoverContentProps, PopoverContentBlocks } from './con
 import {noop} from 'intact-shared';
 
 export interface PopoverProps extends TooltipProps, PopoverContentProps {
-    confirm: never;
-    theme: never;
-    hoverable: never;
-    trigger: never;
+    confirm?: never;
+    theme?: never;
+    hoverable?: never;
+    trigger?: never;
 }
 
 export interface PopoverEvents extends TooltipEvents { }

@@ -38,10 +38,11 @@ import {Progress, ButtonGroup, Button} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc';
+import {bind, ProgressProps} from 'kpc';
 
 interface Props {
     percent: number
+    status: ProgressProps['status'] 
 }
 
 export default class extends Component<Props> {
@@ -51,7 +52,7 @@ export default class extends Component<Props> {
         return {
             percent: 40,
             status: 'active',
-        };
+        } as Props;
     }
 
     @bind

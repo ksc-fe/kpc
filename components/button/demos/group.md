@@ -50,7 +50,7 @@ import {Button, ButtonGroup} from 'kpc';
     </ButtonGroup>
     <ButtonGroup checkType="radio" v-model="city">
         <Button type="flat" value="beijing">北京</Button>
-        <Button type="flat" value="shanghai" ref="__radioShanghai">上海</Button>
+        <Button type="flat" value="shanghai">上海</Button>
         <Button type="flat" value="guangzhou">广州</Button>
         <Button type="flat" value="shenzhen">深圳</Button>
     </ButtonGroup>

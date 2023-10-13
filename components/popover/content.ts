@@ -18,7 +18,7 @@ export interface PopoverContentEvents extends TooltipContentEvents { }
 export interface PopoverContentBlocks extends TooltipContentBlocks {
     title: null;
     content: null;
-    buttons: null;
+    footer: null;
 }
 
 const typeDefs: Required<TypeDefs<PopoverContentProps>> = {

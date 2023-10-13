@@ -28,7 +28,7 @@ import {Popover, Button, ButtonGroup} from 'kpc';
 import {Message} from 'kpc';
 
 interface Props {
-    type?: ('info' | 'success' | 'error' | 'warning')[]
+    types: ('info' | 'success' | 'error' | 'warning')[]
 }
 
 export default class extends Component<Props> {
@@ -37,7 +37,7 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             types: ['info', 'success', 'error', 'warning'],
-        };
+        } as Props;
     }
 
     ok() {
