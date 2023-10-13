@@ -36,6 +36,7 @@ export interface DropdownProps {
     disabled?: boolean
     value?: boolean
     position?: Position | 'left' | 'bottom' | 'right' | 'top'
+    collison?: Position['collision']
     of?: 'self' | 'parent' | Event
     container?: PortalProps['container']
 }
@@ -61,6 +62,7 @@ const typeDefs: Required<TypeDefs<DropdownProps>> = {
     // Event is undefined in NodeJs
     of: ['self', 'parent', typeof Event === 'undefined' ? undefined : Event],
     container: [String, Function],
+    collison: ['none', 'fit', 'flip', 'flipfit', Array],
 };
 
 const defaults = (): Partial<DropdownProps> => ({

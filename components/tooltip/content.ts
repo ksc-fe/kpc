@@ -9,6 +9,7 @@ import template from './content.vdt';
 import {bind} from '../utils';
 import {Tooltip} from './tooltip';
 import {useArrow} from './useArrow';
+import { tooltip as tooltipTheme } from './styles';
 
 export interface TooltipContentProps extends DropdownMenuProps { } 
 export interface TooltipContentEvents extends DropdownMenuEvents { }
@@ -35,8 +36,21 @@ export class TooltipContent extends DropdownMenu<
     }
 
     @bind
-    private onEnter() {
+    private onEnter(elem: HTMLElement) {
+        // fix the width, https://github.com/ksc-fe/kpc/issues/873
+        const maxWidth = parseInt(tooltipTheme.maxWidth);
+        const width = elem.offsetWidth;
+        if (width === maxWidth) {
+            elem.style.width = `${width}px`;
+        }
         this.dropdown!.position();
+    }
+
+    @bind
+    private onAfterLeave(elem: HTMLElement) {
+        // remove the position after leave, https://github.com/ksc-fe/kpc/issues/873
+        const style = elem.style;
+        style.left = style.top = style.width  = '';
     }
 
     @bind

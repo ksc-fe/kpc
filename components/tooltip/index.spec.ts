@@ -6,7 +6,9 @@ import ContentDemo from '~/components/tooltip/demos/content';
 import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
 import {Tooltip} from './';
+import {Dialog} from '../dialog';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
+import { tooltip as tooltipTheme } from './styles';
 
 describe('Tooltip', () => {
     afterEach((done) => {
@@ -373,5 +375,37 @@ describe('Tooltip', () => {
         await wait();
         const dropdown = getElement('.k-tooltip-content')!;
         expect(dropdown.classList.contains('a')).to.be.true;
+    });
+
+    it('should fix the width in small container', async () => {
+        class Demo extends Component {
+            static template = `
+                const {Tooltip, Dialog} = this;
+                <div style="text-align: right; position: relative; width: 300px;">
+                    <Tooltip content="这是一段很长的描述文字，这是一段很长的描述文字" container={dom => dom}>
+                        <span class="trigger">test</span>
+                    </Tooltip>
+                </div>
+            `
+            private Tooltip = Tooltip;
+            private Dialog = Dialog;
+        }
+
+        const [instance, element] = mount(Demo);
+        const trigger = element.querySelector<HTMLDivElement>('.trigger')!;
+        const expecedWidth = parseInt(tooltipTheme.maxWidth);
+
+        dispatchEvent(trigger, 'mouseenter');
+        await wait();
+        const content = getElement('.k-tooltip-content')!;
+        const width = content.offsetWidth;
+        expect(width).to.eql(expecedWidth);
+
+        dispatchEvent(trigger, 'mouseleave');
+        await wait();
+        dispatchEvent(trigger, 'mouseenter');
+        await wait();
+        const newWidth = content.offsetWidth;
+        expect(newWidth).to.eql(width);
     });
 });

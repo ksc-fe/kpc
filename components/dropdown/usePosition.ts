@@ -58,6 +58,7 @@ export function usePosition() {
         position(findDomFromVNode(instance.menuVNode!, true) as HTMLElement, {
             my: 'left top+8',
             at: 'left bottom',
+            collision: instance.get('collison'),
             ...pos,
             of: ofElement,
             using: _feedback => {

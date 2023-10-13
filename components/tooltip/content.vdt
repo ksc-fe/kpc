@@ -22,7 +22,12 @@ const classNameObj = {
 
 <t:super
     value={!!value && !this.isEmptyChildren}
-    transition={{name: 'k-fade', onEnter: this.onEnter}}
+    transition={{
+        name: 'k-fade',
+        onEnter: this.onEnter,
+        onAfterLeave: this.onAfterLeave,
+        onLeaveCancelled: this.onAfterLeave,
+    }}
     class={classNameObj}
 >
     <b:children>

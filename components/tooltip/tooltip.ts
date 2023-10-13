@@ -49,6 +49,7 @@ const defaults = (): Partial<TooltipProps> => ({
     showArrow: true,
     theme: 'dark',
     position: {my: 'center bottom-10', at: 'center top', collision: 'flipfit'},
+    collison: 'flipfit',
     hoverable: false,
     always: false,
     confirm: false,
