@@ -68,7 +68,7 @@ const {ellipsis, message, errorRef} = this.error;
                     {message.value}
                 </div>
                 <Tooltip hoverable position="bottom">
-                    <Icon class="ion-ios-information-outline k-form-error-more" size="small" />
+                    <Icon class="ion-ios-information-outline k-form-error-more" size="small" color="inherit" />
                     <b:content>
                         {message.value}
                     </b:content>
