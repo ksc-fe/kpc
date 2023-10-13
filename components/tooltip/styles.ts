@@ -32,7 +32,7 @@ const defaults = {
     smallPadding: '4px',
 };
 
-let tooltip: typeof defaults;
+export let tooltip: typeof defaults;
 setDefault(() => {
     tooltip = deepDefaults(theme, {tooltip: defaults}).tooltip;
 });
