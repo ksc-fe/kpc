@@ -38,6 +38,7 @@ export * from './components/layout';
 export * from './components/menu';
 export * from './components/message';
 export * from './components/pagination';
+export * from './components/popover';
 export * from './components/progress';
 export * from './components/radio';
 export * from './components/rate';

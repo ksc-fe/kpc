@@ -3,7 +3,6 @@ import BasicDemo from '~/components/tooltip/demos/basic';
 import PositionDemo from '~/components/tooltip/demos/position';
 import TriggerDemo from '~/components/tooltip/demos/trigger';
 import ContentDemo from '~/components/tooltip/demos/content';
-import ConfirmDemo from '~/components/tooltip/demos/confirm';
 import AlwaysDemo from '~/components/tooltip/demos/always';
 import {Tooltip} from './';
 import {Radio} from '../radio';
@@ -57,7 +56,7 @@ describe('Tooltip', () => {
             expect(a >= b - 1 && a <= b + 1).to.be.true;
         };
 
-        
+
         instance.set('position', 'left');
         await wait();
         contains('k-right');
@@ -136,7 +135,7 @@ describe('Tooltip', () => {
         await wait(500);
         const content1 = getElement('.k-tooltip-content');
 
-        //  should not hide when move mouse from button to tooltip content    
+        //  should not hide when move mouse from button to tooltip content
         expect(content1).eql(content);
 
         dispatchEvent(canHover, 'mouseleave');
@@ -155,35 +154,6 @@ describe('Tooltip', () => {
         expect(content.querySelector<HTMLElement>('.k-slider')!.outerHTML).to.matchSnapshot();
     });
 
-    it('should handle confirm tooltip corectly', async () => {
-        const [instance, element] = mount(ConfirmDemo);
-
-        const cancelCb = sinon.spy();
-        const okCb = sinon.spy();
-
-        instance.refs.__test.on('cancel', cancelCb);
-        instance.refs.__test.on('ok', okCb);
-
-        dispatchEvent(element.children[0], 'click');
-        await wait();
-        let content = getElement('.k-tooltip-content')!;
-        expect((content.querySelector('.k-tooltip-buttons') as HTMLElement).outerHTML).to.matchSnapshot();
-
-        (content.querySelector('.k-btn') as HTMLElement).click();
-        await wait(500);
-        expect(content.style.display).eql('none');
-
-        dispatchEvent(element.firstElementChild!, 'click');
-        await wait();
-        content = getElement('.k-tooltip-content')!;
-        const [, btn] = Array.from<HTMLElement>(content.querySelectorAll('.k-btn'));
-        btn.click();
-
-        await wait(500);
-        expect(content.style.display).eql('none');
-        expect(cancelCb.callCount).eql(1);
-        expect(okCb.callCount).eql(1);
-    });
 
     it('should always show tooltip', async () => {
         const [, element] = mount(AlwaysDemo);
@@ -229,7 +199,7 @@ describe('Tooltip', () => {
 
     //     const app = new Vue({
     //         render: h => h(
-    //             'Test', 
+    //             'Test',
     //             {ref: 'test'}),
     //         components: {Test},
     //     }).$mount(container);
@@ -264,7 +234,7 @@ describe('Tooltip', () => {
     //             </div>
     //         `,
     //         components: {
-    //             Tooltip:  Tooltip as any, 
+    //             Tooltip:  Tooltip as any,
     //             Radio: Radio as any,
     //         },
     //         data: {

@@ -161,9 +161,9 @@ export default function makeStyles() {
             })}
 
             // confirm
-            .k-tooltip-buttons {
+            .k-tooltip-footer {
                 padding-top: ${tooltip.confirm.gaps};
-                .k-btn:last-of-type {
+                .k-btn:not(:first-of-type) {
                     margin-left: ${tooltip.confirm.gaps};
                 }
             }
