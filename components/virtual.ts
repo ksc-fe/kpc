@@ -5,7 +5,7 @@ import {
     createVNode,
 } from 'intact';
 import { isTextChildren } from './utils';
-import { EMPTY_OBJ, isFunction } from 'intact-shared';
+import { EMPTY_OBJ, isFunction, hasOwn } from 'intact-shared';
 import { cx } from '@emotion/css';
 
 const reactEventReg = /on[A-Z]/;
@@ -50,7 +50,7 @@ export class Virtual extends Component<any> {
 
         // maybe we render the intact component in react slot property, in this case
         // the $isReact is false. so use the vnode $$typeof field as gauge
-        if (vnode.$$typeof || (this as any).$isVueNext) {
+        if (vnode.$$typeof || vnode.__v_isVNode /* vue3 vnode */) {
             const _props = vnode.props;
             if (!_props) return props;
 
@@ -62,7 +62,7 @@ export class Virtual extends Component<any> {
             }
 
             return {...props, ...events, className: _props.className || _props.class /* vue-next */};
-        } else if ((this as any).$isVue) {
+        } else if (hasOwn.call(vnode, 'componentOptions') /* vue2 vnode */) {
             const data = vnode.data;
             const on = data && data.on || EMPTY_OBJ;
             const events: Record<string, Function> = {};

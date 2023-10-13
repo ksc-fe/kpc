@@ -1,4 +1,5 @@
 import {Component} from 'intact';
+import BasicDemo from '~/components/menu/demos/basic';
 import CollapseDemo from '~/components/menu/demos/collapse';
 import AccordionDemo from '~/components/menu/demos/accordion';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
@@ -8,13 +9,17 @@ describe('Menu', () => {
     afterEach(() => unmount());
 
     it('expand and shrink sub menu', async () => {
-        const [instance, element] = mount(CollapseDemo);
+        const [instance, element] = mount(BasicDemo);
 
+        await wait();
+
+        // shrink
         const title = element.querySelector('.k-expanded .k-menu-title') as HTMLElement;
         title.click();
         await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
         expect(instance.get('expandedKeys')).to.eql([]);
+
         title.click();
         await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
@@ -23,6 +28,9 @@ describe('Menu', () => {
 
     it('select', async () => {
         const [instance, element] = mount(CollapseDemo);
+
+        instance.set('collapse', false);
+        await wait();
 
         expect(element.innerHTML).to.matchSnapshot();
 

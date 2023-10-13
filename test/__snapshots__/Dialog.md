@@ -5,7 +5,11 @@
 ```
 "<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-yffrw1 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-55gqps\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon k-icon-close css-73bv35\"></i></button></div><div class=\"k-dialog-body\">
         Dialog Body 
+<<<<<<< HEAD
         <div class=\"k-select css-1dh5c5y\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-73bv35\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-dialog-cancel css-55gqps\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-dialog-ok css-55gqps\" tabindex=\"0\" type=\"button\">确定</button></div><div class=\"k-dropdown-menu k-select-menu css-1dffs18 css-7sngro\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+=======
+        <div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+>>>>>>> v2
 ```
 
 #### `should show correctly when render with value is true`
@@ -25,7 +29,11 @@
 ```
 "<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-yffrw1 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-55gqps\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon k-icon-close css-73bv35\"></i></button></div><div class=\"k-dialog-body\">
         Dialog Body 
+<<<<<<< HEAD
         <div class=\"k-select css-1dh5c5y\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-73bv35\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-dialog-cancel css-55gqps\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-dialog-ok css-55gqps\" tabindex=\"0\" type=\"button\">确定</button></div><div class=\"k-dropdown-menu k-select-menu css-1dffs18 css-7sngro\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+=======
+        <div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+>>>>>>> v2
 ```
 
 #### `demos test`
@@ -37,7 +45,11 @@
 ```
 "<div class=\"k-dialog-overlay k-fade-enter-from k-fade-enter-active\" style=\"\"></div><div class=\"k-dialog css-yffrw1 transition-enter-from transition-enter-active\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-55gqps\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon k-icon-close css-73bv35\"></i></button></div><div class=\"k-dialog-body\">
         Dialog Body 
+<<<<<<< HEAD
         <div class=\"k-select css-1dh5c5y\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-73bv35\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-dialog-cancel css-55gqps\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-dialog-ok css-55gqps\" tabindex=\"0\" type=\"button\">确定</button></div><div class=\"k-dropdown-menu k-select-menu css-1dffs18 css-7sngro\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+=======
+        <div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+>>>>>>> v2
 ```
 
 ```
@@ -93,7 +105,11 @@
 ```
 "<div class=\"k-dialog-overlay\" style=\"\"></div><div class=\"k-dialog css-yffrw1\" style=\"left: ; top: ;\"><div class=\"k-dialog-header\"><span class=\"k-dialog-title\">Dialog Title</span><button class=\"k-btn k-none k-btn-icon k-dialog-close css-55gqps\" title=\"关闭\" tabindex=\"0\" type=\"button\"><i class=\"k-icon k-icon-close css-73bv35\"></i></button></div><div class=\"k-dialog-body\">
         Dialog Body 
+<<<<<<< HEAD
         <div class=\"k-select css-1dh5c5y\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-73bv35\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-dialog-cancel css-55gqps\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-dialog-ok css-55gqps\" tabindex=\"0\" type=\"button\">确定</button></div><div class=\"k-dropdown-menu k-select-menu css-1dffs18 css-7sngro\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+=======
+        <div class=\"k-select css-1k3uw7s\" tabindex=\"0\"><div class=\"k-select-main\"><input type=\"hidden\"><div class=\"k-select-placeholder c-ellipsis\">请选择</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow ion-ios-arrow-down css-x0ey6t\"></i></span></span></div><!--portal--></div><div class=\"k-dialog-footer\"><button class=\"k-btn k-primary k-dialog-ok css-12uxt25\" tabindex=\"0\" type=\"button\">确定</button><button class=\"k-btn k-secondary k-dialog-cancel css-12uxt25\" tabindex=\"0\" type=\"button\">取消</button></div><div class=\"k-dropdown-menu k-select-menu css-i3ziwm css-1iaopr2\" style=\"display: none;\"><div class=\"k-select-empty\">无数据</div></div></div>"
+>>>>>>> v2
 ```
 
 #### `async open`

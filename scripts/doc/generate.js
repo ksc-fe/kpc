@@ -8,7 +8,6 @@ const parse = require('./parse');
 const NUMS = os.cpus().length;
 // const NUMS = 2;
 
-// const globExp = './@(docs|components)/**/*.md';
 const globExp = resolvePath('./@(docs|components)/**/*.md');
 // const globExp = resolvePath('./@(components)/**/*.md');
 // const globExp = resolvePath('./@(docs|components)/transfer/demos/tree.md');
