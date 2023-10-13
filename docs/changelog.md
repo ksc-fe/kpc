@@ -4,6 +4,24 @@ order: 99
 sidebar: doc
 ---
 
+## v2.1.1
+
+1. `Fix` 修复`MenuItem` `click`事件会触发两次的问题 [#868](https://github.com/ksc-fe/kpc/issues/868)
+2. `Fix` 修复`DropdownItem`被`Tooltip`包裹时，点击不能隐藏，并且移动到子菜单，父菜单会隐藏的问题 [#860](https://github.com/ksc-fe/kpc/issues/860)
+3. `Fix` 修复`Dropdown`在`contextmenu`触发模式下，右键多次点击，菜单位置不能随鼠标改变的问题 [#861](https://github.com/ksc-fe/kpc/issues/861)
+4. `Fix` 修复`Tooltip`添加`className`不能添加到触发元素上的问题 [#870](https://github.com/ksc-fe/kpc/issues/870)
+5. `Fix` 修复`Pagination`当`total`初始化为0时，会将页面也设置为0的问题 [#872](https://github.com/ksc-fe/kpc/issues/872)
+6. `Fix` 修复`Tooltip`在宽度比较小的`Dialog`中，每次展示宽度都会改变的问题 [#873](https://github.com/ksc-fe/kpc/issues/873)
+
+### @king-design/react
+
+1. `Fix` 修复`ReactRouter`的`Outlet`包裹在组件下，需要点击两次才能触发页面更新的问题 [#874](https://github.com/ksc-fe/kpc/issues/874)
+2. `Fix` 修复插入数组类型的子元素，渲染位置错误的问题 [#869](https://github.com/ksc-fe/kpc/issues/869)
+
+### @king-design/vue-legacy
+
+1. `Fix` 修复`scoped`样式无效的问题 [#820](https://github.com/ksc-fe/kpc/issues/820)
+
 ## v2.1.0
 
 1. `Add` `Cascader`数据超长时，默认限制最大高度，展示滚动条 [#833](https://github.com/ksc-fe/kpc/issues/833)
