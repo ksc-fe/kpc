@@ -1,6 +1,6 @@
 // const Intact = require('intact');
 // const Vdt = Intact.Vdt;
-const {indent, dedent, getDefaults} = require('./utils');
+const {indent, dedent, getDefaults, methodRegExp} = require('./utils');
 const {memoize} = require('../utils');
 
 exports.toVue2 = function(...args) {
@@ -327,7 +327,7 @@ function getMethods(js) {
     let spaces = '';
     let isBound = false;
     lines.forEach((code, index) => {
-        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)\(.*?\)(:[^{]*)? {$/);
+        const matches = code.match(methodRegExp);
         if (matches) {
             start = index;
             name = matches[2];

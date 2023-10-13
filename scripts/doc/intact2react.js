@@ -1,4 +1,4 @@
-const {indent, dedent, getDefaults} = require('./utils');
+const {indent, dedent, getDefaults, methodRegExp} = require('./utils');
 
 module.exports = function(vdt, js, reactMethods, jsHead, hasStylus) {
     const properties = {state: false, interface: false, refs: false};
@@ -686,7 +686,7 @@ function getMethods(js) {
             methods[property[2]] = dedent(code) + '\n';
             return;
         }
-        const matches = code.match(/^(\s*)(?:(?:get|set|async|static) )?(\w+)(?:<.*>)?\(.*?\) {$/);
+        const matches = code.match(methodRegExp);
         if (matches) {
             start = index;
             name = matches[2];

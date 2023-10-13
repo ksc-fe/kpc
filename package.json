@@ -9,6 +9,7 @@
     "test:all": "lerna exec -- npm run test",
     "test:react": "lerna exec --scope @king-design/react -- npm run test",
     "test:vue": "lerna exec --scope @king-design/vue -- npm run test",
+    "test:vue-legacy": "lerna exec --scope @king-design/vue-legacy -- npm run test",
     "snapshots:all": "lerna exec -- npm run snapshots",
     "cover": "cross-env UPDATE=2 npm run test",
     "start": "node server.js",
