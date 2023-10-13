@@ -100,7 +100,9 @@ export class Pagination extends Component<PaginationProps, PaginationEvents> {
         
         if (page > totalPages) {
             page = totalPages;
-        } else if (page < 1) {
+        } 
+        // perhaps totalPages is 0
+        if (page < 1) {
             page = 1;
         }
 

@@ -96,4 +96,3 @@ export class Virtual extends Component<any> {
         if (isFunction(callbackOnVirtual)) callbackOnVirtual(e);
     }
 }
-

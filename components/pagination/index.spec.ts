@@ -3,6 +3,8 @@ import GotoDemo from '~/components/pagination/demos/goto';
 import CurrentDemo from '~/components/pagination/demos/current';
 import DisableDemo from '~/components/pagination/demos/disable';
 import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
+import { Component } from 'intact';
+import { Pagination } from '.';
 
 describe('Pagination', () => {
     afterEach(() => unmount());
@@ -88,5 +90,26 @@ describe('Pagination', () => {
         await wait();
         expect(input.value).to.eql('10');
         expect(instance.get('value2')).to.eql(10);
+    });
+
+    it('should not set value to 0 when total is 0 on intialization', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Pagination } = this;
+                <Pagination total={0} v-model="page" />
+            `;
+
+            static defaults() {
+                return {
+                    page: 1,
+                }
+            }
+
+            private Pagination = Pagination;
+        }
+
+        const [instance] = mount(Demo);
+        // await wait();
+        expect(instance.get('page')).to.eql(1);
     });
 });
