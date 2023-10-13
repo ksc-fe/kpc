@@ -16,14 +16,14 @@ export interface TooltipContentBlocks extends DropdownMenuBlocks {
     buttons: null
 }
 
-export class TooltipContent extends DropdownMenu<
-    TooltipContentProps,
-    TooltipContentEvents,
-    TooltipContentBlocks
-> {
+export class TooltipContent<
+    T extends TooltipContentProps = TooltipContentProps,
+    E extends TooltipContentEvents = TooltipContentEvents,
+    B extends TooltipContentBlocks = TooltipContentBlocks,
+> extends DropdownMenu<T, E, B> {
     static template = template;
 
-    private isEmptyChildren: boolean = true;
+    protected isEmptyChildren: boolean = true;
     private arrow = useArrow();
 
     init() {

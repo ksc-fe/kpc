@@ -1,13 +1,16 @@
-import {findDomFromVNode, Component} from 'intact';
 import BasicDemo from '~/components/popover/demos/basic';
 import ContentDemo from '~/components/popover/demos/content';
 import ButtonDemo from '~/components/popover/demos/button';
 import TextDemo from '~/components/popover/demos/text';
 import TypeDemo from '~/components/popover/demos/type';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
-import { Popover } from '.'
 
 describe("Popover", () => {
+    afterEach((done) => {
+        unmount();
+        setTimeout(done, 500);
+    });
+
     it('should handle popover correctly', async () => {
         const [instance, element] = mount(BasicDemo);
 
@@ -20,7 +23,7 @@ describe("Popover", () => {
         dispatchEvent(element.children[0], 'click');
         await wait();
         let content = getElement('.k-tooltip-content')!;
-        expect((content.querySelector('.k-tooltip-buttons') as HTMLElement).outerHTML).to.matchSnapshot();
+        expect(content.innerHTML).to.matchSnapshot();
 
         (content.querySelector('.k-btn') as HTMLElement).click();
         await wait(500);
@@ -38,40 +41,20 @@ describe("Popover", () => {
         expect(okCb.callCount).eql(1);
     });
 
-    it('should handle info type correctly', async () => {
+    it('should handle type correctly', async () => {
         const [instance, element] = mount(TypeDemo);
+        const [info, success, error, warning] = element.querySelectorAll<HTMLButtonElement>('.k-btn');
+        const test = async (element: HTMLButtonElement, className: string) => {
+            element.click();
+            await wait();
+            const content = getElement('.k-tooltip-content')!;
+            expect(content.querySelector('.k-popover-icon')!.classList.contains(className)).eql(true);
+        }
 
-        dispatchEvent(element.querySelector('[data-type="info"]') as HTMLElement, 'click');
-        await wait();
-        const content = getElement('.k-tooltip-content')!;
-        expect(content.querySelector('.k-popover-icon')!.classList.contains('k-icon-information-fill')).eql(true);
-    });
-
-    it('should handle success type correctly', async () => {
-        const [instance, element] = mount(TypeDemo);
-
-        dispatchEvent(element.querySelector('[data-type="success"]') as HTMLElement, 'click');
-        await wait();
-        const content = getElement('.k-tooltip-content')!;
-        expect(content.querySelector('.k-popover-icon')!.classList.contains('k-icon-success-fill')).eql(true);
-    });
-
-    it('should handle error type correctly', async () => {
-        const [instance, element] = mount(TypeDemo);
-
-        dispatchEvent(element.querySelector('[data-type="error"]') as HTMLElement, 'click');
-        await wait();
-        const content = getElement('.k-tooltip-content')!;
-        expect(content.querySelector('.k-popover-icon')!.classList.contains('k-icon-error-fill')).eql(true);
-    });
-
-    it('should handle warning type correctly', async () => {
-        const [instance, element] = mount(TypeDemo);
-
-        dispatchEvent(element.querySelector('[data-type="warning"]') as HTMLElement, 'click');
-        await wait();
-        const content = getElement('.k-tooltip-content')!;
-        expect(content.querySelector('.k-popover-icon')!.classList.contains('k-icon-warning-fill')).eql(true);
+        await test(info, 'k-icon-information-fill');
+        await test(success, 'k-icon-success-fill');
+        await test(error, 'k-icon-error-fill');
+        await test(warning, 'k-icon-warning-fill');
     });
 
     it('should handle title/content slot correctly', async () => {
@@ -95,15 +78,14 @@ describe("Popover", () => {
         const btns = content.querySelectorAll('.k-btn');
         expect(btns[0].textContent).eql('cancel');
         expect(btns[1].textContent).eql('confirm');
-        // expect((content.querySelector('.k-tooltip-buttons') as HTMLElement).outerHTML).to.matchSnapshot()
     });
 
-    it('should handle buttons slot correctly', async () => {
+    it('should handle footer slot correctly', async () => {
         const [instance, element] = mount(ButtonDemo);
 
         dispatchEvent(element.children[0], 'click');
         await wait();
         let content = getElement('.k-tooltip-content')!;
-        expect((content.querySelector('.k-tooltip-buttons') as HTMLElement).outerHTML).to.matchSnapshot();
+        expect((content.querySelector('.k-tooltip-footer') as HTMLElement).outerHTML).to.matchSnapshot();
     });
 });

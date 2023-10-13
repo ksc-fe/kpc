@@ -14,9 +14,6 @@ export type {
 
 export interface TooltipProps extends BaseTooltipProps {
     content?: Children
-    confirm: never
-    okText: never
-    cancelText: never
 }
 
 export interface TooltipBlocks extends BaseTooltipBlocks, TooltipContentBlocks {
@@ -39,7 +36,6 @@ function Wrapper(props: Props<TooltipProps, BaseTooltip>) {
     return h(BaseTooltip, {
         children: [children, contentVNode],
         ...rest,
-        confirm: false,
     });
 }
 

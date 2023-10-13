@@ -6,8 +6,7 @@ order: 2
 可以通过`type`指定提示的类型
 
 ```vdt
-import {Popover} from 'kpc';
-import {Button,ButtonGroup} from 'kpc';
+import {Popover, Button, ButtonGroup} from 'kpc';
 
 <div>
     <ButtonGroup>

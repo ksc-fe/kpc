@@ -1,44 +1,45 @@
 import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
+import {deepDefaults} from '../../styles/utils';
+
+const defaults = {
+    width: '240px',
+    padding: '8px 16px',
+    gap: '8px',
+    title: {
+        fontSize: '14px',
+        lineHeight: '20px',
+        fontWeight: 500,
+    }
+};
+
+let popover: typeof defaults;
+setDefault(() => {
+    popover = deepDefaults(theme, {popover: defaults}).popover;
+});
+
 
 export default function makeStyles() {
     return css`
-        &.k-popover {
-            display: flex;
-
-            .k-popover-icon-wrapper {
-                display: inline-block;
-                margin-top: 2px;
-                margin-right: 8px;
-                vertical-align: center;
-                line-height: 20px;
-                width: 16px;
-                flex-shrink: 0;
-            }
-            ${(['info', 'error', 'success', 'warning'] as const).map(type => {
-                const color = theme.color[type === 'error' ? 'danger' : type];
-                return css`
-                    &.k-${type} {
-                        .k-popover-icon {
-                            color: ${color};
-                        }
-                    }
-                `
-            })}
-
-            .k-popover-content-wrapper {
-                flex: 1;
-            }
-
+        // increase priority
+        &.k-tooltip-content.k-popover {
+            width: ${popover.width};
+            padding: ${popover.padding};
             .k-popover-title {
-                font-size: 14px;
-                line-height: 20px;
-                font-weight: 500;
+                display: flex;
+                align-items: center;
+                font-size: ${popover.title.fontSize};
+                line-height: ${popover.title.lineHeight};
+                font-weight: ${popover.title.fontWeight};
             }
-
-            .k-popover-title + .k-popover-content {
-                margin-top: 8px;
+            .k-popover-icon {
+                margin-right: ${popover.gap};
             }
-        }
+            .k-popover-content {
+                margin-top: ${popover.gap};
+            }
+            .k-tooltip-footer {
+                text-align: right;
+            }
     `;
 }

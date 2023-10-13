@@ -6,8 +6,7 @@ order: 0
 通过`title`和`content`属性设置提示内容，点击“确认”和“取消”按钮分别会触发`ok`和`cancel`事件。
 
 ```vdt
-import {Popover} from 'kpc';
-import {Button} from 'kpc';
+import {Popover, Button} from 'kpc';
 
 <div>
     <Popover

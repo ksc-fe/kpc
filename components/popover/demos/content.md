@@ -6,8 +6,7 @@ order: 1
 有时候提示内容比较复杂，无法通过字符串实现，我们可以通过 `title`和`content` 扩展点来自定义这些复杂的提示内容。
 
 ```vdt
-import {Popover} from 'kpc';
-import {Button} from 'kpc';
+import {Popover, Button} from 'kpc';
 
 <div>
     <Popover ev-ok={this.ok} ev-cancel={this.cancel}>

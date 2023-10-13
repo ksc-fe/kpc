@@ -6,8 +6,7 @@ order: 2
 你还可以通过`okText`和`cancelText`属性指定按钮文案。
 
 ```vdt
-import {Popover} from 'kpc';
-import {Button} from 'kpc';
+import {Popover, Button} from 'kpc';
 
 <div>
     <Popover

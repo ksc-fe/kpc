@@ -10,7 +10,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | trigger | 触发方式，`hover`为悬停触发，`click`为点击触发 | `"hover"` &#124; `"click"` &#124; `"focus"` | `"hover"` |
-| disabled | 是否禁用整个菜单 | `boolean` | `false` |
+| disabled | 是否禁用提示 | `boolean` | `false` |
 | value | 是否将弹出菜单展示出来，可通过`v-model`双向绑定 | `boolean` | `false` |
 | position | 菜单弹出的位置，默认在触发器正上方向上偏移`10px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'center bottom-10', at: 'center top', collision: 'flipfit'}` |
 | of | 弹出菜单的位置是相对当前触发元素，还是触发元素所在的菜单元素，这在嵌套菜单中可能会用到，可以使所有子菜单保持统一的对齐方式，例如：级联选择（Cascader）组件 | `"self"` &#124; `"parent"` &#124; `Event` | `"self"` |

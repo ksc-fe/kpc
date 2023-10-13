@@ -18,6 +18,7 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
     [className]: className,
     [makeStyles()]: true,
+    [$props.className]: $props.className,
 };
 
 <t:super
@@ -26,7 +27,13 @@ const classNameObj = {
     class={classNameObj}
 >
     <b:children>
-        {children}
+        <b:body>{children}</b:body>
+        <div class="k-tooltip-footer" v-if={confirm} key="tooltip-footer">
+            <b:footer>
+                <Button ev-click={this.cancel} size="small">{cancelText}</Button>
+                <Button type="primary" ev-click={this.ok} size="small">{okText}</Button>
+            </b:footer>
+        </div>
         <i v-if={showArrow}
             key="tooltip-arrow"
             class={{
@@ -35,11 +42,5 @@ const classNameObj = {
             }}
             ref={arrowRef}
         ></i>
-        <div class="k-tooltip-buttons" v-if={confirm} key="tooltip-buttons">
-            <b:buttons>
-                <Button ev-click={this.cancel} size="small">{cancelText}</Button>
-                <Button type="primary" ev-click={this.ok} size="small">{okText}</Button>
-            </b:buttons>
-        </div>
     </b:children>
 </t:super>

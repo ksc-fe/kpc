@@ -4,7 +4,7 @@ import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
-    padding: '8px 16px',
+    padding: '8px 12px',
     get color() { return theme.color.text },
     bgColor: '#fff',
     lineHeight: 1.4,
@@ -161,7 +161,7 @@ export default function makeStyles() {
             })}
 
             // confirm
-            .k-tooltip-buttons {
+            .k-tooltip-footer {
                 padding-top: ${tooltip.confirm.gaps};
                 .k-btn:not(:first-of-type) {
                     margin-left: ${tooltip.confirm.gaps};

@@ -1,67 +1,52 @@
-import { Props, createVNode as h, Children, Component } from "intact";
-import { Tooltip as BasePopover } from "../tooltip/tooltip";
-import {
-    type TooltipProps as BasePopoverProps,
-    type TooltipEvents as BasePopoverEvents,
-    type TooltipBlocks as BasePopoverBlocks,
-} from "../tooltip/tooltip";
-import { TooltipContent as PopoverContentWrapper, TooltipContentBlocks as PopoverContentBlocks } from "../tooltip/content";
-import { PopoverContent } from './content';
+import { Props, createVNode as h, Component } from "intact";
+import { Tooltip } from "../tooltip/tooltip";
+import { TooltipProps, TooltipEvents, TooltipBlocks } from "../tooltip/tooltip";
+import { PopoverContent, PopoverContentProps, PopoverContentBlocks } from './content';
+import {noop} from 'intact-shared';
 
-export interface PopoverProps extends BasePopoverProps {
-    title?: string;
-    content?: string;
-    type?: 'success' | 'warning' | 'error' | 'info'
+export interface PopoverProps extends TooltipProps, PopoverContentProps {
     confirm: never;
+    theme: never;
+    hoverable: never;
+    trigger: never;
 }
 
-export interface PopoverEvents extends BasePopoverEvents {}
+export interface PopoverEvents extends TooltipEvents { }
 
-export interface PopoverBlocks extends BasePopoverBlocks, PopoverContentBlocks {
-  title: null;
-  content: null;
-  buttons: null;
-}
+export interface PopoverBlocks extends TooltipBlocks, PopoverContentBlocks { }
 
-export declare class _Popover extends BasePopover<PopoverProps, PopoverEvents, PopoverBlocks> {}
+export declare class _Popover extends Tooltip<PopoverProps, PopoverEvents, PopoverBlocks> { }
 
-function Wrapper(props: Props<PopoverProps, BasePopover>) {
-  let { trigger, theme, children, type, title, content, $blocks, ...rest } = props;
+function Wrapper(props: Props<PopoverProps, Tooltip>) {
+    let { children, type, title, content, $blocks, ...rest } = props;
 
-  const blocks: any = {};
-  if ($blocks) {
-    if ($blocks.title) {
-      blocks.title = $blocks.title;
+    if ($blocks) {
+        if ($blocks.title) {
+            title = $blocks.title(noop as any);
+        }
+        if ($blocks.content) {
+            content = $blocks.content(noop as any);
+        }
     }
 
-    if ($blocks.content) {
-      blocks.content = $blocks.content;
-    }
-  }
+    const contentVNode = h(PopoverContent, {
+        type,
+        title,
+        content,
+        $blocks,
+    });
 
-  const popoverContentVNode = h(PopoverContent, {
-      type,
-      title,
-      content,
-      $blocks: blocks,
-  });
-
-  const buttons = $blocks && $blocks.buttons ? { buttons: $blocks.buttons } : undefined;
-  const contentVNode = h(PopoverContentWrapper, {
-      children: popoverContentVNode,
-      $blocks: buttons,
-  });
-
-  return h(BasePopover, {
-    children: [children, contentVNode],
-    trigger: trigger || 'click',
-    theme: theme || 'light',
-    ...rest,
-    confirm: true,
-  });
+    return h(Tooltip, {
+        children: [children, contentVNode],
+        ...rest,
+        confirm: true,
+        theme: 'light',
+        hoverable: true,
+        trigger: 'click',
+    });
 }
 
 const functionalWrapper = (Component as any).functionalWrapper;
 export const Popover: typeof _Popover = functionalWrapper
-  ? functionalWrapper(Wrapper)
-  : Wrapper;
+    ? functionalWrapper(Wrapper)
+    : Wrapper;
