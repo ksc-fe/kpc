@@ -12,10 +12,10 @@ export function useCopy() {
 
     return {
         startCopy: () => {
-            const { text } = instance.get();
+            const { text, showMessage } = instance.get();
 
             if (clipboardCopy(text) || commandCopy(text)) {
-                Message.success({ content: _$('复制成功') });
+                showMessage && Message.success({ content: _$('复制成功') });
                 success.set(true);
                 clearTimeout(timer);
                 timer = window.setTimeout(() => {
@@ -23,7 +23,7 @@ export function useCopy() {
                 }, 1000);
                 instance.trigger('success', text);
             } else {
-                Message.error({ content: _$('复制失败') });
+                showMessage && Message.error({ content: _$('复制失败') });
                 success.set(false);
                 instance.trigger('error');
             }

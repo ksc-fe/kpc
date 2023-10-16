@@ -5,6 +5,7 @@ import { Events } from '../types';
 
 export interface CopyProps {
     text: string;
+    showMessage?: boolean;
 }
 
 export interface CopyEvents {
@@ -14,9 +15,12 @@ export interface CopyEvents {
 
 const typeDefs: Required<TypeDefs<CopyProps>> = {
     text: String,
+    showMessage: Boolean,
 };
 
-const defaults = (): Partial<CopyProps> => ({});
+const defaults = (): Partial<CopyProps> => ({
+    showMessage: true,
+});
 
 const events: Events<CopyEvents> = {
     success: true,

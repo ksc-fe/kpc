@@ -10,6 +10,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | text | 复制文案值 | `string` | `undefined` |
+| showMessage | 复制成功/失败时，是否展示Message | `boolean` | `true` |
 
 # 事件
 
