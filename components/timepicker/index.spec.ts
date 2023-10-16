@@ -59,7 +59,7 @@ describe('Timepicker', () => {
         await wait();
         expect(instance.get('timeArray')).to.eql(['01:00:00', '02:00:00']);
         // remove one value
-        const [, close] = picker2.querySelectorAll<HTMLElement>('.k-select-close');
+        const [, close] = picker2.querySelectorAll<HTMLElement>('.k-tag-close');
         close.click();
         await wait();
         expect(instance.get('timeArray')).to.eql(['01:00:00']);

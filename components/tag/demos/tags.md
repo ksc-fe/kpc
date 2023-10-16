@@ -9,7 +9,7 @@ order: 4
 ```vdt
 import {Tags, Tag, Split, Tooltip} from 'kpc';
 
-<Split>
+<Split style="width: 600px; background: #e1e1e1;">
     <b:first>
         <Tags>
             <Tag v-for={this.get('tags1')}
@@ -34,12 +34,6 @@ import {Tags, Tag, Split, Tooltip} from 'kpc';
         </Tags>
     </b:last>
 </Split>
-```
-
-```styl
-.k-split
-    width: 600px
-    background: #e1e1e1
 ```
 
 ```ts

@@ -4,7 +4,7 @@ import TagsDemo from '~/components/tag/demos/tags';
 import DraggableDemo from '~/components/tag/demos/draggable';
 
 describe('Tag', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     it('should not close tag if we has prevented default', async () => {
         const [instance, element] = mount(ClosableDemo);

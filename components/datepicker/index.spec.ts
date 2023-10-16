@@ -115,7 +115,7 @@ describe('Datepicker', () => {
             input.click();
             await wait();
             content = getElement('.k-datepicker-content')!;
-            const [yearDom, monthDom] = Array.from(content.querySelectorAll('.k-month-value'));
+            const [yearDom, monthDom] = Array.from(content.querySelectorAll<HTMLElement>('.k-month-value'));
             yearDom.click();
             await wait();
             (content.querySelector('.k-today') as HTMLElement).click();
@@ -282,7 +282,7 @@ describe('Datepicker', () => {
 
             await wait();
             // remove specified item
-            const close = element.querySelector('.k-select-close') as HTMLElement;
+            const close = element.querySelector('.k-tag-close') as HTMLElement;
             close.click();
             expect(instance.get('date')).have.lengthOf(0);
 

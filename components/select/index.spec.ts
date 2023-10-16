@@ -46,7 +46,7 @@ describe('Select', () => {
         const dropdown = getElement('.k-select-menu')!;
         expect(dropdown.innerHTML).to.matchSnapshot();
 
-        const close = element.querySelector('.k-select-close') as HTMLElement;
+        const close = element.querySelector('.k-tag-close') as HTMLElement;
         close.click();
         await wait();
         expect(instance.get('days')!.length).to.eql(2);
@@ -108,7 +108,7 @@ describe('Select', () => {
         expect(dropdown.innerHTML).to.matchSnapshot();
         expect(instance.get('days')).to.eql(['Monday', 'Tuesday']);
         // delete
-        const deleteBtn = element.querySelector('.k-select-close') as HTMLElement;
+        const deleteBtn = element.querySelector('.k-tag-close') as HTMLElement;
         deleteBtn.click();
         await wait();
         expect(instance.get('days')).to.eql(['Tuesday']);

@@ -1,6 +1,7 @@
 import {makeStyles} from './style';
 import {kls} from './style';
 import { MemoBlock } from './memo';
+import { getRestProps } from '../utils';
 
 const {mode} = this.get();
 const {firstSize, lastSize} = this.size;
@@ -16,7 +17,7 @@ const classNameObj = {
 
 const stylePropName = mode === 'horizontal' ? 'width' : 'height';
 
-<div class={classNameObj} ref={elementRef}>
+<div class={classNameObj} ref={elementRef} {...getRestProps(this)}>
     <div class={kls('first')}
         ref={firstRef}
         style={{[stylePropName]: firstSize.value}}
