@@ -155,12 +155,12 @@ export function makeTagsStyles() {
         overflow: hidden;
         &.k-nowrap {
             flex-wrap: nowrap;
-        }
-        .k-tag {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            flex-shrink: 0;
+            .k-tag {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                flex-shrink: 0;
+            }
         }
         .k-tags-more {
             cursor: default;

@@ -149,10 +149,11 @@ export function makeCalendarStyles() {
             align-items: center;
             cursor: pointer;
             position: relative;
+            border-radius: ${datepicker.item.borderRadius};
             .k-value {
                 border-radius: ${datepicker.item.borderRadius};
             }
-            &.k-hover .k-value {
+            &.k-hover {
                 background: ${datepicker.item.hoverBgColor};
             }
             &.k-exceed {
