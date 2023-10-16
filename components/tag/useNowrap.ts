@@ -32,7 +32,7 @@ export function useNowrap(originVNodes: State<VNode[]>) {
     useResizeObserver(containerRef, refresh);
 
     function refresh() {
-        if (!instance.get('nowrap')) return;
+        if (!instance.get('nowrap') || instance.$unmounted) return;
 
         const container = containerRef.value!;
         const containerWidth = container.offsetWidth;
