@@ -34,11 +34,6 @@ export function makeHeaderStyles() {
             .k-tab {
                 a {
                     color: inherit;
-                    &:before {
-                        content: '';
-                        position: absolute;
-                        inset: 0;
-                    }
                 }
             }
             .k-select.versions {
