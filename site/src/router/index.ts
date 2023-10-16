@@ -12,7 +12,7 @@ type Data = {
 
 function getVersion() {
     const pathname = location.pathname;
-    const versionRE = /^(\/v(?:\d.?)+)\/.*/;
+    const versionRE = /^(\/v(?:\d.?)+(-beta\.\d+)?)\/.*/;
     const matches = pathname.match(versionRE);
     if (matches) {
         return matches[1];
