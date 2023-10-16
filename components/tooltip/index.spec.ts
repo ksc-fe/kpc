@@ -10,10 +10,10 @@ import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils'
 import { tooltip as tooltipTheme } from './styles';
 
 describe('Tooltip', () => {
-    // afterEach((done) => {
-        // unmount();
-        // setTimeout(done, 500);
-    // });
+    afterEach((done) => {
+        unmount();
+        setTimeout(done, 500);
+    });
 
     it('should show and hide content correctly', async () => {
         const [, element] = mount(BasicDemo);

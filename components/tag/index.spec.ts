@@ -34,7 +34,7 @@ describe('Tag', () => {
         dispatchEvent(more, 'mouseenter');
         await wait();
         let tooltip = getElement('.k-tags-tooltip')!;
-        expect(tooltip.querySelectorAll('.k-tag').length).to.eql(2);
+        expect(tooltip.querySelectorAll('.k-tag').length).to.eql(3);
 
         // remove one tag
         dispatchEvent(lastPanel.querySelector<HTMLElement>('.k-tag-close')!, 'click');
@@ -47,12 +47,12 @@ describe('Tag', () => {
         await wait(200);
         expect(lastPanel.innerHTML).to.matchSnapshot();
 
-        // show tooltip again (more element will be removed and created again)
+        // show tooltip again (the "more" element will be removed and created again)
         more = lastPanel.querySelector<HTMLDivElement>('.k-tags-more')!;
         dispatchEvent(more, 'mouseenter');
         await wait();
         tooltip = getElement('.k-tags-tooltip')!;
-        expect(tooltip.querySelectorAll('.k-tag').length).to.eql(4);
+        expect(tooltip.querySelectorAll('.k-tag').length).to.eql(3);
     });
 
     it('should support drag tags', async () => {
