@@ -46,4 +46,5 @@ const vNodes = children.value;
             <div class={classNameObj}>{hiddenChildren.value}</div>
         </b:content>
     </Tooltip>
+    <b:append />
 </div>

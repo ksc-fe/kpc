@@ -38,6 +38,21 @@ const label = this.getLabel();
 const hasValue = this.hasValue();
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 const {onFocusout, triggerRef} = this.focusout;
+const filterInput = <Input v-if={filterable}
+    class="k-select-input"
+    value={keywords}
+    ev-$change:value={onInput}
+    disabled={disabled}
+    placeholder={!hasValue ? placeholder : ''}
+    ref={inputRef}
+    autoWidth
+    inline
+    size={size}
+    key="filter"
+    readonly={!show}
+    waveDisabled={true}
+    flat={flat}
+/>
 
 <ErrorContext.Consumer defaultValue={false}>
     {isInvalid => {
@@ -90,7 +105,7 @@ const {onFocusout, triggerRef} = this.focusout;
                             </div>
                             <div v-else key="values" class="k-select-values">
                                 <b:values params={[value, label]}>
-                                    <Tags v-if={label && label.length}
+                                    <Tags v-if={label && label.length || filterable}
                                         nowrap={nowrap}
                                         size={size}
                                         draggable={draggable}
@@ -117,23 +132,10 @@ const {onFocusout, triggerRef} = this.focusout;
                                                 </b:value>
                                             </template>
                                         </Tag>
+                                        <b:append>{filterInput}</b:append>
                                     </Tags>
                                 </b:values>
-                                <Input v-if={filterable}
-                                    class="k-select-input"
-                                    value={keywords}
-                                    ev-$change:value={onInput}
-                                    disabled={disabled}
-                                    placeholder={!hasValue ? placeholder : ''}
-                                    ref={inputRef}
-                                    autoWidth
-                                    inline
-                                    size={size}
-                                    key="filter"
-                                    readonly={!show}
-                                    waveDisabled={true}
-                                    flat={flat}
-                                />
+                                <template v-if={$blocks && $blocks.values}>{filterInput}</template>
                             </div>
                         </TransitionGroup>
                     </div>

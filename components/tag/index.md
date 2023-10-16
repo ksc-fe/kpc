@@ -27,8 +27,39 @@ sidebar: doc
 | nowrap |  是否单行展示标签组，超出的部分会隐藏，仅展示隐藏数量 | `boolean` | `flase` |
 | draggable | 标签是否支持拖动排序 | `boolean` | `false` |
 
+# 扩展点
+
+## Tags
+
+| 名称 | 说明 | 参数 |
+| --- | --- | --- |
+| append | 追加到后面的元素，不参与到`Tags`对`Tag`的管理中  | - |
+
+
 # 事件
+
+## Tag
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | close | 标签关闭事件 | `(e: MouseEvent) => void` |
+
+## Tags
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| dragstart | 拖动开始 | `(v: TagsDragStartParam) => void` |
+| dragend | 拖动结束 | `(v: TagsDragEndParam) => void` |
+
+```ts
+type Key = string | number
+
+export type TagsDragStartParam = {
+    key: Key
+    from: number
+}
+
+export type TagsDragEndParam = TagsDragStartParam & {
+    to: number
+} 
+```
