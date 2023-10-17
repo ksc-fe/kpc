@@ -43,12 +43,12 @@ const handle = (
                     {_$('点击上传')}
                 </Button>
                 <div class="k-upload-area" v-else>
-                    <Icon class="k-icon-add-big" />
+                    <Icon class="k-icon-add-bold" />
                     <div innerHTML={_$('将文件拖到此处，或<a>点击上传</a>')}></div>
                 </div>
             </template>
             <div v-else class="k-upload-picture-card k-upload-add">
-                <Icon class="k-icon-add-big" size="large" />
+                <Icon class="k-icon-add-bold" size="large" />
                 <div>{_$('上传图片')}</div>
             </div>
         </b:content>
@@ -129,10 +129,10 @@ const {show, close, image, isShow} = this.showImage;
                     <div class="k-upload-name c-ellipsis">
                         <Icon class="k-upload-file-icon ion-document" />
                         <span class="k-upload-file-name">{$value.name}</span>
-                        <Icon class="k-upload-status-icon ion-ios-checkmark-outline" 
+                        <Icon class="k-upload-status-icon k-icon-success-fill" 
                             v-if={$value.status === UploadFileStatus.Done}
                         />
-                        <Icon class="k-upload-status-icon ion-ios-close-outline"
+                        <Icon class="k-upload-status-icon k-icon-error-fill"
                             v-else-if={$value.status === UploadFileStatus.Error}
                         />
                     </div>

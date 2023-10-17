@@ -23,7 +23,7 @@ const defaults = {
         border: `1px solid #e2e5e8`,
         closeTop: '9px',
         closeRight: '-9px',
-        closeIconFontSize: '16px',
+        closeIconFontSize: '22px',
     },
 
     // body

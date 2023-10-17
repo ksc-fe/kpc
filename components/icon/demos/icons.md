@@ -6,20 +6,25 @@ order: 3
 
 
 ```vdt
-import {Icon} from 'kpc';
+import {Icon, Input} from 'kpc';
 
-<div class="icons">
-    <div class="icon" v-for={this.get('fonts')}>
-        <Icon 
-            class={'k-icon-' + $value}
-            size="large"
-        />
-        <div>{'k-icon-' + $value}</div>
+<div>
+    <Input v-model="keywords" placeholder="Search icon" clearable />
+    <div class="icons">
+        <div class="icon" v-for={this.filter()}>
+            <Icon 
+                class={'k-icon-' + $value[0]}
+                size="large"
+            />
+            <div>{'k-icon-' + $value[0]}</div>
+        </div>
     </div>
 </div>
 ```
 
 ```styl
+.k-input
+    margin-bottom 16px
 .icons
     display flex
     flex-wrap wrap
@@ -30,100 +35,128 @@ import {Icon} from 'kpc';
 ```
 
 ```ts
-export default class extends Component {
+interface Props {
+    keywords?: string
+    fonts: string[][]
+}
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
         return {
+            keywords: '',
             fonts: [
-                "tag",
-                "clone",
-                "information-fill",
-                "warning-fill",
-                "success-fill",
-                "error-fill",
-                "question-fill",
-                "information", 
-                "cloud", 
-                "pin", 
-                "home", 
-                "cut", 
-                "servers", 
-                "internet", 
-                "mail", 
-                "paper", 
-                "phone", 
-                "panel", 
-                "alarm", 
-                "notification-outline", 
-                "earphone", 
-                "settings-horizontal", 
-                "message", 
-                "heart-outline", 
-                "return-right", 
-                "picture", 
-                "logout", 
-                "all", 
-                "drag", 
-                "settings-vertical", 
-                "more", 
-                "more-circled", 
-                "folder", 
-                "unlock", 
-                "user", 
-                "folder-open", 
-                "lock", 
-                "users", 
-                "edit", 
-                "location", 
-                "delete", 
-                "edit2", 
-                "settings", 
-                "calendar", 
-                "search", 
-                "alert", 
-                "question", 
-                "zoom-in", 
-                "zoom-out",
-                "fault-outline", 
-                "truth-circled", 
-                "hide", 
-                "visible", 
-                "time", 
-                "refresh", 
-                "batchsearch", 
-                "refresh2", 
-                "upload", 
-                "download", 
-                "left-squared", 
-                "right-squared", 
-                "down-squared", 
-                "up-squared", 
-                "arrow-right-circled", 
-                "arrow-down-circled", 
-                "arrow-left-circled", 
-                "arrow-up-circled", 
-                "arrow-up-big", 
-                "arrow-left-big", 
-                "arrow-down", 
-                "arrow-right-big", 
-                "arrow-right", 
-                "sortfill", 
-                "arrow-left", 
-                "arrow-up", 
-                "arrow-down-big", 
-                "sort", 
-                "sortbig", 
-                "truth", 
-                "check", 
-                "close-big", 
-                "add-small",
-                "minus", 
-                "close", 
-                "minuss-mall", 
-                "add-big"
-            ]
-        }
+                ["information-fill"],
+                ["warning-fill"],
+                ["success-fill"],
+                ["error-fill"],
+                ["question-fill"],
+                ["heart-fill"],
+                ['heart'],
+                ['notification-fill'],
+                ['notification'],
+                ["information"], 
+                ["alert"],
+                ["question"],
+                ["zoom-in"],
+                ["zoom-out"],
+                ["close-outline"],
+                ["check-outline"],
+                ["time"],
+                ['right-circled', 'arrow'],
+                ['down-circled', 'arrow'],
+                ['right-circled', 'arrow'],
+                ['up-circled', 'arrow'],
+                ['right-squared', 'arrow'],
+                ['down-squared', 'arrow'],
+                ['left-squared', 'arrow'],
+                ['up-squared', 'arrow'],
+                ['right', 'arrow'],
+                ['down', 'arrow'],
+                ['left', 'arrow'],
+                ['up', 'arrow'],
+                ['right-bold', 'arrow'],
+                ['down-bold', 'arrow'],
+                ['left-bold', 'arrow'],
+                ['up-bold', 'arrow'],
+                ['sort'],
+                ['sort-bold'],
+                ['close'],
+                ['close-bold'],
+                ['check'],
+                ['check-bold'],
+                ['add'],
+                ['add-bold'],
+                ['minus'],
+                ['minus-bold'],
+                ['share'],
+                ['tag'],
+                ['clone'],
+                ['cloud'],
+                ['pin'],
+                ['home'],
+                ['cut'],
+                ['server'],
+                ['internet'],
+                ['mail'],
+                ['paper'],
+                ['phone'],
+                ['panel'],
+                ['alarm'],
+                ['earphone'],
+                ['settings-horizontal'],
+                ['settings-vertical'],
+                ['settings'],
+                ['message'],
+                ['return-right'],
+                ['picture'],
+                ['logout'],
+                ['all'],
+                ['drag'],
+                ['more'],
+                ['more-circled'],
+                ['folder'],
+                ['folder-open'],
+                ['lock'],
+                ['unlock'],
+                ['user'],
+                ['users'],
+                ['edit'],
+                ['location'],
+                ['delete'],
+                ['calendar'],
+                ['search'],
+                ['batchsearch'],
+                ['hidden'],
+                ['visible'],
+                ['refresh'],
+                ['upload'],
+                ['download'],
+            ],
+        } as Props
+    }
+
+    init() {
+        const fonts = this.get('fonts');
+        const map: Record<string, boolean> = {};
+        fonts.forEach(([font]) => {
+            if (map[font]) {
+                console.log('duplicated', font);
+            }
+            map[font] = true;
+        })
+    }
+
+    filter() {
+        const keywords = this.get('keywords')!.trim().toLowerCase();
+        const fonts = this.get('fonts');
+
+        if (!keywords) return fonts;
+
+        return fonts.filter((font) => {
+            return font[0].includes(keywords) || font[1] && font[1].includes(keywords);
+        });
     }
 }
 ```

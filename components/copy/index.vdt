@@ -18,6 +18,6 @@ const classNameObj = {
     <Virtual ev-click={startCopy} class={classNameObj} {...getRestProps(this)}>
         <template v-if={children}>{children}</template>
         <Icon key="1" v-else-if={!success.value} class="k-icon-clone" hoverable title={_$('复制')} />
-        <Icon key="2" v-else class="k-icon-truth" hoverable color="success" />
+        <Icon key="2" v-else class="k-icon-check" hoverable color="success" />
     </Virtual>
 </Transition>

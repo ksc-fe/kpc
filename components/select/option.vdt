@@ -43,6 +43,7 @@ if (searchable && multiple) {
     <Transition name="k-scale" v-if={!searchable}>
         <Icon v-if={multiple && isActive}
             class="k-select-checkmark ion-ios-checkmark-empty"
+            color="primary"
         />
     </Transition>
 </DropdownItem>

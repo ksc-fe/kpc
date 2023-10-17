@@ -66,11 +66,10 @@ const {onSelect, isChecked, getGroupText, keywords, filteredGroup} = this.group;
                                                     trigger="click"
                                                     ev-show={() => keywords.set('')}
                                                 >
-                                                    <Button icon size="mini" class="k-table-group"
+                                                    <Icon class="k-icon-down-squared k-table-group"
                                                         ev-click={e => e._ignoreSortable = true}
-                                                    >
-                                                        <Icon class="ion-android-arrow-dropdown" />
-                                                    </Button>
+                                                        hoverable
+                                                    />
                                                     <DropdownMenu class={{"k-table-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
                                                         <div class="k-table-group-header">
                                                             <Input size="small" fluid
@@ -97,8 +96,8 @@ const {onSelect, isChecked, getGroupText, keywords, filteredGroup} = this.group;
                                                 <div v-if={sortable}
                                                     class={{'k-column-sort': true, [`k-${type}`]: type}}
                                                 >
-                                                    <Icon class="ion-android-arrow-dropup k-asc" />
-                                                    <Icon class="ion-android-arrow-dropdown k-desc" />
+                                                    <Icon class="k-icon-up k-asc" size="mini" />
+                                                    <Icon class="k-icon-down k-desc" size="mini" />
                                                 </div>
                                             </div>
                                         </th>

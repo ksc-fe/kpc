@@ -90,7 +90,7 @@ const classNameObj = {
             } else {
                 switch (status) {
                     case 'success':
-                        icon = 'k-icon-truth';
+                        icon = 'k-icon-check';
                         break;
                     case 'error':
                     case 'warning':

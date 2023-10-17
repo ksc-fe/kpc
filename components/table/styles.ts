@@ -17,6 +17,7 @@ const defaults = {
     // head
     thead: {
         get bgColor() { return theme.color.bg },
+        get color() { return theme.color.lightBlack },
         padding: `0 5px 0 12px`,
         fontSize: `12px`,
         fontWeight: `bold`,
@@ -51,7 +52,8 @@ const defaults = {
         iconHeight: `7px`,
         gap: `10px`,
         color: `#d0d5d9`,
-        disabledColor: `#ddd`,
+        get enabledColor() { return theme.color.lightBlack },
+        // disabledColor: `#ddd`,
     },
 
     expandBgColor: '#fdfcff',
@@ -133,7 +135,7 @@ export function makeStyles() {
             display: inline-flex;
             align-items: center;
             max-width: 100%;
-            color: ${theme.color.lightBlack};
+            color: ${table.thead.color};
         }
         .k-table-title-text {
             flex: 1;
@@ -244,20 +246,7 @@ export function makeStyles() {
             width: ${table.group.width} !important;
             height: ${table.group.width} !important;
             margin-left: ${table.group.gap};
-            position: relative;
             color: ${table.group.color};
-            &:hover {
-                color: ${theme.color.primary};
-            }
-            .k-icon {
-                // position: absolute;
-                // top: -1px;
-                // left: 2px;
-                transition: transform ${table.transition};
-            }
-            &.k-dropdown-open .k-icon {
-                transform: rotate(180deg);
-            }
         } 
 
         // force checkbox / radio vertical align middle
@@ -278,12 +267,12 @@ export function makeStyles() {
                 display: block;
                 height: ${table.sort.iconHeight};
                 line-height: ${table.sort.iconHeight};
-                margin-left: ${table.sort.gap};
+                margin: 1px 0 1px ${table.sort.gap};
                 color: ${table.sort.color};
             }
-            &.k-asc .k-icon.k-desc,
-            &.k-desc .k-icon.k-asc {
-                color: ${table.sort.disabledColor};
+            &.k-desc .k-icon.k-desc,
+            &.k-asc .k-icon.k-asc {
+                color: ${table.sort.enabledColor};
             }
         }
 

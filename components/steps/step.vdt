@@ -26,9 +26,9 @@ const {children, title, index, className, style} = this.get();
                 ev-click={linkEvent(index, onChange)}
             >
                 <div class="k-step-mark">
-                    <Icon v-if={error && type !== 'simple'} class="k-icon-close-big" color="danger" />
+                    <Icon v-if={error && type !== 'simple'} class="k-icon-close-bold" color="danger" />
                     <Icon v-else-if={done && (type === 'line' || type === 'line-compact')}
-                        class="k-icon-check"
+                        class="k-icon-check-bold"
                         color="primary"
                     />
                     <span v-else-if={type !== 'simple'}>{index + 1}</span>

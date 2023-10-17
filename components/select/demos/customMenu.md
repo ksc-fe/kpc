@@ -27,8 +27,8 @@ import {Select, Table, TableColumn, Input, Button, Icon} from 'kpc';
             <TableColumn title="Domain" key="domain" />
         </Table>
         <div class="footer">
-            <Button type="primary" size="small" ev-click={this.confirm}>确定</Button>
             <Button size="small" ev-click={this.hide}>取消</Button>
+            <Button type="primary" size="small" ev-click={this.confirm}>确定</Button>
         </div>
     </b:menu>
 </Select>

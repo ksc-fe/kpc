@@ -121,13 +121,13 @@ let nextPage = value + 1;
             type="none"
             disabled={value <= 1 || !!(disablePage && disablePage(value - 1, limit))}
             ev-click={this.prev}
-        ><Icon class="k-icon-arrow-left" /></Button>
+        ><Icon class="k-icon-left" /></Button>
         <template>{paginationItems}</template>
         <Button icon size={size}
             type="none"
             disabled={value >= totalPages || !!(disablePage && disablePage(value + 1, limit))}
             ev-click={this.next}
-        ><Icon class="k-icon-arrow-right" /></Button>
+        ><Icon class="k-icon-right" /></Button>
     </ButtonGroup>
 
     <template v-if={!simple}>

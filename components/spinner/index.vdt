@@ -24,8 +24,8 @@ const {showValue, onInput} = this.value;
         type="none"
         tabindex="-1"
     >
-        <Icon v-if={!vertical} class="k-spinner-icon k-icon-minus-small" />
-        <Icon v-else class="k-spinner-icon k-icon-arrow-down" />
+        <Icon v-if={!vertical} class="k-spinner-icon k-icon-minus" />
+        <Icon v-else class="k-spinner-icon k-icon-down" />
     </Button>
     <Input
         class="k-spinner-input"
@@ -44,7 +44,7 @@ const {showValue, onInput} = this.value;
         type="none"
         tabindex="-1"
     >
-        <Icon v-if={!vertical} class="k-spinner-icon k-icon-add-small" />
-        <Icon v-else class="k-spinner-icon k-icon-arrow-up" />
+        <Icon v-if={!vertical} class="k-spinner-icon k-icon-add" />
+        <Icon v-else class="k-spinner-icon k-icon-up" />
     </Button>
 </div>
