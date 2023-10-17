@@ -57,9 +57,13 @@ export default function makeStyles(color?: string) {
             animation: ${rotate} 1s infinite linear;
         }
         &:before {
-            position: relative;
             font-size: inherit;
-            z-index: 1;
+            /**
+             * FIXME: Why add bellow two styles?
+             * https://github.com/ksc-fe/kpc/issues/876
+             */
+            // position: relative;
+            // z-index: 1;
         }
 
         // hoverable
