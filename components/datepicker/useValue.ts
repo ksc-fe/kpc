@@ -7,11 +7,12 @@ import {
     DayjsValueRange,
     DayjsValue,
 } from './basepicker';
-import {Dayjs} from 'dayjs';
+import dayjs, {Dayjs} from 'dayjs';
 import {Datepicker} from './index';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {last} from '../utils';
+import { endTime } from './helpers';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
 
 export function useValue(
@@ -50,23 +51,25 @@ export function useValue(
 
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
-        let _value: StateValueItem = v;
-
-        // the datetime must be greater than minDate, #406
-        const minDate = disabled.minDate.value;
-        if (minDate && _value.isBefore(minDate)) {
-            _value = minDate;
-        }
+        let _value: StateValueItem;
 
         if (range) {
             const oldValue = last(value.value as StateValueRange[]);
             if (!oldValue || oldValue.length === 2) {
-                _value = [v];
+                /**
+                 * if we select the first value or re-select the value
+                 * no matter what the flag is, we should set flag to start panel
+                 * #877
+                 */
+                flag = PanelFlags.Start;
+                _value = [fixDatetimeWithMinDate(v)];
             } else {
-                _value = [oldValue[0], v];
+                _value = [oldValue[0], fixDatetimeWithMaxDate(v)];
                 (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
             }
             instance.trigger('selecting', _value);
+        } else {
+            _value = fixDatetimeWithMinDate(v);
         }
 
         setValue(_value, false);
@@ -76,6 +79,28 @@ export function useValue(
         } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
             instance.hide();
         }
+    }
+
+    function fixDatetimeWithMinDate(v: Dayjs) {
+        // the datetime must be greater than minDate, #406
+        const minDate = disabled.minDate.value;
+        if (minDate && v.isBefore(minDate)) {
+            return minDate;
+        }
+        return v;
+    }
+
+    function fixDatetimeWithMaxDate(v: Dayjs) {
+        // the tiem of end datetime should be set to 23:59:59, #878
+        const maxDate = disabled.maxDate.value;
+        const date = v.toDate();
+
+        endTime(date);
+        v = dayjs(date);
+        if (maxDate && v.isAfter(maxDate)) {
+            return maxDate;
+        }
+        return v;
     }
 
     return {value, setValue, onChangeDate, ...rest};

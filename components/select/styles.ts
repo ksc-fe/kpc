@@ -207,6 +207,7 @@ export default function makeStyles() {
         .k-tag {
             word-break: break-word;
             height: auto;
+            max-width: calc(100% - ${getRight(select.tag.margin)} - 1px);
         }
 
         // size

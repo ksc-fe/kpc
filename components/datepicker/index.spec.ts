@@ -448,6 +448,16 @@ describe('Datepicker', () => {
             content.querySelector<HTMLElement>('.k-btn')!.click();
             await wait();
             expect(instance.get('datetimeRange')).have.lengthOf(1);
+
+            // select the first value in end panel
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            await wait();
+            content.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            const values = instance.get('datetimeRange')!;
+            expect(values).have.lengthOf(2);
+            expect(values[1][1].includes('23:59:59')).to.be.true;
         });
     });
 

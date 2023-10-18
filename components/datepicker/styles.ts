@@ -117,6 +117,10 @@ export function makeCalendarStyles() {
             display: flex;
             padding: ${datepicker.month.padding};
         }
+        .k-prev .k-icon,
+        .k-next .k-icon {
+            margin: 0 -5px !important;
+        }
         .k-month-values {
             flex: 1;
             font-size: 14px;

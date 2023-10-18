@@ -18,6 +18,11 @@ import {Datepicker} from 'kpc';
 </div>
 ```
 
+```styl
+.k-datepicker
+    margin-right 20px
+```
+
 ```ts
 interface Props {
     datetime1?: string | null
@@ -35,7 +40,3 @@ export default class extends Component<Props> {
 }
 ```
 
-```styl
-.k-datepicker
-    margin-right 20px
-```
