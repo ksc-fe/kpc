@@ -68,6 +68,7 @@ export interface InputProps<V extends Value = Value> extends InputHTMLAttributes
     resize?: 'none' | 'vertical' | 'horizontal' | 'both'
     showPassword?: boolean
     flat?: boolean
+    showCount?: boolean
 }
 
 export type AutoRows = {
@@ -109,6 +110,7 @@ const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> 
     resize: ['none', 'vertical', 'horizontal', 'both'],
     showPassword: Boolean,
     flat: Boolean,
+    showCount: Boolean,
 }
 
 const defaults = (): Partial<InputProps> => ({

@@ -9,7 +9,7 @@ const {
     className, style, type, value, defaultValue, placeholder,
     clearable, disabled, size, rows, autoWidth, fluid,
     width, stackClearIcon, frozenOnInput, readonly, inline,
-    waveDisabled, resize, flat,
+    waveDisabled, resize, flat, showCount, maxlength,
     
     'ev-click': click,
     'ev-mounseenter': mouseenter,
@@ -31,14 +31,13 @@ const classNameObj = {
     [`k-${size}`]: size !== 'default',
     'k-group': $blocks.prepend || $blocks.append,
     'k-disabled': disabled,
-    'k-with-prefix': $blocks.prefix,
-    'k-with-suffix': $blocks.suffix,
     'k-clearable': clearable,
     'k-auto-width': autoWidth,
     'k-fluid': fluid,
     'k-stack-clear': stackClearIcon,
     'k-inline': inline,
     'k-flat': flat,
+    'k-type-textarea': type === 'textarea',
     [`k-resize-${resize}`]: type === 'textarea' && isNotAutoRows,
     [`k-resize-none`]: type === 'textarea' && !isNotAutoRows,
     [className]: className,
@@ -95,7 +94,7 @@ if (hasInputValue) {
     }}
     <ErrorContext.Consumer defaultValue={false}>
         {isInvalid => {
-            return <Wave disabled={waveDisabled || disabled || isInvalid}>
+            return <Wave disabled={waveDisabled || disabled || isInvalid} inset="-2px">
                 <div class="k-input-wrapper">
                     <div class="k-input-prefix" v-if={$blocks.prefix}>
                         <b:prefix />
@@ -111,7 +110,7 @@ if (hasInputValue) {
                         rows={isNotAutoRows ? rows : 1}
                         style={height.value ? addStyle(inputProps.style, { height: height.value + 'px' }) : inputProps.style}
                     ></textarea>
-                    <div class="k-input-suffix" v-if={$blocks.suffix || clearable && !disabled || showPasswordIcon.value}>
+                    <div class="k-input-suffix" v-if={$blocks.suffix || clearable && !disabled || showPasswordIcon.value || showCount}>
                         <template v-if={showPasswordIcon.value}>
                             <Icon hoverable
                                 class={{
@@ -124,18 +123,18 @@ if (hasInputValue) {
                         </template>
                         <Icon v-if={clearable && !disabled}
                             class={{
-                                "k-input-clear ion-ios-close": true, 
+                                "k-input-clear k-icon-error-fill": true, 
                                 "k-input-show": hasValue,
                             }}
                             ev-click={this.clear}
                             hoverable
                         />{' '}
+                        <span v-if={showCount}>0 / {maxlength}</span>
                         <b:suffix />
                     </div>
-                    <div v-if={autoWidth}
-                        class="k-input-fake"
-                        ref={fakeRef}
-                    >{!hasValue ? placeholder : inputValue}</div>
+                    <div class="k-input-fake" v-if={autoWidth}>
+                        <span ref={fakeRef}>{!hasValue ? placeholder : inputValue}</span>
+                    </div>
                 </div>
             </Wave>
         }}

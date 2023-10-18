@@ -25,7 +25,7 @@ const defaults = deepDefaults(
         clearIconGap: '3px',
         
         // textarea
-        get textareaPadding() { return `6px ${input.paddingGap}` },
+        get textareaPadding() { return `5px ${input.paddingGap}` },
 
         // group
         get groupBgColor() { return theme.color.bg },
@@ -70,20 +70,14 @@ export function makeStyles() {
         width: ${input.width};
         vertical-align: middle;
         .k-input-wrapper {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             width: 100%;
             position: relative;
-        }
-        .k-input-inner {
-            display: inline-block;
-            width: 100%;
             border: ${input.border};
             background-color: ${input.bgColor};
             transition: border ${input.transition}, background ${input.transition}, box-shadow ${input.transition};
             border-radius: ${input.borderRadius};
-            outline: none;
-            position: relative;
-            color: ${input.color};
             &:hover {
                 border: ${input.hoverBorder};
                 z-index: 1;
@@ -92,6 +86,15 @@ export function makeStyles() {
                 border: ${input.focusBorder};
                 z-index: 1;
             }
+        }
+        .k-input-inner {
+            flex: 1;
+            outline: none;
+            color: ${input.color};
+            border: none;
+            background: transparent;
+            padding: 0;
+            width: 0; // must set width to 0, otherwise it has min width
             &::placeholder {
                 color: ${input.placeholderColor};
             }
@@ -105,12 +108,17 @@ export function makeStyles() {
         // prefix & suffix
         .k-input-prefix,
         .k-input-suffix {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: ${input.clearIconGap};
             color: ${theme.color.lightBlack};
-            line-height: 1;
+            position: relative;
+        }
+        .k-input-prefix {
+            margin-right: ${input.clearIconGap};
+        }
+        .k-input-suffix {
+            margin-left: ${input.clearIconGap};
         }
 
         // clearable
@@ -119,9 +127,6 @@ export function makeStyles() {
             transition: opacity ${input.transition};
             pointer-events: none;
             color: ${input.clearIconColor};
-            + * {
-                margin-left: ${input.clearIconGap};
-            }
         }
         &:hover .k-input-clear.k-input-show {
             opacity: 1;
@@ -139,12 +144,12 @@ export function makeStyles() {
                 position: absolute;
                 z-index: 1;
                 right: 0;
-                &.k-input-show + i {
+                &.k-input-show + * {
                     transition: opacity ${input.transition};
                 }
             }
             &:hover {
-                .k-input-clear.k-input-show + i {
+                .k-input-clear.k-input-show + * {
                     opacity: 0;
                 }
             }
@@ -152,29 +157,23 @@ export function makeStyles() {
 
         // group
         &.k-group {
-            display: table;
-            .k-input-inner {
+            display: inline-flex;
+            .k-input-wrapper {
                 border-radius: 0;
             }
             .k-input-wrapper:first-child {
-                .k-input-inner {
-                    border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
-                }
+                border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
             }
             .k-input-wrapper:last-child {
-                .k-input-inner {
-                    border-radius: 0 ${input.borderRadius} ${input.borderRadius} 0;
-                }
+                border-radius: 0 ${input.borderRadius} ${input.borderRadius} 0;
             }
         }
         .k-input-prepend,
         .k-input-append {
-            display: table-cell;
-            width: 1px;
-            vertical-align: middle;
+            display: inline-flex;
+            align-items: center;
             background-color: ${input.groupBgColor};
             border: ${input.border};
-            text-align: center;
             white-space: nowrap;
             .k-btn {
                 margin: -1px;
@@ -227,10 +226,12 @@ export function makeStyles() {
         &.k-disabled {
             color: ${input.disabledColor};
             cursor: not-allowed;
-            .k-input-inner {
-                color: ${input.disabledColor};
+            .k-input-wrapper {
                 border-color: ${input.disabledBorderColor};
                 background: ${input.disabledBgColor};
+            }
+            .k-input-inner {
+                color: ${input.disabledColor};
                 cursor: not-allowed;
             }
         }
@@ -240,33 +241,12 @@ export function makeStyles() {
             const styles = input[size];
             const sizeClassName = css`
                 font-size: ${styles.fontSize};
-                .k-input-inner {
+                .k-input-wrapper {
                     height: ${styles.height};
-                    line-height: ${styles.height};
-                    font-size: ${styles.fontSize};
                     padding: 0 ${styles.paddingGap};
                 }
-                .k-input-prefix {
-                    left: ${styles.paddingGap};
-                }
-                .k-input-suffix {
-                    right: ${styles.paddingGap};
-                }
-                &.k-with-prefix {
-                    .k-input-inner {
-                        padding-left: calc(${styles.paddingGap} + 1rem + ${input.clearIconGap});
-                    }
-                }
-                &.k-with-suffix,
-                &.k-clearable {
-                    .k-input-inner {
-                        padding-right: calc(${styles.paddingGap} + 1rem + ${input.clearIconGap});
-                    }
-                }
-                &:not(.k-stack-clear).k-with-suffix.k-clearable {
-                    .k-input-inner {
-                        padding-right: calc(${styles.paddingGap} + 2rem + ${input.clearIconGap} * 2);
-                    }
+                .k-input-inner {
+                    font-size: ${styles.fontSize};
                 }
             `;
             
@@ -280,9 +260,8 @@ export function makeStyles() {
 
         // inline
         &.k-inline {
-            .k-input-inner {
+            .k-input-wrapper {
                 height: auto;
-                line-height: inherit;
                 border: none;
                 border-radius: 0;
                 padding: 0;
@@ -290,11 +269,15 @@ export function makeStyles() {
         }
 
         // textarea
-        .k-textarea {
-            padding: ${input.textareaPadding};
-            height: auto;
-            line-height: 1.5;
-            vertical-align: top;
+        &.k-type-textarea {
+            .k-input-wrapper {
+                padding: ${input.textareaPadding};
+                height: auto;
+            }
+            .k-textarea {
+                line-height: 1.5;
+                vertical-align: top;
+            }
         }
         ${(Input.typeDefs.resize as string[]).map(type => {
             return css`
@@ -308,18 +291,18 @@ export function makeStyles() {
 
         // fake dom for get value's width
         .k-input-fake {
-            position: absolute;
-            visibility: hidden;
+            left: 0;
             top: 0;
+            right: 0;
+            position: absolute;
+            overflow: hidden;
+            width: 100%;
+            visibility: hidden;
             white-space: nowrap;
         }
         &.k-auto-width {
             width: auto;
             max-width: 100%;
-            .k-input-inner {
-                max-width: 100%;
-                box-sizing: content-box;
-            }
         }
     `
 }

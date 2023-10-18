@@ -79,8 +79,8 @@ if (searchable) {
                 {children}
             </div>
             <div class="k-select-footer" v-if={multiple}>
-                <Button type="primary" size="small" ev-click={confirm}>{_$('确定')}</Button>
                 <Button size="small" ev-click={this.select.hide}>{_$('取消')}</Button>
+                <Button type="primary" size="small" ev-click={confirm}>{_$('确定')}</Button>
             </div>
         </Provider>
     );

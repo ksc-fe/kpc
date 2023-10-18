@@ -13,6 +13,7 @@ import {Input, Button, Icon} from 'kpc';
         <b:prepend>http://</b:prepend>
         <b:append>.com</b:append>
     </Input>
+    <br />
     <Input placeholder="please enter">
         <b:append>
             <Button icon type="none">
@@ -20,6 +21,7 @@ import {Input, Button, Icon} from 'kpc';
             </Button>
         </b:append>
     </Input>
+    <br />
     <Input placeholder="please enter">
         <b:append>
             <Button icon type="primary">
@@ -27,13 +29,16 @@ import {Input, Button, Icon} from 'kpc';
             </Button>
         </b:append>
     </Input>
+    <br />
     <Input placeholder="please enter">
         <b:append><Button type="primary">搜索</Button></b:append>
     </Input>
+    <br />
     <Input placeholder="please enter">
         <b:prefix><Icon class="k-icon-internet" /></b:prefix>
         <b:suffix><Icon class="k-icon-search" hoverable /></b:suffix>
     </Input>
+    <br />
     <Input placeholder="please enter">
         <b:prepend>http://</b:prepend>
         <b:append>.com</b:append>
