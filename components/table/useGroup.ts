@@ -36,25 +36,25 @@ export function useGroup() {
         return groupValue === value;
     }
 
-    function getGroupText(groupValue: any) {
-        let {multiple, group} = instance.get();
+    // function getGroupText(groupValue: any) {
+        // let {multiple, group} = instance.get();
 
-        if (isNullOrUndefined(groupValue)) return null;
-        if (!multiple) {
-            groupValue = [groupValue];
-        }
+        // if (isNullOrUndefined(groupValue)) return null;
+        // if (!multiple) {
+            // groupValue = [groupValue];
+        // }
 
-        if (group) {
-            const ret = group.filter(item => groupValue.includes(item.value))
-                .map(item => item.label)
-                .join(', ');
-            if (ret) {
-                return `(${ret})`;
-            }
-        }
+        // if (group) {
+            // const ret = group.filter(item => groupValue.includes(item.value))
+                // .map(item => item.label)
+                // .join(', ');
+            // if (ret) {
+                // return `(${ret})`;
+            // }
+        // }
 
-        return null;
-    }
+        // return null;
+    // }
 
     watchState(keywords, (v) => {
         const {group = []} = instance.get();
@@ -69,5 +69,5 @@ export function useGroup() {
         }
     });
 
-    return {onSelect, isChecked, getGroupText, keywords, filteredGroup};
+    return {onSelect, isChecked, keywords, filteredGroup};
 }
