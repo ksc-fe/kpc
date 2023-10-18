@@ -14,11 +14,11 @@ import {Input, Icon} from 'kpc';
     <Input value="disabled" clearable disabled />
     <br />
     <Input clearable placeholder="please enter">
-        <b:suffix><Icon class="ion-ios-search" hoverable /></b:suffix>
+        <b:suffix><Icon class="k-icon-search" hoverable /></b:suffix>
     </Input>
     <br />
     <Input clearable stackClearIcon placeholder="please enter">
-        <b:suffix><Icon class="ion-ios-search" hoverable /></b:suffix>
+        <b:suffix><Icon class="k-icon-search" hoverable /></b:suffix>
     </Input>
 </div>
 ```

@@ -61,7 +61,7 @@ if (searchable) {
                     clearable
                     waveDisabled={true}
                 >
-                    <b:suffix><Icon class="ion-ios-search" /></b:suffix>
+                    <b:suffix><Icon class="k-icon-search" /></b:suffix>
                 </Input>
                 <div class="k-select-op" v-if={multiple}>
                     <Button type="link" size="small"

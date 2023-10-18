@@ -11,7 +11,7 @@ import {Button} from 'kpc';
 <div>
     <Button disabled>disabled</Button>
     <Button disabled type="none">disabled text</Button>
-    <Button disabled icon circle><i class="k-icon ion-ios-search"></i></Button>
+    <Button disabled icon circle><i class="k-icon k-icon-search"></i></Button>
     <Button disabled type="link">link</Button>
 </div>
 ```

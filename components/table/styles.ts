@@ -39,8 +39,7 @@ const defaults = {
     // group
     group: {
         width: `14px`,
-        gap: `10px`,
-        color: `#a6a6a6`,
+        gap: `8px`,
         menuMaxHeight: '200px',
         get activeColor() { return theme.color.primary },
         headerPadding: `8px`,
@@ -50,10 +49,9 @@ const defaults = {
     // sort
     sort: {
         iconHeight: `7px`,
-        gap: `10px`,
-        color: `#d0d5d9`,
-        get enabledColor() { return theme.color.lightBlack },
-        // disabledColor: `#ddd`,
+        gap: `8px`,
+        // color: `#d0d5d9`,
+        get enabledColor() { return theme.color.primary },
     },
 
     expandBgColor: '#fdfcff',
@@ -246,7 +244,6 @@ export function makeStyles() {
             width: ${table.group.width} !important;
             height: ${table.group.width} !important;
             margin-left: ${table.group.gap};
-            color: ${table.group.color};
         } 
 
         // force checkbox / radio vertical align middle
@@ -268,7 +265,6 @@ export function makeStyles() {
                 height: ${table.sort.iconHeight};
                 line-height: ${table.sort.iconHeight};
                 margin: 1px 0 1px ${table.sort.gap};
-                color: ${table.sort.color};
             }
             &.k-desc .k-icon.k-desc,
             &.k-asc .k-icon.k-asc {

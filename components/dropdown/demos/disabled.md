@@ -13,7 +13,7 @@ import {Icon} from 'kpc';
 <div>
     <Dropdown disabled>
         <Button type="primary">
-            disabled <Icon class="ion-ios-arrow-down" />
+            disabled <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -24,7 +24,7 @@ import {Icon} from 'kpc';
 
     <Dropdown>
         <Button type="primary">
-            disabled item <Icon class="ion-ios-arrow-down" />
+            disabled item <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>

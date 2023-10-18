@@ -26,7 +26,7 @@ import {Checkbox} from 'kpc';
 
 ```styl
 .k-checkbox
-    margin-right 20px
+    margin-right 24px
 ```
 
 ```ts

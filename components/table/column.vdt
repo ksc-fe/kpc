@@ -78,7 +78,7 @@ const {onSelect, isChecked, getGroupText, keywords, filteredGroup} = this.group;
                                                                 ev-$change:value={keywords.set}
                                                                 clearable
                                                             >
-                                                                <b:suffix><Icon class="ion-ios-search" /></b:suffix>
+                                                                <b:suffix><Icon class="k-icon-search" /></b:suffix>
                                                             </Input>
                                                         </div>
                                                         <div class="k-table-group-body">

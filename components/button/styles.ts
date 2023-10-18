@@ -114,7 +114,8 @@ const defaults = deepDefaults(
         link: {
             get color() { return theme.color.link },
             get hoverColor() { return theme.color.linkHover },
-            get hoverBgColor() { return theme.color.hoverBg },
+            hoverBgColor: 'transparent',
+            // get hoverBgColor() { return theme.color.hoverBg },
         },
 
         none: {

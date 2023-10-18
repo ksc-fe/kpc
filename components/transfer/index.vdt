@@ -5,6 +5,7 @@ import {Input} from '../input';
 import {Checkbox} from '../checkbox';
 import {Button} from '../button';
 import {Tree} from '../tree';
+import {Icon} from '../icon';
 
 const {
     data, className, keyName, labelName, 
@@ -45,7 +46,7 @@ const Panel = (model) => {
                 size="small"
             >
                 <b:prefix>
-                    <i class="ion-ios-search"></i>
+                    <Icon class="k-icon-search" size="small" />
                 </b:prefix>
             </Input>
         </b:filter>
@@ -83,7 +84,7 @@ const Panel = (model) => {
             type="primary"
             size="large"
         >
-            <i class="k-transfer-icon ion-ios-arrow-left" />
+            <Icon class="k-transfer-icon k-icon-left" />
         </Button>
         <Button circle icon 
             disabled={!enableAdd()}
@@ -91,7 +92,7 @@ const Panel = (model) => {
             type="primary"
             size="large"
         >
-            <i class="k-transfer-icon ion-ios-arrow-right" />
+            <Icon class="k-transfer-icon k-icon-right" />
         </Button>
     </div>
     {Panel('right')}

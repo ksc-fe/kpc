@@ -35,7 +35,7 @@ const title = (children) => (
     >
         <Icon class="k-menu-dot ion-record" v-if={showDot} />
         <div class="k-menu-name">{children}</div>
-        <i class="k-menu-arrow ion-ios-arrow-down" v-if={subMenuVNode}></i>
+        <Icon class="k-menu-arrow k-icon-down" v-if={subMenuVNode} />
     </div>
 );
 

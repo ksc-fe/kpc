@@ -133,6 +133,8 @@ export default function makeStyles() {
         }
         .k-select-prefix,
         .k-select-suffix {
+            display: flex;
+            align-items: center;
             position: relative;
         }
         .k-select-suffix {
@@ -176,7 +178,8 @@ export default function makeStyles() {
             }
         }
         .k-select-suffix-icon {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
             transition: opacity ${select.transition};
         }
 

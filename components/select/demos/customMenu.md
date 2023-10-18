@@ -14,7 +14,7 @@ import {Select, Table, TableColumn, Input, Button, Icon} from 'kpc';
 >
     <b:menu>
         <Input placeholder="请输入关键字" size="small" fluid v-model="keywords" waveDisabled={true}>
-            <b:suffix><Icon class="ion-ios-search" /></b:suffix>
+            <b:suffix><Icon class="k-icon-search" /></b:suffix>
         </Input>
         <Table data={this.filter()}
             type="border"

@@ -21,7 +21,7 @@ const classNameObj = {
 <div class={classNameObj} {...getRestProps(this)}>
     <div class={kls('title')} ev-click={this.toggle}>
         <b:title>{title}</b:title>
-        <Icon class={{[kls('arrow')]: true, 'ion-ios-arrow-right': true}} hoverable={!disabled}></Icon>
+        <Icon class={{[kls('arrow')]: true, 'k-icon-right': true}} hoverable={!disabled}></Icon>
     </div>
     <Transition
         show={isActive}

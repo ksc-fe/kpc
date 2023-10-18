@@ -110,7 +110,7 @@ import {
     </FormItem>
     <FormItem>
         <Button type="primary" htmlType="submit" ev-click={this.handleSubmit}>提交</Button>
-        <Button style="margin-left: 20px" ev-click={this.reset}>重置</Button>
+        <Button style="margin-left: 8px" ev-click={this.reset}>重置</Button>
     </FormItem>
 </Form>
 ```
@@ -121,7 +121,7 @@ import {
     width 300px
 .k-radio
 .k-checkbox
-    margin-right 10px
+    margin-right 24px
 
 @media (max-width: 768px) 
     .k-form-item

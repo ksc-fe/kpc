@@ -16,7 +16,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 <div>
     <Dropdown>
         <Button type="primary">
-            hover <Icon class="ion-ios-arrow-down" />
+            hover <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>

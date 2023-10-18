@@ -27,10 +27,10 @@ import {Button, ButtonGroup} from 'kpc';
     </ButtonGroup>
     <ButtonGroup>
         <Button type="primary">
-            <i class="k-icon ion-ios-arrow-left"></i>上一页
+            <i class="k-icon k-icon-left"></i>上一页
         </Button>
         <Button type="primary">
-            下一页<i class="k-icon ion-ios-arrow-right"></i>
+            下一页<i class="k-icon k-icon-right"></i>
         </Button>
     </ButtonGroup>
     <br /><br />

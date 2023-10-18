@@ -14,7 +14,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Icon, Input} from 'kpc';
 <div>
     <Dropdown>
         <Button type="primary">
-            hover <Icon class="ion-ios-arrow-down" />
+            hover <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -25,7 +25,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Icon, Input} from 'kpc';
 
     <Dropdown trigger="click">
         <Button type="primary">
-            click <Icon class="ion-ios-arrow-down" />
+            click <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>

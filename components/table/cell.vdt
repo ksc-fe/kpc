@@ -36,7 +36,7 @@ if (columnIndex === 0 && indent) {
         class="k-table-arrow"
         ev-click={onClickArrow}
     >
-        <Icon class="ion-ios-arrow-right" size="small" />
+        <Icon class="k-icon-right" size="small" />
     </Button>
     {children}
 </td>

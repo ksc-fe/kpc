@@ -12,7 +12,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 <div>
     <Dropdown position={{my: 'left top', at: 'left bottom+5'}}>
         <Button type="primary">
-            left <Icon class="ion-ios-arrow-down" />
+            left <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -23,7 +23,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 
     <Dropdown position={{my: 'right top', at: 'right bottom+5'}}>
         <Button type="primary">
-            right <Icon class="ion-ios-arrow-down" />
+            right <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>
@@ -34,7 +34,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 
     <Dropdown position="top">
         <Button type="primary">
-            top center <Icon class="ion-ios-arrow-down" />
+            top center <Icon class="k-icon-down" />
         </Button>
         <DropdownMenu>
             <DropdownItem>item 1</DropdownItem>

@@ -13,7 +13,7 @@ import {Button, Icon} from 'kpc';
 
 <div>
     <Button type="primary" loading>确认</Button>
-    <Button icon circle loading><i class="k-icon ion-ios-search"></i></Button>
+    <Button icon circle loading><i class="k-icon k-icon-search"></i></Button>
     <br /> <br />
     <Button type="primary" 
         loading={this.get('loading1')}
@@ -22,15 +22,15 @@ import {Button, Icon} from 'kpc';
     <Button type="primary" 
         loading={this.get('loading2')}
         ev-click={this.onClick.bind(this, 'loading2')}
-    ><Icon class="ion-ios-search" />点击加载</Button>
+    ><Icon class="k-icon-search" />点击加载</Button>
     <Button icon circle
         loading={this.get('loading3')}
         ev-click={this.onClick.bind(this, 'loading3')}
-    ><Icon class="ion-ios-search" /></Button>
+    ><Icon class="k-icon-search" /></Button>
     <Button type="primary" 
         loading={this.get('loading4')}
         ev-click={this.onClick.bind(this, 'loading4')}
-    >图标在右侧<Icon class="ion-ios-search" /></Button>
+    >图标在右侧<Icon class="k-icon-search" /></Button>
 </div>
 ```
 

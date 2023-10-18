@@ -40,7 +40,7 @@ const Options = (data, level, loaded, parentSelected) => {
                 >
                     {getField(item, 'label')}
                     <Icon v-if={children}
-                        class="k-cascader-arrow ion-ios-arrow-right"
+                        class="k-cascader-arrow k-icon-right"
                     /> 
                 </DropdownItem>
             );

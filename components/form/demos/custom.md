@@ -36,16 +36,14 @@ import {Form, FormItem, Input, Button} from 'kpc';
                 <Button ev-click={this.remove.bind(self, $key)}>删除</Button>
             </b:append>
         </FormItem>
+    </FormItem>
+    <FormItem>
         <Button ev-click={this.add}>添加</Button>
     </FormItem>
 </Form>
 ```
 
 ```styl
-.k-form-item
-    .k-form-item
-        margin-bottom 20px
-
 @media (max-width: 768px)
     .k-form-item
         width 100%

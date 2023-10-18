@@ -23,7 +23,7 @@ import {Radio} from 'kpc';
 
 ```styl
 .k-radio
-    margin-right 20px
+    margin-right 24px
 ```
 
 ```ts

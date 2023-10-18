@@ -1,6 +1,7 @@
 import {Button} from '../button';
 import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
+import {Icon} from '../icon';
 
 const {className, children, vertical, size, type} = this.get();
 const {
@@ -25,7 +26,7 @@ const classNameObj = {
         disabled={!enablePrev.value}
         ev-click={prev}
     >
-        <i class={vertical ? "ion-ios-arrow-up" : "ion-ios-arrow-left"}></i>
+        <Icon class={vertical ? "k-icon-up" : "k-icon-left"} />
     </Button>
     <div class="k-tabs-scroll c-clearfix" ref={scrollRef}>
         <div class="k-tabs-wrapper"
@@ -43,6 +44,6 @@ const classNameObj = {
         disabled={!enableNext.value}
         ev-click={next}
     >
-        <i class={vertical ? "ion-ios-arrow-down" : "ion-ios-arrow-right"}></i>
+        <Icon class={vertical ? "k-icon-down" : "k-icon-right"} />
     </Button>
 </div>

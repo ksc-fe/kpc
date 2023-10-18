@@ -36,12 +36,12 @@ const {stop, play} = this.autoplay;
     <Button icon circle type="none" size="large" class="k-carousel-btn k-prev"
         ev-click={this.prev}
     >
-        <Icon class="ion-ios-arrow-left" />
+        <Icon class="k-icon-left" />
     </Button>
     <Button icon circle type="none" size="large" class="k-carousel-btn k-next"
         ev-click={this.next}
     >
-        <Icon class="ion-ios-arrow-right" />
+        <Icon class="k-icon-right" />
     </Button>
     <div class="k-carousel-indicator c-clearfix">
         <div v-for={getItems()}

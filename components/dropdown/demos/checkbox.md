@@ -10,7 +10,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Checkbox, Button, Icon} from 'kpc'
 
 <div>
     <Dropdown>
-        <Button>More<Icon class="ion-ios-arrow-right" /></Button>
+        <Button>More<Icon class="k-icon-right" /></Button>
         <DropdownMenu class="checkbox-menu">
             <DropdownItem hideOnSelect={false}>
                 <Checkbox v-model="checked"
