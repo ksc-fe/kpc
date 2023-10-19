@@ -29,7 +29,8 @@ sidebar: doc
     3. `Change` `Input`采用`flex`布局方式，可以更好地展示组合样式
 7. Select
     1. `Add` `Select`及其它选择类组件支持`flat`样式
-    2. `Add` `Select`多选时，支持单行展示，隐藏超出的值
+    2. `Add` `Select`新增`nowrap`属性，多选时，支持单行展示，隐藏超出的值
+    3. `Add` `Select`新增`draggable`属性，多选时，支持给选定值拖动排序 
 8. Steps
     1. `Add` `Steps`支持垂直模式
     2. `Add` `Steps`新增`line-compact`样式

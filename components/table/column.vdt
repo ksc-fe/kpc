@@ -95,9 +95,9 @@ const {
                                                             </DropdownItem>
                                                         </div>
                                                         <div class="k-table-group-footer" v-if={multiple}>
-                                                            <Button type="none" size="small"
+                                                            <Button size="small"
                                                                 disabled={isEmptyValue(localGroupValue.value)}
-                                                                ev-click={reset}
+                                                                ev-click={() => reset(onChange)}
                                                             >重置</Button>
                                                             <Button type="primary" size="small"
                                                                 ev-click={() => confirm(onChange)}

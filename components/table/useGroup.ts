@@ -54,8 +54,9 @@ export function useGroup() {
         dropdownRef.value!.hide(true);
     }
 
-    function reset() {
+    function reset(onChange: ContextValue['onChange']) {
         localGroupValue.set([]);
+        confirm(onChange);
     }
 
     function isEmptyValue(groupValue: any) {
