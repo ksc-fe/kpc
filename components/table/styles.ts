@@ -41,6 +41,7 @@ const defaults = {
         width: `14px`,
         gap: `8px`,
         menuMaxHeight: '200px',
+        menuMinWidth: '200px',
         get activeColor() { return theme.color.primary },
         headerPadding: `8px`,
         get headerBorder() { return `1px solid ${theme.color.bg}` },
@@ -364,6 +365,7 @@ export function makeStyles() {
 export function makeGroupMenuStyles() {
     return css`
         max-height: ${table.group.menuMaxHeight};
+        min-width: ${table.group.menuMinWidth};
         overflow: auto;
         .k-dropdown-item.k-active {
             color: ${table.group.activeColor};

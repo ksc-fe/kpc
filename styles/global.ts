@@ -107,9 +107,9 @@ injectGlobal`
     .k-fade-in-left-enter-active,
     .k-fade-in-left-leave-active {
         transition: all ${theme.transition.large};
-        td {
-            background: ${palette(theme.color.primary, -4)} !important;
-        }
+        // td {
+            // background: ${palette(theme.color.primary, -4)} !important;
+        // }
     }
     .k-fade-in-left-move {
         // opacity: 1;
@@ -124,7 +124,7 @@ injectGlobal`
     .k-fade-expand-enter-active,
     .k-fade-expand-leave-active {
         transition: all ${theme.transition.large};  
-        background: ${palette(theme.color.primary, -4)} !important;
+        // background: ${palette(theme.color.primary, -4)} !important;
     }
     // .k-fade-expand-move {
         // opacity: 1;
