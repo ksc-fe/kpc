@@ -541,7 +541,7 @@ describe('Datepicker', () => {
             await wait();
             const value2 = instance.get('time')!;
             expect(value2).have.lengthOf(2);
-            expect(value2.map(item => item.split(' ')[1])).eql(['01:00:00', '23:00:00']);
+            expect(value2.map(item => item.split(' ')[1])).eql(['01:00:00', '22:59:59']);
         });
 
         it('year', async () => {

@@ -34,6 +34,7 @@ export type HTMLInputTypes =
     | 'time'
     | 'url'
     | 'week'
+    | 'maxlength'
     | (string & {});
 
 interface InputHTMLAttributes extends CommonInputHTMLAttributes {

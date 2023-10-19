@@ -8,6 +8,7 @@ export interface CommonInputHTMLAttributes {
     form?: string
     name?: string
     required?: boolean
+    maxlength?: string | number
     // value?: string
 }
 

@@ -25,7 +25,7 @@ const defaults = deepDefaults(
         clearIconGap: '3px',
         
         // textarea
-        get textareaPadding() { return `5px ${input.paddingGap}` },
+        get textareaPadding() { return `6px ${input.paddingGap}` },
 
         // group
         get groupBgColor() { return theme.color.bg },

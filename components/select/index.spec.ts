@@ -256,11 +256,12 @@ describe('Select', () => {
         await wait();
         const dropdown = getElement('.k-select-menu')!;
         const [selectAll, toggleSelect, unselectAll] = dropdown.querySelectorAll<HTMLElement>('.k-select-op .k-btn');
-        const [confirm, cancel] = dropdown.querySelectorAll<HTMLElement>('.k-select-footer .k-btn');
+        const [cancel, confirm] = dropdown.querySelectorAll<HTMLElement>('.k-select-footer .k-btn');
 
         // select all
         selectAll.click();
         confirm.click();
+        await wait();
         expect(instance.get('days')).have.length(7);
 
         // unselect all
@@ -268,6 +269,7 @@ describe('Select', () => {
         await wait();
         unselectAll.click();
         confirm.click();
+        await wait();
         expect(instance.get('days')).have.length(0);
 
         // toggle select
@@ -281,6 +283,7 @@ describe('Select', () => {
         await wait();
         toggleSelect.click();
         confirm.click();
+        await wait();
         expect(instance.get('days')).have.length(5);
         expect(instance.get('days')).include('Monday')
     });
