@@ -86,7 +86,7 @@ export function makeItemStyles() {
         &.k-invalid {
             // input
             .k-input {
-                .k-input-inner {
+                .k-input-wrapper {
                     border: ${form.item.invalidBorder};
                     position: relative;
                     z-index: 1
@@ -98,7 +98,7 @@ export function makeItemStyles() {
             .k-radio-wrapper {
                 border: ${form.item.invalidBorder} !important;
             }
-            .k-select .k-input .k-input-inner {
+            .k-select .k-input .k-input-wrapper {
                 border: none;
             }
         }
