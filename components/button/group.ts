@@ -8,13 +8,15 @@ export interface ButtonGroupProps {
     value?: any
     checkType?: 'none' | 'radio' | 'checkbox' 
     fluid?: boolean
+    seperate?: boolean
 }
 
 const typeDefs: Required<TypeDefs<ButtonGroupProps>> = {
     vertical: Boolean,
     value: null,
     fluid: Boolean,
-    checkType: ['none', 'radio', 'checkbox']
+    checkType: ['none', 'radio', 'checkbox'],
+    seperate: Boolean,
 };
 
 const defaults = (): Partial<ButtonGroupProps> => ({

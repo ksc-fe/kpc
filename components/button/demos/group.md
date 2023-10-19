@@ -61,6 +61,13 @@ import {Button, ButtonGroup} from 'kpc';
         <Button value="guangzhou" size="small">广州</Button>
         <Button value="shenzhen" size="small">深圳</Button>
     </ButtonGroup>
+    <p>有间隔的按钮组</p>
+    <ButtonGroup checkType="radio" v-model="city" seperate>
+        <Button value="beijing">北京</Button>
+        <Button value="shanghai">上海</Button>
+        <Button value="guangzhou">广州</Button>
+        <Button value="shenzhen">深圳</Button>
+    </ButtonGroup>
 </div>
 ```
 

@@ -412,7 +412,9 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
 
 export function makeButtonGroupStyles() {
     return css`
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
         vertical-align: middle;
         .k-btn {
             margin: 0;
@@ -470,8 +472,8 @@ export function makeButtonGroupStyles() {
             
         // vertical
         &.k-vertical {
+            flex-direction: column;
             > .k-btn {
-                display: block;
                 &:not(.k-btn-icon) {
                     width: 100%;
                 }
@@ -501,6 +503,14 @@ export function makeButtonGroupStyles() {
                         }
                     `;
                 })}
+            }
+        }
+
+        // seperate
+        &.k-seperate {
+            gap: 8px;
+            > .k-btn {
+                border-radius: ${button.borderRadius} !important;
             }
         }
     `;

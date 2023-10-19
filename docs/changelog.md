@@ -20,6 +20,7 @@ sidebar: doc
     1. `Add` 新增`Tags`组件，用于管理`Tag`，支持单行展示隐藏更多，以及拖拽排序 
 4. Button
     1. `Add` `Button`支持`flat`扁平样式
+    2. `Add` `ButtonGroup`新增`seperate`属性，用于展示带间隔的按钮组
 5. Pagination
     1. `Add` `Pagination`支持`flat`样式，删除之前的`noBorder`属性
 6. Input
