@@ -1,5 +1,5 @@
 /*!
- * @king-design v3.0.0-beta.1
+ * @king-design v3.0.0-beta.2
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -64,6 +64,6 @@ export * from './components/treeSelect';
 export * from './components/upload';
 export * from './components/wave';
 
-export const version = '3.0.0-beta.1';
+export const version = '3.0.0-beta.2';
 
 /* generate end */
