@@ -29,6 +29,7 @@ sidebar: doc
 | inline | 是否展示内联模式 | `boolean` | `flase` |
 | resize | 指定textarea输入框拖动调整大小的方向，默认只能垂直方向调整 | `"none"` &#124; `"vertical"` &#124; `"horizontal"` &#124; `"both"`' | `"vertical"` |
 | flat | 是否展示扁平样式 | `boolean` | `false` |
+| showCount | 是否展示字符长度提示数字 | `boolean` | `false` |
 
 ## Search
 
