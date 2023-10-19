@@ -30,7 +30,7 @@ const {themeColor, videoLevel} = this.get();
             <div class="nav-content-box">
                 <div class="nav-content">
                     <div class="main-title web-title">Kingcloud Design 3.0</div>
-                    <div class="sub-title web-title">全局提升团队协作，高效输出行业设计解决方案</div>
+                    <div class="sub-title web-title">更专业，更具活力的设计系统</div>
                     <div class="main-title h5-title">Kingcloud Design 3.0</div>
                     <div class="sub-title h5-title">提高团队效率，赋能产品设计</div>
                     <div>

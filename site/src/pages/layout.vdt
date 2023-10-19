@@ -78,13 +78,14 @@ const {themeColor, colorList, curLang} = this.get();
                     >{$value.title}</DropdownItem>
                 </DropdownMenu>
             </Dropdown>
-            <Select width="70" container={dom => dom} value="v2"
+            <Select width="70" container={dom => dom} value="v3"
                 size="small"
                 ev-$change:value={this.onChangeVersion}
                 class="versions"
             >
                 <Option value="v1">v1</Option>
                 <Option value="v2">v2</Option>
+                <Option value="v3">v3</Option>
             </Select>
             <div class="theme-color-box" 
                 ev-mouseenter={this.showColorList} 
