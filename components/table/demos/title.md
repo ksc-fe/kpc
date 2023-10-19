@@ -6,7 +6,7 @@ order: 2
 给表格定义复杂的表头内容，只需要通过`TableColumn` `title`扩展点传入自定义内容即可
 
 ```vdt
-import {Table, TableColumn, Tooltip} from 'kpc';
+import {Table, TableColumn, Tooltip, Icon} from 'kpc';
 
 <Table data={this.get('data')}>
     <TableColumn key="a"
@@ -14,9 +14,9 @@ import {Table, TableColumn, Tooltip} from 'kpc';
         sortable
     >
         <b:title>
-            <span title="自定义表头内容" class="middle title">自定义表头内容</span>
+            <span title="自定义表头内容" class="title">自定义表头内容</span>
             <Tooltip content="tooltip content">
-                <i class="ion-ios-help-outline middle"></i>
+                <Icon class="k-icon-question" />
             </Tooltip>
         </b:title>
     </TableColumn>
@@ -26,8 +26,6 @@ import {Table, TableColumn, Tooltip} from 'kpc';
 
 ```styl
 .k-table
-    .middle
-        vertical-align middle
     .title
         margin-right 8px
 ```

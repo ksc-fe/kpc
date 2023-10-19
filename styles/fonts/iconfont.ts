@@ -17,7 +17,7 @@ injectGlobal`
 
     .k-icon {
       font-family: "kpc-font" !important;
-      font-size: 16px;
+      // font-size: 16px;
       font-style: normal;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;

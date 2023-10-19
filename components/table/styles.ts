@@ -38,7 +38,6 @@ const defaults = {
 
     // group
     group: {
-        width: `14px`,
         gap: `8px`,
         menuMaxHeight: '200px',
         menuMinWidth: '200px',
@@ -138,6 +137,7 @@ export function makeStyles() {
         }
         .k-table-title-text {
             flex: 1;
+            display: inline-flex;
         }
 
         // tbody
@@ -242,8 +242,6 @@ export function makeStyles() {
 
         // group
         .k-table-group {
-            width: ${table.group.width} !important;
-            height: ${table.group.width} !important;
             margin-left: ${table.group.gap};
         } 
 
@@ -265,7 +263,7 @@ export function makeStyles() {
                 display: block;
                 height: ${table.sort.iconHeight};
                 line-height: ${table.sort.iconHeight};
-                margin: 1px 0 1px ${table.sort.gap};
+                margin: 0 0 1px ${table.sort.gap};
             }
             &.k-desc .k-icon.k-desc,
             &.k-asc .k-icon.k-asc {

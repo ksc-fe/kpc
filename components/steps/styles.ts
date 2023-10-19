@@ -1,6 +1,6 @@
 import {css, cx} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
-import {deepDefaults}  from '../../styles/utils';
+import {deepDefaults, palette}  from '../../styles/utils';
 import '../../styles/global';
 
 const defaults = {
@@ -22,6 +22,7 @@ const defaults = {
     done: {
         get markColor() { return theme.color.primary }, 
         get markBorderColor() { return theme.color.primary },
+        get markHoverBgColor() { return palette(theme.color.primary, -4) },
         markBgColor: '#fff',
         get mainColor() { return theme.color.primary },
     },
@@ -109,6 +110,9 @@ export function makeStepsStyles() {
         &.k-clickable {
             .k-done {
                 cursor: pointer;
+                .k-step-wrapper:hover .k-step-mark {
+                    background: ${steps.done.markHoverBgColor};
+                }
             }
         }
 

@@ -71,14 +71,18 @@ export function makeStyles() {
         }
         .k-spinner-input {
             width: ${spinner.default.inputWidth};
-            .k-input-inner {
-                text-align: center;
+            .k-input-wrapper {
                 border:none;
                 border-radius: 0;
-                &:hover,
-                &:focus {
+                &:hover{
                     border: none
                 }
+            }
+            &.k-focus .k-input-wrapper {
+                border: none;
+            }
+            .k-input-inner {
+                text-align: center;
             }
         }
         .k-spinner-icon {
@@ -106,8 +110,7 @@ export function makeStyles() {
                 border-radius: 0 ${spinner.borderRadius} 0 0;
             }
             .k-spinner-input {
-                font-size: 0;
-                .k-input-inner {
+                .k-input-wrapper {
                     border-radius: ${spinner.borderRadius} 0 0 ${spinner.borderRadius};
                 }
             }
