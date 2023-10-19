@@ -16,7 +16,11 @@ import {Input} from '../input';
 import {_$} from '../../i18n';
 
 const {title, fixed, group, multiple, key, sortable, cols, rows} = this.get();
-const {onSelect, isChecked, keywords, filteredGroup} = this.group;
+const {
+    onSelect, isChecked, keywords, filteredGroup,
+    onShow, reset, confirm, dropdownRef,
+    localGroupValue, isEmptyValue,
+} = this.group;
 
 <TableContext.Consumer>
     {checkType => {
@@ -36,7 +40,6 @@ const {onSelect, isChecked, keywords, filteredGroup} = this.group;
 
                                         const groupValue = currentGroup && currentGroup[key];
                                         const type = sort && sort.key === key && sort.type;
-                                        const isEmptyGroupValue = !groupValue || multiple && (!isArray(groupValue) || groupValue.every(value => !value));
 
                                         let checked;
                                         return <th className={classNameObj}
@@ -62,12 +65,13 @@ const {onSelect, isChecked, keywords, filteredGroup} = this.group;
                                                     position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
                                                     key="dropdown"
                                                     trigger="click"
-                                                    ev-show={() => keywords.set('')}
+                                                    ev-show={() => onShow(groupValue)}
+                                                    ref={dropdownRef}
                                                 >
                                                     <Icon class="k-icon-down-squared k-table-group"
                                                         ev-click={e => e._ignoreSortable = true}
                                                         hoverable
-                                                        color={isEmptyGroupValue ? null : 'primary'}
+                                                        color={isEmptyValue(groupValue) ? null : 'primary'}
                                                     />
                                                     <DropdownMenu class={{"k-table-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
                                                         <div class="k-table-group-header">
@@ -82,13 +86,22 @@ const {onSelect, isChecked, keywords, filteredGroup} = this.group;
                                                         </div>
                                                         <div class="k-table-group-body">
                                                             <DropdownItem v-for={filteredGroup.value}
-                                                                ev-select={() => onSelect($value.value, groupValue, onChange)}
+                                                                ev-select={() => onSelect($value.value, onChange)}
                                                                 hideOnSelect={!multiple}
-                                                                class={{'k-active': (checked = isChecked($value.value, groupValue))}}
+                                                                class={{'k-active': (checked = isChecked($value.value))}}
                                                             >
                                                                 <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
                                                                 <span v-else>{$value.label}</span>
                                                             </DropdownItem>
+                                                        </div>
+                                                        <div class="k-table-group-footer" v-if={multiple}>
+                                                            <Button type="none" size="small"
+                                                                disabled={isEmptyValue(localGroupValue.value)}
+                                                                ev-click={reset}
+                                                            >重置</Button>
+                                                            <Button type="primary" size="small"
+                                                                ev-click={() => confirm(onChange)}
+                                                            >确定</Button>
                                                         </div>
                                                     </DropdownMenu>
                                                 </Dropdown>

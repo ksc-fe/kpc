@@ -13,5 +13,6 @@ import {Button} from 'kpc';
     <Button disabled type="none">disabled text</Button>
     <Button disabled icon circle><i class="k-icon k-icon-search"></i></Button>
     <Button disabled type="link">link</Button>
+    <Button disabled type="flat">flat</Button>
 </div>
 ```

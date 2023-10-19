@@ -230,12 +230,29 @@ describe('Table', () => {
         const [item1, item2] = dropdown2.querySelectorAll<HTMLElement>('.k-checkbox');
         item1.click();
         await wait();
-        expect(instance.get('multipleGroup')).to.eql({status: ['active']});
+        expect(instance.get('multipleGroup')).to.eql({status: []});
         expect(table2.innerHTML).to.matchSnapshot();
         item2.click();
         await wait();
+        expect(instance.get('multipleGroup')).to.eql({status: []});
+
+        // click confirm
+        const [reset, confirm] = dropdown2.querySelectorAll<HTMLElement>('.k-table-group-footer .k-btn');
+        confirm.click();
+        await wait();
         expect(instance.get('multipleGroup')).to.eql({status: ['active', 'stopped']});
         expect(table2.innerHTML).to.matchSnapshot();
+
+        // click reset
+        dispatchEvent(icon2, 'click');
+        await wait();
+        expect(dropdown2.innerHTML).to.matchSnapshot();
+        reset.click();
+        await wait();
+        expect(dropdown2.innerHTML).to.matchSnapshot();
+        confirm.click();
+        await wait();
+        expect(instance.get('multipleGroup')).to.eql({status: []});
 
         // update group
         instance.set('statusGroup', [{label: 'label', value: 'value'}]);

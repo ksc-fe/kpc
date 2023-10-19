@@ -235,16 +235,6 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 }
             }
 
-            // disabled
-            &.k-disabled {
-                &, &:hover {
-                    color: ${button.disabled.color};
-                    background: ${button.disabled.bgColor};
-                    border-color: ${button.disabled.borderColor};
-                    cursor: not-allowed
-                }
-            }
-
             &.k-none,
             &.k-link,
             &.k-flat {
@@ -259,9 +249,24 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             &.k-none:hover {
                 background: ${button.none.hoverBgColor};
             }
-
             &.k-flat {
                 background: ${button.none.hoverBgColor};
+            }
+
+            // disabled
+            &.k-disabled {
+                &, &:hover {
+                    color: ${button.disabled.color};
+                    background: ${button.disabled.bgColor};
+                    border-color: ${button.disabled.borderColor};
+                    cursor: not-allowed
+                }
+            }
+            &.k-none.k-disabled,
+            &.k-link.k-disabled {
+                &, &:hover {
+                    background: transparent;
+                }
             }
 
             ${sizes.map(size => {

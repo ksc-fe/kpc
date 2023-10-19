@@ -1,9 +1,10 @@
-import {useInstance} from 'intact';
+import {useInstance, createRef} from 'intact';
 import type {TableColumn, TableColumnGroupItem} from './column';
-import {isNullOrUndefined} from 'intact-shared';
+import {isArray} from 'intact-shared';
 import {toggleArray} from  '../utils';
 import {createContext} from '../context';
 import {useState, watchState} from '../../hooks/useState';
+import type { Dropdown } from '../dropdown';
 
 type ContextValue = {
     groupValue: any
@@ -16,45 +17,51 @@ export function useGroup() {
     const instance = useInstance() as TableColumn;
     const keywords = useState<string>('');
     const filteredGroup = useState<TableColumnGroupItem[] | undefined>(instance.get('group'));
+    const localGroupValue = useState<any>(null); 
+    const dropdownRef = createRef<Dropdown>();
 
     instance.on('$receive:group', (group) => filteredGroup.set(group));
 
-    function onSelect(value: any, groupValue: any, onChange: ContextValue['onChange']) {
+    function onShow(groupValue: any) {
+        keywords.set('');
+        localGroupValue.set(groupValue);
+    }
+
+    function onSelect(value: any, onChange: ContextValue['onChange']) {
         const {multiple, key} = instance.get();
 
         if (multiple) {
-            value = toggleArray(groupValue, value);
+            // should click confirm button when it is multiple selection
+            localGroupValue.set(toggleArray(localGroupValue.value, value));
+        } else {
+            // change immediately when it is single selection
+            onChange(key, value);
         }
-        onChange(key, value);
     }
 
-    function isChecked(value: any, groupValue: any) {
+    function isChecked(value: any) {
         const {multiple} = instance.get();
+        const groupValue = localGroupValue.value;
         if (multiple) {
             return groupValue && groupValue.includes(value);
         }
         return groupValue === value;
     }
 
-    // function getGroupText(groupValue: any) {
-        // let {multiple, group} = instance.get();
+    function confirm(onChange: ContextValue['onChange']) {
+        const {key} = instance.get();
+        onChange(key, localGroupValue.value);
+        dropdownRef.value!.hide(true);
+    }
 
-        // if (isNullOrUndefined(groupValue)) return null;
-        // if (!multiple) {
-            // groupValue = [groupValue];
-        // }
+    function reset() {
+        localGroupValue.set([]);
+    }
 
-        // if (group) {
-            // const ret = group.filter(item => groupValue.includes(item.value))
-                // .map(item => item.label)
-                // .join(', ');
-            // if (ret) {
-                // return `(${ret})`;
-            // }
-        // }
-
-        // return null;
-    // }
+    function isEmptyValue(groupValue: any) {
+        const {multiple} = instance.get();
+        return !groupValue || multiple && (!isArray(groupValue) || groupValue.every(value => !value));
+    }
 
     watchState(keywords, (v) => {
         const {group = []} = instance.get();
@@ -69,5 +76,16 @@ export function useGroup() {
         }
     });
 
-    return {onSelect, isChecked, keywords, filteredGroup};
+    return {
+        onSelect,
+        isChecked,
+        keywords,
+        filteredGroup,
+        onShow,
+        reset,
+        confirm,
+        dropdownRef,
+        localGroupValue,
+        isEmptyValue,
+    };
 }
