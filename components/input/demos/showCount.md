@@ -9,8 +9,10 @@ order: 11
 import {Input} from 'kpc';
 
 <div>
+    <Input placeholder="Please enter" showCount />
+    <br /><br />
     <Input placeholder="Please enter" showCount maxlength="10" />
     <br /><br />
-    <Input type="textarea" placeholder="please enter" showCount maxlength="10" />
+    <Input type="textarea" placeholder="please enter" showCount maxlength="100" />
 </div>
 ```

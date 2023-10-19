@@ -45,6 +45,11 @@ const defaults = deepDefaults(
         flat: {
             get color() { return theme.color.lightBlack },
             get bgColor() { return theme.color.bg },
+        },
+
+        // count
+        count: {
+            get color() { return theme.color.placeholder },
         }
     },
     sizes.reduce((memo, size) => {
@@ -68,6 +73,7 @@ export function makeStyles() {
     return css`
         display: inline-block;
         width: ${input.width};
+        color: ${input.color};
         vertical-align: middle;
         .k-input-wrapper {
             display: inline-flex;
@@ -82,15 +88,16 @@ export function makeStyles() {
                 border: ${input.hoverBorder};
                 z-index: 1;
             }
-            &:focus {
-                border: ${input.focusBorder};
-                z-index: 1;
-            }
+        }
+        &.k-focus .k-input-wrapper {
+            border: ${input.focusBorder};
+            z-index: 1;
         }
         .k-input-inner {
             flex: 1;
             outline: none;
-            color: ${input.color};
+            color: inherit;
+            font-size: inherit;
             border: none;
             background: transparent;
             padding: 0;
@@ -215,10 +222,10 @@ export function makeStyles() {
 
         // flat
         &.k-flat {
-            .k-input-inner {
+            color: ${input.flat.color};
+            .k-input-wrapper {
                 border: none;
                 background: ${input.flat.bgColor};
-                color: ${input.flat.color};
             }
         }
 
@@ -231,7 +238,6 @@ export function makeStyles() {
                 background: ${input.disabledBgColor};
             }
             .k-input-inner {
-                color: ${input.disabledColor};
                 cursor: not-allowed;
             }
         }
@@ -244,9 +250,6 @@ export function makeStyles() {
                 .k-input-wrapper {
                     height: ${styles.height};
                     padding: 0 ${styles.paddingGap};
-                }
-                .k-input-inner {
-                    font-size: ${styles.fontSize};
                 }
             `;
             
@@ -271,12 +274,19 @@ export function makeStyles() {
         // textarea
         &.k-type-textarea {
             .k-input-wrapper {
-                padding: ${input.textareaPadding};
+                display: inline-block;
+                padding: 0;
                 height: auto;
             }
             .k-textarea {
+                width: 100%;
+                padding: ${input.textareaPadding};
                 line-height: 1.5;
                 vertical-align: top;
+            }
+            .k-input-suffix {
+                margin: 0;
+                justify-content: flex-end;
             }
         }
         ${(Input.typeDefs.resize as string[]).map(type => {
@@ -304,6 +314,11 @@ export function makeStyles() {
             width: auto;
             max-width: 100%;
         }
+
+        // count
+        .k-input-count {
+            color: ${input.count.color};
+        }
     `
 }
 
@@ -319,6 +334,9 @@ export function makeSearchStyles() {
             top: 0;
             right: 0;
             z-index: 1;
+        }
+        &.k-default .k-btn:hover {
+            background: transparent;
         }
         .k-input-suffix {
             margin-right: ${input.search.suffixMarginRight};
@@ -344,12 +362,15 @@ export function makeSearchStyles() {
 
         // line
         &.k-line {
-            .k-input-inner {
+            .k-input-wrapper {
                 border-width: 0;
             }
             &.k-open {
-                .k-input-inner {
+                .k-input-wrapper {
                     border-bottom-width: 1px;
+                }
+                .k-btn:hover {
+                    background: transparent;
                 }
             }
         }

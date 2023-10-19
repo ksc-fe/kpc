@@ -7,6 +7,7 @@ import {useFrozen} from './useFrozen';
 import {CommonInputHTMLAttributes, Events} from '../types';
 import {useAutoRows} from './useAutoRows';
 import { useShowPassword } from './useShowPassword';
+import { useFocus } from './useFocus';
 export * from './search';
 
 export type HTMLInputTypes =
@@ -138,6 +139,7 @@ export class Input<V extends Value = Value> extends Component<InputProps<V>, Inp
     private frozen = useFrozen();
     private autoRows = useAutoRows(this.inputRef);
     private showPassword = useShowPassword();
+    private focusHook = useFocus();
 
     focus() {
         this.inputRef.value!.focus();
