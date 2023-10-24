@@ -6,6 +6,7 @@ import '../../styles/global';
 const defaults = {
     get transition() { return theme.transition.middle },
     get bgColor() { return theme.color.border },
+    get hoverBgColor() { return theme.color.placeholder },
     fontSize: `12px`,
     color: '#fff',
     handleBorderRadius: `100%`,
@@ -16,7 +17,8 @@ const defaults = {
         get bgColor() { return theme.color.primary },
         get disabledBgColor() {
             return palette(theme.color.primary, -3);
-        }
+        },
+        get hoverBgColor() { return theme.color.linkHover },
     },
 
     // default
@@ -66,6 +68,7 @@ export function makeStyles() {
         user-select: none;
         overflow: hidden;
         box-sizing: content-box;
+        transition: background ${kswitch.transition};
         input {
             opacity: 0;
             position: absolute;
@@ -90,6 +93,13 @@ export function makeStyles() {
             height: 100%;
             background: ${kswitch.bgColor};
             transition: all ${kswitch.transition};
+        }
+        &:hover {
+            &,
+            .k-switch-bar,
+            .k-switch-wrapper {
+                background: ${kswitch.hoverBgColor};
+            }
         }
         .k-switch-handle {
             border-radius: ${kswitch.handleBorderRadius};
@@ -167,6 +177,12 @@ export function makeStyles() {
             }
             .k-switch-bar {
                 width: 100%;
+            }
+            &:hover {
+                .k-switch-bar,
+                .k-switch-wrapper {
+                    background: ${kswitch.checked.hoverBgColor};
+                }
             }
         }
 

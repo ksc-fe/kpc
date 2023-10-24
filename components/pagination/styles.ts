@@ -32,7 +32,7 @@ const defaults = deepDefaults(
             gap: '6px',
             padding: '0 3px',
             get borderRadius() { return theme.borderRadius },
-            get hoverBgColor() { return theme.color.hoverBg }
+            // get hoverBgColor() { return theme.color.hoverBg }
         },
         // goto
         goto: {
@@ -81,9 +81,6 @@ export function makeStyles() {
                 border-radius: ${pagination.btn.borderRadius} !important;
                 &:last-of-type {
                     margin: 0 !important;
-                }
-                &:hover {
-                    background: ${pagination.btn.hoverBgColor};
                 }
             }
             .k-icon {

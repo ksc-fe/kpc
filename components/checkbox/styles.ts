@@ -26,11 +26,11 @@ const defaults = {
 
     
     inner: {
-        width: '5px',
+        width: '6px',
         height: '10px',
         top: '0px',
-        left: '5px',
-        border: '1px solid #fff',
+        left: '4px',
+        border: '2px solid #fff',
     },
 
     // disabled
@@ -48,11 +48,6 @@ const defaults = {
             },
         } 
     },
-
-    // indeterminate
-    indeterminate: {
-        innerLeft: '4px',
-    }
 };
 
 let checkbox: typeof defaults;
@@ -127,7 +122,6 @@ export default function makeStyles() {
                 &:before {
                     transform: rotate(90deg) scale(1);
                     border-bottom: 0;
-                    left: ${checkbox.indeterminate.innerLeft};
                 }
             }
       
