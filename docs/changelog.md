@@ -47,5 +47,8 @@ sidebar: doc
     1. `Change` `Table`分组多选时，添加确认操作
     2. `Change` `Table`分组时，不再在标题中展示已选值，仅高亮分组按钮
     3. `Change` 动效去掉背景色
+    4. `Change` 默认展示表头的半选中状态
 17. Datepicker
     1. `Change` 范围选择，选择时间时，结束时间默认为`23:59:59`，而非之前的`00:00:00`
+18. Message
+    1. `Change` 默认不展示关闭按钮

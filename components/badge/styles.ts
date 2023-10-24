@@ -34,7 +34,7 @@ export default function makeStyles() {
             right: 0;
             transform: translate(50%, -50%);
             background: ${badge.bgColor};
-            font-size: 75%;
+            font-size: 85%;
             vertical-align: baseline;
         }
             

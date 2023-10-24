@@ -20,7 +20,7 @@ export function defaultTheme() {
             padding: '8px',
         },
         mini: {
-            height: '21px',
+            height: '20px',
             fontSize: '12px',
             padding: '8px',
         },

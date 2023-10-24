@@ -3,7 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 
 const defaults = {
-    width: '240px',
+    width: '320px',
     padding: '8px 16px',
     gap: '8px',
     title: {

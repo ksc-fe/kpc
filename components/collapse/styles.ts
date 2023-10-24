@@ -35,7 +35,6 @@ export function makeStyles() {
             .${kls('arrow')} {
                 float: left;
                 margin-right: ${collapse.titleMarginRight};
-                transform-origin: center center 0;
             }
         }
 
@@ -69,7 +68,6 @@ export function makeItemStyles() {
             transition: transform ${collapse.transition};
             line-height: ${collapseItem.titleHeight};
             height: ${collapseItem.titleHeight};
-            transform-origin: left center 0;
         }
 
         &:not(.k-disabled) {

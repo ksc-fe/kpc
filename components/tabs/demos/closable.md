@@ -30,7 +30,7 @@ import {Tabs, Tab, Button, ButtonGroup, Icon} from 'kpc';
             key={$value.value}
             closable={$value.value !== 10}
         >
-            <Icon class="k-icon-paper" size={this.get('size')} style="margin-right: 8px;" />
+            <Icon class="k-icon-paper" size={this.get('size')} style="margin-right: 8px;" color="inherit" />
             {$value.label}
         </Tab>
     </Tabs>

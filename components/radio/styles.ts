@@ -67,10 +67,13 @@ export function makeStyles() {
                 transform: scale(0);
                 transition: all ${radio.transition};
             }
-            &:hover {
+        }
+        &:hover {
+            .k-radio-wrapper {
                 border: 1px solid ${radio.hoverBorderColor};
             }
         }
+
         input {
             width: 100%;
             height: 100%;

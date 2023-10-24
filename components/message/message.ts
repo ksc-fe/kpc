@@ -33,7 +33,7 @@ let id = 0;
 const defaults = (): Partial<MessageProps> => ({
     duration: 5000,
     type: 'info',
-    closable: true,
+    closable: false,
 });
 
 let messages: Messages | null = null;

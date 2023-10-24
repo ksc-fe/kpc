@@ -97,6 +97,7 @@ const {
                                                         <div class="k-table-group-footer" v-if={multiple}>
                                                             <Button size="small"
                                                                 disabled={isEmptyValue(localGroupValue.value)}
+                                                                type="secondary"
                                                                 ev-click={() => reset(onChange)}
                                                             >重置</Button>
                                                             <Button type="primary" size="small"

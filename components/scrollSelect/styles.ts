@@ -19,7 +19,7 @@ const defaults = {
         get color() { return theme.color.text },
         get activeColor() { return theme.color.primary },
         get hoverBgColor() { return theme.color.bg },
-        activeFontSize: `1.1em`,
+        activeFontSize: `1.3em`,
         get disabledColor() { return theme.color.disabled },
         border: `1px solid #e5e5e5`,
     }

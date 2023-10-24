@@ -1,5 +1,5 @@
 ---
-title: 隐藏Icon或关闭按钮
+title: 隐藏Icon或展示关闭按钮
 order: 1.1
 ---
 
@@ -32,7 +32,7 @@ export default class extends Component {
         Message[type]({
             content: type,
             duration: 3000,
-            closable: false,
+            closable: true,
             hideIcon: true,
         });
     }

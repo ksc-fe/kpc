@@ -37,7 +37,7 @@ sidebar: doc
 | tooltipPosition | 行提示的位置 | `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` &#124; `Position` | `"top"` |
 | tooltipContainer | 指定行提示弹层追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
 | keepStatus | 是否在行销毁的时候，保持该行在`checkedKeys` &#124; `selectedKeys` &#124; `spreadKeys` &#124; `expandedKeys`中的`key`值，默认会同步删除（仅在销毁行的时候有效，如果整个`Table`被销毁，则不会执行该逻辑） | `boolean` | `false` |
-| showIndeterminate | 表头的`Checkbox`是否支持展示半选中状态 | `boolean` | `false` |
+| showIndeterminate | 表头的`Checkbox`是否支持展示半选中状态 | `boolean` | `true` |
 | resizable | 是否可以表头拖动 | `boolean` | `false` |
 | minColWidth | 指定所有列拖动时的最小宽度 | `number` | `40` |
 | widthStoreKey | 如果要保存表格拖动后的列宽信息，可以通过该属性设置保存到`localStorage`中的`key` | `string` | `undefined` |

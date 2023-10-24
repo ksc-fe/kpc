@@ -91,7 +91,9 @@ export default function makeStyles() {
                 transform: rotate(45deg) scale(0);
                 transition: all ${checkbox.transition};
             }
-            &:hover {
+        }
+        &:hover {
+            .k-checkbox-wrapper {
                 border: ${checkbox.hoverBorder}
             }
         }

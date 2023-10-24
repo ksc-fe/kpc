@@ -9,7 +9,7 @@ const defaults = {
         gap: '8px',
         fontWeight: '500'
     },
-    get color() { return theme.color.title },
+    get color() { return theme.color.text },
     get padding() { return `6px ${theme.default.padding}` },
 };
 

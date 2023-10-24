@@ -140,6 +140,7 @@ const defaults = (): Partial<TableProps> => ({
     indent: 32,
     minColWidth: 40,
     animation: true,
+    showIndeterminate: true,
 });
 
 const events: Events<TableEvents> = {

@@ -26,7 +26,7 @@ import {Breadcrumb, BreadcrumbItem, Icon} from 'kpc';
 
 ```styl
 .separator
-    color #ffa133
+    color #0091ea
     vertical-align middle
 i
     margin-right 3px

@@ -148,10 +148,13 @@ const filterInput = <Input v-if={filterable}
                         <span class="k-select-suffix-icon">
                             <b:suffix>
                                 <Icon class="ion-load-c" rotate v-if={loading} />
-                                <Icon v-else-if={!hideIcon}
-                                    class="k-select-arrow k-icon-down"
-                                    disabled={$props.isDisableArrow}
-                                />
+                                <template v-else-if={!hideIcon}>
+                                    <Icon class="k-icon-search" v-if={filterable && !show} />
+                                    <Icon v-else
+                                        class="k-select-arrow k-icon-down"
+                                        disabled={$props.isDisableArrow}
+                                    />
+                                </template>
                             </b:suffix>
                         </span>
                     </span>

@@ -138,6 +138,7 @@ export function makeStyles() {
         .k-table-title-text {
             flex: 1;
             display: inline-flex;
+            line-height: 1.4;
         }
 
         // tbody

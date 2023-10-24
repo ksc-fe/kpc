@@ -1,5 +1,5 @@
 ---
-title: 半选中状态
+title: 取消表头半选中状态
 order: 28
 ---
 
@@ -13,7 +13,7 @@ import {Table, TableColumn} from 'kpc';
         data={this.get('data')} 
         resizable 
         ref="__test" 
-        showIndeterminate={true}
+        showIndeterminate={false}
         checkedKeys={[0]}
     >
         <TableColumn key="a" title="表头1" />

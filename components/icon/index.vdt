@@ -30,6 +30,6 @@ if (this.colors.indexOf(color) > -1) {
 }
 
 <i class={classNameObj}
-    style={addStyle(style, _style)}
     {...getRestProps(this)}
+    style={addStyle(style, _style)}
 >{children}</i>

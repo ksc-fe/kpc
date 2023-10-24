@@ -11,7 +11,7 @@ type SizeStyles = {
 
 const defaults = deepDefaults(
     {
-        get transition() { return theme.transition.middle },
+        get transition() { return theme.transition.large },
         width: `300px`,
         get height() { return theme.default.height },
         bgColor: '#fff',
