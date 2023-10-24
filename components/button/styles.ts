@@ -32,7 +32,7 @@ const btnStyles = {
     get color() { return theme.color.text },
     bgColor: '#fff',
     lineHeight: '1.15',
-    get padding() { return `0 ${theme.default.padding}` },
+    get padding() { return `0 16px` },
     get borderColor() { return theme.color.border },
     get borderRadius() { return theme.borderRadius },
     get fontSize() { return theme.default.fontSize },
@@ -97,6 +97,11 @@ const btnSizeStyles = sizes.reduce((memo, size) => {
         get height() { return theme[size].height },
         get padding() { return `0 ${theme[size].padding}` },
     };
+    if (size === 'large') {
+        Object.defineProperty(memo[size], 'padding', {
+            value: `0 24px`,
+        });
+    }
 
     return memo; 
 }, {} as {[key in Sizes]: SizeStyles});
