@@ -8,6 +8,7 @@ import {Tooltip} from './';
 import {Dialog} from '../dialog';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import { tooltip as tooltipTheme } from './styles';
+import { Select, Option } from '../select';
 
 describe('Tooltip', () => {
     afterEach((done) => {
@@ -377,5 +378,34 @@ describe('Tooltip', () => {
         await wait();
         const newWidth = content.offsetWidth;
         expect(newWidth).to.eql(width);
+    });
+
+    it('should not impact select when wrap select with tooltip', async () => {
+        class Demo extends Component {
+            static template = `
+                const {Tooltip, Select, Option} = this;
+                <Tooltip>
+                    <Select>
+                        <Option value="1">Option 1</Option>
+                        <Option value="2">Option 2</Option>
+                    </Select>
+                </Tooltip>
+            `
+            private Tooltip = Tooltip;
+            private Select = Select;
+            private Option = Option;
+        }
+
+        const [instance, element] = mount(Demo);
+        dispatchEvent(element, 'mouseenter');
+        await wait();
+        dispatchEvent(element, 'click');
+        await wait();
+
+        const menu = getElement(".k-select-menu")!;
+        dispatchEvent(element, 'mouseleave');
+        await wait(500);
+
+        expect(menu.style.display).to.eql('');
     });
 });

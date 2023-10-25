@@ -68,6 +68,7 @@ const typeDefs: Required<TypeDefs<DropdownProps>> = {
 const defaults = (): Partial<DropdownProps> => ({
     trigger: 'hover',
     of: 'self',
+    value: false,
 });
 
 const events: Events<DropdownEvents> = {
