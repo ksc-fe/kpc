@@ -86,6 +86,9 @@ export class Tooltip<
         if (this.get('hoverable')) {
             return super.hide(immediately);
         }
+        // tooltip can show any number sub-tooltips, we should not close the showed tooltip
+        // #885
+        this.showedDropdown = null;
         super.hide(true);
     }
 }
