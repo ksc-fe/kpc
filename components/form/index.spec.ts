@@ -6,6 +6,7 @@ import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Component, findDomFromVNode} from 'intact';
 import {Form, FormItem} from './';
 import {Input} from '../input';
+import { Select } from '../select';
 
 RemoteDemo.prototype.validateUserName = function(value) {
     // mock api
@@ -21,7 +22,7 @@ RemoteDemo.prototype.validateUserName = function(value) {
 };
 
 describe('Form', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('validate', async () => {
         const [instance, element] = mount(BasicDemo, null, basicDemoData);
@@ -439,5 +440,25 @@ describe('Form', () => {
         await form.validate();
         await wait();
         expect(classList.contains('k-ellipsis')).to.be.true;
+    });
+
+    it('should not validate when select is disabled on init', async () => {
+        class Demo extends Component {
+            static template = `
+                const {Form, FormItem, Select} = this;
+                <Form ref="form">
+                    <FormItem rules={{required: true}}>
+                        <Select disabled />
+                    </FormItem>
+                </Form>
+            `;
+            Form = Form;
+            FormItem = FormItem;
+            Select = Select;
+        }
+        const [instance, element] = mount(Demo);
+
+        await wait(500);
+        expect(element.querySelector('.k-form-error')).to.be.null;
     });
 });
