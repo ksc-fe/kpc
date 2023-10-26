@@ -85,6 +85,7 @@ const {themeColor, colorList, curLang} = this.get();
             >
                 <Option value="v1">v1</Option>
                 <Option value="v2">v2</Option>
+                <Option value="v3">v3</Option>
             </Select>
             <div class="theme-color-box" 
                 ev-mouseenter={this.showColorList} 

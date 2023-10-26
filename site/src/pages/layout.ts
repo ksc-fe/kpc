@@ -76,8 +76,6 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
 
     @bind
     onChangeVersion(version: string) {
-        if (version === 'v1') {
-            location.href = '/v1/';
-        }
+        location.href = `/${version}/`;
     }
 }
