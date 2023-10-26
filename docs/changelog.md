@@ -4,6 +4,11 @@ order: 99
 sidebar: doc
 ---
 
+## v2.1.2
+
+1. `Fix` 修复`Tooltip`包裹`Select`，`Select`无法选择的问题 [#885](https://github.com/ksc-fe/kpc/issues/885)
+2. `Fix` 修复`FormItem`包含`Select`，`Select`禁用状态下，进入页面就会触发校验的问题 [#884](https://github.com/ksc-fe/kpc/issues/884)
+
 ## v2.1.1
 
 1. `Fix` 修复`MenuItem` `click`事件会触发两次的问题 [#868](https://github.com/ksc-fe/kpc/issues/868)
