@@ -17,6 +17,7 @@ import {Table, TableColumn, Switch} from 'kpc';
     ref="table"
     draggable
     rowKey={item => item.name}
+    ev-page={this.onChangePage}
 >
     <TableColumn title="Name" key="name" />
     <TableColumn title="IP" key="ip" />
@@ -48,6 +49,11 @@ export default class extends Component {
         return {
             data, 
         };
+    }
+
+    @bind
+    onChangePage(data) {
+        console.log(data);
     }
 }
 ```

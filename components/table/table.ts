@@ -74,7 +74,7 @@ export interface TableEvents<T = any, K extends TableRowKey = number> {
     uncheckRow: [T, number, K]
     checkAll: []
     uncheckAll: []
-    changePage: [PaginationChangeData]
+    page: [PaginationChangeData]
 }
 
 export interface TableBlocks<T = unknown> {
@@ -151,7 +151,7 @@ const events: Events<TableEvents> = {
     uncheckRow: true,
     checkAll: true,
     uncheckAll: true,
-    changePage: true,
+    page: true,
 };
 
 export class Table<

@@ -64,7 +64,7 @@ export function usePagination() {
             });
         }
 
-        instance.trigger('changePage', data);
+        instance.trigger('page', data);
     }
 
     return { data, value, limit, onChange, paginationRef };

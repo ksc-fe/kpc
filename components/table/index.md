@@ -167,3 +167,4 @@ export type TableColumnGroupItem = {
 | uncheckRow | 手动取消选中某行触发 | `(data: T, index: number, key: TableRowKey) => void` |
 | checkAll | 手动全选触发 | `() => void` |
 | uncheckAll | 手动取消全选触发 | `() => void` |
+| page | 当内置翻页改变页码或每页数量时触发 | `({value: number, limit: number}) => void` |
