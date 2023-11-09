@@ -1,4 +1,4 @@
-import {useInstance, VNodeComponentClass, onBeforeMount, onBeforeUpdate, inject} from 'intact';
+import {useInstance, VNodeComponentClass, onBeforeMount, onBeforeUpdate, inject, createVNode} from 'intact';
 import {Menu, MenuItem, MenuProps} from './';
 import {Icon} from '../icon';
 import {
@@ -52,6 +52,10 @@ export function useDropdown(rootMenu: Menu, parentMenu: Menu) {
                     iconVNode = vNode;
                 }
             } else {
+                if (isStringOrNumberNotEmpty(vNode) || isTextVNode(vNode)) {
+                    // wrap with span for showing text ellipsis
+                    vNode = createVNode('span', null, vNode);
+                }
                 titleVNodes.push(vNode);
             }
         });

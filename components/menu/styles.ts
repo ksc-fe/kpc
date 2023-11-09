@@ -230,8 +230,8 @@ export function makeTitleStyles() {
     return css`
         display: flex;
         align-items: center;
-        padding: ${menu.item.padding};
-        color: ${menu.item.color};
+        padding: ${item.padding};
+        color: ${item.color};
         white-space: nowrap;
         overflow: hidden;
         flex-wrap: nowrap;
@@ -253,6 +253,12 @@ export function makeItemStyles() {
             flex: 1;
             display: flex;
             align-items: center;
+            min-width: 0;
+            span {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                min-width: 0;
+            }
         }
         .k-menu-arrow {
             transition: transform ${menu.transition};
