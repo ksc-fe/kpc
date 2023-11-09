@@ -55,6 +55,7 @@ export function makeItemStyles() {
             width: ${form.item.labelWidth};
             padding-right: ${form.item.labelGap};
             max-height: ${form.item.labelHeight};
+            flex-shrink: 0;
         }
         .k-form-star {
             color: ${form.item.starColor};
