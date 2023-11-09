@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
-import {deepDefaults, getLeft} from '../../styles/utils';
+import {deepDefaults, getLeft, setAlpha} from '../../styles/utils';
 import '../../styles/global';
 import {menu} from '../menu/styles';
 
@@ -12,12 +12,12 @@ const defaults = {
     get color() { return menu.item.color },
     get bgColor() { return menu.bgColor },
     light: {
-        get color() { return menu.light.bgColor },
+        get color() { return menu.light.item.color },
         get bgColor() { return menu.light.bgColor },
         get border() { return menu.light.border },
     },
     white: {
-        get color() { return menu.white.bgColor },
+        get color() { return menu.white.item.color },
         get bgColor() { return menu.white.bgColor },
         get border() { return menu.white.border },
     },
@@ -69,6 +69,19 @@ export function makeHeaderStyles() {
             top: 0;
             z-index: ${theme.midZIndex + 1};
         }
+        > .k-menu {
+            background: transparent !important;
+        }
+
+        &.k-blur {
+            backdrop-filter: blur(20px);
+            background: ${setAlpha(layout.bgColor, 0.1)};
+        }
+        &.k-box-shadow {
+            border-bottom: none !important;
+            box-shadow: ${theme.boxShadow};
+        }
+
         ${themes.map(theme => {
             if (theme === 'dark') return;
             const styles = layout[theme];
@@ -77,6 +90,9 @@ export function makeHeaderStyles() {
                     background: ${styles.bgColor};
                     color: ${styles.color};
                     border-bottom: ${styles.border};
+                    &.k-blur {
+                        background: ${setAlpha(styles.bgColor, 0.1)};
+                    }
                 }
             `
         })}

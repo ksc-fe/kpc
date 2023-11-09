@@ -103,5 +103,9 @@ export function darken(color: string, number: number) {
     return tinycolor(color).darken(number).toHexString()
 }
 
+export function setAlpha(color: string, number: number) {
+    return tinycolor(color).setAlpha(number).toRgbString();
+}
+
 export type Sizes = 'large' | 'default' | 'small' | 'mini';
 export const sizes: Sizes[] = ['large', 'default', 'small', 'mini'];

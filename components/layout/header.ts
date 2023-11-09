@@ -12,6 +12,8 @@ export interface HeaderProps {
     height?: number | string
     style?: string | Record<string, string>
     theme?: MenuProps['theme']
+    blur?: boolean
+    boxShadow?: boolean
 }
 
 const typeDefs: Required<TypeDefs<HeaderProps>> = {
@@ -19,6 +21,8 @@ const typeDefs: Required<TypeDefs<HeaderProps>> = {
     height: [Number, String],
     style: [String, Object],
     theme: themes,
+    blur: Boolean,
+    boxShadow: Boolean,
 };
 
 const defaults = (): Partial<HeaderProps> => ({
@@ -34,10 +38,12 @@ export class Header extends Component<HeaderProps> {
     private rootLayout = inject<Layout>(ROOT_LAYOUT)!;
 
     private getClassNames() {
-        const {className, fixed, theme} = this.get();
+        const {className, fixed, theme, blur, boxShadow} = this.get();
         return {
             'k-layout-header': true,
             'k-fixed': fixed,
+            'k-blur': blur,
+            'k-box-shadow': boxShadow,
             [`k-${theme!}`]: true,
             [className as string]: className,
             [makeHeaderStyles()]: true,

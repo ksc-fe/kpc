@@ -47,7 +47,7 @@ import {
     </Aside>
     <Layout>
         <Header>
-            <Button type="none" size="large" style="height: 64px" ev-click={this.toggle}>
+            <Button type="none" size="large" style="height: 64px" ev-click={this.toggle} ghost>
                 <Icon class="ion-navicon" size="30"/>
             </Button>
         </Header>

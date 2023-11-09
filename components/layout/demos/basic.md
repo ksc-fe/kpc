@@ -21,9 +21,9 @@ import {Icon} from 'kpc';
 import {Breadcrumb, BreadcrumbItem} from 'kpc';
 
 <Layout class="layout">
-    <Header class="header">
+    <Header class="header" blur boxShadow theme="white" height="54px" fixed>
         <div class="logo">LOGO</div>
-        <Menu type="horizontal">
+        <Menu type="horizontal" theme="white">
             <MenuItem key="1">menu 1</MenuItem>
             <MenuItem key="2" disabled>menu 2</MenuItem>
             <MenuItem key="3">
@@ -45,7 +45,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc';
         </Menu>
     </Header>
     <Layout>
-        <Aside theme="light">
+        <Aside theme="light" fixed>
             <Menu
                 v-model:expandedKeys="expandedKeys" 
                 v-model:selectedKey="selectedKey"
@@ -79,6 +79,22 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc';
                 <BreadcrumbItem>Detail</BreadcrumbItem>
             </Breadcrumb>
             <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
+            <div>content</div>
         </Body>
     </Layout>
 </Layout>
@@ -92,8 +108,10 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc';
     text-align center
     background gray
     margin 0 20px
+.k-layout-body
+    padding: 20px
 .k-breadcrumb
-    margin 20px 0
+    margin-bottom 20px
 ```
 
 ```ts
