@@ -48,7 +48,7 @@ function defaultTheme => ({
         padding: '8px',
     },
     mini: {
-        height: '21px',
+        height: '20px',
         fontSize: '12px',
         padding: '8px',
     },
@@ -68,7 +68,6 @@ function defaultTheme => ({
         get link() { return theme.color.primary },
         get linkHover() { return palette(theme.color.primary, -1) }, 
         hoverBg: '#f3f5f6',
-        // get hoverBg() { return palette(theme.color.primary, -4) }, 
         disabled: '#bec3c5',
         disabledBg: '#f0f2f4',
         disabledBorder: '#d0d5d9',
@@ -96,7 +95,7 @@ function defaultTheme => ({
 
 ## 组件配置
 
-组件配置分散在各个组件所在的样式文件下，配置较多，请参考源码：如：[`Button`](https://github.com/ksc-fe/kpc/blob/v2/components/button/styles.ts)
+组件配置分散在各个组件所在的样式文件下，配置较多，请参考源码：如：[`Button`](https://github.com/ksc-fe/kpc/tree/master/components/button/styles.ts)
 
 # 用法
 
@@ -111,3 +110,5 @@ setTheme({
     }
 });
 ```
+
+> 如果是组件渲染后再去调用`setTheme`设置主题，则要从root组件调用`forceUpdate`更新整个组件
