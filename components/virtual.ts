@@ -70,7 +70,7 @@ export class Virtual extends Component<any> {
                 events[`ev-${key}`] = on[key];
             }
 
-            return {...props, ...events};
+            return {...props, ...events, className: data.staticClass};
         }
 
         return props;

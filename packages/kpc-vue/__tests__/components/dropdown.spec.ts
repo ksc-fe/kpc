@@ -41,4 +41,35 @@ describe('Dropdown', () => {
         vue.$destroy();
         document.body.removeChild(vue.$el);
     });
+
+    it('should render original className', async () => {
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+        const vue = new Vue({
+            el: container,
+            template: `
+                <div>
+                    <Dropdown>
+                        <div class="test" :class="'dynamic'">click</div>
+                        <DropdownMenu>
+                            <DropdownItem>item 1</DropdownItem>
+                        </DropdownMenu>
+                    </Dropdown>
+                </div>
+            `,
+            components: {
+                Dropdown, DropdownMenu, DropdownItem
+            },
+        });
+
+        const trigger = vue.$el.firstElementChild! as HTMLElement;
+        expect(trigger.className).to.eql('test dynamic');
+
+        trigger.click();
+        await wait();
+        expect(trigger.className).to.eql('test k-dropdown-open dynamic');
+
+        vue.$destroy();
+        document.body.removeChild(vue.$el);
+    });
 });
