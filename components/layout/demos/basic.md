@@ -74,27 +74,29 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc';
             </Menu>
         </Aside>
         <Body>
-            <Breadcrumb>
-                <BreadcrumbItem>Home</BreadcrumbItem>
-                <BreadcrumbItem>Detail</BreadcrumbItem>
-            </Breadcrumb>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
-            <div>content</div>
+            <div class="content">
+                <Breadcrumb>
+                    <BreadcrumbItem>Home</BreadcrumbItem>
+                    <BreadcrumbItem>Detail</BreadcrumbItem>
+                </Breadcrumb>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+                <div>content</div>
+            </div>
         </Body>
     </Layout>
 </Layout>
@@ -108,7 +110,7 @@ import {Breadcrumb, BreadcrumbItem} from 'kpc';
     text-align center
     background gray
     margin 0 20px
-.k-layout-body
+.content
     padding: 20px
 .k-breadcrumb
     margin-bottom 20px

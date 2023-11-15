@@ -28,7 +28,8 @@ export class Body extends Component {
         if (!hasFixedAside && !hasFixedHeader) return style;
 
         return addStyle(style, {
-            marginLeft: hasFixedAside ? getStyle(asideWidth) : null, 
+            // FIXME: we must use padding instead of margin, otherwise the table's width is wired
+            paddingLeft: hasFixedAside ? getStyle(asideWidth) : null, 
             marginTop: hasFixedHeader ? getStyle(headerHeight) : null,
         });
     }
