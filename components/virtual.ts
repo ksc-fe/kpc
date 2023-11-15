@@ -64,7 +64,9 @@ export class Virtual extends Component<any> {
             return {...props, ...events, className: _props.className || _props.class /* vue-next */};
         } else if (hasOwn.call(vnode, 'componentOptions') /* vue2 vnode */) {
             const data = vnode.data;
-            const on = data && data.on || EMPTY_OBJ;
+            if (!data) return props;
+
+            const on = data.on || EMPTY_OBJ;
             const events: Record<string, Function> = {};
             for (let key in on) {
                 events[`ev-${key}`] = on[key];
