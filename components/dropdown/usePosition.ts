@@ -3,6 +3,7 @@ import type {Dropdown} from './';
 import {Options, position, Feedback} from '../position';
 import {noop} from 'intact-shared';
 import {isObject} from 'intact-shared';
+import { isEqualObject } from '../utils';
 
 export type FeedbackCallback = (feedback: Feedback) => void;
 
@@ -23,7 +24,7 @@ export function usePosition() {
                 isObject(newValue) && isObject(oldValue) &&
                 // is not event object
                 !(newValue instanceof Event) &&
-                JSON.stringify(newValue) === JSON.stringify(oldValue)
+                isEqualObject(newValue, oldValue)
             )  {
                 return;
             }

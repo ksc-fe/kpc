@@ -12,6 +12,7 @@ import type {TableColumnProps} from './column';
 import type {TableProps, TableRowKey} from './table';
 import {bind} from '../utils';
 import type {TableGrid} from './useMerge';
+import { isEqualObject } from '../utils';
 
 export interface TableRowProps {
     key: TableRowKey
@@ -65,7 +66,14 @@ export class TableRow extends Component<TableRowProps> {
         for (key in lastProps) {
             // ignore index
             if (key === 'index') continue;
-            if (lastProps[key] !== nextProps[key]) {
+            const lastValue = lastProps[key];
+            const nextValue = nextProps[key];
+            // deeply compare for offsetMap
+            if (key === 'offsetMap' && isEqualObject(lastValue, nextValue)) {
+                continue;
+            }
+
+            if (lastValue !== nextValue) {
                 isSame = false;
                 break;
             }

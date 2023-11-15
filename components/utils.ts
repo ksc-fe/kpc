@@ -291,6 +291,21 @@ export function isEqualArray(a: EqualArrayValue, b: EqualArrayValue): boolean {
     return false;
 }
 
+export function isEqualObject(a: Record<string, any>, b: Record<string, any>): boolean {
+    if (a === b) return true;
+    if (a && b) {
+        const keysA = Object.keys(a);
+        const keysB = Object.keys(b);
+        if (keysA.length !== keysB.length) return false;
+
+        return keysA.every((key) => {
+            return a[key] === b[key];
+        });
+    }
+
+    return false;
+}
+
 export function last<T>(arr: T[]): T | undefined {
     return arr[arr.length - 1];
 }
