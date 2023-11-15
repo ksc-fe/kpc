@@ -363,15 +363,17 @@ export function makeStyles() {
 
 export function makeGroupMenuStyles() {
     return css`
-        max-height: ${table.group.menuMaxHeight};
         min-width: ${table.group.menuMinWidth} !important;
-        overflow: auto;
         .k-dropdown-item.k-active {
             color: ${table.group.activeColor};
         }
         .k-table-group-header {
             padding: ${table.group.headerPadding};
             border-bottom: ${table.group.headerBorder};
+        }
+        .k-table-group-body {
+            max-height: ${table.group.menuMaxHeight};
+            overflow: auto;
         }
         .k-table-group-footer {
             text-align: right;
