@@ -1,8 +1,11 @@
 {
   "name": "@king-design/intact",
-  "version": "2.1.2",
+  "version": "3.0.1",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
+  "engines": {
+    "node": "^14 || ^16"
+  },
   "scripts": {
     "test": "karma start test/karma.conf.js",
     "snapshots": "cross-env UPDATE=1 npm run test",
@@ -117,7 +120,7 @@
     "highlight.js": "^10.4.1",
     "history": "^5.0.0",
     "html-webpack-plugin": "5.3.1",
-    "intact-react": "^3.0.19",
+    "intact-react": "^3.0.21",
     "istanbul-instrumenter-loader": "^3.0.0",
     "js-yaml": "^4.1.0",
     "karma": "^6.3.2",
@@ -176,6 +179,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.0",
     "@emotion/css": "^11.5.0",
+    "@king-design/react": "^3.0.1",
     "dayjs": "^1.10.7",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
