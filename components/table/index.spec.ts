@@ -606,7 +606,7 @@ describe('Table', () => {
         const pagination = table.pagination.paginationRef;
         const spy = sinon.spy();
 
-        table.on('changePage', spy);
+        table.on('page', spy);
 
         // check all
         table.checkAll(); 

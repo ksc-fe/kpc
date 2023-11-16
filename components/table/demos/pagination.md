@@ -52,7 +52,7 @@ export default class extends Component {
     }
 
     @bind
-    onChangePage(data) {
+    onChangePage(data: { value: number, limit: number }) {
         console.log(data);
     }
 }
