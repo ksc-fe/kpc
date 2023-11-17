@@ -66,7 +66,7 @@ import {Dropdown, DropdownMenu, DropdownItem, Button, Icon} from 'kpc';
 /.dropdown-demo.k-dropdown-menu
     .k-icon
         float right
-        height 32px
+        line-height 32px
         &:before
             font-size inherit
 .k-icon

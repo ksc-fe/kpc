@@ -29,7 +29,7 @@ injectGlobal`
 
     // animation
     ${Object.keys(slideDirections).map(direction => {
-        return `
+        return css`
             .k-slide${direction}-enter-from,
             .k-slide${direction}-leave-to {
                 transform-origin: ${slideDirections[direction as keyof typeof slideDirections]};
@@ -40,6 +40,8 @@ injectGlobal`
             .k-slide${direction}-leave-active {
                 transform-origin: ${slideDirections[direction as keyof typeof slideDirections]};
                 transition: opacity ${theme.transition.large}, transform ${theme.transition.large} !important;
+            }
+            .k-slide${direction}-leave-active {
                 pointer-events: none;
             }
         `
