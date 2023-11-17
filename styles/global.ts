@@ -45,7 +45,7 @@ injectGlobal`
                 pointer-events: none;
             }
         `
-    }).join('')}
+    })}
     .k-fade-enter-from,
     .k-fade-leave-to {
         opacity: 0 !important;
