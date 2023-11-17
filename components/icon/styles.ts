@@ -73,7 +73,7 @@ export default function makeStyles(color?: string) {
             &:hover {
                 color: ${theme.color.primary};
             }
-            ${color && `
+            ${color && css`
                 &:hover {
                     color: ${palette(color, -2)} !important;
                 }

@@ -168,13 +168,13 @@ function makeArrow(isVertical: boolean) {
         .k-step-tail {
             position: absolute;
             ${!isVertical 
-                ? `
+                ? css`
                     top: 0;
                     right: ${offset};
                     width: ${size};
                     height: ${defaults.height};
                 `
-                : `
+                : css`
                     left: 0;
                     bottom: ${offset};
                     height: ${size};

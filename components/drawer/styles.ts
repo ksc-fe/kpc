@@ -82,7 +82,7 @@ export function makeStyles(overlay: boolean) {
                 }
             }
 
-            return `
+            return css`
                 &.k-${placement} {
                     ${positionValue}
                     &.transition-enter-from,

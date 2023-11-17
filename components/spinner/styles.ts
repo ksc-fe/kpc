@@ -115,7 +115,7 @@ export function makeStyles() {
                 }
             }
             ${sizes.map(size => {
-                const generate = () => `
+                const generate = () => css`
                     .k-spinner-input {
                         padding-right: ${theme[size].height};
                         width: ${spinner.vertical[size].width};
@@ -124,7 +124,7 @@ export function makeStyles() {
                 if (size === 'default') {
                     return generate();
                 } else {
-                    return `
+                    return css`
                         &.k-${size} {
                             ${generate()}
                         }
@@ -140,7 +140,7 @@ export function makeStyles() {
 
         ${sizes.map(size => {
             const styles = spinner[size];
-            const generate = () => `
+            const generate = () => css`
                 .k-spinner-icon {
                     font-size: ${styles.iconFontSize};
                 }
@@ -151,7 +151,7 @@ export function makeStyles() {
             if (size === 'default') {
                 return generate();
             } else {
-                return `
+                return css`
                     &.k-${size} {
                         ${generate()}
                     }

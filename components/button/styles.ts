@@ -394,7 +394,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 }
             } 
 
-            ${!iconSide && `
+            ${!iconSide && css`
                 &.k-loading {
                     &:not(.k-btn-icon) {
                         padding-left: calc(${getLeft(button.padding)} + 1em);

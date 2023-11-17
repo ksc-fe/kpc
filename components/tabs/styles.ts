@@ -158,7 +158,7 @@ function makeCommonStyles() {
         // size
         ${sizes.map(size => {
             const styles = tabs[size];
-            return `
+            return css`
                 &.k-size-${size} {
                     .k-tab {
                         font-size: ${styles.fontSize};

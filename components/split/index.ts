@@ -2,7 +2,7 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {useSize} from './useSize';
 import {useDraggable} from './useDraggable';
-import {Mode} from './style';
+import {Mode} from './styles';
 import type {Events} from '../types';
 
 export interface SplitProps {
