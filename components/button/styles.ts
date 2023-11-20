@@ -155,7 +155,7 @@ setDefault(() => {
 
 export {button};
 
-export function makeButtonStyles({iconSide}: {iconSide?: string}) {
+export function makeButtonStyles(k: string, iconSide?: string) {
     const {secondary, link} = button;
 
     return cx(
@@ -177,7 +177,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             white-space: nowrap;
             transition: all ${button.transition};
             line-height: ${button.lineHeight};
-            .k-icon {
+            .${k}-icon {
                 color: inherit;
             }
             &:hover,
@@ -189,7 +189,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 background: ${palette(theme.color.primary, -4)};
             }
 
-            .k-button-input {
+            .${k}-button-input {
                 position: absolute;
                 opacity: 0;
                 width: 0;
@@ -201,7 +201,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 const typeStyles = button[type];
 
                 return css`
-                    &.k-${type} {
+                    &.${k}-${type} {
                         background: ${typeStyles.bgColor};
                         color: ${typeStyles.color};
                         border-color: ${typeStyles.borderColor};
@@ -220,7 +220,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             })}
 
             // secondary type
-            &.k-secondary {
+            &.${k}-secondary {
                 color: ${secondary.color};
                 border-color: ${secondary.borderColor};
                 &:hover,
@@ -232,7 +232,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 }
             }
 
-            &.k-link {
+            &.${k}-link {
                 color: ${link.color};
                 &:hover {
                     color: ${link.hoverColor};
@@ -240,26 +240,26 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 }
             }
 
-            &.k-none,
-            &.k-link,
-            &.k-flat {
+            &.${k}-none,
+            &.${k}-link,
+            &.${k}-flat {
                 background: transparent;
                 &, &:hover {
                     border: none;
                 }
-                &.k-active {
+                &.${k}-active {
                     color: ${theme.color.primary};
                 }
             }
-            &.k-none:hover {
+            &.${k}-none:hover {
                 background: ${button.none.hoverBgColor};
             }
-            &.k-flat {
+            &.${k}-flat {
                 background: ${button.none.hoverBgColor};
             }
 
             // disabled
-            &.k-disabled {
+            &.${k}-disabled {
                 &, &:hover {
                     color: ${button.disabled.color};
                     background: ${button.disabled.bgColor};
@@ -267,8 +267,8 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                     cursor: not-allowed
                 }
             }
-            &.k-none.k-disabled,
-            &.k-link.k-disabled {
+            &.${k}-none.${k}-disabled,
+            &.${k}-link.${k}-disabled {
                 &, &:hover {
                     background: transparent;
                 }
@@ -278,11 +278,11 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 const styles = button[size];
 
                 return css`
-                    &.k-${size} {
+                    &.${k}-${size} {
                         font-size: ${styles.fontSize};
                         height: ${styles.height};
                         padding: ${styles.padding};
-                        &.k-btn-icon {
+                        &.${k}-btn-icon {
                             width: ${styles.height};
                         }
                     }
@@ -290,39 +290,39 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             })}
 
             // icon
-            &.k-btn-icon {
+            &.${k}-btn-icon {
                 width: ${button.height};
                 padding: 0;
-                .k-icon {
+                .${k}-icon {
                     margin: 0
                 }
             }
 
             // fluid
-            &.k-fluid {
+            &.${k}-fluid {
                 width: 100%;
                 padding: 0;
             }
 
             // shape
-            &.k-circle {
+            &.${k}-circle {
                 border-radius: calc(${button.large.height} / 2);
             }
 
             // loading
-            &.k-loading {
+            &.${k}-loading {
                 &, &:hover {
                     background: ${palette(button.bgColor, -2)};
                     color: ${palette(button.color, -2)};
                     border-color: ${palette(button.borderColor, -2)};
                 }
-                .k-icon:not(.k-icon-loading) {
+                .${k}-icon:not(.${k}-icon-loading) {
                     display: none;
                 }
                 ${types.map(type => {
                     const styles = button[type];
                     return css`
-                        &.k-${type} {
+                        &.${k}-${type} {
                             &, &:hover {
                                 background: ${palette(styles.bgColor, -2)};
                                 color: ${palette(styles.color, -2)};
@@ -341,7 +341,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             }
 
             // ghost
-            &.k-ghost {
+            &.${k}-ghost {
                 background: transparent;
                 color: ${button.ghost.color};
                 border-color: ${button.ghost.borderColor};
@@ -360,7 +360,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                 ${types.map(type => {
                     const {ghostColor, borderColor} = button[type];
                     return css`
-                        &.k-${type} {
+                        &.${k}-${type} {
                             color: ${ghostColor};
                             border-color: ${borderColor};
                             &:hover {
@@ -375,7 +375,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
                     `
                 })}
                 // disabled
-                &.k-disabled {
+                &.${k}-disabled {
                     &, &:hover {
                         color: ${button.disabled.color};
                         border-color: ${button.disabled.ghostBorderColor};
@@ -387,7 +387,7 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
 
         // dynamic styles
         css`
-            .k-icon {
+            .${k}-icon {
                 ${iconSide === 'right' ? 
                     `margin-left: ${button.icon.gap};` :
                     `margin-right: ${button.icon.gap};`
@@ -395,15 +395,15 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
             } 
 
             ${!iconSide && css`
-                &.k-loading {
-                    &:not(.k-btn-icon) {
+                &.${k}-loading {
+                    &:not(.${k}-btn-icon) {
                         padding-left: calc(${getLeft(button.padding)} + 1em);
-                        .k-icon-loading {
+                        .${k}-icon-loading {
                             margin-left: -1em;
                         }
                         ${sizes.map(size => {
                             return css`
-                                &.k-${size} {
+                                &.${k}-${size} {
                                     padding-left: calc(${getLeft(button[size].padding)} + 1em);
                                 }
                             `
@@ -415,31 +415,31 @@ export function makeButtonStyles({iconSide}: {iconSide?: string}) {
     );
 }
 
-export function makeButtonGroupStyles() {
+export function makeButtonGroupStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
         flex-wrap: wrap;
         vertical-align: middle;
-        .k-btn {
+        .${k}-btn {
             margin: 0;
             vertical-align: middle;
             &:hover,
             &:focus,
-            &.k-active {
+            &.${k}-active {
                 z-index: 1;
                 position: relative;
             }
         }
 
         // fluid
-        &.k-fluid {
+        &.${k}-fluid {
             width: 100%;
         }
 
         // horizontal
-        &:not(.k-vertical) {
-            > .k-btn {
+        &:not(.${k}-vertical) {
+            > .${k}-btn {
                 &:not(:first-child) {
                     margin-left: -1px;
                     &:not(:last-child) {
@@ -458,28 +458,28 @@ export function makeButtonGroupStyles() {
                     if (type === 'active') return;
                     const {borderColor} = button.group[type];
                     return css`
-                        &.k-${type}:not(:first-child) {
+                        &.${k}-${type}:not(:first-child) {
                             border-left-color: ${borderColor};
                         }
-                        &.k-${type}:not(:last-child) {
+                        &.${k}-${type}:not(:last-child) {
                             border-right-color: ${borderColor};
                         }
                     `;
                 })}
             }
-            &.k-fluid {
+            &.${k}-fluid {
                 display: flex;
-                > .k-btn {
+                > .${k}-btn {
                     flex: 1;
                 }
             }
         }
             
         // vertical
-        &.k-vertical {
+        &.${k}-vertical {
             flex-direction: column;
-            > .k-btn {
-                &:not(.k-btn-icon) {
+            > .${k}-btn {
+                &:not(.${k}-btn-icon) {
                     width: 100%;
                 }
                 &:not(:first-child) {
@@ -500,10 +500,10 @@ export function makeButtonGroupStyles() {
                     if (type === 'active') return;
                     const {borderColor} = button.group[type];
                     return css`
-                        &.k-${type}:not(:first-child) {
+                        &.${k}-${type}:not(:first-child) {
                             border-top-color: ${borderColor};
                         }
-                        &.k-${type}:not(:last-child) {
+                        &.${k}-${type}:not(:last-child) {
                             border-bottom-color: ${borderColor};
                         }
                     `;
@@ -512,9 +512,9 @@ export function makeButtonGroupStyles() {
         }
 
         // seperate
-        &.k-seperate {
+        &.${k}-seperate {
             gap: 8px;
-            > .k-btn {
+            > .${k}-btn {
                 border-radius: ${button.borderRadius} !important;
             }
         }

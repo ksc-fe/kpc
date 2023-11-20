@@ -4,6 +4,7 @@ import {ButtonGroup} from './group';
 import {bind} from '../utils';
 import {Sizes, Colors} from '../types';
 import {BUTTON_GROUP} from './constants';
+import { useConfigContext } from '../config';
 export * from './group';
 
 interface ButtonHTMLAttributes {
@@ -73,6 +74,7 @@ export class Button extends Component<ButtonProps, ButtonEvents> {
 
     private buttonGroup = inject<ButtonGroup | null>(BUTTON_GROUP, null);
     private elementRef = createRef<HTMLButtonElement>();
+    private config = useConfigContext();
 
     showLoading() {
         this.set('loading', true);

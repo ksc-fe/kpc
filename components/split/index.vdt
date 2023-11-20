@@ -1,5 +1,4 @@
-import {makeStyles} from './style';
-import {kls} from './styles';
+import {makeStyles, kls} from './styles';
 import { MemoBlock } from './memo';
 import { getRestProps } from '../utils';
 

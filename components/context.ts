@@ -13,7 +13,13 @@ type ProviderConstructor<T> = ComponentConstructor<Component<ProviderProps<T>>>
 type ConsumerConstructor<T> = ComponentConstructor<Component<ConsumerProps<T>>> 
 
 let id = 0;
-export function createContext<T = any>(defaultValue?: T): {Provider: ProviderConstructor<T>, Consumer: ConsumerConstructor<T>} {
+export function createContext<T = any>(defaultValue?: T):
+    {
+        Provider: ProviderConstructor<T>,
+        Consumer: ConsumerConstructor<T>,
+        useContext: () => RefObject<T | undefined>
+    }
+{
     const injectionKey = `$Context-${id++}`;
 
     class Provider extends Component<ProviderProps<T>> {
@@ -34,10 +40,14 @@ export function createContext<T = any>(defaultValue?: T): {Provider: ProviderCon
     class Consumer extends Component<ConsumerProps<T>> {
         static template = consumerTemplate;
 
-        private ref = inject(injectionKey, null);
+        private ref = inject<RefObject<T | undefined>>(injectionKey, createRef(defaultValue));
     }
 
-    return {Provider, Consumer};
+    function useContext() {
+        return inject<RefObject<T | undefined>>(injectionKey, createRef(defaultValue));
+    }
+
+    return {Provider, Consumer, useContext};
 }
 
 function providerTemplate(this: Component) {

@@ -63,6 +63,7 @@ export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
 export * from './components/wave';
+export * from './components/config';
 
 export const version = '3.0.1';
 

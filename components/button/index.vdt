@@ -4,6 +4,7 @@ import {makeButtonStyles} from './styles';
 import {DynamicButton} from './dynamicButton';
 import {Wave} from '../wave';
 import {button as theme} from './styles';
+import { ConfigConsumer } from '../config';
 
 let {
     type, className, size, icon, circle, ref, key, tabindex,
@@ -12,6 +13,8 @@ let {
 } = this.get();
 
 const checked = this.isChecked();
+if (!this.config) debugger;
+const { cls, k } = this.config;
 
 const isIcon = child => (
     child.tag === Icon ||
@@ -38,22 +41,22 @@ if (!icon && Array.isArray(children)) {
 }
 
 const classNameObj = {
-    'k-btn': true,
-    [`k-${type}`]: type !== 'default',
-    [`k-${size}`]: size !== 'default',
-    'k-btn-icon': icon,
+    [cls('btn')]: true,
+    [cls(type)]: type !== 'default',
+    [cls(size)]: size !== 'default',
+    [cls(`btn-icon`)]: icon,
     [className]: className, 
-    'k-circle': circle,
-    'k-loading': loading,
-    'k-fluid': fluid,
-    'k-active': checked,
-    'k-disabled': disabled || loading,
-    'k-ghost': ghost,
-    [makeButtonStyles({iconSide})]: true,
+    [cls('circle')]: circle,
+    [cls('loading')]: circle,
+    [cls('fluid')]: fluid,
+    [cls('active')]: checked,
+    [cls('disabled')]: disabled || loading,
+    [cls('ghost')]: ghost,
+    [makeButtonStyles(k, iconSide)]: true,
 };
 
 const loadingIcon = (
-    <Icon class="ion-load-c k-icon-loading" 
+    <Icon class={`ion-load-c ${k}-icon-loading`}
         size={size /*loadingSizeMap[size]*/}
         key="k-loading"
         rotate
@@ -88,7 +91,7 @@ const waveColor = typeStyles && typeStyles.borderColor || theme.primary.borderCo
             children 
         }
         <input type={checkType} v-if={isCheckType}
-            class="k-button-input"
+            class={`${k}-button-input`}
             name={name} 
             checked={checked}
             tabindex="-1"

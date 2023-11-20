@@ -2,6 +2,7 @@ import {Component, provide, TypeDefs} from 'intact';
 import template from './group.vdt';
 import {toggleArray} from '../utils';
 import {BUTTON_GROUP} from './constants';
+import { useConfigContext } from '../config';
 
 export interface ButtonGroupProps {
     vertical?: boolean
@@ -27,6 +28,8 @@ export class ButtonGroup extends Component<ButtonGroupProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 
     init() {
         provide(BUTTON_GROUP, this); 
