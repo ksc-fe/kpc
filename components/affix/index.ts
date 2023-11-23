@@ -1,6 +1,7 @@
 import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {useStyle} from './useStyle';
+import { useConfigContext } from '../config';
 
 export interface AffixProps {
     top?: number
@@ -41,4 +42,5 @@ export class Affix extends Component<AffixProps, AffixEvents> {
 
     private elementRef = createRef<HTMLElement>();
     private style = useStyle(this.elementRef);
+    private config = useConfigContext();
 }

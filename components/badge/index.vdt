@@ -9,15 +9,17 @@ if (typeof text === 'number' && max && text > max) {
     text = `${max}+`;
 }
 
+const { cls, k } = this.config;
+
 const classNameObj = {
-    'k-badge': true,
+    [`${k}-badge`]: true,
     [className]: className,
-    'k-has-text': text != null,
-    'k-alone': !children,
+    [`${k}-has-text`]: text != null,
+    [`${k}-alone`]: !children,
     [makeStyles()]: true,
 };
 
 <div {...getRestProps(this)} class={classNameObj}>
     {children}
-    <sup class="k-badge-text" v-if={!disabled}>{text}</sup>
+    <sup class={`${k}-badge-text`} v-if={!disabled}>{text}</sup>
 </div>

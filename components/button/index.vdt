@@ -4,7 +4,6 @@ import {makeButtonStyles} from './styles';
 import {DynamicButton} from './dynamicButton';
 import {Wave} from '../wave';
 import {button as theme} from './styles';
-import { ConfigConsumer } from '../config';
 
 let {
     type, className, size, icon, circle, ref, key, tabindex,

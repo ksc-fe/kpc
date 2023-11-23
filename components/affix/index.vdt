@@ -3,10 +3,11 @@ import {makeStyles} from './styles';
 
 const {children, className, style} = this.get();
 const {style: _style, containerStyle} = this.style;
+const { cls, k } = this.config;
 
 const classNameObj = {
-    'k-affix': true,
-    'k-fixed': _style.value,
+    [`${k}-affix`]: true,
+    [`${k}-fixed`]: _style.value,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -16,7 +17,7 @@ const classNameObj = {
     style={addStyle(style, containerStyle.value)}
     ref={this.elementRef}
 >
-    <div style={_style.value} class="k-affix-wrapper">
+    <div style={_style.value} class={cls('affix-wrapper')}>
         {children}
     </div>
 </div>

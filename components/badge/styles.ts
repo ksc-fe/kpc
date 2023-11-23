@@ -19,12 +19,12 @@ setDefault(() => {
     badge = deepDefaults(theme, {badge: defaults}).badge;
 });
 
-export default function makeStyles() {
+export default function makeStyles(k: string) {
     return css`
         display: inline-block;
         position: relative;
         vertical-align: middle;
-        > .k-badge-text {
+        > .${k}-badge-text {
             display: inline-block;
             position: absolute;
             width: ${badge.width};
@@ -39,8 +39,8 @@ export default function makeStyles() {
         }
             
         // has-text
-        &.k-has-text
-            > .k-badge-text {
+        &.${k}-has-text
+            > .${k}-badge-text {
                 width: auto;
                 height: ${badge.textHeight};
                 line-height: ${badge.textHeight};
@@ -50,8 +50,8 @@ export default function makeStyles() {
             }
                 
         // alone
-        &.k-alone
-            > .k-badge-text {
+        &.${k}-alone
+            > .${k}-badge-text {
                 position: static;
                 transform: none;
             }            
