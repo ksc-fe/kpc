@@ -1,5 +1,5 @@
 /*!
- * @king-design v3.0.1
+ * @king-design v3.1.0-beta.0
  *
  * Copyright (c) Kingsoft Cloud
  * Released under the MIT License
@@ -24,6 +24,7 @@ export * from './components/cascader';
 export * from './components/checkbox';
 export * from './components/collapse';
 export * from './components/colorpicker';
+export * from './components/config';
 export * from './components/copy';
 export * from './components/datepicker';
 export * from './components/dialog';
@@ -63,8 +64,7 @@ export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
 export * from './components/wave';
-export * from './components/config';
 
-export const version = '3.0.1';
+export const version = '3.1.0-beta.0';
 
 /* generate end */
