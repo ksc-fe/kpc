@@ -16,8 +16,8 @@ function init(router: UniversalRouter<RouteResult>) {
 
     unlisten = history.listen(async ({location}) => {
         const {Page, data} = (await router.resolve(location.pathname))!;
-        render(h(ConfigProvider, { value: { classNamePrefix: 'kd' } }, h(Page, data)), container!);
-        // render(h(Page, data), container!);
+        // render(h(ConfigProvider, { value: { classNamePrefix: 'kd' } }, h(Page, data)), container!);
+        render(h(Page, data), container!);
     });
 
     history.replace(location);

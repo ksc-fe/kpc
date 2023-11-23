@@ -1,5 +1,5 @@
 import {Component, VNode, Children, NormalizedChildren, VNodeComponentClass, ComponentConstructor, isText} from 'intact';
-import {EMPTY_OBJ, isStringOrNumber, isString, isNullOrUndefined, isInvalid} from 'intact-shared';
+import {EMPTY_OBJ, isStringOrNumber, isString, isNullOrUndefined, isInvalid, hasOwn} from 'intact-shared';
 
 // @reference https://github.com/andreypopp/autobind-decorator/blob/master/src/index.js
 // for loose mode
@@ -99,7 +99,7 @@ const _cache: Record<string, string> = {};
 export function cache(callback: (...args: string[]) => any) {
     return function(...args: string[]) {
         const cacheId = args.join('~');
-        if (!_cache[cacheId]) {
+        if (!hasOwn.call(_cache, cacheId)) {
             _cache[cacheId] = callback(...args); 
         }
         return _cache[cacheId];
