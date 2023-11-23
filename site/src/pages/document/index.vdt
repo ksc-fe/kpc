@@ -79,7 +79,7 @@ if (sidebar) {
 <t:super navIndex="document" {...$props} class={{
     "document-page fixed-aside": true,
     [$props.className]: $props.className,
-    [makeStyles()]: true,
+    [makeStyles(this.config.k)]: true,
 }}>
     <b:aside>
         <Aside class={{expanded: this.get('expanded')}} fixed width="260px" theme="white">

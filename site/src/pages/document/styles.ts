@@ -2,7 +2,7 @@ import {css} from '@emotion/css';
 import {theme} from 'kpc/styles/theme';
 import {makeStyles as makeTableStyles} from 'kpc/components/table/styles';
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         h1, h2, h3, h4, h5 {
             font-weight: 400;
@@ -26,7 +26,7 @@ export function makeStyles() {
                 margin-top: -10px;
                 width: 20px;
                 height: 20px;
-                border-radius: 100%;
+                border-radius: 100%
                 text-align: center;
                 background: #ff4133;
                 color: #fff;
@@ -34,7 +34,7 @@ export function makeStyles() {
                 left: -11px;
             }
         }
-        .k-layout-aside {
+        .${k}-layout-aside {
             font-size: 14px;
             overflow: visible !important;
             .aside-wrapper {
@@ -76,11 +76,11 @@ export function makeStyles() {
                     background-color: ${theme.color.primary};
                 }
             }
-            .k-btn {
+            .${k}-btn {
                 display: none;
             }
         }
-        .k-layout-body {
+        .${k}-layout-body {
             font-size: 14px;
             max-width: 100%;
             article {
@@ -189,7 +189,7 @@ export function makeStyles() {
         }
         .api {
             font-size: 12px;
-            .k-table {
+            .${k}-table {
                 ${makeTableStyles('k')}
             }
             table {
@@ -201,14 +201,14 @@ export function makeStyles() {
             .table-of-contents {
                 display: none;
             }
-            .k-layout-aside {
+            .${k}-layout-aside {
                 transform: translateX(-260px);
                 transition: transform ${theme.transition.middle};
                 &.expanded {
                     transform: translateX(0);
                     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
                 }
-                .k-btn {
+                .${k}-btn {
                     display: block;
                     position: absolute;
                     top: 66px;
@@ -218,7 +218,7 @@ export function makeStyles() {
                     box-shadow: 3px 0 4px 0 rgba(0, 0, 0, 0.3);
                 }
             }
-            .k-layout-body {
+            .${k}-layout-body {
                 padding: 0 !important;
                 article {
                     margin-right: 0;

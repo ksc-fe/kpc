@@ -28,7 +28,7 @@ const iconMap = {
         <div class={{[`${k}-message-wrapper`]: true, [`${k}-with-icon`]: !hideIcon}}>
             <Icon v-if={!hideIcon} 
                 class={{
-                    [`k-icon-${iconMap[type] || iconMap.info}`]: true,
+                    [`${k}-icon-${iconMap[type] || iconMap.info}`]: true,
                     [`${k}-message-icon`]: true,
                 }}
             />

@@ -4,9 +4,9 @@ import headerLogo2x from '../imgs/header_logo_x2.png';
 import {center} from '../styles/default';
 import {theme} from 'kpc/styles/theme';
 
-export function makeHeaderStyles() {
+export function makeHeaderStyles(k: string) {
     return css`
-        &.k-layout-header {
+        &.${k}-layout-header {
             background: rgba(255, 255, 255, 0.65);
             box-shadow: 0px 2px 10px 0px rgba(11, 11, 11, 0.05);
             color: #000;
@@ -26,17 +26,17 @@ export function makeHeaderStyles() {
                     background-image: url(${headerLogo2x});
                 }
             }
-            .k-tabs {
+            .${k}-tabs {
                 border: none;
                 display: flex;
                 align-items: center;
             }
-            .k-tab {
+            .${k}-tab {
                 a {
                     color: inherit;
                 }
             }
-            .k-select.versions {
+            .${k}-select.versions {
                 background: transparent;
             }
             .lang-wrapper {
@@ -66,9 +66,9 @@ export function makeHeaderStyles() {
                 height: 100%;
                 display: flex;
                 align-items: center;
-                .k-tabs {
+                .${k}-tabs {
                     margin-right: 40px;
-                    .k-tab {
+                    .${k}-tab {
                         color: #000000;
                     }
                 }
@@ -140,7 +140,7 @@ export function makeHeaderStyles() {
                 .logo {
                     width: 50px;
                 }
-                .k-tabs {
+                .${k}-tabs {
                     display: none;
                 }
                 .menu-btn {

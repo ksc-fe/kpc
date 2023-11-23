@@ -89,9 +89,10 @@ export function useScroll() {
 
     function scrollActiveToView() {
         const {vertical} = instance.get();
+        const { k } = instance.config;
 
         const activeTab = scrollRef.value!.querySelector(
-            '.k-tab.k-active'
+            `.${k}-tab.${k}-active`
         ) as HTMLElement;
         if (activeTab) {
             let _offset = offset.value;

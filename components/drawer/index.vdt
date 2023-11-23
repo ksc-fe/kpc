@@ -4,7 +4,7 @@ const {placement, overlay} = this.get();
 const { k } = this.config;
 const classNameObj = {
     [`${k}-drawer`]: true,
-    [`k-${placement}`]: true,
+    [`${k}-${placement}`]: true,
     [makeStyles(overlay, k)]: true
 };
 

@@ -96,15 +96,21 @@ export function addStyle(style: string | Record<string, string | null> | undefin
 }
 
 const _cache: Record<string, string> = {};
-const uppercasePattern = /[A-Z]/g;
-export function kebabCase(word: string) {
-    if (!_cache[word]) {
-        _cache[word] = word.replace(uppercasePattern, (item) => {
-            return `-${item.toLowerCase()}`;
-        });
+export function cache(callback: (...args: string[]) => any) {
+    return function(...args: string[]) {
+        const cacheId = args.join('~');
+        if (!_cache[cacheId]) {
+            _cache[cacheId] = callback(...args); 
+        }
+        return _cache[cacheId];
     }
-    return _cache[word];
 }
+const uppercasePattern = /[A-Z]/g;
+export const kebabCase = cache((word: string) => {
+    return word.replace(uppercasePattern, (item) => {
+        return `-${item.toLowerCase()}`;
+    });
+});
 
 export function isTextChildren(o: any): boolean {
     if (isStringOrNumber(o)) return true;

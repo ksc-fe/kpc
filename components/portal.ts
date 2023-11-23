@@ -15,6 +15,7 @@ import {isString} from 'intact-shared';
 import {DIALOG} from './dialog/constants';
 import type {Dialog} from './dialog';
 import {BaseDialog} from './dialog/base';
+import { useConfigContext } from './config';
 
 export interface PortalProps {
     container?: Container
@@ -40,6 +41,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     public mountedQueue?: Function[];
     public mountedDone?: boolean;
     public $isPortal = true;
+    private config = useConfigContext();
 
     $render(
         lastVNode: VNodeComponentClass<this> | null,
@@ -147,7 +149,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
                 this.container = document.body;
             } else {
                 // find the closest dialog if exists
-                this.container = parentDom.closest('.k-dialog') || document.body;
+                this.container = parentDom.closest(`${this.config.k}-dialog`) || document.body;
             }
 
             /**

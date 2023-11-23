@@ -14,7 +14,8 @@ export function useActiveBar() {
 
     function generateStyle() {
         const element = findDomFromVNode(instance.$lastInput!, true) as HTMLElement;
-        const activeTab = element.querySelector('.k-tab.k-active') as HTMLElement | null;
+        const { k } = instance.config;
+        const activeTab = element.querySelector(`.${k}-tab.${k}-active`) as HTMLElement | null;
 
         if (!activeTab) {
             const oldStyles = styles.value;

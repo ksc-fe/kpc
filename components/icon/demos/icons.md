@@ -13,10 +13,10 @@ import {Icon, Input} from 'kpc';
     <div class="icons">
         <div class="icon" v-for={this.filter()}>
             <Icon 
-                class={'k-icon-' + $value[0]}
+                class={this.config.k + '-icon-' + $value[0]}
                 size="large"
             />
-            <div>{'k-icon-' + $value[0]}</div>
+            <div>{this.config.k + '-icon-' + $value[0]}</div>
         </div>
     </div>
 </div>
@@ -35,6 +35,7 @@ import {Icon, Input} from 'kpc';
 ```
 
 ```ts
+import { useConfigContext } from 'kpc';
 interface Props {
     keywords?: string
     fonts: string[][]
@@ -137,6 +138,8 @@ export default class extends Component<Props> {
         } as Props
     }
 
+    private config = useConfigContext();
+
     init() {
         const fonts = this.get('fonts');
         const map: Record<string, boolean> = {};
@@ -145,7 +148,7 @@ export default class extends Component<Props> {
                 console.log('duplicated', font);
             }
             map[font] = true;
-        })
+        });
     }
 
     filter() {

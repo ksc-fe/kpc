@@ -49,7 +49,7 @@ export class Tabs<T = any> extends Component<TabsProps<T>, TabsEvents<T>> {
 
     private activeBar = useActiveBar();
     private scroll = useScroll();
-    private config = useConfigContext();
+    public config = useConfigContext();
 
     init() {
         provide(TABS, this);

@@ -14,7 +14,7 @@ const { k } = this.config;
 const classNameObj = {
     [`${k}-colorpicker`]: true,
     [className]: className,
-    [`k-${size}`]: size !== 'default',
+    [`${k}-${size}`]: size !== 'default',
     [`${k}-disabled`]: disabled,
     [makeStyles(k)]: true,
 };

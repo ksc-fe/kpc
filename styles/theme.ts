@@ -82,7 +82,7 @@ export function setTheme(customTheme: Theme) {
     queue.forEach(fn => fn());
 }
 
-export function setDefault(setTheme: Function) {
-    setTheme();
-    push(setTheme);
+export function setDefault(callback: Function) {
+    callback();
+    push(callback);
 }

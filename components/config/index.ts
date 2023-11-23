@@ -1,5 +1,6 @@
-import { createContext } from '../context';
+import { createContext, ProviderProps } from '../context';
 import { EMPTY_OBJ } from 'intact';
+import {makeIconStyles} from '../../styles/fonts/iconfont';
 
 export interface ConfigProps {
     classNamePrefix?: string 

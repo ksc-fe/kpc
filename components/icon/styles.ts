@@ -1,10 +1,8 @@
 import {css, cx} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette}  from '../../styles/utils';
-import {IconProps} from './index';
-import {Sizes, Colors} from '../types';
 import {rotate} from '../../styles/keyframes';
-import '../../styles/fonts/iconfont';
+import {makeIconStyles} from '../../styles/fonts/iconfont';
 import '../../styles/fonts/ionicons';
 import '../../styles/global';
 
@@ -29,6 +27,9 @@ export const colors = ['primary', 'warning', 'danger', 'success'] as const;
 export const sizes = ['large', 'small', 'mini'] as const;
 
 export default function makeStyles(k: string, color?: string) {
+    // create the global icon styles
+    makeIconStyles(k);
+
     return css`
         color: ${icon.color};
         font-size: ${icon.fontSize.default};

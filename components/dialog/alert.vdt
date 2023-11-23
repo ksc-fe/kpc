@@ -11,7 +11,7 @@ const { k } = this.config;
 
 const classNameObj = {
     [`${k}-alert-dialog`]: true,
-    [`k-${type}`]: true,
+    [`${k}-${type}`]: true,
     [`${k}-with-title`]: title,
     [makeAlertStyles(k)]: true,
 };

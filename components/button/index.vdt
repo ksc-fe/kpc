@@ -46,7 +46,7 @@ const classNameObj = {
     [cls(`btn-icon`)]: icon,
     [className]: className, 
     [cls('circle')]: circle,
-    [cls('loading')]: circle,
+    [cls('loading')]: loading,
     [cls('fluid')]: fluid,
     [cls('active')]: checked,
     [cls('disabled')]: disabled || loading,

@@ -1,6 +1,6 @@
 import template from './layout.vdt';
 import {Component} from 'intact';
-import {setTheme, bind, Dialog} from 'kpc';
+import {setTheme, bind, Dialog, useConfigContext} from 'kpc';
 
 export interface LayoutProps {
     version: string
@@ -47,6 +47,8 @@ export default class Layout<T extends LayoutProps = LayoutProps> extends Compone
         curLang: 'cn',
         videoLevel: 0
     });
+
+    protected config = useConfigContext();
 
     public handleColorChange(color: string) {
         if(this.get('themeColor') !== color){
