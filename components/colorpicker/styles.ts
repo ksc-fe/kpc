@@ -92,11 +92,11 @@ setDefault(() => {
 
 const _sizes = ['large', 'small', 'mini'] as const;
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-block;
         vertical-align: middle;
-        .k-colorpicker-color {
+        .${k}-colorpicker-color {
             height: ${colorpicker.height};
             width: ${colorpicker.width};
             border: ${colorpicker.border};
@@ -105,7 +105,7 @@ export function makeStyles() {
             background: ${colorpicker.bgColor};
             padding: ${colorpicker.padding};
         }
-        .k-colorpicker-inner {
+        .${k}-colorpicker-inner {
             border-radius: ${colorpicker.innerBorderRadius};
             height: 100%;
         }
@@ -115,7 +115,7 @@ export function makeStyles() {
             const styles = colorpicker[size];
             return css`
                 &.k-${size} {
-                    .k-colorpicker-color {
+                    .${k}-colorpicker-color {
                         height: ${styles.height};
                         width: ${styles.width};
                         ${(styles as any).padding && `padding: ${(styles as any).padding}`}
@@ -125,8 +125,8 @@ export function makeStyles() {
         })}
 
         // disabled
-        &.k-disabled {
-            .k-colorpicker-color {
+        &.${k}-disabled {
+            .${k}-colorpicker-color {
                 background: ${colorpicker.disabled.bgColor};
                 border-color: ${colorpicker.disabled.borderColor};
                 cursor: ${colorpicker.disabled.cursor};
@@ -135,63 +135,63 @@ export function makeStyles() {
     `;
 }
 
-export function makePanelStyles() {
+export function makePanelStyles(k: string) {
     return css`
         padding: ${colorpicker.panel.padding};
         width: ${colorpicker.panel.width};
-        .k-colorpicker-saturation {
+        .${k}-colorpicker-saturation {
             height: ${colorpicker.panel.saturationHeight};
             position: relative;
             overflow: hidden;
             user-select: none
         }
-        .k-colorpicker-white,
-        .k-colorpicker-black {
+        .${k}-colorpicker-white,
+        .${k}-colorpicker-black {
             position: absolute;
             width: 100%;
             height: 100%;
         }
-        .k-colorpicker-white {
+        .${k}-colorpicker-white {
             background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0));
         }
-        .k-colorpicker-black {
+        .${k}-colorpicker-black {
             background: linear-gradient(0, #000, rgba(0, 0, 0, 0));
         }
-        .k-colorpicker-pointer {
+        .${k}-colorpicker-pointer {
             position: absolute;
         }
-        .k-colorpicker-circle {
+        .${k}-colorpicker-circle {
             width: ${colorpicker.panel.circle.width};
             height: ${colorpicker.panel.circle.width};
             box-shadow: ${colorpicker.panel.circle.boxShadow};
             border-radius: 50%;
             transform: translate(-50%, -50%);
         }
-        .k-colorpicker-controls {
+        .${k}-colorpicker-controls {
             display: flex;
             margin-top: ${colorpicker.panel.gutter};
         }
-        .k-colorpicker-sliders {
+        .${k}-colorpicker-sliders {
             flex: 1;
-            .k-slider {
+            .${k}-slider {
                 margin-bottom: ${colorpicker.panel.gutter};
             }
-            .k-slider-track-wrapper,
-            .k-slider-track {
+            .${k}-slider-tra.${k}-wrapper,
+            .${k}-slider-track {
                 height: ${colorpicker.slider.height};
             }
-            .k-slider-track-wrapper {
+            .${k}-slider-tra.${k}-wrapper {
                 cursor: ${colorpicker.slider.cursor};
             }
-            .k-slider-track {
+            .${k}-slider-track {
                 border-radius: ${colorpicker.slider.borderRadius};
                 margin: 0 calc(${colorpicker.slider.thumb.width} / 2 + 1px);
                 background-color: transparent;
             }
-            .k-slider-bar {
+            .${k}-slider-bar {
                 background: transparent;
             }
-            .k-slider-thumb {
+            .${k}-slider-thumb {
                 height: ${colorpicker.slider.thumb.height};
                 width: ${colorpicker.slider.thumb.width};
                 border: ${colorpicker.slider.thumb.border};
@@ -205,64 +205,64 @@ export function makePanelStyles() {
                 }
             }
         }
-        .k-colorpicker-hue {
-            .k-slider-track-wrapper {
+        .${k}-colorpicker-hue {
+            .${k}-slider-tra.${k}-wrapper {
                 background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
             }
         }
-        .k-colorpicker-alpha {
+        .${k}-colorpicker-alpha {
             background-size: contain;
         }
-        .k-colorpicker-alpha-bg {
+        .${k}-colorpicker-alpha-bg {
             background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMElEQVQ4T2N89uzZfwY8QFJSEp80A+OoAcMiDP7//483HTx//hx/Ohg1gIFx6IcBALl+VXknOCvFAAAAAElFTkSuQmCC");
         }
-        .k-colorpicker-color-wrapper {
+        .${k}-colorpicker-color-wrapper {
             width: ${colorpicker.color.width};
             height: ${colorpicker.color.height};
             border-radius: ${colorpicker.color.borderRadius};
             margin-left: ${colorpicker.panel.gutter};
             overflow: hidden;
         }
-        .k-colorpicker-color {
+        .${k}-colorpicker-color {
             height: 100%;
             box-shadow: ${colorpicker.color.boxShadow};
         }
 
         // input
-        .k-colorpicker-input.k-small {
-            .k-input-inner {
+        .${k}-colorpicker-input.${k}-small {
+            .${k}-input-inner {
                 height: ${colorpicker.input.height};
                 line-height: ${colorpicker.input.height};
                 padding: ${colorpicker.input.padding};
                 font-size: ${colorpicker.panel.fontSize};
             }
         }
-        .k-colorpicker-text {
+        .${k}-colorpicker-text {
             text-align: center;
             font-size: ${colorpicker.panel.fontSize};
             padding: ${colorpicker.input.textPadding};
         }
 
         // presets
-        .k-colorpicker-presets {
+        .${k}-colorpicker-presets {
             border-top: ${colorpicker.presets.delimiter};
             margin: 0 -${colorpicker.panel.padding};
             overflow: hidden;
         }
-        .k-colorpicker-preset-color-wrapper {
+        .${k}-colorpicker-preset-color-wrapper {
             float: left;
             border-radius: ${colorpicker.presets.borderRadius};
             cursor: pointer;
             overflow: hidden;
             margin: ${colorpicker.panel.padding} 0 0 ${colorpicker.panel.padding};
         }
-        .k-colorpicker-preset-color {
+        .${k}-colorpicker-preset-color {
             width: ${colorpicker.presets.width};
             height: ${colorpicker.presets.height};
             box-shadow: ${colorpicker.presets.boxShadow};
         }
 
-        .k-colorpicker-drag {
+        .${k}-colorpicker-drag {
             cursor: ew-resize;
             user-select: none;
         }
@@ -271,7 +271,7 @@ export function makePanelStyles() {
 
 export function makeAlphaBgColor({r, g, b}: ColorFormats.RGBA) {
     return css`
-        .k-slider-track-wrapper {
+        .${k}-slider-tra.${k}-wrapper {
             background: linear-gradient(to right, rgba(${r}, ${g}, ${b}, 0) 0%, rgb(${r}, ${g}, ${b}) 100%);
         }
     `;

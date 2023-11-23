@@ -114,7 +114,7 @@ setDefault(() => {
     select = deepDefaults(theme, {select: defaults}).select;
 });
 
-export default function makeStyles() {
+export default function makeStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
@@ -127,37 +127,37 @@ export default function makeStyles() {
         background: ${select.bgColor};
         transition: border ${select.transition}, background ${select.transition}, box-shadow ${select.transition};
         border-radius: ${select.borderRadius};
-        .k-select-main {
+        .${k}-select-main {
             flex: 1;
             min-width: 0;
         }
-        .k-select-prefix,
-        .k-select-suffix {
+        .${k}-select-prefix,
+        .${k}-select-suffix {
             display: flex;
             align-items: center;
             position: relative;
         }
-        .k-select-suffix {
+        .${k}-select-suffix {
             margin-left: ${select.suffixGap};
             // margin-top: 1px;
         }
 
-        .k-select-placeholder {
+        .${k}-select-placeholder {
             color: ${select.placeholderColor};
             user-select: none;
         }
 
-        // add .k-input to increase priority
-        .k-input .k-input-inner {
+        // add .${k}-input to increase priority
+        .${k}-input .${k}-input-inner {
             background: transparent;
         }
 
-        &.k-fluid {
+        &.${k}-fluid {
             width: 100%;
         }
 
         // clearable
-        .k-select-clear {
+        .${k}-select-clear {
             opacity: 0;
             transition: opacity ${select.transition}, color ${select.transition} !important;
             pointer-events: none;
@@ -169,29 +169,29 @@ export default function makeStyles() {
         }
         &:hover {
             border: ${select.hoverBorder};
-            .k-select-clear.k-show {
+            .${k}-select-clear.${k}-show {
                 opacity: 1;
                 pointer-events: all;
-                + .k-select-suffix-icon {
+                + .${k}-select-suffix-icon {
                     opacity: 0;
                 }
             }
         }
-        .k-select-suffix-icon {
+        .${k}-select-suffix-icon {
             display: inline-flex;
             align-items: center;
             transition: opacity ${select.transition};
         }
 
-        .k-select-arrow {
+        .${k}-select-arrow {
             display: inline-block;
             transition: transform ${select.transition};
         }
 
         // show
-        &.k-dropdown-open {
+        &.${k}-dropdown-open {
             border: ${select.focusBorder};
-            .k-select-arrow {
+            .${k}-select-arrow {
                 transform: rotateX(180deg);
             }
         }
@@ -201,11 +201,11 @@ export default function makeStyles() {
         }
 
         // multiple
-        .k-tags {
+        .${k}-tags {
             padding: 3px 0;
         }
-        .k-tag {
-            word-break: break-word;
+        .${k}-tag {
+            word-break: bre.${k}-word;
             height: auto;
             max-width: calc(100% - ${getRight(select.tag.margin)} - 1px);
         }
@@ -227,48 +227,48 @@ export default function makeStyles() {
         })}
 
         // inline
-        &.k-inline {
+        &.${k}-inline {
             width: auto;
             border: none;
             min-height: 0;
             background: transparent;
-            .k-select-placeholder,
-            .k-select-value {
+            .${k}-select-placeholder,
+            .${k}-select-value {
                 line-height: inherit;
             }
         }
 
         // flat
-        &.k-flat {
+        &.${k}-flat {
             border: none;
             background: ${theme.color.bg};
             color: ${defaults.flat.color};
-            .k-tag {
+            .${k}-tag {
                 background: ${select.tag.disabledBgColor};
             }
         }
 
         // disabled (should place at last)
-        &.k-disabled {
+        &.${k}-disabled {
             color: ${select.disabled.color};
             cursor: not-allowed;
             background: ${select.disabled.bgColor};
             border-color: ${select.disabled.borderColor};
-            .k-tag {
+            .${k}-tag {
                 background: ${select.tag.disabledBgColor};
             }
         }
 
         // nowrap
-        &.k-nowrap {
-            .k-select-values {
+        &.${k}-nowrap {
+            .${k}-select-values {
                 display: flex;
                 align-items: center;
             }
-            .k-tags {
+            .${k}-tags {
                 flex: 1;
             }
-            .k-select-text {
+            .${k}-select-text {
                 white-space: nowrap;
                 overflow: hidden;
                 text-overlay: ellipsis;
@@ -277,7 +277,7 @@ export default function makeStyles() {
     `;
 }
 
-export function makeMenuStyles() {
+export function makeMenuStyles(k: string) {
     const searchable = select.searchable;
     
     return css`
@@ -287,81 +287,81 @@ export function makeMenuStyles() {
         &:not([class*="-active"]) {
             transition: left ${select.transition}, top ${select.transition};
         }
-        .k-select-empty {
+        .${k}-select-empty {
             padding: ${select.empty.padding};
             color: ${select.empty.color};
             text-align: center;
         }
-        .k-select-option {
+        .${k}-select-option {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            &.k-active {
+            &.${k}-active {
                 color: ${select.activeColor};
             }
         }
 
         // card
-        &.k-card {
+        &.${k}-card {
             display: flex;
             height: ${select.card.height};
-            .k-tabs {
+            .${k}-tabs {
                 border: none;
                 overflow: auto;
             }
-            .k-select-group {
+            .${k}-select-group {
                 flex: 1;
                 overflow: auto;
             }
-            .k-select-option.k-hover {
+            .${k}-select-option.${k}-hover {
                 background: ${select.card.itemHoverBgColor};
                 color: ${select.card.itemHoverColor};
             }
         }
 
         // searchable
-        &.k-searchable {
+        &.${k}-searchable {
             max-height: none;
             padding: ${searchable.padding};
-            .k-select-option {
+            .${k}-select-option {
                 padding: ${searchable.optionPadding};
             }
         }
-        .k-select-header {
+        .${k}-select-header {
             display: flex;
             padding: ${searchable.header.padding};
             border-bottom: ${searchable.border};
             margin-bottom: ${searchable.header.gap};
         }
-        .k-select-op {
+        .${k}-select-op {
             white-space: nowrap;
-            .k-btn {
+            .${k}-btn {
                 padding: ${searchable.header.btnPadding};
                 margin-left: ${searchable.header.btnGap};
             }
         }
-        .k-select-body {
+        .${k}-select-body {
             max-height: ${select.menuMaxHeight};
             overflow: auto;
         }
-        .k-select-footer {
+        .${k}-select-footer {
             border-top: ${searchable.border};
             padding: ${searchable.footer.padding};
             text-align: right;
             margin-top: ${searchable.footer.gap};
-            .k-btn {
+            .${k}-btn {
                 margin-left: ${searchable.footer.btnGap};
             }
         }
-        .k-select-option {
-            .k-checkbox {
+        .${k}-select-option {
+            .${k}-checkbox {
                 margin: 0 -${getRight(searchable.optionPadding)} 0 -${getLeft(searchable.optionPadding)};
                 padding: ${searchable.optionPadding};
             }
         }
 
         // multiple checkmark
-        .k-select-checkmark {
+        .${k}-select-checkmark {
             float: right;
             height: 100%;
             font-size: ${select.multiple.checkmark.fontSize};
@@ -369,9 +369,9 @@ export function makeMenuStyles() {
     `;
 }
 
-export function makeGroupStyles() {
+export function makeGroupStyles(k: string) {
     return css`
-        .k-select-group-label {
+        .${k}-select-group-label {
             color: ${select.group.labelColor};
             padding: ${select.group.labelPadding};
         }

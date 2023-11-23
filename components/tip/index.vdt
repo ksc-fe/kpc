@@ -4,7 +4,7 @@ import {makeStyles} from './styles';
 
 const {children, closable, type, disabled} = this.get();
 const classNameObj = {
-    'k-tip': true,
+    [`${k}-tip`]: true,
     [makeStyles()]: true,
 };
 

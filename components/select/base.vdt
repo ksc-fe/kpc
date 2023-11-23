@@ -21,13 +21,13 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-select': true,
-    'k-disabled': disabled,
+    [`${k}-select`]: true,
+    [`${k}-disabled`]: disabled,
     [`k-${size}`]: size !== 'default',
-    'k-fluid': fluid,
-    'k-inline': inline,
-    'k-flat': flat,
-    'k-nowrap': nowrap,
+    [`${k}-fluid`]: fluid,
+    [`${k}-inline`]: inline,
+    [`${k}-flat`]: flat,
+    [`${k}-nowrap`]: nowrap,
     [className]: className,
     [$props.className]: $props.className,
     [makeStyles()]: true,

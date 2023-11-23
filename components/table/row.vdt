@@ -14,12 +14,12 @@ const {
     draggable, draggingKey, animation,
 } = this.get();
 const classNameObj = {
-    'k-disabled': disabled,
-    'k-checked': checked,
-    'k-selected': selected,
-    /* 'k-hidden': hidden, */
-    'k-spreaded': spreaded,
-    'k-dragging': draggingKey === key,
+    [`${k}-disabled`]: disabled,
+    [`${k}-checked`]: checked,
+    [`${k}-selected`]: selected,
+    /* [`${k}-hidden`]: hidden, */
+    [`${k}-spreaded`]: spreaded,
+    [`${k}-dragging`]: draggingKey === key,
     [className]: className,
 };
 
@@ -37,7 +37,7 @@ const pushCheckTypeVNode = (children) => {
         <td key="$checktype"
             {...getClassAndStyleForFixed({
                 fixed: hasFixedLeft ? 'left' : false,
-                className: 'k-table-check'
+                className: [`${k}-table-check`]
             }, 0)}
             {...spans}
         >{children}</td>

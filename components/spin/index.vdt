@@ -5,10 +5,10 @@ import {makeStyles} from './styles';
 const {size, center, className, overlay} = this.get();
 
 const classNameObj = {
-    'k-spin': true,
+    [`${k}-spin`]: true,
     [`k-${size}`]: size !== 'default',
-    'k-center': !overlay && center,
-    'k-overlay': overlay,
+    [`${k}-center`]: !overlay && center,
+    [`${k}-overlay`]: overlay,
     [className]: className,
     [makeStyles()]: true,
 };

@@ -5,7 +5,7 @@ import {deepDefaults}  from '../../styles/utils';
 
 export type Mode = 'horizontal' | 'vertical';
 
-export const kls = (className: string): string => `k-split-${className}`;
+export const kls = (className: string): string => .${k}-split-${className}`;
 
 const defaults = {
     splitLineSize: '6px',
@@ -39,7 +39,7 @@ setDefault(() => {
     split = deepDefaults(theme, {split: defaults}).split;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: flex;
         height: 100%;
@@ -58,7 +58,7 @@ export function makeStyles() {
             flex: auto;
         }
 
-        &.k-first-auto {
+        &.${k}-first-auto {
             & > .${kls('first')} {
                 flex: auto;
             }
@@ -67,7 +67,7 @@ export function makeStyles() {
             }
         }
 
-        &:not(.k-resizing) {
+        &:not(.${k}-resizing) {
             & > .${kls('first')},
             & > .${kls('last')} {
                 transition: all ${split.transition};
@@ -89,7 +89,7 @@ export function makeStyles() {
             }
         }
 
-        &.k-horizontal {
+        &.${k}-horizontal {
             & > .${kls('line-wrapper')} {
                 cursor: col-resize;
                 width: ${split.splitLineSize};
@@ -107,7 +107,7 @@ export function makeStyles() {
             }
         }
 
-        &.k-vertical {
+        &.${k}-vertical {
             flex-direction: column;
             & > .${kls('line-wrapper')} {
                 cursor: row-resize;

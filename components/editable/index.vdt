@@ -10,10 +10,10 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-editable': true,
-    'k-editing': editing,
-    'k-disabled': disabled,
-    'k-invalid': invalid,
+    [`${k}-editable`]: true,
+    [`${k}-editing`]: editing,
+    [`${k}-disabled`]: disabled,
+    [`${k}-invalid`]: invalid,
     [className]: className,
     [makeStyles()]: true
 };

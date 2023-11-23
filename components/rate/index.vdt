@@ -7,8 +7,8 @@ const {className, count, disabled, half} = this.get();
 const {activeValue, onClick, onMouseEnter, onMouseLeaveComponent} = this.activeValue;
 
 const classNameObj = {
-    'k-rate': true,
-    'k-disabled': disabled,
+    [`${k}-rate`]: true,
+    [`${k}-disabled`]: disabled,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -26,8 +26,8 @@ const rateIcon = function(className, step) {
 const items = [];
 for(let i = 0; i < count; i++) {
     const className = activeValue.value >= i + 1 ? 
-        'k-full' : activeValue.value === i + 0.5 ? 
-            'k-half' : null;
+        [`${k}-full`] : activeValue.value === i + 0.5 ? 
+            [`${k}-half`] : null;
     const halfStep = half ? i + 0.5 : i + 1;
     const item = (
         <div class={{"k-rate-item": true, [className]: className}}>

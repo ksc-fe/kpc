@@ -9,11 +9,11 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-steps': true,
+    [`${k}-steps`]: true,
     [className]: className,
     [`k-${type}`]: true,
-    'k-clickable': clickable,
-    'k-vertical': vertical,
+    [`${k}-clickable`]: clickable,
+    [`${k}-vertical`]: vertical,
     [makeStepsStyles()]: true,
 };
 

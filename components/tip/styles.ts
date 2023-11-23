@@ -18,32 +18,32 @@ setDefault(() => {
     tip = deepDefaults(theme, {tip: defaults}).tip;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
-        // Tip extends Tag, so we add k-tip to increase the priority of class
-        &.k-tip {
+        // Tip extends Tag, so we add.${k}-tip to increase the priority of class
+        &.${k}-tip {
             display: flex;
             height: auto;
             padding: 0;
             color: ${tip.color} !important;
             align-items: flex-start;
         }
-        .k-tip-wrapper {
+        .${k}-tip-wrapper {
             flex: 1;
             padding: ${tip.padding};
         }
 
-        .k-tip-title {
+        .${k}-tip-title {
             font-size: ${tip.title.fontSize};
             margin-bottom: ${tip.title.gap};
             font-weight: ${tip.title.fontWeight}
         }
 
-        &.k-fade-leave-active {
+        &.${k}-fade-leave-active {
             position: relative;
         }
 
-        .k-tip-close:hover {
+        .${k}-tip-close:hover {
             background: none;
         }
     `;

@@ -12,7 +12,7 @@ const iconMap = {
 
 const classNameObj = {
     [makeStyles()]: true,
-    'k-popover': true,
+    [`${k}-popover`]: true,
 }
 
 <t:super class={classNameObj}>

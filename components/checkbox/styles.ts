@@ -55,13 +55,13 @@ setDefault(() => {
     checkbox = deepDefaults(theme, {checkbox: defaults}).checkbox;
 });
 
-export default function makeStyles() {
+export default function makeStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
         cursor: pointer;
         vertical-align: middle;
-        .k-checkbox-wrapper {
+        .${k}-checkbox-wrapper {
             width: ${checkbox.width};
             height: ${checkbox.width}; 
             border: 1px solid ${checkbox.borderColor}; 
@@ -88,7 +88,7 @@ export default function makeStyles() {
             }
         }
         &:hover {
-            .k-checkbox-wrapper {
+            .${k}-checkbox-wrapper {
                 border: ${checkbox.hoverBorder}
             }
         }
@@ -103,22 +103,22 @@ export default function makeStyles() {
             top: 0;
             margin: 0;
         }
-        .k-checkbox-text {
+        .${k}-checkbox-text {
             margin-left: ${checkbox.text.gap};
             flex: 0 1 auto;
         }
 
         // indeterminate
         // checked
-        &.k-checked,
-        &.k-indeterminate {
-            .k-checkbox-wrapper {
+        &.${k}-checked,
+        &.${k}-indeterminate {
+            .${k}-checkbox-wrapper {
                 border-color: ${checkbox.checked.borderColor};
                 background: ${checkbox.checked.bgColor};
             }
         }
-        &.k-indeterminate {
-            .k-checkbox-wrapper {
+        &.${k}-indeterminate {
+            .${k}-checkbox-wrapper {
                 &:before {
                     transform: rotate(90deg) scale(1);
                     border-bottom: 0;
@@ -126,8 +126,8 @@ export default function makeStyles() {
             }
       
         }
-        &.k-checked {
-            .k-checkbox-wrapper {
+        &.${k}-checked {
+            .${k}-checkbox-wrapper {
                 &:before {
                     transform: rotate(45deg) scale(1);
                 }
@@ -138,17 +138,17 @@ export default function makeStyles() {
         // focus
         &:focus {
             outline: none;
-            .k-checkbox-wrapper {
+            .${k}-checkbox-wrapper {
                 border-color: ${checkbox.checked.borderColor};
             }
         }
       
     
         // disabled
-        &.k-disabled {
+        &.${k}-disabled {
             color: ${checkbox.disabled.color};
             cursor: not-allowed;
-            .k-checkbox-wrapper {
+            .${k}-checkbox-wrapper {
                 border-color: ${checkbox.disabled.borderColor};
                 background: ${checkbox.disabled.bgColor};
                 // checked
@@ -159,9 +159,9 @@ export default function makeStyles() {
             input {
                 cursor: not-allowed;
             }
-            &.k-checked,
-            &.k-indeterminate {
-              .k-checkbox-wrapper {
+            &.${k}-checked,
+            &.${k}-indeterminate {
+              .${k}-checkbox-wrapper {
                   border-color: ${checkbox.disabled.checked.borderColor};
                   background: ${checkbox.disabled.checked.bgColor};
               }

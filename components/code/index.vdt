@@ -5,7 +5,7 @@ import {makeStyles} from './styles';
 let {width, height, className, style} = this.get();
 
 const classNameObj = {
-    'k-code': true,
+    [`${k}-code`]: true,
     [className]: className,
     [makeStyles()]: true,
 };

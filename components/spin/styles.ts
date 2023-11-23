@@ -18,7 +18,7 @@ setDefault(() => {
     spin = deepDefaults(theme, {spin: defaults}).spin;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     const width = spin.strokeWidth;
     const r = 120 - 60 - (width / 2);
     const c = Math.round(2 * 3.14 * r);
@@ -41,12 +41,12 @@ export function makeStyles() {
 
     return css`
         display: inline-block;
-        .k-spin-canvas {
+        .${k}-spin-canvas {
             width: ${spin.width};
             height: ${spin.width};
-            animation: k-rotate 2s linear infinite;
+            animation:.${k}-rotate 2s linear infinite;
         }
-        .k-spin-circle {
+        .${k}-spin-circle {
             stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
             stroke-dashoffset: 0;
             fill: none;
@@ -62,7 +62,7 @@ export function makeStyles() {
             const width = spin[`${size}Width` as const];
             return css`
                 &.k-${size} {
-                    .k-spin-canvas {
+                    .${k}-spin-canvas {
                         width: ${width};
                         height: ${width};
                     }
@@ -70,8 +70,8 @@ export function makeStyles() {
             `;
         })}
 
-        &.k-center,
-        &.k-overlay .k-spin-wrapper {
+        &.${k}-center,
+        &.${k}-overlay .${k}-spin-wrapper {
             position: absolute;
             z-index: 1;
             top: 50%;
@@ -79,7 +79,7 @@ export function makeStyles() {
             transform: translate(-50%, -50%);
         }
 
-        &.k-overlay {
+        &.${k}-overlay {
             position: absolute;
             z-index: ${theme.midZIndex};
             top: 0;

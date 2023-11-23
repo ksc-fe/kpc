@@ -3,7 +3,7 @@ import {makeStyles} from './styles';
 
 const {className, children} = this.get();
 const classNameObj = {
-    'k-diagram': true,
+    [`${k}-diagram`]: true,
     [className]: className,
     [makeStyles()]: true,
 };

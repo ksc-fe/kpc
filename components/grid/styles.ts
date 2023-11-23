@@ -11,55 +11,55 @@ setDefault(() => {
     grid = deepDefaults(theme, {grid: defaults}).grid;
 });
 
-export function makeRowStyles() {
+export function makeRowStyles(k: string) {
     return css`
         position: relative;
         display: flex;
         flex-wrap: wrap;
         // justify
-        &.k-justify-start {
+        &.${k}-justify-start {
             justify-content: flex-start;
         }
-        &.k-justify-end {
+        &.${k}-justify-end {
             justify-content: flex-end;
         }
-        &.k-justify-center {
+        &.${k}-justify-center {
             justify-content: center;
         }
-        &.k-justify-between {
+        &.${k}-justify-between {
             justify-content: space-between;
         }
-        &.k-justify-around {
+        &.${k}-justify-around {
             justify-content: space-around;
         }
-        &.k-justify-evenly {
+        &.${k}-justify-evenly {
             justify-content: space-evenly;
         }
         // align
-        &.k-align-top {
+        &.${k}-align-top {
             align-items: flex-start;
         }
-        &.k-align-bottom {
+        &.${k}-align-bottom {
             align-items: flex-end;
         }
-        &.k-align-middle {
+        &.${k}-align-middle {
             align-items: center;
         }
-        &.k-align-stretch {
+        &.${k}-align-stretch {
             align-items: stretch;
         }
-        &.k-align-baseline {
+        &.${k}-align-baseline {
             align-items: baseline;
         }
     `;
 }
 
 const colsStyles = makeBreakpointsCols();
-export function makeColStyles() {
+export function makeColStyles(k: string) {
     return css`
         position: relative;
         width: 100%;
-        .k-col-wrapper {
+        .${k}-col-wrapper {
             height: 100%;
         }
         ${colsStyles}

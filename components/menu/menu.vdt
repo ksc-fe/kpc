@@ -9,11 +9,11 @@ const {collapse, theme, type, size} = (this.rootMenu || this).get();
 const isRootMenu = !this.rootMenu;
 const isDropdownMenu = !isRootMenu && isDropdown(this.rootMenu);
 const classNameObj = {
-    'k-menu': true,
+    [`${k}-menu`]: true,
     [className]: className,
     [`k-${theme}`]: (isRootMenu || isDropdownMenu) && theme,
     [`k-${size}`]: isRootMenu && size !== 'default',
-    'k-collapsed': isRootMenu && collapse,
+    [`${k}-collapsed`]: isRootMenu && collapse,
     [`k-${type}`]: isRootMenu && type,
     [makeMenuStyles()]: true,
 };
@@ -23,7 +23,7 @@ const content = (
     <template>
         <div v-if={$blocks.header}
             class={{
-                'k-menu-header': true,
+                [`${k}-menu-header`]: true,
                 [makeTitleStyles()]: true
             }}
         >

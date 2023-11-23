@@ -20,10 +20,10 @@ setDefault(() => {
     rate = deepDefaults(theme, {rate: defaults}).rate;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-block;
-        .k-rate-item {
+        .${k}-rate-item {
             display: inline-block;
             margin-right: ${rate.item.gap};
             cursor: pointer;
@@ -33,16 +33,16 @@ export function makeStyles() {
             &:hover {
                 transform: ${rate.item.hoverTransform};
             }
-            &.k-full {
+            &.${k}-full {
                 color: ${rate.activeColor};
             }
-            &.k-half {
-                .k-rate-first {
+            &.${k}-half {
+                .${k}-rate-first {
                     color: ${rate.activeColor};
                 }
             }
         }
-        .k-rate-first {
+        .${k}-rate-first {
             position: absolute;
             top: 0;
             left: 0;
@@ -50,14 +50,14 @@ export function makeStyles() {
             height: 100%;
             overflow: hidden;
         }
-        .k-icon {
+        .${k}-icon {
             font-size: ${rate.iconFontSize};
             color: inherit;
         }
             
         // disabled
-        &.k-disabled {
-            .k-rate-item {
+        &.${k}-disabled {
+            .${k}-rate-item {
                 cursor: default;
                 &:hover {
                     transform: none;

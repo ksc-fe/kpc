@@ -36,25 +36,25 @@ export function getCollapseWidth() {
     return layout.collapsedWidth;
 }
 
-export function makeLayoutStyles() {
+export function makeLayoutStyles(k: string) {
     return css`
         display: flex;
         flex-direction: column;
         flex: 1;
         transition: padding-left ${layout.transition};
-        &.k-has-aside {
+        &.${k}-has-aside {
             flex-direction: row;
         }
-        .k-layout-footer {
+        .${k}-layout-footer {
             padding: ${layout.footerPadding};
         }
-        .k-layout-body {
+        .${k}-layout-body {
             flex: 1;
         }
     `
 }
 
-export function makeHeaderStyles() {
+export function makeHeaderStyles(k: string) {
     return css`
         display: flex;
         align-items: center;
@@ -62,22 +62,22 @@ export function makeHeaderStyles() {
         background: ${layout.bgColor};
         left: 0;
         transition: left ${layout.transition};
-        &.k-fixed {
+        &.${k}-fixed {
             position: fixed;
             left: 0;
             right: 0;
             top: 0;
             z-index: ${theme.midZIndex + 1};
         }
-        > .k-menu {
+        > .${k}-menu {
             background: transparent !important;
         }
 
-        &.k-blur {
+        &.${k}-blur {
             backdrop-filter: blur(20px);
             background: ${setAlpha(layout.bgColor, 0.1)};
         }
-        &.k-box-shadow {
+        &.${k}-box-shadow {
             border-bottom: none !important;
             box-shadow: ${theme.boxShadow};
         }
@@ -90,7 +90,7 @@ export function makeHeaderStyles() {
                     background: ${styles.bgColor};
                     color: ${styles.color};
                     border-bottom: ${styles.border};
-                    &.k-blur {
+                    &.${k}-blur {
                         background: ${setAlpha(styles.bgColor, 0.1)};
                     }
                 }
@@ -99,7 +99,7 @@ export function makeHeaderStyles() {
     `;
 }
 
-export function makeAsideStyles() {
+export function makeAsideStyles(k: string) {
     return css`
         transition: width ${layout.transition};
         display: flex;
@@ -117,7 +117,7 @@ export function makeAsideStyles() {
                 }
             `
         })}
-        &.k-fixed {
+        &.${k}-fixed {
             position: fixed;
             overflow: auto;
             left: 0;
@@ -125,7 +125,7 @@ export function makeAsideStyles() {
             bottom: 0;
             z-index: ${theme.midZIndex};
         }
-        .k-menu {
+        .${k}-menu {
             width: auto !important;
         }
     `

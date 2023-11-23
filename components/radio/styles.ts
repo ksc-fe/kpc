@@ -36,13 +36,13 @@ setDefault(() => {
     radio = deepDefaults(theme, {radio: defaults}).radio;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
         cursor: pointer;
         vertical-align: middle;
-        .k-radio-wrapper {
+        .${k}-radio-wrapper {
             width: ${radio.width};
             height: ${radio.width};
             border: 1px solid ${radio.borderColor};
@@ -69,7 +69,7 @@ export function makeStyles() {
             }
         }
         &:hover {
-            .k-radio-wrapper {
+            .${k}-radio-wrapper {
                 border: 1px solid ${radio.hoverBorderColor};
             }
         }
@@ -81,14 +81,14 @@ export function makeStyles() {
             cursor: pointer;
             position: absolute;
         }    
-        .k-radio-text {
+        .${k}-radio-text {
             margin-left: ${radio.textGap};
             flex: 0 1 auto;
         }
 
         // checked
-        &.k-checked {
-            .k-radio-wrapper {
+        &.${k}-checked {
+            .${k}-radio-wrapper {
                 border-color: ${radio.checkedColor};
                 &:before {
                     transform: scale(1);
@@ -99,24 +99,24 @@ export function makeStyles() {
         // focus
         &:focus {
             outline: none;
-            .k-radio-wrapper {
+            .${k}-radio-wrapper {
                 border-color: ${radio.checkedColor};
             }    
         }    
 
         // disabled
-        &.k-disabled {
+        &.${k}-disabled {
             color: ${radio.disabled.color};
             cursor: not-allowed;
-            .k-radio-wrapper {
+            .${k}-radio-wrapper {
                 border-color: ${radio.disabled.borderColor};
                 background: ${radio.disabled.bgColor};   
             }
             input {
                 cursor: not-allowed;
             }
-            &.k-checked {
-                .k-radio-wrapper {
+            &.${k}-checked {
+                .${k}-radio-wrapper {
                     border-color: ${radio.disabled.checked.borderColor};
                     background: ${radio.disabled.checked.bgColor};
                     &:before {

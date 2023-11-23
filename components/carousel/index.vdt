@@ -9,10 +9,10 @@ const {className, children, arrow, effect} = this.get();
 const {translate, shouldTransition, elementRef, isSlide} = this.slide;
 
 const classNameObj = {
-    'k-carousel': true,
+    [`${k}-carousel`]: true,
     [className]: className,
     [`k-${arrow}`]: true,
-    'k-stop': !shouldTransition.value,
+    [`${k}-stop`]: !shouldTransition.value,
     [`k-${effect}`]: true,
     [makeStyles()]: true,
 };
@@ -45,7 +45,7 @@ const {stop, play} = this.autoplay;
     </Button>
     <div class="k-carousel-indicator c-clearfix">
         <div v-for={getItems()}
-            class={{'k-carousel-dot': true, 'k-active': this.isActive($value.props.value)}}
+            class={{[`${k}-carousel-dot`]: true, [`${k}-active`]: this.isActive($value.props.value)}}
             ev-click={linkEvent($key, this.setIndex)}
         ></div>
     </div>

@@ -9,9 +9,9 @@ const {
     prev, next, scrollRef, wrapperRef
 } = this.scroll;
 const classNameObj = {
-    'k-tabs': true,
+    [`${k}-tabs`]: true,
     [`k-size-${size}`]: size,
-    'k-vertical': vertical,
+    [`${k}-vertical`]: vertical,
     [`k-type-${type}`]: true,
     [`k-is-scroll`]: isScroll.value,
     [className]: className,

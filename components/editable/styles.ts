@@ -20,11 +20,11 @@ setDefault(() => {
 
 export {editable};
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-block;
         line-height: ${editable.lineHeight};
-        .k-editable-icon {
+        .${k}-editable-icon {
             float: right;
             cursor: pointer;
             margin: ${editable.iconGap};
@@ -32,8 +32,8 @@ export function makeStyles() {
         }
 
         // invalid
-        &.k-invalid {
-            .k-input-inner {
+        &.${k}-invalid {
+            .${k}-input-inner {
                 border: ${editable.invalid.border} !important;
             }
         }

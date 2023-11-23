@@ -85,11 +85,11 @@ setDefault(() => {
 
 export {menu};
 
-export function makeMenuStyles() {
-    // we must increase the priority by adding &.k-menu
+export function makeMenuStyles(k: string) {
+    // we must increase the priority by adding &.${k}-menu
     // to override the css of dropdownMenu
     return css`
-        &.k-menu {
+        &.${k}-menu {
             width: ${menu.width};
             transition: width ${menu.transition};
             background: ${menu.bgColor};
@@ -97,20 +97,20 @@ export function makeMenuStyles() {
         }
 
         // nested menu
-        &:not(.k-dropdown-menu) &:not(.k-dropdown-menu) {
+        &:not(.${k}-dropdown-menu) &:not(.${k}-dropdown-menu) {
             width: auto;
             background: ${menu.subBgColor};
-            .k-menu-title {
+            .${k}-menu-title {
                 padding-left: calc(${getLeft(menu.item.padding)} + ${menu.icon.width} + ${menu.icon.gap});
             }
         }
-        &:not(.k-dropdown-menu) &:not(.k-dropdown-menu) &:not(.k-dropdown-menu) {
-            .k-menu-title {
+        &:not(.${k}-dropdown-menu) &:not(.${k}-dropdown-menu) &:not(.${k}-dropdown-menu) {
+            .${k}-menu-title {
                 padding-left: calc(${getLeft(menu.item.padding)} + ${menu.icon.width} * 2 + ${menu.icon.gap});
             }
         }
 
-        .k-icon {
+        .${k}-icon {
             width: ${menu.icon.width};
             margin-right: ${menu.icon.gap};
             text-align: center;
@@ -119,7 +119,7 @@ export function makeMenuStyles() {
 
 
         // header
-        .k-menu-header {
+        .${k}-menu-header {
             height: ${menu.header.height};
             font-size: ${menu.header.fontSize};
             font-weight: bold;
@@ -132,34 +132,34 @@ export function makeMenuStyles() {
             return css`
                 &.k-${theme} {
                     background: ${styles.bgColor};
-                    .k-menu-header {
+                    .${k}-menu-header {
                         color: ${styles.item.color};
                         border-bottom: ${styles.border};
                     }
-                    .k-menu-item {
-                        .k-menu-title {
+                    .${k}-menu-item {
+                        .${k}-menu-title {
                             color: ${styles.item.color};
                             &:hover {
                                 color: ${styles.item.hoverColor};
                             }
                         }
-                        &.k-highlighted {
-                            > .k-menu-title {
+                        &.${k}-highlighted {
+                            > .${k}-menu-title {
                                 color: ${styles.item.hoverColor};
                             }
                         }
-                        &.k-disabled {
-                            > .k-menu-title {
+                        &.${k}-disabled {
+                            > .${k}-menu-title {
                                 color: ${styles.item.disabledColor} !important;
                             }
                         }
                     }
-                    .k-menu:not(.k-dropdown-menu) {
+                    .${k}-menu:not(.${k}-dropdown-menu) {
                         background: ${styles.subBgColor};
                     }
 
-                    &.k-horizontal {
-                        .k-menu-header {
+                    &.${k}-horizontal {
+                        .${k}-menu-header {
                             border-right: ${styles.border};
                         }
                     }
@@ -167,10 +167,10 @@ export function makeMenuStyles() {
             `;
         })}
 
-        &.k-white {
+        &.${k}-white {
             // active
-            .k-menu-item.k-active {
-                > .k-menu-title {
+            .${k}-menu-item.${k}-active {
+                > .${k}-menu-title {
                     color: ${menu.white.active.color } !important;
                     background: ${menu.white.active.bgColor};
                 }
@@ -185,7 +185,7 @@ export function makeMenuStyles() {
                 &.k-${size} {
                     width: ${styles.width};
                     font-size: ${styles.fontSize};
-                    .k-menu {
+                    .${k}-menu {
                         font-size: ${styles.fontSize}; 
                     }
                 }
@@ -193,31 +193,31 @@ export function makeMenuStyles() {
         })}
 
         // collapse
-        &.k-collapsed {
+        &.${k}-collapsed {
             width: calc(${menu.icon.width} + ${getLeft(menu.item.padding)} * 2);
-            .k-icon {
+            .${k}-icon {
                 margin-right: 0;
             }
-            .k-menu-arrow {
+            .${k}-menu-arrow {
                 display: none;
             }
         }
 
         // dropdown
-        &.k-dropdown-menu {
+        &.${k}-dropdown-menu {
             width: auto;
             min-width: ${menu.dropdown.minWidth};
-            .k-menu-arrow {
+            .${k}-menu-arrow {
                 transform: rotate(-90deg)
             }
         }
 
         // horizontal
-        &.k-horizontal {
+        &.${k}-horizontal {
             width: auto;
             display: flex;
             align-items: center;
-            .k-menu-header {
+            .${k}-menu-header {
                 border-bottom: none;
                 border-right: ${menu.header.borderBottom};
             }
@@ -225,7 +225,7 @@ export function makeMenuStyles() {
     `
 }
 
-export function makeTitleStyles() {
+export function makeTitleStyles(k: string) {
     const item = menu.item;
     return css`
         display: flex;
@@ -238,10 +238,10 @@ export function makeTitleStyles() {
     `;
 }
 
-export function makeItemStyles() {
+export function makeItemStyles(k: string) {
     const item = menu.item;
     return css`
-        .k-menu-title {
+        .${k}-menu-title {
             cursor: pointer;
             height: ${menu.item.height};
             transition: all ${menu.transition};
@@ -249,7 +249,7 @@ export function makeItemStyles() {
                 color: ${menu.item.hoverColor};
             }
         }
-        .k-menu-name {
+        .${k}-menu-name {
             flex: 1;
             display: flex;
             align-items: center;
@@ -260,46 +260,46 @@ export function makeItemStyles() {
                 min-width: 0;
             }
         }
-        .k-menu-arrow {
+        .${k}-menu-arrow {
             transition: transform ${menu.transition};
             margin-left: ${menu.icon.gap};
         }
 
         // expanded
-        &.k-expanded {
-            > .k-menu-title {
+        &.${k}-expanded {
+            > .${k}-menu-title {
                 color: ${menu.item.hoverColor};
-                .k-menu-arrow {
+                .${k}-menu-arrow {
                     transform: rotateX(180deg);
                 }
             }
         }
 
         // highlighted
-        &.k-highlighted {
-            > .k-menu-title {
+        &.${k}-highlighted {
+            > .${k}-menu-title {
                 color: ${menu.item.hoverColor};
             }
         }
 
         // active
-        &.k-active {
-            > .k-menu-title {
+        &.${k}-active {
+            > .${k}-menu-title {
                 color: ${menu.item.hoverColor} !important;
                 background: ${menu.item.activeBgColor};
             }
         }
 
         // disabled
-        &.k-disabled {
-            > .k-menu-title {
+        &.${k}-disabled {
+            > .${k}-menu-title {
                 color: ${menu.item.disabledColor} !important;
                 cursor: not-allowed;
             }
         }
 
         // dot
-        .k-menu-dot {
+        .${k}-menu-dot {
             font-size: ${menu.item.dotFontSize};
             transform: scale(.4);
         }

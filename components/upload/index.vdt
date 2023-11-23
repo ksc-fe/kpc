@@ -15,11 +15,11 @@ const {
 
 const drag = this.drag;
 const classNameObj = {
-    'k-upload': true,
+    [`${k}-upload`]: true,
     [className]: className,
-    'k-drag': type === 'drag', 
-    'k-dragover': drag.dragOver.value, 
-    'k-gallery': type === 'gallery',
+    [`${k}-drag`]: type === 'drag', 
+    [`${k}-dragover`]: drag.dragOver.value, 
+    [`${k}-gallery`]: type === 'gallery',
     [makeStyles()]: true,
 };
 
@@ -81,7 +81,7 @@ const {show, close, image, isShow} = this.showImage;
             <div
                 class={{
                     "k-upload-picture k-upload-picture-card": true, 
-                    'k-error': $value.status === UploadFileStatus.Error,
+                    [`${k}-error`]: $value.status === UploadFileStatus.Error,
                 }}
                 v-for={files}
                 key={$value.uid}
@@ -121,7 +121,7 @@ const {show, close, image, isShow} = this.showImage;
             <div v-for={files} 
                 class={{
                     "k-upload-file": true,
-                    'k-error': $value.status === UploadFileStatus.Error
+                    [`${k}-error`]: $value.status === UploadFileStatus.Error
                 }}
                 key={$value.uid}
             >

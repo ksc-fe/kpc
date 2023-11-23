@@ -30,42 +30,42 @@ setDefault(() => {
     cascader = deepDefaults(theme, {cascader: defaults}).cascader;
 });
 
-export function makeMenuStyles() {
+export function makeMenuStyles(k: string) {
     return css`
         min-width: ${cascader.width} !important;
         height: ${cascader.height};
         overflow: auto;
-        .k-cascader-arrow {
+        .${k}-cascader-arrow {
             float: right;
             height: 100%;
             margin-left: ${cascader.arrowGap};
             line-height: inherit;
         }
 
-        .k-cascader-loading {
+        .${k}-cascader-loading {
             display: block;
             text-align: center;
             margin-top: ${cascader.loadingGap};
         }
 
-        .k-cascader-empty {
+        .${k}-cascader-empty {
             padding: ${cascader.empty.padding};
             color: ${cascader.empty.color};
             text-align: center;
         }
 
-        .k-cascader-option {
-            &.k-selected {
+        .${k}-cascader-option {
+            &.${k}-selected {
                 color: ${cascader.selectedColor};
             }
-            &.k-active {
+            &.${k}-active {
                 background: ${cascader.activeBgColor};
             }
         }
     `; 
 }
 
-export function makeFilterMenuStyles() {
+export function makeFilterMenuStyles(k: string) {
     return css`
         min-width: ${cascader.filter.minWidth} !important;
         height: auto;

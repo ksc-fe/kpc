@@ -47,13 +47,13 @@ export default function makeStyles(color?: string) {
             return css`
                 &.k-${color} {
                     color: ${_color};
-                    &.k-hoverable:hover {
+                    &.${k}-hoverable:hover {
                         color: ${palette(_color, -2)};
                     }
                 }
             ` 
         })}
-        &.k-rotate:before {
+        &.${k}-rotate:before {
             animation: ${rotate} 1s infinite linear;
         }
         &:before {
@@ -67,7 +67,7 @@ export default function makeStyles(color?: string) {
         }
 
         // hoverable
-        &.k-hoverable {
+        &.${k}-hoverable {
             cursor: pointer;
             transition: color ${icon.transition};
             &:hover {
@@ -80,7 +80,7 @@ export default function makeStyles(color?: string) {
             `}
         }
         // disabled
-        &.k-disabled {
+        &.${k}-disabled {
             cursor: not-allowed;
             color: ${icon.disabledColor} !important;
         }

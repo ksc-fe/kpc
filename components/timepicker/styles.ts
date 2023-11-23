@@ -23,32 +23,32 @@ setDefault(() => {
     timepicker = deepDefaults(theme, {timepicker: defaults}).timepicker;
 });
 
-export function makePanelStyles() {
+export function makePanelStyles(k: string) {
     return cx(
         makePanelStylesBase(),
         css`
-            &.k-time-content {
-                .k-datepicker-time {
+            &.${k}-time-content {
+                .${k}-datepicker-time {
                     padding: ${timepicker.padding};
                 }
-                .k-scroll-select {
+                .${k}-scroll-select {
                     height: ${timepicker.scrollHeight};
                 }   
             }
-            &.k-range {
-                .k-datepicker-time {
+            &.${k}-range {
+                .${k}-datepicker-time {
                     width: auto;
                     border: ${timepicker.border};
                 }
-                .k-scroll-select {
+                .${k}-scroll-select {
                     height: ${timepicker.range.scrollHeight};
                 }
-                .k-datepicker-calendar-wrapper {
+                .${k}-datepicker-calendar-wrapper {
                     padding: ${timepicker.range.padding};
                     width: ${timepicker.range.width};
                     border: none;
                 }
-                .k-timepicker-title {
+                .${k}-timepicker-title {
                     text-align: center;
                     margin-bottom: ${timepicker.range.titleGap};
                 }

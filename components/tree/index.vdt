@@ -22,26 +22,26 @@ const treeNodes = (nodes) => {
         const disabled = data.disabled;
         const selected = selectable && selectedKeys.has(key);
         const classNameObj = {
-            'k-tree-node': true,
-            'k-expanded': expanded,
-            'k-disabled': disabled,
-            'k-selected': selected,
-            'k-dragging': key === draggingKey.value,
+            [`${k}-tree-node`]: true,
+            [`${k}-expanded`]: expanded,
+            [`${k}-disabled`]: disabled,
+            [`${k}-selected`]: selected,
+            [`${k}-dragging`]: key === draggingKey.value,
         };
         const labelClassNameObj = {
-            'k-tree-label': true,
-            'k-tree-leaf': !node.children,
+            [`${k}-tree-label`]: true,
+            [`${k}-tree-leaf`]: !node.children,
         };
         if (key === overKey.value) {
             switch (mode.value) {
                 case Mode.Before:
-                    labelClassNameObj['k-before'] = true;
+                    labelClassNameObj[[`${k}-before`]] = true;
                     break;
                 case Mode.After:
-                    labelClassNameObj['k-after'] = true;
+                    labelClassNameObj[[`${k}-after`]] = true;
                     break;
                 case Mode.Inner:
-                    labelClassNameObj['k-inner'] = true;
+                    labelClassNameObj[[`${k}-inner`]] = true;
                     break;
             }
         }
@@ -94,9 +94,9 @@ const treeNodes = (nodes) => {
 };
 
 const classNameObj = {
-    'k-tree': true,
-    'k-line': showLine,
-    'k-selectable': selectable,
+    [`${k}-tree`]: true,
+    [`${k}-line`]: showLine,
+    [`${k}-selectable`]: selectable,
     [className]: className,
     [makeStyles()]: true,
 };

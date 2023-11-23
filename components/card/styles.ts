@@ -18,73 +18,73 @@ setDefault(() => {
     card = deepDefaults(theme, {card: defaults}).card;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         border-radius: ${card.borderRadius};
         background: ${card.bgColor};
-        .k-card-header {
+        .${k}-card-header {
             height: ${card.headerHeight};
             line-height: ${card.headerHeight};
             padding: 0 ${card.padding};
         }
-        .k-card-title {
+        .${k}-card-title {
             font-size: ${card.headerFontSize};
             display: inline-block;
         }
-        .k-card-extra {
+        .${k}-card-extra {
             float: right;
             height: 100%;
             display: flex;
             align-items: center;
         }
 
-        .k-card-body {
+        .${k}-card-body {
             padding: 0 ${card.padding} ${card.padding};
         }
 
         // type
-        &.k-shadow {
+        &.${k}-shadow {
             box-shadow: ${card.boxShadow};
         }
-        &.k-none {
+        &.${k}-none {
             box-shadow: none;
         }
-        &.k-border {
+        &.${k}-border {
             border: ${card.border};
-            .k-card-header {
+            .${k}-card-header {
                 border-bottom: ${card.border};
             }
-            .k-card-body {
+            .${k}-card-body {
                 padding-top: ${card.padding};
             }
         }
-        &.k-no-header {
-            .k-card-body {
+        &.${k}-no-header {
+            .${k}-card-body {
                 padding-top: ${card.padding};
             }
         }  
     
         // grid
-        &.k-card-grid {
-            .k-card-body {
+        &.${k}-card-grid {
+            .${k}-card-body {
                 display: flex;
                 padding: 0;
             }
-            &.k-border {
-                .k-card-column:not(:last-of-type) {
+            &.${k}-border {
+                .${k}-card-column:not(:last-of-type) {
                     border-right: ${card.border};
                 }
             }
         }
 
-        .k-card-column {
+        .${k}-card-column {
             display: flex;
             align-items: center;
             padding: ${card.padding}; 
-            &.k-fluid {
+            &.${k}-fluid {
                 flex: 1;
             }
-            &.k-center {
+            &.${k}-center {
                 justify-content: center;
             }
         }

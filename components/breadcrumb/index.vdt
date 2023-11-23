@@ -5,7 +5,7 @@ import makeStyles from './styles';
 const {children, separator, className} = this.get();
 
 const classNameObj = {
-    'k-breadcrumb': true,
+    [`${k}-breadcrumb`]: true,
     [className]: className,
     [makeStyles()]: true,
 };

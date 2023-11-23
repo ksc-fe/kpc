@@ -14,9 +14,9 @@ let {children, className} = this.get();
 const {card, searchable, multiple} = this.select.get();
 
 const classNameObj = {
-    'k-select-menu': true,
-    'k-card': card,
-    'k-searchable': searchable,
+    [`${k}-select-menu`]: true,
+    [`${k}-card`]: card,
+    [`${k}-searchable`]: searchable,
     [className]: className,
     [makeMenuStyles()]: true,
 }

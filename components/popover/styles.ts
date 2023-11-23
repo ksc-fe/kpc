@@ -19,26 +19,26 @@ setDefault(() => {
 });
 
 
-export default function makeStyles() {
+export default function makeStyles(k: string) {
     return css`
         // increase priority
-        &.k-tooltip-content.k-popover {
+        &.${k}-tooltip-content.${k}-popover {
             width: ${popover.width};
             padding: ${popover.padding};
-            .k-popover-title {
+            .${k}-popover-title {
                 display: flex;
                 align-items: center;
                 font-size: ${popover.title.fontSize};
                 line-height: ${popover.title.lineHeight};
                 font-weight: ${popover.title.fontWeight};
             }
-            .k-popover-icon {
+            .${k}-popover-icon {
                 margin-right: ${popover.gap};
             }
-            .k-popover-content {
+            .${k}-popover-content {
                 margin-top: ${popover.gap};
             }
-            .k-tooltip-footer {
+            .${k}-tooltip-footer {
                 text-align: right;
             }
     `;

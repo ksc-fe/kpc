@@ -20,7 +20,7 @@ const {
     getTimeValue,
 } = this.value;
 const classNameObj = {
-    'k-datepicker-content': true,
+    [`${k}-datepicker-content`]: true,
     [className]: className,
     [makePanelStyles()]: true,
 };

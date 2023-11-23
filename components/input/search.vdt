@@ -10,10 +10,10 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-search': true,
+    [`${k}-search`]: true,
     [className]: className,
-    'k-open': open,
-    'k-hide': !open,
+    [`${k}-open`]: open,
+    [`${k}-hide`]: !open,
     [`k-${type}`]: type,
     [makeSearchStyles()]: true,
 };

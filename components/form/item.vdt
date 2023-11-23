@@ -17,11 +17,11 @@ const {
 } = this.validateHook;
 
 const classNameObj = {
-    'k-form-item': true,
-    'k-invalid': isDirty && !isValid,
-    'k-valid': isDirty && isValid,
+    [`${k}-form-item`]: true,
+    [`${k}-invalid`]: isDirty && !isValid,
+    [`${k}-valid`]: isDirty && isValid,
     [className]: className,
-    'k-fluid': fluid,
+    [`${k}-fluid`]: fluid,
     [makeItemStyles()]: true,
 };
 
@@ -61,7 +61,7 @@ const {ellipsis, message, errorRef} = this.error;
                     "k-form-error": true,
                     [errorClassName]: errorClassName,
                     [customErrorClassName]: customErrorClassName,
-                    'k-ellipsis': ellipsis.value
+                    [`${k}-ellipsis`]: ellipsis.value
                 }}
             >
                 <div class="k-error-message c-ellipsis" ref={errorRef}>

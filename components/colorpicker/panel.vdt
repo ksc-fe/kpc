@@ -8,7 +8,7 @@ import {ColorpickerDrag as Drag} from './drag';
 
 const {value, presets} = this.get();
 const classNameObj = {
-    'k-colorpicker-panel': true,
+    [`${k}-colorpicker-panel`]: true,
     [makePanelStyles()]: true,
 }
 const {

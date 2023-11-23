@@ -34,7 +34,7 @@ setDefault(() => {
     message = deepDefaults(theme, {message: defaults}).message;
 });
 
-export function makeMessagesStyles() {
+export function makeMessagesStyles(k: string) {
     return css`
         position: fixed;
         top: ${message.top};
@@ -45,13 +45,13 @@ export function makeMessagesStyles() {
     `;
 }
 
-export function makeMessageStyles() {
+export function makeMessageStyles(k: string) {
     return css`
         text-align: center;
         width: 100%;
         font-size: ${message.fontSize};
         color: ${message.color};
-        .k-message-container {
+        .${k}-message-container {
             display: inline-block;
             box-shadow: ${message.boxShadow};
             border-radius: ${message.borderRadius};
@@ -63,21 +63,21 @@ export function makeMessageStyles() {
             text-align: ${message.textAlign};
             min-height: ${message.minHeight};
         }
-        .k-message-wrapper {
+        .${k}-message-wrapper {
             position: relative;
             display: inline-block;
-            &.k-with-icon {
+            &.${k}-with-icon {
                 padding-left: calc(${message.icon.left} + 14px);
             }
         }
-        .k-message-content {
+        .${k}-message-content {
             display: inline-block;
             padding: ${message.padding};
             vertical-align: middle;
-            word-break: break-word;
-            word-wrap: break-word;
+            word-break: bre.${k}-word;
+            word-wrap: bre.${k}-word;
         }
-        .k-message-close {
+        .${k}-message-close {
             vertical-align: middle;
             position: absolute;
             right: 0;
@@ -86,7 +86,7 @@ export function makeMessageStyles() {
                 background: none;
             }
         }
-        .k-message-icon {
+        .${k}-message-icon {
             position: absolute;
             left: ${message.icon.left};
             top: ${message.icon.top};
@@ -97,10 +97,10 @@ export function makeMessageStyles() {
             const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
                 &.k-${type} {
-                    .k-message-container {
+                    .${k}-message-container {
                         background: ${palette(color, -4)};
                     }
-                    .k-message-icon {
+                    .${k}-message-icon {
                         color: ${color};
                     }
                 }

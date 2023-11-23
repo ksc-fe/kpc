@@ -4,12 +4,12 @@ import {getRestProps} from '../utils';
 const {type} = this.get();
 
 const classNameObj = {
-    'k-skeleton-item': true,
+    [`${k}-skeleton-item`]: true,
     [makeItemStyles()]: true
 };
 
 const ItemklsObj = {
-    'k-skeleton-item-box': true,
+    [`${k}-skeleton-item-box`]: true,
     [`skeleton-item-${type}`]: true
 };
 

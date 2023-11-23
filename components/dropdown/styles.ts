@@ -27,7 +27,7 @@ setDefault(() => {
     dropdown = deepDefaults(theme, {dropdown: defaults}).dropdown;
 });
 
-export function makeMenuStyles() {
+export function makeMenuStyles(k: string) {
     return css`
         position: absolute;
         min-width: ${dropdown.menu.minWidth};
@@ -40,20 +40,20 @@ export function makeMenuStyles() {
         left: 0;
         
         // nested dropdown
-        .k-dropdown {
+        .${k}-dropdown {
             display: block;
         }
     `
 }
 
-export function makeItemStyles() {
+export function makeItemStyles(k: string) {
     return css`
         padding: ${dropdown.item.padding};
         cursor: pointer;
         white-space: nowrap;
         height: ${dropdown.item.height};
         line-height: ${dropdown.item.height};
-        &.k-hover {
+        &.${k}-hover {
             background: ${dropdown.item.hoverBgColor};
         }
         &:first-of-type {
@@ -64,25 +64,25 @@ export function makeItemStyles() {
         }
 
         // disabled
-        &.k-disabled {
+        &.${k}-disabled {
             background: ${dropdown.item.disabledBgColor};
             color: ${dropdown.item.disabledColor};
             cursor: not-allowed;
         }
 
         // checkbox / radio
-        .k-checkbox,
-        .k-radio {
+        .${k}-checkbox,
+        .${k}-radio {
             display: flex;
             margin: 0 -${getRight(dropdown.item.padding)} 0 -${getLeft(dropdown.item.padding)};
             padding: ${dropdown.item.padding};
         }
-        .k-checkbox-wrapper,
-        .k-radio-wrapper {
+        .${k}-checkbox-wrapper,
+        .${k}-radio-wrapper {
             vertical-align: text-bottom;
         }
-        .k-checkbox-text,
-        .k-radio-text {
+        .${k}-checkbox-text,
+        .${k}-radio-text {
             vertical-align: baseline;
         }
     `

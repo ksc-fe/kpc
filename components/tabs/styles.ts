@@ -83,31 +83,31 @@ setDefault(() => {
     tabs = deepDefaults(theme, {tabs: defaults}).tabs;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
-        ${makeCommonStyles()};
-        ${makeScrollStyles()};
+        ${makeCommonStyles(k: string)};
+        ${makeScrollStyles(k: string)};
 
-        &.k-type-default {
-            ${makeDefaultStyles()}
+        &.${k}-type-default {
+            ${makeDefaultStyles(k: string)}
         }
 
-        &.k-type-card {
-            ${makeCardStyles()};
+        &.${k}-type-card {
+            ${makeCardStyles(k: string)};
         }
 
-        &.k-type-flat-card {
-            ${makeFlatCardStyles()};
+        &.${k}-type-flat-card {
+            ${makeFlatCardStyles(k: string)};
         }
     `;
 }
 
-function makeCommonStyles() {
+function makeCommonStyles(k: string) {
     const active = tabs.active;
     const bar = active.bar;
     return css`
         position: relative;
-        .k-tab {
+        .${k}-tab {
             display: inline-flex;
             cursor: pointer;
             text-align: center;
@@ -116,22 +116,22 @@ function makeCommonStyles() {
             white-space: nowrap;
             text-overflow: ellipsis;
             &:hover,
-            &.k-active {
+            &.${k}-active {
                 color: ${active.color};
             }
-            &.k-disabled {
+            &.${k}-disabled {
                 color: ${theme.color.disabled};
                 cursor: not-allowed;
             }
         }
-        .k-tab-close {
+        .${k}-tab-close {
             margin-right: -${tabs.closeGap};
             margin-left: ${tabs.closeGap};
             color: ${theme.color.lightBlack};
         }
 
         // active-bar
-        .k-tabs-active-bar {
+        .${k}-tabs-active-bar {
             transition: all ${tabs.transition};
             position: absolute;
             left: 0;
@@ -141,12 +141,12 @@ function makeCommonStyles() {
         }
 
         // vertical
-        &.k-vertical {
+        &.${k}-vertical {
             display: inline-block;
-            .k-tab {
+            .${k}-tab {
                 display: block;
             }
-            .k-tabs-active-bar {
+            .${k}-tabs-active-bar {
                 left: auto;
                 top: 0;
                 right: 0;
@@ -159,20 +159,20 @@ function makeCommonStyles() {
         ${sizes.map(size => {
             const styles = tabs[size];
             return css`
-                &.k-size-${size} {
-                    .k-tab {
+                &.${k}-size-${size} {
+                    .${k}-tab {
                         font-size: ${styles.fontSize};
                         height: ${styles.height};
                         line-height: ${styles.height};
                         padding: ${styles.padding};
                     }
-                    .k-tab-close .k-icon {
+                    .${k}-tab-close .${k}-icon {
                         font-size: ${styles.closeFontSize};
                     }
-                    &:not(.k-vertical).k-is-scroll {
+                    &:not(.${k}-vertical).${k}-is-scroll {
                         padding: 0 ${styles.navigatorWidth};
                     }
-                    &.k-vertical.k-is-scroll {
+                    &.${k}-vertical.${k}-is-scroll {
                         padding: ${styles.navigatorWidth} 0;
                     }
                 }
@@ -181,88 +181,88 @@ function makeCommonStyles() {
     `;
 }
 
-function makeScrollStyles() {
+function makeScrollStyles(k: string) {
     return css`
         overflow: hidden;
-        .k-tabs-scroll {
+        .${k}-tabs-scroll {
             overflow: hidden;
             position: relative;
             // @referece https://stackoverflow.com/questions/6421966/css-overflow-x-visible-and-overflow-y-hidden-causing-scrollbar-issue
             padding-bottom: 1px;
             margin-bottom: -1px;
         }
-        &.k-type-card,
-        &.k-type-flat-card {
-            .k-tabs-scroll {
+        &.${k}-type-card,
+        &.${k}-type-flat-card {
+            .${k}-tabs-scroll {
                 padding-bottom: 0;
                 margin-bottom: 0;
             }
         }
-        .k-tabs-wrapper {
+        .${k}-tabs-wrapper {
             white-space: nowrap;
             transition: transform ${tabs.transition};
         }
-        .k-tabs-prev,
-        .k-tabs-next {
+        .${k}-tabs-prev,
+        .${k}-tabs-next {
             position: absolute;
-            &:not(.k-disabled) {
+            &:not(.${k}-disabled) {
                 box-shadow: ${theme.boxShadow};
             }
         }
 
-        &:not(.k-vertical) {
-            .k-tabs-wrapper {
+        &:not(.${k}-vertical) {
+            .${k}-tabs-wrapper {
                 float: left;
             }
-            .k-tabs-prev,
-            .k-tabs-next {
+            .${k}-tabs-prev,
+            .${k}-tabs-next {
                 top: 0;
             }
-            .k-tabs-prev {
+            .${k}-tabs-prev {
                 left: 0;
             }
-            .k-tabs-next {
+            .${k}-tabs-next {
                 right: 0;
             }
         }
 
-        &.k-vertical {
+        &.${k}-vertical {
             &,
-            .k-tabs-scroll {
+            .${k}-tabs-scroll {
                 height: 100%
             }
 
             /* increase specificity, making sure the width is working */
-            .k-tabs-prev,
-            .k-tabs-next {
+            .${k}-tabs-prev,
+            .${k}-tabs-next {
                 width: 100% !important;
                 left: 0;
             }
-            .k-tabs-prev {
+            .${k}-tabs-prev {
                 top: 0;
             }
-            .k-tabs-next {
+            .${k}-tabs-next {
                 bottom: 0;
             }
         }
     `;
 }
 
-function makeDefaultStyles() {
+function makeDefaultStyles(k: string) {
     return css`
         border-bottom: ${tabs.border};
-        &.k-vertical {
+        &.${k}-vertical {
             border-bottom: none;
             border-right: ${tabs.border};
         }
     `;
 }
 
-function makeCardCommonStyles() {
+function makeCardCommonStyles(k: string) {
     return css`
         border-radius: ${tabs.card.borderRadius};
         background-color: ${tabs.card.bgColor};
-        .k-tabs-active-bar {
+        .${k}-tabs-active-bar {
             background: #fff;
             top: 0;
             height: auto;
@@ -271,18 +271,18 @@ function makeCardCommonStyles() {
     `
 }
 
-function makeCardStyles() {
+function makeCardStyles(k: string) {
     const borderRadius = tabs.card.borderRadius;
     return css`
-        ${makeCardCommonStyles()};
-        .k-tabs-active-bar {
+        ${makeCardCommonStyles(k: string)};
+        .${k}-tabs-active-bar {
             border-radius: ${borderRadius} ${borderRadius} 0px 0px;
             box-shadow: ${theme.boxShadow};
         }
 
         // vertical card
-        &.k-vertical {
-            .k-tabs-active-bar {
+        &.${k}-vertical {
+            .${k}-tabs-active-bar {
                 width: 100%;
                 left: 0;
                 border-radius: ${borderRadius} 0px 0px ${borderRadius};
@@ -291,22 +291,22 @@ function makeCardStyles() {
     `;
 }
 
-function makeFlatCardStyles() {
+function makeFlatCardStyles(k: string) {
     const padding = tabs.flatCard.padding;
     return css`
-        ${makeCardCommonStyles()};
+        ${makeCardCommonStyles(k: string)};
         padding: 0 ${padding};
 
-        .k-tabs-active-bar {
+        .${k}-tabs-active-bar {
             top: ${padding};
             height: calc(100% - ${padding} * 2);
             border-radius: ${tabs.card.borderRadius};
         }
 
         // vertical card
-        &.k-vertical {
+        &.${k}-vertical {
             padding: ${padding} 0;
-            .k-tabs-active-bar {
+            .${k}-tabs-active-bar {
                 left: ${padding};
                 width: calc(100% - ${padding} * 2);
             }

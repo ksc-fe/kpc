@@ -58,7 +58,7 @@ setDefault(() => {
     kswitch = deepDefaults(theme, {switch: defaults}).switch;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-block;
         vertical-align: middle;
@@ -73,35 +73,35 @@ export function makeStyles() {
             opacity: 0;
             position: absolute;
         }
-        .k-switch-bar,
-        .k-switch-off {
+        .${k}-switch-bar,
+        .${k}-switch-off {
             box-sizing: border-box;
         }
-        .k-switch-bar {
+        .${k}-switch-bar {
             position: absolute;
             text-align: right;
             overflow: hidden;
         }
-        .k-switch-wrapper {
+        .${k}-switch-wrapper {
             display: inline-block;
             position: relative;
             z-index: 1;
             border-radius: ${kswitch.handleBorderRadius};
         }
-        .k-switch-bar,
-        .k-switch-wrapper {
+        .${k}-switch-bar,
+        .${k}-switch-wrapper {
             height: 100%;
             background: ${kswitch.bgColor};
             transition: all ${kswitch.transition};
         }
         &:hover {
             &,
-            .k-switch-bar,
-            .k-switch-wrapper {
+            .${k}-switch-bar,
+            .${k}-switch-wrapper {
                 background: ${kswitch.hoverBgColor};
             }
         }
-        .k-switch-handle {
+        .${k}-switch-handle {
             border-radius: ${kswitch.handleBorderRadius};
             background: ${kswitch.handleBgColor};
             height: 100%;
@@ -115,8 +115,8 @@ export function makeStyles() {
         }
 
         // text
-        .k-switch-on,
-        .k-switch-off {
+        .${k}-switch-on,
+        .${k}-switch-off {
             position: absolute;
             font-size: ${kswitch.fontSize};
             color: ${kswitch.color};
@@ -124,9 +124,9 @@ export function makeStyles() {
         }
 
         // dragging
-        &.k-dragging {
-            .k-switch-bar,
-            .k-switch-wrapper {
+        &.${k}-dragging {
+            .${k}-switch-bar,
+            .${k}-switch-wrapper {
                 background: ${kswitch.checked.bgColor};
                 transition: background ${kswitch.transition};
             }
@@ -140,29 +140,29 @@ export function makeStyles() {
             const {width, height, padding} = kswitch[size];
             return css`
                &.k-${size},
-               &.k-${size} .k-switch-on,
-               &.k-${size} .k-switch-off {
+               &.k-${size} .${k}-switch-on,
+               &.k-${size} .${k}-switch-off {
                    width: ${width};
                    height: ${height};
                }
                &.k-${size} {
                    border-radius: ${height};
-                   .k-switch-bar {
+                   .${k}-switch-bar {
                        width: ${height};
                        border-radius: ${height};
                    }
-                   .k-switch-wrapper {
+                   .${k}-switch-wrapper {
                        padding: ${padding};
                    }
-                   .k-switch-on,
-                   .k-switch-off {
+                   .${k}-switch-on,
+                   .${k}-switch-off {
                        line-height: ${height};
                        left: 0;
                    }
-                   .k-switch-on {
+                   .${k}-switch-on {
                        padding: 0 ${height} 0 calc(${height} / 3);
                    }
-                   .k-switch-off {
+                   .${k}-switch-off {
                        padding: 0 calc(${height} / 3) 0 ${height};
                    }
                }
@@ -170,37 +170,37 @@ export function makeStyles() {
         })}
 
         // checked
-        &.k-checked {
-            .k-switch-bar,
-            .k-switch-wrapper {
+        &.${k}-checked {
+            .${k}-switch-bar,
+            .${k}-switch-wrapper {
                 background: ${kswitch.checked.bgColor};
             }
-            .k-switch-bar {
+            .${k}-switch-bar {
                 width: 100%;
             }
             &:hover {
-                .k-switch-bar,
-                .k-switch-wrapper {
+                .${k}-switch-bar,
+                .${k}-switch-wrapper {
                     background: ${kswitch.checked.hoverBgColor};
                 }
             }
         }
 
         // disabled
-        &.k-disabled {
+        &.${k}-disabled {
             &,
-            .k-switch-handle {
+            .${k}-switch-handle {
                 cursor: not-allowed;
             }
             &,
-            .k-switch-bar,
-            .k-switch-wrapper {
+            .${k}-switch-bar,
+            .${k}-switch-wrapper {
                 background: ${kswitch.disabledBgColor};
             }
-            &.k-checked {
+            &.${k}-checked {
                 &,
-                .k-switch-bar,
-                .k-switch-wrapper {
+                .${k}-switch-bar,
+                .${k}-switch-wrapper {
                     background: ${kswitch.checked.disabledBgColor};
                 }
             }

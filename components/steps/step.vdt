@@ -11,10 +11,10 @@ const {children, title, index, className, style} = this.get();
         const error = selected && status === 'error';
         const done = value > index;
         const classNameObj = {
-            'k-step': true,
-            'k-active': selected,
-            'k-done': done,
-            'k-error': error,
+            [`${k}-step`]: true,
+            [`${k}-active`]: selected,
+            [`${k}-done`]: done,
+            [`${k}-error`]: error,
             [className]: className,
         };
 

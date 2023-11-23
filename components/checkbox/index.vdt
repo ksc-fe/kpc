@@ -11,10 +11,10 @@ const {
 const isChecked = this.isChecked();
 
 const classNameObj = {
-    'k-checkbox': true,
-    'k-disabled': disabled,
-    'k-checked': isChecked,
-    'k-indeterminate': indeterminate,
+    [`${k}-checkbox`]: true,
+    [`${k}-disabled`]: disabled,
+    [`${k}-checked`]: isChecked,
+    [`${k}-indeterminate`]: indeterminate,
     [className]: className,
     [makeStyles()]: true
 };

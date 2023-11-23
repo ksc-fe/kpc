@@ -39,18 +39,18 @@ setDefault(() => {
     carousel = deepDefaults(theme, {carousel: defaults}).carousel;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         height: ${carousel.height};
         position: relative;
         overflow: hidden;
-        .k-carousel-indicator {
+        .${k}-carousel-indicator {
             position: absolute;
             left: 50%;
             transform: translateX(-50%);
             bottom: ${carousel.indicator.bottom};
         }
-        .k-carousel-dot {
+        .${k}-carousel-dot {
             height: ${carousel.indicator.height};
             float: left;
             margin: ${carousel.dot.margin};
@@ -65,13 +65,13 @@ export function makeStyles() {
                 opacity: ${carousel.dot.opacity};
                 transition: width ${carousel.transition};
             }
-            &.k-active:before {
+            &.${k}-active:before {
                 opacity: ${carousel.dot.active.opacity};
                 width: ${carousel.dot.active.width};
             }
         }
 
-        .k-carousel-btn {
+        .${k}-carousel-btn {
             position: absolute;
             background: ${carousel.arrow.bgColor} !important;
             top: 50%;
@@ -83,67 +83,67 @@ export function makeStyles() {
                 opacity: ${carousel.arrow.hoverOpacity} !important;
                 background: ${carousel.arrow.bgColor};
             }
-            &.k-prev {
+            &.${k}-prev {
                 left: ${carousel.arrow.left};
             }
-            &.k-next {
+            &.${k}-next {
                 right: ${carousel.arrow.right};
             }
         }
 
         // hover
-        &.k-hover {
-            .k-carousel-btn {
+        &.${k}-hover {
+            .${k}-carousel-btn {
                 opacity: 0;
             }
             &:hover {
-                .k-carousel-btn {
+                .${k}-carousel-btn {
                     opacity: ${carousel.arrow.opacity};
                 }
             }
         }
 
         // never
-        &.k-never {
-            .k-carousel-btn {
+        &.${k}-never {
+            .${k}-carousel-btn {
                 display: none;
             }
         }
 
-        &.k-slide {
-            .k-carousel-wrapper {
+        &.${k}-slide {
+            .${k}-carousel-wrapper {
                 transition: transform ${carousel.transition};
                 white-space: nowrap;
             }
         }
 
-        &.k-stop {
-            .k-carousel-wrapper {
+        &.${k}-stop {
+            .${k}-carousel-wrapper {
                 transition: none;
             }
         }
 
-        &.k-fade {
-            .k-carousel-item {
+        &.${k}-fade {
+            .${k}-carousel-item {
                 position: absolute;
             }
         }
     `;
 }
 
-export function makeItemStyles() {
+export function makeItemStyles(k: string) {
     return css`
         display: inline-block;
         width: 100%;
         height: 100%;
 
         // fade
-        &.k-carousel-fade-enter-active,
-        &.k-carousel-fade-leave-active {
+        &.${k}-carousel-fade-enter-active,
+        &.${k}-carousel-fade-leave-active {
             transition: opacity ${carousel.transition};
         }
-        &.k-carousel-fade-enter-from,
-        &.k-carousel-fade-leave-to {
+        &.${k}-carousel-fade-enter-from,
+        &.${k}-carousel-fade-leave-to {
             opacity: 0;
         }
     `

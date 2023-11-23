@@ -66,15 +66,15 @@ setDefault(() => {
 
 export {datepicker};
 
-export function makePanelStyles() {
+export function makePanelStyles(k: string) {
     return css`
         display: flex;
-        .k-datepicker-shortcuts {
+        .${k}-datepicker-shortcuts {
             width: ${datepicker.shortcuts.width};
             padding: ${datepicker.shortcuts.padding};
             border-right: ${datepicker.border};
         }
-        .k-datepicker-shortcut {
+        .${k}-datepicker-shortcut {
             height: ${datepicker.shortcuts.shortcut.height};
             line-height: ${datepicker.shortcuts.shortcut.height};
             padding: ${datepicker.shortcuts.shortcut.padding};
@@ -83,24 +83,24 @@ export function makePanelStyles() {
                 background: ${datepicker.shortcuts.shortcut.hoverBgcolor};
             }
         }
-        .k-datepicker-calendars {
+        .${k}-datepicker-calendars {
             display: flex;
         }
-        .k-datepicker-calendar-wrapper {
+        .${k}-datepicker-calendar-wrapper {
             &:nth-child(2) {
                 border-left: ${datepicker.border};
             }
-            .k-tabs {
+            .${k}-tabs {
                 border: none;
-                .k-tabs-wrapper {
+                .${k}-tabs-wrapper {
                     float: none;
                 }
-                .k-tab {
+                .${k}-tab {
                     width: 50%;
                 }
             }
         }
-        .k-datepicker-footer {
+        .${k}-datepicker-footer {
             border-top: ${datepicker.border};
             padding: ${datepicker.footer.padding};
             text-align: right;
@@ -108,20 +108,20 @@ export function makePanelStyles() {
     `
 }
 
-export function makeCalendarStyles() {
+export function makeCalendarStyles(k: string) {
     return css`
         padding: ${datepicker.padding};
         width: ${datepicker.width};
         position: relative;
-        .k-datepicker-month {
+        .${k}-datepicker-month {
             display: flex;
             padding: ${datepicker.month.padding};
         }
-        .k-prev .k-icon,
-        .k-next .k-icon {
+        .${k}-prev .${k}-icon,
+        .${k}-next .${k}-icon {
             margin: 0 -5px !important;
         }
-        .k-month-values {
+        .${k}-month-values {
             flex: 1;
             font-size: 14px;
             text-align: center;
@@ -129,23 +129,23 @@ export function makeCalendarStyles() {
             overflow: hidden;
             position: relative;
         }
-        .k-month-value {
+        .${k}-month-value {
             margin: 0 ${datepicker.month.valueGap};
             line-height: ${theme.small.height};
             &:hover {
                 color: ${theme.color.primary};
             }
         },
-        .k-weekdays {
+        .${k}-weekdays {
             display: flex;
             border-bottom: ${datepicker.border};
             padding: ${datepicker.weekday.padding};
         }
-        .k-weekday {
+        .${k}-weekday {
             flex: 1;
             text-align: center;
         }
-        .k-calendar-item {
+        .${k}-calendar-item {
             text-align: center;
             margin: ${datepicker.item.gutter};
             aspect-ratio: 1;
@@ -154,31 +154,31 @@ export function makeCalendarStyles() {
             cursor: pointer;
             position: relative;
             border-radius: ${datepicker.item.borderRadius};
-            .k-value {
+            .${k}-value {
                 border-radius: ${datepicker.item.borderRadius};
             }
-            &.k-hover {
+            &.${k}-hover {
                 background: ${datepicker.item.hoverBgColor};
             }
-            &.k-exceed {
+            &.${k}-exceed {
                 color: ${datepicker.item.exceedColor};
             }
-            &.k-today .k-value {
+            &.${k}-today .${k}-value {
                 border: ${datepicker.item.todayBorder};
             }
-            &.k-active {
+            &.${k}-active {
                 background: ${datepicker.item.active.bgColor};
                 color: ${datepicker.item.active.color};
-                &.k-today .k-value {
+                &.${k}-today .${k}-value {
                     border-color: ${datepicker.item.active.todayBorderColor};
                 }
             }
-            &.k-disabled {
+            &.${k}-disabled {
                 color: ${datepicker.item.disabled.color};
                 cursor: not-allowed;
                 background: ${datepicker.item.disabled.hoverBgColor};
             }
-            &.k-in-range:after {
+            &.${k}-in-range:after {
                 content: '';
                 display: block;
                 position: absolute;
@@ -190,7 +190,7 @@ export function makeCalendarStyles() {
                 padding: 0 ${datepicker.item.gutter};
                 z-index: -1;
             }
-            .k-value {
+            .${k}-value {
                 flex: 1;
                 display: flex;
                 align-items: center;
@@ -198,24 +198,24 @@ export function makeCalendarStyles() {
                 height: 100%;
             }
         }
-        .k-days {
+        .${k}-days {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
         }
-        .k-years {
+        .${k}-years {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
         }
     `
 }
 
-export function makeTimeStyles() {
+export function makeTimeStyles(k: string) {
     return css`
         display: flex;
         padding: ${datepicker.padding};
         width: ${datepicker.width};
         position: relative;
-        .k-scroll-select {
+        .${k}-scroll-select {
             flex: 1;
             height: 305px;
         }

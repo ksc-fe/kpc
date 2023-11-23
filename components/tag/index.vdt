@@ -9,18 +9,18 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-tag': !$props.className,
+    [`${k}-tag`]: !$props.className,
     [className]: className,
     [`k-${type}`]: type !== 'default',
     [`k-${size}`]: size !== 'default',
     [`k-${border}`]: border,
-    'k-disabled': disabled,
-    'k-closable': closable,
+    [`${k}-disabled`]: disabled,
+    [`${k}-closable`]: closable,
     [makeStyles()]: true,
     [$props.className]: $props.className,
 };
 
-<Transition name={$props.name || 'k-scale'}>
+<Transition name={$props.name || [`${k}-scale`]}>
     <div v-if={!closed}
         class={classNameObj}
         {...getRestProps(this)}

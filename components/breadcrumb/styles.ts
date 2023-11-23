@@ -17,29 +17,29 @@ setDefault(() => {
     breadcrumb = deepDefaults(theme, {breadcrumb: defaults}).breadcrumb;
 });
 
-export default function makeStyles() {
+export default function makeStyles(k: string) {
     return css`
         font-size: ${breadcrumb.fontSize};
         display: flex;
         align-items: center;
-        .k-breadcrumb-item {
-            &:last-of-type .k-breadcrumb-link {
+        .${k}-breadcrumb-item {
+            &:last-of-type .${k}-breadcrumb-link {
                 font-weight: ${breadcrumb.activeFontWeight};
                 color: ${breadcrumb.activeColor};
             }
         }
-        .k-breadcrumb-link,
-        .k-breadcrumb-link a {
+        .${k}-breadcrumb-link,
+        .${k}-breadcrumb-link a {
             color: ${breadcrumb.color};
         }
-        a.k-breadcrumb-link,
-        .k-breadcrumb-link a {
+        a.${k}-breadcrumb-link,
+        .${k}-breadcrumb-link a {
             cursor: pointer;
             &:hover {
                 color: ${breadcrumb.hoverColor};
             }
         }
-        .k-breadcrumb-separator {
+        .${k}-breadcrumb-separator {
             margin: 0 ${breadcrumb.gap};
         }
     `

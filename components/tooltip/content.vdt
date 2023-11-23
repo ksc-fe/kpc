@@ -11,9 +11,9 @@ const {children} = this.get();
 const {arrowRef, arrowType} = this.arrow;
 
 const classNameObj = {
-    'k-tooltip-content': true,
-    'k-hoverable': hoverable || trigger === 'click',
-    'k-always': always,
+    [`${k}-tooltip-content`]: true,
+    [`${k}-hoverable`]: hoverable || trigger === 'click',
+    [`${k}-always`]: always,
     [`k-${theme}`]: true,
     [`k-${size}`]: size !== 'default',
     [className]: className,
@@ -24,7 +24,7 @@ const classNameObj = {
 <t:super
     value={!!value && !this.isEmptyChildren}
     transition={{
-        name: 'k-fade',
+        name: [`${k}-fade`],
         onEnter: this.onEnter,
         onAfterLeave: this.onAfterLeave,
         onLeaveCancelled: this.onAfterLeave,

@@ -11,9 +11,9 @@ const {multiple, searchable} = this.select.get();
 
 const isActive = this.isActive();
 const classNameObj = {
-    'k-select-option': true,
+    [`${k}-select-option`]: true,
     [className]: className,
-    'k-active': isActive,
+    [`${k}-active`]: isActive,
 };
 
 let _children = isEmptyChildren(children) ? label : children;

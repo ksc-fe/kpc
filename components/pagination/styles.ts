@@ -57,7 +57,7 @@ setDefault(() => {
     pagination = deepDefaults(theme, {pagination: defaults}).pagination;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         font-size: ${pagination.fontSize};
         > * {   
@@ -67,13 +67,13 @@ export function makeStyles() {
                 margin-left: ${pagination.gap};
             }
         }
-        .k-pagination-ellipsis {
+        .${k}-pagination-ellipsis {
             background-color: transparent;
             border-color: transparent;
         }
 
-        .k-btns {
-            .k-btn {
+        .${k}-btns {
+            .${k}-btn {
                 width: auto !important;
                 min-width: ${button.height};
                 padding: ${pagination.btn.padding};
@@ -83,23 +83,23 @@ export function makeStyles() {
                     margin: 0 !important;
                 }
             }
-            .k-icon {
+            .${k}-icon {
                 font-size: 18px;
             }
         }
         // goto   
-        .k-pagination-goto {
-            .k-input {
+        .${k}-pagination-goto {
+            .${k}-input {
                 font-size: inherit;
                 width: ${pagination.goto.width};
                 margin: ${pagination.goto.gap};
             }
-            .k-input-inner {
+            .${k}-input-inner {
                 text-align: center;
             }
         }
             
-        .k-select {
+        .${k}-select {
             width: auto;
         }
 
@@ -110,10 +110,10 @@ export function makeStyles() {
             return css`
                 &.k-${size} {
                     font-size: ${styles.fontSize};
-                    .k-btn {
+                    .${k}-btn {
                         margin-right: ${styles.btnGap};
                         min-width: ${btnStyles.height};
-                        .k-icon {
+                        .${k}-icon {
                             font-size: ${styles.iconFontSize}; 
                         }
                     }
@@ -122,25 +122,25 @@ export function makeStyles() {
         })}
 
         // flat 
-        &.k-flat {
-            .k-select {
+        &.${k}-flat {
+            .${k}-select {
                 &,
                 &:hover,
-                &.k-show {
+                &.${k}-show {
                     border-color: transparent;
                 }
             }
         }
             
         // simple
-        &.k-simple {
-            .k-btn {
+        &.${k}-simple {
+            .${k}-btn {
                 margin: 0;
             }
-            .k-input-inner {
+            .${k}-input-inner {
                 text-align: center;
             }
-            .k-pagination-text {
+            .${k}-pagination-text {
                 vertical-align: middle;
             }
         }

@@ -9,9 +9,9 @@ const {
 const isChecked = value === trueValue;
 
 const classNameObj = {
-    'k-radio': true,
-    'k-disabled': disabled,
-    'k-checked': isChecked,
+    [`${k}-radio`]: true,
+    [`${k}-disabled`]: disabled,
+    [`${k}-checked`]: isChecked,
     [className]: className,
     [makeStyles()]: true,
 };

@@ -3,7 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 
-export const kls = (className: string) => `k-collapse-${className}`;
+export const kls = (className: string) => .${k}-collapse-${className}`;
 
 const defaults = {
     get transition() { return theme.transition.large },
@@ -27,18 +27,18 @@ setDefault(() => {
     collapse = deepDefaults(theme, {collapse: defaults}).collapse;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         font-size: ${collapse.fontSize};
         
-        &.k-left {
+        &.${k}-left {
             .${kls('arrow')} {
                 float: left;
                 margin-right: ${collapse.titleMarginRight};
             }
         }
 
-        &.k-border {
+        &.${k}-border {
             border-radius: ${collapse.borderRadius};
             padding: ${collapse.borderPadding};
             border: ${collapse.collBorder};
@@ -46,7 +46,7 @@ export function makeStyles() {
     `;
 }
 
-export function makeItemStyles() {
+export function makeItemStyles(k: string) {
     const collapseItem = collapse.item;
     return css`
         border-bottom: ${collapseItem.borderBottom};
@@ -70,7 +70,7 @@ export function makeItemStyles() {
             height: ${collapseItem.titleHeight};
         }
 
-        &:not(.k-disabled) {
+        &:not(.${k}-disabled) {
             .${kls('title')} {
                 &:hover {
                     color: ${theme.color.primary};
@@ -86,13 +86,13 @@ export function makeItemStyles() {
             }
         }
 
-        &.k-active {
+        &.${k}-active {
             .${kls('arrow')} {
                 transform: rotate(90deg);
             }
         }
 
-        &.k-disabled {
+        &.${k}-disabled {
             color: ${theme.color.disabledBorder};
             .${kls('title')} {
                 cursor: not-allowed;

@@ -4,7 +4,7 @@ import {context as GutterContext, gutterStyle} from './useGutter';
 
 const {className, children, style, justify, align} = this.get();
 const classNameObj = {
-    'k-row': true,
+    [`${k}-row`]: true,
     [`k-justify-${justify}`]: justify,
     [`k-align-${align}`]: align,
     [className]: className,

@@ -18,9 +18,9 @@ const {
 } = this.draggable;
 
 const classNameObj = {
-    'k-slider': true,
-    'k-disabled': disabled,
-    'k-dragging': dragging.value || !animate,
+    [`${k}-slider`]: true,
+    [`${k}-disabled`]: disabled,
+    [`${k}-dragging`]: dragging.value || !animate,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -80,7 +80,7 @@ const marks = this.marks();
                     )}
                 </template>
                 <i v-for={points}
-                    class={{'k-slider-point': true, 'k-active': $value.active}}
+                    class={{[`${k}-slider-point`]: true, [`${k}-active`]: $value.active}}
                     style={$value.style}
                 ></i>
             </div>
@@ -89,7 +89,7 @@ const marks = this.marks();
             <span v-for={marks}
                 style={$value.style}
                 ev-click={linkEvent($value.value, setOneValue)}
-                class={{'k-active': $value.active}}
+                class={{[`${k}-active`]: $value.active}}
             >{$value.text}</span>
         </div>
         <div class="k-slider-ends" v-else-if={showEnd}>

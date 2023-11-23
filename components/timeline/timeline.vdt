@@ -4,7 +4,7 @@ import {makeStyles} from './styles';
 const {className, children} = this.get();
 
 const classNameObj = {
-    'k-timeline': true,
+    [`${k}-timeline`]: true,
     [className]: className,
     [makeStyles()]: true,
 };

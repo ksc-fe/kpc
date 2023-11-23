@@ -16,7 +16,7 @@ const {
 <t:super>
     <b:base-menu>
         <DropdownMenu class={{
-            'k-tree-select-menu': true,
+            [`${k}-tree-select-menu`]: true,
             [makeStyles()]: true,
         }}>
             <Tree 

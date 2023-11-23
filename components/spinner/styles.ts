@@ -51,7 +51,7 @@ setDefault(() => {
     spinner = deepDefaults(theme, {spinner: defaults}).spinner;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-block;
         vertical-align: middle;
@@ -59,64 +59,64 @@ export function makeStyles() {
         border-radius: ${spinner.borderRadius};
         &:hover {
             border-color: ${spinner.hoverBorderColor};
-            .k-spinner-btn {
+            .${k}-spinner-btn {
                 background: ${spinner.hoverBtnBg};
             }
-            .k-left {
+            .${k}-left {
                 border-radius: ${spinner.borderRadius} 0 0 ${spinner.borderRadius};
             }
-            .k-right {
+            .${k}-right {
                 border-radius: 0 ${spinner.borderRadius} ${spinner.borderRadius} 0;
             }
         }
-        .k-spinner-input {
+        .${k}-spinner-input {
             width: ${spinner.default.inputWidth};
-            .k-input-wrapper {
+            .${k}-input-wrapper {
                 border:none;
                 border-radius: 0;
                 &:hover{
                     border: none
                 }
             }
-            &.k-focus .k-input-wrapper {
+            &.${k}-focus .${k}-input-wrapper {
                 border: none;
             }
-            .k-input-inner {
+            .${k}-input-inner {
                 text-align: center;
             }
         }
-        .k-spinner-icon {
+        .${k}-spinner-icon {
             font-size: ${spinner.default.iconFontSize};
         }
-        &.k-vertical {
+        &.${k}-vertical {
             position: relative;
             font-size: 0;
-            .k-spinner-btn {
+            .${k}-spinner-btn {
                 position: absolute;
                 right: 0;
                 margin: 0;
                 height: calc(50% - 2px);
                 line-height: 50%;
             }
-            .k-spinner-icon {
+            .${k}-spinner-icon {
                 font-size: inherit !important;
             }
-            .k-spinner-btn.k-left {
+            .${k}-spinner-btn.${k}-left {
                 bottom: 1px;
                 border-radius: 0 0 ${spinner.borderRadius} 0;
             }
-            .k-spinner-btn.k-right {
+            .${k}-spinner-btn.${k}-right {
                 top: 1px;
                 border-radius: 0 ${spinner.borderRadius} 0 0;
             }
-            .k-spinner-input {
-                .k-input-wrapper {
+            .${k}-spinner-input {
+                .${k}-input-wrapper {
                     border-radius: ${spinner.borderRadius} 0 0 ${spinner.borderRadius};
                 }
             }
             ${sizes.map(size => {
                 const generate = () => css`
-                    .k-spinner-input {
+                    .${k}-spinner-input {
                         padding-right: ${theme[size].height};
                         width: ${spinner.vertical[size].width};
                     }
@@ -133,7 +133,7 @@ export function makeStyles() {
             })}
         }
             
-        &.k-disabled {
+        &.${k}-disabled {
             border-color: ${spinner.disabledBorderColor};
             background: ${spinner.disabledBg};
         }
@@ -141,10 +141,10 @@ export function makeStyles() {
         ${sizes.map(size => {
             const styles = spinner[size];
             const generate = () => css`
-                .k-spinner-icon {
+                .${k}-spinner-icon {
                     font-size: ${styles.iconFontSize};
                 }
-                .k-spinner-input {
+                .${k}-spinner-input {
                     width: ${styles.inputWidth};
                 }
             `;

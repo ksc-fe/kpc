@@ -73,13 +73,13 @@ setDefault(() => {
     table = deepDefaults(theme, {table: defaults}).table;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         font-size: ${table.fontSize};
         color: ${table.color};
         position: relative;
         z-index: 0;
-        .k-table-wrapper {
+        .${k}-table-wrapper {
             border-bottom: ${table.border};
             overflow: auto;
             border-radius: ${table.borderRadius};
@@ -129,13 +129,13 @@ export function makeStyles() {
                 display: none;
             }
         }
-        .k-table-title {
+        .${k}-table-title {
             display: inline-flex;
             align-items: center;
             max-width: 100%;
             color: ${table.thead.color};
         }
-        .k-table-title-text {
+        .${k}-table-title-text {
             flex: 1;
             display: inline-flex;
             line-height: 1.4;
@@ -157,14 +157,14 @@ export function makeStyles() {
             padding: ${table.tbody.padding};
             border-bottom: ${table.border};
             background: ${table.bgColor};
-            word-wrap: break-word;
+            word-wrap: bre.${k}-word;
             // overflow: hidden;
             // text-overflow: ellipsis;
         }
 
         // fixed
-        .k-fixed-left,
-        .k-fixed-right {
+        .${k}-fixed-left,
+        .${k}-fixed-right {
             position: sticky;
             z-index: 1;
             &:after {
@@ -178,53 +178,53 @@ export function makeStyles() {
                 pointer-events: none;
             }
         }
-        .k-fixed-left:after {
+        .${k}-fixed-left:after {
             right: -11px;
         }
-        .k-fixed-right:after {
+        .${k}-fixed-right:after {
             left: -11px;
         }
-        &.k-scroll-left .k-fixed-right:after {
+        &.${k}-scroll-left .${k}-fixed-right:after {
             box-shadow: ${table.fixRightShadow};
         }
-        &.k-scroll-right .k-fixed-left:after {
+        &.${k}-scroll-right .${k}-fixed-left:after {
             box-shadow: ${table.fixLeftShadow};
         }
-        &.k-scroll-middle {
-            .k-fixed-left:after {
+        &.${k}-scroll-middle {
+            .${k}-fixed-left:after {
                 box-shadow: ${table.fixLeftShadow};
             }
-            .k-fixed-right:after {
+            .${k}-fixed-right:after {
                 box-shadow: ${table.fixRightShadow};
             }
         }
-        .k-fixed-right + .k-fixed-right:after {
+        .${k}-fixed-right + .${k}-fixed-right:after {
             display: none;
         }
 
         // sticky header
-        .k-table-affix-header {
+        .${k}-table-affix-header {
             position: sticky;
             top: 0;
             left: 0;
-            .k-affix-wrapper {
+            .${k}-affix-wrapper {
                 overflow: hidden;
             }
-            &.k-fixed {
+            &.${k}-fixed {
                 position: relative;
             }
         }
 
         // type
-        &.k-border,
-        &.k-grid {
-            .k-table-wrapper {
+        &.${k}-border,
+        &.${k}-grid {
+            .${k}-table-wrapper {
                 border-top: ${table.border};
                 border-left: ${table.border};
                 border-right: ${table.border};
             }
         }
-        &.k-grid {
+        &.${k}-grid {
             td:not(:last-of-type),
             th:not(:last-of-type) {
                 border-right: ${table.border};
@@ -235,94 +235,94 @@ export function makeStyles() {
         }
 
         // stripe
-        &.k-stripe {
+        &.${k}-stripe {
             tr:nth-child(even):not(:hover) td {
                 background: ${table.stripeBgColor};
             }
         }
 
         // group
-        .k-table-group {
+        .${k}-table-group {
             margin-left: ${table.group.gap};
         } 
 
         // force checkbox / radio vertical align middle
-        .k-table-check {
-            .k-checkbox,
-            .k-radio {
+        .${k}-table-check {
+            .${k}-checkbox,
+            .${k}-radio {
                 position: relative;
                 top: -1px;
             }
         }
 
         // sortable
-        .k-column-sortable {
+        .${k}-column-sortable {
             cursor: pointer;
         }
-        .k-column-sort {
-            .k-icon {
+        .${k}-column-sort {
+            .${k}-icon {
                 display: block;
                 height: ${table.sort.iconHeight};
                 line-height: ${table.sort.iconHeight};
                 margin: 0 0 1px ${table.sort.gap};
             }
-            &.k-desc .k-icon.k-desc,
-            &.k-asc .k-icon.k-asc {
+            &.${k}-desc .${k}-icon.${k}-desc,
+            &.${k}-asc .${k}-icon.${k}-asc {
                 color: ${table.sort.enabledColor};
             }
         }
 
         // loading
-        .k-table-spin.k-overlay {
+        .${k}-table-spin.${k}-overlay {
             z-index: 2;
         }
 
         // empty
-        .k-table-empty {
+        .${k}-table-empty {
             text-align: center;
         }
 
         // expand
-        tr.k-expand {
+        tr.${k}-expand {
             td {
                 padding: 0;
                 background: #fdfcff;
             }
         }
-        &.k-with-expand {
-            tr:not(.k-expand) {
+        &.${k}-with-expand {
+            tr:not(.${k}-expand) {
                 td {
                     border-bottom: none;
                 }
             }
         }
-        .k-table-expand {
+        .${k}-table-expand {
             border-top: ${table.border};
             box-sizing: content-box;
         }
 
         // select
-        tbody tr.k-selected td {
+        tbody tr.${k}-selected td {
             background: ${table.selectedBgColor};
         }
 
         // tree
-        // tr.k-hidden {
+        // tr.${k}-hidden {
             // display: none;
         // }
-        .k-table-arrow {
+        .${k}-table-arrow {
             margin-right: ${table.arrow.gap};
             transition: transform ${table.transition};
             position: relative;
             top: -1px;
         }
-        tr.k-spreaded {
-            .k-table-arrow {
+        tr.${k}-spreaded {
+            .${k}-table-arrow {
                 transform: rotate(90deg);
             }
         }
 
-        .k-table-resize {
+        .${k}-table-resize {
             height: 100%;
             width: ${table.resizeWidth};
             position: absolute;
@@ -332,54 +332,54 @@ export function makeStyles() {
         }
 
         // draggable
-        tr.k-dragging {
+        tr.${k}-dragging {
             opacity: ${table.draggingOpacity};
         }
 
         // sticky scrollbar
-        .k-table-scrollbar {
+        .${k}-table-scrollbar {
             overflow-x: auto;
             overflow-y: hidden;
         }
-        .k-table-scrollbar-inner {
+        .${k}-table-scrollbar-inner {
             height: 1px;
         }
 
         // align
         ${aligns.map(type => {
             return css`
-                .k-align-${type} {
+                .${k}-align-${type} {
                     text-align: ${type};
                 }
             `;
         })}
 
         // pagination
-        > .k-pagination {
+        > .${k}-pagination {
             margin: 16px 0;
         }
     `;
 }
 
-export function makeGroupMenuStyles() {
+export function makeGroupMenuStyles(k: string) {
     return css`
         min-width: ${table.group.menuMinWidth} !important;
-        .k-dropdown-item.k-active {
+        .${k}-dropdown-item.${k}-active {
             color: ${table.group.activeColor};
         }
-        .k-table-group-header {
+        .${k}-table-group-header {
             padding: ${table.group.headerPadding};
             border-bottom: ${table.group.headerBorder};
         }
-        .k-table-group-body {
+        .${k}-table-group-body {
             max-height: ${table.group.menuMaxHeight};
             overflow: auto;
         }
-        .k-table-group-footer {
+        .${k}-table-group-footer {
             text-align: right;
             border-top: ${table.group.headerBorder};
             padding: 8px;
-            .k-btn {
+            .${k}-btn {
                 margin-left: 8px;
             }
         }

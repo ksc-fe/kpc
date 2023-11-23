@@ -13,8 +13,8 @@ const skeletonList = Array(targetRows + 2).fill();
 const skeletonItems = <SkeletonItem v-for={skeletonList}></SkeletonItem>;
 
 const classNameObj = {
-    'k-skeleton': true,
-    'k-animated': animated,
+    [`${k}-skeleton`]: true,
+    [`${k}-animated`]: animated,
     [makeStyles(size)]: true
 };
 

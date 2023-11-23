@@ -47,29 +47,29 @@ const directionMap = {
     right: 'left',
 };
 
-export default function makeStyles() {
+export default function makeStyles(k: string) {
     const arrowLong = tooltip.arrow.width;
     const arrowShort = `calc(${arrowLong} - 1px)`;
 
-    // use &.k-tooltip-content to override css in dropdown menu
+    // use &.${k}-tooltip-content to override css in dropdown menu
     return css`
-        &.k-tooltip-content {
+        &.${k}-tooltip-content {
             max-width: ${tooltip.maxWidth};
             min-width: 0;
             padding: ${tooltip.padding};
             line-height: ${tooltip.lineHeight};
-            word-wrap: break-word;
+            word-wrap: bre.${k}-word;
             pointer-events: none;
             box-shadow: ${tooltip.boxShadow};
 
             // hoverable
-            &.k-hoverable,
-            &.k-always {
+            &.${k}-hoverable,
+            &.${k}-always {
                 pointer-events: all;
             }
 
             // arrow
-            .k-tooltip-arrow {
+            .${k}-tooltip-arrow {
                 pointer-events: none;
                 &:before, & {
                     position: absolute;
@@ -80,8 +80,8 @@ export default function makeStyles() {
                 &:before {
                     content: ' ';
                 }
-                &.k-top,
-                &.k-bottom {
+                &.${k}-top,
+                &.${k}-bottom {
                     &:before, & {
                         border-width: ${arrowLong} ${arrowShort};
                     }
@@ -89,20 +89,20 @@ export default function makeStyles() {
                         left: calc(-1 * ${arrowShort});
                     }
                 }
-                &.k-top {
+                &.${k}-top {
                     top: calc(-2 * ${arrowLong});
                     &:before {
                         top: calc(-${arrowLong} + 1px);
                     }
                 }
-                &.k-bottom {
+                &.${k}-bottom {
                     bottom: calc(-2 * ${arrowLong});
                     &:before {
                         bottom: calc(-${arrowLong} + 1px);
                     }
                 }
-                &.k-left,
-                &.k-right {
+                &.${k}-left,
+                &.${k}-right {
                     &:before, & {
                         border-width: ${arrowShort} ${arrowLong};
                     }
@@ -110,13 +110,13 @@ export default function makeStyles() {
                         top: calc(-1 * ${arrowShort});
                     }
                 }
-                &.k-left {
+                &.${k}-left {
                     left: calc(-2 * ${arrowLong});
                     &:before {
                         left: calc(-${arrowLong} + 1px);
                     }
                 }
-                &.k-right {
+                &.${k}-right {
                     right: calc(-2 * ${arrowLong});
                     &:before {
                         right: calc(-${arrowLong} + 1px);
@@ -143,7 +143,7 @@ export default function makeStyles() {
                     &.k-${theme} {
                         background: ${bgColor};
                         color: ${color};
-                        .k-tooltip-arrow {
+                        .${k}-tooltip-arrow {
                             ${Object.keys(directionMap).map(direction => {
                                 const borderDirection = directionMap[direction as keyof typeof directionMap];
                                 return css`
@@ -161,15 +161,15 @@ export default function makeStyles() {
             })}
 
             // confirm
-            .k-tooltip-footer {
+            .${k}-tooltip-footer {
                 padding-top: ${tooltip.confirm.gaps};
-                .k-btn:not(:first-of-type) {
+                .${k}-btn:not(:first-of-type) {
                     margin-left: ${tooltip.confirm.gaps};
                 }
             }
 
             // size
-            &.k-small {
+            &.${k}-small {
                 padding: ${tooltip.smallPadding};
             }
         }

@@ -69,13 +69,13 @@ setDefault(() => {
     input = deepDefaults(theme, {input: defaults}).input;
 })
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-block;
         width: ${input.width};
         color: ${input.color};
         vertical-align: middle;
-        .k-input-wrapper {
+        .${k}-input-wrapper {
             display: inline-flex;
             align-items: center;
             width: 100%;
@@ -89,11 +89,11 @@ export function makeStyles() {
                 z-index: 1;
             }
         }
-        &.k-focus .k-input-wrapper {
+        &.${k}-focus .${k}-input-wrapper {
             border: ${input.focusBorder};
             z-index: 1;
         }
-        .k-input-inner {
+        .${k}-input-inner {
             flex: 1;
             outline: none;
             color: inherit;
@@ -108,136 +108,136 @@ export function makeStyles() {
         }
 
         // fluid
-        &.k-fluid {
+        &.${k}-fluid {
             width: 100%;
         }
 
         // prefix & suffix
-        .k-input-prefix,
-        .k-input-suffix {
+        .${k}-input-prefix,
+        .${k}-input-suffix {
             display: flex;
             align-items: center;
             gap: ${input.clearIconGap};
             color: ${theme.color.lightBlack};
             position: relative;
         }
-        .k-input-prefix {
+        .${k}-input-prefix {
             margin-right: ${input.clearIconGap};
         }
-        .k-input-suffix {
+        .${k}-input-suffix {
             margin-left: ${input.clearIconGap};
         }
 
         // clearable
-        .k-input-clear {
+        .${k}-input-clear {
             opacity: 0;
             transition: opacity ${input.transition};
             pointer-events: none;
             color: ${input.clearIconColor};
         }
-        &:hover .k-input-clear.k-input-show {
+        &:hover .${k}-input-clear.${k}-input-show {
             opacity: 1;
             pointer-events: all;
         }
 
         // show password
-        .k-input-show-password {
+        .${k}-input-show-password {
             color: ${input.clearIconColor};
         }
 
         // stack clear icon
-        &.k-stack-clear {
-            .k-input-clear {
+        &.${k}-stack-clear {
+            .${k}-input-clear {
                 position: absolute;
                 z-index: 1;
                 right: 0;
-                &.k-input-show + * {
+                &.${k}-input-show + * {
                     transition: opacity ${input.transition};
                 }
             }
             &:hover {
-                .k-input-clear.k-input-show + * {
+                .${k}-input-clear.${k}-input-show + * {
                     opacity: 0;
                 }
             }
         }
 
         // group
-        &.k-group {
+        &.${k}-group {
             display: inline-flex;
-            .k-input-wrapper {
+            .${k}-input-wrapper {
                 border-radius: 0;
             }
-            .k-input-wrapper:first-child {
+            .${k}-input-wrapper:first-child {
                 border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
             }
-            .k-input-wrapper:last-child {
+            .${k}-input-wrapper:last-child {
                 border-radius: 0 ${input.borderRadius} ${input.borderRadius} 0;
             }
         }
-        .k-input-prepend,
-        .k-input-append {
+        .${k}-input-prepend,
+        .${k}-input-append {
             display: inline-flex;
             align-items: center;
             background-color: ${input.groupBgColor};
             border: ${input.border};
             white-space: nowrap;
-            .k-btn {
+            .${k}-btn {
                 margin: -1px;
                 border: none;
-                &.k-none:hover {
+                &.${k}-none:hover {
                     background: transparent;
                 }
             }
-            .k-select {
+            .${k}-select {
                 margin: -1px;
                 text-align: left;
             }
         }
-        .k-input-prepend {
+        .${k}-input-prepend {
             &,
-            .k-btn,
-            .k-select {
+            .${k}-btn,
+            .${k}-select {
                 z-index: 1;
                 border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
             }
         }
-        .k-input-append {
+        .${k}-input-append {
             &,
-            .k-btn,
-            .k-select {
+            .${k}-btn,
+            .${k}-select {
                 z-index: 1;
                 border-radius: 0 ${input.borderRadius} ${input.borderRadius} 0;
             }
         }
-        .k-input-padding {
+        .${k}-input-padding {
             padding: 0 ${input.groupPaddingGap};
         }
-        .k-input-prepend {
+        .${k}-input-prepend {
             border-right: none;
         }
-        .k-input-append  {
+        .${k}-input-append  {
             border-left: none;
         }
 
         // flat
-        &.k-flat {
+        &.${k}-flat {
             color: ${input.flat.color};
-            .k-input-wrapper {
+            .${k}-input-wrapper {
                 border: none;
                 background: ${input.flat.bgColor};
             }
         }
 
         // disabled
-        &.k-disabled {
+        &.${k}-disabled {
             color: ${input.disabledColor};
             cursor: not-allowed;
-            .k-input-wrapper {
+            .${k}-input-wrapper {
                 border-color: ${input.disabledBorderColor};
                 background: ${input.disabledBgColor};
             }
-            .k-input-inner {
+            .${k}-input-inner {
                 cursor: not-allowed;
             }
         }
@@ -247,7 +247,7 @@ export function makeStyles() {
             const styles = input[size];
             const sizeClassName = css`
                 font-size: ${styles.fontSize};
-                .k-input-wrapper {
+                .${k}-input-wrapper {
                     height: ${styles.height};
                     padding: 0 ${styles.paddingGap};
                 }
@@ -262,8 +262,8 @@ export function makeStyles() {
         })}
 
         // inline
-        &.k-inline {
-            .k-input-wrapper {
+        &.${k}-inline {
+            .${k}-input-wrapper {
                 height: auto;
                 border: none;
                 border-radius: 0;
@@ -272,27 +272,27 @@ export function makeStyles() {
         }
 
         // textarea
-        &.k-type-textarea {
-            .k-input-wrapper {
+        &.${k}-type-textarea {
+            .${k}-input-wrapper {
                 display: inline-block;
                 padding: 0;
                 height: auto;
             }
-            .k-textarea {
+            .${k}-textarea {
                 width: 100%;
                 padding: ${input.textareaPadding};
                 line-height: 1.5;
                 vertical-align: top;
             }
-            .k-input-suffix {
+            .${k}-input-suffix {
                 margin: 0;
                 justify-content: flex-end;
             }
         }
         ${(Input.typeDefs.resize as string[]).map(type => {
             return css`
-                &.k-resize-${type} {
-                    .k-textarea {
+                &.${k}-resize-${type} {
+                    .${k}-textarea {
                         resize: ${type};
                     }
                 }
@@ -300,7 +300,7 @@ export function makeStyles() {
         })}
 
         // fake dom for get value's width
-        .k-input-fake {
+        .${k}-input-fake {
             left: 0;
             top: 0;
             right: 0;
@@ -310,50 +310,50 @@ export function makeStyles() {
             visibility: hidden;
             white-space: nowrap;
         }
-        &.k-auto-width {
+        &.${k}-auto-width {
             width: auto;
             max-width: 100%;
         }
 
         // count
-        .k-input-count {
+        .${k}-input-count {
             color: ${input.count.color};
         }
     `
 }
 
-export function makeSearchStyles() {
+export function makeSearchStyles(k: string) {
     return css`
         position: relative;
         display: inline-block;
-        .k-input {
+        .${k}-input {
             transition: width ${input.transition};
         }
-        .k-btn {
+        .${k}-btn {
             position: absolute;
             top: 0;
             right: 0;
             z-index: 1;
         }
-        &.k-default .k-btn:hover {
+        &.${k}-default .${k}-btn:hover {
             background: transparent;
         }
-        .k-input-suffix {
+        .${k}-input-suffix {
             margin-right: ${input.search.suffixMarginRight};
         }
 
         // hide
-        &.k-hide {
-            .k-input {
+        &.${k}-hide {
+            .${k}-input {
                 width: ${input.default.height};
             }
-            .k-input-inner {
+            .${k}-input-inner {
                 padding: 0 !important;
             }
             ${sizes.map(size => {
                 if (size == 'default') return;
                 return css`
-                    .k-input.k-${size} {
+                    .${k}-input.k-${size} {
                         width: ${input[size].height};
                     }
                 `
@@ -361,15 +361,15 @@ export function makeSearchStyles() {
         }
 
         // line
-        &.k-line {
-            .k-input-wrapper {
+        &.${k}-line {
+            .${k}-input-wrapper {
                 border-width: 0;
             }
-            &.k-open {
-                .k-input-wrapper {
+            &.${k}-open {
+                .${k}-input-wrapper {
                     border-bottom-width: 1px;
                 }
-                .k-btn:hover {
+                .${k}-btn:hover {
                     background: transparent;
                 }
             }

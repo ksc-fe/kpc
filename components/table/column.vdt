@@ -34,7 +34,7 @@ const {
                                     {(offsetMap) => {
                                         const {className, style} = getClassAndStyleForFixed(this.get(), offsetMap[key], checkType);
                                         const classNameObj = {
-                                            'k-column-sortable': sortable,
+                                            [`${k}-column-sortable`]: sortable,
                                             [className]: className,
                                         }
 
@@ -88,7 +88,7 @@ const {
                                                             <DropdownItem v-for={filteredGroup.value}
                                                                 ev-select={() => onSelect($value.value, onChange)}
                                                                 hideOnSelect={!multiple}
-                                                                class={{'k-active': (checked = isChecked($value.value))}}
+                                                                class={{[`${k}-active`]: (checked = isChecked($value.value))}}
                                                             >
                                                                 <Checkbox v-if={multiple} value={checked}>{$value.label}</Checkbox>
                                                                 <span v-else>{$value.label}</span>
@@ -107,7 +107,7 @@ const {
                                                     </DropdownMenu>
                                                 </Dropdown>
                                                 <div v-if={sortable}
-                                                    class={{'k-column-sort': true, [`k-${type}`]: type}}
+                                                    class={{[`${k}-column-sort`]: true, [`k-${type}`]: type}}
                                                 >
                                                     <Icon class="k-icon-up k-asc" size="mini" />
                                                     <Icon class="k-icon-down k-desc" size="mini" />

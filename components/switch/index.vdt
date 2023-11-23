@@ -10,12 +10,12 @@ let {
 const {start, dragging, barRef, barWidth} = this.draggable;
 
 const classNameObj = {
-    'k-switch': true,
+    [`${k}-switch`]: true,
     [className]: className,
-    'k-checked': value === trueValue, 
+    [`${k}-checked`]: value === trueValue, 
     [`k-${size}`]: true,
-    'k-disabled': disabled,
-    'k-dragging': dragging.value,
+    [`${k}-disabled`]: disabled,
+    [`${k}-dragging`]: dragging.value,
     [makeStyles()]: true,
 };
 

@@ -12,7 +12,7 @@ const status = this.status.value;
 const background = this.color.value || '';
 
 const classNameObj = {
-    'k-progress' : true,
+    [`${k}-progress`] : true,
     [`k-${type}`]: type,
     [className]: className,
     [`k-${status}`]: status !== 'normal',
@@ -76,13 +76,13 @@ const classNameObj = {
             if (type !== 'circle') {
                 switch (status) {
                     case 'success':
-                        icon = 'k-icon-success-fill';
+                        icon = [`${k}-icon-success-fill`];
                         break;
                     case 'error':
-                        icon = 'k-icon-error-fill';
+                        icon = [`${k}-icon-error-fill`];
                         break;
                     case 'warning':
-                        icon = 'k-icon-warning-fill';
+                        icon = [`${k}-icon-warning-fill`];
                         break;
                     default:
                         break;
@@ -90,11 +90,11 @@ const classNameObj = {
             } else {
                 switch (status) {
                     case 'success':
-                        icon = 'k-icon-check';
+                        icon = [`${k}-icon-check`];
                         break;
                     case 'error':
                     case 'warning':
-                        icon = 'k-icon-close';
+                        icon = [`${k}-icon-close`];
                         break;
                     default:
                         break;

@@ -9,7 +9,7 @@ const type = this.type.value;
 const isYear = type === 'year';
 const isYearOrMonth = isYear || type === 'month';
 const classNameObj = {
-    'k-datepicker-calendar': true,
+    [`${k}-datepicker-calendar`]: true,
     [makeCalendarStyles()]: true,
 };
 const now = getNowDate();

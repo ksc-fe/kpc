@@ -8,10 +8,10 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-dropdown-item': true,
-    'k-disabled': disabled,
+    [`${k}-dropdown-item`]: true,
+    [`${k}-disabled`]: disabled,
     [className]: className,
-    'k-hover': this.keyboard.isFocus.value,
+    [`${k}-hover`]: this.keyboard.isFocus.value,
     [makeItemStyles()]: true,
 }
 

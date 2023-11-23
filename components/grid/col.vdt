@@ -7,7 +7,7 @@ const {className, children, span, style, offset, push, pull, order} = this.get()
 <GutterContext.Consumer>
     {gutter => {
         const classNameObj = {
-            'k-col': true,
+            [`${k}-col`]: true,
             [`k-${span}`]: span,
             [`k-offset-${offset}`]: offset,
             [`k-pull-${pull}`]: pull,
@@ -22,7 +22,7 @@ const {className, children, span, style, offset, push, pull, order} = this.get()
         return (
             <div class={classNameObj} {...getRestProps(this)} style={newStyle}>
                 {gutter ? 
-                    <div class={{'k-col-wrapper': true, [className]: className}}>{children}</div> :
+                    <div class={{[`${k}-col-wrapper`]: true, [className]: className}}>{children}</div> :
                     children
                 }
             </div>

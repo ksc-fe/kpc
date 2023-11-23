@@ -6,10 +6,10 @@ import {isNullOrUndefined} from 'intact-shared';
 const {value, children, className, disabled, closable} = this.get();
 const {value: currentValue} = this.tabs.get();
 const classNameObj = {
-    'k-tab': true, 
-    'k-active': !isNullOrUndefined(value) && value === currentValue,
+    [`${k}-tab`]: true, 
+    [`${k}-active`]: !isNullOrUndefined(value) && value === currentValue,
     [className]: className,
-    'k-disabled': disabled,
+    [`${k}-disabled`]: disabled,
 };
 
 <div 

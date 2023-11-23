@@ -6,7 +6,7 @@ import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 const {data, trigger, filterable, fields} = this.get();
 const baseMenuStyles = makeMenuStyles();
 const classNameObj = {
-    'k-cascader-menu': true,
+    [`${k}-cascader-menu`]: true,
     [baseMenuStyles]: true,
 };
 const getField = this.fields;
@@ -32,9 +32,9 @@ const Options = (data, level, loaded, parentSelected) => {
                 <DropdownItem
                     disabled={getField(item, 'disabled')}
                     class={{
-                        'k-cascader-option': true,
-                        'k-active': showed,
-                        'k-selected': selected,
+                        [`${k}-cascader-option`]: true,
+                        [`${k}-active`]: showed,
+                        [`${k}-selected`]: selected,
                     }}
                     ev-select={onSelect.bind(null, value, level)}
                 >
@@ -80,7 +80,7 @@ const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
         <DropdownMenu v-else
             key="filter"
             class={{
-                'k-cascader-filter': true,
+                [`${k}-cascader-filter`]: true,
                 [baseMenuStyles]: true,
                 [makeFilterMenuStyles()]: true,
             }}

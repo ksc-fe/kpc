@@ -6,11 +6,11 @@ import {makeStyles} from './styles';
 
 const {className, disabled, size, vertical, value, width} = this.get();
 const classNameObj = {
-    'k-spinner': true,
-    'k-disabled': disabled,
+    [`${k}-spinner`]: true,
+    [`${k}-disabled`]: disabled,
     [`k-${size}`]: size !== 'default',
     [className]: className,
-    'k-vertical': vertical,
+    [`${k}-vertical`]: vertical,
     [makeStyles()]: true,
 };
 const {decrease, increase, onChangeValue, onFocusin} = this.change;

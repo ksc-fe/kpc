@@ -53,21 +53,21 @@ setDefault(() => {
     slider = deepDefaults(theme, {slider: defaults}).slider;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         position: relative;
         outline: none;
         display: flex;
-        .k-slider-main {
+        .${k}-slider-main {
             flex: 1;
         }
-        .k-slider-track-wrapper {
+        .${k}-slider-tra.${k}-wrapper {
             cursor: pointer;
             height: 32px;
             display: flex;
             align-items: center;
         }
-        .k-slider-track {
+        .${k}-slider-track {
             flex: 1;
             height: ${slider.height};
             background-color: ${slider.bgColor};
@@ -75,21 +75,21 @@ export function makeStyles() {
             position: relative;
             user-select: none;
         }
-        .k-slider-bar {
+        .${k}-slider-bar {
             background-color: ${slider.barColor};
             position: absolute;
             height: 100%;
             border-radius: ${slider.borderRadius};
             transition: all ${slider.transition};
         }
-        .k-slider-thumb-wrapper {
+        .${k}-slider-thumb-wrapper {
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
             transition: left ${slider.transition};
             z-index: 1;
         }
-        .k-slider-thumb {
+        .${k}-slider-thumb {
             box-sizing: content-box;
             height: ${slider.thumb.height};
             width: ${slider.thumb.width};
@@ -106,41 +106,41 @@ export function makeStyles() {
                 background-color: ${slider.thumb.hoverBgColor};
             }
         }
-        .k-slider-ends {
+        .${k}-slider-ends {
             display: flex;
             justify-content: space-between;
             span {
                 cursor: pointer;
             }
         }
-        .k-slider-spinner {
+        .${k}-slider-spinner {
             margin-left: ${slider.spinnerGap};
         }
-        .k-slider-spinner-sep {
+        .${k}-slider-spinner-sep {
             display: inline-block;
             margin: auto 8px;
         }
 
         // dragging
-        &.k-dragging {
-            .k-slider-bar {
+        &.${k}-dragging {
+            .${k}-slider-bar {
                 transition: none;
             }
-            .k-slider-thumb-wrapper {
+            .${k}-slider-thumb-wrapper {
                 transition: none;
             }
         }
 
         // disabled
-        &.k-disabled {
+        &.${k}-disabled {
             color: ${slider.disabled.color};
-            .k-slider-track-wrapper {
+            .${k}-slider-tra.${k}-wrapper {
                 cursor: not-allowed;
             }
-            .k-slider-bar {
+            .${k}-slider-bar {
                 background-color: ${slider.disabled.bgColor};
             }
-            .k-slider-thumb {
+            .${k}-slider-thumb {
                 border-color: #fff;
                 background-color: ${slider.disabled.bgColor};
                 &:hover,
@@ -150,7 +150,7 @@ export function makeStyles() {
                     transform: none;
                 }
             }
-            .k-slider-ends {
+            .${k}-slider-ends {
                 span {
                     cursor: not-allowed;
                 }
@@ -158,7 +158,7 @@ export function makeStyles() {
         }
 
         // stop point
-        .k-slider-point {
+        .${k}-slider-point {
             position: absolute;
             top: calc((${slider.height} - ${slider.point.height}) / 2 );
             width: ${slider.point.width};
@@ -167,13 +167,13 @@ export function makeStyles() {
             transform: translateX(-50%);
             border-radius: ${slider.point.borderRadius};
             border: ${slider.point.border};
-            &.k-active {
+            &.${k}-active {
                 border-color: ${slider.point.activeBorderColor};
             }
         }
 
         // marks
-        .k-slider-marks {
+        .${k}-slider-marks {
             position: relative;
             height: ${slider.marks.height};
             > span {
@@ -187,13 +187,13 @@ export function makeStyles() {
                 &:last-child {
                     transform: translateX(-100%);
                 }
-                &.k-active {
+                &.${k}-active {
                     color: ${slider.marks.activeColor};
                 }
             }
         }
 
-        .k-slider-tooltip {
+        .${k}-slider-tooltip {
             white-space: nowrap;
         }
     `;

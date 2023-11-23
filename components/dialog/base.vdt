@@ -16,8 +16,8 @@ const {
 
 const isHide = mode === 'hide';
 const classNameObj = {
-    'k-dialog': true, 
-    'k-dragging': this.drag.dragging.value,
+    [`${k}-dialog`]: true, 
+    [`${k}-dragging`]: this.drag.dragging.value,
     [className]: className,
     [$props.className]: $props.className,
     [`k-${size}`]: size !== 'default',
@@ -74,8 +74,8 @@ const dialog = (
 
 <Portal container={container}>
     <div class={{
-        'k-dialog-wrapper': true,
-        'k-open': value,
+        [`${k}-dialog-wrapper`]: true,
+        [`${k}-open`]: value,
         [makeWrapperStyles()]: true,
     }}>
         <Transition 

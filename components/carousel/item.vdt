@@ -6,10 +6,10 @@ const {className, children, value, cloned} = this.get();
 const parent = this.$senior;
 const active = parent.isActive(value);
 const classNameObj = {
-    'k-carousel-item': true,
+    [`${k}-carousel-item`]: true,
     [className]: className,
-    'k-active': active,
-    'k-cloned': cloned,
+    [`${k}-active`]: active,
+    [`${k}-cloned`]: cloned,
     [makeItemStyles()]: true,
 };
 const isSlide = parent.get('effect') === 'slide';

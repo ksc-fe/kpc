@@ -12,7 +12,7 @@ setDefault(() => {
     affix = deepDefaults(theme, {affix: defaults}).affix;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         position: relative;
         z-index: ${affix.zIndex};

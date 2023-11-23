@@ -30,19 +30,19 @@ export function makeStyles(overlay: boolean) {
         &.transition-appear-active {
             transition: opacity ${drawer.transition} !important;
             overflow: hidden;
-            .k-drawer-content {
+            .${k}-drawer-content {
                 transition: transform ${drawer.transition};
             }
         }
 
-        .k-drawer-content {
+        .${k}-drawer-content {
             height: 100%;
             display: flex;
             background: #fff;
             flex-direction: column;
             transform: translateX(0);
             box-shadow: ${drawer.boxShadow};
-            .k-dialog-body {
+            .${k}-dialog-body {
                 flex-grow: 1;
                 overflow: auto;
             }
@@ -89,11 +89,11 @@ export function makeStyles(overlay: boolean) {
                     &.transition-leave-to,
                     &.transition-appear-from {
                         transform: none !important;
-                        .k-drawer-content {
+                        .${k}-drawer-content {
                             transform: ${transformValue};
                         }
                     }
-                    .k-drawer-content {
+                    .${k}-drawer-content {
                         border-radius: ${borderRadius};
                     }
                 }

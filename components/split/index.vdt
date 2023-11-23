@@ -6,12 +6,12 @@ const {mode} = this.get();
 const {firstSize, lastSize} = this.size;
 const {firstRef, lastRef, elementRef, start, dragging} = this.drag;
 const classNameObj = {
-    'k-split': true,
+    [`${k}-split`]: true,
     [`k-${mode}`]: true,
     [makeStyles()]: true,
-    ['k-first-auto']: firstSize.value === 'auto',
-    ['k-last-auto']: lastSize.value === 'auto',
-    ['k-resizing']: dragging.value,
+    [[`${k}-first-auto`]]: firstSize.value === 'auto',
+    [[`${k}-last-auto`]]: lastSize.value === 'auto',
+    [[`${k}-resizing`]]: dragging.value,
 };
 
 const stylePropName = mode === 'horizontal' ? 'width' : 'height';

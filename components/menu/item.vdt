@@ -19,18 +19,18 @@ const {
     position, isCollapse,
 } = this.dropdown();
 const classNameObj = {
-    'k-menu-item': true,
+    [`${k}-menu-item`]: true,
     [className]: className,
-    'k-expanded': isExpanded, 
-    'k-disabled': disabled,
-    'k-active':  isSelected(key), 
-    'k-highlighted': isHighlighted(key),
+    [`${k}-expanded`]: isExpanded, 
+    [`${k}-disabled`]: disabled,
+    [`${k}-active`]:  isSelected(key), 
+    [`${k}-highlighted`]: isHighlighted(key),
     [makeItemStyles()]: true,
 };
 
 const showDot = isTopItem && !iconVNode && isNullOrUndefined(dot) ? rootDot : dot;
 const title = (children) => (
-    <div class={{'k-menu-title': true, [makeTitleStyles()]: true}}
+    <div class={{[`${k}-menu-title`]: true, [makeTitleStyles()]: true}}
         ev-click={this.onClick.bind(this, subMenuVNode)}
     >
         <Icon class="k-menu-dot ion-record" v-if={showDot} />

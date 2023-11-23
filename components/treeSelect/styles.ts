@@ -14,7 +14,7 @@ setDefault(() => {
     treeSelect = deepDefaults(theme, {treeSelect: defaults}).treeSelect;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         min-width: auto;
         max-height: ${treeSelect.maxHeight};

@@ -9,9 +9,9 @@ import { Virtual } from '../virtual';
 const { className, nowrap, size, border, draggable } = this.get();
 
 const classNameObj = {
-    'k-tags': true,
-    'k-nowrap': nowrap,
-    'k-draggable': draggable,
+    [`${k}-tags`]: true,
+    [`${k}-nowrap`]: nowrap,
+    [`${k}-draggable`]: draggable,
     [makeTagsStyles()]: true,
     [className]: className,
 }

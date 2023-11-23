@@ -32,7 +32,7 @@ setDefault(() => {
 
 export {scrollSelect};
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         text-align: center;
         overflow: hidden;
@@ -40,23 +40,23 @@ export function makeStyles() {
         height: ${scrollSelect.height};
         user-select: none;
         position: relative;
-        .k-scroll-select-wrapper {
+        .${k}-scroll-select-wrapper {
             transition: transform ${scrollSelect.transition};
         }
-        &.k-dragging {
-            .k-scroll-select-wrapper {
+        &.${k}-dragging {
+            .${k}-scroll-select-wrapper {
                 transition: none;
             }
         }
 
-        &.k-disabled {
-            .k-scroll-select-item {
+        &.${k}-disabled {
+            .${k}-scroll-select-item {
                 cursor: not-allowed;
                 color: ${scrollSelect.item.disabledColor};
             }
         }
 
-        .k-scroll-select-item {
+        .${k}-scroll-select-item {
             line-height: ${scrollSelect.item.height};
             color: ${scrollSelect.item.color};
             cursor: pointer;
@@ -64,23 +64,23 @@ export function makeStyles() {
             &:hover {
                 background: ${scrollSelect.item.hoverBgColor };
             }
-            &.k-active {
+            &.${k}-active {
                 color: ${scrollSelect.item.activeColor};
                 font-size: ${scrollSelect.item.activeFontSize};
             }
-            &.k-disabled {
+            &.${k}-disabled {
                 color: ${scrollSelect.item.disabledColor};
             }
         }
 
-        .k-scroll-select-append {
+        .${k}-scroll-select-append {
             position: absolute;
             top: 50%;
             right: 0;
             transform: translateY(-50%);
         }
 
-        .k-scroll-select-border {
+        .${k}-scroll-select-border {
             position: absolute;
             width: 100%;
             top: 50%;

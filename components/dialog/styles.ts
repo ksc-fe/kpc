@@ -68,7 +68,7 @@ setDefault(() => {
     dialog = deepDefaults(theme, {dialog: defaults}).dialog;
 });
 
-export function makeDialogStyles() {
+export function makeDialogStyles(k: string) {
     return css`
         position: absolute;
         width: ${dialog.width};
@@ -81,7 +81,7 @@ export function makeDialogStyles() {
         z-index: ${theme.maxZIndex};
 
         // drag
-        &.k-dragging {
+        &.${k}-dragging {
             cursor: move;
             user-select: none;
         }
@@ -110,7 +110,7 @@ export function makeDialogStyles() {
         })}
 
         // header
-        .k-dialog-header {
+        .${k}-dialog-header {
             padding: 0 ${dialog.padding};
             margin: ${dialog.margin};
             border-bottom: ${dialog.header.border} ;
@@ -121,47 +121,47 @@ export function makeDialogStyles() {
             position: relative;
             font-weight: ${dialog.header.fontWeight};
         }
-        .k-dialog-title {
+        .${k}-dialog-title {
             display: inline-block;
         }
-        .k-dialog-close {
+        .${k}-dialog-close {
             position: absolute;
             right: ${dialog.header.closeRight};
             top: ${dialog.header.closeTop};
-            .k-icon {
+            .${k}-icon {
                 font-size: ${dialog.header.closeIconFontSize};
             }
 
         }
 
         // body
-        .k-dialog-body {
+        .${k}-dialog-body {
             padding: ${dialog.body.padding};
         }
 
         // footer
-        .k-dialog-footer {
+        .${k}-dialog-footer {
             text-align: right;
             padding: ${dialog.footer.padding};
             margin: ${dialog.margin};
             border-top: ${dialog.footer.border};
-            .k-btn {
+            .${k}-btn {
                 margin-left: ${dialog.footer.btnGap};
             }
         }
     `;
 }
 
-export function makeWrapperStyles() {
-    // k-fade-leave-active will add position absolute to the styles
-    // so we must set fixed with important to .k-dialog-overlay
+export function makeWrapperStyles(k: string) {
+    //.${k}-fade-leave-active will add position absolute to the styles
+    // so we must set fixed with important to .${k}-dialog-overlay
     return css`
         position: absolute;
         z-index: ${theme.maxZIndex};
         top: 0;
         left: 0;
         width: 100%;
-        .k-dialog-overlay {
+        .${k}-dialog-overlay {
             position: fixed !important;
             top: 0;
             left: 0;
@@ -172,23 +172,23 @@ export function makeWrapperStyles() {
     `;
 }
 
-export function makeAlertStyles() {
+export function makeAlertStyles(k: string) {
     return css`
-        &.k-alert-dialog {
-            .k-dialog-body {
+        &.${k}-alert-dialog {
+            .${k}-dialog-body {
                 margin-top: ${dialog.alert.bodyMarginTop};
                 padding: ${dialog.alert.padding};
                 text-align: center;
                 position: relative;
                 z-index: 1;
             }
-            .k-dialog-header,
-            .k-dialog-footer {
+            .${k}-dialog-header,
+            .${k}-dialog-footer {
                 border: none;
             }
-            .k-dialog-tip-icon {
+            .${k}-dialog-tip-icon {
                 margin-bottom: ${dialog.alert.tipIconMarginBottom};
-                .k-icon {
+                .${k}-icon {
                     font-size: ${dialog.alert.tipIconFontSize};
                     line-height: ${dialog.alert.tipIconLineHeight};
                 }
@@ -201,35 +201,35 @@ export function makeAlertStyles() {
                             theme.color[type];
                 return css`
                     &.k-${type} {
-                        .k-dialog-tip-icon {
+                        .${k}-dialog-tip-icon {
                             color: ${color};
                         }
                     }
                 `
             })}
-            &:not(.k-confirm) {
-                .k-dialog-cancel {
+            &:not(.${k}-confirm) {
+                .${k}-dialog-cancel {
                     display: none;
                 }
             }
 
             // with title
-            &.k-with-title {
-                .k-dialog-body {
+            &.${k}-with-title {
+                .${k}-dialog-body {
                     margin-top: ${dialog.alert.titleBodyMarginTop};
                     text-align: left;
                 }
-                .k-dialog-tip-icon {
+                .${k}-dialog-tip-icon {
                     float: left;
-                    .k-icon {
+                    .${k}-icon {
                         font-size: ${dialog.alert.titleTipIconFontSize};
                     }
                 }
-                .k-alert-dialog-wrapper {
+                .${k}-alert-dialog-wrapper {
                     overflow: hidden;
                     padding-left: ${dialog.alert.wrapperPaddingLeft};
                 }
-                .k-alert-dialog-title {
+                .${k}-alert-dialog-title {
                     line-height: ${dialog.alert.tipIconLineHeight};
                     font-size: ${dialog.alert.titleFontSize};
                     font-weight: ${dialog.alert.titleFontWeight};

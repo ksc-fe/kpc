@@ -5,7 +5,7 @@ const {value, trigger, container} = this.dropdown.get();
 const {children, className} = this.get();
 
 const classNameObj = {
-    'k-dropdown-menu': true,
+    [`${k}-dropdown-menu`]: true,
     [className]: className,
     [$props.className]: $props.className,
     [makeMenuStyles()]: true,

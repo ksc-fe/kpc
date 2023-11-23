@@ -8,9 +8,9 @@ if (width) {
 }
 
 const classNameObj = {
-    'k-card-column': true,
-    'k-fluid': !width,
-    'k-center': center,
+    [`${k}-card-column`]: true,
+    [`${k}-fluid`]: !width,
+    [`${k}-center`]: center,
     [className]: className,
 }
 

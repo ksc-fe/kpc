@@ -4,9 +4,9 @@ import {getRestProps} from '../utils';
 const {value, disabled, disable} = this.get();
 
 const classNameObj = {
-    'k-scroll-select': true, 
-    'k-dragging': this.mouseEvents.dragging.value,
-    'k-disabled': disabled,
+    [`${k}-scroll-select`]: true, 
+    [`${k}-dragging`]: this.mouseEvents.dragging.value,
+    [`${k}-disabled`]: disabled,
     [makeStyles()]: true,
 }
 

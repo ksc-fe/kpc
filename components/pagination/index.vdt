@@ -16,11 +16,11 @@ const {
 if (!total) return <!-- pagination -->
 
 const classNameObj = {
-    'k-pagination': true,
+    [`${k}-pagination`]: true,
     [className]: className,
     [`k-${size}`]: size !== 'default',
-    ['k-flat']: flat,
-    ['k-simple']: simple,
+    [[`${k}-flat`]]: flat,
+    [[`${k}-simple`]]: simple,
     [makeStyles()]: true,
 };
 

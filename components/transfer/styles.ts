@@ -43,15 +43,15 @@ setDefault(() => {
     transfer = deepDefaults(theme, {transfer: defaults}).transfer;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         font-size: ${transfer.fontSize};
-        .k-transfer-panel,
-        .k-transfer-arrows {
+        .${k}-transfer-panel,
+        .${k}-transfer-arrows {
             display: inline-block;
             vertical-align: middle;
         }
-        .k-transfer-panel {
+        .${k}-transfer-panel {
             width: ${transfer.panel.width};
             border: ${transfer.panel.border};
             border-radius: ${transfer.panel.borderRadius}; 
@@ -61,37 +61,37 @@ export function makeStyles() {
             overflow: auto;
         }
 
-        .k-transfer-title {
+        .${k}-transfer-title {
             line-height: ${transfer.title.lineHeight};
             background: ${transfer.title.bgColor};
             padding: ${transfer.title.padding};
-            .k-checkbox {
+            .${k}-checkbox {
                 color: ${transfer.title.color}; 
                 font-size: ${transfer.title.fontSize};
             }
         }
-        .k-transfer-count {
+        .${k}-transfer-count {
             float: right;
             margin-left: ${transfer.title.countGap};
         }
-        .k-transfer-list {
+        .${k}-transfer-list {
             overflow: auto;
             position: relative;
             flex: 1;
         }
-        .k-transfer-item {
+        .${k}-transfer-item {
             color: ${transfer.item.color};
             background: ${transfer.item.bgColor};
             user-select: none;
             width: 100%;
-            &:not(.k-disabled):hover {
+            &:not(.${k}-disabled):hover {
                 background: ${transfer.item.hoverBgColor};
                 color: ${transfer.item.hoverColor};
                 p {
                     color: ${transfer.item.hoverColor};
                 }
             }
-            .k-checkbox {
+            .${k}-checkbox {
                 padding: ${transfer.item.padding};
                 display: flex;
             }
@@ -99,19 +99,19 @@ export function makeStyles() {
                 margin: 0;
                 color: ${transfer.item.descColor};
             }
-            &.k-disabled {
+            &.${k}-disabled {
                 p {
                     color: ${theme.color.disabled};
                 }
             }
         }
-        .k-input {
+        .${k}-input {
             width: auto;
             margin: ${transfer.searchGap};
         }
 
-        .k-transfer-arrows {
-            .k-btn {
+        .${k}-transfer-arrows {
+            .${k}-btn {
                 display: flex;
                 margin: ${transfer.arrow.gap};
             }

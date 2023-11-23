@@ -60,19 +60,19 @@ setDefault(() => {
     timeline = deepDefaults(theme, {timeline: defaults}).timeline;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         font-size: ${timeline.fontSize};
         padding-top: calc(${theme.lineHeight}em / 2);
     `;
 }
 
-export function makeItemStyles() {
+export function makeItemStyles(k: string) {
     return css`
         position: relative;
         padding: ${timeline.padding};
        
-        .k-timeline-indicator {
+        .${k}-timeline-indicator {
             width: ${timeline.indicator.width};
             position: absolute;
             left: 0;
@@ -80,20 +80,20 @@ export function makeItemStyles() {
             height: 100%;
             text-align: center;
         }
-        .k-timeline-dot {
+        .${k}-timeline-dot {
             position: relative;
             z-index: 1;
             transform: translateY(-50%);
         }
            
-        .k-timeline-circle {
+        .${k}-timeline-circle {
             position: relative;
             background: ${theme.color.primary};
             border-radius: 50%;
             left: 50%;
         }
            
-        .k-timeline-line {
+        .${k}-timeline-line {
             position: absolute;
             height: 100%;
             border-left: ${timeline.lineBorder};
@@ -101,13 +101,13 @@ export function makeItemStyles() {
             left: 50%;
         }
 
-        .k-timeline-content {
+        .${k}-timeline-content {
             position: relative;
             top: calc(-0.5 * ${theme.lineHeight}em);
         }
      
         &:last-of-type {
-            .k-timeline-line {
+            .${k}-timeline-line {
                 display: none;
             }
         }
@@ -118,10 +118,10 @@ export function makeItemStyles() {
 
             return css`
                 &.k-${type} {
-                    .k-timeline-indicator {
+                    .${k}-timeline-indicator {
                         color: ${typeStyles.color};
                     }
-                    .k-timeline-circle {
+                    .${k}-timeline-circle {
                         background: ${typeStyles.color};
                     }
                 }
@@ -132,7 +132,7 @@ export function makeItemStyles() {
         ${sizes.map(size => {
             const styles = timeline[size];
             const sizeClassName = css`
-                .k-timeline-circle {
+                .${k}-timeline-circle {
                     width: ${styles.width};
                     height: ${styles.width};
                     // when we use translateX(-50%) the line can not position at center of dot

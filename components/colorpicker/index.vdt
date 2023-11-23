@@ -11,10 +11,10 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-colorpicker': true,
+    [`${k}-colorpicker`]: true,
     [className]: className,
     [`k-${size}`]: size !== 'default',
-    'k-disabled': disabled,
+    [`${k}-disabled`]: disabled,
     [makeStyles()]: true,
 };
 

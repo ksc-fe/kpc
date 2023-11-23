@@ -4,7 +4,7 @@ import {makeItemStyles} from './styles';
 const {className, children, type, size} = this.get();
 
 const classNameObj = {
-    'k-timeline-item': true,
+    [`${k}-timeline-item`]: true,
     [className]: className,
     [`k-${type}`]: true,
     [`k-${size}`]: size !== 'default',

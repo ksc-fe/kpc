@@ -1,7 +1,7 @@
 import {css} from '@emotion/css';
 import '../../styles/global';
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         display: inline-block;
         overflow: auto;

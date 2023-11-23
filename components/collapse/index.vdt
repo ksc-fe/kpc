@@ -7,11 +7,11 @@ import {directClone} from 'intact';
 const {children, className, arrow, noBorder} = this.get();
 
 const classNameObj = {
-    'k-collapse': true,
+    [`${k}-collapse`]: true,
     [makeStyles()]: true,
     [className]: className,
-    'k-left': arrow === 'left',
-    'k-border': !noBorder,
+    [`${k}-left`]: arrow === 'left',
+    [`${k}-border`]: !noBorder,
 };
 
 const _children = mapChildren(children, (vNode, index) => {

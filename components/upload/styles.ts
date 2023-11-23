@@ -77,83 +77,83 @@ setDefault(() => {
     upload = deepDefaults(theme, {upload: defaults}).upload;
 });
 
-export function makeStyles() {
+export function makeStyles(k: string) {
     return css`
         font-size: ${upload.fontSize};
         position: relative;
 
         // keep vertical align middle
-        .k-icon-upload {
+        .${k}-icon-upload {
             position: relative;
             top: -1px;
         }
-        .k-upload-handle {
+        .${k}-upload-handle {
             display: inline-block;
             vertical-align: middle;
             color: ${upload.color};
         }
-        .k-upload-tip {
+        .${k}-upload-tip {
             margin-top: ${upload.tip.gap};
             color: ${upload.color};
         }
 
         // filelist
-        .k-upload-files {
+        .${k}-upload-files {
             margin-top: ${upload.filesGap};
         }
-        .k-upload-file {
+        .${k}-upload-file {
             margin: ${upload.file.margin};
             padding-right: ${upload.file.delete.width};
             position: relative;
             &:hover {
-                .k-upload-close {
+                .${k}-upload-close {
                     display: inline-flex;
                     position: absolute;
                     right: ${upload.file.delete.right};
                     top: ${upload.file.delete.top};
                 } 
-                .k-upload-file-main { 
+                .${k}-upload-file-main { 
                     background: ${upload.file.bgColor};
                 }
             }
         }
-        .k-upload-file-main {
+        .${k}-upload-file-main {
             padding: ${upload.file.padding};
             border-radius: ${upload.file.borderRadius};
         }
-        .k-upload-name {
+        .${k}-upload-name {
             display: flex;
             align-items: center;
             height: ${upload.file.height};
         }
-        .k-upload-file-icon {
+        .${k}-upload-file-icon {
             margin-right: ${upload.file.fileIconGap};
         }
-        .k-upload-file-name {
+        .${k}-upload-file-name {
             flex: 1;
         }
-        .k-upload-status-icon {
+        .${k}-upload-status-icon {
             color: ${upload.file.status.color};
             margin-right: ${upload.file.status.offsetRight};
         }
-        .k-upload-close {
+        .${k}-upload-close {
             display: none;
         }
-        .k-upload-file.k-error {
+        .${k}-upload-file.${k}-error {
             color: ${upload.file.errorColor};
-            .k-upload-status-icon {
+            .${k}-upload-status-icon {
                 color: ${upload.file.status.errorColor};
             }
         }
-        .k-upload-progress {
-            .k-progress-text {
+        .${k}-upload-progress {
+            .${k}-progress-text {
                 width: auto !important;
             }
         }
 
         // drag
-        &.k-drag {
-            .k-upload-handle {
+        &.${k}-drag {
+            .${k}-upload-handle {
                 display: block;
                 border: ${upload.drag.border};
                 border-radius: ${upload.drag.borderRadius};
@@ -165,53 +165,53 @@ export function makeStyles() {
                     border-color: ${upload.drag.hoverBorderColor};
                 }
             }
-            .k-upload-area {
+            .${k}-upload-area {
                 padding: ${upload.drag.padding};
-                .k-icon {
+                .${k}-icon {
                     display: inline-block;
                     font-size: ${upload.drag.icon.fontSize};
                     margin-bottom: ${upload.drag.icon.gap};
                 }
             }
-            &.k-dragover {
-                .k-upload-handle {
+            &.${k}-dragover {
+                .${k}-upload-handle {
                     border-color: ${upload.drag.overBorderColor};
                 }
             }
         }
 
         // gallery
-        .k-upload-pictures {
+        .${k}-upload-pictures {
             display: inline-block;
             vertical-align: middle;
         }
-        .k-upload-picture {
+        .${k}-upload-picture {
             padding: ${upload.gallery.padding};
             position: relative;
             vertical-align: middle;
-            &.k-error {
+            &.${k}-error {
                 border-color: ${upload.gallery.errorBorderColor};
             }
-            .k-upload-close {
+            .${k}-upload-close {
                 display: inline-flex;
             }
             &:hover {
-                .k-upload-icons {
+                .${k}-upload-icons {
                     opacity: 1; 
                 }
             }
-            .k-upload-img {
+            .${k}-upload-img {
                 display: inline-block;
                 width: 100%;
                 height: 100%;
             }
-            .k-upload-icons {
+            .${k}-upload-icons {
                 opacity: 0;
                 transition: opacity ${upload.transition};
             }
         }
 
-        .k-upload-picture-card {
+        .${k}-upload-picture-card {
             display: inline-flex;
             width: ${upload.gallery.width};
             height: ${upload.gallery.height};
@@ -223,14 +223,14 @@ export function makeStyles() {
             justify-content: center;
             flex-direction: column;
         }
-        .k-upload-add {
+        .${k}-upload-add {
             border: ${upload.gallery.add.border};
             cursor: pointer;
             &:hover {
                 border-color: ${upload.gallery.add.hoverBorderColor};
             }
         }
-        .k-upload-overlap {
+        .${k}-upload-overlap {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -242,10 +242,10 @@ export function makeStyles() {
             justify-content: center;
             gap: ${upload.overlap.iconGap};
             color: ${upload.overlap.color};
-            .k-icon:not(:hover) {
+            .${k}-icon:not(:hover) {
                 color: inherit;
             }
-            .k-upload-progress {
+            .${k}-upload-progress {
                 position: absolute;
                 width: 100%;
                 top: 50%;
@@ -256,7 +256,7 @@ export function makeStyles() {
     `;
 }
 
-export function makeUploadDialogStyles() {
+export function makeUploadDialogStyles(k: string) {
     return css`
         img {
             width: 100%;

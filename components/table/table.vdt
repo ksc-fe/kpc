@@ -33,13 +33,13 @@ const {scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColu
 const {scrollRef} = this.scroll;
 const {stickHeader, excludeStickHeader, elementRef, headRef} = this.stickyHeader;
 const classNameObj = {
-    'k-table': true,
-    'k-fix-header': fixHeader,
+    [`${k}-table`]: true,
+    [`${k}-fix-header`]: fixHeader,
     [`k-scroll-${scrollPosition.value}`]: scrollPosition.value,
-    'k-fix-columns': hasFixed.value,
+    [`${k}-fix-columns`]: hasFixed.value,
     [`k-${type}`]: type && type !== 'default',
-    'k-stripe': stripe,
-    'k-with-expand': $blocks.expand,
+    [`${k}-stripe`]: stripe,
+    [`${k}-with-expand`]: $blocks.expand,
     [className]: className,
     [makeStyles()]: true,
 };
@@ -181,7 +181,7 @@ const tbody = (
                     if ($blocks.expand) {
                         const expanded = isExpanded(key);
                         rows.push(
-                            <tr class={{"k-expand": true, 'k-expanded': expanded}}
+                            <tr class={{"k-expand": true, [`${k}-expanded`]: expanded}}
                                 key={`${key}.$expand`}
                             >
                                 <td colspan={colCount}>

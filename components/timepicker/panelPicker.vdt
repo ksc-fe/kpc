@@ -18,8 +18,8 @@ const {
 } = this.value;
 const lastValue = last(value);
 const classNameObj = {
-    'k-time-content': true,
-    'k-range': range,
+    [`${k}-time-content`]: true,
+    [`${k}-range`]: range,
     [className]: className,
     [makePanelStyles()]: true,
 };

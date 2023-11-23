@@ -9,9 +9,9 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-alert-dialog': true,
+    [`${k}-alert-dialog`]: true,
     [`k-${type}`]: true,
-    'k-with-title': title,
+    [`${k}-with-title`]: title,
     [makeAlertStyles()]: true,
 };
 

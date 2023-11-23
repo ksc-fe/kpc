@@ -2,7 +2,7 @@ import {getRestProps} from '../utils';
 
 const {to, children, className} = this.get();
 const classNameObj = {
-    'k-breadcrumb-item': true,
+    [`${k}-breadcrumb-item`]: true,
     [className]: className,
 };
 

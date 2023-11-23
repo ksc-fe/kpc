@@ -11,17 +11,17 @@ const {
 const isActive = this.collapse.isActive(value);
 
 const classNameObj = {
-    'k-collapse-item': true,
+    [`${k}-collapse-item`]: true,
     [makeItemStyles()]: true,
     [className]: className,
-    'k-active': isActive,
-    'k-disabled': disabled
+    [`${k}-active`]: isActive,
+    [`${k}-disabled`]: disabled
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
     <div class={kls('title')} ev-click={this.toggle}>
         <b:title>{title}</b:title>
-        <Icon class={{[kls('arrow')]: true, 'k-icon-right': true}} hoverable={!disabled}></Icon>
+        <Icon class={{[kls('arrow')]: true, [`${k}-icon-right`]: true}} hoverable={!disabled}></Icon>
     </div>
     <Transition
         show={isActive}

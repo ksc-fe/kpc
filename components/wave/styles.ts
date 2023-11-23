@@ -12,7 +12,7 @@ setDefault(() => {
     wave = deepDefaults(theme, {wave: defaults}).wave;
 });
 
-export function makeStyles(color: string, inset: string) {
+export function makeStyles(color: string, inset: string, k: string) {
     const waveEffect = keyframes`
         100% {
             top: calc(${inset} + ${wave.inset});
@@ -41,8 +41,8 @@ export function makeStyles(color: string, inset: string) {
             border: 2px solid ${color};
             pointer-events: none;
         }
-        &.k-circle,
-        &.k-radio-wrapper {
+        &.${k}-circle,
+        &.${k}-radio-wrapper {
             &:after {
                 border-radius: calc(${theme.large.height} / 2 + 4px);
             }

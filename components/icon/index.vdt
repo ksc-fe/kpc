@@ -7,10 +7,10 @@ const {
 } = this.get();
 
 const classNameObj = {
-    'k-icon': true,
-    'k-rotate': rotate,
-    'k-hoverable': !disabled && hoverable,
-    'k-disabled': disabled,
+    [`${k}-icon`]: true,
+    [`${k}-rotate`]: rotate,
+    [`${k}-hoverable`]: !disabled && hoverable,
+    [`${k}-disabled`]: disabled,
     [className]: className,
 };
 const _style = {};
