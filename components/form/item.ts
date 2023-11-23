@@ -8,6 +8,7 @@ import {isFunction, isString, EMPTY_OBJ} from 'intact-shared';
 import {useError} from './useError';
 import {useValidate} from './useValidate';
 import {useDirty} from './useDirty';
+import { useConfigContext } from '../config';
 
 export interface FormItemProps {
     value?: any
@@ -66,6 +67,7 @@ export class FormItem extends Component<FormItemProps, FormItemEvents, FormItemB
         this.error.message,
         this.dirty.isDirty,
     );
+    private config = useConfigContext();
 
     init() {
         useRecordItem(RECORD_KEY);

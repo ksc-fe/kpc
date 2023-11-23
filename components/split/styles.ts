@@ -5,7 +5,7 @@ import {deepDefaults}  from '../../styles/utils';
 
 export type Mode = 'horizontal' | 'vertical';
 
-export const kls = (className: string): string => .${k}-split-${className}`;
+export const kls = (className: string, k: string): string => `${k}-split-${className}`;
 
 const defaults = {
     splitLineSize: '6px',
@@ -44,60 +44,60 @@ export function makeStyles(k: string) {
         display: flex;
         height: 100%;
 
-        & > .${kls('first')},
-        & > .${kls('last')} {
+        & > .${kls('first', k)},
+        & > .${kls('last', k)} {
             overflow: auto;
             position: relative;
         }
 
-        & > .${kls('first')} {
+        & > .${kls('first', k)} {
             flex: 0 0 auto;
         }
 
-        & > .${kls('last')} {
+        & > .${kls('last', k)} {
             flex: auto;
         }
 
         &.${k}-first-auto {
-            & > .${kls('first')} {
+            & > .${kls('first', k)} {
                 flex: auto;
             }
-            & > .${kls('last')} {
+            & > .${kls('last', k)} {
                 flex: 0 0 auto;
             }
         }
 
         &:not(.${k}-resizing) {
-            & > .${kls('first')},
-            & > .${kls('last')} {
+            & > .${kls('first', k)},
+            & > .${kls('last', k)} {
                 transition: all ${split.transition};
             }
         }
 
-        & > .${kls('line-wrapper')} {
+        & > .${kls('line-wrapper', k)} {
             flex: 0 0 auto;
             text-align: center;
             overflow: hidden;
-            .${kls('line')} {
+            .${kls('line', k)} {
                 height: 100%;
                 background: ${split.bgColor};
                 position: relative;
             }
-            .${kls('drag-lines')} {
+            .${kls('drag-lines', k)} {
                 background: ${split.boderColor};
                 position: absolute;
             }
         }
 
         &.${k}-horizontal {
-            & > .${kls('line-wrapper')} {
+            & > .${kls('line-wrapper', k)} {
                 cursor: col-resize;
                 width: ${split.splitLineSize};
-                .${kls('line')} {
+                .${kls('line', k)} {
                     border-left: ${split.baseBorder};
                     border-right: ${split.baseBorder};
                 }
-                .${kls('drag-lines')} {
+                .${kls('drag-lines', k)} {
                     height: ${split.dragLinesSize};
                     width: 100%;
                     top: 50%;
@@ -109,14 +109,14 @@ export function makeStyles(k: string) {
 
         &.${k}-vertical {
             flex-direction: column;
-            & > .${kls('line-wrapper')} {
+            & > .${kls('line-wrapper', k)} {
                 cursor: row-resize;
                 height: ${split.splitLineSize};
-                .${kls('line')} {
+                .${kls('line', k)} {
                     border-top: ${split.baseBorder};
                     border-bottom: ${split.baseBorder};
                 }
-                .${kls('drag-lines')} {
+                .${kls('drag-lines', k)} {
                     width: ${split.dragLinesSize};
                     height: 100%;
                     left: 50%;

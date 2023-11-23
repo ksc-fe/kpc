@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {useActiveValue} from './useActiveValue';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface RateProps {
     value?: number,
@@ -43,4 +44,5 @@ export class Rate extends Component<RateProps, RateEvents, RateBlocks> {
     static events = events;
 
     private activeValue = useActiveValue();
+    private config = useConfigContext();
 }

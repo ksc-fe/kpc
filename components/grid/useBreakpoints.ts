@@ -24,13 +24,13 @@ export function useBreakpoints() {
         });
     });
 
-    function getBreakpointsClassName() {
+    function getBreakpointsClassName(k: string) {
         const classNameObj: Record<string, true> = {};
         breakpoints.forEach(breakpoint => {
             const value = breakpointsValue[breakpoint];
             if (isNullOrUndefined(value)) return;
 
-            const prefix = breakpoint === 'xs' ? 'k-' : `k-${breakpoint}-`;
+            const prefix = breakpoint === 'xs' ? `${k}-` : `${k}-${breakpoint}-`;
             if (!isNullOrUndefined(value.span)) {
                 classNameObj[`${prefix}${value.span}`]  = true;
             }

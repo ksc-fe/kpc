@@ -17,11 +17,13 @@ const {
     getTimeValue,
 } = this.value;
 const lastValue = last(value);
+const { k } = this.config;
+
 const classNameObj = {
     [`${k}-time-content`]: true,
     [`${k}-range`]: range,
     [className]: className,
-    [makePanelStyles()]: true,
+    [makePanelStyles(k)]: true,
 };
 const options = this.step.options.value;
 const {isDisabledTime, isDisabledTimeByStep, isDisabledConfirm} = this.disabled;
@@ -30,8 +32,8 @@ const {getValueFormat, getValueString} = this.formats;
 const generatePanel = flag => {
     const timeValue = getTimeValue(flag); 
     return (
-        <div class="k-datepicker-calendar-wrapper">
-            <div v-if={range} class="k-timepicker-title">
+        <div class={`${k}-datepicker-calendar-wrapper`}>
+            <div v-if={range} class={`${k}-timepicker-title`}>
                 {flag === PanelFlags.Start ? _$('开始时间') : _$('结束时间')}
             </div>
             <DatepickerTime
@@ -42,7 +44,7 @@ const generatePanel = flag => {
                 flag={flag}
                 isDisabledTime={isDisabledTime}
             />
-            <div class="k-datepicker-time" v-else>
+            <div class={`${k}-datepicker-time`} v-else>
                 <ScrollSelect
                     value={timeValue ? getValueString(timeValue) : timeValue}
                     ev-$change:value={v => onChangeTimeByStep(v, flag)}
@@ -54,15 +56,15 @@ const generatePanel = flag => {
     );
 };
 
-<t:super class="k-timepicker">
+<t:super class={`${k}-timepicker`}>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
-            <div class="k-datepicker-wrapper">
-                <div class="k-datepicker-calendars">
+            <div class={`${k}-datepicker-wrapper`}>
+                <div class={`${k}-datepicker-calendars`}>
                     {generatePanel(PanelFlags.Start)}
                     {range ? generatePanel(PanelFlags.End) : null} 
                 </div>
-                <div class="k-datepicker-footer">
+                <div class={`${k}-datepicker-footer`}>
                     <Button type="primary" size="small"
                         disabled={isDisabledConfirm()}
                         ev-click={onConfirm}
@@ -72,6 +74,6 @@ const generatePanel = flag => {
         </DropdownMenu>
     </b:base-menu>
     <b:suffix>
-        <Icon class="k-icon-time" />
+        <Icon class={`${k}-icon-time`} />
     </b:suffix>
 </t:super>

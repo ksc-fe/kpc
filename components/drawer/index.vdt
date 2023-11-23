@@ -1,15 +1,16 @@
 import {makeStyles} from './styles';
 
 const {placement, overlay} = this.get();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-drawer`]: true,
     [`k-${placement}`]: true,
-    [makeStyles(overlay)]: true
+    [makeStyles(overlay, k)]: true
 };
 
 <t:super class={classNameObj}>
     <b:content>
-        <div class=[`${k}-drawer-content`]>
+        <div class={`${k}-drawer-content`}>
             {$super()}
         </div>
     </b:content>

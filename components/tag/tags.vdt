@@ -7,12 +7,13 @@ import { Tags } from './tags';
 import { Virtual } from '../virtual';
 
 const { className, nowrap, size, border, draggable } = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-tags`]: true,
     [`${k}-nowrap`]: nowrap,
     [`${k}-draggable`]: draggable,
-    [makeTagsStyles()]: true,
+    [makeTagsStyles(k)]: true,
     [className]: className,
 }
 
@@ -33,10 +34,10 @@ const vNodes = children.value;
         key="$tooltip"
         hoverable
         theme="light"
-        class="k-tags-tooltip"
+        class={`${k}-tags-tooltip`}
     >
         <Tag key="$more"
-            class={{"k-tags-more": true, 'c-hidden': !hiddenChildren.value.length}}
+            class={{[`${k}-tags-more`]: true, 'c-hidden': !hiddenChildren.value.length}}
             size={size}
             border={border}
         >

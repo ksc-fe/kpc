@@ -96,7 +96,7 @@ export function makeMessageStyles(k: string) {
         ${(['info', 'error', 'success', 'warning'] as const).map(type => {
             const color = theme.color[type === 'error' ? 'danger' : type];
             return css`
-                &.k-${type} {
+                &.${k}-${type} {
                     .${k}-message-container {
                         background: ${palette(color, -4)};
                     }

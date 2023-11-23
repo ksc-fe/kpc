@@ -2,6 +2,7 @@ import {Component, TypeDefs, VNode} from 'intact';
 import {bind} from '../utils';
 import template from './item.vdt';
 import {useRouter, navigate} from '../../hooks/useRouter';
+import { useConfigContext } from '../config';
 
 export interface BreadcrumbItemProps {
     to?: string | object,
@@ -16,6 +17,7 @@ export class BreadcrumbItem extends Component<BreadcrumbItemProps> {
     static typeDefs = typeDefs;
 
     private router = useRouter();
+    private config = useConfigContext();
 
     @bind
     private onClick(): void  {

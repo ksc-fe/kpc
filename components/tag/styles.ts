@@ -110,7 +110,7 @@ export function makeStyles(k: string) {
         ${types.map(t => {
             const styles = tag[t];
             return css`
-                &.k-${t} {
+                &.${k}-${t} {
                     color: ${styles.color};
                     border-color: ${styles.color};
                     background: ${styles.bgColor};
@@ -122,7 +122,7 @@ export function makeStyles(k: string) {
             if (s === 'default') return;
             const styles = tag[s];
             return css `
-                &.k-${s} {
+                &.${k}-${s} {
                     padding: ${styles.padding};
                     height: ${styles.height};
                     font-size: ${styles.fontSize};

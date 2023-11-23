@@ -32,16 +32,17 @@ const {columns, cols, maxRows, maxCols} = this.columns.getData();
 const {scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
 const {scrollRef} = this.scroll;
 const {stickHeader, excludeStickHeader, elementRef, headRef} = this.stickyHeader;
+const { k } = this.config;
 const classNameObj = {
     [`${k}-table`]: true,
     [`${k}-fix-header`]: fixHeader,
-    [`k-scroll-${scrollPosition.value}`]: scrollPosition.value,
+    [`${k}-scroll-${scrollPosition.value}`]: scrollPosition.value,
     [`${k}-fix-columns`]: hasFixed.value,
-    [`k-${type}`]: type && type !== 'default',
+    [`${k}-${type}`]: type && type !== 'default',
     [`${k}-stripe`]: stripe,
     [`${k}-with-expand`]: $blocks.expand,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 const style = isStringOrNumber(fixHeader) ? 
     {maxHeight: `${fixHeader}px`} :
@@ -119,7 +120,7 @@ const tbody = (
     <tbody>
         {!hasData ? 
             <tr key="table-empty">
-                <td colspan={colCount} class="k-table-empty">
+                <td colspan={colCount} class={`${k}-table-empty`}>
                     <b:empty>{_$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~')}</b:empty>
                 </td>
             </tr> :
@@ -181,12 +182,12 @@ const tbody = (
                     if ($blocks.expand) {
                         const expanded = isExpanded(key);
                         rows.push(
-                            <tr class={{"k-expand": true, [`${k}-expanded`]: expanded}}
+                            <tr class={{[`${k}-expand`]: true, [`${k}-expanded`]: expanded}}
                                 key={`${key}.$expand`}
                             >
                                 <td colspan={colCount}>
                                     <Transition {...expandAnimationCallbacks}>
-                                        <div v-if={expanded} class="k-table-expand">
+                                        <div v-if={expanded} class={`${k}-table-expand`}>
                                             <b:expand params={[value, index]} />
                                         </div>
                                     </Transition>
@@ -223,11 +224,11 @@ const {
 } = this.pagination;
 
 <div class={classNameObj} ref={elementRef}>
-    <div class="k-table-wrapper" style={style} ref={scrollRef}>
+    <div class={`${k}-table-wrapper`} style={style} ref={scrollRef}>
         <Affix v-if={!isNull(stickHeader.value)}
             top={stickHeader.value}
             exclude={excludeStickHeader}
-            class="k-table-affix-header"
+            class={`${k}-table-affix-header`}
         >
             <table ref={headRef} style={{width: tableWidthPx}}>
                 <template>{colgroup}</template>
@@ -250,15 +251,15 @@ const {
         ev-change={onPageChange}
     />
     <Transition name="k-fade">
-        <Spin v-if={loading} overlay size="small" class="k-table-spin" />
+        <Spin v-if={loading} overlay size="small" class={`${k}-table-spin`} />
     </Transition>
     <Affix v-if={!isNull(stickScrollbar.value)}
         bottom={stickScrollbar.value}
         shouldFix={shouldStickScrollbar}
         style={stickScrollbarStyle.value}
     >
-        <div class="k-table-scrollbar" ref={scrollbarRef} ev-scroll={onScrollbarScroll}>
-            <div class="k-table-scrollbar-inner" style={{width: tableActualWidth.value}}></div>
+        <div class={`${k}-table-scrollbar`} ref={scrollbarRef} ev-scroll={onScrollbarScroll}>
+            <div class={`${k}-table-scrollbar-inner`} style={{width: tableActualWidth.value}}></div>
         </div>
     </Affix>
 </div>

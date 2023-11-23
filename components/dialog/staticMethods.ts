@@ -1,4 +1,3 @@
-import {VNode, VNodeComponentClass} from 'intact';
 import type {Dialog, DialogProps} from './';
 import template from './alert.vdt';
 

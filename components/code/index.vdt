@@ -3,11 +3,12 @@ import {Spin} from '../spin';
 import {makeStyles} from './styles';
 
 let {width, height, className, style} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-code`]: true,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 if (width || height) {

@@ -2,6 +2,7 @@ import {BaseDialog as _BaseDialog, BaseDialogProps, BaseDialogEvents, BaseDialog
 import {createVNode, VNodeComponentClass, callAll, Props, ComponentClass} from 'intact';
 import {addStaticMethods, StaticMethod} from './staticMethods';
 import {usePosition} from './usePosition';
+import { useConfigContext } from '../config';
 
 export interface DialogProps extends BaseDialogProps { }
 export interface DialogEvents extends BaseDialogEvents { }
@@ -11,7 +12,7 @@ export class BaseDialog<
     P extends DialogProps = DialogProps,
     E extends DialogEvents = DialogEvents,
     B extends DialogBlocks = DialogBlocks,
-> extends _BaseDialog<P, E> {
+> extends _BaseDialog<P, E, B> {
     public useAsComponent = false;
 
     constructor(

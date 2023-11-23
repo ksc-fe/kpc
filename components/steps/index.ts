@@ -1,6 +1,8 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {bind} from '../utils';
+import { useConfigContext } from '../config';
+
 export * from './step';
 
 export interface StepsProps {
@@ -29,6 +31,8 @@ export class Steps extends Component<StepsProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 
     @bind
     private changeIndex(index: number) {

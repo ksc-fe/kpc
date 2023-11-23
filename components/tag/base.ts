@@ -3,6 +3,7 @@ import {bind} from '../utils';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 import type {Events, Colors} from '../types';
+import { useConfigContext } from '../config';
 
 export interface TagProps {
     type?: Colors 
@@ -47,6 +48,8 @@ export class Tag<
     static typeDefs = typeDefs;
     static defaults = defaults;
     static events = events;
+
+    private config = useConfigContext();
 
     @bind
     private onClose(e: MouseEvent): void {

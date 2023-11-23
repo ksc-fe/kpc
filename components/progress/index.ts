@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {useStatus} from './useStatus';
 import {useColor} from './useColor';
+import { useConfigContext } from '../config';
 
 type Sizes = 'default' | 'small' | 'mini';
 type Type = 'bar' | 'circle';
@@ -50,6 +51,7 @@ export class Progress extends Component<ProgressProps> {
 
     public status = useStatus();
     public color = useColor();
+    private config = useConfigContext();
 
     init() {
         this.on('$receive:percent', percent => {

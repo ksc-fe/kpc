@@ -2,6 +2,7 @@ import { Component, TypeDefs } from 'intact';
 import template from './index.vdt';
 import { useCopy } from './useCopy';
 import { Events } from '../types';
+import { useConfigContext } from '../config';
 
 export interface CopyProps {
     text: string;
@@ -33,5 +34,6 @@ export class Copy extends Component<CopyProps, CopyEvents> {
     static defaults = defaults;
     static events = events;
 
-    private copy = useCopy()
+    private copy = useCopy();
+    private config = useConfigContext();
 }

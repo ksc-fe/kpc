@@ -2,15 +2,16 @@ import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 
 const {className, children} = this.get();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-diagram`]: true,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <div class="k-diagram-scheme">
+    <div class={`${k}-diagram-scheme`}>
         {children}
     </div>
-    <div class="k-diagram-canvas" ref={this.canvasRef}></div>
+    <div class={`${k}-diagram-canvas`} ref={this.canvasRef}></div>
 </div>

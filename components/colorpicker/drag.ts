@@ -1,6 +1,7 @@
 import {Component} from 'intact';
 import template from './drag.vdt';
 import {useDrag} from './useDrag';
+import { useConfigContext } from '../config';
 
 interface ColorpickerDragProps {
     value: number
@@ -17,4 +18,5 @@ export class ColorpickerDrag extends Component<ColorpickerDragProps, Colorpicker
     static template = template;
 
     private drag = useDrag();
+    private config = useConfigContext();
 }

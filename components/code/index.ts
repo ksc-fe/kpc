@@ -3,6 +3,7 @@ import template from './index.vdt';
 import type {editor, default as monaco} from 'monaco-editor';
 import {useEditor} from './useEditor';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface CodeProps {
     value?: string
@@ -46,6 +47,7 @@ export class Code extends Component<CodeProps, CodeEvents> {
     static events = events;
 
     private editor = useEditor();
+    private config = useConfigContext();
 
     public getEditor() {
         return this.editor.getEditor();

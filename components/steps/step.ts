@@ -1,5 +1,6 @@
 import {Component, TypeDefs} from 'intact';
 import template from './step.vdt';
+import { useConfigContext } from '../config';
 
 export interface StepProps {
     title?: string
@@ -15,4 +16,6 @@ const typeDefs: Required<TypeDefs<StepProps>> = {
 export class Step extends Component<StepProps> {
     static template = template;
     static typeDefs = typeDefs;
+
+    private config = useConfigContext();
 }

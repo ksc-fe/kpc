@@ -149,7 +149,7 @@ export function makeFormStyles(k: string) {
         // size
         ${(['small', 'mini'] as const).map(size => {
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     .${k}-form-item:not(:last-of-type) {
                         margin-bottom: ${form.item[`${size}Gap` as const]}
                     }

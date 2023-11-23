@@ -3,12 +3,13 @@ import {makeMenuStyles} from './styles';
 
 const {value, trigger, container} = this.dropdown.get();
 const {children, className} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-dropdown-menu`]: true,
     [className]: className,
     [$props.className]: $props.className,
-    [makeMenuStyles()]: true,
+    [makeMenuStyles(k)]: true,
 };
 
 const transition = $props.transition || {css: false, ...this.transition};

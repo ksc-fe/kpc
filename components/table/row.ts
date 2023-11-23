@@ -13,6 +13,7 @@ import type {TableProps, TableRowKey} from './table';
 import {bind} from '../utils';
 import type {TableGrid} from './useMerge';
 import { isEqualObject } from '../utils';
+import { useConfigContext } from '../config';
 
 export interface TableRowProps {
     key: TableRowKey
@@ -49,6 +50,8 @@ type DragCallback = (e: MouseEvent, tableRow: TableRow) => void
 
 export class TableRow extends Component<TableRowProps> {
     static template = template;
+
+    private config = useConfigContext();
 
     $update(
         lastVNode: VNodeComponentClass<this>,

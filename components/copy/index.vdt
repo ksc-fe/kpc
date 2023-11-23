@@ -7,17 +7,18 @@ import { _$ } from '../../i18n';
 
 const { children, className } = this.get();
 const { startCopy, success } = this.copy;
+const { k } = this.config;
 
 const classNameObj = {
-    [`k-copy`]: true,
-    [makeStyles()]: true,
+    [`${k}-copy`]: true,
+    [makeStyles(k)]: true,
     [className]: className,
 }
 
 <Transition name="k-fade">
     <Virtual ev-click={startCopy} class={classNameObj} {...getRestProps(this)}>
         <template v-if={children}>{children}</template>
-        <Icon key="1" v-else-if={!success.value} class="k-icon-clone" hoverable title={_$('复制')} />
-        <Icon key="2" v-else class="k-icon-check" hoverable color="success" />
+        <Icon key="1" v-else-if={!success.value} class={`${k}-icon-clone`} hoverable title={_$('复制')} />
+        <Icon key="2" v-else class={`${k}-icon-check`} hoverable color="success" />
     </Virtual>
 </Transition>

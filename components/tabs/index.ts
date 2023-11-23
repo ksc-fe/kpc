@@ -6,6 +6,8 @@ import {TabProps} from './tab';
 import {useActiveBar} from './useActiveBar';
 import {useScroll} from './useScroll';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
+
 export * from './tab';
 
 export interface TabsProps<T = any> {
@@ -47,6 +49,7 @@ export class Tabs<T = any> extends Component<TabsProps<T>, TabsEvents<T>> {
 
     private activeBar = useActiveBar();
     private scroll = useScroll();
+    private config = useConfigContext();
 
     init() {
         provide(TABS, this);

@@ -22,6 +22,7 @@ import {useScroll} from './useScroll';
 import type {Events} from '../types';
 import type {PaginationProps, PaginationChangeData} from '../pagination';
 import { usePagination } from './usePagination';
+import { useConfigContext } from '../config';
 
 export interface TableProps<
     T = any,
@@ -215,6 +216,7 @@ export class Table<
         this.width.tableRef,
         this.fixedColumns.setScrollPosition,
     );
+    private config = useConfigContext();
 
     public checkAll() {
         this.checked.toggleCheckedAll(true);

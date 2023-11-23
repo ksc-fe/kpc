@@ -3,6 +3,7 @@ import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 import {Container} from '../portal';
 import {Dropdown, DropdownProps} from '../dropdown';
+import { useConfigContext } from '../config';
 
 export interface ColorpickerProps {
     value: string
@@ -43,4 +44,6 @@ export class Colorpicker extends Component<ColorpickerProps, ColorpickerEvents> 
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 }

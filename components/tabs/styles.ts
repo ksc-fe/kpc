@@ -85,19 +85,19 @@ setDefault(() => {
 
 export function makeStyles(k: string) {
     return css`
-        ${makeCommonStyles(k: string)};
-        ${makeScrollStyles(k: string)};
+        ${makeCommonStyles(k)};
+        ${makeScrollStyles(k)};
 
         &.${k}-type-default {
-            ${makeDefaultStyles(k: string)}
+            ${makeDefaultStyles(k)}
         }
 
         &.${k}-type-card {
-            ${makeCardStyles(k: string)};
+            ${makeCardStyles(k)};
         }
 
         &.${k}-type-flat-card {
-            ${makeFlatCardStyles(k: string)};
+            ${makeFlatCardStyles(k)};
         }
     `;
 }
@@ -274,7 +274,7 @@ function makeCardCommonStyles(k: string) {
 function makeCardStyles(k: string) {
     const borderRadius = tabs.card.borderRadius;
     return css`
-        ${makeCardCommonStyles(k: string)};
+        ${makeCardCommonStyles(k)};
         .${k}-tabs-active-bar {
             border-radius: ${borderRadius} ${borderRadius} 0px 0px;
             box-shadow: ${theme.boxShadow};
@@ -294,7 +294,7 @@ function makeCardStyles(k: string) {
 function makeFlatCardStyles(k: string) {
     const padding = tabs.flatCard.padding;
     return css`
-        ${makeCardCommonStyles(k: string)};
+        ${makeCardCommonStyles(k)};
         padding: 0 ${padding};
 
         .${k}-tabs-active-bar {

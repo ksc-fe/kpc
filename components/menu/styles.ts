@@ -130,7 +130,7 @@ export function makeMenuStyles(k: string) {
         ${(['light', 'white'] as const).map(theme => {
             const styles = menu[theme];
             return css`
-                &.k-${theme} {
+                &.${k}-${theme} {
                     background: ${styles.bgColor};
                     .${k}-menu-header {
                         color: ${styles.item.color};
@@ -182,7 +182,7 @@ export function makeMenuStyles(k: string) {
             const styles = menu[size];
 
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     width: ${styles.width};
                     font-size: ${styles.fontSize};
                     .${k}-menu {

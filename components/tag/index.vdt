@@ -7,27 +7,28 @@ const {
     className, children, type, border,
     disabled, closable, closed, size
 } = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-tag`]: !$props.className,
     [className]: className,
-    [`k-${type}`]: type !== 'default',
-    [`k-${size}`]: size !== 'default',
-    [`k-${border}`]: border,
+    [`${k}-${type}`]: type !== 'default',
+    [`${k}-${size}`]: size !== 'default',
+    [`${k}-${border}`]: border,
     [`${k}-disabled`]: disabled,
     [`${k}-closable`]: closable,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
     [$props.className]: $props.className,
 };
 
-<Transition name={$props.name || [`${k}-scale`]}>
+<Transition name={$props.name || `${k}-scale`}>
     <div v-if={!closed}
         class={classNameObj}
         {...getRestProps(this)}
     >
         <b:body>{children}</b:body>
         <b:_close>
-            <Icon class="k-tag-close ion-ios-close-empty"
+            <Icon class={`${k}-tag-close ion-ios-close-empty`}
                 color={type}
                 hoverable={!disabled}
                 v-if={closable}

@@ -6,6 +6,7 @@ import {Dropdown, DROPDOWN} from './dropdown';
 import {DropdownMenu, DROPDOWN_MENU} from './menu';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import { Dropdown as ExportDropdown, DropdownMenu as ExportDropdownMenu } from '.';
+import { useConfigContext } from '../config';
 
 export interface DropdownItemProps {
     disabled?: boolean
@@ -42,6 +43,7 @@ export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvent
     private dropdown: Dropdown | null = null;
     private keyboard: ReturnType<typeof useKeyboardForDropdownItem> | null = null;
     private dropdownMenu: DropdownMenu | null = null;
+    private config = useConfigContext();
 
     init() {
         this.dropdown = inject<Dropdown>(DROPDOWN)!;

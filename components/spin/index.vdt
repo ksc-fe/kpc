@@ -3,27 +3,28 @@ import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 
 const {size, center, className, overlay} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-spin`]: true,
-    [`k-${size}`]: size !== 'default',
+    [`${k}-${size}`]: size !== 'default',
     [`${k}-center`]: !overlay && center,
     [`${k}-overlay`]: overlay,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 const canvas = (
-    <div class="k-spin-canvas">
+    <div class={`${k}-spin-canvas`}>
         <b:canvas>
             <svg viewBox="0 0 120 120">
-                <circle cx="60" cy="60" class="k-spin-circle" r="57"></circle>
+                <circle cx="60" cy="60" class={`${k}-spin-circle`} r="57"></circle>
             </svg>
         </b:canvas>
     </div>
 );
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <div class="k-spin-wrapper" v-if={overlay}>{canvas}</div>
+    <div class={`${k}-spin-wrapper`} v-if={overlay}>{canvas}</div>
     <template v-else>{canvas}</template>
 </div>

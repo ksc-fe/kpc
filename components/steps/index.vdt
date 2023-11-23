@@ -8,13 +8,15 @@ const {
     status, type, clickable, vertical,
 } = this.get();
 
+const { k } = this.config;
+
 const classNameObj = {
     [`${k}-steps`]: true,
     [className]: className,
-    [`k-${type}`]: true,
+    [`${k}-${type}`]: true,
     [`${k}-clickable`]: clickable,
     [`${k}-vertical`]: vertical,
-    [makeStepsStyles()]: true,
+    [makeStepsStyles(k)]: true,
 };
 
 let stepIndex = 0;

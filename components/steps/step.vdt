@@ -4,6 +4,7 @@ import {context as StepsContext} from './context';
 import {Icon} from '../icon';
 
 const {children, title, index, className, style} = this.get();
+const { k } = this.config;
 
 <StepsContext.Consumer>
     {({value, status, onChange, type}) => {
@@ -22,23 +23,23 @@ const {children, title, index, className, style} = this.get();
             class={classNameObj}
             style={style}
         >
-            <div class="k-step-wrapper"
+            <div class={`${k}-step-wrapper`}
                 ev-click={linkEvent(index, onChange)}
             >
-                <div class="k-step-mark">
-                    <Icon v-if={error && type !== 'simple'} class="k-icon-close-bold" color="danger" />
+                <div class={`${k}-step-mark`}>
+                    <Icon v-if={error && type !== 'simple'} class={`${k}-icon-close-bold`} color="danger" />
                     <Icon v-else-if={done && (type === 'line' || type === 'line-compact')}
-                        class="k-icon-check-bold"
+                        class={`${k}-icon-check-bold`}
                         color="primary"
                     />
                     <span v-else-if={type !== 'simple'}>{index + 1}</span>
                 </div>
-                <div class="k-step-main">
-                    <div class="k-step-title">{title}</div>
-                    <div class="k-step-content">{children}</div>
+                <div class={`${k}-step-main`}>
+                    <div class={`${k}-step-title`}>{title}</div>
+                    <div class={`${k}-step-content`}>{children}</div>
                 </div>
             </div>
-            <div class="k-step-tail"></div>
+            <div class={`${k}-step-tail`}></div>
         </div>
     }}
 </StepsContext.Consumer>

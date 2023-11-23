@@ -12,6 +12,7 @@ import {usePoints} from './usePoints';
 import {Marks, useMarks} from './useMarks';
 import {useTooltip} from './useTooltip';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface SliderProps<Range extends boolean = boolean> {
     max?: number
@@ -120,4 +121,5 @@ export class Slider<
         this.step
     );
     private marks = useMarks();
+    private config = useConfigContext();
 }

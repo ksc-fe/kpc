@@ -8,6 +8,7 @@ import {useDrag} from './useDrag';
 import {useShowImage} from './useShowImage';
 import type {RequestError} from './ajaxUploader';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export type {RequestError, UploadFileStatus};
 
@@ -103,6 +104,7 @@ export class Upload extends Component<UploadProps, UploadEvents, UploadBlocks> {
     private files = useFiles(this.accept.isValidType, this.upload);
     private drag = useDrag(this.files.addFiles);
     private showImage = useShowImage();
+    private config = useConfigContext();
 
     public submit() {
         this.get('files')!.forEach(file => {

@@ -4,6 +4,7 @@ import {_$} from '../../i18n';
 
 const {className, value, placeholder, ...rest} = this.get();
 const options = this.step.options.value;
+const { k } = this.config;
 
 <Select
     v-model="value"
@@ -14,7 +15,7 @@ const options = this.step.options.value;
 >
     <Option v-for={options} value={$value.value}>{$value.label}</Option>
     <b:suffix>
-        <Icon class="k-icon-time" />
+        <Icon class={`${k}-icon-time`} />
     </b:suffix>
 </Select>
 

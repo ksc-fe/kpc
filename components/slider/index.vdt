@@ -16,13 +16,14 @@ const {
     firstThumbRef, secondThumbRef,
     onFocusin
 } = this.draggable;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-slider`]: true,
     [`${k}-disabled`]: disabled,
     [`${k}-dragging`]: dragging.value || !animate,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 const {barStyle, thumbFirstStyle, thumbSecondStyle} = this.styles();
@@ -33,14 +34,14 @@ const tooltipProps = getTooltipProps();
 const tooltip = value => <b:tooltip params={value}>{value}</b:tooltip>
 const createThumb = (thumbStyle, isFirst, ref, value, tooltipRef) => {
     return (
-        <div class="k-slider-thumb-wrapper" style={thumbStyle}>
+        <div class={`${k}-slider-thumb-wrapper`} style={thumbStyle}>
             <Tooltip
                 disabled={!showTooltip}
                 ref={tooltipRef}
                 {...tooltipProps}
-                class="k-slider-tooltip"
+                class={`${k}-slider-tooltip`}
             >
-                <div class="k-slider-thumb"
+                <div class={`${k}-slider-thumb`}
                     tabindex={disabled ? '-1' : '0'}
                     ev-mousedown={onStart}
                     ev-focusin={linkEvent(isFirst, onFocusin)}
@@ -59,10 +60,10 @@ const {onClickTrack, setOneValue} = this.click;
 const points = this.points();
 const marks = this.marks();
 <div class={classNameObj} {...getRestProps(this)}>
-    <div class="k-slider-main">
-        <div class="k-slider-track-wrapper" ev-click={onClickTrack}>
-            <div class="k-slider-track" ref={trackRef}>
-                <div class="k-slider-bar" style={barStyle}></div>
+    <div class={`${k}-slider-main`}>
+        <div class={`${k}-slider-track-wrapper`} ev-click={onClickTrack}>
+            <div class={`${k}-slider-track`} ref={trackRef}>
+                <div class={`${k}-slider-bar`} style={barStyle}></div>
                 {createThumb(
                     thumbFirstStyle,
                     true,
@@ -85,19 +86,19 @@ const marks = this.marks();
                 ></i>
             </div>
         </div>
-        <div class="k-slider-marks" v-if={marks.length}>
+        <div class={`${k}-slider-marks`} v-if={marks.length}>
             <span v-for={marks}
                 style={$value.style}
                 ev-click={linkEvent($value.value, setOneValue)}
                 class={{[`${k}-active`]: $value.active}}
             >{$value.text}</span>
         </div>
-        <div class="k-slider-ends" v-else-if={showEnd}>
+        <div class={`${k}-slider-ends`} v-else-if={showEnd}>
             <span ev-click={linkEvent(min, setOneValue)}>{min + unit}</span>
             <span ev-click={linkEvent(max, setOneValue)}>{max + unit}</span>
         </div>
     </div>
-    <div class="k-slider-spinner" v-if={showInput}>
+    <div class={`${k}-slider-spinner`} v-if={showInput}>
         {(() => {
             const props = {
                 disabled,
@@ -117,7 +118,7 @@ const marks = this.marks();
                     {...spinnerProps}
                 />
                 <template v-if={range}>
-                    <span class="k-slider-spinner-sep">-</span>
+                    <span class={`${k}-slider-spinner-sep`}>-</span>
                     <Spinner
                         {...props}
                         min={value[0]}

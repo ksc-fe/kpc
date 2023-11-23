@@ -86,24 +86,24 @@ export function makeStepsStyles(k: string) {
     return css`
         display: flex;
 
-        ${makeCommonStyles(k: string)};
+        ${makeCommonStyles(k)};
 
         &.${k}-default {
-            ${makeDefaultStyles(k: string)};
+            ${makeDefaultStyles(k)};
         }
             
         &.${k}-line,
         &.${k}-line-compact,
         &.${k}-simple {
-            ${makeLineStyles(k: string)};
+            ${makeLineStyles(k)};
         }
 
         &.${k}-line-compact {
-            ${makeLineCompactStyles(k: string)};
+            ${makeLineCompactStyles(k)};
         }
 
         &.${k}-simple {
-            ${makeSimpleStyles(k: string)};
+            ${makeSimpleStyles(k)};
         }
 
         // clickable
@@ -116,7 +116,7 @@ export function makeStepsStyles(k: string) {
             }
         }
 
-        ${makeVerticalStyles(k: string)};
+        ${makeVerticalStyles(k)};
     `;
 }
 
@@ -154,12 +154,12 @@ function makeDefaultStyles(k: string) {
             }
         } 
         &:not(.${k}-vertical) {
-            ${makeArrow(false)};
+            ${makeArrow(false, k)};
         }
     `
 }
 
-function makeArrow(isVertical: boolean) {
+function makeArrow(isVertical: boolean, k: string) {
     const defaults = steps.default; 
     const offset = `calc(-1 * (${defaults.height} / 2 + ${steps.gap}))`;
     const size = `calc(${defaults.height} / 2 + ${steps.gap})`;
@@ -403,7 +403,7 @@ export function makeCommonStyles(k: string) {
             ${stepStatus.map(status => {
                 const styles = steps[status];
                 return css`
-                    &.k-${status} {
+                    &.${k}-${status} {
                         .${k}-step-mark {
                             color: ${styles.markColor};
                             border-color: ${styles.markBorderColor};
@@ -450,7 +450,7 @@ export function makeVerticalStyles(k: string) {
                     padding-bottom: ${steps.gap};
                 }
 
-                ${makeArrow(true)};
+                ${makeArrow(true, k)};
             }
 
             &.${k}-line,

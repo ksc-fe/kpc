@@ -220,7 +220,7 @@ export default function makeStyles(k: string) {
             `;
             if (size === 'default') return className;
             return css`
-                &.k-${size}  {
+                &.${k}-${size}  {
                     ${className}
                 }
             `

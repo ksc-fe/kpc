@@ -19,7 +19,7 @@ setDefault(() => {
     drawer = deepDefaults(theme, {drawer: defaults}).drawer;
 });
 
-export function makeStyles(overlay: boolean) {
+export function makeStyles(overlay: boolean, k: string) {
     return css`
         position: fixed !important;
         background: transparent !important;
@@ -83,7 +83,7 @@ export function makeStyles(overlay: boolean) {
             }
 
             return css`
-                &.k-${placement} {
+                &.${k}-${placement} {
                     ${positionValue}
                     &.transition-enter-from,
                     &.transition-leave-to,

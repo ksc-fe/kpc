@@ -3,6 +3,7 @@ import template from './tab.vdt';
 import {TABS} from './constants';
 import type {Tabs} from './';
 import {bind} from '../utils';
+import { useConfigContext } from '../config';
 
 export interface TabProps {
     value?: any
@@ -25,7 +26,8 @@ const typeDefs: Required<TypeDefs<TabProps>> = {
 export class Tab extends Component<TabProps, TabEvents> {
     static template = template;
 
-    private tabs = inject<Tabs>(TABS)!
+    private tabs = inject<Tabs>(TABS)!;
+    private config = useConfigContext();
 
     @bind
     private onClick(e: MouseEvent) {

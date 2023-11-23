@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import template from './row.vdt';
 import {useGutter} from './useGutter';
 import {Value} from './constants';
+import { useConfigContext } from '../config';
 
 export interface RowProps {
     gutter?: Value 
@@ -20,4 +21,5 @@ export class Row extends Component<RowProps> {
     static typeDefs = typeDefs;
 
     private gutter = useGutter();
+    private config = useConfigContext();
 }

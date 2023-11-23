@@ -5,6 +5,7 @@ const {
     className, style, size, color,
     rotate, hoverable, children, disabled
 } = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-icon`]: true,
@@ -17,16 +18,16 @@ const _style = {};
 if (/^\d+$/.test(size)) {
     _style.fontSize = size + 'px'; 
 } else if (size !== 'default') {
-    classNameObj[`k-${size}`] = true;
+    classNameObj[`${k}-${size}`] = true;
 }
 if (this.colors.indexOf(color) > -1) {
-    classNameObj[`k-${color}`] = color !== 'default';
-    classNameObj[makeStyles()] = true;
+    classNameObj[`${k}-${color}`] = color !== 'default';
+    classNameObj[makeStyles(k)] = true;
 } else if (color) {
     _style.color = color;
-    classNameObj[makeStyles(color)] = true;
+    classNameObj[makeStyles(k, color)] = true;
 } else {
-    classNameObj[makeStyles()] = true;
+    classNameObj[makeStyles(k)] = true;
 }
 
 <i class={classNameObj}

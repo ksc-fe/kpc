@@ -7,9 +7,10 @@ import {Mode} from './useInput';
 import {ColorpickerDrag as Drag} from './drag';
 
 const {value, presets} = this.get();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-colorpicker-panel`]: true,
-    [makePanelStyles()]: true,
+    [makePanelStyles(k)]: true,
 }
 const {
     hex: {value: hex},
@@ -28,25 +29,25 @@ const {
 const alpha = Math.round(rgb.a * 100);
 
 <div class={classNameObj}>
-    <div class="k-colorpicker-saturation"
+    <div class={`${k}-colorpicker-saturation`}
         style={{backgroundColor: `hsl(${hsv.h}, 100%, 50%)`}}
         ev-mousedown={start}
         ref={areaRef}
     >
-        <div class="k-colorpicker-white"></div>
-        <div class="k-colorpicker-black"></div>
-        <div class="k-colorpicker-pointer"
+        <div class={`${k}-colorpicker-white`}></div>
+        <div class={`${k}-colorpicker-black`}></div>
+        <div class={`${k}-colorpicker-pointer`}
             style={{
                 left: `${hsv.s * 100}%`,
                 top: `${-hsv.v * 100 + 100}%`,
             }}
         >
-            <div class="k-colorpicker-circle"></div>
+            <div class={`${k}-colorpicker-circle`}></div>
         </div>
     </div>
-    <div class="k-colorpicker-controls">
-        <div class="k-colorpicker-sliders">
-            <Slider class="k-colorpicker-hue"
+    <div class={`${k}-colorpicker-controls`}>
+        <div class={`${k}-colorpicker-sliders`}>
+            <Slider class={`${k}-colorpicker-hue`}
                 showInput={false}
                 showEnd={false}
                 step={0}
@@ -57,8 +58,8 @@ const alpha = Math.round(rgb.a * 100);
             />
             <Slider 
                 class={{
-                    "k-colorpicker-alpha k-colorpicker-alpha-bg": true,
-                    [makeAlphaBgColor(rgb)]: true,
+                    [`${k}-colorpicker-alpha ${k}-colorpicker-alpha-bg`]: true,
+                    [makeAlphaBgColor(rgb, k)]: true,
                 }}
                 showInput={false}
                 showEnd={false}
@@ -69,19 +70,19 @@ const alpha = Math.round(rgb.a * 100);
                 animate={!dragging.value}
             />
         </div>
-        <div class="k-colorpicker-color-wrapper k-colorpicker-alpha-bg">
-            <div class="k-colorpicker-color" style={{backgroundColor: value}}></div>
+        <div class={`${k}-colorpicker-color-wrapper ${k}-colorpicker-alpha-bg`}>
+            <div class={`${k}-colorpicker-color`} style={{backgroundColor: value}}></div>
         </div>
     </div>
     <Row gutter="6">
         <Col span="8">
             <Input fluid size="small"
                 frozenOnInput
-                class="k-colorpicker-input" 
+                class={`${k}-colorpicker-input`} 
                 value={hex}
                 ev-input={onInputHex}
             />
-            <div class="k-colorpicker-text">Hex</div>
+            <div class={`${k}-colorpicker-text`}>Hex</div>
         </Col>
         {(() => {
             let params;
@@ -106,7 +107,7 @@ const alpha = Math.round(rgb.a * 100);
                     <Col span="4">
                         <Input fluid size="small"
                             value={v} 
-                            class="k-colorpicker-input" 
+                            class={`${k}-colorpicker-input`} 
                             ev-input={setInputValue.bind(null, value, realMax)}
                         />
                         <Drag value={v}
@@ -126,7 +127,7 @@ const alpha = Math.round(rgb.a * 100);
         <Col span="4">
             <Input fluid size="small"
                 value={alpha} 
-                class="k-colorpicker-input" 
+                class={`${k}-colorpicker-input`} 
                 ev-input={setInputValue.bind(null, 'a', 100)}
             />
             <Drag value={alpha}
@@ -137,13 +138,13 @@ const alpha = Math.round(rgb.a * 100);
             >A</Drag>
         </Col>
     </Row>
-    <div class="k-colorpicker-presets" v-if={presets && presets.length}>
-        <div class="k-colorpicker-preset-color-wrapper k-colorpicker-alpha-bg"
+    <div class={`${k}-colorpicker-presets`} v-if={presets && presets.length}>
+        <div class={`${k}-colorpicker-preset-color-wrapper ${k}-colorpicker-alpha-bg`}
             v-for={presets}
             ev-click={linkEvent($value, setValue)}
         >
             <div style={{backgroundColor: $value}} 
-                class="k-colorpicker-preset-color"
+                class={`${k}-colorpicker-preset-color`}
             ></div>
         </div>
     </div>

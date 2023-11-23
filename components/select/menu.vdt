@@ -12,13 +12,14 @@ import {Tabs, Tab} from '../tabs';
 
 let {children, className} = this.get();
 const {card, searchable, multiple} = this.select.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-select-menu`]: true,
     [`${k}-card`]: card,
     [`${k}-searchable`]: searchable,
     [className]: className,
-    [makeMenuStyles()]: true,
+    [makeMenuStyles(k)]: true,
 }
 
 if (card) {
@@ -41,7 +42,7 @@ if (card) {
 
 if (isEmptyChildren(children)) {
     children = (
-        <div v-else class="k-select-empty">
+        <div v-else class={`${k}-select-empty`}>
             {_$('无数据')}
         </div>
     );
@@ -54,16 +55,16 @@ if (searchable) {
 
     children = (
         <Provider value={checkedKeys}>
-            <div class="k-select-header">
+            <div class={`${k}-select-header`}>
                 <Input fluid size="small" placeholder={_$('请输入关键字')}
                     value={keywords.value}
                     ev-$change:value={onInput}
                     clearable
                     waveDisabled={true}
                 >
-                    <b:suffix><Icon class="k-icon-search" /></b:suffix>
+                    <b:suffix><Icon class={`${k}-icon-search`} /></b:suffix>
                 </Input>
-                <div class="k-select-op" v-if={multiple}>
+                <div class={`${k}-select-op`} v-if={multiple}>
                     <Button type="link" size="small"
                         ev-click={selectAll}
                     >{_$('全选')}</Button>
@@ -75,10 +76,10 @@ if (searchable) {
                     >{_$('清空')}</Button>
                 </div>
             </div>
-            <div class="k-select-body">
+            <div class={`${k}-select-body`}>
                 {children}
             </div>
-            <div class="k-select-footer" v-if={multiple}>
+            <div class={`${k}-select-footer`} v-if={multiple}>
                 <Button size="small" ev-click={this.select.hide}>{_$('取消')}</Button>
                 <Button type="primary" size="small" ev-click={confirm}>{_$('确定')}</Button>
             </div>

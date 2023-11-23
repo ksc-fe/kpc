@@ -3,6 +3,7 @@ import template from './panel.vdt';
 import {useValue} from './useValue';
 import {usePointer} from './usePointer';
 import {useInput} from './useInput';
+import { useConfigContext } from '../config';
 
 export interface ColorpickerPanelProps {
     value: string
@@ -22,4 +23,5 @@ export class ColorpickerPanel extends Component<ColorpickerPanelProps> {
         this.value.rgb,
         this.value.hsl,
     );
+    private config = useConfigContext();
 }

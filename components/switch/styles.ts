@@ -139,13 +139,13 @@ export function makeStyles(k: string) {
         ${sizes.map(size => {
             const {width, height, padding} = kswitch[size];
             return css`
-               &.k-${size},
-               &.k-${size} .${k}-switch-on,
-               &.k-${size} .${k}-switch-off {
+               &.${k}-${size},
+               &.${k}-${size} .${k}-switch-on,
+               &.${k}-${size} .${k}-switch-off {
                    width: ${width};
                    height: ${height};
                }
-               &.k-${size} {
+               &.${k}-${size} {
                    border-radius: ${height};
                    .${k}-switch-bar {
                        width: ${height};

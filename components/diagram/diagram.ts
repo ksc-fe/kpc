@@ -9,6 +9,7 @@ import type {DLine} from './shapes/line';
 import type {DLayout} from './layouts/layout';
 import {error, isNullOrUndefined} from 'intact-shared';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 const {mxRubberband, mxEvent} = mx;
 
@@ -36,6 +37,7 @@ export class Diagram extends Component<DiagramProps, DiagramEvents> {
     private lines: Set<DLine> = new Set(); 
     private layouts: Set<DLayout> = new Set();
     private canvasRef = createRef<HTMLDivElement>();
+    private config = useConfigContext();
 
     // save the orignal function, because we will change them
     private isCellSelectable!: StateCallback;

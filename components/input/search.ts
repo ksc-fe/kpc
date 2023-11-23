@@ -4,6 +4,7 @@ import {Sizes, sizes} from '../../styles/utils';
 import {_$} from '../../i18n';
 import {bind} from '../utils';
 import {useDocumentClick} from '../../hooks/useDocumentClick';
+import { useConfigContext } from '../config';
 
 export interface SearchProps {
     placeholder?: string
@@ -40,6 +41,7 @@ export class Search extends Component<SearchProps, SearchEvents> {
 
     private elementRef = createRef<HTMLDivElement>();
     private inputRef = createRef<HTMLInputElement>();
+    private config = useConfigContext();
 
     init() {
         useDocumentClick(this.elementRef, this.hide.bind(this));

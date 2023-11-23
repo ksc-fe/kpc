@@ -21,6 +21,7 @@ const {
     onShow, reset, confirm, dropdownRef,
     localGroupValue, isEmptyValue,
 } = this.group;
+const { k } = this.config;
 
 <TableContext.Consumer>
     {checkType => {
@@ -51,14 +52,14 @@ const {
                                             ref={this.elementRef}
                                         >
                                             <div v-if={resizable && this.$vNode.props.prevVNode}
-                                                class="k-table-resize"
+                                                class={`${k}-table-resize`}
                                                 ev-mousedown={e => {
                                                     e._vNode = this.$vNode;
                                                     onStart(e);
                                                 }} 
                                             />
-                                            <div class="k-table-title">
-                                                <div class="k-table-title-text c-ellipsis">
+                                            <div class={`${k}-table-title`}>
+                                                <div class={`${k}-table-title-text c-ellipsis`}>
                                                     <b:title>{title}</b:title>
                                                 </div>
                                                 <Dropdown v-if={group}
@@ -68,23 +69,23 @@ const {
                                                     ev-show={() => onShow(groupValue)}
                                                     ref={dropdownRef}
                                                 >
-                                                    <Icon class="k-icon-down-squared k-table-group"
+                                                    <Icon class={`${k}-icon-down-squared ${k}-table-group`}
                                                         ev-click={e => e._ignoreSortable = true}
                                                         hoverable
                                                         color={isEmptyValue(groupValue) ? null : 'primary'}
                                                     />
-                                                    <DropdownMenu class={{"k-table-group-dropdown": true, [makeGroupMenuStyles()]: true}}>
-                                                        <div class="k-table-group-header">
+                                                    <DropdownMenu class={{[`${k}-table-group-dropdown`]: true, [makeGroupMenuStyles(k)]: true}}>
+                                                        <div class={`${k}-table-group-header`}>
                                                             <Input size="small" fluid
                                                                 placeholder={_$('请输入关键字')}
                                                                 value={keywords.value}
                                                                 ev-$change:value={keywords.set}
                                                                 clearable
                                                             >
-                                                                <b:suffix><Icon class="k-icon-search" /></b:suffix>
+                                                                <b:suffix><Icon class={`${k}-icon-search`} /></b:suffix>
                                                             </Input>
                                                         </div>
-                                                        <div class="k-table-group-body">
+                                                        <div class={`${k}-table-group-body`}>
                                                             <DropdownItem v-for={filteredGroup.value}
                                                                 ev-select={() => onSelect($value.value, onChange)}
                                                                 hideOnSelect={!multiple}
@@ -94,7 +95,7 @@ const {
                                                                 <span v-else>{$value.label}</span>
                                                             </DropdownItem>
                                                         </div>
-                                                        <div class="k-table-group-footer" v-if={multiple}>
+                                                        <div class={`${k}-table-group-footer`} v-if={multiple}>
                                                             <Button size="small"
                                                                 disabled={isEmptyValue(localGroupValue.value)}
                                                                 type="secondary"
@@ -107,10 +108,10 @@ const {
                                                     </DropdownMenu>
                                                 </Dropdown>
                                                 <div v-if={sortable}
-                                                    class={{[`${k}-column-sort`]: true, [`k-${type}`]: type}}
+                                                    class={{[`${k}-column-sort`]: true, [`${k}-${type}`]: type}}
                                                 >
-                                                    <Icon class="k-icon-up k-asc" size="mini" />
-                                                    <Icon class="k-icon-down k-desc" size="mini" />
+                                                    <Icon class={`${k}-icon-up ${k}-asc`} size="mini" />
+                                                    <Icon class={`${k}-icon-down ${k}-desc`} size="mini" />
                                                 </div>
                                             </div>
                                         </th>

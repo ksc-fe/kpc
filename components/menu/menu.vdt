@@ -8,14 +8,15 @@ const {children, className} = this.get();
 const {collapse, theme, type, size} = (this.rootMenu || this).get();
 const isRootMenu = !this.rootMenu;
 const isDropdownMenu = !isRootMenu && isDropdown(this.rootMenu);
+const { k } = this.config;
 const classNameObj = {
     [`${k}-menu`]: true,
     [className]: className,
-    [`k-${theme}`]: (isRootMenu || isDropdownMenu) && theme,
-    [`k-${size}`]: isRootMenu && size !== 'default',
+    [`${k}-${theme}`]: (isRootMenu || isDropdownMenu) && theme,
+    [`${k}-${size}`]: isRootMenu && size !== 'default',
     [`${k}-collapsed`]: isRootMenu && collapse,
-    [`k-${type}`]: isRootMenu && type,
-    [makeMenuStyles()]: true,
+    [`${k}-${type}`]: isRootMenu && type,
+    [makeMenuStyles(k)]: true,
 };
 
 const header = <b:header />
@@ -24,7 +25,7 @@ const content = (
         <div v-if={$blocks.header}
             class={{
                 [`${k}-menu-header`]: true,
-                [makeTitleStyles()]: true
+                [makeTitleStyles(k)]: true
             }}
         >
             <template v-if={!collapse}>{header}</template>

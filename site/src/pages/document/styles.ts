@@ -190,7 +190,7 @@ export function makeStyles() {
         .api {
             font-size: 12px;
             .k-table {
-                ${makeTableStyles()}
+                ${makeTableStyles('k')}
             }
             table {
                 table-layout: auto !important;

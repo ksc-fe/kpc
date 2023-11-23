@@ -5,13 +5,14 @@ import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 
 const {className, disabled, size, vertical, value, width} = this.get();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-spinner`]: true,
     [`${k}-disabled`]: disabled,
-    [`k-${size}`]: size !== 'default',
+    [`${k}-${size}`]: size !== 'default',
     [className]: className,
     [`${k}-vertical`]: vertical,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 const {decrease, increase, onChangeValue, onFocusin} = this.change;
 const {showValue, onInput} = this.value;
@@ -19,16 +20,16 @@ const {showValue, onInput} = this.value;
 <div class={classNameObj} {...getRestProps(this)}>
     <Button icon ev-click={decrease}
         disabled={this.isDisabledDecrease()}
-        class="k-spinner-btn k-left"
+        class={`${k}-spinner-btn ${k}-left`}
         size={size}
         type="none"
         tabindex="-1"
     >
-        <Icon v-if={!vertical} class="k-spinner-icon k-icon-minus" />
-        <Icon v-else class="k-spinner-icon k-icon-down" />
+        <Icon v-if={!vertical} class={`${k}-spinner-icon ${k}-icon-minus`} />
+        <Icon v-else class={`${k}-spinner-icon ${k}-icon-down`} />
     </Button>
     <Input
-        class="k-spinner-input"
+        class={`${k}-spinner-input`}
         disabled={disabled} 
         ev-change={onChangeValue}
         ev-focusin={onFocusin}
@@ -39,12 +40,12 @@ const {showValue, onInput} = this.value;
     />
     <Button icon ev-click={increase}
         disabled={this.isDisabledIncrease()}
-        class="k-spinner-btn k-right"
+        class={`${k}-spinner-btn ${k}-right`}
         size={size}
         type="none"
         tabindex="-1"
     >
-        <Icon v-if={!vertical} class="k-spinner-icon k-icon-add" />
-        <Icon v-else class="k-spinner-icon k-icon-up" />
+        <Icon v-if={!vertical} class={`${k}-spinner-icon ${k}-icon-add`} />
+        <Icon v-else class={`${k}-spinner-icon ${k}-icon-up`} />
     </Button>
 </div>

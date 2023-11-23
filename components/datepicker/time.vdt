@@ -4,9 +4,10 @@ import {makeTimeStyles} from './styles';
 
 const value = this.value.value;
 const {disableHours, disableMinutes, disableSeconds, disableItem} = this.disabled;
+const { k } = this.config;
 const classNameObj = {
     [`${k}-datepicker-time`]: true,
-    [makeTimeStyles()]: true,
+    [makeTimeStyles(k)]: true,
 }
 
 <div class={classNameObj}>

@@ -18,6 +18,7 @@ const {
     tooltipContents, iconVNode, titleVNodes,
     position, isCollapse,
 } = this.dropdown();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-menu-item`]: true,
     [className]: className,
@@ -25,17 +26,17 @@ const classNameObj = {
     [`${k}-disabled`]: disabled,
     [`${k}-active`]:  isSelected(key), 
     [`${k}-highlighted`]: isHighlighted(key),
-    [makeItemStyles()]: true,
+    [makeItemStyles(k)]: true,
 };
 
 const showDot = isTopItem && !iconVNode && isNullOrUndefined(dot) ? rootDot : dot;
 const title = (children) => (
-    <div class={{[`${k}-menu-title`]: true, [makeTitleStyles()]: true}}
+    <div class={{[`${k}-menu-title`]: true, [makeTitleStyles(k)]: true}}
         ev-click={this.onClick.bind(this, subMenuVNode)}
     >
-        <Icon class="k-menu-dot ion-record" v-if={showDot} />
-        <div class="k-menu-name">{children}</div>
-        <Icon class="k-menu-arrow k-icon-down" v-if={subMenuVNode} />
+        <Icon class={`${k}-menu-dot ion-record`} v-if={showDot} />
+        <div class={`${k}-menu-name`}>{children}</div>
+        <Icon class={`${k}-menu-arrow ${k}-icon-down`} v-if={subMenuVNode} />
     </div>
 );
 

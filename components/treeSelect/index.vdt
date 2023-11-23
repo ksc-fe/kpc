@@ -13,11 +13,13 @@ const {
     onChangeCheckedKeys, onChangeSelectedKeys,
 } = this.value;
 
+const { k } = this.config;
+
 <t:super>
     <b:base-menu>
         <DropdownMenu class={{
             [`${k}-tree-select-menu`]: true,
-            [makeStyles()]: true,
+            [makeStyles(k)]: true,
         }}>
             <Tree 
                 ref={treeRef}

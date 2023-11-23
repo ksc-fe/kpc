@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import template from './col.vdt';
 import {PrimitiveValue, Value, BreakpointValues, breakpoints, Breakpoint} from './constants';
 import {useBreakpoints} from './useBreakpoints';
+import { useConfigContext } from '../config';
 
 export type BaseColProps = {
     span?: PrimitiveValue, 
@@ -33,4 +34,5 @@ export class Col extends Component<ColProps> {
     static typeDefs = typeDefs;
 
     private breakpoints = useBreakpoints();
+    private config = useConfigContext();
 }

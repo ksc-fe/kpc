@@ -3,15 +3,16 @@ import {BreadcrumbItem} from './item';
 import makeStyles from './styles';
 
 const {children, separator, className} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-breadcrumb`]: true,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 const separatorVNode = (
-    <span class="k-breadcrumb-separator">
+    <span class={`${k}-breadcrumb-separator`}>
         <b:separator>{separator}</b:separator>
     </span>
 );

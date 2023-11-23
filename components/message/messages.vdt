@@ -1,7 +1,9 @@
 import {TransitionGroup, Transition} from 'intact';
 import {makeMessagesStyles} from './styles';
 
-<div class={{"k-messages": true, [makeMessagesStyles()]: true}}>
+const { k } = this.config;
+
+<div class={{[`${k}-messages`]: true, [makeMessagesStyles(k)]: true}}>
     <TransitionGroup>
         <template v-for={this.messages} key={$value.key}>
             {$value}

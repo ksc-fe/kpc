@@ -12,6 +12,8 @@ const toggleChecked = this.checked.toggle;
 const selectedKeys = this.selected.get();
 const toggleSelected = this.selected.toggle;
 const {onDragStart, onDragOver, onDragEnd, draggingKey, overKey, mode} = this.draggable;
+const { k } = this.config;
+
 const treeNodes = (nodes) => {
     return nodes.map((node, index) => {
         if (!node.filter) return; 
@@ -54,7 +56,7 @@ const treeNodes = (nodes) => {
                 ev-dragend={draggable && onDragEnd}
             >
                 <div class={labelClassNameObj}>
-                    <Icon class="k-tree-icon ion-android-arrow-dropdown" 
+                    <Icon class={`${k}-tree-icon ion-android-arrow-dropdown`} 
                         v-if={node.children && node.loaded !== false}
                         hoverable
                         ev-click={(e) => {
@@ -63,7 +65,7 @@ const treeNodes = (nodes) => {
                             toggleExpanded(node);
                         }}
                     />
-                    <Icon class="k-tree-icon ion-load-c" rotate
+                    <Icon class={`${k}-tree-icon ion-load-c`} rotate
                         v-if={node.loaded === false}
                     />
                     <Checkbox v-if={checkbox} 
@@ -71,9 +73,9 @@ const treeNodes = (nodes) => {
                         disabled={disabled}
                         indeterminate={node.indeterminate}
                         ev-$change:value={() => toggleChecked(node)}
-                        class="k-tree-checkbox"
+                        class={`${k}-tree-checkbox`}
                     />
-                    <div class="k-tree-text c-ellipsis"
+                    <div class={`${k}-tree-text c-ellipsis`}
                         ev-click={linkEvent(node, this.onClick)}
                     >
                         <b:label params={[data, node, index]}>
@@ -82,7 +84,7 @@ const treeNodes = (nodes) => {
                     </div>
                 </div>
                 <Transition {...this.transition}>
-                    <div class="k-tree" v-if={expanded && node.children}>
+                    <div class={`${k}-tree`} v-if={expanded && node.children}>
                         <TransitionGroup {...this.transition}>
                             {treeNodes(node.children)}
                         </TransitionGroup>
@@ -98,7 +100,7 @@ const classNameObj = {
     [`${k}-line`]: showLine,
     [`${k}-selectable`]: selectable,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>

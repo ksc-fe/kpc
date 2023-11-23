@@ -5,6 +5,7 @@ import template from './aside.vdt';
 import {ROOT_LAYOUT, getStyle, defaultWidth} from './helpers';
 import type {Layout} from './layout';
 import {addStyle} from '../utils';
+import { useConfigContext } from '../config';
 
 export interface AsideProps { 
     collapse?: boolean
@@ -31,6 +32,7 @@ export class Aside extends Component<AsideProps> {
     static defaults = defaults;
 
     private rootLayout = inject<Layout>(ROOT_LAYOUT)!;
+    private config = useConfigContext();
 
     private getStyles() {
         const {fixed, width, collapse} = this.get();

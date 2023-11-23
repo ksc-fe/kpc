@@ -117,7 +117,7 @@ export function makeItemStyles(k: string) {
             const typeStyles = timeline[type];
 
             return css`
-                &.k-${type} {
+                &.${k}-${type} {
                     .${k}-timeline-indicator {
                         color: ${typeStyles.color};
                     }
@@ -142,7 +142,7 @@ export function makeItemStyles(k: string) {
             if (size === 'default') return sizeClassName;
 
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     ${sizeClassName};
                 }
             `

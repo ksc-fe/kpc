@@ -54,7 +54,6 @@ export function makeRowStyles(k: string) {
     `;
 }
 
-const colsStyles = makeBreakpointsCols();
 export function makeColStyles(k: string) {
     return css`
         position: relative;
@@ -62,20 +61,20 @@ export function makeColStyles(k: string) {
         .${k}-col-wrapper {
             height: 100%;
         }
-        ${colsStyles}
+        ${makeBreakpointsCols(k)}
     `;
 }
 
-function makeBreakpointsCols() {
+function makeBreakpointsCols(k: string) {
     const styles: string[] = [];
-    styles.push(makeCols(''));
+    styles.push(makeCols(k));
 
     for (let i = breakpoints.length - 1; i >= 0; i--) {
         const breakpoint = breakpoints[i];
         if (breakpoint === 'xs') continue;
 
         styles.push(`@media ${responsiveMap[breakpoint]} {`);
-        styles.push(makeCols(`-${breakpoint}`));
+        styles.push(makeCols(`${k}-${breakpoint}`));
         styles.push('}');
     }
 
@@ -87,19 +86,19 @@ function makeCols(prefix: string) {
     for (let i = 0; i < 24; i++) {
         const percentage = String((i / 24) * 100) + '%';
         colsStyles.push(`
-            &.k${prefix}-${i} {
+            &.${prefix}-${i} {
                 width: ${percentage};
             }
-            &.k${prefix}-offset-${i} {
+            &.${prefix}-offset-${i} {
                 margin-left: ${percentage};
             }
-            &.k${prefix}-order-${i} {
+            &.${prefix}-order-${i} {
                 order: ${i};
             }
-            &.k${prefix}-push-${i} {
+            &.${prefix}-push-${i} {
                 left: ${percentage};
             }
-            &.k${prefix}-pull-${i} {
+            &.${prefix}-pull-${i} {
                 right: ${percentage};
             }
         `);

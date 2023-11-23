@@ -19,10 +19,11 @@ const {
     onChangeDateForRange,
     getTimeValue,
 } = this.value;
+const { k } = this.config;
 const classNameObj = {
     [`${k}-datepicker-content`]: true,
     [className]: className,
-    [makePanelStyles()]: true,
+    [makePanelStyles(k)]: true,
 };
 
 const {isDisabledTime, isDisabledConfirm} = this.disabled;
@@ -31,7 +32,7 @@ const generatePanel = (flag) => {
     const panel = getPanel(flag);
     const timeValue = getTimeValue(flag);
     return (
-        <div class="k-datepicker-calendar-wrapper">
+        <div class={`${k}-datepicker-calendar-wrapper`}>
             {(() => {
                 if (type === 'datetime') {
                     let dateString = '0000-00-00';
@@ -72,24 +73,24 @@ const generatePanel = (flag) => {
     );
 };
 
-<t:super class="k-datepicker">
+<t:super class={`${k}-datepicker`}>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
-            <div class="k-datepicker-shortcuts" v-if={shortcuts && shortcuts.length}>
+            <div class={`${k}-datepicker-shortcuts`} v-if={shortcuts && shortcuts.length}>
                 {shortcuts.map($value => {
                     const label = isFunction($value.label) ? $value.label() : $value.label;
-                    return <div class="k-datepicker-shortcut c-ellipsis"
+                    return <div class={`${k}-datepicker-shortcut c-ellipsis`}
                         title={label}
                         ev-click={linkEvent($value, this.setByShortcut)}
                     >{label}</div>
                 })}
             </div>
-            <div class="k-datepicker-wrapper">
-                <div class="k-datepicker-calendars">
+            <div class={`${k}-datepicker-wrapper`}>
+                <div class={`${k}-datepicker-calendars`}>
                     {generatePanel(PanelFlags.Start)}
                     {range ? generatePanel(PanelFlags.End) : null}
                 </div>
-                <div v-if={type === 'datetime'} class="k-datepicker-footer">
+                <div v-if={type === 'datetime'} class={`${k}-datepicker-footer`}>
                     <Button type="primary" size="small"
                         disabled={isDisabledConfirm()}
                         ev-click={onConfirm}
@@ -99,6 +100,6 @@ const generatePanel = (flag) => {
         </DropdownMenu>
     </b:base-menu>
     <b:suffix>
-        <Icon class="k-icon-calendar" />
+        <Icon class={`${k}-icon-calendar`} />
     </b:suffix>
 </t:super>

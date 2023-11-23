@@ -7,32 +7,33 @@ const {
     hideFooter, hideClose, title,
     iconClassName, icon
 } = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-alert-dialog`]: true,
     [`k-${type}`]: true,
     [`${k}-with-title`]: title,
-    [makeAlertStyles()]: true,
+    [makeAlertStyles(k)]: true,
 };
 
 <t:super class={classNameObj}>
     <b:header />
     <b:body>
-        <div class="k-dialog-tip-icon">
+        <div class={`${k}-dialog-tip-icon`}>
             <Icon 
                 v-if={!hideIcon && !icon}
                 class={iconClassName || {
-                    "k-icon-success-fill": type === 'success',
-                    "k-icon-warning-fill": type === 'warning',
-                    "k-icon-error-fill": type === 'error',
-                    "k-icon-question-fill": type === 'confirm',
+                    [`${k}-icon-success-fill`]: type === 'success',
+                    [`${k}-icon-warning-fill`]: type === 'warning',
+                    [`${k}-icon-error-fill`]: type === 'error',
+                    [`${k}-icon-question-fill`]: type === 'confirm',
                 }}
                 color={type === 'error' ? 'danger' : type === 'confirm' ? 'primary' : type}
             />
             {icon}
         </div>
-        <div class="k-alert-dialog-wrapper">
-            <div class="k-alert-dialog-title" v-if={title}>{title}</div>
+        <div class={`${k}-alert-dialog-wrapper`}>
+            <div class={`${k}-alert-dialog-title`} v-if={title}>{title}</div>
             {content}
         </div>
     </b:body>

@@ -6,6 +6,7 @@ import {isNullOrUndefined, isStringOrNumber, EMPTY_OBJ} from 'intact-shared';
 import {getTextByChildren, eachChildren} from '../utils';
 import {useCard} from './useCard';
 import {useSearchable} from './useSearchable';
+import { useConfigContext } from '../config';
 
 export class SelectMenu extends Component<{values: any[]}> {
     static template = template;
@@ -13,4 +14,5 @@ export class SelectMenu extends Component<{values: any[]}> {
     public select: Select<any, boolean> = inject(SELECT)!;
     private card = useCard(this.select.label.activeIndices);
     private searchable = useSearchable();
+    private config = useConfigContext();
 }

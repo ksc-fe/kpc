@@ -3,6 +3,7 @@ import template from './index.vdt';
 import {bind} from '../utils';
 import {isArray} from 'intact-shared';
 import {CommonInputHTMLAttributes, Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface CheckboxProps<V = boolean> extends CommonInputHTMLAttributes {
     disabled?: boolean
@@ -42,6 +43,7 @@ export class Checkbox<V = boolean> extends Component<CheckboxProps<V>, CheckboxE
     static events = events;
 
     private inputRef = createRef<HTMLInputElement>();
+    private config = useConfigContext();
 
     private isChecked(){
         const {value, trueValue} = this.get();

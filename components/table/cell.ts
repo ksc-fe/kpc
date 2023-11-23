@@ -3,6 +3,7 @@ import template from './cell.vdt';
 import type {TableColumnProps} from './column';
 import type {TableProps} from './table';
 import type {TableGrid} from './useMerge';
+import { useConfigContext } from '../config';
 
 export interface TableCellProps {
     props: Props<TableColumnProps>
@@ -21,6 +22,8 @@ export interface TableCellProps {
 
 export class TableCell extends Component<TableCellProps> {
     static template = template;
+
+    private config = useConfigContext();
 
     $update(
         lastVNode: VNodeComponentClass<this>,

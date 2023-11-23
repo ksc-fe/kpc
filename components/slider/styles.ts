@@ -61,7 +61,7 @@ export function makeStyles(k: string) {
         .${k}-slider-main {
             flex: 1;
         }
-        .${k}-slider-tra.${k}-wrapper {
+        .${k}-slider-track-wrapper {
             cursor: pointer;
             height: 32px;
             display: flex;
@@ -134,7 +134,7 @@ export function makeStyles(k: string) {
         // disabled
         &.${k}-disabled {
             color: ${slider.disabled.color};
-            .${k}-slider-tra.${k}-wrapper {
+            .${k}-slider-track-wrapper {
                 cursor: not-allowed;
             }
             .${k}-slider-bar {

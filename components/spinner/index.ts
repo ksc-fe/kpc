@@ -7,6 +7,7 @@ import {useFormatter} from './useFormatter';
 import {useValue} from'./useValue';
 import {useChange} from './useChange';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface SpinnerProps {
     value?: number,
@@ -78,6 +79,7 @@ export class Spinner extends Component<SpinnerProps, SpinnerEvents> {
     private formatter = useFormatter();
     private value = useValue(this.step, this.formatter);
     private change = useChange(this.step, this.value.fixValue);
+    private config = useConfigContext();
 
     private isDisabledDecrease(): boolean {
         const {value, min, disabled} = this.get();

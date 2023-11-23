@@ -14,21 +14,22 @@ const {
 const {getShowedData} = this.filter;
 const {enableAdd, enableRemove, add, remove} = this.transfer;
 const {isCheckAll, toggleCheckAll, onCheckboxChange, isIndeterminate} = this.check;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-transfer`]: true,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 const Panel = (model) => {
     const title = this.get(`${model}Title`);
     const data = getShowedData(model);
 
-    return <div class="k-transfer-panel">
-        <div class="k-transfer-title">
+    return <div class={`${k}-transfer-panel`}>
+        <div class={`${k}-transfer-title`}>
             <b:header params={model}>
-                <div class="k-transfer-count">
+                <div class={`${k}-transfer-count`}>
                     {this.get(`${model}CheckedKeys.length`)} /
                     {data.length}
                 </div>
@@ -46,15 +47,15 @@ const Panel = (model) => {
                 size="small"
             >
                 <b:prefix>
-                    <Icon class="k-icon-search" size="small" />
+                    <Icon class={`${k}-icon-search`} size="small" />
                 </b:prefix>
             </Input>
         </b:filter>
-        <div class="k-transfer-list">
+        <div class={`${k}-transfer-list`}>
             <b:list params={model}>
                 <TransitionGroup name="k-fade">
                     <div v-for={data} 
-                        class={{"k-transfer-item": true, "k-disabled": $value.disabled}}
+                        class={{[`${k}-transfer-item`]: true, [`${k}-disabled`]: $value.disabled}}
                         key={$value[keyName] || $value[labelName] || $value}
                     >
                         <Checkbox v-model={`${model}CheckedKeys`} name={model}
@@ -77,14 +78,14 @@ const Panel = (model) => {
 
 <div class={classNameObj} {...getRestProps(this)}>
     {Panel('left')}
-    <div class="k-transfer-arrows">
+    <div class={`${k}-transfer-arrows`}>
         <Button circle icon 
             disabled={!enableRemove()}
             ev-click={remove}
             type="primary"
             size="large"
         >
-            <Icon class="k-transfer-icon k-icon-left" />
+            <Icon class={`${k}-transfer-icon ${k}-icon-left`} />
         </Button>
         <Button circle icon 
             disabled={!enableAdd()}
@@ -92,7 +93,7 @@ const Panel = (model) => {
             type="primary"
             size="large"
         >
-            <Icon class="k-transfer-icon k-icon-right" />
+            <Icon class={`${k}-transfer-icon ${k}-icon-right`} />
         </Button>
     </div>
     {Panel('right')}

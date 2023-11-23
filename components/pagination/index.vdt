@@ -15,13 +15,15 @@ const {
 
 if (!total) return <!-- pagination -->
 
+const { k } = this.config;
+
 const classNameObj = {
     [`${k}-pagination`]: true,
     [className]: className,
-    [`k-${size}`]: size !== 'default',
-    [[`${k}-flat`]]: flat,
-    [[`${k}-simple`]]: simple,
-    [makeStyles()]: true,
+    [`${k}-${size}`]: size !== 'default',
+    [`${k}-flat`]: flat,
+    [`${k}-simple`]: simple,
+    [makeStyles(k)]: true,
 };
 
 const type = flat ? 'flat' : simple ? 'none' : 'default';
@@ -52,7 +54,7 @@ const paginationDot = function(callback) {
     return <Button type={type}
         size={size}
         icon
-        class="k-pagination-ellipsis"
+        class={`${k}-pagination-ellipsis`}
         ev-click={callback}
     >...</Button>
 };
@@ -107,12 +109,12 @@ let nextPage = value + 1;
             value={value}
             ev-change={this.goto}
         />,
-        <span class="k-pagination-text"> / {totalPages}</span>,
+        <span class={`${k}-pagination-text`}> / {totalPages}</span>,
     ];
 }
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <div v-if={showTotal && !simple} class="k-pagination-total">
+    <div v-if={showTotal && !simple} class={`${k}-pagination-total`}>
         {_$('共 {n} 条', {n: total})}
     </div>
 
@@ -121,17 +123,17 @@ let nextPage = value + 1;
             type="none"
             disabled={value <= 1 || !!(disablePage && disablePage(value - 1, limit))}
             ev-click={this.prev}
-        ><Icon class="k-icon-left" /></Button>
+        ><Icon class={`${k}-icon-left`} /></Button>
         <template>{paginationItems}</template>
         <Button icon size={size}
             type="none"
             disabled={value >= totalPages || !!(disablePage && disablePage(value + 1, limit))}
             ev-click={this.next}
-        ><Icon class="k-icon-right" /></Button>
+        ><Icon class={`${k}-icon-right`} /></Button>
     </ButtonGroup>
 
     <template v-if={!simple}>
-        <div class="k-pagination-limits" v-if={showLimits}>
+        <div class={`${k}-pagination-limits`} v-if={showLimits}>
             <Select v-model="limit" size={size} flat={flat}>
                 <Option v-for={limits} value={$value}>
                     {_$('{n} 条 / 页', {n: $value})}
@@ -139,7 +141,7 @@ let nextPage = value + 1;
             </Select>
         </div>
 
-        <div class="k-pagination-goto" v-if={showGoto}>
+        <div class={`${k}-pagination-goto`} v-if={showGoto}>
             <span class="c-middle">{_$('前往')}</span>
             <Input size={size} value={value} ev-change={this.goto} flat={flat} />
             <span class="c-middle">{_$('页')}</span>

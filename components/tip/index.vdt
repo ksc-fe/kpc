@@ -3,15 +3,16 @@ import {Icon} from '../icon';
 import {makeStyles} from './styles';
 
 const {children, closable, type, disabled} = this.get();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-tip`]: true,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 <t:super class={classNameObj} name="k-fade">
     <b:body>
-        <div class="k-tip-wrapper">
-            <div v-if={$blocks.title} class="k-tip-title">
+        <div class={`${k}-tip-wrapper`}>
+            <div v-if={$blocks.title} class={`${k}-tip-title`}>
                 <b:title />
             </div>
             {children}
@@ -22,11 +23,11 @@ const classNameObj = {
             type={!$blocks.close ? 'none' : 'link'}
             icon={!$blocks.close}
             ev-click={this.onClose}
-            class="k-tip-close"
+            class={`${k}-tip-close`}
         >
             <template>
                 <b:close>
-                    <Icon class="k-icon-close"
+                    <Icon class={`${k}-icon-close`}
                         hoverable={!disabled}
                     />
                 </b:close>

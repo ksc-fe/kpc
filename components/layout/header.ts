@@ -6,6 +6,7 @@ import {makeHeaderStyles, themes} from './styles';
 import type {MenuProps} from '../menu';
 import {defaultHeight, ROOT_LAYOUT, getStyle} from './helpers';
 import type {Layout} from './layout';
+import { useConfigContext } from '../config';
 
 export interface HeaderProps { 
     fixed?: boolean
@@ -36,17 +37,19 @@ export class Header extends Component<HeaderProps> {
     static defaults = defaults;
 
     private rootLayout = inject<Layout>(ROOT_LAYOUT)!;
+    private config = useConfigContext();
 
     private getClassNames() {
         const {className, fixed, theme, blur, boxShadow} = this.get();
+        const { k } = this.config;
         return {
-            'k-layout-header': true,
-            'k-fixed': fixed,
-            'k-blur': blur,
-            'k-box-shadow': boxShadow,
-            [`k-${theme!}`]: true,
+            [`${k}-layout-header`]: true,
+            [`${k}-fixed`]: fixed,
+            [`${k}-blur`]: blur,
+            [`${k}-box-shadow`]: boxShadow,
+            [`${k}-${theme!}`]: true,
             [className as string]: className,
-            [makeHeaderStyles()]: true,
+            [makeHeaderStyles(k)]: true,
         };
     }
 

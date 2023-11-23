@@ -3,6 +3,7 @@ import {isArray} from 'intact-shared';
 import {bind} from '../utils';
 import {makeStyles} from './styles';
 import {theme} from '../../styles/theme';
+import { useConfigContext } from '../config';
 
 export interface WaveProps {
     disabled?: boolean
@@ -37,10 +38,11 @@ export class Wave extends Component<WaveProps> {
     private instance: HTMLElement | null = null;
     private className!: string;
     private timer: number = 0;
+    private config = useConfigContext();
 
     private initClassName() {
         const {color, inset} = this.get();
-        this.className = makeStyles(color || theme.color.primary, inset!);
+        this.className = makeStyles(color || theme.color.primary, inset!, this.config.k);
     }
 
     @bind
@@ -72,7 +74,7 @@ export class Wave extends Component<WaveProps> {
 
         // 点击输入框中的icon时，此时输入框不需要动效
         const isInput = instance!.classList.contains('k-input-wrapper');
-        if (disabled || isInput && node!.classList.contains('k-icon')) return;
+        if (disabled || isInput && node!.classList.contains(this.config.cls('icon'))) return;
 
         this.resetAnimation();
       

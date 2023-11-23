@@ -16,7 +16,7 @@ const classNameObj = {
     [className]: className,
     [`${k}-has-text`]: text != null,
     [`${k}-alone`]: !children,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 <div {...getRestProps(this)} class={classNameObj}>

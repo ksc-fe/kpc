@@ -140,14 +140,14 @@ export default function makeStyles(k: string) {
                 }
 
                 return css`
-                    &.k-${theme} {
+                    &.${k}-${theme} {
                         background: ${bgColor};
                         color: ${color};
                         .${k}-tooltip-arrow {
                             ${Object.keys(directionMap).map(direction => {
                                 const borderDirection = directionMap[direction as keyof typeof directionMap];
                                 return css`
-                                    &.k-${direction} {
+                                    &.${k}-${direction} {
                                         border-${borderDirection}-color: ${borderColor};
                                         &:before {
                                             border-${borderDirection}-color: ${bgColor};

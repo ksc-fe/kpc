@@ -2,11 +2,12 @@ import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 
 const {className, children} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-timeline`]: true,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>

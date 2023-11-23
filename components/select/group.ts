@@ -2,6 +2,7 @@ import {Component, TypeDefs, inject, Children, VNode} from 'intact';
 import template from './group.vdt';
 import {SELECT} from './constants';
 import type {Select} from './select';
+import { useConfigContext } from '../config';
 
 export interface OptionGroupProps {
     label?: Children 
@@ -22,4 +23,5 @@ export class OptionGroup extends Component<OptionGroupProps, OptionGroupEvents, 
     static typeDefs = typeDefs;
 
     private select: Select = inject(SELECT)!;
+    private config = useConfigContext();
 }

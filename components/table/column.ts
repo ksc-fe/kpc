@@ -1,6 +1,7 @@
 import {Component, TypeDefs, Children, VNodeComponentClass, VNode, createRef} from 'intact';
 import template from './column.vdt';
 import {useGroup} from './useGroup';
+import { useConfigContext } from '../config';
 
 export interface TableColumnProps {
     key: string
@@ -66,4 +67,5 @@ export class TableColumn<T = any> extends Component<TableColumnProps, TableColum
     public elementRef = createRef<HTMLElement>();
 
     private group = useGroup();
+    private config = useConfigContext();
 }

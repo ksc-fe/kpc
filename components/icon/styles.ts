@@ -28,7 +28,7 @@ setDefault(() => {
 export const colors = ['primary', 'warning', 'danger', 'success'] as const;
 export const sizes = ['large', 'small', 'mini'] as const;
 
-export default function makeStyles(color?: string) {
+export default function makeStyles(k: string, color?: string) {
     return css`
         color: ${icon.color};
         font-size: ${icon.fontSize.default};
@@ -37,7 +37,7 @@ export default function makeStyles(color?: string) {
         ${sizes.map(size => {
             const fontSize = icon.fontSize[size];
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     font-size: ${fontSize};
                 }
             `
@@ -45,7 +45,7 @@ export default function makeStyles(color?: string) {
         ${colors.map(color => {
             const _color = theme.color[color];
             return css`
-                &.k-${color} {
+                &.${k}-${color} {
                     color: ${_color};
                     &.${k}-hoverable:hover {
                         color: ${palette(_color, -2)};

@@ -4,6 +4,7 @@ import {useRecordParent} from '../../hooks/useRecordComponent';
 import {addMethod} from './methods';
 import {bind} from '../utils';
 import type {FormItem} from './item';
+import { useConfigContext } from '../config';
 
 interface FormHTMLAttributes {
     acceptcharset?: string
@@ -50,6 +51,7 @@ export class Form extends Component<FormProps, FormEvents> {
     static addMethod = addMethod;
 
     private items = useRecordParent<FormItem>(RECORD_KEY);
+    private config = useConfigContext();
 
     init() {
         provide(FORM, this);

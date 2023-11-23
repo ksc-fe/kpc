@@ -8,43 +8,44 @@ const {
     children
 } = this.get();
 
+const { k } = this.config;
 const status = this.status.value;
 const background = this.color.value || '';
 
 const classNameObj = {
     [`${k}-progress`] : true,
-    [`k-${type}`]: type,
+    [`${k}-${type}`]: type,
     [className]: className,
-    [`k-${status}`]: status !== 'normal',
-    [`k-${size}`]: size !== 'default',
-    [makeStyles()]: true,
+    [`${k}-${status}`]: status !== 'normal',
+    [`${k}-${size}`]: size !== 'default',
+    [makeStyles(k)]: true,
 }
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <div class="k-progress-container" v-if={type === 'bar'}>
-        <div class="k-progress-content">
-            <div class="k-progress-bg" style={{width: percent + '%', background}}>
-                <div class="k-progress-inner-text" v-if={showInnerText}>
+    <div class={`${k}-progress-container`} v-if={type === 'bar'}>
+        <div class={`${k}-progress-content`}>
+            <div class={`${k}-progress-bg`} style={{width: percent + '%', background}}>
+                <div class={`${k}-progress-inner-text`} v-if={showInnerText}>
                     {percent} %
                 </div>
             </div>
         </div>
     </div>
-    <svg class="k-progress-canvas" viewBox="0 0 120 120" v-if={type === 'circle'}>
+    <svg class={`${k}-progress-canvas`} viewBox="0 0 120 120" v-if={type === 'circle'}>
         { do {
             const r = (120 - strokeWidth) / 2;
             const circumference = 2 * Math.PI * r;
 
             [
-                <circle class="k-progress-meter" cx="60" cy="60" r={r}
+                <circle class={`${k}-progress-meter`} cx="60" cy="60" r={r}
                     stroke-width={strokeWidth}
                 />,
-                <circle class="k-progress-value" cx="60" cy="60" r={r}
+                <circle class={`${k}-progress-value`} cx="60" cy="60" r={r}
                     stroke-dashoffset={circumference * (1 - percent / 100)}
                     stroke-dasharray={circumference}
                     stroke-width={strokeWidth}
                 />,
-                <circle class="k-progress-animate" cx="60" cy="60" r={r}
+                <circle class={`${k}-progress-animate`} cx="60" cy="60" r={r}
                     stroke-width={strokeWidth}
                     stroke-dasharray={circumference}
                     stroke-dashoffset={circumference}
@@ -69,8 +70,8 @@ const classNameObj = {
             ]
         } }
     </svg>
-    <div class="k-progress-text" v-if={children}>{children}</div>
-    <div class="k-progress-text" v-else-if={showOuterText}>
+    <div class={`${k}-progress-text`} v-if={children}>{children}</div>
+    <div class={`${k}-progress-text`} v-else-if={showOuterText}>
         { do {
             let icon;
             if (type !== 'circle') {
@@ -102,7 +103,7 @@ const classNameObj = {
             }
 
             if (icon) {
-                <Icon class={{"k-progress-icon": true, [icon]: true}} color={status === 'error' ? 'danger' : status} />
+                <Icon class={{[`${k}-progress-icon`]: true, [icon]: true}} color={status === 'error' ? 'danger' : status} />
             } else {
                 <span>{percent}%</span>
             }

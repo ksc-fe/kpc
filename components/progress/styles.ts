@@ -150,7 +150,7 @@ export function makeStyles(k: string) {
             }
             ${sizes.map(size => {
                 return css`
-                    &.k-${size} {
+                    &.${k}-${size} {
                         font-size: ${progress.bar[size].fontSize};
                         .${k}-progress-container {
                             height: ${progress.bar[size].height};
@@ -222,7 +222,7 @@ export function makeStyles(k: string) {
             ${sizes.map(size => {
                 const styles = progress.circle[size];
                 return css`
-                    &.k-${size} {
+                    &.${k}-${size} {
                         width: ${styles.width};
                         height: ${styles.width};
                         font-size: ${styles.fontSize};

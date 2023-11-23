@@ -255,7 +255,7 @@ export function makeStyles(k: string) {
             
             if (size === 'default') return sizeClassName;
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     ${sizeClassName};
                 }
             `
@@ -353,7 +353,7 @@ export function makeSearchStyles(k: string) {
             ${sizes.map(size => {
                 if (size == 'default') return;
                 return css`
-                    .${k}-input.k-${size} {
+                    .${k}-input.${k}-${size} {
                         width: ${input[size].height};
                     }
                 `

@@ -10,6 +10,7 @@ import {useRouter, navigate} from '../../hooks/useRouter';
 import {useRecordItem} from '../../hooks/useRecordComponent';
 import {MENU_RECORD_KEY, useHighlightItem} from './useHighlight';
 import {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface MenuItemProps {
     key: Key 
@@ -52,6 +53,7 @@ export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
     private expanded = useExpanded(this.rootMenu, this.parentMenu);
     private dropdown = useDropdown(this.rootMenu, this.parentMenu);
     private router = useRouter();
+    private config =  useConfigContext();
 
     init() {
         provide(MENU_ITEM, this);

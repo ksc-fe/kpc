@@ -9,22 +9,23 @@ const {
 } = this.dropdown.get();
 const {children} = this.get();
 const {arrowRef, arrowType} = this.arrow;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-tooltip-content`]: true,
     [`${k}-hoverable`]: hoverable || trigger === 'click',
     [`${k}-always`]: always,
-    [`k-${theme}`]: true,
-    [`k-${size}`]: size !== 'default',
+    [`${k}-${theme}`]: true,
+    [`${k}-${size}`]: size !== 'default',
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
     [$props.className]: $props.className,
 };
 
 <t:super
     value={!!value && !this.isEmptyChildren}
     transition={{
-        name: [`${k}-fade`],
+        name: `${k}-fade`,
         onEnter: this.onEnter,
         onAfterLeave: this.onAfterLeave,
         onLeaveCancelled: this.onAfterLeave,
@@ -33,7 +34,7 @@ const classNameObj = {
 >
     <b:children>
         <b:body>{children}</b:body>
-        <div class="k-tooltip-footer" v-if={confirm} key="tooltip-footer">
+        <div class={`${k}-tooltip-footer`} v-if={confirm} key="tooltip-footer">
             <b:footer>
                 <Button ev-click={this.cancel} size="small">{cancelText}</Button>
                 <Button type="primary" ev-click={this.ok} size="small">{okText}</Button>
@@ -42,8 +43,8 @@ const classNameObj = {
         <i v-if={showArrow}
             key="tooltip-arrow"
             class={{
-                "k-tooltip-arrow": true,
-                [`k-${arrowType.value}`]: arrowType.value,
+                [`${k}-tooltip-arrow`]: true,
+                [`${k}-${arrowType.value}`]: arrowType.value,
             }}
             ref={arrowRef}
         ></i>

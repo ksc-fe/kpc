@@ -3,6 +3,7 @@ import template from './index.vdt';
 import {CollapseItem} from './item';
 import {toggleArray} from '../utils';
 export * from './item';
+import { useConfigContext } from '../config';
 
 type ArrowType = 'left' | 'right'
 
@@ -32,6 +33,8 @@ export class Collapse extends Component<CollapseProps, CollapseEvents> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 
     init() {
         provide<Collapse>(COLLAPSE, this);

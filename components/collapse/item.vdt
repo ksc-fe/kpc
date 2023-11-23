@@ -1,6 +1,6 @@
 import {Transition} from 'intact';
 import {expandAnimationCallbacks, getRestProps} from '../utils';
-import {kls, makeItemStyles} from './styles';
+import {makeItemStyles} from './styles';
 import {Icon} from '../icon';
 
 const {
@@ -9,24 +9,24 @@ const {
 } = this.get();
 
 const isActive = this.collapse.isActive(value);
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-collapse-item`]: true,
-    [makeItemStyles()]: true,
+    [makeItemStyles(k)]: true,
     [className]: className,
     [`${k}-active`]: isActive,
     [`${k}-disabled`]: disabled
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <div class={kls('title')} ev-click={this.toggle}>
+    <div class={`${k}-collapse-title`} ev-click={this.toggle}>
         <b:title>{title}</b:title>
-        <Icon class={{[kls('arrow')]: true, [`${k}-icon-right`]: true}} hoverable={!disabled}></Icon>
+        <Icon class={{[`${k}-collapse-arrow`]: true, [`${k}-icon-right`]: true}} hoverable={!disabled}></Icon>
     </div>
     <Transition
         show={isActive}
         {...expandAnimationCallbacks}
-        class={kls('content')}
         onEnter={
             el => {
                 expandAnimationCallbacks.onEnter(el);
@@ -40,6 +40,6 @@ const classNameObj = {
             }
         }
     >
-        <div class={kls('wrapper')}>{children}</div>
+        <div class={`${k}-collapse-wrapper`}>{children}</div>
     </Transition>
 </div>

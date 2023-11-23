@@ -19,18 +19,19 @@ const {
     position, flat, nowrap,
     draggable,
 } = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-select`]: true,
     [`${k}-disabled`]: disabled,
-    [`k-${size}`]: size !== 'default',
+    [`${k}-${size}`]: size !== 'default',
     [`${k}-fluid`]: fluid,
     [`${k}-inline`]: inline,
     [`${k}-flat`]: flat,
     [`${k}-nowrap`]: nowrap,
     [className]: className,
     [$props.className]: $props.className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 const placeholder = this.getPlaceholder();
@@ -39,7 +40,7 @@ const hasValue = this.hasValue();
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 const {onFocusout, triggerRef} = this.focusout;
 const filterInput = <Input v-if={filterable}
-    class="k-select-input"
+    class={`${k}-select-input`}
     value={keywords}
     ev-$change:value={onInput}
     disabled={disabled}
@@ -73,10 +74,10 @@ const filterInput = <Input v-if={filterable}
                     style={!isNullOrUndefined(width) ? addStyle(style, {width: `${width}px`}) : style}
                     ref={triggerRef}
                 >
-                    <div class="k-select-prefix" v-if={$blocks.prefix}>
+                    <div class={`${k}-select-prefix`} v-if={$blocks.prefix}>
                         <b:prefix />
                     </div>
-                    <div class="k-select-main">
+                    <div class={`${k}-select-main`}>
                         <input type="hidden" value={value} name={name} key="hidden-input" />
                         {/* TODO: Need mode on Transition */}
                         <TransitionGroup name="k-fade" appear={false}>
@@ -94,16 +95,16 @@ const filterInput = <Input v-if={filterable}
                                 waveDisabled={true}
                                 flat={flat}
                             />
-                            <div class="k-select-placeholder c-ellipsis"
+                            <div class={`${k}-select-placeholder c-ellipsis`}
                                 v-else-if={!filterable && !hasValue}
                                 key="placeholder"
                             >{placeholder}</div>
-                            <div class="k-select-value c-ellipsis" v-else-if={!multiple} key="value">
+                            <div class={`${k}-select-value c-ellipsis`} v-else-if={!multiple} key="value">
                                 <b:value params={[value, label]}>
                                     {label}
                                 </b:value>
                             </div>
-                            <div v-else key="values" class="k-select-values">
+                            <div v-else key="values" class={`${k}-select-values`}>
                                 <b:values params={[value, label]}>
                                     <Tags v-if={label && label.length || filterable}
                                         nowrap={nowrap}
@@ -139,19 +140,19 @@ const filterInput = <Input v-if={filterable}
                             </div>
                         </TransitionGroup>
                     </div>
-                    <span class="k-select-suffix" v-if={!hideIcon || clearable || loading || $blocks.suffix}>
+                    <span class={`${k}-select-suffix`} v-if={!hideIcon || clearable || loading || $blocks.suffix}>
                         <Icon v-if={clearable && !disabled}
-                            class={{"k-select-clear ion-ios-close": true, "k-show": hasValue}}
+                            class={{[`${k}-select-clear ion-ios-close`]: true, [`${k}-show`]: hasValue}}
                             ev-click={this.clear}
                             hoverable
                         />
-                        <span class="k-select-suffix-icon">
+                        <span class={`${k}-select-suffix-icon`}>
                             <b:suffix>
                                 <Icon class="ion-load-c" rotate v-if={loading} />
                                 <template v-else-if={!hideIcon}>
-                                    <Icon class="k-icon-search" v-if={filterable && show} />
+                                    <Icon class={`${k}-icon-search`} v-if={filterable && show} />
                                     <Icon v-else
-                                        class="k-select-arrow k-icon-down"
+                                        class={`${k}-select-arrow ${k}-icon-down`}
                                         disabled={$props.isDisableArrow}
                                     />
                                 </template>

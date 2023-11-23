@@ -103,7 +103,7 @@ export function makeDialogStyles(k: string) {
         // size
         ${(['large', 'small', 'mini'] as const).map(size => {
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     width: ${dialog[`${size}Width` as const]}
                 }
             `
@@ -200,7 +200,7 @@ export function makeAlertStyles(k: string) {
                             theme.color.primary :
                             theme.color[type];
                 return css`
-                    &.k-${type} {
+                    &.${k}-${type} {
                         .${k}-dialog-tip-icon {
                             color: ${color};
                         }

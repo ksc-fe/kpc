@@ -22,6 +22,7 @@ import {useShowHideEvents} from '../../hooks/useShowHideEvents';
 import {usePosition, FeedbackCallback} from './usePosition';
 import type {Events} from '../types';
 import { Virtual } from '../virtual';
+import { useConfigContext } from '../config';
 
 export type Position = Options 
 export type PositionShorthand = 'left' | 'bottom' | 'right' | 'top'
@@ -114,8 +115,9 @@ export class Dropdown<
         const [trigger, menu] = children as DropdownChildren;
         const props = this.initEventCallbacks(); 
         let {className, value, container} = this.get();
+        const { k } = this.config;
         className = cx({
-            'k-dropdown-open': value,
+            [`${k}-dropdown-open`]: value,
             [className!]: !!className,
         });
     
@@ -132,6 +134,7 @@ export class Dropdown<
     public rootDropdown: Dropdown | null = null;
     public showedDropdown: Dropdown | null = null;
     public positionHook = usePosition();
+    private config = useConfigContext();
 
     protected timer: number | undefined = undefined;
 

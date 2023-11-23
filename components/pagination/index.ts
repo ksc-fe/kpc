@@ -3,6 +3,7 @@ import template from './index.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {bind} from '../utils';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface PaginationProps {
     size?: Sizes,
@@ -67,6 +68,7 @@ export class Pagination extends Component<PaginationProps, PaginationEvents> {
     static events = events;
 
     private ignore = false;
+    private config = useConfigContext();
 
     init() {
         // avoid setting incorrect value

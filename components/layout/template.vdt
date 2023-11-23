@@ -1,8 +1,9 @@
 import {getRestProps} from '../utils';
 
 const {children, style} = this.get();
+const { k } = this.config;
 
 <div class={this.getClassNames()}
-    style={this.getStyles ? this.getStyles() : style}
+    style={this.getStyles ? this.getStyles(k) : style}
     {...getRestProps(this)}
 >{children}</div>

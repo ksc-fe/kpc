@@ -14,13 +14,15 @@ const {
 } = this.get();
 
 const drag = this.drag;
+const { k } = this.config;
+
 const classNameObj = {
     [`${k}-upload`]: true,
     [className]: className,
     [`${k}-drag`]: type === 'drag', 
     [`${k}-dragover`]: drag.dragOver.value, 
     [`${k}-gallery`]: type === 'gallery',
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 const events = {
@@ -34,21 +36,21 @@ if (type === 'drag') {
 }
 
 const handle = (
-    <div class="k-upload-handle" {...events}>
+    <div class={`${k}-upload-handle`} {...events}>
         <b:content>
             <b:children v-if={children}>{children}</b:children>
             <template v-else-if={type !== 'gallery'}>
                 <Button v-if={type === 'select'}>
-                    <Icon class="k-icon-upload" />
+                    <Icon class={`${k}-icon-upload`} />
                     {_$('点击上传')}
                 </Button>
-                <div class="k-upload-area" v-else>
-                    <Icon class="k-icon-add-bold" />
+                <div class={`${k}-upload-area`} v-else>
+                    <Icon class={`${k}-icon-add-bold`} />
                     <div innerHTML={_$('将文件拖到此处，或<a>点击上传</a>')}></div>
                 </div>
             </template>
-            <div v-else class="k-upload-picture-card k-upload-add">
-                <Icon class="k-icon-add-bold" size="large" />
+            <div v-else class={`${k}-upload-picture-card ${k}-upload-add`}>
+                <Icon class={`${k}-icon-add-bold`} size="large" />
                 <div>{_$('上传图片')}</div>
             </div>
         </b:content>
@@ -57,7 +59,7 @@ const handle = (
 
 const {removeFile} = this.files;
 const closeBtn = (value, index) => (
-    <Icon class="k-upload-close k-icon-delete"
+    <Icon class={`${k}-upload-close ${k}-icon-delete`}
         ev-click={() => removeFile(value, index)}
         hoverable
     />
@@ -76,30 +78,30 @@ const {show, close, image, isShow} = this.showImage;
         webkitdirectory={directory ? '' : undefined}
     />
 
-    <div v-if={type === 'gallery'} class="k-upload-pictures">
+    <div v-if={type === 'gallery'} class={`${k}-upload-pictures`}>
         <TransitionGroup name="k-dropdown">
             <div
                 class={{
-                    "k-upload-picture k-upload-picture-card": true, 
+                    [`${k}-upload-picture ${k}-upload-picture-card`]: true, 
                     [`${k}-error`]: $value.status === UploadFileStatus.Error,
                 }}
                 v-for={files}
                 key={$value.uid}
             >
-                <img class="k-upload-img" src={$value.url} />
+                <img class={`${k}-upload-img`} src={$value.url} />
                 <Transition name="k-fade">
-                    <div class="k-upload-overlap" key="overlap"
+                    <div class={`${k}-upload-overlap`} key="overlap"
                         v-if={
                             $value.status === UploadFileStatus.Ready || 
                             $value.status === UploadFileStatus.Uploading
                         }
                     >
                         <Progress percent={$value.percent} size="mini"
-                            class="k-upload-progress"
+                            class={`${k}-upload-progress`}
                         />
                     </div>
-                    <div class="k-upload-overlap k-upload-icons" v-else>
-                        <Icon class="k-upload-zoom ion-ios-eye-outline" size="large"
+                    <div class={`${k}-upload-overlap ${k}-upload-icons`} v-else>
+                        <Icon class={`${k}-upload-zoom ion-ios-eye-outline`} size="large"
                             hoverable
                             ev-click={() => show($value)}
                         />
@@ -114,32 +116,32 @@ const {show, close, image, isShow} = this.showImage;
     </div>
     <template v-else>{handle}</template>
 
-    <div class="k-upload-tip" v-if={$blocks.tip}><b:tip /></div>
+    <div class={`${k}-upload-tip`} v-if={$blocks.tip}><b:tip /></div>
 
-    <div class="k-upload-files" v-if={type !== 'gallery'}>
+    <div class={`${k}-upload-files`} v-if={type !== 'gallery'}>
         <TransitionGroup {...expandAnimationCallbacks}>
             <div v-for={files} 
                 class={{
-                    "k-upload-file": true,
+                    [`${k}-upload-file`]: true,
                     [`${k}-error`]: $value.status === UploadFileStatus.Error
                 }}
                 key={$value.uid}
             >
-                <div class="k-upload-file-main">
-                    <div class="k-upload-name c-ellipsis">
-                        <Icon class="k-upload-file-icon ion-document" />
-                        <span class="k-upload-file-name">{$value.name}</span>
-                        <Icon class="k-upload-status-icon k-icon-success-fill" 
+                <div class={`${k}-upload-file-main`}>
+                    <div class={`${k}-upload-name c-ellipsis`}>
+                        <Icon class={`${k}-upload-file-icon ion-document`} />
+                        <span class={`${k}-upload-file-name`}>{$value.name}</span>
+                        <Icon class={`${k}-upload-status-icon ${k}-icon-success-fill`} 
                             v-if={$value.status === UploadFileStatus.Done}
                         />
-                        <Icon class="k-upload-status-icon k-icon-error-fill"
+                        <Icon class={`${k}-upload-status-icon ${k}-icon-error-fill`}
                             v-else-if={$value.status === UploadFileStatus.Error}
                         />
                     </div>
                     <Transition {...expandAnimationCallbacks}>
                         <Progress percent={$value.percent}
                             size="mini"
-                            class="k-upload-progress"
+                            class={`${k}-upload-progress`}
                             v-if={
                                 $value.status === UploadFileStatus.Ready || 
                                 $value.status === UploadFileStatus.Uploading
@@ -156,7 +158,7 @@ const {show, close, image, isShow} = this.showImage;
         key="dialog" 
         value={isShow.value}
         ev-close={close}
-        class={{"k-upload-dialog": true, [makeUploadDialogStyles()]: true}}
+        class={{[`${k}-upload-dialog`]: true, [makeUploadDialogStyles(k)]: true}}
     >
         <a v-if={image.value} href={image.value.url} target="_blank">
             <img src={image.value.url} />

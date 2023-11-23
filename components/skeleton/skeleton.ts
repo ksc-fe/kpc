@@ -1,5 +1,6 @@
 import {Component, TypeDefs} from 'intact';
 import template from './skeleton.vdt';
+import { useConfigContext } from '../config';
 
 export interface SkeletonProps {
     loading: boolean
@@ -30,4 +31,6 @@ export class Skeleton extends Component<SkeletonProps, SkeletonEvents, SkeletonB
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 }

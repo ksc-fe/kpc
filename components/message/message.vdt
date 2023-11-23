@@ -4,11 +4,12 @@ import {getRestProps} from '../utils';
 import {makeMessageStyles} from './styles';
 
 const {type, content, children, closable, hideIcon} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
-    "k-message": true,
-    [`k-${type}`]: type,
-    [makeMessageStyles()]: true,
+    [`${k}-message`]: true,
+    [`${k}-${type}`]: type,
+    [makeMessageStyles(k)]: true,
 };
 
 const iconMap = {
@@ -23,27 +24,27 @@ const iconMap = {
     ev-mouseenter={this.delayClose.onMouseEnter}
     ev-mouseleave={this.delayClose.onMouseLeave}
 >
-    <div class="k-message-container">
-        <div class={{"k-message-wrapper": true, "k-with-icon": !hideIcon}}>
+    <div class={`${k}-message-container`}>
+        <div class={{[`${k}-message-wrapper`]: true, [`${k}-with-icon`]: !hideIcon}}>
             <Icon v-if={!hideIcon} 
                 class={{
                     [`k-icon-${iconMap[type] || iconMap.info}`]: true,
-                    "k-message-icon": true,
+                    [`${k}-message-icon`]: true,
                 }}
             />
             <div v-if={typeof content === 'string' || typeof content === 'number'}
-                class="k-message-content" innerHTML={content}
+                class={`${k}-message-content`} innerHTML={content}
             ></div>
-            <div v-else class="k-message-content">{children}</div>
+            <div v-else class={`${k}-message-content`}>{children}</div>
         </div>
         <Button 
             v-if={closable}
             type="none"
             icon
-            class="k-message-close"
+            class={`${k}-message-close`}
             ev-click={this.close}
         >
-            <Icon class="k-icon-close" hoverable />
+            <Icon class={`${k}-icon-close`} hoverable />
         </Button>
     </div>
 </div>

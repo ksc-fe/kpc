@@ -5,6 +5,8 @@ import {useSlide} from './useSlide';
 import {bind} from '../utils';
 import type {CarouselItem} from './item';
 import {useAutoplay} from './useAutoplay';
+import { useConfigContext } from '../config';
+
 export * from './item';
 
 export interface CarouselProps {
@@ -40,6 +42,7 @@ export class Carousel extends Component<CarouselProps> {
         this.items.getItemsWithCloned
     );
     private autoplay = useAutoplay(this.next);
+    private config = useConfigContext();
    
     public isActive(value: string) {
         return this.get('value') === value;

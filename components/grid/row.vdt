@@ -3,12 +3,13 @@ import {makeRowStyles} from './styles';
 import {context as GutterContext, gutterStyle} from './useGutter';
 
 const {className, children, style, justify, align} = this.get();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-row`]: true,
-    [`k-justify-${justify}`]: justify,
-    [`k-align-${align}`]: align,
+    [`${k}-justify-${justify}`]: justify,
+    [`${k}-align-${align}`]: align,
     [className]: className,
-    [makeRowStyles()]: true,
+    [makeRowStyles(k)]: true,
 };
 const gutter = this.gutter.getGutter();
 const newStyle = gutter ? gutterStyle(gutter, style, 'margin') : style; 

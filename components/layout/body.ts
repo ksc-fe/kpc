@@ -3,11 +3,13 @@ import template from './template.vdt';
 import {LAYOUT, getStyle, BODY} from './helpers';
 import type {Layout} from './layout';
 import {addStyle} from '../utils';
+import { useConfigContext } from '../config';
 
 export class Body extends Component {
     static template = template;
 
     private layout = inject<Layout>(LAYOUT)!;
+    private config = useConfigContext();
 
     init() {
         provide(BODY, this);
@@ -15,8 +17,9 @@ export class Body extends Component {
 
     private getClassNames() {
         const {className} = this.get();
+        const { k } = this.config;
         return {
-            'k-layout-body': true,
+            [`${k}-layout-body`]: true,
             [className as string]: className,
         };
     }

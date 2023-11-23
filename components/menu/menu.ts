@@ -1,6 +1,7 @@
 import {Component, TypeDefs, provide, inject, Key} from 'intact';
 import template from './menu.vdt';
 import {useHighlight} from './useHighlight';
+import { useConfigContext } from '../config';
 
 export interface MenuProps<K extends Key = Key> {
     expandedKeys?: K[]
@@ -49,6 +50,7 @@ export class Menu<K extends Key = Key> extends Component<MenuProps<K>, MenuEvent
     public parentMenu = inject<Menu | null>(MENU, null);
     public subExpandedKeys?: Set<K>;
     public highlight?: ReturnType<typeof useHighlight>;
+    private config = useConfigContext();
 
     init() {
         provide(MENU, this);

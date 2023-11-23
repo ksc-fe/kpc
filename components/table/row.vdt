@@ -13,6 +13,8 @@ const {
     hasChildren, indent, key, offsetMap,
     draggable, draggingKey, animation,
 } = this.get();
+const { k } = this.config;
+
 const classNameObj = {
     [`${k}-disabled`]: disabled,
     [`${k}-checked`]: checked,

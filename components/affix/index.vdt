@@ -9,7 +9,7 @@ const classNameObj = {
     [`${k}-affix`]: true,
     [`${k}-fixed`]: _style.value,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 <div class={classNameObj}

@@ -2,6 +2,7 @@ import {Icon} from '../icon';
 import makeStyles from "./styles";
 
 const { type, title, content } = this.get();
+const { k } = this.config;
 
 const iconMap = {
     info: 'information-fill',
@@ -11,20 +12,20 @@ const iconMap = {
 };
 
 const classNameObj = {
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
     [`${k}-popover`]: true,
 }
 
 <t:super class={classNameObj}>
     <b:body>
-        <div class="k-popover-title" v-if={title || $blocks.title}>
-            <Icon v-if={type} class={`k-icon-${iconMap[type]} k-popover-icon`}
+        <div class={`${k}-popover-title`} v-if={title || $blocks.title}>
+            <Icon v-if={type} class={`${k}-icon-${iconMap[type]} ${k}-popover-icon`}
                 color={type === 'error' ? 'danger' : type}
                 size="large"
             />
             <b:title>{title}</b:title>
         </div>
-        <div v-if={content || $blocks.content} class="k-popover-content">
+        <div v-if={content || $blocks.content} class={`${k}-popover-content`}>
             <b:content>{content}</b:content>
         </div>
     </b:body>

@@ -2,6 +2,7 @@ import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'inta
 import {bind} from '../utils';
 import template from './index.vdt';
 import type {CommonInputHTMLAttributes, Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface RadioProps<Value = false, True = true> extends CommonInputHTMLAttributes {
     disabled?: boolean
@@ -40,6 +41,7 @@ export class Radio<
     static events = events;
 
     private elementRef = createRef<HTMLInputElement>();
+    private config = useConfigContext();
 
     @bind
     private onKeypress(e: KeyboardEvent): void {

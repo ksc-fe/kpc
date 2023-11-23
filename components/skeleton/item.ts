@@ -1,5 +1,6 @@
 import {Component, TypeDefs} from 'intact';
 import template from './item.vdt';
+import { useConfigContext } from '../config';
 
 type ItemType = 'text' | 'avator' | 'image' | 'button' | 'input';
 
@@ -25,6 +26,8 @@ export class SkeletonItem extends Component<SkeletonItemProps, SkeletonItemEvent
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 }
 
 

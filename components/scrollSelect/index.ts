@@ -4,6 +4,7 @@ import {bind, toggleArray} from '../utils';
 import {useList} from './useList';
 import {useTranslate} from './useTranslate';
 import {useMouseEvents} from './useMouseEvents';
+import { useConfigContext } from '../config';
 
 export interface ScrollSelectProps<T = any> {
     value?: T 
@@ -50,4 +51,5 @@ export class ScrollSelect<T = any> extends Component<ScrollSelectProps<T>, Scrol
         this.translate.translate,
         this.list,
     );
+    private config = useConfigContext();
 }

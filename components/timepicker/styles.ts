@@ -25,7 +25,7 @@ setDefault(() => {
 
 export function makePanelStyles(k: string) {
     return cx(
-        makePanelStylesBase(),
+        makePanelStylesBase(k),
         css`
             &.${k}-time-content {
                 .${k}-datepicker-time {

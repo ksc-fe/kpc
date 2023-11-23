@@ -4,10 +4,10 @@ import {_$} from '../../i18n';
 import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 
 const {data, trigger, filterable, fields} = this.get();
-const baseMenuStyles = makeMenuStyles();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-cascader-menu`]: true,
-    [baseMenuStyles]: true,
+    [makeMenuStyles(k)]: true,
 };
 const getField = this.fields;
 
@@ -15,9 +15,9 @@ const {values, isShowed, isSelected, onSelect, toggleShowedValue} = this.value;
 const Options = (data, level, loaded, parentSelected) => {
     if (!data.length) {
         if (!loaded) {
-            return <Icon class="ion-load-c k-cascader-loading" rotate />
+            return <Icon class={`ion-load-c ${k}-cascader-loading`} rotate />
         } else {
-            return <div class="k-cascader-empty">{_$('无数据')}</div>
+            return <div class={`${k}-cascader-empty`}>{_$('无数据')}</div>
         }
     }
 
@@ -40,7 +40,7 @@ const Options = (data, level, loaded, parentSelected) => {
                 >
                     {getField(item, 'label')}
                     <Icon v-if={children}
-                        class="k-cascader-arrow k-icon-right"
+                        class={`${k}-cascader-arrow ${k}-icon-right`}
                     /> 
                 </DropdownItem>
             );
@@ -68,7 +68,7 @@ const Options = (data, level, loaded, parentSelected) => {
 }
 
 const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
-<t:super class="k-cascader">
+<t:super class={`${k}-cascader`}>
     <b:base-menu>
         <DropdownMenu 
             v-if={!filterable || !keywords}
@@ -82,12 +82,12 @@ const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
             class={{
                 [`${k}-cascader-filter`]: true,
                 [baseMenuStyles]: true,
-                [makeFilterMenuStyles()]: true,
+                [makeFilterMenuStyles(k)]: true,
             }}
         >
             {(() => {
                 const items = filter();
-                if (!items.length) return <div class="k-cascader-empty">{_$('无匹配数据')}</div>
+                if (!items.length) return <div class={`${k}-cascader-empty`}>{_$('无匹配数据')}</div>
 
                 return <DropdownItem v-for={items}
                     ev-select={selectByFilter.bind(null, $value)}

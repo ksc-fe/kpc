@@ -9,6 +9,7 @@ import template from './selectPicker.vdt';
 import {useFormats} from './useFormats';
 import {useDisabled} from '../datepicker/useDisabled';
 import {useStep} from './useStep';
+import { useConfigContext } from '../config';
 
 export class SelectPicker extends Component<TimepickerProps, TimepickerEvents, TimepickerBlocks> {
     static template = template;
@@ -17,4 +18,5 @@ export class SelectPicker extends Component<TimepickerProps, TimepickerEvents, T
     public formats = useFormats();
     public disabled = useDisabled(this.formats);
     public step = useStep(this.disabled, this.formats); 
+    private config = useConfigContext();
 }

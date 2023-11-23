@@ -2,25 +2,26 @@ import {getRestProps} from '../utils';
 import {makeItemStyles} from './styles';
 
 const {className, children, type, size} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-timeline-item`]: true,
     [className]: className,
-    [`k-${type}`]: true,
-    [`k-${size}`]: size !== 'default',
-    [makeItemStyles()]: true,
+    [`${k}-${type}`]: true,
+    [`${k}-${size}`]: size !== 'default',
+    [makeItemStyles(k)]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
-    <div class="k-timeline-indicator">
-        <div class="k-timeline-dot">
+    <div class={`${k}-timeline-indicator`}>
+        <div class={`${k}-timeline-dot`}>
             <b:dot>
-                <div class="k-timeline-circle"></div>
+                <div class={`${k}-timeline-circle`}></div>
             </b:dot>
         </div>
-        <div class="k-timeline-line"></div>
+        <div class={`${k}-timeline-line`}></div>
     </div>
-    <div class="k-timeline-content">
+    <div class={`${k}-timeline-content`}>
         {children}
     </div>
 </div>

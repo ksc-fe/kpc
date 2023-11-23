@@ -7,6 +7,7 @@ import {getNowDate} from './helpers';
 import {DATEPICKER} from './constants';
 import type {Datepicker} from './index';
 import {PanelFlags} from './usePanel';
+import { useConfigContext } from '../config';
 
 export interface DatepickerTimeProps {
     value: Dayjs | undefined 
@@ -32,6 +33,7 @@ export class DatepickerTime extends Component<DatepickerTimeProps> {
 
     public value = useState<Value>(defaultValue);
     public disabled = useDisable(this);
+    private config = useConfigContext();
 
     init() {
         this.watch('value', v => {

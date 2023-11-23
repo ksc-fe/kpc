@@ -5,10 +5,11 @@ import {isNullOrUndefined} from 'intact-shared';
 import {directClone} from 'intact';
 
 const {children, className, arrow, noBorder} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-collapse`]: true,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
     [className]: className,
     [`${k}-left`]: arrow === 'left',
     [`${k}-border`]: !noBorder,

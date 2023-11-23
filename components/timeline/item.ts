@@ -2,6 +2,8 @@ import {Component, TypeDefs} from 'intact';
 import template from './item.vdt';
 import {Sizes, sizes} from '../../styles/utils';
 import {Types, types} from './styles';
+import { useConfigContext } from '../config';
+import { use } from 'chai';
 
 export interface TimelineItemProps {
     type?: Types
@@ -28,4 +30,6 @@ export class TimelineItem extends Component<TimelineItemProps, TimelineItemEvent
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 }

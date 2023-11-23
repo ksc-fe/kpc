@@ -5,6 +5,7 @@ import {addStyle} from '../utils';
 import {ROOT_LAYOUT, LAYOUT, getStyle, BODY} from './helpers';
 import {useParse} from './useParse';
 import type { Body } from './body';
+import { useConfigContext } from '../config';
 
 export class Layout extends Component {
     static template = template;
@@ -12,6 +13,7 @@ export class Layout extends Component {
     public parse = useParse();
     public layout = inject<Layout | null>(LAYOUT, null);
     private body = inject<Body | null>(BODY, null);
+    private config = useConfigContext();
 
     init() {
         provide(LAYOUT, this);
@@ -23,10 +25,11 @@ export class Layout extends Component {
     private getClassNames() {
         const {className, children} = this.get();
         const {hasAside} = this.parse();
+        const { k } = this.config;
         return {
-            'k-layout': true,
-            [`k-has-aside`]: hasAside,
-            [makeLayoutStyles()]:  true,
+            [`${k}-layout`]: true,
+            [`${k}-has-aside`]: hasAside,
+            [makeLayoutStyles(k)]:  true,
             [className as string]: className,
         };
     }

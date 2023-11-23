@@ -9,6 +9,7 @@ const {
     data, checkType, indent, grid,
     colspan, rowspan, onClickArrow, hasChildren,
 } = this.get();
+const { k } = this.config;
 
 const blocks = props.$blocks; 
 let children = get(data, props.key);
@@ -33,10 +34,10 @@ if (columnIndex === 0 && indent) {
 >
     <Button v-if={columnIndex === 0 && hasChildren}
         type="none" icon circle size="mini"
-        class="k-table-arrow"
+        class={`${k}-table-arrow`}
         ev-click={onClickArrow}
     >
-        <Icon class="k-icon-right" size="small" />
+        <Icon class={`${k}-icon-right`} size="small" />
     </Button>
     {children}
 </td>

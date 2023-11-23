@@ -86,7 +86,7 @@ export function makeHeaderStyles(k: string) {
             if (theme === 'dark') return;
             const styles = layout[theme];
             return css`
-                &.k-${theme} {
+                &.${k}-${theme} {
                     background: ${styles.bgColor};
                     color: ${styles.color};
                     border-bottom: ${styles.border};
@@ -110,7 +110,7 @@ export function makeAsideStyles(k: string) {
             if (theme === 'dark') return;
             const styles = layout[theme];
             return css`
-                &.k-${theme} {
+                &.${k}-${theme} {
                     background: ${styles.bgColor};
                     color: ${styles.color};
                     border-right: ${styles.border};

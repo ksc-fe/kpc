@@ -12,6 +12,7 @@ import {Messages} from './messages';
 import {useDelayClose} from '../../hooks/useDelayClose';
 import {isObject} from 'intact-shared';
 import {bind} from '../utils';
+import { useConfigContext } from '../config';
 
 export interface MessageProps {
     content?: Children
@@ -79,6 +80,7 @@ export class Message extends Component<MessageProps> {
         this.close,
         this.get('duration')!
     );
+    private config = useConfigContext();
 
     @bind
     close() {

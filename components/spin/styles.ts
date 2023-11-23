@@ -61,7 +61,7 @@ export function makeStyles(k: string) {
             if (size === 'default') return;
             const width = spin[`${size}Width` as const];
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     .${k}-spin-canvas {
                         width: ${width};
                         height: ${width};

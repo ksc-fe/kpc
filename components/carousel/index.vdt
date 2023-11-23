@@ -7,14 +7,15 @@ import {linkEvent} from 'intact';
 
 const {className, children, arrow, effect} = this.get();
 const {translate, shouldTransition, elementRef, isSlide} = this.slide;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-carousel`]: true,
     [className]: className,
-    [`k-${arrow}`]: true,
+    [`${k}-${arrow}`]: true,
     [`${k}-stop`]: !shouldTransition.value,
-    [`k-${effect}`]: true,
-    [makeStyles()]: true,
+    [`${k}-${effect}`]: true,
+    [makeStyles(k)]: true,
 };
 
 const {getItems, getItemsWithCloned} = this.items;
@@ -26,24 +27,24 @@ const {stop, play} = this.autoplay;
     ev-mouseenter={stop}
     ev-mouseleave={play}
 >
-    <div class="k-carousel-wrapper"
+    <div class={`${k}-carousel-wrapper`}
         style={{
             transform: isSlide() ? `translate3d(${translate.value}px, 0, 0)` : undefined,
         }} 
     >
         {getItemsWithCloned()}
     </div>
-    <Button icon circle type="none" size="large" class="k-carousel-btn k-prev"
+    <Button icon circle type="none" size="large" class={`${k}-carousel-btn ${k}-prev`}
         ev-click={this.prev}
     >
-        <Icon class="k-icon-left" />
+        <Icon class={`${k}-icon-left`} />
     </Button>
-    <Button icon circle type="none" size="large" class="k-carousel-btn k-next"
+    <Button icon circle type="none" size="large" class={`${k}-carousel-btn ${k}-next`}
         ev-click={this.next}
     >
-        <Icon class="k-icon-right" />
+        <Icon class={`${k}-icon-right`} />
     </Button>
-    <div class="k-carousel-indicator c-clearfix">
+    <div class={`${k}-carousel-indicator c-clearfix`}>
         <div v-for={getItems()}
             class={{[`${k}-carousel-dot`]: true, [`${k}-active`]: this.isActive($value.props.value)}}
             ev-click={linkEvent($key, this.setIndex)}

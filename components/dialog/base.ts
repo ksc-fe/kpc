@@ -12,6 +12,7 @@ import {useEscClosable} from './useEscClosable';
 import {SHOW, HIDE, DIALOG} from './constants';
 import {useFixBody, setHooks} from './useFixBody';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface BaseDialogProps {
     title?: string
@@ -113,6 +114,7 @@ export class BaseDialog<
         this.overlayRef,
     );
     private mouseOutsidable = useMouseOutsidable(this.dialogRef, false);
+    protected config = useConfigContext();
 
     init() {
         useShowHideEvents('value', SHOW, HIDE);

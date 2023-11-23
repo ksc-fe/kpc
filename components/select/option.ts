@@ -3,7 +3,7 @@ import template from './option.vdt';
 import {bind, toggleArray} from '../utils';
 import {SELECT} from './constants';
 import type {Select} from './select';
-import {useRecordItem} from '../../hooks/useRecordComponent';
+import { useConfigContext } from '../config';
 
 export interface OptionProps {
     value: any
@@ -24,6 +24,7 @@ export class Option extends Component<OptionProps> {
     static typeDefs = typeDefs;
 
     private select: Select<any> = inject(SELECT)!;
+    private config = useConfigContext();
 
     @bind
     private onSelect() {

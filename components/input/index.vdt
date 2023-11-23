@@ -26,10 +26,11 @@ const {
 const { isFocus, focusInputOnClick }= this.focusHook;
 
 const isNotAutoRows = isStringOrNumber(rows) && rows !== 'auto';
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-input`]: true,
-    [`k-${size}`]: size !== 'default',
+    [`${k}-${size}`]: size !== 'default',
     [`${k}-group`]: $blocks.prepend || $blocks.append,
     [`${k}-disabled`]: disabled,
     [`${k}-clearable`]: clearable,
@@ -40,10 +41,10 @@ const classNameObj = {
     [`${k}-flat`]: flat,
     [`${k}-type-textarea`]: type === 'textarea',
     [`${k}-focus`]: isFocus.value,
-    [`k-resize-${resize}`]: type === 'textarea' && isNotAutoRows,
-    [`k-resize-none`]: type === 'textarea' && !isNotAutoRows,
+    [`${k}-resize-${resize}`]: type === 'textarea' && isNotAutoRows,
+    [`${k}-resize-none`]: type === 'textarea' && !isNotAutoRows,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 }
 
 const {
@@ -90,58 +91,58 @@ if (hasInputValue) {
             // so we handle this block manually
             const children = $blocks.prepend(noop);
             <div class={{
-                "k-input-prepend": true, 
-                "k-input-padding": isTextBlock(children)
+                [`${k}-input-prepend`]: true, 
+                [`${k}-input-padding`]: isTextBlock(children)
         }}>{children}</div>
         }
     }}
     <ErrorContext.Consumer defaultValue={false}>
         {isInvalid => {
             return <Wave disabled={waveDisabled || disabled || isInvalid} inset="-2px">
-                <div class="k-input-wrapper" ev-click={focusInputOnClick}>
-                    <div class="k-input-prefix" v-if={$blocks.prefix}>
+                <div class={`${k}-input-wrapper`} ev-click={focusInputOnClick}>
+                    <div class={`${k}-input-prefix`} v-if={$blocks.prefix}>
                         <b:prefix />
                     </div>
                     <input v-if={type !== 'textarea'}
                         {...inputProps}
-                        class="k-input-inner" 
+                        class={`${k}-input-inner`} 
                         type={showPasswordType.value}
                     />
                     <textarea v-else 
                         {...inputProps}
-                        class="k-input-inner k-textarea"
+                        class={`${k}-input-inner ${k}-textarea`}
                         rows={isNotAutoRows ? rows : 1}
                         style={height.value ? addStyle(inputProps.style, { height: height.value + 'px' }) : inputProps.style}
                     ></textarea>
-                    <div class="k-input-suffix"
+                    <div class={`${k}-input-suffix`}
                         v-if={$blocks.suffix || clearable && !disabled || showPasswordIcon.value || showCount}
                         ev-click={stopPropagation}
                     >
                         <template v-if={showPasswordIcon.value}>
                             <Icon hoverable
                                 class={{
-                                    "k-input-show-password": true,
-                                    "k-icon-hidden": !isShowPassword.value,
-                                    "k-icon-visible": isShowPassword.value,
+                                    [`${k}-input-show-password`]: true,
+                                    [`${k}-icon-hidden`]: !isShowPassword.value,
+                                    [`${k}-icon-visible`]: isShowPassword.value,
                                 }}
                                 ev-click={toggleShowPassword}
                             />{' '}
                         </template>
                         <Icon v-if={clearable && !disabled}
                             class={{
-                                "k-input-clear k-icon-error-fill": true, 
-                                "k-input-show": hasValue,
+                                [`${k}-input-clear ${k}-icon-error-fill`]: true, 
+                                [`${k}-input-show`]: hasValue,
                             }}
                             ev-click={this.clear}
                             hoverable
                         />{' '}
-                        <span class="k-input-count" v-if={showCount}>
+                        <span class={`${k}-input-count`} v-if={showCount}>
                             {hasValue ? value.length : 0}
                             <span v-if={maxlength}> / {maxlength}</span>
                         </span>
                         <b:suffix />
                     </div>
-                    <div class="k-input-fake" v-if={autoWidth}>
+                    <div class={`${k}-input-fake`} v-if={autoWidth}>
                         <span ref={fakeRef}>{!hasValue ? placeholder : inputValue}</span>
                     </div>
                 </div>
@@ -152,8 +153,8 @@ if (hasInputValue) {
         if ($blocks.append) {
             const children = $blocks.append(noop);
             <div class={{
-                "k-input-append": true, 
-                "k-input-padding": isTextBlock(children)
+                [`${k}-input-append`]: true, 
+                [`${k}-input-padding`]: isTextBlock(children)
             }}>{children}</div> 
         }
     }}

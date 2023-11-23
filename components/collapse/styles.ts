@@ -3,8 +3,6 @@ import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 
-export const kls = (className: string) => .${k}-collapse-${className}`;
-
 const defaults = {
     get transition() { return theme.transition.large },
     fontSize: '12px',
@@ -18,7 +16,6 @@ const defaults = {
     item: {
         borderBottom: '1px solid #e5e5e5',
         titleHeight: '40px',
-        contentPadding: '0 16px 16px'
     }
 };
 
@@ -32,7 +29,7 @@ export function makeStyles(k: string) {
         font-size: ${collapse.fontSize};
         
         &.${k}-left {
-            .${kls('arrow')} {
+            .${k}-collapse-arrow {
                 float: left;
                 margin-right: ${collapse.titleMarginRight};
             }
@@ -54,7 +51,7 @@ export function makeItemStyles(k: string) {
             border-bottom-color: transparent;
         }
 
-        .${kls('title')} {
+        .${k}-collapse-title {
             cursor: pointer;
             font-weight: bold;
             height: ${collapseItem.titleHeight};
@@ -63,7 +60,7 @@ export function makeItemStyles(k: string) {
             
         }
         
-        .${kls('arrow')} {
+        .${k}-collapse-arrow {
             float: right;
             transition: transform ${collapse.transition};
             line-height: ${collapseItem.titleHeight};
@@ -71,30 +68,22 @@ export function makeItemStyles(k: string) {
         }
 
         &:not(.${k}-disabled) {
-            .${kls('title')} {
+            .${k}-collapse-title {
                 &:hover {
                     color: ${theme.color.primary};
                 }
             }
         }
 
-        .${kls('content')} {
-            overflow: hidden;
-            .${kls('wrapper')} {
-                overflow: hidden;
-                padding: ${collapseItem.contentPadding};
-            }
-        }
-
         &.${k}-active {
-            .${kls('arrow')} {
+            .${k}-collapse-arrow  {
                 transform: rotate(90deg);
             }
         }
 
         &.${k}-disabled {
             color: ${theme.color.disabledBorder};
-            .${kls('title')} {
+            .${k}-collapse-title  {
                 cursor: not-allowed;
             }
         }

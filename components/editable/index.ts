@@ -4,6 +4,7 @@ import {_$} from '../../i18n';
 import {bind} from '../utils';
 import type {Input} from '../input';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 type Value = string | number
 
@@ -54,6 +55,7 @@ export class Editable<
     static events = events;
 
     private inputRef = createRef<Input>();
+    private config = useConfigContext();
 
     @bind
     private edit() {

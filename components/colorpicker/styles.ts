@@ -114,7 +114,7 @@ export function makeStyles(k: string) {
         ${_sizes.map(size => {
             const styles = colorpicker[size];
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     .${k}-colorpicker-color {
                         height: ${styles.height};
                         width: ${styles.width};
@@ -269,7 +269,7 @@ export function makePanelStyles(k: string) {
     `
 }
 
-export function makeAlphaBgColor({r, g, b}: ColorFormats.RGBA) {
+export function makeAlphaBgColor({r, g, b}: ColorFormats.RGBA, k: string) {
     return css`
         .${k}-slider-tra.${k}-wrapper {
             background: linear-gradient(to right, rgba(${r}, ${g}, ${b}, 0) 0%, rgb(${r}, ${g}, ${b}) 100%);

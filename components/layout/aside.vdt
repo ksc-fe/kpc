@@ -7,12 +7,13 @@ const {
     className, children, collapse,
     fixed, theme,
 } = this.get();
+const { k } = this.config;
 
 const vNodes = mapChildren(children, vNode => {
     if (vNode.tag === Menu) {
         let vNodeClone = directClone(vNode);
         vNodeClone.props = {...vNode.props, collapse};
-        return <div class="k-layout-wrapper">{vNodeClone}</div>
+        return <div class={`${k}-layout-wrapper`}>{vNodeClone}</div>
     }
     return vNode
 });
@@ -21,12 +22,12 @@ const classNameObj = {
     [`${k}-layout-aside`]: true,
     [`${k}-collapsed`]: collapse,
     [`${k}-fixed`]: fixed,
-    [`k-${theme}`]: true,
+    [`${k}-${theme}`]: true,
     [className]: className,
-    [makeAsideStyles()]: true,
+    [makeAsideStyles(k)]: true,
 };
 
 <div {...getRestProps(this)}
     class={classNameObj}
-    style={this.getStyles()}
+    style={this.getStyles(k)}
 >{vNodes}</div>

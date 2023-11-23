@@ -8,6 +8,7 @@ const {
     value, validate, disabled, 
     tip, invalid
 } = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-editable`]: true,
@@ -15,11 +16,11 @@ const classNameObj = {
     [`${k}-disabled`]: disabled,
     [`${k}-invalid`]: invalid,
     [className]: className,
-    [makeStyles()]: true
+    [makeStyles(k)]: true
 };
 
 <div {...getRestProps(this)} class={classNameObj}>
-    <Icon class="k-icon-edit k-editable-icon" title={tip}
+    <Icon class={`${k}-icon-edit ${k}-editable-icon`} title={tip}
         v-if={!disabled && !editing}
         ev-click={this.edit}
         hoverable

@@ -6,6 +6,7 @@ import {useTransition} from './useTransition';
 import {useMenuKeyboard} from './useKeyboard';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {FeedbackCallback} from './usePosition';
+import { useConfigContext } from '../config';
 
 export interface DropdownMenuProps { }
 export interface DropdownMenuEvents { }
@@ -25,6 +26,7 @@ export class DropdownMenu<
     public keyboard = useKeyboardForDropdownMenu(this.dropdown);
 
     private transition = useTransition((callback: FeedbackCallback) => this.dropdown.position(callback));
+    private config = useConfigContext();
 
     init() {
         provide(DROPDOWN_MENU, this);

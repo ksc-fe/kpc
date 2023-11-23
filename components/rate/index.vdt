@@ -5,12 +5,13 @@ import {Icon} from '../icon';
 
 const {className, count, disabled, half} = this.get();
 const {activeValue, onClick, onMouseEnter, onMouseLeaveComponent} = this.activeValue;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-rate`]: true,
     [`${k}-disabled`]: disabled,
     [className]: className,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 const icon = <b:icon><Icon class="ion-android-star" /></b:icon>
@@ -30,9 +31,9 @@ for(let i = 0; i < count; i++) {
             [`${k}-half`] : null;
     const halfStep = half ? i + 0.5 : i + 1;
     const item = (
-        <div class={{"k-rate-item": true, [className]: className}}>
-            {rateIcon("k-rate-first", halfStep)}
-            {rateIcon("k-rate-second", i + 1)}
+        <div class={{[`${k}-rate-item`]: true, [className]: className}}>
+            {rateIcon(`${k}-rate-first`, halfStep)}
+            {rateIcon(`${k}-rate-second`, i + 1)}
         </div>
     );
     items.push(item);

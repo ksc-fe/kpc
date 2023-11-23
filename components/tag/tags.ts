@@ -5,6 +5,7 @@ import { TagProps, typeDefs as tagTypeDefs } from './base';
 import { useChildren } from './useChildren';
 import { useDraggable } from './useDraggable';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface TagsProps extends Pick<TagProps, 'size' | 'border'> {
     nowrap?: boolean 
@@ -51,4 +52,5 @@ export class Tags extends Component<TagsProps, TagsEvents> {
     private children = useChildren();
     private draggable = useDraggable(this.children);
     private nowrap = useNowrap(this.draggable);
+    private config = useConfigContext();
 }

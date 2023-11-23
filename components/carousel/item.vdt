@@ -5,12 +5,13 @@ import {makeItemStyles} from './styles';
 const {className, children, value, cloned} = this.get();
 const parent = this.$senior;
 const active = parent.isActive(value);
+const { k } = this.config;
 const classNameObj = {
     [`${k}-carousel-item`]: true,
     [className]: className,
     [`${k}-active`]: active,
     [`${k}-cloned`]: cloned,
-    [makeItemStyles()]: true,
+    [makeItemStyles(k)]: true,
 };
 const isSlide = parent.get('effect') === 'slide';
 

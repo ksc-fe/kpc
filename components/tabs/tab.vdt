@@ -5,6 +5,7 @@ import {isNullOrUndefined} from 'intact-shared';
 
 const {value, children, className, disabled, closable} = this.get();
 const {value: currentValue} = this.tabs.get();
+const { k } = this.config;
 const classNameObj = {
     [`${k}-tab`]: true, 
     [`${k}-active`]: !isNullOrUndefined(value) && value === currentValue,
@@ -22,7 +23,7 @@ const classNameObj = {
         icon
         disabled={disabled} 
         size="mini"
-        class="k-tab-close"
+        class={`${k}-tab-close`}
         v-if={isNullOrUndefined(closable) ? this.tabs.get('closable') : closable}
         ev-click={this.remove}
     >

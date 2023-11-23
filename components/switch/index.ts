@@ -4,6 +4,7 @@ import {sizes, Sizes} from '../../styles/utils';
 import {bind} from '../utils';
 import {useDraggable} from './useDraggable';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface SwitchProps<True = any, False = any> {
     name?: string
@@ -65,6 +66,7 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
 
     private elementRef = createRef<HTMLElement>();
     private draggable = useDraggable(this.elementRef);
+    private config = useConfigContext();
 
     @bind
     private onClick(e: MouseEventWithIgnore) {

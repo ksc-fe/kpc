@@ -3,19 +3,20 @@ import {makeColStyles} from './styles';
 import {context as GutterContext, gutterStyle} from './useGutter';
 
 const {className, children, span, style, offset, push, pull, order} = this.get();
+const { k } = this.config;
 
 <GutterContext.Consumer>
     {gutter => {
         const classNameObj = {
             [`${k}-col`]: true,
-            [`k-${span}`]: span,
-            [`k-offset-${offset}`]: offset,
-            [`k-pull-${pull}`]: pull,
-            [`k-push-${push}`]: push,
-            [`k-order-${order}`]: order,
+            [`${k}-${span}`]: span,
+            [`${k}-offset-${offset}`]: offset,
+            [`${k}-pull-${pull}`]: pull,
+            [`${k}-push-${push}`]: push,
+            [`${k}-order-${order}`]: order,
             [className]: className && !gutter,
-            [makeColStyles()]: true,
-            ...this.breakpoints.getBreakpointsClassName(),
+            [makeColStyles(k)]: true,
+            ...this.breakpoints.getBreakpointsClassName(k),
         };
         const newStyle = gutter ? gutterStyle(gutter, style, 'padding') : style;
 

@@ -125,7 +125,7 @@ export function makeStyles(k: string) {
                     return generate();
                 } else {
                     return css`
-                        &.k-${size} {
+                        &.${k}-${size} {
                             ${generate()}
                         }
                     `;
@@ -152,7 +152,7 @@ export function makeStyles(k: string) {
                 return generate();
             } else {
                 return css`
-                    &.k-${size} {
+                    &.${k}-${size} {
                         ${generate()}
                     }
                 `;

@@ -5,6 +5,7 @@ import {useTransfer} from './useTransfer';
 import {useFilter, Model} from './useFilter';
 import {useCheck, CheckedKeys} from './useCheck';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 // type KeysOfType<T, U> = {
     // [P in keyof T as T[P] extends U ? P : never]: T[P]
@@ -105,6 +106,7 @@ export class Transfer<
     private transfer = useTransfer();
     private filter = useFilter(this.transfer.rightData);
     private check = useCheck(this.filter);
+    private config = useConfigContext();
 
     public getData() {
         return this.transfer.rightData.value;

@@ -19,6 +19,7 @@ import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
 import {isNullOrUndefined} from 'intact-shared';
 import { useDraggable } from './useDraggble';
+import { useConfigContext } from '../config';
 
 export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
     value?: Multipe extends true ? V[] : Attach
@@ -106,6 +107,7 @@ export abstract class BaseSelect<
     public input = useInput(this.resetKeywords);
     private focusout = useFocusout();
     private draggable = useDraggable();
+    protected config = useConfigContext();
 
     init() {
         provide(SELECT, this);

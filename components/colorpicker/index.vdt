@@ -9,13 +9,14 @@ const {
     value, size, disabled, container,
     position,
 } = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-colorpicker`]: true,
     [className]: className,
     [`k-${size}`]: size !== 'default',
     [`${k}-disabled`]: disabled,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 <div class={classNameObj} {...getRestProps(this)}>
@@ -26,10 +27,10 @@ const classNameObj = {
         container={container}
         v-model:value="show"
     >
-        <div class="k-colorpicker-color">
-            <div class="k-colorpicker-inner" style={{backgroundColor: value}}></div>
+        <div class={`${k}-colorpicker-color`}>
+            <div class={`${k}-colorpicker-inner`} style={{backgroundColor: value}}></div>
         </div>
-        <DropdownMenu class="k-colorpicker-content">
+        <DropdownMenu class={`${k}-colorpicker-content`}>
             <ColorpickerPanel v-model="value" presets={presets} />
         </DropdownMenu>
     </Dropdown>

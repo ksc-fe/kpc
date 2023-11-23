@@ -3,15 +3,16 @@ import {getRestProps} from '../utils';
 
 const {children, label, className} = this.get();
 const {card} = this.select.get();
+const { k } = this.config;
 
 const classNameObj = {
-    "k-select-group": true,
+    [`${k}-select-group`]: true,
     [className]: className,
-    [makeGroupStyles()]: true,
+    [makeGroupStyles(k)]: true,
 }
 
 <div {...getRestProps(this)} class={classNameObj}>
-    <div class="k-select-group-label" v-if={!card}>
+    <div class={`${k}-select-group-label`} v-if={!card}>
         <b:label>{label}</b:label>
     </div>
     {children}

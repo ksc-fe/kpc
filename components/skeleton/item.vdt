@@ -1,16 +1,17 @@
-import {makeItemStyles} from './style';
+import {makeItemStyles} from './styles';
 import {getRestProps} from '../utils';
 
 const {type} = this.get();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-skeleton-item`]: true,
-    [makeItemStyles()]: true
+    [makeItemStyles(k)]: true
 };
 
 const ItemklsObj = {
     [`${k}-skeleton-item-box`]: true,
-    [`skeleton-item-${type}`]: true
+    [`${k}-skeleton-item-${type}`]: true
 };
 
 const skeletonItem = <div class={ItemklsObj} {...getRestProps(this)}>

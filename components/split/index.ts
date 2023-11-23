@@ -4,6 +4,7 @@ import {useSize} from './useSize';
 import {useDraggable} from './useDraggable';
 import {Mode} from './styles';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export interface SplitProps {
     mode?: Mode
@@ -58,4 +59,5 @@ export class Split extends Component<SplitProps, SplitEvents, SplitBlocks> {
         this.size.firstSize,
         this.size.lastSize,
     );
+    private config = useConfigContext();
 }

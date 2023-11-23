@@ -9,6 +9,7 @@ import {useFilter} from './useFilter';
 import {useDraggable, Mode} from './useDraggable';
 import {useTransitionEvent} from './useTransitionEvent';
 import type {Events} from '../types';
+import { useConfigContext } from '../config';
 
 export type {
     Node as TreeNode,
@@ -98,6 +99,7 @@ export class Tree<K extends Key = Key> extends Component<TreeProps<K>, TreeEvent
     private filter = useFilter(this.nodes.getNodes, this.expanded.get);
     private draggable = useDraggable();
     private transition = useTransitionEvent();
+    private config = useConfigContext();
 
     public getCheckedData(leafOnly: boolean = false) {
         return this.checked.getCheckedData(leafOnly);

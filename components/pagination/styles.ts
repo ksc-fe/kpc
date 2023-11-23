@@ -108,7 +108,7 @@ export function makeStyles(k: string) {
             const styles = pagination[size];
             const btnStyles = button[size];
             return css`
-                &.k-${size} {
+                &.${k}-${size} {
                     font-size: ${styles.fontSize};
                     .${k}-btn {
                         margin-right: ${styles.btnGap};

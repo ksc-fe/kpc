@@ -9,6 +9,7 @@ const {
 } = this.get();
 
 const isChecked = this.isChecked();
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-checkbox`]: true,
@@ -16,7 +17,7 @@ const classNameObj = {
     [`${k}-checked`]: isChecked,
     [`${k}-indeterminate`]: indeterminate,
     [className]: className,
-    [makeStyles()]: true
+    [makeStyles(k)]: true
 };
 
 const events = [
@@ -46,7 +47,7 @@ const events = [
     {...events}
 >
     <Wave disabled={disabled} inset="-2px">
-        <span class="k-checkbox-wrapper">
+        <span class={`${k}-checkbox-wrapper`}>
             <input
                 type="checkbox" 
                 checked={isChecked}
@@ -60,5 +61,5 @@ const events = [
             />
         </span>
     </Wave>
-    <span class="k-checkbox-text" v-if={children}>{children}</span>
+    <span class={`${k}-checkbox-text`} v-if={children}>{children}</span>
 </label>

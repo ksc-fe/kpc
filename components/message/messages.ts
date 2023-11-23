@@ -1,11 +1,13 @@
 import {Component, VNodeComponentClass} from 'intact';
 import template from './messages.vdt';
 import type {Message} from './message';
+import { useConfigContext } from '../config';
 
 export class Messages extends Component {
     static template = template;
 
     private messages: VNodeComponentClass<Message>[] = [];
+    private config = useConfigContext();
 
     notice(message: VNodeComponentClass<Message>) {
         this.messages.push(message);

@@ -13,6 +13,7 @@ import {useMonths} from './useMonths';
 import {StateValue} from './basepicker';
 import {useStatus} from './useStatus';
 import {PanelFlags} from './usePanel';
+import { useConfigContext } from '../config';
 
 export interface DatepickerCalendarProps {
     value: StateValue
@@ -39,6 +40,7 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps, Datep
     public days = useDays(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
     public years = useYears(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
     public months = useMonths(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    private config = useConfigContext();
 
     @bind
     triggerChange(value: Dayjs) {

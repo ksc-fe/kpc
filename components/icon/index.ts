@@ -2,6 +2,7 @@ import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {colors, sizes} from './styles';
 import {Sizes} from '../types';
+import { useConfigContext } from '../config';
 
 export interface IconProps {
     size?:  Sizes | string | number
@@ -32,4 +33,5 @@ export class Icon extends Component<IconProps> {
     static defaults = defaults;
 
     private colors = defaultColors;
+    private config = useConfigContext();
 }

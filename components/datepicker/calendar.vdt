@@ -8,22 +8,23 @@ import {getNowDate} from './helpers';
 const type = this.type.value;
 const isYear = type === 'year';
 const isYearOrMonth = isYear || type === 'month';
+const { k } = this.config;
 const classNameObj = {
     [`${k}-datepicker-calendar`]: true,
-    [makeCalendarStyles()]: true,
+    [makeCalendarStyles(k)]: true,
 };
 const now = getNowDate();
 const {focusDate, reset: resetFocusDate} = this.datepicker.focusDate;
 const getItems = (data, onClick) => {
     return <div v-for={data}
         class={{
-            "k-calendar-item": true,
-            "k-exceed": $value.isExceed,
-            "k-active": $value.isActive,
-            "k-today": $value.isToday,
-            "k-disabled": $value.isDisabled, 
-            "k-hover": $value.isHover,
-            "k-in-range": $value.isInRange,
+            [`${k}-calendar-item`]: true,
+            [`${k}-exceed`]: $value.isExceed,
+            [`${k}-active`]: $value.isActive,
+            [`${k}-today`]: $value.isToday,
+            [`${k}-disabled`]: $value.isDisabled, 
+            [`${k}-hover`]: $value.isHover,
+            [`${k}-in-range`]: $value.isInRange,
         }}
         ev-click={
             !$value.isDisabled ? e => {
@@ -33,7 +34,7 @@ const getItems = (data, onClick) => {
         }
         ev-mouseenter={() => focusDate.set($value.value)}
     >
-        <div class="k-value">{$value.label}</div>
+        <div class={`${k}-value`}>{$value.label}</div>
     </div>
 };
 
@@ -46,62 +47,62 @@ const {
 } = this.showDate;
 
 <div class={classNameObj}>
-    <div class="k-datepicker-month">
-        <div class="k-left-btns">
-            <Button icon type="none" size="small" class="k-prev"
+    <div class={`${k}-datepicker-month`}>
+        <div class={`${k}-left-btns`}>
+            <Button icon type="none" size="small" class={`${k}-prev`}
                 tagName="div"
                 ev-click={isYear ? prevTenYears : prevYear}
             >
-                <Icon class="k-icon-left" size="small" />
-                <Icon class="k-icon-left" size="small" />
+                <Icon class={`${k}-icon-left`} size="small" />
+                <Icon class={`${k}-icon-left`} size="small" />
             </Button>
-            <Button icon type="none" size="small" class="k-prev"
+            <Button icon type="none" size="small" class={`${k}-prev`}
                 tagName="div"
                 ev-click={prevMonth}
                 v-if={!isYearOrMonth}
             >
-                <Icon class="k-icon-left" size="small" />
+                <Icon class={`${k}-icon-left`} size="small" />
             </Button>
         </div>
-        <div class="k-month-values">
+        <div class={`${k}-month-values`}>
             <template v-if={!isYear}>
                 <span v-for={getDateLabel()}
-                     class="k-month-value" 
+                     class={`${k}-month-value`} 
                      ev-click={$value.onClick}
                 >{$value.value}</span>
             </template>
-            <span v-else class="k-month-value">
+            <span v-else class={`${k}-month-value`}>
                 {this.years.getYearLabel()} 
             </span>
         </div>
-        <div class="k-right-btns">
-            <Button icon type="none" size="small" class="k-next"
+        <div class={`${k}-right-btns`}>
+            <Button icon type="none" size="small" class={`${k}-next`}
                 tagName="div"
                 ev-click={nextMonth}
                 v-if={!isYearOrMonth}
             >
-                <Icon class="k-icon-right" size="small" />
+                <Icon class={`${k}-icon-right`} size="small" />
             </Button>
-            <Button icon type="none" size="small" class="k-next"
+            <Button icon type="none" size="small" class={`${k}-next`}
                 tagName="div"
                 ev-click={isYear ? nextTenYears : nextYear}
             >
-                <Icon class="k-icon-right" size="small" />
-                <Icon class="k-icon-right" size="small" />
+                <Icon class={`${k}-icon-right`} size="small" />
+                <Icon class={`${k}-icon-right`} size="small" />
             </Button>
         </div>
     </div>
     <template v-if={!isYearOrMonth}>
-        <div class="k-weekdays">
-            <div class="k-weekday"
+        <div class={`${k}-weekdays`}>
+            <div class={`${k}-weekday`}
                 v-for={[_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')]}
             >{$value}</div>
         </div>
-        <div class="k-days" ev-mouseleave={resetFocusDate}>
+        <div class={`${k}-days`} ev-mouseleave={resetFocusDate}>
             {getItems(getDays(now), onClickDay)}
         </div>
     </template>
-    <div v-else class="k-years" ev-mouseleave={resetFocusDate}>
+    <div v-else class={`${k}-years`} ev-mouseleave={resetFocusDate}>
         {isYear ?
             getItems(this.years.getYears(now), this.years.onClick) :
             getItems(this.months.getMonths(now), this.months.onClick)

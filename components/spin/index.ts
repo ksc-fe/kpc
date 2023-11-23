@@ -1,6 +1,7 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
+import { useConfigContext } from '../config';
 
 export interface SpinProps {
     size?: Sizes
@@ -28,4 +29,6 @@ export class Spin extends Component<SpinProps, SpinEvents, SpinBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 }

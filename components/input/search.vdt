@@ -9,13 +9,14 @@ const {
     type, size, open, 
 } = this.get();
 
+const { k } = this.config;
 const classNameObj = {
     [`${k}-search`]: true,
     [className]: className,
     [`${k}-open`]: open,
     [`${k}-hide`]: !open,
-    [`k-${type}`]: type,
-    [makeSearchStyles()]: true,
+    [`${k}-${type}`]: type,
+    [makeSearchStyles(k)]: true,
 };
 
 <form {...getRestProps(this)} 
@@ -33,6 +34,6 @@ const classNameObj = {
         waveDisabled={type !== 'default'}
     />
     <Button icon type="none" ev-click={this.onClickBtn} size={size}>
-        <Icon class="k-icon-search k-search-icon" />
+        <Icon class={`${k}-icon-search ${k}-search-icon`} />
     </Button>
 </form>

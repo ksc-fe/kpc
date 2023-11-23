@@ -8,15 +8,16 @@ let {
 } = this.get();
 
 const {start, dragging, barRef, barWidth} = this.draggable;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-switch`]: true,
     [className]: className,
     [`${k}-checked`]: value === trueValue, 
-    [`k-${size}`]: true,
+    [`${k}-${size}`]: true,
     [`${k}-disabled`]: disabled,
     [`${k}-dragging`]: dragging.value,
-    [makeStyles()]: true,
+    [makeStyles(k)]: true,
 };
 
 
@@ -74,15 +75,15 @@ if (barWidth.value) {
         v-model-false={falseValue}
         tabindex="-1"
     /> 
-    <div class="k-switch-off" v-if={off || $blocks.off} style={offStyle}>
+    <div class={`${k}-switch-off`} v-if={off || $blocks.off} style={offStyle}>
         <b:off>{off}</b:off>
     </div>
-    <div class="k-switch-bar" ref={barRef} style={barStyle}>
-        <div class="k-switch-on" v-if={on || $blocks.on} style={onStyle}>
+    <div class={`${k}-switch-bar`} ref={barRef} style={barStyle}>
+        <div class={`${k}-switch-on`} v-if={on || $blocks.on} style={onStyle}>
             <b:on>{on}</b:on>
         </div>
-        <div class="k-switch-wrapper">
-            <div class="k-switch-handle"
+        <div class={`${k}-switch-wrapper`}>
+            <div class={`${k}-switch-handle`}
                 ev-click={this.onClickOnHandle}
                 ev-mousedown={start}
             >

@@ -2,6 +2,7 @@ import {Component, TypeDefs, VNode, inject} from 'intact';
 import {Collapse, COLLAPSE} from './index'
 import template from './item.vdt';
 import {bind} from '../utils';
+import { useConfigContext } from '../config';
 
 export interface CollapseItemProps {
     value?: string
@@ -29,6 +30,7 @@ export class CollapseItem extends Component<CollapseItemProps, CollapseItemEvent
     static typeDefs = typeDefs;
 
     private collapse = inject<Collapse>(COLLAPSE)!;
+    private config = useConfigContext();
 
     @bind
     toggle() {

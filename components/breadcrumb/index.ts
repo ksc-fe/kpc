@@ -1,5 +1,7 @@
 import {Component, TypeDefs} from 'intact';
 import template from './index.vdt';
+import { useConfigContext } from '../config';
+
 export * from './item';
 
 export interface BreadcrumbProps {
@@ -24,4 +26,6 @@ export class Breadcrumb extends Component<BreadcrumbProps, BreadcrumbEvents, Bre
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+
+    private config = useConfigContext();
 }
