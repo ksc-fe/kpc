@@ -25,3 +25,4 @@ sidebar: doc
 | collapse | 是否收起侧边栏 | `boolean` | `false` |
 | theme | 主题颜色 | `"dark"` &#124; `"light"` &#124; `"white"` | `"dark"` |
 | width | 宽度 | `string` &#124; `number` | `"200px"` |
+| collapsedWidth | 侧边栏收缩的宽度 | `string` &#124; `number` | `"58px"` |

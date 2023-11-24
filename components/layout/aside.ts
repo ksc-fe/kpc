@@ -6,12 +6,14 @@ import {ROOT_LAYOUT, getStyle, defaultWidth} from './helpers';
 import type {Layout} from './layout';
 import {addStyle} from '../utils';
 import { useConfigContext } from '../config';
+import { isNullOrUndefined } from 'intact-shared';
 
 export interface AsideProps { 
     collapse?: boolean
     fixed?: boolean
     theme?: MenuProps['theme']
     width?: number | string
+    collapsedWidth?: number | string
 }
 
 const typeDefs: Required<TypeDefs<AsideProps>> = {
@@ -19,6 +21,7 @@ const typeDefs: Required<TypeDefs<AsideProps>> = {
     fixed: Boolean,
     theme: themes,
     width: [Number, String],
+    collapsedWidth: [Number, String],
 };
 
 const defaults = (): Partial<AsideProps> => ({
@@ -35,9 +38,12 @@ export class Aside extends Component<AsideProps> {
     private config = useConfigContext();
 
     private getStyles() {
-        const {fixed, width, collapse} = this.get();
+        const {fixed, width, collapse, collapsedWidth} = this.get();
         const style = addStyle(this.get<string>('style'), {
-            width: !collapse ? getStyle(width!) : getCollapseWidth(),
+            width: !collapse ?
+                getStyle(width!) :
+                isNullOrUndefined(collapsedWidth) ?
+                    getCollapseWidth() : getStyle(collapsedWidth),
         });
 
         if (!fixed) return style; 
