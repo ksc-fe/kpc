@@ -34,7 +34,7 @@ export function useParse() {
                     asideWidth = props.width;
                 }
                 if (props.collapse) {
-                    asideWidth = getCollapseWidth();
+                    asideWidth = getCollapseWidth(props.collapsedWidth);
                 }
                 if (props.fixed) {
                     hasFixedAside = true;

@@ -3,6 +3,8 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, getLeft, setAlpha} from '../../styles/utils';
 import '../../styles/global';
 import {menu} from '../menu/styles';
+import { isNullOrUndefined } from 'intact-shared';
+import { getStyle } from './helpers';
 
 const sizes = ['small', 'large'] as const;
 export const themes = ['light', 'dark', 'white'] as const;
@@ -32,8 +34,8 @@ setDefault(() => {
     layout = deepDefaults(theme, {layout: defaults}).layout;
 });
 
-export function getCollapseWidth() {
-    return layout.collapsedWidth;
+export function getCollapseWidth(collapsedWidth?: string | number) {
+    return isNullOrUndefined(collapsedWidth) ? layout.collapsedWidth : getStyle(collapsedWidth);
 }
 
 export function makeLayoutStyles(k: string) {
@@ -128,6 +130,12 @@ export function makeAsideStyles(k: string) {
         .${k}-menu {
             width: auto !important;
         }
+    `
+}
+
+export function makeBodyStyles(k: string) {
+    return css`
+        transition: padding-left ${layout.transition};
     `
 }
 

@@ -6,7 +6,6 @@ import {ROOT_LAYOUT, getStyle, defaultWidth} from './helpers';
 import type {Layout} from './layout';
 import {addStyle} from '../utils';
 import { useConfigContext } from '../config';
-import { isNullOrUndefined } from 'intact-shared';
 
 export interface AsideProps { 
     collapse?: boolean
@@ -40,10 +39,7 @@ export class Aside extends Component<AsideProps> {
     private getStyles() {
         const {fixed, width, collapse, collapsedWidth} = this.get();
         const style = addStyle(this.get<string>('style'), {
-            width: !collapse ?
-                getStyle(width!) :
-                isNullOrUndefined(collapsedWidth) ?
-                    getCollapseWidth() : getStyle(collapsedWidth),
+            width: !collapse ? getStyle(width!) : getCollapseWidth(collapsedWidth),
         });
 
         if (!fixed) return style; 

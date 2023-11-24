@@ -4,6 +4,7 @@ import {LAYOUT, getStyle, BODY} from './helpers';
 import type {Layout} from './layout';
 import {addStyle} from '../utils';
 import { useConfigContext } from '../config';
+import { makeBodyStyles } from './styles';
 
 export class Body extends Component {
     static template = template;
@@ -21,6 +22,7 @@ export class Body extends Component {
         return {
             [`${k}-layout-body`]: true,
             [className as string]: className,
+            [makeBodyStyles(k)]: true,
         };
     }
 
