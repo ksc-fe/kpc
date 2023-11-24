@@ -74,8 +74,8 @@ export function makeMessageStyles(k: string) {
             display: inline-block;
             padding: ${message.padding};
             vertical-align: middle;
-            word-break: bre.${k}-word;
-            word-wrap: bre.${k}-word;
+            word-break: break-word;
+            word-wrap: break-word;
         }
         .${k}-message-close {
             vertical-align: middle;

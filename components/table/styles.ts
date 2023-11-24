@@ -90,7 +90,7 @@ export function makeStyles(k: string) {
             border-spacing: 0;
             table-layout: fixed;
             td, 
-            th{
+            th {
                 transition: all ${table.transition};  
             }
         }
@@ -157,7 +157,7 @@ export function makeStyles(k: string) {
             padding: ${table.tbody.padding};
             border-bottom: ${table.border};
             background: ${table.bgColor};
-            word-wrap: bre.${k}-word;
+            word-wrap: break-word;
             // overflow: hidden;
             // text-overflow: ellipsis;
         }

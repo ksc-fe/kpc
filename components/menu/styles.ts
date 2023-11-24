@@ -262,7 +262,7 @@ export function makeItemStyles(k: string) {
         }
         .${k}-menu-arrow {
             transition: transform ${menu.transition};
-            margin-left: ${menu.icon.gap};
+            margin: 0 0 0 ${menu.icon.gap};
         }
 
         // expanded

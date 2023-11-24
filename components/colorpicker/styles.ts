@@ -176,11 +176,11 @@ export function makePanelStyles(k: string) {
             .${k}-slider {
                 margin-bottom: ${colorpicker.panel.gutter};
             }
-            .${k}-slider-tra.${k}-wrapper,
+            .${k}-slider-track-wrapper,
             .${k}-slider-track {
                 height: ${colorpicker.slider.height};
             }
-            .${k}-slider-tra.${k}-wrapper {
+            .${k}-slider-track-wrapper {
                 cursor: ${colorpicker.slider.cursor};
             }
             .${k}-slider-track {
@@ -206,7 +206,7 @@ export function makePanelStyles(k: string) {
             }
         }
         .${k}-colorpicker-hue {
-            .${k}-slider-tra.${k}-wrapper {
+            .${k}-slider-track-wrapper {
                 background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
             }
         }
@@ -271,7 +271,7 @@ export function makePanelStyles(k: string) {
 
 export function makeAlphaBgColor({r, g, b}: ColorFormats.RGBA, k: string) {
     return css`
-        .${k}-slider-tra.${k}-wrapper {
+        .${k}-slider-track-wrapper {
             background: linear-gradient(to right, rgba(${r}, ${g}, ${b}, 0) 0%, rgb(${r}, ${g}, ${b}) 100%);
         }
     `;

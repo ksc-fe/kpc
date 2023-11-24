@@ -205,7 +205,7 @@ export default function makeStyles(k: string) {
             padding: 3px 0;
         }
         .${k}-tag {
-            word-break: bre.${k}-word;
+            word-break: break-word;
             height: auto;
             max-width: calc(100% - ${getRight(select.tag.margin)} - 1px);
         }

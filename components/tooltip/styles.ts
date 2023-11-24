@@ -58,7 +58,7 @@ export default function makeStyles(k: string) {
             min-width: 0;
             padding: ${tooltip.padding};
             line-height: ${tooltip.lineHeight};
-            word-wrap: bre.${k}-word;
+            word-wrap: break-word;
             pointer-events: none;
             box-shadow: ${tooltip.boxShadow};
 
