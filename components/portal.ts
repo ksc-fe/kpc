@@ -149,7 +149,7 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
                 this.container = document.body;
             } else {
                 // find the closest dialog if exists
-                this.container = parentDom.closest(`${this.config.k}-dialog`) || document.body;
+                this.container = parentDom.closest(`.${this.config.k}-dialog`) || document.body;
             }
 
             /**

@@ -9,7 +9,7 @@ order: 1
 import {Select, Option} from 'kpc';
 
 <div>
-    <Select v-model="day" disabled>
+    <Select v-model="day" disabled filterable>
         <Option value="Monday">星期一</Option>
         <Option value="Tuesday">星期二</Option>
         <Option value="Wednesday">星期三</Option>
