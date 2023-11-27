@@ -57,15 +57,18 @@ function createFakeElement(value: string) {
 
 function clipboardCopy(text: string) {
     try {
-        navigator.clipboard.writeText(text);
+        if (navigator.clipboard/* && window.isSecureContext */) {
+            navigator.clipboard.writeText(text);
 
-        return true;
+            return true;
+        }
     } catch (e) {
         if (process.env.NODE_ENV !== 'production') {
             console.log(e);
         }
-        return false;
     }
+
+    return false;
 }
 
 function commandCopy(text: string) {
