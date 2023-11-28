@@ -2,6 +2,7 @@ import {getRestProps} from '../utils';
 import {Input} from '../input';
 import {Icon} from '../icon';
 import {makeStyles} from './styles';
+import { Tooltip } from '../tooltip';
 
 const {
     children, className, editing, 
@@ -20,11 +21,12 @@ const classNameObj = {
 };
 
 <div {...getRestProps(this)} class={classNameObj}>
-    <Icon class={`${k}-icon-edit ${k}-editable-icon`} title={tip}
-        v-if={!disabled && !editing}
-        ev-click={this.edit}
-        hoverable
-    />
+    <Tooltip v-if={!disabled && !editing} content={tip}>
+        <Icon class={`${k}-icon-edit ${k}-editable-icon`}
+            ev-click={this.edit}
+            hoverable
+        />
+    </Tooltip>
     <div class="c-ellipsis">
         <template v-if={!editing}>{children}</template>
         <Input v-else
