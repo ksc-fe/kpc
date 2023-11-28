@@ -20,7 +20,7 @@ if (blocks) {
     }
 }
 
-let {className, style} = getClassAndStyleForFixed(props, offset, checkType);
+let {className, style} = getClassAndStyleForFixed(props, offset, k, checkType);
 if (columnIndex === 0 && indent) {
     style || (style = {});
     style.paddingLeft = `${indent}px`;
