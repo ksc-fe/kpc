@@ -11,7 +11,7 @@ export function useCopy() {
     let timer: number;
 
     return {
-        startCopy: () => {
+        startCopy: (e: MouseEvent) => {
             const { text, showMessage } = instance.get();
 
             if (clipboardCopy(text) || commandCopy(text)) {
@@ -27,6 +27,8 @@ export function useCopy() {
                 success.set(false);
                 instance.trigger('error');
             }
+
+            instance.trigger('click', e);
         },
         success,
     };

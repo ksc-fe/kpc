@@ -12,6 +12,7 @@ export interface CopyProps {
 export interface CopyEvents {
     success: [string]
     error: []
+    click: [MouseEvent]
 }
 
 const typeDefs: Required<TypeDefs<CopyProps>> = {
@@ -26,6 +27,7 @@ const defaults = (): Partial<CopyProps> => ({
 const events: Events<CopyEvents> = {
     success: true,
     error: true,
+    click: true,
 };
 
 export class Copy extends Component<CopyProps, CopyEvents> {
