@@ -33,7 +33,7 @@ const { k } = this.config;
                             {({resizable, onStart}) => {
                                 return <FixedColumnsContext.Consumer>
                                     {(offsetMap) => {
-                                        const {className, style} = getClassAndStyleForFixed(this.get(), offsetMap[key], checkType);
+                                        const {className, style} = getClassAndStyleForFixed(this.get(), offsetMap[key], k, checkType);
                                         const classNameObj = {
                                             [`${k}-column-sortable`]: sortable,
                                             [className]: className,
