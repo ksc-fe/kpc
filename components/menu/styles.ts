@@ -230,7 +230,7 @@ export function makeItemStyles(k: string) {
         .${k}-menu-title {
             cursor: pointer;
             height: ${menu.item.height};
-            transition: all ${menu.transition};
+            transition: color ${menu.transition};
             &:hover {
                 color: ${menu.item.hoverColor};
             }
