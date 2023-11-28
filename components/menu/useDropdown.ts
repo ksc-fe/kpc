@@ -45,16 +45,13 @@ export function useDropdown(rootMenu: Menu, parentMenu: Menu) {
         eachChildren(children, vNode => {
             if (isComponentVNode(vNode, Menu)) {
                 subMenuVNode = vNode;
-            } else if (isTopItem && isCollapse) {
-                if (isStringOrNumberNotEmpty(vNode) || isTextVNode(vNode)) {
-                    tooltipContents.push(vNode);
-                } else if (!iconVNode && isComponentVNode(vNode, Icon)) {
-                    iconVNode = vNode;
-                }
             } else {
                 if (isStringOrNumberNotEmpty(vNode) || isTextVNode(vNode)) {
                     // wrap with span for showing text ellipsis
                     vNode = createVNode('span', null, vNode);
+                    tooltipContents.push(vNode);
+                } else if (!iconVNode && isComponentVNode(vNode, Icon)) {
+                    iconVNode = vNode;
                 }
                 titleVNodes.push(vNode);
             }

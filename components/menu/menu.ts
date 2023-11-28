@@ -12,6 +12,8 @@ export interface MenuProps<K extends Key = Key> {
     size?: 'large' | 'default' | 'small' 
     accordion?: boolean
     dot?: boolean
+
+    _paddingLeft?: string 
 }
 
 export interface MenuEvents { }
@@ -29,6 +31,8 @@ const typeDefs: Required<TypeDefs<MenuProps>> = {
     size: ['large', 'default', 'small'],
     accordion: Boolean,
     dot: Boolean,
+
+    _paddingLeft: String,
 };
 
 const defaults = (): Partial<MenuProps> => ({

@@ -96,20 +96,6 @@ export function makeMenuStyles(k: string) {
             font-size: ${menu.fontSize};
         }
 
-        // nested menu
-        &:not(.${k}-dropdown-menu) &:not(.${k}-dropdown-menu) {
-            width: auto;
-            background: ${menu.subBgColor};
-            .${k}-menu-title {
-                padding-left: calc(${getLeft(menu.item.padding)} + ${menu.icon.width} + ${menu.icon.gap});
-            }
-        }
-        &:not(.${k}-dropdown-menu) &:not(.${k}-dropdown-menu) &:not(.${k}-dropdown-menu) {
-            .${k}-menu-title {
-                padding-left: calc(${getLeft(menu.item.padding)} + ${menu.icon.width} * 2 + ${menu.icon.gap});
-            }
-        }
-
         .${k}-icon {
             width: ${menu.icon.width};
             margin-right: ${menu.icon.gap};
@@ -304,4 +290,20 @@ export function makeItemStyles(k: string) {
             transform: scale(.4);
         }
     `
+}
+
+export function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingLeft: string = getLeft(menu.item.padding)) {
+    const paddingLeft = `${parentPaddingLeft}${hasIcon ? ' + ' + menu.icon.width : ''} + ${menu.icon.gap}`;
+    return [
+        css`
+            &.${k}-menu {
+                width: auto;
+                background: ${menu.subBgColor};
+                .${k}-menu-title {
+                    padding-left: calc(${paddingLeft});
+                }
+            }
+        `,
+        paddingLeft,
+    ]
 }

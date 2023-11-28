@@ -41,7 +41,7 @@ const content = (
     <div v-if={!isDropdownMenu}
         {...getRestProps(this)}
         class={classNameObj}
-    >{content}{}</div>
+    >{content}</div>
     <DropdownMenu v-else 
         {...getRestProps(this)}
         class={classNameObj}

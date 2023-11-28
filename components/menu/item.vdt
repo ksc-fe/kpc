@@ -5,7 +5,7 @@ import {Icon} from '../icon';
 import {Menu} from './menu';
 import {getRestProps, expandAnimationCallbacks} from '../utils';
 import {isNullOrUndefined} from 'intact-shared';
-import {makeItemStyles, makeTitleStyles} from './styles';
+import {makeItemStyles, makeTitleStyles, makeNestedMenuStyles} from './styles';
 
 const rootMenu = this.rootMenu;
 const {theme, type, dot: rootDot} = rootMenu.get();
@@ -18,6 +18,7 @@ const {
     tooltipContents, iconVNode, titleVNodes,
     position, isCollapse,
 } = this.dropdown();
+
 const { k } = this.config;
 const classNameObj = {
     [`${k}-menu-item`]: true,
@@ -48,7 +49,21 @@ const title = (children) => (
             key="subMenu"
             {...expandAnimationCallbacks}
         >
-            {subMenuVNode}
+            {(() => {
+                if (subMenuVNode) {
+                    const paddingLeft = this.parentMenu.get('_paddingLeft');
+                    const [_classname, _paddingLeft] = makeNestedMenuStyles(k, showDot || !!iconVNode, paddingLeft);
+                    const className = _$cn({
+                        [_classname]: true,
+                        [subMenuVNode.className]: subMenuVNode.className,
+                    });
+                    const clonedVNode = directClone(subMenuVNode);
+                    clonedVNode.props = { ...clonedVNode.props, className, _paddingLeft };
+                    clonedVNode.className = className;
+
+                    return clonedVNode;
+                }
+            })()}
         </Transition>
     </template>
 
