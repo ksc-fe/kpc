@@ -8,6 +8,7 @@ export type DataItem<K extends Key> = {
     disabled?: boolean
     loaded?: boolean
     children?: DataItem<K>[]
+    [key: string]: any
 }
 
 const prefix = '__$_';

@@ -78,6 +78,8 @@ export function makeStyles(k: string) {
             padding: ${tree.textPadding};
             border-radius: ${tree.borderRadius};
             flex: 1;
+            display: flex;
+            align-items: center;
         }
 
         .${k}-tree-leaf {

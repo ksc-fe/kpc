@@ -59,15 +59,15 @@ export function useDraggable() {
             mode.set(newMode);
             overKey.set(node.key);
 
-            // if the node does not allow drop, prevent the dragging ndoe from inserting to it
-            if (mode.value === Mode.Inner) {
+            // if the node does not allow drop, prevent the dragging node from inserting to it
+            // if (mode.value === Mode.Inner) {
                 const {allowDrop} = instance.get();
-                if (node.data.disabled || allowDrop && !allowDrop(node)) {
-                    instance.trigger('denydrop', node);
+                if (node.data.disabled || allowDrop && !allowDrop(node, draggingNode!, newMode)) {
+                    instance.trigger('denydrop', node, draggingNode!, newMode);
                     valid = false;
                     return;
                 }
-            }
+            // }
 
             valid = true;
         }

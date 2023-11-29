@@ -14,8 +14,9 @@ import { useConfigContext } from '../config';
 export type {
     Node as TreeNode,
     DataItem as TreeDataItem,
-    Mode as TreeMode,
 };
+
+export { Mode as TreeMode };
 
 export interface TreeProps<K extends Key = Key> {
     data?: DataItem<K>[]
@@ -32,12 +33,12 @@ export interface TreeProps<K extends Key = Key> {
     showLine?: boolean
     draggable?: boolean
     allowDrag?: (node: Node<K>) => boolean 
-    allowDrop?: (node: Node<K>) => boolean 
+    allowDrop?: (node: Node<K>, srcNode: Node<K>, mode: Mode) => boolean 
 }
 
 export interface TreeEvents<K extends Key> {
     denydrag: [Node<K>]
-    denydrop: [Node<K>]
+    denydrop: [Node<K>, Node<K>, Mode]
     dragend: [DragEndData<K>]
     transitionEnd: []
 }

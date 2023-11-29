@@ -8,7 +8,7 @@ order: 6
 触发`denydrag`和`denydrop`事件来告知用户
 
 ```vdt
-import {Tree, Input} from 'kpc';
+import {Tree, Input, Icon} from 'kpc';
 
 <Tree 
     draggable
@@ -19,11 +19,22 @@ import {Tree, Input} from 'kpc';
     ev-denydrop={this.onDenyDrop}
     v-model:data='data'
     v-model:expandedKeys="expandedKeys"
-/>
+>
+    <b:label args="[data, node]">
+        <Icon v-if={data.type === 'file'} class="k-icon-paper" />
+        <Icon v-else class="k-icon-folder" />
+        {data.label}
+    </b:label>
+</Tree>
+```
+
+```styl
+.k-tree-text .k-icon
+    margin-right 8px
 ```
 
 ```ts
-import {Message, TreeDataItem, TreeNode, TreeDragEndData} from 'kpc';
+import {Message, TreeDataItem, TreeNode, TreeDragEndData, TreeMode} from 'kpc';
 
 interface Props {
     data?: TreeDataItem<string>[]
@@ -37,58 +48,52 @@ export default class extends Component<Props> {
         return {
             data: [
                 {
-                    label: 'First floor-1',
-                    key: '1',
+                    label: '总览',
+                    key: 'summarization',
+                    type: 'file',
+                },
+                {
+                    label: '产品简介',
+                    key: 'introduction',
+                    type: 'file',
+                },
+                {
+                    label: '技术实现',
+                    key: 'implemention',
+                    type: 'file',
+                },
+                {
+                    label: '操作指南',
+                    key: 'guide',
+                    type: 'dir',
                     children: [
                         {
-                            label: 'Second floor-1.1',
-                            key: '1-1',
-                            children: [
-                                {
-                                    label: 'This node can not be dragged and dropped.',
-                                    key: '1-1-1'
-                                }
-                            ]
-                        }
+                            label: '产品安装',
+                            key: 'installation',
+                            type: 'file',
+                        },
                     ]
                 },
                 {
-                    label: 'First floor-2',
-                    key: '2',
+                    label: '接入说明',
+                    key: 'interaction',
+                    type: 'dir',
                     children: [
                         {
-                            label: 'Second floor-2.1',
-                            key: '2-1',
-                            children: [
-                                {
-                                    label: 'Third floor-2.1.1',
-                                    key: '2-1-1' 
-                                },
-                                {
-                                    label: 'Third floor-2.1.2',
-                                    key: '2-1-2'
-                                }
-                            ]
+                            label: '使用',
+                            key: 'usage',
+                            type: 'file',
                         },
-                        {
-                            label: 'Second floor-2.2',
-                            key: '2-2',
-                            children: [
-                                {
-                                    label: 'Third floor-2.2.1',
-                                    key: '2-2-1'
-                                }
-                            ]
-                        },
-                        {
-                            label: 'Second floor-2.3',
-                            key: '2-3',
-                            disabled: true
-                        }
                     ]
-                }
+                },
+                {
+                    label: '禁用文件',
+                    key: 'disabled',
+                    type: 'file',
+                    disabled: true,
+                },
             ],
-            expandedKeys: ['2', '2-1'],
+            expandedKeys: [],
         };
     }
 
@@ -97,11 +102,21 @@ export default class extends Component<Props> {
     }
 
     allowDrag(node: TreeNode<string>) {
-        return node.key !== '1-1-1';
+        return node.key !== 'summarization';
     }
 
-    allowDrop(node: TreeNode<string>) {
-        return node.key !== '1-1-1';
+    allowDrop(node: TreeNode<string>, srcNode: TreeNode<string>, mode: TreeMode) {
+        // 能够将文件拖入文件夹，但是不能讲文件夹拖入文件夹
+        if (mode === TreeMode.Inner) {
+            // 文件拖入文件夹
+            return srcNode.data.type === 'file' && node.data.type === 'dir';
+        } else if (srcNode.data.type === 'dir' && node.parent) {
+            // 此时插入模式是，前面或者后面插入
+            // 如果拖动的是文件夹，但是目标节点存在父元素，代表目标节点也是文件夹，不能插入
+            return false
+        }
+
+        return true;
     }
 
     onDenyDrag(node: TreeNode<string>) {

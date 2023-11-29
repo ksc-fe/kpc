@@ -181,57 +181,56 @@ describe('Tree', () => {
 
         const [instance, element] = mount(DraggableDemo);
 
-        instance.set('expandedKeys', ['2', '2-1', '1', '1-1']);
+        instance.set('expandedKeys', ['guide']);
         await wait(500);
 
+        let [notAllowed, file1, file2, dir1, file3, dir2, disabled]= element.querySelectorAll('.k-tree-label') as NodeListOf<HTMLElement>;
         // can not drag disabled item
-        const disabled = element.querySelector('.k-disabled') as HTMLElement;
-        // dispatchEvent(disabled, 'mousedown');
         dispatchEvent(disabled, 'dragstart');
         expect(onDenyDrag.callCount).to.eql(1);
 
-        let nodes = element.querySelectorAll('.k-tree-label') as NodeListOf<HTMLElement>;
 
         // can not drag not-allowed item
-        const notAllowed = nodes[2];
-        // dispatchEvent(notAllowed, 'mousedown');
         dispatchEvent(notAllowed, 'dragstart');
         expect(onDenyDrag.callCount).to.eql(2);
 
-        // drag insert
-        return dragInsert(nodes[6], nodes[6]).then(() => {
-            // drag to self will do nothing
-            expect(element.innerHTML).to.matchSnapshot();
-            expect(onDragEnd.callCount).to.eql(0);
+        await dragInsert(dir1, dir1);
+        // drag to self will do nothing
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(onDragEnd.callCount).to.eql(0);
 
-            return dragInsert(nodes[6], notAllowed);
-        }).then(() => {
-            // drag to not-allowed item will do nothing
-            expect(element.innerHTML).to.matchSnapshot();
-            expect(onDragEnd.callCount).to.eql(0);
+        await dragInsert(file1, notAllowed);
+        // drag to not-allowed item will do nothing
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(onDragEnd.callCount).to.eql(0);
 
-            return dragInsert(nodes[6], disabled);
-        }).then(() => {
-            // drag to disabled item will do nothing
-            expect(element.innerHTML).to.matchSnapshot();
-            expect(onDragEnd.callCount).to.eql(0);
+        await dragInsert(file1, disabled);
+        // drag to disabled item will do nothing
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(onDragEnd.callCount).to.eql(0);
 
-            return dragInsert(nodes[6], nodes[5], 'before');
-        }).then(() => {
-            expect(element.innerHTML).to.matchSnapshot();
-            expect(onDragEnd.callCount).to.eql(1);
-            expect(instance.get('data')).to.matchSnapshot();
+        await dragInsert(file2, file1, 'before');
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(onDragEnd.callCount).to.eql(1);
+        expect(instance.get('data')).to.matchSnapshot();
 
-            return dragInsert(nodes[6], nodes[5], 'after');
-        }).then(() => {
-            expect(element.innerHTML).to.matchSnapshot();
-            expect(instance.get('data')).to.matchSnapshot();
+        await dragInsert(file2, file1, 'after');
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(onDragEnd.callCount).to.eql(2);
+        expect(instance.get('data')).to.matchSnapshot();
 
-            return dragInsert(nodes[6], nodes[5]);
-        }).then(() => {
-            expect(element.innerHTML).to.matchSnapshot();
-            expect(instance.get('data')).to.matchSnapshot();
-        });
+        await dragInsert(file1, dir1);
+        expect(onDragEnd.callCount).to.eql(3);
+        expect(element.innerHTML).to.matchSnapshot();
+        expect(instance.get('data')).to.matchSnapshot();
+
+        await dragInsert(dir2, dir1);
+        expect(onDragEnd.callCount).to.eql(3);
+        expect(onDenyDrag.callCount).to.eql(2);
+
+        await dragInsert(dir2, file3, 'before');
+        expect(onDragEnd.callCount).to.eql(3);
+        expect(onDenyDrag.callCount).to.eql(2);
     });
 });
 

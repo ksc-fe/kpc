@@ -23,7 +23,7 @@ sidebar: doc
 | showLine | 是否展示左侧对齐线 | `boolean` | `true` |
 | draggable | 是否支持拖拽 | `boolean` | `false` |
 | allowDrag | 指定哪些节点可拖拽 | `(node: TreeNode<K>) => boolean` | `undefined` |
-| allowDrop | 指定哪些节点可以插入子节点 | `(node: TreeNode<K>) => boolean` | `undefined` |
+| allowDrop | 指定哪些节点可以插入子节点 | `(node: TreeNode<K>, srcNode: TreeNode[K]) => boolean` | `undefined` |
 
 ```ts
 import {Key, Children} from 'intact';
@@ -89,7 +89,7 @@ export class TreeNode<K extends Key> {
 | --- | --- | --- |
 | dragend | 拖拽完成触发 | `DragEndData<K>`，`{srcNode: '源节点', toNode: '目标节点', mode: '插入模式, Before: 插入节点前面, After: 插入节点后面, Inner: 插入节点内部'}` |
 | denydrag | 拖拽不允许拖拽的节点触发 | `TreeNode<K>` |
-| denydrop | 插入到不允许插入的节点时触发 | `TreeNode<K>` |
+| denydrop | 插入到不允许插入的节点时触发 | `(node: TreeNode[K], srcNode: TreeNode[K], mode: TreeMode)`，`node`: 当前要插入的目的节点, `srcNode`: 当前拖拽的节点，`mode`: 插入模式 |
 
 ```ts
 import {Key} from 'intact';
