@@ -126,6 +126,10 @@ export class Tree<K extends Key = Key> extends Component<TreeProps<K>, TreeEvent
         return this.nodes.getNodes() as Node<K>[];
     }
 
+    public expandAll() {
+        this.expanded.expandAll();
+    }
+
     @bind
     private onClick(node: Node<K>) {
         if (node.data.disabled) return;

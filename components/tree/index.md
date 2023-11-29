@@ -14,7 +14,7 @@ sidebar: doc
 | uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `boolean` | `false` |
 | checkedKeys | 通过`key`指定勾选的数据节点 | `K[]` | `undefined` |
 | expandedKeys | 通过`key`指定展开的数据节点 | `K[]` | `undefined` |
-| defaultExpandAll | 是否默认展开所有节点 | `boolean` | `false` |
+| defaultExpandAll | 是否默认展开所有节点 （该属性只在首次渲染时起作用，渲染后再更新数据`data`，没有效果） | `boolean` | `false` |
 | selectable | 节点是否可选中，默认为`true`可选中 | `boolean` | `true` |
 | selectedKeys | 通过`key`指定选中的数据节点 | `K[]` | `undefined` |
 | multiple | `selectedKeys`是否支持多选 | `boolean` | `false` |
@@ -82,6 +82,7 @@ export class TreeNode<K extends Key> {
 | expand | 展开节点 | `(key: K) => void`，`key` 要展开的节点的key | `undefined` |
 | shrink | 收起节点 | `(key: K) => void`，`key` 要收起的节点的key | `undefined` |
 | getNodes | 返回一级节点  | `() => TreeNode<K>[]` | `TreeNode<K>[]` 一级节点数组 |
+| expandAll | 展开所有节点 | `() => void` | `undefined` |
 
 # 事件
 

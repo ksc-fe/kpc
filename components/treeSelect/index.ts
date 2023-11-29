@@ -74,6 +74,10 @@ export class TreeSelect<
         });
     }
 
+    public expandAll() {
+        this.value.treeRef.value!.expandAll();
+    }
+
     protected getPlaceholder() {
         const {placeholder} = this.get();
 

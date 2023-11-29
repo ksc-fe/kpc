@@ -55,5 +55,5 @@ export function useExpanded(getNodes: () => Node<Key>[]) {
         instance.set('expandedKeys', Array.from(expandedKeys));
     }
 
-    return {get: () => expandedKeys, toggle};
+    return {get: () => expandedKeys, toggle, expandAll};
 }
