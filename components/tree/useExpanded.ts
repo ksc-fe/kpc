@@ -11,8 +11,20 @@ export function useExpanded(getNodes: () => Node<Key>[]) {
     });
 
     onBeforeMount(() => {
-        if (instance.get('defaultExpandAll')) {
-            expandAll();
+        /**
+         * change the behavior
+         * if the data is undefined, we expand all keys after we received data
+         */
+        const { defaultExpandAll, data } = instance.get();
+        if (defaultExpandAll) {
+            if (data && data.length) {
+                expandAll();
+            } else {
+                instance.on(`$receive:data`, function cb() {
+                    expandAll();
+                    instance.off(`$receive:data`, cb);
+                });
+            }
         }
     });
 

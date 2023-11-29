@@ -29,7 +29,7 @@ sidebar: doc
 | uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
 | showLine | 是否展示`Tree`的对齐线 | `boolean` | `true` |
-| defaultExpandAll | 是否默认展开所有节点 （该属性只在首次渲染时起作用，渲染后再更新数据`data`，没有效果） | `boolean` | `false` |
+| defaultExpandAll | 是否默认展开所有节点 | `boolean` | `false` |
 | checkbox | 是否展示复选框 | `boolean` | `false` |
 | filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, data: TreeDataItem<K>) => boolean` | `undefined` |
 | show | 是否展示菜单项 | `boolean` | `false` |
