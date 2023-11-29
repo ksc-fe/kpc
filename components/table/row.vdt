@@ -39,8 +39,8 @@ const pushCheckTypeVNode = (children) => {
         <td key="$checktype"
             {...getClassAndStyleForFixed({
                 fixed: hasFixedLeft ? 'left' : false,
-                className: [`${k}-table-check`]
-            }, 0)}
+                className: [`${k}-table-check`],
+            }, 0, k)}
             {...spans}
         >{children}</td>
     )

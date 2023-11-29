@@ -80,7 +80,7 @@ const thead = hideHeader ? null : (
                                         <th v-if={$key === 0 && checkType !== 'none'}
                                             {...getClassAndStyleForFixed({
                                                 fixed: hasFixedLeft ? 'left' : false,
-                                            }, 0)}
+                                            }, 0, k)}
                                             rowspan={maxRows}
                                             key="$checktype"
                                         >

@@ -230,7 +230,6 @@ export function makeItemStyles(k: string) {
         .${k}-menu-title {
             cursor: pointer;
             height: ${menu.item.height};
-            transition: color ${menu.transition};
             &:hover {
                 color: ${menu.item.hoverColor};
             }
@@ -244,6 +243,9 @@ export function makeItemStyles(k: string) {
                 overflow: hidden;
                 text-overflow: ellipsis;
                 min-width: 0;
+            }
+            .${k}-icon {
+                color: inherit;
             }
         }
         .${k}-menu-arrow {
