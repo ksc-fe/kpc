@@ -90,8 +90,8 @@ const dialog = (
                 ev-click={this.onClickWrapper}
                 class={`${k}-dialog-overlay`}
                 ref={this.overlayRef}
-            ></div>
+            >{dialog}</div>
         </Transition>
-        {dialog}
+        <template v-else>{dialog}</template>
     </div>
 </Portal>

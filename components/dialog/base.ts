@@ -179,7 +179,7 @@ export class BaseDialog<
 
     @bind
     private onClickWrapper(e: MouseEvent) {
-        if (this.get('closable')) {
+        if (this.get('closable') && e.target === this.overlayRef.value) {
             this.terminate();
         }
     }
