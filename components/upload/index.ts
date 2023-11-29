@@ -9,7 +9,8 @@ import {useShowImage} from './useShowImage';
 import type {RequestError} from './ajaxUploader';
 import type {Events} from '../types';
 
-export type {RequestError, UploadFileStatus};
+export type {RequestError};
+export {UploadFileStatus};
 
 export interface UploadProps {
     accept?: string
@@ -44,13 +45,13 @@ export interface UploadBlocks {
 }
 
 export type UploadFile = {
-    status: UploadFileStatus
+    status?: UploadFileStatus
     type?: string
     size?: number
     name: string
-    percent: number
-    uid: number
-    raw: File | Partial<UploadFile>
+    percent?: number
+    uid?: number | string
+    raw?: File | Partial<UploadFile>
     url?: string
     request?: any
 }

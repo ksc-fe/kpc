@@ -11,7 +11,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | accept | `input`的[accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-accept)属性，支持的文件的类型 | `string` | `undefined` |
 | files | 所有已上传和待上传的文件列表 | `UploadFile[]` | `[]` |
-| defaultFiles | 指定初始化上传列表，见示例 | <code>(Partial&lt;UploadFile&gt; & Pick&lt;UploadFile, 'name' &#124; 'url'&gt;)[]</code> | `undefined` |
+| defaultFiles `@deprecated` | 指定初始化上传列表，见示例 | <code>(Partial&lt;UploadFile&gt; & Pick&lt;UploadFile, 'name' &#124; 'url'&gt;)[]</code> | `undefined` |
 | maxSize | 最大上传文件大小限制(kb)，默认无限制 | `number` | `undefined` |
 | limit | 最大上传文件数量限制，默认无限制 | `number` | `undefined` |
 | autoUpload | 是否选择文件后即自动上传 | `boolean` | `true` |
