@@ -26,7 +26,7 @@ export function makeStyles(k: string) {
                 margin-top: -10px;
                 width: 20px;
                 height: 20px;
-                border-radius: 100%
+                border-radius: 100%;
                 text-align: center;
                 background: #ff4133;
                 color: #fff;

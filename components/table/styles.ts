@@ -60,6 +60,7 @@ const defaults = {
     // tree
     arrow: {
         gap: `4px`,
+        width: `16px`,
     },
 
     resizeWidth: `5px`,
@@ -311,6 +312,7 @@ export function makeStyles(k: string) {
             // display: none;
         // }
         .${k}-table-arrow {
+            width: ${table.arrow.width} !important;
             margin-right: ${table.arrow.gap};
             transition: transform ${table.transition};
             position: relative;
