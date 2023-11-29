@@ -1,6 +1,6 @@
 {
   "name": "@king-design/intact",
-  "version": "3.1.0-beta.2",
+  "version": "3.1.0-beta.3",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
   "engines": {
@@ -179,7 +179,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.0",
     "@emotion/css": "^11.5.0",
-    "@king-design/react": "^3.1.0-beta.2",
+    "@king-design/react": "^3.1.0-beta.3",
     "dayjs": "^1.10.7",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
