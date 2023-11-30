@@ -1,13 +1,12 @@
 import { createContext, ProviderProps } from '../context';
-import { EMPTY_OBJ } from 'intact';
-import {makeIconStyles} from '../../styles/fonts/iconfont';
+import { EMPTY_OBJ, Component } from 'intact';
 
 export interface ConfigProps {
     classNamePrefix?: string 
 }
 
 const {
-    Provider: ConfigProvider,
+    Provider,
     Consumer: ConfigConsumer,
     useContext,
 } = createContext<ConfigProps>(EMPTY_OBJ);
@@ -21,8 +20,13 @@ function useConfigContext() {
     }
 }
 
+/**
+ * for vue/react type checking
+ */
+export declare class _ConfigProvider extends Component<ProviderProps<ConfigProps>> { }
+export const ConfigProvider = Provider as typeof _ConfigProvider;
+
 export {
-    ConfigProvider,
     ConfigConsumer,
     useConfigContext,
 }

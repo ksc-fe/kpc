@@ -36,7 +36,7 @@ function generateCopy(type) {
                     const intact = `intact-${type}`;
 
                     contents = file.contents.toString('utf-8');
-                    contents = contents.replace(/['"]intact["']/, `'${intact}'`);
+                    contents = contents.replace(/['"]intact["']/g, `'${intact}'`);
 
                     const filePath = path.relative(path.resolve(root, './es'), file.path);
                     if (filePath === 'index.js' || filePath === 'index.d.ts') {

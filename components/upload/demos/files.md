@@ -29,7 +29,7 @@ import {Upload} from 'kpc';
 import {UploadFileStatus, UploadFile} from 'kpc';
 
 interface Props {
-    defaultFiles: UploadFile[]
+    files?: UploadFile[]
 }
 
 export default class extends Component<Props> {
