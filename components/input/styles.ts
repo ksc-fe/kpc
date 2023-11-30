@@ -167,6 +167,7 @@ export function makeStyles(k: string) {
             display: inline-flex;
             .${k}-input-wrapper {
                 border-radius: 0;
+                flex: 1;
             }
             .${k}-input-wrapper:first-child {
                 border-radius: ${input.borderRadius} 0 0 ${input.borderRadius};
@@ -184,7 +185,7 @@ export function makeStyles(k: string) {
             white-space: nowrap;
             .${k}-btn {
                 margin: -1px;
-                border: none;
+                // border: none;
                 &.${k}-none:hover {
                     background: transparent;
                 }

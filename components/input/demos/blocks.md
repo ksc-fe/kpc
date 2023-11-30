@@ -6,7 +6,7 @@ order: 1
 使用`append`，`prepend`，`suffix`，`prefix`扩展点，可以往组件追加内容
 
 ```vdt
-import {Input, Button, Icon} from 'kpc';
+import {Input, Button, Icon, ButtonGroup} from 'kpc';
 
 <div>
     <Input placeholder="please enter">
@@ -19,6 +19,21 @@ import {Input, Button, Icon} from 'kpc';
             <Button icon type="none">
                 <Icon class="k-icon-search" />
             </Button>
+        </b:append>
+    </Input>
+    <br />
+    <Input placeholder="please enter">
+        <b:append>
+            <Button>提交</Button>
+        </b:append>
+    </Input>
+    <br />
+    <Input placeholder="please enter">
+        <b:append>
+            <ButtonGroup>
+                <Button type="primary">提交</Button>
+                <Button type="primary">创建</Button>
+            </ButtonGroup>
         </b:append>
     </Input>
     <br />
