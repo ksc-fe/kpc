@@ -146,7 +146,12 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         if (!this.container) {
             if (this.$senior instanceof BaseDialog) {
                 // Dialog and Drawer must be inserted into document.body
-                this.container = document.body;
+                // this.container = document.body;
+                /**
+                 * @Modify https://github.com/ksc-fe/kpc/issues/915
+                 * shoud insert to parent .k-dialog-wrapper to show nested dialog in Vue
+                 */
+                this.container = parentDom.closest(`.${this.config.k}-dialog-wrapper`) || document.body;
             } else {
                 // find the closest dialog if exists
                 this.container = parentDom.closest(`.${this.config.k}-dialog`) || document.body;

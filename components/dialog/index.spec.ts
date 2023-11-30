@@ -1,7 +1,7 @@
 import {Component} from 'intact';
 import {Dialog, BaseDialog, DialogProps} from './';
 import {bind} from '../utils';
-import {getElement, mount, unmount, dispatchEvent, wait} from '../../test/utils';
+import {getElement, mount, unmount, dispatchEvent, wait, getElements} from '../../test/utils';
 import BasicDemo from '~/components/dialog/demos/basic';
 import AsyncCloseDemo from '~/components/dialog/demos/asyncClose';
 import TerminateDemo from '~/components/dialog/demos/terminate';
@@ -296,6 +296,44 @@ describe('Dialog', () => {
 
         await wait();
         expect(document.body.getAttribute('style')).to.be.null;
+    });
+
+    it('show nested dialog', async () => {
+        class Test extends Component {
+            static template = `
+                const { Dialog } = this;
+                <Dialog v-model="value">test</Dialog>
+            `
+            Dialog = Dialog;
+        }
+
+        class Demo extends Component<{show: boolean, testShow: boolean}> {
+            static template = `
+                const { Test, Dialog } = this;
+                <Dialog v-model="show">
+                    <div ev-click={this.showTest}>click</div>
+                    <Test v-model="testShow" /> 
+                </Dialog>
+            `
+            Test = Test;
+            Dialog = Dialog;
+
+            @bind
+            showTest() {
+                this.set('testShow', true);
+            }
+        }
+
+        const [instance, element] = mount(Demo);
+
+        instance.set('show', true);
+        await wait();
+
+        instance.showTest();
+        await wait();
+
+        const [dialog1, dialog2] = getElements('.k-dialog');
+        expect(dialog2.querySelector('.k-dialog-body')!.textContent).to.eql('test');
     });
 
     // it('should handle v-if and v-model at the same time correctly in Vue', async () => {
