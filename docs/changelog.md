@@ -4,6 +4,27 @@ order: 99
 sidebar: doc
 ---
 
+## v3.1.0
+
+1. `Add` 新增`ConfigProvider`配置组件，目前能配置组件样式名className的前缀`classNamePrefix` [#905](https://github.com/ksc-fe/kpc/issues/905) [#904](https://github.com/ksc-fe/kpc/issues/904)
+2. `Add` 布局组件`Aside`支持自定义收缩`collapse`的宽度 [#909](https://github.com/ksc-fe/kpc/issues/909)
+3. `Add` `Tree`允许拖入的自定义函数，及相应事件回调函数，新增拖拽的节点`srcNode`和插入模式`mode`作为参数 [#901](https://github.com/ksc-fe/kpc/issues/901)
+4. `Add` `Tree/TreeSelect`新增`expandAll`方法，用于灵活控制是否展示所有节点。 另外，默认展开逻辑`defaultExpandAll`，调整为，当数据不存在，或者数据为空时，不执行，待首次接收到新数据时，才展开，便于异步请求的数据更新后，也能展开所有节点  [#913](https://github.com/ksc-fe/kpc/issues/913)
+5. `Add` `Upload`组件的`files`属性，现在可以用来定义初始化上传列表，支持响应式更新，之前的`defaultFiles`将废弃 [#906](https://github.com/ksc-fe/kpc/issues/906)
+6. `Change` `Menu`组件，当不展示任何图标和`dot`时，优化子菜单嵌套的`padding`值 [#912](https://github.com/ksc-fe/kpc/issues/912)
+7. `Fix` 修复`Dropdown`子菜单较多时，快速移动鼠标选择子菜单，可能会使整个菜单消失，造成的体验问题 [#900](https://github.com/ksc-fe/kpc/issues/900)
+8. `Fix` 修复`Copy`和`Tooltip`嵌套使用时，复制失效的问题 [#910](https://github.com/ksc-fe/kpc/issues/910)
+9. `Fix` 修复`Dialog`在`html`设为`100%`的情况下，展示位置不对，且不能拖动的问题 [#887](https://github.com/ksc-fe/kpc/issues/887)
+10. `Fix` 修复`Input` `append`扩展点，插入按钮组`ButtonGroup`展示错位的问题 [#914](https://github.com/ksc-fe/kpc/issues/914)
+
+### @king-design/vue
+
+1. `Fix` 修复`Dialog`嵌套渲染`Dialog`，子`Dialog`会被遮挡的问题 [#915](https://github.com/ksc-fe/kpc/issues/915)
+
+### @king-design/vue-legacy
+
+1. `Fix` 修复Vue组件渲染在`KingDesign`组件下，会导致拿不到Vuex store的问题 [#907](https://github.com/ksc-fe/kpc/issues/907)
+
 ## v3.0.1
 
 1. `Add` 布局组件`Header`支持高斯模糊和展示阴影 [#892](https://github.com/ksc-fe/kpc/issues/892)
