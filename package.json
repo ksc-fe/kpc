@@ -36,7 +36,8 @@
     "prelease-minor": "lerna version preminor --preid beta --force-publish && npm run _publish -- --tag=beta",
     "prelease-major": "lerna version premajor --preid beta --force-publish && npm run _publish -- --tag=beta",
     "upload:resources": "gulp upload:resources",
-    "update:deps": "lerna exec -- yarn --registry=https://registry.npmjs.org"
+    "update:deps": "lerna exec -- yarn --registry=https://registry.npmjs.org",
+    "proxychains4:deploy:doc": "proxychains4 npx gulp doc:build && npx gulp doc:upload && proxychains4 npx gulp doc:push"
   },
   "repository": {
     "type": "git",
