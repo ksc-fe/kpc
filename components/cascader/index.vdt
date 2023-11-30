@@ -5,6 +5,7 @@ import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 
 const {data, trigger, filterable, fields} = this.get();
 const { k } = this.config;
+const baseMenuStyles = makeMenuStyles(k);
 const classNameObj = {
     [`${k}-cascader-menu`]: true,
     [makeMenuStyles(k)]: true,

@@ -3,7 +3,7 @@
 #### `should handle popover correctly`
 
 ```
-"<div class=\"k-popover-title\">确定删除？</div><div class=\"k-tooltip-footer\"><button class=\"k-btn k-small css-1xjss4m\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-small css-1xjss4m\" tabindex=\"0\" type=\"button\">确定</button></div><i class=\"k-tooltip-arrow k-top\" style=\"left: 24px\"></i>"
+"<div class=\"k-popover-title\">确定删除？</div><div class=\"k-tooltip-footer\"><button class=\"k-btn k-small css-1832za1\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-primary k-small css-1832za1\" tabindex=\"0\" type=\"button\">确定</button></div><i class=\"k-tooltip-arrow k-top\" style=\"left: 24px\"></i>"
 ```
 
 #### `should handle title/content slot correctly`
@@ -39,7 +39,7 @@
 #### `should handle footer slot correctly`
 
 ```
-"<div class=\"k-tooltip-footer\"><button class=\"k-btn k-small css-1xjss4m\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-small css-1xjss4m\" tabindex=\"0\" type=\"button\">永久删除</button><button class=\"k-btn k-primary k-small css-1xjss4m\" tabindex=\"0\" type=\"button\">移到回收站</button></div>"
+"<div class=\"k-tooltip-footer\"><button class=\"k-btn k-small css-1832za1\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-small css-1832za1\" tabindex=\"0\" type=\"button\">永久删除</button><button class=\"k-btn k-primary k-small css-1832za1\" tabindex=\"0\" type=\"button\">移到回收站</button></div>"
 ```
 
 #### `should handle buttons slot correctly`

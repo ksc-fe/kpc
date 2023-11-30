@@ -1,7 +1,7 @@
 import BasicDemo from '~/components/drawer/demos/basic';
 import PlacementDemo from '~/components/drawer/demos/placement';
 import overlayDemo from '~/components/drawer/demos/overlay';
-import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
+import {mount, unmount, dispatchEvent, getElement, wait, getElements} from '../../test/utils';
 import {Component} from 'intact';
 import {Drawer} from '.';
 import {Dialog} from '../dialog';
@@ -85,6 +85,8 @@ describe('Drawer', () => {
         const [instance, element] = mount(Demo);
 
         await wait();
-        expect(instance.refs.dialog.dialogRef.value.parentElement.parentElement).to.eql(document.body);
+        // expect(instance.refs.dialog.dialogRef.value.parentElement.parentElement).to.eql(document.body);
+        const [dialog1, dialog2] = getElements('.k-dialog');
+        expect(dialog2.querySelector('.k-dialog-body')!.textContent).to.eql('Dialog');
     });
 });

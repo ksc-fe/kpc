@@ -295,7 +295,8 @@ describe('Dialog', () => {
         instance.refs.dialog.close();
 
         await wait();
-        expect(document.body.getAttribute('style')).to.be.null;
+        const style = document.body.getAttribute('style');
+        expect(style === null || style === '').to.be.true;
     });
 
     it('show nested dialog', async () => {

@@ -6,18 +6,20 @@ order: 3
 
 
 ```vdt
-import {Icon, Input} from 'kpc';
+import {Icon, Input, Copy} from 'kpc';
 
 <div>
     <Input v-model="keywords" placeholder="Search icon" clearable />
     <div class="icons">
-        <div class="icon" v-for={this.filter()}>
-            <Icon 
-                class={this.config.k + '-icon-' + $value[0]}
-                size="large"
-            />
-            <div>{this.config.k + '-icon-' + $value[0]}</div>
-        </div>
+        <Copy v-for={this.filter()} text={this.config.k + '-icon-' + $value[0]}>
+            <div class="icon">
+                <Icon 
+                    class={this.config.k + '-icon-' + $value[0]}
+                    size="large"
+                />
+                <div>{this.config.k + '-icon-' + $value[0]}</div>
+            </div>
+        </Copy>
     </div>
 </div>
 ```
@@ -158,8 +160,17 @@ export default class extends Component<Props> {
         if (!keywords) return fonts;
 
         return fonts.filter((font) => {
-            return font[0].includes(keywords) || font[1] && font[1].includes(keywords);
+            return `${this.config.k}-icon-${font[0]}`.includes(keywords) ||
+                font[1] && font[1].includes(keywords);
         });
     }
 }
+```
+
+```vue-ignore
+该示例无展示代码
+```
+
+```react-ignore
+该示例无展示代码
 ```
