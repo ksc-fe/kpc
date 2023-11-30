@@ -1,6 +1,6 @@
 {
   "name": "@king-design/intact",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
   "engines": {
@@ -36,7 +36,8 @@
     "prelease-minor": "lerna version preminor --preid beta --force-publish && npm run _publish -- --tag=beta",
     "prelease-major": "lerna version premajor --preid beta --force-publish && npm run _publish -- --tag=beta",
     "upload:resources": "gulp upload:resources",
-    "update:deps": "lerna exec -- yarn --registry=https://registry.npmjs.org"
+    "update:deps": "lerna exec -- yarn --registry=https://registry.npmjs.org",
+    "proxychains4:deploy:doc": "proxychains4 npx gulp doc:build && npx gulp doc:upload && proxychains4 npx gulp doc:push"
   },
   "repository": {
     "type": "git",
@@ -120,7 +121,7 @@
     "highlight.js": "^10.4.1",
     "history": "^5.0.0",
     "html-webpack-plugin": "5.3.1",
-    "intact-react": "^3.0.21",
+    "intact-react": "^3.0.22",
     "istanbul-instrumenter-loader": "^3.0.0",
     "js-yaml": "^4.1.0",
     "karma": "^6.3.2",
@@ -179,7 +180,7 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.0",
     "@emotion/css": "^11.5.0",
-    "@king-design/react": "^3.0.1",
+    "@king-design/react": "^3.1.0",
     "dayjs": "^1.10.7",
     "downloadjs": "^1.4.7",
     "enquire.js": "^2.1.6",
