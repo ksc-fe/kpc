@@ -21,6 +21,7 @@ import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Icon} from '../icon';
 import {useChecked, AllCheckedStatus} from './useChecked';
 import PaginationDemo from '~/components/table/demos/pagination';
+import { download } from './exportTable';
 
 describe('Table', () => {
     afterEach(() => {
@@ -370,6 +371,11 @@ describe('Table', () => {
             {a: '1', b: 2, c: 3}
         ]);
         expect(content1.replace(/\r\n|\r/g, '\n')).to.matchSnapshot();
+
+        // it will be error codes if downloadjs exports below contents
+        // use custom download function instead
+        const csv = '"镜像名称","系统大小","镜像类型","状态","操作系统","创建时间","是否支持快速开机","可用区","镜像描述","关联快照"\r\n"a12321","20GB","普通镜像","错误 详情","centos-7","2023-11-23 15:54:10","否","--","--","q"';
+        download(csv, 'test.csv');
     });
 
     it('selectedKeys', async () => {

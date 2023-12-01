@@ -11,7 +11,6 @@ export async function exportTable(
     parentComponet: ComponentClass,
     filename: string,
 ) {
-    const download = (await import('downloadjs')).default;
     const collection: string[] = [];
     const {columns, cols} = getData();
 
@@ -58,11 +57,7 @@ export async function exportTable(
     );
 
     const content = collection.join('\r\n');
-    download(
-        '\uFEFF' + content,
-        filename + '.csv',
-        'text/comma-separated-values;charset=utf-8'
-    );
+    download(content, filename + '.csv');
 
     return content;
 }
@@ -71,4 +66,25 @@ function pushTextContext(rows: string[], dom: HTMLElement, content: string | und
     let text = isNullOrUndefined(content) ? dom!.textContent : content;
     text = '"' + String(text!.trim()).replace(/"/g, '""') + '"';
     rows.push(text);
+}
+
+export function download(content: string, filename: string) {
+    if ((navigator as any).msSaveBlob) { // IE10+
+        const blob = new Blob([content], { type: 'text/csv;charset=utf-8' });
+        (navigator as any).msSaveBlob(blob, filename);
+    } else {
+        const link = document.createElement('a');
+        if ('download' in link) {
+            const blob = new Blob([content], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', filename);
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        } else {
+            window.open(`data:text/csv,charset=utf-8,%EF%BB%BF` + encodeURI(content));
+        }
+    }
 }
