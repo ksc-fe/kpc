@@ -137,6 +137,7 @@ export function makeDialogStyles(k: string) {
         // body
         .${k}-dialog-body {
             padding: ${dialog.body.padding};
+            position: relative;
         }
 
         // footer
@@ -180,7 +181,6 @@ export function makeAlertStyles(k: string) {
                 margin-top: ${dialog.alert.bodyMarginTop};
                 padding: ${dialog.alert.padding};
                 text-align: center;
-                position: relative;
                 z-index: 1;
             }
             .${k}-dialog-header,
