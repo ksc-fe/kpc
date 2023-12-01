@@ -218,11 +218,6 @@ dayjs@^1.10.7:
   resolved "https://registry.npmmirror.com/dayjs/-/dayjs-1.11.9.tgz#9ca491933fadd0a60a2c19f6c237c03517d71d1a"
   integrity sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==
 
-downloadjs@^1.4.7:
-  version "1.4.7"
-  resolved "https://registry.npmmirror.com/downloadjs/-/downloadjs-1.4.7.tgz#f69f96f940e0d0553dac291139865a3cd0101e3c"
-  integrity sha512-LN1gO7+u9xjU5oEScGFKvXhYf7Y/empUIIEAGBs1LzUq/rg5duiDrkuH5A2lQGd5jfMOb9X9usDa2oVXwJ0U/Q==
-
 enquire.js@^2.1.6:
   version "2.1.6"
   resolved "https://registry.npmmirror.com/enquire.js/-/enquire.js-2.1.6.tgz#3e8780c9b8b835084c3f60e166dbc3c2a3c89814"

@@ -355,11 +355,6 @@ deepmerge@^4.2.2:
   resolved "https://registry.npmmirror.com/deepmerge/-/deepmerge-4.3.1.tgz#44b5f2147cd3b00d4b56137685966f26fd25dd4a"
   integrity sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==
 
-downloadjs@^1.4.7:
-  version "1.4.7"
-  resolved "https://registry.npmmirror.com/downloadjs/-/downloadjs-1.4.7.tgz#f69f96f940e0d0553dac291139865a3cd0101e3c"
-  integrity sha512-LN1gO7+u9xjU5oEScGFKvXhYf7Y/empUIIEAGBs1LzUq/rg5duiDrkuH5A2lQGd5jfMOb9X9usDa2oVXwJ0U/Q==
-
 emojis-list@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/emojis-list/-/emojis-list-3.0.0.tgz#5570662046ad29e2e916e71aae260abdff4f6a78"
