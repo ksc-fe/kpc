@@ -360,6 +360,14 @@ export function makeStyles(k: string) {
         > .${k}-pagination {
             margin: 16px 0;
         }
+
+        // fixHeader
+        &.${k}-fix-header {
+            min-height: 0;
+            .${k}-table-wrapper {
+                height: 100%;
+            }
+        }
     `;
 }
 
