@@ -8,5 +8,9 @@ order: 5
 ```vdt
 import {Input} from 'kpc';
 
-<Input placeholder="auto width" autoWidth />
+<div>
+    <Input placeholder="auto width" autoWidth />
+    <br /><br />
+    <Input placeholder="auto width" defaultValue="default value" autoWidth />
+</div>
 ```
