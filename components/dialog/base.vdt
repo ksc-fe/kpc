@@ -37,38 +37,41 @@ const dialog = (
             style={{width: typeof width === 'number' ? `${width}px` : width}}
             ev-mousedown={this.mouseOutsidable.onMouseDown}
         >
-            <b:content>
-                <div class={`${k}-dialog-header`}
-                    ev-mousedown={this.drag.start}
-                >
-                    <b:header>
-                        <span class={`${k}-dialog-title`}>{title}</span>
-                    </b:header>
-                    <Button type="none" icon title={_$("关闭")} class={`${k}-dialog-close`}
-                        ev-click={this.terminate}
-                        v-if={!hideClose && !$props.hideClose}
-                        ev-mousedown={stopPropagation}
+            {/* Drawer will inherit the content block, it will lead to conflict with custom content block. So wrap a private _content block. @issue: #922 */}
+            <b:_content>
+                <b:content>
+                    <div class={`${k}-dialog-header`}
+                        ev-mousedown={this.drag.start}
                     >
-                        <Icon class={`${k}-icon-close`} />
-                    </Button>
-                </div>
-                <div class={`${k}-dialog-body`}><b:body>{children}</b:body></div>
-                <b:footer-wrapper>
-                    <div class={`${k}-dialog-footer`}>
-                        <b:footer>
-                            <Button class={`${k}-dialog-cancel`} 
-                                ev-click={this.cancel}
-                            >{cancelText}</Button>
-                            <Button class={`${k}-dialog-ok`} 
-                                type="primary"
-                                ev-click={this.ok} 
-                                loading={loading}
-                                disabled={disabledOk}
-                            >{okText}</Button>
-                        </b:footer>
+                        <b:header>
+                            <span class={`${k}-dialog-title`}>{title}</span>
+                        </b:header>
+                        <Button type="none" icon title={_$("关闭")} class={`${k}-dialog-close`}
+                            ev-click={this.terminate}
+                            v-if={!hideClose && !$props.hideClose}
+                            ev-mousedown={stopPropagation}
+                        >
+                            <Icon class={`${k}-icon-close`} />
+                        </Button>
                     </div>
-                </b:footer-wrapper>
-            </b:content>
+                    <div class={`${k}-dialog-body`}><b:body>{children}</b:body></div>
+                    <b:footer-wrapper>
+                        <div class={`${k}-dialog-footer`}>
+                            <b:footer>
+                                <Button class={`${k}-dialog-cancel`} 
+                                    ev-click={this.cancel}
+                                >{cancelText}</Button>
+                                <Button class={`${k}-dialog-ok`} 
+                                    type="primary"
+                                    ev-click={this.ok} 
+                                    loading={loading}
+                                    disabled={disabledOk}
+                                >{okText}</Button>
+                            </b:footer>
+                        </div>
+                    </b:footer-wrapper>
+                </b:content>
+            </b:_content>
         </div>
     </Transition>
 );

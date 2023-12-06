@@ -1,9 +1,9 @@
 ---
-title: 基本用法
-order: 0
+title:  自定义整个内容
+order: 3
 ---
 
-`Drawer`组件继承了`Dialog`组件的属性、扩展点、方法和事件（拖拽功能除外）。基本用法和`Dialog`相同。
+通过`content`扩展点可以定义整个抽屉内容
 
 ```vdt
 import {Drawer, Button, ButtonGroup, Select, Option} from 'kpc';
@@ -12,15 +12,12 @@ import {Drawer, Button, ButtonGroup, Select, Option} from 'kpc';
     <Button ev-click={this.set.bind(this, 'show', true)}
         type="primary"
     >Show Drawer</Button>
-    <Drawer v-model="show"
-        title="Drawer Title"
-        ref="__demoOne"
-    >
-        <Select>
-            <Option value="1">Option 1</Option>
-            <Option value="2">Option 2</Option>
-        </Select>
-        Drawer Body 
+    <Drawer v-model="show" title="Drawer Title" placement="top" size="small">
+        <b:content>
+            <div style="padding: 16px; text-align: center;">
+                Hello King-Design!
+            </div>
+        </b:content>
     </Drawer>
 </div>
 ```

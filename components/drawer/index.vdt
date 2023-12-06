@@ -9,9 +9,9 @@ const classNameObj = {
 };
 
 <t:super class={classNameObj}>
-    <b:content>
+    <b:_content>
         <div class={`${k}-drawer-content`}>
             {$super()}
         </div>
-    </b:content>
+    </b:_content>
 </t:super>

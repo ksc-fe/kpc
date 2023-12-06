@@ -22,9 +22,12 @@ setDefault(() => {
 export function makeStyles(overlay: boolean, k: string) {
     const borderRadius = theme.largeBorderRadius;
     return css`
-        position: fixed !important;
-        background: transparent !important;
-        box-shadow: none !important;
+        &.k-drawer {
+            position: fixed;
+            background: transparent;
+            box-shadow: none;
+            border-radius: 0;
+        }
 
         &.transition-enter-active,
         &.transition-leave-active,
