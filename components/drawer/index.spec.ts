@@ -34,7 +34,7 @@ describe('Drawer', () => {
         this.timeout(0);
         const [instance, element] = mount(PlacementDemo);
 
-        const [top, bottom, left, right] = element.querySelectorAll<HTMLElement>('.k-btn');
+        const [top, bottom, left, right] = element.querySelectorAll<HTMLElement>('.placement-btn');
         const test = async (btn: HTMLElement, className: string) => {
             dispatchEvent(btn, 'click');
             await wait();

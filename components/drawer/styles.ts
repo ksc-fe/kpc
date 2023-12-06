@@ -20,6 +20,7 @@ setDefault(() => {
 });
 
 export function makeStyles(overlay: boolean, k: string) {
+    const borderRadius = theme.largeBorderRadius;
     return css`
         position: fixed !important;
         background: transparent !important;
@@ -48,56 +49,31 @@ export function makeStyles(overlay: boolean, k: string) {
             }
         }
         
-        ${placements.map((placement) => {
-            let positionValue: string = '';
-            let transformValue: string = '';
-            let borderRadius: string = '';
-            placements.forEach((p) => {
-                // Set top to `0 !important` when overlay is false and placement is right or left
-                // Because dialog without overlay don't have positional parent element
-                positionValue += p !== placement 
-                    ? ((placement === 'right' || placement === 'left') && !overlay && p === 'top')
-                        ? `${p}: 0;`
-                        : `${p}: auto;`
-                    : `${p}: 0;`;
-            });
+        ${makePlacementStyles(k, 'right', `right: 0; height: 100%;`, `translateX(100%)`, `${borderRadius} 0 0 ${borderRadius}`)}
+        ${makePlacementStyles(k, 'left', 'left: 0; height: 100%;', `translateX(-100%)`, `0 ${borderRadius} ${borderRadius} 0`)}
+        ${makePlacementStyles(k, 'top', 'left: 50%; top: 0; transform: translateX(-50%);', `translateY(-100%)`, `0 0 ${borderRadius} ${borderRadius}`)}
+        ${makePlacementStyles(k, 'bottom', 'left: 50%; bottom: 0; transform: translateX(-50%);', `translateY(100%)`, `0 ${borderRadius} ${borderRadius} 0`)}
+        &.${k}-top,
+        &.${k}-bottom {
+            width: 100%;
+        }
+    `;
+}
 
-            if (placement === 'left' || placement === 'right') {
-                positionValue += 'height: 100% !important;';
-                if (placement === 'left') {
-                    borderRadius = `0 ${theme.largeBorderRadius} ${theme.largeBorderRadius} 0`;
-                    transformValue = 'translateX(-100%)';
-                } else {
-                    borderRadius = `${theme.largeBorderRadius} 0 0 ${theme.largeBorderRadius}`;
-                    transformValue = 'translateX(100%)';
-                }
-            } else {
-                positionValue += 'width: 100% !important;';
-                if (placement === 'top') {
-                    borderRadius = `0 0 ${theme.largeBorderRadius} ${theme.largeBorderRadius}`;
-                    transformValue = 'translateY(-100%)';
-                } else {
-                    borderRadius = `${theme.largeBorderRadius} ${theme.largeBorderRadius} 0 0`;
-                    transformValue = 'translateY(100%)';
+function makePlacementStyles(k: string, placement: string, styles: string, transform: string, borderRadius: string) {
+    return css`
+        &.${k}-drawer.${k}-${placement} {
+            ${styles}
+            &.transition-enter-from,
+            &.transition-leave-to,
+            &.transition-appear-from {
+                .${k}-drawer-content {
+                    transform: ${transform};
                 }
             }
-
-            return css`
-                &.${k}-${placement} {
-                    ${positionValue}
-                    &.transition-enter-from,
-                    &.transition-leave-to,
-                    &.transition-appear-from {
-                        transform: none !important;
-                        .${k}-drawer-content {
-                            transform: ${transformValue};
-                        }
-                    }
-                    .${k}-drawer-content {
-                        border-radius: ${borderRadius};
-                    }
-                }
-            `
-        })}
-    `;
+            .${k}-drawer-content {
+                border-radius: ${borderRadius};
+            }
+        }
+    `
 }

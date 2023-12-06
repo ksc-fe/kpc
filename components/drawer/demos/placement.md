@@ -9,9 +9,17 @@ order: 0.1
 import {Drawer, Button, ButtonGroup} from 'kpc';
 
 <div>
+    <ButtonGroup checkType="radio" v-model="size">
+        <Button value="large">large</Button>
+        <Button value="default">default</Button>
+        <Button value="small">small</Button>
+        <Button value="mini">mini</Button>
+    </ButtonGroup>
+    <br /><br />
     <ButtonGroup>
         <Button v-for={this.get('showList')}
             ev-click={this.showDrawer.bind(self, $value.key)}
+            class="placement-btn"
         >{$value.value}</Button>
     </ButtonGroup>
 
@@ -19,7 +27,7 @@ import {Drawer, Button, ButtonGroup} from 'kpc';
         title='Drawer Title' 
         ref='__demoTwo' 
         placement={this.get('showPosition')}
-        size='small'
+        size={this.get('size')}
     >
         Drawer Body
     </Drawer>
@@ -33,6 +41,7 @@ interface Props {
     show?: boolean
     showPosition: DrawerProps['placement'] 
     showList: ListItem[]
+    size: DrawerProps['size'] 
 }
 
 type ListItem = {
@@ -47,6 +56,7 @@ export default class extends Component<Props> {
         return {
             show: false,
             showPosition: 'right',
+            size: 'default',
             showList: [
                 {
                     key: 'top',
