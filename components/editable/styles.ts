@@ -5,7 +5,6 @@ import '../../styles/global';
 
 const defaults = {
     iconGap: '0 0 0 8px',
-    lineHeight: '30px',
 
     // invalid
     invalid: {
@@ -22,13 +21,10 @@ export {editable};
 
 export function makeStyles(k: string) {
     return css`
-        display: inline-block;
-        line-height: ${editable.lineHeight};
+        display: inline-flex;
+        align-items: center;
         .${k}-editable-icon {
-            float: right;
-            cursor: pointer;
             margin: ${editable.iconGap};
-            line-height: unset;
         }
 
         // invalid

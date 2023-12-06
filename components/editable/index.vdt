@@ -21,22 +21,23 @@ const classNameObj = {
 };
 
 <div {...getRestProps(this)} class={classNameObj}>
-    <Tooltip v-if={!disabled && !editing} content={tip}>
-        <Icon class={`${k}-icon-edit ${k}-editable-icon`}
-            ev-click={this.edit}
-            hoverable
-        />
-    </Tooltip>
     <div class="c-ellipsis">
         <template v-if={!editing}>{children}</template>
         <Input v-else
-            size="small"
+            size="mini"
             defaultValue={value} 
             ev-blur={this.onBlur}
             ev-keydown={this.onKeydown}
             ref={this.inputRef}
             frozenOnInput
             ev-$mounted={this.select}
+            autoWidth
         />
     </div>
+    <Tooltip v-if={!disabled && !editing} content={tip}>
+        <Icon class={`${k}-icon-edit ${k}-editable-icon`}
+            ev-click={this.edit}
+            hoverable
+        />
+    </Tooltip>
 </div>
