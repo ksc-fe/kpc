@@ -51,24 +51,22 @@ export function makeItemStyles(k: string) {
             border-bottom-color: transparent;
         }
 
-        .${k}-collapse-title {
+        > .${k}-collapse-title {
             cursor: pointer;
             font-weight: bold;
             height: ${collapseItem.titleHeight};
             line-height: ${collapseItem.titleHeight};
             transition: color ${collapse.transition};
-            
+            .${k}-collapse-arrow {
+                float: right;
+                transition: transform ${collapse.transition};
+                line-height: ${collapseItem.titleHeight};
+                height: ${collapseItem.titleHeight};
+            }
         }
         
-        .${k}-collapse-arrow {
-            float: right;
-            transition: transform ${collapse.transition};
-            line-height: ${collapseItem.titleHeight};
-            height: ${collapseItem.titleHeight};
-        }
-
         &:not(.${k}-disabled) {
-            .${k}-collapse-title {
+            > .${k}-collapse-title {
                 &:hover {
                     color: ${theme.color.primary};
                 }
@@ -76,14 +74,14 @@ export function makeItemStyles(k: string) {
         }
 
         &.${k}-active {
-            .${k}-collapse-arrow  {
+            > .${k}-collapse-title .${k}-collapse-arrow  {
                 transform: rotate(90deg);
             }
         }
 
         &.${k}-disabled {
             color: ${theme.color.disabledBorder};
-            .${k}-collapse-title  {
+            > .${k}-collapse-title  {
                 cursor: not-allowed;
             }
         }

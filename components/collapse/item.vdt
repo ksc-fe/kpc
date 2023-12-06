@@ -22,7 +22,11 @@ const classNameObj = {
 <div class={classNameObj} {...getRestProps(this)}>
     <div class={`${k}-collapse-title`} ev-click={this.toggle}>
         <b:title>{title}</b:title>
-        <Icon class={{[`${k}-collapse-arrow`]: true, [`${k}-icon-right`]: true}} hoverable={!disabled}></Icon>
+        <Icon
+            class={{[`${k}-collapse-arrow`]: true, [`${k}-icon-right`]: true}}
+            hoverable
+            disabled={disabled}
+        ></Icon>
     </div>
     <Transition
         show={isActive}
