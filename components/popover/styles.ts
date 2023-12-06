@@ -10,6 +10,9 @@ const defaults = {
         fontSize: '14px',
         lineHeight: '20px',
         fontWeight: 500,
+    },
+    small: {
+        width: '240px',
     }
 };
 
@@ -41,5 +44,10 @@ export default function makeStyles(k: string) {
             .${k}-tooltip-footer {
                 text-align: right;
             }
+            &.${k}-small {
+                padding: ${popover.padding};
+                width: ${popover.small.width};
+            }
+        }
     `;
 }

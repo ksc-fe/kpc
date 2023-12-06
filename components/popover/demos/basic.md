@@ -14,6 +14,7 @@ import {Popover, Button} from 'kpc';
         ev-ok={this.ok}
         ev-cancel={this.cancel}
         ref="popover1"
+        size="small"
     >
         <Button>删除</Button>
     </Popover>
