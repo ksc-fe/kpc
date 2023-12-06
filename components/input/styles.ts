@@ -304,10 +304,11 @@ export function makeStyles(k: string) {
         .${k}-input-fake {
             left: 0;
             top: 0;
-            right: 0;
             position: absolute;
             overflow: hidden;
-            width: 100%;
+            // should not specify width
+            // right: 0;
+            // width: 100%;
             visibility: hidden;
             white-space: nowrap;
         }
