@@ -4,6 +4,17 @@ order: 99
 sidebar: doc
 ---
 
+## v3.1.1
+
+1. `Add` `Drawer`上下弹出支持设置宽度，设置宽度后，会从页面中间弹出，可以实现类似MacOS弹窗的功能 [#920](https://github.com/ksc-fe/kpc/issues/920)
+2. `Add` `Popover` `size`属性支持设置弹层宽度`small=240px` [#923](https://github.com/ksc-fe/kpc/issues/923)
+3. `Add` `FormItem`新增`validateOnStart`属性，支持组件一渲染就验证验证结果 [#924](https://github.com/ksc-fe/kpc/issues/924)
+4. `Change` `Editable`采用`inline-flex`布局，取消行高的设定 [#918](https://github.com/ksc-fe/kpc/issues/918)
+5. `Fix` 修复`Table`导出表格，某些情况下会乱码的问题 [#917](https://github.com/ksc-fe/kpc/issues/917)
+6. `Fix` 修复`Collapse`嵌套使用，展开箭头样式冲突的问题 [#919](https://github.com/ksc-fe/kpc/issues/919)
+7. `Fix` 修复`Input`自动宽度`autoWidth`，不支持针对`defaultValue`设置宽度的问题 [#921](https://github.com/ksc-fe/kpc/issues/921)
+8. `Fix` 修复`Drawer`自定义整个内容`content`，动画会丢失的问题 [#922](https://github.com/ksc-fe/kpc/issues/922)
+
 ## v3.1.0
 
 1. `Add` 新增`ConfigProvider`配置组件，目前能配置组件样式名className的前缀`classNamePrefix` [#905](https://github.com/ksc-fe/kpc/issues/905) [#904](https://github.com/ksc-fe/kpc/issues/904)
