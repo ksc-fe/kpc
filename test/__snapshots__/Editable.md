@@ -3,45 +3,45 @@
 #### `basic test`
 
 ```
-"<div class=\"k-editable k-editing css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small k-focus css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"editable text\"></div></div></div></div><br><div class=\"k-editable k-disabled css-f5bj3c\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
+"<div class=\"k-editable k-editing css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width k-focus css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"editable text\"><div class=\"k-input-fake\"><span>editable text</span></div></div></div></div></div><br><div class=\"k-editable k-disabled css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
 ```
 
 ```
-"<div class=\"k-editable css-f5bj3c\"><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">test</a></div></div><br><div class=\"k-editable k-disabled css-f5bj3c\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
+"<div class=\"k-editable css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">test</a></div><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--></div><br><div class=\"k-editable k-disabled css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
 ```
 
 ```
-"<div class=\"k-editable k-editing css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small k-focus css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"test\"></div></div></div></div><br><div class=\"k-editable k-disabled css-f5bj3c\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
+"<div class=\"k-editable k-editing css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width k-focus css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"test\"><div class=\"k-input-fake\"><span>test</span></div></div></div></div></div><br><div class=\"k-editable k-disabled css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
 ```
 
 ```
-"<div class=\"k-editable css-f5bj3c\"><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">test</a></div></div><br><div class=\"k-editable k-disabled css-f5bj3c\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
+"<div class=\"k-editable css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">test</a></div><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--></div><br><div class=\"k-editable k-disabled css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
 ```
 
 ```
-"<div class=\"k-editable k-editing css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small k-focus css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"test\"></div></div></div></div><br><div class=\"k-editable k-disabled css-f5bj3c\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
+"<div class=\"k-editable k-editing css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width k-focus css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"test\"><div class=\"k-input-fake\"><span>test</span></div></div></div></div></div><br><div class=\"k-editable k-disabled css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
 ```
 
 ```
-"<div class=\"k-editable css-f5bj3c\"><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">new</a></div></div><br><div class=\"k-editable k-disabled css-f5bj3c\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
+"<div class=\"k-editable css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">new</a></div><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--></div><br><div class=\"k-editable k-disabled css-nuojr0\"><div class=\"c-ellipsis\"><i class=\"ion-ios-location\"></i><a href=\"\">disabled editable text</a></div></div>"
 ```
 
 #### `validate test`
 
 ```
-"<div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div><br><div class=\"k-editable css-f5bj3c\"><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--><div class=\"c-ellipsis\">100</div></div><br><div class=\"k-editable css-f5bj3c\"><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--><div class=\"c-ellipsis\">100</div></div>"
+"<div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 20px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div><br><div class=\"k-editable css-nuojr0\"><div class=\"c-ellipsis\">100</div><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--></div><br><div class=\"k-editable css-nuojr0\"><div class=\"c-ellipsis\">100</div><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--></div>"
 ```
 
 ```
-"<div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div><br><div class=\"k-editable css-f5bj3c\"><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--><div class=\"c-ellipsis\">100</div></div>"
+"<div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 7px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 20px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div><br><div class=\"k-editable css-nuojr0\"><div class=\"c-ellipsis\">100</div><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--></div>"
 ```
 
 ```
-"<div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div>"
+"<div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 7px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 7px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 20px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div>"
 ```
 
 ```
-"<div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-f5bj3c\"><div class=\"c-ellipsis\"><div class=\"k-input k-small css-7jwsw8\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\"></div></div></div></div>"
+"<div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 7px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 7px;\"><div class=\"k-input-fake\"><span>a</span></div></div></div></div></div><br><div class=\"k-editable k-editing k-invalid css-nuojr0\"><div class=\"c-ellipsis\"><div class=\"k-input k-mini k-auto-width css-1mbhget\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" value=\"100\" style=\"width: 7px;\"><div class=\"k-input-fake\"><span></span></div></div></div></div></div>"
 ```
 
 ```
@@ -60,6 +60,6 @@
 #### `handle correctly even if the value is undefined`
 
 ```
-"<div class=\"k-editable css-f5bj3c\"><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--><div class=\"c-ellipsis\">test</div></div>"
+"<div class=\"k-editable css-nuojr0\"><div class=\"c-ellipsis\">test</div><i class=\"k-icon k-hoverable k-icon-edit k-editable-icon css-1s6te75\"></i><!--portal--></div>"
 ```
 
