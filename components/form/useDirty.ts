@@ -10,6 +10,10 @@ export function useDirty(
     const instance = useInstance() as FormItem;
     const isDirty = useState(false);
 
+    if (instance.get('validateOnStart')) {
+        dirty();
+    }
+
     function onChange(e: Event) {
         dirty();
         instance.trigger('change', e);

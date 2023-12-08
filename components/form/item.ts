@@ -20,6 +20,7 @@ export interface FormItemProps {
     htmlFor?: string
     hideLabel?: boolean
     fluid?: boolean
+    validateOnStart?: boolean
 }
 
 export interface FormItemEvents {
@@ -52,6 +53,7 @@ const typeDefs: Required<TypeDefs<FormItemProps>> = {
     htmlFor: String,
     hideLabel: Boolean,
     fluid: Boolean,
+    validateOnStart: Boolean,
 };
 
 export class FormItem extends Component<FormItemProps, FormItemEvents, FormItemBlocks> {

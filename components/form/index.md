@@ -29,6 +29,7 @@ sidebar: doc
 | htmlFor | 指定`label`的`for`属性 | `string` | `undefined` | 
 | hideLabel | 是否隐藏`label`，默认会展示`label`，即使该属性为空，也会展示占位元素 | `boolean` | `false` |
 | fluid | `FormItem`的宽度默认是被子元素撑开的，添加该属性可以渲染`100%`的宽度 | `boolean` | `false` |
+| validateOnStart | 是否组件一渲染就开始验证，而不是等用户输入完成再验证 | `boolean` | `false` |
 
 ```ts
 export declare type Method = (value: any, param: any) => boolean | string | Promise<boolean | string>

@@ -461,4 +461,21 @@ describe('Form', () => {
         await wait(500);
         expect(element.querySelector('.k-form-error')).to.be.null;
     });
+
+    it('should validate on init when setting validateOnStart prop', async () => {
+        class Demo extends Component {
+            static template = `
+                const {Form, FormItem} = this;
+                <Form ref="form">
+                    <FormItem rules={{required: true}} validateOnStart />
+                </Form>
+            `;
+            Form = Form;
+            FormItem = FormItem;
+        }
+        const [instance, element] = mount(Demo);
+
+        await wait(500);
+        expect(element.querySelector('.k-form-error')).to.be.exist;
+    });
 });
