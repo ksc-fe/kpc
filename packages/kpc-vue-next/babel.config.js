@@ -10,7 +10,6 @@ module.exports = function(api) {
                 "modules": 'cjs',
             }],
             "@babel/preset-typescript",
-            "@vue/babel-preset-jsx",
         ],
         "plugins": [
             ["@babel/plugin-transform-runtime", {
@@ -22,6 +21,7 @@ module.exports = function(api) {
                 sourceMap: false,
                 autoLabel: 'never',
             }],
+            '@vue/babel-plugin-jsx',
         ]
     };
 

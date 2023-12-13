@@ -175,7 +175,7 @@ function renderMenuItem(item: MenuItemData) {
 
 ```vue
 <script lang="jsx">
-import { Menu, MenuItem, Icon } from "@king-design/vue";
+import { Menu, MenuItem, Icon } from "@king-design/vue-legacy";
 export default {
     data() {
         return {
@@ -243,9 +243,9 @@ export default {
 
         return (
             <Menu
-                expandedKeys={expandedKeys}
+                expandedKeys={this.expandedKeys}
                 onChangeExpandedKeys={(v) => (this.expandedKeys = v)}
-                selectedKey={selectedKey}
+                selectedKey={this.selectedKey}
                 onChangeSelectedKey={(v) => (this.selectedKey = v)}
             >
                 <template slot="header">
@@ -260,75 +260,81 @@ export default {
 ```
 
 ```vue3
-<script setup>
+<script lang="jsx">
 import { Menu, MenuItem, Icon } from "@king-design/vue";
-import { ref } from 'vue';
+import { ref, defineComponent } from 'vue';
 
-const expandedKeys = ref([]);
-const selectedKey = ref('3-1');
-const menuList = [
-    {
-        key: '1',
-        title: 'menu 1'
-    },
-    {
-        key: '2',
-        title: 'menu 2'
-    },
-    {
-        key: '3',
-        title: 'menu 3',
-        children: [
+export default defineComponent({
+    setup() {
+        const expandedKeys = ref([]);
+        const selectedKey = ref('3-1');
+        const menuList = [
             {
-                key: '3-1',
-                title: 'sub menu 1'
+                key: '1',
+                title: 'menu 1'
             },
             {
-                key: '3-2',
-                title: 'sub menu 2'
+                key: '2',
+                title: 'menu 2'
             },
             {
-                key: '3-3',
-                title: 'sub menu 3'
-            },
-            {
-                key: '3-4',
-                title: 'sub menu 4',
+                key: '3',
+                title: 'menu 3',
                 children: [
                     {
-                        key: '3-4-1',
-                        title: 'option 1'
+                        key: '3-1',
+                        title: 'sub menu 1'
                     },
                     {
-                        key: '3-4-2',
-                        title: 'option 2'
+                        key: '3-2',
+                        title: 'sub menu 2'
+                    },
+                    {
+                        key: '3-3',
+                        title: 'sub menu 3'
+                    },
+                    {
+                        key: '3-4',
+                        title: 'sub menu 4',
+                        children: [
+                            {
+                                key: '3-4-1',
+                                title: 'option 1'
+                            },
+                            {
+                                key: '3-4-2',
+                                title: 'option 2'
+                            }
+                        ]
                     }
                 ]
-            }
-        ]
-    },
-    {
-        key: '4',
-        title: 'menu 4'
-    },
-];
-const renderMenuItem = (item) => {
-    return <MenuItem key={item.key}>
-        {item.title}
-        {item.children && item.children.length && (
-            <Menu>
-                {item.children.map(renderMenuItem)}
+            },
+            {
+                key: '4',
+                title: 'menu 4'
+            },
+        ];
+        const renderMenuItem = (item) => {
+            return <MenuItem key={item.key}>
+                {item.title}
+                {item.children && item.children.length && (
+                    <Menu>
+                        {item.children.map(renderMenuItem)}
+                    </Menu>
+                )}
+            </MenuItem>
+        }
+
+        return () => (
+            <Menu
+                v-model:expandedKeys={expandedKeys.value}
+                v-model:selectedKey={selectedKey.value}
+                v-slots={{ header() { return <><Icon class="ion-star" />测试</> } }}
+            >
+                {menuList.map(renderMenuItem)}
             </Menu>
-        )}
-    </MenuItem>
-}
+        );
+    }
+});
 </script>
-<template>
-<Menu v-model:expandedKeys="expandedKeys" v-model:selectedKey="selectedKey">
-    <template #header>
-        <Icon class="ion-star" />测试
-    </template>
-    <renderMenuItem v-for="item in menuList" />
-</Menu>
-</template>
 ```

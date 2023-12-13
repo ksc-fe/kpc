@@ -49,6 +49,7 @@
     "**/*/styles/fonts/*"
   ],
   "devDependencies": {
+    "@vue/babel-plugin-jsx": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
     "vue": "^3.2.29",
     "vue-loader": "^16.1.2",
