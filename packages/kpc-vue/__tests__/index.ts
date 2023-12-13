@@ -17,7 +17,7 @@ const reactReq = require.context('~/components/', true, /^((?!(affix|code)).)*\/
 // const reactReq = require.context('~/components/', true, /slider\/demos\/step\/index\.vue$/);
 
 describe('Vue Legacy Demos', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     function wrap(Demo: any) {
         return class extends Component {

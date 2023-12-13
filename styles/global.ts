@@ -26,6 +26,28 @@ injectGlobal`
         box-sizing: inherit;
     }
 
+    // scollbar
+    ::-webkit-scrollbar {
+        width: 10px;
+        height: 10px;
+        background-color: #fff;
+    }
+    ::-webkit-scrollbar-track {
+        background-color: #fff;
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #babac0;
+        border-radius: 16px;
+        border: 2px solid #fff;
+        &:hover {
+            background-color: #a0a0a5;
+            // border-width: 1px;
+        }
+    }
+    ::-webkit-scroll-button {
+        display: none;
+    }
+
     // animation
     ${Object.keys(slideDirections).map(direction => {
         return css`

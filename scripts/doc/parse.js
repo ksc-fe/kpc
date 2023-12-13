@@ -322,6 +322,9 @@ function getFileName(file, code) {
             case 'tsx':
                 filename = 'react.tsx';
                 break;
+            case 'vue3':
+                filename = 'next.vue';
+                break;
             default:
                 filename = `index.${code.language}`;
                 break;
@@ -335,12 +338,14 @@ function parseCodes(file, codes) {
         hasTs: false,
         hasStylus: false,
         hasVue: false,
+        hasVue3: false,
         hasReact: false,
         hasAngular: false,
     };
     const hasLangMap = {
         styl: 'hasStylus',
         vue: 'hasVue',
+        vue3: 'hasVue3',
         tsx: 'hasReact',
         angular: 'hasAngular',
     };
@@ -446,7 +451,7 @@ function generateOtherCodes(vdt, ts, hasMap, codeSnippetMap, codes) {
         vueScript, vueTemplate, vueNextTemplate, vueMethods, vueData,
         tsHead, reactMethods, angularMethods, angularProperties
     } = codeSnippetMap;
-    const {hasStylus, hasVue, hasReact, hasAngular} = hasMap;
+    const {hasStylus, hasVue, hasVue3, hasReact, hasAngular} = hasMap;
 
     if (!hasVue) {
         const code3 = {
@@ -486,6 +491,7 @@ const map = {
     'vue': 'html',
     'vdt': 'jsx',
     'angular': 'ts',
+    'vue3': 'jsx',
 };
 function languageMap(key) {
     return map[key] || key;

@@ -57,9 +57,12 @@ export default class Article extends Component<ArticleProps> {
                 _demos.push(item);
                 // sort highlighted code
                 const orderMap: Record<string, number> = {vue: 1, jsx: 2, ts: 3, styl: 4};
+                const getFile = (a: Highlighted) => {
+                    return a.file || (a.language === 'vue3' ? 'next.vue' : `index.${a.language}`);
+                };
                 item.data.highlighted.sort((a, b) => {
-                    a.file = a.file || `index.${a.language}`;
-                    b.file = b.file || `index.${b.language}`;
+                    a.file = getFile(a);
+                    b.file = getFile(b);
                     const order1 = orderMap[a.language] || 0;
                     const order2 = orderMap[b.language] || 0;
 

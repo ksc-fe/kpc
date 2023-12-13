@@ -10,7 +10,7 @@ const NUMS = os.cpus().length;
 
 const globExp = resolvePath('./@(docs|components)/**/*.md');
 // const globExp = resolvePath('./@(components)/**/*.md');
-// const globExp = resolvePath('./@(docs|components)/transfer/demos/tree.md');
+// const globExp = resolvePath('./@(docs|components)/menu/demos/recursive.md');
 // const globExp = resolvePath('./@(docs|components)/design_new/about.md');
 
 function prepare() {
