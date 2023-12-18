@@ -90,6 +90,9 @@ export function useWidth(
             });
         });
         if (shouldUpdate) {
+            // let useFixedColumns to update scroll position
+            widthMap.set({ ...widthMap.value });
+
             instance.forceUpdate(() => {
                 // check again because it may affect other columns
                 if (!isStop) {
