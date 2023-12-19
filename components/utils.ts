@@ -95,15 +95,21 @@ export function addStyle(style: string | Record<string, string | null> | undefin
     return style;
 }
 
-const _cache: Record<string, string> = {};
-export function cache(callback: (...args: string[]) => any) {
-    return function(...args: string[]) {
+type CacheArgType = number | string | boolean | undefined;
+type CacheFunction<T extends CacheArgType[]> = (...args: T) => any;
+export function cache<T extends CacheArgType[]>(callback: CacheFunction<T>) {
+    let _cache: Record<string, string> = {};
+    const fn = function(...args: T) {
         const cacheId = args.join('~');
         if (!hasOwn.call(_cache, cacheId)) {
             _cache[cacheId] = callback(...args); 
         }
         return _cache[cacheId];
-    }
+    };
+
+    fn.clearCache = () => _cache = {};
+
+    return fn;
 }
 const uppercasePattern = /[A-Z]/g;
 export const kebabCase = cache((word: string) => {

@@ -1,5 +1,5 @@
 import {Icon} from '../icon';
-import makeStyles from "./styles";
+import {makeStyles} from "./styles";
 
 const { type, title, content } = this.get();
 const { k } = this.config;

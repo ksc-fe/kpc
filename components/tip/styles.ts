@@ -2,6 +2,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 import {deepDefaults}  from '../../styles/utils';
+import { cache } from '../utils';
 
 const defaults = {
     title: {
@@ -16,9 +17,10 @@ const defaults = {
 let tip: typeof defaults;
 setDefault(() => {
     tip = deepDefaults(theme, {tip: defaults}).tip;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         // Tip extends Tag, so we add.${k}-tip to increase the priority of class
         &.${k}-tip {
@@ -47,4 +49,4 @@ export function makeStyles(k: string) {
             background: none;
         }
     `;
-}
+});

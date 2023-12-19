@@ -2,6 +2,7 @@ import {css, keyframes} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     inset: '-3px',
@@ -10,9 +11,10 @@ const defaults = {
 let wave: typeof defaults;
 setDefault(() => {
     wave = deepDefaults(theme, {wave: defaults}).wave;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(color: string, inset: string, k: string) {
+export const makeStyles = cache(function makeStyles(color: string, inset: string, k: string) {
     const waveEffect = keyframes`
         100% {
             top: calc(${inset} + ${wave.inset});
@@ -48,4 +50,4 @@ export function makeStyles(color: string, inset: string, k: string) {
             }
         }
     `;
-}
+});

@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, getLeft, getRight} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     item: {
@@ -25,9 +26,11 @@ const defaults = {
 let dropdown: typeof defaults;
 setDefault(() => {
     dropdown = deepDefaults(theme, {dropdown: defaults}).dropdown;
+    makeMenuStyles?.clearCache();
+    makeItemStyles?.clearCache();
 });
 
-export function makeMenuStyles(k: string) {
+export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
     return css`
         position: absolute;
         min-width: ${dropdown.menu.minWidth};
@@ -44,9 +47,9 @@ export function makeMenuStyles(k: string) {
             display: block;
         }
     `
-}
+});
 
-export function makeItemStyles(k: string) {
+export const makeItemStyles = cache(function makeItemStyles(k: string) {
     return css`
         padding: ${dropdown.item.padding};
         cursor: pointer;
@@ -86,4 +89,4 @@ export function makeItemStyles(k: string) {
             vertical-align: baseline;
         }
     `
-}
+});

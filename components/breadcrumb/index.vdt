@@ -1,6 +1,6 @@
 import {getRestProps, mapChildren} from '../utils';
 import {BreadcrumbItem} from './item';
-import makeStyles from './styles';
+import { makeStyles } from './styles';
 
 const {children, separator, className} = this.get();
 const { k } = this.config;

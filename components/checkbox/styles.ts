@@ -2,6 +2,7 @@ import {css, cx} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette, getLeft}  from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     width: '16px',
@@ -53,9 +54,10 @@ const defaults = {
 let checkbox: typeof defaults;
 setDefault(() => {
     checkbox = deepDefaults(theme, {checkbox: defaults}).checkbox;
+    makeStyles?.clearCache();
 });
 
-export default function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
@@ -169,4 +171,4 @@ export default function makeStyles(k: string) {
           
         }
     `;
-}
+});

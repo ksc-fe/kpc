@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.middle },
@@ -75,9 +76,11 @@ const defaults = {
 let upload: typeof defaults;
 setDefault(() => {
     upload = deepDefaults(theme, {upload: defaults}).upload;
+    makeStyles?.clearCache();
+    makeUploadDialogStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${upload.fontSize};
         position: relative;
@@ -254,12 +257,12 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});
 
-export function makeUploadDialogStyles(k: string) {
+export const makeUploadDialogStyles = cache(function makeUploadDialogStyles(k: string) {
     return css`
         img {
             width: 100%;
         }
     `
-}
+});

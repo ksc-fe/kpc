@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 type SizeStyles = {
     padding?: string,
@@ -28,11 +29,12 @@ const defaults = {
 let scrollSelect: typeof defaults;
 setDefault(() => {
     scrollSelect = deepDefaults(theme, {scrollSelect: defaults}).scrollSelect;
+    makeStyles?.clearCache();
 });
 
 export {scrollSelect};
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         text-align: center;
         overflow: hidden;
@@ -91,4 +93,4 @@ export function makeStyles(k: string) {
             pointer-events: none;
         }
     `;
-}
+});

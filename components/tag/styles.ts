@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {deepDefaults, sizes, palette} from '../../styles/utils';
 import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
+import { cache } from '../utils';
 
 type ValueOf<T extends readonly any[]> = T[number]
 type Types = ValueOf<typeof types>
@@ -83,11 +84,13 @@ const defaults = deepDefaults(
 let tag: typeof defaults;
 setDefault(() => {
     tag = deepDefaults(theme, {tag: defaults}).tag;
+    makeStyles?.clearCache();
+    makeTagsStyles?.clearCache();
 });
 
 export { tag };
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
@@ -144,9 +147,9 @@ export function makeStyles(k: string) {
             opacity: 0;
         }
     `;
-}
+});
 
-export function makeTagsStyles(k: string) {
+export const makeTagsStyles = cache(function makeTagsStyles(k: string) {
     return css`
         display: flex;
         flex-wrap: wrap;
@@ -172,4 +175,4 @@ export function makeTagsStyles(k: string) {
             cursor: move;
         }
     `;
-}
+});

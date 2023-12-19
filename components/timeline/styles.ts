@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, Sizes, sizes, palette}  from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 type ValueOf<T extends readonly any[]> = T[number]
 
@@ -58,16 +59,18 @@ const defaults = deepDefaults(
 let timeline: typeof defaults;
 setDefault(() => {
     timeline = deepDefaults(theme, {timeline: defaults}).timeline;
+    makeStyles?.clearCache();
+    makeItemStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${timeline.fontSize};
         padding-top: calc(${theme.lineHeight}em / 2);
     `;
-}
+});
 
-export function makeItemStyles(k: string) {
+export const makeItemStyles = cache(function makeItemStyles(k: string) {
     return css`
         position: relative;
         padding: ${timeline.padding};
@@ -148,5 +151,4 @@ export function makeItemStyles(k: string) {
             `
         })}
     `;
-};
-
+});

@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.middle },
@@ -56,9 +57,10 @@ const defaults = {
 let kswitch: typeof defaults;
 setDefault(() => {
     kswitch = deepDefaults(theme, {switch: defaults}).switch;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-block;
         vertical-align: middle;
@@ -206,4 +208,4 @@ export function makeStyles(k: string) {
             }
         }
     `;    
-}
+});

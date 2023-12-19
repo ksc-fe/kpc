@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.middle },
@@ -37,9 +38,10 @@ const defaults = {
 let tree: typeof defaults;
 setDefault(() => {
     tree = deepDefaults(theme, {tree: defaults}).tree;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${tree.fontSize};
         line-height: ${tree.lineHeight};
@@ -151,4 +153,4 @@ export function makeStyles(k: string) {
             border-left: ${tree.line} 
         }
     `;
-}
+});

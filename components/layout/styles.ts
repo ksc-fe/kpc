@@ -5,6 +5,7 @@ import '../../styles/global';
 import {menu} from '../menu/styles';
 import { isNullOrUndefined } from 'intact-shared';
 import { getStyle } from './helpers';
+import { cache } from '../utils';
 
 const sizes = ['small', 'large'] as const;
 export const themes = ['light', 'dark', 'white'] as const;
@@ -32,13 +33,17 @@ const defaults = {
 let layout: typeof defaults;
 setDefault(() => {
     layout = deepDefaults(theme, {layout: defaults}).layout;
+    makeLayoutStyles?.clearCache();
+    makeHeaderStyles?.clearCache();
+    makeAsideStyles?.clearCache();
+    makeBodyStyles?.clearCache();
 });
 
 export function getCollapseWidth(collapsedWidth?: string | number) {
     return isNullOrUndefined(collapsedWidth) ? layout.collapsedWidth : getStyle(collapsedWidth);
 }
 
-export function makeLayoutStyles(k: string) {
+export const makeLayoutStyles = cache(function makeLayoutStyles(k: string) {
     return css`
         display: flex;
         flex-direction: column;
@@ -54,9 +59,9 @@ export function makeLayoutStyles(k: string) {
             flex: 1;
         }
     `
-}
+});
 
-export function makeHeaderStyles(k: string) {
+export const makeHeaderStyles = cache(function makeHeaderStyles(k: string) {
     return css`
         display: flex;
         align-items: center;
@@ -99,9 +104,9 @@ export function makeHeaderStyles(k: string) {
             `
         })}
     `;
-}
+});
 
-export function makeAsideStyles(k: string) {
+export const makeAsideStyles = cache(function makeAsideStyles(k: string) {
     return css`
         transition: width ${layout.transition};
         display: flex;
@@ -131,11 +136,10 @@ export function makeAsideStyles(k: string) {
             width: auto !important;
         }
     `
-}
+});
 
-export function makeBodyStyles(k: string) {
+export const makeBodyStyles = cache(function makeBodyStyles(k: string) {
     return css`
         transition: padding-left ${layout.transition};
     `
-}
-
+});

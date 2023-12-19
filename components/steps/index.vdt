@@ -1,6 +1,6 @@
 import {getRestProps, eachChildren} from '../utils';
 import {Step} from './step';
-import {makeStepsStyles} from './styles';
+import {makeStyles} from './styles';
 import {context as StepsContext} from './context';
 
 const {
@@ -16,7 +16,7 @@ const classNameObj = {
     [`${k}-${type}`]: true,
     [`${k}-clickable`]: clickable,
     [`${k}-vertical`]: vertical,
-    [makeStepsStyles(k)]: true,
+    [makeStyles(k)]: true,
 };
 
 let stepIndex = 0;

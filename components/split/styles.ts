@@ -2,6 +2,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
 import {deepDefaults}  from '../../styles/utils';
+import { cache } from '../utils';
 
 export type Mode = 'horizontal' | 'vertical';
 
@@ -37,9 +38,10 @@ const defaults = {
 let split: typeof defaults;
 setDefault(() => {
     split = deepDefaults(theme, {split: defaults}).split;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: flex;
         height: 100%;
@@ -126,4 +128,4 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});

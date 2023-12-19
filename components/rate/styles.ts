@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     color: '#ccc',
@@ -18,9 +19,10 @@ const defaults = {
 let rate: typeof defaults;
 setDefault(() => {
     rate = deepDefaults(theme, {rate: defaults}).rate;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-block;
         .${k}-rate-item {
@@ -65,4 +67,4 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});

@@ -3,6 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 import {datepicker, makePanelStyles as makePanelStylesBase} from '../datepicker/styles';
+import { cache } from '../utils';
 
 const defaults = {
     get border() { return datepicker.border; },
@@ -21,9 +22,10 @@ const defaults = {
 let timepicker: typeof defaults;
 setDefault(() => {
     timepicker = deepDefaults(theme, {timepicker: defaults}).timepicker;
+    makePanelStyles?.clearCache();
 });
 
-export function makePanelStyles(k: string) {
+export const makePanelStyles = cache(function makePanelStyles(k: string) {
     return cx(
         makePanelStylesBase(k),
         css`
@@ -55,4 +57,4 @@ export function makePanelStyles(k: string) {
             }
         `,
     );
-}
+});

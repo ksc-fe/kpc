@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults}  from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     border: '1px solid #e5e5e5',
@@ -16,9 +17,10 @@ const defaults = {
 let card: typeof defaults;
 setDefault(() => {
     card = deepDefaults(theme, {card: defaults}).card;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         border-radius: ${card.borderRadius};
         background: ${card.bgColor};
@@ -89,4 +91,4 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});

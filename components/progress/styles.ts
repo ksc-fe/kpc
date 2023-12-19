@@ -2,6 +2,7 @@ import {css, keyframes} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 export const types = ['active', 'normal', 'error', 'success', 'warning'] as const;
 
@@ -70,9 +71,10 @@ const defaults = {
 let progress: typeof defaults;
 setDefault(() => {
     progress = deepDefaults(theme, {progress: defaults}).progress;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         position: relative;
         line-height: 1;
@@ -234,6 +236,4 @@ export function makeStyles(k: string) {
             })}
         }
     `
-}
-
-
+});

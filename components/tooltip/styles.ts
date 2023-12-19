@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     padding: '8px 12px',
@@ -35,6 +36,7 @@ const defaults = {
 export let tooltip: typeof defaults;
 setDefault(() => {
     tooltip = deepDefaults(theme, {tooltip: defaults}).tooltip;
+    makeStyles?.clearCache();
 });
 
 export type Theme = 'dark' | 'light';
@@ -47,7 +49,7 @@ const directionMap = {
     right: 'left',
 };
 
-export default function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     const arrowLong = tooltip.arrow.width;
     const arrowShort = `calc(${arrowLong} - 1px)`;
 
@@ -174,4 +176,4 @@ export default function makeStyles(k: string) {
             }
         }
     `
-}
+});

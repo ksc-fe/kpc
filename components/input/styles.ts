@@ -3,6 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 import {Input} from './';
+import { cache } from '../utils';
 
 const defaults = deepDefaults(
     {
@@ -67,9 +68,11 @@ const defaults = deepDefaults(
 let input: typeof defaults;
 setDefault(() => {
     input = deepDefaults(theme, {input: defaults}).input;
-})
+    makeStyles?.clearCache();
+    makeSearchStyles?.clearCache();
+});
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-block;
         width: ${input.width};
@@ -322,9 +325,9 @@ export function makeStyles(k: string) {
             color: ${input.count.color};
         }
     `
-}
+});
 
-export function makeSearchStyles(k: string) {
+export const makeSearchStyles = cache(function makeSearchStyles(k: string) {
     return css`
         position: relative;
         display: inline-block;
@@ -377,4 +380,4 @@ export function makeSearchStyles(k: string) {
             }
         }
     `
-}
+});

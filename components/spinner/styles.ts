@@ -2,7 +2,7 @@ import {css} from '@emotion/css';
 import {deepDefaults, sizes, palette} from '../../styles/utils';
 import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
-import spin from '~/components/spin';
+import { cache } from '../utils';
 
 const defaults = {
     get borderRadius() { return theme.borderRadius },
@@ -49,9 +49,10 @@ const defaults = {
 let spinner: typeof defaults;
 setDefault(() => {
     spinner = deepDefaults(theme, {spinner: defaults}).spinner;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-block;
         vertical-align: middle;
@@ -159,4 +160,4 @@ export function makeStyles(k: string) {
             }
         })}
     `;
-}
+});

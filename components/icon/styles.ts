@@ -5,6 +5,7 @@ import {rotate} from '../../styles/keyframes';
 import {makeIconStyles} from '../../styles/fonts/iconfont';
 import '../../styles/fonts/ionicons';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.small },
@@ -21,12 +22,13 @@ const defaults = {
 let icon: typeof defaults;
 setDefault(() => {
     icon = deepDefaults(theme, {icon: defaults}).icon;
+    makeStyles?.clearCache();
 });
 
 export const colors = ['primary', 'warning', 'danger', 'success'] as const;
 export const sizes = ['large', 'small', 'mini'] as const;
 
-export default function makeStyles(k: string, color?: string) {
+export const makeStyles = cache(function makeStyles(k: string, color?: string) {
     // create the global icon styles
     makeIconStyles(k);
 
@@ -86,4 +88,4 @@ export default function makeStyles(k: string, color?: string) {
             color: ${icon.disabledColor} !important;
         }
     `;
-}
+});

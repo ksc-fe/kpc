@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     width: '800px',
@@ -66,9 +67,12 @@ const defaults = {
 let dialog: typeof defaults;
 setDefault(() => {
     dialog = deepDefaults(theme, {dialog: defaults}).dialog;
+    makeDialogStyles?.clearCache();
+    makeWrapperStyles?.clearCache();
+    makeAlertStyles?.clearCache();
 });
 
-export function makeDialogStyles(k: string) {
+export const makeDialogStyles = cache(function makeDialogStyles(k: string) {
     return css`
         position: absolute;
         width: ${dialog.width};
@@ -151,9 +155,9 @@ export function makeDialogStyles(k: string) {
             }
         }
     `;
-}
+});
 
-export function makeWrapperStyles(k: string) {
+export const makeWrapperStyles = cache(function makeWrapperStyles(k: string) {
     //.${k}-fade-leave-active will add position absolute to the styles
     // so we must set fixed with important to .${k}-dialog-overlay
     return css`
@@ -172,9 +176,9 @@ export function makeWrapperStyles(k: string) {
             overflow: auto;
         }
     `;
-}
+});
 
-export function makeAlertStyles(k: string) {
+export const makeAlertStyles = cache(function makeAlertStyles(k: string) {
     return css`
         &.${k}-alert-dialog {
             .${k}-dialog-body {
@@ -238,4 +242,4 @@ export function makeAlertStyles(k: string) {
             }
         }
     ` 
-}
+});

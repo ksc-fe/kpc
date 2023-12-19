@@ -3,15 +3,18 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
 import {breakpoints, responsiveMap} from './constants';
+import { cache } from '../utils';
 
-const defaults = {};
+// const defaults = {};
 
-let grid: typeof defaults;
-setDefault(() => {
-    grid = deepDefaults(theme, {grid: defaults}).grid;
-});
+// let grid: typeof defaults;
+// setDefault(() => {
+    // grid = deepDefaults(theme, {grid: defaults}).grid;
+    // makeRowStyles?.clearCache();
+    // makeColStyles?.clearCache();
+// });
 
-export function makeRowStyles(k: string) {
+export const makeRowStyles = cache(function makeRowStyles(k: string) {
     return css`
         position: relative;
         display: flex;
@@ -52,9 +55,9 @@ export function makeRowStyles(k: string) {
             align-items: baseline;
         }
     `;
-}
+});
 
-export function makeColStyles(k: string) {
+export const makeColStyles = cache(function makeColStyles(k: string) {
     return css`
         position: relative;
         width: 100%;
@@ -63,7 +66,7 @@ export function makeColStyles(k: string) {
         }
         ${makeBreakpointsCols(k)}
     `;
-}
+});
 
 function makeBreakpointsCols(k: string) {
     const styles: string[] = [];

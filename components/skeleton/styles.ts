@@ -2,6 +2,7 @@ import {deepDefaults}  from '../../styles/utils';
 import { theme, setDefault } from '../../styles/theme';
 import {css, keyframes} from '@emotion/css';
 import '../../styles/global';
+import { cache } from '../utils';
 
 export const kls = (className: string, k: string) => `${k}-skeleton-${className}`;
 
@@ -16,9 +17,11 @@ const defaults = {
 let skeleton: typeof defaults;
 setDefault(() => {
     skeleton = deepDefaults(theme, {skeleton: defaults}).skeleton;
+    makeStyles?.clearCache();
+    makeItemStyles?.clearCache();
 });
 
-export function makeStyles(k: string, size: ItemSize) {
+export const makeStyles = cache(function makeStyles(k: string, size: ItemSize) {
     return css`
         &.${k}-animated {
             .${kls('item', k)} {
@@ -53,7 +56,7 @@ export function makeStyles(k: string, size: ItemSize) {
             height: ${theme[size].height}
         }
     `;
-}
+});
 
 const skeletonLoading = keyframes`
     0% {
@@ -64,7 +67,7 @@ const skeletonLoading = keyframes`
     }
 `;
 
-export function makeItemStyles(k: string) {
+export const makeItemStyles = cache(function makeItemStyles(k: string) {
     const skeletonItem = skeleton.item;
     return css`
         & > div {
@@ -102,4 +105,4 @@ export function makeItemStyles(k: string) {
             background: ${skeletonItem.bgColor};
         }
     `;
-}
+});

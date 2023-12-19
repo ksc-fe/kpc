@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const sizes = ['large', 'small'] as const;
 
@@ -81,11 +82,15 @@ const defaults = {
 let menu: typeof defaults;
 setDefault(() => {
     menu = deepDefaults(theme, {menu: defaults}).menu;
+    makeMenuStyles?.clearCache();
+    makeItemStyles?.clearCache();
+    makeTitleStyles?.clearCache();
+    makeNestedMenuStyles?.clearCache();
 });
 
 export {menu};
 
-export function makeMenuStyles(k: string) {
+export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
     // we must increase the priority by adding &.${k}-menu
     // to override the css of dropdownMenu
     return css`
@@ -209,9 +214,9 @@ export function makeMenuStyles(k: string) {
             }
         }
     `
-}
+});
 
-export function makeTitleStyles(k: string) {
+export const makeTitleStyles = cache(function makeTitleStyles(k: string) {
     const item = menu.item;
     return css`
         display: flex;
@@ -222,16 +227,16 @@ export function makeTitleStyles(k: string) {
         overflow: hidden;
         flex-wrap: nowrap;
     `;
-}
+});
 
-export function makeItemStyles(k: string) {
+export const makeItemStyles = cache(function makeItemStyles(k: string) {
     const item = menu.item;
     return css`
         .${k}-menu-title {
             cursor: pointer;
-            height: ${menu.item.height};
+            height: ${item.height};
             &:hover {
-                color: ${menu.item.hoverColor};
+                color: ${item.hoverColor};
             }
         }
         .${k}-menu-name {
@@ -256,7 +261,7 @@ export function makeItemStyles(k: string) {
         // expanded
         &.${k}-expanded {
             > .${k}-menu-title {
-                color: ${menu.item.hoverColor};
+                color: ${item.hoverColor};
                 .${k}-menu-arrow {
                     transform: rotateX(180deg);
                 }
@@ -266,35 +271,35 @@ export function makeItemStyles(k: string) {
         // highlighted
         &.${k}-highlighted {
             > .${k}-menu-title {
-                color: ${menu.item.hoverColor};
+                color: ${item.hoverColor};
             }
         }
 
         // active
         &.${k}-active {
             > .${k}-menu-title {
-                color: ${menu.item.hoverColor} !important;
-                background: ${menu.item.activeBgColor};
+                color: ${item.hoverColor} !important;
+                background: ${item.activeBgColor};
             }
         }
 
         // disabled
         &.${k}-disabled {
             > .${k}-menu-title {
-                color: ${menu.item.disabledColor} !important;
+                color: ${item.disabledColor} !important;
                 cursor: not-allowed;
             }
         }
 
         // dot
         .${k}-menu-dot {
-            font-size: ${menu.item.dotFontSize};
+            font-size: ${item.dotFontSize};
             transform: scale(.4);
         }
     `
-}
+});
 
-export function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingLeft: string = getLeft(menu.item.padding)) {
+export const makeNestedMenuStyles = cache(function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingLeft: string = getLeft(menu.item.padding)) {
     const paddingLeft = `${parentPaddingLeft}${hasIcon ? ' + ' + menu.icon.width : ''} + ${menu.icon.gap}`;
     return [
         css`
@@ -308,4 +313,4 @@ export function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingL
         `,
         paddingLeft,
     ]
-}
+});

@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.middle },
@@ -51,9 +52,10 @@ const defaults = {
 let slider: typeof defaults;
 setDefault(() => {
     slider = deepDefaults(theme, {slider: defaults}).slider;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         position: relative;
         outline: none;
@@ -197,4 +199,4 @@ export function makeStyles(k: string) {
             white-space: nowrap;
         }
     `;
-}
+});

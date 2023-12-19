@@ -2,6 +2,7 @@ import {deepDefaults}  from '../../styles/utils';
 import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.large },
@@ -22,9 +23,11 @@ const defaults = {
 let collapse: typeof defaults;
 setDefault(() => {
     collapse = deepDefaults(theme, {collapse: defaults}).collapse;
+    makeStyles?.clearCache();
+    makeItemStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${collapse.fontSize};
         
@@ -41,9 +44,9 @@ export function makeStyles(k: string) {
             border: ${collapse.collBorder};
         }
     `;
-}
+});
 
-export function makeItemStyles(k: string) {
+export const makeItemStyles = cache(function makeItemStyles(k: string) {
     const collapseItem = collapse.item;
     return css`
         border-bottom: ${collapseItem.borderBottom};
@@ -86,4 +89,4 @@ export function makeItemStyles(k: string) {
             }
         }
     `;
-}
+});

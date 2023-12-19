@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     item: {
@@ -36,9 +37,11 @@ const defaults = {
 let form: typeof defaults;
 setDefault(() => {
     form = deepDefaults(theme, {form: defaults}).form;
+    makeItemStyles?.clearCache();
+    makeFormStyles?.clearCache();
 });
 
-export function makeItemStyles(k: string) {
+export const makeItemStyles = cache(function makeItemStyles(k: string) {
     return css`
         display: flex;
         position: relative;
@@ -118,9 +121,9 @@ export function makeItemStyles(k: string) {
             vertical-align: middle;
         }
     `
-}
+});
 
-export function makeFormStyles(k: string) {
+export const makeFormStyles = cache(function makeFormStyles(k: string) {
     return css`
         // layout
         &.${k}-inline {
@@ -162,4 +165,4 @@ export function makeFormStyles(k: string) {
             `
         })}
     `;
-}
+});

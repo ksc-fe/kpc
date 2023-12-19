@@ -3,6 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, Sizes}  from '../../styles/utils';
 import '../../styles/global';
 import {button}  from '../button/styles';
+import { cache } from '../utils';
 
 type SizeStyles = {
     fontSize: string,
@@ -55,9 +56,10 @@ const defaults = deepDefaults(
 let pagination: typeof defaults;
 setDefault(() => {
     pagination = deepDefaults(theme, {pagination: defaults}).pagination;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${pagination.fontSize};
         > * {   
@@ -145,4 +147,4 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});

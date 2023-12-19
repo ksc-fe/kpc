@@ -2,6 +2,7 @@ import {css, cx} from '@emotion/css';
 import {deepDefaults, darken} from '../../styles/utils';
 import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     fontSize: '14px',
@@ -15,9 +16,10 @@ const defaults = {
 let breadcrumb: typeof defaults;
 setDefault(() => {
     breadcrumb = deepDefaults(theme, {breadcrumb: defaults}).breadcrumb;
+    makeStyles?.clearCache();
 });
 
-export default function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${breadcrumb.fontSize};
         display: flex;
@@ -43,4 +45,4 @@ export default function makeStyles(k: string) {
             margin: 0 ${breadcrumb.gap};
         }
     `
-}
+});

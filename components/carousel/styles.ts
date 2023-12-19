@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.large },
@@ -37,9 +38,11 @@ const defaults = {
 let carousel: typeof defaults;
 setDefault(() => {
     carousel = deepDefaults(theme, {carousel: defaults}).carousel;
+    makeStyles?.clearCache();
+    makeItemStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         height: ${carousel.height};
         position: relative;
@@ -129,9 +132,9 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});
 
-export function makeItemStyles(k: string) {
+export const makeItemStyles = cache(function makeItemStyles(k: string) {
     return css`
         display: inline-block;
         width: 100%;
@@ -147,4 +150,4 @@ export function makeItemStyles(k: string) {
             opacity: 0;
         }
     `
-}
+});

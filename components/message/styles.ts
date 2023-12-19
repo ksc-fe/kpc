@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.middle },
@@ -32,9 +33,11 @@ const defaults = {
 let message: typeof defaults;
 setDefault(() => {
     message = deepDefaults(theme, {message: defaults}).message;
+    makeMessagesStyles?.clearCache();
+    makeMessageStyles?.clearCache();
 });
 
-export function makeMessagesStyles(k: string) {
+export const makeMessagesStyles = cache(function makeMessagesStyles(k: string) {
     return css`
         position: fixed;
         top: ${message.top};
@@ -43,9 +46,9 @@ export function makeMessagesStyles(k: string) {
         pointer-events: none;
         z-index: ${theme.maxZIndex + 1};
     `;
-}
+});
 
-export function makeMessageStyles(k: string) {
+export const makeMessageStyles = cache(function makeMessageStyles(k: string) {
     return css`
         text-align: center;
         width: 100%;
@@ -121,5 +124,4 @@ export function makeMessageStyles(k: string) {
             transition: transform ${message.transition};
         }
     `;
-}
-
+});

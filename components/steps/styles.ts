@@ -2,6 +2,7 @@ import {css, cx} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette}  from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     gap: '10px',
@@ -78,11 +79,12 @@ const defaults = {
 let steps: typeof defaults;
 setDefault(() => {
     steps = deepDefaults(theme, {steps: defaults}).steps;
+    makeStyles?.clearCache();
 });
 
 const stepStatus = ['done', 'active', 'error'] as const; 
 
-export function makeStepsStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: flex;
 
@@ -118,7 +120,7 @@ export function makeStepsStyles(k: string) {
 
         ${makeVerticalStyles(k)};
     `;
-}
+});
 
 function makeDefaultStyles(k: string) {
     const defaults = steps.default;
@@ -383,7 +385,7 @@ function makeSimpleStyles(k: string) {
             }
         }
     `;
-}
+};
 
 function center(flex: 'flex' | 'inline-flex' = 'flex') {
     return css`
@@ -393,7 +395,7 @@ function center(flex: 'flex' | 'inline-flex' = 'flex') {
     `;
 }
 
-export function makeCommonStyles(k: string) {
+function makeCommonStyles(k: string) {
     return css`
         .${k}-step {
             position: relative; 
@@ -427,7 +429,7 @@ export function makeCommonStyles(k: string) {
     `;
 }
 
-export function makeVerticalStyles(k: string) {
+function makeVerticalStyles(k: string) {
     const verticalLine = steps.vertical.line;
 
     return css`

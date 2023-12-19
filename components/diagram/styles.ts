@@ -1,7 +1,8 @@
 import {css} from '@emotion/css';
 import '../../styles/global';
+import { cache } from '../utils';
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-block;
         overflow: auto;
@@ -32,4 +33,4 @@ export function makeStyles(k: string) {
             margin: 0;
         }
     `;
-}
+});

@@ -1,5 +1,5 @@
 import {addStyle, getRestProps} from '../utils';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 
 const {
     className, style, size, color,

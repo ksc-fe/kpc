@@ -2,6 +2,7 @@ import {css, cx} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette}  from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     width: '8px',
@@ -17,9 +18,10 @@ const defaults = {
 let badge: typeof defaults;
 setDefault(() => {
     badge = deepDefaults(theme, {badge: defaults}).badge;
+    makeStyles?.clearCache();
 });
 
-export default function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-block;
         position: relative;
@@ -56,5 +58,4 @@ export default function makeStyles(k: string) {
                 transform: none;
             }            
     `;
-}
-
+});

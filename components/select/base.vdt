@@ -2,7 +2,7 @@ import {TransitionGroup, Transition} from 'intact';
 import {Input} from '../input';
 import {Icon} from '../icon';
 import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 import {Dropdown} from '../dropdown';
 import {getRestProps, addStyle} from '../utils';
 import {Wave} from '../wave';

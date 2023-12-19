@@ -1,8 +1,8 @@
 import {css, cx} from '@emotion/css';
-import { ButtonProps, Button } from './index';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette, getLeft, darken}  from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 type ValueOf<T extends readonly any[]> = T[number]
 
@@ -151,11 +151,13 @@ const defaults = deepDefaults(
 let button: typeof defaults;
 setDefault(() => {
     button = deepDefaults(theme, {button: defaults}).button;
+    makeButtonStyles?.clearCache();
+    makeButtonGroupStyles?.clearCache();
 });
 
 export {button};
 
-export function makeButtonStyles(k: string, iconSide?: string) {
+export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconSide?: string) {
     const {secondary, link} = button;
 
     return cx(
@@ -413,9 +415,9 @@ export function makeButtonStyles(k: string, iconSide?: string) {
             `}
         `
     );
-}
+});
 
-export function makeButtonGroupStyles(k: string) {
+export const makeButtonGroupStyles = cache(function makeButtonGroupStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
@@ -519,4 +521,4 @@ export function makeButtonGroupStyles(k: string) {
             }
         }
     `;
-}
+});

@@ -1,5 +1,5 @@
 import {getRestProps} from '../utils';
-import makeStyles from './styles';
+import {makeStyles} from './styles';
 import {Wave} from '../wave';
 
 const {

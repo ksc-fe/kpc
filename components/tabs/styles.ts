@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 type SizeStyles = {
     fontSize: string;
@@ -81,9 +82,10 @@ const defaults = deepDefaults(
 let tabs: typeof defaults;
 setDefault(() => {
     tabs = deepDefaults(theme, {tabs: defaults}).tabs;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         ${makeCommonStyles(k)};
         ${makeScrollStyles(k)};
@@ -100,7 +102,7 @@ export function makeStyles(k: string) {
             ${makeFlatCardStyles(k)};
         }
     `;
-}
+});
 
 function makeCommonStyles(k: string) {
     const active = tabs.active;

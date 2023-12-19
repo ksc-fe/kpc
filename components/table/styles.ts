@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     get transition() { return theme.transition.large },
@@ -72,9 +73,11 @@ const aligns = ['left', 'right', 'center'];
 let table: typeof defaults;
 setDefault(() => {
     table = deepDefaults(theme, {table: defaults}).table;
+    makeStyles?.clearCache();
+    makeGroupMenuStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${table.fontSize};
         color: ${table.color};
@@ -369,9 +372,9 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});
 
-export function makeGroupMenuStyles(k: string) {
+export const makeGroupMenuStyles = cache(function makeGroupMenuStyles(k: string) {
     return css`
         min-width: ${table.group.menuMinWidth} !important;
         .${k}-dropdown-item.${k}-active {
@@ -394,4 +397,4 @@ export function makeGroupMenuStyles(k: string) {
             }
         }
     `
-}
+});

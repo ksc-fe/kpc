@@ -1,6 +1,7 @@
 import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
+import { cache } from '../utils';
 
 const defaults = {
     width: '320px',
@@ -19,10 +20,11 @@ const defaults = {
 let popover: typeof defaults;
 setDefault(() => {
     popover = deepDefaults(theme, {popover: defaults}).popover;
+    makeStyles?.clearCache();
 });
 
 
-export default function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         // increase priority
         &.${k}-tooltip-content.${k}-popover {
@@ -50,4 +52,4 @@ export default function makeStyles(k: string) {
             }
         }
     `;
-}
+});

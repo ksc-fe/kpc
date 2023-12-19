@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {deepDefaults, darken, palette} from '../../styles/utils';
 import {theme, setDefault} from '../../styles/theme';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     width: '16px',
@@ -34,9 +35,10 @@ const defaults = {
 let radio: typeof defaults;
 setDefault(() => {
     radio = deepDefaults(theme, {radio: defaults}).radio;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
@@ -126,4 +128,4 @@ export function makeStyles(k: string) {
             }
         }            
     `;
-}
+});

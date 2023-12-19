@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 type SizeStyles = {
     padding?: string,
@@ -112,9 +113,12 @@ const defaults = deepDefaults(
 let select: typeof defaults;
 setDefault(() => {
     select = deepDefaults(theme, {select: defaults}).select;
+    makeStyles?.clearCache();
+    makeMenuStyles?.clearCache();
+    makeGroupStyles?.clearCache();
 });
 
-export default function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-flex;
         align-items: center;
@@ -275,9 +279,9 @@ export default function makeStyles(k: string) {
             }
         }
     `;
-}
+});
 
-export function makeMenuStyles(k: string) {
+export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
     const searchable = select.searchable;
     
     return css`
@@ -367,13 +371,13 @@ export function makeMenuStyles(k: string) {
             font-size: ${select.multiple.checkmark.fontSize};
         }
     `;
-}
+});
 
-export function makeGroupStyles(k: string) {
+export const makeGroupStyles = cache(function makeGroupStyles(k: string) {
     return css`
         .${k}-select-group-label {
             color: ${select.group.labelColor};
             padding: ${select.group.labelPadding};
         }
     `
-}
+});

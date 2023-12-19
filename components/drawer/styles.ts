@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 type ValueOf<T extends readonly any[]> = T[number]
 
@@ -17,9 +18,10 @@ const defaults = {
 let drawer: typeof defaults;
 setDefault(() => {
     drawer = deepDefaults(theme, {drawer: defaults}).drawer;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(overlay: boolean, k: string) {
+export const makeStyles = cache(function makeStyles(overlay: boolean, k: string) {
     const borderRadius = theme.largeBorderRadius;
     return css`
         &.k-drawer {
@@ -61,7 +63,7 @@ export function makeStyles(overlay: boolean, k: string) {
             width: 100%;
         }
     `;
-}
+});
 
 function makePlacementStyles(k: string, placement: string, styles: string, transform: string, borderRadius: string) {
     return css`

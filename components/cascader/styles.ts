@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     width: '140px',
@@ -28,9 +29,11 @@ const defaults = {
 let cascader: typeof defaults;
 setDefault(() => {
     cascader = deepDefaults(theme, {cascader: defaults}).cascader;
+    makeMenuStyles?.clearCache();
+    makeFilterMenuStyles?.clearCache();
 });
 
-export function makeMenuStyles(k: string) {
+export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
     return css`
         min-width: ${cascader.width} !important;
         height: ${cascader.height};
@@ -63,9 +66,9 @@ export function makeMenuStyles(k: string) {
             }
         }
     `; 
-}
+});
 
-export function makeFilterMenuStyles(k: string) {
+export const makeFilterMenuStyles = cache(function makeFilterMenuStyles(k: string) {
     return css`
         min-width: ${cascader.filter.minWidth} !important;
         height: auto;
@@ -75,4 +78,4 @@ export function makeFilterMenuStyles(k: string) {
             color: ${cascader.filter.highlightColor};
         }
     `;
-}
+});

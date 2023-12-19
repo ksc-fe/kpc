@@ -2,6 +2,7 @@ import {css, keyframes} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     width: `40px`,
@@ -16,9 +17,10 @@ const defaults = {
 let spin: typeof defaults;
 setDefault(() => {
     spin = deepDefaults(theme, {spin: defaults}).spin;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     const width = spin.strokeWidth;
     const r = 120 - 60 - (width / 2);
     const c = Math.round(2 * 3.14 * r);
@@ -89,6 +91,4 @@ export function makeStyles(k: string) {
             background: rgba(255, 255, 255, .5);
         }
     `;
-}
-
-
+});

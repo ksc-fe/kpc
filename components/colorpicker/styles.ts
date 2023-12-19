@@ -3,6 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 import {ColorFormats} from 'tinycolor2';
+import { cache } from '../utils';
 
 const defaults = {
     get height() { return theme.default.height },
@@ -88,11 +89,13 @@ const defaults = {
 let colorpicker: typeof defaults;
 setDefault(() => {
     colorpicker = deepDefaults(theme, {colorpicker: defaults}).colorpicker;
+    makeStyles?.clearCache();
+    makePanelStyles?.clearCache();
 });
 
 const _sizes = ['large', 'small', 'mini'] as const;
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         display: inline-block;
         vertical-align: middle;
@@ -133,9 +136,9 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});
 
-export function makePanelStyles(k: string) {
+export const makePanelStyles = cache(function makePanelStyles(k: string) {
     return css`
         padding: ${colorpicker.panel.padding};
         width: ${colorpicker.panel.width};
@@ -267,7 +270,7 @@ export function makePanelStyles(k: string) {
             user-select: none;
         }
     `
-}
+});
 
 export function makeAlphaBgColor({r, g, b}: ColorFormats.RGBA, k: string) {
     return css`

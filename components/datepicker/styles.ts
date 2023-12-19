@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     width: `300px`,
@@ -62,11 +63,14 @@ const defaults = {
 let datepicker: typeof defaults;
 setDefault(() => {
     datepicker = deepDefaults(theme, {datepicker: defaults}).datepicker;
+    makePanelStyles?.clearCache();
+    makeCalendarStyles?.clearCache();
+    makeTimeStyles?.clearCache();
 });
 
 export {datepicker};
 
-export function makePanelStyles(k: string) {
+export const makePanelStyles = cache(function makePanelStyles(k: string) {
     return css`
         display: flex;
         .${k}-datepicker-shortcuts {
@@ -106,9 +110,9 @@ export function makePanelStyles(k: string) {
             text-align: right;
         }
     `
-}
+});
 
-export function makeCalendarStyles(k: string) {
+export const makeCalendarStyles = cache(function makeCalendarStyles(k: string) {
     return css`
         padding: ${datepicker.padding};
         width: ${datepicker.width};
@@ -207,9 +211,9 @@ export function makeCalendarStyles(k: string) {
             grid-template-columns: repeat(4, 1fr);
         }
     `
-}
+});
 
-export function makeTimeStyles(k: string) {
+export const makeTimeStyles = cache(function makeTimeStyles(k: string) {
     return css`
         display: flex;
         padding: ${datepicker.padding};
@@ -220,4 +224,4 @@ export function makeTimeStyles(k: string) {
             height: 305px;
         }
     `;
-}
+});

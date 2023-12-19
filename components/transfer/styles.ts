@@ -2,6 +2,7 @@ import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, palette} from '../../styles/utils';
 import '../../styles/global';
+import { cache } from '../utils';
 
 const defaults = {
     fontSize: '12px',
@@ -41,9 +42,10 @@ const defaults = {
 let transfer: typeof defaults;
 setDefault(() => {
     transfer = deepDefaults(theme, {transfer: defaults}).transfer;
+    makeStyles?.clearCache();
 });
 
-export function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${transfer.fontSize};
         .${k}-transfer-panel,
@@ -117,4 +119,4 @@ export function makeStyles(k: string) {
             }
         }
     `;
-}
+});
