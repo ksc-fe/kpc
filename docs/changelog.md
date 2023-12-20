@@ -4,6 +4,20 @@ order: 99
 sidebar: doc
 ---
 
+## v3.1.2
+
+1. `Add` 优化组件样式渲染的性能 [#928](https://github.com/ksc-fe/kpc/issues/928) 
+2. `Add` 当`Table`需要在一侧固定两列及以上的列时，`width`属性不再是必须项 [#930](https://github.com/ksc-fe/kpc/issues/930)
+3. `Add` `Table`分组菜单，多选情况下，支持全选操作 [#931](https://github.com/ksc-fe/kpc/issues/931)
+4. `Add` `Cascader`多选情况下，选择不会隐藏菜单 [#933](https://github.com/ksc-fe/kpc/issues/933)
+5. `Fix` 修复`Table`当列设置了`minWidth`导致出现横向滚动条，固定列不能展示阴影的问题 [#927](https://github.com/ksc-fe/kpc/issues/927)
+6. `Fix` 修复`Table`右侧固定列，不能拖动改变宽度的问题 [#925](https://github.com/ksc-fe/kpc/issues/925)
+7. `Fix` 修复`Tree`当处于半选中状态，此时设置`checkedKeys`让它全选，样式展示错误的问题 [#932](https://github.com/ksc-fe/kpc/issues/932)
+
+### @king-design/vue-legacy
+
+1. `Fix` 修复某些情况下，会报`object is not extensible`的错误的问题 [#926](https://github.com/ksc-fe/kpc/issues/926)
+
 ## v3.1.1
 
 1. `Add` `Drawer`上下弹出支持设置宽度，设置宽度后，会从页面中间弹出，可以实现类似MacOS弹窗的功能 [#920](https://github.com/ksc-fe/kpc/issues/920)
