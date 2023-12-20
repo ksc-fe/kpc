@@ -3,7 +3,7 @@ import {Icon} from '../icon';
 import {_$} from '../../i18n';
 import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 
-const {data, trigger, filterable, fields} = this.get();
+const {data, trigger, filterable, fields, multiple} = this.get();
 const { k } = this.config;
 const baseMenuStyles = makeMenuStyles(k);
 const classNameObj = {
@@ -38,6 +38,7 @@ const Options = (data, level, loaded, parentSelected) => {
                         [`${k}-selected`]: selected,
                     }}
                     ev-select={onSelect.bind(null, value, level)}
+                    hideOnSelect={!multiple}
                 >
                     {getField(item, 'label')}
                     <Icon v-if={children}

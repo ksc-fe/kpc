@@ -121,9 +121,10 @@ export abstract class BaseSelect<
 
     @bind
     position() {
-        const dropdown = this.dropdownRef.value!;
+        let dropdown = this.dropdownRef.value!;
         if (dropdown.get('value')) {
-            dropdown.position();
+            do { dropdown.position() }
+            while (dropdown = dropdown.showedDropdown!)
         }
     }
 
