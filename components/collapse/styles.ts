@@ -32,7 +32,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         font-size: ${collapse.fontSize};
         
         &.${k}-left {
-            .${k}-collapse-arrow {
+            > .${k}-collapse-item > .${k}-collapse-title .${k}-collapse-arrow {
                 float: left;
                 margin-right: ${collapse.titleMarginRight};
             }
