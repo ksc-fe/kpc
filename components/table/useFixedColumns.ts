@@ -2,12 +2,7 @@ import {
     useInstance,
     VNodeComponentClass,
     Props,
-    directClone,
-    onMounted,
-    onUnmounted,
-    RefObject,
     Key,
-    watch,
     findDomFromVNode,
     nextTick,
 } from 'intact';
@@ -15,12 +10,11 @@ import {TableColumn, TableColumnProps} from './column';
 import {useState} from '../../hooks/useState';
 import {cx} from '@emotion/css';
 import type {TableProps, TableRowKey, Table} from './table';
-import {isNullOrUndefined, isString, error} from 'intact-shared';
-import {throttle} from '../utils';
 import {State, watchState} from '../../hooks/useState';
 import {createContext} from '../context';
 import type {useScroll} from './useScroll';
 import { useResizeObserver } from '../../hooks/useResizeObserver';
+import { isEqualObject } from '../utils';
 
 type ScrollPosition = 'left' | 'middle' | 'right';
 type FixedInfo = {
@@ -38,9 +32,9 @@ export function useFixedColumns(
     const instance = useInstance() as Table;
     const scrollPosition = useState<ScrollPosition | null>(null);
     const hasFixed = useState<boolean>(false);
+    const offsetMap = useState<Record<Key, number>>({}, isEqualObject);
     let hasFixedLeft = false;
     let hasFixedRight = false;
-    let offsetMap: Record<Key, number> = {};
 
     callbacks.push(setScrollPosition);
 
@@ -56,15 +50,14 @@ export function useFixedColumns(
     function handleFixedColumns() {
         const columns = getColumns();
 
+        let _offsetMap: Record<Key, number> = {};
         hasFixedLeft = false;
         hasFixedRight = false;
-        offsetMap = {};
 
         columns.forEach((columns, row) => {
             columns.forEach((vNode, col) => {
                 const props = vNode.props as Props<TableColumnProps>;
                 const key = props.key;
-                offsetMap[key] = 0;
 
                 const fixed = props.fixed;
                 if (fixed === 'left') {
@@ -77,7 +70,7 @@ export function useFixedColumns(
                         }
                         prevVNode = props.prevVNode;
                     }
-                    offsetMap[key] = value;
+                    _offsetMap[key] = value;
                     hasFixedLeft = true;
                 } else if (fixed === 'right') {
                     let value = 0;
@@ -89,12 +82,13 @@ export function useFixedColumns(
                         }
                         nextVNode = props.nextVNode;
                     }
-                    offsetMap[key] = value;
+                    _offsetMap[key] = value;
                     hasFixedRight = true;
                 }
             });
         });
 
+        offsetMap.set(_offsetMap);
         hasFixed.set(hasFixedLeft || hasFixedRight);
     }
 
@@ -124,8 +118,8 @@ export function useFixedColumns(
         scrollPosition,
         setScrollPosition,
         hasFixed,
+        offsetMap,
         getHasFixedLeft: () => hasFixedLeft,
-        getOffsetMap: () => offsetMap,
     };
 }
 

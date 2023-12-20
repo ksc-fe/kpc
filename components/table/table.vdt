@@ -29,7 +29,7 @@ const {
 } = this.get();
 const animation = !Array.isArray(_animation) ? [_animation, _animation] : _animation;
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
-const {scrollPosition, hasFixed, getHasFixedLeft, getOffsetMap} = this.fixedColumns;
+const {scrollPosition, hasFixed, getHasFixedLeft, offsetMap} = this.fixedColumns;
 const {scrollRef} = this.scroll;
 const {stickHeader, excludeStickHeader, elementRef, headRef} = this.stickyHeader;
 const { k } = this.config;
@@ -66,13 +66,12 @@ const hasData = data && data.length;
 const hasFixedLeft = getHasFixedLeft();
 const {getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
 const allCheckedStatus = getAllCheckedStatus(); 
-const offsetMap = getOffsetMap();
 const thead = hideHeader ? null : (
     <TableContext.Provider value={checkType}>
         <GroupContext.Provider value={{group, onChange: this.onChangeGroup}}>
             <SortableContext.Provider value={{sort, onChange: this.sortable.onChange}}>
                 <ResizableContext.Provider value={{resizable, onStart}}>
-                    <FixedColumnsContext.Provider value={offsetMap}>
+                    <FixedColumnsContext.Provider value={offsetMap.value}>
                         <thead>
                             <tr v-for={columns}>
                                 {(() => {
@@ -158,7 +157,7 @@ const tbody = (
                         indent={indentSize}
                         onToggleSpreadRow={toggleSpreadRow}
                         onBeforeUnmount={this.resetRowStatus.onRowBeforeUnmount}
-                        offsetMap={offsetMap}
+                        offsetMap={offsetMap.value}
                         animation={animation[1]}
 
                         draggable={draggable}
