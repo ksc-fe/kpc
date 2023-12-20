@@ -7,16 +7,20 @@ import {
     onUnmounted,
     RefObject,
     Key,
+    watch,
+    findDomFromVNode,
+    nextTick,
 } from 'intact';
 import {TableColumn, TableColumnProps} from './column';
 import {useState} from '../../hooks/useState';
 import {cx} from '@emotion/css';
-import type {TableProps, TableRowKey} from './table';
+import type {TableProps, TableRowKey, Table} from './table';
 import {isNullOrUndefined, isString, error} from 'intact-shared';
 import {throttle} from '../utils';
 import {State, watchState} from '../../hooks/useState';
 import {createContext} from '../context';
 import type {useScroll} from './useScroll';
+import { useResizeObserver } from '../../hooks/useResizeObserver';
 
 type ScrollPosition = 'left' | 'middle' | 'right';
 type FixedInfo = {
@@ -31,7 +35,7 @@ export function useFixedColumns(
     {scrollRef, callbacks}: ReturnType<typeof useScroll>,
     widthMap: State<Record<TableRowKey, number>>, 
 ) {
-    const instance = useInstance()!;
+    const instance = useInstance() as Table;
     const scrollPosition = useState<ScrollPosition | null>(null);
     const hasFixed = useState<boolean>(false);
     let hasFixedLeft = false;
@@ -40,25 +44,14 @@ export function useFixedColumns(
 
     callbacks.push(setScrollPosition);
 
-    instance.on('$receive:children', handleFixedColumns);
-    watchState(widthMap, () => {
+    instance.watch('children', handleFixedColumnsAndUpdate, { presented: true });
+    watchState(widthMap, () => nextTick(handleFixedColumnsAndUpdate));
+    useResizeObserver(scrollRef, handleFixedColumnsAndUpdate, true);
+
+    function handleFixedColumnsAndUpdate() {
         handleFixedColumns();
         updateScrollPositionOnResize();
-    });
-    
-    const throttleUpdate = throttle(() => {
-        if (instance.$unmounted) return;
-        updateScrollPositionOnResize();
-    }, 100);
-
-    onMounted(() => {
-        updateScrollPositionOnResize();
-        window.addEventListener('resize', throttleUpdate);
-    });
-
-    onUnmounted(() => {
-        window.removeEventListener('resize', throttleUpdate);
-    });
+    }
 
     function handleFixedColumns() {
         const columns = getColumns();
@@ -68,7 +61,6 @@ export function useFixedColumns(
         offsetMap = {};
 
         columns.forEach((columns, row) => {
-            let offset = 0;
             columns.forEach((vNode, col) => {
                 const props = vNode.props as Props<TableColumnProps>;
                 const key = props.key;
@@ -81,10 +73,7 @@ export function useFixedColumns(
                     while (prevVNode) {
                         const props = prevVNode.props!;
                         if (props.fixed === 'left') {
-                            if (process.env.NODE_ENV !== 'production') {
-                                validateWidth(props);
-                            }
-                            value += widthMap.value[props.key] || parseInt(props.width as string, 10) || 0;
+                            value += getWidth(prevVNode);
                         }
                         prevVNode = props.prevVNode;
                     }
@@ -92,16 +81,13 @@ export function useFixedColumns(
                     hasFixedLeft = true;
                 } else if (fixed === 'right') {
                     let value = 0;
-                    let lastVNode = columns[columns.length - 1];
-                    while (vNode !== lastVNode) {
-                        const props = lastVNode.props!; 
+                    let nextVNode = props.nextVNode;
+                    while (nextVNode) {
+                        const props = nextVNode.props!; 
                         if (props.fixed === 'right') {
-                            if (process.env.NODE_ENV !== 'production') {
-                                validateWidth(props);
-                            }
-                            value += widthMap.value[props.key] || parseInt(props.width as string, 10) || 0;
+                            value += getWidth(nextVNode);
                         }
-                        lastVNode = props.prevVNode!;
+                        nextVNode = props.nextVNode;
                     }
                     offsetMap[key] = value;
                     hasFixedRight = true;
@@ -160,9 +146,7 @@ export function getClassAndStyleForFixed(
     };
 }
 
-
-function validateWidth({width, key}: TableColumnProps) {
-    if (isNullOrUndefined(width) || isString(width) && !/\d+(px)?/.test(width)) {
-        error(`The width must be specified with 'px' when the column has fixed. <TableColumn key="${key}" />`);
-    }
+function getWidth(vNode: VNodeComponentClass) {
+    const dom = findDomFromVNode(vNode, true) as HTMLElement;
+    return dom.offsetWidth;
 }

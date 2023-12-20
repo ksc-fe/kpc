@@ -34,7 +34,7 @@ import {Table, TableColumn} from 'kpc';
         <TableColumn key="column1" title="Column1" width="300" />
         <TableColumn key="column2" title="Column2" width="300" />
         <TableColumn key="column3" title="Column3" width="300" />
-        <TableColumn key="column4" title="Column4" width="300" />
+        <TableColumn key="column4" title="Column4" width="300" fixed="right" />
         <TableColumn fixed="right" key="action" title="Action" width="200">
             <b:template args="data">
                 <a>action</a>

@@ -51,6 +51,7 @@ export function useColumns() {
                 ret = true;
 
                 const clonedVNode = directClone(vNode) as VNodeComponentClass<TableColumn>;
+                if (currentVNode) (currentVNode.props as any).nextVNode = clonedVNode;
                 const props = {
                     ...clonedVNode.props!,
                     cols: 0,
