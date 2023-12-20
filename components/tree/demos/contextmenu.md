@@ -3,7 +3,10 @@ title: 右键菜单
 order: 4
 ---
 
-绑定`rightclick:node`并利用`DropdownMenu`可以实现右键菜单来操作节点增删
+利用`label`扩展点，配合`Dropdown`的`contextmenu`触发方式，可以实现右键菜单来操作节点增删
+
+> 当鼠标移动到菜单上时，节点的hover样式将会丢失，但是菜单弹出时，`Dropdown`会给触发元素添加`.k-dropdown-open`的类名，
+> 可以用`:has`选择器来添加hover样式。如本例所示
 
 ```vdt
 import {Tree, Dropdown, DropdownMenu, DropdownItem} from 'kpc';
@@ -24,6 +27,12 @@ import {Tree, Dropdown, DropdownMenu, DropdownItem} from 'kpc';
         </b:label>
     </Tree>
 </div>
+```
+
+```styl
+// 鼠标移动到弹出菜单上，依然展示hover样式
+.k-tree-text:has(.k-dropdown-open)
+    background: #f3f5f6
 ```
 
 ```ts

@@ -9,6 +9,8 @@ order: 14
 > 固定列通过`position: sticky`来实现，所以对于非首/尾列，需要指定它们之前或之后的列的固定宽度`width`来
 > 帮助该列来确定固定的位置 
 
+> @since 3.1.2 `width`属性不再是必须的
+
 ```vdt
 import {Table, TableColumn} from 'kpc';
 

@@ -11,7 +11,7 @@ order: 1
 ```vdt
 import {Table, TableColumn} from 'kpc';
 
-<Table data={this.get('data')}>
+<Table data={this.get('data')} resizable>
     <TableColumn title='定义该列单元格内容' key='a'>
         <b:template args="[data, index]">
             <a>{data.a}</a>

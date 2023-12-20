@@ -22,6 +22,7 @@ export interface TableColumnProps {
     cols?: number
     rows?: number
     prevVNode?: VNodeComponentClass<TableColumn> | null
+    nextVNode?: VNodeComponentClass<TableColumn> | null
 }
 
 export interface TableColumnEvents { }
@@ -58,6 +59,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     cols: null,
     rows: null,
     prevVNode: null,
+    nextVNode: null,
 };
 
 export class TableColumn<T = any> extends Component<TableColumnProps, TableColumnEvents, TableColumnBlocks<T>> {

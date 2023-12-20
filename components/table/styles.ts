@@ -93,10 +93,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
             // border-collapse: collapse;
             border-spacing: 0;
             table-layout: fixed;
-            td, 
-            th {
-                transition: all ${table.transition};  
-            }
+            // td, 
+            // th {
+                // transition: all ${table.transition};  
+            // }
         }
 
         // thead

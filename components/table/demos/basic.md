@@ -10,8 +10,8 @@ order: 0
 import {Table, TableColumn} from 'kpc';
 
 <Table data={this.get('data')} resizable>
-    <TableColumn key="a" title="Title 1" />
-    <TableColumn key="b" title="Title 2" />
+    <TableColumn key="a" title="Title 1" minWidth={200}/>
+    <TableColumn key="b" title="Title 2" minWidth={300} />
 </Table>
 ```
 

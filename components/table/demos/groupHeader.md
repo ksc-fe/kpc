@@ -10,22 +10,22 @@ order: 12
 ```vdt
 import {Table, TableColumn} from 'kpc';
 
-<Table data={this.get('data')} type="grid" resizable stickHeader="64">
-    <TableColumn title="Weekday" key='weekday' fixed="left" width="100" />
+<Table data={this.get('data')} type="grid" resizable stickHeader="64" minColWidth={100}>
+    <TableColumn title="Weekday" key='weekday' fixed="left" />
     <TableColumn title="Forenoon" key="forenoon">
-        <TableColumn title="Time" key="forenoonTime" fixed="left" width="100" />
+        <TableColumn title="Time" key="forenoonTime" fixed="left" />
         <TableColumn title="Classes" key="classes">
-            <TableColumn title="Class 1" key='class1' width="100" />
-            <TableColumn title="Class 2" key='class2' width="100" />
-            <TableColumn title="Class 3" key='class3' width="100" />
-            <TableColumn title="Class 4" key='class4' width="100" />
+            <TableColumn title="Class 1" key='class1' />
+            <TableColumn title="Class 2" key='class2' />
+            <TableColumn title="Class 3" key='class3' />
+            <TableColumn title="Class 4" key='class4' />
         </TableColumn>
     </TableColumn>
     <TableColumn title="Afternoon" key="afternoon">
-        <TableColumn title="Time" key="afternoonTime" width="100" />
-        <TableColumn title="Class 5" key='class5' width="100" />
-        <TableColumn title="Class 6" key='class6' width="100" fixed="right" />
-        <TableColumn title="Class 7" key='class7' fixed="right" width="100" />
+        <TableColumn title="Time" key="afternoonTime" />
+        <TableColumn title="Class 5" key='class5' />
+        <TableColumn title="Class 6" key='class6' fixed="right" />
+        <TableColumn title="Class 7" key='class7' fixed="right" />
     </TableColumn>
 </Table>
 ```

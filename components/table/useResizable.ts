@@ -22,16 +22,18 @@ export function useResizable(
     let x: number;
     let prevVNode: ColumnVNode;
     let prevTh: HTMLElement;
+    let prevMinWidth: number;
     let currentVNode: ColumnVNode;
     let currentTh: HTMLElement;
-    let minWidth: number;
+    let currentMinWidth: number;
+    let nextVNode: ColumnVNode | null | undefined;
 
     function onStart(e: MouseEvent) {
         containerWidth = scrollRef.value!.clientWidth;
         x = e.clientX;
 
         // find the previous column but exclude the hidden columns, #467
-        prevVNode = currentVNode = (e as MouseEvent & {_vNode: ColumnVNode})._vNode;
+        prevVNode = nextVNode = currentVNode = (e as MouseEvent & {_vNode: ColumnVNode})._vNode;
         prevTh;
         do {
             prevVNode = prevVNode.props!.prevVNode!;
@@ -39,26 +41,52 @@ export function useResizable(
         } while(window.getComputedStyle(prevTh).display === 'none');
 
         currentTh = findDomFromVNode(currentVNode, true) as HTMLElement;
-        minWidth = prevVNode.props!.minWidth || instance.get('minColWidth')!;
+        prevMinWidth= prevVNode.props!.minWidth || instance.get('minColWidth')!;
+        currentMinWidth = currentVNode.props!.minWidth || instance.get('minColWidth')!;
+
+        while (nextVNode = nextVNode?.props!.nextVNode) {
+            const th = findDomFromVNode(nextVNode, true) as HTMLElement;
+            if (window.getComputedStyle(th).display === 'none') {
+                continue;
+            }
+            break;
+        }
     }
 
     function onMove(e: MouseEvent) {
         const delX = e.clientX - x;
         if (delX === 0) return;
 
-        const newPrevWidth = prevTh.offsetWidth + delX;
-        if (newPrevWidth < minWidth && delX < 0) return;
+        let newPrevWidth = prevTh.offsetWidth + delX;
+        let newCurrentWidth = currentTh.offsetWidth - delX;
+        let newTableWidth = tableRef.value!.offsetWidth + delX;
+        const isCurrentFixedRight = currentVNode.props!.fixed === 'right';
+        // const isPrevFixedRight = prevVNode.props!.fixed === 'right';
 
-        const newCurrentWidth = currentTh.offsetWidth - delX;
-        const newTableWidth = tableRef.value!.offsetWidth + delX;
+        if ((newPrevWidth < prevMinWidth || isCurrentFixedRight) && delX < 0) {
+            // if (nextVNode) return;
+            // the last column, we should expand its width
+            if (newPrevWidth < prevMinWidth) {
+                newPrevWidth -= delX; 
+                newTableWidth -= delX;
+            }
+        }
+
         const currentKey = currentVNode.props!.key;
         const prevKey = prevVNode.props!.key;
-
-        x = e.clientX;
-
         const map = {
             [prevKey]: newPrevWidth 
         }
+
+        if (!nextVNode || isCurrentFixedRight) {
+            newTableWidth -= delX;
+            if (newCurrentWidth < currentMinWidth && delX > 0) {
+                newCurrentWidth = currentMinWidth;
+            }
+            map[currentKey] = newCurrentWidth;
+        }
+
+        x = e.clientX;
 
         if (containerWidth > newTableWidth) {
             map[currentKey] = newCurrentWidth;
