@@ -59,6 +59,10 @@ export function useGroup() {
         confirm(onChange);
     }
 
+    function checkAll() {
+        localGroupValue.set(filteredGroup.value?.map((item) => item.value));
+    }
+
     function isEmptyValue(groupValue: any) {
         const {multiple} = instance.get();
         return !groupValue || multiple && (!isArray(groupValue) || groupValue.every(value => !value));
@@ -88,5 +92,6 @@ export function useGroup() {
         dropdownRef,
         localGroupValue,
         isEmptyValue,
+        checkAll,
     };
 }

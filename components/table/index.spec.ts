@@ -238,7 +238,7 @@ describe('Table', () => {
         expect(instance.get('multipleGroup')).to.eql({status: []});
 
         // click confirm
-        const [reset, confirm] = dropdown2.querySelectorAll<HTMLElement>('.k-table-group-footer .k-btn');
+        const [checkAll, reset, confirm] = dropdown2.querySelectorAll<HTMLElement>('.k-table-group-footer .k-btn');
         confirm.click();
         await wait();
         expect(instance.get('multipleGroup')).to.eql({status: ['active', 'stopped']});
@@ -251,9 +251,14 @@ describe('Table', () => {
         reset.click();
         await wait();
         expect(dropdown2.innerHTML).to.matchSnapshot();
-        confirm.click();
-        await wait();
         expect(instance.get('multipleGroup')).to.eql({status: []});
+
+        // click checkAll
+        dispatchEvent(icon2, 'click');
+        await wait();
+        checkAll.click();
+        await wait();
+        expect(dropdown2.querySelectorAll('.k-checkbox.k-checked')).to.length(2);
 
         // update group
         instance.set('statusGroup', [{label: 'label', value: 'value'}]);

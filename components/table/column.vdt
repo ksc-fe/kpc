@@ -19,7 +19,7 @@ const {title, fixed, group, multiple, key, sortable, cols, rows} = this.get();
 const {
     onSelect, isChecked, keywords, filteredGroup,
     onShow, reset, confirm, dropdownRef,
-    localGroupValue, isEmptyValue,
+    localGroupValue, isEmptyValue, checkAll,
 } = this.group;
 const { k } = this.config;
 
@@ -96,14 +96,18 @@ const { k } = this.config;
                                                             </DropdownItem>
                                                         </div>
                                                         <div class={`${k}-table-group-footer`} v-if={multiple}>
+                                                            <Button size="mini"
+                                                                type="link"
+                                                                ev-click={checkAll}
+                                                            >{_$('全选')}</Button>
                                                             <Button size="small"
                                                                 disabled={isEmptyValue(localGroupValue.value)}
                                                                 type="secondary"
                                                                 ev-click={() => reset(onChange)}
-                                                            >重置</Button>
+                                                            >{_$('重置')}</Button>
                                                             <Button type="primary" size="small"
                                                                 ev-click={() => confirm(onChange)}
-                                                            >确定</Button>
+                                                            >{_$('确定')}</Button>
                                                         </div>
                                                     </DropdownMenu>
                                                 </Dropdown>

@@ -87,6 +87,7 @@ const i18n = {
 
     // table
     '/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~': '/(ㄒoㄒ)/~~ No data to display.',
+    '重置': 'Reset',
 
     // transfer
     '请输入': 'Please enter',
