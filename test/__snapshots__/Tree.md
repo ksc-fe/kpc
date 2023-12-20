@@ -25,7 +25,7 @@
 ```
 
 ```
-"[{\"label\":\"First floor-2\",\"children\":[{\"label\":\"Second floor-2.1\",\"children\":[{\"label\":\"Third floor-2.1.1\",\"key\":\"floor-2.1.1\"},{\"label\":\"Third floor-2.1.2\"}]},{\"label\":\"Second floor-2.2\",\"disabled\":true,\"children\":[{\"label\":\"Third floor-2.2.1\"}]}]},{\"label\":\"Second floor-2.1\",\"children\":[{\"label\":\"Third floor-2.1.1\",\"key\":\"floor-2.1.1\"},{\"label\":\"Third floor-2.1.2\"}]},{\"label\":\"Third floor-2.1.1\",\"key\":\"floor-2.1.1\"},{\"label\":\"Third floor-2.1.2\"}]"
+"[{\"label\":\"First floor-2\",\"key\":\"floor-2\",\"children\":[{\"label\":\"Second floor-2.1\",\"children\":[{\"label\":\"Third floor-2.1.1\",\"key\":\"floor-2.1.1\"},{\"label\":\"Third floor-2.1.2\"}]},{\"label\":\"Second floor-2.2\",\"disabled\":true,\"children\":[{\"label\":\"Third floor-2.2.1\"}]}]},{\"label\":\"Second floor-2.1\",\"children\":[{\"label\":\"Third floor-2.1.1\",\"key\":\"floor-2.1.1\"},{\"label\":\"Third floor-2.1.2\"}]},{\"label\":\"Third floor-2.1.1\",\"key\":\"floor-2.1.1\"},{\"label\":\"Third floor-2.1.2\"}]"
 ```
 
 ```

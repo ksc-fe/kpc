@@ -5,7 +5,7 @@ import {Component} from 'intact';
 import {Collapse, CollapseItem} from './';
 
 describe('Collapse', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should toggle expand', async function() {
         this.timeout(0);
