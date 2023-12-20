@@ -5,13 +5,13 @@ import {Component} from 'intact';
 import {Collapse, CollapseItem} from './';
 
 describe('Collapse', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     it('should toggle expand', async function() {
         this.timeout(0);
         const [instance, element] = mount(BasicDemo);
 
-        const [title1, title2, title3] = element.querySelectorAll<HTMLElement>(':scope > .k-collapse-title');
+        const [title1, title2, title3] = element.querySelectorAll<HTMLElement>(':scope > .k-collapse-item > .k-collapse-title');
         title2.click();
         await wait(500);
         // the innerHTML is different on travis and local environment
