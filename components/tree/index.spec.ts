@@ -69,6 +69,13 @@ describe('Tree', () => {
         checkbox3.click();
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
+
+        checkbox4.click();
+        await wait();
+        instance.set<string[]>('checkedKeys', ['floor-2']);
+        await wait();
+        expect(checkbox2.classList.contains('k-checked')).to.be.true;
+        expect(checkbox2.classList.contains('k-indeterminate')).to.be.false;
     });
 
     it('async load', async function() {

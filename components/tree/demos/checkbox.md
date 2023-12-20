@@ -55,6 +55,7 @@ export default class extends Component {
                 },
                 {
                     label: 'First floor-2',
+                    key: 'floor-2',
                     children: [
                         {
                             label: 'Second floor-2.1',
