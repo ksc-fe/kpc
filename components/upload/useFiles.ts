@@ -2,6 +2,7 @@ import {useInstance} from 'intact';
 import {Upload, UploadFile} from './';
 import {_$} from '../../i18n';
 import {UploadFileStatus} from './useUpload';
+import { isEqualArray } from '../utils';
 
 let uid = 0;
 
@@ -28,8 +29,8 @@ export function useFiles(
         }
     }
 
-    instance.on(`$receive:files`, (files) => {
-        if (!files) return;
+    instance.on(`$receive:files`, (files, oldFiles) => {
+        if (!files || isEqualArray(files, oldFiles)) return;
         instance.set('files', files.map(normalizeFile));
     });
 
