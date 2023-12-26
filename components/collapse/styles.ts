@@ -7,7 +7,6 @@ import { cache } from '../utils';
 const defaults = {
     get transition() { return theme.transition.large },
     fontSize: '12px',
-    titleMarginRight: '8px',
     borderPadding: '0 24px',
     collBorder: '1px solid #eee',
     get borderRadius() {
@@ -17,6 +16,7 @@ const defaults = {
     item: {
         borderBottom: '1px solid #e5e5e5',
         titleHeight: '40px',
+        titleGap: '8px',
     }
 };
 
@@ -32,9 +32,8 @@ export const makeStyles = cache(function makeStyles(k: string) {
         font-size: ${collapse.fontSize};
         
         &.${k}-left {
-            > .${k}-collapse-item > .${k}-collapse-title .${k}-collapse-arrow {
-                float: left;
-                margin-right: ${collapse.titleMarginRight};
+            > .${k}-collapse-item > .${k}-collapse-title {
+                flex-direction: row-reverse;
             }
         }
 
@@ -58,13 +57,15 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
             cursor: pointer;
             font-weight: bold;
             height: ${collapseItem.titleHeight};
-            line-height: ${collapseItem.titleHeight};
             transition: color ${collapse.transition};
+            display: flex;
+            align-items: center;
+            gap: ${collapseItem.titleGap};
+            .${k}-collapse-title-wrapper {
+                flex: 1;
+            }
             .${k}-collapse-arrow {
-                float: right;
                 transition: transform ${collapse.transition};
-                line-height: ${collapseItem.titleHeight};
-                height: ${collapseItem.titleHeight};
             }
         }
         
