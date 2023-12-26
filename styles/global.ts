@@ -9,6 +9,10 @@ const slideDirections = {
     right: 'left center 0',
 };
 
+if (!/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+    document.body.classList.add('k-customize-scrollbar');
+}
+
 // TODO: update global when theme changed
 injectGlobal`
     html {
@@ -27,25 +31,31 @@ injectGlobal`
     }
 
     // scollbar
-    ::-webkit-scrollbar {
-        width: 10px;
-        height: 10px;
-        background-color: #fff;
-    }
-    ::-webkit-scrollbar-track {
-        background-color: #fff;
-    }
-    ::-webkit-scrollbar-thumb {
-        background-color: #babac0;
-        border-radius: 16px;
-        border: 2px solid #fff;
-        &:hover {
-            background-color: #a0a0a5;
-            // border-width: 1px;
+    .k-customize-scrollbar {
+        &::-webkit-scrollbar,
+        *::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
         }
-    }
-    ::-webkit-scroll-button {
-        display: none;
+        &::-webkit-scrollbar-track,
+        *::-webkit-scrollbar-track {
+            background-color: #fff;
+        }
+        &::-webkit-scrollbar-thumb,
+        *::-webkit-scrollbar-thumb {
+            background-color: #babac0;
+            border-radius: 16px;
+            border: 2px solid #fff;
+            &:hover {
+                background-color: #a0a0a5;
+                // border-width: 1px;
+            }
+        }
+        &::-webkit-scroll-button,
+        *::-webkit-scroll-button {
+            display: none;
+        }
     }
 
     // animation
