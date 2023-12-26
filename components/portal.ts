@@ -10,6 +10,8 @@ import {
     remove,
     TypeDefs,
     inject,
+    unmount,
+    removeVNodeDom,
 } from 'intact';
 import {isString} from 'intact-shared';
 import {DIALOG} from './dialog/constants';
@@ -59,7 +61,9 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
         const fakeContainer = document.createDocumentFragment();
 
         (mountedQueue.priority || mountedQueue).push(() => {
-            const parentDom = this.$lastInput!.dom!.parentElement!;
+            const parentDom = this.$lastInput!.dom!.parentElement;
+            // maybe the <!-- portal --> has been removed by react, #938
+            if (!parentDom) return;
             this.initContainer(nextProps.container, parentDom, anchor);
             this.container!.appendChild(fakeContainer);
         });
@@ -130,8 +134,13 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
     }
 
     $unmount(vNode: VNodeComponentClass<this>, nextVNode: VNodeComponentClass<this> | null) {
-        remove(vNode.props!.children as VNode, this.container!, false);
-        // removeVNodeDom(vNode.props!.children as VNode, this.container!);
+        const children = vNode.props!.children as VNode;
+        unmount(children, null);
+        if (this.container) {
+            // maybe the <!-- portal --> has been removed by react, #938
+            // remove(children, this.container, false);
+            removeVNodeDom(children, this.container);
+        }
         super.$unmount(vNode, nextVNode);
     }
 
