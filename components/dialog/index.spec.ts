@@ -337,6 +337,36 @@ describe('Dialog', () => {
         expect(dialog2.querySelector('.k-dialog-body')!.textContent).to.eql('test');
     });
 
+    it('should update position when change container', async () => {
+        class Demo extends Component<{show: boolean, container: any}> {
+            static template = `
+                var Dialog = this.Dialog;
+                <Dialog value={true} container={this.get('container')} ref="dialog">test</Dialog>
+            `;
+
+            private Dialog = Dialog;
+
+            static defaults() {
+                return {
+                    container: (parentDom: HTMLElement) => parentDom,
+                };
+            }
+        }
+
+        const [instance, element] = mount(Demo);
+
+        await wait();
+        instance.set('container', undefined);
+        await wait();
+        const dialogDom = instance.refs.dialog.dialogRef.value;
+        const style = dialogDom.style;
+        expect(style.left).not.eql('');
+        expect(style.top).not.eql('');
+
+        // should append to body
+        expect(dialogDom.closest('.k-dialog-wrapper').parentElement).to.eql(document.body);
+    });
+
     // it('should handle v-if and v-model at the same time correctly in Vue', async () => {
         // const Test = {
             // template: `<Dialog v-model="show" v-if="show" ref="dialog">test</Dialog>`,

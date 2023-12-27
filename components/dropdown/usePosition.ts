@@ -1,8 +1,7 @@
 import {useInstance, findDomFromVNode} from 'intact';
 import type {Dropdown} from './';
 import {Options, position, Feedback} from '../position';
-import {noop} from 'intact-shared';
-import {isObject} from 'intact-shared';
+import {noop, isObject, isFunction} from 'intact-shared';
 import { isEqualObject } from '../utils';
 
 export type FeedbackCallback = (feedback: Feedback) => void;
@@ -19,20 +18,31 @@ export function usePosition() {
 
     (['of', 'position'] as const).forEach(item => {
         instance.watch(item, (newValue, oldValue) => {
-            // return if object is the same
             if (
+                instance.get('value') ||
+                // return if object is the same
                 isObject(newValue) && isObject(oldValue) &&
                 // is not event object
                 !(newValue instanceof Event) &&
                 isEqualObject(newValue, oldValue)
-            )  {
-                return;
-            }
-            if (instance.get('value')) {
-                handle(noop);
-            }
+            ) return;
+
+            handle(noop);
         }, {presented: true, inited: true});
     });
+
+    // watch container, it is not commonly used
+    instance.watch('container', (newValue, oldValue) => {
+        if (
+            !instance.get('value') ||
+            // return if function is the same. Not rigorous!
+            isFunction(newValue) &&
+            isFunction(oldValue) &&
+            newValue.toString() === oldValue.toString()
+        ) return;
+
+        handle(noop);
+    }, { presented: true, inited: true });
 
     // if the dropdown is nested, we must show child after parent has positioned
     function p(
