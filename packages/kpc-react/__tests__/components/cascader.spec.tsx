@@ -17,13 +17,12 @@ describe('Cascader', () => {
 
     it('should hide all menu on selected', async () => {
         function App() {
-            const [value, setValue] = useState<string[][]>([]);
+            const [value, setValue] = useState<string[]>([]);
             return (
                 <div>
                     <Cascader
                         data={[{value: 'a', label: 'a', children: [{value: 'b', label: 'b'}]}]}
                         value={value}
-                        multiple
                         filterable
                         onChangeValue={(v) => {
                             setValue(v!);
