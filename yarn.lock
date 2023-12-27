@@ -1162,16 +1162,16 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@king-design/react@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.npmmirror.com/@king-design/react/-/react-3.1.1.tgz#c5d8d09db4e62f4b9ea1009cc3a2cff6c03220a8"
-  integrity sha512-DEwfjbp+8PW4R/mYdlxU3fOZmJadGRt5VYq7Xy+jYZkPn+C4ncC+ve5yEioDggz8LkncbPVhFl7w+gR2RLvo3A==
+"@king-design/react@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.npmjs.org/@king-design/react/-/react-3.1.2.tgz#26b4ff1cd52fd8ac80b06bedc59db26a05e4aec2"
+  integrity sha512-lGgEamz22DYCM5cW8SOWFUOWMZYNcQ1P4+zyKx68JfjmuCebBeWey5+tZGkNC2+TnU1VJMV4m7f7zldCqEY8bw==
   dependencies:
     "@babel/runtime-corejs3" "^7.16.0"
     "@emotion/css" "^11.5.0"
     dayjs "^1.10.7"
     enquire.js "^2.1.6"
-    intact-react "3.0.22"
+    intact-react "3.0.23"
     monaco-editor "^0.26.1"
     mxgraphx "^4.0.7"
     resize-observer-polyfill "^1.5.1"
@@ -7408,16 +7408,7 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-intact-react@3.0.22:
-  version "3.0.22"
-  resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.22.tgz#cbc8361671ba68fb420045a9341765bad0a531c1"
-  integrity sha512-kmFvWQHENtNU81SCdFvPgY1SRZjHzpleEhT8DdY8iaSY1OZI/jMMwLjxmNhEJ+nGTFGoWozyw/QVZyN/l8H0fw==
-  dependencies:
-    intact "^3.0.22"
-    intact-shared "^3.0.22"
-    tslib "^2.3.1"
-
-intact-react@^3.0.23:
+intact-react@3.0.23:
   version "3.0.23"
   resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.23.tgz#6dc7f0184ef45655fc5d703907acbd4bac3406c3"
   integrity sha512-b7QWv07zCBpxePRW5zwv1QZP5kkhv2CfUSxRBZlrABrYmHYaFXRwP1rS4XmER+p5L/nvSrt98jveGc/TgmenqA==
@@ -7426,20 +7417,29 @@ intact-react@^3.0.23:
     intact-shared "^3.0.23"
     tslib "^2.3.1"
 
+intact-react@^3.0.24:
+  version "3.0.24"
+  resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.24.tgz#1cae74bd8a38dedd1afda91451730e834fef2f82"
+  integrity sha512-XVmF60+l0K1TqgMcPXhETvlbvkXpmg8kRRedweV1azSYOTAm9+HL5UR8U6bYfCYA4Utv4G5QDSe7fNI10p1eUg==
+  dependencies:
+    intact "^3.0.24"
+    intact-shared "^3.0.24"
+    tslib "^2.3.1"
+
 intact-shared@^3.0.19:
   version "3.0.19"
   resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.19.tgz#3af9b3c4d9ab1a3851b53fabc84ababc15ee2d7d"
   integrity sha512-W5XP11e1KnPiyDylWOO6uK6tDrmavJmbiaI6lCYraaGYh1hr5A0loUVfKq+sGMG/GGw+2BBJiKlBPZLozctCaQ==
 
-intact-shared@^3.0.22:
-  version "3.0.22"
-  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.22.tgz#e399ee4748fe7be9345ad9b7b251faca551035fe"
-  integrity sha512-l3k3M1N1Q4lkUX2xF/0XPV6nXZ5ChHfRaI85dQqC7E3oPaVGUA8oNR0+07jmwhMBaB550TyxbQv/b3iNWTwtJw==
-
 intact-shared@^3.0.23:
   version "3.0.23"
   resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.23.tgz#62f49d690c0333c80f674414ab66b84e58300dfb"
   integrity sha512-HRimOg4kQbk1gekR2yWRE1gxCn1hQomYtDLpuWuOdyNjqjyshjAKmqyoxM2I/V9z7/NBg9rjc9aN5lmvQ2z9Kw==
+
+intact-shared@^3.0.24:
+  version "3.0.24"
+  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.24.tgz#b9be3c19091f0f6523579aed2670013a92e6182a"
+  integrity sha512-evhisxClh2A5Lp8aCrvaJNuycUlGy5b7YP4U7KYa9/U5cUZLdJQ39MlhYXX5+xIZFEo4ixz4Oy80Olto2riqFg==
 
 intact@^3.0.19:
   version "3.0.19"
@@ -7452,17 +7452,6 @@ intact@^3.0.19:
     vdt "^3.0.19"
     vdt-compiler "^3.0.19"
 
-intact@^3.0.22:
-  version "3.0.22"
-  resolved "https://registry.npmjs.org/intact/-/intact-3.0.22.tgz#15b0b04bdd28ffd0c3d1770f8aac5a622e453d74"
-  integrity sha512-SFkCK5qQT6j6jseQASjjiZGUH92CxfvK5BGMHViL6l04igtug+TDC9dHox8QWHyLqnE/guNGqd39n8oCr3tYUQ==
-  dependencies:
-    intact-shared "^3.0.22"
-    misstime "^3.0.22"
-    tslib "^2.2.0"
-    vdt "^3.0.22"
-    vdt-compiler "^3.0.22"
-
 intact@^3.0.23:
   version "3.0.23"
   resolved "https://registry.npmjs.org/intact/-/intact-3.0.23.tgz#ed0b6a9c83afef96ca5a219fcfff5f45d3e668d0"
@@ -7473,6 +7462,17 @@ intact@^3.0.23:
     tslib "^2.2.0"
     vdt "^3.0.23"
     vdt-compiler "^3.0.23"
+
+intact@^3.0.24:
+  version "3.0.24"
+  resolved "https://registry.npmjs.org/intact/-/intact-3.0.24.tgz#09659c7f12e3ff9526404b7f40451b5e79e873d4"
+  integrity sha512-XnmMw53cag+PGebWW+na/FHTW8N3j5mvewODiBrce+c5pxns2Yuu4i5OdGPWAyHVAJPRK3Uksr4V8U2ElEggaw==
+  dependencies:
+    intact-shared "^3.0.24"
+    misstime "^3.0.24"
+    tslib "^2.2.0"
+    vdt "^3.0.24"
+    vdt-compiler "^3.0.24"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9254,19 +9254,19 @@ misstime@^3.0.19:
   dependencies:
     intact-shared "^3.0.19"
 
-misstime@^3.0.22:
-  version "3.0.22"
-  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.22.tgz#a9c62d3cb03b40aba7e420930e9f7efd5f2d195f"
-  integrity sha512-gK/j4A83SXNNzG3wuHFoNo5UJxkfXmFyiCeDEsyXqWmWJ/Htcrf2hM8Jg8ZwG4DCF7g1gQ20A+bm1+DAve/7gQ==
-  dependencies:
-    intact-shared "^3.0.22"
-
 misstime@^3.0.23:
   version "3.0.23"
   resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.23.tgz#c0b90e777db55a7d685aa953ee5403b64a0347b1"
   integrity sha512-40Z/drtmTHyMquD4dTVQH2/my/u+P6wDpecFRYfahNHsP0+U+q5XgmgjNl8LThCXnXeWm/a/dI1pj/9kv4vxyA==
   dependencies:
     intact-shared "^3.0.23"
+
+misstime@^3.0.24:
+  version "3.0.24"
+  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.24.tgz#3fde6195fe9c984630c4bcd9ed13c0aad96f9a88"
+  integrity sha512-LS87YBdBZ2Nivvt62h9W/6YBMQ2fjhz+shWqvfycT69ZRH3yRkDeBexiuL9BuDD026wBlqJT8ug47vWe/RuQkg==
+  dependencies:
+    intact-shared "^3.0.24"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13487,15 +13487,6 @@ vdt-compiler@^3.0.19:
     misstime "^3.0.19"
     tslib "^2.2.0"
 
-vdt-compiler@^3.0.22:
-  version "3.0.22"
-  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.22.tgz#7e91ab022f667565d4084111777ed316314f1420"
-  integrity sha512-aOGCA6a3omPIEIMUwafu6HUMzejzQ47Ex/logHhYcxIhy9LGl/MOkvwd+j/oxNALy1GPLLHF6a2oZ5wj133ZQw==
-  dependencies:
-    intact-shared "^3.0.22"
-    misstime "^3.0.22"
-    tslib "^2.2.0"
-
 vdt-compiler@^3.0.23:
   version "3.0.23"
   resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.23.tgz#7ccbfab1b34497b881be51b65add454023a4768d"
@@ -13503,6 +13494,15 @@ vdt-compiler@^3.0.23:
   dependencies:
     intact-shared "^3.0.23"
     misstime "^3.0.23"
+    tslib "^2.2.0"
+
+vdt-compiler@^3.0.24:
+  version "3.0.24"
+  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.24.tgz#80b015094c8b624d22f618529eba5ff79d26c942"
+  integrity sha512-MrJ4EwctSbP3lihHOj+4qLkmKRR7ZWJBPpJ1KkDYLSQkYWhFp+1Bdb8yMBKo1coq+5cMuq71tUKosSNCbIusEQ==
+  dependencies:
+    intact-shared "^3.0.24"
+    misstime "^3.0.24"
     tslib "^2.2.0"
 
 vdt-loader@^3.0.0-beta.1:
@@ -13523,15 +13523,6 @@ vdt@^3.0.19:
     misstime "^3.0.19"
     tslib "^2.2.0"
 
-vdt@^3.0.22:
-  version "3.0.22"
-  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.22.tgz#fddd4f048dd5eb1ec3dae72f7b00ba3c6411d6e5"
-  integrity sha512-+N4Ic9H+VFaSSp5rVZWCQi2fzXrr2kEyIXXpYTWMCYi7bBMWsT9xzlNtKpWTJ6r7jkDMR33TabWge1tn9hPIFA==
-  dependencies:
-    intact-shared "^3.0.22"
-    misstime "^3.0.22"
-    tslib "^2.2.0"
-
 vdt@^3.0.23:
   version "3.0.23"
   resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.23.tgz#e12ae8c0236d82f3e5f6528fd659b5e7f5ef6471"
@@ -13539,6 +13530,15 @@ vdt@^3.0.23:
   dependencies:
     intact-shared "^3.0.23"
     misstime "^3.0.23"
+    tslib "^2.2.0"
+
+vdt@^3.0.24:
+  version "3.0.24"
+  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.24.tgz#ddbef5b4a60b496c57dcb6a74c0e316a0291068a"
+  integrity sha512-LUQJYjaE9XAvKOPfO5GRvh+1OI1yRYAX4oDVb40guzjJo+vqoJ/Q07X4uD3iIKqbkR/BHmUq5OmPwSmIaoC5sg==
+  dependencies:
+    intact-shared "^3.0.24"
+    misstime "^3.0.24"
     tslib "^2.2.0"
 
 verror@1.10.0:
