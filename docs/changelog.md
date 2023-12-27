@@ -4,6 +4,22 @@ order: 99
 sidebar: doc
 ---
 
+## v3.1.3
+
+1. `Change` 自定义滚动条样式，只对非`MacOS`系统生效 [#937](https://github.com/ksc-fe/kpc/issues/937)
+2. `Change` `Collapse`标题栏采用`flex`布局，更好地兼容`title`扩展点自定义标题内容 [#939](https://github.com/ksc-fe/kpc/issues/939)
+3. `Fix` 修复`Collapse`箭头位置设置左侧展示`left`无效的问题 [#934](https://github.com/ksc-fe/kpc/issues/934)
+4. `Fix` 修复`Dialog`在改变`container`为`undefined | null`，元素不能默认append到body中，并且不能重新定位到屏幕中间的问题 [#935](https://github.com/ksc-fe/kpc/issues/935)
+
+### @king-design/react
+
+1. `Fix` 修复`Dialog`某些情况下（特别地，渲染的时候挂载，然后useEffect中将其卸载），会导致报错的问题 [#938](https://github.com/ksc-fe/kpc/issues/938)
+2. `Fix` 修复KingDesign组件下渲染react元素，卸载的时候，会提前删除react元素，这会导致在一些有删除动画的元素上，元素在运行动画的过程中，react元素就都不见了，影响体验 [#938](https://github.com/ksc-fe/kpc/issues/938)
+
+### @king-design/vue
+
+1. `Fix` 修复`Upload`双向绑定`files`(`v-model:files`)，会导致死循环的问题 [#936](https://github.com/ksc-fe/kpc/issues/936)
+
 ## v3.1.2
 
 1. `Add` 优化组件样式渲染的性能 [#928](https://github.com/ksc-fe/kpc/issues/928) 
