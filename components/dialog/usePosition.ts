@@ -8,6 +8,10 @@ export function usePosition(elementRef: RefObject<HTMLDivElement>) {
 
     instance.on(SHOW, center);
     instance.on('afterClose', onAfterLeave);
+    instance.watch('container', () => {
+        if (!instance.get('value')) return;
+        center();
+    }, { presented: true, inited: true });
 
     function center() {
         position(elementRef.value!, {

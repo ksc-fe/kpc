@@ -140,7 +140,11 @@ export class Portal<T extends PortalProps = PortalProps> extends Component<T> {
             } else {
                 this.container = container(parentDom, anchor);
             }
+        } else {
+            // let below logic to set container to default if container does not exist.
+            this.container = null;
         }
+
         if (!this.container) {
             if (this.$senior instanceof BaseDialog) {
                 // Dialog and Drawer must be inserted into document.body
