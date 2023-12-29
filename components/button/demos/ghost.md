@@ -6,11 +6,11 @@ order: 6
 给组件添加`ghost`属性，可以展示透明背景的按钮，常用于深色背景下
 
 ```vdt
-import {Button} from 'kpc';
+import {Button, Icon} from 'kpc';
 
 <div class="wrapper">
-    <Button ghost>default</Button>
-    <Button type="primary" ghost>primay</Button>
+    <Button ghost><Icon class="k-icon-left" />default</Button>
+    <Button type="primary" ghost>primay<Icon class="k-icon-right" /></Button>
     <Button type="warning" ghost>warning</Button>
     <Button type="danger" ghost>danger</Button>
     <Button type="success" ghost>success</Button>

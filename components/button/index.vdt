@@ -41,8 +41,8 @@ if (!icon && Array.isArray(children)) {
 
 const classNameObj = {
     [cls('btn')]: true,
-    [cls(type)]: type !== 'default',
     [cls(size)]: size !== 'default',
+    [cls(type)]: true,
     [cls(`btn-icon`)]: icon,
     [className]: className, 
     [cls('circle')]: circle,

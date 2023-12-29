@@ -182,6 +182,14 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
             .${k}-icon {
                 color: inherit;
             }
+            &.${k}-default,
+            &.${k}-none,
+            &.${k}-flat {
+                .${k}-icon {
+                    color: ${theme.color.lightBlack}; 
+                }
+            }
+
             &:hover,
             &:focus {
                 border-color: ${button.hoverBorderColor};
@@ -262,6 +270,9 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
 
             // disabled
             &.${k}-disabled {
+                .${k}-icon {
+                    color: inherit;
+                }
                 &, &:hover {
                     color: ${button.disabled.color};
                     background: ${button.disabled.bgColor};
@@ -347,6 +358,9 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
                 background: transparent;
                 color: ${button.ghost.color};
                 border-color: ${button.ghost.borderColor};
+                .${k}-icon {
+                    color: inherit;
+                }
                 &:hover,
                 &:active {
                     background: transparent;
