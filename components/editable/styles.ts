@@ -31,7 +31,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
 
         // invalid
         &.${k}-invalid {
-            .${k}-input-inner {
+            .${k}-input-wrapper {
                 border: ${editable.invalid.border} !important;
             }
         }
