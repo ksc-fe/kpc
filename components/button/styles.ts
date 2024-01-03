@@ -188,6 +188,11 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
                 .${k}-icon {
                     color: ${theme.color.lightBlack}; 
                 }
+                &:hover {
+                    .${k}-icon {
+                        color: inherit;
+                    }
+                }
             }
 
             &:hover,

@@ -7,7 +7,7 @@ order: 1
 可以是按钮组纵向排列。给`ButtonGroup`添加`checkType`属性，可以使按钮组拥有单选或复选能力。
 
 ```vdt
-import {Button, ButtonGroup} from 'kpc';
+import {Button, ButtonGroup, Icon} from 'kpc';
 
 <div>
     <ButtonGroup>
@@ -27,10 +27,10 @@ import {Button, ButtonGroup} from 'kpc';
     </ButtonGroup>
     <ButtonGroup>
         <Button type="primary">
-            <i class="k-icon k-icon-left"></i>上一页
+            <Icon class="k-icon-left" />上一页
         </Button>
         <Button type="primary">
-            下一页<i class="k-icon k-icon-right"></i>
+            下一页<Icon class="k-icon-right" />
         </Button>
     </ButtonGroup>
     <br /><br />
