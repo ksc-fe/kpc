@@ -1,12 +1,15 @@
 import {TransitionGroup, Transition} from 'intact';
 import {makeMessagesStyles} from './styles';
+import { ConfigProvider } from '../config';
 
-const { k } = this.config;
+const k =  this.get('classNamePrefix') || this.config.k;
 
-<div class={{[`${k}-messages`]: true, [makeMessagesStyles(k)]: true}}>
-    <TransitionGroup>
-        <template v-for={this.messages} key={$value.key}>
-            {$value}
-        </template>
-    </TransitionGroup>
-</div>
+<ConfigProvider value={{classNamePrefix: k}}>
+    <div class={{[`${k}-messages`]: true, [makeMessagesStyles(k)]: true}}>
+        <TransitionGroup>
+            <template v-for={this.messages} key={$value.key}>
+                {$value}
+            </template>
+        </TransitionGroup>
+    </div>
+</ConfigProvider>

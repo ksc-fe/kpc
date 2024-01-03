@@ -43,22 +43,26 @@ export class Message extends Component<MessageProps> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
+    static classNamePrefix: string;
 
     static notice(
         content: Children | Partial<MessageProps>,
         duration: number = 3000,
         type: MessageProps['type'] ='info'
     ) {
-        if (!messages) {
-            const container = document.createElement('div');
-            document.body.append(container);
-            render(h(Messages, {ref: i => messages = i}), container); 
-        }
-
         if (isObject(content) && !(content as any).tag) {
             content = {...content, type, key: id++} as Partial<Props<MessageProps>>;
         } else {
             content = {content, duration, type, key: id++} as Partial<Props<MessageProps>>;
+        }
+
+        if (!messages) {
+            const container = document.createElement('div');
+            document.body.append(container);
+            render(h(Messages, {
+                ref: (i: Messages | null) => messages = i,
+                classNamePrefix: Message.classNamePrefix,
+            } as any), container); 
         }
 
         messages!.notice(h(Message, content));

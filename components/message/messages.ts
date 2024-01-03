@@ -1,10 +1,19 @@
-import {Component, VNodeComponentClass} from 'intact';
+import {Component, VNodeComponentClass, TypeDefs} from 'intact';
 import template from './messages.vdt';
 import type {Message} from './message';
 import { useConfigContext } from '../config';
 
+export interface MessagesProps {
+    classNamePrefix?: string
+}
+
+const typeDefs: Required<TypeDefs<MessagesProps>> = {
+    classNamePrefix: String,
+};
+
 export class Messages extends Component {
     static template = template;
+    static typeDefs = typeDefs;
 
     private messages: VNodeComponentClass<Message>[] = [];
     private config = useConfigContext();

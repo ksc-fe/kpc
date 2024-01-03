@@ -3,7 +3,7 @@ import {Icon} from '../icon';
 import {getRestProps} from '../utils';
 import {makeMessageStyles} from './styles';
 
-const {type, content, children, closable, hideIcon} = this.get();
+const {type, content, children, closable, hideIcon, classNamePrefix} = this.get();
 const { k } = this.config;
 
 const classNameObj = {
