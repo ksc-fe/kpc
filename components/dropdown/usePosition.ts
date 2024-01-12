@@ -53,18 +53,17 @@ export function usePosition() {
         let pos = instance.get('position');
         switch (pos) {
             case 'left':
-                case 'left':
-                    pos = {my: 'right-10 center', at: 'left center'};
-                    break;
-                case 'bottom':
-                    pos = {my: 'center top+10', at: 'center bottom'};
-                    break;
-                case 'right':
-                    pos = {my: 'left+10 center', at: 'right center'};
-                    break;
-                case 'top':
-                    pos = {my: 'center bottom-10', at: 'center top'};
-                    break;
+                pos = {my: 'right-10 center', at: 'left center'};
+                break;
+            case 'bottom':
+                pos = {my: 'center top+10', at: 'center bottom'};
+                break;
+            case 'right':
+                pos = {my: 'left+10 center', at: 'right center'};
+                break;
+            case 'top':
+                pos = {my: 'center bottom-10', at: 'center top'};
+                break;
         }
         position(findDomFromVNode(instance.menuVNode!, true) as HTMLElement, {
             my: 'left top+8',
