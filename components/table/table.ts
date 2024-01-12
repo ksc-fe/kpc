@@ -140,7 +140,7 @@ const defaults = (): Partial<TableProps> => ({
     childrenKey: 'children',
     indent: 32,
     minColWidth: 40,
-    animation: false,
+    animation: true,
     showIndeterminate: true,
 });
 
