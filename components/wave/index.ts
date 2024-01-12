@@ -37,7 +37,7 @@ export class Wave extends Component<WaveProps> {
 
     private instance: HTMLElement | null = null;
     private className!: string;
-    private timer: number = 0;
+    private timer: number | null = null;
     private config = useConfigContext();
 
     private initClassName() {
@@ -91,6 +91,9 @@ export class Wave extends Component<WaveProps> {
 
         node.classList.remove(this.className);
         node.removeEventListener('animationend', this.resetAnimation);
-        clearTimeout(this.timer);
+        if (this.timer) {
+            clearTimeout(this.timer);
+            this.timer = null;
+        }
     }
 }

@@ -6,7 +6,7 @@ import {onBeforeUnmount, RefObject, onMounted} from 'intact';
 import {containsOrEqual} from './useDocumentClick';
 
 export function useMouseOutsidable(elementRef: RefObject<HTMLElement>, autoAdd: boolean = true) {
-    let timer: number;
+    let timer: number | null = null;
 
     function onMouseDown() {
         document.addEventListener('click', onDocumentClick, true);
@@ -16,6 +16,7 @@ export function useMouseOutsidable(elementRef: RefObject<HTMLElement>, autoAdd: 
     function onMouseUp() {
         timer = window.setTimeout(() => {
             document.removeEventListener('click', onDocumentClick, true);
+            timer = null;
         });
         document.removeEventListener('mouseup', onMouseUp);
     }
@@ -33,7 +34,10 @@ export function useMouseOutsidable(elementRef: RefObject<HTMLElement>, autoAdd: 
     }
 
     onBeforeUnmount(() => {
-        clearTimeout(timer);
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
         if (autoAdd) {
             elementRef.value!.removeEventListener('mousedown', onMouseDown);
         }

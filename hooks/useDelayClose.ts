@@ -4,7 +4,7 @@ export function useDelayClose(close: () => void, duration: number) {
     const instance = useInstance() as Component<
         {}, {mouseenter: [MouseEvent], mouseleave: [MouseEvent]}
     >;
-    let timer: number;
+    let timer: number | null = null;
 
     function delayClose() {
         if (duration) {
@@ -14,7 +14,7 @@ export function useDelayClose(close: () => void, duration: number) {
 
     function onMouseEnter(e: MouseEvent) {
         instance!.trigger('mouseenter', e);
-        clearTimeout(timer);
+        clear();
     }
 
     function onMouseLeave(e: MouseEvent) {
@@ -25,14 +25,19 @@ export function useDelayClose(close: () => void, duration: number) {
         // so we must detect the $unmounted status here
         if (instance!.$unmounted) return;
 
-        clearTimeout(timer);
+        clear();
         delayClose();
     }
 
+    function clear() {
+        if (timer) {
+            clearTimeout(timer);
+            timer = null;
+        }
+    }
+
     onMounted(delayClose);
-    onUnmounted(() => {
-        clearTimeout(timer);
-    });
+    onUnmounted(clear);
 
     return {onMouseEnter, onMouseLeave};
 }

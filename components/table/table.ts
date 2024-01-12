@@ -12,7 +12,7 @@ import {useExpandable} from './useExpandable';
 import {useSelected} from './useSelected';
 import {useTree} from './useTree';
 import {TooltipProps, Tooltip} from '../tooltip/tooltip';
-import {useRestRowStatus} from './useRestRowStatus';
+import {useResetRowStatus} from './useResetRowStatus';
 import {exportTable} from './exportTable';
 import {useResizable} from './useResizable';
 import {useDraggable} from './useDraggable';
@@ -140,7 +140,7 @@ const defaults = (): Partial<TableProps> => ({
     childrenKey: 'children',
     indent: 32,
     minColWidth: 40,
-    animation: true,
+    animation: false,
     showIndeterminate: true,
 });
 
@@ -208,7 +208,7 @@ export class Table<
     private sortable = useSortable();
     private expandable = useExpandable();
     private selected = useSelected();
-    private resetRowStatus = useRestRowStatus(this.disableRow.getAllKeys);
+    private resetRowStatus = useResetRowStatus(this.disableRow.getAllKeys);
     private draggable = useDraggable(this.pagination.data);
     private stickyScrollbar = useStickyScrollbar(
         this.stickyHeader.elementRef,

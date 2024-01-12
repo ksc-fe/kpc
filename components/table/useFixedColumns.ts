@@ -107,7 +107,7 @@ export function useFixedColumns(
 
     function updateScrollPositionOnResize() {
         const scrollDom = scrollRef.value!;     
-        if (scrollDom.scrollWidth - scrollDom.offsetWidth <= 0) {
+        if (!hasFixed.value || scrollDom.scrollWidth - scrollDom.offsetWidth <= 0) {
             scrollPosition.set(null);
         } else {
             setScrollPosition(scrollRef.value!.scrollLeft);

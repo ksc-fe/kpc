@@ -4,7 +4,7 @@ import type {Carousel} from './';
 export function useAutoplay(next: () => void) {
     const instance = useInstance() as Carousel;
 
-    let timer: number;
+    let timer: number | null = null;
     let ms: number;
 
     instance.on('$receive:autoplay', v => {
@@ -28,7 +28,10 @@ export function useAutoplay(next: () => void) {
     }
 
     function stop() {
-        window.clearTimeout(timer);
+        if (timer) {
+            window.clearTimeout(timer);
+            timer = null;
+        }
     }
 
     onBeforeUnmount(stop);
