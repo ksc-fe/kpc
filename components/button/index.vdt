@@ -8,12 +8,12 @@ import {button as theme} from './styles';
 let {
     type, className, size, icon, circle, ref, key, tabindex,
     tagName, htmlType, fluid, children, loading, disabled,
-    name, ghost
+    name, ghost,
 } = this.get();
 
-const checked = this.isChecked();
-if (!this.config) debugger;
 const { cls, k } = this.config;
+
+const checked = this.isChecked();
 
 const isIcon = child => (
     child.tag === Icon ||

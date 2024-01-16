@@ -3,7 +3,7 @@ import {CardColumn} from './column';
 import {makeStyles} from './styles';
 
 const {
-    children, className, title, type
+    children, className, title, type, size,
 } = this.get();
 const { k } = this.config;
 
@@ -25,6 +25,7 @@ const classNameObj = {
     [`${k}-none`]: type === 'none',
     [`${k}-no-header`]: !hasHeader,
     [`${k}-card-grid`]: hasColumn,
+    [`${k}-${size}`]: size !== 'default',
     [className]: className,
     [makeStyles(k)]: true,
 };

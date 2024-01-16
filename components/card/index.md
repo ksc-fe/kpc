@@ -13,6 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | title | 卡片标题 | `string` &#124; `VNode` | `undefined` | 
 | type | 卡片类型 | `"shadow"` &#124; `"border"` &#124; `"none"` | `"shadow"` |
+| size | 卡片尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 
 ## CardColumn
 

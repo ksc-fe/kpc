@@ -6,12 +6,24 @@ import { cache } from '../utils';
 
 const defaults = {
     border: '1px solid #e5e5e5',
-    padding: '16px',
+    padding: '24px',
     get boxShadow() { return theme.boxShadow },
     get borderRadius() {return theme.largeBorderRadius},
     headerHeight: '48px',
     headerFontSize: '14px',
     bgColor: '#fff',
+    large: {
+        padding: '32px',
+        headerHeight: '48px',
+    },
+    small: {
+        padding: '16px',
+        headerHeight: '48px',
+    },
+    mini: {
+        padding: '8px',
+        headerHeight: '32px',
+    }
 };
 
 let card: typeof defaults;
@@ -20,22 +32,23 @@ setDefault(() => {
     makeStyles?.clearCache();
 });
 
+const sizes = ['large', 'small', 'mini'] as const;
+
 export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         border-radius: ${card.borderRadius};
         background: ${card.bgColor};
         .${k}-card-header {
             height: ${card.headerHeight};
-            line-height: ${card.headerHeight};
             padding: 0 ${card.padding};
+            display: flex;
+            align-items: center;
         }
         .${k}-card-title {
             font-size: ${card.headerFontSize};
-            display: inline-block;
+            flex: 1;
         }
         .${k}-card-extra {
-            float: right;
-            height: 100%;
             display: flex;
             align-items: center;
         }
@@ -90,5 +103,30 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 justify-content: center;
             }
         }
+
+        // size
+        ${sizes.map(size => {
+            const { padding, headerHeight } = card[size];
+            return css`
+                &.${k}-${size} {
+                    .${k}-card-header {
+                        padding: 0 ${padding};
+                        height: ${headerHeight};
+                    }
+                    .${k}-card-body {
+                        padding: 0 ${padding} ${padding};
+                    }
+                    &.${k}-border,
+                    &.${k}-no-header {
+                        .${k}-card-body {
+                            padding-top: ${padding};
+                        }
+                    }
+                    .${k}-card-column {
+                        padding: ${padding};
+                    }
+                }
+            `
+        })} 
     `;
 });

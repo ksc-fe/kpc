@@ -37,6 +37,7 @@ export const makeStyles = cache(function makeStyles(k: string, color?: string) {
         font-size: ${icon.fontSize.default};
         line-height: 1;
         // display: inline-block;
+        font-weight: normal;
         ${sizes.map(size => {
             const fontSize = icon.fontSize[size];
             return css`
