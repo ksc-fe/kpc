@@ -105,6 +105,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             background: transparent;
             padding: 0;
             width: 0; // must set width to 0, otherwise it has min width
+            max-width: 100%;
             &::placeholder {
                 color: ${input.placeholderColor};
             }
