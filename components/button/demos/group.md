@@ -68,6 +68,12 @@ import {Button, ButtonGroup, Icon} from 'kpc';
         <Button value="guangzhou">广州</Button>
         <Button value="shenzhen">深圳</Button>
     </ButtonGroup>
+    <ButtonGroup seperate>
+        <Button value="beijing" type="primary" disabled>北京</Button>
+        <Button value="shanghai">上海</Button>
+        <Button value="guangzhou">广州</Button>
+        <Button value="shenzhen">深圳</Button>
+    </ButtonGroup>
 </div>
 ```
 

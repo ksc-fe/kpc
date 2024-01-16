@@ -459,7 +459,7 @@ export const makeButtonGroupStyles = cache(function makeButtonGroupStyles(k: str
         }
 
         // horizontal
-        &:not(.${k}-vertical) {
+        &:not(.${k}-vertical):not(.${k}-seperate) {
             > .${k}-btn {
                 &:not(:first-child) {
                     margin-left: -1px;
@@ -497,7 +497,7 @@ export const makeButtonGroupStyles = cache(function makeButtonGroupStyles(k: str
         }
             
         // vertical
-        &.${k}-vertical {
+        &.${k}-vertical:not(.${k}-seperate) {
             flex-direction: column;
             > .${k}-btn {
                 &:not(.${k}-btn-icon) {
@@ -535,9 +535,6 @@ export const makeButtonGroupStyles = cache(function makeButtonGroupStyles(k: str
         // seperate
         &.${k}-seperate {
             gap: 8px;
-            > .${k}-btn {
-                border-radius: ${button.borderRadius} !important;
-            }
         }
     `;
 });
