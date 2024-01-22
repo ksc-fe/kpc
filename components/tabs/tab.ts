@@ -25,6 +25,7 @@ const typeDefs: Required<TypeDefs<TabProps>> = {
 
 export class Tab extends Component<TabProps, TabEvents> {
     static template = template;
+    static typeDefs = typeDefs;
 
     private tabs = inject<Tabs>(TABS)!;
     private config = useConfigContext();
