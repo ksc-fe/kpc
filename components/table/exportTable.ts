@@ -70,12 +70,15 @@ function pushTextContext(rows: string[], dom: HTMLElement, content: string | und
 
 export function download(content: string, filename: string) {
     if ((navigator as any).msSaveBlob) { // IE10+
-        const blob = new Blob([content], { type: 'text/csv;charset=utf-8' });
+        const blob = new Blob(['\uFEFF' + content], { type: 'text/csv;charset=utf-8' });
         (navigator as any).msSaveBlob(blob, filename);
     } else {
         const link = document.createElement('a');
         if ('download' in link) {
-            const blob = new Blob([content], { type: 'text/csv;charset=utf-8' });
+            /**
+             * should add \uFEFF, otherwise it will be error codes in MSExcel
+             */
+            const blob = new Blob(['\uFEFF' + content], { type: 'text/csv;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             link.setAttribute('href', url);
             link.setAttribute('download', filename);
