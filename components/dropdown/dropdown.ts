@@ -112,7 +112,13 @@ export class Dropdown<
             }
         }
 
-        const [trigger, menu] = children as DropdownChildren;
+        let [trigger, menu] = children as DropdownChildren;
+        /**
+         * In vue-legacy, if the menu is TooltipContent, the menu will be InUsed when update,
+         * so we clone it here, #954
+         */
+        menu = directClone(menu);
+
         const props = this.initEventCallbacks(); 
         let {className, value, container} = this.get();
         const { k } = this.config;
