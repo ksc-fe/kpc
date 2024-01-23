@@ -61,6 +61,10 @@ export function useFilterable(keywords: State<string>) {
                     if (isNullOrUndefined(props.label)) {
                         vNode.props = {...props, label: getTextByChildren(props.children)};
                     }
+                    const value = props.value;
+                    if (isStringOrNumber(value)) {
+                        vNode.key = value;
+                    }
 
                     if (filter!(keywords.value, vNode.props)) {
                         _children.push(vNode);
