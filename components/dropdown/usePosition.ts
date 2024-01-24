@@ -8,13 +8,19 @@ export type FeedbackCallback = (feedback: Feedback) => void;
 
 export function usePosition() {
     const instance = useInstance() as Dropdown;
-    const positioned = {value: false}
+    const positioned = {value: false};
 
-    instance.watch('value', (value) => {
-        if (value) {
-            positioned.value = false;
-        }
-    });
+    /**
+     * In React, when we change value on changeOnSelect mode,
+     * It will let React update immediately, and the enter animation
+     * will be invoked before this watch. So we change the implemention
+     * by pass isEnter as the argument to judge it is enter animation or leave.
+     */
+    // instance.watch('value', (value) => {
+        // if (value) {
+            // positioned.value = false;
+        // }
+    // });
 
     (['of', 'position'] as const).forEach(item => {
         instance.watch(item, (newValue, oldValue) => {
@@ -27,7 +33,7 @@ export function usePosition() {
                 isEqualObject(newValue, oldValue)
             ) return;
 
-            handle(noop);
+            handle(noop, true);
         }, {presented: true, inited: true});
     });
 
@@ -41,13 +47,14 @@ export function usePosition() {
             newValue.toString() === oldValue.toString()
         ) return;
 
-        handle(noop);
+        handle(noop, true);
     }, { presented: true, inited: true });
 
     // if the dropdown is nested, we must show child after parent has positioned
     function p(
         ofElement: HTMLElement | MouseEvent | undefined,
         parentFeedback: Feedback | null,
+        isEnter: boolean,
     ): Feedback {
         let feedback: Feedback;
         let pos = instance.get('position');
@@ -76,13 +83,13 @@ export function usePosition() {
             },
         });
 
-        positioned.value = true;
+        positioned.value = isEnter;
         instance.trigger('positioned', parentFeedback || feedback!);
 
         return parentFeedback || feedback!;
     }
 
-    function handle(callback: FeedbackCallback) {
+    function handle(callback: FeedbackCallback, isEnter: boolean) {
         const _of = instance.get('of');
 
         if (_of === 'parent') {
@@ -94,21 +101,21 @@ export function usePosition() {
             }
             const ofElement = findDomFromVNode(parent.menuVNode!, true) as HTMLElement;
             if (parent.positionHook.positioned.value) {
-                callback(p(ofElement, null));
+                callback(p(ofElement, null, isEnter));
             } else {
                 // wait the parent has positioned
                 const fn = (feedback: Feedback) => {
                     parent.off('positioned', fn);
                     // let the child menu has the same transtion with parent menu,
                     // when them show together
-                    callback(p(ofElement, feedback));
+                    callback(p(ofElement, feedback, isEnter));
                 }
                 parent.on('positioned', fn);
             }
         } else if (_of === 'self') {
-            callback(p(findDomFromVNode(instance.$vNode!, true) as HTMLElement, null));
+            callback(p(findDomFromVNode(instance.$vNode!, true) as HTMLElement, null, isEnter));
         } else {
-            callback(p(_of as MouseEvent | undefined, null));
+            callback(p(_of as MouseEvent | undefined, null, isEnter));
         }
     }
 

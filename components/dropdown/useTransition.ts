@@ -8,7 +8,7 @@ import {
 import {Feedback} from '../position';
 import type {FeedbackCallback} from './usePosition';
 
-export function useTransition(getFeedback: (callback: FeedbackCallback) => void) {
+export function useTransition(getFeedback: (callback: FeedbackCallback, isEnter: boolean) => void) {
     let transition = 'k-slidedown';
 
     function onEnter(el: TransitionElement, done: Function) {
@@ -28,7 +28,7 @@ export function useTransition(getFeedback: (callback: FeedbackCallback) => void)
                 onEnterCancelled(el);
                 done();
             });
-        });
+        }, true);
     }
 
     function onEnterCancelled(el: TransitionElement) {
@@ -46,7 +46,7 @@ export function useTransition(getFeedback: (callback: FeedbackCallback) => void)
                 onLeaveCancelled(el);
                 done();
             });
-        });
+        }, false);
     }
 
     function onLeaveCancelled(el: TransitionElement) {
