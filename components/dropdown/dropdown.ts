@@ -210,8 +210,8 @@ export class Dropdown<
     }
 
     @bind
-    position(callback: FeedbackCallback = noop, isEnter: boolean = true) {
-        return this.positionHook.handle(callback, isEnter);
+    position(callback: FeedbackCallback = noop) {
+        return this.positionHook.handle(callback);
     }
 
     @bind

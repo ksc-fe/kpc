@@ -25,7 +25,7 @@ export class DropdownMenu<
     public dropdown: Dropdown = inject(DROPDOWN)!;
     public keyboard = useKeyboardForDropdownMenu(this.dropdown);
 
-    private transition = useTransition((callback: FeedbackCallback, isEnter: boolean) => this.dropdown.position(callback, isEnter));
+    private transition = useTransition((callback: FeedbackCallback) => this.dropdown.position(callback));
     private config = useConfigContext();
 
     init() {
