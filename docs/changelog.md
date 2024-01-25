@@ -14,7 +14,7 @@ sidebar: doc
 ### @king-design/react
 
 1. `Fix` 修复`Dialog`某些情况下（特别地，渲染的时候挂载，然后useEffect中将其卸载），会导致报错的问题 [#938](https://github.com/ksc-fe/kpc/issues/938)
-2. `Fix` 修复KingDesign组件下渲染react元素，卸载的时候，会提前删除react元素，这会导致在一些有删除动画的元素上，元素在运行动画的过程中，react元素就都不见了，影响体验 [#938](https://github.com/ksc-fe/kpc/issues/938)
+2. `Fix` 修复KingDesign组件下渲染react元素，卸载的时候，会提前删除react元素，这会导致在一些有删除动画的元素上，元素在运行动画的过程中，react元素就都不见了，影响体验 [#938](https://github.com/ksc-fe/kpc/issues/940)
 
 ### @king-design/vue
 
