@@ -295,7 +295,8 @@ describe('Dialog', () => {
         instance.refs.dialog.close();
 
         await wait();
-        expect(document.body.getAttribute('style')).to.be.null;
+        const style = document.body.getAttribute('style');
+        expect(!!style).to.be.false;
     });
 
     it('should update position when change container', async () => {

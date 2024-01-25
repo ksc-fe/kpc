@@ -522,7 +522,7 @@
 ####   `Dropdown contextmenu`
 
 ```
-"<div class=\"\">
+"<div class=\"contextmenu-area\">
         right click this area to show context menu
     </div><!--portal-->"
 ```
@@ -2088,7 +2088,7 @@
 ####   `Table title`
 
 ```
-"<div class=\"k-table css-1nq07fu\"><div class=\"k-table-wrapper\"><table><colgroup><col width=\"40\"><col><col></colgroup><thead><tr><th rowspan=\"1\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th><th class=\"k-column-sortable\" colspan=\"1\" rowspan=\"1\"><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\"><span title=\"自定义表头内容\" class=\"middle title\">自定义表头内容</span><i class=\"\"></i><!--portal--></div><button class=\"k-btn k-mini k-btn-icon k-table-group css-12uxt25\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-android-arrow-dropdown css-x0ey6t\"></i></button><!--portal--><div class=\"k-column-sort\"><i class=\"k-icon ion-android-arrow-dropup k-asc css-x0ey6t\"></i><i class=\"k-icon ion-android-arrow-dropdown k-desc css-x0ey6t\"></i></div></div></th><th title=\"表头2\" colspan=\"1\" rowspan=\"1\"><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\">表头2</div></div></th></tr></thead><tbody><tr data-key=\"0\"><td class=\"k-table-check\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr data-key=\"1\"><td class=\"k-table-check\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div>"
+"<div class=\"k-table css-1nq07fu\"><div class=\"k-table-wrapper\"><table><colgroup><col width=\"40\"><col><col></colgroup><thead><tr><th rowspan=\"1\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></th><th class=\"k-column-sortable\" colspan=\"1\" rowspan=\"1\"><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\"><span title=\"自定义表头内容\" class=\"middle title\">自定义表头内容</span><i class=\"ion-ios-help-outline middle\"></i><!--portal--></div><button class=\"k-btn k-mini k-btn-icon k-table-group css-12uxt25\" tabindex=\"0\" type=\"button\"><i class=\"k-icon ion-android-arrow-dropdown css-x0ey6t\"></i></button><!--portal--><div class=\"k-column-sort\"><i class=\"k-icon ion-android-arrow-dropup k-asc css-x0ey6t\"></i><i class=\"k-icon ion-android-arrow-dropdown k-desc css-x0ey6t\"></i></div></div></th><th title=\"表头2\" colspan=\"1\" rowspan=\"1\"><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\">表头2</div></div></th></tr></thead><tbody><tr data-key=\"0\"><td class=\"k-table-check\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></td><td title=\"第一行\">第一行</td><td title=\"哈哈2\">哈哈2</td></tr><tr data-key=\"1\"><td class=\"k-table-check\"><label class=\"k-checkbox css-rt2md4\" tabindex=\"0\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" tabindex=\"-1\" value=\"true\"></span></label></td><td title=\"第二行\">第二行</td><td title=\"哈哈2\">哈哈2</td></tr></tbody></table></div></div>"
 ```
 
 ####   `Table tooltip`

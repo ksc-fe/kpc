@@ -19,7 +19,7 @@ export function usePosition() {
     (['of', 'position'] as const).forEach(item => {
         instance.watch(item, (newValue, oldValue) => {
             if (
-                instance.get('value') ||
+                !instance.get('value') ||
                 // return if object is the same
                 isObject(newValue) && isObject(oldValue) &&
                 // is not event object
