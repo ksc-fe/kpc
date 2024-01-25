@@ -4,6 +4,20 @@ order: 99
 sidebar: doc
 ---
 
+## v3.1.4
+
+1. `Add` `Card`新增`size`属性，可以改变`padding`大小，默认`padding: 24px` [#948](https://github.com/ksc-fe/kpc/issues/948)
+2. `Add` `Message`由于是静态方法，并不能获取全局配置`ConfigProvider`，故添加`Message.classNamePrefix`属性，用于定义`Message`组件的样式前缀 [#943](https://github.com/ksc-fe/kpc/issues/943)
+3. `Fix` 修复Table导出，在Office Excel下打开乱码的问题 [#917](https://github.com/ksc-fe/kpc/issues/917)
+4. `Fix` 修复`Editable`在编辑状态下，`Input`输入框会超出父容器宽度的问题 [#950](https://github.com/ksc-fe/kpc/issues/950)
+
+### @king-design/vue-legacy
+
+1. `Fix` 修复多个`v-if`并列使用，某些情况下，会导致子元素渲染顺序错乱的问题  [#955](https://github.com/ksc-fe/kpc/issues/955)
+2. `Fix` 修复`Select` `Option`下存在`Tooltip`，在`searchable`模式下，搜索会报错的问题 [#954](https://github.com/ksc-fe/kpc/issues/954)
+3. `Fix` 修复`Tab` `disabled`属性无效的问题 [#952](https://github.com/ksc-fe/kpc/issues/952)
+4. `Fix` 修复某些情况下，vue元素不能被正确删除的问题 [#946](https://github.com/ksc-fe/kpc/issues/946)
+
 ## v3.1.3
 
 1. `Change` 自定义滚动条样式，只对非`MacOS`系统生效 [#937](https://github.com/ksc-fe/kpc/issues/937)
