@@ -18,11 +18,15 @@ export function useFiles(
         const {files, defaultFiles} = instance.get();
         const _files = files!.slice(0);
         if (defaultFiles) {
-            if (process.env.NODE_ENV !== 'production') {
-                console.warn(`'defaultFiles' is deprecated, use 'files' instead for reactive updating.`)
-            }
             defaultFiles.forEach(file => {
-                _files.push(normalizeFile(file));
+                _files.push({
+                    status: UploadFileStatus.Done,
+                    name: file.name,
+                    percent: 100,
+                    uid: uid++,
+                    raw: file,
+                    url: file.url,
+                });
             });
 
             instance.set('files', _files);
@@ -101,14 +105,4 @@ export function useFiles(
     }
 
     return {addFiles, removeFile};
-}
-
-function normalizeFile(file: UploadFile) {
-    return {
-        status: UploadFileStatus.Done,
-        percent: 100,
-        uid: uid++,
-        raw: file,
-        ...file
-    };
 }
