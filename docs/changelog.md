@@ -4,6 +4,23 @@ order: 99
 sidebar: doc
 ---
 
+## v2.1.3
+
+1. `Fix` 修复`Dialog`在改变`container`为`undefined | null`，元素不能默认append到body中，并且不能重新定位到屏幕中间的问题 [#935](https://github.com/ksc-fe/kpc/issues/935)
+
+### @king-design/react
+
+1. 更新依赖`intact-vue-next`到最新版`3.0.26`
+
+### @king-design/vue
+
+1. 更新依赖`intact-vue-next`到最新版`3.0.26`
+
+### @king-design/vue-legacy
+
+1. 更新依赖`intact-vue`到最新版`3.0.26`
+
+
 ## v2.1.2
 
 1. `Fix` 修复`Tooltip`包裹`Select`，`Select`无法选择的问题 [#885](https://github.com/ksc-fe/kpc/issues/885)
