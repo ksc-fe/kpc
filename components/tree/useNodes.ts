@@ -3,7 +3,8 @@ import type {Tree} from './';
 import {isNullOrUndefined} from 'intact-shared';
 
 export type DataItem<K extends Key> = {
-    label?: Children 
+    // label?: Children 
+    label?: any
     key?: K
     disabled?: boolean
     loaded?: boolean

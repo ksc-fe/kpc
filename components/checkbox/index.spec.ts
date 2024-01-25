@@ -94,7 +94,7 @@ describe('Checkbox', () => {
         } 
 
         const [instance, element] = mount(Demo);
-        const [checkbox1, checkbox2, checkbox3] = Array.from(element.querySelectorAll('.k-checkbox'));
+        const [checkbox1, checkbox2, checkbox3] = Array.from(element.querySelectorAll<HTMLElement>('.k-checkbox'));
         checkbox2.click();
         await wait();
         expect(spy.callCount).to.eql(1);

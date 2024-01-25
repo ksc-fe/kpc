@@ -156,7 +156,7 @@ componentWillUnmount() {
     this.$unmounted = true;
 }
 
-setState<K extends keyof Props>(state: Pick<Props, K>, cb?: () => void) {
+setState(state: any, cb?: () => void) {
     if ('policy' in state) {
         super.setState(state, this.fetch);
     } else if ('keywords' in state) {

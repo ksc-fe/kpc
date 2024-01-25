@@ -16,7 +16,7 @@ const downName = mxClient.IS_POINTER ? 'pointerdown' : 'mousedown';
 const upName = mxClient.IS_POINTER ? 'pointerup' : 'mouseup';
 const moveName = mxClient.IS_POINTER ? 'pointermove' : 'mousemove';
 
-class BaseDemo<P = {}> extends Component<P> {
+class BaseDemo<P extends {} = {}> extends Component<P> {
     private Diagram = Diagram;
     private DFlowLayout = DFlowLayout;
     private DTreeLayout = DTreeLayout;

@@ -23,12 +23,11 @@ import {ConfigProvider, Button, Input} from 'kpc';
 ```ts
 import {Message} from 'kpc';
 
-Message.classNamePrefix = 'kd';
-
 export default class extends Component {
     static template = template;
 
     showMessage() {
+        Message.classNamePrefix = 'kd';
         Message.info('Message with classNamePrefix');
     }
 }

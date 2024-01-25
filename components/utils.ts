@@ -140,7 +140,7 @@ export function isStringOrNumberNotEmpty(o: any): o is string | number {
     return type === 'string' && !/^\s+$/.test(o) || type === 'number';
 }
 
-export function getRestProps<T>(component: Component<T>, props = component.get()) {
+export function getRestProps<T extends {}>(component: Component<T>, props = component.get()) {
     const Ctor = component.constructor as typeof Component;
     const typeDefs = Ctor.typeDefs;
     const events = (Ctor as any).events;
