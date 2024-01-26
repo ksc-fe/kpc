@@ -9,6 +9,9 @@ order: 30
 > 需要给Table设置rowKey属性，否则选择的行翻页后依然会保留选中状态，因为不设置key，则使用索引当key，
 > 只要当前选中的索引在下一页存在，则会依然选中
 
+> 该功能需要将所有数据一次性传给Table，Table自动做分页处理，对于每次分页单独请求新数据的情况，请不要使用该功能，
+> 而是配合单独的Pagination组件处理
+
 ```vdt
 import {Table, TableColumn, Switch} from 'kpc';
 
