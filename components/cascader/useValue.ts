@@ -80,7 +80,7 @@ export function useValue() {
         // maybe the showedValue has the leaf value when we set it on show menu,
         // if we select by clicking, the showedValue has not the leaf value,
         // no matter which case, we set the last value by level
-        const newValue = showedValue.value.slice(0);
+        const newValue = showedValue.value.slice(0, level);
         newValue[level] = value;
         setValue(newValue);
     }

@@ -261,4 +261,45 @@ describe('Cascader', () => {
         expect(element.innerHTML).to.matchSnapshot();
         expect(instance.get('value')).to.eql(['beijing', 'haidian']);
     });
+
+    it('should select correct value', async () => {
+         class Demo extends Component {
+            static template = `
+                const {Cascader} = this;
+                <Cascader data={this.get('data')} v-model="value" />
+            `;
+            static defaults() {
+                return {
+                    value: ['beijing', 'haidian'],
+                    data: [
+                        {
+                            value: 'beijing',
+                            label: '北京',
+                            children: [
+                                {
+                                    value: 'haidian',
+                                    label: '海淀区'
+                                },
+                            ]
+                        },
+                        {
+                            value: 'hunan',
+                            label: '湖南',
+                        },
+                    ]
+                }
+            }
+            private Cascader = Cascader;
+        }
+
+        const [instance, element] = mount(Demo);
+        dispatchEvent(element, 'click');
+        await wait();
+
+        const [dropdown1, dropdown2] = getElements('.k-cascader-menu');
+        const [item1, item2] = dropdown1.querySelectorAll(':scope > .k-dropdown-item');
+        dispatchEvent(item2, 'click');
+        await wait();
+        expect(instance.get('value')).to.eql(['hunan']);
+    });
 });
