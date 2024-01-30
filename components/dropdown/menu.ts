@@ -7,6 +7,7 @@ import {useMenuKeyboard} from './useKeyboard';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {FeedbackCallback} from './usePosition';
 import { useConfigContext } from '../config';
+import { usePositionForDropdownMenu } from './usePosition';
 
 export interface DropdownMenuProps { }
 export interface DropdownMenuEvents { }
@@ -31,6 +32,7 @@ export class DropdownMenu<
     init() {
         provide(DROPDOWN_MENU, this);
         useMouseOutsidable(this.elementRef);
+        usePositionForDropdownMenu();
     }
 
     // no matter what the trigger is, we should show menu when enter into it.

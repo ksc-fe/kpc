@@ -1,5 +1,5 @@
-import {useInstance, findDomFromVNode} from 'intact';
-import type {Dropdown} from './';
+import {useInstance, findDomFromVNode, onBeforeUnmount} from 'intact';
+import type {Dropdown, DropdownMenu} from './';
 import {Options, position, Feedback} from '../position';
 import {noop, isObject, isFunction} from 'intact-shared';
 import { isEqualObject } from '../utils';
@@ -113,4 +113,16 @@ export function usePosition() {
     }
 
     return {handle, positioned};
+}
+
+export function usePositionForDropdownMenu() {
+    const instance = useInstance() as DropdownMenu;
+    /**
+     * Meybe the DropdownMenu has changed by specified key
+     * so, we must reset the positioned.value beforeUnmount
+     * #956
+     */
+    onBeforeUnmount(() => {
+        instance.dropdown.positionHook.positioned.value = false;
+    });
 }

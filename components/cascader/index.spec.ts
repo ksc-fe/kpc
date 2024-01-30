@@ -135,6 +135,14 @@ describe('Cascader', () => {
         dropdown1.querySelector<HTMLElement>('.k-dropdown-item')!.click();
         await wait();
         expect(instance.get('value')).to.eql(['hunan', 'yueyang', 'yueyanglou']);
+
+        // show again to test the position
+        input.click();
+        await wait();
+        const [_dropdown1, _dropdown2, _dropdown3] = getElements('.k-cascader-menu')!;
+        expect(_dropdown1.style.top).not.eql('0px');
+        expect(_dropdown2.style.top).not.eql('0px');
+        expect(_dropdown3.style.top).not.eql('0px');
     });
 
     it('no data for init data', async () => {
