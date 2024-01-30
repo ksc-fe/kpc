@@ -1,6 +1,6 @@
 import React, {createRef, useState} from 'react';
 import * as ReactDOM from 'react-dom';
-import {Cascader} from '../../';
+import {Cascader, Card} from '../../';
 import {Component} from 'intact-react';
 import {getElement, wait, dispatchEvent} from '../../../../test/utils';
 
