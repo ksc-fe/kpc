@@ -3,7 +3,7 @@ import {BaseSelect} from './base';
 
 /**
  * don't trigger focusout event when layer is showing,
- * only trigger focusout when it hidden to make FormItem to validate it
+ * only trigger focusout when it is hidden to make FormItem to validate it
  * #449
  */
 export function useFocusout() {
