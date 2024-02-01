@@ -1257,16 +1257,16 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@king-design/react@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.npmjs.org/@king-design/react/-/react-3.1.4.tgz#82ebcbcbd34df6e37ae80262d673d8135d087ff3"
-  integrity sha512-j/KKMAuMbIwJk6H2c4CjonNRjOvcCvU75CD1LrjsYA6ez52HM0AVEXJnQDRFlOrf6MsE9KAsJlKITrjM4UUPUw==
+"@king-design/react@^3.1.5":
+  version "3.1.5"
+  resolved "https://registry.npmmirror.com/@king-design/react/-/react-3.1.5.tgz#bb87c4dde7155212590d48235eb42a0bf467af58"
+  integrity sha512-MxgV8ianr/a8t7C/VvCt7MErJeDZakrgYAHOiMhoikqrdg8M9fo8KM/iEWvAOf4QVuo71vYoH07R/tg9Z/12xg==
   dependencies:
     "@babel/runtime-corejs3" "^7.16.0"
     "@emotion/css" "^11.5.0"
     dayjs "^1.10.7"
     enquire.js "^2.1.6"
-    intact-react "3.0.26"
+    intact-react "3.0.28"
     monaco-editor "^0.26.1"
     mxgraphx "^4.0.7"
     resize-observer-polyfill "^1.5.1"
@@ -7340,35 +7340,19 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-intact-react@3.0.26:
-  version "3.0.26"
-  resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.26.tgz#6af18fea205ced41e738dea5339f7a37fcef7ce2"
-  integrity sha512-LQBd1LTGNnudov4bRSRTQK1d1d64C4qwrPPczkrDuvkehfe0wg3E5RmDUeaB3v8E0Ntxndu29NifT6QRRalM1A==
+intact-react@3.0.28:
+  version "3.0.28"
+  resolved "https://registry.npmmirror.com/intact-react/-/intact-react-3.0.28.tgz#be7e866be2aeb5176c4a30caeb1b8cfdee31b4ac"
+  integrity sha512-ra1r3sKuKYTHPvn6Nqbz1QNBm3K3xoDQ3Dw0FOgf5zOPdaatTHOIy/jY8fs5rjNl8q4XzQlWnSzmmaZjZow4wg==
   dependencies:
-    intact "^3.0.26"
-    intact-shared "^3.0.26"
+    intact "^3.0.28"
+    intact-shared "^3.0.28"
     tslib "^2.3.1"
-
-intact-shared@^3.0.26:
-  version "3.0.26"
-  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.26.tgz#6c728a975ac770e597c70ad06cdd9d447b2c68d9"
-  integrity sha512-49fQMpti8OeO+qTKFl7UGhDrkYrGNQQTmtqbKRL4tEgwiOloUaZELf3JC4Oz1sSIp63FQdU3AywZnHiKc+mNCQ==
 
 intact-shared@^3.0.28:
   version "3.0.28"
   resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.28.tgz#096cc0b3cffe27ddadeb92284d3279742600c112"
   integrity sha512-dQzBQeBhJKEousfX5OSJjHEazaDpVwyujhpTvjsXXl9HGzEcd8mvH6OHGRjREo3Y6UInQBxxhvE1CpMJMF7AVA==
-
-intact@^3.0.26:
-  version "3.0.26"
-  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.26.tgz#2dd1452f1b2ecf91e844323a801cca8a38a68a30"
-  integrity sha512-EyTdie3HapVTDfhYdKGlNp7RunaI3ZwIkYYzi+qTm6LQedkDQfVfof4c6W+4ggPk5eUA22j7M8XuFgAEaNVXBQ==
-  dependencies:
-    intact-shared "^3.0.26"
-    misstime "^3.0.26"
-    tslib "^2.2.0"
-    vdt "^3.0.26"
-    vdt-compiler "^3.0.26"
 
 intact@^3.0.28:
   version "3.0.28"
@@ -9176,13 +9160,6 @@ minizlib@^2.0.0, minizlib@^2.1.1:
   dependencies:
     minipass "^3.0.0"
     yallist "^4.0.0"
-
-misstime@^3.0.26:
-  version "3.0.26"
-  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.26.tgz#9a0dc8da861ffc5401f6723a414a4369e999e76a"
-  integrity sha512-i5p+O+B1FI6CCFxh00ufH6Zj4IpryXvU1DLME8wlFU+ZKL0BF0YqNtABxBm2IwKa+SiD7o6koywfZgUO8spcNA==
-  dependencies:
-    intact-shared "^3.0.26"
 
 misstime@^3.0.28:
   version "3.0.28"
@@ -13377,15 +13354,6 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vdt-compiler@^3.0.26:
-  version "3.0.26"
-  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.26.tgz#a36946406d806a7543e7ffa88ffabb980d64ef49"
-  integrity sha512-NaZiVvng5utzbtByW43m3erKmeBLeKcDimSE8AylEvdm0DUGk9QK2fY83UoUYCDJDGoqg/yH+F0cN+bh3miW8w==
-  dependencies:
-    intact-shared "^3.0.26"
-    misstime "^3.0.26"
-    tslib "^2.2.0"
-
 vdt-compiler@^3.0.28:
   version "3.0.28"
   resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.28.tgz#951267b032d047b2263c595c5cb14a4223c7662f"
@@ -13403,15 +13371,6 @@ vdt-loader@^3.0.0-beta.1:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
     source-map "^0.7.3"
-
-vdt@^3.0.26:
-  version "3.0.26"
-  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.26.tgz#807d06f3943757a670ed12d7c642d7baaa278c3e"
-  integrity sha512-SNciMLjCf8H2VPKwwA3JWbsS1C1FJKtBYaDJYVdc6M1f1QxGlSxQ8mLkrNJ4xRJZ2r6CBXnbRzQnSL1++LE7zQ==
-  dependencies:
-    intact-shared "^3.0.26"
-    misstime "^3.0.26"
-    tslib "^2.2.0"
 
 vdt@^3.0.28:
   version "3.0.28"
