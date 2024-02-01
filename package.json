@@ -1,6 +1,6 @@
 {
   "name": "@king-design/intact",
-  "version": "3.1.4",
+  "version": "3.1.5",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
   "engines": {
@@ -120,7 +120,6 @@
     "highlight.js": "^10.4.1",
     "history": "^5.0.0",
     "html-webpack-plugin": "5.3.1",
-    "intact-react": "^3.0.26",
     "istanbul-instrumenter-loader": "^3.0.0",
     "js-yaml": "^4.1.0",
     "karma": "^6.3.2",
@@ -179,10 +178,10 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.0",
     "@emotion/css": "^11.5.0",
-    "@king-design/react": "^3.1.4",
+    "@king-design/react": "^3.1.5",
     "dayjs": "^1.10.7",
     "enquire.js": "^2.1.6",
-    "intact": "^3.0.26",
+    "intact": "^3.0.28",
     "monaco-editor": "^0.26.1",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.1",
