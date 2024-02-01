@@ -12,6 +12,7 @@ sidebar: doc
 ### @king-design/react
 
 1. `Fix` 修复组件下渲染React元素，如果更新的时候替换元素，元素不能被正确销毁的问题 [#958](https://github.com/ksc-fe/kpc/issues/958)
+2. `Fix` 修复外层元素绑定的事件，不能被触发的问题 [#959](https://github.com/ksc-fe/kpc/issues/959)
 
 ## v2.1.3
 
