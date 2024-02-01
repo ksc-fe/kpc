@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v2.1.4
+
+1. `Fix` 修复`Cascader`某些情况下，子菜单位置异常的问题 [#953](https://github.com/ksc-fe/kpc/issues/953) [#956](https://github.com/ksc-fe/kpc/issues/956)
+2. `Fix` 修复`Cascader`选择一个深层级的值，隐藏菜单重新展开选择一个浅层级的值，最终值有误的问题 [#957](https://github.com/ksc-fe/kpc/issues/957)
+
+### @king-design/react
+
+1. `Fix` 修复组件下渲染React元素，如果更新的时候替换元素，元素不能被正确销毁的问题 [#958](https://github.com/ksc-fe/kpc/issues/958)
+
 ## v2.1.3
 
 1. `Fix` 修复`Dialog`在改变`container`为`undefined | null`，元素不能默认append到body中，并且不能重新定位到屏幕中间的问题 [#935](https://github.com/ksc-fe/kpc/issues/935)
