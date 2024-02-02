@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v2.1.5
+
+### @king-design/react
+
+1. `Fix` 修复编译打包导致类型错误问题
+
 ## v2.1.4
 
 1. `Fix` 修复`Cascader`某些情况下，子菜单位置异常的问题 [#953](https://github.com/ksc-fe/kpc/issues/953) [#956](https://github.com/ksc-fe/kpc/issues/956)
