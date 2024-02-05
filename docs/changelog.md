@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v2.1.6
+
+### @king-design/react
+
+1. `Fix` 修复给react元素绑定mouseleave事件，回调函数触发更新会报错的问题 [#961](https://github.com/ksc-fe/kpc/issues/961)
+
 ## v2.1.5
 
 ### @king-design/react
