@@ -10,10 +10,10 @@ describe('Drawer', () => {
         container = document.createElement('div');
         document.body.appendChild(container);
     });
-    // afterEach(() => {
-        // ReactDOM.unmountComponentAtNode(container);
-        // document.body.removeChild(container);
-    // });
+    afterEach(() => {
+        ReactDOM.unmountComponentAtNode(container);
+        document.body.removeChild(container);
+    });
 
     it('should render react element correctly', async () => {
         class Test extends Component {

@@ -181,7 +181,7 @@
     "@king-design/react": "^3.1.5",
     "dayjs": "^1.10.7",
     "enquire.js": "^2.1.6",
-    "intact": "^3.0.28",
+    "intact": "^3.0.29",
     "monaco-editor": "^0.26.1",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.1",
