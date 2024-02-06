@@ -533,6 +533,9 @@ describe('Datepicker', () => {
             const first = calendar1.querySelectorAll('.k-calendar-item')[17] as HTMLElement;
             const second = calendar2.querySelectorAll('.k-calendar-item')[17] as HTMLElement;
             first.click();
+            // should stay at date panel
+            await wait();
+            expect(calendar1.querySelector('.k-days')).be.exist;
             second.click();
             await wait();
             dispatchEvent(calendar1.querySelector<HTMLElement>('.k-scroll-select-wrapper .k-active')!.nextElementSibling!, 'click');

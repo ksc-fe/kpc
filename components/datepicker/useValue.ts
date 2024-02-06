@@ -75,7 +75,15 @@ export function useValue(
         setValue(_value, false);
 
         if (type === 'datetime') {
-            panel.changePanel(PanelTypes.Time, flag);
+            if (range) {
+                // only change to time panel after selected start and end date
+                if ((_value as StateValueRange).length === 2) {
+                    panel.changePanel(PanelTypes.Time, PanelFlags.Start);
+                    panel.changePanel(PanelTypes.Time, PanelFlags.End);
+                }
+            } else {
+                panel.changePanel(PanelTypes.Time, flag);
+            }
         } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
             instance.hide();
         }
