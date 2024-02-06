@@ -178,7 +178,6 @@
   "dependencies": {
     "@babel/runtime-corejs3": "^7.16.0",
     "@emotion/css": "^11.5.0",
-    "@king-design/react": "^3.1.5",
     "dayjs": "^1.10.7",
     "enquire.js": "^2.1.6",
     "intact": "^3.0.29",
