@@ -6,7 +6,8 @@ sidebar: doc
 
 ## v3.1.6
 
-1. `Fix` 修复打包导致的TS类型错误
+1. `Change` 优化`Datepicker`日期时间范围选择，只有选择完开始和结束日期，才切换到时间选择面板 [#944](https://github.com/ksc-fe/kpc/issues/944)
+2. `Fix` 修复打包导致的TS类型错误
 
 ### @king-design/react
 
