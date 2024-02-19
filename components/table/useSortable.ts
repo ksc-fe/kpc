@@ -2,6 +2,8 @@ import {useInstance} from 'intact';
 import {createContext} from '../context';
 import type {Table, TableSortValue} from './table';
 
+type SortEvent = Event & { _ignoreSortable?: boolean };
+
 export const context = createContext();
 
 export function useSortable() {
@@ -10,7 +12,7 @@ export function useSortable() {
     // if the same column has been clicked three times consecutively,
     // then let the third click to reset the sort
     let count = 0;
-    function onChange(key: string, event: Event & {_ignoreSortable?: boolean}) {
+    function onChange(key: string, event: SortEvent) {
         // ignore when click group dropdown menu
         if (event._ignoreSortable) return;
 
@@ -34,6 +36,6 @@ export function useSortable() {
     return {onChange, ignoreSortable};
 }
 
-export function ignoreSortable(e: Event & { _ignoreSortable?: boolean }) {
+export function ignoreSortable(e: SortEvent) {
     e._ignoreSortable = true;
 }
