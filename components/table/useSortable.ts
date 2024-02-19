@@ -31,5 +31,9 @@ export function useSortable() {
         instance.set('sort', sort);
     }
 
-    return {onChange};
+    return {onChange, ignoreSortable};
+}
+
+export function ignoreSortable(e: Event & { _ignoreSortable?: boolean }) {
+    e._ignoreSortable = true;
 }
