@@ -4,6 +4,10 @@ order: 99
 sidebar: doc
 ---
 
+## v1.6.4
+
+1. `Fix` 修复`Select`在`searchable & multipe`模式下，诸多问题
+
 ## v1.6.3
 
 1. `Fix` 修复`Select`在“可创建”模式下，可能创建空选项的问题 [#830](https://github.com/ksc-fe/kpc/issues/830)
