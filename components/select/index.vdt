@@ -68,7 +68,7 @@ const allShowedValues = [];
 
 const WrapCheckbox = (props) => {
     return (
-        <Checkbox v-model="_checkedKeys" trueValue={{ props.value }}>
+        <Checkbox v-model="_checkedKeys" trueValue={{ props.value }} disabled={{ !!props.disabled }}>
             {{ props.children }}
         </Checkbox>
     )
@@ -86,7 +86,7 @@ const Options = props => {
         if (valid) {
             let children = item.template ? item.template(item, index) : item.label;
             if (searchable && multiple) {
-                children = <WrapCheckbox value={{ item.value }}>{{ children }}</WrapCheckbox>
+                children = <WrapCheckbox value={{ item.value }} disabled={{ item.disabled }}>{{ children }}</WrapCheckbox>
             }
             ret.push(
                 <DropdownItem 
@@ -107,7 +107,9 @@ const Options = props => {
             hasData = true;
             setHasOnlyOneValidOptionAndSelected(active);
 
-            allShowedValues.push(item.value);
+            if (!item.disabled) {
+                allShowedValues.push(item.value);
+            }
         }
     });
 
@@ -136,7 +138,9 @@ const OptionsVNodes = ({children}) => {
             hasData = true;
             setHasOnlyOneValidOptionAndSelected(active);
 
-            allShowedValues.push(props.value);
+            if (!props.disabled) {
+                allShowedValues.push(props.value);
+            }
 
             // for card type groups, we need to highlight the parent label
             if (active && card) {
@@ -157,7 +161,7 @@ const OptionsVNodes = ({children}) => {
 
             // if show search input in menu and support multiple selections, wrap Option by Checkbox
             if (searchable && multiple) {
-                props.children = <WrapCheckbox value={{ props.value }}>{{ props.children }}</WrapCheckbox>
+                props.children = <WrapCheckbox value={{ props.value }} disabled={{ props.disabled }}>{{ props.children }}</WrapCheckbox>
             }
 
             // return the cloned vNode
@@ -269,7 +273,8 @@ const Menu = scope.Menu || (
                         _children = <template>
                             <div class="k-select-header">
                                 <Input fluid size="small" placeholder={{ _$('请输入关键字') }}
-                                    v-model="keywords"
+                                    value={{ keywords }}
+                                    ev-input={{ self._onSearch }}
                                     clearable
                                 >
                                     <b:suffix><Icon class="ion-ios-search" /></b:suffix>

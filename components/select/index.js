@@ -59,6 +59,7 @@ export default class Select extends Intact {
                 let tmp;
                 if (
                     keywords == null ||
+                    keywords === '' ||
                     (
                         props.label &&
                         ~props.label.toLowerCase().indexOf((tmp = keywords.toLowerCase()))
