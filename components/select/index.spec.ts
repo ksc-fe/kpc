@@ -262,7 +262,7 @@ describe('Select', () => {
         selectAll.click();
         confirm.click();
         await wait();
-        expect(instance.get('days')).have.length(7);
+        expect(instance.get('days')).have.length(6);
 
         // unselect all
         select.click();

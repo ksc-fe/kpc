@@ -28,6 +28,7 @@ if (searchable && multiple) {
                     value={value.value}
                     ev-$change:value={value.set}
                     trueValue={this.get('value')}
+                    disabled={disabled}
                 >{children}</Checkbox>
             )}
         </Consumer>
