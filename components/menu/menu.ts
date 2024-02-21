@@ -9,7 +9,7 @@ export interface MenuProps<K extends Key = Key> {
     selectedKey?: K 
     theme?: 'light' | 'dark' | 'white'
     collapse?: boolean
-    showCollapseAllow?: boolean
+    showCollapseArrow?: boolean
     type?: 'vertical' | 'horizontal'
     size?: 'large' | 'default' | 'small' 
     accordion?: boolean
@@ -29,7 +29,7 @@ const typeDefs: Required<TypeDefs<MenuProps>> = {
     selectedKey: [String, Number],
     theme: ['light', 'dark', 'white'],
     collapse: Boolean,
-    showCollapseAllow: Boolean,
+    showCollapseArrow: Boolean,
     type: ['vertical', 'horizontal'],
     size: ['large', 'default', 'small'],
     accordion: Boolean,
