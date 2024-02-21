@@ -1,11 +1,11 @@
 import {DropdownMenu} from '../dropdown';
 import {getRestProps, findChildren, isComponentVNode} from '../utils';
 import {isDropdown} from './useDropdown';
-import {makeMenuStyles, makeTitleStyles} from './styles';
+import {makeMenuStyles, makeTitleStyles, makeArrowStyles} from './styles';
 import {Icon} from '../icon';
 
 const {children, className} = this.get();
-const {collapse, theme, type, size} = (this.rootMenu || this).get();
+const {collapse, theme, type, size, showCollapseArrow, _collapseAllow} = (this.rootMenu || this).get();
 const isRootMenu = !this.rootMenu;
 const isDropdownMenu = !isRootMenu && isDropdown(this.rootMenu);
 const { k } = this.config;
@@ -15,6 +15,7 @@ const classNameObj = {
     [`${k}-${theme}`]: (isRootMenu || isDropdownMenu) && theme,
     [`${k}-${size}`]: isRootMenu && size !== 'default',
     [`${k}-collapsed`]: isRootMenu && collapse,
+    [`${k}-collapsed-arrow`]: isRootMenu && showCollapseArrow && collapse,
     [`${k}-${type}`]: isRootMenu && type,
     [makeMenuStyles(k)]: true,
 };
@@ -33,7 +34,20 @@ const content = (
                 {findChildren(header, vNode => isComponentVNode(vNode, Icon))}
             </template>
         </div>
-        {children}
+        <div v-if={isRootMenu && showCollapseArrow && type !== 'horizontal'}
+            class={{
+                [`${k}-menu-arrowbox`]: true,
+                [makeArrowStyles(k)]: true
+            }}
+            ev-click={this.onClick.bind(this)}
+        >
+            <Icon class={`${k}-menu-arrowhead ion-arrow-left-b`} />
+        </div>
+        <div class={{
+            [`${k}-menu-body`]: true,
+        }}>
+            {children}
+        </div>
     </template>
 );
 

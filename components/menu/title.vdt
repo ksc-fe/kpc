@@ -1,0 +1,32 @@
+import {directClone, Transition} from 'intact';
+import {Dropdown, DropdownItem} from '../dropdown';
+import {Tooltip} from '../tooltip';
+import {Icon} from '../icon';
+import {Menu} from './menu';
+import {getRestProps, expandAnimationCallbacks} from '../utils';
+import {isNullOrUndefined} from 'intact-shared';
+import {makeTitleStyles} from './styles';
+
+const rootMenu = this.rootMenu;
+const {theme, type, dot: rootDot} = rootMenu.get();
+const {children, key, className, disabled, dot} = this.get();
+const {isHighlighted, isSelected} = rootMenu.highlight;
+const {isExpanded: isExpandedKey} = this.expanded;
+const isExpanded = isExpandedKey(key);
+const {
+    isTopItem, subMenuVNode, isDropdownMenu,
+    tooltipContents, iconVNode, titleVNodes,
+    position, isCollapse,
+} = this.dropdown();
+
+const { k } = this.config;
+const classNameObj = {
+    [`${k}-menu-title`]: true,
+    [makeTitleStyles(k)]: true,
+};
+
+<template>
+    <div {...getRestProps(this)}  class={classNameObj}>
+        <span>{children}</span>
+    </div>
+</template>

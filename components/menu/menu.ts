@@ -2,12 +2,14 @@ import {Component, TypeDefs, provide, inject, Key} from 'intact';
 import template from './menu.vdt';
 import {useHighlight} from './useHighlight';
 import { useConfigContext } from '../config';
+import {bind} from '../utils';
 
 export interface MenuProps<K extends Key = Key> {
     expandedKeys?: K[]
     selectedKey?: K 
     theme?: 'light' | 'dark' | 'white'
     collapse?: boolean
+    showCollapseAllow?: boolean
     type?: 'vertical' | 'horizontal'
     size?: 'large' | 'default' | 'small' 
     accordion?: boolean
@@ -27,6 +29,7 @@ const typeDefs: Required<TypeDefs<MenuProps>> = {
     selectedKey: [String, Number],
     theme: ['light', 'dark', 'white'],
     collapse: Boolean,
+    showCollapseAllow: Boolean,
     type: ['vertical', 'horizontal'],
     size: ['large', 'default', 'small'],
     accordion: Boolean,
@@ -65,4 +68,11 @@ export class Menu<K extends Key = Key> extends Component<MenuProps<K>, MenuEvent
             this.highlight = useHighlight();
         }
     }
+
+    @bind
+    public onClick(e: MouseEvent) {
+        const {collapse} = this.get();
+        this.set({collapse: !collapse});
+    }
+    
 }

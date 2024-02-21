@@ -9,18 +9,30 @@ const sizes = ['large', 'small'] as const;
 const defaults = {
     get transition() { return theme.transition.large },
     width: '200px',
-    bgColor: '#262626',
+    bgColor: '#1c1c20',
     fontSize: '14px',
     get borderRadius() { return theme.borderRadius },
 
     item: {
         height: '40px',
         padding: '0 21px',
+        hoverPadding: '0 17px',
+        hoverMargin: '0 4px',
         color: '#b2b2b2',
         hoverColor: '#fff',
         get disabledColor() { return theme.color.text },
         get activeBgColor() { return theme.color.primary },
+        get hoverBgColor() { return theme.color.hoverBg },
         dotFontSize: '12px'
+    },
+
+    title: {
+        height: '40px',
+        padding: '0 17px',
+        color: '#fff',
+        hoverColor: '#2a2a30',
+        borderTop: '1px solid #2f2f36',
+        margin:'4px 4px 0 4px'
     },
 
     icon: {
@@ -31,31 +43,21 @@ const defaults = {
     header: {
         height: '50px',
         fontSize: '14px',
+        color: '#fff',
         borderBottom: '1px solid #1b1b1d',
     },
 
-    // sub-menu
-    subBgColor: '#000',
-
     light: {
-        bgColor: '#e5e5e9',
-        subBgColor:  '#d5d5d9',
-        border: '1px solid #d5d5d9',
-        item: {
-            get color() { return theme.color.text }, 
-            get hoverColor() { return theme.color.primary }, 
-            disabledColor: '#999'
-        },
-    },
-
-    white: {
         bgColor: '#fff',
-        subBgColor:  '#fafafa',
         border: '1px solid #eee',
         item: {
             get color() { return theme.color.text }, 
             get hoverColor() { return theme.color.primary }, 
             get disabledColor() { return theme.color.disabled },
+        },
+        title: {
+            get color() { return theme.color.text }, 
+            borderTop: '1px solid #f0f2f4',
         },
         active: {
             get color() { return theme.color.primary },
@@ -99,6 +101,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             transition: width ${menu.transition};
             background: ${menu.bgColor};
             font-size: ${menu.fontSize};
+            position: relative;
         }
 
         .${k}-icon {
@@ -108,65 +111,83 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             flex-shrink: 0;
         }
 
-
         // header
         .${k}-menu-header {
             height: ${menu.header.height};
+            color: ${menu.header.color};
             font-size: ${menu.header.fontSize};
             font-weight: bold;
-            border-bottom: ${menu.header.borderBottom};
+        }
+
+        // menu title
+        .${k}-menu-title {
+            height: ${menu.title.height};
+            padding: ${menu.title.padding};
+            margin: ${menu.title.margin};
+            color: ${menu.title.color};
+            font-weight: bold;
+            border-top: ${menu.title.borderTop};
         }
 
         // theme
         ${(['light', 'white'] as const).map(theme => {
-            const styles = menu[theme];
+            const styles = menu.light;
             return css`
                 &.${k}-${theme} {
                     background: ${styles.bgColor};
                     .${k}-menu-header {
                         color: ${styles.item.color};
-                        border-bottom: ${styles.border};
                     }
                     .${k}-menu-item {
-                        .${k}-menu-title {
+                        .${k}-menu-item-title {
                             color: ${styles.item.color};
                             &:hover {
-                                color: ${styles.item.hoverColor};
+                                background: #f3f5f6;
                             }
                         }
                         &.${k}-highlighted {
-                            > .${k}-menu-title {
+                            > .${k}-menu-item-title {
                                 color: ${styles.item.hoverColor};
                             }
                         }
                         &.${k}-disabled {
-                            > .${k}-menu-title {
+                            > .${k}-menu-item-title {
                                 color: ${styles.item.disabledColor} !important;
                             }
                         }
                     }
+                    .${k}-menu-body {
+                        .${k}-menu-title {
+                            color: ${styles.title.color};
+                            border-top: ${styles.title.borderTop};
+                        }
+                    }
+                    
+                    .${k}-menu-arrowbox {
+                        background: ${styles.bgColor};
+                    }
                     .${k}-menu:not(.${k}-dropdown-menu) {
-                        background: ${styles.subBgColor};
+                        background: ${styles.bgColor};
                     }
 
                     &.${k}-horizontal {
                         .${k}-menu-header {
                             border-right: ${styles.border};
                         }
+                        .${k}-menu-body > .${k}-menu-title {
+                            border-right: ${styles.title.borderTop};
+                        }
+                    }
+                    // active
+                    .${k}-menu-item.${k}-active {
+                        > .${k}-menu-item-title {
+                            color: ${menu.light.active.color } !important;
+                            background: ${menu.light.active.bgColor};
+                        }
                     }
                 }
             `;
         })}
-
-        &.${k}-white {
-            // active
-            .${k}-menu-item.${k}-active {
-                > .${k}-menu-title {
-                    color: ${menu.white.active.color } !important;
-                    background: ${menu.white.active.bgColor};
-                }
-            }
-        }
 
         // sizes
         ${sizes.map(size => {
@@ -178,6 +199,9 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                     font-size: ${styles.fontSize};
                     .${k}-menu {
                         font-size: ${styles.fontSize}; 
+                    }
+                    .${k}-menu-arrowbox {
+                        left: ${styles.width}; 
                     }
                 }
             `;
@@ -192,11 +216,29 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             .${k}-menu-arrow {
                 display: none;
             }
+            .${k}-menu-title {
+                opacity: 0;
+            }
+        }
+
+        // show collapse arrow
+        &.${k}-collapsed-arrow {
+            width: 0px;
+            .${k}-menu-item, .${k}-menu-title {
+                overflow: hidden;
+            }
+            .${k}-menu-arrowbox {
+                left: 0;
+                transition: left ${menu.transition};
+                .${k}-menu-arrowhead:before {
+                    transform: rotateY(180deg);
+                }
+            }
         }
 
         // dropdown
         &.${k}-dropdown-menu {
-            width: auto;
+            width: fit-content;
             min-width: ${menu.dropdown.minWidth};
             .${k}-menu-arrow {
                 transform: rotate(-90deg)
@@ -207,10 +249,13 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         &.${k}-horizontal {
             width: auto;
             display: flex;
-            align-items: center;
-            .${k}-menu-header {
-                border-bottom: none;
-                border-right: ${menu.header.borderBottom};
+            .${k}-menu-body {
+                display: flex;
+                align-items: center;
+                .${k}-menu-title {
+                    border-top: none;
+                    border-right: ${menu.title.borderTop};
+                }
             }
         }
     `
@@ -229,14 +274,44 @@ export const makeTitleStyles = cache(function makeTitleStyles(k: string) {
     `;
 });
 
+export const makeArrowStyles = cache(function makeArrowStyles(k: string) {
+    return css`
+        &.${k}-menu-arrowbox {
+            width: 14px;
+            height: 60px;
+            cursor: pointer;
+            background: ${menu.bgColor};
+            border-radius: 0 8px 8px 0;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 50%;
+            left: ${menu.width};
+            transition: left ${menu.transition};
+            transform: translateY(-50%);
+            .${k}-icon {
+                margin-right: 0;
+            }
+        }
+    `;
+});
+
 export const makeItemStyles = cache(function makeItemStyles(k: string) {
     const item = menu.item;
     return css`
-        .${k}-menu-title {
+        .${k}-menu-item-title {
+            transition: all ${menu.transition};
             cursor: pointer;
             height: ${item.height};
             &:hover {
-                color: ${item.hoverColor};
+                margin: ${item.hoverMargin};
+                padding: ${item.hoverPadding};
+                border-radius: ${menu.borderRadius};
+                background: #2a2a30;
+            }
+            & > .${k}-menu-arrow:before {
+                font-size: small;
             }
         }
         .${k}-menu-name {
@@ -254,13 +329,12 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
             }
         }
         .${k}-menu-arrow {
-            transition: transform ${menu.transition};
             margin: 0 0 0 ${menu.icon.gap};
         }
 
         // expanded
         &.${k}-expanded {
-            > .${k}-menu-title {
+            > .${k}-menu-item-title {
                 color: ${item.hoverColor};
                 .${k}-menu-arrow {
                     transform: rotateX(180deg);
@@ -270,22 +344,25 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
 
         // highlighted
         &.${k}-highlighted {
-            > .${k}-menu-title {
+            > .${k}-menu-item-title {
                 color: ${item.hoverColor};
             }
         }
 
         // active
         &.${k}-active {
-            > .${k}-menu-title {
-                color: ${item.hoverColor} !important;
-                background: ${item.activeBgColor};
+            > .${k}-menu-item-title {
+                margin: ${item.hoverMargin};
+                padding: ${item.hoverPadding};
+                border-radius: ${menu.borderRadius};
+                color: ${item.activeBgColor} !important;
+                background: ${item.hoverBgColor};
             }
         }
 
         // disabled
         &.${k}-disabled {
-            > .${k}-menu-title {
+            > .${k}-menu-item-title {
                 color: ${item.disabledColor} !important;
                 cursor: not-allowed;
             }
@@ -300,14 +377,24 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
 });
 
 export const makeNestedMenuStyles = cache(function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingLeft: string = getLeft(menu.item.padding)) {
-    const paddingLeft = `${parentPaddingLeft}${hasIcon ? ' + ' + menu.icon.width : ''} + ${menu.icon.gap}`;
+    const paddingLeft = `${parentPaddingLeft}${hasIcon ? ' + ' + menu.icon.width + ' + ' + menu.icon.gap : ''}`;
+    const marginLeft = getLeft(menu.item.hoverMargin);
     return [
         css`
             &.${k}-menu {
+                position: relative;
                 width: auto;
-                background: ${menu.subBgColor};
-                .${k}-menu-title {
+                background: ${menu.bgColor};
+                .${k}-menu-item-title {
                     padding-left: calc(${paddingLeft});
+                    &:hover {
+                        padding-left: calc(${paddingLeft} - ${marginLeft});
+                    }
+                }
+                .${k}-active {
+                    > .${k}-menu-item-title {
+                        padding-left: calc(${paddingLeft} - ${marginLeft});
+                    }
                 }
             }
         `,

@@ -19,11 +19,6 @@ const defaults = {
         get bgColor() { return menu.light.bgColor },
         get border() { return menu.light.border },
     },
-    white: {
-        get color() { return menu.white.item.color },
-        get bgColor() { return menu.white.bgColor },
-        get border() { return menu.white.border },
-    },
 
     get collapsedWidth() { return `calc(${getLeft(menu.item.padding)} * 2 + ${menu.icon.width})` },
     footerPadding: '24px 50px',
@@ -91,7 +86,7 @@ export const makeHeaderStyles = cache(function makeHeaderStyles(k: string) {
 
         ${themes.map(theme => {
             if (theme === 'dark') return;
-            const styles = layout[theme];
+            const styles = layout.light;
             return css`
                 &.${k}-${theme} {
                     background: ${styles.bgColor};
@@ -115,7 +110,7 @@ export const makeAsideStyles = cache(function makeAsideStyles(k: string) {
         color: ${layout.color};
         ${themes.map(theme => {
             if (theme === 'dark') return;
-            const styles = layout[theme];
+            const styles = layout.light;
             return css`
                 &.${k}-${theme} {
                     background: ${styles.bgColor};

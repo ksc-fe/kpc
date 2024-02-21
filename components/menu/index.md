@@ -19,6 +19,7 @@ sidebar: doc
 | size | 定义菜单尺寸 | `"large"` &#124; `"default"` &#124; `"small"` | `"default"` |
 | accordion | 是否每次只能展开一项 | `boolean` | `false` |
 | dot | 是否给菜单项前面添加圆点 | `boolean` | `false` |
+| showCollapseArrow | 是否展示折叠按钮 | `boolean` | `false` |
 
 ## MenuItem
 

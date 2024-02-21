@@ -32,12 +32,12 @@ const classNameObj = {
 
 const showDot = isTopItem && !iconVNode && isNullOrUndefined(dot) ? rootDot : dot;
 const title = (children) => (
-    <div class={{[`${k}-menu-title`]: true, [makeTitleStyles(k)]: true}}
+    <div class={{[`${k}-menu-item-title`]: true, [makeTitleStyles(k)]: true}}
         ev-click={this.onClick.bind(this, subMenuVNode)}
     >
         <Icon class={`${k}-menu-dot ion-record`} v-if={showDot} />
         <div class={`${k}-menu-name`}>{children}</div>
-        <Icon class={`${k}-menu-arrow ${k}-icon-down`} v-if={subMenuVNode} />
+        <Icon class={`${k}-menu-arrow ion-arrow-down-b`} v-if={subMenuVNode} />
     </div>
 );
 
