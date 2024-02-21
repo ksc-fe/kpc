@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v3.1.6
+
+1. `Change` 优化`Datepicker`日期时间范围选择，只有选择完开始和结束日期，才切换到时间选择面板 [#944](https://github.com/ksc-fe/kpc/issues/944)
+2. `Fix` 修复打包导致的TS类型错误
+
+### @king-design/react
+
+1. `Fix` 修复给react元素绑定mouseleave事件，回调函数触发更新会报错的问题 [#961](https://github.com/ksc-fe/kpc/issues/961)
+
 ## v3.1.5
 
 1. `Fix` 修复`Cascader`某些情况下，子菜单位置异常的问题 [#953](https://github.com/ksc-fe/kpc/issues/953) [#956](https://github.com/ksc-fe/kpc/issues/956)

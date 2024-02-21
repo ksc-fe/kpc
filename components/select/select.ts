@@ -77,7 +77,10 @@ export class Select<
         const loop = (children: Children) => {
             eachChildren(children, vNode => {
                 if (isComponentVNode(vNode, Option)) {
-                    values.push((vNode.props! as OptionProps).value); 
+                    const props = vNode.props as OptionProps;
+                    if (!props.disabled) {
+                        values.push(props.value); 
+                    }
                 } else if (isComponentVNode(vNode, OptionGroup)) {
                     loop(vNode.props!.children);
                 }

@@ -13,7 +13,7 @@ import {Select, Option} from 'kpc';
 
 <div>
     <Select v-model="day" searchable>
-        <Option value="Monday">星期一</Option>
+        <Option value="Monday" disabled>星期一</Option>
         <Option value="Tuesday">星期二</Option>
         <Option value="Wednesday">星期三</Option>
         <Option value="Thursday">星期四</Option>
@@ -22,7 +22,7 @@ import {Select, Option} from 'kpc';
         <Option value="Sunday">星期天</Option>
     </Select>
     <Select v-model="days" searchable multiple>
-        <Option value="Monday">星期一</Option>
+        <Option value="Monday" disabled>星期一</Option>
         <Option value="Tuesday">星期二</Option>
         <Option value="Wednesday">星期三</Option>
         <Option value="Thursday">星期四</Option>
