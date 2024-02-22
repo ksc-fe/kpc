@@ -3,12 +3,12 @@ import {Dropdown, DropdownItem} from '../dropdown';
 import {Tooltip} from '../tooltip';
 import {Icon} from '../icon';
 import {Menu} from './menu';
-import {getRestProps, expandAnimationCallbacks} from '../utils';
+import {getRestProps, findChildren, isComponentVNode} from '../utils';
 import {isNullOrUndefined} from 'intact-shared';
 import {makeTitleStyles} from './styles';
 
 const rootMenu = this.rootMenu;
-const {theme, type, dot: rootDot} = rootMenu.get();
+const {theme, type, dot: rootDot, collapse} = rootMenu.get();
 const {children, key, className, disabled, dot} = this.get();
 const {isHighlighted, isSelected} = rootMenu.highlight;
 const {isExpanded: isExpandedKey} = this.expanded;
@@ -27,6 +27,9 @@ const classNameObj = {
 
 <template>
     <div {...getRestProps(this)}  class={classNameObj}>
-        <span>{children}</span>
+        <template v-if={!collapse}>{children}</template>
+        <template v-else>
+            {findChildren(children, vNode => isComponentVNode(vNode, Icon))}
+        </template>
     </div>
 </template>

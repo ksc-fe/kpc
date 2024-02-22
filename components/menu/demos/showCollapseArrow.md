@@ -23,11 +23,11 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
         <Button value="dark">dark</Button>
         <Button value="white">white</Button>
     </ButtonGroup>
-    <Switch v-model="type"
-        on="horizontal" off="vertical"
-        width="100"
-        trueValue="horizontal"
-        falseValue="vertical"
+    <Switch v-model="collapse"
+        on="收起"
+        off="展开"
+        width="60"
+        style="margin-right: 16px;"
     />
     <ButtonGroup v-model="size"
         checkType="radio"
@@ -40,10 +40,9 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
     <Menu
         v-model:expandedKeys="expandedKeys"
         v-model:selectedKey="selectedKey"
-        collapse={this.get('collapse')}
         theme={this.get('theme')}
         size={this.get('size')}
-        type={this.get('type')}
+        collapse={this.get('collapse')}
         showCollapseArrow={this.get('showCollapseArrow')}
     >
         <b:header>
@@ -85,9 +84,11 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
 ```
 
 ```ts
-import {MenuProps} from 'kpc';
+import type {MenuProps} from 'kpc';
 
-export default class extends Component {
+interface Props extends MenuProps { }
+
+export default class extends Component<Props> {
     static template = template;
 
     static defaults() {
@@ -96,7 +97,6 @@ export default class extends Component {
             selectedKey: '2',
             size: 'default',
             theme: 'dark',
-            type: 'vertical',
             collapse: false,
             showCollapseArrow: false
         } as MenuProps;

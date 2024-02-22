@@ -121,6 +121,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
 
         // menu title
         .${k}-menu-title {
+            transition: all ${menu.transition};
             height: ${menu.title.height};
             padding: ${menu.title.padding};
             margin: ${menu.title.margin};
@@ -216,9 +217,6 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             .${k}-menu-arrow {
                 display: none;
             }
-            .${k}-menu-title {
-                opacity: 0;
-            }
         }
 
         // show collapse arrow
@@ -226,6 +224,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             width: 0px;
             .${k}-menu-item, .${k}-menu-title {
                 overflow: hidden;
+                border-top: none;
             }
             .${k}-menu-arrowbox {
                 left: 0;

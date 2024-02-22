@@ -5,7 +5,7 @@ import {makeMenuStyles, makeTitleStyles, makeArrowStyles} from './styles';
 import {Icon} from '../icon';
 
 const {children, className} = this.get();
-const {collapse, theme, type, size, showCollapseArrow, _collapseAllow} = (this.rootMenu || this).get();
+const {collapse, theme, type, size, showCollapseArrow} = (this.rootMenu || this).get();
 const isRootMenu = !this.rootMenu;
 const isDropdownMenu = !isRootMenu && isDropdown(this.rootMenu);
 const { k } = this.config;
