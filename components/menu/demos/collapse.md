@@ -6,7 +6,7 @@ order: 2
 添加`collapse`属性，可以使菜单呈现折叠状态
 
 ```vdt
-import {Menu, MenuItem, Switch, Icon} from 'kpc';
+import {Menu, MenuItem, MenuTitle, Switch, Icon} from 'kpc';
 
 <div>
     <Switch v-model="collapse"
@@ -48,6 +48,9 @@ import {Menu, MenuItem, Switch, Icon} from 'kpc';
             </Menu>
         </MenuItem>
         <MenuItem key="4" to="/"><Icon class="ion-gear-b" />menu 4</MenuItem>
+        <MenuTitle><Icon class="ion-cloud" />menu 5</MenuTitle>
+        <MenuItem key="5-1"><Icon class="ion-stats-bars" />sub menu 1</MenuItem>
+        <MenuItem key="5-2"><Icon class="ion-upload" />sub menu 2</MenuItem>
     </Menu>
 </div>
 ```

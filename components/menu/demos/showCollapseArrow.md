@@ -8,14 +8,6 @@ order: 6
 ```vdt
 import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc';
 <div>
-    <Switch v-model="showCollapseArrow"
-        on="展示折叠按钮"
-        off="隐藏折叠按钮" 
-        width="100"
-        trueValue={true}
-        falseValue={false}
-    />
-
     <ButtonGroup checkType="radio"
         v-model="theme"
     >
@@ -23,11 +15,12 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
         <Button value="dark">dark</Button>
         <Button value="white">white</Button>
     </ButtonGroup>
-    <Switch v-model="collapse"
-        on="收起"
-        off="展开"
-        width="60"
-        style="margin-right: 16px;"
+    <Switch v-model="showCollapseArrow"
+        on="展示折叠按钮"
+        off="隐藏折叠按钮" 
+        width="110"
+        trueValue={true}
+        falseValue={false}
     />
     <ButtonGroup v-model="size"
         checkType="radio"
@@ -42,7 +35,6 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
         v-model:selectedKey="selectedKey"
         theme={this.get('theme')}
         size={this.get('size')}
-        collapse={this.get('collapse')}
         showCollapseArrow={this.get('showCollapseArrow')}
     >
         <b:header>
@@ -96,8 +88,7 @@ export default class extends Component<Props> {
             expandedKeys: [],
             selectedKey: '2',
             size: 'default',
-            theme: 'dark',
-            collapse: false,
+            theme: 'light',
             showCollapseArrow: false
         } as MenuProps;
     }

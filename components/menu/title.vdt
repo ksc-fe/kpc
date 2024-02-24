@@ -1,23 +1,10 @@
-import {directClone, Transition} from 'intact';
-import {Dropdown, DropdownItem} from '../dropdown';
-import {Tooltip} from '../tooltip';
 import {Icon} from '../icon';
-import {Menu} from './menu';
 import {getRestProps, findChildren, isComponentVNode} from '../utils';
-import {isNullOrUndefined} from 'intact-shared';
 import {makeTitleStyles} from './styles';
 
 const rootMenu = this.rootMenu;
-const {theme, type, dot: rootDot, collapse} = rootMenu.get();
-const {children, key, className, disabled, dot} = this.get();
-const {isHighlighted, isSelected} = rootMenu.highlight;
-const {isExpanded: isExpandedKey} = this.expanded;
-const isExpanded = isExpandedKey(key);
-const {
-    isTopItem, subMenuVNode, isDropdownMenu,
-    tooltipContents, iconVNode, titleVNodes,
-    position, isCollapse,
-} = this.dropdown();
+const {collapse} = rootMenu.get();
+const {children} = this.get();
 
 const { k } = this.config;
 const classNameObj = {
@@ -25,11 +12,9 @@ const classNameObj = {
     [makeTitleStyles(k)]: true,
 };
 
-<template>
-    <div {...getRestProps(this)}  class={classNameObj}>
-        <template v-if={!collapse}>{children}</template>
-        <template v-else>
-            {findChildren(children, vNode => isComponentVNode(vNode, Icon))}
-        </template>
-    </div>
-</template>
+<div {...getRestProps(this)}  class={classNameObj}>
+    <template v-if={!collapse}>{children}</template>
+    <template v-else>
+        {findChildren(children, vNode => isComponentVNode(vNode, Icon))}
+    </template>
+</div>

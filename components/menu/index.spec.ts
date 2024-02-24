@@ -180,7 +180,7 @@ describe('Menu', () => {
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
 
-        let arrow = element.querySelector('.k-menu .k-menu-arrowbox') as HTMLElement;
+        let arrow = element.querySelector('.k-menu .k-menu-arrow-box') as HTMLElement;
         arrow.click();
         await wait(500);
         expect(element.outerHTML).to.matchSnapshot();
@@ -188,6 +188,6 @@ describe('Menu', () => {
         instance.set('showCollapseArrow', false);
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
-        expect(getElement('.k-menu-arrowbox')).to.be.undefined;
+        expect(getElement('.k-menu-arrow-box')).to.be.undefined;
     });
 });

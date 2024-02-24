@@ -7,7 +7,7 @@ import { cache } from '../utils';
 const defaults = {
     width: '16px',
     get transition() { return theme.transition.small },
-    get borderColor() { return theme.color.darkBorder; },
+    get borderColor() { return theme.color.border; },
     get hoverBorderColor() { return theme.color.primary; },
     bgColor: '#fff',
     textGap: '8px',

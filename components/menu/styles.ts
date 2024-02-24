@@ -22,7 +22,7 @@ const defaults = {
         hoverColor: '#fff',
         get disabledColor() { return theme.color.text },
         get activeBgColor() { return theme.color.primary },
-        get hoverBgColor() { return theme.color.hoverBg },
+        get hoverBgColor() { return palette(theme.color.primary, 4) },
         dotFontSize: '12px'
     },
 
@@ -30,8 +30,7 @@ const defaults = {
         height: '40px',
         padding: '0 17px',
         color: '#fff',
-        hoverColor: '#2a2a30',
-        borderTop: '1px solid #2f2f36',
+        get borderTop() { return `1px solid ${theme.color.darkBorder}` },
         margin:'4px 4px 0 4px'
     },
 
@@ -57,7 +56,7 @@ const defaults = {
         },
         title: {
             get color() { return theme.color.text }, 
-            borderTop: '1px solid #f0f2f4',
+            get borderTop() { return `1px solid ${theme.color.disabledBg}` },
         },
         active: {
             get color() { return theme.color.primary },
@@ -130,65 +129,60 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             border-top: ${menu.title.borderTop};
         }
 
-        // theme
-        ${(['light', 'white'] as const).map(theme => {
-            const styles = menu.light;
-            return css`
-                &.${k}-${theme} {
-                    background: ${styles.bgColor};
-                    .${k}-menu-header {
-                        color: ${styles.item.color};
-                    }
-                    .${k}-menu-item {
-                        .${k}-menu-item-title {
-                            color: ${styles.item.color};
-                            &:hover {
-                                background: #f3f5f6;
-                            }
-                        }
-                        &.${k}-highlighted {
-                            > .${k}-menu-item-title {
-                                color: ${styles.item.hoverColor};
-                            }
-                        }
-                        &.${k}-disabled {
-                            > .${k}-menu-item-title {
-                                color: ${styles.item.disabledColor} !important;
-                            }
-                        }
-                    }
-                    .${k}-menu-body {
-                        .${k}-menu-title {
-                            color: ${styles.title.color};
-                            border-top: ${styles.title.borderTop};
-                        }
-                    }
-                    
-                    .${k}-menu-arrowbox {
-                        background: ${styles.bgColor};
-                    }
-                    .${k}-menu:not(.${k}-dropdown-menu) {
-                        background: ${styles.bgColor};
-                    }
-
-                    &.${k}-horizontal {
-                        .${k}-menu-header {
-                            border-right: ${styles.border};
-                        }
-                        .${k}-menu-body > .${k}-menu-title {
-                            border-right: ${styles.title.borderTop};
-                        }
-                    }
-                    // active
-                    .${k}-menu-item.${k}-active {
-                        > .${k}-menu-item-title {
-                            color: ${menu.light.active.color } !important;
-                            background: ${menu.light.active.bgColor};
-                        }
+        // theme light
+        &.${k}-light {
+            background: ${menu.light.bgColor};
+            .${k}-menu-header {
+                color: ${menu.light.item.color};
+            }
+            .${k}-menu-item {
+                .${k}-menu-item-title {
+                    color: ${menu.light.item.color};
+                    &:hover {
+                        background: #f3f5f6;
                     }
                 }
-            `;
-        })}
+                &.${k}-highlighted {
+                    > .${k}-menu-item-title {
+                        color: ${menu.light.item.hoverColor};
+                    }
+                }
+                &.${k}-disabled {
+                    > .${k}-menu-item-title {
+                        color: ${menu.light.item.disabledColor} !important;
+                    }
+                }
+            }
+            .${k}-menu-body {
+                .${k}-menu-title {
+                    color: ${menu.light.title.color};
+                    border-top: ${menu.light.title.borderTop};
+                }
+            }
+            
+            .${k}-menu-arrow-box {
+                background: ${menu.light.bgColor};
+            }
+            .${k}-menu:not(.${k}-dropdown-menu) {
+                background: ${menu.light.bgColor};
+            }
+
+            &.${k}-horizontal {
+                .${k}-menu-header {
+                    border-right: ${menu.light.border};
+                }
+                .${k}-menu-body > .${k}-menu-title {
+                    border-right: ${menu.light.title.borderTop};
+                }
+            }
+            // active
+            .${k}-menu-item.${k}-active {
+                > .${k}-menu-item-title {
+                    color: ${menu.light.active.color } !important;
+                    background: ${menu.light.active.bgColor};
+                }
+            }
+        }
 
         // sizes
         ${sizes.map(size => {
@@ -201,7 +195,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                     .${k}-menu {
                         font-size: ${styles.fontSize}; 
                     }
-                    .${k}-menu-arrowbox {
+                    .${k}-menu-arrow-box {
                         left: ${styles.width}; 
                     }
                 }
@@ -214,7 +208,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             .${k}-icon {
                 margin-right: 0;
             }
-            .${k}-menu-arrow {
+            .${k}-menu-item-arrow {
                 display: none;
             }
         }
@@ -226,10 +220,10 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                 overflow: hidden;
                 border-top: none;
             }
-            .${k}-menu-arrowbox {
+            .${k}-menu-arrow-box {
                 left: 0;
                 transition: left ${menu.transition};
-                .${k}-menu-arrowhead:before {
+                .${k}-menu-arrow:before {
                     transform: rotateY(180deg);
                 }
             }
@@ -239,7 +233,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         &.${k}-dropdown-menu {
             width: fit-content;
             min-width: ${menu.dropdown.minWidth};
-            .${k}-menu-arrow {
+            .${k}-menu-item-arrow {
                 transform: rotate(-90deg)
             }
         }
@@ -275,7 +269,7 @@ export const makeTitleStyles = cache(function makeTitleStyles(k: string) {
 
 export const makeArrowStyles = cache(function makeArrowStyles(k: string) {
     return css`
-        &.${k}-menu-arrowbox {
+        &.${k}-menu-arrow-box {
             width: 14px;
             height: 60px;
             cursor: pointer;
@@ -309,7 +303,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
                 border-radius: ${menu.borderRadius};
                 background: #2a2a30;
             }
-            & > .${k}-menu-arrow:before {
+            & > .${k}-menu-item-arrow:before {
                 font-size: small;
             }
         }
@@ -327,7 +321,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
                 color: inherit;
             }
         }
-        .${k}-menu-arrow {
+        .${k}-menu-item-arrow {
             margin: 0 0 0 ${menu.icon.gap};
         }
 
@@ -335,7 +329,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
         &.${k}-expanded {
             > .${k}-menu-item-title {
                 color: ${item.hoverColor};
-                .${k}-menu-arrow {
+                .${k}-menu-item-arrow {
                     transform: rotateX(180deg);
                 }
             }

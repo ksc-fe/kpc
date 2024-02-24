@@ -12,7 +12,7 @@ const { k } = this.config;
 const classNameObj = {
     [`${k}-menu`]: true,
     [className]: className,
-    [`${k}-${theme}`]: (isRootMenu || isDropdownMenu) && theme,
+    [`${k}-${theme === 'dark' ? 'dark' : 'light'}`]: (isRootMenu || isDropdownMenu) && theme,
     [`${k}-${size}`]: isRootMenu && size !== 'default',
     [`${k}-collapsed`]: isRootMenu && collapse,
     [`${k}-collapsed-arrow`]: isRootMenu && showCollapseArrow && collapse,
@@ -36,12 +36,12 @@ const content = (
         </div>
         <div v-if={isRootMenu && showCollapseArrow && type !== 'horizontal'}
             class={{
-                [`${k}-menu-arrowbox`]: true,
+                [`${k}-menu-arrow-box`]: true,
                 [makeArrowStyles(k)]: true
             }}
             ev-click={this.onClick.bind(this)}
         >
-            <Icon class={`${k}-menu-arrowhead ion-arrow-left-b`} />
+            <Icon class={`${k}-menu-arrow ion-arrow-left-b`} />
         </div>
         <div class={{
             [`${k}-menu-body`]: true,
