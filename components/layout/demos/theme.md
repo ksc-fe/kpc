@@ -57,7 +57,7 @@ import {
                 </MenuItem>
                 <MenuItem key="2" disabled><Icon class="ion-star" />menu 2</MenuItem>
                 <MenuItem key="3">
-                    <i class="k-icon ion-heart"></i>menu 3
+                    <Icon class="ion-heart" />menu 3
                     <Menu>
                         <MenuItem key="3-1">sub menu 1</MenuItem>
                         <MenuItem key="3-2">sub menu 2</MenuItem>
@@ -76,7 +76,6 @@ import {
             切换主题：<ButtonGroup checkType="radio" v-model="theme">
                 <Button value="light">light</Button>
                 <Button value="dark">dark</Button>
-                <Button value="white">white</Button>
             </ButtonGroup>
         </Body>
     </Layout>
@@ -105,7 +104,7 @@ export default class extends Component {
         return {
             expandedKeys: [],
             selectedKey: '3-1',
-            theme: 'white' as MenuProps['theme'],
+            theme: 'light' as MenuProps['theme'],
         };
     }
 }

@@ -1,7 +1,7 @@
 import {DropdownMenu} from '../dropdown';
 import {getRestProps, findChildren, isComponentVNode} from '../utils';
 import {isDropdown} from './useDropdown';
-import {makeMenuStyles, makeTitleStyles, makeArrowStyles} from './styles';
+import {makeMenuStyles, makeTitleStyles} from './styles';
 import {Icon} from '../icon';
 
 const {children, className} = this.get();
@@ -35,17 +35,12 @@ const content = (
             </template>
         </div>
         <div v-if={isRootMenu && showCollapseArrow && type !== 'horizontal'}
-            class={{
-                [`${k}-menu-arrow-box`]: true,
-                [makeArrowStyles(k)]: true
-            }}
+            class={`${k}-menu-arrow-box`}
             ev-click={this.onClick.bind(this)}
         >
             <Icon class={`${k}-menu-arrow ion-arrow-left-b`} />
         </div>
-        <div class={{
-            [`${k}-menu-body`]: true,
-        }}>
+        <div class={`${k}-menu-body`}>
             {children}
         </div>
     </template>

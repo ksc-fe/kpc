@@ -22,7 +22,7 @@ const classNameObj = {
     [`${k}-layout-aside`]: true,
     [`${k}-collapsed`]: collapse,
     [`${k}-fixed`]: fixed,
-    [`${k}-${theme}`]: true,
+    [`${k}-${theme === 'dark' ? 'dark' : 'light'}`]: true,
     [className]: className,
     [makeAsideStyles(k)]: true,
 };

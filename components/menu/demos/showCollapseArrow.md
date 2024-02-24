@@ -13,7 +13,6 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
     >
         <Button value="light">light</Button>
         <Button value="dark">dark</Button>
-        <Button value="white">white</Button>
     </ButtonGroup>
     <Switch v-model="showCollapseArrow"
         on="展示折叠按钮"

@@ -13,7 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | expandedKeys | 定义菜单展开项 | <code>(string &#124; number)[]</code> | `[]` |
 | selectedKey | 定义菜单选中项 | <code>string &#124; number</code> | `undefined` |
-| theme | 定义菜单主题 | `"light"` &#124; `"dark"` &#124; `"white"` | `"dark"` |
+| theme | 定义菜单主题 | `"light"` &#124; `"dark"` &#124; `"white@deprecated"` | `"dark"` |
 | collapse | 菜单是否折叠 | `boolean` | `false` |
 | type | 定义菜单排列方式：垂直，水平 | `"vertical"` &#124; `"horizontal"` | `"vertical"` |
 | size | 定义菜单尺寸 | `"large"` &#124; `"default"` &#124; `"small"` | `"default"` |

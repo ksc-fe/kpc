@@ -129,6 +129,26 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             border-top: ${menu.title.borderTop};
         }
 
+        // menu arrow
+        .${k}-menu-arrow-box {
+            width: 14px;
+            height: 60px;
+            cursor: pointer;
+            background: ${menu.bgColor};
+            border-radius: 0 8px 8px 0;
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: 50%;
+            left: ${menu.width};
+            transition: left ${menu.transition};
+            transform: translateY(-50%);
+            .${k}-icon {
+                margin-right: 0;
+            }
+        }
+
         // theme light
         &.${k}-light {
             background: ${menu.light.bgColor};
@@ -264,29 +284,6 @@ export const makeTitleStyles = cache(function makeTitleStyles(k: string) {
         white-space: nowrap;
         overflow: hidden;
         flex-wrap: nowrap;
-    `;
-});
-
-export const makeArrowStyles = cache(function makeArrowStyles(k: string) {
-    return css`
-        &.${k}-menu-arrow-box {
-            width: 14px;
-            height: 60px;
-            cursor: pointer;
-            background: ${menu.bgColor};
-            border-radius: 0 8px 8px 0;
-            position: absolute;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            top: 50%;
-            left: ${menu.width};
-            transition: left ${menu.transition};
-            transform: translateY(-50%);
-            .${k}-icon {
-                margin-right: 0;
-            }
-        }
     `;
 });
 

@@ -21,7 +21,6 @@ import {Menu, MenuItem, Switch, ButtonGroup, Button, Icon} from 'kpc';
     >
         <Button value="light">light</Button>
         <Button value="dark">dark</Button>
-        <Button value="white">white</Button>
     </ButtonGroup>
     <Switch v-model="type"
         on="horizontal" off="vertical"

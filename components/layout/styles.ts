@@ -84,20 +84,14 @@ export const makeHeaderStyles = cache(function makeHeaderStyles(k: string) {
             box-shadow: ${theme.boxShadow};
         }
 
-        ${themes.map(theme => {
-            if (theme === 'dark') return;
-            const styles = layout.light;
-            return css`
-                &.${k}-${theme} {
-                    background: ${styles.bgColor};
-                    color: ${styles.color};
-                    border-bottom: ${styles.border};
-                    &.${k}-blur {
-                        background: ${setAlpha(styles.bgColor, 0.1)};
-                    }
-                }
-            `
-        })}
+        &.${k}-light {
+            background: ${layout.light.bgColor};
+            color: ${layout.light.color};
+            border-bottom: ${layout.light.border};
+            &.${k}-blur {
+                background: ${setAlpha(layout.light.bgColor, 0.1)};
+            }
+        }
     `;
 });
 

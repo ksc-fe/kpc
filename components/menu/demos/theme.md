@@ -12,7 +12,6 @@ import {ButtonGroup, Button, Menu, MenuItem, Icon} from 'kpc';
     <ButtonGroup checkType="radio" v-model="theme">
         <Button value="light">light</Button>
         <Button value="dark">dark</Button>
-        <Button value="white">white</Button>
     </ButtonGroup>
     <br /><br />
     <Menu v-model:expandedKeys="expandedKeys" theme={this.get('theme')}>
