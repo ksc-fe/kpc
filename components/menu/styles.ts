@@ -12,12 +12,12 @@ const defaults = {
     bgColor: '#1c1c20',
     fontSize: '14px',
     get borderRadius() { return theme.borderRadius },
+    get border() { return `1px solid ${theme.color.darkBorder}` },
 
     item: {
         height: '40px',
-        padding: '0 21px',
-        hoverPadding: '0 17px',
-        hoverMargin: '0 4px',
+        padding: '0 17px',
+        bodyPadding: '0 4px',
         color: '#b2b2b2',
         hoverColor: '#fff',
         get disabledColor() { return theme.color.text },
@@ -30,7 +30,6 @@ const defaults = {
         height: '40px',
         padding: '0 17px',
         color: '#fff',
-        get borderTop() { return `1px solid ${theme.color.darkBorder}` },
         margin:'4px 4px 0 4px'
     },
 
@@ -48,7 +47,7 @@ const defaults = {
 
     light: {
         bgColor: '#fff',
-        border: '1px solid #eee',
+        get border() { return `1px solid ${theme.color.disabledBg}` },
         item: {
             get color() { return theme.color.text }, 
             get hoverColor() { return theme.color.primary }, 
@@ -56,7 +55,6 @@ const defaults = {
         },
         title: {
             get color() { return theme.color.text }, 
-            get borderTop() { return `1px solid ${theme.color.disabledBg}` },
         },
         active: {
             get color() { return theme.color.primary },
@@ -100,6 +98,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             transition: width ${menu.transition};
             background: ${menu.bgColor};
             font-size: ${menu.fontSize};
+            border: 1px solid ${theme.color.disabledBg};
             position: relative;
         }
 
@@ -113,9 +112,14 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         // header
         .${k}-menu-header {
             height: ${menu.header.height};
+            padding: 0 21px;
             color: ${menu.header.color};
             font-size: ${menu.header.fontSize};
             font-weight: bold;
+        }
+
+        .${k}-menu-body {
+            padding: ${menu.item.bodyPadding};
         }
 
         // menu title
@@ -123,10 +127,10 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             transition: all ${menu.transition};
             height: ${menu.title.height};
             padding: ${menu.title.padding};
-            margin: ${menu.title.margin};
+            margin-top: 4px;
+            border-top: ${menu.border};
             color: ${menu.title.color};
             font-weight: bold;
-            border-top: ${menu.title.borderTop};
         }
 
         // menu arrow
@@ -141,9 +145,11 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             align-items: center;
             justify-content: center;
             top: 50%;
-            left: ${menu.width};
+            left: calc(${menu.width} - 2px);
             transition: left ${menu.transition};
             transform: translateY(-50%);
+            border: ${menu.border};
+            border-left: none;
             .${k}-icon {
                 margin-right: 0;
             }
@@ -173,15 +179,16 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                     }
                 }
             }
-            .${k}-menu-body {
-                .${k}-menu-title {
-                    color: ${menu.light.title.color};
-                    border-top: ${menu.light.title.borderTop};
-                }
+
+            .${k}-menu-title {
+                color: ${menu.light.title.color};
+                border-top: ${menu.light.border};
             }
             
             .${k}-menu-arrow-box {
                 background: ${menu.light.bgColor};
+                border: ${menu.light.border};
+                border-left: none;
             }
             .${k}-menu:not(.${k}-dropdown-menu) {
                 background: ${menu.light.bgColor};
@@ -192,7 +199,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                     border-right: ${menu.light.border};
                 }
                 .${k}-menu-body > .${k}-menu-title {
-                    border-right: ${menu.light.title.borderTop};
+                    border-right: ${menu.light.border};
                 }
             }
             // active
@@ -216,7 +223,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                         font-size: ${styles.fontSize}; 
                     }
                     .${k}-menu-arrow-box {
-                        left: ${styles.width}; 
+                        left: calc(${styles.width} - 2px); 
                     }
                 }
             `;
@@ -224,7 +231,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
 
         // collapse
         &.${k}-collapsed {
-            width: calc(${menu.icon.width} + ${getLeft(menu.item.padding)} * 2);
+            width: calc(${menu.icon.width} + (${getLeft(menu.item.padding)} + ${getLeft(menu.item.bodyPadding)}) * 2);
             .${k}-icon {
                 margin-right: 0;
             }
@@ -236,13 +243,15 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         // show collapse arrow
         &.${k}-collapsed-arrow {
             width: 0px;
-            .${k}-menu-item, .${k}-menu-title {
+            .${k}-menu-body {
                 overflow: hidden;
-                border-top: none;
+                padding: 0;
             }
+            // .${k}-menu-title {
+            //     border-top: none;
+            // }
             .${k}-menu-arrow-box {
                 left: 0;
-                transition: left ${menu.transition};
                 .${k}-menu-arrow:before {
                     transform: rotateY(180deg);
                 }
@@ -267,7 +276,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                 align-items: center;
                 .${k}-menu-title {
                     border-top: none;
-                    border-right: ${menu.title.borderTop};
+                    border-right: ${menu.border};
                 }
             }
         }
@@ -295,8 +304,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
             cursor: pointer;
             height: ${item.height};
             &:hover {
-                margin: ${item.hoverMargin};
-                padding: ${item.hoverPadding};
+                padding: ${item.padding};
                 border-radius: ${menu.borderRadius};
                 background: #2a2a30;
             }
@@ -342,8 +350,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
         // active
         &.${k}-active {
             > .${k}-menu-item-title {
-                margin: ${item.hoverMargin};
-                padding: ${item.hoverPadding};
+                padding: ${item.padding};
                 border-radius: ${menu.borderRadius};
                 color: ${item.activeBgColor} !important;
                 background: ${item.hoverBgColor};
@@ -368,22 +375,17 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
 
 export const makeNestedMenuStyles = cache(function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingLeft: string = getLeft(menu.item.padding)) {
     const paddingLeft = `${parentPaddingLeft}${hasIcon ? ' + ' + menu.icon.width + ' + ' + menu.icon.gap : ''}`;
-    const marginLeft = getLeft(menu.item.hoverMargin);
     return [
         css`
             &.${k}-menu {
                 position: relative;
                 width: auto;
                 background: ${menu.bgColor};
-                .${k}-menu-item-title {
-                    padding-left: calc(${paddingLeft});
-                    &:hover {
-                        padding-left: calc(${paddingLeft} - ${marginLeft});
-                    }
-                }
-                .${k}-active {
-                    > .${k}-menu-item-title {
-                        padding-left: calc(${paddingLeft} - ${marginLeft});
+                border: none;
+                .${k}-menu-body {
+                    padding: 0;
+                    .${k}-menu-item-title {
+                        padding-left: calc(${paddingLeft});
                     }
                 }
             }

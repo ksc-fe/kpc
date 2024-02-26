@@ -70,8 +70,6 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
 ```styl
 .k-switch
     margin 0 16px
-.example-opera
-    background #f2f3f4
 ```
 
 ```ts
