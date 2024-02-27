@@ -18,19 +18,19 @@ const defaults = {
         height: '40px',
         padding: '0 17px',
         bodyPadding: '0 4px',
-        color: '#b2b2b2',
+        color: '#aeaeb9',
         hoverColor: '#fff',
-        get disabledColor() { return theme.color.text },
+        disabledColor: '#53535a',
         get activeBgColor() { return theme.color.primary },
         get hoverBgColor() { return palette(theme.color.primary, 4) },
-        dotFontSize: '12px'
+        dotFontSize: '12px',
+        subTitleColor: '#858592',
     },
 
     title: {
         height: '40px',
         padding: '0 17px',
         color: '#fff',
-        margin:'4px 4px 0 4px'
     },
 
     icon: {
@@ -39,7 +39,7 @@ const defaults = {
     },
 
     header: {
-        height: '50px',
+        height: '52px',
         fontSize: '14px',
         color: '#fff',
         borderBottom: '1px solid #1b1b1d',
@@ -51,10 +51,12 @@ const defaults = {
         item: {
             get color() { return theme.color.text }, 
             get hoverColor() { return theme.color.primary }, 
-            get disabledColor() { return theme.color.disabled },
+            get hoverBg() { return theme.color.hoverBg },
+            disabledColor: '#b6bec2',
+            subTitleColor: '#5e686f',
         },
         title: {
-            get color() { return theme.color.text }, 
+            get color() { return theme.color.title }, 
         },
         active: {
             get color() { return theme.color.primary },
@@ -98,7 +100,6 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             transition: width ${menu.transition};
             background: ${menu.bgColor};
             font-size: ${menu.fontSize};
-            border: 1px solid ${theme.color.disabledBg};
             position: relative;
         }
 
@@ -124,13 +125,15 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
 
         // menu title
         .${k}-menu-title {
-            transition: all ${menu.transition};
             height: ${menu.title.height};
-            padding: ${menu.title.padding};
-            margin-top: 4px;
             border-top: ${menu.border};
-            color: ${menu.title.color};
-            font-weight: bold;
+            margin-top: 4px;
+            .${k}-menu-name {
+                transition: all ${menu.transition};
+                height: ${menu.title.height};
+                color: ${menu.title.color};
+                font-weight: bold;
+            }
         }
 
         // menu arrow
@@ -153,20 +156,29 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             .${k}-icon {
                 margin-right: 0;
             }
+            &:hover {
+                .${k}-menu-arrow:before {
+                    color: ${menu.item.activeBgColor};
+                }
+            }
         }
 
         // theme light
         &.${k}-light {
+            border: 1px solid ${theme.color.disabledBg};
             background: ${menu.light.bgColor};
             .${k}-menu-header {
-                color: ${menu.light.item.color};
+                color: ${menu.light.title.color};
             }
             .${k}-menu-item {
                 .${k}-menu-item-title {
                     color: ${menu.light.item.color};
                     &:hover {
-                        background: #f3f5f6;
+                        background: ${menu.light.item.hoverBg};
                     }
+                }
+                .${k}-menu-item-arrow {
+                    color: ${menu.light.item.color};
                 }
                 &.${k}-highlighted {
                     > .${k}-menu-item-title {
@@ -181,14 +193,21 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             }
 
             .${k}-menu-title {
-                color: ${menu.light.title.color};
                 border-top: ${menu.light.border};
+                .${k}-menu-name {
+                    color: ${menu.light.title.color};
+                }
             }
             
             .${k}-menu-arrow-box {
                 background: ${menu.light.bgColor};
                 border: ${menu.light.border};
                 border-left: none;
+                &:hover {
+                    .${k}-menu-arrow:before {
+                        color: ${menu.light.active.color};
+                    }
+                }
             }
             .${k}-menu:not(.${k}-dropdown-menu) {
                 background: ${menu.light.bgColor};
@@ -207,6 +226,11 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                 > .${k}-menu-item-title {
                     color: ${menu.light.active.color } !important;
                     background: ${menu.light.active.bgColor};
+                }
+            }
+            .${k}-sub-menu {
+                .${k}-menu-item-title, .${k}-menu-item-arrow {
+                    color: ${menu.light.item.subTitleColor} !important;
                 }
             }
         }
@@ -243,13 +267,11 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         // show collapse arrow
         &.${k}-collapsed-arrow {
             width: 0px;
+            border-left: none;
             .${k}-menu-body {
                 overflow: hidden;
                 padding: 0;
             }
-            // .${k}-menu-title {
-            //     border-top: none;
-            // }
             .${k}-menu-arrow-box {
                 left: 0;
                 .${k}-menu-arrow:before {
@@ -327,7 +349,9 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
             }
         }
         .${k}-menu-item-arrow {
+            color: ${item.color};
             margin: 0 0 0 ${menu.icon.gap};
+            transition: transform ${menu.transition};
         }
 
         // expanded
@@ -335,7 +359,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
             > .${k}-menu-item-title {
                 color: ${item.hoverColor};
                 .${k}-menu-item-arrow {
-                    transform: rotateX(180deg);
+                    transform: rotate(180deg);
                 }
             }
         }
@@ -350,7 +374,6 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
         // active
         &.${k}-active {
             > .${k}-menu-item-title {
-                padding: ${item.padding};
                 border-radius: ${menu.borderRadius};
                 color: ${item.activeBgColor} !important;
                 background: ${item.hoverBgColor};
@@ -386,6 +409,9 @@ export const makeNestedMenuStyles = cache(function makeNestedMenuStyles(k: strin
                     padding: 0;
                     .${k}-menu-item-title {
                         padding-left: calc(${paddingLeft});
+                    }
+                    .${k}-menu-item-title, .${k}-menu-item-arrow {
+                        color: ${menu.item.subTitleColor};
                     }
                 }
             }
