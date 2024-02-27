@@ -4,6 +4,17 @@ order: 99
 sidebar: doc
 ---
 
+## v3.2.0
+
+1. `Add` `Menu`新增`showCollapseArrow`属性，可以选择展示隐藏折叠按钮，默认`showCollapseArrow: false` [#964](https://github.com/ksc-fe/kpc/pull/964)
+2. `Add` `Menu`新增`MenuTitle`子组件，用于展示一级菜单项 [#964](https://github.com/ksc-fe/kpc/pull/964)
+3. `Fix` 修复Select在searchable和multiple模式下，disabled选项依然可以被选中 [#963](https://github.com/ksc-fe/kpc/issues/963)
+4. `Fix` 修复Table拖动调整列宽时，不应该触发排序 [#962](https://github.com/ksc-fe/kpc/issues/962)
+
+### @king-design/react
+
+1. `Fix` 修复React组件作为KingDesign组件直接子元素，组件内部自己无法正确卸载元素 [#965](https://github.com/ksc-fe/kpc/issues/965)
+
 ## v3.1.6
 
 1. `Change` 优化`Datepicker`日期时间范围选择，只有选择完开始和结束日期，才切换到时间选择面板 [#944](https://github.com/ksc-fe/kpc/issues/944)
