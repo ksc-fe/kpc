@@ -116,8 +116,8 @@ const { k } = this.config;
                                                 <div v-if={sortable}
                                                     class={{[`${k}-column-sort`]: true, [`${k}-${type}`]: type}}
                                                 >
-                                                    <Icon class={`${k}-icon-up ${k}-asc`} size="mini" />
-                                                    <Icon class={`${k}-icon-down ${k}-desc`} size="mini" />
+                                                    <Icon class={`${k}-icon-up-bold ${k}-asc`} size="mini" />
+                                                    <Icon class={`${k}-icon-down-bold ${k}-desc`} size="mini" />
                                                 </div>
                                             </div>
                                         </th>
