@@ -4,11 +4,15 @@ import {makeTitleStyles} from './styles';
 
 const rootMenu = this.rootMenu;
 const {collapse} = rootMenu.get();
-const {children} = this.get();
-
+const {children, className} = this.get();
 const { k } = this.config;
 
-<div {...getRestProps(this)} class={`${k}-menu-title`}>
+const classNameObj = {
+    [`${k}-menu-title`]: true,
+    [className]: className,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
     <div class={{
         [`${k}-menu-name`]: true,
         [makeTitleStyles(k)]: true
