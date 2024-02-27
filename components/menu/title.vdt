@@ -7,14 +7,15 @@ const {collapse} = rootMenu.get();
 const {children} = this.get();
 
 const { k } = this.config;
-const classNameObj = {
-    [`${k}-menu-title`]: true,
-    [makeTitleStyles(k)]: true,
-};
 
-<div {...getRestProps(this)}  class={classNameObj}>
-    <template v-if={!collapse}>{children}</template>
-    <template v-else>
-        {findChildren(children, vNode => isComponentVNode(vNode, Icon))}
-    </template>
+<div {...getRestProps(this)} class={`${k}-menu-title`}>
+    <div class={{
+        [`${k}-menu-name`]: true,
+        [makeTitleStyles(k)]: true
+    }}>
+        <span v-if={!collapse}>{children}</span>
+        <template v-else>
+            {findChildren(children, vNode => isComponentVNode(vNode, Icon))}
+        </template>
+    </div>
 </div>
