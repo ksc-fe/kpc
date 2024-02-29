@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v3.2.1
+
+### @king-design/react
+
+1. `Fix` 修复React 16版本下的问题 [#968](https://github.com/ksc-fe/kpc/issues/968) [#965](https://github.com/ksc-fe/kpc/issues/965)
+
 ## v3.2.0
 
 1. `Add` `Menu`新增`showCollapseArrow`属性，可以选择展示隐藏折叠按钮，默认`showCollapseArrow: false` [#964](https://github.com/ksc-fe/kpc/pull/964)
