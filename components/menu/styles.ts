@@ -123,6 +123,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             padding: ${menu.item.bodyPadding};
             max-height: calc(100vh - ${menu.header.height});
             overflow-y: auto;
+            overflow-x: hidden;
         }
 
         // menu title
