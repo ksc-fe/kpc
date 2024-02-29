@@ -121,6 +121,8 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
 
         .${k}-menu-body {
             padding: ${menu.item.bodyPadding};
+            max-height: calc(100vh - ${menu.header.height});
+            overflow-y: auto;
         }
 
         // menu title
@@ -367,7 +369,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
         // highlighted
         &.${k}-highlighted {
             > .${k}-menu-item-title {
-                color: ${item.hoverColor};
+                color: ${menu.light.item.hoverColor};
             }
         }
 

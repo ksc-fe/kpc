@@ -4,9 +4,9 @@ import { ConfigProvider } from '.';
 import { Button, ButtonGroup } from '../button';
 
 describe('Config', () => {
-    // afterEach(async () => {
-        // unmount();
-    // });
+    afterEach(async () => {
+        unmount();
+    });
 
     it('should change classname prefix', async function() {
         class Demo extends Component<{k: string}> {
