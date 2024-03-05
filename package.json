@@ -190,8 +190,7 @@
   "sideEffects": [
     "*.css",
     "*.styl",
-    "**/*/styles/global.*",
-    "**/*/styles/fonts/*"
+    "./styles/**/*"
   ],
   "browserslist": [
     "last 2 versions",

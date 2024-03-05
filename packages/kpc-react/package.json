@@ -44,7 +44,6 @@
     "tslib": "^2.3.1"
   },
   "sideEffects": [
-    "**/*/styles/global.*",
-    "**/*/styles/fonts/*"
+    "./styles/**/*"
   ]
 }
