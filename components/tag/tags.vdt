@@ -44,7 +44,7 @@ const vNodes = children.value;
             +{hiddenChildren.value.length}
         </Tag>
         <b:content>
-            <div class={classNameObj}>{hiddenChildren.value}</div>
+            <div class={{ ...classNameObj, [`${k}-nowrap`]: false /* should not nowrap */ }}>{hiddenChildren.value}</div>
         </b:content>
     </Tooltip>
     <b:append />
