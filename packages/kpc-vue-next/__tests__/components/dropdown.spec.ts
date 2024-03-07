@@ -27,6 +27,7 @@ describe('Dropdown', () => {
                             <DropdownItem>item 2</DropdownItem>
                             <DropdownItem>item 3</DropdownItem>
                         </DropdownMenu>
+                        <!-- comment -->
                     </Dropdown>
                 </div>
             `,

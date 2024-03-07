@@ -99,7 +99,7 @@ export class Dropdown<
         // ignore whitespaces between elements in Vue
         if ((this as any).$isVue || (this as any).$isVueNext) {
             if (Array.isArray(children)) {
-                children = children.filter(child => child !== ' ');
+                children = children.filter(child => child !== ' ' && child /* comment is null in vue3 */);
             }
         }
         if (process.env.NODE_ENV !== 'production') {
