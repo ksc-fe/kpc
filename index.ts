@@ -63,6 +63,7 @@ export * from './components/transfer';
 export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
+export * from './components/view';
 export * from './components/wave';
 
 export const version = '3.2.2-beta.0';
