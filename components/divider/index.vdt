@@ -1,0 +1,33 @@
+import {makeStyles} from './styles';
+
+const {
+    children, className, dashed, 
+    position, type, theme, marginSize, margin
+} = this.get();
+const { k } = this.config;
+
+const getMarginValue = () => {
+  const marginStr = typeof margin === 'number' ? `${margin}px` : margin;
+  return type === 'vertical' ? `0 ${marginStr}` : `${marginStr} 0`;
+};
+
+const classNameObj = {
+    [`${k}-divider`]: true,
+    [`${k}-dashed`]: dashed,
+    [`${k}-${theme}`]: theme,
+    [`${k}-divider-${type}`]: type,
+    [`${k}-divider-${marginSize}`]: marginSize && marginSize !== 'none',
+    [`${k}-divider-with-text`]: children && type === 'horizontal',
+    [`${k}-divider-with-text-${position}`]: position !== 'center',
+    [makeStyles(k)]: true,
+    [className]: className,
+};
+
+<div
+    class={classNameObj}
+    style={{margin: getMarginValue()}}
+>
+    <div v-if={children && type === 'horizontal'} class={`${k}-divider-text`}>
+        {children}
+    </div>
+</div>

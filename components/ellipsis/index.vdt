@@ -1,0 +1,35 @@
+import { makeStyles, makeTooltipStyles } from './styles';
+import {Tooltip} from '../tooltip';
+
+const {
+    children, className, maxLines, 
+    tooltipDisabled, position, tooltipClass,
+    theme
+} = this.get();
+const { k } = this.config;
+
+const { showTooltip } = this.ellipsis();
+
+const classNameObj = {
+    [`${k}-ellipsis`]: true,
+    [`${k}-multiline`]: maxLines,
+    [makeStyles(k, maxLines)]: true,
+    [className]: className,
+};
+
+<template>
+    <Tooltip
+        disabled={!showTooltip.value || tooltipDisabled}
+        position={position}
+        theme={theme}
+        class={tooltipClass}
+    >
+        <div
+            class={classNameObj}
+            ref={this.ellipsisRef}
+        >
+            {children}
+        </div>
+        <b:content>{children}</b:content> 
+    </Tooltip>
+</template>

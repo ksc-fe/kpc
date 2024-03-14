@@ -1,4 +1,5 @@
 import {Icon} from '../icon';
+import {Ellipsis} from '../ellipsis';
 import {getRestProps, findChildren, isComponentVNode} from '../utils';
 import {makeTitleStyles} from './styles';
 
@@ -17,7 +18,7 @@ const classNameObj = {
         [`${k}-menu-name`]: true,
         [makeTitleStyles(k)]: true
     }}>
-        <span v-if={!collapse}>{children}</span>
+        <Ellipsis position="bottom" v-if={!collapse}>{children}</Ellipsis>
         <template v-else>
             {findChildren(children, vNode => isComponentVNode(vNode, Icon))}
         </template>

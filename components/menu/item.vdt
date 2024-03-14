@@ -3,6 +3,7 @@ import {Dropdown, DropdownItem} from '../dropdown';
 import {Tooltip} from '../tooltip';
 import {Icon} from '../icon';
 import {Menu} from './menu';
+import {Ellipsis} from '../ellipsis';
 import {getRestProps, expandAnimationCallbacks} from '../utils';
 import {isNullOrUndefined} from 'intact-shared';
 import {makeItemStyles, makeTitleStyles, makeNestedMenuStyles} from './styles';
@@ -36,7 +37,9 @@ const title = (children) => (
         ev-click={this.onClick.bind(this, subMenuVNode)}
     >
         <Icon class={`${k}-menu-dot ion-record`} v-if={showDot} />
-        <div class={`${k}-menu-name`}>{children}</div>
+        <div class={`${k}-menu-name`}>
+            <Ellipsis position="bottom">{children}</Ellipsis>
+        </div>
         <Icon class={`${k}-menu-item-arrow ion-arrow-down-b`} v-if={subMenuVNode} />
     </div>
 );
