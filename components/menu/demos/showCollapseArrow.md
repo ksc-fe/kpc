@@ -41,7 +41,7 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button, Divider} f
             自定义Header
         </b:header>
         <MenuItem key="0">menu 0</MenuItem>
-        <MenuTitle>title 1title 1title 1title 1title 1</MenuTitle>
+        <MenuTitle>title 1</MenuTitle>
         <MenuItem key="1">menu 1</MenuItem>
         <MenuItem key="2">menu 2</MenuItem>
         <MenuItem key="3">menu 3menu 3menu 3menu 3menu 3menu 3</MenuItem>
@@ -57,8 +57,8 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button, Divider} f
                 <MenuItem key="6-4">
                     sub menu 7
                     <Menu>
-                        <MenuItem key="6-7-1">Option 1</MenuItem>
-                        <MenuItem key="6-7-2">Option 2</MenuItem>
+                        <MenuItem key="6-7-1">option 1</MenuItem>
+                        <MenuItem key="6-7-2">option 2</MenuItem>
                     </Menu>
                 </MenuItem>
             </Menu>

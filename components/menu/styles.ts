@@ -1,6 +1,7 @@
 import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, getLeft, palette} from '../../styles/utils';
+import type {MenuProps} from './menu';
 import '../../styles/global';
 import { cache } from '../utils';
 
@@ -169,6 +170,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         // theme light
         &.${k}-light {
             border: 1px solid ${theme.color.disabledBg};
+            border-top: 0;
             background: ${menu.light.bgColor};
             .${k}-menu-header {
                 color: ${menu.light.title.color};
@@ -342,13 +344,9 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
             display: flex;
             align-items: center;
             min-width: 0;
-            span {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                min-width: 0;
-            }
             .${k}-icon {
                 color: inherit;
+                display: inline-block;
             }
         }
         .${k}-menu-item-arrow {
@@ -399,8 +397,9 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
     `
 });
 
-export const makeNestedMenuStyles = cache(function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingLeft: string = getLeft(menu.item.padding)) {
-    const paddingLeft = `${parentPaddingLeft}${hasIcon ? ' + ' + menu.icon.width + ' + ' + menu.icon.gap : ''}`;
+export const makeNestedMenuStyles = cache(function makeNestedMenuStyles(k: string, hasIcon: boolean, parentPaddingLeft: string = getLeft(menu.item.padding), size: MenuProps['size']) {
+    const fontSize = `${size === 'small' ? menu.small.fontSize : menu.fontSize}`;
+    const paddingLeft = `${parentPaddingLeft}${hasIcon ? ' + ' + menu.icon.width + ' + ' + menu.icon.gap : ' + ' + fontSize}`;
     return [
         css`
             &.${k}-menu {

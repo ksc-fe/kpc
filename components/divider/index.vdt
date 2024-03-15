@@ -14,7 +14,7 @@ const getMarginValue = () => {
 const classNameObj = {
     [`${k}-divider`]: true,
     [`${k}-dashed`]: dashed,
-    [`${k}-${theme}`]: theme,
+    [`${k}-${theme === 'dark' ? 'dark' : 'light'}`]: theme,
     [`${k}-divider-${type}`]: type,
     [`${k}-divider-${marginSize}`]: marginSize && marginSize !== 'none',
     [`${k}-divider-with-text`]: children && type === 'horizontal',

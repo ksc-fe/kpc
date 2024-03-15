@@ -9,7 +9,7 @@ import {isNullOrUndefined} from 'intact-shared';
 import {makeItemStyles, makeTitleStyles, makeNestedMenuStyles} from './styles';
 
 const rootMenu = this.rootMenu;
-const {theme, type, dot: rootDot} = rootMenu.get();
+const {theme, type, dot: rootDot, size} = rootMenu.get();
 const {children, key, className, disabled, dot} = this.get();
 const {isHighlighted, isSelected} = rootMenu.highlight;
 const {isExpanded: isExpandedKey} = this.expanded;
@@ -55,7 +55,7 @@ const title = (children) => (
             {(() => {
                 if (subMenuVNode) {
                     const paddingLeft = this.parentMenu.get('_paddingLeft');
-                    const [_classname, _paddingLeft] = makeNestedMenuStyles(k, showDot || !!iconVNode, paddingLeft);
+                    const [_classname, _paddingLeft] = makeNestedMenuStyles(k, showDot || !!iconVNode, paddingLeft, size);
                     const className = _$cn({
                         [_classname]: true,
                         [subMenuVNode.className]: subMenuVNode.className,

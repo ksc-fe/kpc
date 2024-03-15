@@ -6,7 +6,7 @@ export interface DividerProps {
     dashed?: boolean,
     position?: 'left' | 'right' | 'center',
     type?: 'vertical' | 'horizontal',
-    theme?: 'light' | 'dark',
+    theme?: 'light' | 'dark' | 'white',
     marginSize?: 'large' | 'default' | 'small' | 'none',
     margin?: string | number
 }
@@ -15,7 +15,7 @@ const typeDefs: Required<TypeDefs<DividerProps>> = {
     dashed: Boolean,
     position: ['left', 'right', 'center'],
     type: ['vertical', 'horizontal'],
-    theme: ['light', 'dark'],
+    theme: ['light', 'dark', 'white'],
     marginSize: ['large', 'default', 'small', 'none'],
     margin: [String, Number]
 };

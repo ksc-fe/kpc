@@ -10,7 +10,6 @@ setDefault(() => {
 export const makeStyles = cache(function makeStyles(k: string, maxLines: number) {
     return css`
         &.${k}-ellipsis {
-            cursor: pointer;
             overflow: hidden;
             white-space: nowrap;
             text-overflow: ellipsis;

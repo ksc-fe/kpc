@@ -26,6 +26,7 @@ const classNameObj = {
     >
         <div
             class={classNameObj}
+            style={{cursor: (showTooltip.value && !tooltipDisabled) ? 'pointer' : 'default'}}
             ref={this.ellipsisRef}
         >
             {children}
