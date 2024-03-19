@@ -4,6 +4,12 @@ order: 99
 sidebar: doc
 ---
 
+## v2.1.7
+
+### @king-design/react
+
+1. `Change` 更新intact-react依赖
+
 ## v2.1.6
 
 ### @king-design/react
