@@ -13,13 +13,23 @@ import {Card, Divider} from 'kpc';
         <div>默认直线</div>
         <Divider/>
         <div>虚线</div>
-        <Divider dashed/>
+        <Divider borderType={this.get('border')}/>
     </Card>
 </div>
 ```
 
 ```ts
-export default class extends Component {
+
+interface Props {
+    border?: 'solid' | 'dashed' | 'dotted' | 'double'
+}
+
+export default class extends Component<Props> {
     static template = template;
+    static defaults() {
+        return {
+            border: 'dashed'
+        } as Props;
+    }
 }
 ```

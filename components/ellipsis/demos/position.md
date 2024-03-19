@@ -6,16 +6,12 @@ order: 1
 `position`属性可以设置`tooltip`的位置，参看[Tooltip](https://design.ksyun.com/components/tooltip/?_blank){target="_blank"}组件的`position`属性。
 
 ```vdt
-import {Ellipsis, Split} from 'kpc';
+import {Ellipsis} from 'kpc';
 
-<Split style="width: 400px">
-    <b:first>
-        <Ellipsis class="panel" position="right">tooltip在右侧tooltip在右侧</Ellipsis>
-    </b:first>
-    <b:last>
-        <Ellipsis class="panel" position="bottom">tooltip在下方tooltip在下方</Ellipsis>
-    </b:last>
-</Split>
+<div>
+    <Ellipsis position="right" style={{width: '90px'}}>tooltip在右侧tooltip在右侧</Ellipsis>
+    <Ellipsis position="bottom" style={{width: '90px'}}>tooltip在下方tooltip在下方</Ellipsis>
+</div>  
 ```
 
 ```styl

@@ -1,20 +1,22 @@
-import {useInstance, RefObject, onMounted} from 'intact';
+import {useInstance, createRef} from 'intact';
 import type {Ellipsis} from './';
 import { useResizeObserver } from '../../hooks/useResizeObserver';
 import { useState } from '../../hooks/useState';
 
-export function useEllipsis(elementRef: RefObject<HTMLElement>) {
+export function useEllipsis() {
     const instance = useInstance() as Ellipsis;
+    const ellipsisRef = createRef<HTMLDivElement>();
     let showTooltip = useState<boolean>(false);
 
-    useResizeObserver(elementRef, isShowTooltip);
+    useResizeObserver(ellipsisRef, isShowTooltip);
 
     function isShowTooltip() {
         const isMulti = instance.get('maxLines');
+        const element = ellipsisRef.value!.children[0] as HTMLDivElement;
 
         const _showTooltip = isMulti
-            ? elementRef.value!.scrollHeight > elementRef.value!.clientHeight
-            : elementRef.value!.offsetWidth < elementRef.value!.scrollWidth;
+            ? element.scrollHeight > element.clientHeight
+            : element.offsetWidth < element.scrollWidth;
         
         requestAnimationFrame(() => {
             showTooltip.set(_showTooltip);
@@ -22,7 +24,8 @@ export function useEllipsis(elementRef: RefObject<HTMLElement>) {
     }
     
 
-    return () => ({
-        showTooltip,
-    });
+    return {
+        ellipsisRef,
+        showTooltip
+    };
 }

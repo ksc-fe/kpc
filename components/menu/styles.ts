@@ -122,7 +122,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
 
         .${k}-menu-body {
             padding: ${menu.item.bodyPadding};
-            max-height: calc(100vh - ${menu.header.height});
+            max-height: calc(100% - ${menu.header.height});
             overflow-y: auto;
             overflow-x: hidden;
         }
@@ -409,6 +409,7 @@ export const makeNestedMenuStyles = cache(function makeNestedMenuStyles(k: strin
                 border: none;
                 .${k}-menu-body {
                     padding: 0;
+                    max-height: 100%;
                     .${k}-menu-item-title {
                         padding-left: calc(${paddingLeft});
                     }

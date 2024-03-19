@@ -9,12 +9,6 @@ setDefault(() => {
 
 export const makeStyles = cache(function makeStyles(k: string, maxLines: number) {
     return css`
-        &.${k}-ellipsis {
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-
         &.${k}-multiline {
             white-space: normal;
             display: -webkit-box;

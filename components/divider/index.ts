@@ -3,28 +3,27 @@ import template from './index.vdt';
 import { useConfigContext } from '../config';
 
 export interface DividerProps {
-    dashed?: boolean,
+    borderType?: 'solid' | 'dashed' | 'dotted' | 'double',
     position?: 'left' | 'right' | 'center',
     type?: 'vertical' | 'horizontal',
-    theme?: 'light' | 'dark' | 'white',
-    marginSize?: 'large' | 'default' | 'small' | 'none',
-    margin?: string | number
+    theme?: 'light' | 'dark',
+    margin?: 'large' | 'default' | 'small' | 'none' | number,
 }
 
 const typeDefs: Required<TypeDefs<DividerProps>> = {
-    dashed: Boolean,
+    borderType: ['solid', 'dashed', 'dotted', 'double'],
     position: ['left', 'right', 'center'],
     type: ['vertical', 'horizontal'],
-    theme: ['light', 'dark', 'white'],
-    marginSize: ['large', 'default', 'small', 'none'],
-    margin: [String, Number]
+    theme: ['light', 'dark'],
+    margin: ['large', 'default', 'small', 'none', Number]
 };
 
 const defaults = (): Partial<DividerProps> => ({
+    borderType: 'solid',
     position: 'center',
     type: 'horizontal',
     theme: 'light',
-    marginSize: 'default'
+    margin: 'default'
 });
 
 export class Divider extends Component<DividerProps> {

@@ -15,7 +15,7 @@ import {Ellipsis, Split} from 'kpc';
         <Ellipsis class="panel" maxLines={2}>最大几行忽略最大几行忽略最大几行忽略</Ellipsis>
     </b:first>
     <b:last>
-        <Ellipsis class="panel" tooltipDisabled={this.get('disabled')}>不展示tooltip不展示tooltip</Ellipsis>
+        <Ellipsis class="panel" disabled={this.get('disabled')}>不展示tooltip不展示tooltip</Ellipsis>
     </b:last>
 </Split>
 ```
@@ -29,8 +29,6 @@ import {Ellipsis, Split} from 'kpc';
     margin 10px
 ```
 ```ts
-import type {EllipsisProps} from 'kpc';
-
 interface Props {
     disabled?: boolean
 }

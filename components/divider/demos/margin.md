@@ -9,12 +9,14 @@ order: 3
 import {Divider} from 'kpc';
 
 <div>
-    <div v-for={this.get('marginSizes')}>
+    <div v-for={this.get('margin')}>
         margin {$value}
-        <Divider marginSize={$value}></Divider>
+        <Divider margin={$value}/>
     </div>
-    Text 自定义margin
-    <Divider margin='30px'></Divider>
+    自定义margin
+    <Divider margin={30}/>
+    自定义margin
+    <Divider style={{margin: '8px 0 0 0'}}/>
 </div>
 ```
 
@@ -23,7 +25,7 @@ export default class extends Component {
     static template = template;
     static defaults() {
         return {
-            marginSizes: ['large', 'default', 'small', 'none'] as const
+            margin: ['large', 'default', 'small', 'none'] as const
         }
     }
 }

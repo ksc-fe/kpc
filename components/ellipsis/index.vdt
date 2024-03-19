@@ -1,36 +1,48 @@
 import { makeStyles, makeTooltipStyles } from './styles';
 import {Tooltip} from '../tooltip';
+import {getRestProps, addStyle} from '../utils';
 
 const {
     children, className, maxLines, 
-    tooltipDisabled, position, tooltipClass,
-    theme
+    disabled, position, theme, style
 } = this.get();
 const { k } = this.config;
 
-const { showTooltip } = this.ellipsis();
+const { showTooltip, ellipsisRef } = this.ellipsis;
 
 const classNameObj = {
-    [`${k}-ellipsis`]: true,
+    'c-ellipsis': true,
     [`${k}-multiline`]: maxLines,
     [makeStyles(k, maxLines)]: true,
     [className]: className,
 };
 
-<template>
+const tooltip = showTooltip.value && !disabled;
+const _style = {
+    cursor: tooltip ? 'pointer' : 'default',
+}
+
+const vNode = (
+    <div
+        {...getRestProps(this)}
+        class={classNameObj}
+        style={addStyle(style, _style)}
+    >{children}</div>
+)
+
+<div
+    class={`${k}-ellipsis`}
+    ref={ellipsisRef}
+>
     <Tooltip
-        disabled={!showTooltip.value || tooltipDisabled}
+        v-if={tooltip}
         position={position}
         theme={theme}
-        class={tooltipClass}
+        class={className}
     >
-        <div
-            class={classNameObj}
-            style={{cursor: (showTooltip.value && !tooltipDisabled) ? 'pointer' : 'default'}}
-            ref={this.ellipsisRef}
-        >
-            {children}
-        </div>
+        {vNode}
         <b:content>{children}</b:content> 
     </Tooltip>
-</template>
+    <template v-else>{vNode}</template>
+</div>
+

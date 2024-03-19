@@ -5,6 +5,7 @@ import '../../styles/global';
 import { cache } from '../utils';
 
 const sizes = ['large', 'default', 'small'] as const;
+const borderTypes = ['solid', 'dashed', 'dotted', 'double'] as const;
 
 const defaults = {
     positionWidth: '5%',
@@ -26,26 +27,26 @@ setDefault(() => {
     makeStyles?.clearCache();
 });
 
-export const makeStyles = cache(function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string, borderType: string) {
     return css`
         &.${k}-divider {
             padding: 0;
-            border-top: 1px solid ${divider.borderColor};
+            border-top: 1px ${borderType} ${divider.borderColor};
         }
 
         &.${k}-light {
             border-top-color: ${divider.light.borderColor};
-            &.${k}-divider-with-text {
+            &.${k}-with-text {
                 &::before, &::after {
                     border-top-color: ${divider.light.borderColor};
                 }
             }
-            &.${k}-divider-vertical {
+            &.${k}-vertical {
                 border-right-color: ${divider.light.borderColor};
             }
         }
 
-        &.${k}-divider-vertical {
+        &.${k}-vertical {
             border-top: 0; 
             display: inline-block;
             height: 100%;
@@ -53,16 +54,12 @@ export const makeStyles = cache(function makeStyles(k: string) {
             vertical-align: middle;
         }
 
-        &.${k}-divider-horizontal {
+        &.${k}-horizontal {
             width: 100%;
             min-width: 100%;
         }
 
-        &.${k}-dashed {
-            border-top-style: dashed;
-        }
-
-        &.${k}-divider-with-text {
+        &.${k}-with-text {
             border-top: 0;
             display: flex;
             align-items: center;
@@ -74,12 +71,12 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 transform: translateY(50%);
                 border-top: 1px solid ${divider.borderColor};
             }
-            .${k}-divider-text {
+            .${k}-text {
                 padding: 0 16px;
             }
         }
 
-        &.${k}-divider-with-text-left {
+        &.${k}-with-text-left {
             &::before {
                 width: ${divider.positionWidth};
             }
@@ -88,7 +85,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             }
         }
 
-        &.${k}-divider-with-text-right {
+        &.${k}-with-text-right {
             &::before {
                 width: calc(100% - ${divider.positionWidth});
             }
@@ -100,9 +97,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
         // margin sizes
         ${sizes.map(size => {
             return css`
-                &.${k}-divider-${size} {
+                &.${k}-${size} {
                     margin: ${theme[size].margin} 0;
-                    &.${k}-divider-vertical {
+                    &.${k}-vertical {
                         margin: 0 ${theme[size].margin};
                     }
                 }

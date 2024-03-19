@@ -10,7 +10,7 @@ import {Card, Divider, Icon} from 'kpc';
 
 <div class="divider-content">
     Text
-    <Divider type="vertical" margin="none"></Divider>
+    <Divider type="vertical"></Divider>
     <a href="#">Link</a>
     <Divider type="vertical">Text</Divider>
     <a href="#">Link</a>
