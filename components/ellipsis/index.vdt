@@ -1,4 +1,4 @@
-import { makeStyles, makeTooltipStyles } from './styles';
+import { makeStyles, makeRootStyles } from './styles';
 import {Tooltip} from '../tooltip';
 import {getRestProps, addStyle} from '../utils';
 
@@ -9,15 +9,14 @@ const {
 const { k } = this.config;
 
 const { showTooltip, ellipsisRef } = this.ellipsis;
-
+const tooltip = showTooltip.value && !disabled;
 const classNameObj = {
     'c-ellipsis': true,
     [`${k}-multiline`]: maxLines,
     [makeStyles(k, maxLines)]: true,
-    [className]: className,
+    [className]: className && !tooltip
 };
 
-const tooltip = showTooltip.value && !disabled;
 const _style = {
     cursor: tooltip ? 'pointer' : 'default',
 }
@@ -31,7 +30,10 @@ const vNode = (
 )
 
 <div
-    class={`${k}-ellipsis`}
+    class={{
+        [`${k}-ellipsis`]: true,
+        [makeRootStyles(k)]: true
+    }}
     ref={ellipsisRef}
 >
     <Tooltip

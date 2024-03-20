@@ -6,7 +6,7 @@ order: 6
 `showCollapseArrow`定义是否展示折叠按钮，`MenuTitle`定义菜单标题项。
 
 ```vdt
-import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc';
+import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button, Divider} from 'kpc';
 <div>
     <ButtonGroup checkType="radio"
         v-model="theme"
@@ -63,6 +63,7 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
                 </MenuItem>
             </Menu>
         </MenuItem>
+        <Divider theme={ this.get('theme') === 'white' ? 'light' : this.get('theme')} class="divider-style"/>
         <MenuItem key="8" to="/">menu 8</MenuItem>
     </Menu>
 </div>

@@ -120,7 +120,7 @@ const tbody = (
         {!hasData ? 
             <tr key="table-empty">
                 <td colspan={colCount} class={`${k}-table-empty`}>
-                    <b:empty>{_$('/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~')}</b:empty>
+                    <b:empty>{_$('暂无数据')}</b:empty>
                 </td>
             </tr> :
             (() => {
