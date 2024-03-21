@@ -4,7 +4,7 @@ order: 99
 sidebar: doc
 ---
 
-## v3.2.2
+## v3.3.0
 
 1. `Add` `Divider`组件，支持分割线 [#979](https://github.com/ksc-fe/kpc/pull/979)
 2. `Add` `Ellipsis`组件，支持超长省略，超出展示tooltip [#979](https://github.com/ksc-fe/kpc/pull/979)
