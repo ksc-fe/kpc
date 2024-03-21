@@ -4,6 +4,30 @@ order: 99
 sidebar: doc
 ---
 
+## v3.2.2
+
+1. `Add` `Divider`组件，支持分割线 [#979](https://github.com/ksc-fe/kpc/pull/979)
+2. `Add` `Ellipsis`组件，支持超长省略，超出展示tooltip [#979](https://github.com/ksc-fe/kpc/pull/979)
+3. `Add` `MenuTitle`, `MenuItem`组件默认支持`Ellipsis`， [#979](https://github.com/ksc-fe/kpc/pull/979)
+4. `Fix` 修复Table无数据提示文案修改 [#967](https://github.com/ksc-fe/kpc/issues/967)
+5. `Fix` 修复Webpack V4下，sideEffects失效，导致tree-shaking问题 [#974](https://github.com/ksc-fe/kpc/issues/974)
+6. `Fix` 修复Select nowrap不折行，当隐藏的项过多，Tooltip会展示不下 [#974](https://github.com/ksc-fe/kpc/issues/970)
+7. `Fix` 修复v1 v2/v3版本共存 [#895](https://github.com/ksc-fe/kpc/issues/895)
+
+### @king-design/react
+
+1. `Fix` 修复React元素做King-Design直接子元素，King-Design组件内部无法正确卸载它 [#969](https://github.com/ksc-fe/kpc/issues/969) 
+2. `Fix` 修复React事件冒泡问题  [#973](https://github.com/ksc-fe/kpc/issues/973) 
+2. `Fix` 修复组件事件中多次设置state，会触发多次更新   [#977](https://github.com/ksc-fe/kpc/issues/977) 
+
+### @king-design/vue-legacy
+
+1. `Fix` 修复Menu header插槽存在Icon组件，折叠再展开，点击MenuItem报错 [#976](https://github.com/ksc-fe/kpc/issues/976)
+
+### @king-design/vue
+
+1. `Fix` 修复Tooltip如果存在注释，会报存在多个子元素的错误 [#975](https://github.com/ksc-fe/kpc/issues/975)
+
 ## v3.2.1
 
 ### @king-design/react
