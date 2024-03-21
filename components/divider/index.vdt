@@ -1,0 +1,35 @@
+import {makeStyles} from './styles';
+import {getRestProps, addStyle} from '../utils';
+
+const {
+    children, className, borderType, 
+    position, type, theme, margin,
+    style
+} = this.get();
+const { k } = this.config;
+const _style = {};
+if (typeof margin === 'number') {
+    const _margin = type === 'vertical' ? `0 ${margin}px` : `${margin}px 0`;
+    _style.margin = _margin;
+}
+
+const classNameObj = {
+    [`${k}-divider`]: true,
+    [`${k}-${theme === 'dark' ? 'dark' : 'light'}`]: theme,
+    [`${k}-${type}`]: type,
+    [`${k}-${margin}`]: margin && typeof margin !== 'number',
+    [`${k}-with-text`]: children && type === 'horizontal',
+    [`${k}-${position}`]: position !== 'center',
+    [makeStyles(k, borderType)]: true,
+    [className]: className,
+};
+
+<div
+    {...getRestProps(this)}
+    class={classNameObj}
+    style={addStyle(style, _style)}
+>
+    <div v-if={children && type === 'horizontal'} class={`${k}-divider-text`}>
+        {children}
+    </div>
+</div>

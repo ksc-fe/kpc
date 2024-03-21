@@ -8,21 +8,25 @@ export function defaultTheme() {
             height: '40px',
             fontSize: '14px',
             padding: '16px',
+            margin: '16px',
         },
         default: {
             height: '32px',
             fontSize: '12px',
             padding: '12px',
+            margin: '12px',
         },
         small: {
             height: '24px',
             fontSize: '12px',
             padding: '8px',
+            margin: '8px',
         },
         mini: {
             height: '20px',
             fontSize: '12px',
             padding: '8px',
+            margin: '8px',
         },
         color: {
             primary: '#0091ea',

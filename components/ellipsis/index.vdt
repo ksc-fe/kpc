@@ -1,0 +1,39 @@
+import { makeStyles } from './styles';
+import {Tooltip} from '../tooltip';
+import {getRestProps, addStyle} from '../utils';
+
+const {
+    children, className, maxLines, 
+    disabled, position, theme, style
+} = this.get();
+const { k } = this.config;
+
+const { showTooltip, ellipsisRef } = this.ellipsis;
+const tooltip = showTooltip.value && !disabled;
+const wrapper = <div class={{
+    'c-ellipsis': true,
+    [`${k}-ellipsis-wrapper`]: true,
+    [className]: className && !tooltip,
+}}>{children}</div>;
+
+<div
+    {...getRestProps(this)}
+    class={{
+        [`${k}-ellipsis`]: true,
+        [`${k}-multiline`]: maxLines,
+        [makeStyles(k, maxLines)]: true,
+    }}
+    ref={ellipsisRef}
+>
+    <Tooltip
+        v-if={tooltip}
+        position={position}
+        theme={theme}
+        class={className}
+    >
+        {wrapper}
+        <b:content>{children}</b:content> 
+    </Tooltip>
+    <template v-else>{wrapper}</template>
+</div>
+

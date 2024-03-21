@@ -225,7 +225,7 @@
 #### `render a hidden table with minWidth`
 
 ```
-"<div class=\"k-table css-1kfv5pb\"><div class=\"k-table-wrapper\"><table><colgroup><col width=\"40\"><col></colgroup><thead><tr><th rowspan=\"1\"><label class=\"k-checkbox k-disabled css-rfvdpj\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"></span></label></th><th colspan=\"1\" rowspan=\"1\"><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\"></div></div></th></tr></thead><tbody><tr><td class=\"k-table-empty\" colspan=\"2\">/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~</td></tr></tbody></table></div></div>"
+"<div class=\"k-table css-1kfv5pb\"><div class=\"k-table-wrapper\"><table><colgroup><col width=\"40\"><col></colgroup><thead><tr><th rowspan=\"1\"><label class=\"k-checkbox k-disabled css-rfvdpj\"><span class=\"k-checkbox-wrapper\"><input type=\"checkbox\" disabled=\"\" tabindex=\"-1\" value=\"true\"></span></label></th><th colspan=\"1\" rowspan=\"1\"><div class=\"k-table-title\"><div class=\"k-table-title-text c-ellipsis\"></div></div></th></tr></thead><tbody><tr><td class=\"k-table-empty\" colspan=\"2\">暂无数据</td></tr></tbody></table></div></div>"
 ```
 
 #### `draggable`

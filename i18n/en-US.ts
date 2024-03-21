@@ -86,7 +86,7 @@ const i18n = {
     '共 {n} 条': 'Total {n}',
 
     // table
-    '/(ㄒoㄒ)/~~ 没有找到亲要的数据哦~': '/(ㄒoㄒ)/~~ No data to display.',
+    '暂无数据': 'No data to display.',
     '重置': 'Reset',
 
     // transfer

@@ -6,7 +6,7 @@ order: 6
 `showCollapseArrow`定义是否展示折叠按钮，`MenuTitle`定义菜单标题项。
 
 ```vdt
-import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc';
+import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button, Divider} from 'kpc';
 <div>
     <ButtonGroup checkType="radio"
         v-model="theme"
@@ -44,7 +44,7 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
         <MenuTitle>title 1</MenuTitle>
         <MenuItem key="1">menu 1</MenuItem>
         <MenuItem key="2">menu 2</MenuItem>
-        <MenuItem key="3">menu 3</MenuItem>
+        <MenuItem key="3">menu 3menu 3menu 3menu 3menu 3menu 3</MenuItem>
         <MenuTitle>title 2</MenuTitle>
         <MenuItem key="4">menu 1</MenuItem>
         <MenuItem key="5" disabled>menu 2</MenuItem>
@@ -57,12 +57,13 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
                 <MenuItem key="6-4">
                     sub menu 7
                     <Menu>
-                        <MenuItem key="6-7-1">Option 1</MenuItem>
-                        <MenuItem key="6-7-2">Option 2</MenuItem>
+                        <MenuItem key="6-7-1">option 1</MenuItem>
+                        <MenuItem key="6-7-2">option 2</MenuItem>
                     </Menu>
                 </MenuItem>
             </Menu>
         </MenuItem>
+        <Divider theme={ this.get('theme') === 'white' ? 'light' : this.get('theme')} class="divider-style"/>
         <MenuItem key="8" to="/">menu 8</MenuItem>
     </Menu>
 </div>
@@ -71,6 +72,8 @@ import {Menu, MenuItem, Icon, MenuTitle, Switch, ButtonGroup, Button} from 'kpc'
 ```styl
 .k-switch
     margin 0 16px
+.divider-style
+    margin 4px 0 0 0
 ```
 
 ```ts
