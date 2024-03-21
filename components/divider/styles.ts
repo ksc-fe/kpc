@@ -5,10 +5,9 @@ import '../../styles/global';
 import { cache } from '../utils';
 
 const sizes = ['large', 'default', 'small'] as const;
-const borderTypes = ['solid', 'dashed', 'dotted', 'double'] as const;
 
 const defaults = {
-    positionWidth: '5%',
+    positionOffset: '5%',
     get borderColor() { return theme.color.darkBorder },
 
     light: {
@@ -71,26 +70,27 @@ export const makeStyles = cache(function makeStyles(k: string, borderType: strin
                 transform: translateY(50%);
                 border-top: 1px solid ${divider.borderColor};
             }
-            .${k}-text {
-                padding: 0 16px;
+        }
+
+        .${k}-divider-text {
+            padding: 0 16px;
+        }
+
+        &.${k}-left {
+            &::before {
+                width: ${divider.positionOffset};
+            }
+            &::after {
+                width: calc(100% - ${divider.positionOffset});
             }
         }
 
-        &.${k}-with-text-left {
+        &.${k}-right {
             &::before {
-                width: ${divider.positionWidth};
+                width: calc(100% - ${divider.positionOffset});
             }
             &::after {
-                width: calc(100% - ${divider.positionWidth});
-            }
-        }
-
-        &.${k}-with-text-right {
-            &::before {
-                width: calc(100% - ${divider.positionWidth});
-            }
-            &::after {
-                width: ${divider.positionWidth};
+                width: ${divider.positionOffset};
             }
         }
 

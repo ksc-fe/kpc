@@ -19,7 +19,7 @@ const classNameObj = {
     [`${k}-${type}`]: type,
     [`${k}-${margin}`]: margin && typeof margin !== 'number',
     [`${k}-with-text`]: children && type === 'horizontal',
-    [`${k}-with-text-${position}`]: position !== 'center',
+    [`${k}-${position}`]: position !== 'center',
     [makeStyles(k, borderType)]: true,
     [className]: className,
 };
@@ -29,7 +29,7 @@ const classNameObj = {
     class={classNameObj}
     style={addStyle(style, _style)}
 >
-    <div v-if={children && type === 'horizontal'} class={`${k}-text`}>
+    <div v-if={children && type === 'horizontal'} class={`${k}-divider-text`}>
         {children}
     </div>
 </div>
