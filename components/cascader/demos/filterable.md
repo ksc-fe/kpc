@@ -11,12 +11,15 @@ import {Cascader} from 'kpc';
 
 <div>
     <Cascader data={this.get('data')} v-model="value" filterable />
+    <br /><br />
+    <Cascader data={this.get('data')} v-model="values" filterable multiple />
 </div>
 ```
 
 ```ts
 interface Props {
     value?: string[] | null
+    values?: string[][] | null
 }
 
 export default class extends Component<Props> {
@@ -25,6 +28,7 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             value: [] as string[],
+            values: [] as string[][],
             data: [
                 {
                     value: 'beijing',
