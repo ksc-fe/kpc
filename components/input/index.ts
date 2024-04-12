@@ -56,7 +56,7 @@ export interface InputProps<V extends Value = Value> extends InputHTMLAttributes
     type?: HTMLInputTypes 
     value?: V
     defaultValue?: string | number
-    placeholder?: string
+    placeholder?: string | number
     readonly?: boolean
     clearable?: boolean
     disabled?: boolean
@@ -98,7 +98,7 @@ const typeDefs: Required<TypeDefs<Omit<InputProps, keyof InputHTMLAttributes>>> 
     type: String,
     value: [String, Number],
     defaultValue: [String, Number],
-    placeholder: String,
+    placeholder: [String, Number],
     readonly: Boolean,
     clearable: Boolean,
     disabled: Boolean,
