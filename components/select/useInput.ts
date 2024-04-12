@@ -55,7 +55,7 @@ export function useInput(resetKeywords: (keywords: State<string>) => void) {
         if (multiple && filterable) {
             focusInput();
             /**
-             * don't reset keywords on multipe mode for continue selection
+             * don't reset keywords on multiple mode for continue selection
              * https://github.com/ksc-fe/kpc/issues/983
              */
             // resetKeywords(keywords);

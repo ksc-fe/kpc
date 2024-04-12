@@ -310,4 +310,27 @@ describe('Cascader', () => {
         await wait();
         expect(instance.get('value')).to.eql(['hunan']);
     });
+
+    it('should only show submenu while the root menu will show', async () => {
+        const [instance, element] = mount(FilterDemo);
+        instance.set('values', [['beijing', 'haidian']]);
+        await wait();
+
+        const [, dom] = element.querySelectorAll<HTMLDivElement>('.k-cascader');
+
+        dispatchEvent(dom, 'click');
+        await wait();
+
+        const input = dom.querySelector<HTMLInputElement>('.k-input-inner')!;
+
+        // should show layer when input empty string
+        input.value = 's';
+        dispatchEvent(input, 'input');
+        await wait();
+
+        document.body.click();
+        await wait();
+
+        expect(getElement('.k-cascader-menu')).to.not.exist;
+    });
 });
