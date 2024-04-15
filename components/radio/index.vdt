@@ -7,7 +7,7 @@ const {
     children, value, ref, key, title, ...rest
 } = this.get();
 const isChecked = value === trueValue;
-const { k } = this.config;
+const { k, disableWave } = this.config;
 
 const classNameObj = {
     [`${k}-radio`]: true,
@@ -43,7 +43,7 @@ const events = [
     ev-keypress={this.onKeypress}
     ev-click={this.fixClick}
 >
-    <Wave disabled={disabled} inset="-2px">
+    <Wave disabled={disabled || disableWave} inset="-2px">
         <span class={`${k}-radio-wrapper`}>
             <input
                 { ...getRestProps(this, rest) }

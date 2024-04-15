@@ -2,7 +2,8 @@ import { createContext, ProviderProps } from '../context';
 import { EMPTY_OBJ, Component } from 'intact';
 
 export interface ConfigProps {
-    classNamePrefix?: string 
+    classNamePrefix?: string,
+    disableWave?: boolean,
 }
 
 const {
@@ -17,6 +18,7 @@ function useConfigContext() {
     return {
         cls: (name: string) => `${config.value!.classNamePrefix || 'k'}-${name}`,
         get k() { return config.value!.classNamePrefix || 'k' },
+        get disableWave() { return config.value!.disableWave || false }
     }
 }
 

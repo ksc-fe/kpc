@@ -15,6 +15,7 @@ sidebar: doc
 
 ```ts
 export interface ConfigProps {
-    classNamePrefix?: string 
+    classNamePrefix?: string
+    disableWave?: boolean
 }
 ```
