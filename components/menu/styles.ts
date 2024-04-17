@@ -17,7 +17,7 @@ const defaults = {
 
     item: {
         height: '40px',
-        padding: '0 17px',
+        padding: '0 12px',
         bodyPadding: '0 4px',
         color: '#aeaeb9',
         hoverColor: '#fff',
@@ -30,7 +30,7 @@ const defaults = {
 
     title: {
         height: '40px',
-        padding: '0 17px',
+        padding: '0 12px',
         color: '#fff',
     },
 
@@ -114,7 +114,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         // header
         .${k}-menu-header {
             height: ${menu.header.height};
-            padding: 0 21px;
+            padding: 0 16px;
             color: ${menu.header.color};
             font-size: ${menu.header.fontSize};
             font-weight: bold;
