@@ -3,7 +3,7 @@ import {Icon} from '../icon';
 import {_$} from '../../i18n';
 import {makeMenuStyles, makeFilterMenuStyles} from './styles';
 
-const {data, trigger, filterable, fields, multiple} = this.get();
+const {data, trigger, filterable, fields, multiple, show} = this.get();
 const { k } = this.config;
 const baseMenuStyles = makeMenuStyles(k);
 const classNameObj = {
@@ -24,7 +24,7 @@ const Options = (data, level, loaded, parentSelected) => {
 
     return data.map((item, index) => {
         const value = getField(item, 'value');
-        const showed = isShowed(value, level);
+        const showed = show && isShowed(value, level);
         const selected = parentSelected && isSelected(value, level);
         const children = getField(item, 'children');
 
@@ -69,7 +69,7 @@ const Options = (data, level, loaded, parentSelected) => {
     });
 }
 
-const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
+const {filter, keywords: {value: keywords}, selectByFilter, isSelectedItem} = this.filterable;
 <t:super class={`${k}-cascader`}>
     <b:base-menu>
         <DropdownMenu 
@@ -94,6 +94,8 @@ const {filter, keywords: {value: keywords}, selectByFilter} = this.filterable;
                 return <DropdownItem v-for={items}
                     ev-select={selectByFilter.bind(null, $value)}
                     disabled={$value.disabled}
+                    hideOnSelect={!multiple}
+                    class={{[`${k}-selected`]: isSelectedItem($value)}}
                 >
                     {(() => {
                         // highlight keywords

@@ -77,5 +77,8 @@ export const makeFilterMenuStyles = cache(function makeFilterMenuStyles(k: strin
             font-style: normal;
             color: ${cascader.filter.highlightColor};
         }
+        .${k}-dropdown-item.${k}-selected {
+            color: ${cascader.selectedColor};
+        }
     `;
 });

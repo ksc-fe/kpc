@@ -80,7 +80,8 @@ export class Cascader<
     private filterable = useFilterable(
         this.input.keywords,
         this.value.setValue,
-        this.fields
+        this.fields,
+        this.value.values
     );
     private positionObj = {my: 'left top', at: 'right top', collisionDirection: ['left']};
 

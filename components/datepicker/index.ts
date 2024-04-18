@@ -23,6 +23,7 @@ import {
 } from './basepicker';
 
 export * as shortcuts from './shortcuts';
+export { dayjs };
 
 export interface DatepickerProps<
     V extends Value = Value,

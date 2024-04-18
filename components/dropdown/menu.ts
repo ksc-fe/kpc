@@ -67,7 +67,7 @@ function useKeyboardForDropdownMenu(dropdown: Dropdown) {
     const focus = () => focusByIndex(0);
 
     // In Cascader the menu may have been replaced by another menu, in this case,
-    // if the dropdown has showed while we mounted the menu, add keydown listener
+    // if the dropdown has showed while we mounted the menu, add the keydown listener
     if (dropdown.get('value')) {
         onShow();
     }

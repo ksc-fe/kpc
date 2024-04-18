@@ -54,7 +54,11 @@ export function useInput(resetKeywords: (keywords: State<string>) => void) {
         const {multiple, filterable} = component.get();
         if (multiple && filterable) {
             focusInput();
-            resetKeywords(keywords);
+            /**
+             * don't reset keywords on multiple mode for continue selection
+             * https://github.com/ksc-fe/kpc/issues/983
+             */
+            // resetKeywords(keywords);
         }
     });
 

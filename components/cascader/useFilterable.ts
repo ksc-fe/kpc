@@ -3,11 +3,13 @@ import type {Cascader, CascaderData, BaseCascaderData} from './';
 import {State} from '../../hooks/useState';
 import type {Value} from './useValue';
 import type {useFields} from './useFields';
+import { isEqualArray } from '../utils';
 
 export function useFilterable(
     keywords: State<string>,
     setValue: (value: Value) => void, 
-    getField: ReturnType<typeof useFields>
+    getField: ReturnType<typeof useFields>,
+    values: State<Value[]>
 ) {
     const instance = useInstance() as Cascader;
 
@@ -48,9 +50,16 @@ export function useFilterable(
     }
 
     function selectByFilter(data: CascaderData<any>[]) {
-        const value = data.map(item => getField(item, 'value'));
-        setValue(value);
+        setValue(getValue(data));
     }
 
-    return {filter, selectByFilter, keywords};
+    function isSelectedItem(data: CascaderData<any>[]) {
+        return !!values.value.find((value) => isEqualArray(value, getValue(data)));
+    }
+
+    function getValue(data: CascaderData<any>[]) {
+        return data.map(item => getField(item, 'value'));
+    }
+
+    return {filter, selectByFilter, keywords, isSelectedItem};
 }
