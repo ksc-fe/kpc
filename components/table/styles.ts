@@ -19,7 +19,7 @@ const defaults = {
     thead: {
         get bgColor() { return theme.color.bg },
         get color() { return theme.color.lightBlack },
-        padding: `0 5px 0 12px`,
+        padding: `0 8px 0 12px`,
         fontSize: `12px`,
         fontWeight: `bold`,
         textAlign: 'left',
@@ -31,7 +31,7 @@ const defaults = {
     // tbody 
     tbody: {
         get hoverBgcolor() { return theme.color.bg },
-        padding: `11px 5px 11px 12px`,
+        padding: `11px 8px 11px 12px`,
     },
 
     // stripe
@@ -128,6 +128,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 left: 1px;
                 top: 50%;
                 transform: translateY(-50%);
+            }
+            &.${k}-fixed-right:before {
+                left: -2px;
             }
             &:first-of-type:before {
                 display: none;
