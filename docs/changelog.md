@@ -4,7 +4,7 @@ order: 99
 sidebar: doc
 ---
 
-## v3.3.1
+## v3.3.2
 
 1. `Add` 新增`ConfigProvider`配置`disableWave`，可一键屏蔽全局水波纹动效 [#984](https://github.com/ksc-fe/kpc/issues/984)
 2. `Add` `DatePicker`组件支持`dayjs`导出 [#987](https://github.com/ksc-fe/kpc/issues/987)
