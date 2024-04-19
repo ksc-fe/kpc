@@ -4,6 +4,21 @@ order: 99
 sidebar: doc
 ---
 
+## v3.3.1
+
+1. `Add` 新增`ConfigProvider`配置`disableWave`，可一键屏蔽全局水波纹动效 [#984](https://github.com/ksc-fe/kpc/issues/984)
+2. `Add` `DatePicker`组件支持`dayjs`导出 [#987](https://github.com/ksc-fe/kpc/issues/987)
+3. `Fix` `Cascader`展示检索项，高亮已经被选择的菜单项 [#990](https://github.com/ksc-fe/kpc/issues/990)
+4. `Fix` `Select`组件在多选下设置`filterable`，支持选择后不清空搜索记录 [#983](https://github.com/ksc-fe/kpc/issues/983)
+5. `Fix` `Select`组件在，下拉列表还没有拿到返回值时，传入key为数字，会报    `placeholder`为`string`类型的检查报错 [#988](https://github.com/ksc-fe/kpc/issues/988)
+6. `Fix` `Cascader`级联多选，在已有一个的情况下，搜索出下一个，选择后下拉菜单会飘到左上角 [#982](https://github.com/ksc-fe/kpc/issues/982)
+7. `Fix` `Upload`组件，设置disabled属性样式无变化 [#985](https://github.com/ksc-fe/kpc/issues/985)
+8. `Fix` `Table`/`Breadcrumb`/`Menu`/`Tooltip`样式优化 [#972](https://github.com/ksc-fe/kpc/issues/972)
+
+### @king-design/react
+
+1. `Fix` 修复`React`在渲染阶段更新组件，导致生命周期函数执行顺序不对，找不到ref对应的value [#989](https://github.com/ksc-fe/kpc/issues/989) 
+
 ## v3.3.0
 
 1. `Add` `Divider`组件，支持分割线 [#979](https://github.com/ksc-fe/kpc/pull/979)
