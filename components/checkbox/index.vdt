@@ -9,7 +9,7 @@ const {
 } = this.get();
 
 const isChecked = this.isChecked();
-const { k, disableWave } = this.config;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-checkbox`]: true,
@@ -46,7 +46,7 @@ const events = [
     ev-keypress={this.onKeypress}
     {...events}
 >
-    <Wave disabled={disabled || disableWave} inset="-2px">
+    <Wave disabled={disabled} inset="-2px">
         <span class={`${k}-checkbox-wrapper`}>
             <input
                 type="checkbox" 

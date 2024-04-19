@@ -72,6 +72,9 @@ export class Wave extends Component<WaveProps> {
         const {disabled} = this.get();
         const node = e.target as HTMLElement;
 
+        // configProvider全局禁用动效
+        if (this.config.disableWave) return;
+
         // 点击输入框中的icon时，此时输入框不需要动效
         const isInput = instance!.classList.contains('k-input-wrapper');
         if (disabled || isInput && node!.classList.contains(this.config.cls('icon'))) return;

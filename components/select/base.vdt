@@ -19,7 +19,7 @@ const {
     position, flat, nowrap,
     draggable,
 } = this.get();
-const { k, disableWave } = this.config;
+const { k } = this.config;
 
 const classNameObj = {
     [`${k}-select`]: true,
@@ -57,7 +57,7 @@ const filterInput = <Input v-if={filterable}
 
 <ErrorContext.Consumer defaultValue={false}>
     {isInvalid => {
-        return <Wave disabled={disabled || isInvalid || inline || disableWave} inset="-2px">
+        return <Wave disabled={disabled || isInvalid || inline} inset="-2px">
             <Dropdown
                 trigger="click"
                 ref={this.dropdownRef}
