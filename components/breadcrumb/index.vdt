@@ -1,6 +1,7 @@
 import {getRestProps, mapChildren} from '../utils';
 import {BreadcrumbItem} from './item';
 import { makeStyles } from './styles';
+import { Icon } from '../icon';
 
 const {children, separator, className} = this.get();
 const { k } = this.config;
@@ -13,7 +14,10 @@ const classNameObj = {
 
 const separatorVNode = (
     <span class={`${k}-breadcrumb-separator`}>
-        <b:separator>{separator}</b:separator>
+        <template v-if={!$blocks.separator && !separator}>
+            <Icon class="k-icon-right" />
+        </template>
+        <b:separator v-else>{separator}</b:separator>
     </span>
 );
 const vNodes = [];

@@ -19,7 +19,7 @@ const typeDefs: Required<TypeDefs<BreadcrumbProps>> = {
 };
 
 const defaults = (): Partial<BreadcrumbProps> => ({
-    separator: '>'
+    separator: ''
 });
 
 export class Breadcrumb extends Component<BreadcrumbProps, BreadcrumbEvents, BreadcrumbBlocks> {

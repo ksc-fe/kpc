@@ -150,7 +150,6 @@ export const makeStyles = cache(function makeStyles(k: string) {
                                 const borderDirection = directionMap[direction as keyof typeof directionMap];
                                 return css`
                                     &.${k}-${direction} {
-                                        border-${borderDirection}-color: ${borderColor};
                                         &:before {
                                             border-${borderDirection}-color: ${bgColor};
                                         }
