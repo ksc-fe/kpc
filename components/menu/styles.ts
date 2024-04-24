@@ -17,7 +17,7 @@ const defaults = {
 
     item: {
         height: '40px',
-        padding: '0 17px',
+        padding: '0 12px',
         bodyPadding: '0 4px',
         color: '#aeaeb9',
         hoverColor: '#fff',
@@ -30,7 +30,7 @@ const defaults = {
 
     title: {
         height: '40px',
-        padding: '0 17px',
+        padding: '0 12px',
         color: '#fff',
     },
 
@@ -114,7 +114,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         // header
         .${k}-menu-header {
             height: ${menu.header.height};
-            padding: 0 21px;
+            padding: 0 16px;
             color: ${menu.header.color};
             font-size: ${menu.header.fontSize};
             font-weight: bold;
@@ -125,6 +125,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             max-height: calc(100% - ${menu.header.height});
             overflow-y: auto;
             overflow-x: hidden;
+            scrollbar-width: none;
         }
 
         // menu title
@@ -169,8 +170,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
 
         // theme light
         &.${k}-light {
-            border: 1px solid ${theme.color.disabledBg};
-            border-top: 0;
+            border-right: 1px solid ${theme.color.disabledBg};
             background: ${menu.light.bgColor};
             .${k}-menu-header {
                 color: ${menu.light.title.color};

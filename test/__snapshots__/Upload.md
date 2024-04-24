@@ -21,11 +21,11 @@
 #### `drag`
 
 ```
-"<div class=\"k-upload k-drag k-dragover css-ttqbyc\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><div class=\"k-upload-area\"><i class=\"k-icon k-icon-add-bold css-16qej3\"></i><div>将文件拖到此处，或<a>点击上传</a></div></div></div><div class=\"k-upload-files\"></div><!--portal--></div>"
+"<div class=\"k-upload k-drag k-dragover css-11ra89e\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><div class=\"k-upload-area\"><i class=\"k-icon k-icon-add-bold css-16qej3\"></i><div>将文件拖到此处，或<a>点击上传</a></div></div></div><div class=\"k-upload-files\"></div><!--portal--></div>"
 ```
 
 ```
-"<div class=\"k-upload k-drag css-ttqbyc\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><div class=\"k-upload-area\"><i class=\"k-icon k-icon-add-bold css-16qej3\"></i><div>将文件拖到此处，或<a>点击上传</a></div></div></div><div class=\"k-upload-files\"></div><!--portal--></div>"
+"<div class=\"k-upload k-drag css-11ra89e\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><div class=\"k-upload-area\"><i class=\"k-icon k-icon-add-bold css-16qej3\"></i><div>将文件拖到此处，或<a>点击上传</a></div></div></div><div class=\"k-upload-files\"></div><!--portal--></div>"
 ```
 
 ```
@@ -61,11 +61,11 @@
 #### `manually`
 
 ```
-"<div class=\"k-upload css-ttqbyc\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><button class=\"k-btn k-primary css-12pzj9v\" tabindex=\"0\" type=\"button\">选择文件</button></div><div class=\"k-upload-files\"><div class=\"k-upload-file\" style=\"\"><div class=\"k-upload-file-main\"><div class=\"k-upload-name c-ellipsis\"><i class=\"k-icon k-upload-file-icon ion-document css-16qej3\"></i><span class=\"k-upload-file-name\">a.png</span></div></div><i class=\"k-icon k-hoverable k-upload-close k-icon-delete css-16qej3\"></i></div></div><!--portal--></div><button class=\"k-btn k-default css-12pzj9v\" tabindex=\"0\" type=\"button\">开始上传</button>"
+"<div class=\"k-upload css-11ra89e\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><button class=\"k-btn k-primary css-12pzj9v\" tabindex=\"0\" type=\"button\">选择文件</button></div><div class=\"k-upload-files\"><div class=\"k-upload-file\" style=\"\"><div class=\"k-upload-file-main\"><div class=\"k-upload-name c-ellipsis\"><i class=\"k-icon k-upload-file-icon ion-document css-16qej3\"></i><span class=\"k-upload-file-name\">a.png</span></div></div><i class=\"k-icon k-hoverable k-upload-close k-icon-delete css-16qej3\"></i></div></div><!--portal--></div><button class=\"k-btn k-default css-12pzj9v\" tabindex=\"0\" type=\"button\">开始上传</button>"
 ```
 
 ```
-"<div class=\"k-upload css-ttqbyc\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><button class=\"k-btn k-primary css-12pzj9v\" tabindex=\"0\" type=\"button\">选择文件</button></div><div class=\"k-upload-files\"><div class=\"k-upload-file\" style=\"\"><div class=\"k-upload-file-main\"><div class=\"k-upload-name c-ellipsis\"><i class=\"k-icon k-upload-file-icon ion-document css-16qej3\"></i><span class=\"k-upload-file-name\">a.png</span><i class=\"k-icon k-upload-status-icon k-icon-success-fill css-16qej3\"></i></div></div><i class=\"k-icon k-hoverable k-upload-close k-icon-delete css-16qej3\"></i></div></div><!--portal--></div><button class=\"k-btn k-default css-12pzj9v\" tabindex=\"0\" type=\"button\">开始上传</button>"
+"<div class=\"k-upload css-11ra89e\"><input class=\"c-hidden\" type=\"file\" multiple=\"\"><div class=\"k-upload-handle\"><button class=\"k-btn k-primary css-12pzj9v\" tabindex=\"0\" type=\"button\">选择文件</button></div><div class=\"k-upload-files\"><div class=\"k-upload-file\" style=\"\"><div class=\"k-upload-file-main\"><div class=\"k-upload-name c-ellipsis\"><i class=\"k-icon k-upload-file-icon ion-document css-16qej3\"></i><span class=\"k-upload-file-name\">a.png</span><i class=\"k-icon k-upload-status-icon k-icon-success-fill css-16qej3\"></i></div></div><i class=\"k-icon k-hoverable k-upload-close k-icon-delete css-16qej3\"></i></div></div><!--portal--></div><button class=\"k-btn k-default css-12pzj9v\" tabindex=\"0\" type=\"button\">开始上传</button>"
 ```
 
 #### `should trigger error event when exceed the maxSize`

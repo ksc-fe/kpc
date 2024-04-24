@@ -256,6 +256,17 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 transform: translateY(-50%);
             }
         }
+        &.${k}-disabled {
+            .${k}-upload-add, .${k}-upload-handle {
+                cursor: auto;
+                a {
+                    color: ${upload.color};
+                }
+                &:hover {
+                    border-color: ${theme.color.border}
+                }
+            }
+        }
     `;
 });
 

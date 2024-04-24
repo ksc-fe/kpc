@@ -10,7 +10,7 @@ import {UploadFileStatus} from './useUpload';
 
 const {
     className, accept, multiple, limit,
-    files, children, type, directory
+    files, children, type, directory, disabled
 } = this.get();
 
 const drag = this.drag;
@@ -22,6 +22,7 @@ const classNameObj = {
     [`${k}-drag`]: type === 'drag', 
     [`${k}-dragover`]: drag.dragOver.value, 
     [`${k}-gallery`]: type === 'gallery',
+    [`${k}-disabled`]: disabled,
     [makeStyles(k)]: true,
 };
 
@@ -40,7 +41,7 @@ const handle = (
         <b:content>
             <b:children v-if={children}>{children}</b:children>
             <template v-else-if={type !== 'gallery'}>
-                <Button v-if={type === 'select'}>
+                <Button disabled={disabled} v-if={type === 'select'}>
                     <Icon class={`${k}-icon-upload`} />
                     {_$('点击上传')}
                 </Button>
