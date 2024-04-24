@@ -120,6 +120,9 @@ const i18n = {
 
 export default i18n; 
 
-if (typeof (global as any).Kpc !== 'undefined') {
-    (global as any).Kpc.localize(i18n);
+/**
+ * global does not exist in Vite, use standard object globalThis
+ */
+if (typeof (globalThis as any).Kpc !== 'undefined') {
+    (globalThis as any).Kpc.localize(i18n);
 }
