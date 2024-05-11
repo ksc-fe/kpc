@@ -29,6 +29,10 @@ import {Button, ButtonGroup} from 'kpc';
             ev-click={this.showDialogWithTitle.bind(this, $value)}
         >Show {$value[0].toUpperCase() + $value.substring(1)} Dialog with Title</Button>
     </ButtonGroup>
+
+    <br />
+    <br />
+    <Button ev-click={this.showAsyncCloseConfirm}>异步关闭confirm弹层</Button>
 </div>
 ```
 
@@ -67,6 +71,20 @@ export default class extends Component<Props> {
             Message.info('clicked ok button');
         }, () => {
             Message.info('clicked cancel button');
+        });
+    }
+
+    showAsyncCloseConfirm() {
+        let dialog: Dialog;
+        Dialog.confirm({
+            content: '点击确认，异步关闭',
+            ref: (_dialog) => dialog = _dialog,
+            ok: () => {
+                dialog.showLoading();
+                setTimeout(() => {
+                    dialog.close();
+                }, 3000);
+            },
         });
     }
 }
