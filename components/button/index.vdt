@@ -1,4 +1,4 @@
-import {getRestProps} from '../utils';
+import {addStyle, getRestProps} from '../utils';
 import {Icon} from '../icon';
 import {makeButtonStyles} from './styles';
 import {DynamicButton} from './dynamicButton';
@@ -8,7 +8,7 @@ import {button as theme} from './styles';
 let {
     type, className, size, icon, circle, ref, key, tabindex,
     tagName, htmlType, fluid, children, loading, disabled,
-    name, ghost,
+    name, ghost, color, style
 } = this.get();
 
 const { cls, k } = this.config;
@@ -42,7 +42,7 @@ if (!icon && Array.isArray(children)) {
 const classNameObj = {
     [cls('btn')]: true,
     [cls(size)]: size !== 'default',
-    [cls(type)]: true,
+    [cls(type)]: !color,
     [cls(`btn-icon`)]: icon,
     [className]: className, 
     [cls('circle')]: circle,
@@ -51,7 +51,8 @@ const classNameObj = {
     [cls('active')]: checked,
     [cls('disabled')]: disabled || loading,
     [cls('ghost')]: ghost,
-    [makeButtonStyles(k, iconSide)]: true,
+    [cls('custom')]: color,
+    [makeButtonStyles(k, iconSide, color)]: true,
 };
 
 const loadingIcon = (
@@ -66,8 +67,11 @@ const buttonGroup = this.buttonGroup;
 const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
 const isCheckType = checkType !== 'none';
 const typeStyles = theme[type];
-const waveColor = typeStyles && typeStyles.borderColor || theme.primary.borderColor;
-
+const waveColor = typeStyles && typeStyles.borderColor || color || theme.primary.borderColor;
+const _style = {
+    // color: color,
+    // borderColor: color,
+};
 <Wave disabled={loading || disabled || type === 'none' || type === 'link'}
     inset={type === 'flat' ? '-1px' : '-2px'}
     color={waveColor}
@@ -76,6 +80,7 @@ const waveColor = typeStyles && typeStyles.borderColor || theme.primary.borderCo
         class={classNameObj}
         tagName={tagName}
         {...getRestProps(this)}
+        style={addStyle(style, _style)}
         ref={this.elementRef}
         tabindex={disabled || loading ? '-1' : tabindex}
         ev-click={this.onClick}

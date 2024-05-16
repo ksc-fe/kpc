@@ -14,6 +14,7 @@ import {Button, Icon} from 'kpc';
     <Button type="warning" ghost>warning</Button>
     <Button type="danger" ghost>danger</Button>
     <Button type="success" ghost>success</Button>
+    <Button color="rgb(183, 18, 193)" ghost>custom</Button>
     <Button type="none" ghost>none</Button>
     <Button type="primary" ghost disabled>primay</Button>
 </div>
