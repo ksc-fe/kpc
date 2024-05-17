@@ -313,10 +313,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
             background: ${table.selectedBgColor};
         }
 
-        // tree
-        // tr.${k}-hidden {
-            // display: none;
-        // }
+        // hidden cell
+        col.${k}-hidden, tr > .${k}-hidden {
+            display: none;
+        }
         .${k}-table-arrow {
             width: ${table.arrow.width} !important;
             margin-right: ${table.arrow.gap};

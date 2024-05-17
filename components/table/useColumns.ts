@@ -84,7 +84,7 @@ export function useColumns() {
             props.children = null;
             props.cols = 1;
             cols.push(props);
-            maxCols++;
+            if(!props.hidden) maxCols++;
             Object.defineProperty(props, 'rows', {
                 get() {
                     return maxRows - row;

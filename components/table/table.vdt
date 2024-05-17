@@ -57,7 +57,10 @@ const colgroup = (
         <col v-for={cols} 
             width={$value.width}
             style={{width: getWidth($value.key)}}
-            class={{[$value.className]: $value.className}}
+            class={{
+                [`${k}-hidden`]: $value.hidden,
+                [$value.className]: $value.className
+            }}
         />
     </colgroup>
 );
@@ -176,7 +179,6 @@ const tbody = (
                             </Tooltip>
                         );
                     }
-
                     rows.push(row);
                     if ($blocks.expand) {
                         const expanded = isExpanded(key);
