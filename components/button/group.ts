@@ -10,6 +10,7 @@ export interface ButtonGroupProps {
     checkType?: 'none' | 'radio' | 'checkbox' 
     fluid?: boolean
     seperate?: boolean
+    btnWidth?: number | string
 }
 
 const typeDefs: Required<TypeDefs<ButtonGroupProps>> = {
@@ -18,6 +19,7 @@ const typeDefs: Required<TypeDefs<ButtonGroupProps>> = {
     fluid: Boolean,
     checkType: ['none', 'radio', 'checkbox'],
     seperate: Boolean,
+    btnWidth: [Number, String],
 };
 
 const defaults = (): Partial<ButtonGroupProps> => ({

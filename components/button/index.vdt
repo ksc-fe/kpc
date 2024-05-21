@@ -64,14 +64,14 @@ const loadingIcon = (
 );
 
 const buttonGroup = this.buttonGroup;
-const checkType = buttonGroup ? buttonGroup.get('checkType') : 'none';
+const checkType = buttonGroup?.get('checkType') ?? 'none';
+const btnWidth = buttonGroup?.get('btnWidth');
+const _style = {
+    width: typeof btnWidth === 'number' ? `${btnWidth}px` : btnWidth,
+}
 const isCheckType = checkType !== 'none';
 const typeStyles = theme[type];
 const waveColor = typeStyles && typeStyles.borderColor || color || theme.primary.borderColor;
-const _style = {
-    // color: color,
-    // borderColor: color,
-};
 <Wave disabled={loading || disabled || type === 'none' || type === 'link'}
     inset={type === 'flat' ? '-1px' : '-2px'}
     color={waveColor}
@@ -80,7 +80,7 @@ const _style = {
         class={classNameObj}
         tagName={tagName}
         {...getRestProps(this)}
-        style={addStyle(style, _style)}
+        style={btnWidth ? addStyle(style, _style) : style} 
         ref={this.elementRef}
         tabindex={disabled || loading ? '-1' : tabindex}
         ev-click={this.onClick}
