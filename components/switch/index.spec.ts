@@ -2,6 +2,7 @@ import BasicDemo from '~/components/switch/demos/basic';
 import DisabledDemo from '~/components/switch/demos/disabled';
 import ValueDemo from '~/components/switch/demos/value';
 import WidthHeightDemo from '~/components/switch/demos/widthHeight';
+import BeforeChangeDemo from '~/components/switch/demos/beforeChange';
 import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 
 describe('Switch', () => {
@@ -117,5 +118,15 @@ describe('Switch', () => {
         el2.click();
         await wait();
         expect(element.outerHTML).to.matchSnapshot();  
+    });
+
+    it('beforeChange', async function() {
+        const [instance, element] = mount(BeforeChangeDemo);
+        const [el1, el2] = element.querySelectorAll<HTMLElement>('.k-switch');
+        el1.click();
+        el2.click();
+        await wait(1000);
+        expect(instance.get('value1')).to.be.true;
+        expect(instance.get('value2')).to.be.false;
     });
 });

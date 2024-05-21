@@ -314,7 +314,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
 
         // hidden cell
-        col.${k}-hidden, tr > .${k}-hidden {
+        // col.${k}-hidden, tr > .${k}-hidden {
+        //     display: none;
+        // }
+        .${k}-hidden {
             display: none;
         }
         .${k}-table-arrow {

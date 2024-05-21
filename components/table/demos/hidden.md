@@ -8,16 +8,24 @@ order: 31
 ```vdt
 import {Table, TableColumn} from 'kpc';
 
-<Table data={this.get('data')} resizable>
-    <TableColumn key="a" title="Title 1" minWidth={200}/>
-    <TableColumn key="b" title="Title 2" minWidth={300} hidden/>
-    <TableColumn key="c" title="Title 3"/>
-</Table>
+<div>
+    <Table data={this.get('data')} resizable>
+        <TableColumn key="a" title="Title 1" minWidth={200}/>
+        <TableColumn key="b" title="Title 2" minWidth={300} hidden/>
+        <TableColumn key="c" title="Title 3"/>
+    </Table>
+    <p>无数据展示</p>
+    <Table data={this.get('data2')} resizable>
+        <TableColumn key="a" title="Title 1" />
+        <TableColumn key="b" title="Title 2" hidden/>
+        <TableColumn key="c" title="Title 3"/>
+    </Table>
+</div>
 ```
 
 ```styl
-.dis
-    display none
+.k-table
+    margin-bottom 20px
 ```
 
 ```ts
@@ -28,7 +36,8 @@ export default class extends Component {
             data: [
                 {a: 'Cell 1-1', b: 'Cell 1-2', c: 'cell 1-3'},
                 {a: 'Cell 2-1', b: 'Cell 2-2', c: 'cell 2-3'}
-            ]
+            ],
+            data2: []
         };
     }
 }
