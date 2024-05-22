@@ -9,7 +9,7 @@ describe('Upload', () => {
         const test = shouldNotWarn():
         const Demo = defineComponent({
             setup() {
-                const files = ref([]);
+                const files = ref([{ name: 'name 1' }]);
                 return { files };
             },
             components: { Upload },
