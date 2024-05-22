@@ -22,6 +22,7 @@ import {Switch} from 'kpc';
 ```
 
 ```ts
+import { Message } from 'kpc';
 export default class extends Component {
     static template = template;
     static defaults() {
@@ -31,14 +32,16 @@ export default class extends Component {
         }
     }
 
-    beforeChange() {
+    beforeChange(value: any) {
         return new Promise<boolean>(resolve => {
+            Message.warning(`current value is ${value}`);
             setTimeout(() => {
                 resolve(true);
             }, 1000);
         });
     }
-    beforeChangeFalse() {
+    beforeChangeFalse(value: any) {
+        Message.warning(`current value is ${value}`);
         return new Promise<boolean>(resolve => {
             setTimeout(() => {
                 resolve(false);

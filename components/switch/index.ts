@@ -18,7 +18,7 @@ export interface SwitchProps<True = any, False = any> {
     size?: Sizes
     disabled?: boolean
     loading?: boolean
-    beforeChange?: () => boolean | Promise<boolean>;
+    beforeChange?: (value: True | False | undefined) => boolean | Promise<boolean>;
 }
 
 export interface SwitchEvents {
@@ -96,7 +96,7 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
     }
 
     public async toggle(isKeypress: boolean) {
-        const {disabled, beforeChange} = this.get();
+        const {disabled, beforeChange, value} = this.get();
         if (disabled) return;
 
         // if is not keypress, we blur it to remove focus style
@@ -110,7 +110,7 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
                 loading: true
             });
             try {
-                const ret = await beforeChange();
+                const ret = await beforeChange(value);
                 if (!ret) return;
             } finally {
                 this.set({
