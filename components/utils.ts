@@ -293,9 +293,28 @@ export function strPad(str: number | string, length: number, pad: string = '0') 
     return str;
 }
 
+/**
+ * 在vue3.0中，数组会转成Proxy对象，需要获取原始数据比较
+ * https://github.com/ksc-fe/kpc/issues/985
+ * https://github.com/vuejs/core/blob/main/packages/reactivity/src/reactive.ts
+ */
+const RAW = '__v_raw';
+function isProxy(value: any): boolean {
+    return value ? !!value[RAW] : false
+}
+function toRaw<T>(observed: T): T {
+    const raw = observed && (observed as any)[RAW]
+    return raw ? toRaw(raw) : observed
+}
 type EqualArrayValue = any | EqualArrayValue[]
 export function isEqualArray(a: EqualArrayValue, b: EqualArrayValue): boolean {
     if (a === b) return true;
+
+    // for vue3.0 Proxy object
+    if (isProxy(a)) a = toRaw(a);
+    if (isProxy(b)) b = toRaw(b);
+    if (a === b) return true;
+
     if (Array.isArray(a) && Array.isArray(b)) {
         if (a.length !== b.length) return false;
         return a.every((value, index) => isEqualArray(value, b[index]));
