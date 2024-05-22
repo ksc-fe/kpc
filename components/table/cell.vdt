@@ -26,7 +26,12 @@ if (columnIndex === 0 && indent) {
     style.paddingLeft = `${indent}px`;
 }
 
-<td className={className}
+const classNameObj = {
+    [`${k}-hidden`]: props.hidden,
+    [className]: className
+}
+
+<td class={classNameObj}
     style={style}
     title={getTextByChildren(children)}
     rowspan={rowspan}

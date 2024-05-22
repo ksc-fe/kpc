@@ -26,6 +26,7 @@ export interface ButtonProps extends ButtonHTMLAttributes {
     size?: Sizes,
     icon?: boolean
     circle?: boolean
+    color?: string
     loading?: boolean
     disabled?: boolean
     fluid?: boolean
@@ -47,6 +48,7 @@ const typeDefs: Required<TypeDefs<Omit<ButtonProps, keyof ButtonHTMLAttributes>>
     size: ['large', 'default', 'small', 'mini'],
     icon: Boolean,
     circle: Boolean,
+    color: String,
     loading: Boolean,
     disabled: Boolean,
     fluid: Boolean,

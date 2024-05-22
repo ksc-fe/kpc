@@ -23,6 +23,7 @@ sidebar: doc
 | value | 对于`radio/checkbox`类型的按钮组，我们可以给每个按钮指定一个选中时的值 | `*` | `undefined` |
 | name | 对于`radio/checkbox`类型的按钮组，我们给`input`指定`name`属性 | `string` | `undefined` |
 | ghost | 展示透明背景的按钮 | `boolean` | `false` |
+| color | 自定义字体、边框、波纹动效颜色 | `string` | `undefined` |
 
 ## ButtonGroup
 

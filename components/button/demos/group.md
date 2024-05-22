@@ -74,6 +74,13 @@ import {Button, ButtonGroup, Icon} from 'kpc';
         <Button value="guangzhou">广州</Button>
         <Button value="shenzhen">深圳</Button>
     </ButtonGroup>
+    <p>支持自定义ButtonGroup下的Button宽度</p>
+    <ButtonGroup checkType="radio" v-model="city" btnWidth="100px">
+        <Button value="beijing">北京</Button>
+        <Button value="shanghai">上海</Button>
+        <Button value="guangzhou">广州</Button>
+        <Button value="shenzhen">深圳</Button>
+    </ButtonGroup>
 </div>
 ```
 

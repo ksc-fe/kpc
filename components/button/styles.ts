@@ -157,7 +157,7 @@ setDefault(() => {
 
 export {button};
 
-export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconSide?: string) {
+export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconSide?: string, color?: string) {
     const {secondary, link} = button;
 
     return cx(
@@ -246,6 +246,22 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
                     background: ${secondary.activeBgColor};
                 }
             }
+
+            
+
+            ${color && css`
+                &.${k}-custom {
+                    color: ${color};
+                    border-color: ${color};
+                    &:hover,
+                    &:focus {
+                        background: ${palette(color, -4)};
+                    }
+                    &:active {
+                        background: ${palette(color, -3)};
+                    }
+                }
+            `}
 
             &.${k}-link {
                 color: ${link.color};
@@ -395,6 +411,20 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
                         }
                     `
                 })}
+                ${color && css`
+                    &.${k}-custom {
+                        color: ${color};
+                        border-color: ${color};
+                        &:hover {
+                            color: ${palette(color, -1)};
+                            border-color: ${palette(color, -1)};
+                        }
+                        &:active {
+                            color: ${palette(color, 1)};
+                            border-color: ${palette(color, 1)};
+                        }
+                    }
+                `}
                 // disabled
                 &.${k}-disabled {
                     &, &:hover {

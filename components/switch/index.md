@@ -22,6 +22,8 @@ sidebar: doc
 | height | 开关的高度 | `number` &#124; `string` | `undefined` |
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | disabled | 控制禁用 | `boolean` | `false` |
+| loading | 开关loading属性 | `boolean` | `false` |
+| beforeChange | 切换`Switch`之前的拦截函数，如果该函数返回`false`则阻止本次切换，支持异步函数, 参数为当前value | <code>(value: any) => boolean &#124; Promise&lt;boolean&gt;</code> | `undefined` |
 
 # 扩展点
 
