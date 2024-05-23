@@ -18,7 +18,7 @@ export interface SwitchProps<True = any, False = any> {
     size?: Sizes
     disabled?: boolean
     loading?: boolean
-    beforeChange?: (value: True | False | undefined) => boolean | Promise<boolean>;
+    beforeChange?: (from: True | False | undefined, to: True | False | undefined) => boolean | Promise<boolean>;
 }
 
 export interface SwitchEvents {
@@ -84,7 +84,8 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
     @bind
     private onClickOnHandle(e: MouseEventWithIgnore) {
         // we can not stop propagation, otherwise the click can not be listen at outer
-        e._switchIgnore = true;
+        const {beforeChange} = this.get();
+        e._switchIgnore = typeof beforeChange !== 'function';
     }
 
     @bind
@@ -96,7 +97,7 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
     }
 
     public async toggle(isKeypress: boolean) {
-        const {disabled, beforeChange, value} = this.get();
+        const {disabled, beforeChange, value, trueValue, falseValue} = this.get();
         if (disabled) return;
 
         // if is not keypress, we blur it to remove focus style
@@ -110,7 +111,8 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
                 loading: true
             });
             try {
-                const ret = await beforeChange(value);
+                const toValue = this.isChecked() ? falseValue : trueValue;
+                const ret = await beforeChange(value, toValue);
                 if (!ret) return;
             } finally {
                 this.set({

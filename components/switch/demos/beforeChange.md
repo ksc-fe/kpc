@@ -11,7 +11,7 @@ order: 8
 import {Switch} from 'kpc';
 
 <div>
-    <Switch v-model="value1" beforeChange={this.beforeChange} />
+    <Switch v-model="value1" trueValue={1} falseValue={0} beforeChange={this.beforeChange} />
     <Switch v-model="value2" beforeChange={this.beforeChangeFalse} />
 </div>
 ```
@@ -27,21 +27,21 @@ export default class extends Component {
     static template = template;
     static defaults() {
         return {
-            value1: false,
+            value1: 0,
             value2: false,
         }
     }
 
-    beforeChange(value: any) {
+    beforeChange(from: any, to: any) {
         return new Promise<boolean>(resolve => {
-            Message.warning(`current value is ${value}`);
+            Message.warning(`current value is ${from}, to value is ${to}`);
             setTimeout(() => {
                 resolve(true);
             }, 1000);
         });
     }
-    beforeChangeFalse(value: any) {
-        Message.warning(`current value is ${value}`);
+    beforeChangeFalse(from: any, to: any) {
+        Message.warning(`current value is ${from}, to value is ${to}`);
         return new Promise<boolean>(resolve => {
             setTimeout(() => {
                 resolve(false);
