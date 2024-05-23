@@ -17,6 +17,8 @@ export interface SwitchProps<True = any, False = any> {
     height?: number | string
     size?: Sizes
     disabled?: boolean
+    loading?: boolean
+    beforeChange?: (value: True | False | undefined) => boolean | Promise<boolean>;
 }
 
 export interface SwitchEvents {
@@ -40,6 +42,8 @@ const typeDefs: Required<TypeDefs<SwitchProps>> = {
     height: [Number, String],
     size: sizes,
     disabled: Boolean,
+    loading: Boolean,
+    beforeChange: Function,
 };
 
 const defaults = (): Partial<SwitchProps> => ({
@@ -47,6 +51,7 @@ const defaults = (): Partial<SwitchProps> => ({
     trueValue: true,
     falseValue: false,
     size: 'default',
+    loading: false,
 });
 
 const events: Events<SwitchEvents> = {
@@ -90,13 +95,30 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
         }
     }
 
-    public toggle(isKeypress: boolean) {
-        if (this.get('disabled')) return;
+    public async toggle(isKeypress: boolean) {
+        const {disabled, beforeChange, value} = this.get();
+        if (disabled) return;
 
-         // if is not keypress, we blur it to remove focus style
-         if (!isKeypress) {
-             this.elementRef.value!.blur();
-         }
+        // if is not keypress, we blur it to remove focus style
+        if (!isKeypress) {
+            this.elementRef.value!.blur();
+        }
+         
+        if (beforeChange) {
+            this.set({
+                disabled: true,
+                loading: true
+            });
+            try {
+                const ret = await beforeChange(value);
+                if (!ret) return;
+            } finally {
+                this.set({
+                    disabled: false,
+                    loading: false
+                });
+            }
+        }
 
          if (this.isChecked()) {
              this.uncheck();

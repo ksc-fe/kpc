@@ -3,7 +3,7 @@ title: 按钮类型
 order: 0
 ---
 
-有如下几种类型：默认按钮，主按钮，次按钮，警告按钮，危险按钮，成功按钮，文字按钮，超链接按钮，扁平按钮
+有如下几种类型：默认按钮，主按钮，次按钮，警告按钮，危险按钮，成功按钮，文字按钮，超链接按钮，扁平按钮, 自定义color按钮
 
 ```vdt
 import {Button} from 'kpc';
@@ -18,10 +18,13 @@ import {Button} from 'kpc';
     <Button type="none">none</Button>
     <Button type="link">link</Button>
     <Button type="flat">flat</Button>
+    <Button color="red">custom</Button>
+    <Button color="#0000ea">custom</Button>
+    <Button color="rgb(183, 18, 193)">custom</Button>
 </div>
 ```
 
 ```styl
 .k-btn
-    margin-right 20px
+    margin 0 20px 20px 0
 ```

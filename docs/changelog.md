@@ -4,6 +4,22 @@ order: 99
 sidebar: doc
 ---
 
+## v3.3.3
+
+1. `Add` `Button`新增`color`属性，支持自定义字体、边框、波纹效果颜色 [#999](https://github.com/ksc-fe/kpc/issues/999)
+2. `Add` `ButtonGroup`新增`btnWidth`属性，支持定义按钮组按钮保持一致的宽度 [#949](https://github.com/ksc-fe/kpc/issues/949)
+3. `Add` `Switch`新增`loading`、`beforeChange`，定义Switch切换前的拦截函数，支持异步函数 [#1000](https://github.com/ksc-fe/kpc/issues/1000)
+4. `Add` `TableColumn`新增`hidden`属性，用于隐藏列 [#996](https://github.com/ksc-fe/kpc/issues/996)
+5. `Fix` `Table`组件包含隐藏列，宽度计算错误 [#996](https://github.com/ksc-fe/kpc/issues/996)
+6. `Fix` `Upload`双向绑定files，会导致死循环 [#985](https://github.com/ksc-fe/kpc/issues/985)
+7. `Fix` `Upload`组件，设置disabled属性样式无变化 [#985](https://github.com/ksc-fe/kpc/issues/985)
+
+### @king-design/vue
+
+1. `Fix` vite下国际化 global is not defined [#995](https://github.com/ksc-fe/kpc/issues/995)
+2. `Fix` Popover和Tooltip直接嵌套使用失效 [#1001](https://github.com/ksc-fe/kpc/issues/1001)
+
+
 ## v3.3.2
 
 1. `Add` 新增`ConfigProvider`配置`disableWave`，可一键屏蔽全局水波纹动效 [#984](https://github.com/ksc-fe/kpc/issues/984)

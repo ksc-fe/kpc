@@ -27,6 +27,7 @@ const defaults = {
         width: `45px`,
         height: `24px`,
         padding: `3px`,
+        iconSize: `16px`,
     },
 
     // large
@@ -34,6 +35,7 @@ const defaults = {
         width: `58px`,
         height: `30px`,
         padding: `3px`,
+        iconSize: `20px`,
     },
 
     // small
@@ -41,6 +43,7 @@ const defaults = {
         width: `30px`,
         height: `16px`,
         padding: `2px`,
+        iconSize: `10px`,
     },
 
     // mini
@@ -48,6 +51,7 @@ const defaults = {
         width: `18px`,
         height: `10px`,
         padding: `1px`,
+        iconSize: `6px`,
     },
 
     // disabled
@@ -116,6 +120,13 @@ export const makeStyles = cache(function makeStyles(k: string) {
             }
         }
 
+        .${k}-switch-icon {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
         // text
         .${k}-switch-on,
         .${k}-switch-off {
@@ -139,7 +150,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
 
         // size
         ${sizes.map(size => {
-            const {width, height, padding} = kswitch[size];
+            const {width, height, padding, iconSize} = kswitch[size];
             return css`
                &.${k}-${size},
                &.${k}-${size} .${k}-switch-on,
@@ -166,6 +177,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
                    }
                    .${k}-switch-off {
                        padding: 0 calc(${height} / 3) 0 ${height};
+                   }
+                   .${k}-switch-icon {
+                        font-size: ${iconSize};
                    }
                }
             `
