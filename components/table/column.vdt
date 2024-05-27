@@ -105,7 +105,6 @@ const { k } = this.config;
                                                             >{_$('全选')}</Button>
                                                             <Button size="small"
                                                                 disabled={isEmptyValue(localGroupValue.value)}
-                                                                type="secondary"
                                                                 ev-click={() => reset(onChange)}
                                                             >{_$('重置')}</Button>
                                                             <Button type="primary" size="small"

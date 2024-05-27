@@ -51,7 +51,7 @@ export function defaultTheme() {
         },
         borderRadius: '4px',
         largeBorderRadius: '6px',
-        boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.08)',
+        boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.08)',
         middleBoxShadow: '0px 2px 16px 2px rgba(0, 0, 0, 0.08)',
         largeBoxShadow: '0px 4px 32px 4px rgba(0, 0, 0, 0.08)',
         fontSize: '12px',
