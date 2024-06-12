@@ -13,6 +13,7 @@ import {injectGlobal} from '@emotion/css';
 import eot from './ionicons.eot';
 import ttf from './ionicons.ttf';
 import woff from './ionicons.woff';
+import woff2 from './ionicons.woff2';
 import svg from './ionicons.svg';
 
 injectGlobal`
@@ -20,8 +21,9 @@ injectGlobal`
         font-family: "Ionicons";
         src: url("${eot}");
         src: url("${eot}#iefix") format("embedded-opentype"),
-        url("${ttf}") format("truetype"), 
+        url("${woff2}") format("woff2"),
         url("${woff}") format("woff"), 
+        url("${ttf}") format("truetype"),
         url("${svg}#Ionicons") format("svg"); 
         font-weight: normal; 
         font-style: normal; 

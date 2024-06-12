@@ -210,7 +210,8 @@ export function useChecked(
         instance.trigger(isChecked ? 'checkRow' : 'uncheckRow', data.value![rowIndex], rowIndex, key);
     }
 
-    instance.on('$receive:children', updateAllCheckedStatus);
+    // instance.on('$receive:children', updateAllCheckedStatus);
+    useReceive(['children'], updateAllCheckedStatus);
     instance.on('$change:checkedKeys', updateAllCheckedStatus);
     // for draggable
     watchState(data, updateAllCheckedStatus);

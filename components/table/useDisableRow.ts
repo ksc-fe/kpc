@@ -2,6 +2,7 @@ import {useInstance} from 'intact';
 import type {Table, TableRowKey, TableCheckType} from './table';
 import type {useTree} from './useTree';
 import { State, watchState } from '../../hooks/useState';
+import { useReceive } from '../../hooks/useReceive';
 
 export function useDisableRow(
     loopData: ReturnType<typeof useTree>['loopData'],
@@ -48,7 +49,8 @@ export function useDisableRow(
         return allKeys;
     }
 
-    instance.on('$receive:children', setDisabledKeys);
+    // instance.on('$receive:children', setDisabledKeys);
+    useReceive(['children'], setDisabledKeys);
     watchState(data, setDisabledKeys);
 
     return {isDisabled, getEnableKeys, isDisabledKey, getAllKeys};

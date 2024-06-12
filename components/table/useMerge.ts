@@ -2,6 +2,7 @@ import {useInstance, Props} from 'intact';
 import type {Table, TableRowKey, TableCheckType} from './table';
 import type {TableColumnProps} from './column';
 import { State, watchState } from '../../hooks/useState';
+import { useReceive } from '../../hooks/useReceive';
 
 export type TableMerge<T = any, CheckType = 'checkbox'> = (
     row: T,
@@ -100,7 +101,11 @@ export function useMerge(
         return grid;
     }
 
-    instance.on('$receive:children', handleSpans);
+    /**
+     * https://github.com/ksc-fe/kpc/issues/1008
+     */
+    // instance.on('$receive:children', handleSpans);
+    useReceive(['children'], handleSpans);
     watchState(data, handleSpans);
 
     return {getGrid};

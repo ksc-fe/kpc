@@ -15,6 +15,7 @@ import ScrollToRowDemo from '~/components/table/demos/scrollToRow';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Component} from 'intact';
 import {Table, TableColumn} from './';
+import { bind } from '../utils';
 import DraggableTable from '~/components/table/demos/draggable';
 import MergeCellDemo from '~/components/table/demos/mergeCell';
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
@@ -184,6 +185,68 @@ describe('Table', () => {
         await wait();
         expect(mergeRadioTable.get('checkedKeys')).eql([1, 0]);
         expect(table2.outerHTML).to.matchSnapshot();
+    });
+
+    it('append a row in merged table', async () => {
+        let uniqueId = 0;
+        class Demo extends Component<{data: any[]}> {
+            static template = `
+                const {Table, TableColumn} = this;
+                const { data } = this.get();
+                <Table data={data} merge={this.merge} rowKey={data => data.uniqueId} animation={false}>
+                    <TableColumn title="名称" key="Name" />
+                    <TableColumn title="头衔" key="Title" />
+                    <TableColumn title="uniqueId" key="uniqueId" />
+                </Table>
+            `
+
+            private Table = Table;
+            private TableColumn = TableColumn;
+
+            static defaults() {
+                return {
+                    data: [
+                        {
+                            Name: '刘备',
+                            Title: '大哥',
+                            uniqueId: 0, 
+                        },
+                    ]
+                }
+            }
+
+            @bind
+            merge(row: any, column: any, rowIndex: number, columnIndex: number) {
+                const { data } = this.get();
+                for (let i = 0; i < data.length; i++) {
+                    const mergeIndex = data.findIndex((item: any, index: number) => {
+                        return index > i && item.Name !== data[i]?.Name;
+                    });
+                    const allSame = data.every((item: any, index: number) => {
+                        if (index > i) {
+                            return item.Name === data[i].Name;
+                        }
+                        return true;
+                    });
+                    if ([0, 1, 2].includes(columnIndex) && rowIndex === i) {
+                        if (mergeIndex === -1 && allSame) {
+                            return { rowspan: data.length - i };
+                        }
+                        if (mergeIndex > -1) {
+                            return { rowspan: mergeIndex - i };
+                        }
+                    }
+                }
+            }
+        }
+
+        const [instance, element] = mount(Demo);
+
+        const { data } = instance.get();
+        instance.set('data', [...data, { ...data[data.length - 1], uniqueId: ++uniqueId }]);
+
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
     });
 
     it('sort', async () => {
