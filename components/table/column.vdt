@@ -16,7 +16,7 @@ import {Input} from '../input';
 import {_$} from '../../i18n';
 import {ignoreSortable} from './useSortable';
 
-const {title, fixed, group, multiple, key, sortable, cols, rows, hidden} = this.get();
+const {title, fixed, group, multiple, key, sortable, cols, rows, hidden, hideGroupHeader} = this.get();
 const {
     onSelect, isChecked, keywords, filteredGroup,
     onShow, reset, confirm, dropdownRef,
@@ -66,7 +66,7 @@ const { k } = this.config;
                                                     <b:title>{title}</b:title>
                                                 </div>
                                                 <Dropdown v-if={group}
-                                                    position={{my: 'center top', at: 'center bottom+5', collision: 'flipfit'}}
+                                                    position={{my: 'left top', at: 'left bottom+5', collision: 'flipfit'}}
                                                     key="dropdown"
                                                     trigger="click"
                                                     ev-show={() => onShow(groupValue)}
@@ -78,7 +78,7 @@ const { k } = this.config;
                                                         color={isEmptyValue(groupValue) ? null : 'primary'}
                                                     />
                                                     <DropdownMenu class={{[`${k}-table-group-dropdown`]: true, [makeGroupMenuStyles(k)]: true}}>
-                                                        <div class={`${k}-table-group-header`}>
+                                                        <div class={`${k}-table-group-header`} v-if={!hideGroupHeader}>
                                                             <Input size="small" fluid
                                                                 placeholder={_$('请输入关键字')}
                                                                 value={keywords.value}

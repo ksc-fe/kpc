@@ -103,6 +103,7 @@ export interface PaginationProps {
 | sortable | 是否可排序 | `boolean` | `false` |
 | width | 列宽，可以指定百分比或像素(像素不需要加单位) | `string` | `undefined` |
 | group | 指定分组数组，每一项格式为`{value: '选中后的值', label: '展示的文案'}` | `TableColumnGroupItem[]` | `undefined` |
+| hideGroupHeader | 是否隐藏group下拉菜单中header区域 | `boolean` | `false` |
 | multiple | 分组是否支持多选 | `boolean` | `false` |
 | ignore | 是否忽略当前列的导出 | `boolean` | `false` |
 | fixed | 是否将列固定，`"left"`固定在左侧；`"right"`固定在右侧 | `"left"` &#124; `"right"` | `undefined` |

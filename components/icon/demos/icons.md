@@ -137,6 +137,8 @@ export default class extends Component<Props> {
                 ['upload'],
                 ['download'],
                 ['start'],
+                ['stop'],
+                ['sortorder'],
             ],
         } as Props
     }
