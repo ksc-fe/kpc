@@ -41,7 +41,7 @@ gulp.task('build:vdt', () => {
 
 gulp.task('build:font', () => {
     return gulp.src([
-        './styles/fonts/*.@(eot|svg|ttf|woff)',
+        './styles/fonts/*.@(eot|svg|ttf|woff|woff2)',
     ], {base: './', root})
         .pipe(gulp.dest(destEs));
 })
