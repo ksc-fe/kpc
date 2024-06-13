@@ -1,0 +1,27 @@
+import {DescriptionItem} from './item';
+import {makeStyles} from './styles';
+import {getRestProps} from '../utils';
+
+
+const {children, className, column, title, vertical, columns} = this.get();
+const { k } = this.config;
+
+const classNameObj = {
+    [`${k}-descriptions`]: true,
+    [`${k}-vertical`]: vertical,
+    [className]: className,
+    [makeStyles(k, column)]: true,
+};
+
+
+<div {...getRestProps(this)} class={classNameObj}>
+    <div v-if={ title } class={`${k}-descriptions-title`}><label>{title}</label></div>
+    <div class={`${k}-descriptions-content`}>
+        <template v-if={columns}>
+             <DescriptionItem v-for={columns} label={$value.label} content={$value.content} option={$value.option} />
+        </template>
+        <template v-else>
+            {children}
+        </template>
+    </div>
+</div>

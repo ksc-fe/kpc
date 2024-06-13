@@ -27,6 +27,7 @@ export * from './components/colorpicker';
 export * from './components/config';
 export * from './components/copy';
 export * from './components/datepicker';
+export * from './components/descriptions';
 export * from './components/dialog';
 export * from './components/divider';
 export * from './components/drawer';
