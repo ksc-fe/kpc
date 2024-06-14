@@ -85,7 +85,7 @@ export class Switch<True = true, False = false> extends Component<SwitchProps<Tr
     private onClickOnHandle(e: MouseEventWithIgnore) {
         // we can not stop propagation, otherwise the click can not be listen at outer
         const {beforeChange} = this.get();
-        e._switchIgnore = typeof beforeChange !== 'function';
+        e._switchIgnore = !beforeChange;
     }
 
     @bind
