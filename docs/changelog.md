@@ -4,6 +4,23 @@ order: 99
 sidebar: doc
 ---
 
+
+## v3.4.0
+
+1. `Add` 适配qiankun微前端框架 [#1002](https://github.com/ksc-fe/kpc/issues/1002)
+2. `Add` 新增`Descriptions`描述列表组件 [#1010](https://github.com/ksc-fe/kpc/issues/1010)
+3. `Add` `TableColumn`新增`hideGroupHeader`属性，用于自定义隐藏group 默认搜索 [#1011](https://github.com/ksc-fe/kpc/issues/1011)
+4. `Add` `Icon`新增`start`、`stop`、 `sortorder`图标 [#1007](https://github.com/ksc-fe/kpc/issues/1007)
+5. `Fix` `Table`在合并单元格模式下（merge），插入数据会报错 [#1008](https://github.com/ksc-fe/kpc/issues/1008)
+6. `Fix` `Switch` `beforeChange`属性在拖拽开关情况下不生效 [#1006](https://github.com/ksc-fe/kpc/issues/1006)
+7. `Fix` 字体包优化，`ionicons`增加woff2，调整加载顺序 [#1009](https://github.com/ksc-fe/kpc/issues/1009)
+8. `Fix` 其他UI调整`Card`、`Tabs`等默认阴影，表头筛选的次级按钮样式 [#1007](https://github.com/ksc-fe/kpc/issues/1007)
+
+### @king-design/vue
+
+1. `Fix` 【vue3.0】proxyFragmentParent某些情况下，由于元素被卸载，导致报错 [#1005](https://github.com/ksc-fe/kpc/issues/1005)
+
+
 ## v3.3.3
 
 1. `Add` `Button`新增`color`属性，支持自定义字体、边框、波纹效果颜色 [#999](https://github.com/ksc-fe/kpc/issues/999)

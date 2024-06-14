@@ -59,7 +59,7 @@
 ```
 
 ```
-"<div class=\"k-tabs k-size-default k-vertical k-type-card css-zq7arh\"><div class=\"k-tabs-scroll c-clearfix\"><div class=\"k-tabs-wrapper\" style=\"transform: translateY(0px);\"><div class=\"k-tab k-active\">工作日</div><div class=\"k-tab\"><i class=\"ion-wineglass\"></i>休息日</div><div class=\"k-tabs-active-bar\" style=\"top: 0px; height: 0px;\"></div></div></div></div><div class=\"k-select-group css-g9gtt4\"><div class=\"k-dropdown-item k-select-option k-active css-vj004t\">星期一</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期二</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期三</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期四</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期五</div></div>"
+"<div class=\"k-tabs k-size-default k-vertical k-type-card css-zo0w25\"><div class=\"k-tabs-scroll c-clearfix\"><div class=\"k-tabs-wrapper\" style=\"transform: translateY(0px);\"><div class=\"k-tab k-active\">工作日</div><div class=\"k-tab\"><i class=\"ion-wineglass\"></i>休息日</div><div class=\"k-tabs-active-bar\" style=\"top: 0px; height: 0px;\"></div></div></div></div><div class=\"k-select-group css-g9gtt4\"><div class=\"k-dropdown-item k-select-option k-active css-vj004t\">星期一</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期二</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期三</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期四</div><div class=\"k-dropdown-item k-select-option css-vj004t\">星期五</div></div>"
 ```
 
 #### `keyboard operations`
