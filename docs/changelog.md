@@ -5,7 +5,7 @@ sidebar: doc
 ---
 
 
-## v3.4.0
+## v3.4.1
 
 1. `Add` 适配qiankun微前端框架 [#1002](https://github.com/ksc-fe/kpc/issues/1002)
 2. `Add` 新增`Descriptions`描述列表组件 [#1010](https://github.com/ksc-fe/kpc/issues/1010)
