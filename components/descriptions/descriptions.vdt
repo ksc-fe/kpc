@@ -3,22 +3,26 @@ import {makeStyles} from './styles';
 import {getRestProps} from '../utils';
 
 
-const {children, className, column, title, vertical, columns} = this.get();
+const {children, className, columns, title, vertical, items} = this.get();
 const { k } = this.config;
 
 const classNameObj = {
     [`${k}-descriptions`]: true,
     [`${k}-vertical`]: vertical,
     [className]: className,
-    [makeStyles(k, column)]: true,
+    [makeStyles(k, columns)]: true,
 };
 
 
 <div {...getRestProps(this)} class={classNameObj}>
-    <div v-if={ title } class={`${k}-descriptions-title`}><label>{title}</label></div>
+    <div v-if={$blocks.title || title} class={`${k}-descriptions-title`}>
+        <b:title>
+             <template v-if={title}>{title}</template>
+        </b:title>
+    </div>
     <div class={`${k}-descriptions-content`}>
-        <template v-if={columns}>
-             <DescriptionItem v-for={columns} label={$value.label} content={$value.content} option={$value.option} />
+        <template v-if={items}>
+             <DescriptionItem v-for={items} label={$value.label} content={$value.content} append={$value.append} />
         </template>
         <template v-else>
             {children}

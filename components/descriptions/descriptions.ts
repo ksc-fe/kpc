@@ -2,26 +2,38 @@ import {Component, TypeDefs} from 'intact';
 import {DescriptionItemProps} from './item';
 import template from './descriptions.vdt';
 import { useConfigContext } from '../config';
+import { VNode } from "intact";
 
 export interface DescriptionsProps {
     vertical?: boolean
-    column?: number
-    columns?: DescriptionItemProps[]
-    title?: string
+    columns?: number
+    items?: DescriptionItemProps[]
+    title?: string | number | VNode
 }
+
+export interface DescriptionsBlocks {
+    title: null
+}
+
+
+export interface DescriptionsEvents {}
+
 
 const typeDefs: Required<TypeDefs<DescriptionsProps>> = {
     vertical: Boolean,
-    column: Number,
-    columns: Array,
-    title: String,
+    columns: Number,
+    items: Array,
+    title: [String, Number, VNode],
 };
 
+
+
+
 const defaults = (): Partial<DescriptionsProps> => ({
-    column: 3,
+    columns: 3,
 });
 
-export class Descriptions extends Component<DescriptionsProps> {
+export class Descriptions extends Component<DescriptionsProps, DescriptionsEvents, DescriptionsBlocks> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
