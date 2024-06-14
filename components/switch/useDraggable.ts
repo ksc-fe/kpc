@@ -14,7 +14,8 @@ export function useDraggable(elementRef: RefObject<HTMLElement>) {
     let maxWidth: number;
 
     function onStart(e: MouseEvent) {
-        if (instance.get('disabled')) return;
+        const {disabled, beforeChange} = instance.get();
+        if (disabled || beforeChange) return;
 
         x = e.clientX;
         height = barRef.value!.clientHeight; 

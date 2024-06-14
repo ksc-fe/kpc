@@ -126,7 +126,14 @@ describe('Switch', () => {
         el1.click();
         el2.click();
         await wait(1000);
-        expect(instance.get('value1')).to.be.true;
+        expect(instance.get('value1')).eql(1);
+        expect(instance.get('value2')).to.be.false;
+        await wait();
+        const [dragg1, dragg2] = element.querySelectorAll<HTMLElement>('.k-switch-handle');
+        dispatchEvent(dragg2, 'mousedown', {which: 1, clientX: 0});
+        dispatchEvent(document, 'mousemove', {clientX: 30});
+        dispatchEvent(document, 'mouseup', {clientX: 30});
+        await wait();
         expect(instance.get('value2')).to.be.false;
     });
 });

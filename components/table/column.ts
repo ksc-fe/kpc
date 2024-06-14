@@ -9,6 +9,7 @@ export interface TableColumnProps {
     sortable?: boolean
     width?: string | number
     group?: TableColumnGroupItem[]
+    hideGroupHeader?: boolean
     multiple?: boolean
     ignore?: boolean
     fixed?: 'left' | 'right'
@@ -48,6 +49,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     sortable: Boolean,
     width: [String, Number],
     group: Array,
+    hideGroupHeader: Boolean,
     multiple: Boolean,
     ignore: Boolean,
     fixed: ['left', 'right'],
