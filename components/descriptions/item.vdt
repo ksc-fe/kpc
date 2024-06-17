@@ -1,13 +1,11 @@
 import {makeStyles} from './styles';
-import {getRestProps, addStyle} from '../utils';
-import {isFunction} from 'intact-shared';
-import {Ellipsis} from 'kpc';
+import {getRestProps} from '../utils';
+import {Ellipsis} from '../ellipsis';
 
 const {
     children, className, span, label, content, append
 } = this.get();
 const { k } = this.config;
-
 
 const classNameObj = {
     [`${k}-description-item`]: true,
