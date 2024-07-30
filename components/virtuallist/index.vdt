@@ -1,0 +1,20 @@
+import { Icon } from '../icon';
+import { getRestProps } from '../utils';
+import { makeStyles } from './styles';
+import { _$ } from '../../i18n';
+
+const { children, className } = this.get();
+const {containerRef, contentRef, virtualChildren, paddingTop, paddingBottom} = this.virtual;
+const { k } = this.config;
+
+const classNameObj = {
+    [`${k}-virtual`]: true,
+    [makeStyles(k)]: true,
+    [className]: className,
+}
+
+<div class={classNameObj} style={{ maxHeight: '200px', overflow: 'auto' }} ref={containerRef}>
+    <div style={{ paddingTop: paddingTop() + 'px', paddingBottom: paddingBottom() + 'px' }} ref={contentRef}>
+        {virtualChildren.value}
+    </div>
+</div>
