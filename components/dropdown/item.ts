@@ -7,6 +7,7 @@ import {DropdownMenu, DROPDOWN_MENU} from './menu';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import { Dropdown as ExportDropdown, DropdownMenu as ExportDropdownMenu } from '.';
 import { useConfigContext } from '../config';
+import type { Tooltip } from '../tooltip/tooltip';
 
 export interface DropdownItemProps {
     disabled?: boolean
@@ -61,8 +62,12 @@ export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvent
         if (this.get('hideOnSelect')) {
             // hide all dropdowns
             let dropdown = this.dropdown;
-            do { dropdown!.hide(true); }
-            while (dropdown = dropdown!.dropdown);
+            do {
+                if (!(dropdown as Tooltip).$isTooltip) {
+                    dropdown!.hide(true);
+                }
+                dropdown = dropdown!.dropdown;
+            } while (dropdown);
         }
     }
 

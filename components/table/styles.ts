@@ -90,7 +90,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
         table {
             width: 100%;
-            // border-collapse: collapse;
+            border-collapse: separate;
             border-spacing: 0;
             table-layout: fixed;
             // td, 
