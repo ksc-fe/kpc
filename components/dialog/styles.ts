@@ -52,12 +52,12 @@ const defaults = {
         padding: `0 24px`,
         bodyMarginTop: `-25px`,
         tipIconMarginBottom: '10px',
-        tipIconFontSize: '37px',
-        tipIconLineHeight: '37px',
+        tipIconFontSize: '24px',
+        tipIconLineHeight: '24px',
 
         // with title
         titleFontWeight: '500',
-        titleTipIconFontSize: '37px',
+        titleTipIconFontSize: '24px',
         titleFontSize: '14px',
         wrapperPaddingLeft: '8px',
         titleBodyMarginTop: '-36px',

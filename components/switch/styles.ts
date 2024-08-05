@@ -24,10 +24,10 @@ const defaults = {
 
     // default
     default: {
-        width: `45px`,
-        height: `24px`,
-        padding: `3px`,
-        iconSize: `16px`,
+        width: `30px`,
+        height: `16px`,
+        padding: `2px`,
+        iconSize: `10px`,
     },
 
     // large
