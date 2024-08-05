@@ -11,7 +11,7 @@ const {
     grid, index: rowIndex, indeterminate,
     allDisabled, selected, /* hidden,  */spreaded,
     hasChildren, indent, key, offsetMap,
-    draggable, draggingKey, animation,
+    draggable, draggingKey, animation, loaded,
 } = this.get();
 const { k } = this.config;
 
@@ -71,13 +71,13 @@ cols.forEach((props, columnIndex) => {
     if (!render) return;
 
     const columnKey = props.key;
-
     vNodes.push(
         <TableCell
             props={props}
             columnIndex={columnIndex}
             rowIndex={rowIndex}
             data={data}
+            loaded={loaded}
             offset={offsetMap[columnKey]}
             checkType={checkType}
             indent={indent}

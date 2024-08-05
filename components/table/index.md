@@ -45,6 +45,7 @@ sidebar: doc
 | animation | 是否开启动效，默认开启。可以通过`true` `false`全部设置，或者通过数组单独设置行和列的动效 | `boolean` &#124 `[boolean, boolean]` | `true` |
 | hideHeader | 是否隐藏表头 | `boolean` | `false` |
 | pagination | 是否支持分页 | `boolean` &#124; `PaginationProps` | `false` |
+| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: any) => Promise<void> &#124; void</code> | `undefined` |
 
 ```ts
 import {Props} from 'intact';
@@ -132,6 +133,7 @@ export type TableColumnGroupItem = {
 | empty | 自定义无数据展示模板 | - |
 | expand | 指定行展开后要展示的模板内容 | `([data: T, index: number]) => Children` |
 | tooltip | 行提示内容 | `([data: T, index: number]) => Children` |
+| footer | 自定义`Table`底部 | - |
 
 ## TableColumn
 

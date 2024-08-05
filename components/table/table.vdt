@@ -137,11 +137,11 @@ const tbody = (
                     const spreaded = isSpreaded(key);
                     const hasChildren = !!childrenKey && Array.isArray(value[childrenKey]);
                     const indentSize = indent ? indent * level : 0; 
-
                     let row = <TableRow
                         key={key}
                         cols={cols}
                         data={value}
+                        loaded={value.loaded}
                         checkType={checkType}
                         hasFixedLeft={hasFixedLeft}
                         onClick={this.clickRow}
@@ -199,7 +199,15 @@ const tbody = (
 
                     return hidden || !spreaded;
                 });
-
+                if ($blocks.footer) {
+                    rows.push(
+                        <tr key="table-footer">
+                            <td colspan={colCount} class={`${k}-table-footer`}>
+                                <b:footer />
+                            </td>
+                        </tr>
+                    );
+                }
                 return animation[0] ?
                     <TransitionGroup name="k-fade-in-left" move={!draggingKey.value}>{rows}</TransitionGroup> :
                     rows;

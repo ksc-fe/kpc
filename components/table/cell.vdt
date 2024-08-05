@@ -7,7 +7,7 @@ import {getTextByChildren} from '../utils';
 const {
     props, rowIndex, columnIndex, offset,
     data, checkType, indent, grid,
-    colspan, rowspan, onClickArrow, hasChildren,
+    colspan, rowspan, onClickArrow, hasChildren, loaded
 } = this.get();
 const { k } = this.config;
 
@@ -42,7 +42,8 @@ const classNameObj = {
         class={`${k}-table-arrow`}
         ev-click={onClickArrow}
     >
-        <Icon class={`${k}-icon-right`} size="small" />
+        <Icon v-if={loaded !== false} class={`${k}-icon-right`} size="small" />
+        <Icon v-else class={`${k}-tree-icon ion-load-c`} rotate />
     </Button>
     {children}
 </td>
