@@ -31,7 +31,9 @@ const classNameObj = {
             ref={this.inputRef}
             frozenOnInput
             ev-$mounted={this.select}
-            autoWidth
+            width={300}
+            type="textarea"
+            rows="auto"
         />
     </div>
     <Tooltip v-if={!disabled && !editing} content={tip}>

@@ -114,6 +114,7 @@ export interface PaginationProps {
 | minWidth | 指定当前列拖动时的最小宽度，优先级高于`Table`的`minColWidth` | `number` | `undefined` |
 | className | 给当前列添加className | `string` &#124; `Record<string, any>` | `undefined` |
 | hidden | 是否隐藏当前列，仅为不可见，不影响`exportTable`导出表格 | `boolean` | `false` |
+| ellipsis | 是否开启超长省略 | `boolean` | `false` |
 
 ```ts
 import {VNode} from 'intact';

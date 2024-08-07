@@ -30,6 +30,7 @@ const wrapper = <div class={{
         position={position}
         theme={theme}
         class={className}
+        hoverable
     >
         {wrapper}
         <b:content>{children}</b:content> 

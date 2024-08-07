@@ -270,30 +270,30 @@ import-fresh@^3.2.1:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-intact-react@3.0.37:
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/intact-react/-/intact-react-3.0.37.tgz#af9adebad6a2c73e996277190a00960af15307d8"
-  integrity sha512-o5y7H74SZsXse3Gm+g0UQkt6PnglGO+uhtVzbL3zLTfSm3PxHbmCocWvn0YWcnnzUM7rxr6h9J6FP3QnScR/hQ==
+intact-react@3.0.38:
+  version "3.0.38"
+  resolved "https://registry.npmmirror.com/intact-react/-/intact-react-3.0.38.tgz#151f412d5bd1bd12e324957dab6572746c02b712"
+  integrity sha512-qclU6NNJjEcXZqjs+LcFBQsA/IgQodk61UO6/lIYMwhi1MsRt6yuYac9/QQV6wa6cZGE9aLDJAoSVFZ1NVU3sQ==
   dependencies:
-    intact "^3.0.37"
-    intact-shared "^3.0.37"
+    intact "^3.0.38"
+    intact-shared "^3.0.38"
     tslib "^2.3.1"
 
-intact-shared@^3.0.37:
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.37.tgz#dc7db3b6947875b71c0c5a0771ff578f88b32ad8"
-  integrity sha512-pHMQw2koG+Apz5H2ybTNk477uOtFg/XxqMv3mqn8TdNhWR6QrNKDSczYXRrILs8IBCONTbZdqzRSZjLIjhfq1w==
+intact-shared@^3.0.38:
+  version "3.0.38"
+  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.38.tgz#5b3007f5bfa8d462ad679f1d8a54f6da5824e63d"
+  integrity sha512-32FuT8uXU+NYVRTtNNrEvMp4QGvR3MxO2srW8ngI1V2eoXvaBnbng8JFvfwDJybFev3imtaa/xAzOhBCQvK/oQ==
 
-intact@^3.0.37:
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/intact/-/intact-3.0.37.tgz#48c68543fd5c60113673c46622d32eb495c2c392"
-  integrity sha512-mHWfI5mbe755HjBqIQiXCoCcQFdJtJAbHVOrqxAKZyRsxG/8iMWTCYBSHrpkjy7qofNbCb6WVv7uczmZAp8KYw==
+intact@^3.0.38:
+  version "3.0.38"
+  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.38.tgz#181f0f93267cf2614d33424e2a73037de0fc3c25"
+  integrity sha512-IaJvG5uWoExJwvdeiHSQJ0+AXwSQhwUciCN838XIiNFdCpDkHCL/8N6zEiq+AXkQpQhHq3/Acbb9Dt9cQOvxpg==
   dependencies:
-    intact-shared "^3.0.37"
-    misstime "^3.0.37"
+    intact-shared "^3.0.38"
+    misstime "^3.0.38"
     tslib "^2.2.0"
-    vdt "^3.0.37"
-    vdt-compiler "^3.0.37"
+    vdt "^3.0.38"
+    vdt-compiler "^3.0.38"
 
 is-arrayish@^0.2.1:
   version "0.2.1"
@@ -322,12 +322,12 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmmirror.com/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-misstime@^3.0.37:
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.37.tgz#f2f27158f2802fc72a7570d92eeafe3f2aae37e4"
-  integrity sha512-ZD+k/fa3SAwIqqBw4uu+4+lSbprzhumaVCIJP9Z+4wKsSbWmDEVfsMI98alkmeZ5LRUdqCTfaAGng6LkSurNyA==
+misstime@^3.0.38:
+  version "3.0.38"
+  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.38.tgz#64e24b683c9c592909d623cec7786da8750cc831"
+  integrity sha512-PpvmDikm2Tp/0Xnvo1pxCuVIhfp6NHdfN0hHApgVyeTeGghjGoYFgZyr7G/UsXh/+TvvDIZHUM5okdf+Z8Gv2g==
   dependencies:
-    intact-shared "^3.0.37"
+    intact-shared "^3.0.38"
 
 monaco-editor@^0.26.1:
   version "0.26.1"
@@ -427,22 +427,22 @@ tslib@^2.2.0, tslib@^2.3.1:
   resolved "https://registry.npmmirror.com/tslib/-/tslib-2.6.1.tgz#fd8c9a0ff42590b25703c0acb3de3d3f4ede0410"
   integrity sha512-t0hLfiEKfMUoqhG+U1oid7Pva4bbDPHYfJNiB7BiIjRkj1pyC++4N3huJfqY6aRH6VTB0rvtzQwjM4K6qpfOig==
 
-vdt-compiler@^3.0.37:
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.37.tgz#6803b545561e42e7d2923408159efef32795a381"
-  integrity sha512-nkyYWOo725WRg3f0MxGQJckWDZrDFrHL1GQFNM9Hv4W6uEcDqHJ9XDt2kNpPrXNY88rECzwjejFQLaGLp84w6w==
+vdt-compiler@^3.0.38:
+  version "3.0.38"
+  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.38.tgz#f2352c869559bcc09a88b62195a0f8194952c24e"
+  integrity sha512-sph+2768/sUR32/GxtrIUAffie6Jg55I0cR/oVN/E81E8rkh8SuQnGz4CP69XOvBrh3KFGfuPC88UZ12PiWs4A==
   dependencies:
-    intact-shared "^3.0.37"
-    misstime "^3.0.37"
+    intact-shared "^3.0.38"
+    misstime "^3.0.38"
     tslib "^2.2.0"
 
-vdt@^3.0.37:
-  version "3.0.37"
-  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.37.tgz#298648f2a8bea63e062f0ca483005cecde0faf2a"
-  integrity sha512-tMFlPl8B0rJUSBLbl998hOdzmeYbLf55PMA/nqmooh+YnfSomgN/87ONbCVxOPAui09tkFa44BBc47VQB+x4gQ==
+vdt@^3.0.38:
+  version "3.0.38"
+  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.38.tgz#43dca4d756b8e65917651f36f200218b6a065de4"
+  integrity sha512-Qoo8UH4yEou3po2xjVFgNG/FYS4w83zx2qdDarVtTcFMnTbz7lqdGNH9TtSbeINsz5nZEsp62fGcnWCeuoJYOQ==
   dependencies:
-    intact-shared "^3.0.37"
-    misstime "^3.0.37"
+    intact-shared "^3.0.38"
+    misstime "^3.0.38"
     tslib "^2.2.0"
 
 yaml@^1.10.0:

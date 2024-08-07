@@ -19,6 +19,7 @@ import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
 import {isNullOrUndefined} from 'intact-shared';
 import { useDraggable } from './useDraggble';
+import { useImmutable } from './useImmutable';
 import { useConfigContext } from '../config';
 
 export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = V | null> {
@@ -107,6 +108,7 @@ export abstract class BaseSelect<
     public input = useInput(this.resetKeywords);
     private focusout = useFocusout();
     private draggable = useDraggable();
+    public immutable = useImmutable();
     protected config = useConfigContext();
 
     init() {
@@ -160,7 +162,11 @@ export abstract class BaseSelect<
     @bind
     protected clear(e: MouseEvent) {
         e.stopPropagation();
-        this.set('value', this.get('multiple') ? [] : null);
+        const {value, multiple} = this.get();
+        const immutableValues = this.immutable.immutableValues.value;
+    
+        this.set('value', multiple ? (Array.isArray(value) ? value.filter(key => immutableValues.includes(key)) : []) : null);
+
     }
 
     @bind

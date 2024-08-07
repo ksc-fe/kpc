@@ -6,7 +6,7 @@ import { cache } from '../utils';
 
 const defaults = {
     iconGap: '0 0 0 8px',
-
+    get smallPadding() { return theme.small.padding },
     // invalid
     invalid: {
         get border() { return `1px solid ${theme.color.danger}`}, 
@@ -33,6 +33,13 @@ export const makeStyles = cache(function makeStyles(k: string) {
         &.${k}-invalid {
             .${k}-input-wrapper {
                 border: ${editable.invalid.border} !important;
+            }
+        }
+        &.${k}-editable {
+            .${k}-type-textarea {
+                .${k}-textarea {
+                    padding: 0 ${editable.smallPadding};
+                } 
             }
         }
     `;
