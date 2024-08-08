@@ -1,6 +1,6 @@
 ---
-title: 树形表格
-order: 24
+title: 树形表格异步加载
+order: 33
 ---
 
 添加`load`数据加载函数即可实现异步加载子节点功能，组件会传入当前节点对象作为参数，函数可以返回
@@ -63,7 +63,7 @@ export default class extends Component<Props> {
                 this.set('data', [...this.get('data')]);
 
                 resolve();
-            }, 4000);
+            }, 2000);
         });
     }
 }

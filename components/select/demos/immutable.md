@@ -1,5 +1,5 @@
 ---
-title: disabled选项不可删除
+title: 禁用选项不可删除
 order: 14
 ---
 

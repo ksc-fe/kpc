@@ -17,7 +17,7 @@ describe('Editable', () => {
         expect(element.innerHTML).to.matchSnapshot();
 
         // input
-        let input = element.querySelector('input') as HTMLInputElement;
+        let input = element.querySelector('textarea') as HTMLTextAreaElement;
         input.value = 'test';
         dispatchEvent(input, 'blur');
         await wait();
@@ -29,7 +29,7 @@ describe('Editable', () => {
         editable.edit();
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
-        input = element.querySelector('input') as HTMLInputElement;
+        input = element.querySelector('textarea') as HTMLTextAreaElement;
         input.value = 'new';
         dispatchEvent(input, 'keydown', {keyCode: 27});
         await wait();
@@ -41,7 +41,7 @@ describe('Editable', () => {
         editable.edit();
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
-        input = element.querySelector('input') as HTMLInputElement;
+        input = element.querySelector('textarea') as HTMLTextAreaElement;
         input.value = 'new';
         dispatchEvent(input, 'keydown', {keyCode: 13});
         await wait();
@@ -58,7 +58,7 @@ describe('Editable', () => {
         // @ts-ignore
         first.edit();
         await wait();
-        let input = (findDomFromVNode(first.$lastInput!, true) as HTMLElement).querySelector('input') as HTMLInputElement;
+        let input = (findDomFromVNode(first.$lastInput!, true) as HTMLElement).querySelector('textarea') as HTMLTextAreaElement;
         dispatchEvent(input, 'focus');
         input.value = 'a';
         dispatchEvent(input, 'input');
@@ -69,7 +69,7 @@ describe('Editable', () => {
         // @ts-ignore
         second.edit();
         await wait();
-        input = (findDomFromVNode(second.$lastInput!, true) as HTMLElement).querySelector('input') as HTMLInputElement;
+        input = (findDomFromVNode(second.$lastInput!, true) as HTMLElement).querySelector('textarea') as HTMLTextAreaElement;
         input.value = 'a';
         dispatchEvent(input, 'input');
         dispatchEvent(input, 'blur');
@@ -79,7 +79,7 @@ describe('Editable', () => {
         // @ts-ignore
         third.edit();
         await wait();
-        input = (findDomFromVNode(third.$lastInput!, true) as HTMLElement).querySelector('input') as HTMLInputElement;
+        input = (findDomFromVNode(third.$lastInput!, true) as HTMLElement).querySelector('textarea') as HTMLTextAreaElement;
         input.value = 'a';
         dispatchEvent(input, 'input');
         dispatchEvent(input, 'blur');
@@ -110,14 +110,14 @@ describe('Editable', () => {
         expect(element.outerHTML).to.matchSnapshot();
         element.querySelector<HTMLElement>('.k-editable-icon')!.click();
         await wait();
-        let input = element.querySelector("input") as HTMLInputElement;
+        let input = element.querySelector("textarea") as HTMLTextAreaElement;
         input.value = 'aa';
         dispatchEvent(input, 'blur');
         await wait();
         expect(element.innerText).to.eql('test');
         element.querySelector<HTMLElement>('.k-editable-icon')!.click();
         await wait();
-        input = element.querySelector("input") as HTMLInputElement;
+        input = element.querySelector("textarea") as HTMLTextAreaElement;
         expect(input.value).to.eql('aa');
     });
 });

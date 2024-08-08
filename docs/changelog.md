@@ -3,6 +3,23 @@ title: 更新日志
 order: 99
 sidebar: doc
 ---
+## v3.4.3
+
+1. `Add` `Table`组件支持异步加载`children` [#1014](https://github.com/ksc-fe/kpc/issues/1014)
+2. `Add` 补充`Button`组件`disabled`色系 [#1015](https://github.com/ksc-fe/kpc/issues/1015)
+3. `Add` `Table`组件新增`footer`插槽，用于自定义表格footer [#1017](https://github.com/ksc-fe/kpc/issues/1017)
+4. `Add` `Select`组件支持已选中的选项，个别选项通过条件判断禁止删除 [#1020](https://github.com/ksc-fe/kpc/issues/1020)
+5. `Add` `TableColumn`组件支持配置`ellipsis`属性，用于开启超长省略 [#1024](https://github.com/ksc-fe/kpc/issues/1024)
+6. `Add` `Eidtable`组件支持自动折行 [#1027](https://github.com/ksc-fe/kpc/issues/1027)
+7. `Fix` `Menu`组件关闭后`MenuHeader`存在padding [#1023](https://github.com/ksc-fe/kpc/issues/1023)
+8. `Fix` `Tooltip`自定义内容嵌套`Select`，`Select`选中会隐藏`Tooltip` [#1021](https://github.com/ksc-fe/kpc/issues/1021)
+9. `Fix` `Table`组件合并表头设置`fixHeader`，向下滚动后`border-bottom` 会变成透明 [#1018](https://github.com/ksc-fe/kpc/issues/1018)
+10. `Fix` `TreeSelect`左侧对齐线无法隐藏 [#1016](https://github.com/ksc-fe/kpc/issues/1016)
+11. `Fix` 样式fix（`Switch`默然size`small`;`Button`上下居中；`Dialog` icon 默认24px） [#1022](https://github.com/ksc-fe/kpc/issues/1022)
+
+### @king-design/react
+
+1. `Fix` `Input`的组件`slotPrepend`传入`undefined`，但是生成了DOM [#1019](https://github.com/ksc-fe/kpc/issues/1019)
 
 
 ## v3.4.2
