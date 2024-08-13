@@ -50,7 +50,7 @@ const defaults = (): Partial<SwitchProps> => ({
     value: false,
     trueValue: true,
     falseValue: false,
-    size: 'small',
+    size: 'default',
     loading: false,
 });
 

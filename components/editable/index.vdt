@@ -3,11 +3,12 @@ import {Input} from '../input';
 import {Icon} from '../icon';
 import {makeStyles} from './styles';
 import { Tooltip } from '../tooltip';
+import {isNullOrUndefined} from 'intact-shared';
 
 const {
     children, className, editing, 
     value, validate, disabled, 
-    tip, invalid
+    tip, invalid, rows
 } = this.get();
 const { k } = this.config;
 
@@ -19,21 +20,27 @@ const classNameObj = {
     [className]: className,
     [makeStyles(k)]: true
 };
+const isTextArea = !isNullOrUndefined(rows) && rows.toString() !== '1';
+
+const inputProps = {
+    autoWidth: !isTextArea,
+    fluid: isTextArea,
+    ...(isTextArea && { type: 'textarea' }),
+    rows,
+    ...((!isTextArea || rows === 'auto') && {size: 'mini'})
+};
 
 <div {...getRestProps(this)} class={classNameObj}>
     <div class="c-ellipsis">
         <template v-if={!editing}>{children}</template>
         <Input v-else
-            size="mini"
-            defaultValue={value} 
+            defaultValue={value}
             ev-blur={this.onBlur}
             ev-keydown={this.onKeydown}
             ref={this.inputRef}
             frozenOnInput
             ev-$mounted={this.select}
-            width={300}
-            type="textarea"
-            rows="auto"
+            {...inputProps}
         />
     </div>
     <Tooltip v-if={!disabled && !editing} content={tip}>

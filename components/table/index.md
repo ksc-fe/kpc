@@ -45,6 +45,7 @@ sidebar: doc
 | animation | 是否开启动效，默认开启。可以通过`true` `false`全部设置，或者通过数组单独设置行和列的动效 | `boolean` &#124 `[boolean, boolean]` | `true` |
 | hideHeader | 是否隐藏表头 | `boolean` | `false` |
 | pagination | 是否支持分页 | `boolean` &#124; `PaginationProps` | `false` |
+| fixFooter | `table`给定需要固定高度时，自定义footer固定 | `boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: any) => Promise<void> &#124; void</code> | `undefined` |
 
 ```ts

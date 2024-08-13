@@ -35,12 +35,5 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 border: ${editable.invalid.border} !important;
             }
         }
-        &.${k}-editable {
-            .${k}-type-textarea {
-                .${k}-textarea {
-                    padding: 0 ${editable.smallPadding};
-                } 
-            }
-        }
     `;
 });

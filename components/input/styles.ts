@@ -4,7 +4,12 @@ import {deepDefaults, sizes, Sizes} from '../../styles/utils';
 import '../../styles/global';
 import {Input} from './';
 import { cache } from '../utils';
-
+const textareaSize = {
+    mini: '0',
+    small: '1px',
+    default: '5px',
+    large: '7px'
+}
 const defaults = deepDefaults(
     {
         get transition() { return theme.transition.middle },
@@ -55,14 +60,16 @@ const defaults = deepDefaults(
     },
     sizes.reduce((memo, size) => {
         const styles = theme[size];
+        const textareaStyles = textareaSize[size];
         memo[size] = {
             get fontSize() { return styles.fontSize },
             get height() { return styles.height },
             get paddingGap() { return styles.padding },
+            get padding() {return textareaStyles }
         }
 
         return memo;
-    }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string}>),
+    }, {} as Record<Sizes, {fontSize: string, height: string, paddingGap: string, padding: string}>),
 )
 
 let input: typeof defaults;
@@ -255,6 +262,11 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 .${k}-input-wrapper {
                     height: ${styles.height};
                     padding: 0 ${styles.paddingGap};
+                }
+                &.${k}-resize-none {
+                    .${k}-textarea {
+                        padding: ${styles.padding} ${styles.paddingGap};
+                    } 
                 }
             `;
             

@@ -185,6 +185,11 @@ export const makeStyles = cache(function makeStyles(k: string) {
             `
         })}
 
+        &.${k}-small .${k}-switch-on,
+        &.${k}-small .${k}-switch-off {
+            font-size: 10px;
+        }
+
         // checked
         &.${k}-checked {
             .${k}-switch-bar,

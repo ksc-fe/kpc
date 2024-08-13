@@ -9,6 +9,7 @@ import {Tooltip} from '../tooltip';
 import {Component} from 'intact';
 import {Select, Option} from '../select';
 import SearchableDemo from '~/components/select/demos/searchable';
+import ImmutableDemo from '~/components/select/demos/immutable';
 
 describe('Select', () => {
     afterEach((done) => {
@@ -286,6 +287,36 @@ describe('Select', () => {
         await wait();
         expect(instance.get('days')).have.length(5);
         expect(instance.get('days')).include('Monday')
+    });
+
+    it('disabled option does not allow clearable and close', async () => {
+        const [instance, element] = mount(ImmutableDemo);
+
+        instance.set('days', ['Tuesday', 'Friday']);
+        await wait();
+        expect(element.outerHTML).to.matchSnapshot();
+        const [clear1] = element.querySelectorAll<HTMLElement>('.k-select-clear');
+        clear1.click();
+        await wait();
+        const [tag1] = element.querySelectorAll<HTMLElement>('.k-tag');
+        expect(tag1.className).not.contain("k-closable");
+        expect(instance.get('days')).to.eql(['Tuesday', 'Friday']);
+
+        instance.set('days', ['Monday', 'Tuesday']);
+        await wait();
+        const [clear2] = element.querySelectorAll<HTMLElement>('.k-select-clear');
+        clear2.click();
+        await wait();
+        expect(instance.get('days')).to.eql(['Tuesday']);
+
+        instance.set('days', ['Monday', 'Wednesday']);
+        await wait();
+        const [clear3] = element.querySelectorAll<HTMLElement>('.k-select-clear');
+        clear3.click();
+        await wait();
+        expect(instance.get('days')).to.eql([]);
+
+        // expect(clear).to.be.null;
     });
 
     // it('should trigger change event correctly', async () => {

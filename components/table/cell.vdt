@@ -46,6 +46,7 @@ const classNameObj = {
         type="none" icon circle size="mini"
         class={`${k}-table-arrow`}
         ev-click={onClickArrow}
+        disabled={loaded === false}
     >
         <Icon v-if={loaded !== false} class={`${k}-icon-right`} size="small" />
         <Icon v-else class={`${k}-tree-icon ion-load-c`} rotate />

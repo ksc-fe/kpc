@@ -65,7 +65,8 @@ export interface TableProps<
     animation?: boolean | [boolean, boolean]
     hideHeader?: boolean
     pagination?: boolean | PaginationProps
-    load?: (value: T) => Promise<void> | void 
+    fixFooter?: boolean 
+    load?: (value: T) => Promise<void> | void
 }
 
 export interface TableEvents<T = any, K extends TableRowKey = number> {
@@ -132,6 +133,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     animation: [Boolean, Array],
     hideHeader: Boolean,
     pagination: [Boolean, Object],
+    fixFooter: Boolean,
     load: Function,
 };
 

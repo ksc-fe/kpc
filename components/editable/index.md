@@ -17,7 +17,13 @@ sidebar: doc
 | tip | 编辑按钮提示文案 | `string` | `"编辑"` |
 | trim | 是否去掉前后空白字符 | `boolean` | `true` |
 | invalid | 是否为验证失败状态 | `boolean` | `false` |
-
+| rows | 是否自动折行，以及行数控制 | `string`&#124;`number`&#124;`auto`&#124; `AutoRows` | `1` |
+```ts
+type AutoRows = {
+    min?: number
+    max?: number
+} 
+```
 # 事件
 
 | 事件名 | 说明 | 参数 |

@@ -25,7 +25,7 @@ const {
     merge, childrenKey, indent, tooltipPosition,
     tooltipContainer, showIndeterminate, resizable,
     draggable, animation: _animation, hideHeader,
-    pagination,
+    pagination, fixFooter,
 } = this.get();
 const animation = !Array.isArray(_animation) ? [_animation, _animation] : _animation;
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
@@ -36,6 +36,7 @@ const { k } = this.config;
 const classNameObj = {
     [`${k}-table`]: true,
     [`${k}-fix-header`]: fixHeader,
+    [`${k}-fix-footer`]: fixFooter,
     [`${k}-scroll-${scrollPosition.value}`]: scrollPosition.value,
     [`${k}-fix-columns`]: hasFixed.value,
     [`${k}-${type}`]: type && type !== 'default',
@@ -199,15 +200,7 @@ const tbody = (
 
                     return hidden || !spreaded;
                 });
-                if ($blocks.footer) {
-                    rows.push(
-                        <tr key="table-footer">
-                            <td colspan={colCount} class={`${k}-table-footer`}>
-                                <b:footer />
-                            </td>
-                        </tr>
-                    );
-                }
+
                 return animation[0] ?
                     <TransitionGroup name="k-fade-in-left" move={!draggingKey.value}>{rows}</TransitionGroup> :
                     rows;
@@ -215,6 +208,17 @@ const tbody = (
         }
     </tbody>
 );
+
+let tfooter = null;
+if ($blocks.footer) {
+    tfooter = <tfoot>
+        <tr key="table-footer">
+            <td colspan={colCount} class={`${k}-table-footer`}>
+                <b:footer />
+            </td>
+        </tr>
+    </tfoot>
+}
 
 const tableWidthPx = tableWidth.value ? `${tableWidth.value}px` : null;
 const {
@@ -248,6 +252,7 @@ const {
             <template>{colgroup}</template>
             <template v-if={isNull(stickHeader.value)}>{thead}</template>
             <template>{tbody}</template>
+            <template v-if={$blocks.footer}>{tfooter}</template>
         </table>
     </div>
     <Pagination v-if={pagination}

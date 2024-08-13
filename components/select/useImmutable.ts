@@ -38,9 +38,7 @@ export function useImmutable() {
         return !immutableValues.value.includes(key);
     }
 
-    setImmutableValues();
-
-    // instance.on('$receive:children', setImmutableValues);
+    instance.on('$receive:children', setImmutableValues);
 
     return { immutableValues, isClosable };
 }

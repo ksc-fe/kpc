@@ -10,6 +10,7 @@ import {Button, Icon} from 'kpc';
 
 <div>
     <Button disabled>disabled</Button>
+    <Button disabled icon circle><Icon class="k-icon-search" /></Button>
     <Button type="primary" disabled>primary</Button>
     <Button type="secondary" disabled>secondary</Button>
     <Button type="warning" disabled>warning</Button>

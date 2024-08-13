@@ -148,12 +148,31 @@ describe('Tooltip', () => {
     it('should custom content correctly', async () => {
         const [, element] = mount(ContentDemo);
 
-        const [btn] =  Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
-        btn.click();
+        const [btn1] =  Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
+        btn1.click();
         await wait(500);
         const content = getElement('.k-tooltip-content') as HTMLElement;
         // ignore the arrow, because it may change className to adapt to the direction
         expect(content.querySelector<HTMLElement>('.k-slider')!.outerHTML).to.matchSnapshot();
+    });
+
+    it('Internal dropdown closing should not affect tooltip', async () => {
+        const [, element] = mount(ContentDemo);
+
+        const [, btn2] =  Array.from<HTMLElement>(element.querySelectorAll('.k-btn'));
+        btn2.click();
+        await wait(500);
+        const content = getElement('.k-tooltip-content') as HTMLElement;
+        const trigger = content.querySelector('.k-select') as HTMLElement;
+        trigger.click();
+        await wait();
+        expect(element.outerHTML).to.matchSnapshot();
+        const dropdown = getElement('.k-select-menu')!;
+        expect(dropdown.innerHTML).to.matchSnapshot();
+        const item = dropdown.querySelector('.k-dropdown-item') as HTMLElement;
+        item.click();
+        await wait(500);
+        expect(content.style.display).to.eql('')
     });
 
 

@@ -9,7 +9,7 @@ order: 14
 import {Select, Option, OptionGroup} from 'kpc';
 
 <div>
-    <Select v-model="day" multiple filterable clearable>
+    <Select v-model="days" multiple filterable clearable>
         <Option value="Monday">星期一</Option>
         <Option value="Tuesday" disabled>星期二</Option>
         <Option value="Wednesday">星期三</Option>
@@ -18,20 +18,20 @@ import {Select, Option, OptionGroup} from 'kpc';
         <Option value="Saturday">星期六</Option>
         <Option value="Sunday">星期天</Option>
     </Select>
-    You selected: {JSON.stringify(this.get('day'))} 
+    You selected: {JSON.stringify(this.get('days'))} 
 </div>
 ```
 
 ```ts
 interface Props {
-   day?: string[]
+   days?: string[]
 }
 
-export default class extends Component {
+export default class extends Component<Props> {
     static template = template;
     static defaults() {
         return {
-            day: ['Tuesday', 'Sunday', 'Wednesday'],
+            days: ['Tuesday', 'Sunday', 'Wednesday'],
         } as Props;
     }
 }
