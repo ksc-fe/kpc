@@ -273,6 +273,12 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         &.${k}-collapsed-arrow {
             width: 0px;
             border-left: none;
+            .${k}-menu-header {
+                padding: 0;
+            }
+            .${k}-menu-header {
+                padding: 0;
+            }
             .${k}-menu-body {
                 overflow: hidden;
                 padding: 0;

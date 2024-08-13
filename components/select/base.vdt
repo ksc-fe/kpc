@@ -39,6 +39,7 @@ const label = this.getLabel();
 const hasValue = this.hasValue();
 const {onInput, inputRef, keywords: {value: keywords}} = this.input;
 const {onFocusout, triggerRef} = this.focusout;
+const {isClosable} = this.immutable;
 const filterInput = <Input v-if={filterable}
     class={`${k}-select-input`}
     value={keywords}
@@ -122,7 +123,7 @@ const filterInput = <Input v-if={filterable}
                                                         value[$key] :
                                                         $key
                                             }
-                                            closable
+                                            closable={isClosable(value[$key])}
                                             ev-close={this.delete.bind(this, $key)}
                                             disabled={disabled}
                                             size={size}
