@@ -164,9 +164,8 @@ export abstract class BaseSelect<
         e.stopPropagation();
         const {value, multiple} = this.get();
         const immutableValues = this.immutable.immutableValues.value;
-    
-        this.set('value', multiple ? (Array.isArray(value) ? value.filter(key => immutableValues.includes(key)) : []) : null);
 
+        this.set('value', multiple ? (Array.isArray(value) ? value.filter(key => immutableValues.includes(key)) : []) : null);
     }
 
     @bind

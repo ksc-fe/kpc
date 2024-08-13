@@ -65,7 +65,7 @@ export function useGroup() {
 
     function isEmptyValue(groupValue: any) {
         const {multiple} = instance.get();
-        return !groupValue || multiple && (!isArray(groupValue) || groupValue.every(value => !value));
+        return (!groupValue && groupValue !== 0) || multiple && (!isArray(groupValue) || groupValue.every(value => !value));
     }
 
     watchState(keywords, (v) => {
