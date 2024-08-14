@@ -49,9 +49,9 @@ const classNameObj = {
     [cls('loading')]: loading,
     [cls('fluid')]: fluid,
     [cls('active')]: checked,
+    [cls('custom')]: color,
     [cls('disabled')]: disabled || loading,
     [cls('ghost')]: ghost,
-    [cls('custom')]: color,
     [makeButtonStyles(k, iconSide, color)]: true,
 };
 

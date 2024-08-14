@@ -10,6 +10,7 @@ export interface EllipsisProps {
     disabled?: boolean,
     position?: Position | 'left' | 'bottom' | 'right' | 'top',
     theme?: 'light' | 'dark',
+    hoverable?: boolean
 }
 
 const typeDefs: Required<TypeDefs<EllipsisProps>> = {
@@ -17,11 +18,13 @@ const typeDefs: Required<TypeDefs<EllipsisProps>> = {
     disabled: Boolean,
     position: [Object, 'left', 'bottom', 'right', 'top'],
     theme: ['light', 'dark'],
+    hoverable: Boolean
 };
 
 const defaults = (): Partial<EllipsisProps> => ({
     disabled: false,
-    theme: 'light'
+    theme: 'light',
+    hoverable: false
 });
 
 export class Ellipsis extends Component<EllipsisProps> {

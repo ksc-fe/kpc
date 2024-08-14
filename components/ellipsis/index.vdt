@@ -4,7 +4,8 @@ import {getRestProps, addStyle} from '../utils';
 
 const {
     children, className, maxLines, 
-    disabled, position, theme, style
+    disabled, position, theme, style,
+    hoverable
 } = this.get();
 const { k } = this.config;
 
@@ -30,6 +31,7 @@ const wrapper = <div class={{
         position={position}
         theme={theme}
         class={className}
+        hoverable={hoverable}
     >
         {wrapper}
         <b:content>{children}</b:content> 

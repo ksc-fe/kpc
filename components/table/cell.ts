@@ -18,6 +18,7 @@ export interface TableCellProps {
     rowspan: number
     onClickArrow: (e: MouseEvent) => void 
     hasChildren: boolean
+    loaded: boolean
 }
 
 export class TableCell extends Component<TableCellProps> {

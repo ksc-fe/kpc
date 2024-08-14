@@ -35,10 +35,11 @@ export interface TableRowProps {
     spreaded: boolean
     hasChildren: boolean
     indent: number
-    onToggleSpreadRow: (key: TableRowKey) => void
+    onToggleSpreadRow: (key: TableRowKey, rowData?: any) => void
     onBeforeUnmount: (key: TableRowKey) => void
     offsetMap: Record<Key, number>
     animation: boolean
+    loaded: boolean
 
     draggable: boolean
     draggingKey: TableRowKey | null
@@ -117,8 +118,8 @@ export class TableRow extends Component<TableRowProps> {
     @bind
     onClickArrow(e: MouseEvent) {
         e.stopPropagation();
-        const {onToggleSpreadRow, key} = this.get();
-        onToggleSpreadRow(key);
+        const {onToggleSpreadRow, key, data} = this.get();
+        onToggleSpreadRow(key, data);
     }
 
     @bind

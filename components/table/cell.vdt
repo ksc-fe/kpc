@@ -3,11 +3,12 @@ import {get, noop} from 'intact-shared';
 import {Button} from '../button';
 import {Icon} from '../icon';
 import {getTextByChildren} from '../utils';
+import {Ellipsis} from '../ellipsis';
 
 const {
     props, rowIndex, columnIndex, offset,
     data, checkType, indent, grid,
-    colspan, rowspan, onClickArrow, hasChildren,
+    colspan, rowspan, onClickArrow, hasChildren, loaded
 } = this.get();
 const { k } = this.config;
 
@@ -18,6 +19,10 @@ if (blocks) {
     if (template) {
         children = template(noop, [data, rowIndex]);
     }
+}
+
+if (props.ellipsis) {
+    children = <Ellipsis>{children}</Ellipsis>
 }
 
 let {className, style} = getClassAndStyleForFixed(props, offset, k, checkType);
@@ -41,8 +46,10 @@ const classNameObj = {
         type="none" icon circle size="mini"
         class={`${k}-table-arrow`}
         ev-click={onClickArrow}
+        disabled={loaded === false}
     >
-        <Icon class={`${k}-icon-right`} size="small" />
+        <Icon v-if={loaded !== false} class={`${k}-icon-right`} size="small" />
+        <Icon v-else class={`${k}-tree-icon ion-load-c`} rotate />
     </Button>
     {children}
 </td>

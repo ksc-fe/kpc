@@ -276,9 +276,6 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             .${k}-menu-header {
                 padding: 0;
             }
-            .${k}-menu-header {
-                padding: 0;
-            }
             .${k}-menu-body {
                 overflow: hidden;
                 padding: 0;

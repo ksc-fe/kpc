@@ -11,8 +11,15 @@ export function useTree(data: State<any[] | undefined>) {
         return inArray(instance.get('spreadKeys'), key);
     }
 
-    function toggleSpreadRow(key: TableRowKey) {
-        instance.set('spreadKeys', toggleArray(instance.get('spreadKeys'), key));
+    async function toggleSpreadRow(key: TableRowKey, rowData?: any) {
+        const {spreadKeys, load} = instance.get();
+        instance.set('spreadKeys', toggleArray(spreadKeys, key));
+        if (load && data.value && !rowData.loaded) {
+            rowData.loaded = false;
+            await load(rowData); 
+            rowData.loaded = true;
+            instance.forceUpdate();
+        }
     }
 
     function loopData<T>(

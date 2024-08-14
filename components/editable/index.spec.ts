@@ -1,5 +1,6 @@
 import BasicDemo from '~/components/editable/demos/basic';
 import ValidateDemo from '~/components/editable/demos/validate';
+import TextAreaDemo from '~/components/editable/demos/textarea';
 import {mount, unmount, dispatchEvent, wait} from '../../test/utils';
 import {Editable} from './';
 import {Component, findDomFromVNode} from 'intact';
@@ -119,5 +120,31 @@ describe('Editable', () => {
         await wait();
         input = element.querySelector("input") as HTMLInputElement;
         expect(input.value).to.eql('aa');
+    });
+
+    it('should auto use input or textarea', async () => {
+        const [instance, element] = mount(TextAreaDemo);
+        const editable = instance.refs.__test as Editable;
+        // @ts-ignore
+        editable.edit();
+        await wait();
+        expect(element.innerHTML).to.matchSnapshot();
+
+        let input = element.querySelector('input') as HTMLInputElement;
+        let textarea = element.querySelector('textarea') as HTMLTextAreaElement;
+        expect(input).to.be.null;
+        
+        textarea.value = 'test';
+        dispatchEvent(textarea, 'blur');
+        await wait();
+        expect(instance.get('text')).to.eql('test');
+
+        editable.set('rows', 1);
+        await wait();
+        // @ts-ignore
+        editable.edit();
+        await wait();
+        let textarea2 = element.querySelector('textarea') as HTMLTextAreaElement;
+        expect(textarea2).to.be.null;
     });
 });

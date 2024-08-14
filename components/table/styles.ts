@@ -90,7 +90,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
         table {
             width: 100%;
-            // border-collapse: collapse;
+            border-collapse: separate;
             border-spacing: 0;
             table-layout: fixed;
             // td, 
@@ -104,13 +104,19 @@ export const makeStyles = cache(function makeStyles(k: string) {
             text-align: ${table.thead.textAlign};
             font-size: ${table.thead.fontSize};
             font-weight: ${table.thead.fontWeight};
-            position: sticky;
-            top: 0;
             z-index: 2;
             tr {
                 height: ${table.thead.height};
                 &:not(:last-of-type) th {
                     border-bottom: ${table.border};
+                }
+            }
+        }
+        tfoot {
+            z-index: 2;
+            tr {
+                td {
+                    border-top: ${table.border};
                 }
             }
         }
@@ -375,6 +381,21 @@ export const makeStyles = cache(function makeStyles(k: string) {
             min-height: 0;
             .${k}-table-wrapper {
                 height: 100%;
+            }
+            thead {
+                position: sticky;
+                top: 0;
+            }
+        }
+        // fixFooter
+        &.${k}-fix-footer {
+            min-height: 0;
+            .${k}-table-wrapper {
+                height: 100%;
+            }
+            tfoot {
+                position: sticky;
+                bottom: 0;
             }
         }
     `;

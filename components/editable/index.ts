@@ -2,7 +2,7 @@ import {Component, TypeDefs, createRef, nextTick, Children} from 'intact';
 import template from './index.vdt';
 import {_$} from '../../i18n';
 import {bind} from '../utils';
-import type {Input} from '../input';
+import type {Input, AutoRows} from '../input';
 import type {Events} from '../types';
 import { useConfigContext } from '../config';
 
@@ -17,6 +17,7 @@ export interface EditableProps<V extends Value = Value> {
     tip?: Value, 
     trim?: boolean,
     invalid?: boolean,
+    rows?: string | number | 'auto' | AutoRows
 }
 
 export interface EditableEvents<V extends Value = Value> {
@@ -33,12 +34,14 @@ const typeDefs: Required<TypeDefs<EditableProps>> = {
     tip: [String, Number],
     trim: Boolean,
     invalid: Boolean,
+    rows: [String, Number, 'auto', Object],
 };
 
 const defaults = (): Partial<EditableProps> => ({
     required: true,
     tip: _$('编辑'),
     trim: true,
+    rows: 1
 });
 
 const events: Events<EditableEvents> = {

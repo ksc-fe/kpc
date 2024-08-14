@@ -18,8 +18,8 @@
 ```
 
 ```
-"<div class=\"k-tags k-nowrap css-czb0gm\"><div class=\"k-tag k-primary k-none k-closable css-1weg519\">primary<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty k-primary css-16qej3\"></i></div><div class=\"k-tag k-success k-none k-closable css-1weg519\">success<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty k-success css-16qej3\"></i></div><div class=\"k-tag k-warning k-none k-closable css-1weg519\">warning<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty k-warning css-16qej3\"></i></div><div class=\"k-tag k-tags-more k-dropdown-open k-tags-tooltip k-none css-1weg519\">
-            +2</div><!--portal--></div>"
+"<div class=\"k-tags k-nowrap css-czb0gm\"><div class=\"k-tag k-primary k-none k-closable css-1weg519\">primary<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty k-primary css-16qej3\"></i></div><div class=\"k-tag k-success k-none k-closable css-1weg519\">success<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty k-success css-16qej3\"></i></div><div class=\"k-tag k-warning k-none k-closable css-1weg519\">warning<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty k-warning css-16qej3\"></i></div><div class=\"k-tag k-danger k-none k-closable css-1weg519\">danger<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty k-danger css-16qej3\"></i></div><div class=\"k-tag k-none css-1weg519\">with tooltip</div><!--portal--><div class=\"k-tag k-tags-more k-dropdown-open k-tags-tooltip k-none css-1weg519\">
+            +3</div><!--portal--></div>"
 ```
 
 ```

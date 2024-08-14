@@ -19,6 +19,7 @@ import {TreeSelect} from 'kpc';
 <TreeSelect
     v-model="value"
     data={this.get('data')}
+    showLine={false}
 />
 ```
 
