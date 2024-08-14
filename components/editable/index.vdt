@@ -20,7 +20,7 @@ const classNameObj = {
     [className]: className,
     [makeStyles(k)]: true
 };
-const isTextArea = !isNullOrUndefined(rows) && rows.toString() !== '1';
+const isTextArea = !isNullOrUndefined(rows) && rows != '1';
 
 const inputProps = {
     autoWidth: !isTextArea,

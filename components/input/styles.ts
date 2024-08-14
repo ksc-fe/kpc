@@ -262,11 +262,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 .${k}-input-wrapper {
                     height: ${styles.height};
                     padding: 0 ${styles.paddingGap};
-                }
-                &.${k}-resize-none {
                     .${k}-textarea {
                         padding: ${styles.padding} ${styles.paddingGap};
-                    } 
+                    }
                 }
             `;
             
