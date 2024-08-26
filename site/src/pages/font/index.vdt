@@ -210,6 +210,7 @@ const iconList = [
                     <div>
                         <button class="nav-btn-download" ev-click={this.handleDownLoad}>免费下载</button>
                     </div>
+                    <div class="nav-content-notice">已发布V1.0.1版,（修复了个别问题）</div>
                 </div>
             </div>
         </div>
