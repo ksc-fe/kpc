@@ -1,14 +1,14 @@
 import {getRestProps} from '../utils';
 import {makeButtonGroupStyles} from './styles';
 
-const {className, vertical, children, fluid, seperate} = this.get();
+const {className, vertical, children, fluid, seperate, separate} = this.get();
 const {k} = this.config;
 
 const classNameObj = {
     [`${k}-btns`]: true,
     [`${k}-vertical`]: vertical,
     [`${k}-fluid`]: fluid,
-    [`${k}-seperate`]: seperate,
+    [`${k}-separate`]: typeof separate === 'boolean' ? separate : separate,
     [className]: className,
     [makeButtonGroupStyles(k)]: true,
 };

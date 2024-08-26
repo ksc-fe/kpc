@@ -10,6 +10,7 @@ export interface ButtonGroupProps {
     checkType?: 'none' | 'radio' | 'checkbox' 
     fluid?: boolean
     seperate?: boolean
+    separate?: boolean
     btnWidth?: number | string
 }
 
@@ -19,6 +20,7 @@ const typeDefs: Required<TypeDefs<ButtonGroupProps>> = {
     fluid: Boolean,
     checkType: ['none', 'radio', 'checkbox'],
     seperate: Boolean,
+    separate: Boolean,
     btnWidth: [Number, String],
 };
 
@@ -35,6 +37,9 @@ export class ButtonGroup extends Component<ButtonGroupProps> {
 
     init() {
         provide(BUTTON_GROUP, this); 
+        if (typeof this.get().seperate === 'boolean') {
+            console.warn("`seperate` is a typo which will be removed in next version, please using `separate` instead");
+        }
     }
 
     setValue(v: any): void {
