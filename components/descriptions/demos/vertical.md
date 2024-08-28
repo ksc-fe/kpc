@@ -9,7 +9,7 @@ order: 2
 import {Descriptions, DescriptionItem} from 'kpc';
 
 <div>
-    <Descriptions title="基本信息" vertical>
+    <Descriptions title="基础信息" vertical>
         <DescriptionItem label="测试1">测试1</DescriptionItem>
         <DescriptionItem label="测试2">测试2</DescriptionItem>
         <DescriptionItem label="测试3">测试3</DescriptionItem>

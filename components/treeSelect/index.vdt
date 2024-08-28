@@ -37,6 +37,7 @@ const { k } = this.config;
                 multiple={multiple}
                 selectable={!checkbox}
                 load={load}
+                showLine={showLine}
                 filter={filterable ? this.filter : null}
 
                 ev-transitionEnd={this.position}

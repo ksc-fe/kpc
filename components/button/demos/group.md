@@ -4,7 +4,7 @@ order: 1
 ---
 
 将`Button`作为`ButtonGroup`的子元素，可以展示按钮组。给`ButtonGroup`添加`vertical`属性，
-可以是按钮组纵向排列。给`ButtonGroup`添加`checkType`属性，可以使按钮组拥有单选或复选能力。
+可以使按钮组纵向排列。给`ButtonGroup`添加`separate`属性，可以在按钮之间插入间隔。给`ButtonGroup`添加`checkType`属性，可以使按钮组拥有单选或复选能力。
 
 ```vdt
 import {Button, ButtonGroup, Icon} from 'kpc';
@@ -62,13 +62,13 @@ import {Button, ButtonGroup, Icon} from 'kpc';
         <Button value="shenzhen" size="small">深圳</Button>
     </ButtonGroup>
     <p>有间隔的按钮组</p>
-    <ButtonGroup checkType="radio" v-model="city" seperate>
+    <ButtonGroup checkType="radio" v-model="city" separate>
         <Button value="beijing">北京</Button>
         <Button value="shanghai">上海</Button>
         <Button value="guangzhou">广州</Button>
         <Button value="shenzhen">深圳</Button>
     </ButtonGroup>
-    <ButtonGroup seperate>
+    <ButtonGroup separate>
         <Button value="beijing" type="primary" disabled>北京</Button>
         <Button value="shanghai">上海</Button>
         <Button value="guangzhou">广州</Button>

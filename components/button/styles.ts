@@ -31,7 +31,7 @@ const sizes = ['large', 'small', 'mini'] as const;
 const btnStyles = {
     get color() { return theme.color.text },
     bgColor: '#fff',
-    lineHeight: '1.15',
+    lineHeight: '1',
     get padding() { return `0 16px` },
     get borderColor() { return theme.color.border },
     get borderRadius() { return theme.borderRadius },
@@ -230,6 +230,13 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
                             background: ${palette(typeStyles.bgColor, 1)};
                             border-color: ${palette(typeStyles.borderColor, 1)};
                         }
+                        &.${k}-disabled {
+                            &, &:hover {
+                                background: ${palette(typeStyles.bgColor, -2)};
+                                color: ${palette(typeStyles.color, -2)};
+                                border-color: ${palette(typeStyles.borderColor, -2)};
+                            }
+                        }
                     }
                 `;
             })}
@@ -245,6 +252,9 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
                 &:active {
                     background: ${secondary.activeBgColor};
                 }
+                &.${k}-disabled {
+                    border: none;
+                }
             }
 
             
@@ -259,6 +269,9 @@ export const makeButtonStyles = cache(function makeButtonStyles(k: string, iconS
                     }
                     &:active {
                         background: ${palette(color, -3)};
+                    }
+                    &.${k}-disabled {
+                        border: none;
                     }
                 }
             `}
@@ -489,7 +502,7 @@ export const makeButtonGroupStyles = cache(function makeButtonGroupStyles(k: str
         }
 
         // horizontal
-        &:not(.${k}-vertical):not(.${k}-seperate) {
+        &:not(.${k}-vertical):not(.${k}-separate) {
             > .${k}-btn {
                 &:not(:first-child) {
                     margin-left: -1px;
@@ -527,7 +540,7 @@ export const makeButtonGroupStyles = cache(function makeButtonGroupStyles(k: str
         }
             
         // vertical
-        &.${k}-vertical:not(.${k}-seperate) {
+        &.${k}-vertical:not(.${k}-separate) {
             flex-direction: column;
             > .${k}-btn {
                 &:not(.${k}-btn-icon) {
@@ -562,8 +575,8 @@ export const makeButtonGroupStyles = cache(function makeButtonGroupStyles(k: str
             }
         }
 
-        // seperate
-        &.${k}-seperate {
+        // separate
+        &.${k}-separate {
             gap: 8px;
         }
     `;

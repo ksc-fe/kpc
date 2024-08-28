@@ -4,6 +4,7 @@ import {mount, unmount, testDemos, wait, nextFrame} from '../../../test/utils';
 import {matchSnapshot} from 'chai-karma-snapshot';
 import mx from '../components/diagram/mxgraph/mx';
 import '../../../test/test.styl';
+import { install } from '../install';
 
 chai.use(matchSnapshot);
 
@@ -45,5 +46,9 @@ describe('Vue Legacy Demos', () => {
         // while we run test on Github Actions.
         const innerHTML = element.innerHTML.replace(/(\<input.*?style="width: )(?:.*?)(px;")/g, '$1$2');
         expect(innerHTML).to.matchSnapshot();
+    });
+
+    it('install', async () => {
+        Vue.use(install);
     });
 });

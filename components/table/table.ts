@@ -65,6 +65,8 @@ export interface TableProps<
     animation?: boolean | [boolean, boolean]
     hideHeader?: boolean
     pagination?: boolean | PaginationProps
+    fixFooter?: boolean 
+    load?: (value: T) => Promise<void> | void
 }
 
 export interface TableEvents<T = any, K extends TableRowKey = number> {
@@ -82,6 +84,7 @@ export interface TableBlocks<T = unknown> {
     empty: null
     tooltip: [T, number] 
     expand: [T, number]
+    footer: null
 }
 
 type CheckType = 'checkbox' | 'radio' | 'none'
@@ -130,6 +133,8 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     animation: [Boolean, Array],
     hideHeader: Boolean,
     pagination: [Boolean, Object],
+    fixFooter: Boolean,
+    load: Function,
 };
 
 const defaults = (): Partial<TableProps> => ({

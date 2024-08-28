@@ -6,7 +6,7 @@ import { cache } from '../utils';
 
 const defaults = {
     iconGap: '0 0 0 8px',
-
+    get smallPadding() { return theme.small.padding },
     // invalid
     invalid: {
         get border() { return `1px solid ${theme.color.danger}`}, 

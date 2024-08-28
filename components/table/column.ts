@@ -18,6 +18,7 @@ export interface TableColumnProps {
     exportCell?: (data: any, index: number) => string
     minWidth?: number
     hidden?: boolean
+    ellipsis?: boolean
 
     // passed by Table
     // offset: number
@@ -58,6 +59,7 @@ const typeDefs: Required<TypeDefs<TableColumnProps>> = {
     exportCell: Function,
     minWidth: Number,
     hidden: Boolean,
+    ellipsis: Boolean,
 
     // offset: null,
     cols: null,

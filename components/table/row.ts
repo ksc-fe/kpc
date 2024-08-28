@@ -14,6 +14,7 @@ import {bind} from '../utils';
 import type {TableGrid} from './useMerge';
 import { isEqualObject } from '../utils';
 import { useConfigContext } from '../config';
+import { hasOwn } from 'intact-shared';
 
 export interface TableRowProps {
     key: TableRowKey
@@ -34,10 +35,11 @@ export interface TableRowProps {
     spreaded: boolean
     hasChildren: boolean
     indent: number
-    onToggleSpreadRow: (key: TableRowKey) => void
+    onToggleSpreadRow: (key: TableRowKey, rowData?: any) => void
     onBeforeUnmount: (key: TableRowKey) => void
     offsetMap: Record<Key, number>
     animation: boolean
+    loaded: boolean
 
     draggable: boolean
     draggingKey: TableRowKey | null
@@ -65,20 +67,27 @@ export class TableRow extends Component<TableRowProps> {
         const nextProps = nextVNode.props as TableRowProps;
 
         let isSame = true;
-        let key: keyof TableRowProps;
-        for (key in lastProps) {
-            // ignore index
-            if (key === 'index') continue;
-            const lastValue = lastProps[key];
-            const nextValue = nextProps[key];
-            // deeply compare for offsetMap
-            if (key === 'offsetMap' && isEqualObject(lastValue, nextValue)) {
-                continue;
-            }
+        if (hasOwn.call(this, 'vueInstance')) {
+            // In Vue, we may change value by modifing the same reference,
+            // and the new row may be expanded by click tree arrow
+            // so we can not compare in this case, #1030
+            isSame = false;
+        } else {
+            let key: keyof TableRowProps;
+            for (key in lastProps) {
+                // ignore index
+                if (key === 'index') continue;
+                const lastValue = lastProps[key];
+                const nextValue = nextProps[key];
+                // deeply compare for offsetMap
+                if (key === 'offsetMap' && isEqualObject(lastValue, nextValue)) {
+                    continue;
+                }
 
-            if (lastValue !== nextValue) {
-                isSame = false;
-                break;
+                if (lastValue !== nextValue) {
+                    isSame = false;
+                    break;
+                }
             }
         }
 
@@ -109,8 +118,8 @@ export class TableRow extends Component<TableRowProps> {
     @bind
     onClickArrow(e: MouseEvent) {
         e.stopPropagation();
-        const {onToggleSpreadRow, key} = this.get();
-        onToggleSpreadRow(key);
+        const {onToggleSpreadRow, key, data} = this.get();
+        onToggleSpreadRow(key, data);
     }
 
     @bind

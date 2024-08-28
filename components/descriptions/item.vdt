@@ -1,13 +1,11 @@
 import {makeStyles} from './styles';
-import {getRestProps, addStyle} from '../utils';
-import {isFunction} from 'intact-shared';
-import {Ellipsis} from 'kpc';
+import {getRestProps} from '../utils';
+import {Ellipsis} from '../ellipsis';
 
 const {
-    children, className, span, label, content, option
+    children, className, span, label, content, append
 } = this.get();
 const { k } = this.config;
-
 
 const classNameObj = {
     [`${k}-description-item`]: true,
@@ -16,15 +14,19 @@ const classNameObj = {
 };
 
 <div {...getRestProps(this)} class={classNameObj}>
-    <label class={`${k}-description-item-label`}>{label}</label>
+    <div class={`${k}-description-item-label`}>
+        <b:label>
+             <template v-if={label}>{label}</template>
+        </b:label>
+    </div>
     <div class={`${k}-description-centent`}>
         <Ellipsis>
             {content || children}
         </Ellipsis>
-        <div class={`${k}-description-option`} v-if={$blocks.option || option}>
-            <b:option>
-                <template v-if={option}>{option}</template>
-            </b:option>
+        <div class={`${k}-description-option`} v-if={$blocks.append || append}>
+            <b:append>
+                <template v-if={append}>{append}</template>
+            </b:append>
         </div>
     </div>
 </div>

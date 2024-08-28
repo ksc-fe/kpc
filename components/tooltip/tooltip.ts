@@ -73,6 +73,8 @@ export class Tooltip<
     static defaults = defaults;
     static events = events;
 
+    public $isTooltip = true;
+
     show(shouldFocus: boolean = false) {
         if (this.get('disabled')) return;
 
