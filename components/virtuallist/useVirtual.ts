@@ -6,6 +6,7 @@ import { isComponentVNode } from '../utils';
 
 export function useVirtual() {
     const instance = useInstance() as VirtualList;
+    
     const children: Children = instance.get('children');
     if (!Array.isArray(children)) return {};
     const bufferSize = 6;
