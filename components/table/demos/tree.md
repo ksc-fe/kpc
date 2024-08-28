@@ -11,7 +11,9 @@ order: 24
 
 树形表格下，必须通过`rowKey`指定每行的`key`
 
-> 如果数据中恰好存在`children`字段，但是你又不想展示树形表格，将`childrenKey`设为`false`即可
+> 如果数据中恰好存在`children`字段，但是你又不想展示树形表格，将`childrenKey`设为`false`即可。
+> 假如你的数据为：`{name: 'xxx', books: [{name: 'a'}, {name: 'b'}]}`，想把books展示成子树，
+> 可以指定`childrenKey="books"`
 
 ```vdt
 import {Table, TableColumn} from 'kpc';

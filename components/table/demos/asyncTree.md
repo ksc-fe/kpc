@@ -10,6 +10,9 @@ order: 33
 组件默认遇到`children`为`[]`空数组的情况就会去进行异步加载，你可以通过`loaded`属性设为`true`来
 标识该子节点已经加载完成，无需再次加载
 
+> 组件在该行数据异步加载完成后，会往原始数据上自动添加`loaded=true`。你也可以手动指定某行数据
+> `loaded=true`，这样即使组件发现该行数据`children`为空`[]`，也不会去加载了
+
 ```vdt
 import {Table, TableColumn} from 'kpc';
 
