@@ -27,6 +27,13 @@ export function makeStyles() {
                     img {
                         width: 380px;
                     }
+                    .nav-content-notice {
+                        width: 380px;
+                        margin-top: 10px;
+                        text-align: center;
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
                     .nav-btn-download {
                         margin-top: 30px;
                         width: 380px;
