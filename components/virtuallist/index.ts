@@ -1,6 +1,6 @@
 import { Component, TypeDefs } from 'intact';
 import template from './index.vdt';
-import { useVirtual } from './useVirtual2';
+import { useVirtual } from './useVirtual3';
 import { Events } from '../types';
 import { useConfigContext } from '../config';
 

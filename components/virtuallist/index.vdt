@@ -4,7 +4,7 @@ import { makeStyles } from './styles';
 import { _$ } from '../../i18n';
 
 const { children, className } = this.get();
-const {containerRef, contentRef, virtualChildren, paddingTop, paddingBottom} = this.virtual;
+const {containerRef, contentRef, virtualChildren, translateY, totalHeight} = this.virtual;
 const { k } = this.config;
 
 const classNameObj = {
@@ -14,7 +14,9 @@ const classNameObj = {
 }
 
 <div class={classNameObj} style={{ maxHeight: '200px', overflow: 'auto' }} ref={containerRef}>
-    <div style={{ paddingTop: paddingTop() + 'px', paddingBottom: paddingBottom() + 'px' }} ref={contentRef}>
-        {virtualChildren.value}
+    <div style={{ height: totalHeight.value + 'px', position: 'relative' }}>
+        <div style={{ transform: `translateY(${translateY.value}px)`, position: 'absolute', width: '100%' }} ref={contentRef}>
+            {virtualChildren.value}
+        </div>
     </div>
 </div>

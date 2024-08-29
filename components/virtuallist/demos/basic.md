@@ -9,8 +9,8 @@ order: 0
 import { VirtualList } from 'kpc';
 
 <VirtualList>
-    <div v-for={this.get('data')}>
-        <div class="div-height">{$value.label}</div>
+    <div v-for={this.get('data')}  class="div-height" title={$value.value}>
+        {$value.label}
     </div>
 </VirtualList>
 ```
