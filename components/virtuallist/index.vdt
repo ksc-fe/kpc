@@ -13,7 +13,7 @@ const classNameObj = {
     [className]: className,
 }
 
-<div class={classNameObj} style={{ maxHeight: '200px', overflow: 'auto' }} ref={containerRef}>
+<div class={classNameObj} style={{ maxHeight: '200px', overflow: 'auto', width: '200px' }} ref={containerRef}>
     <div style={{ height: totalHeight.value + 'px', position: 'relative' }}>
         <div style={{ transform: `translateY(${translateY.value}px)`, position: 'absolute', width: '100%' }} ref={contentRef}>
             {virtualChildren.value}

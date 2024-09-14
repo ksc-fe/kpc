@@ -9,7 +9,7 @@ order: 14
 import {Select, Option} from 'kpc';
 
 <div>
-    <Select v-model="day">
+    <Select v-model="day" virtual multiple filterable>
         <Option v-for={this.get('data')} value={$value.value}>
             {$value.label}
         </Option>
@@ -35,7 +35,7 @@ export default class extends Component {
 
     init() {
         const arr = [];
-        for (let index = 0; index < 10000; index++) {
+        for (let index = 0; index < 50; index++) {
             arr.push({
                 value: index,
                 label: `测试${index}`

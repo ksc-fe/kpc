@@ -1,29 +1,36 @@
 import { Component, TypeDefs } from 'intact';
 import template from './index.vdt';
-import { useVirtual } from './useVirtual3';
+import { useVirtual } from './useVirtual';
 import { Events } from '../types';
 import { useConfigContext } from '../config';
 
-export interface VirtualListProps {}
+export interface VirtualListProps {
+    estimatedItemHeight?: number;
+    bufferSize?: number;
+    asyncLoading?: boolean;
+}
 
 export interface VirtualListEvents {}
 
 const typeDefs: Required<TypeDefs<VirtualListProps>> = {
-    text: String,
-    showMessage: Boolean,
+    estimatedItemHeight: Number,
+    bufferSize: Number,
+    asyncLoading: Boolean,
 };
 
-// const defaults = (): Partial<VirtualListProps> => ({
-//     showMessage: true,
-// });
+const defaults = (): Partial<VirtualListProps> => ({
+    estimatedItemHeight: 30,
+    bufferSize: 6,
+    asyncLoading: false,
+});
 
 const events: Events<VirtualListEvents> = {};
 
 export class VirtualList extends Component<VirtualListProps, VirtualListEvents> {
     static template = template;
     static typeDefs = typeDefs;
-    // static defaults = defaults;
-    // static events = events;
+    static defaults = defaults;
+    static events = events;
 
     public virtual = useVirtual();
     private config = useConfigContext();

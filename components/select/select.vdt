@@ -1,7 +1,8 @@
 import {SelectMenu} from './menu';
+import { VirtualList } from '../virtuallist';
 import {isEmptyChildren} from '../utils';
 
-const {className, children, autoDisableArrow, disabled, multiple, value} = this.get();
+const {className, children, autoDisableArrow, disabled, multiple, value, virtual} = this.get();
 const {getCreatedVNode, filter} = this.filterable;
 const options = filter(children);
 const allShowedValues = this.getAllShowedValues(options);
@@ -19,7 +20,13 @@ const isDisableArrow =  disabled ||
         <SelectMenu class={className} values={allShowedValues}>
             <template>
                 <b:menu>
-                    {getCreatedVNode(options)}{options}
+                        {getCreatedVNode(options)}{
+                            virtual ? 
+                            <VirtualList>
+                                {options}
+                            </VirtualList> 
+                            :options
+                        }
                 </b:menu>
             </template>
         </SelectMenu>
