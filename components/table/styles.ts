@@ -117,6 +117,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             tr {
                 td {
                     border-top: ${table.border};
+                    border-bottom-color: transparent;
                 }
             }
         }
