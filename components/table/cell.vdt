@@ -10,10 +10,12 @@ const {
     data, checkType, indent, grid,
     colspan, rowspan, onClickArrow, hasChildren, loaded
 } = this.get();
+const { expandIndex } = this.parentTable.get();
 const { k } = this.config;
 
 const blocks = props.$blocks; 
 let children = get(data, props.key);
+const isTree = !expandIndex ? columnIndex === 0 : columnIndex === expandIndex
 if (blocks) {
     const template = blocks.template || blocks.default;
     if (template) {
@@ -26,7 +28,7 @@ if (props.ellipsis) {
 }
 
 let {className, style} = getClassAndStyleForFixed(props, offset, k, checkType);
-if (columnIndex === 0 && indent) {
+if (isTree && indent) {
     style || (style = {});
     style.paddingLeft = `${indent}px`;
 }
@@ -42,7 +44,7 @@ const classNameObj = {
     rowspan={rowspan}
     colspan={colspan}
 >
-    <Button v-if={columnIndex === 0 && hasChildren}
+    <Button v-if={hasChildren && isTree}
         type="none" icon circle size="mini"
         class={`${k}-table-arrow`}
         ev-click={onClickArrow}

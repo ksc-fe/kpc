@@ -76,7 +76,8 @@ export class Tooltip<
     public $isTooltip = true;
 
     show(shouldFocus: boolean = false) {
-        if (this.get('disabled')) return;
+        const {disabled, always, value} = this.get();
+        if (disabled || (always && !value)) return;
 
         clearTimeout(this.timer);
         this.set('value', true);
