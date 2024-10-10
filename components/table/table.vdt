@@ -29,6 +29,7 @@ const {
 } = this.get();
 const animation = !Array.isArray(_animation) ? [_animation, _animation] : _animation;
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
+const {lastCellKey, lastCellStyle} = this.columns.getStyleForLastColumn();
 const {scrollPosition, hasFixed, getHasFixedLeft, offsetMap} = this.fixedColumns;
 const {scrollRef} = this.scroll;
 const {stickHeader, excludeStickHeader, elementRef, headRef} = this.stickyHeader;
@@ -71,7 +72,7 @@ const hasFixedLeft = getHasFixedLeft();
 const {getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
 const allCheckedStatus = getAllCheckedStatus(); 
 const thead = hideHeader ? null : (
-    <TableContext.Provider value={checkType}>
+    <TableContext.Provider value={{checkType, lastCellKey, lastCellStyle}}>
         <GroupContext.Provider value={{group, onChange: this.onChangeGroup}}>
             <SortableContext.Provider value={{sort, onChange: this.sortable.onChange}}>
                 <ResizableContext.Provider value={{resizable, onStart}}>

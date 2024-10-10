@@ -77,6 +77,8 @@ setDefault(() => {
     makeGroupMenuStyles?.clearCache();
 });
 
+export {table};
+
 export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${table.fontSize};
