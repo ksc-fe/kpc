@@ -134,6 +134,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
         .${k}-upload-file-name {
             flex: 1;
+            min-width: 0;
         }
         .${k}-upload-status-icon {
             color: ${upload.file.status.color};

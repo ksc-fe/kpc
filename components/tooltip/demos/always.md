@@ -18,6 +18,12 @@ import {Tooltip} from 'kpc';
         always show this tootip 
     </Tooltip>
     <br /><br />
+    <Tooltip content="hide" always value={false} 
+        container={this.container}
+    >
+        always hide this tootip 
+    </Tooltip>
+    <br /><br />
     <Tooltip content="" always value={true}>
         don't show if content is empty
     </Tooltip>

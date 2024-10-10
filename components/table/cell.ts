@@ -1,5 +1,6 @@
-import {Component, Props, VNodeComponentClass, IntactDom} from 'intact';
+import {Component, Props, VNodeComponentClass, IntactDom, inject} from 'intact';
 import template from './cell.vdt';
+import {TABLE, Table} from './table';
 import type {TableColumnProps} from './column';
 import type {TableProps} from './table';
 import type {TableGrid} from './useMerge';
@@ -23,7 +24,7 @@ export interface TableCellProps {
 
 export class TableCell extends Component<TableCellProps> {
     static template = template;
-
+    public parentTable = inject<Table>(TABLE)!;
     private config = useConfigContext();
 
     $update(

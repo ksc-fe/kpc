@@ -40,6 +40,7 @@ export default class extends Component<Props> {
                 {name: 'test1.jpg', url: 'http://www.example.com/test1.jpg'},
                 {name: 'test2.png', url: 'http://www.example.com/test2.png'},
                 {name: 'test3.png', status: UploadFileStatus.Error},
+                {name: 'test4-测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长测试超长.png', url: 'http://www.example.com/test4.png'},
             ]
         } as Props;
     }

@@ -2,20 +2,53 @@ import {Button} from '../button';
 import {Icon} from '../icon';
 import {makeStyles} from './styles';
 
-const {children, closable, type, disabled} = this.get();
+const {children, closable, type, disabled, showIcon} = this.get();
 const { k } = this.config;
+
+const iconMap = {
+    default: 'information-fill',
+    info: 'information-fill',
+    warning: 'warning-fill',
+    success: 'success-fill',
+    error: 'error-fill',
+};
+
 const classNameObj = {
     [`${k}-tip`]: true,
     [makeStyles(k)]: true,
 };
 
+const iconWrapper = <template>
+    <template v-if={!$blocks.icon}>
+        <Icon class={{
+            [`${k}-icon-${iconMap[type] || iconMap.info}`]: true,
+            [`${k}-tip-icon`]: true,
+        }} />
+    </template>
+    <b:icon v-else />
+</template>
+
 <t:super class={classNameObj} name="k-fade">
     <b:body>
-        <div class={`${k}-tip-wrapper`}>
-            <div v-if={$blocks.title} class={`${k}-tip-title`}>
-                <b:title />
+        <div class={{
+            [`${k}-tip-wrapper`]: true,
+            [`${k}-with-icon`]: !$blocks.title && (showIcon || $blocks.icon)
+        }}>
+            <template v-if={!$blocks.title && (showIcon || $blocks.icon)}>
+                {iconWrapper}
+            </template>
+            <div v-if={$blocks.title} class={{
+                [`${k}-tip-title`]: true,
+                [`${k}-with-icon`]: showIcon
+            }}>
+                <template v-if={showIcon}>
+                    {iconWrapper}
+                </template>
+                <span class={`${k}-title-content`}><b:title /></span>
             </div>
-            {children}
+            <div class={`${k}-tip-content`}>
+                {children}
+            </div>
         </div>
     </b:body> 
     <b:_close>

@@ -1,6 +1,7 @@
 import {Button} from '../button';
 import {Progress} from '../progress';
 import {Dialog} from '../dialog';
+import {Ellipsis} from '../ellipsis';
 import {expandAnimationCallbacks, getRestProps} from '../utils';
 import {makeStyles, makeUploadDialogStyles} from './styles';
 import {TransitionGroup, Transition, linkEvent} from 'intact';
@@ -131,7 +132,9 @@ const {show, close, image, isShow} = this.showImage;
                 <div class={`${k}-upload-file-main`}>
                     <div class={`${k}-upload-name c-ellipsis`}>
                         <Icon class={`${k}-upload-file-icon ion-document`} />
-                        <span class={`${k}-upload-file-name`}>{$value.name}</span>
+                        <span class={`${k}-upload-file-name`}>
+                            <Ellipsis>{$value.name}</Ellipsis>
+                        </span>
                         <Icon class={`${k}-upload-status-icon ${k}-icon-success-fill`} 
                             v-if={$value.status === UploadFileStatus.Done}
                         />

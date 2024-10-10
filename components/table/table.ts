@@ -1,4 +1,4 @@
-import {Component, TypeDefs} from 'intact';
+import {Component, TypeDefs, provide} from 'intact';
 import template from './table.vdt';
 import {useColumns} from './useColumns';
 import {useFixedColumns} from './useFixedColumns';
@@ -65,7 +65,8 @@ export interface TableProps<
     animation?: boolean | [boolean, boolean]
     hideHeader?: boolean
     pagination?: boolean | PaginationProps
-    fixFooter?: boolean 
+    fixFooter?: boolean
+    expandIndex?: number
     load?: (value: T) => Promise<void> | void
 }
 
@@ -134,6 +135,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     hideHeader: Boolean,
     pagination: [Boolean, Object],
     fixFooter: Boolean,
+    expandIndex: Number,
     load: Function,
 };
 
@@ -159,6 +161,7 @@ const events: Events<TableEvents> = {
     uncheckAll: true,
     page: true,
 };
+export const TABLE = 'Table';
 
 export class Table<
     T = any,
@@ -171,7 +174,9 @@ export class Table<
     static typeDefs = typeDefs;
     static defaults = defaults;
     static events = events;
-
+    init() {
+        provide(TABLE, this);
+    };
     // use public for unit test to get paginationRef
     public pagination = usePagination();
     private tree = useTree(this.pagination.data);

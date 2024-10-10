@@ -17,15 +17,25 @@ order: 24
 
 ```vdt
 import {Table, TableColumn} from 'kpc';
-
-<Table data={this.get('data')} rowKey={data => data.name}>
-    <TableColumn key="name" title="Name" />
-    <TableColumn key="size" title="Size">
-        <b:template args="[data]">
-            {data.size}MB
-        </b:template>
-    </TableColumn>
-</Table>
+<div>
+    <Table data={this.get('data')} rowKey={data => data.name}>
+        <TableColumn key="name" title="Name" />
+        <TableColumn key="size" title="Size">
+            <b:template args="[data]">
+                {data.size}MB
+            </b:template>
+        </TableColumn>
+    </Table>
+    <h4>自定义展开Icon位置</h4>
+    <Table data={this.get('data')} rowKey={data => data.name} expandIndex={1}>
+        <TableColumn key="name" title="Name" />
+        <TableColumn key="size" title="Size">
+            <b:template args="[data]">
+                {data.size}MB
+            </b:template>
+        </TableColumn>
+    </Table>
+</div>
 ```
 
 ```ts

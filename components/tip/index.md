@@ -17,6 +17,7 @@ sidebar: doc
 | disabled | 是否展示禁用状态 | `boolean` | `false` |
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | border | 定义边框样式 | `"solid"` &#124; `"dashed"` &#124; `"none"` | `"solid"` |
+| showIcon | 展示Icon | `boolean` | `false` |
 
 
 # 扩展点
@@ -25,6 +26,7 @@ sidebar: doc
 | --- | --- |
 | title | 自定义标题内容 |
 | close | 自定义关闭按钮内容 |
+| icon | 自定义Icon内容 |
 
 # 事件
 
