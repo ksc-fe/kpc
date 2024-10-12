@@ -4,6 +4,7 @@ import {TableColumn, TableColumnProps} from './column';
 import {useState} from '../../hooks/useState';
 import type {Table, TableProps} from './table';
 import {createContext} from '../context';
+import {table as theme} from './styles';
 
 export const context = createContext<TableProps['checkType']>();
 
@@ -118,5 +119,27 @@ export function useColumns() {
         }
     }
 
-    return {getColumns, getCols, getData} 
+
+    function getStyleForLastColumn() {
+        if (instance.get('type') !== 'grid' || !columns.length || !cols.length) {
+            return {lastCellKey: null, lastCellStyle: null};
+        }
+
+        const lastRow = columns[columns.length - 1];
+        const lastTrItem = lastRow[lastRow.length - 1];
+        const lastCol = cols[cols.length - 1];
+    
+        if (!lastTrItem || !lastCol) {
+            return {lastCellKey: null, lastCellStyle: null};
+        }
+
+        return lastCol.key === lastTrItem.key
+            ? {lastCellKey: null, lastCellStyle: null}
+            : {
+                lastCellKey: lastTrItem.key, 
+                lastCellStyle: {'border-right': `${theme.border}`}
+              };
+    }
+
+    return {getColumns, getCols, getData, getStyleForLastColumn} 
 }

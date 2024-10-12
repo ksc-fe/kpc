@@ -82,16 +82,14 @@ const Panel = (model) => {
         <Button circle icon 
             disabled={!enableRemove()}
             ev-click={remove}
-            type="primary"
-            size="large"
+            type="secondary"
         >
             <Icon class={`${k}-transfer-icon ${k}-icon-left`} />
         </Button>
         <Button circle icon 
             disabled={!enableAdd()}
             ev-click={add}
-            type="primary"
-            size="large"
+            type="secondary"
         >
             <Icon class={`${k}-transfer-icon ${k}-icon-right`} />
         </Button>

@@ -1,4 +1,5 @@
 import {getClassAndStyleForFixed} from './useFixedColumns';
+import {getStyleForLastColumn} from './useColumns';
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Button} from '../button';
 import {Icon} from '../icon';
@@ -11,7 +12,7 @@ import {linkEvent} from 'intact';
 import {context as TableContext} from './useColumns';
 import {context as ResizableContext} from './useResizable';
 import {context as FixedColumnsContext} from './useFixedColumns';
-import {stopPropagation} from '../utils';
+import {stopPropagation, addStyle} from '../utils';
 import {Input} from '../input';
 import {_$} from '../../i18n';
 import {ignoreSortable} from './useSortable';
@@ -25,7 +26,7 @@ const {
 const { k } = this.config;
 
 <TableContext.Consumer>
-    {checkType => {
+    {({checkType, lastCellKey, lastCellStyle}) => {
         return <GroupContext.Consumer>
             {({group: currentGroup, onChange}) => {
                 return <SortableContext.Consumer>
@@ -46,7 +47,7 @@ const { k } = this.config;
 
                                         let checked;
                                         return <th className={classNameObj}
-                                            style={style}
+                                            style={key === lastCellKey ? addStyle(style, lastCellStyle) : style}
                                             title={isStringOrNumber(title) ? title : null}
                                             ev-click={sortable ? linkEvent(key, onChangeSort) : null}
                                             colspan={cols}

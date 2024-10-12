@@ -1,4 +1,4 @@
-import {Component, Props, VNodeComponentClass, IntactDom} from 'intact';
+import {Component, Props, VNodeComponentClass, IntactDom, inject} from 'intact';
 import template from './cell.vdt';
 import type {TableColumnProps} from './column';
 import type {TableProps} from './table';
@@ -19,11 +19,11 @@ export interface TableCellProps {
     onClickArrow: (e: MouseEvent) => void 
     hasChildren: boolean
     loaded: boolean
+    spreadArrowIndex: number
 }
 
 export class TableCell extends Component<TableCellProps> {
     static template = template;
-
     private config = useConfigContext();
 
     $update(

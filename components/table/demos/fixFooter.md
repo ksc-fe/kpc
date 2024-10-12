@@ -48,5 +48,5 @@ import {Table, TableColumn} from 'kpc';
     margin-left: 20px
     flex: 1
 .k-table-wrapper
-    height: 200px
+    height: 200px!important
 ```
