@@ -1,6 +1,6 @@
 {
   "name": "@king-design/intact",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
   "engines": {
