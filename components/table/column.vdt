@@ -1,5 +1,4 @@
 import {getClassAndStyleForFixed} from './useFixedColumns';
-import {getStyleForLastColumn} from './useColumns';
 import {Dropdown, DropdownMenu, DropdownItem} from '../dropdown';
 import {Button} from '../button';
 import {Icon} from '../icon';

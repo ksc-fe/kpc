@@ -3,7 +3,7 @@ title: 更新日志
 order: 99
 sidebar: doc
 ---
-## v3.4.4
+## v3.4.5
 
 1. `Add` `Tip` 组件支持`Icon`及自定义`Icon` [#1043](https://github.com/ksc-fe/kpc/issues/1043)
 2. `Add` `Table`组件新增`spreadArrowIndex`属性，支持通过`spreadArrowIndex`参数控制树形表格展开按钮所在的列 [#1035](https://github.com/ksc-fe/kpc/issues/1035)
@@ -12,7 +12,7 @@ sidebar: doc
 5. `Fix` `Table`树形表格，展开行中的组件不能双向绑定 [#1030](https://github.com/ksc-fe/kpc/issues/1030)
 6. `Fix` `Table` 合并表头后border问题 [#1042](https://github.com/ksc-fe/kpc/issues/1042)
 7. `Fix` `Upload` file list 文件名超长省略 [#1037](https://github.com/ksc-fe/kpc/issues/1037)
-8. `Fix` `Tooltip``always`模式下设置了`value`不展示，实际鼠标悬浮上依然会展示 [#1039](https://github.com/ksc-fe/kpc/issues/1039)
+8. `Fix` `Tooltip always`模式下设置了`value`不展示，实际鼠标悬浮上依然会展示 [#1039](https://github.com/ksc-fe/kpc/issues/1039)
 
 ### @king-design/vue
 1. `Fix` 【vue2.0】全局安装install存在警告 [#1031](https://github.com/ksc-fe/kpc/issues/1031)
