@@ -27,7 +27,7 @@ import {Table, TableColumn} from 'kpc';
         </TableColumn>
     </Table>
     <h4>自定义展开Icon位置</h4>
-    <Table data={this.get('data')} rowKey={data => data.name} expandIndex={1}>
+    <Table data={this.get('data')} rowKey={data => data.name} spreadArrowIndex={1}>
         <TableColumn key="name" title="Name" />
         <TableColumn key="size" title="Size">
             <b:template args="[data]">

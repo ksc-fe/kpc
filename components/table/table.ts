@@ -66,7 +66,7 @@ export interface TableProps<
     hideHeader?: boolean
     pagination?: boolean | PaginationProps
     fixFooter?: boolean
-    expandIndex?: number
+    spreadArrowIndex?: number
     load?: (value: T) => Promise<void> | void
 }
 
@@ -135,7 +135,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     hideHeader: Boolean,
     pagination: [Boolean, Object],
     fixFooter: Boolean,
-    expandIndex: Number,
+    spreadArrowIndex: Number,
     load: Function,
 };
 
@@ -161,7 +161,6 @@ const events: Events<TableEvents> = {
     uncheckAll: true,
     page: true,
 };
-export const TABLE = 'Table';
 
 export class Table<
     T = any,
@@ -174,9 +173,6 @@ export class Table<
     static typeDefs = typeDefs;
     static defaults = defaults;
     static events = events;
-    init() {
-        provide(TABLE, this);
-    };
     // use public for unit test to get paginationRef
     public pagination = usePagination();
     private tree = useTree(this.pagination.data);

@@ -8,14 +8,14 @@ import {Ellipsis} from '../ellipsis';
 const {
     props, rowIndex, columnIndex, offset,
     data, checkType, indent, grid,
-    colspan, rowspan, onClickArrow, hasChildren, loaded
+    colspan, rowspan, onClickArrow, hasChildren, loaded,
+    spreadArrowIndex
 } = this.get();
-const { expandIndex } = this.parentTable.get();
 const { k } = this.config;
 
 const blocks = props.$blocks; 
 let children = get(data, props.key);
-const isTree = !expandIndex ? columnIndex === 0 : columnIndex === expandIndex
+const isTree = !spreadArrowIndex ? columnIndex === 0 : columnIndex === spreadArrowIndex
 if (blocks) {
     const template = blocks.template || blocks.default;
     if (template) {

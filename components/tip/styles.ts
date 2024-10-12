@@ -1,7 +1,7 @@
 import {theme, setDefault} from '../../styles/theme';
 import {css} from '@emotion/css';
 import '../../styles/global';
-import {deepDefaults}  from '../../styles/utils';
+import {deepDefaults, sizes}  from '../../styles/utils';
 import { cache } from '../utils';
 
 const defaults = {
@@ -11,7 +11,7 @@ const defaults = {
         fontWeight: '500'
     },
     get color() { return theme.color.text },
-    get padding() { return `${theme.default.padding}` },
+    get padding() { return `6px ${theme.default.padding}` },
     content: {
         padding: '7px 33px 8px 8px',
     },
@@ -19,6 +19,27 @@ const defaults = {
         fontSize: `18px`,
         left: `16px`,
         top: `6px`,
+    },
+    large: {
+        padding: `12px`,
+        get fontSize() { return theme.default.fontSize },
+        close: {
+            height: '42px',
+        }
+    },
+    small: {
+        padding: `4px 12px`,
+        get fontSize() { return theme.small.fontSize },
+        close: {
+            height: '26px',
+        }
+    },
+    mini: {
+        padding: `2px 12px`,
+        fontSize: '11px',
+        close: {
+            height: '20px',
+        }
     },
 };
 
@@ -37,6 +58,23 @@ export const makeStyles = cache(function makeStyles(k: string) {
             padding: 0;
             color: ${tip.color} !important;
             align-items: flex-start;
+            ${sizes.map(s => {
+                if (s === 'default') return;
+                const styles = tip[s];
+                return css `
+                    &.${k}-${s} {
+                        padding: 0;
+                        height: auto;
+                        font-size: ${styles.fontSize};
+                        .${k}-tip-wrapper {
+                            padding: ${styles.padding};
+                        }
+                        .${k}-tip-close {
+                            height: ${styles.close.height};
+                        }
+                    }
+                `;
+            })}
         }
         .${k}-tip-wrapper {
             flex: 1;
@@ -56,7 +94,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
 
         .${k}-tip-close {
-            height: 42px;
+            height: 30px;
             &:hover {
                 background: none;
             }
