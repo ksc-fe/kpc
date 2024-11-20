@@ -10,7 +10,7 @@ import {Dialog} from '../dialog';
 import { Component } from 'intact';
 
 describe('Input', () => {
-    // afterEach(() => {unmount()});
+    afterEach(() => {unmount()});
 
     it('basic test', async () => {
         const [instance, element] = mount(BasicDemo); 
