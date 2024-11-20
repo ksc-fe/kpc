@@ -12,10 +12,10 @@ import SearchableDemo from '~/components/select/demos/searchable';
 import ImmutableDemo from '~/components/select/demos/immutable';
 
 describe('Select', () => {
-    // afterEach((done) => {
-        // unmount();
-        // setTimeout(done, 500);
-    // });
+    afterEach((done) => {
+        unmount();
+        setTimeout(done, 500);
+    });
 
     it('should select value correctly', async () => {
         const [instance, element] = mount(BasicDemo);

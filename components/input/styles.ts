@@ -325,6 +325,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
             // width: 100%;
             visibility: hidden;
             white-space: nowrap;
+            pre {
+                font-family: inherit;
+            }
         }
         &.${k}-auto-width {
             width: auto;
