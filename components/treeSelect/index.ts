@@ -124,7 +124,7 @@ export class TreeSelect<
 
     @bind
     private filter(data: DataItem<K>) {
-        let keywords = this.input.keywords.value;
+        let keywords = this.input.keywords.value.trim();
         if (!keywords) return true;
 
         const {filter} = this.get();
