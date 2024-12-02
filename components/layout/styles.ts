@@ -123,6 +123,7 @@ export const makeAsideStyles = cache(function makeAsideStyles(k: string) {
         }
         .${k}-menu {
             width: auto !important;
+            border-right: none !important;
         }
     `
 });
