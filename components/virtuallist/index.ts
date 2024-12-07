@@ -7,7 +7,7 @@ import { useConfigContext } from '../config';
 export interface VirtualListProps {
     estimatedItemHeight?: number;
     bufferSize?: number;
-    asyncLoading?: boolean;
+    height?: number | string;
 }
 
 export interface VirtualListEvents {}
@@ -15,13 +15,12 @@ export interface VirtualListEvents {}
 const typeDefs: Required<TypeDefs<VirtualListProps>> = {
     estimatedItemHeight: Number,
     bufferSize: Number,
-    asyncLoading: Boolean,
+    height: [Number, String],
 };
 
 const defaults = (): Partial<VirtualListProps> => ({
     estimatedItemHeight: 30,
     bufferSize: 6,
-    asyncLoading: false,
 });
 
 const events: Events<VirtualListEvents> = {};
@@ -34,4 +33,15 @@ export class VirtualList extends Component<VirtualListProps, VirtualListEvents> 
 
     public virtual = useVirtual();
     private config = useConfigContext();
+
+    scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
+        const { containerRef, getItemTop } = this.virtual;
+        if (containerRef?.value) {
+            const top = getItemTop(index);
+            containerRef.value.scrollTo({
+                top,
+                behavior,
+            });
+        }
+    }
 }

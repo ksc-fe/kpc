@@ -3,32 +3,21 @@ title: 基本用法
 order: 0
 ---
 
-组件接收任意合法的字符串当做`text`值
-
 ```vdt
 import { VirtualList } from 'kpc';
 
 <div>
     <h3>1. 定高元素</h3>
-    <VirtualList style="height: 300px;">
+    <VirtualList height="250">
         <div v-for={this.get('data')} class="fixed-height-item">
             {$value.label}
         </div>
     </VirtualList>
 
     <h3>2. 不定高元素</h3>
-    <VirtualList style="width: 200px;">
+    <VirtualList style="width: 200px;" height="250">
         <div v-for={this.get('variableHeightData')} class="variable-height-item">
             {$value.label}
-        </div>
-    </VirtualList>
-
-    <h3>3. 异步加载</h3>
-    <VirtualList style="height: 300px;" asyncLoading={true}>
-        <div v-for={this.get('data')} class="dynamic-height-item">
-            <div>{$value.label}</div>
-            <button ev-click={this.toggleItem.bind(this, $value.value)}>Toggle</button>
-            {this.get(`expanded.${$value.value}`) ? <div>aaaaaa</div> : null}
         </div>
     </VirtualList>
 </div>
@@ -78,13 +67,6 @@ export default class extends Component {
             variableHeightData.push({ value: index, label: `不定高度项 ${index}\n${repeatPart}` });
         }
         this.set({data: arr, variableHeightData});
-    }
-    
-    toggleItem(index) {
-        const expanded = this.get('expanded') || {};
-        expanded[index] = !expanded[index];
-        this.set('expanded', expanded);
-        console.log(`expanded[${index}]: ${expanded[index]}`);
     }
 }
 ```

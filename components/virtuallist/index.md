@@ -9,13 +9,13 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| text | 复制文案值 | `string` | `undefined` |
-| showMessage | 复制成功/失败时，是否展示Message | `boolean` | `true` |
+| estimatedItemHeight | 列表每行预估高度 | `number` | `40` |
+| bufferSize | 虚拟列表缓冲区数量 | `number` | `6` |
+| height | 虚拟滚动区域的高度，不设置则继承父级容器高度 | `number` &#124; `string` | `undefined` |
 
-# 事件
+# 方法
 
-| 事件名 | 说明 | 参数 |
+| 方法名 | 说明 | 参数 |
 | --- | --- | --- |
-| success | 复制成功时触发 | `(value: string) => void` |
-| error | 复制失败时触发 | `() => void` |
+| scrollToIndex | 滚动到指定索引位置 | `(index: number, behavior?: 'auto' \| 'smooth') => void` |
 

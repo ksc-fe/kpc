@@ -25,7 +25,7 @@ const {
     merge, childrenKey, indent, tooltipPosition,
     tooltipContainer, showIndeterminate, resizable,
     draggable, animation: _animation, hideHeader,
-    pagination, fixFooter,
+    pagination, fixFooter, virtual, spreadKeys
 } = this.get();
 const animation = !Array.isArray(_animation) ? [_animation, _animation] : _animation;
 const {columns, cols, maxRows, maxCols} = this.columns.getData();
@@ -42,6 +42,7 @@ const classNameObj = {
     [`${k}-${type}`]: type && type !== 'default',
     [`${k}-stripe`]: stripe,
     [`${k}-with-expand`]: $blocks.expand,
+    [`${k}-virtual`]: virtual,
     [className]: className,
     [makeStyles(k)]: true,
 };
@@ -51,6 +52,7 @@ const style = isStringOrNumber(fixHeader) ?
 
 const {getWidth, tableRef, tableWidth} = this.width;
 const {start: onStart} = this.resizable;
+const {totalHeight, translateY, startIndex, endIndex, getRowRef, addActualDataItem} = this.virtual;
 
 const colgroup = (
     <colgroup>
@@ -120,7 +122,7 @@ const {isSelected} = this.selected;
 const {loopData, isSpreaded, toggleSpreadRow} = this.tree;
 const {onRowDragStart, onRowDragOver, onRowDragEnd, draggingKey} = this.draggable;
 const tbody = (
-    <tbody>
+    <tbody style={virtual ? { transform: `translateY(${translateY.value}px)` } : null}>
         {!hasData ? 
             <tr key="table-empty">
                 <td colspan={colCount} class={`${k}-table-empty`}>
@@ -129,6 +131,15 @@ const tbody = (
             </tr> :
             (() => {
                 const rows = [];
+                let visibleIndex = -1;
+                // console.log('Virtual scroll params:', {
+                //     startIndex: this.virtual?.startIndex.value,
+                //     endIndex: this.virtual?.endIndex.value,
+                //     translateY: this.virtual?.translateY.value
+                // });
+                if (virtual) {
+                    this.virtual.resetActualData();
+                }
                 loopData((value, index, level, hidden) => {
                     // don't render if row is hidden
                     if (hidden) return hidden;
@@ -137,6 +148,21 @@ const tbody = (
                     const key = allKeys[index];
                     const spreaded = isSpreaded(key);
                     const hasChildren = !!childrenKey && Array.isArray(value[childrenKey]);
+                    const rowRef = virtual ? getRowRef(key) : null;
+                    if (virtual) {
+                        addActualDataItem(value);
+                        visibleIndex++;
+                        const isInView = 
+                            visibleIndex >= startIndex.value && 
+                            visibleIndex < endIndex.value;
+
+                        // Whether the element is in the visible area
+                        if (!isInView) {
+                            // The parent element is collapsed and should prevent traversal of child elements
+                            return !spreaded;
+                        }
+                    }
+
                     const indentSize = indent ? indent * level : 0; 
                     let row = <TableRow
                         key={key}
@@ -159,6 +185,7 @@ const tbody = (
                         spreaded={spreaded}
                         hasChildren={hasChildren}
                         indent={indentSize}
+                        rowRef={rowRef}
                         onToggleSpreadRow={toggleSpreadRow}
                         onBeforeUnmount={this.resetRowStatus.onRowBeforeUnmount}
                         offsetMap={offsetMap.value}
@@ -198,10 +225,10 @@ const tbody = (
                         );
                     }
 
-                    return hidden || !spreaded;
+                     return hidden || !spreaded;
                 });
 
-                return animation[0] ?
+                return animation[0] && !virtual ?
                     <TransitionGroup name="k-fade-in-left" move={!draggingKey.value}>{rows}</TransitionGroup> :
                     rows;
             })()
@@ -254,6 +281,7 @@ const {
             <template>{tbody}</template>
             <template v-if={$blocks.footer}>{tfooter}</template>
         </table>
+        <div v-if={virtual} class={`${k}-table-phantom`} style={{height: totalHeight.value + 'px'}}></div>
     </div>
     <Pagination v-if={pagination}
         ref={paginationRef}

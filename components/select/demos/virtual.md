@@ -9,7 +9,7 @@ order: 14
 import {Select, Option} from 'kpc';
 
 <div>
-    <Select v-model="day" virtual multiple filterable>
+    <Select v-model="day" virtual filterable>
         <Option v-for={this.get('data')} value={$value.value}>
             {$value.label}
         </Option>

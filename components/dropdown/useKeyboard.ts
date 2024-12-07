@@ -140,6 +140,7 @@ export function useMenuKeyboard() {
         const item = items[focusIndex];
 
         if (focusIndex > -1 && item) {
+            // TODO(find bug)
             itemEvents.get(item)!.onFocusout();
             focusIndex = -1;
         }
@@ -203,6 +204,8 @@ export function useItemKeyboard(itemEvents: Omit<ItemEvents, 'onFocusin' | 'onFo
         onMouseLeave(e: MouseEvent) {
             instance.trigger('mouseleave', e);
             keyboard.reset();
+            // If it is a virtual item, it needs to be reset manually because the DOM is reused.
+            isFocus.set(false);
         },
 
         isFocus,
