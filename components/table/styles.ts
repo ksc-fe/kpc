@@ -77,6 +77,8 @@ setDefault(() => {
     makeGroupMenuStyles?.clearCache();
 });
 
+export {table};
+
 export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${table.fontSize};
@@ -117,6 +119,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             tr {
                 td {
                     border-top: ${table.border};
+                    border-bottom-color: transparent;
                 }
             }
         }

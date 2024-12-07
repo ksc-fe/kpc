@@ -40,6 +40,7 @@ export interface TableRowProps {
     onBeforeUnmount: (key: TableRowKey) => void
     offsetMap: Record<Key, number>
     animation: boolean
+    spreadArrowIndex: number
     loaded: boolean
     rowRef: RefObject<HTMLElement | null>
 
