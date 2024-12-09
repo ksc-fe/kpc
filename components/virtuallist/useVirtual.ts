@@ -13,7 +13,6 @@ export function useVirtual(props?: VirtualProps) {
     const instance = useInstance() as VirtualList;
     const {estimatedItemHeight, bufferSize} = instance.get();
     
-    // 如果没有传入 props，则使用组件自身的配置
     const getChildren = () => {
         const children = instance.get('children');
         return Array.isArray(children) ? children : [];

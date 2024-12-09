@@ -23,7 +23,7 @@ export interface VisibleRange {
     translateY: number;
 }
 
-// 创建高度管理器
+// create height manager
 export const createHeightManager = (options: HeightManagerOptions): HeightManager => {
     const { defaultHeight, onTotalHeightChange, getItems, getKey } = options;
     const cache = new Map<string | number, number>();
@@ -77,7 +77,7 @@ export const createHeightManager = (options: HeightManagerOptions): HeightManage
         let accumulatedHeight = 0;
         let start = 0;
 
-        // 查找起始索引
+        // find start index
         while (start < itemCount) {
             const key = getKey ? getKey(items[start], start) : start;
             const height = cache.get(key) || defaultHeight;
@@ -88,7 +88,7 @@ export const createHeightManager = (options: HeightManagerOptions): HeightManage
             start++;
         }
 
-        // 查找结束索引
+        // find end index
         let end = start;
         let visibleHeight = 0;
         while (
