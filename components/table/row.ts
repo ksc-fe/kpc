@@ -5,7 +5,8 @@ import {
     VNodeComponentClass,
     Props,
     Key,
-    IntactDom
+    IntactDom,
+    RefObject
 } from 'intact';
 import template from './row.vdt';
 import type {TableColumnProps} from './column';
@@ -41,6 +42,7 @@ export interface TableRowProps {
     animation: boolean
     spreadArrowIndex: number
     loaded: boolean
+    rowRef: RefObject<HTMLElement | null>
 
     draggable: boolean
     draggingKey: TableRowKey | null

@@ -1,17 +1,22 @@
 import {RefObject, onMounted, onBeforeUnmount, createRef} from 'intact';
 
-export type ScrollCallback = (scrollLeft: number) => void;
+export type ScrollCallback = (scrollLeft: number,  scrollTop?: number) => void;
 
 export function useScroll() {
     const callbacks: ScrollCallback[] = [];
     const scrollRef = createRef<HTMLElement>();
 
     let scrollLeft = 0;
+    let scrollTop = 0;
     function onScroll() {
-        const newScrollLeft = scrollRef.value!.scrollLeft; 
-        if (scrollLeft !== newScrollLeft) {
+        const element = scrollRef.value!;
+        const newScrollLeft = element.scrollLeft;
+        const newScrollTop = element.scrollTop;
+        
+        if (scrollLeft !== newScrollLeft || scrollTop !== newScrollTop) {
             scrollLeft = newScrollLeft;
-            callbacks.forEach(fn => fn(scrollLeft));
+            scrollTop = newScrollTop;
+            callbacks.forEach(fn => fn(scrollLeft, scrollTop));
         }
     }
 
