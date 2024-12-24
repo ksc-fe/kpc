@@ -17,6 +17,7 @@ import {AllCheckedStatus} from './useChecked';
 import {context as ResizableContext} from './useResizable';
 import {context as FixedColumnsContext} from './useFixedColumns';
 import {Pagination} from '../pagination';
+import {VirtualListContainer,VirtualListWrapper,VirtualListRows} from '../virtualList';
 
 const {
     data, children, className, fixHeader,
@@ -53,7 +54,6 @@ const style = isStringOrNumber(fixHeader) ?
 
 const {getWidth, tableRef, tableWidth} = this.width;
 const {start: onStart} = this.resizable;
-const {totalHeight, translateY, startIndex, endIndex, getRowRef, addActualDataItem} = this.virtual;
 
 const colgroup = (
     <colgroup>
@@ -123,7 +123,7 @@ const {isSelected} = this.selected;
 const {loopData, isSpreaded, toggleSpreadRow} = this.tree;
 const {onRowDragStart, onRowDragOver, onRowDragEnd, draggingKey} = this.draggable;
 const tbody = (
-    <tbody style={virtual ? { transform: `translateY(${translateY.value}px)` } : null}>
+    <tbody>
         {!hasData ? 
             <tr key="table-empty">
                 <td colspan={colCount} class={`${k}-table-empty`}>
@@ -132,15 +132,6 @@ const tbody = (
             </tr> :
             (() => {
                 const rows = [];
-                let visibleIndex = -1;
-                // console.log('Virtual scroll params:', {
-                //     startIndex: this.virtual?.startIndex.value,
-                //     endIndex: this.virtual?.endIndex.value,
-                //     translateY: this.virtual?.translateY.value
-                // });
-                if (virtual) {
-                    this.virtual.resetActualData();
-                }
                 loopData((value, index, level, hidden) => {
                     // don't render if row is hidden
                     if (hidden) return hidden;
@@ -149,20 +140,6 @@ const tbody = (
                     const key = allKeys[index];
                     const spreaded = isSpreaded(key);
                     const hasChildren = !!childrenKey && Array.isArray(value[childrenKey]);
-                    const rowRef = virtual ? getRowRef(key) : null;
-                    if (virtual) {
-                        addActualDataItem(value);
-                        visibleIndex++;
-                        const isInView = 
-                            visibleIndex >= startIndex.value && 
-                            visibleIndex < endIndex.value;
-
-                        // Whether the element is in the visible area
-                        if (!isInView) {
-                            // The parent element is collapsed and should prevent traversal of child elements
-                            return !spreaded;
-                        }
-                    }
 
                     const indentSize = indent ? indent * level : 0; 
                     let row = <TableRow
@@ -186,7 +163,6 @@ const tbody = (
                         spreaded={spreaded}
                         hasChildren={hasChildren}
                         indent={indentSize}
-                        rowRef={rowRef}
                         onToggleSpreadRow={toggleSpreadRow}
                         onBeforeUnmount={this.resetRowStatus.onRowBeforeUnmount}
                         offsetMap={offsetMap.value}
@@ -283,7 +259,6 @@ const {
             <template>{tbody}</template>
             <template v-if={$blocks.footer}>{tfooter}</template>
         </table>
-        <div v-if={virtual} class={`${k}-table-phantom`} style={{height: totalHeight.value + 'px'}}></div>
     </div>
     <Pagination v-if={pagination}
         ref={paginationRef}

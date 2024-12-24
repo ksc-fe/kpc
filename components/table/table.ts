@@ -192,11 +192,11 @@ export class Table<
         this.scroll.scrollRef,
         this.columns.getColumns,
     );
-    private virtual = useTableVirtual(
-        this.pagination.data,
-        this.scroll.scrollRef,
-        this.scroll.callbacks,
-    );
+    // private virtual = useTableVirtual(
+    //     this.pagination.data,
+    //     this.scroll.scrollRef,
+    //     this.scroll.callbacks,
+    // );
     private resizable = useResizable(
         this.scroll.scrollRef,
         this.width.tableRef,

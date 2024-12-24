@@ -67,7 +67,7 @@ export * from './components/tree';
 export * from './components/treeSelect';
 export * from './components/upload';
 export * from './components/view';
-export * from './components/virtuallist';
+export * from './components/virtualList';
 export * from './components/wave';
 
 export const version = '3.4.5';

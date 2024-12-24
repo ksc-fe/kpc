@@ -10,7 +10,7 @@ import {Table, TableColumn} from 'kpc';
 
 <div>
     <h4>表格</h4>
-    <Table data={this.get('data')} virtual>
+    <Table data={this.get('data')} virtual style="height: 400px;">
         <TableColumn key="a" title="Title 1" minWidth={200}/>
         <TableColumn key="b" title="Title 2" minWidth={300} />
     </Table>
@@ -51,7 +51,7 @@ export default class extends Component {
     }
     init() {
         const arr = [];
-        for (let index = 0; index < 10000; index++) {
+        for (let index = 0; index < 100; index++) {
             arr.push({
                 a: `Cell ${index}-1`,
                 b: `Cell ${index}-2`
@@ -91,7 +91,7 @@ export default class extends Component {
             return result;
         };
 
-        const data = generateTreeData(10000);
+        const data = generateTreeData(100);
         this.set({ variableHeightData: data });
     }
 

@@ -1,4 +1,3 @@
-import { useState } from '../../hooks/useState';
 import { Children } from 'intact';
 
 export interface HeightManagerOptions {
@@ -76,11 +75,11 @@ export const createHeightManager = (options: HeightManagerOptions): HeightManage
         const itemCount = Array.isArray(items) ? items.length : items;
         let accumulatedHeight = 0;
         let start = 0;
+        let end = 0;
 
         // find start index
         while (start < itemCount) {
-            const key = getKey ? getKey(items[start], start) : start;
-            const height = cache.get(key) || defaultHeight;
+            const height = cache.get(start) || defaultHeight;
             if (accumulatedHeight + height > scrollTop - (bufferSize * defaultHeight)) {
                 break;
             }
@@ -89,21 +88,25 @@ export const createHeightManager = (options: HeightManagerOptions): HeightManage
         }
 
         // find end index
-        let end = start;
-        let visibleHeight = 0;
+        start = Math.max(0, start);
+        const startOffset = accumulatedHeight;
+
+        // 查找结束索引
+        end = start;
         while (
             end < itemCount && 
-            visibleHeight < clientHeight + (2 * bufferSize * defaultHeight)
+            accumulatedHeight < scrollTop + clientHeight + (bufferSize * defaultHeight)
         ) {
-            const key = getKey ? getKey(items[end], end) : end;
-            visibleHeight += cache.get(key) || defaultHeight;
+            accumulatedHeight += cache.get(end) || defaultHeight;
             end++;
         }
 
+        end = Math.min(itemCount, end);
+
         return {
-            start: Math.max(0, start),
-            end: Math.min(itemCount, end),
-            translateY: accumulatedHeight
+            start,
+            end,
+            translateY: startOffset
         };
     };
 

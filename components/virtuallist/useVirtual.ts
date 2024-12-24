@@ -1,24 +1,39 @@
-import { useInstance, onMounted, onUnmounted, createRef, Children, VNode, directClone, watch, nextTick, RefObject } from 'intact';
+import { 
+    useInstance, 
+    onMounted, 
+    onUnmounted, 
+    createRef, 
+    VNode, 
+    directClone,
+    nextTick,
+    RefObject,
+    Children
+} from 'intact';
 import { useState } from '../../hooks/useState';
-import type { VirtualList } from './index';
 import { createHeightManager } from './helpers';
-export interface VirtualProps {
+import type { VirtualListContainer } from './container';
+import { State } from '../../hooks/useState';
+
+export interface VirtualState {
     containerRef: RefObject<HTMLElement>;
     contentRef: RefObject<HTMLElement>;
-    children: Children;
-    estimatedItemHeight: number | undefined;
-    bufferSize: number | undefined;
+    virtualChildren: State<VNode[]>;
+    translateY: State<number>;
+    totalHeight: State<number>;
+    startIndex: State<number>;
+    endIndex: State<number>;
+    getItemTop: (index: number) => number;
+    scrollToIndex: (index: number, behavior?: ScrollBehavior) => void;
+    onChildrenChange: () => void;
+    setGetChildrenFn: (fn: () => VNode[]) => void;
 }
-export function useVirtual(props?: VirtualProps) {
-    const instance = useInstance() as VirtualList;
-    const {estimatedItemHeight, bufferSize} = instance.get();
-    
-    const getChildren = () => {
-        const children = instance.get('children');
-        return Array.isArray(children) ? children : [];
-    };
-    if (!Array.isArray(getChildren())) return {};
 
+export function useVirtual(): VirtualState {
+    const instance = useInstance() as VirtualListContainer;
+    const aaa = instance.get();
+    console.log('aaaa', aaa);
+    const { estimatedItemHeight = 30, bufferSize = 6 } = instance.get();
+    // TODO containerRef 暂不支持响应式
     const containerRef = createRef<HTMLElement>();
     const contentRef = createRef<HTMLElement>();
 
@@ -26,11 +41,37 @@ export function useVirtual(props?: VirtualProps) {
     const endIndex = useState(0);
     const translateY = useState(0);
     const totalHeight = useState(0);
-
-    const virtualChildren = useState<(VNode | string | number)[]>([]);
-    
+    const virtualChildren = useState<VNode[]>([]);
+    let getChildrenFn: (() => (VNode | Children)[]) | null = null;
     let ticking = false;
-    // height manager for calculate total height and update item heights
+    let lastScrollTop = 0;
+    let isUpdating = false;
+
+    const setGetChildrenFn = (fn: () => (VNode | Children)[]) => {
+        getChildrenFn = fn;
+        // 初始化计算
+        calculateTotalHeight();
+        handleScroll();
+    };
+
+    const getChildren = () => {
+        const children = getChildrenFn ? getChildrenFn() : [];
+        return children;// 添加日志
+
+    };
+
+    // 处理 children 变化的方法
+    const onChildrenChange = () => {
+        if (!isUpdating) {
+            clear();
+            calculateTotalHeight();
+            nextTick(handleScroll);
+        }
+    };
+    // const getChildren = () => {
+    //     const children = instance.get('children');
+    //     return Array.isArray(children) ? children : [];
+    // };
     const { 
         batchUpdate,
         getItemHeight,
@@ -62,15 +103,32 @@ export function useVirtual(props?: VirtualProps) {
         return top;
     };
 
+    const scrollToIndex = (index: number, behavior: ScrollBehavior = 'auto') => {
+        if (containerRef.value) {
+            const top = getItemTop(index);
+            containerRef.value.scrollTo({
+                top,
+                behavior,
+            });
+        }
+    };
+
     const handleScroll = () => {
-        if (!ticking && containerRef.value) {
+        if (!ticking && containerRef.value && !isUpdating) {
             ticking = true;
             requestAnimationFrame(() => {
-                const { scrollTop, clientHeight } = containerRef.value as HTMLElement;
+                const { scrollTop, clientHeight } = containerRef.value!;
+                
+                // // 避免小幅度滚动触发更新
+                // if (Math.abs(lastScrollTop - scrollTop) < 1) {
+                //     return;
+                // }
+                // lastScrollTop = scrollTop;
+
                 const { start, end, translateY: offset } = calculateVisibleRange(
                     scrollTop,
                     clientHeight,
-                    bufferSize as number
+                    bufferSize
                 );
 
                 startIndex.set(start);
@@ -92,6 +150,7 @@ export function useVirtual(props?: VirtualProps) {
     };
 
     onMounted(() => {
+        console.log('Component mounted'); // 添加日志
         if (containerRef.value) {
             containerRef.value.addEventListener('scroll', handleScroll);
             calculateTotalHeight();
@@ -105,20 +164,17 @@ export function useVirtual(props?: VirtualProps) {
         }
     });
 
-    instance.on('$receive:children', () => {
-        clear();
-        calculateTotalHeight();
-        nextTick(() => {
-            handleScroll();
-        });
-    });
-
     return {
         containerRef,
         contentRef,
         virtualChildren,
         translateY,
         totalHeight,
+        startIndex,
+        endIndex,
         getItemTop,
+        scrollToIndex,
+        setGetChildrenFn,
+        onChildrenChange,
     };
 }

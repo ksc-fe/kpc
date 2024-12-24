@@ -3,7 +3,7 @@ import { useState } from '../../hooks/useState';
 import type { Table } from './table';
 import type { ScrollCallback } from './useScroll';
 import { State } from '../../hooks/useState';
-import { createHeightManager } from '../virtuallist/helpers';
+import { createHeightManager } from '../virtualList/helpers';
 
 interface RowRefCache {
     [key: string]: RefObject<HTMLElement>;

@@ -1,0 +1,22 @@
+import { addStyle, getRestProps } from '../utils';
+import { makeStyles } from './styles';
+import { DynamicVirtual } from './dynamicVirtual';
+const { children, className, tagName, style } = this.get();
+const {contentRef, translateY} = this.virtualContext.value;
+const { k } = this.config;
+
+const classNameObj = {
+    [`${k}-virtual-wrapper`]: true,
+    [makeStyles(k)]: true,
+    [className]: className,
+}
+
+<DynamicVirtual
+    {...getRestProps(this)}
+    class={classNameObj}
+    tagName={tagName}
+    style={ addStyle(style, {transform: `translateY(${translateY.value}px)`}) }
+    ref={contentRef}
+>
+    {children}
+</DynamicVirtual>
