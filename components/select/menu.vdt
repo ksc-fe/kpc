@@ -9,6 +9,7 @@ import {Button} from '../button';
 import {Icon} from '../icon';
 import {context} from './useSearchable';
 import {Tabs, Tab} from '../tabs';
+import { VirtualList } from '../virtualList';
 
 let {children, className} = this.get();
 const {card, searchable, multiple} = this.select.get();
@@ -21,6 +22,8 @@ const classNameObj = {
     [className]: className,
     [makeMenuStyles(k)]: true,
 }
+
+children = <VirtualList style={{maxHeight: '200px'}}>{children}</VirtualList>
 
 if (card) {
     const {process, activeIndex} = this.card;

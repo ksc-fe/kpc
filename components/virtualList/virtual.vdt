@@ -1,0 +1,12 @@
+import { getRestProps } from '../utils';
+import { VirtualListContainer } from './container';
+import { VirtualListWrapper } from './wrapper';
+import { VirtualListRows } from './rows';
+
+const { children } = this.get();
+
+<VirtualListContainer {...getRestProps(this)}>
+    <VirtualListWrapper>
+        <VirtualListRows>{children}</VirtualListRows>
+    </VirtualListWrapper>
+</VirtualListContainer>

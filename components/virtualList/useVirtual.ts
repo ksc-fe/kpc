@@ -141,28 +141,28 @@ export function useVirtual(): VirtualState {
     };
 
     const setVisibleItems = (start: number, end: number) => {
-        const children = getChildren();
-        const visibleItems = children.slice(start, end).map(vNode => directClone(vNode as VNode));
-        virtualChildren.set(visibleItems);
-        nextTick(() => {
-            calculateHeights();
-        });
+        // const children = getChildren();
+        // const visibleItems = children.slice(start, end).map(vNode => directClone(vNode as VNode));
+        // virtualChildren.set(visibleItems);
+        // nextTick(() => {
+            // calculateHeights();
+        // });
     };
 
-    onMounted(() => {
-        console.log('Component mounted'); // 添加日志
-        if (containerRef.value) {
-            containerRef.value.addEventListener('scroll', handleScroll);
-            calculateTotalHeight();
-            handleScroll();
-        }
-    });
+    // onMounted(() => {
+        // console.log('Component mounted'); // 添加日志
+        // if (containerRef.value) {
+            // containerRef.value.addEventListener('scroll', handleScroll);
+            // calculateTotalHeight();
+            // handleScroll();
+        // }
+    // });
 
-    onUnmounted(() => {
-        if (containerRef.value) {
-            containerRef.value.removeEventListener('scroll', handleScroll);
-        }
-    });
+    // onUnmounted(() => {
+        // if (containerRef.value) {
+            // containerRef.value.removeEventListener('scroll', handleScroll);
+        // }
+    // });
 
     return {
         containerRef,

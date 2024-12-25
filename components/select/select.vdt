@@ -1,5 +1,4 @@
 import {SelectMenu} from './menu';
-import { VirtualList } from '../virtuallist';
 import {isEmptyChildren} from '../utils';
 
 const {className, children, autoDisableArrow, disabled, multiple, value, virtual} = this.get();
@@ -20,13 +19,7 @@ const isDisableArrow =  disabled ||
         <SelectMenu class={className} values={allShowedValues}>
             <template>
                 <b:menu>
-                        {getCreatedVNode(options)}{
-                            virtual ? 
-                            <VirtualList>
-                                {options}
-                            </VirtualList> 
-                            :options
-                        }
+                    {getCreatedVNode(options)}{options}
                 </b:menu>
             </template>
         </SelectMenu>

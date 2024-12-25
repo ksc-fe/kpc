@@ -3,6 +3,7 @@ import template from './container.vdt';
 import { Events } from '../types';
 import { useConfigContext } from '../config';
 import { useVirtual } from './useVirtual';
+import { useVirtualRows } from './useVirtualRows';
 
 export interface VirtualListContainerProps {
     estimatedItemHeight?: number;
@@ -33,16 +34,17 @@ export class VirtualListContainer extends Component<VirtualListContainerProps, V
 
     private config = useConfigContext();
     private virtualState = useVirtual();
+    private virtualRows = useVirtualRows();
 
 
-    public scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
-        const { containerRef, getItemTop } = this.virtualState;
-        if (containerRef?.value) {
-            const top = getItemTop(index);
-            containerRef.value.scrollTo({
-                top,
-                behavior,
-            });
-        }
-    }
+    // public scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
+        // const { containerRef, getItemTop } = this.virtualState;
+        // if (containerRef?.value) {
+            // const top = getItemTop(index);
+            // containerRef.value.scrollTo({
+                // top,
+                // behavior,
+            // });
+        // }
+    // }
 }
