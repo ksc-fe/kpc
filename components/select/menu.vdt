@@ -23,8 +23,6 @@ const classNameObj = {
     [makeMenuStyles(k)]: true,
 }
 
-children = <VirtualList style={{maxHeight: '200px'}}>{children}</VirtualList>
-
 if (card) {
     const {process, activeIndex} = this.card;
     const {labels, group} = process(children);
@@ -41,14 +39,14 @@ if (card) {
             {group}
         </template>
     );
-}
-
-if (isEmptyChildren(children)) {
+} else if (isEmptyChildren(children)) {
     children = (
         <div v-else class={`${k}-select-empty`}>
             {_$('无数据')}
         </div>
     );
+} else {
+    children = <VirtualList style={{maxHeight: '200px'}}>{children}</VirtualList>
 }
 
 if (searchable) {

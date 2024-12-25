@@ -1,8 +1,6 @@
 import { Component, TypeDefs, ComponentConstructor } from 'intact';
 import template from './wrapper.vdt';
 import { useConfigContext } from '../config';
-import { useVirtualContext } from './useVirtualContext';
-
 export interface VirtualListWrapperProps {
     tagName: string | ComponentConstructor,
 }
@@ -16,5 +14,4 @@ export class VirtualListWrapper extends Component<VirtualListWrapperProps> {
     static typeDefs = typeDefs;
 
     private config = useConfigContext();
-    private virtualContext = useVirtualContext();
 }

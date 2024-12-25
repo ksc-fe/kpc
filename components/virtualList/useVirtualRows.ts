@@ -1,6 +1,6 @@
 import { createContext } from '../context';
 import { useState, watchState, State } from '../../hooks/useState';
-import { useInstance, nextTick, VNode, onMounted, onUnmounted, Key, onUpdated, findDomFromVNode, createRef, normalizeChildren, createFragment, createVNode, ChildrenTypes, createVoidVNode } from 'intact';
+import { useInstance, nextTick, VNode, onMounted, onUnmounted, Key, findDomFromVNode } from 'intact';
 import { VirtualListContainer } from './container';
 
 type ContextValue = {
@@ -12,7 +12,7 @@ type ContextValue = {
 export const context = createContext<ContextValue>();
 
 const MIN_LENGTH = 10;
-const BUFFER_SIZE = 6;
+const BUFFER_SIZE = 3;
 
 export function useVirtualRows() {
     const instance = useInstance() as VirtualListContainer;
@@ -60,7 +60,7 @@ export function useVirtualRows() {
         calculateRowsHeight();
 
         // calculate the length of rows we should render
-        length.set(Math.max(Math.ceil(containerHeight / rowAvgHeight) + BUFFER_SIZE, MIN_LENGTH));
+        length.set(Math.max(Math.ceil(containerHeight / rowAvgHeight) + BUFFER_SIZE * 2, MIN_LENGTH));
 
         containerDom.addEventListener('scroll', handleScroll);
 
@@ -74,32 +74,36 @@ export function useVirtualRows() {
         return calculatedHeight + rowAvgHeight * (rows.value.length - rowsHeightMap.size);
     }
 
-    let lastScrollTop = 0;
+    const translateY = useState(0);
     function handleScroll() {
-        requestAnimationFrame(() => {
-            const scrollTop = containerDom.scrollTop;
+        const scrollTop = containerDom.scrollTop;
 
-            let accumulatedHeight = 0;
-            let start = 0;
+        let accumulatedHeight = 0;
+        let start = 0;
 
-            while (start < rows.value.length) {
-                const key = rows.value[start].key!;
-                const rowHeight = rowsHeightMap.get(key) || rowAvgHeight;
-
-                accumulatedHeight += rowHeight;
-                if (accumulatedHeight > scrollTop) {
-                    break;
-                }
-
-                start++;
+        while (start < rows.value.length) {
+            accumulatedHeight += getRowHeightByIndex(start);
+            if (accumulatedHeight > scrollTop) {
+                break;
             }
 
-            console.log('newValue', Math.max(start - BUFFER_SIZE / 2, 0), 'oldValue', startIndex.value, 'newScrollTop', scrollTop, 'lastScrollTop', lastScrollTop);
-            // if (lastScrollTop > scrollTop) debugger;
-            lastScrollTop = scrollTop;
-            startIndex.set(Math.max(start - BUFFER_SIZE / 2, 0));
-        });
+            start++;
+        }
+
+        startIndex.set(Math.max(start - BUFFER_SIZE, 0));
+
+        // translateY should substract the buffer size rows height
+        for (let i = start; i >= startIndex.value; i--) {
+            accumulatedHeight -= getRowHeightByIndex(i); 
+        }
+
+        translateY.set(accumulatedHeight);
     }
 
-    return { notifyRows, startIndex, length, getTotalHeight };
+    function getRowHeightByIndex(index: number) {
+        const key = rows.value[index].key!;
+        return rowsHeightMap.get(key) || rowAvgHeight;
+    }
+
+    return { notifyRows, startIndex, length, getTotalHeight, translateY };
 }

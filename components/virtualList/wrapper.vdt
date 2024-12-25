@@ -1,20 +1,22 @@
 import { addStyle, getRestProps } from '../utils';
-import { makeWrapperStyles } from './styles';
-import { DynamicVirtual } from './dynamicVirtual';
+import { context as VirtualRowsContext } from './useVirtualRows';
+import { createVNode } from 'intact';
+import { cx } from '@emotion/css';
+
 const { children, className, tagName, style } = this.get();
-/* const {contentRef, translateY} = this.virtualContext.value; */
 const { k } = this.config;
 
 const classNameObj = {
     [`${k}-virtual-wrapper`]: true,
-    [makeWrapperStyles(k)]: true,
     [className]: className,
 }
 
-<DynamicVirtual
-    {...getRestProps(this)}
-    class={classNameObj}
-    tagName={tagName}
->
-    {children}
-</DynamicVirtual>
+<VirtualRowsContext.Consumer>
+    {({ translateY }) => {
+        return createVNode(tagName || 'div', {
+            ...getRestProps(this),
+            className: cx(classNameObj),
+            style: addStyle(style, {transform: `translateY(${translateY}px)`})
+        }, children);
+    }}
+</VirtualRowsContext.Consumer>
