@@ -17,7 +17,7 @@ import {AllCheckedStatus} from './useChecked';
 import {context as ResizableContext} from './useResizable';
 import {context as FixedColumnsContext} from './useFixedColumns';
 import {Pagination} from '../pagination';
-import {VirtualListContainer,VirtualListWrapper,VirtualListRows} from '../virtualList';
+import {VirtualListContainer, VirtualListWrapper, VirtualListRows, VirtualListPhantom} from '../virtualList';
 
 const {
     data, children, className, fixHeader,
@@ -44,7 +44,6 @@ const classNameObj = {
     [`${k}-${type}`]: type && type !== 'default',
     [`${k}-stripe`]: stripe,
     [`${k}-with-expand`]: $blocks.expand,
-    [`${k}-virtual`]: virtual,
     [className]: className,
     [makeStyles(k)]: true,
 };
@@ -123,7 +122,7 @@ const {isSelected} = this.selected;
 const {loopData, isSpreaded, toggleSpreadRow} = this.tree;
 const {onRowDragStart, onRowDragOver, onRowDragEnd, draggingKey} = this.draggable;
 const tbody = (
-    <tbody>
+    <VirtualListWrapper tagName="tbody">
         {!hasData ? 
             <tr key="table-empty">
                 <td colspan={colCount} class={`${k}-table-empty`}>
@@ -206,12 +205,12 @@ const tbody = (
                      return hidden || !spreaded;
                 });
 
-                return animation[0] && !virtual ?
-                    <TransitionGroup name="k-fade-in-left" move={!draggingKey.value}>{rows}</TransitionGroup> :
-                    rows;
+                /* return animation[0] ? */
+                    /* <VirtualListRows tagName={TransitionGroup} name="k-fade-in-left" move={!draggingKey.value}>{rows}</VirtualListRows> : */
+                return <VirtualListRows>{rows}</VirtualListRows>;
             })()
         }
-    </tbody>
+    </VirtualListWrapper>
 );
 
 let tfooter = null;
@@ -242,7 +241,7 @@ const {
 } = this.pagination;
 
 <div class={classNameObj} ref={elementRef}>
-    <div class={`${k}-table-wrapper`} style={style} ref={scrollRef}>
+    <VirtualListContainer class={`${k}-table-wrapper`} style={style} ref={scrollRef}>
         <Affix v-if={!isNull(stickHeader.value)}
             top={stickHeader.value}
             exclude={excludeStickHeader}
@@ -258,8 +257,9 @@ const {
             <template v-if={isNull(stickHeader.value)}>{thead}</template>
             <template>{tbody}</template>
             <template v-if={$blocks.footer}>{tfooter}</template>
+            <VirtualListPhantom tagName="tr" class={`${k}-table-phantom`} />
         </table>
-    </div>
+    </VirtualListContainer>
     <Pagination v-if={pagination}
         ref={paginationRef}
         total={data ? data.length : 0}

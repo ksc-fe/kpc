@@ -18,11 +18,9 @@ import {Table, TableColumn} from 'kpc';
     >
         <TableColumn key="a" title="100px" />
     </Table>
-    <Table
-        data={[{a: '表头固定啦'}, {a: '下拉'}, {a: 'yeah!'}]}
-        fixHeader="100" 
-    >
-        <TableColumn key="a" title="100px" />
+    <Table data={this.get('data')} fixHeader="300">
+        <TableColumn title="Name" key="name" fixed="left" />
+        <TableColumn title="IP" key="ip" />
     </Table>
 </div>
 ```
@@ -30,7 +28,29 @@ import {Table, TableColumn} from 'kpc';
 ```styl
 .wrapper
     display flex
+    align-items flex-start
 .k-table
     margin-left: 20px
     flex: 1
+```
+
+```ts
+import {range, bind} from 'kpc/components/utils';
+
+const data =  range(1, 100).map(item => {
+    return {
+        name: 'name ' + item,
+        ip: '127.0.0.' + item
+    };
+});
+
+export default class extends Component {
+    static template = template;
+
+    static defaults() {
+        return {
+            data: data
+        }
+    }
+}
 ```

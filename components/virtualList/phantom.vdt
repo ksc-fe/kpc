@@ -1,0 +1,26 @@
+import { getRestProps } from '../utils';
+import { context as VirtualRowsContext } from './useVirtualRows';
+import { cx } from '@emotion/css';
+import { createVNode } from 'intact';
+import { makePhantomStyles } from './styles';
+
+const { className, tagName } = this.get();
+const { k } = this.config;
+
+const classNameObj = {
+    [`${k}-virtual-phantom`]: true,
+    [makePhantomStyles()]: true,
+    [className]: className,
+}
+
+<VirtualRowsContext.Consumer>
+    {({ getTotalHeight }) => {
+        return createVNode(tagName || 'div', {
+            ...getRestProps(this),
+            className: cx(classNameObj),
+            style: {
+                height: getTotalHeight() + 'px', 
+            },
+        });
+    }}
+</VirtualRowsContext.Consumer>

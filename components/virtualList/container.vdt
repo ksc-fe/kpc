@@ -1,10 +1,8 @@
 import { addStyle, getRestProps } from '../utils';
 import { makeContainerStyles } from './styles';
-import { VirtualContext } from './useVirtualContext';
 import { context as VirtualRowsContext } from './useVirtualRows';
 
-const { children, className, style, height } = this.get();
-const virtualState = this.virtualState;
+const { children, className, disabled, ref } = this.get();
 const { k } = this.config;
 
 const { notifyRows, startIndex, length, getTotalHeight, translateY } = this.virtualRows;
@@ -19,13 +17,13 @@ const classNameObj = {
 <VirtualRowsContext.Provider
     value={{
         notifyRows,
+        getTotalHeight,
         startIndex: startIndex.value,
         length: length.value,
         translateY: translateY.value,
     }}
 >
-    <div {...getRestProps(this)} class={classNameObj}>
-        <div class={`${k}-virtual-phantom`} style={{ height: getTotalHeight() + 'px'}}></div>
+    <div {...getRestProps(this)} class={classNameObj} ref={ref}>
         {children}
     </div>
 </VirtualRowsContext.Provider>

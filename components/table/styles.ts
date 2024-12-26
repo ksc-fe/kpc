@@ -401,27 +401,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 bottom: 0;
             }
         }
-        &.${k}-virtual {
-            .${k}-table-wrapper {
-                position: relative;
-                height: 400px;
-            }
 
-            tbody {
-                width: 100%;
-                will-change: transform;
-            }
-
-            .${k}-table-phantom {
-                position: absolute;
-                left: 0;
-                top: 0;
-                right: 0;
-                z-index: -1;
-                pointer-events: none;
-            }
+        .${k}-table-phantom {
+            position: static;
         }
-    };
     `;
 });
 

@@ -63,7 +63,6 @@ export function useVirtualRows() {
         length.set(Math.max(Math.ceil(containerHeight / rowAvgHeight) + BUFFER_SIZE * 2, MIN_LENGTH));
 
         containerDom.addEventListener('scroll', handleScroll);
-
     });
 
     onUnmounted(() => {
@@ -76,6 +75,9 @@ export function useVirtualRows() {
 
     const translateY = useState(0);
     function handleScroll() {
+        const { disabled } = instance.get();
+        if (disabled) return;
+        
         const scrollTop = containerDom.scrollTop;
 
         let accumulatedHeight = 0;

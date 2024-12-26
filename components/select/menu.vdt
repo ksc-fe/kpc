@@ -46,7 +46,7 @@ if (card) {
         </div>
     );
 } else {
-    children = <VirtualList style={{maxHeight: '200px'}}>{children}</VirtualList>
+    children = <VirtualList style={{maxHeight: '200px'}} disabled={false}>{children}</VirtualList>
 }
 
 if (searchable) {

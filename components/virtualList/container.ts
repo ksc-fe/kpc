@@ -1,10 +1,19 @@
-import { Component } from 'intact';
+import { Component, TypeDefs } from 'intact';
 import template from './container.vdt';
 import { useConfigContext } from '../config';
 import { useVirtualRows } from './useVirtualRows';
 
-export class VirtualListContainer extends Component {
+export interface VirtualListContainerProps {
+    disabled?: boolean
+}
+
+const typeDefs: Required<TypeDefs<VirtualListContainerProps>> = {
+    disabled: Boolean,
+};
+
+export class VirtualListContainer extends Component<VirtualListContainerProps> {
     static template = template;
+    static typeDefs = typeDefs;
 
     private config = useConfigContext();
     private virtualRows = useVirtualRows();

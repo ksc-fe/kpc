@@ -2,10 +2,15 @@ import { getRestProps } from '../utils';
 import { VirtualListContainer } from './container';
 import { VirtualListWrapper } from './wrapper';
 import { VirtualListRows } from './rows';
+import { VirtualListPhantom } from './phantom';
 
-const { children } = this.get();
+const { children, disabled } = this.get();
 
+if (disabled) {
+    return children;
+}
 <VirtualListContainer {...getRestProps(this)}>
+    <VirtualListPhantom />
     <VirtualListWrapper>
         <VirtualListRows>{children}</VirtualListRows>
     </VirtualListWrapper>
