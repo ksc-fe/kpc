@@ -2,7 +2,7 @@ import { Component, TypeDefs, ComponentConstructor } from 'intact';
 import template from './wrapper.vdt';
 import { useConfigContext } from '../config';
 export interface VirtualListWrapperProps {
-    tagName: string | ComponentConstructor,
+    tagName?: string | ComponentConstructor,
 }
 
 const typeDefs: Required<TypeDefs<VirtualListWrapperProps>> = {

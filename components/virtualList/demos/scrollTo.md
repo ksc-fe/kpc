@@ -1,6 +1,6 @@
 ---
 title: 滑动到固定位置
-order: 1
+order: 2
 ---
 
 可以通过实例方法`scrollToIndex`滚动到具体位置

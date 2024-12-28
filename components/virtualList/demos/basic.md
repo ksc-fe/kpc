@@ -8,14 +8,14 @@ import { VirtualList } from 'kpc';
 
 <div>
     <h3>1. 定高元素</h3>
-    <VirtualList height="250">
+    <VirtualList style="height: 450px">
         <div v-for={this.get('data')} class="fixed-height-item">
             {$value.label}
         </div>
     </VirtualList>
 
     <h3>2. 不定高元素</h3>
-    <VirtualList style="width: 200px;" height="250">
+    <VirtualList style="width: 200px; height: 450px;">
         <div v-for={this.get('variableHeightData')} class="variable-height-item">
             {$value.label}
         </div>
@@ -35,12 +35,9 @@ import { VirtualList } from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc/components/utils';
 interface Props {
-    day?: string | null
     data: any[]
     variableHeightData: any[]
-    expanded: any
 }
 
 export default class extends Component {
@@ -48,10 +45,8 @@ export default class extends Component {
 
     static defaults() {
         return {
-            day: null,
             data: [],
             variableHeightData: [],
-            expanded: {}
         } as Props;
     }
 

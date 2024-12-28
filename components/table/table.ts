@@ -23,7 +23,6 @@ import type {Events} from '../types';
 import type {PaginationProps, PaginationChangeData} from '../pagination';
 import { usePagination } from './usePagination';
 import { useConfigContext } from '../config';
-import { useTableVirtual } from './useTableVirtual';
 
 export interface TableProps<
     T = any,
