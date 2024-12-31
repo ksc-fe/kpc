@@ -13,6 +13,7 @@ sidebar: doc
 | bottom | 指定元素固定距离底部的位置 | `number` | `undefined` |
 | shouldFix | 自定义元素固定规则 | `Function` | `undefined` |
 | exclude | 排除某些固定的情况 | `Function` | `undefined` |
+| disabled | 是否禁用 | `Boolean` | `false` |
 
 # 事件
 

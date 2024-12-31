@@ -3,19 +3,21 @@ title: 虚拟表格
 order: 36
 ---
 
-添加`virtual`属性，即可开启虚拟滚动模式，树形表格开启虚拟滚动需指定`rowKey`
+添加`virtual`属性，并且指定滚动元素的高度（通过`fixHeader`指定）即可开启虚拟滚动模式
+
+> 虚拟列表内部需要根据rowKey做缓存，不指定rowKey可能存在奇怪问题（默认rowKey为索引值）
 
 ```vdt
 import {Table, TableColumn} from 'kpc';
 
 <div>
     <h4>表格</h4>
-    <Table data={this.get('data')} virtual style="height: 400px;">
+    <Table data={this.get('data')} virtual fixHeader="400">
         <TableColumn key="a" title="Title 1" minWidth={200}/>
         <TableColumn key="b" title="Title 2" minWidth={300} />
     </Table>
     <h4>树形表格</h4>
-    <Table ref="table" data={this.get('variableHeightData')} virtual rowKey={data => data.name}>
+    <Table ref="table" data={this.get('variableHeightData')} virtual rowKey={data => data.name} fixHeader="400">
         <TableColumn key="name" title="Title 1" minWidth={200}/>
         <TableColumn key="size" title="Title 2" minWidth={300} />
     </Table>

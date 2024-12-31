@@ -12,44 +12,47 @@ export function useStyle(elementRef: RefObject<HTMLElement>) {
     let ro: ResizeObserver | null = null;
 
     function genStyle() {
-        let {top: offsetTop, bottom: offsetBottom, exclude, shouldFix} = instance.get();
-        const {top, bottom, width, height} = elementRef.value!.getBoundingClientRect(); 
-        
-        const setStyle = (styles: Record<string, string>) => {
-            if (!exclude || exclude && !exclude({
-                offsetTop, offsetBottom, top, bottom, width, height
-            })) {
-                style.set({
-                    position: 'fixed',
-                    width: `${width}px`,
-                    ...styles,
-                });
-                containerStyle.set({
-                    height: `${height}px`,
-                });
+        let {top: offsetTop, bottom: offsetBottom, exclude, shouldFix, disabled} = instance.get();
+
+        if (!disabled) {
+            const {top, bottom, width, height} = elementRef.value!.getBoundingClientRect(); 
+            
+            const setStyle = (styles: Record<string, string>) => {
+                if (!exclude || exclude && !exclude({
+                    offsetTop, offsetBottom, top, bottom, width, height
+                })) {
+                    style.set({
+                        position: 'fixed',
+                        width: `${width}px`,
+                        ...styles,
+                    });
+                    containerStyle.set({
+                        height: `${height}px`,
+                    });
+                } else {
+                    resetStyle();
+                }
+            };
+
+            if (isNullOrUndefined(offsetTop) && isNullOrUndefined(offsetBottom)) {
+                offsetTop = 0;
+            }
+
+            if (!isNullOrUndefined(offsetTop)) {
+                if (
+                    shouldFix && shouldFix({offsetTop, offsetBottom}) ||
+                    !shouldFix && top < offsetTop
+                ) {
+                    return setStyle({top: `${offsetTop}px`});
+                }
             } else {
-                resetStyle();
-            }
-        };
-
-        if (isNullOrUndefined(offsetTop) && isNullOrUndefined(offsetBottom)) {
-            offsetTop = 0;
-        }
-
-        if (!isNullOrUndefined(offsetTop)) {
-            if (
-                shouldFix && shouldFix({offsetTop, offsetBottom}) ||
-                !shouldFix && top < offsetTop
-            ) {
-                return setStyle({top: `${offsetTop}px`});
-            }
-        } else {
-            const viewportHeight = document.documentElement.clientHeight;
-            if (
-                shouldFix && shouldFix({offsetTop, offsetBottom, viewportHeight}) || 
-                !shouldFix && !isNullOrUndefined(offsetBottom) && viewportHeight - bottom <= offsetBottom
-            ) {
-                return setStyle({bottom: `${offsetBottom}px`});
+                const viewportHeight = document.documentElement.clientHeight;
+                if (
+                    shouldFix && shouldFix({offsetTop, offsetBottom, viewportHeight}) || 
+                    !shouldFix && !isNullOrUndefined(offsetBottom) && viewportHeight - bottom <= offsetBottom
+                ) {
+                    return setStyle({bottom: `${offsetBottom}px`});
+                }
             }
         }
 

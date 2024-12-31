@@ -242,10 +242,12 @@ const {
 
 <div class={classNameObj} ref={elementRef}>
     <VirtualListContainer class={`${k}-table-wrapper`} style={style} ref={scrollRef}>
-        <Affix v-if={!isNull(stickHeader.value)}
+        <VirtualListPhantom />
+        <Affix v-if={!isNull(stickHeader.value) || fixHeader}
             top={stickHeader.value}
             exclude={excludeStickHeader}
             class={`${k}-table-affix-header`}
+            disabled={!!fixHeader}
         >
             <table ref={headRef} style={{width: tableWidthPx}}>
                 <template>{colgroup}</template>
@@ -254,10 +256,9 @@ const {
         </Affix>
         <table ref={tableRef} style={{width: tableWidthPx}}>
             <template>{colgroup}</template>
-            <template v-if={isNull(stickHeader.value)}>{thead}</template>
+            <template v-if={isNull(stickHeader.value) && !fixHeader}>{thead}</template>
             <template>{tbody}</template>
             <template v-if={$blocks.footer}>{tfooter}</template>
-            <VirtualListPhantom tagName="tr" class={`${k}-table-phantom`} />
         </table>
     </VirtualListContainer>
     <Pagination v-if={pagination}

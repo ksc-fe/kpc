@@ -8,6 +8,7 @@ export interface AffixProps {
     bottom?: number
     exclude?: (data: ExcludeParam) => boolean
     shouldFix?: (data: ShouldFixParam) => boolean
+    disabled?: boolean
 }
 
 export interface AffixEvents {
@@ -34,6 +35,7 @@ const typeDefs: Required<TypeDefs<AffixProps>> = {
     bottom: Number,
     exclude: Function,
     shouldFix: Function,
+    disabled: Boolean,
 };
 
 export class Affix extends Component<AffixProps, AffixEvents> {
