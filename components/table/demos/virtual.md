@@ -53,7 +53,7 @@ export default class extends Component {
     }
     init() {
         const arr = [];
-        for (let index = 0; index < 100; index++) {
+        for (let index = 0; index < 10000; index++) {
             arr.push({
                 a: `Cell ${index}-1`,
                 b: `Cell ${index}-2`
@@ -93,7 +93,7 @@ export default class extends Component {
             return result;
         };
 
-        const data = generateTreeData(100);
+        const data = generateTreeData(10000);
         this.set({ variableHeightData: data });
     }
 
