@@ -1,4 +1,4 @@
-import { Component, TypeDefs } from 'intact';
+import { Component, TypeDefs, findDomFromVNode } from 'intact';
 import template from './container.vdt';
 import { useConfigContext } from '../config';
 import { useVirtualRows } from './useVirtualRows';
@@ -18,14 +18,19 @@ export class VirtualListContainer extends Component<VirtualListContainerProps> {
     private config = useConfigContext();
     private virtualRows = useVirtualRows();
 
+    // TODO
     // public scrollToIndex(index: number, behavior: ScrollBehavior = 'auto') {
-        // const { containerRef, getItemTop } = this.virtualState;
-        // if (containerRef?.value) {
-            // const top = getItemTop(index);
-            // containerRef.value.scrollTo({
-                // top,
-                // behavior,
-            // });
-        // }
+    //     const { disabled } = this.get();
+    //     if (disabled) return;
+
+    //     let height = 0;
+    //     for (let i = 0; i < index; i++) {
+    //         height += this.virtualRows.getRowHeightByIndex(i);
+    //     }
+    //     const containerDom = findDomFromVNode(this.$lastInput!, true) as HTMLElement;
+    //     containerDom.scrollTo({
+    //         top: height,
+    //         behavior,
+    //     });
     // }
 }

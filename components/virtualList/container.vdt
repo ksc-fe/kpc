@@ -8,14 +8,15 @@ const { k } = this.config;
 const { notifyRows, startIndex, length, getTotalHeight, translateY } = this.virtualRows;
 
 const classNameObj = {
-    [`${k}-virtual`]: true,
-    [`${k}-virtual-container`]: true,
-    [makeContainerStyles(k)]: true,
+    [`${k}-virtual`]: !disabled,
+    [`${k}-virtual-container`]: !disabled,
+    [makeContainerStyles(k)]: !disabled,
     [className]: className,
 }
 
 <VirtualRowsContext.Provider
     value={{
+        disabled,
         notifyRows,
         getTotalHeight,
         startIndex: startIndex.value,

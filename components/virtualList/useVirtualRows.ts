@@ -20,9 +20,43 @@ export function useVirtualRows() {
     const startIndex = useState(0);
     const length = useState(MIN_LENGTH);
 
-    let rows  = useState<VNode[]>([]);
-    function notifyRows(_rows: State<VNode[]>) { 
-         rows = _rows;
+    let rows: VNode[] = [];
+    function notifyRows(_rows: VNode[]) { 
+        const oldRows = rows;
+        const oldLength = rows.length;
+        rows = _rows;
+        // diff oldRows, newRows
+        const newKeys = new Set(_rows.map(row => row.key));
+
+        // clear delete key
+        oldRows
+            .map(row => row.key!)
+            .filter(key => !newKeys.has(key))
+            .forEach(key => {
+                const height = rowsHeightMap.get(key);
+                if (height !== undefined) {
+                    calculatedHeight -= height;
+                    rowsHeightMap.delete(key);
+                }
+            });
+
+        // update rowAvgHeight
+        if (rowsHeightMap.size === 0) {
+            rowAvgHeight = calculatedHeight = 0;
+        } else {
+            rowAvgHeight = calculatedHeight / rowsHeightMap.size;
+        }
+
+        if (_rows.length < oldLength) {
+            const maxStartIndex = Math.max(0, _rows.length - length.value);
+            if (startIndex.value > maxStartIndex) {
+                startIndex.set(maxStartIndex);
+                // 重新计算位置
+                nextTick(() => {
+                    handleScroll();
+                });
+            }
+        }
     }
 
     let calculatedHeight = 0;
@@ -30,10 +64,10 @@ export function useVirtualRows() {
     function calculateRowsHeight() {
         for (
             let i = startIndex.value;
-            i < startIndex.value + length.value && i < rows.value.length;
+            i < startIndex.value + length.value && i < rows.length;
             i++
         ) {
-            const row = rows.value[i];
+            const row = rows[i];
             const key = row.key!;
             if (!rowsHeightMap.has(key)) {
                 const rowDom = findDomFromVNode(row, true) as HTMLElement;
@@ -70,7 +104,7 @@ export function useVirtualRows() {
     });
 
     function getTotalHeight() {
-        return calculatedHeight + rowAvgHeight * (rows.value.length - rowsHeightMap.size);
+        return calculatedHeight + rowAvgHeight * (rows.length - rowsHeightMap.size);
     }
 
     const translateY = useState(0);
@@ -83,7 +117,7 @@ export function useVirtualRows() {
         let accumulatedHeight = 0;
         let start = 0;
 
-        while (start < rows.value.length) {
+        while (start < rows.length) {
             accumulatedHeight += getRowHeightByIndex(start);
             if (accumulatedHeight > scrollTop) {
                 break;
@@ -103,7 +137,7 @@ export function useVirtualRows() {
     }
 
     function getRowHeightByIndex(index: number) {
-        const key = rows.value[index].key!;
+        const key = rows[index].key!;
         return rowsHeightMap.get(key) || rowAvgHeight;
     }
 

@@ -6,17 +6,23 @@ import { cx } from '@emotion/css';
 const { children, className, tagName, style } = this.get();
 const { k } = this.config;
 
-const classNameObj = {
-    [`${k}-virtual-wrapper`]: true,
-    [className]: className,
-}
-
 <VirtualRowsContext.Consumer>
-    {({ translateY }) => {
+    {({ translateY, disabled }) => {
+        const classNameObj = {
+            [`${k}-virtual-wrapper`]: !disabled,
+            [className]: className,
+        }
+
+        let _style = {};
+        if (!disabled) {
+            _style = {
+                transform: `translateY(${translateY}px)`
+            };
+        }
         return createVNode(tagName || 'div', {
             ...getRestProps(this),
             className: cx(classNameObj),
-            style: addStyle(style, {transform: `translateY(${translateY}px)`})
+            style: addStyle(style, _style)
         }, children);
     }}
 </VirtualRowsContext.Consumer>

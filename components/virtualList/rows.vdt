@@ -2,14 +2,15 @@ import { createFragment, createVNode } from 'intact';
 import { isNullOrUndefined } from 'intact-shared';
 import { context as VirtualRowsContext } from './useVirtualRows';
 
-const { tagName } = this.get();
+let { tagName, children } = this.get();
 const rows = this.rows;
 
 <VirtualRowsContext.Consumer>
-    {({ notifyRows, startIndex, length }) => {
-        const children = rows.value.slice(startIndex, startIndex + length); 
-
-        notifyRows(rows);
+    {({ notifyRows, startIndex, length, disabled }) => {
+        if (!disabled) {
+            children = rows.value.slice(startIndex, startIndex + length); 
+            notifyRows(rows.value);
+        }
 
         if (isNullOrUndefined(tagName)) {
             return createFragment(children, 8 /* ChildrenTypes.HasKeyedChildren */);

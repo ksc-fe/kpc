@@ -205,9 +205,9 @@ const tbody = (
                      return hidden || !spreaded;
                 });
 
-                /* return animation[0] ? */
-                    /* <VirtualListRows tagName={TransitionGroup} name="k-fade-in-left" move={!draggingKey.value}>{rows}</VirtualListRows> : */
-                return <VirtualListRows>{rows}</VirtualListRows>;
+                return animation[0] && !virtual?
+                    <TransitionGroup name="k-fade-in-left" move={!draggingKey.value}>{rows}</TransitionGroup> : 
+                    <VirtualListRows>{rows}</VirtualListRows>;
             })()
         }
     </VirtualListWrapper>
@@ -241,7 +241,7 @@ const {
 } = this.pagination;
 
 <div class={classNameObj} ref={elementRef}>
-    <VirtualListContainer class={`${k}-table-wrapper`} style={style} ref={scrollRef}>
+    <VirtualListContainer class={`${k}-table-wrapper`} disabled={!virtual} style={style} ref={scrollRef}>
         <VirtualListPhantom />
         <Affix v-if={!isNull(stickHeader.value) || fixHeader}
             top={stickHeader.value}

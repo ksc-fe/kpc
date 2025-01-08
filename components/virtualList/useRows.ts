@@ -1,8 +1,5 @@
-import { useInstance, VNode, createRef, normalizeChildren, createFragment, createVNode, ChildrenTypes, createVoidVNode } from 'intact';
+import { useInstance, VNode, createRef, createFragment } from 'intact';
 import { VirtualListRows } from './rows';
-import { useState, State } from '../../hooks/useState';
-import { useReceive } from '../../hooks/useReceive';
-import { isNullOrUndefined } from 'intact-shared';
 
 export function useRows() {
     const instance = useInstance() as VirtualListRows;

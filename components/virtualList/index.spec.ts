@@ -6,7 +6,7 @@ import CombinedDemo from '~/components/virtualList/demos/combined';
 
 
 describe('VirtualList', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should render virtual list correctly', async () => {
         const [instance, element] = mount(BasicDemo);
@@ -154,6 +154,99 @@ describe('VirtualList', () => {
         // check deleted render and position
         expect(wrapper.firstElementChild!.textContent).to.not.equal(visibleFirstItem);
         expect(wrapper.children.length).to.be.greaterThan(0);
+    });
+
+    it('should clean up height cache when items are deleted', async () => {
+        class Demo extends Component<{list: number[]}> {
+            static template = `
+                const VirtualList = this.VirtualList;
+                <VirtualList style="height: 300px">
+                    <div v-for={this.get('list')} key={$value} style="height: 30px">Item {$value}</div>
+                </VirtualList>
+            `;
+            static defaults() {
+                return {
+                    list: Array.from({length: 100}, (_, i) => i)
+                }
+            }
+            private VirtualList = VirtualList;
+        }
+    
+        const [instance, element] = mount(Demo);
+        await wait();
+    
+        const container = getElement('.k-virtual-container')!;
+        
+        // first cache some height
+        container.scrollTop = 300;
+        await wait(50);
+    
+        // get first visible item
+        const wrapper = getElement('.k-virtual-wrapper')!;
+        const firstVisibleItem = wrapper.firstElementChild!;
+        const firstVisibleIndex = parseInt(firstVisibleItem.textContent!.replace('Item ', ''));
+    
+        // delete visible items
+        const currentList = instance.get('list');
+        const newList = currentList.filter(i => i > firstVisibleIndex + 5);
+        instance.set('list', newList);
+        await wait(50);
+    
+        // check scroll position is adjusted
+        const newFirstItem = wrapper.firstElementChild!;
+        expect(parseInt(newFirstItem.textContent!.replace('Item ', ''))).to.be.greaterThan(firstVisibleIndex);
+    
+        // scroll again to check render is normal
+        container.scrollTop += 100;
+        await wait(50);
+        
+        // check new render position is correct
+        const afterScrollItem = wrapper.firstElementChild!;
+        expect(afterScrollItem.textContent).to.not.equal(newFirstItem.textContent);
+    });
+
+    it('should update total height when deleting last items', async () => {
+        class Demo extends Component<{list: number[]}> {
+            static template = `
+                const VirtualList = this.VirtualList;
+                <VirtualList style="height: 300px">
+                    <div v-for={this.get('list')} key={$value} style="height: 30px">Item {$value}</div>
+                </VirtualList>
+            `;
+            static defaults() {
+                return {
+                    list: Array.from({length: 100}, (_, i) => i)
+                }
+            }
+            private VirtualList = VirtualList;
+        }
+    
+        const [instance, element] = mount(Demo);
+        await wait();
+    
+        const container = getElement('.k-virtual-container')!;
+        const phantom = getElement('.k-virtual-phantom')!;
+        
+        // record initial total height
+        const initialHeight = parseInt(phantom.style.height);
+        
+        // scroll to cache height
+        container.scrollTop = 300;
+        await wait(50);
+        
+        // delete last 5 items
+        const currentList = instance.get('list');
+        const newList = currentList.slice(0, -5);
+        instance.set('list', newList);
+        await wait(50);
+    
+        // scroll to trigger update
+        container.scrollTop = 0;
+        await wait(50);
+        
+        // check total height is updated
+        const finalHeight = parseInt(phantom.style.height);
+        expect(finalHeight).to.equal(initialHeight - 5 * 30); // 每项高度30px
     });
 });
 
