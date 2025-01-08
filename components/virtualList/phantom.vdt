@@ -15,9 +15,8 @@ const classNameObj = {
 
 <VirtualRowsContext.Consumer>
     {({ getTotalHeight, disabled }) => {
-        if (disabled) {
-            return
-        }
+        if (disabled) return;
+        
         return createVNode(tagName || 'div', {
             ...getRestProps(this),
             className: cx(classNameObj),

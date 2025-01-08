@@ -8,6 +8,7 @@ import { VirtualList, Button } from 'kpc';
 
 <div>
     <Button ev-click={this.removeItems}>删除前5项</Button>
+    <Button ev-click={this.removeLastItems}>删除后5项</Button>
     <VirtualList style="height: 450px">
         <div v-for={this.get('data')} class="fixed-height-item">
             {$value.label}
@@ -56,6 +57,13 @@ export default class extends Component<Props> {
     removeItems() {
         const data = this.get('data').slice();
         data.splice(0, 5);
+        this.set('data', data);
+    }
+
+    @bind
+    removeLastItems() {
+        const data = this.get('data').slice();
+        data.splice(data.length - 5);
         this.set('data', data);
     }
 }

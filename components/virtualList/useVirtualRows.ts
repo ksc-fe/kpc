@@ -2,6 +2,7 @@ import { createContext } from '../context';
 import { useState, watchState, State } from '../../hooks/useState';
 import { useInstance, nextTick, VNode, onMounted, onUnmounted, Key, findDomFromVNode } from 'intact';
 import { VirtualListContainer } from './container';
+import { isNullOrUndefined } from 'intact-shared';
 
 type ContextValue = {
     notifyRows: (rows: State<VNode[]>) => void;
@@ -15,11 +16,13 @@ const MIN_LENGTH = 10;
 const BUFFER_SIZE = 3;
 
 export function useVirtualRows() {
-    const instance = useInstance() as VirtualListContainer;
+    const instance = useInstance() as unknown as VirtualListContainer;
     const rowsHeightMap = new Map<Key, number>();
     const startIndex = useState(0);
     const length = useState(MIN_LENGTH);
 
+    let calculatedHeight = 0;
+    let rowAvgHeight = 0;
     let rows: VNode[] = [];
     function notifyRows(_rows: VNode[]) { 
         const oldRows = rows;
@@ -28,17 +31,16 @@ export function useVirtualRows() {
         // diff oldRows, newRows
         const newKeys = new Set(_rows.map(row => row.key));
 
-        // clear delete key
-        oldRows
-            .map(row => row.key!)
-            .filter(key => !newKeys.has(key))
-            .forEach(key => {
-                const height = rowsHeightMap.get(key);
-                if (height !== undefined) {
+        for (let i = 0; i < oldLength; i++) {
+            const oldKey = oldRows[i].key!;
+            if (!newKeys.has(oldKey)) {
+                const height = rowsHeightMap.get(oldKey);
+                if (!isNullOrUndefined(height)) {
                     calculatedHeight -= height;
-                    rowsHeightMap.delete(key);
+                    rowsHeightMap.delete(oldKey);
                 }
-            });
+            }
+        }
 
         // update rowAvgHeight
         if (rowsHeightMap.size === 0) {
@@ -59,8 +61,6 @@ export function useVirtualRows() {
         }
     }
 
-    let calculatedHeight = 0;
-    let rowAvgHeight = 0;
     function calculateRowsHeight() {
         for (
             let i = startIndex.value;
