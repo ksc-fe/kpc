@@ -231,22 +231,37 @@ describe('VirtualList', () => {
         const initialHeight = parseInt(phantom.style.height);
         
         // scroll to cache height
-        container.scrollTop = 300;
+        container.scrollTop = initialHeight;
         await wait(50);
         
+        const wrapper = getElement('.k-virtual-wrapper')!;
+        const lastVisibleItem = wrapper.lastElementChild!;
+        const lastVisibleIndex = parseInt(lastVisibleItem.textContent!.replace('Item ', ''));
+    
         // delete last 5 items
         const currentList = instance.get('list');
         const newList = currentList.slice(0, -5);
         instance.set('list', newList);
         await wait(50);
-    
-        // scroll to trigger update
-        container.scrollTop = 0;
+        container.scrollTop = container.scrollTop;
+        console.log('container.scrollTop', container.scrollTop);
         await wait(50);
-        
-        // check total height is updated
+        // 验证总高度已更新
         const finalHeight = parseInt(phantom.style.height);
         expect(finalHeight).to.equal(initialHeight - 5 * 30); // 每项高度30px
+
+        // 验证新的最后一个元素（原来的倒数第6个）在可视区域底部
+        const newLastItem = wrapper.lastElementChild!;
+        const newLastIndex = parseInt(newLastItem.textContent!.replace('Item ', ''));
+        expect(newLastIndex).to.equal(94); // 新的最后一项应该是94（原来的倒数第6个）
+        
+        // 验证这个元素确实在可视区域底部
+        const containerRect = container.getBoundingClientRect();
+        const lastItemRect = newLastItem.getBoundingClientRect();
+        console.log('containerRect', containerRect.bottom);
+        console.log('lastItemRect', lastItemRect.bottom);
+        const isAtBottom = containerRect.bottom - lastItemRect.bottom === 0; // 容器跟最后一个元素相对于视口的垂直位置，相等即为在底部
+        expect(isAtBottom).to.be.true;
     });
 });
 
