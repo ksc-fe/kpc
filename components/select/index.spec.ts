@@ -159,6 +159,15 @@ describe('Select', () => {
         dispatchEvent(document, 'keydown', {keyCode: 13});
         await wait();
         expect(instance.get('day1')).to.eql('Wednesday');
+
+        // should input spaces
+        input1.click();
+        await wait();
+        dispatchEvent(input1, 'focus');
+        input1.value = 'm ';
+        dispatchEvent(input1, 'input');
+        await wait();
+        expect(input1.value).to.eql('m ');
     });
 
     it('group', async () => {

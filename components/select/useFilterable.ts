@@ -22,7 +22,7 @@ export function useFilterable(keywords: State<string>) {
 
     function getCreatedVNode(children: (VNode | string | number)[]) {
         const {creatable, filterable} = component.get();
-        const _keywords = keywords.value;
+        const _keywords = keywords.value.trim();
         if (creatable && filterable && _keywords) {
             if (!children.find(vNode => {
                 // TODO: create Option for OptionGroup
@@ -66,7 +66,7 @@ export function useFilterable(keywords: State<string>) {
                         vNode.key = value;
                     }
 
-                    if (filter!(keywords.value, vNode.props)) {
+                    if (filter!(keywords.value.trim(), vNode.props)) {
                         _children.push(vNode);
                     }
                 } else if (isComponentVNode(vNode, OptionGroup)) {

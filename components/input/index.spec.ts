@@ -4,6 +4,7 @@ import SearchDemo from '~/components/input/demos/search';
 import FrozenDemo from '~/components/input/demos/frozen';
 import AutoRowsDemo from '~/components/input/demos/autoRows';
 import PasswordDemo from '~/components/input/demos/password';
+import AutoWidthDemo from '~/components/input/demos/autowidth';
 import {Input} from './';
 import {Dialog} from '../dialog';
 import { Component } from 'intact';
@@ -165,5 +166,15 @@ describe('Input', () => {
         const dialog = getElement('.k-dialog')!;
         const width = parseInt(dialog.querySelector<HTMLInputElement>('.k-input-inner')!.style.width);
         expect(width).to.gt(1);
+    });
+
+    it('autoWidth', async() => {
+        // should expand when input spaces
+        const [instance, element] = mount(AutoWidthDemo);
+        const input = element.querySelector('input') as HTMLInputElement;
+        input.value = 'ab  ';
+        dispatchEvent(input, 'input');
+        await wait(50);
+        expect(input.offsetWidth).to.gt(16);
     });
 });

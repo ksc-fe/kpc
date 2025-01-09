@@ -23,7 +23,12 @@ export function useInput(resetKeywords: (keywords: State<string>) => void) {
     const inputRef = createRef<Input>();
 
     function onInput(value: string) {
-        keywords.set(value.trim());
+        /**
+         * can not trim the keywords, otherwise we can not input spaces
+         * https://github.com/ksc-fe/kpc/issues/1047
+         */
+        // keywords.set(value.trim());
+        keywords.set(value);
 
         const dropdown = component.dropdownRef.value!;
         // the position may be flip, and the select input height may change height too,

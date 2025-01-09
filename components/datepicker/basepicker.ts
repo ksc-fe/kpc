@@ -56,13 +56,13 @@ export type Value = string | Date | number | Dayjs;
 
 const typeDefs: Required<TypeDefs<BasePickerProps<Value>>> = {
     ...BaseSelect.typeDefs,
-    value: [String, Array, Date, Number, dayjs.Dayjs],
+    value: [String, Array, Date, Number, dayjs],
     range: Boolean,
     format: String,
     valueFormat: String,
     showFormat: String,
-    min: [String, Date, Number, dayjs.Dayjs],
-    max: [String, Date, Number, dayjs.Dayjs],
+    min: [String, Date, Number, dayjs],
+    max: [String, Date, Number, dayjs],
     disabledDate: Function,
 };
 
