@@ -65,8 +65,9 @@ export interface TableProps<
     animation?: boolean | [boolean, boolean]
     hideHeader?: boolean
     pagination?: boolean | PaginationProps
-    fixFooter?: boolean
-    spreadArrowIndex?: number
+    fixFooter?: boolean 
+    virtual?: boolean
+    spreadArrowIndex?: number;
     load?: (value: T) => Promise<void> | void
 }
 
@@ -135,6 +136,7 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     hideHeader: Boolean,
     pagination: [Boolean, Object],
     fixFooter: Boolean,
+    virtual: Boolean,
     spreadArrowIndex: Number,
     load: Function,
 };
@@ -254,9 +256,9 @@ export class Table<
             // we can not use scrollIntoView with smooth, because it can only operate one element
             // at the same time
             // elem.scrollIntoView({behavior: 'smooth'});
-            const headerHeight = (scrollElement.querySelector('thead') as HTMLElement).offsetHeight;
+            // const headerHeight = (scrollElement.querySelector('thead') as HTMLElement).offsetHeight;
             let scrollTop = scrollElement.scrollTop;
-            const offsetTop = tr.offsetTop - headerHeight;
+            const offsetTop = tr.offsetTop;
             const top = offsetTop - scrollTop;
             const topOneFrame = top / 60 / (100 / 1000);
             const step = () => {

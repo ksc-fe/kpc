@@ -1,7 +1,7 @@
 import {SelectMenu} from './menu';
 import {isEmptyChildren} from '../utils';
 
-const {className, children, autoDisableArrow, disabled, multiple, value} = this.get();
+const {className, children, autoDisableArrow, disabled, multiple, value, virtual} = this.get();
 const {getCreatedVNode, filter} = this.filterable;
 const options = filter(children);
 const allShowedValues = this.getAllShowedValues(options);

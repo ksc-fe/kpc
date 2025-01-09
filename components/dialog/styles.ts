@@ -52,8 +52,8 @@ const defaults = {
         padding: `0 24px`,
         bodyMarginTop: `-25px`,
         tipIconMarginBottom: '10px',
-        tipIconFontSize: '24px',
-        tipIconLineHeight: '24px',
+        tipIconFontSize: '40px',
+        tipIconLineHeight: '40px',
 
         // with title
         titleFontWeight: '500',

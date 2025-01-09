@@ -48,6 +48,7 @@ sidebar: doc
 | fixFooter | `table`给定需要固定高度时，自定义footer固定 | `boolean` | `false` |
 | load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: any) => Promise<void> &#124; void</code> | `undefined` |
 | spreadArrowIndex | 指定树形表格展开Icon的所在列，默认在第一列 | `number` | `0` |
+| virtual | 是否开启虚拟列表 | `boolean` | `false` |
 
 ```ts
 import {Props} from 'intact';

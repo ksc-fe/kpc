@@ -1,0 +1,30 @@
+import { addStyle, getRestProps } from '../utils';
+import { makeContainerStyles } from './styles';
+import { context as VirtualRowsContext } from './useVirtualRows';
+
+const { children, className, disabled, ref } = this.get();
+const { k } = this.config;
+
+const { notifyRows, startIndex, length, getTotalHeight, translateY } = this.virtualRows;
+
+const classNameObj = {
+    [`${k}-virtual`]: !disabled,
+    [`${k}-virtual-container`]: !disabled,
+    [makeContainerStyles(k)]: !disabled,
+    [className]: className,
+}
+
+<VirtualRowsContext.Provider
+    value={{
+        disabled,
+        notifyRows,
+        getTotalHeight,
+        startIndex: startIndex.value,
+        length: length.value,
+        translateY: translateY.value,
+    }}
+>
+    <div {...getRestProps(this)} class={classNameObj} ref={ref}>
+        {children}
+    </div>
+</VirtualRowsContext.Provider>

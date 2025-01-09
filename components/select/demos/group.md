@@ -29,7 +29,7 @@ import {Select, Option, OptionGroup} from 'kpc';
             <Option value="Tuesday">星期二</Option>
             <Option value="Wednesday">星期三</Option>
             <Option value="Thursday">星期四</Option>
-            <Option value="Friday">星期五</Option>
+            <Option value="Friday">星期五</Option> 
         </OptionGroup>
         <OptionGroup>
             <b:label><i class="ion-wineglass"></i>休息日</b:label>

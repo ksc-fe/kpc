@@ -401,6 +401,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 bottom: 0;
             }
         }
+
+        .${k}-table-phantom {
+            position: static;
+        }
     `;
 });
 

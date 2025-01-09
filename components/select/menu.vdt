@@ -9,9 +9,10 @@ import {Button} from '../button';
 import {Icon} from '../icon';
 import {context} from './useSearchable';
 import {Tabs, Tab} from '../tabs';
+import { VirtualList } from '../virtualList';
 
 let {children, className} = this.get();
-const {card, searchable, multiple} = this.select.get();
+const {card, searchable, multiple, virtual} = this.select.get();
 const { k } = this.config;
 
 const classNameObj = {
@@ -38,14 +39,14 @@ if (card) {
             {group}
         </template>
     );
-}
-
-if (isEmptyChildren(children)) {
+} else if (isEmptyChildren(children)) {
     children = (
         <div v-else class={`${k}-select-empty`}>
             {_$('无数据')}
         </div>
     );
+} else {
+    children = <VirtualList style={{maxHeight: '200px'}} disabled={!virtual}>{children}</VirtualList>
 }
 
 if (searchable) {

@@ -5,7 +5,8 @@ import {
     VNodeComponentClass,
     Props,
     Key,
-    IntactDom
+    IntactDom,
+    RefObject
 } from 'intact';
 import template from './row.vdt';
 import type {TableColumnProps} from './column';

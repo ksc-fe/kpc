@@ -1,0 +1,20 @@
+import { createFragment, createVNode } from 'intact';
+import { isNullOrUndefined } from 'intact-shared';
+import { context as VirtualRowsContext } from './useVirtualRows';
+
+let { tagName, children } = this.get();
+const rows = this.rows;
+
+<VirtualRowsContext.Consumer>
+    {({ notifyRows, startIndex, length, disabled }) => {
+        if (!disabled) {
+            children = rows.value.slice(startIndex, startIndex + length); 
+            notifyRows(rows.value);
+        }
+
+        if (isNullOrUndefined(tagName)) {
+            return createFragment(children, 8 /* ChildrenTypes.HasKeyedChildren */);
+        }
+        return createVNode(tagName, null, children);
+    }}
+</VirtualRowsContext.Consumer>
