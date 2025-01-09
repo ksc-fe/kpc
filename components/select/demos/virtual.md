@@ -3,13 +3,13 @@ title: 虚拟列表
 order: 14
 ---
 
-`virtualMode`属性开启虚拟列表
+`virtual`属性开启虚拟列表
 
 ```vdt
 import {Select, Option} from 'kpc';
 
 <div>
-    <Select v-model="day" virtual filterable>
+    <Select v-model="day" virtual>
         <Option v-for={this.get('data')} value={$value.value}>
             {$value.label}
         </Option>
@@ -35,7 +35,7 @@ export default class extends Component {
 
     init() {
         const arr = [];
-        for (let index = 0; index < 50; index++) {
+        for (let index = 0; index < 10000; index++) {
             arr.push({
                 value: index,
                 label: `测试${index}`

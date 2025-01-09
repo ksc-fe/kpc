@@ -489,13 +489,14 @@ describe('Table', () => {
 
     it('tree', async () => {
         const [instance, element] = mount(TreeDemo);
-        const table = instance.$lastInput!.children as Table;
+        const table = (instance.$lastInput!.children as any)[0].children as Table;
 
         // check all
         const checkbox = element.querySelector('.k-checkbox') as HTMLElement;
         checkbox.click();
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
+        debugger;
         expect(table.getCheckedData()).to.have.lengthOf(8);
 
         const arrow = element.querySelector('.k-table-arrow') as HTMLElement;

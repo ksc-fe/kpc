@@ -3,7 +3,7 @@ import {getRestProps} from '../utils';
 import { VirtualList } from '../virtualList';
 
 const {children, label, className} = this.get();
-const {card} = this.select.get();
+const {card, virtual} = this.select.get();
 const { k } = this.config;
 
 const classNameObj = {
@@ -16,5 +16,5 @@ const classNameObj = {
     <div class={`${k}-select-group-label`} v-if={!card}>
         <b:label>{label}</b:label>
     </div>
-    <VirtualList>{children}</VirtualList>
+    <VirtualList disabled={!virtual}>{children}</VirtualList>
 </div>

@@ -42,7 +42,6 @@ export interface TableRowProps {
     animation: boolean
     spreadArrowIndex: number
     loaded: boolean
-    rowRef: RefObject<HTMLElement | null>
 
     draggable: boolean
     draggingKey: TableRowKey | null

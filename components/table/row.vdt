@@ -12,7 +12,7 @@ const {
     allDisabled, selected, /* hidden,  */spreaded,
     hasChildren, indent, key, offsetMap,
     draggable, draggingKey, animation, loaded,
-    rowRef, spreadArrowIndex
+    spreadArrowIndex
 } = this.get();
 const { k } = this.config;
 
@@ -109,5 +109,5 @@ const rows = animation ?
         'ev-dragover': draggable ? this.onRowDragOver : null,
         'ev-dragend': draggable ? this.onRowDragEnd : null,
         'draggable': draggable ? true : null,
-    }, undefined, rowRef)}
+    })}
 </template>

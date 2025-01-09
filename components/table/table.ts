@@ -67,8 +67,6 @@ export interface TableProps<
     pagination?: boolean | PaginationProps
     fixFooter?: boolean 
     virtual?: boolean
-    estimatedRowHeight?: number;
-    bufferSize?: number;
     spreadArrowIndex?: number;
     load?: (value: T) => Promise<void> | void
 }
@@ -139,8 +137,6 @@ const typeDefs: Required<TypeDefs<TableProps<unknown>>> = {
     pagination: [Boolean, Object],
     fixFooter: Boolean,
     virtual: Boolean,
-    estimatedRowHeight: Number,
-    bufferSize: Number,
     spreadArrowIndex: Number,
     load: Function,
 };
@@ -155,8 +151,6 @@ const defaults = (): Partial<TableProps> => ({
     minColWidth: 40,
     animation: true,
     showIndeterminate: true,
-    estimatedRowHeight: 40,
-    bufferSize: 6,
 });
 
 const events: Events<TableEvents> = {
@@ -191,11 +185,6 @@ export class Table<
         this.scroll.scrollRef,
         this.columns.getColumns,
     );
-    // private virtual = useTableVirtual(
-    //     this.pagination.data,
-    //     this.scroll.scrollRef,
-    //     this.scroll.callbacks,
-    // );
     private resizable = useResizable(
         this.scroll.scrollRef,
         this.width.tableRef,

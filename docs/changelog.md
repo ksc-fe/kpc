@@ -3,6 +3,16 @@ title: 更新日志
 order: 99
 sidebar: doc
 ---
+## v3.5.0
+
+1. `Add` `VirtualList` 组件支持任意`list`结构虚拟列表化 [#971](https://github.com/ksc-fe/kpc/issues/971)
+2. `Add` `Table`组件新增`virtual`属性，支持表格虚拟化 [#971](https://github.com/ksc-fe/kpc/issues/971)
+2. `Add` `Select`组件新增`virtual`属性，支持选择框虚拟化 [#971](https://github.com/ksc-fe/kpc/issues/971)
+3. `Fix` `Input`组件`autoWidth`输入空格不能自动撑开宽度 [#1046](https://github.com/ksc-fe/kpc/issues/1046)
+4. `Fix` `Select`组件远程搜索时，不能输入空格 [#1047](https://github.com/ksc-fe/kpc/issues/1047)
+5. `Fix` `Datepicker`传入`dayjs`对象报类型不匹配警告 [#1048](https://github.com/ksc-fe/kpc/issues/1048)
+6. `Fix` `Dialog`组件`confirm`模式，UI调整
+
 ## v3.4.5
 
 1. `Add` `Tip` 组件支持`Icon`及自定义`Icon` [#1043](https://github.com/ksc-fe/kpc/issues/1043)

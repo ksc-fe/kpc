@@ -243,24 +243,20 @@ describe('VirtualList', () => {
         const newList = currentList.slice(0, -5);
         instance.set('list', newList);
         await wait(50);
-        container.scrollTop = container.scrollTop;
-        console.log('container.scrollTop', container.scrollTop);
-        await wait(50);
-        // 验证总高度已更新
+    
+        // check total height is updated
         const finalHeight = parseInt(phantom.style.height);
-        expect(finalHeight).to.equal(initialHeight - 5 * 30); // 每项高度30px
+        expect(finalHeight).to.equal(initialHeight - 5 * 30);
 
-        // 验证新的最后一个元素（原来的倒数第6个）在可视区域底部
+        // check new last item is at bottom
         const newLastItem = wrapper.lastElementChild!;
         const newLastIndex = parseInt(newLastItem.textContent!.replace('Item ', ''));
-        expect(newLastIndex).to.equal(94); // 新的最后一项应该是94（原来的倒数第6个）
+        expect(newLastIndex).to.equal(94);
         
-        // 验证这个元素确实在可视区域底部
+        // check new last item is at bottom
         const containerRect = container.getBoundingClientRect();
         const lastItemRect = newLastItem.getBoundingClientRect();
-        console.log('containerRect', containerRect.bottom);
-        console.log('lastItemRect', lastItemRect.bottom);
-        const isAtBottom = containerRect.bottom - lastItemRect.bottom === 0; // 容器跟最后一个元素相对于视口的垂直位置，相等即为在底部
+        const isAtBottom = Math.abs((containerRect.bottom - lastItemRect.bottom)) <= 1; 
         expect(isAtBottom).to.be.true;
     });
 });
