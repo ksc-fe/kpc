@@ -1,4 +1,4 @@
-import {useInstance, Key, createRef} from 'intact';
+import {useInstance, Key, createRef, nextTick} from 'intact';
 import type {TreeSelect} from './';
 import {useState} from '../../hooks/useState';
 import {isNullOrUndefined} from 'intact-shared';
@@ -21,6 +21,19 @@ export function useValue() {
         }
         selectedKeys.set(v as Key[]);
         checkedKeys.set(v as Key[]);
+
+        // nextTick(() => {
+        //     onChangeCheckedKeys()
+        // });
+        if (instance.get('checkbox')) {
+            nextTick(() => {
+                const keys = getAllCheckedKeys();
+                if (keys.join(',') !== (v as Key[]).join(',')) {
+                    instance.set('value', keys);
+                    debugger;
+                }
+            });
+        }
     }
 
     function onChangeCheckedKeys() {

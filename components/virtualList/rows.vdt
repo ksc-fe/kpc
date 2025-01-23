@@ -8,8 +8,9 @@ const rows = this.rows;
 <VirtualRowsContext.Consumer>
     {({ notifyRows, startIndex, length, disabled }) => {
         if (!disabled) {
-            children = rows.value.slice(startIndex, startIndex + length); 
             notifyRows(rows.value);
+            if (!rows.value.length) return;
+            children = rows.value.slice(startIndex, startIndex + length);
         }
 
         if (isNullOrUndefined(tagName)) {

@@ -1,4 +1,4 @@
-import { useInstance, VNode, createRef, createFragment } from 'intact';
+import { useInstance, VNode, createRef, createFragment, Children } from 'intact';
 import { VirtualListRows } from './rows';
 
 export function useRows() {
@@ -6,6 +6,10 @@ export function useRows() {
     const rows = createRef<VNode[]>([]);
 
     instance.on('$receive:children', (children) => {
+        if (!children || Array.isArray(children) && children.length === 0) {
+            rows.value = [];
+            return rows;
+        };
         // use fragment vnode to normalize children
         const vNode = createFragment(children, 0 /* ChildrenTypes.UnknownChildren */);
 

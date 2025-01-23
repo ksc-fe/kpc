@@ -10,6 +10,7 @@ export function useChecked(getNodes: () => Node<Key>[]) {
 
     instance.on('$receive:checkedKeys', (v) => {
         checkedKeys = new Set(v);
+        initializeCheckedState();
     });
 
     useReceive<Tree>(['data', 'checkedKeys'], refresh);
@@ -138,6 +139,32 @@ export function useChecked(getNodes: () => Node<Key>[]) {
         loop(getNodes());
 
         return data;
+    }
+
+    function initializeCheckedState() {
+        if (instance.get('uncorrelated')) return;
+    
+        const nodes = getNodes();
+        const loop = (nodes: Node<Key>[]) => {
+            nodes.forEach(node => {
+                if (checkedKeys.has(node.key)) {
+                    updateDownward(node, true);
+                    updateUpward(node.parent);
+                }
+                if (node.children) {
+                    loop(node.children);
+                }
+            });
+        };
+    
+        if (checkedKeys.size === 0) {
+            nodes.forEach(node => {
+                updateDownward(node, false);
+                updateUpward(node.parent);
+            });
+        } else {
+            loop(nodes);
+        }
     }
 
     return {toggle, getCheckedData};

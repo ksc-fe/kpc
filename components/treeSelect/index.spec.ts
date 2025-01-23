@@ -8,7 +8,7 @@ import {Component} from 'intact';
 import {mount, unmount, dispatchEvent, wait, getElement} from '../../test/utils';
 
 describe('TreeSelect', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     it('should select value correctly', async () => {
         const [instance, element] = mount(BasicDemo);
@@ -109,5 +109,52 @@ describe('TreeSelect', () => {
         dispatchEvent(select, 'click');
         await wait(500);
         expect(element.querySelector('.k-form-error')).not.to.be.null;
+    });
+
+    it('should handle parent node correctly when all children are checked initially', async () => {
+        const [instance, element] = mount(CheckboxDemo);
+    
+        // init values
+        instance.set('values', ['2.1.1', '2.1.2']);
+        await wait();
+    
+        // because 2.2 is disabled, so it will select the outermost parent node 2
+        expect(instance.get('values')).to.eql(['2']);
+    
+        element.click();
+        await wait();
+        const dropdown = getElement('.k-tree-select-menu')!;
+        // verify parent node is selected
+        const parentCheckboxes = dropdown.querySelectorAll('.k-checkbox');
+        expect(parentCheckboxes[3].classList.contains('k-checked')).to.be.true; // First floor-2
+        expect(parentCheckboxes[4].classList.contains('k-checked')).to.be.true; // Second floor-2.1
+    });
+    
+    it('should clear parent node state when setting values to empty array', async () => {
+        const [instance, element] = mount(CheckboxDemo);
+    
+        // select a parent node first
+        instance.set('values', ['2']);
+        await wait();
+    
+        element.click();
+        await wait();
+        let dropdown = getElement('.k-tree-select-menu')!;
+        // verify related nodes are selected
+        const checkboxes = dropdown.querySelectorAll('.k-checkbox');
+        expect(checkboxes[3].classList.contains('k-checked')).to.be.true; // First floor-2
+        expect(checkboxes[4].classList.contains('k-checked')).to.be.true; // Second floor-2.1
+        expect(checkboxes[5].classList.contains('k-checked')).to.be.true; // Third floor-2.1.1
+        expect(checkboxes[6].classList.contains('k-checked')).to.be.true; // Third floor-2.1.2
+    
+        // set to empty array
+        instance.set('values', []);
+        await wait();
+    
+        // verify all nodes are cleared selected state
+        checkboxes.forEach(checkbox => {
+            expect(checkbox.classList.contains('k-checked')).to.be.false;
+            expect(checkbox.classList.contains('k-indeterminate')).to.be.false;
+        });
     });
 });

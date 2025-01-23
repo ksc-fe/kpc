@@ -22,12 +22,21 @@ export function useVirtualRows() {
     const length = useState(MIN_LENGTH);
 
     let calculatedHeight = 0;
-    let rowAvgHeight = 0;
+    let rowAvgHeight = 30;
     let rows: VNode[] = [];
     function notifyRows(_rows: VNode[]) { 
+        if (_rows === rows) return;
+
         const oldRows = rows;
         const oldLength = rows.length;
         rows = _rows;
+
+        if (!_rows.length) {
+            length.set(0);
+            calculatedHeight = 0;
+            rowsHeightMap.clear();
+            return;
+        }
         // diff oldRows, newRows
         const newKeys = new Set(_rows.map(row => row.key));
 
@@ -42,26 +51,23 @@ export function useVirtualRows() {
             }
         }
 
-        // update rowAvgHeight
-        if (rowsHeightMap.size === 0) {
-            rowAvgHeight = calculatedHeight = 0;
-        } else {
-            rowAvgHeight = calculatedHeight / rowsHeightMap.size;
-        }
-
         if (_rows.length < oldLength) {
             const maxStartIndex = Math.max(0, _rows.length - length.value);
             if (startIndex.value > maxStartIndex) {
                 startIndex.set(maxStartIndex);
-                // 重新计算位置
                 nextTick(() => {
                     handleScroll();
                 });
             }
         }
+
+        instance.forceUpdate(() => {
+            calculateRowsHeight();
+        });
     }
 
     function calculateRowsHeight() {
+        if (!rows.length) return;
         for (
             let i = startIndex.value;
             i < startIndex.value + length.value && i < rows.length;
@@ -79,6 +85,11 @@ export function useVirtualRows() {
 
         // use the average height to estimate the row height
         rowAvgHeight = calculatedHeight / rowsHeightMap.size;
+        console.log('rowAvgHeight', rowAvgHeight);
+
+        const containerHeight = containerDom.offsetHeight;
+        // calculate the length of rows we should render
+        length.set(Math.max(Math.ceil(containerHeight / rowAvgHeight) + BUFFER_SIZE * 2, MIN_LENGTH));
     }
 
     watchState(startIndex, () => {
@@ -89,13 +100,8 @@ export function useVirtualRows() {
     onMounted(() => {
         // get contains height
         containerDom = findDomFromVNode(instance.$lastInput!, true) as HTMLElement;
-        const containerHeight = containerDom.offsetHeight;
 
         calculateRowsHeight();
-
-        // calculate the length of rows we should render
-        length.set(Math.max(Math.ceil(containerHeight / rowAvgHeight) + BUFFER_SIZE * 2, MIN_LENGTH));
-
         containerDom.addEventListener('scroll', handleScroll);
     });
 
