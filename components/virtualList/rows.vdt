@@ -9,11 +9,11 @@ const rows = this.rows;
     {({ notifyRows, startIndex, length, disabled }) => {
         if (!disabled) {
             notifyRows(rows.value);
-            if (!rows.value.length) return;
             children = rows.value.slice(startIndex, startIndex + length);
         }
 
         if (isNullOrUndefined(tagName)) {
+            if (!children.length) return;
             return createFragment(children, 8 /* ChildrenTypes.HasKeyedChildren */);
         }
         return createVNode(tagName, null, children);

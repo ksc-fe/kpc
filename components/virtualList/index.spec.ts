@@ -340,7 +340,7 @@ describe('VirtualList', () => {
     
         // check re-add data state
         expect(wrapper.children.length).to.be.equal(23);
-        expect(parseInt(phantom.style.height)).to.be.greaterThan(900);
+        expect(parseInt(phantom.style.height)).to.be.equal(900);
         expect(wrapper.firstElementChild!.textContent).to.equal('Item 0');
     
         // 滚动测试

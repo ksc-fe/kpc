@@ -31,26 +31,25 @@ export function useVirtualRows() {
         const oldLength = rows.length;
         rows = _rows;
 
+        // diff oldRows, newRows
         if (!_rows.length) {
-            length.set(0);
             calculatedHeight = 0;
             rowsHeightMap.clear();
-            return;
-        }
-        // diff oldRows, newRows
-        const newKeys = new Set(_rows.map(row => row.key));
+        } else {
+            const newKeys = new Set(_rows.map(row => row.key));
 
-        for (let i = 0; i < oldLength; i++) {
-            const oldKey = oldRows[i].key!;
-            if (!newKeys.has(oldKey)) {
-                const height = rowsHeightMap.get(oldKey);
-                if (!isNullOrUndefined(height)) {
-                    calculatedHeight -= height;
-                    rowsHeightMap.delete(oldKey);
+            for (let i = 0; i < oldLength; i++) {
+                const oldKey = oldRows[i].key!;
+                if (!newKeys.has(oldKey)) {
+                    const height = rowsHeightMap.get(oldKey);
+                    if (!isNullOrUndefined(height)) {
+                        calculatedHeight -= height;
+                        rowsHeightMap.delete(oldKey);
+                    }
                 }
             }
         }
-
+    
         if (_rows.length < oldLength) {
             const maxStartIndex = Math.max(0, _rows.length - length.value);
             if (startIndex.value > maxStartIndex) {
