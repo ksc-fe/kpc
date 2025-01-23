@@ -39,9 +39,7 @@ export function useChecked(getNodes: () => Node<Key>[]) {
                 }
 
                 node.checked = checked;
-                if (checked) {
-                    node.indeterminate = false;
-                }
+                node.indeterminate = false;
 
                 if (shouldUpdateCheckedKeys) {
                     updateCheckedKeys(node);

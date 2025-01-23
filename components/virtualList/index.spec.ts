@@ -6,7 +6,7 @@ import CombinedDemo from '~/components/virtualList/demos/combined';
 
 
 describe('VirtualList', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should render virtual list correctly', async () => {
         const [instance, element] = mount(BasicDemo);
