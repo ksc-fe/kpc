@@ -3,6 +3,7 @@ import {useState} from '../../hooks/useState';
 import {useReceive} from '../../hooks/useReceive';
 import type {Tree} from './';
 import type {Node, DataItem} from './useNodes';
+import { isEqualArray } from '../utils';
 
 export function useChecked(getNodes: () => Node<Key>[]) {
     const instance = useInstance() as Tree;
@@ -10,7 +11,6 @@ export function useChecked(getNodes: () => Node<Key>[]) {
 
     instance.on('$receive:checkedKeys', (v) => {
         checkedKeys = new Set(v);
-        initializeCheckedState();
     });
 
     useReceive<Tree>(['data', 'checkedKeys'], refresh);
@@ -57,6 +57,12 @@ export function useChecked(getNodes: () => Node<Key>[]) {
         needRecheckNodes.forEach(node => {
             updateUpward(node);
         });
+        
+        const oldCheckedKeys = instance.get('checkedKeys');
+        const newCheckedKeys = Array.from(checkedKeys);
+        if (!isEqualArray(oldCheckedKeys, newCheckedKeys)) {
+            instance.set('checkedKeys', newCheckedKeys);
+        }
     }
 
     function updateCheckedKeys(node: Node<Key>) {
@@ -68,7 +74,7 @@ export function useChecked(getNodes: () => Node<Key>[]) {
     }
 
     function toggle(node: Node<Key>) {
-        const uncorrelated = instance.get('uncorrelated');
+        // const uncorrelated = instance.get('uncorrelated');
         updateDownward(node, !node.checked);
         updateUpward(node.parent);
 
@@ -139,32 +145,6 @@ export function useChecked(getNodes: () => Node<Key>[]) {
         loop(getNodes());
 
         return data;
-    }
-
-    function initializeCheckedState() {
-        if (instance.get('uncorrelated')) return;
-    
-        const nodes = getNodes();
-        const loop = (nodes: Node<Key>[]) => {
-            nodes.forEach(node => {
-                if (checkedKeys.has(node.key)) {
-                    updateDownward(node, true);
-                    updateUpward(node.parent);
-                }
-                if (node.children) {
-                    loop(node.children);
-                }
-            });
-        };
-    
-        if (checkedKeys.size === 0) {
-            nodes.forEach(node => {
-                updateDownward(node, false);
-                updateUpward(node.parent);
-            });
-        } else {
-            loop(nodes);
-        }
     }
 
     return {toggle, getCheckedData};

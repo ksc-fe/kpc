@@ -4,6 +4,7 @@ import {useState} from '../../hooks/useState';
 import {isNullOrUndefined} from 'intact-shared';
 import type {Tree} from '../tree';
 import type {Node} from '../tree/useNodes';
+import { isEqualArray } from '../utils';
 
 export function useValue() {
     const instance = useInstance() as TreeSelect<Key, boolean, boolean>;
@@ -21,25 +22,14 @@ export function useValue() {
         }
         selectedKeys.set(v as Key[]);
         checkedKeys.set(v as Key[]);
-
-        // nextTick(() => {
-        //     onChangeCheckedKeys()
-        // });
-        if (instance.get('checkbox')) {
-            nextTick(() => {
-                const keys = getAllCheckedKeys();
-                if (keys.join(',') !== (v as Key[]).join(',')) {
-                    instance.set('value', keys);
-                    debugger;
-                }
-            });
-        }
     }
 
-    function onChangeCheckedKeys() {
+    function onChangeCheckedKeys(allKeys: Key[]) {
+        checkedKeys.set(allKeys);
         const keys = getAllCheckedKeys();
-        instance.set('value', keys);
-        checkedKeys.set(keys);
+        if (!isEqualArray(keys, instance.get('value'))) {
+            instance.set('value', keys);
+        }
     }
 
     function getAllCheckedKeys() {
