@@ -13,6 +13,7 @@ describe('VirtualList', () => {
 
         // check basic structure
         const container = element.querySelector('.k-virtual-container')!;
+        await wait();
         expect(container.outerHTML).to.matchSnapshot();
 
         const wrapper = element.querySelector('.k-virtual-wrapper')!;
@@ -259,5 +260,165 @@ describe('VirtualList', () => {
         const isAtBottom = Math.abs((containerRect.bottom - lastItemRect.bottom)) <= 1; 
         expect(isAtBottom).to.be.true;
     });
+
+    it('should handle async data correctly', async () => {
+        class AsyncDemo extends Component<{list: number[]}> {
+            static template = `
+                const VirtualList = this.VirtualList;
+                <VirtualList style="height: 300px">
+                    <div v-for={this.get('list')} key={$value}>Item {$value}</div>
+                </VirtualList>
+            `;
+            static defaults() {
+                return {
+                    list: []
+                }
+            }
+            private VirtualList = VirtualList;
+        }
+    
+        const [instance] = mount(AsyncDemo);
+        await wait();
+    
+        const container = getElement('.k-virtual-container')!;
+        const wrapper = getElement('.k-virtual-wrapper')!;
+        const phantom = getElement('.k-virtual-phantom')!;
+    
+        // check initial state
+        expect(wrapper.children.length).to.equal(0);
+        expect(phantom.style.height).to.equal('0px');
+    
+        // simulate async data loading
+        instance.set('list', Array.from({length: 100}, (_, i) => i));
+        await wait(50);
+    
+        expect(wrapper.children.length).to.be.equal(23);
+        expect(phantom.style.height).to.be.equal('1800px');
+        
+        // check render content
+        expect(wrapper.firstElementChild!.textContent).to.equal('Item 0');
+    });
+    
+    it('should handle empty data and re-adding data correctly', async () => {
+        class EmptyDemo extends Component<{list: number[]}> {
+            static template = `
+                const VirtualList = this.VirtualList;
+                <VirtualList style="height: 300px">
+                    <div v-for={this.get('list')} key={$value}>Item {$value}</div>
+                </VirtualList>
+            `;
+            static defaults() {
+                return {
+                    list: Array.from({length: 100}, (_, i) => i)
+                }
+            }
+            private VirtualList = VirtualList;
+        }
+    
+        const [instance] = mount(EmptyDemo);
+        await wait();
+    
+        const container = getElement('.k-virtual-container')!;
+        const wrapper = getElement('.k-virtual-wrapper')!;
+        const phantom = getElement('.k-virtual-phantom')!;
+    
+        // record initial state
+        const initialHeight = phantom.style.height;
+        const initialChildrenCount = wrapper.children.length;
+    
+        // clear data
+        instance.set('list', []);
+        await wait(50);
+    
+        // check empty state
+        expect(wrapper.children.length).to.equal(0);
+        expect(phantom.style.height).to.equal('0px');
+    
+        // re-add data
+        instance.set('list', Array.from({length: 50}, (_, i) => i));
+        await wait(50);
+    
+        // check re-add data state
+        expect(wrapper.children.length).to.be.equal(23);
+        expect(parseInt(phantom.style.height)).to.be.equal(900);
+        expect(wrapper.firstElementChild!.textContent).to.equal('Item 0');
+    
+        // 滚动测试
+        // container.scrollTop = 100;
+        // await wait(50);
+    
+        // // 检查滚动后的渲染是否正确
+        // expect(wrapper.firstElementChild!.textContent).to.not.equal('Item 0');
+    });
+
+    it('should handle extreme height differences correctly', async () => {
+        class ExtremeHeightDemo extends Component<{list: number[]}> {
+            static template = `
+                const VirtualList = this.VirtualList;
+                <VirtualList style="height: 300px">
+                    <div v-for={this.get('list')} 
+                        key={$value} 
+                        style={$value < 5 ? 'height: 100px' : 'height: 30px'}
+                    >
+                        Item {$value}
+                    </div>
+                </VirtualList>
+            `;
+            static defaults() {
+                return {
+                    list: Array.from({length: 100}, (_, i) => i)
+                }
+            }
+            private VirtualList = VirtualList;
+        }
+    
+        const [instance] = mount(ExtremeHeightDemo);
+        await wait();
+    
+        const container = getElement('.k-virtual-container')!;
+        const wrapper = getElement('.k-virtual-wrapper')!;
+        const phantom = getElement('.k-virtual-phantom')!;
+    
+        const initialItems = wrapper.children;
+        const initialLength = initialItems.length;
+        
+        // check first 5 elements height
+        const firstItem = initialItems[0] as HTMLElement;
+        expect(firstItem.offsetHeight).to.equal(100);
+    
+        // record initial average height (calculate by total height and render count)
+        const initialTotalHeight = parseInt(phantom.style.height);
+        const initialAvgHeight = initialTotalHeight / 100;
+        expect(initialAvgHeight).to.be.greaterThan(30);
+    
+        // scroll to small height area
+        container.scrollTop = 800;
+        await wait(50);
+    
+        // check new render elements
+        const newItems = wrapper.children;
+        const newLength = newItems.length;
+        const firstNewItem = newItems[0] as HTMLElement;
+        
+        // check
+        // new render elements should be 30px height
+        expect(firstNewItem.offsetHeight).to.equal(30);
+        
+        // because average height is smaller, render elements count should be more
+        expect(newLength).to.be.greaterThan(initialLength);
+    
+        // check scroll position is correct
+        const firstVisibleIndex = parseInt(firstNewItem.textContent!.replace('Item ', ''));
+        expect(firstVisibleIndex).to.be.greaterThan(5);
+    
+        container.scrollTop = 1200;
+        await wait();
+    
+        const finalItems = wrapper.children;
+        const finalFirstItem = finalItems[0] as HTMLElement;
+        expect(finalFirstItem.offsetHeight).to.equal(30);
+        expect(finalItems.length).to.equal(newLength); // render count should be stable
+    });
 });
+
 

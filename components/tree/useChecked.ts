@@ -3,6 +3,7 @@ import {useState} from '../../hooks/useState';
 import {useReceive} from '../../hooks/useReceive';
 import type {Tree} from './';
 import type {Node, DataItem} from './useNodes';
+import { isEqualArray } from '../utils';
 
 export function useChecked(getNodes: () => Node<Key>[]) {
     const instance = useInstance() as Tree;
@@ -38,9 +39,7 @@ export function useChecked(getNodes: () => Node<Key>[]) {
                 }
 
                 node.checked = checked;
-                if (checked) {
-                    node.indeterminate = false;
-                }
+                node.indeterminate = false;
 
                 if (shouldUpdateCheckedKeys) {
                     updateCheckedKeys(node);
@@ -56,6 +55,12 @@ export function useChecked(getNodes: () => Node<Key>[]) {
         needRecheckNodes.forEach(node => {
             updateUpward(node);
         });
+        
+        const oldCheckedKeys = instance.get('checkedKeys');
+        const newCheckedKeys = Array.from(checkedKeys);
+        if (!isEqualArray(oldCheckedKeys, newCheckedKeys)) {
+            instance.set('checkedKeys', newCheckedKeys);
+        }
     }
 
     function updateCheckedKeys(node: Node<Key>) {
@@ -67,7 +72,7 @@ export function useChecked(getNodes: () => Node<Key>[]) {
     }
 
     function toggle(node: Node<Key>) {
-        const uncorrelated = instance.get('uncorrelated');
+        // const uncorrelated = instance.get('uncorrelated');
         updateDownward(node, !node.checked);
         updateUpward(node.parent);
 
