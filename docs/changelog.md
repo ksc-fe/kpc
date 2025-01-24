@@ -9,6 +9,11 @@ sidebar: doc
 2. `Fix` `TreeSelect`组件复选框：清除最后一个子元素，父元素半选状态未更新 [#1057](https://github.com/ksc-fe/kpc/issues/1057)
 3. `Fix` `VirtualList`渲染空数据，然后更新数据报错 [#1060](https://github.com/ksc-fe/kpc/issues/1060)
 
+### @king-design/react
+
+1. `Fix` 某些情况下更新报错:Cannot add property children, object is not extensible  [#1058](https://github.com/ksc-fe/kpc/issues/1058)
+
+
 ## v3.5.0
 
 1. `Add` `VirtualList` 组件支持任意`list`结构虚拟列表化 [#971](https://github.com/ksc-fe/kpc/issues/971)
