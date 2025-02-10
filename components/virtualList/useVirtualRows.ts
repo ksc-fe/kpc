@@ -84,7 +84,6 @@ export function useVirtualRows() {
 
         // use the average height to estimate the row height
         rowAvgHeight = calculatedHeight / rowsHeightMap.size;
-        console.log('rowAvgHeight', rowAvgHeight);
 
         const containerHeight = containerDom.offsetHeight;
         // calculate the length of rows we should render

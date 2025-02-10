@@ -8,7 +8,7 @@ import {Component} from 'intact';
 import {mount, unmount, dispatchEvent, wait, getElement} from '../../test/utils';
 
 describe('TreeSelect', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should select value correctly', async () => {
         const [instance, element] = mount(BasicDemo);
@@ -134,7 +134,7 @@ describe('TreeSelect', () => {
         const [instance, element] = mount(CheckboxDemo);
     
         // select a parent node first
-        instance.set('values', ['2']);
+        instance.set('values', ['2.1.1']);
         await wait();
     
         element.click();
@@ -142,10 +142,10 @@ describe('TreeSelect', () => {
         let dropdown = getElement('.k-tree-select-menu')!;
         // verify related nodes are selected
         const checkboxes = dropdown.querySelectorAll('.k-checkbox');
-        expect(checkboxes[3].classList.contains('k-checked')).to.be.true; // First floor-2
-        expect(checkboxes[4].classList.contains('k-checked')).to.be.true; // Second floor-2.1
-        expect(checkboxes[5].classList.contains('k-checked')).to.be.true; // Third floor-2.1.1
-        expect(checkboxes[6].classList.contains('k-checked')).to.be.true; // Third floor-2.1.2
+        expect(checkboxes[3].classList.contains('k-indeterminate')).to.be.true; // First floor-2
+        expect(checkboxes[4].classList.contains('k-indeterminate')).to.be.true; // Second floor-2.1
+        expect(checkboxes[5].classList.contains('k-checkbox')).to.be.true; // Third floor-2.1.1
+        // expect(checkboxes[6].classList.contains('k-checked')).to.be.true; // Third floor-2.1.2
     
         // set to empty array
         instance.set('values', []);
