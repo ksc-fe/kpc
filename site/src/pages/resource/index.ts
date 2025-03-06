@@ -11,7 +11,7 @@ export const getSketch = (): void => {
 };
 
 export const getFigma = (): void => {
-    window.open('https://www.figma.com/design/btu7XtMqeIhsZ4unwpPYzv/KingDesign-%E5%86%85%E9%83%A8%E7%BB%84%E4%BB%B6%E5%BA%932025?node-id=0-1&t=RoveOf4SZwKAZcT5-1');
+    window.open('https://www.figma.com/community/file/1470708335000288640/kingdesign-3-0');
 };
 
 export const getDesign = (): void => {

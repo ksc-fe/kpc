@@ -76,7 +76,7 @@ export function useVirtualRows() {
             const key = row.key!;
             if (!rowsHeightMap.has(key)) {
                 const rowDom = findDomFromVNode(row, true) as HTMLElement;
-                const height = rowDom.offsetHeight;
+                const height = rowDom.offsetHeight || rowAvgHeight;
                 rowsHeightMap.set(key, height); 
                 calculatedHeight += height;
             }

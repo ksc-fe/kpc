@@ -16,11 +16,6 @@ import {Radio} from 'kpc';
 </div>
 ```
 
-```styl
-.k-radio
-    margin-right 24px
-```
-
 ```ts
 export default class extends Component {
     static template = template;

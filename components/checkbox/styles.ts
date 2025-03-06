@@ -13,7 +13,7 @@ const defaults = {
         return `1px solid ${theme.color.primary}`
     },
     bgColor: '#fff',
-    
+    marginRight: '24px',
     // text
     text: {
         gap: '8px',
@@ -62,6 +62,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         display: inline-flex;
         align-items: center;
         cursor: pointer;
+        margin-right: ${checkbox.marginRight};
         vertical-align: middle;
         .${k}-checkbox-wrapper {
             width: ${checkbox.width};

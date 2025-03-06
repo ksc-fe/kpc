@@ -12,6 +12,7 @@ const defaults = {
     bgColor: '#fff',
     textGap: '8px',
     innerWidth: '8px',
+    marginRight: '24px',
     get checkedColor() { return theme.color.primary },
 
     disabled: {
@@ -43,6 +44,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         display: inline-flex;
         align-items: center;
         cursor: pointer;
+        margin-right: ${radio.marginRight};
         vertical-align: middle;
         .${k}-radio-wrapper {
             width: ${radio.width};
