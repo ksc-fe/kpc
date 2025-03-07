@@ -1,6 +1,7 @@
 import {injectGlobal, css} from '@emotion/css';
 import {theme} from './theme';
 import {palette}  from '../styles/utils';
+import { hasDocumentAvailable } from 'intact-shared';
 
 const slideDirections = {
     down: 'center top 0',
@@ -9,7 +10,7 @@ const slideDirections = {
     right: 'left center 0',
 };
 
-if (!/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
+if (hasDocumentAvailable && !/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform)) {
     document.body.classList.add('k-customize-scrollbar');
 }
 
