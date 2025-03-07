@@ -24,6 +24,11 @@ import {Checkbox} from 'kpc';
 </div>
 ```
 
+```styl
+.k-checkbox
+    margin-right 24px
+```
+
 ```ts
 interface Props {
     value1?: boolean

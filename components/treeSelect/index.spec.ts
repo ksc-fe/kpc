@@ -8,7 +8,7 @@ import {Component} from 'intact';
 import {mount, unmount, dispatchEvent, wait, getElement} from '../../test/utils';
 
 describe('TreeSelect', () => {
-    // afterEach(() => unmount());
+    afterEach(() => unmount());
 
     it('should select value correctly', async () => {
         const [instance, element] = mount(BasicDemo);

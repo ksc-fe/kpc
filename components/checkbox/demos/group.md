@@ -18,6 +18,11 @@ import {Checkbox} from 'kpc';
 </div>
 ```
 
+```styl
+.k-checkbox
+    margin-right 24px
+```
+
 ```ts
 export default class extends Component {
     static template = template;
