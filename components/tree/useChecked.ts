@@ -56,10 +56,12 @@ export function useChecked(getNodes: () => Node<Key>[]) {
             updateUpward(node);
         });
         
-        const oldCheckedKeys = instance.get('checkedKeys');
-        const newCheckedKeys = Array.from(checkedKeys);
-        if (!isEqualArray(oldCheckedKeys, newCheckedKeys)) {
-            instance.set('checkedKeys', newCheckedKeys);
+        if (instance.get('checkbox')) {
+            const oldCheckedKeys = instance.get('checkedKeys');
+            const newCheckedKeys = Array.from(checkedKeys);
+            if (!isEqualArray(oldCheckedKeys, newCheckedKeys)) {
+                instance.set('checkedKeys', newCheckedKeys);
+            }
         }
     }
 

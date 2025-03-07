@@ -18,10 +18,22 @@ describe('TreeSelect', () => {
         const dropdown = getElement('.k-tree-select-menu')!;
         expect(dropdown.innerHTML).to.matchSnapshot();
 
-        (dropdown.querySelector('.k-tree-text') as HTMLElement).click();
+        const texts = dropdown.querySelectorAll('.k-tree-text');
+        const text1 = texts[0] as HTMLElement;
+        const text111 = texts[2] as HTMLElement;
+        text1.click();
+        await wait();
         expect(instance.get('value')).to.eql('1');
 
         await wait(500);
+
+        element.click();
+        text111.click();
+        await wait();
+        expect(instance.get('value')).to.eql('1.1.1');
+
+        await wait(500);
+
         expect(getElement('.k-tree-select-menu')).to.be.undefined;
     });
 

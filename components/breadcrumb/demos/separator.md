@@ -10,16 +10,16 @@ import {Breadcrumb, BreadcrumbItem, Icon} from 'kpc';
 
 <Breadcrumb>
     <b:separator>
-        <Icon class="ion-ios-arrow-thin-right separator" size="large" />
+        <Icon class="ion-ios-arrow-thin-right separator" />
     </b:separator>
     <BreadcrumbItem to="/">
-        <Icon class="ion-home" /> item 1
+        <Icon class="ion-home" size="small"/> item 1
     </BreadcrumbItem>
     <BreadcrumbItem to="/components/breadcrumb/">
-        <Icon class="ion-earth" /> item 2
+        <Icon class="ion-earth"  size="small"/> item 2
     </BreadcrumbItem>
     <BreadcrumbItem>
-        <Icon class="ion-planet" /> item 3
+        <Icon class="ion-planet" size="small"/> item 3
     </BreadcrumbItem>
 </Breadcrumb>
 ```

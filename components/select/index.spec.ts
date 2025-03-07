@@ -328,6 +328,40 @@ describe('Select', () => {
         // expect(clear).to.be.null;
     });
 
+    it('should handle async data correctly', async () => {
+        class Demo extends Component<{list: number[]}> {
+            static template = `
+                const {Select, Option} = this;
+                <Select v-model="day" virtual>
+                    <Option v-for={this.get('list')} value={$value}>
+                        {$value}
+                    </Option>
+                </Select>
+            `;
+            static defaults() {
+                return {
+                    list: []
+                }
+            }
+            private Select = Select;
+            private Option = Option;
+        }
+        const [instance, element] = mount(Demo);
+        await wait();
+    
+        // simulate async data loading
+        instance.set('list', Array.from({length: 100}, (_, i) => i));
+        await wait(100);
+
+        element.click();
+        await wait();
+        const wrapper = getElement('.k-virtual-wrapper');
+        const phantom = getElement('.k-virtual-phantom');
+
+        expect(wrapper!.children.length).to.be.equal(10);
+        expect(phantom!.style.height).to.be.equal('3000px');
+    });
+
     // it('should trigger change event correctly', async () => {
         // const spy = sinon.spy();
 
