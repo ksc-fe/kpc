@@ -3,6 +3,15 @@ title: 更新日志
 order: 99
 sidebar: doc
 ---
+## v3.5.2
+
+1. `Fix` `TreeSelect`单选时v-model绑定值数据类型被重置为数组 [#1069](https://github.com/ksc-fe/kpc/issues/1069)
+2. `Fix` `TreeSelect`下拉框无法选中节点 [#1063](https://github.com/ksc-fe/kpc/issues/1063)
+3. `Fix` `Table`当前页内`checkbox`全部`disabled`时，表头`checkbox`需设置为`disabled`置灰 [#1068](https://github.com/ksc-fe/kpc/issues/1068)
+4. `Fix` `Select`设置`virtual`属性，无法展示内容 [#1065](https://github.com/ksc-fe/kpc/issues/1065)
+5. `Fix` `Breadcrumb` UI优化 [#1070](https://github.com/ksc-fe/kpc/issues/1070)
+
+
 ## v3.5.1
 
 1. `Fix` `TreeSelect`组件初始化时输入框展示问题 [#1046](https://github.com/ksc-fe/kpc/issues/1055)
