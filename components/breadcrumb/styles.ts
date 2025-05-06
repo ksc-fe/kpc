@@ -5,12 +5,12 @@ import '../../styles/global';
 import { cache } from '../utils';
 
 const defaults = {
-    fontSize: '14px',
+    fontSize: '12px',
     get color() { return theme.color.lightBlack },
     get hoverColor() {return theme.color.primary },
     gap: '6px',
     activeFontWeight: 'normal',
-    activeColor: `#262626`,
+    get activeColor() { return theme.color.title },
 };
 
 let breadcrumb: typeof defaults;
@@ -22,6 +22,7 @@ setDefault(() => {
 export const makeStyles = cache(function makeStyles(k: string) {
     return css`
         font-size: ${breadcrumb.fontSize};
+        line-height: 12px;
         display: flex;
         align-items: center;
         .${k}-breadcrumb-item {

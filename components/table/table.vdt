@@ -71,7 +71,8 @@ const hasData = data && data.length;
 
 const hasFixedLeft = getHasFixedLeft();
 const {getAllCheckedStatus, toggleCheckedAll, getAllStatus, onChangeChecked} = this.checked;
-const allCheckedStatus = getAllCheckedStatus(); 
+const allCheckedStatus = getAllCheckedStatus();
+const allStatus = getAllStatus();
 const thead = hideHeader ? null : (
     <TableContext.Provider value={{checkType, lastCellKey, lastCellStyle}}>
         <GroupContext.Provider value={{group, onChange: this.onChangeGroup}}>
@@ -93,7 +94,7 @@ const thead = hideHeader ? null : (
                                                 value={allCheckedStatus === AllCheckedStatus.All}
                                                 indeterminate={showIndeterminate && allCheckedStatus == AllCheckedStatus.Indeterminate}
                                                 ev-$change:value={toggleCheckedAll}
-                                                disabled={!hasData}
+                                                disabled={!hasData || allStatus.every(_it => _it.disabled)}
                                             />
                                         </th>
                                         {$value}
@@ -114,7 +115,6 @@ const thead = hideHeader ? null : (
 
 const {getAllKeys} = this.disableRow;
 const {getGrid} = this.merge;
-const allStatus = getAllStatus();
 const allKeys = getAllKeys();
 const colCount = maxCols + (checkType !== 'none' ? 1 : 0);
 const {isExpanded} = this.expandable;

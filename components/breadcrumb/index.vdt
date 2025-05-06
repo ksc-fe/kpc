@@ -15,7 +15,7 @@ const classNameObj = {
 const separatorVNode = (
     <span class={`${k}-breadcrumb-separator`}>
         <template v-if={!$blocks.separator && !separator}>
-            <Icon class="k-icon-right" />
+            <Icon class="k-icon-right" size="small"/>
         </template>
         <b:separator v-else>{separator}</b:separator>
     </span>
