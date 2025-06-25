@@ -62,6 +62,7 @@ export * from './components/timeline';
 export * from './components/timepicker';
 export * from './components/tip';
 export * from './components/tooltip';
+export * from './components/tour';
 export * from './components/transfer';
 export * from './components/tree';
 export * from './components/treeSelect';
