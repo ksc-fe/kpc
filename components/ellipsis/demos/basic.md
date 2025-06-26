@@ -10,7 +10,7 @@ import {Ellipsis, Split} from 'kpc';
 
 <Split style="width: 400px">
     <b:first>
-        <Ellipsis class="panel">测试测试测试测试测试测试</Ellipsis>
+        <Ellipsis class="panel">测试测试测试测试测试测试测试</Ellipsis>
         <br/>
         <Ellipsis class="panel" maxLines={2}>最大几行忽略最大几行忽略最大几行忽略</Ellipsis>
     </b:first>
