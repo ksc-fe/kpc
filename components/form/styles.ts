@@ -50,6 +50,7 @@ export const makeItemStyles = cache(function makeItemStyles(k: string) {
         }
         &.${k}-fluid > .${k}-form-content {
             flex: 1;
+            min-width: 0;
         }
         .${k}-form-label {
             display: flex;
