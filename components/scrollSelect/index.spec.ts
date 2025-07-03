@@ -4,17 +4,17 @@ import {ScrollSelect} from './';
 import {Component} from 'intact';
 
 describe('ScrollSelect', () => {
-    afterEach(() => unmount());
+    // afterEach(() => unmount());
 
     it('should select by scroll', async () => {
         const [instance, element] = mount(BasicDemo);
 
         // scroll
-        dispatchEvent(element.firstElementChild!, 'wheel', {deltaY: 1});
+        dispatchEvent(element.firstElementChild!, 'wheel', {deltaY: 30});
         await wait(100);
         expect(instance.get('value')).to.eql(1);
 
-        dispatchEvent(element.firstElementChild!, 'wheel', {deltaY: -1});
+        dispatchEvent(element.firstElementChild!, 'wheel', {deltaY: -30});
         await wait(100);
         expect(instance.get('value')).to.eql(0);
     });
