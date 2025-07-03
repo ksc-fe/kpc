@@ -3,7 +3,7 @@
  */
 import {useInstance, Component, TypeDefs} from 'intact';
 import {useState, watchState, State} from '../../hooks/useState';
-import dayjs, {Dayjs, OpUnitType} from './dayjs';
+import dayjs, {Dayjs, OpUnitType, QUnitType} from './dayjs';
 import {findValueIndex} from './helpers';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
@@ -44,7 +44,8 @@ export interface BasePickerProps<
 }
 
 export interface BasePickerEvents extends BaseSelectEvents {
-    selecting: [StateValueRange]
+    selecting: [StateValueRange],
+    togglePosition: []
 }
 
 export interface BasePickerBlocks<
@@ -74,6 +75,7 @@ const defaults = (): Partial<BasePickerProps<any>> => ({
 const events: Events<BasePickerEvents> = {
     ...BaseSelect.events,
     selecting: true,
+    togglePosition: true,
 };
 
 export abstract class BasePicker<
@@ -100,8 +102,8 @@ export abstract class BasePicker<
             multiple ?  '' : !range ?
                 value ? getShowString(value as Dayjs) : '' :
                 value ? [
-                    getShowString((value as DayjsValueRange)[0]),
-                    getShowString((value as DayjsValueRange)[1]),
+                    (value as DayjsValueRange)[0] ? getShowString((value as DayjsValueRange)[0]) : '',
+                    (value as DayjsValueRange)[1] ? getShowString((value as DayjsValueRange)[1]) : '',
                 ].join(' ~ ') : ''
         );
     }
@@ -124,7 +126,7 @@ export function useValue(
     panel: ReturnType<typeof usePanel>,
     shouldUpdateValue: (v: StateValueItem) => boolean,
     updateValueOnInput: (v: DayjsValueItem) => void,
-    getEqualType: () => OpUnitType,
+    getEqualType: () => OpUnitType | QUnitType,
     updateStateValue: (v: DayjsValue, value: State<StateValue>) => void,
 ) {
     // Normalize the value to multipe values, no matter it's multipe or not
@@ -133,11 +135,23 @@ export function useValue(
     let dayjsValue: DayjsValue = [];
 
     instance.watch('value', (newValue, oldValue) => {
+        
         if (isEqualArray(newValue, oldValue)) return;
-        dayjsValue = convertToDayjs(newValue);
-        updateStateValue(dayjsValue, value);
-        // should update keywords
+        
+        // 检查是否与当前 dayjsValue 对应的字符串相同，避免循环
+        const currentValueStr = convertToValueString(dayjsValue);
+        if (newValue === currentValueStr) {
+            return;
+        }
+        
+        // 只执行一次转换和更新逻辑
+        const _value = convertToDayjs(newValue);
+        
+        dayjsValue = _value;
+        updateStateValue(_value, value);
         instance.resetKeywords(instance.input.keywords);
+        
+
     });
 
     watchState(instance.input.keywords, v => {
@@ -157,6 +171,8 @@ export function useValue(
                 }
                 if (endDate.isAfter(startDate)) {
                     updateValueOnInput([startDate, endDate]);
+                } else {
+                    updateValueOnInput([endDate, startDate]);
                 }
             }
         } else {
@@ -212,7 +228,6 @@ export function useValue(
     }
 
     function setSingleDate(v: StateValueItem, fromInput: boolean) {
-        const {range}  = instance.get();
         value.set([v]);
         if (fromInput || shouldUpdateValue(v)) {
             updateValue();
@@ -267,20 +282,51 @@ export function useValue(
 
     function updateValue() {
         const _value = value.value as DayjsValue;
-        const valueStr = convertToValueString(_value); 
+        
+        const valueStr = convertToValueString(_value);
+        
+        // 检查是否需要更新，避免循环调用
+        if (instance.get('value') === valueStr) {
+            return;
+        }
+        
+        // 在设置 value 之前先更新 dayjsValue
+        dayjsValue = _value;
         instance.set('value', valueStr);
+        
         instance.resetKeywords(instance.input.keywords);
+
     }
 
     function onConfirm() {
-        // unique
-        if (!instance.get('multiple')) {
-            instance.hide();
+        const lastValue = last(instance.value.value.value);
+        const {multiple, range} = instance.get();
+        if (!multiple) {
+        
+            if (range) {
+                // 范围选择：需要开始和结束时间都选择完才关闭
+                if((lastValue as [Dayjs, Dayjs?]).length === 2) {
+                    instance.hide(); 
+                } 
+                instance.trigger('togglePosition');
+            } else {
+                // 单选：选择完时间就关闭
+                if (lastValue) {
+                    instance.hide();
+                } 
+            }
+
         } else {
             unique();
             panel.reset();
         }
         updateValue();
+    }
+
+    function setMoment() {
+        const now = dayjs();
+        setValue(now, true);
+        instance.hide();
     }
 
     function unique() {
@@ -345,5 +391,6 @@ export function useValue(
         setValue,
         convertToDayjs,
         getDayjsValue,
+        setMoment,
     };
 }

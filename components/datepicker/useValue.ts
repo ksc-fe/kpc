@@ -51,8 +51,8 @@ export function useValue(
 
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
+        const activePosition = instance.activePosition.position.value;
         let _value: StateValueItem;
-
         if (range) {
             const oldValue = last(value.value as StateValueRange[]);
             if (!oldValue || oldValue.length === 2) {
@@ -62,10 +62,33 @@ export function useValue(
                  * #877
                  */
                 flag = PanelFlags.Start;
-                _value = [fixDatetimeWithMinDate(v)];
+                if((type === 'datetime' || type === 'date') && oldValue?.length === 2) {  
+                    // Use activePosition instead of Coordinate  
+                    _value = activePosition === 'end' ?   
+                        [oldValue[0], fixDatetimeWithMinDate(v)] :  multiple ? 
+                        [fixDatetimeWithMinDate(v)] : 
+                        [fixDatetimeWithMinDate(v), oldValue[1]]; 
+                } else {  
+                    _value = [fixDatetimeWithMinDate(v)];  
+                }
             } else {
-                _value = [oldValue[0], fixDatetimeWithMaxDate(v)];
-                (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
+                if (type === 'datetime') {
+                    if (oldValue.length === 1) {
+                        // 如果只有开始日期，根据activePosition决定是替换开始日期还是设置结束日期
+                        _value = activePosition === 'end' ?
+                            [oldValue[0], fixDatetimeWithMaxDate(v)] :
+                            [fixDatetimeWithMaxDate(v)];
+                    } else {
+                        // oldValue.length === 2的情况
+                        _value = activePosition === 'end' ?
+                            [oldValue[0], fixDatetimeWithMaxDate(v)] : multiple ?
+                            [fixDatetimeWithMaxDate(v)] :
+                            [fixDatetimeWithMaxDate(v), oldValue[1]];
+                    }
+                } else {
+                    _value = [oldValue[0], fixDatetimeWithMaxDate(v)];
+                }
+                (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);  
             }
             instance.trigger('selecting', _value);
         } else {
@@ -84,6 +107,14 @@ export function useValue(
             } else {
                 panel.changePanel(PanelTypes.Time, flag);
             }
+        }  else if(type === 'week') {
+            _value = v.startOf('week')
+            setValue(_value, false);
+            instance.hide();
+        } else if(type === 'quarter') {
+            _value = v.startOf('quarter');
+            setValue(_value, false);
+            instance.hide();
         } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
             instance.hide();
         }

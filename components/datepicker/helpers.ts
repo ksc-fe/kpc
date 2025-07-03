@@ -1,4 +1,4 @@
-import dayjs, {Dayjs, OpUnitType} from 'dayjs';
+import dayjs, {Dayjs, OpUnitType, QUnitType} from 'dayjs';
 import {strPad, range} from '../utils';
 import {_$} from '../../i18n';
 import {StateValueItem} from './basepicker';
@@ -28,7 +28,7 @@ export function endTime(date: Date) {
 export function isEqual(
     a: Dayjs | undefined | null,
     b: Dayjs | undefined | null,
-    type: OpUnitType = 'date'
+    type: OpUnitType | QUnitType = 'date'
 ) {
     if (a && b) {
         return a.isSame(b, type);
@@ -39,7 +39,7 @@ export function isEqual(
 export function isLT(
     a: Dayjs | undefined | null,
     b: Dayjs | undefined | null,
-    type: OpUnitType = 'date'
+    type: OpUnitType | QUnitType = 'date'
 ) {
     if (a && b) {
         return a.isBefore(b, type);
@@ -51,7 +51,7 @@ export function isLT(
 export function isGT(
     a: Dayjs | undefined | null,
     b: Dayjs | undefined | null,
-    type: OpUnitType = 'date'
+    type: OpUnitType | QUnitType = 'date'
 ) {
     return isLT(b, a, type);
 }
@@ -70,7 +70,7 @@ export function createDate(date: string) {
     return new Date(date);
 }
 
-export function findValueIndex(values: StateValueItem[], value: StateValueItem, type: OpUnitType) {
+export function findValueIndex(values: StateValueItem[], value: StateValueItem, type: OpUnitType | QUnitType) {
     return values.findIndex(item => {
         if (Array.isArray(item)) {
             // is multipe range values

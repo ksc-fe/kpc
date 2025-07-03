@@ -9,6 +9,8 @@ const FORMATS = {
     datetime: 'YYYY-MM-DD HH:mm:ss',
     year: 'YYYY',
     month: 'YYYY-MM',
+    quarter: 'YYYY-[Q]Q',
+    week: 'YYYY-w[周]',
 };
 
 export function useFormats() {

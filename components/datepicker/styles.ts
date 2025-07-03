@@ -11,7 +11,9 @@ const defaults = {
 
     item: {
         gutter: `7px`,
+        yearGutter: '36px',
         height: `24px`,
+        rangeGutter: `17px`,
         get hoverBgColor() { return theme.color.bg },
         get exceedColor() { return theme.color.disabled },
         get todayBorder() { return `1px solid ${theme.color.border}` },
@@ -49,6 +51,19 @@ const defaults = {
         padding: `8px 16px`,
     },
 
+    week: {
+        height: `20px`,
+        width: `40px`,
+        margin: `0 0 0 10px`,
+        padding: `0 2px`,
+        currentWeek: '#eee'
+    },
+    
+    calendarTime: {
+        height: `44px`,
+        fontSize: `14px`,
+    },
+
     shortcuts: {
         width: '100px',
         padding: '12px 0',
@@ -57,7 +72,7 @@ const defaults = {
             height: '32px',
             padding: '0 16px',
         }
-    }
+    },
 };
 
 let datepicker: typeof defaults;
@@ -103,12 +118,26 @@ export const makePanelStyles = cache(function makePanelStyles(k: string) {
                     width: 50%;
                 }
             }
+
+        }
+        .${k}-datepicker-calendar-time-wrapper {
+            display: flex;
+            .${k}-datepicker-time-time {
+                height: ${datepicker.calendarTime.height};
+                line-height: ${datepicker.calendarTime.height};
+                text-align: center;
+                font-size: ${datepicker.calendarTime.fontSize};
+            }
+            .${k}-datepicker-time-wrapper {
+                overflow: hidden;
+                height: 320px;
+            }
         }
         .${k}-datepicker-footer {
             border-top: ${datepicker.border};
             padding: ${datepicker.footer.padding};
             text-align: right;
-        }
+        } 
     `
 });
 
@@ -207,8 +236,56 @@ export const makeCalendarStyles = cache(function makeCalendarStyles(k: string) {
             grid-template-columns: repeat(7, 1fr);
         }
         .${k}-years {
+            .${k}-calendar-item {
+                height: 20px;
+                width: 40px;
+
+                &.${k}-in-range:after {
+                    width: calc(100% + 14px);
+                    left: calc(-${datepicker.item.yearGutter} / 2);
+                    padding: 0 calc(${datepicker.item.yearGutter} / 2);
+                }
+            }          
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            justify-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0; 
+        }
+        .${k}-weeks {
+            display: grid;
+            .week-row {
+                display: flex;
+                align-items: center;
+                width: ${datepicker.week.width};
+                margin: ${datepicker.week.margin};
+
+                .${k}-week-number {
+                    padding: ${datepicker.week.padding};
+                    cursor: pointer;
+                }    
+            }
+            .${k}-calendar-item {
+                height: ${datepicker.week.height};
+                &.${k}-today:not(:last-child) .${k}-value {
+                    background: ${datepicker.week.currentWeek};
+                    border: 0;
+                    &:after {
+                        content: '';
+                        display: block;
+                        position: absolute;
+                        box-sizing: content-box;
+                        background: ${datepicker.week.currentWeek};
+                        width: 100%;
+                        height: 100%;
+                        left: 0;
+                        padding: 0 ${datepicker.item.rangeGutter};
+                        z-index: -1; 
+                    }
+                }
+                &.${k}-today:last-child .${k}-value {
+                    border: 0;
+                }
+            }
         }
     `
 });
@@ -223,5 +300,27 @@ export const makeTimeStyles = cache(function makeTimeStyles(k: string) {
             flex: 1;
             height: 305px;
         }
+    `;
+});
+
+export const makeDatePickRangeStyles = cache(function makeTimeStyles(k: string, activePositionValue: string, display: boolean, charLength: number = 10, startTextLength: number = 10) {
+    const displayType = display ? 'block' : 'none';
+    const charWidthPx = 8;
+    const highlightWidthPx = charLength * charWidthPx;
+    
+    // 计算结束文本的起始位置 - 紧接着开始文本
+    const endTextStartPos = startTextLength * charWidthPx;
+    
+    return css`
+        &:hover:before, &:focus:before{
+            content: '';
+            display: ${displayType};
+            width: ${highlightWidthPx}px;
+            height: 1px;
+            position: absolute;
+            background-color: ${datepicker.item.active.bgColor};
+            left: ${activePositionValue === 'start' ? '0' : endTextStartPos + 'px'};
+            bottom: 0;
+        }   
     `;
 });

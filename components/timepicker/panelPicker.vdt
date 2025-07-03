@@ -8,13 +8,14 @@ import {PanelFlags} from '../datepicker/usePanel';
 import {last} from '../datepicker/helpers';
 import {ScrollSelect} from '../scrollSelect';
 
-const {className, range, multiple} = this.get();
+const {className, range, multiple, min, max} = this.get();
 const {
     value: {value},
     onConfirm,
     onChangeTime,
     onChangeTimeByStep,
     getTimeValue,
+    setMoment,
 } = this.value;
 const lastValue = last(value);
 const { k } = this.config;
@@ -65,6 +66,9 @@ const generatePanel = flag => {
                     {range ? generatePanel(PanelFlags.End) : null} 
                 </div>
                 <div class={`${k}-datepicker-footer`}>
+                    <Button v-if={!range && !multiple && !max && !min} type="link" size="small"
+                        ev-click={setMoment}
+                    >{_$('此刻')}</Button>
                     <Button type="primary" size="small"
                         disabled={isDisabledConfirm()}
                         ev-click={onConfirm}

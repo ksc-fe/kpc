@@ -1,6 +1,6 @@
 import {useInstance} from 'intact';
 import {useState, State} from '../../hooks/useState';
-import {Dayjs, OpUnitType} from 'dayjs';
+import {Dayjs, OpUnitType, QUnitType} from './dayjs';
 import type {Datepicker} from './index';
 import {isNullOrUndefined} from 'intact-shared';
 import {isGT, isLT, last} from './helpers';
@@ -28,7 +28,7 @@ export function useDisabled({createDateByValueFormat}: ReturnType<typeof useForm
         convertToDayjs(minDate, v);
     });
 
-    function isDisabled(value: Dayjs, type: OpUnitType = 'date') {
+    function isDisabled(value: Dayjs, type: OpUnitType | QUnitType = 'date') {
         const {disabledDate} = instance.get();
         return isGT(value, maxDate.value, type) ||
             isLT(value, minDate.value, type) ||
@@ -58,7 +58,7 @@ export function useDisabled({createDateByValueFormat}: ReturnType<typeof useForm
         if (!lastValue) return true;
 
         const {range} = instance.get();
-        if (range && (lastValue as [Dayjs, Dayjs?]).length < 2) return true;
+        if (range && (lastValue as [Dayjs, Dayjs?]).length === 1) return false;
 
         const {startPanel, endPanel} = instance.panel;
         if (startPanel.value === PanelTypes.Date && endPanel.value === PanelTypes.Date) {

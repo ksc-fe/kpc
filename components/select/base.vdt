@@ -17,7 +17,7 @@ const {
     className, container,
     inline, style, width, show,
     position, flat, nowrap,
-    draggable,
+    draggable, range,
 } = this.get();
 const { k } = this.config;
 
@@ -95,6 +95,7 @@ const filterInput = <Input v-if={filterable}
                                 readonly={!show}
                                 waveDisabled={true}
                                 flat={flat}
+                                ev-click={$props.onClick}
                             />
                             <div class={`${k}-select-placeholder c-ellipsis`}
                                 v-else-if={!filterable && !hasValue}
