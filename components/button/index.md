@@ -35,6 +35,7 @@ sidebar: doc
 | fluid | 是否宽度100% | `boolean` | `false` |
 | seperate | 是否展示间隔，此属性为错别字，将会在下个版本被删除，请使用正确的属性 `separate`，若两个属性同时使用，则会优先使用`separate`属性 | `boolean` | `false` |
 | separate | 是否展示间隔 | `boolean` | `false` |
+| btnWidth | 指定按钮组每个按钮的固定宽度，默认根据内容撑开 | `number` &#124; `string` | `undefined` |
 
 # 方法
 
