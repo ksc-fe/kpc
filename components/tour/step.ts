@@ -8,6 +8,8 @@ export interface TourStepProps {
     content?: Children;
     target?: string | HTMLElement;
     position?: string | any;
+    nextText?: string;
+    prevText?: string;
 }
 
 export interface TourStepEvents { }
@@ -23,10 +25,14 @@ const typeDefs: Required<TypeDefs<TourStepProps>> = {
     content: [String, VNode, Array],
     target: [String, Object],
     position: [String, Object],
+    nextText: String,
+    prevText: String,
 };
 
 const defaults = (): Partial<TourStepProps> => ({
     position: 'bottom',
+    nextText: '下一步',
+    prevText: '上一步',
 });
 
 export class TourStep extends Component<TourStepProps, TourStepEvents, TourStepBlocks> {

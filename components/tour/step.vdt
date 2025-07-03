@@ -8,7 +8,9 @@ const {
     title,
     content,
     className,
-    children
+    children,
+    nextText,
+    prevText
 } = this.get();
 
 const { k } = this.config;
@@ -19,7 +21,7 @@ const classNameObj = {
 };
 
 <TourContext.Consumer>
-    {({value, total, nextText, prevText, doneText, onPrev, onNext, onFinish, closable}) => {
+    {({value, total, doneText, onPrev, onNext, onFinish, closable}) => {
         const isFirst = value === 0;
         const isLast = value === total - 1;
         const showHeader = !!title;
@@ -39,7 +41,6 @@ const classNameObj = {
                 
                 {/* 内容区域 */}
                 <div class={`${k}-tour-step-body`}>
-                    <!-- <b:content>{content}</b:content> -->
                     { children || content}
                 </div>
                 

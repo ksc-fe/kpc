@@ -1,7 +1,9 @@
+import { useInstance } from "intact";
 import { useDocumentClick } from "../../hooks/useDocumentClick";
 import type {Tour} from './tour';
 
-export function useMaskClosable(tour: Tour) {
+export function useMaskClosable() {
+    const tour = useInstance() as Tour;
     const [addDocumentClick, removeDocumentClick] = useDocumentClick(tour.tourRef, (e) => {
         const maskClosable = tour.get('maskClosable');
         if (maskClosable) {

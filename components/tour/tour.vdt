@@ -2,10 +2,11 @@ import {makeStyles} from './styles';
 import {TourStep} from './step';
 import {TourContext} from './tour';
 import {getRestProps, stopPropagation} from '../utils';
+import {mapChildren, isComponentVNode} from '../utils';
 
 const { className, data, children, value, hoverable,
     showArrow, theme, visible, maskClosable,
-    nextText, prevText, doneText, closable,
+    doneText, closable,
 } = this.get();
 const { k } = this.config;
 
@@ -13,22 +14,17 @@ const currentValue = value !== undefined ? value : 0;
 const {arrowType, arrowRef} = this.arrow;
 const {highlightRef} = this.highlight;
 const {prev, next, finish} = this.navigation;
-const {getTotalSteps, getCurrentStepChild} = this.steps;
+const {getTotalSteps} = this.steps;
 
 const contextValue = {
     value: value || 0,
     total: getTotalSteps(),
-    nextText: nextText,
-    prevText: prevText,
     doneText: doneText,
     closable: closable,
     onPrev: prev,
     onNext: next,
     onFinish: finish
 }
-
-// 使用useSteps中的方法获取当前步骤组件
-const currentStepChild = getCurrentStepChild();
 
 const classNameObj = {
     [`${k}-tour`]: true,
@@ -55,7 +51,24 @@ const classNameObj = {
             ref={this.tourRef}
             ev-click={stopPropagation}
         >
-            {currentStepChild}
+            <template v-if={!children}>
+                <TourStep 
+                    v-for={data} 
+                    v-if={$key === currentValue}
+                    key={$key}
+                    {...$value}
+                />
+            </template>
+            <template v-else>
+                {mapChildren(children, (vNode, index) => {
+                    if (isComponentVNode(vNode, TourStep)) {
+                        if (index === currentValue) {
+                            return vNode;
+                        }
+                    }
+                    return null;
+                })}
+            </template>
             
             {/* 箭头 */}
             <i v-if={showArrow && arrowType.value}

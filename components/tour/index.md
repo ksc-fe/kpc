@@ -17,8 +17,6 @@ sidebar: doc
 | beforeChange | 步骤切换前的回调函数，返回false可阻止切换 | `(current: number) => boolean \| Promise<boolean>` | `undefined` |
 | maskClosable | 点击遮罩层是否可关闭 | `boolean` | `false` |
 | closable | 是否展示关闭图标 | `boolean` | `true` |
-| nextText | 下一步按钮文本 | `string` | `"下一步"` |
-| prevText | 上一步按钮文本 | `string` | `"上一步"` |
 | doneText | 完成按钮文本 | `string` | `"完成"` |
 
 ## TourStep
@@ -28,6 +26,8 @@ sidebar: doc
 | target | 目标元素，可以是CSS选择器或DOM元素 | `string \| HTMLElement` | `undefined` |
 | title | 步骤标题 | `string \| VNode` | `undefined` |
 | content | 步骤内容 | `string \| VNode` | `undefined` |
+| nextText | 下一步按钮文本 | `string` | `"下一步"` |
+| prevText | 上一步按钮文本 | `string` | `"上一步"` |
 | position | 弹出位置，可选值：`top`、`right`、`bottom`、`left` | `string` | `"bottom"` |
 
 # 事件
@@ -45,5 +45,4 @@ sidebar: doc
 | 名称 | 说明 |
 | --- | --- |
 | title | 自定义标题内容 |
-| content | 自定义步骤内容 |
 | footer | 自定义底部内容 |

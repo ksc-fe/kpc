@@ -16,7 +16,7 @@ const defaults = {
     },
     fontSize: {
         title: '16px',
-        indicator: '14px',
+        content: '12px',
     },
     border: '1px solid var(--kui-color-border)',
     arrow: {
@@ -166,6 +166,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
 
         .${k}-tour-step-body {
+            font-size: ${tour.fontSize.content};
             padding: 16px;
             color: #595959;
         }

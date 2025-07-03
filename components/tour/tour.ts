@@ -29,8 +29,6 @@ export interface TourProps {
     beforeChange?: (current: number) => boolean | Promise<boolean>;
     maskClosable?: boolean;
     closable?: boolean;
-    nextText?: string;
-    prevText?: string;
     doneText?: string;
     showArrow?: boolean;
     visible?: boolean;
@@ -50,8 +48,6 @@ export interface TourBlocks {
 export interface TourContextValue {
     value: number;
     total: number;
-    nextText: string;
-    prevText: string;
     doneText: string;
     closable: boolean;
     onPrev: () => void;
@@ -68,8 +64,6 @@ const typeDefs: Required<TypeDefs<TourProps>> = {
     beforeChange: Function,
     maskClosable: Boolean,
     closable: Boolean,
-    nextText: String,
-    prevText: String,
     doneText: String,
     showArrow: Boolean,
     visible: Boolean,
@@ -81,8 +75,6 @@ const defaults = (): Partial<TourProps> => ({
     data: [],
     maskClosable: true,
     closable: true,
-    nextText: '下一步',
-    prevText: '上一步',
     doneText: '完成',
     showArrow: true,
     visible: true,

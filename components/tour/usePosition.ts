@@ -1,6 +1,12 @@
-import { useInstance, RefObject, onMounted } from 'intact';
+import { useInstance, RefObject, onMounted, nextTick } from 'intact';
 import type { Tour } from './tour';
 import { Options as PositionOptions, position, Feedback } from '../position';
+
+const CENTER_POSITION_OPTIONS: PositionOptions = {
+    my: 'center center',
+    at: 'center center',
+    collision: 'none'
+};
 
 export function usePosition(
     stepRef: RefObject<HTMLDivElement>, 
@@ -59,15 +65,6 @@ export function usePosition(
         return positionConfig;
     }
 
-    // TODO 定义常量
-    function getCenterPositionOptions(): PositionOptions {
-        return {
-            my: 'center center',
-            at: 'center center',
-            collision: 'none'
-        };
-    }
-
     // update position
     function updatePosition() {
         const stepElement = stepRef.value;
@@ -75,31 +72,16 @@ export function usePosition(
 
         const targetElement = getTargetElement();
         
-        if (!targetElement) {
-            // no target, position relative to window
-            position(stepElement, {
-                ...getCenterPositionOptions(),
-                of: window,
-                using: (feedback, pos) => {
-                    instance.trigger('positioned', feedback);
-                }
-            });
-            return;
-        }
-
-        // has target, position relative to target
-        const positionOptions = getPositionOptions();
+        const positionOptions = targetElement ? getPositionOptions() : CENTER_POSITION_OPTIONS;
+        const ofElement = targetElement || window;
+        
         position(stepElement, {
             ...positionOptions,
-            of: targetElement,
+            of: ofElement,
             using: (feedback, pos) => {
                 instance.trigger('positioned', feedback);
             }
         });
-    }
-
-    function nextTick(callback: () => void) {
-        setTimeout(callback, 0);
     }
 
     return {

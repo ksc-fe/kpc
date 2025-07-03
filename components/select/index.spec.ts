@@ -238,6 +238,90 @@ describe('Select', () => {
         expect(instance.get('day')).to.eql('xxx');
     });
 
+    it('keepKeywords', async () => {
+        // 创建一个测试组件，包含keepKeywords功能
+        class KeepKeywordsDemo extends Component<{days: string[]}> {
+            static template = `
+                const {Select, Option} = this;
+                <div>
+                    <Select v-model="days" filterable multiple creatable keepKeywords>
+                        <Option value="Monday">星期一</Option>
+                        <Option value="Tuesday">星期二</Option>
+                        <Option value="Wednesday">星期三</Option>
+                    </Select>
+                </div>
+            `;
+            static defaults() {
+                return {
+                    days: [] as string[],
+                };
+            }
+            private Select = Select as any;
+            private Option = Option as any;
+        }
+
+        const [instance, element] = mount(KeepKeywordsDemo);
+        const input = element.querySelector('.k-input-inner') as HTMLInputElement;
+        
+        // 1. 输入自定义选项 "custom1"
+        input.click();
+        await wait();
+        input.value = 'custom1';
+        dispatchEvent(input, 'input');
+        await wait();
+        
+        // 验证创建的选项出现在dropdown中
+        const dropdown = getElement('.k-select-menu')!;
+        expect(dropdown.innerHTML).to.contain('custom1');
+        
+        // 2. 按回车创建并选中
+        dispatchEvent(document, 'keydown', {keyCode: 13});
+        await wait();
+        
+        // 验证选项被选中，且输入框被清空
+        expect(instance.get('days')).to.eql(['custom1']);
+        expect(input.value).to.eql(''); // keepKeywords=true时应该清空输入框
+        
+        // 3. 再次输入相同的选项 "custom1"
+        input.value = 'custom1';
+        dispatchEvent(input, 'input');
+        await wait();
+        
+        // 4. 再次按回车
+        dispatchEvent(document, 'keydown', {keyCode: 13});
+        await wait();
+        
+        // 验证选项仍然被选中（不会被取消选中），且输入框被清空
+        expect(instance.get('days')).to.eql(['custom1']); // 应该保持选中状态
+        expect(input.value).to.eql(''); // 输入框应该被清空
+        
+        // 5. 输入另一个自定义选项 "custom2"
+        input.value = 'custom2';
+        dispatchEvent(input, 'input');
+        await wait();
+        dispatchEvent(document, 'keydown', {keyCode: 13});
+        await wait();
+        
+        // 验证两个选项都被选中
+        expect(instance.get('days')).to.eql(['custom1', 'custom2']);
+        expect(input.value).to.eql('');
+        
+        // 6. 测试原有选项的正常行为
+        input.click();
+        await wait();
+        const mondayOption = dropdown.querySelector('[data-value="Monday"]') as HTMLElement;
+        if (mondayOption) {
+            mondayOption.click();
+            await wait();
+            expect(instance.get('days')).to.include('Monday');
+            
+            // 再次点击应该能取消选中（原有选项不受keepKeywords影响）
+            mondayOption.click();
+            await wait();
+            expect(instance.get('days')).to.not.include('Monday');
+        }
+    });
+
     it('Tooltip with Select', async () => {
         class Demo extends Component {
             static template = `
@@ -296,6 +380,68 @@ describe('Select', () => {
         await wait();
         expect(instance.get('days')).have.length(5);
         expect(instance.get('days')).include('Monday')
+    });
+
+    it('Searchable with multiple should show correct initial checkbox state', async () => {
+        const [instance, element] = mount(SearchableDemo);
+
+        // 验证初始值
+        expect(instance.get('days')).to.eql(['Tuesday']);
+
+        // 第一次打开dropdown，检查初始状态
+        const [, select] = element.querySelectorAll<HTMLElement>('.k-select');
+        select.click();
+        await wait();
+        
+        const dropdown = getElement('.k-select-menu')!;
+        const checkboxes = dropdown.querySelectorAll<HTMLInputElement>('.k-checkbox input[type="checkbox"]');
+        const options = dropdown.querySelectorAll<HTMLElement>('.k-select-option');
+        
+        // 找到Tuesday选项对应的checkbox
+        let tuesdayCheckbox: HTMLInputElement | null = null;
+        let tuesdayOption: HTMLElement | null = null;
+        
+        options.forEach((option, index) => {
+            if (option.textContent?.includes('星期二')) {
+                tuesdayCheckbox = checkboxes[index];
+                tuesdayOption = option;
+            }
+        });
+        
+        // 验证Tuesday的checkbox应该被选中
+        expect(tuesdayCheckbox).to.exist;
+        expect(tuesdayCheckbox!.checked).to.be.true;
+        
+        // 验证Tuesday选项应该有active样式
+        expect(tuesdayOption).to.exist;
+        expect(tuesdayOption!.className).to.include('k-active');
+        
+        // 关闭dropdown
+        const [cancel] = dropdown.querySelectorAll<HTMLElement>('.k-select-footer .k-btn');
+        cancel.click();
+        await wait();
+        
+        // 再次打开dropdown，验证状态仍然正确
+        select.click();
+        await wait();
+        
+        const dropdown2 = getElement('.k-select-menu')!;
+        const checkboxes2 = dropdown2.querySelectorAll<HTMLInputElement>('.k-checkbox input[type="checkbox"]');
+        const options2 = dropdown2.querySelectorAll<HTMLElement>('.k-select-option');
+        
+        let tuesdayCheckbox2: HTMLInputElement | null = null;
+        let tuesdayOption2: HTMLElement | null = null;
+        
+        options2.forEach((option, index) => {
+            if (option.textContent?.includes('星期二')) {
+                tuesdayCheckbox2 = checkboxes2[index];
+                tuesdayOption2 = option;
+            }
+        });
+        
+        // 验证第二次打开时状态依然正确
+        expect(tuesdayCheckbox2!.checked).to.be.true;
+        expect(tuesdayOption2!.className).to.include('k-active');
     });
 
     it('disabled option does not allow clearable and close', async () => {

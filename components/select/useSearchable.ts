@@ -47,8 +47,8 @@ export function useSearchable() {
     }
 
     select.watch('value', initCheckedKeys);
-    select.on('hide', initCheckedKeys)
-
+    select.on('hide', initCheckedKeys);
+    initCheckedKeys();
     return {checkedKeys, selectAll, unselectAll, toggleSelect, confirm};
 }
 

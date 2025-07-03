@@ -3,6 +3,20 @@ title: 更新日志
 order: 99
 sidebar: doc
 ---
+## v3.6.0
+
+1. `Add` `Datepicker` 组件`range`模式，交互方式优化 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
+2. `Add` `Datepicker` 组件`type`属性支持`quarter`季度、`week`星期的选择 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
+3. `Add` `Datepicker` 组件新增`nowrap`属性，支持多选模式下不换行展示 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
+4. `Add` `Datepicker` 组件新增`isMerge`属性，支持单行多选模式下自动展示合并日期范围 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
+5. `Add` 新增`Tour`引导式导航组件 [#1079](https://github.com/ksc-fe/kpc/issues/1079)
+6. `Add` `Select`组件新增`keepKeywords`属性，enter选中，是否继续保留搜索关键字[#1077](https://github.com/ksc-fe/kpc/issues/1077)
+7. `Fix` `Select`组件`searchable + multiple`状态下，默认值`checkbox`第一次不选中问题 [#1081](https://github.com/ksc-fe/kpc/issues/1081)
+
+### @king-design/vue-legacy
+
+1. `Fix` `Datepicker`组件`range`模式无法二次选中 [#Todo]()
+
 ## v3.5.2
 
 1. `Fix` `TreeSelect`单选时v-model绑定值数据类型被重置为数组 [#1069](https://github.com/ksc-fe/kpc/issues/1069)

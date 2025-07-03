@@ -1,61 +1,22 @@
-import {useInstance, onBeforeUnmount} from 'intact';
+import {useInstance} from 'intact';
 import type {Tour} from './tour';
+import {useFixBody as useFixBodyHook} from '../../hooks/useFixBody';
 
 export function useFixBody() {
     const instance = useInstance() as Tour;
-    let originalStyle: string | null = null;
-    let fixedBody = false;
+    
+    const fixBodyHook = useFixBodyHook();
 
     instance.watch('visible', (visible) => {
         if (visible) {
-            onOpen();
+            fixBodyHook.onOpen();
         } else {
-            onClosed();
-        }
-    });
-    
-    onBeforeUnmount(() => {
-        if (fixedBody) {
-            onClosed();
+            fixBodyHook.onClose();
         }
     });
 
-    function onOpen() {
-        if (fixedBody) return;
-        
-        const body = document.body;
-        originalStyle = body.getAttribute('style');
-        const bodyStyle = body.style;
-        
-        // save scroll position
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        bodyStyle.overflow = 'hidden';
-        bodyStyle.position = 'fixed';
-        bodyStyle.top = `-${scrollTop}px`;
-        bodyStyle.width = '100%';
-        
-        fixedBody = true;
-    }
-
-    function onClosed() {
-        if (!fixedBody) return;
-        
-        const body = document.body;
-        const scrollTop = Math.abs(parseInt(body.style.top) || 0);
-        
-        if (originalStyle) {
-            body.setAttribute('style', originalStyle);
-        } else {
-            body.removeAttribute('style');
-        }
-        
-        // restore scroll position
-        window.scrollTo(0, scrollTop);
-        
-        fixedBody = false;
-        originalStyle = null;
-    }
-
-    return {onOpen, onClosed};
-} 
+    return {
+        onOpen: fixBodyHook.onOpen,
+        onClosed: fixBodyHook.onClose
+    };
+}

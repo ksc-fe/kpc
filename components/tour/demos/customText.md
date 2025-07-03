@@ -1,32 +1,33 @@
 ---
 title: 自定义按钮文本
-order: 4
+order: 3
 ---
+
+每个步骤可以单独设置按钮文本，实现更灵活的用户体验。
 
 ```vdt
 import {Tour, Button} from 'kpc';
 
 <div>
     <div class="example-container">
-        <Button id="customText1">第一步</Button>
-        <Button id="customText2" style="margin-left: 20px;">第二步</Button>
-        <Button id="customText3" style="margin-left: 20px;">第三步</Button>
+        <Button id="welcome-btn">欢迎页面</Button>
+        <Button id="feature-btn" style="margin-left: 20px;">功能介绍</Button>
+        <Button id="finish-btn" style="margin-left: 20px;">完成设置</Button>
     </div>
-    
     <Tour
         v-model="currentStep"
         visible={this.get('showTour')}
         data={this.get('tourData')} 
-        nextText={this.get('nextText')} 
-        prevText={this.get('prevText')} 
-        doneText={this.get('doneText')} 
-        ev-finish={this.finishTour}
+        doneText="完成"
+        ev-finish={this.close}
     />
-    
     <div style="margin-top: 20px;">
-        <Button ev-click={this.startTour} style="margin-left: 10px;">
-            启动引导
+        <Button type="primary" ev-click={this.startTour}>
+            开始自定义按钮引导
         </Button>
+        <span style="margin-left: 10px;">
+            当前步骤: {this.get('currentStep') >= 0 ? this.get('currentStep') + 1 : '未启动'}
+        </span>
     </div>
 </div>
 ```
@@ -40,27 +41,28 @@ export default class extends Component {
         return {
             currentStep: 0,
             showTour: false,
-            nextText: '前进',
-            prevText: '返回',
-            doneText: '完成设置',
             tourData: [
                 {
-                    target: '#customText1',
-                    title: '自定义按钮文本',
-                    content: '您可以看到底部的按钮已经被自定义了',
-                    position: 'bottom'
+                    target: '#welcome-btn',
+                    title: '欢迎使用！',
+                    content: '欢迎来到我们的应用，让我们开始引导之旅吧！',
+                    position: 'bottom',
+                    nextText: '开始探索',
                 },
                 {
-                    target: '#customText2',
-                    title: '支持更改文本',
-                    content: '可以根据不同的语言环境定制按钮文本',
-                    position: 'bottom'
+                    target: '#feature-btn',
+                    title: '功能介绍',
+                    content: '这里是主要功能区域，您可以在这里进行各种操作。',
+                    position: 'bottom',
+                    nextText: '前进',
+                    prevText: '回到开始',
                 },
                 {
-                    target: '#customText3',
-                    title: '最后一步',
-                    content: '完成按钮也可以自定义',
-                    position: 'bottom'
+                    target: '#finish-btn',
+                    title: '设置完成',
+                    content: '恭喜！您已经完成了所有设置，现在可以开始使用了。',
+                    position: 'top',
+                    prevText: '返回上一步',
                 }
             ]
         };
@@ -73,12 +75,20 @@ export default class extends Component {
             currentStep: 0
         });
     }
-    
+
     @bind
-    finishTour() {
+    close() {
         this.set({
             showTour: false
         });
     }
 }
+```
+
+```styl
+.example-container
+    padding: 20px
+    border: 1px dashed #ddd
+    border-radius: 4px
+    margin-bottom: 20px
 ``` 
