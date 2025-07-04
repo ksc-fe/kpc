@@ -41,10 +41,13 @@ export function useMonths(
     function onClick(date: Dayjs) {
         showDate.set(date);
         const datepickerType = instance.datepicker.get('type');
-        if (datepickerType !== 'month' && datepickerType !== 'year') {
-            instance.type.set('date');
-        } else {
+        
+        if (datepickerType === 'month' || datepickerType === 'year') {
             instance.triggerChange(date);
+        } else if (datepickerType === 'week') {
+            instance.type.set('week');
+        } else {
+            instance.type.set('date');
         }
     }
 

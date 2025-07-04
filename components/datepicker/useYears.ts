@@ -55,10 +55,14 @@ export function useYears(
 
     function onClick(date: Dayjs) {
         showDate.set(date);
-        if (instance.datepicker.get('type') !== 'year') {
-            instance.type.set('month');
-        } else {
+        const datepickerType = instance.datepicker.get('type');
+        
+        if (datepickerType === 'year') {
             instance.triggerChange(date);
+        } else if (datepickerType === 'quarter') {
+            instance.type.set('quarter');
+        } else {
+            instance.type.set('month');
         }
     }
 

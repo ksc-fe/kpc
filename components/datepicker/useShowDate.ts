@@ -90,47 +90,28 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
     }
 
     function getDateLabel() {
-        const year = showDate.value.get('year');
-        const month = showDate.value.get('month') + 1;
-
-        const map: { [key: string]: string } = {
-            'MM': _$(`${month}月`),                // 月标签
-            'YYYY': _$(`{n}年`, {n: year}),       // 年标签
-            'YYYY MM': _$(`{n}年{y}月`, {n: year, y: month})  // 年月组合标签
+        const map = {
+            MM: _$(`${showDate.value.get('month') + 1}月`),
+            YYYY: _$(`{n}年`, {n: showDate.value.get('year')}),
         };
-
-        let format;
-        switch (type) {
-            case 'week':
-                format = ['YYYY MM'];  // week 类型显示年月组合
-                break;
-            case 'quarter':
-                format = ['YYYY'];     // quarter 类型仅显示年
-                break;
-            default:
-                let yearMonthFormat = _$('yearMonthFormat');
-                if (yearMonthFormat === 'yearMonthFormat') {
-                    yearMonthFormat = 'YYYY MM';  // 默认格式
-                }
-                format = yearMonthFormat.split(' ');  // 其他类型按配置拆分
-                break;
+        
+        let yearMonthFormat = _$('yearMonthFormat');
+        if (yearMonthFormat === 'yearMonthFormat') {
+            yearMonthFormat = 'YYYY MM';
         }
+        
+        // quarter类型只显示年份
+        if (instance.get('type') === 'quarter') {
+            yearMonthFormat = 'YYYY';
+        }
+        
+        const format = yearMonthFormat.split(' ') as (keyof typeof map)[];
 
-         // 根据 type 动态调整显示的格式
-         return format.map(item => ({
-            value: map[item],  // 根据 format 项目生成标签
-            onClick: (e: IgnoreClickEvent) => {
+        return format.map(item => ({
+            value: map[item],
+            onClick(e: IgnoreClickEvent) {
                 e._ignore = true;
-                // 根据点击的项设置不同的 type
-                if (item === 'YYYY MM') {
-                    instance.type.set('week');      // 点击年月组合，保持 week
-                } else if (item === 'YYYY') {
-                    instance.type.set(type === 'quarter' ? 'quarter' : 'year');  // 根据当前 type 决定
-                } else if (item === 'MM') {
-                    instance.type.set('month');     // 点击月，切换到 month
-                } else {
-                    instance.type.set('date');      // 默认切换到 date
-                }
+                instance.type.set(item === 'YYYY' ? 'year' : 'month');
             }
         }));
     }
