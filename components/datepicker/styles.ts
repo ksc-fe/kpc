@@ -304,22 +304,19 @@ export const makeTimeStyles = cache(function makeTimeStyles(k: string) {
 });
 
 export const makeDatePickRangeStyles = cache(function makeTimeStyles(k: string, activePositionValue: string, display: boolean, charLength: number = 10, startTextLength: number = 10) {
-    const displayType = display ? 'block' : 'none';
     const charWidthPx = 8;
-    const highlightWidthPx = charLength * charWidthPx;
-    
-    // 计算结束文本的起始位置 - 紧接着开始文本
-    const endTextStartPos = startTextLength * charWidthPx;
+    const highlightWidthPx = charLength * charWidthPx + charWidthPx;
     
     return css`
-        &:hover:before, &:focus:before{
+        &:focus-within:before,
+        &.${k}-dropdown-open:before{
             content: '';
-            display: ${displayType};
-            width: ${highlightWidthPx}px;
+            display: ${display ? 'block' : 'none'};
+            width: ${highlightWidthPx - charWidthPx}px;
             height: 1px;
             position: absolute;
             background-color: ${datepicker.item.active.bgColor};
-            left: ${activePositionValue === 'start' ? '0' : endTextStartPos + 'px'};
+            left: ${activePositionValue === 'start' ? '0' : highlightWidthPx + 'px'};
             bottom: 0;
         }   
     `;

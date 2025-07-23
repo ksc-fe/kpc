@@ -71,15 +71,14 @@ export class Datepicker<
     public disabled = useDisabled(this.formats);
     public panel = usePanel();
     public focusDate = useFocusDate();
-    public value = useValue(this.formats, this.disabled, this.panel);
     public activePosition = usePosition();
+    public value = useValue(this.formats, this.disabled, this.panel, this.activePosition);
     public mergeRange = useMergeRange(this.formats);
     
     init() {
         super.init();
         provide(DATEPICKER, this);
         useKeyboards(this.panel.startRef, this.focusDate.focusDate);
-        this.activePosition.setupEventListeners();
     }
 
     protected getPlaceholder() {

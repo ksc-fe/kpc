@@ -11,6 +11,7 @@ import dayjs, {Dayjs} from 'dayjs';
 import {Datepicker} from './index';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
+import type {usePosition} from './usePosition';
 import {last} from '../utils';
 import { endTime } from './helpers';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
@@ -19,8 +20,11 @@ export function useValue(
     formats: ReturnType<typeof useFormats>,
     disabled: ReturnType<typeof useDisabled>,
     panel: ReturnType<typeof usePanel>,
+    activePosition: ReturnType<typeof usePosition>
 ) {
     const instance = useInstance() as Datepicker;
+
+    const position = activePosition.position;
 
     const {setValue, value, ...rest} = useValueBase(
         formats,
@@ -51,71 +55,105 @@ export function useValue(
 
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
-        const activePosition = instance.activePosition.position.value;
+        const activePosition = position.value;
+        
         let _value: StateValueItem;
+        
         if (range) {
-            const oldValue = last(value.value as StateValueRange[]);
-            if (!oldValue || oldValue.length === 2) {
-                /**
-                 * if we select the first value or re-select the value
-                 * no matter what the flag is, we should set flag to start panel
-                 * #877
-                 */
-                flag = PanelFlags.Start;
-                if((type === 'datetime' || type === 'date') && oldValue?.length === 2) {  
-                    // Use activePosition instead of Coordinate  
-                    _value = activePosition === 'end' ?   
-                        [oldValue[0], fixDatetimeWithMinDate(v)] :  multiple ? 
-                        [fixDatetimeWithMinDate(v)] : 
-                        [fixDatetimeWithMinDate(v), oldValue[1]]; 
-                } else {  
-                    _value = [fixDatetimeWithMinDate(v)];  
-                }
-            } else {
-                if (type === 'datetime') {
-                    if (oldValue.length === 1) {
-                        // 如果只有开始日期，根据activePosition决定是替换开始日期还是设置结束日期
-                        _value = activePosition === 'end' ?
-                            [oldValue[0], fixDatetimeWithMaxDate(v)] :
-                            [fixDatetimeWithMaxDate(v)];
-                    } else {
-                        // oldValue.length === 2的情况
-                        _value = activePosition === 'end' ?
-                            [oldValue[0], fixDatetimeWithMaxDate(v)] : multiple ?
-                            [fixDatetimeWithMaxDate(v)] :
-                            [fixDatetimeWithMaxDate(v), oldValue[1]];
-                    }
-                } else {
-                    _value = [oldValue[0], fixDatetimeWithMaxDate(v)];
-                }
-                (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);  
-            }
-            instance.trigger('selecting', _value);
+            _value = handleRangeSelection(v, flag, type!, multiple, activePosition) as StateValueItem;
+            instance.trigger('selecting', _value as StateValueRange, false);
         } else {
-            _value = fixDatetimeWithMinDate(v);
+            _value = handleSingleSelection(v, type!);
+        }
+        setValue(_value, false);
+        handlePanelTransition(type!, range, multiple, _value, flag, v);
+    }
+
+    function handleRangeSelection(
+        v: Dayjs, 
+        flag: PanelFlags, 
+        type: string, 
+        multiple: boolean | undefined, 
+        activePosition: string
+    ) {
+        const oldValue = last(value.value as StateValueRange[]);
+        
+        // 首次选择或重新选择（已有完整范围）
+        if (!oldValue || oldValue.length === 2) {
+            return handleFirstOrReselection(v, flag, type, multiple, activePosition, oldValue);
         }
 
-        setValue(_value, false);
+        // 选择第二个日期（已有一个日期）
+        return handleSecondSelection(v, oldValue);
+    }
 
-        if (type === 'datetime') {
-            if (range) {
-                // only change to time panel after selected start and end date
-                if ((_value as StateValueRange).length === 2) {
-                    panel.changePanel(PanelTypes.Time, PanelFlags.Start);
-                    panel.changePanel(PanelTypes.Time, PanelFlags.End);
-                }
+    function handleFirstOrReselection(
+        v: Dayjs,
+        flag: PanelFlags,
+        type: string,
+        multiple: boolean | undefined,
+        activePosition: string,
+        oldValue: StateValueRange | undefined
+    ) {
+        flag = PanelFlags.Start; // 重置为开始面板 #877
+        if(!oldValue) {
+            return [fixDatetimeWithMinDate(v)];
+        }
+        if ((type === 'datetime' || type === 'date')) {
+            if (activePosition === 'end') {
+                return [oldValue[0], fixDatetimeWithMinDate(v)];
+            } else if (multiple) {
+                return [fixDatetimeWithMinDate(v)];
             } else {
+                return [fixDatetimeWithMinDate(v), oldValue[1]];
+            }
+        } else {
+            return [fixDatetimeWithMinDate(v)];
+        }
+        
+    }
+
+    function handleSecondSelection(
+        v: Dayjs,
+        oldValue: StateValueRange
+    ) {
+        let result = [oldValue[0], fixDatetimeWithMaxDate(v)];
+        // 确保日期顺序正确
+        result.sort((a, b) => a!.isAfter(b) ? 1 : -1);
+        return result;
+    }
+
+    function handleSingleSelection(v: Dayjs, type: string) {
+        if (type === 'week') {
+            return v.startOf('week');
+        } else if (type === 'quarter') {
+            return v.startOf('quarter');
+        }
+        return fixDatetimeWithMinDate(v);
+    }
+
+    function handlePanelTransition(
+        type: string,
+        range: boolean | undefined,
+        multiple: boolean | undefined,
+        _value: StateValueItem,
+        flag: PanelFlags,
+        v: Dayjs
+    ) {
+        if (type === 'datetime') {
+            if (range && (_value as StateValueRange).length === 2) {
+                // 范围选择完成后切换到时间面板
+                panel.changePanel(PanelTypes.Time, PanelFlags.Start);
+                panel.changePanel(PanelTypes.Time, PanelFlags.End);
+            } else if (!range) {
                 panel.changePanel(PanelTypes.Time, flag);
             }
-        }  else if(type === 'week') {
-            _value = v.startOf('week')
-            setValue(_value, false);
-            instance.hide();
-        } else if(type === 'quarter') {
-            _value = v.startOf('quarter');
-            setValue(_value, false);
+        } else if (type === 'week' || type === 'quarter') {
+            // 周/季度选择后直接隐藏
+            setValue(type === 'week' ? v.startOf('week') : v.startOf('quarter'), false);
             instance.hide();
         } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
+            // 非多选且选择完成时隐藏
             instance.hide();
         }
     }

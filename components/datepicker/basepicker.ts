@@ -44,8 +44,7 @@ export interface BasePickerProps<
 }
 
 export interface BasePickerEvents extends BaseSelectEvents {
-    selecting: [StateValueRange],
-    togglePosition: []
+    selecting: [StateValueRange, boolean],
 }
 
 export interface BasePickerBlocks<
@@ -75,7 +74,6 @@ const defaults = (): Partial<BasePickerProps<any>> => ({
 const events: Events<BasePickerEvents> = {
     ...BaseSelect.events,
     selecting: true,
-    togglePosition: true,
 };
 
 export abstract class BasePicker<
@@ -135,23 +133,11 @@ export function useValue(
     let dayjsValue: DayjsValue = [];
 
     instance.watch('value', (newValue, oldValue) => {
-        
         if (isEqualArray(newValue, oldValue)) return;
-        
-        // 检查是否与当前 dayjsValue 对应的字符串相同，避免循环
-        const currentValueStr = convertToValueString(dayjsValue);
-        if (newValue === currentValueStr) {
-            return;
-        }
-        
-        // 只执行一次转换和更新逻辑
-        const _value = convertToDayjs(newValue);
-        
-        dayjsValue = _value;
-        updateStateValue(_value, value);
+        dayjsValue = convertToDayjs(newValue);
+        updateStateValue(dayjsValue, value);
+        // should update keywords
         instance.resetKeywords(instance.input.keywords);
-        
-
     });
 
     watchState(instance.input.keywords, v => {
@@ -185,7 +171,6 @@ export function useValue(
 
     function convertToDayjs(v: BasePickerProps<Value>['value']): DayjsValue {
         if (!v || Array.isArray(v) && !v.length) return [];
-
         const {multiple} = instance.get();
         if (!multiple) {
             v = [v] as any;
@@ -282,43 +267,28 @@ export function useValue(
 
     function updateValue() {
         const _value = value.value as DayjsValue;
-        
-        const valueStr = convertToValueString(_value);
-        
-        // 检查是否需要更新，避免循环调用
-        if (instance.get('value') === valueStr) {
-            return;
-        }
-        
-        // 在设置 value 之前先更新 dayjsValue
-        dayjsValue = _value;
+        const valueStr = convertToValueString(_value); 
         instance.set('value', valueStr);
-        
         instance.resetKeywords(instance.input.keywords);
-
     }
 
     function onConfirm() {
-        const lastValue = last(instance.value.value.value);
+        const lastValue = last(value.value);
         const {multiple, range} = instance.get();
-        if (!multiple) {
-        
-            if (range) {
-                // 范围选择：需要开始和结束时间都选择完才关闭
-                if((lastValue as [Dayjs, Dayjs?]).length === 2) {
-                    instance.hide(); 
-                } 
-                instance.trigger('togglePosition');
-            } else {
-                // 单选：选择完时间就关闭
-                if (lastValue) {
-                    instance.hide();
-                } 
-            }
 
+        if (!multiple && !range && lastValue) {  
+            instance.hide();
         } else {
             unique();
             panel.reset();
+        }
+        if (range) {
+            if((lastValue as StateValueRange).length === 2) {
+                instance.hide();
+                updateValue(); 
+            } 
+            instance.trigger('selecting', lastValue as StateValueRange, true)
+            return 
         }
         updateValue();
     }
@@ -362,7 +332,7 @@ export function useValue(
         if (range) {
             _value = (values as DayjsValueRange[])[lastIndex].slice() as DayjsValueRange;
             _value[flag] = date;
-            instance.trigger('selecting', _value);
+            instance.trigger('selecting', _value, false);
         }
 
         values[lastIndex] = _value;

@@ -24,6 +24,9 @@ import {Datepicker} from 'kpc';
     <Datepicker multiple range v-model="dateRange" />
     You selected: {JSON.stringify(this.get('dateRange'))}
     <br /><br />
+    <Datepicker multiple range type="datetime" v-model="datetimeRange" />
+    You selected: {JSON.stringify(this.get('datetimeRange'))}
+    <br /><br />
 </div>
 ```
 
@@ -34,6 +37,7 @@ interface Props {
     year?: string[]
     month?: string[]
     dateRange?: [string, string][]
+    datetimeRange?: [string, string][]
 }
 
 export default class extends Component<Props> {
@@ -45,6 +49,7 @@ export default class extends Component<Props> {
             year: [],
             month: [],
             dateRange: [],
+            datetimeRange: [],
         } as Props;
     }
 }

@@ -33,7 +33,7 @@ const classNameObj = {
 };
 const classDatePickerObj = {
     [`${k}-datepicker`]: true,
-    [makeDatePickRangeStyles(k, position.value, positionDisplay, charLength.value, startTextLength.value)]: true,
+    [makeDatePickRangeStyles(k, position.value, positionDisplay, charLength.value)]: true,
 }
 const {isDisabledTime, isDisabledConfirm} = this.disabled;
 const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel;
