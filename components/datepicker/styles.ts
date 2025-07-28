@@ -3,6 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 import { cache } from '../utils';
+import { Position } from './useHighlight';
 
 const defaults = {
     width: `300px`,
@@ -303,20 +304,20 @@ export const makeTimeStyles = cache(function makeTimeStyles(k: string) {
     `;
 });
 
-export const makeDatePickRangeStyles = cache(function makeTimeStyles(k: string, activePositionValue: string, display: boolean, charLength: number = 10, startTextLength: number = 10) {
+export const makeHighlightStyles = cache(function makeTimeStyles(k: string, position: Position, charLength: number = 10) {
     const charWidthPx = 8;
     const highlightWidthPx = charLength * charWidthPx + charWidthPx;
     
     return css`
         &:focus-within:before,
-        &.${k}-dropdown-open:before{
+        &.${k}-dropdown-open:before {
             content: '';
-            display: ${display ? 'block' : 'none'};
+            display: block;
             width: ${highlightWidthPx - charWidthPx}px;
             height: 1px;
             position: absolute;
             background-color: ${datepicker.item.active.bgColor};
-            left: ${activePositionValue === 'start' ? '0' : highlightWidthPx + 'px'};
+            left: ${position === Position.Start ? '0' : highlightWidthPx + 'px'};
             bottom: 0;
         }   
     `;

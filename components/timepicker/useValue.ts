@@ -2,11 +2,7 @@ import {useInstance} from 'intact';
 import type {PanelPicker} from './panelPicker';
 import type {useFormats} from './useFormats';
 import {last} from '../utils';
-import {
-    useValue as useValueBase,
-    StateValueItem,
-    DayjsValueItem
-} from '../datepicker/basepicker';
+import {useValueBase, StateValueItem, DayjsValueItem, DayjsValue} from '../datepicker/useValueBase';
 import type {useDisabled} from '../datepicker/useDisabled';
 import type {usePanel} from '../datepicker/usePanel';
 import {NOW_START, NOW_END} from './constants';

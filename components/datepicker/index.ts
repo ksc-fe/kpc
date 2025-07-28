@@ -1,29 +1,26 @@
 import {TypeDefs, provide} from 'intact';
 import template from './index.vdt';
-import {BaseSelect, BaseSelectProps} from '../select/base';
 import {DATEPICKER} from './constants';
 import dayjs, {Dayjs} from './dayjs';
 import {useValue} from './useValue';
 import {isNullOrUndefined} from 'intact-shared'
 import {_$} from '../../i18n';
 import {bind} from '../utils';
-import {State} from '../../hooks/useState';
 import {useDisabled} from './useDisabled';
 import {useFormats} from './useFormats';
 import {usePanel} from './usePanel';
 import {useFocusDate} from './useFocusDate';
 import {useKeyboards} from './useKeyboards';
 import {Shortcut} from './shortcuts';
-import {usePosition} from './usePosition';
+import {useHighlight} from './useHighlight';
 import {useMergeRange} from './useMergeRange';
-
 import {
     BasePicker,
     BasePickerProps,
     BasePickerEvents,
     BasePickerBlocks,
-    Value
 } from './basepicker';
+import {Value} from './useValueBase';
 
 export * as shortcuts from './shortcuts';
 export { dayjs };
@@ -71,8 +68,8 @@ export class Datepicker<
     public disabled = useDisabled(this.formats);
     public panel = usePanel();
     public focusDate = useFocusDate();
-    public activePosition = usePosition();
-    public value = useValue(this.formats, this.disabled, this.panel, this.activePosition);
+    public highlight = useHighlight();
+    public value = useValue(this.formats, this.disabled, this.panel, this.highlight);
     public mergeRange = useMergeRange(this.formats);
     
     init() {
@@ -89,13 +86,13 @@ export class Datepicker<
             case 'datetime':
                 return range ? _$('开始时间 ~ 结束时间') : _$('请选择日期和时间');
             case 'year':
-                return _$('请选择年份');
+                return range ? _$('开始年份 ~ 结束年份') : _$('请选择年份');
             case 'month':
-                return _$('请选择月份');
+                return range ? _$('开始月份 ~ 结束月份') : _$('请选择月份');
             case 'week':
-                return _$('请选择周');
+                return range ? _$('开始周 ~ 结束周') : _$('请选择周');
             case 'quarter':
-                return _$('请选择季度');
+                return range ? _$('开始季度 ~ 结束季度') : _$('请选择季度');
             default:
                 return range ? _$('开始日期 ~ 结束日期') : _$('请选择日期');
         }

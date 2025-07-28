@@ -2,7 +2,7 @@ import {useInstance} from 'intact';
 import {State} from '../../hooks/useState';
 import {Dayjs} from 'dayjs';
 import {isGT, isLT, isEqual} from './helpers';
-import type {StateValueItem, StateValueRange} from './basepicker';
+import type {StateValueItem, StateValueRange} from './useValueBase';
 import type {DatepickerCalendar, DatepickerCalendarProps} from './calendar';
 
 export function useStatus(focusDate: State<Dayjs | null>) {

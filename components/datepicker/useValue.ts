@@ -1,17 +1,17 @@
 import {useInstance} from 'intact';
 import {
-    useValue as useValueBase,
+    useValueBase,
     StateValueItem,
     StateValueRange,
     DayjsValueItem,
     DayjsValueRange,
     DayjsValue,
-} from './basepicker';
+} from './useValueBase';
 import dayjs, {Dayjs} from 'dayjs';
-import {Datepicker} from './index';
+import type {Datepicker} from './index';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
-import type {usePosition} from './usePosition';
+import type {useHighlight} from './useHighlight';
 import {last} from '../utils';
 import { endTime } from './helpers';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
@@ -20,7 +20,7 @@ export function useValue(
     formats: ReturnType<typeof useFormats>,
     disabled: ReturnType<typeof useDisabled>,
     panel: ReturnType<typeof usePanel>,
-    activePosition: ReturnType<typeof usePosition>
+    activePosition: ReturnType<typeof useHighlight>
 ) {
     const instance = useInstance() as Datepicker;
 

@@ -1,15 +1,27 @@
 import {useInstance} from 'intact';
-import type {Datepicker} from './';
+import type {Datepicker} from '.';
 import { useState } from '../../hooks/useState';
 import {last} from '../utils';
-import {
-    StateValueRange,
-} from './basepicker';
 
-export function usePosition() {
+export enum Position {
+    Start,
+    End
+}
+
+const NUMBER_WIDTH_PX = 6.69;
+const TILDE_WIDTH_PX = 7.01;
+const WHITESPACE_WIDTH_PX = 3.34;
+
+export function useHighlight() {
     const instance = useInstance() as Datepicker;
-    const position = useState<'start' | 'end'>('start');
-    setupEventListeners()
+    const position = useState<Position>(Position.Start);
+    const highlightWidth = useState<number>(0);
+    const highlightLeft = useState<number>(0);
+
+    instance.on('selecting', (v, isConfirm) => {
+        if (!isConfirm) return;
+        togglePosition();
+    });
     
     // 根据类型获取默认字符长度
     function getDefaultCharLength() {
@@ -26,29 +38,27 @@ export function usePosition() {
     
     const charLength = useState<number>(getDefaultCharLength()); // 当前活动部分的字符长度
     
-    function handleInputClick(e: MouseEvent) {  
+    function handleInputClick(e: MouseEvent) {
         const { range, type } = instance.get();
      
-        if (!range) {
-            return; 
-        } 
-        // 对于日期时间范围选择器，如果当前没有值，总是设置为开始时间
-        if (type === 'datetime' || type === 'date') {
-            const currentValue = instance.value.value.value;
-            const lastValue = last(currentValue);
+        if (!range) return;
+
+        console.log((e.target as HTMLInputElement).selectionStart)
+
+
+        const value = last(instance.value.value.value);
+        if (!value) {
             // 如果没有值或者当前范围值不完整（只有开始时间没有结束时间），强制设置为开始时间
-            if (!lastValue) {
-                position.set('start');
-                return;
-            }
-        } 
+            position.set(Position.Start);
+            return;
+        }
           
         // 获取事件目标元素  
         let target = e.currentTarget as HTMLElement;  
         // 如果目标元素不是 .k-select-main，则查找父元素  
-        if (!target.classList.contains(`.k-select-main`)) {  
+        if (!target.classList.contains(`.k-select-main`)) {
             target = target.closest(`.k-select-main`) as HTMLElement;  
-            if (!target) return;  
+            if (!target) return;
         }
 
         const hiddenInput = target.querySelector('input[type="hidden"]') as HTMLInputElement;
@@ -72,32 +82,15 @@ export function usePosition() {
         const offsetX = e.clientX - rect.left;  
         // 根据点击位置判断是点击了左半边（开始）还是右半边（结束）
         if (offsetX < midPoint) {
-            position.set('start');
+            position.set(Position.Start);
         } else {
-            position.set('end');
+            position.set(Position.End);
         }  
     }
 
     // 切换位置
     function togglePosition() {
-        const currentPosition = position.value;
-        if (currentPosition === 'start') {
-            position.set('end');
-        } else {
-            position.set('start');
-        }
-    }
-
-    function selecting(v: StateValueRange, isConfirm: boolean) {
-        if (!isConfirm) {
-            return 
-        }
-        togglePosition()
-    }
-
-    // 在组件初始化时设置事件监听
-    function setupEventListeners() {
-        instance.on('selecting', selecting);
+        position.set(position.value === Position.Start ? Position.End : Position.Start);
     }
 
     return {
@@ -105,6 +98,5 @@ export function usePosition() {
         charLength,
         handleInputClick,
         togglePosition,
-        setupEventListeners,
     };
 }

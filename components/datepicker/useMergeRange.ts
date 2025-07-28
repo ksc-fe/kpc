@@ -1,7 +1,7 @@
 import {useInstance} from 'intact';
 import {Dayjs} from './dayjs';
 import type {Datepicker} from './index';
-import {DayjsValueRange, DayjsValue} from './basepicker';
+import {DayjsValueRange, DayjsValue} from './useValueBase';
 import type {useFormats} from './useFormats';
 
 

@@ -2,7 +2,7 @@ import {useInstance} from 'intact';
 import dayjs, {Dayjs} from 'dayjs';
 import {isString} from 'intact-shared';
 import type {Datepicker} from './index';
-import {Value} from './basepicker';
+import type {Value} from './useValueBase';
 
 const FORMATS = {
     date: 'YYYY-MM-DD',
@@ -25,26 +25,12 @@ export function useFormats() {
         const {format, showFormat, type} = instance.get();
         return showFormat || format || FORMATS[type!];
     }
-
+    
+    /**
+     * 根据日期字符串，按照格式创建日期对象
+     */
     function createDateByValueFormat(value: Value) {
         const format = isString(value) ? getValueFormat() : undefined;
-        // Week 类型特殊处理
-        if (isString(value) && format === 'YYYY-w[周]') {
-            const match = value.match(/(\d{4})-(\d+)周/);
-            if (match) {
-                const [, year, week] = match;
-                return dayjs().year(parseInt(year)).week(parseInt(week)).startOf('week');
-            }
-        }
-        
-        // Quarter 类型特殊处理
-        if (isString(value) && format === 'YYYY-[Q]Q') {
-            const match = value.match(/(\d{4})-Q(\d+)/);
-            if (match) {
-                const [, year, quarter] = match;
-                return dayjs().year(parseInt(year)).quarter(parseInt(quarter)).startOf('quarter');
-            }
-        }
         return dayjs(value, format);
     }
 
