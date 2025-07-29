@@ -9,7 +9,9 @@ import {makePanelStyles, makeHighlightStyles} from './styles';
 import {PanelTypes, PanelFlags} from './usePanel';
 import {isFunction} from 'intact-shared';
 import {Tabs, Tab} from '../tabs';
+import {Position} from './useHighlight';
 
+const { k } = this.config;
 const {className, type, range, multiple, shortcuts} = this.get();
 const {
     value: {value},
@@ -19,12 +21,9 @@ const {
     onChangeDateForRange,
     getTimeValue,
 } = this.value;
-const { position, charLength, startTextLength, handleInputClick } = this.highlight;
-const { k } = this.config;
-const showPanel = range && position.value === 'end';
-const showHighlight = !multiple && range && (type === 'datetime' || type === 'date');
+const { position, handleInputClick, highlightWidth, highlightLeft } = this.highlight;
 // 判断是否显示双面板
-const showDualPanels = range && (type === 'date' || type === 'month' || type === 'year')
+const showDualPanels = range && type !== 'datetime';
 
 const classNameObj = {
     [`${k}-datepicker-content`]: true,
@@ -33,7 +32,7 @@ const classNameObj = {
 };
 const classDatePickerObj = {
     [`${k}-datepicker`]: true,
-    [makeHighlightStyles(k, position.value, charLength.value)]: showHighlight,
+    [makeHighlightStyles(k, highlightWidth.value, highlightLeft.value)]: range,
 }
 const {isDisabledTime, isDisabledConfirm} = this.disabled;
 const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel;
@@ -86,8 +85,8 @@ const generatePanel = (flag) => {
             </div>
             <div class={`${k}-datepicker-wrapper`}>
                 <div class={`${k}-datepicker-calendars`}>
-                    { showDualPanels ? generatePanel(PanelFlags.Start) : (showPanel ? null : generatePanel(PanelFlags.Start))}
-                    { showDualPanels ? generatePanel(PanelFlags.End) : (showPanel ? generatePanel(PanelFlags.End) : null)}
+                    {generatePanel(!showDualPanels && position.value === Position.End ? PanelFlags.End : PanelFlags.Start)}
+                    {showDualPanels ? generatePanel(PanelFlags.End) :  null}
                 </div>
                 <div v-if={type === 'datetime'} class={`${k}-datepicker-footer`}>
                     <Button type="primary" size="small"

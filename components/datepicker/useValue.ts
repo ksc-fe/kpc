@@ -15,58 +15,97 @@ import type {useHighlight} from './useHighlight';
 import {last} from '../utils';
 import { endTime } from './helpers';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
+import { Position } from './useHighlight';
+import { useState } from '../../hooks/useState';
 
 export function useValue(
     formats: ReturnType<typeof useFormats>,
     disabled: ReturnType<typeof useDisabled>,
     panel: ReturnType<typeof usePanel>,
-    activePosition: ReturnType<typeof useHighlight>
 ) {
     const instance = useInstance() as Datepicker;
 
-    const position = activePosition.position;
+    // const position = activePosition.position;
+    const position = useState<Position>(Position.Start);
 
     const {setValue, value, ...rest} = useValueBase(
         formats,
         disabled,
         panel,
+        // shouldUpdateValue
         function(v: StateValueItem) {
             const {type, range} = instance.get();
             return type !== 'datetime' && (!range || (v as StateValueRange).length === 2)
         },
+        // updateValueOnInput
         function(v: DayjsValueItem) {
             setValue(v, true); 
         },
+        // getEqualType
         function() {
             const {type} = instance.get();
             return type === 'datetime' ? 'second' : type!;
         },
+        // updateStateValue
         function(dayjsValue, value) {
-            if (
-                instance.get('multiple') && 
-                panel.getPanel(PanelFlags.Start).value === PanelTypes.Time
-            ) {
-                value.set(dayjsValue.concat([last(value.value)] as DayjsValue));
-            } else {
+            // if (
+            //     instance.get('multiple') && 
+            //     panel.getPanel(PanelFlags.Start).value === PanelTypes.Time
+            // ) {
+            //     value.set(dayjsValue.concat([last(value.value)] as DayjsValue));
+            // } else {
                 value.set(dayjsValue.slice(0));
-            }
+            // }
         }
     );
 
+    instance.on('$change:show', (show) => {
+        // if range value selection is not compeleted, reset the value on hiding
+        const { range } = instance.get();
+        const lastValue = last(value.value);
+        if (!show && range && lastValue && (lastValue as StateValueRange).length < 2) {
+            value.value.pop();
+        }
+    });
+
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
-        const activePosition = position.value;
-        
         let _value: StateValueItem;
-        
+
         if (range) {
-            _value = handleRangeSelection(v, flag, type!, multiple, activePosition) as StateValueItem;
-            instance.trigger('selecting', _value as StateValueRange, false);
+            const oldValue = last(value.value as StateValueRange[]);
+            if (!oldValue || oldValue.length === 2) {
+                /**
+                 * if we select the first value or re-select the value
+                 * no matter what the flag is, we should set flag to start panel
+                 * #877
+                 */
+                flag = PanelFlags.Start;
+                _value = [fixDatetimeWithMinDate(v)];
+            } else {
+                _value = [oldValue[0], fixDatetimeWithMaxDate(v)];
+                (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
+            }
+            instance.trigger('selecting', _value, false);
         } else {
-            _value = handleSingleSelection(v, type!);
+            _value = fixDatetimeWithMinDate(v);
         }
+
         setValue(_value, false);
-        handlePanelTransition(type!, range, multiple, _value, flag, v);
+
+        if (type === 'datetime') {
+            if (range) {
+                // only change to time panel after selected start and end date
+                if ((_value as StateValueRange).length === 2) {
+                    panel.changePanel(PanelTypes.Time, PanelFlags.Start);
+                    panel.changePanel(PanelTypes.Time, PanelFlags.End);
+                }
+            } else {
+                panel.changePanel(PanelTypes.Time, flag);
+            }
+        } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
+            instance.hide();
+        }
     }
 
     function handleRangeSelection(

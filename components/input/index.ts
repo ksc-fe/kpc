@@ -157,6 +157,10 @@ export class Input<V extends Value = Value> extends Component<InputProps<V>, Inp
         selectValue(this.inputRef.value!);
     }
 
+    getStringWidth(str: string) {
+        return this.autoWidth.getStringWidth(str);
+    }
+
     @bind
     private clear(e: MouseEvent) {
         this.set<string>('value', '');

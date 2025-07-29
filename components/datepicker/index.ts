@@ -68,8 +68,8 @@ export class Datepicker<
     public disabled = useDisabled(this.formats);
     public panel = usePanel();
     public focusDate = useFocusDate();
-    public highlight = useHighlight();
-    public value = useValue(this.formats, this.disabled, this.panel, this.highlight);
+    public value = useValue(this.formats, this.disabled, this.panel);
+    public highlight = useHighlight(this.value.value, this.formats.getShowString);
     public mergeRange = useMergeRange(this.formats);
     
     init() {
@@ -99,12 +99,12 @@ export class Datepicker<
     }
 
     protected getLabel() {
-        const {multiple} = this.get();
-        if(multiple) {
-            const results = this.value.format();
-            const dayjsValue = this.value.getDayjsValue();
-            return this.mergeRange.formatMultipleValues(dayjsValue, results as string[]);
-        }
+        // const {multiple} = this.get();
+        // if(multiple) {
+            // const results = this.value.format();
+            // const dayjsValue = this.value.getDayjsValue();
+            // return this.mergeRange.formatMultipleValues(dayjsValue, results as string[]);
+        // }
         return this.value.format();
     }
 

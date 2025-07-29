@@ -1,7 +1,7 @@
 import dayjs, {Dayjs, OpUnitType, QUnitType} from 'dayjs';
 import {strPad, range} from '../utils';
 import {_$} from '../../i18n';
-import {StateValueItem} from './basepicker';
+import {StateValueItem} from './useValueBase';
 
 export function getNowDate(isEnd?: boolean) {
     // only date without time

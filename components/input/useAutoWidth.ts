@@ -6,6 +6,7 @@ export function useAutoWidth() {
     const instance = useInstance() as Input;
     const fakeRef = createRef<HTMLDivElement>();
     const width = useState<number>(0);
+    const forceShowFake = useState(false);
 
     instance.watch('value', adjustWidth, {inited: true, presented: true});
     instance.watch('placeholder', adjustWidth, {inited: true, presented: true});
@@ -23,7 +24,24 @@ export function useAutoWidth() {
         }
     }
 
-    return {fakeRef, width};
+    function getStringWidth(str: string) {
+        forceShowFake.set(true);
+        return new Promise<number>((resolve) => {
+            nextTick(() => {
+                const fakeElem = fakeRef.value!;
+                const textNode = fakeElem.firstChild!;
+                const oldStr = textNode.nodeValue;
+                textNode.nodeValue = str;
+
+                resolve(fakeElem.offsetWidth);
+                
+                textNode.nodeValue = oldStr;
+                forceShowFake.set(false);
+            });
+        });
+    }
+
+    return {fakeRef, width, forceShowFake, getStringWidth};
 }
 
 function isVisible(elem: HTMLDivElement | null) {

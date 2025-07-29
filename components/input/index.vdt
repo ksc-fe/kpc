@@ -54,7 +54,7 @@ const {
     showIcon: showPasswordIcon,
 } = this.showPassword;
 
-const {fakeRef, width: {value: fakeWidth}} = this.autoWidth;
+const {fakeRef, width: {value: fakeWidth}, forceShowFake} = this.autoWidth;
 const height = this.autoRows;
 
 const inputValue = frozenOnInput && inputing ? originalValue : value;
@@ -142,7 +142,7 @@ if (hasInputValue) {
                         </span>
                         <b:suffix />
                     </div>
-                    <div class={`${k}-input-fake`} v-if={autoWidth}>
+                    <div class={`${k}-input-fake`} v-if={autoWidth || forceShowFake.value}>
                         <pre ref={fakeRef}>{!hasValue ? (hasInputValue || !defaultValue ? placeholder : defaultValue) : inputValue}</pre>
                     </div>
                 </div>

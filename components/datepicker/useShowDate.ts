@@ -76,16 +76,12 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
                 return date.add(isEnd ? 10 : -10, 'year');
             case 'month':
                 return date.add(isEnd ? 1 : -1, 'year');
-                break;
             case 'week':
                 return date.add(isEnd ? 1 : -1, 'week');
-                break;
             case 'quarter':
                 return date.add(isEnd ? 1 : -1, 'quarter');
-                break;
             default:
                 return date.add(isEnd ? 1 : -1, 'month');
-                break;
         }
     }
 

@@ -3,7 +3,6 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 import { cache } from '../utils';
-import { Position } from './useHighlight';
 
 const defaults = {
     width: `300px`,
@@ -82,6 +81,7 @@ setDefault(() => {
     makePanelStyles?.clearCache();
     makeCalendarStyles?.clearCache();
     makeTimeStyles?.clearCache();
+    makeHighlightStyles?.clearCache();
 });
 
 export {datepicker};
@@ -304,21 +304,23 @@ export const makeTimeStyles = cache(function makeTimeStyles(k: string) {
     `;
 });
 
-export const makeHighlightStyles = cache(function makeTimeStyles(k: string, position: Position, charLength: number = 10) {
-    const charWidthPx = 8;
-    const highlightWidthPx = charLength * charWidthPx + charWidthPx;
-    
+export const makeHighlightStyles = cache(function makeHighlightStyles(k: string, highlightWidth: number, highlightLeft: number) {
     return css`
-        &:focus-within:before,
-        &.${k}-dropdown-open:before {
-            content: '';
-            display: block;
-            width: ${highlightWidthPx - charWidthPx}px;
-            height: 1px;
-            position: absolute;
-            background-color: ${datepicker.item.active.bgColor};
-            left: ${position === Position.Start ? '0' : highlightWidthPx + 'px'};
-            bottom: 0;
+        &.${k}-dropdown-open {
+            .${k}-select-main {
+                position: relative;
+                &:before {
+                    content: '';
+                    display: block;
+                    width: ${highlightWidth ? highlightWidth + 'px' :  '50%'};
+                    height: 1px;
+                    position: absolute;
+                    background-color: ${datepicker.item.active.bgColor};
+                    left: ${highlightLeft}px;
+                    bottom: -5px;
+                    transition: left ${theme.transition.middle};
+                }
+            }
         }   
     `;
 });

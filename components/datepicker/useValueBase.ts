@@ -10,7 +10,7 @@ import type {BasePicker, BasePickerProps} from './basepicker';
 
 export type Value = string | Date | number | Dayjs;
 
-export type StateValueRange = [Dayjs, Dayjs?];
+export type StateValueRange = [Dayjs] | [Dayjs, Dayjs];
 export type StateValueItem = Dayjs | StateValueRange;
 export type StateValue = StateValueItem[]
 
@@ -105,8 +105,11 @@ export function useValueBase(
     }
 
     function format(): string | string[] {
-        const results = dayjsValue.map(value => {
+        const results = value.value.map(value => {
             if (Array.isArray(value)) {
+                if (value.length === 1) {
+                    return getShowString(value[0]) + ' ~';
+                }
                 return value.map(getShowString).join(' ~ ');
             }
             return getShowString(value);
