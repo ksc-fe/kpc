@@ -56,6 +56,7 @@ const generatePanel = (flag) => {
                 type={type === 'datetime' ? 'date' : type}
                 flag={flag}
                 ref={flag === PanelFlags.Start ? startRef : endRef}
+                highlightPosition={position.value}
             />
             <div class={`${k}-datepicker-time-wrapper`} v-if={type === 'datetime'}>
                 <div class={`${k}-datepicker-time-time`}>{timeString}</div> 
@@ -71,7 +72,7 @@ const generatePanel = (flag) => {
     );
 };
 
-<t:super class={classDatePickerObj} onClick={handleInputClick}>
+<t:super class={classDatePickerObj} onClick={handleInputClick} alwaysShowOnClick={true}>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class={`${k}-datepicker-shortcuts`} v-if={shortcuts && shortcuts.length}>

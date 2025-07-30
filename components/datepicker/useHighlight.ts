@@ -86,12 +86,11 @@ export function useHighlight(value: State<StateValue>, getShowString: (value: Da
         }
     });
     
-    function handleInputClick(e: MouseEvent) {
+    function handleInputClick() {
         const { range, type } = instance.get();
         if (!range) return;
 
-        const cursorPosition = (e.target as HTMLInputElement).selectionStart;
-        console.log(cursorPosition)
+        const cursorPosition = instance.input.inputRef.value!.getSelectionStart();
 
         const showString = getShowString(fakeDate);
         if (!cursorPosition || cursorPosition <= showString.length + 1) {

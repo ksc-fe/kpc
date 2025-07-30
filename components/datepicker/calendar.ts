@@ -12,15 +12,17 @@ import {useYears} from './useYears';
 import {useMonths} from './useMonths';
 import {useWeeks} from './useWeeks';
 import {useQuarters} from './useQuarters';
-import {StateValue} from './basepicker';
+import type {StateValue} from './useValueBase';
 import {useStatus} from './useStatus';
 import {PanelFlags} from './usePanel';
 import { useConfigContext } from '../config';
+import { Position } from './useHighlight';
 
 export interface DatepickerCalendarProps {
     value: StateValue
     type?: 'date' | 'year' | 'month' | 'week' | 'quarter'
     flag: PanelFlags
+    highlightPosition: Position
 }
 
 export interface DatepickerCalendarEvents {

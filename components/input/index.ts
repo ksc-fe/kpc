@@ -160,6 +160,10 @@ export class Input<V extends Value = Value> extends Component<InputProps<V>, Inp
     getStringWidth(str: string) {
         return this.autoWidth.getStringWidth(str);
     }
+    
+    getSelectionStart() {
+        return this.inputRef.value!.selectionStart;
+    }
 
     @bind
     private clear(e: MouseEvent) {

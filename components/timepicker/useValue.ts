@@ -35,6 +35,7 @@ export function useValue(
         }
     );
 
+    // TODO: value will show on init
     setValue(getPlaceholderDates(), false);
 
     instance.watch('value', value => {

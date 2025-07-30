@@ -40,6 +40,7 @@ export interface DropdownProps {
     collison?: Position['collision']
     of?: 'self' | 'parent' | Event
     container?: PortalProps['container']
+    alwaysShowOnClick?: boolean
 }
 
 export interface DropdownEvents {
@@ -64,6 +65,7 @@ const typeDefs: Required<TypeDefs<DropdownProps>> = {
     of: ['self', 'parent', typeof Event === 'undefined' ? undefined : Event],
     container: [String, Function],
     collison: ['none', 'fit', 'flip', 'flipfit', Array],
+    alwaysShowOnClick: Boolean,
 };
 
 const defaults = (): Partial<DropdownProps> => ({
@@ -266,15 +268,15 @@ function useDocumentClickForDropdown(dropdown: Dropdown) {
         // case 2: if right click on a trigger and its trigger type is contextmenu, ignore it
         // case 3: if click on a trigger and its trigger type is focus, do nothing 
         // case 3: if click on sub-dropdown, we should also show the parent dropdown, so ignore it
-        const trigger = dropdown.get('trigger');
+        const { trigger, alwaysShowOnClick }= dropdown.get();
         if (trigger === 'focus') return;
 
         const isHover = trigger === 'hover';
-        if (isHover || trigger === 'contextmenu') {
+        if (isHover || trigger === 'contextmenu' || alwaysShowOnClick) {
             const triggerDom = findDomFromVNode(dropdown.$lastInput!, true) as Element;
             const target = e.target as Element;
             if (containsOrEqual(triggerDom, target)) {
-                if (isHover) return;
+                if (isHover || alwaysShowOnClick) return;
                 if (!isHover && e.type === 'contextmenu') return;
             }
         }

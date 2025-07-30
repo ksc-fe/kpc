@@ -45,6 +45,9 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
     
     // ensure the start panel's date is before the end panel's
     watchState(showDate, v => {
+        // only check on dual panels
+        if (!panel.startRef.value || !panel.endRef.value) return
+
         if (flag === PanelFlags.Start) {
             const endPanel = anotherPanel.value;
             if (endPanel) {

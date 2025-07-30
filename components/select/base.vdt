@@ -66,6 +66,7 @@ const filterInput = <Input v-if={filterable}
                 container={container}
                 v-model="show"
                 position={position}
+                alwaysShowOnClick={$props.alwaysShowOnClick}
             >
                 <div {...getRestProps(this)} 
                     class={classNameObj}
@@ -74,6 +75,7 @@ const filterInput = <Input v-if={filterable}
                     ev-focusout={onFocusout}
                     style={!isNullOrUndefined(width) ? addStyle(style, {width: `${width}px`}) : style}
                     ref={triggerRef}
+                    ev-click={$props.onClick}
                 >
                     <div class={`${k}-select-prefix`} v-if={$blocks.prefix}>
                         <b:prefix />
@@ -95,7 +97,6 @@ const filterInput = <Input v-if={filterable}
                                 readonly={!show}
                                 waveDisabled={true}
                                 flat={flat}
-                                ev-click={$props.onClick}
                             />
                             <div class={`${k}-select-placeholder c-ellipsis`}
                                 v-else-if={!filterable && !hasValue}

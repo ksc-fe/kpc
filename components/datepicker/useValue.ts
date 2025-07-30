@@ -11,12 +11,9 @@ import dayjs, {Dayjs} from 'dayjs';
 import type {Datepicker} from './index';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
-import type {useHighlight} from './useHighlight';
 import {last} from '../utils';
 import { endTime } from './helpers';
 import {PanelTypes, PanelFlags, usePanel} from './usePanel';
-import { Position } from './useHighlight';
-import { useState } from '../../hooks/useState';
 
 export function useValue(
     formats: ReturnType<typeof useFormats>,
@@ -25,10 +22,7 @@ export function useValue(
 ) {
     const instance = useInstance() as Datepicker;
 
-    // const position = activePosition.position;
-    const position = useState<Position>(Position.Start);
-
-    const {setValue, value, ...rest} = useValueBase(
+    const {setValue, value, getDayjsValue, ...rest} = useValueBase(
         formats,
         disabled,
         panel,
@@ -59,13 +53,9 @@ export function useValue(
         }
     );
 
-    instance.on('$change:show', (show) => {
-        // if range value selection is not compeleted, reset the value on hiding
-        const { range } = instance.get();
-        const lastValue = last(value.value);
-        if (!show && range && lastValue && (lastValue as StateValueRange).length < 2) {
-            value.value.pop();
-        }
+    instance.on('hide', () => {
+        // reset the value after hiding
+        value.set(getDayjsValue().slice(0));
     });
 
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
@@ -108,95 +98,6 @@ export function useValue(
         }
     }
 
-    function handleRangeSelection(
-        v: Dayjs, 
-        flag: PanelFlags, 
-        type: string, 
-        multiple: boolean | undefined, 
-        activePosition: string
-    ) {
-        const oldValue = last(value.value as StateValueRange[]);
-        
-        // 首次选择或重新选择（已有完整范围）
-        if (!oldValue || oldValue.length === 2) {
-            return handleFirstOrReselection(v, flag, type, multiple, activePosition, oldValue);
-        }
-
-        // 选择第二个日期（已有一个日期）
-        return handleSecondSelection(v, oldValue);
-    }
-
-    function handleFirstOrReselection(
-        v: Dayjs,
-        flag: PanelFlags,
-        type: string,
-        multiple: boolean | undefined,
-        activePosition: string,
-        oldValue: StateValueRange | undefined
-    ) {
-        flag = PanelFlags.Start; // 重置为开始面板 #877
-        if(!oldValue) {
-            return [fixDatetimeWithMinDate(v)];
-        }
-        if ((type === 'datetime' || type === 'date')) {
-            if (activePosition === 'end') {
-                return [oldValue[0], fixDatetimeWithMinDate(v)];
-            } else if (multiple) {
-                return [fixDatetimeWithMinDate(v)];
-            } else {
-                return [fixDatetimeWithMinDate(v), oldValue[1]];
-            }
-        } else {
-            return [fixDatetimeWithMinDate(v)];
-        }
-        
-    }
-
-    function handleSecondSelection(
-        v: Dayjs,
-        oldValue: StateValueRange
-    ) {
-        let result = [oldValue[0], fixDatetimeWithMaxDate(v)];
-        // 确保日期顺序正确
-        result.sort((a, b) => a!.isAfter(b) ? 1 : -1);
-        return result;
-    }
-
-    function handleSingleSelection(v: Dayjs, type: string) {
-        if (type === 'week') {
-            return v.startOf('week');
-        } else if (type === 'quarter') {
-            return v.startOf('quarter');
-        }
-        return fixDatetimeWithMinDate(v);
-    }
-
-    function handlePanelTransition(
-        type: string,
-        range: boolean | undefined,
-        multiple: boolean | undefined,
-        _value: StateValueItem,
-        flag: PanelFlags,
-        v: Dayjs
-    ) {
-        if (type === 'datetime') {
-            if (range && (_value as StateValueRange).length === 2) {
-                // 范围选择完成后切换到时间面板
-                panel.changePanel(PanelTypes.Time, PanelFlags.Start);
-                panel.changePanel(PanelTypes.Time, PanelFlags.End);
-            } else if (!range) {
-                panel.changePanel(PanelTypes.Time, flag);
-            }
-        } else if (type === 'week' || type === 'quarter') {
-            // 周/季度选择后直接隐藏
-            setValue(type === 'week' ? v.startOf('week') : v.startOf('quarter'), false);
-            instance.hide();
-        } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
-            // 非多选且选择完成时隐藏
-            instance.hide();
-        }
-    }
-
     function fixDatetimeWithMinDate(v: Dayjs) {
         // the datetime must be greater than minDate, #406
         const minDate = disabled.minDate.value;
@@ -219,5 +120,5 @@ export function useValue(
         return v;
     }
 
-    return {value, setValue, onChangeDate, ...rest};
+    return {value, setValue, onChangeDate, getDayjsValue, ...rest};
 }
