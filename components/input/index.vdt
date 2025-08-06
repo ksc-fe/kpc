@@ -41,8 +41,7 @@ const classNameObj = {
     [`${k}-flat`]: flat,
     [`${k}-type-textarea`]: type === 'textarea',
     [`${k}-focus`]: isFocus.value,
-    [`${k}-resize-${resize}`]: type === 'textarea' && isNotAutoRows,
-    [`${k}-resize-none`]: type === 'textarea' && !isNotAutoRows,
+    [`${k}-resize-${isNotAutoRows ? resize : 'none'}`]: type === 'textarea',
     [className]: className,
     [makeStyles(k)]: true,
 }
