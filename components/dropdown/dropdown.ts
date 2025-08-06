@@ -15,7 +15,6 @@ import {bind, isTextChildren, getRestProps} from '../utils';
 import {EMPTY_OBJ, isFunction, noop} from 'intact-shared';
 import {Options, position, Feedback} from '../position';
 import {cx} from '@emotion/css';
-import {DropdownMenu} from './menu';
 import {useDocumentClick, containsOrEqual} from '../../hooks/useDocumentClick';
 import {Portal, PortalProps} from '../portal';
 import {useShowHideEvents} from '../../hooks/useShowHideEvents';

@@ -19,12 +19,15 @@ const DELIMITER_WIDTH = 14;
 
 const fakeDate = dayjs();
 
-export function useHighlight(value: State<StateValue>, getShowString: (value: Dayjs) => string) {
+export function useHighlight(
+    value: State<StateValue>,
+    getShowString: (value: Dayjs) => string,
+    keywords: State<string>,
+) {
     const instance = useInstance() as Datepicker;
     const position = useState<Position>(Position.Start);
     const highlightWidth = useState<number>(0);
     const highlightLeft = useState<number>(0);
-    const charLength = useState<number>(getDefaultCharLength(instance.get('type'))); // 当前活动部分的字符长度
 
     onMounted(() => {
         const showString = getShowString(fakeDate);
@@ -35,6 +38,11 @@ export function useHighlight(value: State<StateValue>, getShowString: (value: Da
 
     watchState(position, (position) => {
         highlightLeft.set(position === Position.Start ? 0 : highlightWidth.value + DELIMITER_WIDTH);
+    });
+
+    watchState(value, (value) => {
+        // silent update keywords to show value on changing
+        instance.resetKeywords(keywords, true);
     });
 
     // watchState(value, (value) => {
@@ -83,6 +91,12 @@ export function useHighlight(value: State<StateValue>, getShowString: (value: Da
             } else {
                 _value.push(oldValue[1])
             } 
+        } else if (oldValue.length === 1 && _value.length === 2) {
+            // reselect the first date
+            if (position.value === Position.Start) {
+                const v = _value.pop()!;
+                _value[0] = v;
+            }
         }
     });
     
@@ -107,23 +121,9 @@ export function useHighlight(value: State<StateValue>, getShowString: (value: Da
 
     return {
         position,
-        charLength,
         handleInputClick,
         togglePosition,
         highlightWidth,
         highlightLeft,
     };
-}
-
-function getDefaultCharLength(type?: string) {
-    switch (type) {
-        case 'datetime':
-            return 16; // "2025-07-10 00:00:00" 
-        default:
-            return 10; // "2025-07-09" 
-    }
-}
-
-function getStringPx(str: string) {
-
 }

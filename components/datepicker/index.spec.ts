@@ -16,12 +16,13 @@ const now = new Date();
 const year = now.getFullYear();
 const startYear = Math.floor(year / 10) * 10;
 const month = now.getMonth();
+const dateString = dayjs(now).format('YYYY-MM-DD');
 
 describe('Datepicker', () => {
-    afterEach(async () => {
-        unmount();
-        await wait(500);
-    });
+    // afterEach(async () => {
+        // unmount();
+        // await wait(500);
+    // });
 
     describe('Pick', () => {
         it('date', async () => {
@@ -35,20 +36,60 @@ describe('Datepicker', () => {
             expect(instance.get('date')).to.be.string;
         });
 
-        it('datetime', async () => {
-            const [instance, element] = mount(DatetimeDemo);
+        describe('datetime', () => {
+            it('basic', async () => {
+                const [instance, element] = mount(DatetimeDemo);
 
-            const input = element.querySelector('.k-input') as HTMLElement;
-            input.click();
-            await wait();
-            const content = getElement('.k-datepicker-content')!;
-            // change to time panel
-            (content.querySelector('.k-calendar-item') as HTMLElement).click();
-            await wait();
-            dispatchEvent(content.querySelector('.k-scroll-select-item')!, 'click');
-            (content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement).click();
+                const input = element.querySelector('.k-input') as HTMLElement;
+                input.click();
+                await wait();
+                const content = getElement('.k-datepicker-content')!;
+                // change to time panel
+                (content.querySelector('.k-calendar-item') as HTMLElement).click();
+                await wait();
+                dispatchEvent(content.querySelector('.k-scroll-select-item')!, 'click');
+                (content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement).click();
 
-            expect(instance.get<string>('datetime1').split(' ')[1]).eql('15:00:00');
+                expect(instance.get<string>('datetime1').split(' ')[1]).eql('15:00:00');
+            });
+
+            it('skip select date and select time directly', async () => {
+                const [instance, element] = mount(DatetimeDemo);
+
+                const input = element.querySelector('.k-input') as HTMLElement;
+                let content: HTMLElement;
+                async function show() {
+                    input.click();
+                    await wait();
+                    content = getElement('.k-datepicker-content')!;
+                    dispatchEvent(content.querySelector('.k-scroll-select-item')!, 'click');
+                    await wait();
+                }
+
+                await show();
+                const inputInner = input.querySelector('.k-input-inner') as HTMLInputElement;
+                expect(inputInner.getAttribute('placeholder')).eql(`${dateString} 15:00:00`);
+                expect(inputInner.value).eql('');
+                expect(instance.get('datetime1')).eql(null);
+
+                // hide to reset selected state
+                document.body.click();
+                await wait();
+                expect(inputInner.getAttribute('placeholder')).eql(`请选择日期和时间`);
+                expect(inputInner.value).eql('');
+                expect(instance.get('datetime1')).eql(null);
+
+                // show again
+                await show();
+                const confirm = content!.querySelector('.k-datepicker-footer .k-btn') as HTMLElement;
+                confirm.click();
+                await wait();
+                expect(inputInner.value).eql(`${dateString} 15:00:00`);
+                expect(instance.get('datetime1')).eql(`${dateString} 15:00:00`);
+
+                await wait(500);
+                expect(content!.style.display).eql('none');
+            });
         });
 
         it('year', async () => {
@@ -297,6 +338,11 @@ describe('Datepicker', () => {
             instance.set<string>('datetime1', '');
             expect(instance.get('datetime1')).to.eql('');
         });
+
+        it('datetime range', async () => {
+            // should reset the highlight position on reset
+            // TODO
+        });
     });
 
     describe('Multiple', () => {
@@ -446,6 +492,55 @@ describe('Datepicker', () => {
             expect(instance.get('dateRange')).have.lengthOf(1);
         });
 
+        it('datetime range', async () => {
+            const [instance, element] = mount(MultipleDemo);
+
+            const [, , , , , select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
+            dispatchEvent(select, 'click');
+            await wait();
+            const content = getElement('.k-datepicker-content')!;
+            const [calendar1, calendar2] = content.querySelectorAll('.k-datepicker-calendar-wrapper');
+            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            await wait();
+            content.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('datetimeRange')).have.lengthOf(1);
+
+            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[18].click();
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[18].click();
+            await wait();
+            content.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('datetimeRange')).have.lengthOf(2);
+
+            // selecting the same date time will do nothing
+            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            await wait();
+            content.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('datetimeRange')).have.lengthOf(2);
+
+            instance.set('datetimeRange', []);
+            await wait();
+            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            await wait();
+            content.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('datetimeRange')).have.lengthOf(1);
+
+            // select the first value in end panel
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+            await wait();
+            content.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            const values = instance.get('datetimeRange')!;
+            expect(values).have.lengthOf(2);
+            expect(values[1][1].includes('23:59:59')).to.be.true;
+        });
     });
 
     describe('Range', () => {
@@ -509,43 +604,126 @@ describe('Datepicker', () => {
 
         });
 
-        it('datetime', async () => {
-            const [instance, element] = mount(MultipleDemo);
+        describe('datetime', async () => {
+            let instance: RangeDemo;
+            let element: HTMLElement;
+            let datetime: HTMLElement;
 
-            const [, select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
-            dispatchEvent(select, 'click');
-            await wait();
-            const content = getElement('.k-datepicker-content')!;
-            dispatchEvent(content.querySelector('.k-calendar-item:nth-child(18)')!, 'click');
-            await wait();
-            dispatchEvent(content.querySelector('.k-datepicker-footer .k-btn')!, 'click');
-            await wait();
-            expect(instance.get('datetime')).have.lengthOf(1);
+            const dateString = dayjs(now).date(1).format('YYYY-MM-DD');
 
-            // select the same datetime
-            dispatchEvent(content.querySelector('.k-calendar-item:nth-child(18)')!, 'click');
-            await wait();
-            dispatchEvent(content.querySelector('.k-datepicker-footer .k-btn')!, 'click');
-            await wait();
-            expect(instance.get('datetime')).have.lengthOf(1);
+            function match(value: string | null, time: string) {
+                expect(value).to.eql(`${dateString} ${time}`);
+            }
 
-            // select different time with the same date
-            dispatchEvent(content.querySelector('.k-calendar-item:nth-child(18)')!, 'click');
-            await wait();
-            dispatchEvent(content.querySelector('.k-scroll-select-item')!, 'click');
-            await wait();
-            dispatchEvent(content.querySelector('.k-datepicker-footer .k-btn')!, 'click');
-            await wait();
-            expect(instance.get('datetime')).have.lengthOf(2);
+            async function show() {
+                datetime.click();
+                await wait();
+                const content = getElement('.k-datepicker-content')!;
+                const first = content.querySelector('.k-calendar-item:not(.k-exceed)') as HTMLElement;
+                first.click();
+                await wait();
 
-            // change to time panel, and remove the selections, then click confirm ok
-            dispatchEvent(content.querySelector('.k-calendar-item:nth-child(18)')!, 'click');
-            await wait();
-            instance.set('datetime', []);
-            await wait();
-            dispatchEvent(content.querySelector('.k-datepicker-footer .k-btn')!, 'click');
-            await wait();
-            expect(instance.get('datetime')).have.lengthOf(1);
+                return [content, first];
+            }
+
+            async function clickConfirm(content: HTMLElement) {
+                const confirm = content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement;
+                confirm.click();
+                await wait();
+
+                return confirm;
+            }
+
+            function getDateString(date: number) {
+                return dayjs(now).date(date).format('YYYY-MM-DD');
+            }
+
+            beforeEach(() => {
+                const result = mount(RangeDemo);
+                instance = result[0];
+                element = result[1];
+                datetime = element.querySelectorAll<HTMLElement>('.k-datepicker')[1];
+            });
+
+            it('basic', async () => {
+                const [content, first] = await show();
+
+                // should enable confirm button and show the first date string in input
+                const confirm = content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement;
+                const inputInner = datetime.querySelector('.k-input-inner') as HTMLInputElement;
+                expect(confirm.classList.contains('k-disabled')).to.be.false;
+                match(inputInner.getAttribute('placeholder'), '00:00:00 ~');
+                match(inputInner.value, '00:00:00 ~');
+                expect(instance.get('time')).eql(null);
+
+                // select time
+                dispatchEvent(content.querySelector('.k-scroll-select-item')!, 'click');
+                await wait();
+                match(inputInner.getAttribute('placeholder'), '15:00:00 ~');
+                match(inputInner.value, '15:00:00 ~');
+                confirm.click();
+                await wait();
+                // should disable confirm button on first click
+                expect(confirm.classList.contains('k-disabled')).to.be.true;
+
+                // select the second datetime
+                const second = first.nextElementSibling as HTMLElement;
+                second.click();
+                await wait();
+                const endDateString = dayjs(now).date(2).format('YYYY-MM-DD');
+                expect(inputInner.getAttribute('placeholder')).eql(`${dateString} 15:00:00 ~ ${endDateString} 00:00:00`);
+                expect(inputInner.value).eql(`${dateString} 15:00:00 ~ ${endDateString} 00:00:00`);
+                expect(instance.get('time')).eql(null);
+                confirm.click();
+                await wait();
+                expect(instance.get('time')).eql([`${dateString} 15:00:00`, `${endDateString} 00:00:00`]);
+            });
+
+            it('skip select date and select time for the end value directly', async () => {
+                const [content] = await show();
+
+                const confirm = await clickConfirm(content);
+                // select time
+                dispatchEvent(content.querySelector('.k-scroll-select-item')!, 'click');
+                await wait();
+                confirm.click();
+                await wait();
+                expect(instance.get('time')).eql([`${dateString} 00:00:00`, `${dateString} 15:00:00`]);
+            });
+
+            it('can change date before click confirm button', async () => {
+                const [content, first] = await show();
+                const nextFirst = first.nextElementSibling as HTMLElement;
+                nextFirst.click();
+                await wait();
+                const inputInner = datetime.querySelector('.k-input-inner') as HTMLInputElement;
+                const dateString = dayjs(now).date(2).format('YYYY-MM-DD');
+                expect(inputInner.value).to.eql(`${dateString} 00:00:00 ~`);
+                
+                const confirm = await clickConfirm(content);
+                const second = nextFirst.nextElementSibling as HTMLElement;
+                second.click();
+                await wait();
+                expect(inputInner.value).to.eql(`${dateString} 00:00:00 ~ ${getDateString(3)} 00:00:00`);
+                (second.nextElementSibling as HTMLElement).click();
+                await wait();
+                expect(inputInner.value).to.eql(`${dateString} 00:00:00 ~ ${getDateString(4)} 00:00:00`);
+
+                confirm.click();
+                await wait();
+                expect(inputInner.value).to.eql(`${dateString} 00:00:00 ~ ${getDateString(4)} 00:00:00`);
+                expect(instance.get('time')).to.eql([`${dateString} 00:00:00`, `${getDateString(4)} 00:00:00`]);
+            });
+
+            it('can select end date which is less than start date on selecting', async () => {
+                const [content, first] = await show();
+                const nextFirst = first.nextElementSibling as HTMLElement;
+                nextFirst.click();
+                await wait();
+                const confirm = await clickConfirm(content);
+                first.click();
+                await wait();
+            });
         });
 
         it('year', async () => {

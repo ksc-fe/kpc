@@ -5,10 +5,14 @@ import type {Datepicker} from './index';
 import {isNullOrUndefined} from 'intact-shared';
 import {isGT, isLT, last} from './helpers';
 import type {useFormats} from './useFormats';
-import {PanelFlags, PanelTypes} from './usePanel';
-import {Value} from './basepicker';
+import {PanelFlags} from './usePanel';
+import {Value, StateValueRange} from './useValueBase';
+import { Position } from './useHighlight';
 
-export function useDisabled({createDateByValueFormat}: ReturnType<typeof useFormats>) {
+export function useDisabled(
+    {createDateByValueFormat}: ReturnType<typeof useFormats>,
+    getHighlightPosition: () => State<Position>
+) {
     const instance = useInstance() as Datepicker;
     const maxDate = useState<Dayjs | null>(null);
     const minDate = useState<Dayjs | null>(null);
@@ -58,12 +62,18 @@ export function useDisabled({createDateByValueFormat}: ReturnType<typeof useForm
         if (!lastValue) return true;
 
         const {range} = instance.get();
-        if (range && (lastValue as [Dayjs, Dayjs?]).length === 1) return false;
-
-        const {startPanel, endPanel} = instance.panel;
-        if (startPanel.value === PanelTypes.Date && endPanel.value === PanelTypes.Date) {
-            return true;
+        if (range) {
+            const position = getHighlightPosition();
+            if (!(lastValue as StateValueRange)[position.value]) {
+                return true;
+            }
         }
+        // if (range && (lastValue as [Dayjs, Dayjs?]).length === 1) return false;
+
+        // const {startPanel, endPanel} = instance.panel;
+        // if (startPanel.value === PanelTypes.Date && endPanel.value === PanelTypes.Date) {
+        //     return true;
+        // }
 
         let start: Dayjs;
         let end: Dayjs | undefined;

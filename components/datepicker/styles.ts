@@ -86,6 +86,16 @@ setDefault(() => {
 
 export {datepicker};
 
+export const makeStyles = cache((k: string) => {
+    return css`
+        &.${k}-dropdown-open {
+            .${k}-input-inner {
+                color: ${theme.color.placeholder};
+            }
+        }
+    `;
+});
+
 export const makePanelStyles = cache(function makePanelStyles(k: string) {
     return css`
         display: flex;

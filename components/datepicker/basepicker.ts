@@ -78,20 +78,24 @@ export abstract class BasePicker<
     public abstract panel: ReturnType<typeof usePanel>
 
     @bind
-    public resetKeywords(keywords: State<string>) {
-        const {multiple, range} = this.get();
-        const dayjsValue = this.value.getDayjsValue();
-        const {getShowString} = this.formats;
-        const value = last(dayjsValue);
+    public resetKeywords(keywords: State<string>, silent: boolean = false) {
+        const {multiple} = this.get();
+        // const dayjsValue = this.value.getDayjsValue();
+        const value = last(this.value.value.value);
 
-        keywords.set(
-            multiple ?  '' : !range ?
-                value ? getShowString(value as Dayjs) : '' :
-                value ? [
-                    (value as DayjsValueRange)[0] ? getShowString((value as DayjsValueRange)[0]) : '',
-                    (value as DayjsValueRange)[1] ? getShowString((value as DayjsValueRange)[1]) : '',
-                ].join(' ~ ') : ''
-        );
+        let _keywords = '';
+        if (!multiple && value) {
+            _keywords = this.value.formatSingleValue(value); 
+        }
+
+        if (!silent) {
+            keywords.set(_keywords);
+        } else {
+            // update keywords will update value, because it is been watched in useValueBase
+            // silent in this case to update keywords to show it in input
+            (keywords as any).value = _keywords;
+            this.forceUpdate();
+        }
     }
 
     // @bind

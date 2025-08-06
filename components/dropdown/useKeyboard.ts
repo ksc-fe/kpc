@@ -20,7 +20,6 @@ import {useKeyboard} from '../../hooks/useKeyboard';
 import {useState} from '../../hooks/useState';
 import {eachChildren, isComponentVNode} from '../utils';
 import {DropdownItem} from './item';
-import {isStringOrNumber} from 'intact-shared';
 // can not import DropdownMenu from index.ts, otherwise it will cause circle reference
 // import {DropdownMenu} from './';
 import {DropdownMenu} from './menu';

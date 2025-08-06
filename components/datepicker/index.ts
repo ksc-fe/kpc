@@ -65,11 +65,11 @@ export class Datepicker<
     static defaults = defaults;
 
     public formats = useFormats();
-    public disabled = useDisabled(this.formats);
+    public disabled = useDisabled(this.formats, () => this.highlight.position);
     public panel = usePanel();
     public focusDate = useFocusDate();
-    public value = useValue(this.formats, this.disabled, this.panel);
-    public highlight = useHighlight(this.value.value, this.formats.getShowString);
+    public value = useValue(this.formats, this.disabled, this.panel, () => this.highlight.position);
+    public highlight = useHighlight(this.value.value, this.formats.getShowString, this.input.keywords);
     public mergeRange = useMergeRange(this.formats);
     
     init() {
@@ -108,14 +108,14 @@ export class Datepicker<
         return this.value.format();
     }
 
-    @bind
-    protected clear(e: MouseEvent) {
-        super.clear(e);
-        if (this.get('type') === 'datetime') {
-            // reset the state to let user re-select
-            this.panel.reset();
-        }
-    }
+    // @bind
+    // protected clear(e: MouseEvent) {
+        // super.clear(e);
+        // if (this.get('type') === 'datetime') {
+            // // reset the state to let user re-select
+            // this.panel.reset();
+        // }
+    // }
 
     @bind
     private setByShortcut(shortcut: Shortcut) {

@@ -3,7 +3,7 @@ import template from './item.vdt';
 import {bind} from '../utils';
 import {useItemKeyboard, MenuKeyboardMethods} from './useKeyboard';
 import {Dropdown, DROPDOWN} from './dropdown';
-import {DropdownMenu, DROPDOWN_MENU} from './menu';
+import {type DropdownMenu, DROPDOWN_MENU} from './menu';
 import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import { Dropdown as ExportDropdown, DropdownMenu as ExportDropdownMenu } from '.';
 import { useConfigContext } from '../config';

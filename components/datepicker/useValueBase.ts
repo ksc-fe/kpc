@@ -5,7 +5,7 @@ import {findValueIndex} from './helpers';
 import type {useFormats} from './useFormats';
 import type {useDisabled} from './useDisabled';
 import {isEqualArray, last, bind} from '../utils';
-import {PanelTypes, PanelFlags, usePanel} from './usePanel';
+import {PanelFlags, usePanel} from './usePanel';
 import type {BasePicker, BasePickerProps} from './basepicker';
 
 export type Value = string | Date | number | Dayjs;
@@ -105,20 +105,22 @@ export function useValueBase(
     }
 
     function format(): string | string[] {
-        const results = value.value.map(value => {
-            if (Array.isArray(value)) {
-                if (value.length === 1) {
-                    return getShowString(value[0]) + ' ~';
-                }
-                return value.map(getShowString).join(' ~ ');
-            }
-            return getShowString(value);
-        });
+        const results = value.value.map(formatSingleValue);
 
         if (!instance.get('multiple')) {
             return results[0];
         }
         return results;
+    }
+
+    function formatSingleValue(value: StateValueItem) {
+        if (Array.isArray(value)) {
+            if (value.length === 1) {
+                return getShowString(value[0]) + ' ~';
+            }
+            return value.map(getShowString).join(' ~ ');
+        }
+        return getShowString(value);
     }
 
     function setSingleDate(v: StateValueItem, fromInput: boolean) {
@@ -189,7 +191,7 @@ export function useValueBase(
             instance.hide();
         } else {
             unique();
-            panel.reset();
+            // panel.reset();
         }
         if (range) {
             if((lastValue as StateValueRange).length === 2) {
@@ -235,7 +237,8 @@ export function useValueBase(
     function onChangeTime(date: Dayjs, flag: PanelFlags) {
         const {range} = instance.get();
         const values = value.value.slice();
-        const lastIndex = values.length - 1;
+        // maybe we select time directly
+        const lastIndex = Math.max(values.length - 1, 0);
         let _value: StateValueItem = date;
 
         if (range) {
@@ -264,6 +267,7 @@ export function useValueBase(
     return {
         value,
         format,
+        formatSingleValue,
         onConfirm,
         onChangeTime,
         getTimeValue,
