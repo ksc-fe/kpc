@@ -79,21 +79,10 @@ export function useValue(
             } else {
                 _value = [oldValue[0], fixDatetimeWithMaxDate(v)];
             }
-            // fix on hiding
+            // fix after selection is completed, refer to the updateValue function in useValueBase
             // (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
-            // if (!oldValue || oldValue.length === 2) {
-                /**
-                 * if we select the first value or re-select the value
-                 * no matter what the flag is, we should set flag to start panel
-                 * #877
-                 */
-                // flag = PanelFlags.Start;
-                // _value = [fixDatetimeWithMinDate(v)];
-            // } else {
-                // _value = [oldValue[0], fixDatetimeWithMaxDate(v)];
-                // (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
-            // }
-            // instance.trigger('selecting', _value, false);
+
+            instance.trigger('selecting', _value, false);
         } else {
             _value = fixDatetimeWithMinDate(v);
         }
@@ -125,7 +114,8 @@ export function useValue(
     }
 
     function fixDatetimeWithMaxDate(v: Dayjs) {
-        // the tiem of end datetime should be set to 23:59:59, #878
+        // the time of end datetime should be set to 23:59:59, #878
+        // @modify: don't set to 23:59:59 in new UE
         const maxDate = disabled.maxDate.value;
         // const date = v.toDate();
 

@@ -178,6 +178,15 @@ export function useValueBase(
 
     function updateValue() {
         const _value = value.value as DayjsValue;
+        const { range } = instance.get();
+        if (range) {
+            // only fix the last value, since the others are already fixed 
+            const lastValue = last(_value) as DayjsValueRange;
+            if (lastValue) {
+                lastValue.sort((a, b) => a.isAfter(b) ? 1 : -1);
+            }
+        }
+
         const valueStr = convertToValueString(_value); 
         instance.set('value', valueStr);
         instance.resetKeywords(instance.input.keywords);

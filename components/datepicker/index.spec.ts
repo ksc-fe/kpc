@@ -338,11 +338,6 @@ describe('Datepicker', () => {
             instance.set<string>('datetime1', '');
             expect(instance.get('datetime1')).to.eql('');
         });
-
-        it('datetime range', async () => {
-            // should reset the highlight position on reset
-            // TODO
-        });
     });
 
     describe('Multiple', () => {
@@ -723,7 +718,51 @@ describe('Datepicker', () => {
                 const confirm = await clickConfirm(content);
                 first.click();
                 await wait();
+                const inputInner = datetime.querySelector('.k-input-inner') as HTMLInputElement;
+                const a = `${getDateString(2)} 00:00:00`;
+                const b = `${getDateString(1)} 00:00:00`;
+                expect(inputInner.value).to.eql(`${a} ~ ${b}`);
+                expect(instance.get('time')).to.eql(null);
+
+                confirm.click();
+                await wait();
+                expect(instance.get('time')).to.eql([b, a]);
             });
+
+            it('should reset position on clear value or set value to empty', async () => {
+                const a = `${getDateString(1)} 00:00:00`;
+                const b = `${getDateString(2)} 00:00:00`;
+                instance.set('time', [a, b]);
+                const [content, first] = await show();
+                
+                // clear
+                dispatchEvent(datetime.querySelector('.k-select-clear')!, 'click');
+                await wait();
+                expect(instance.get('time')).eql(null);
+                await selectAgain();
+
+                // set time to null
+                instance.set('time', null);
+                await selectAgain();
+
+                // set time to empty array
+                instance.set<[]>('time', []);
+                await selectAgain();
+
+                async function selectAgain() {
+                    // can select the datetime again
+                    await wait();
+                    first.click();
+                    await wait();
+                    const confirm = await clickConfirm(content);
+                    (first.nextElementSibling as HTMLElement).click();
+                    await wait();
+                    confirm.click();
+                    await wait();
+                    expect(instance.get('time')).eql([a, b]);
+                }
+            });
+
         });
 
         it('year', async () => {
