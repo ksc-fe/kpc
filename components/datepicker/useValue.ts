@@ -32,7 +32,15 @@ export function useValue(
         // shouldUpdateValue
         function(v: StateValueItem) {
             const {type, range} = instance.get();
-            return type !== 'datetime' && (!range || (v as StateValueRange).length === 2)
+            if (type === 'datetime') return false;
+            if (range) {
+                const [start, end] = v as StateValueRange;
+                if (!start || !end || end.isBefore(start)) {
+                    return false;
+                }
+            }
+
+            return true;
         },
         // updateValueOnInput
         function(v: DayjsValueItem) {
@@ -82,26 +90,29 @@ export function useValue(
             // fix after selection is completed, refer to the updateValue function in useValueBase
             // (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
 
-            instance.trigger('selecting', _value, false);
         } else {
             _value = fixDatetimeWithMinDate(v);
         }
 
         setValue(_value, false);
 
-        if (type === 'datetime') {
-            // if (range) {
-            //     // only change to time panel after selected start and end date
-            //     if ((_value as StateValueRange).length === 2) {
-            //         panel.changePanel(PanelTypes.Time, PanelFlags.Start);
-            //         panel.changePanel(PanelTypes.Time, PanelFlags.End);
-            //     }
-            // } else {
-            //     panel.changePanel(PanelTypes.Time, flag);
-            // }
-        } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
-            instance.hide();
+        if (range) {
+            instance.trigger('selecting', _value as StateValueRange, false);
         }
+
+        // if (type === 'datetime') {
+            // // if (range) {
+            // //     // only change to time panel after selected start and end date
+            // //     if ((_value as StateValueRange).length === 2) {
+            // //         panel.changePanel(PanelTypes.Time, PanelFlags.Start);
+            // //         panel.changePanel(PanelTypes.Time, PanelFlags.End);
+            // //     }
+            // // } else {
+            // //     panel.changePanel(PanelTypes.Time, flag);
+            // // }
+        // } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
+            // instance.hide();
+        // }
     }
 
     function fixDatetimeWithMinDate(v: Dayjs) {

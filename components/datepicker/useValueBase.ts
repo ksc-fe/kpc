@@ -155,7 +155,7 @@ export function useValueBase(
             }
         } else {
             // select the datetime, only push the value,
-            // and unique the array on click confrim button
+            // and unique the array on click confirm button
             _value.push(v); 
             _shouldUpdateValue = false;
         }
@@ -192,27 +192,44 @@ export function useValueBase(
         instance.resetKeywords(instance.input.keywords);
     }
 
-    function onConfirm() {
+	function onConfirm() {
         const lastValue = last(value.value);
         const {multiple, range} = instance.get();
 
-        if (!multiple && !range && lastValue) {  
+        if (!multiple) {
             instance.hide();
         } else {
             unique();
-            // panel.reset();
         }
+
         if (range) {
-            if((lastValue as StateValueRange).length === 2) {
-                instance.hide();
-                updateValue(); 
-            } 
             instance.trigger('selecting', lastValue as StateValueRange, true)
-            return 
         }
+
         updateValue();
     }
+    // function onConfirm() {
+        // const lastValue = last(value.value);
+        // const {multiple, range} = instance.get();
 
+        // if (!multiple && !range && lastValue) {  
+            // instance.hide();
+        // } else {
+            // unique();
+            // // panel.reset();
+        // }
+        // if (range) {
+            // if((lastValue as StateValueRange).length === 2) {
+                // instance.hide();
+                // updateValue(); 
+            // } 
+            // instance.trigger('selecting', lastValue as StateValueRange, true)
+            // return 
+        // }
+        // updateValue();
+    // }
+
+    // TODO
     function setMoment() {
         const now = dayjs();
         setValue(now, true);
@@ -284,5 +301,6 @@ export function useValueBase(
         convertToDayjs,
         getDayjsValue,
         setMoment,
+        updateValue,
     };
 }

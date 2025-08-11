@@ -16,11 +16,12 @@ const {className, type, range, multiple, shortcuts} = this.get();
 const {
     value: {value},
     onChangeDate,
-    onConfirm,
+    /* onConfirm, */
     onChangeTime,
     onChangeDateForRange,
     getTimeValue,
 } = this.value;
+const { onConfirm } = this.confirm;
 const { position, handleInputClick, highlightWidth, highlightLeft } = this.highlight;
 // 判断是否显示双面板
 const showDualPanels = range && type !== 'datetime';

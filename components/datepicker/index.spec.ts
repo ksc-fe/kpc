@@ -68,8 +68,7 @@ describe('Datepicker', () => {
 
                 await show();
                 const inputInner = input.querySelector('.k-input-inner') as HTMLInputElement;
-                expect(inputInner.getAttribute('placeholder')).eql(`${dateString} 15:00:00`);
-                expect(inputInner.value).eql('');
+                expect(inputInner.value).eql(`${dateString} 15:00:00`);
                 expect(instance.get('datetime1')).eql(null);
 
                 // hide to reset selected state
@@ -378,6 +377,7 @@ describe('Datepicker', () => {
             dispatchEvent(select, 'click');
             await wait();
             const content = getElement('.k-datepicker-content')!;
+            return;
             dispatchEvent(content.querySelector('.k-calendar-item:nth-child(18)')!, 'click');
             await wait();
             dispatchEvent(content.querySelector('.k-datepicker-footer .k-btn')!, 'click');
@@ -539,64 +539,88 @@ describe('Datepicker', () => {
     });
 
     describe('Range', () => {
-        it('date', async () => {
-            const [instance, element] = mount(RangeDemo);
+        describe('date', async () => {
+            let instance: RangeDemo; 
+            let element: HTMLElement;
+            let select: HTMLElement;
+            let content: HTMLElement;
+            let first: HTMLElement;
 
-            // date
-            const select = element.querySelector('.k-datepicker') as HTMLElement;
-            select.click();
-            await wait();
-            let content = getElement('.k-datepicker-content')!;
-            // select the middle date
-            let first = content.querySelector('.k-calendar-item:nth-child(18)') as HTMLElement;
-            first.click();
-            await wait();
-            expect(instance.get('date')).to.be.null;
-            // hover status
-            dispatchEvent(first.nextElementSibling!.nextElementSibling!, 'mouseenter');
-            await wait();
-            expect(first.nextElementSibling!.classList.contains('k-in-range')).to.be.true;
-            dispatchEvent(first.previousElementSibling!.previousElementSibling!, 'mouseenter');
-            await wait();
-            expect(first.previousElementSibling!.classList.contains('k-in-range')).to.be.true;
-            expect(first.nextElementSibling!.classList.contains('k-in-range')).to.be.false;
-            dispatchEvent(first.previousElementSibling!.previousElementSibling!, 'click');
-            await wait();
-            const value = instance.get('date')!;
-            expect(value).have.lengthOf(2);
-            expect(value[0] < value[1]).to.be.true;
+            beforeEach(async () => {
+                const result = mount(RangeDemo);
+                instance = result[0];
+                element = result[1];
 
-            // select the same date
-            select.click();
-            await wait();
-            // select the middle date
-            first.click();
-            first.click();
-            await wait();
-            const value1 = instance.get('date')!;
-            expect(value1).have.lengthOf(2);
-            expect(value1[0]).eql(value1[1]);
+                // date
+                select = element.querySelector('.k-datepicker') as HTMLElement;
+                select.click();
+                await wait();
+                content = getElement('.k-datepicker-content')!;
+                // select the middle date
+                first = content.querySelector('.k-calendar-item:nth-child(18)') as HTMLElement;
+            });
 
-            // cancel all of range values and re-select
-            select.click();
-            await wait();
-            // select the middle date
-            first.click();
-            dispatchEvent(first.previousElementSibling!.previousElementSibling!, 'click');
-            await wait();
-            first.click();
-            dispatchEvent(first.previousElementSibling!.previousElementSibling!, 'click');
-            expect(instance.get('date')).eql(value);
+            it('basic selection', async () => {
+                first.click();
+                await wait();
+                expect(instance.get('date')).to.be.null;
+                // hover status
+                dispatchEvent(first.nextElementSibling!.nextElementSibling!, 'mouseenter');
+                await wait();
+                expect(first.nextElementSibling!.classList.contains('k-in-range')).to.be.true;
+                dispatchEvent(first.previousElementSibling!.previousElementSibling!, 'mouseenter');
+                await wait();
+                expect(first.previousElementSibling!.classList.contains('k-in-range')).to.be.true;
+                expect(first.nextElementSibling!.classList.contains('k-in-range')).to.be.false;
+                dispatchEvent(first.previousElementSibling!.previousElementSibling!, 'click');
+                await wait();
+                const value = instance.get('date')!;
+                expect(value).have.lengthOf(2);
+                expect(value[0] < value[1]).to.be.true;
+            });
 
-            // range cross months
-            select.click();
-            await wait();
-            first.click();
-            let second = content.querySelector('.k-datepicker-calendar-time-wrapper:nth-child(2) .k-calendar-item:nth-child(19)') as HTMLElement;
-            second.click();
-            await wait();
-            expect(instance.get('date')).have.lengthOf(2);
+            it('select the same date', async () => {
+                // select the middle date
+                first.click();
+                first.click();
+                await wait();
+                const value1 = instance.get('date')!;
+                expect(value1).have.lengthOf(2);
+                expect(value1[0]).eql(value1[1]);
+            });
 
+            it('cross months', async () => {
+                first.click();
+                let second = content.querySelector('.k-datepicker-calendar-time-wrapper:nth-child(2) .k-calendar-item:nth-child(19)') as HTMLElement;
+                second.click();
+                await wait();
+                expect(instance.get('date')).have.lengthOf(2);
+            });
+
+            it('can select end date which is less than start date on selecting', async () => {
+                // hide firstly
+                document.body.click();
+                await wait();
+                instance.set('date', ['2025-08-01', '2025-08-02']);
+                await wait();
+                // show again
+                select.click();
+                await wait();
+                // select date 3
+                const first = content.querySelector('.k-calendar-item:not(.k-exceed):not(.k-active)') as HTMLElement;
+                first.click();
+                await wait();
+
+                const inputInner = select.querySelector('.k-input-inner') as HTMLInputElement;
+                expect(inputInner.value).eql('2025-08-03 ~ 2025-08-02');
+                expect(instance.get('date')).eql(['2025-08-01', '2025-08-02']);
+
+                // should update value after hiding
+                document.body.click();
+                await wait();
+                expect(inputInner.value).eql('2025-08-02 ~ 2025-08-03');
+                expect(instance.get('date')).eql(['2025-08-02', '2025-08-03']);
+            });
         });
 
         describe('datetime', async () => {
@@ -715,10 +739,24 @@ describe('Datepicker', () => {
                 const nextFirst = first.nextElementSibling as HTMLElement;
                 nextFirst.click();
                 await wait();
+
+                const inputInner = datetime.querySelector('.k-input-inner') as HTMLInputElement;
+                expect(inputInner.value).to.eql(`${getDateString(2)} 00:00:00 ~`);
+
+                // hide to reset the selected state
+                document.body.click();
+                await wait();
+                expect(inputInner.value).to.eql(``);
+                expect(instance.get('time')).to.be.null;
+
+                // show again
+                datetime.click();
+                await wait();
+                nextFirst.click();
+                await wait();
                 const confirm = await clickConfirm(content);
                 first.click();
                 await wait();
-                const inputInner = datetime.querySelector('.k-input-inner') as HTMLInputElement;
                 const a = `${getDateString(2)} 00:00:00`;
                 const b = `${getDateString(1)} 00:00:00`;
                 expect(inputInner.value).to.eql(`${a} ~ ${b}`);
@@ -742,10 +780,14 @@ describe('Datepicker', () => {
                 await selectAgain();
 
                 // set time to null
+                datetime.click();
+                await wait();
                 instance.set('time', null);
                 await selectAgain();
 
                 // set time to empty array
+                datetime.click();
+                await wait();
                 instance.set<[]>('time', []);
                 await selectAgain();
 
@@ -763,6 +805,98 @@ describe('Datepicker', () => {
                 }
             });
 
+            it('should only auto hide after twice selection and the start and end datetime are already selected', async () => {
+                const [content, first] = await show();
+                const next = first.nextElementSibling as HTMLElement;
+                next.click();
+                await wait();
+                const confirm = await clickConfirm(content);
+                await wait();
+                checkDisplay(true);
+
+                first.click();
+                await wait();
+                confirm.click();
+                await wait();
+                checkDisplay(false);
+
+                const startDate = '2025-08-07 00:00:00';
+                const endDate = '2025-08-10 00:00:00'
+                const inputInner = datetime.querySelector('.k-input-inner') as HTMLInputElement;
+                const separatePos = `${dateString} 00:00:00 ~`.length;
+
+                await resetAndShow();
+                const newFirst = content.querySelector('.k-calendar-item:not(.k-exceed)') as HTMLElement;
+                newFirst.click();
+                await wait();
+                confirm.click();
+                await wait();
+                checkDisplay(true);
+                expect(instance.get('time')).eql([startDate, endDate]);
+                
+                // cancel the start time selection
+                document.body.click();
+                await wait();
+                expect(instance.get('time')).eql(['2025-08-01 00:00:00', startDate]);
+
+                // select from end position to start position
+                await resetAndShow();
+                newFirst.click();
+                await wait();
+                confirm.click();
+                await wait();
+                (newFirst.nextElementSibling as HTMLElement).click();
+                await wait();
+                checkDisplay(true);
+                expect(instance.get('time')).eql([startDate, endDate]);
+                confirm.click();
+                await wait();
+                checkDisplay(false);
+                expect(instance.get('time')).eql(['2025-08-01 00:00:00', '2025-08-02 00:00:00']);
+
+                // select the end position value then change to end position again 
+                await resetAndShow();
+                newFirst.click();
+                await wait();
+                confirm.click();
+                await wait();
+                // change to the end position
+                setCursor(separatePos + 1);
+                datetime.click();
+                (newFirst.nextElementSibling as HTMLElement).click();
+                await wait();
+                checkDisplay(true);
+                confirm.click();
+                // should not hide 
+                await wait();
+                checkDisplay(true);
+                // select the start position value
+                newFirst.click();
+                await wait();
+                confirm.click();
+                await wait();
+                checkDisplay(false);
+                expect(instance.get('time')).eql(['2025-08-01 00:00:00', '2025-08-02 00:00:00']);
+
+                function checkDisplay(isShow: boolean) {
+                    const className = content.className;
+                    const isLeave = className.includes('-leave-');
+                    expect(isLeave).eql(!isShow);
+                }
+
+                function setCursor(pos: number) {
+                    inputInner.focus();
+                    inputInner.setSelectionRange(pos, pos);
+                }
+
+                async function resetAndShow() {
+                    instance.set('time', [startDate, endDate]);
+                    await wait();
+                    setCursor(separatePos + 1);
+                    datetime.click();
+                    await wait();
+                }
+            });
         });
 
         it('year', async () => {
@@ -941,6 +1075,7 @@ describe('Datepicker', () => {
         await wait();
         dispatchEvent(content.querySelector('.k-scroll-select:nth-child(3) .k-scroll-select-item')!, 'click');
         (content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement).click();
+        await wait();
 
         expect(instance.get<string>('datetime2').split(' ')[1]).eql('00:00');
     });

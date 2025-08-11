@@ -58,11 +58,12 @@ export function useHighlight(
         }
     });
 
-    instance.on('selecting', (_value, isConfirm) => {
-        if (isConfirm) {
-            togglePosition();
-        }
-    });
+    // instance.on('selecting', (_value, isConfirm) => {
+        // if (isConfirm) {
+            // togglePosition();
+            // instance.show();
+        // }
+    // });
     
     function handleInputClick() {
         const { range, type } = instance.get();
@@ -78,7 +79,6 @@ export function useHighlight(
         }
     }
 
-    // 切换位置
     function togglePosition() {
         position.set(position.value === Position.Start ? Position.End : Position.Start);
     }

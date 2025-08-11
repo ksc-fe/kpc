@@ -1,0 +1,75 @@
+import {useInstance, Component, TypeDefs} from 'intact';
+import {useState, watchState, State} from '../../hooks/useState';
+import dayjs, {Dayjs, OpUnitType, QUnitType} from './dayjs';
+import {findValueIndex} from './helpers';
+import type {useFormats} from './useFormats';
+import type {useDisabled} from './useDisabled';
+import {isEqualArray, last, bind} from '../utils';
+import {PanelFlags, usePanel} from './usePanel';
+import type {BasePicker, BasePickerProps} from './basepicker';
+import type { Datepicker } from '.';
+import { Position, useHighlight } from './useHighlight';
+import { useValue } from './useValue';
+import { StateValueRange } from './useValueBase';
+
+export function useConfirm(
+    highlight: ReturnType<typeof useHighlight>,
+    value: ReturnType<typeof useValue>,
+) {
+    const instance = useInstance() as Datepicker;
+    let selectionState = [false, false];
+
+    /**
+     * can not use hide event to do it
+     * because value will be reset to dayjsValue on hide in useValue
+     */
+    instance.on('$change:show', (show) => {
+        if (!show) {
+            selectionState = [false, false];
+            if (instance.get('range') && hasWholeRangeValue()) {
+                // to fix the order
+                value.updateValue();
+            }
+        }
+    });
+
+    instance.on('selecting', () => {
+        const { type } = instance.get();
+        if (type !== 'datetime') {
+            onConfirm();
+        }
+    });
+
+    function onConfirm() {
+        const { multiple, range } = instance.get();
+        if (range) {
+            const position = highlight.position.value; 
+            selectionState[position] = true;
+
+            if (selectionState.every(state => state)) {
+                instance.hide(); 
+            } else {
+                highlight.togglePosition();
+            }
+        } else {
+            instance.hide();
+            value.updateValue();
+        }
+
+        // if (range) {
+            // if (hasWholeRangeValue()) {
+                // const [start, end] = last(value.value.value) as StateValueRange;
+                // if (start.isSame(end) || start.isBefore(end)) {
+                    // value.updateValue();
+                // }
+            // }
+        // }
+    }
+
+    function hasWholeRangeValue() {
+        const lastValue = last(value.value.value) as StateValueRange;
+        return lastValue && lastValue.length === 2;
+    }
+
+    return { onConfirm }
+}

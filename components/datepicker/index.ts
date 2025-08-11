@@ -21,6 +21,7 @@ import {
     BasePickerBlocks,
 } from './basepicker';
 import {Value} from './useValueBase';
+import { useConfirm } from './useConfirm';
 
 export * as shortcuts from './shortcuts';
 export { dayjs };
@@ -71,6 +72,7 @@ export class Datepicker<
     public value = useValue(this.formats, this.disabled, this.panel, () => this.highlight.position);
     public highlight = useHighlight(this.value.value, this.formats.getShowString, this.input.keywords);
     public mergeRange = useMergeRange(this.formats);
+    private confirm = useConfirm(this.highlight, this.value);
     
     init() {
         super.init();
