@@ -18,6 +18,14 @@ const startYear = Math.floor(year / 10) * 10;
 const month = now.getMonth();
 const dateString = dayjs(now).format('YYYY-MM-DD');
 
+async function clickConfirm(content: HTMLElement) {
+    const confirm = content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement;
+    confirm.click();
+    await wait();
+
+    return confirm;
+}
+
 describe('Datepicker', () => {
     // afterEach(async () => {
         // unmount();
@@ -377,7 +385,6 @@ describe('Datepicker', () => {
             dispatchEvent(select, 'click');
             await wait();
             const content = getElement('.k-datepicker-content')!;
-            return;
             dispatchEvent(content.querySelector('.k-calendar-item:nth-child(18)')!, 'click');
             await wait();
             dispatchEvent(content.querySelector('.k-datepicker-footer .k-btn')!, 'click');
@@ -400,14 +407,21 @@ describe('Datepicker', () => {
             await wait();
             expect(instance.get('datetime')).have.lengthOf(2);
 
-            // change to time panel, and remove the selections, then click confirm ok
-            dispatchEvent(content.querySelector('.k-calendar-item:nth-child(18)')!, 'click');
+            // select time directly
+            const activeHour = content.querySelector('.k-scroll-select-item.k-active') as HTMLElement;
+            dispatchEvent(activeHour.nextElementSibling!, 'click');
             await wait();
-            instance.set('datetime', []);
+            const confirm = await clickConfirm(content); 
+            expect(instance.get('datetime')).have.lengthOf(3);
+
+            // select time firstly, then select date should only add one value
+            dispatchEvent(activeHour.nextElementSibling!.nextElementSibling!, 'click');
             await wait();
-            dispatchEvent(content.querySelector('.k-datepicker-footer .k-btn')!, 'click');
+            dispatchEvent(content.querySelector('.k-calendar-item:nth-child(19)')!, 'click');
             await wait();
-            expect(instance.get('datetime')).have.lengthOf(1);
+            confirm.click();
+            await wait();
+            expect(instance.get('datetime')).have.lengthOf(4);
         });
 
         it('year', async () => {
@@ -643,14 +657,6 @@ describe('Datepicker', () => {
                 await wait();
 
                 return [content, first];
-            }
-
-            async function clickConfirm(content: HTMLElement) {
-                const confirm = content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement;
-                confirm.click();
-                await wait();
-
-                return confirm;
             }
 
             function getDateString(date: number) {

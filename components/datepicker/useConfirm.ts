@@ -10,11 +10,12 @@ import type {BasePicker, BasePickerProps} from './basepicker';
 import type { Datepicker } from '.';
 import { Position, useHighlight } from './useHighlight';
 import { useValue } from './useValue';
-import { StateValueRange } from './useValueBase';
+import { StateValueRange, StateValue, DayjsValueRange } from './useValueBase';
 
 export function useConfirm(
     highlight: ReturnType<typeof useHighlight>,
     value: ReturnType<typeof useValue>,
+    getValueString: ReturnType<typeof useFormats>['getValueString'],
 ) {
     const instance = useInstance() as Datepicker;
     let selectionState = [false, false];
@@ -51,10 +52,16 @@ export function useConfirm(
             } else {
                 highlight.togglePosition();
             }
-        } else {
-            instance.hide();
-            value.updateValue();
+
+            return;
         }
+
+        if (!multiple) {
+            instance.hide();
+        } else {
+            unique();
+        }
+        value.updateValue();
 
         // if (range) {
             // if (hasWholeRangeValue()) {
@@ -64,6 +71,26 @@ export function useConfirm(
                 // }
             // }
         // }
+    }
+
+    function unique() {
+        const _value = value.value.value;
+        const map: Record<string, true> = {};
+        const results: StateValue = [];
+        _value.forEach(value => {
+            let key: string;
+            if (Array.isArray(value)) {
+                key = (value as DayjsValueRange).map(getValueString).join(' ~ ');
+            } else {
+                key = getValueString(value);
+            }
+            if (!map[key]) {
+                map[key] = true;
+                results.push(value);
+            }
+        });
+
+        value.value.set(results);
     }
 
     function hasWholeRangeValue() {

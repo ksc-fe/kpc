@@ -72,7 +72,7 @@ export class Datepicker<
     public value = useValue(this.formats, this.disabled, this.panel, () => this.highlight.position);
     public highlight = useHighlight(this.value.value, this.formats.getShowString, this.input.keywords);
     public mergeRange = useMergeRange(this.formats);
-    private confirm = useConfirm(this.highlight, this.value);
+    private confirm = useConfirm(this.highlight, this.value, this.formats.getValueString);
     
     init() {
         super.init();

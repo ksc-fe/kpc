@@ -105,7 +105,12 @@ export function useValueBase(
     }
 
     function format(): string | string[] {
-        const results = value.value.map(formatSingleValue);
+        const { multiple } = instance.get();
+        let labelValue = value.value;
+        if (multiple) {
+            labelValue = dayjsValue;
+        }
+        const results = labelValue.map(formatSingleValue);
 
         if (!instance.get('multiple')) {
             return results[0];
@@ -141,6 +146,11 @@ export function useValueBase(
             if (lastValue && (lastValue as StateValueRange).length < 2) {
                 _value.pop();
             }
+        }
+
+        if (_value.length > dayjsValue.length) {
+            // remove the temporary value added by selecting time directly
+            _value.pop();
         }
 
         let _shouldUpdateValue = true;
@@ -264,7 +274,11 @@ export function useValueBase(
         const {range} = instance.get();
         const values = value.value.slice();
         // maybe we select time directly
-        const lastIndex = Math.max(values.length - 1, 0);
+        let lastIndex = Math.max(values.length - 1, 0);
+        if (values.length === dayjsValue.length) {
+            // need add new value, if all value.value has updated to dayjsValue
+            lastIndex = values.length; 
+        }
         let _value: StateValueItem = date;
 
         if (range) {
