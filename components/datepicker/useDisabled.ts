@@ -45,11 +45,12 @@ export function useDisabled(
 
     function isDisabledConfirm(): boolean {
         const lastValue = last(instance.value.value.value);
-        if (!lastValue || instance.value.allValuesUpdated()) return true;
+        const {range, multiple} = instance.get();
+        if (!lastValue || instance.value.allValuesUpdatedInMultipleMode()) return true;
 
-        const {range} = instance.get();
         if (range) {
             const position = getHighlightPosition();
+            // if the position is not selected, it should be disabled
             if (!(lastValue as StateValueRange)[position.value]) {
                 return true;
             }

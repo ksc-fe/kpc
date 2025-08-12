@@ -202,68 +202,11 @@ export function useValueBase(
         instance.resetKeywords(instance.input.keywords);
     }
 
-	function onConfirm() {
-        const lastValue = last(value.value);
-        const {multiple, range} = instance.get();
-
-        if (!multiple) {
-            instance.hide();
-        } else {
-            unique();
-        }
-
-        if (range) {
-            instance.trigger('selecting', lastValue as StateValueRange, true)
-        }
-
-        updateValue();
-    }
-    // function onConfirm() {
-        // const lastValue = last(value.value);
-        // const {multiple, range} = instance.get();
-
-        // if (!multiple && !range && lastValue) {  
-            // instance.hide();
-        // } else {
-            // unique();
-            // // panel.reset();
-        // }
-        // if (range) {
-            // if((lastValue as StateValueRange).length === 2) {
-                // instance.hide();
-                // updateValue(); 
-            // } 
-            // instance.trigger('selecting', lastValue as StateValueRange, true)
-            // return 
-        // }
-        // updateValue();
-    // }
-
     // TODO
     function setMoment() {
         const now = dayjs();
         setValue(now, true);
         instance.hide();
-    }
-
-    function unique() {
-        const _value = value.value;
-        const map: Record<string, true> = {};
-        const results: StateValue = [];
-        _value.forEach(value => {
-            let key: string;
-            if (Array.isArray(value)) {
-                key = (value as DayjsValueRange).map(getValueString).join(' ~ ');
-            } else {
-                key = getValueString(value);
-            }
-            if (!map[key]) {
-                map[key] = true;
-                results.push(value);
-            }
-        });
-
-        value.set(results);
     }
 
     function isValidDate(date: Dayjs) {
@@ -275,7 +218,7 @@ export function useValueBase(
         const values = value.value.slice();
         // maybe we select time directly
         let lastIndex = Math.max(values.length - 1, 0);
-        if (multiple && allValuesUpdated()) {
+        if (allValuesUpdatedInMultipleMode()) {
             // need add new value, if all value.value has updated to dayjsValue
             lastIndex = values.length; 
         }
@@ -309,15 +252,14 @@ export function useValueBase(
         return dayjsValue;
     }
 
-    function allValuesUpdated() {
-        return value.value.length === dayjsValue.length;
+    function allValuesUpdatedInMultipleMode() {
+        return instance.get('multiple') && value.value.length === dayjsValue.length;
     }
 
     return {
         value,
         format,
         formatSingleValue,
-        onConfirm,
         onChangeTime,
         getTimeValue,
         setValue,
@@ -325,6 +267,6 @@ export function useValueBase(
         getDayjsValue,
         setMoment,
         updateValue,
-        allValuesUpdated,
+        allValuesUpdatedInMultipleMode,
     };
 }

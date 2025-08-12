@@ -115,6 +115,7 @@ describe('Datepicker', () => {
                 dispatchEvent(activeHour.nextElementSibling!, 'click');
                 await wait();
                 confirm.click();
+                await wait();
                 expect(instance.get('datetime1')).eql(`${dateString} 16:00:00`);
             });
         });

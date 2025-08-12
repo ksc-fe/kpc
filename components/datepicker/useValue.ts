@@ -25,7 +25,7 @@ export function useValue(
 ) {
     const instance = useInstance() as Datepicker;
 
-    const {setValue, value, getDayjsValue, allValuesUpdated, ...rest} = useValueBase(
+    const {setValue, value, getDayjsValue, allValuesUpdatedInMultipleMode, ...rest} = useValueBase(
         formats,
         disabled,
         panel,
@@ -53,14 +53,7 @@ export function useValue(
         },
         // updateStateValue
         function(dayjsValue, value) {
-            // if (
-            //     instance.get('multiple') && 
-            //     panel.getPanel(PanelFlags.Start).value === PanelTypes.Time
-            // ) {
-            //     value.set(dayjsValue.concat([last(value.value)] as DayjsValue));
-            // } else {
-                value.set(dayjsValue.slice(0));
-            // }
+            value.set(dayjsValue.slice(0));
         }
     );
 
@@ -76,7 +69,7 @@ export function useValue(
         if (range) {
             const oldValue = last(value.value as StateValueRange[]);
             const position = getHighlightPosition().value;
-            if (!oldValue || allValuesUpdated()) {
+            if (!oldValue || allValuesUpdatedInMultipleMode()) {
                 _value = [fixDatetimeWithMinDate(v)];
             } else if (position === Position.Start) {
                 if (oldValue.length === 1) {
@@ -99,20 +92,6 @@ export function useValue(
         if (range) {
             instance.trigger('selecting', _value as StateValueRange, false);
         }
-
-        // if (type === 'datetime') {
-            // // if (range) {
-            // //     // only change to time panel after selected start and end date
-            // //     if ((_value as StateValueRange).length === 2) {
-            // //         panel.changePanel(PanelTypes.Time, PanelFlags.Start);
-            // //         panel.changePanel(PanelTypes.Time, PanelFlags.End);
-            // //     }
-            // // } else {
-            // //     panel.changePanel(PanelTypes.Time, flag);
-            // // }
-        // } else if (!multiple && (!range || (_value as StateValueRange).length === 2)) {
-            // instance.hide();
-        // }
     }
 
     function fixDatetimeWithMinDate(v: Dayjs) {
@@ -138,5 +117,5 @@ export function useValue(
         return v;
     }
 
-    return {value, setValue, onChangeDate, getDayjsValue, allValuesUpdated, ...rest};
+    return {value, setValue, onChangeDate, getDayjsValue, allValuesUpdatedInMultipleMode, ...rest};
 }
