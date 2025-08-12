@@ -12,9 +12,9 @@ export function useStatus(focusDate: State<Dayjs | null>) {
     // if focusDate exists, use it as the active date in range mode
     function getValueByFocusDate() {
         const { value, highlightPosition } = instance.get();
-        const { range } = instance.datepicker.get();
+        const { range, multiple } = instance.datepicker.get();
 
-        if (!focusDate.value || !range) return value;
+        if (!focusDate.value || !range || multiple) return value;
         
         let lastValue = last(value) as StateValueRange;
         if (!lastValue) return value;

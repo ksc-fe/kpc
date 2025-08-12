@@ -41,26 +41,11 @@ export function useDisabled(
 
     function isDisabledTime(value: Dayjs, flag: PanelFlags): boolean {
         return isDisabled(value, 'second');
-        // if (!isDisabled(value, 'second')) {
-            // if (!instance.get('range')) return false;
-
-            // // compare the start and the end datetime 
-            // const anotherDatetime = instance.value.getTimeValue(
-                // flag === PanelFlags.Start ? PanelFlags.End : PanelFlags.Start
-            // );
-            // if (!anotherDatetime) return false;
-            // if (flag === PanelFlags.Start) {
-                // return value.isAfter(anotherDatetime, 'second');
-            // } else {
-                // return value.isBefore(anotherDatetime, 'second');
-            // }
-        // }
-        // return true;
     }
 
     function isDisabledConfirm(): boolean {
         const lastValue = last(instance.value.value.value);
-        if (!lastValue) return true;
+        if (!lastValue || instance.value.allValuesUpdated()) return true;
 
         const {range} = instance.get();
         if (range) {
@@ -69,12 +54,6 @@ export function useDisabled(
                 return true;
             }
         }
-        // if (range && (lastValue as [Dayjs, Dayjs?]).length === 1) return false;
-
-        // const {startPanel, endPanel} = instance.panel;
-        // if (startPanel.value === PanelTypes.Date && endPanel.value === PanelTypes.Date) {
-        //     return true;
-        // }
 
         let start: Dayjs;
         let end: Dayjs | undefined;

@@ -26,7 +26,7 @@ export function useConfirm(
      */
     instance.on('$change:show', (show) => {
         if (!show) {
-            selectionState = [false, false];
+            reset();
             if (instance.get('range') && hasWholeRangeValue()) {
                 // to fix the order
                 value.updateValue();
@@ -41,6 +41,10 @@ export function useConfirm(
         }
     });
 
+    function reset() {
+        selectionState = [false, false];
+    }
+
     function onConfirm() {
         const { multiple, range } = instance.get();
         if (range) {
@@ -48,20 +52,25 @@ export function useConfirm(
             selectionState[position] = true;
 
             if (selectionState.every(state => state)) {
-                instance.hide(); 
-            } else {
-                highlight.togglePosition();
+                if (!multiple) {
+                    instance.hide(); 
+                } else {
+                    // update value directly on multiple mode
+                    reset();
+                    unique();
+                    value.updateValue();
+                }
             }
 
-            return;
-        }
-
-        if (!multiple) {
-            instance.hide();
+            highlight.togglePosition();
         } else {
-            unique();
+            if (!multiple) {
+                instance.hide();
+            } else {
+                unique();
+            }
+            value.updateValue();
         }
-        value.updateValue();
 
         // if (range) {
             // if (hasWholeRangeValue()) {

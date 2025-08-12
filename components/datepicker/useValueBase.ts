@@ -271,18 +271,23 @@ export function useValueBase(
     }
 
     function onChangeTime(date: Dayjs, flag: PanelFlags) {
-        const {range} = instance.get();
+        const {range, multiple} = instance.get();
         const values = value.value.slice();
         // maybe we select time directly
         let lastIndex = Math.max(values.length - 1, 0);
-        if (values.length === dayjsValue.length) {
+        if (multiple && allValuesUpdated()) {
             // need add new value, if all value.value has updated to dayjsValue
             lastIndex = values.length; 
         }
         let _value: StateValueItem = date;
 
         if (range) {
-            _value = (values as DayjsValueRange[])[lastIndex].slice() as DayjsValueRange;
+            _value  = (values as DayjsValueRange[])[lastIndex];
+            if (_value) {
+                _value = _value.slice() as DayjsValueRange;
+            } else {
+                _value = [] as unknown as DayjsValueRange;
+            }
             _value[flag] = date;
             instance.trigger('selecting', _value, false);
         }
@@ -304,6 +309,10 @@ export function useValueBase(
         return dayjsValue;
     }
 
+    function allValuesUpdated() {
+        return value.value.length === dayjsValue.length;
+    }
+
     return {
         value,
         format,
@@ -316,5 +325,6 @@ export function useValueBase(
         getDayjsValue,
         setMoment,
         updateValue,
+        allValuesUpdated,
     };
 }

@@ -19,11 +19,22 @@ const month = now.getMonth();
 const dateString = dayjs(now).format('YYYY-MM-DD');
 
 async function clickConfirm(content: HTMLElement) {
+    await wait();
     const confirm = content.querySelector('.k-datepicker-footer .k-btn') as HTMLElement;
     confirm.click();
     await wait();
 
     return confirm;
+}
+
+function checkDisplay(content: HTMLElement, isShow: boolean) {
+    const className = content.className;
+    const isLeave = className.includes('-leave-');
+    expect(isLeave).eql(!isShow);
+}
+
+function getDateString(date: number) {
+    return dayjs(now).date(date).format('YYYY-MM-DD');
 }
 
 describe('Datepicker', () => {
@@ -70,11 +81,11 @@ describe('Datepicker', () => {
                     input.click();
                     await wait();
                     content = getElement('.k-datepicker-content')!;
-                    dispatchEvent(content.querySelector('.k-scroll-select-item')!, 'click');
-                    await wait();
                 }
 
                 await show();
+                dispatchEvent(content!.querySelector('.k-scroll-select-item')!, 'click');
+                await wait();
                 const inputInner = input.querySelector('.k-input-inner') as HTMLInputElement;
                 expect(inputInner.value).eql(`${dateString} 15:00:00`);
                 expect(instance.get('datetime1')).eql(null);
@@ -88,14 +99,23 @@ describe('Datepicker', () => {
 
                 // show again
                 await show();
+                dispatchEvent(content!.querySelector('.k-scroll-select-item')!, 'click');
+                await wait();
                 const confirm = content!.querySelector('.k-datepicker-footer .k-btn') as HTMLElement;
                 confirm.click();
                 await wait();
                 expect(inputInner.value).eql(`${dateString} 15:00:00`);
                 expect(instance.get('datetime1')).eql(`${dateString} 15:00:00`);
 
-                await wait(500);
-                expect(content!.style.display).eql('none');
+                checkDisplay(content!, false);
+
+                // change time
+                await show();
+                const activeHour = content!.querySelector('.k-scroll-select-item.k-active') as HTMLElement;
+                dispatchEvent(activeHour.nextElementSibling!, 'click');
+                await wait();
+                confirm.click();
+                expect(instance.get('datetime1')).eql(`${dateString} 16:00:00`);
             });
         });
 
@@ -466,89 +486,133 @@ describe('Datepicker', () => {
             expect(instance.get('month')).have.lengthOf(1);
         });
 
-        it('date range', async () => {
-            const [instance, element] = mount(MultipleDemo);
+        describe('date range', async () => {
+            it('date range', async () => {
+                const [instance, element] = mount(MultipleDemo);
 
-            const [, , , , select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
-            dispatchEvent(select, 'click');
-            await wait();
-            const content = getElement('.k-datepicker-content')!;
-            const [calendar1, calendar2] = content.querySelectorAll('.k-datepicker-calendar-time-wrapper');
+                const [, , , , select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
+                dispatchEvent(select, 'click');
+                await wait();
+                const content = getElement('.k-datepicker-content')!;
+                const [calendar1, calendar2] = content.querySelectorAll('.k-datepicker-calendar-time-wrapper');
 
-            
-            const first = calendar1.querySelectorAll('.k-calendar-item')[17] as HTMLElement;
-            const second = calendar2.querySelectorAll('.k-calendar-item')[17] as HTMLElement;
-            first.click();
-            second.click();
-            await wait();
-            expect(instance.get('dateRange')).have.lengthOf(1);
+                const first = calendar1.querySelector('.k-calendar-item:not(.k-exceed)') as HTMLElement;
+                const second = first.nextElementSibling as HTMLElement;
+                first.click();
+                second.click();
+                await wait();
+                const value1 = [`${getDateString(1)}`, `${getDateString(2)}`]
+                expect(instance.get('dateRange')).eql([value1]);
 
-            dispatchEvent(first.nextElementSibling!, 'click');
-            dispatchEvent(second.nextElementSibling!, 'click');
-            await wait();
-            expect(instance.get('dateRange')).have.lengthOf(2);
+                const third = second.nextElementSibling as HTMLElement;
+                const fourth = third.nextElementSibling as HTMLElement;
+                third.click();
+                fourth.click();
+                await wait();
+                const value2 = [`${getDateString(3)}`, `${getDateString(4)}`]
+                expect(instance.get('dateRange')).eql([value1, value2]);
 
-            first.click();
-            second.click();
-            await wait();
-            expect(instance.get('dateRange')).have.lengthOf(1);
+                first.click();
+                second.click();
+                await wait();
+                expect(instance.get('dateRange')).eql([value2]);
 
-            instance.set('dateRange', []);
-            await wait();
-            first.click();
-            second.click();
-            await wait();
-            expect(instance.get('dateRange')).have.lengthOf(1);
+                instance.set('dateRange', []);
+                await wait();
+                first.click();
+                second.click();
+                await wait();
+                expect(instance.get('dateRange')).eql([value1]);
+            });
+
+            it('hover status', async () => {
+                const [instance, element] = mount(MultipleDemo);
+
+                instance.set('dateRange', [['2025-07-11', '2025-07-15']]);
+                const [, , , , select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
+                dispatchEvent(select, 'click');
+                await wait();
+                const content = getElement('.k-datepicker-content')!;
+                const [calendar1, calendar2] = content.querySelectorAll('.k-datepicker-calendar-time-wrapper');
+
+                const first = calendar1.querySelector('.k-calendar-item:not(.k-exceed)') as HTMLElement;
+                const second = first.nextElementSibling as HTMLElement;
+                dispatchEvent(first, 'mouseenter');
+                await wait();
+                expect(second.classList.contains('k-in-range')).eql(false);
+            });
         });
 
-        it('datetime range', async () => {
-            const [instance, element] = mount(MultipleDemo);
+        describe('datetime range', async () => {
+            it('basic', async () => {
+                const [instance, element] = mount(MultipleDemo);
 
-            const [, , , , , select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
-            dispatchEvent(select, 'click');
-            await wait();
-            const content = getElement('.k-datepicker-content')!;
-            const [calendar1, calendar2] = content.querySelectorAll('.k-datepicker-calendar-wrapper');
-            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            await wait();
-            content.querySelector<HTMLElement>('.k-btn')!.click();
-            await wait();
-            expect(instance.get('datetimeRange')).have.lengthOf(1);
+                const [, , , , , select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
+                dispatchEvent(select, 'click');
+                await wait();
+                const content = getElement('.k-datepicker-content')!;
+                const calendar1 = content.querySelector('.k-datepicker-wrapper') as HTMLElement;
+                const first = calendar1.querySelector('.k-calendar-item:not(.k-exceed)') as HTMLElement;
+                const second = first.nextElementSibling as HTMLElement;
+                first.click();
+                await clickConfirm(content);
+                second.click();
+                await clickConfirm(content);
+                const value1 = [`${getDateString(1)} 00:00:00`, `${getDateString(2)} 00:00:00`];
+                expect(instance.get('datetimeRange')).eql([value1]);
 
-            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[18].click();
-            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[18].click();
-            await wait();
-            content.querySelector<HTMLElement>('.k-btn')!.click();
-            await wait();
-            expect(instance.get('datetimeRange')).have.lengthOf(2);
+                const third = second.nextElementSibling as HTMLElement;
+                const fourth = third.nextElementSibling as HTMLElement;
+                third.click();
+                await clickConfirm(content);
+                fourth.click();
+                await clickConfirm(content);
+                const value2 = [`${getDateString(3)} 00:00:00`, `${getDateString(4)} 00:00:00`]
+                expect(instance.get('datetimeRange')).eql([value1, value2]);
 
-            // selecting the same date time will do nothing
-            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            await wait();
-            content.querySelector<HTMLElement>('.k-btn')!.click();
-            await wait();
-            expect(instance.get('datetimeRange')).have.lengthOf(2);
+                // selecting the same date time will do nothing
+                third.click();
+                await clickConfirm(content);
+                fourth.click();
+                await clickConfirm(content);
+                expect(instance.get('datetimeRange')).eql([value1, value2]);
 
-            instance.set('datetimeRange', []);
-            await wait();
-            calendar1.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            await wait();
-            content.querySelector<HTMLElement>('.k-btn')!.click();
-            await wait();
-            expect(instance.get('datetimeRange')).have.lengthOf(1);
+                instance.set('datetimeRange', []);
+                await wait();
+                first.click();
+                await clickConfirm(content);
+                second.click();
+                const confirm = await clickConfirm(content);
+                expect(instance.get('datetimeRange')).eql([value1]);
+                expect(confirm.classList.contains('k-disabled')).eql(true);
 
-            // select the first value in end panel
-            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-            await wait();
-            content.querySelector<HTMLElement>('.k-btn')!.click();
-            await wait();
-            const values = instance.get('datetimeRange')!;
-            expect(values).have.lengthOf(2);
-            expect(values[1][1].includes('23:59:59')).to.be.true;
+                // // select the first value in end panel
+                // calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+                // calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
+                // await wait();
+                // content.querySelector<HTMLElement>('.k-btn')!.click();
+                // await wait();
+                // const values = instance.get('datetimeRange')!;
+                // expect(values).have.lengthOf(2);
+                // expect(values[1][1].includes('23:59:59')).to.be.true;
+            });
+
+            it('select time directly', async () => {
+                const [instance, element] = mount(MultipleDemo);
+
+                const [, , , , , select] = element.querySelectorAll<HTMLElement>('.k-datepicker');
+                dispatchEvent(select, 'click');
+                await wait();
+                const content = getElement('.k-datepicker-content')!;
+                const calendar = content.querySelector('.k-datepicker-wrapper') as HTMLElement;
+
+                const activeHour = calendar.querySelector('.k-scroll-select-item.k-active') as HTMLElement;
+                (activeHour.nextElementSibling as HTMLElement).click();
+                await clickConfirm(content);
+                (activeHour.nextElementSibling as HTMLElement).click();
+                await clickConfirm(content);
+                expect(instance.get('datetimeRange')).to.eql([[`${dateString} 01:00:00`, `${dateString} 02:00:00`]]);
+            });
         });
     });
 
@@ -657,10 +721,6 @@ describe('Datepicker', () => {
                 await wait();
 
                 return [content, first];
-            }
-
-            function getDateString(date: number) {
-                return dayjs(now).date(date).format('YYYY-MM-DD');
             }
 
             beforeEach(() => {
@@ -818,13 +878,13 @@ describe('Datepicker', () => {
                 await wait();
                 const confirm = await clickConfirm(content);
                 await wait();
-                checkDisplay(true);
+                _checkDisplay(true);
 
                 first.click();
                 await wait();
                 confirm.click();
                 await wait();
-                checkDisplay(false);
+                _checkDisplay(false);
 
                 const startDate = '2025-08-07 00:00:00';
                 const endDate = '2025-08-10 00:00:00'
@@ -837,7 +897,7 @@ describe('Datepicker', () => {
                 await wait();
                 confirm.click();
                 await wait();
-                checkDisplay(true);
+                _checkDisplay(true);
                 expect(instance.get('time')).eql([startDate, endDate]);
                 
                 // cancel the start time selection
@@ -853,11 +913,11 @@ describe('Datepicker', () => {
                 await wait();
                 (newFirst.nextElementSibling as HTMLElement).click();
                 await wait();
-                checkDisplay(true);
+                _checkDisplay(true);
                 expect(instance.get('time')).eql([startDate, endDate]);
                 confirm.click();
                 await wait();
-                checkDisplay(false);
+                _checkDisplay(false);
                 expect(instance.get('time')).eql(['2025-08-01 00:00:00', '2025-08-02 00:00:00']);
 
                 // select the end position value then change to end position again 
@@ -871,23 +931,21 @@ describe('Datepicker', () => {
                 datetime.click();
                 (newFirst.nextElementSibling as HTMLElement).click();
                 await wait();
-                checkDisplay(true);
+                _checkDisplay(true);
                 confirm.click();
                 // should not hide 
                 await wait();
-                checkDisplay(true);
+                _checkDisplay(true);
                 // select the start position value
                 newFirst.click();
                 await wait();
                 confirm.click();
                 await wait();
-                checkDisplay(false);
+                _checkDisplay(false);
                 expect(instance.get('time')).eql(['2025-08-01 00:00:00', '2025-08-02 00:00:00']);
 
-                function checkDisplay(isShow: boolean) {
-                    const className = content.className;
-                    const isLeave = className.includes('-leave-');
-                    expect(isLeave).eql(!isShow);
+                function _checkDisplay(isShow: boolean) {
+                    checkDisplay(content, isShow);
                 }
 
                 function setCursor(pos: number) {

@@ -25,7 +25,7 @@ export function useValue(
 ) {
     const instance = useInstance() as Datepicker;
 
-    const {setValue, value, getDayjsValue, ...rest} = useValueBase(
+    const {setValue, value, getDayjsValue, allValuesUpdated, ...rest} = useValueBase(
         formats,
         disabled,
         panel,
@@ -76,7 +76,7 @@ export function useValue(
         if (range) {
             const oldValue = last(value.value as StateValueRange[]);
             const position = getHighlightPosition().value;
-            if (!oldValue) {
+            if (!oldValue || allValuesUpdated()) {
                 _value = [fixDatetimeWithMinDate(v)];
             } else if (position === Position.Start) {
                 if (oldValue.length === 1) {
@@ -138,5 +138,5 @@ export function useValue(
         return v;
     }
 
-    return {value, setValue, onChangeDate, getDayjsValue, ...rest};
+    return {value, setValue, onChangeDate, getDayjsValue, allValuesUpdated, ...rest};
 }
