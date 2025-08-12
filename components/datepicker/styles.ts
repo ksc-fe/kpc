@@ -3,6 +3,7 @@ import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, sizes, Sizes, getRight, getLeft, palette} from '../../styles/utils';
 import '../../styles/global';
 import { cache } from '../utils';
+import { select } from '../select/styles';
 
 const defaults = {
     width: `300px`,
@@ -314,22 +315,20 @@ export const makeTimeStyles = cache(function makeTimeStyles(k: string) {
     `;
 });
 
-export const makeHighlightStyles = cache(function makeHighlightStyles(k: string, highlightWidth: number, highlightLeft: number) {
+export const makeHighlightStyles = cache(function makeHighlightStyles(k: string, size: Sizes, highlightWidth: number, highlightLeft: number) {
+    const paddingLeft = getLeft(select[size].padding);
     return css`
         &.${k}-dropdown-open {
-            .${k}-select-main {
-                position: relative;
-                &:before {
-                    content: '';
-                    display: block;
-                    width: ${highlightWidth ? highlightWidth + 'px' :  '50%'};
-                    height: 1px;
-                    position: absolute;
-                    background-color: ${datepicker.item.active.bgColor};
-                    left: ${highlightLeft}px;
-                    bottom: -5px;
-                    transition: left ${theme.transition.middle};
-                }
+            &:before {
+                content: '';
+                display: block;
+                width: ${highlightWidth ? highlightWidth + 'px' :  '50%'};
+                height: 1px;
+                position: absolute;
+                background-color: ${datepicker.item.active.bgColor};
+                left: calc(${paddingLeft} + ${highlightLeft}px);
+                bottom: 0;
+                transition: left ${theme.transition.middle};
             }
         }   
     `;

@@ -84,7 +84,7 @@ export abstract class BasePicker<
         const value = last(this.value.value.value);
 
         let _keywords = '';
-        if (!multiple && value) {
+        if (value && !this.value.allValuesUpdatedInMultipleMode()) {
             _keywords = this.value.formatSingleValue(value); 
         }
 

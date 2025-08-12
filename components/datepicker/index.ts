@@ -101,23 +101,8 @@ export class Datepicker<
     }
 
     protected getLabel() {
-        // const {multiple} = this.get();
-        // if(multiple) {
-            // const results = this.value.format();
-            // const dayjsValue = this.value.getDayjsValue();
-            // return this.mergeRange.formatMultipleValues(dayjsValue, results as string[]);
-        // }
         return this.value.format();
     }
-
-    // @bind
-    // protected clear(e: MouseEvent) {
-        // super.clear(e);
-        // if (this.get('type') === 'datetime') {
-            // // reset the state to let user re-select
-            // this.panel.reset();
-        // }
-    // }
 
     @bind
     private setByShortcut(shortcut: Shortcut) {

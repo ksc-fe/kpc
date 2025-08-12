@@ -12,7 +12,7 @@ import {Tabs, Tab} from '../tabs';
 import {Position} from './useHighlight';
 
 const { k } = this.config;
-const {className, type, range, multiple, shortcuts} = this.get();
+const {className, type, range, multiple, shortcuts, size} = this.get();
 const {
     value: {value},
     onChangeDate,
@@ -33,7 +33,7 @@ const classNameObj = {
 };
 const classDatePickerObj = {
     [`${k}-datepicker`]: true,
-    [makeHighlightStyles(k, highlightWidth.value, highlightLeft.value)]: range,
+    [makeHighlightStyles(k, size, highlightWidth.value, highlightLeft.value)]: range,
     [makeStyles(k)]: true,
 }
 const {isDisabledTime, isDisabledConfirm} = this.disabled;

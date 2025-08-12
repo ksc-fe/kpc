@@ -1,4 +1,4 @@
-import {useInstance, onMounted} from 'intact';
+import {useInstance, onMounted, nextTick} from 'intact';
 import type {Datepicker} from '.';
 import { useState, watchState, State } from '../../hooks/useState';
 import {last} from '../utils';
@@ -49,6 +49,13 @@ export function useHighlight(
     watchState(value, (value) => {
         // silently update the keywords to display the currently selected value 
         instance.resetKeywords(keywords, true);
+        /**
+         * the position may changed after the input break line in multipe mode
+         * use Macro task instead of nextTick, because it has too many Micro tasks
+         */
+        setTimeout(() => {
+            instance.position();
+        });
     });
 
     // if value is cleared reset the position to start
@@ -58,13 +65,6 @@ export function useHighlight(
         }
     });
 
-    // instance.on('selecting', (_value, isConfirm) => {
-        // if (isConfirm) {
-            // togglePosition();
-            // instance.show();
-        // }
-    // });
-    
     function handleInputClick() {
         const { range, type } = instance.get();
         if (!range) return;
