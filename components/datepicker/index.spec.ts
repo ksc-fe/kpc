@@ -555,9 +555,13 @@ describe('Datepicker', () => {
                 const calendar1 = content.querySelector('.k-datepicker-wrapper') as HTMLElement;
                 const first = calendar1.querySelector('.k-calendar-item:not(.k-exceed)') as HTMLElement;
                 const second = first.nextElementSibling as HTMLElement;
+                const inputInner = select.querySelector('.k-input-inner') as HTMLInputElement;
                 first.click();
                 await clickConfirm(content);
+                expect(inputInner.value).eql(`${getDateString(1)} 00:00:00 ~`);
                 second.click();
+                await wait();
+                expect(inputInner.value).eql(`${getDateString(1)} 00:00:00 ~ ${getDateString(2)} 00:00:00`);
                 await clickConfirm(content);
                 const value1 = [`${getDateString(1)} 00:00:00`, `${getDateString(2)} 00:00:00`];
                 expect(instance.get('datetimeRange')).eql([value1]);

@@ -30,7 +30,7 @@ export function useHighlight(
     const highlightLeft = useState<number>(0);
 
     /**
-     * calculdate the real width by rendering the showString to fake div
+     * calculate the real width by rendering the showString to fake div
      */
     onMounted(() => {
         const showString = getShowString(fakeDate);
