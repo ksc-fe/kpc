@@ -52,7 +52,9 @@ describe('Datepicker', () => {
             await wait();
             const content = getElement('.k-datepicker-content')!;
             (content.querySelector('.k-calendar-item') as HTMLDivElement).click();
+            await wait();
             expect(instance.get('date')).to.be.string;
+            checkDisplay(content, false);
         });
 
         describe('datetime', () => {
@@ -590,16 +592,6 @@ describe('Datepicker', () => {
                 const confirm = await clickConfirm(content);
                 expect(instance.get('datetimeRange')).eql([value1]);
                 expect(confirm.classList.contains('k-disabled')).eql(true);
-
-                // // select the first value in end panel
-                // calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-                // calendar2.querySelectorAll<HTMLElement>('.k-calendar-item')[17].click();
-                // await wait();
-                // content.querySelector<HTMLElement>('.k-btn')!.click();
-                // await wait();
-                // const values = instance.get('datetimeRange')!;
-                // expect(values).have.lengthOf(2);
-                // expect(values[1][1].includes('23:59:59')).to.be.true;
             });
 
             it('select time directly', async () => {

@@ -13,7 +13,7 @@ import {useFocusDate} from './useFocusDate';
 import {useKeyboards} from './useKeyboards';
 import {Shortcut} from './shortcuts';
 import {useHighlight} from './useHighlight';
-import {useMergeRange} from './useMergeRange';
+// import {useMergeRange} from './useMergeRange';
 import {
     BasePicker,
     BasePickerProps,
@@ -33,7 +33,7 @@ export interface DatepickerProps<
 > extends BasePickerProps<V extends string ? V : V | string, M, R> {
     type?: 'date' | 'datetime' | 'year' | 'month' | 'week' | 'quarter'
     shortcuts?: Shortcut[],
-    isMerge?: boolean
+    // isMerge?: boolean
 }
 
 export interface DatepickerEvents extends BasePickerEvents { }
@@ -47,13 +47,13 @@ const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BasePicker.typeDefs,
     type: ['date', 'datetime', 'year', 'month', 'week', 'quarter'],
     shortcuts: Array,
-    isMerge: Boolean
+    // isMerge: Boolean
 };
 
 const defaults = (): Partial<DatepickerProps> => ({
     ...BasePicker.defaults(),
     type: 'date',
-    isMerge: false
+    // isMerge: false
 });
 
 export class Datepicker<
@@ -71,7 +71,7 @@ export class Datepicker<
     public focusDate = useFocusDate();
     public value = useValue(this.formats, this.disabled, this.panel, () => this.highlight.position);
     public highlight = useHighlight(this.value.value, this.formats.getShowString, this.input.keywords);
-    public mergeRange = useMergeRange(this.formats);
+    // public mergeRange = useMergeRange(this.formats);
     private confirm = useConfirm(this.highlight, this.value, this.formats.getValueString);
     
     init() {

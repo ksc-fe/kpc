@@ -91,6 +91,8 @@ export function useValue(
 
         if (range) {
             instance.trigger('selecting', _value as StateValueRange, false);
+        } else if (!multiple && type !== 'datetime') {
+            instance.hide();
         }
     }
 
