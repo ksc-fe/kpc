@@ -40,6 +40,7 @@ export const makePanelStyles = cache(function makePanelStyles(k: string) {
             &.${k}-range {
                 .${k}-datepicker-time {
                     width: auto;
+                    border: ${timepicker.border};
                 }
                 .${k}-scroll-select {
                     height: ${timepicker.range.scrollHeight};
