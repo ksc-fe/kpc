@@ -6,12 +6,12 @@ import {isNullOrUndefined} from 'intact-shared';
 import {isGT, isLT, last} from './helpers';
 import type {useFormats} from './useFormats';
 import {PanelFlags} from './usePanel';
-import {Value, StateValueRange} from './useValueBase';
+import {Value, StateValueRange, StateValueItem} from './useValueBase';
 import { Position } from './useHighlight';
 
 export function useDisabled(
     {createDateByValueFormat}: ReturnType<typeof useFormats>,
-    getHighlightPosition: () => State<Position>
+    getHighlightPosition?: () => State<Position>
 ) {
     const instance = useInstance() as Datepicker;
     const maxDate = useState<Dayjs | null>(null);
@@ -39,7 +39,7 @@ export function useDisabled(
             !!disabledDate && disabledDate(value);
     }
 
-    function isDisabledTime(value: Dayjs, flag: PanelFlags): boolean {
+    function isDisabledTime(value: Dayjs): boolean {
         return isDisabled(value, 'second');
     }
 
@@ -48,7 +48,7 @@ export function useDisabled(
         const {range, multiple} = instance.get();
         if (!lastValue || instance.value.allValuesUpdatedInMultipleMode()) return true;
 
-        if (range) {
+        if (range && getHighlightPosition) {
             const position = getHighlightPosition();
             // if the position is not selected, it should be disabled
             if (!(lastValue as StateValueRange)[position.value]) {
@@ -56,20 +56,27 @@ export function useDisabled(
             }
         }
 
+        return isDisabledValue(lastValue);
+    }
+
+    function isDisabledValue(value: StateValueItem): boolean {
+        const { range } = instance.get();
         let start: Dayjs;
         let end: Dayjs | undefined;
+
         if (range) {
-            start = (lastValue as [Dayjs, Dayjs])[0];
-            end = (lastValue as [Dayjs, Dayjs])[1];
+            start = (value as [Dayjs, Dayjs])[0];
+            end = (value as [Dayjs, Dayjs])[1];
         } else {
-            start = lastValue as Dayjs;
+            start = value as Dayjs;
         }
-        if (isDisabledTime(start, PanelFlags.Start) || end && isDisabledTime(end, PanelFlags.End)) {
+
+        if (isDisabledTime(start) || end && isDisabledTime(end)) {
             return true;
         }
 
         return false;
     }
 
-    return {isDisabled, isDisabledTime, isDisabledConfirm, maxDate, minDate};
+    return {isDisabled, isDisabledTime, isDisabledConfirm, isDisabledValue, maxDate, minDate};
 }

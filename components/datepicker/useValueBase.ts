@@ -43,7 +43,23 @@ export function useValueBase(
         dayjsValue = convertToDayjs(newValue);
         updateStateValue(dayjsValue, value);
         // should update keywords
-        instance.resetKeywords(instance.input.keywords);
+        instance.resetKeywords();
+    });
+
+    watchState(value, (value) => {
+        // silently update the keywords to display the currently selected value 
+        instance.resetKeywords(true);
+        /**
+         * the position may changed after the input break line in multipe mode
+         * use Macro task instead of nextTick, because it has too many Micro tasks
+         */
+        setTimeout(() => {
+            instance.position();
+        });
+    });
+    instance.on('hide', () => {
+        // reset the value after hiding
+        value.set(dayjsValue.slice(0));
     });
 
     watchState(instance.input.keywords, v => {
@@ -199,7 +215,7 @@ export function useValueBase(
 
         const valueStr = convertToValueString(_value); 
         instance.set('value', valueStr);
-        instance.resetKeywords(instance.input.keywords);
+        instance.resetKeywords();
     }
 
     // TODO
@@ -207,6 +223,26 @@ export function useValueBase(
         const now = dayjs();
         setValue(now, true);
         instance.hide();
+    }
+
+    function unique() {
+        const _value = value.value;
+        const map: Record<string, true> = {};
+        const results: StateValue = [];
+        _value.forEach(value => {
+            let key: string;
+            if (Array.isArray(value)) {
+                key = (value as DayjsValueRange).map(getValueString).join(' ~ ');
+            } else {
+                key = getValueString(value);
+            }
+            if (!map[key]) {
+                map[key] = true;
+                results.push(value);
+            }
+        });
+
+        value.set(results);
     }
 
     function isValidDate(date: Dayjs) {
@@ -265,6 +301,7 @@ export function useValueBase(
         setValue,
         convertToDayjs,
         getDayjsValue,
+        unique,
         setMoment,
         updateValue,
         allValuesUpdatedInMultipleMode,

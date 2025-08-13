@@ -78,10 +78,11 @@ export abstract class BasePicker<
     public abstract panel: ReturnType<typeof usePanel>
 
     @bind
-    public resetKeywords(keywords: State<string>, silent: boolean = false) {
-        const {multiple} = this.get();
+    public resetKeywords(silent: boolean = false) {
+        // const {multiple} = this.get();
         // const dayjsValue = this.value.getDayjsValue();
         const value = last(this.value.value.value);
+        const keywords = this.input.keywords;
 
         let _keywords = '';
         if (value && !this.value.allValuesUpdatedInMultipleMode()) {

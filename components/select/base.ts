@@ -142,8 +142,9 @@ export abstract class BaseSelect<
         this.set('show', false);
     }
 
-    public resetKeywords(keywords: State<string>) {
-        keywords.set('');
+    @bind
+    public resetKeywords() {
+        this.input.keywords.set('');
     }
 
     protected hasValue() {

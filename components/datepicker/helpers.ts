@@ -1,5 +1,5 @@
 import dayjs, {Dayjs, OpUnitType, QUnitType} from 'dayjs';
-import {strPad, range} from '../utils';
+import {strPad, range, last} from '../utils';
 import {_$} from '../../i18n';
 import {StateValueItem} from './useValueBase';
 
@@ -82,6 +82,4 @@ export function findValueIndex(values: StateValueItem[], value: StateValueItem, 
     });
 }
 
-export function last<T>(arr: T[]): T | undefined {
-    return arr[arr.length - 1];
-}
+export { last } 

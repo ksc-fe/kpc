@@ -57,11 +57,6 @@ export function useValue(
         }
     );
 
-    instance.on('hide', () => {
-        // reset the value after hiding
-        value.set(getDayjsValue().slice(0));
-    });
-
     function onChangeDate(v: Dayjs, flag: PanelFlags) {
         const {multiple, type, range} = instance.get();
         let _value: StateValueItem;

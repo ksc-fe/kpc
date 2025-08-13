@@ -57,7 +57,7 @@ export function useConfirm(
                 } else {
                     // update value directly on multiple mode
                     reset();
-                    unique();
+                    value.unique();
                     value.updateValue();
                 }
             }
@@ -67,39 +67,10 @@ export function useConfirm(
             if (!multiple) {
                 instance.hide();
             } else {
-                unique();
+                value.unique();
             }
             value.updateValue();
         }
-
-        // if (range) {
-            // if (hasWholeRangeValue()) {
-                // const [start, end] = last(value.value.value) as StateValueRange;
-                // if (start.isSame(end) || start.isBefore(end)) {
-                    // value.updateValue();
-                // }
-            // }
-        // }
-    }
-
-    function unique() {
-        const _value = value.value.value;
-        const map: Record<string, true> = {};
-        const results: StateValue = [];
-        _value.forEach(value => {
-            let key: string;
-            if (Array.isArray(value)) {
-                key = (value as DayjsValueRange).map(getValueString).join(' ~ ');
-            } else {
-                key = getValueString(value);
-            }
-            if (!map[key]) {
-                map[key] = true;
-                results.push(value);
-            }
-        });
-
-        value.value.set(results);
     }
 
     function hasWholeRangeValue() {

@@ -46,18 +46,6 @@ export function useHighlight(
         highlightLeft.set(position === Position.Start ? 0 : highlightWidth.value + DELIMITER_WIDTH);
     });
 
-    watchState(value, (value) => {
-        // silently update the keywords to display the currently selected value 
-        instance.resetKeywords(keywords, true);
-        /**
-         * the position may changed after the input break line in multipe mode
-         * use Macro task instead of nextTick, because it has too many Micro tasks
-         */
-        setTimeout(() => {
-            instance.position();
-        });
-    });
-
     // if value is cleared reset the position to start
     instance.watch('value', (v) => {
         if (!v || Array.isArray(v) && !v.length) {

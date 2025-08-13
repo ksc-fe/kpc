@@ -11,13 +11,9 @@ import {
 } from 'intact';
 import {useState, State} from '../../hooks/useState';
 import type {Select, SelectProps} from './select';
-import {Option, OptionProps} from './option';
-import {OptionGroup, OptionGroupProps} from './group';
-import {isNullOrUndefined, EMPTY_OBJ, isStringOrNumber} from 'intact-shared';
-import {getTextByChildren, mapChildren, isComponentVNode} from '../utils';
 import type {Input} from '../input';
 
-export function useInput(resetKeywords: (keywords: State<string>) => void) {
+export function useInput(resetKeywords: () => void) {
     const component = useInstance() as Select;
     const keywords = useState('');
     const inputRef = createRef<Input>();
@@ -50,9 +46,9 @@ export function useInput(resetKeywords: (keywords: State<string>) => void) {
     component.on('$changed:show', show => {
         if (show) {
             focusInput();
-            resetKeywords(keywords);
+            resetKeywords();
         } else if (component.get('multiple')) {
-            resetKeywords(keywords);
+            resetKeywords();
         }
     });
     component.on('$changed:value', () => {
@@ -64,7 +60,7 @@ export function useInput(resetKeywords: (keywords: State<string>) => void) {
              * https://github.com/ksc-fe/kpc/issues/983
              */
             if (keepKeywords) {
-                resetKeywords(keywords);
+                resetKeywords();
             }
         }
     });

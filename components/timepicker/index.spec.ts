@@ -8,7 +8,6 @@ import {Timepicker} from 'kpc';
 import {Component} from 'intact';
 
 describe('Timepicker', () => {
-
     afterEach(async () => {
         unmount();
         await wait(500);
@@ -19,10 +18,18 @@ describe('Timepicker', () => {
         const [instance, element] = mount(BasicDemo);
 
         const [picker1, picker2] = element.querySelectorAll('.k-select') as NodeListOf<HTMLElement>;
+        const inputInner = picker1.querySelector('.k-input-inner') as HTMLInputElement;
+
+        expect(inputInner.value).eql('');
         picker1.click();
         await wait(500);
-        let dropdown = getElement('.k-time-content')!;
+        expect(inputInner.value).eql('');
+
+        const dropdown = getElement('.k-time-content')!;
+        const ok = dropdown.querySelector('.k-btn') as HTMLElement;
+        expect(ok.classList.contains('k-disabled')).eql(true);
         expect(dropdown.innerHTML).to.matchSnapshot();
+
         const next = dropdown.querySelector('.k-scroll-select-item:nth-child(11)') as HTMLElement;
         next.click();
         await wait();
@@ -32,7 +39,6 @@ describe('Timepicker', () => {
         await wait();
         expect(instance.get('time')).to.be.null;
         expect(dropdown.innerHTML).to.matchSnapshot();
-        const ok = dropdown.querySelector('.k-btn') as HTMLElement;
         ok.click();
         await wait(500);
         expect(instance.get('time')).to.eql('02:00:00');
@@ -43,27 +49,56 @@ describe('Timepicker', () => {
         await wait(500);
         expect(dropdown.innerHTML).to.matchSnapshot();
 
+        // should reset show value on hiding
+        const activeHour = dropdown.querySelector('.k-scroll-select-item.k-active') as HTMLElement;
+        dispatchEvent(activeHour.nextElementSibling!, 'click');
+        await wait();
+        expect(inputInner.value).eql('04:03:03');
+        expect(instance.get('time')).eql('03:03:03');
+        document.body.click();
+        await wait();
+        expect(inputInner.value).eql('03:03:03');
+        expect(instance.get('time')).eql('03:03:03');
+    });
+
+    it('multipe time', async function() {
+        const [instance, element] = mount(BasicDemo);
+        const [picker1, picker2] = element.querySelectorAll('.k-select') as NodeListOf<HTMLElement>;
+
         // multiple
         picker2.click();
-        await wait(500);
-        dropdown = getElement('.k-time-content')!;
-        dropdown.querySelector<HTMLElement>('.k-scroll-select-item:nth-child(11)')!.click();
+        await wait();
+        let dropdown = getElement('.k-time-content')!;
         const ok2 = dropdown.querySelector('.k-btn') as HTMLElement;
+        expect(ok2.classList.contains('k-disabled')).eql(false);
+
+        dropdown.querySelector<HTMLElement>('.k-scroll-select-item:nth-child(11)')!.click();
+        await wait();
+        const inputInner = picker2.querySelector('.k-input-inner') as HTMLInputElement;
+        expect(inputInner.value).eql('01:00:00');
+        expect(instance.get('timeArray')).eql([]);
+
         ok2.click();
-        dropdown.querySelector<HTMLElement>('.k-scroll-select-item:nth-child(12)')!.click();
+        await wait();
+        expect(instance.get('timeArray')).eql(['01:00:00']);
+
+        dropdown.querySelector<HTMLElement>('.k-scroll-select-item:nth-child(11)')!.click();
+        await wait();
         ok2.click();
         await wait();
         expect(instance.get('timeArray')).to.eql(['01:00:00', '02:00:00']);
+        expect(ok2.classList.contains('k-disabled')).eql(false);
+
         // click the same time will do nothing
         ok2.click();
         await wait();
         expect(instance.get('timeArray')).to.eql(['01:00:00', '02:00:00']);
+
         // remove one value
         const [, close] = picker2.querySelectorAll<HTMLElement>('.k-tag-close');
         close.click();
         await wait();
         expect(instance.get('timeArray')).to.eql(['01:00:00']);
-        expect(dropdown.innerHTML).to.matchSnapshot();
 
         // clear
         picker2.querySelector<HTMLElement>('.k-select-clear')!.click();
@@ -79,24 +114,107 @@ describe('Timepicker', () => {
         expect(dropdown.innerHTML).to.matchSnapshot();
     });
 
-    it('range', async () => {
-        const [instance, element] = mount(RangeDemo);
+    describe('range', () => {
+        it('basic', async () => {
+            const [instance, element] = mount(RangeDemo);
 
-        const picker = element.querySelector('.k-select') as HTMLElement;
-        picker.click();
-        await wait(500);
-        const dropdown = getElement('.k-time-content')!;
-        expect(dropdown.innerHTML).to.matchSnapshot();
-        const [start, end] = dropdown.querySelectorAll<HTMLElement>('.k-datepicker-calendar-wrapper');
-        (start.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
-        await wait();
-        expect(dropdown.innerHTML).to.matchSnapshot();
-        (end.querySelector('.k-active')!.nextElementSibling!.nextElementSibling as HTMLElement).click();
-        await wait();
-        expect(dropdown.innerHTML).to.matchSnapshot();
-        dropdown.querySelector<HTMLElement>('.k-btn')!.click();
-        await wait();
-        expect(instance.get('time')).to.eql(['01:00:00', '01:59:59']);
+            const picker = element.querySelector('.k-select') as HTMLElement;
+            picker.click();
+            await wait(500);
+            const dropdown = getElement('.k-time-content')!;
+            expect(dropdown.innerHTML).to.matchSnapshot();
+            const [start, end] = dropdown.querySelectorAll<HTMLElement>('.k-datepicker-calendar-wrapper');
+            (start.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
+            await wait();
+            expect(dropdown.innerHTML).to.matchSnapshot();
+            (end.querySelector('.k-active')!.nextElementSibling!.nextElementSibling as HTMLElement).click();
+            await wait();
+            expect(dropdown.innerHTML).to.matchSnapshot();
+            dropdown.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('time')).to.eql(['01:00:00', '01:59:59']);
+
+            // clear
+            picker.querySelector<HTMLElement>('.k-select-clear')!.click();
+            await wait();
+            expect(instance.get('time')).to.eql(null);
+        });
+
+        it('only select one value then click confirm button directly', async () => {
+            const [instance, element] = mount(RangeDemo);
+
+            const picker = element.querySelector('.k-select') as HTMLElement;
+            picker.click();
+            await wait();
+            const dropdown = getElement('.k-time-content')!;
+            const [start, end] = dropdown.querySelectorAll<HTMLElement>('.k-datepicker-calendar-wrapper');
+            (start.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
+            await wait();
+
+            // skip select end and confirm
+            dropdown.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('time')).eql(['01:00:00', '23:59:59']);
+
+            picker.querySelector<HTMLElement>('.k-select-clear')!.click();
+            await wait();
+            picker.click();
+            await wait();
+            (end.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
+            dropdown.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('time')).eql(['00:00:00', '00:59:59']);
+
+            // click confirm directly
+            picker.querySelector<HTMLElement>('.k-select-clear')!.click();
+            await wait();
+            picker.click();
+            await wait();
+            dropdown.querySelector<HTMLElement>('.k-btn')!.click();
+            await wait();
+            expect(instance.get('time')).eql(['00:00:00', '23:59:59']);
+        });
+
+        it('should unique', async () => {
+            const [instance, element] = mount(RangeDemo);
+            const [, multipe] = element.querySelectorAll('.k-select') as NodeListOf<HTMLElement>;
+
+            // multiple
+            multipe.click();
+            await wait();
+            let dropdown = getElement('.k-time-content')!;
+            const confirm = dropdown.querySelector('.k-btn') as HTMLElement;
+
+            confirm.click();
+            await wait();
+            expect(instance.get('timeArr')).eql([['00:00:00', '23:59:59']]);
+
+            // confirm again
+            confirm.click();
+            await wait();
+            expect(instance.get('timeArr')).eql([['00:00:00', '23:59:59']]);
+        });
+
+        it('should maintain consistency when we select the next value', async () => {
+            const [instance, element] = mount(RangeDemo);
+            const [, multipe] = element.querySelectorAll('.k-select') as NodeListOf<HTMLElement>;
+            instance.set('timeArr', [['01:00:00', '02:00:00']]);
+
+            // multiple
+            multipe.click();
+            await wait();
+            let dropdown = getElement('.k-time-content')!;
+            const confirm = dropdown.querySelector('.k-btn') as HTMLElement;
+            const [start, end] = dropdown.querySelectorAll<HTMLElement>('.k-datepicker-calendar-wrapper');
+            (start.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
+            await wait();
+            confirm.click();
+            await wait();
+            expect(instance.get('timeArr')).eql([
+                ['01:00:00', '02:00:00'],
+                ['02:00:00', '02:00:00'],
+            ]);
+        });
     });
 
     it('step', async () => {
@@ -123,11 +241,11 @@ describe('Timepicker', () => {
         (start.querySelector('.k-active')!.nextElementSibling as HTMLElement).click();
         await wait();
         expect(dropdown.innerHTML).to.matchSnapshot();
-        (end.querySelector('.k-disabled')!.nextElementSibling as HTMLElement).click();
+        (end.querySelector('.k-active')!.previousElementSibling as HTMLElement).click();
         await wait();
         expect(dropdown.innerHTML).to.matchSnapshot();
         dropdown.querySelector<HTMLElement>('.k-btn')!.click();
-        expect(instance.get('time')).to.eql(['00:30:00', '00:30:00']);
+        expect(instance.get('time')).to.eql(['00:30:00', '23:30:00']);
     });
 
     it('format', async () => {
