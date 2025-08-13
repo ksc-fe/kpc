@@ -154,9 +154,9 @@ describe('Datepicker', () => {
         it('week', async () => {  
             const [instance, element] = mount(YearMonthDemo);   
             const inputs = element.querySelectorAll<HTMLElement>('.k-input'); 
-            const WeekInput = inputs[2];  
+            const weekInput = inputs[2];  
               
-            WeekInput.click();  
+            weekInput.click();  
             await wait();
 
             const content = getElement('.k-datepicker-content')!; 
@@ -164,7 +164,6 @@ describe('Datepicker', () => {
             weekItem.click();  
             
             expect(instance.get<string>('week')).to.match(/^\d{4}-\d+周$/)
-            
         });
         
         it('quarter', async () => {  

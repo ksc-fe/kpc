@@ -39,7 +39,7 @@ export function useWeeks(
                     isDisabled: status.isDisabled(day),
                     isHover: day.isSame(focusDate.value, 'week'),
                     isInRange: !isFirstOrLastDay && status.isActive(day, 'week') 
-                });  
+                });
             }  
             // 每周的数据，包括周数和7天的信息  
             weeks.push({week: weekNumber, days});   

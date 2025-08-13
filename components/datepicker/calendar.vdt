@@ -105,8 +105,11 @@ const {
         </div>
         <div v-if={isWeek} class={`${k}-weeks`} ev-mouseleave={resetFocusDate}>
             <div v-for={this.weeks.getWeeks(now)} class="week-row">
-                <div class={`${k}-week-number`} ev-click={e => {onClickDay($value.days[0].value)}}
-                    ev-mouseenter={() => focusDate.set($value.days[0].value)}>{$value.week}</div>
+                <div
+                    class={`${k}-week-number`}
+                    ev-click={e => {onClickDay($value.days[0].value)}}
+                    ev-mouseenter={() => focusDate.set($value.days[0].value)}
+                >{$value.week}</div>
                 {getItems($value.days, onClickDay)}
             </div>
         </div>

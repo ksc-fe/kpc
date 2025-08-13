@@ -31,7 +31,8 @@ export interface DatepickerProps<
     M extends boolean = boolean,
     R extends boolean = boolean,
 > extends BasePickerProps<V extends string ? V : V | string, M, R> {
-    type?: 'date' | 'datetime' | 'year' | 'month' | 'week' | 'quarter'
+    // type?: 'date' | 'datetime' | 'year' | 'month' | 'week' | 'quarter'
+    type?: 'date' | 'datetime' | 'year' | 'month'
     shortcuts?: Shortcut[],
     // isMerge?: boolean
 }
@@ -45,7 +46,8 @@ export interface DatepickerBlocks<
 
 const typeDefs: Required<TypeDefs<DatepickerProps>> = {
     ...BasePicker.typeDefs,
-    type: ['date', 'datetime', 'year', 'month', 'week', 'quarter'],
+    // type: ['date', 'datetime', 'year', 'month', 'week', 'quarter'],
+    type: ['date', 'datetime', 'year', 'month'],
     shortcuts: Array,
     // isMerge: Boolean
 };
@@ -91,10 +93,10 @@ export class Datepicker<
                 return range ? _$('开始年份 ~ 结束年份') : _$('请选择年份');
             case 'month':
                 return range ? _$('开始月份 ~ 结束月份') : _$('请选择月份');
-            case 'week':
-                return range ? _$('开始周 ~ 结束周') : _$('请选择周');
-            case 'quarter':
-                return range ? _$('开始季度 ~ 结束季度') : _$('请选择季度');
+            // case 'week':
+                // return range ? _$('开始周 ~ 结束周') : _$('请选择周');
+            // case 'quarter':
+                // return range ? _$('开始季度 ~ 结束季度') : _$('请选择季度');
             default:
                 return range ? _$('开始日期 ~ 结束日期') : _$('请选择日期');
         }
