@@ -177,4 +177,46 @@ describe('Input', () => {
         await wait(50);
         expect(input.offsetWidth).to.gt(16);
     });
+
+    it('should handle textarea resize correctly', async () => {
+        class ResizeDemo extends Component {
+            static template = `
+                const {Input} = this;
+                <div>
+                    <Input type="textarea" resize="none" placeholder="resize none" />
+                    <Input type="textarea" resize="vertical" placeholder="resize vertical" />
+                    <Input type="textarea" resize="none" rows="auto" placeholder="resize none with auto rows" />
+                </div>
+            `;
+            private Input = Input;
+        }
+
+        const [instance, element] = mount(ResizeDemo as any);
+        
+        const inputElements = element.querySelectorAll('.k-input');
+        
+        // should have k-resize-none class
+        const resizeNoneElement = inputElements[0];
+        expect(resizeNoneElement.classList.contains('k-resize-none')).to.be.true;
+        expect(resizeNoneElement.classList.contains('k-resize-vertical')).to.be.false;
+        
+        const resizeVerticalElement = inputElements[1];
+        expect(resizeVerticalElement.classList.contains('k-resize-vertical')).to.be.true;
+        expect(resizeVerticalElement.classList.contains('k-resize-none')).to.be.false;
+        
+        // resize="none" with rows="auto" (should have k-resize-none class)
+        const resizeNoneAutoElement = inputElements[2];
+        expect(resizeNoneAutoElement.classList.contains('k-resize-none')).to.be.true;
+        
+        // Test CSS computed styles to ensure resize is applied correctly
+        const textareas = element.querySelectorAll('.k-textarea');
+        const textarea1 = textareas[0] as HTMLTextAreaElement;
+        const textarea2 = textareas[1] as HTMLTextAreaElement;
+        
+        const computedStyle1 = getComputedStyle(textarea1);
+        const computedStyle2 = getComputedStyle(textarea2);
+        
+        expect(computedStyle1.resize).to.eql('none');
+        expect(computedStyle2.resize).to.eql('vertical');
+    });
 });

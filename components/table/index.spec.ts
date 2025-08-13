@@ -496,7 +496,6 @@ describe('Table', () => {
         checkbox.click();
         await wait();
         expect(element.innerHTML).to.matchSnapshot();
-        debugger;
         expect(table.getCheckedData()).to.have.lengthOf(8);
 
         const arrow = element.querySelector('.k-table-arrow') as HTMLElement;
@@ -722,5 +721,74 @@ describe('Table', () => {
         expect(table.getCheckedData()).to.have.length(0);
         expect(spy.callCount).to.eql(5);
         expect(spy.lastCall.lastArg).to.eql({value: 2, limit: 10});
+    });
+
+    it('fixHeader with Affix header scroll sync', async () => {
+        interface Props {
+            data: any[]
+            fixHeader: boolean | number
+            virtual: boolean
+            stickScrollbar: boolean | number
+        }
+        
+        class Demo extends Component<Props> {
+            static template = `
+                const {Table, TableColumn} = this;
+                const {data, fixHeader, virtual, stickScrollbar} = this.get();
+                <Table data={data} fixHeader={fixHeader} virtual={virtual} stickScrollbar={stickScrollbar} ref="table">
+                    <TableColumn fixed="left" key="name" title="Name" width="200" />
+                    <TableColumn key="column1" title="Column1" width="300" />
+                    <TableColumn key="column2" title="Column2" width="300" />
+                    <TableColumn key="column3" title="Column3" width="300" />
+                    <TableColumn fixed="right" key="action" title="Action" width="200" />
+                </Table>
+            `;
+            
+            static defaults() {
+                return {
+                    data: Array.from({length: 10}, (_, i) => ({
+                        name: `Name ${i}`,
+                        column1: `Column1 ${i}`,
+                        column2: `Column2 ${i}`,
+                        column3: `Column3 ${i}`,
+                        action: `Action ${i}`
+                    })),
+                    fixHeader: 200,
+                    virtual: false,
+                    stickScrollbar: false
+                };
+            }
+            
+            private Table = Table;
+            private TableColumn = TableColumn;
+        }
+
+        const [instance, element] = mount(Demo);
+        
+        // Test 1: fixHeader only - scroll left 50px
+        await wait();
+        const scrollContainer = element.querySelector('.k-table-wrapper') as HTMLElement;
+        scrollContainer.scrollLeft = 50;
+        await wait(100);
+        const affixWrapper1 = element.querySelector('.k-table-affix-header .k-affix-wrapper') as HTMLElement;
+        expect(affixWrapper1.scrollLeft).to.eql(50);
+        
+        // Test 2: fixHeader + virtual - scroll left 50px more (total 100px)
+        instance.set('virtual', true);
+        await wait();
+        scrollContainer.scrollLeft = 100;
+        await wait(100);
+        
+        const affixWrapper2 = element.querySelector('.k-table-affix-header .k-affix-wrapper') as HTMLElement;
+        expect(affixWrapper2.scrollLeft).to.eql(100);
+        
+        // Test 3: stickScrollbar + fixHeader - scroll right 50px (back to 50px)
+        instance.set('stickScrollbar', true);
+        await wait();
+        scrollContainer.scrollLeft = 50;
+        await wait(100);
+        
+        const affixWrapper3 = element.querySelector('.k-table-affix-header .k-affix-wrapper') as HTMLElement;
+        expect(affixWrapper3.scrollLeft).to.eql(50);
     });
 });

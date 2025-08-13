@@ -22,7 +22,7 @@ export function useStickyHeader(callbacks: ScrollCallback[]) {
 
     // when the scroll element scroll horizontally, scroll the sticky header too 
     callbacks.push(scrollLeft => {
-        if (isNull(stickHeader.value)) return;
+        if (isNull(stickHeader.value) && !instance.get('fixHeader')) return;
 
         const affixHeadWrapper = headRef.value!.parentElement as HTMLElement;
         affixHeadWrapper.scrollLeft = scrollLeft;
