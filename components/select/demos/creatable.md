@@ -31,7 +31,7 @@ import {Select, Option} from 'kpc';
     </Select>
     Days: {JSON.stringify(this.get('days'))}
     <br /><br />
-    <Select v-model="dayWithKeywords" filterable multiple creatable keepKeywords style="margin-right: 10px">
+    <Select v-model="dayWithKeywords" filterable multiple creatable keepKeywords={false} style="margin-right: 10px">
         <Option value="Monday">星期一</Option>
         <Option value="Tuesday">星期二</Option>
         <Option value="Wednesday">星期三</Option>
@@ -40,7 +40,7 @@ import {Select, Option} from 'kpc';
         <Option value="Saturday">星期六</Option>
         <Option value="Sunday">星期天</Option>
     </Select>
-    Day with keepKeywords: {JSON.stringify(this.get('dayWithKeywords'))}
+    Day with keepKeywords=false: {JSON.stringify(this.get('dayWithKeywords'))}
 </div>
 ```
 

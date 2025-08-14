@@ -54,7 +54,7 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             day: null,
-            days: []
+            days: ['Tuesday']
         } as Props;
     };
 }

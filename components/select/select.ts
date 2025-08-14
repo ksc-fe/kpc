@@ -44,6 +44,7 @@ const typeDefs: Required<TypeDefs<SelectProps>> = {
 const defaults = (): Partial<SelectProps> => ({
     ...BaseSelect.defaults(),
     labelMap: new Map(),
+    keepKeywords: true,
 });
 
 export class Select<

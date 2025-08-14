@@ -2,7 +2,7 @@ import {useInstance, Component} from 'intact';
 import dayjs, {Dayjs} from '../datepicker/dayjs';
 import {isString} from 'intact-shared';
 import type {TimepickerProps} from './';
-import type {Value} from '../datepicker/basepicker';
+import type {Value} from '../datepicker/useValueBase';
 import {YEAR_FORMAT, TIME_FORMAT, PREFIX} from './constants'
 
 export function useFormats<T extends Component<TimepickerProps>>() {

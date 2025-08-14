@@ -40,7 +40,8 @@ export class Option extends Component<OptionProps> {
         } else {
             let values = select.get('value');
             
-            if (keepKeywords && isCreated && Array.isArray(values) && values.includes(value)) {
+            if (!keepKeywords && isCreated && Array.isArray(values) && values.includes(value)) {
+                select.resetKeywords();
                 return;
             }
             

@@ -59,7 +59,7 @@ export function useInput(resetKeywords: () => void) {
              * don't reset keywords on multiple mode for continue selection
              * https://github.com/ksc-fe/kpc/issues/983
              */
-            if (keepKeywords) {
+            if (!keepKeywords) {
                 resetKeywords();
             }
         }

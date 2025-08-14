@@ -4,7 +4,7 @@ import type {Datepicker} from './index';
 import {DayjsValueRange, DayjsValue} from './useValueBase';
 import type {useFormats} from './useFormats';
 
-
+// TODO isMerge
 export function useMergeRange(formats: ReturnType<typeof useFormats>) {
     const instance = useInstance() as Datepicker;
 
@@ -33,17 +33,17 @@ export function useMergeRange(formats: ReturnType<typeof useFormats>) {
     }
 
     function formatMultipleValues(dayjsValue: DayjsValue, results: string[]): string[] {
-        const {isMerge, nowrap} = instance.get();
+        // const {isMerge, nowrap} = instance.get();
         
-        if (isMerge && nowrap) {
-            const mergedResults = _mergeRanges(dayjsValue, (v: Dayjs) => v.format(formats.getShowFormat()));
-            if (mergedResults.length > 0) {
-                return [
-                    ...mergedResults,
-                    ...results.slice(1).map((result, index) => `${result}-${index}`)
-                ];
-            }
-        }
+        // if (isMerge && nowrap) {
+        //     const mergedResults = _mergeRanges(dayjsValue, (v: Dayjs) => v.format(formats.getShowFormat()));
+        //     if (mergedResults.length > 0) {
+        //         return [
+        //             ...mergedResults,
+        //             ...results.slice(1).map((result, index) => `${result}-${index}`)
+        //         ];
+        //     }
+        // }
         
         return results;
     }
