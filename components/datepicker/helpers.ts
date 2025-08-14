@@ -31,7 +31,7 @@ export function isEqual(
     type: OpUnitType | QUnitType = 'date'
 ) {
     if (a && b) {
-        return a.isSame(b, type);
+        return a.isSame(b, type as any);
     }
     return false;
 }
@@ -42,7 +42,7 @@ export function isLT(
     type: OpUnitType | QUnitType = 'date'
 ) {
     if (a && b) {
-        return a.isBefore(b, type);
+        return a.isBefore(b, type as any);
     }
 
     return false;

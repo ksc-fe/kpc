@@ -196,7 +196,7 @@ describe('Tour', () => {
         const [instance, element] = mount(CustomTextDemo);
         
         const buttons = element.querySelectorAll('.k-btn');
-        const startBtn = Array.from(buttons).find(btn => btn.textContent?.includes('启动引导')) as HTMLElement;
+        const startBtn = Array.from(buttons).find(btn => btn.textContent?.includes('开始自定义按钮引导')) as HTMLElement;
         startBtn.click();
         await wait(50);
         

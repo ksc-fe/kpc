@@ -5,17 +5,18 @@ sidebar: doc
 ---
 ## v3.6.0
 
-1. `Add` `Datepicker` 组件`range`模式，交互方式优化 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
-2. `Add` `Datepicker` 组件`type`属性支持`quarter`季度、`week`星期的选择 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
-3. `Add` `Datepicker` 组件新增`nowrap`属性，支持多选模式下不换行展示 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
-4. `Add` `Datepicker` 组件新增`isMerge`属性，支持单行多选模式下自动展示合并日期范围 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
-5. `Add` 新增`Tour`引导式导航组件 [#1079](https://github.com/ksc-fe/kpc/issues/1079)
-6. `Add` `Select`组件新增`keepKeywords`属性，enter选中，是否继续保留搜索关键字[#1077](https://github.com/ksc-fe/kpc/issues/1077)
-7. `Fix` `Select`组件`searchable + multiple`状态下，默认值`checkbox`第一次不选中问题 [#1081](https://github.com/ksc-fe/kpc/issues/1081)
+1. `Add` 新增`Tour`引导式导航组件 [#1079](https://github.com/ksc-fe/kpc/issues/1079)
+2. `Add` `Datepicker` 组件`range`模式，交互方式优化 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
+3. `Add` `Select`组件新增`keepKeywords`属性，enter选中，是否继续保留搜索关键字[#1077](https://github.com/ksc-fe/kpc/issues/1077)
+4. `Fix` `Select`组件`searchable + multiple`状态下，默认值`checkbox`第一次不选中问题 [#1081](https://github.com/ksc-fe/kpc/issues/1081)
+5. `Fix` `Table`组件开启`fixHeader`属性，表头无法横向滚动 [#1087](https://github.com/ksc-fe/kpc/issues/1087)
+6. `Fix` `Table` 组件，将kpc的版本从v3.4.3升级到最新版本v3.5.2后，使用`fixHeader`属性会导致一些不符合预期的表现 [#1089](https://github.com/ksc-fe/kpc/issues/1089)
+7. `Fix` `Input` `textarea` 部分场景下`resize`属性失效 [#1090](https://github.com/ksc-fe/kpc/issues/1090)
+8. `Fix` `Table` 组件`group`后赋值且多个TableColumn会报错卡死 [#1082](https://github.com/ksc-fe/kpc/issues/1082)
 
-### @king-design/vue-legacy
+### @king-design/vue
+1. `Fix` 页面报错 Cannot add property 23, object is not extensible [#1066](https://github.com/ksc-fe/kpc/issues/1066)
 
-1. `Fix` `Datepicker`组件`range`模式无法二次选中 [#Todo]()
 
 ## v3.5.2
 

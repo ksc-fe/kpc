@@ -47,6 +47,24 @@
 "<div class=\"k-cascader-empty\">无数据</div>"
 ```
 
+#### `filter`
+
+```
+"<div class=\"k-dropdown-item k-disabled css-vj004t\">湖南 / <em>长沙</em>市 / 岳麓区</div>"
+```
+
+```
+"<div class=\"k-cascader-empty\">无匹配数据</div>"
+```
+
+```
+"<div class=\"k-dropdown-item k-hover css-vj004t\">湖南 / <em>岳阳</em>市 / <em>岳阳</em>楼区</div><div class=\"k-dropdown-item css-vj004t\">湖南 / <em>岳阳</em>市 / <em>岳阳</em>县</div>"
+```
+
+```
+"<div class=\"k-dropdown-item k-hover css-vj004t\">湖南 / <em>岳阳</em>市 / <em>岳阳</em>楼区</div><div class=\"k-dropdown-item css-vj004t\">湖南 / <em>岳阳</em>市 / <em>岳阳</em>县</div>"
+```
+
 #### `no data for init data`
 
 ```
@@ -61,23 +79,5 @@
 
 ```
 "<div class=\"k-select-main\"><input type=\"hidden\" value=\"beijing,haidian\"><div class=\"k-select-placeholder c-ellipsis k-fade-leave-from k-fade-leave-active\">请选择</div><div class=\"k-select-value c-ellipsis k-fade-enter-from k-fade-enter-active\">北京 / 海淀区</div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span>"
-```
-
-#### `filter`
-
-```
-"<div class=\"k-dropdown-item k-cascader-option k-hover css-vj004t\">北京<i class=\"k-icon k-cascader-arrow k-icon-right css-16qej3\"></i></div><!--portal--><div class=\"k-dropdown-item k-cascader-option css-vj004t\">湖南<i class=\"k-icon k-cascader-arrow k-icon-right css-16qej3\"></i></div><!--portal-->"
-```
-
-```
-"<div class=\"k-dropdown-item k-disabled css-vj004t\">湖南 / <em>长沙</em>市 / 岳麓区</div>"
-```
-
-```
-"<div class=\"k-cascader-empty\">无匹配数据</div>"
-```
-
-```
-"<div class=\"k-dropdown-item k-hover css-vj004t\">湖南 / <em>岳阳</em>市 / <em>岳阳</em>楼区</div><div class=\"k-dropdown-item css-vj004t\">湖南 / <em>岳阳</em>市 / <em>岳阳</em>县</div>"
 ```
 
