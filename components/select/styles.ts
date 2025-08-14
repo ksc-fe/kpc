@@ -5,7 +5,7 @@ import '../../styles/global';
 import { cache } from '../utils';
 
 type SizeStyles = {
-    padding?: string,
+    padding: string,
     height: string,
     fontSize: string,
 }
@@ -117,6 +117,8 @@ setDefault(() => {
     makeMenuStyles?.clearCache();
     makeGroupStyles?.clearCache();
 });
+
+export { select }
 
 export const makeStyles = cache(function makeStyles(k: string) {
     return css`

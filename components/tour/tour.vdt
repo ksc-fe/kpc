@@ -1,0 +1,83 @@
+import {makeStyles} from './styles';
+import {TourStep} from './step';
+import {TourContext} from './tour';
+import {getRestProps, stopPropagation} from '../utils';
+import {mapChildren, isComponentVNode} from '../utils';
+
+const { className, data, children, value, hoverable,
+    showArrow, theme, visible, maskClosable,
+    doneText, closable,
+} = this.get();
+const { k } = this.config;
+
+const currentValue = value !== undefined ? value : 0;
+const {arrowType, arrowRef} = this.arrow;
+const {highlightRef} = this.highlight;
+const {prev, next, finish} = this.navigation;
+const {getTotalSteps} = this.steps;
+
+const contextValue = {
+    value: value || 0,
+    total: getTotalSteps(),
+    doneText: doneText,
+    closable: closable,
+    onPrev: prev,
+    onNext: next,
+    onFinish: finish
+}
+
+const classNameObj = {
+    [`${k}-tour`]: true,
+    [`${k}-${theme}`]: true,
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)} v-if={visible}>
+    <TourContext.Provider value={contextValue}>
+        {/* 高亮目标元素 */}
+        <div 
+            class={{
+                [`${k}-tour-target-highlight`]: true,
+                [`${k}-hoverable`]: hoverable
+            }}
+            v-if={currentValue !== undefined} 
+            ref={highlightRef}
+        ></div>
+        
+        {/* 步骤内容 */}
+        <div
+            class={`${k}-tour-step-wrapper`} 
+            ref={this.tourRef}
+            ev-click={stopPropagation}
+        >
+            <template v-if={!children}>
+                <TourStep 
+                    v-for={data} 
+                    v-if={$key === currentValue}
+                    key={$key}
+                    {...$value}
+                />
+            </template>
+            <template v-else>
+                {mapChildren(children, (vNode, index) => {
+                    if (isComponentVNode(vNode, TourStep)) {
+                        if (index === currentValue) {
+                            return vNode;
+                        }
+                    }
+                    return null;
+                })}
+            </template>
+            
+            {/* 箭头 */}
+            <i v-if={showArrow && arrowType.value}
+                class={{
+                    [`${k}-tour-arrow`]: true,
+                    [`${k}-${arrowType.value}`]: arrowType.value,
+                }}
+                ref={arrowRef}
+            ></i>
+        </div>
+    </TourContext.Provider>
+</div>

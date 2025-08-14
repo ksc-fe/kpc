@@ -75,10 +75,11 @@
 ```
 
 ```
-"<div class=\"k-select css-1ti24q0 k-dropdown-open\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline k-focus css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" value=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-search css-16qej3\"></i></span></span></div><!--portal-->
+"<div class=\"k-select css-1ti24q0 k-dropdown-open\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" value=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-search css-16qej3\"></i></span></span></div><!--portal-->
     Day: xxx<br><br><div class=\"k-select k-nowrap css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-tags k-nowrap css-czb0gm\"><div class=\"k-tag k-tags-more c-hidden k-tags-tooltip k-none css-1weg519\">
             +0</div><!--portal--><div class=\"k-input k-auto-width k-inline k-select-input css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" style=\"width: 72px;\"><div class=\"k-input-fake\"><pre>请输入或选择</pre></div></div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
-    Days: []"
+    Days: []<br><br><div class=\"k-select css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-tags css-czb0gm\"><div class=\"k-input k-auto-width k-inline k-select-input css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" style=\"width: 72px;\"><div class=\"k-input-fake\"><pre>请输入或选择</pre></div></div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
+    Day with keepKeywords=false: []"
 ```
 
 ```
@@ -86,10 +87,11 @@
 ```
 
 ```
-"<div class=\"k-select css-1ti24q0 k-dropdown-open\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline k-focus css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" value=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-search css-16qej3\"></i></span></span></div><!--portal-->
+"<div class=\"k-select css-1ti24q0 k-dropdown-open\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" value=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-search css-16qej3\"></i></span></span></div><!--portal-->
     Day: xxx<br><br><div class=\"k-select k-nowrap css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-tags k-nowrap css-czb0gm\"><div class=\"k-tag k-tags-more c-hidden k-tags-tooltip k-none css-1weg519\">
             +0</div><!--portal--><div class=\"k-input k-auto-width k-inline k-select-input css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" style=\"width: 72px;\"><div class=\"k-input-fake\"><pre>请输入或选择</pre></div></div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
-    Days: []"
+    Days: []<br><br><div class=\"k-select css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-tags css-czb0gm\"><div class=\"k-input k-auto-width k-inline k-select-input css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" style=\"width: 72px;\"><div class=\"k-input-fake\"><pre>请输入或选择</pre></div></div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
+    Day with keepKeywords=false: []"
 ```
 
 ```
@@ -97,10 +99,11 @@
 ```
 
 ```
-"<div class=\"k-select css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline k-focus css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" value=\"xxx\" readonly=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
+"<div class=\"k-select css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"xxx\"><div class=\"k-input k-fluid k-inline css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"xxx\" value=\"xxx\" readonly=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
     Day: xxx<br><br><div class=\"k-select k-nowrap css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-tags k-nowrap css-czb0gm\"><div class=\"k-tag k-tags-more c-hidden k-tags-tooltip k-none css-1weg519\">
             +0</div><!--portal--><div class=\"k-input k-auto-width k-inline k-select-input css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" style=\"width: 72px;\"><div class=\"k-input-fake\"><pre>请输入或选择</pre></div></div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
-    Days: []"
+    Days: []<br><br><div class=\"k-select css-1ti24q0\" tabindex=\"0\" style=\"margin-right: 10px;\"><div class=\"k-select-main\"><input type=\"hidden\" value=\"\"><div class=\"k-select-values\"><div class=\"k-tags css-czb0gm\"><div class=\"k-input k-auto-width k-inline k-select-input css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" readonly=\"\" placeholder=\"请输入或选择\" style=\"width: 72px;\"><div class=\"k-input-fake\"><pre>请输入或选择</pre></div></div></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span></div><!--portal-->
+    Day with keepKeywords=false: []"
 ```
 
 #### `disabled option does not allow clearable and close`

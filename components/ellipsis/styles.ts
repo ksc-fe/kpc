@@ -16,6 +16,10 @@ export const makeStyles = cache(function makeStyles(k: string, maxLines: number)
                 display: -webkit-box;
                 -webkit-line-clamp: ${maxLines};
                 -webkit-box-orient: vertical;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                line-clamp: ${maxLines};
+                box-orient: vertical;
             }
         }
     `;

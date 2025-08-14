@@ -1,14 +1,16 @@
 import {useInstance} from 'intact';
-import dayjs, {Dayjs} from './dayjs';
+import dayjs, {Dayjs} from 'dayjs';
 import {isString} from 'intact-shared';
 import type {Datepicker} from './index';
-import {Value} from './basepicker';
+import type {Value} from './useValueBase';
 
 const FORMATS = {
     date: 'YYYY-MM-DD',
     datetime: 'YYYY-MM-DD HH:mm:ss',
     year: 'YYYY',
     month: 'YYYY-MM',
+    quarter: 'YYYY-[Q]Q',
+    week: 'YYYY-w[周]',
 };
 
 export function useFormats() {
@@ -23,9 +25,13 @@ export function useFormats() {
         const {format, showFormat, type} = instance.get();
         return showFormat || format || FORMATS[type!];
     }
-
+    
+    /**
+     * 根据日期字符串，按照格式创建日期对象
+     */
     function createDateByValueFormat(value: Value) {
-        return dayjs(value, isString(value) ? getValueFormat() : undefined);
+        const format = isString(value) ? getValueFormat() : undefined;
+        return dayjs(value, format);
     }
 
     function createDateByShowFormat(value: string) {

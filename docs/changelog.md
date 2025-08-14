@@ -3,6 +3,21 @@ title: 更新日志
 order: 99
 sidebar: doc
 ---
+## v3.6.0
+
+1. `Add` 新增`Tour`引导式导航组件 [#1079](https://github.com/ksc-fe/kpc/issues/1079)
+2. `Add` `Datepicker` 组件`range`模式，交互方式优化 [#1080](https://github.com/ksc-fe/kpc/issues/1080)
+3. `Add` `Select`组件新增`keepKeywords`属性，enter选中，是否继续保留搜索关键字[#1077](https://github.com/ksc-fe/kpc/issues/1077)
+4. `Fix` `Select`组件`searchable + multiple`状态下，默认值`checkbox`第一次不选中问题 [#1081](https://github.com/ksc-fe/kpc/issues/1081)
+5. `Fix` `Table`组件开启`fixHeader`属性，表头无法横向滚动 [#1087](https://github.com/ksc-fe/kpc/issues/1087)
+6. `Fix` `Table` 组件，将kpc的版本从v3.4.3升级到最新版本v3.5.2后，使用`fixHeader`属性会导致一些不符合预期的表现 [#1089](https://github.com/ksc-fe/kpc/issues/1089)
+7. `Fix` `Input` `textarea` 部分场景下`resize`属性失效 [#1090](https://github.com/ksc-fe/kpc/issues/1090)
+8. `Fix` `Table` 组件`group`后赋值且多个TableColumn会报错卡死 [#1082](https://github.com/ksc-fe/kpc/issues/1082)
+
+### @king-design/vue
+1. `Fix` 页面报错 Cannot add property 23, object is not extensible [#1066](https://github.com/ksc-fe/kpc/issues/1066)
+
+
 ## v3.5.2
 
 1. `Fix` `TreeSelect`单选时v-model绑定值数据类型被重置为数组 [#1069](https://github.com/ksc-fe/kpc/issues/1069)

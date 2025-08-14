@@ -10,14 +10,18 @@ import {useValue} from './useValue';
 import {useDisabled} from './useDisabled';
 import {usePanel} from '../datepicker/usePanel';
 import {State} from '../../hooks/useState';
-import {PanelTypes} from '../datepicker/usePanel';
 import {useStep} from './useStep';
 import {
     TimepickerProps,
     TimepickerEvents,
     TimepickerBlocks,
     typeDefs,
+    NOW_START,
+    NOW_END,
 } from './constants';
+import { useConfirm } from './useConfirm';
+import { StateValueItem } from '../datepicker/useValueBase';
+import { useDefaultValue } from './useDefaultValue';
 
 export class PanelPicker<
     Multipe extends boolean = false,
@@ -31,10 +35,12 @@ export class PanelPicker<
     static typeDefs = typeDefs;
 
     public formats = useFormats();
-    public disabled = useDisabled(this.formats);
-    public panel = usePanel(PanelTypes.Time);
-    public value = useValue(this.formats, this.disabled, this.panel);
+    public defaultValue = useDefaultValue();
+    public disabled = useDisabled(this.formats, this.defaultValue);
+    public panel = usePanel();
+    public value = useValue(this.formats, this.disabled, this.panel, this.defaultValue);
     public step = useStep(this.disabled, this.formats);
+    public confirm = useConfirm(this.value, this.formats.getValueString, this.defaultValue);
 
     protected getPlaceholder() {
         const {placeholder, range} = this.get();

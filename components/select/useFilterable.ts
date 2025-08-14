@@ -35,7 +35,7 @@ export function useFilterable(keywords: State<string>) {
                 }
                 return false;
             })) {
-                return h(Option, {value: _keywords, label: _keywords});
+                return h(Option, {value: _keywords, label: _keywords, isCreated: true});
             }
         }
     }

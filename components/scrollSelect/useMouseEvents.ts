@@ -18,6 +18,7 @@ export function useMouseEvents(
     let y: number;
     let itemHeight: number;
     let deltaY: number;
+    let wheelDeltaY: number = 0;
     const {start, dragging} = useDraggable({
         onStart(e: MouseEvent) {
             dragged = false; 
@@ -28,12 +29,12 @@ export function useMouseEvents(
         },
 
         onMove(e: MouseEvent) {
-            const deltaY = e.clientY - y;
+            const deltaY = (e.clientY - y) * 0.8;
             dragged = !!deltaY;
             y = e.clientY;
 
             const _deltaY = y - initY;
-            let offsetIndex = Math.floor(Math.abs(_deltaY) / itemHeight); 
+            let offsetIndex = Math.floor(Math.abs(_deltaY) / itemHeight * 1.2);
             if (offsetIndex) {
                 if (_deltaY < 0) {
                     offsetIndex = -offsetIndex;
@@ -63,25 +64,38 @@ export function useMouseEvents(
 
     function onWheel(e: WheelEvent) {
         e.preventDefault();
-        itemHeight = getItemHeight(); 
-        if (e.deltaY > 0) {
-            // down
-            setByRelativeIndex(1, null, true);
-        } else {
-            setByRelativeIndex(-1, null, true);
+ 
+        itemHeight = getItemHeight();
+        
+        const threshold = itemHeight * 0.6;
+        wheelDeltaY += e.deltaY;
+        
+        if (Math.abs(wheelDeltaY) >= threshold) {
+            if (wheelDeltaY > 0) {
+                setByRelativeIndex(1, null, true);
+            } else {
+                setByRelativeIndex(-1, null, true);
+            }
+            wheelDeltaY = 0;
         }
     }
 
     // throttle onWheel
-    const _onWheel = throttle(onWheel, 0, e => e.preventDefault());
+    const _onWheel = throttle(onWheel, 50, e => e.preventDefault());
 
     function onClick(item: any, index: number) {
-        // if _dragged, do not trigger click event, #123
+        // if dragged, do not trigger click event
         if (dragged) return;
 
         const {count} = instance.get();
         const half = Math.floor(count! / 2);
         const itemHeight = getItemHeight();
+        
+        const currentIndex = list.data.value.findIndex(v => v.value === list.value.value);
+        const targetOffset = index - half;
+        if (currentIndex + targetOffset < 0 || currentIndex + targetOffset >= list.data.value.length) {
+            return;
+        }
 
         translate.set(translate.value - itemHeight * (index - half));
         marginTop.set(marginTop.value + itemHeight * (index - half));

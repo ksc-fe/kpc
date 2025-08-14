@@ -10,15 +10,19 @@ import {useShowDate} from './useShowDate';
 import {bind} from '../utils';
 import {useYears} from './useYears';
 import {useMonths} from './useMonths';
-import {StateValue} from './basepicker';
+import {useWeeks} from './useWeeks';
+import {useQuarters} from './useQuarters';
+import type {StateValue} from './useValueBase';
 import {useStatus} from './useStatus';
 import {PanelFlags} from './usePanel';
 import { useConfigContext } from '../config';
+import { Position } from './useHighlight';
 
 export interface DatepickerCalendarProps {
     value: StateValue
-    type?: 'date' | 'year' | 'month'
+    type?: 'date' | 'year' | 'month' | 'week' | 'quarter'
     flag: PanelFlags
+    highlightPosition: Position
 }
 
 export interface DatepickerCalendarEvents {
@@ -40,6 +44,8 @@ export class DatepickerCalendar extends Component<DatepickerCalendarProps, Datep
     public days = useDays(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
     public years = useYears(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
     public months = useMonths(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    public weeks = useWeeks(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
+    public quarters = useQuarters(this.showDate.date, this.status, this.datepicker.focusDate.focusDate);
     private config = useConfigContext();
 
     @bind

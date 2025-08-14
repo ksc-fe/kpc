@@ -31,6 +31,7 @@ sidebar: doc
 | labelMap | 建立值`value`到展示标签`label`的映射，可以在`value`不在`Option`集合中时，依然能够正确展示相应的`label` | `Map<any, string>` | `new Map()` |
 | card | 是否展示`card`模式 | `boolean` | `false` |
 | autoDisableArrow | 是否在没有更多可选项时，给箭头一个`disabled`状态来提示用户 | `boolean` | `false` |
+| keepKeywords | 是否在选中选项后保留搜索关键字，配合`filterable`使用 | `boolean` | `true` |
 | show | 是否展示菜单项 | `boolean` | `false` |
 | position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
 | flat | 是否展示扁平样式 | `boolean` | `false` |

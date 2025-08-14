@@ -9,6 +9,7 @@ export interface OptionProps {
     value: any
     label?: string
     disabled?: boolean
+    isCreated?: boolean
 }
 
 const typeDefs: Required<TypeDefs<OptionProps>> = {
@@ -17,6 +18,7 @@ const typeDefs: Required<TypeDefs<OptionProps>> = {
     },
     label: String,
     disabled: Boolean,
+    isCreated: Boolean,
 };
 
 export class Option extends Component<OptionProps> {
@@ -29,13 +31,20 @@ export class Option extends Component<OptionProps> {
     @bind
     private onSelect() {
         const select = this.select!;
-        const multiple = select.get('multiple');
+        const {multiple, keepKeywords} = select.get();
         const value = this.get('value');
+        const isCreated = this.get('isCreated');
 
         if (!multiple) {
             select.set('value', this.get('value'));
         } else {
             let values = select.get('value');
+            
+            if (!keepKeywords && isCreated && Array.isArray(values) && values.includes(value)) {
+                select.resetKeywords();
+                return;
+            }
+            
             values = toggleArray(values, value);
             select.set('value', values);
         }

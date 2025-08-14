@@ -1,7 +1,7 @@
-import dayjs, {Dayjs, OpUnitType} from 'dayjs';
-import {strPad, range} from '../utils';
+import dayjs, {Dayjs, OpUnitType, QUnitType} from 'dayjs';
+import {strPad, range, last} from '../utils';
 import {_$} from '../../i18n';
-import {StateValueItem} from './basepicker';
+import {StateValueItem} from './useValueBase';
 
 export function getNowDate(isEnd?: boolean) {
     // only date without time
@@ -28,10 +28,10 @@ export function endTime(date: Date) {
 export function isEqual(
     a: Dayjs | undefined | null,
     b: Dayjs | undefined | null,
-    type: OpUnitType = 'date'
+    type: OpUnitType | QUnitType = 'date'
 ) {
     if (a && b) {
-        return a.isSame(b, type);
+        return a.isSame(b, type as any);
     }
     return false;
 }
@@ -39,10 +39,10 @@ export function isEqual(
 export function isLT(
     a: Dayjs | undefined | null,
     b: Dayjs | undefined | null,
-    type: OpUnitType = 'date'
+    type: OpUnitType | QUnitType = 'date'
 ) {
     if (a && b) {
-        return a.isBefore(b, type);
+        return a.isBefore(b, type as any);
     }
 
     return false;
@@ -51,7 +51,7 @@ export function isLT(
 export function isGT(
     a: Dayjs | undefined | null,
     b: Dayjs | undefined | null,
-    type: OpUnitType = 'date'
+    type: OpUnitType | QUnitType = 'date'
 ) {
     return isLT(b, a, type);
 }
@@ -70,7 +70,7 @@ export function createDate(date: string) {
     return new Date(date);
 }
 
-export function findValueIndex(values: StateValueItem[], value: StateValueItem, type: OpUnitType) {
+export function findValueIndex(values: StateValueItem[], value: StateValueItem, type: OpUnitType | QUnitType) {
     return values.findIndex(item => {
         if (Array.isArray(item)) {
             // is multipe range values
@@ -82,6 +82,4 @@ export function findValueIndex(values: StateValueItem[], value: StateValueItem, 
     });
 }
 
-export function last<T>(arr: T[]): T | undefined {
-    return arr[arr.length - 1];
-}
+export { last } 

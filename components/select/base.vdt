@@ -17,7 +17,7 @@ const {
     className, container,
     inline, style, width, show,
     position, flat, nowrap,
-    draggable,
+    draggable, range,
 } = this.get();
 const { k } = this.config;
 
@@ -66,6 +66,7 @@ const filterInput = <Input v-if={filterable}
                 container={container}
                 v-model="show"
                 position={position}
+                alwaysShowOnClick={$props.alwaysShowOnClick}
             >
                 <div {...getRestProps(this)} 
                     class={classNameObj}
@@ -74,6 +75,7 @@ const filterInput = <Input v-if={filterable}
                     ev-focusout={onFocusout}
                     style={!isNullOrUndefined(width) ? addStyle(style, {width: `${width}px`}) : style}
                     ref={triggerRef}
+                    ev-click={$props.onClick}
                 >
                     <div class={`${k}-select-prefix`} v-if={$blocks.prefix}>
                         <b:prefix />

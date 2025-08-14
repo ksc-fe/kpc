@@ -24,7 +24,7 @@ import {Datepicker} from 'kpc';
     <Datepicker multiple range v-model="dateRange" />
     You selected: {JSON.stringify(this.get('dateRange'))}
     <br /><br />
-    <Datepicker multiple range v-model="datetimeRange" type="datetime" />
+    <Datepicker multiple range type="datetime" v-model="datetimeRange" />
     You selected: {JSON.stringify(this.get('datetimeRange'))}
     <br /><br />
 </div>

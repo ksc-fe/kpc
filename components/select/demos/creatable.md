@@ -30,6 +30,17 @@ import {Select, Option} from 'kpc';
         <Option value="Sunday">星期天</Option>
     </Select>
     Days: {JSON.stringify(this.get('days'))}
+    <br /><br />
+    <Select v-model="dayWithKeywords" filterable multiple creatable keepKeywords={false} style="margin-right: 10px">
+        <Option value="Monday">星期一</Option>
+        <Option value="Tuesday">星期二</Option>
+        <Option value="Wednesday">星期三</Option>
+        <Option value="Thursday">星期四</Option>
+        <Option value="Friday">星期五</Option>
+        <Option value="Saturday">星期六</Option>
+        <Option value="Sunday">星期天</Option>
+    </Select>
+    Day with keepKeywords=false: {JSON.stringify(this.get('dayWithKeywords'))}
 </div>
 ```
 
@@ -37,6 +48,7 @@ import {Select, Option} from 'kpc';
 interface Props {
     day?: string | null
     days?: string[]
+    dayWithKeywords?: string[]
 }
 
 export default class extends Component<Props> {
@@ -45,6 +57,7 @@ export default class extends Component<Props> {
         return {
             day: null,
             days: [],
+            dayWithKeywords: [],
         } as Props;
     }
 }

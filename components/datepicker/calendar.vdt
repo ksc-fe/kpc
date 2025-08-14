@@ -7,7 +7,12 @@ import {getNowDate} from './helpers';
 
 const type = this.type.value;
 const isYear = type === 'year';
+const isWeek = type === 'week';
+const isQuarter = type === 'quarter';
 const isYearOrMonth = isYear || type === 'month';
+const isDateOrDateTime = type === 'date' || type === 'datetime'
+// isDateOrDateTime & isWeek合并
+const showDateWeeks = isDateOrDateTime || isWeek
 const { k } = this.config;
 const classNameObj = {
     [`${k}-datepicker-calendar`]: true,
@@ -59,7 +64,7 @@ const {
             <Button icon type="none" size="small" class={`${k}-prev`}
                 tagName="div"
                 ev-click={prevMonth}
-                v-if={!isYearOrMonth}
+                v-if={showDateWeeks}
             >
                 <Icon class={`${k}-icon-left`} size="small" />
             </Button>
@@ -79,7 +84,7 @@ const {
             <Button icon type="none" size="small" class={`${k}-next`}
                 tagName="div"
                 ev-click={nextMonth}
-                v-if={!isYearOrMonth}
+                v-if={showDateWeeks}
             >
                 <Icon class={`${k}-icon-right`} size="small" />
             </Button>
@@ -92,20 +97,32 @@ const {
             </Button>
         </div>
     </div>
-    <template v-if={!isYearOrMonth}>
+    <template v-if={showDateWeeks}>
         <div class={`${k}-weekdays`}>
             <div class={`${k}-weekday`}
                 v-for={[_$('日'), _$('一'), _$('二'), _$('三'), _$('四'), _$('五'), _$('六')]}
             >{$value}</div>
         </div>
-        <div class={`${k}-days`} ev-mouseleave={resetFocusDate}>
+        <div v-if={isWeek} class={`${k}-weeks`} ev-mouseleave={resetFocusDate}>
+            <div v-for={this.weeks.getWeeks(now)} class="week-row">
+                <div
+                    class={`${k}-week-number`}
+                    ev-click={e => {onClickDay($value.days[0].value)}}
+                    ev-mouseenter={() => focusDate.set($value.days[0].value)}
+                >{$value.week}</div>
+                {getItems($value.days, onClickDay)}
+            </div>
+        </div>
+        <div v-else class={`${k}-days`} ev-mouseleave={resetFocusDate}>
             {getItems(getDays(now), onClickDay)}
         </div>
     </template>
     <div v-else class={`${k}-years`} ev-mouseleave={resetFocusDate}>
         {isYear ?
-            getItems(this.years.getYears(now), this.years.onClick) :
-            getItems(this.months.getMonths(now), this.months.onClick)
+            getItems(this.years.getYears(now), this.years.onClick) :  
+            isQuarter ?
+                getItems(this.quarters.getQuarters(now), this.quarters.onClick) :
+                getItems(this.months.getMonths(now), this.months.onClick)
         }
     </div>
 </div>

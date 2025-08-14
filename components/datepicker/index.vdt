@@ -5,75 +5,80 @@ import {DatepickerTime} from './time';
 import {Icon} from '../icon';
 import {Button} from '../button';
 import {_$} from '../../i18n';
-import {makePanelStyles} from './styles';
-import {PanelTypes, PanelFlags} from './usePanel';
+import {makeStyles, makePanelStyles, makeHighlightStyles} from './styles';
+import {PanelFlags} from './usePanel';
 import {isFunction} from 'intact-shared';
 import {Tabs, Tab} from '../tabs';
+import {Position} from './useHighlight';
 
-const {className, type, range, multiple, shortcuts} = this.get();
+const { k } = this.config;
+const {className, type, range, multiple, shortcuts, size} = this.get();
 const {
     value: {value},
     onChangeDate,
-    onConfirm,
+    /* onConfirm, */
     onChangeTime,
     onChangeDateForRange,
     getTimeValue,
 } = this.value;
-const { k } = this.config;
+const { onConfirm } = this.confirm;
+const { position, handleInputClick, highlightWidth, highlightLeft } = this.highlight;
+// 判断是否显示双面板
+const showDualPanels = range && type !== 'datetime';
+
 const classNameObj = {
     [`${k}-datepicker-content`]: true,
     [className]: className,
     [makePanelStyles(k)]: true,
 };
-
+const classDatePickerObj = {
+    [`${k}-datepicker`]: true,
+    [makeHighlightStyles(k, size, highlightWidth.value, highlightLeft.value)]: range,
+    [makeStyles(k)]: true,
+}
 const {isDisabledTime, isDisabledConfirm} = this.disabled;
-const {startPanel, endPanel, getPanel, startRef, endRef} = this.panel;
+const {startRef, endRef} = this.panel;
 const generatePanel = (flag) => {
-    const panel = getPanel(flag);
-    const timeValue = getTimeValue(flag);
     return (
-        <div class={`${k}-datepicker-calendar-wrapper`}>
-            {(() => {
-                if (type === 'datetime') {
-                    let dateString = '0000-00-00';
-                    let timeString = '00:00:00';
-                    if (timeValue) {
-                        const valueString = this.formats.getShowString(timeValue).split(/\s+/);
-                        dateString = valueString[0];
-                        timeString = valueString[1];
-                    }
-                    return (
-                        <Tabs type="card"
-                            value={panel.value}
-                            ev-$change:value={panel.set}
-                        >
-                            <Tab value={PanelTypes.Date}>{dateString}</Tab>
-                            <Tab value={PanelTypes.Time} disabled={!timeValue} >{timeString}</Tab>
-                        </Tabs>
-                    );
-                }
-            })()}
+        <div class={`${k}-datepicker-calendar-time-wrapper`}>
             <DatepickerCalendar
-                v-if={panel.value === PanelTypes.Date}
                 value={value}
                 ev-change={onChangeDate}
                 type={type === 'datetime' ? 'date' : type}
                 flag={flag}
                 ref={flag === PanelFlags.Start ? startRef : endRef}
+                highlightPosition={position.value}
             />
-            <DatepickerTime
-                v-else
-                value={timeValue}
-                ev-$change:value={v => onChangeTime(v, flag)}
-                format={this.formats.getValueFormat()}
-                flag={flag}
-                isDisabledTime={isDisabledTime}
-            />
+            <div class={`${k}-datepicker-time-wrapper`} v-if={type === 'datetime'}>{
+                (() => {
+                    let timeValue = getTimeValue(flag);
+                    if (flag === PanelFlags.End && !timeValue) {
+                        timeValue = getTimeValue(PanelFlags.Start);
+                    }
+                    let timeString = '00:00:00';
+
+                    if (timeValue) {
+                        const valueString = this.formats.getShowString(timeValue).split(/\s+/);
+                        timeString = valueString[1];
+                    }
+
+                    return <template>
+                        <div class={`${k}-datepicker-time-time`}>{timeString}</div> 
+                        <DatepickerTime
+                            value={timeValue}
+                            ev-$change:value={v => onChangeTime(v, flag)}
+                            format={this.formats.getValueFormat()}
+                            flag={flag}
+                            isDisabledTime={isDisabledTime}
+                        />
+                    </template>
+                })()
+            }</div> 
         </div>
     );
 };
 
-<t:super class={`${k}-datepicker`}>
+<t:super class={classDatePickerObj} onClick={handleInputClick} alwaysShowOnClick={true}>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class={`${k}-datepicker-shortcuts`} v-if={shortcuts && shortcuts.length}>
@@ -87,8 +92,8 @@ const generatePanel = (flag) => {
             </div>
             <div class={`${k}-datepicker-wrapper`}>
                 <div class={`${k}-datepicker-calendars`}>
-                    {generatePanel(PanelFlags.Start)}
-                    {range ? generatePanel(PanelFlags.End) : null}
+                    {generatePanel(!showDualPanels && position.value === Position.End ? PanelFlags.End : PanelFlags.Start)}
+                    {showDualPanels ? generatePanel(PanelFlags.End) :  null}
                 </div>
                 <div v-if={type === 'datetime'} class={`${k}-datepicker-footer`}>
                     <Button type="primary" size="small"

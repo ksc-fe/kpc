@@ -92,7 +92,8 @@ export function useKeyboards(
         }
 
         let _focusDate = focusDate.value;
-        _focusDate = _focusDate.add(offset, type === 'date' ? 'day' : type);
+        const unit = type === 'date' ? 'day' : type;
+        _focusDate = _focusDate.add(offset, unit as any);
         focusDate.set(_focusDate);
 
         // change panel show date

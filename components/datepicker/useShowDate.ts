@@ -45,6 +45,9 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
     
     // ensure the start panel's date is before the end panel's
     watchState(showDate, v => {
+        // only check on dual panels
+        if (!panel.startRef.value || !panel.endRef.value) return
+
         if (flag === PanelFlags.Start) {
             const endPanel = anotherPanel.value;
             if (endPanel) {
@@ -76,10 +79,12 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
                 return date.add(isEnd ? 10 : -10, 'year');
             case 'month':
                 return date.add(isEnd ? 1 : -1, 'year');
-                break;
+            case 'week':
+                return date.add(isEnd ? 1 : -1, 'week');
+            case 'quarter':
+                return date.add(isEnd ? 1 : -1, 'quarter');
             default:
                 return date.add(isEnd ? 1 : -1, 'month');
-                break;
         }
     }
 
@@ -88,11 +93,17 @@ export function useShowDate(panel: ReturnType<typeof usePanel>) {
             MM: _$(`${showDate.value.get('month') + 1}月`),
             YYYY: _$(`{n}年`, {n: showDate.value.get('year')}),
         };
-
+        
         let yearMonthFormat = _$('yearMonthFormat');
         if (yearMonthFormat === 'yearMonthFormat') {
             yearMonthFormat = 'YYYY MM';
         }
+        
+        // quarter类型只显示年份
+        if (instance.get('type') === 'quarter') {
+            yearMonthFormat = 'YYYY';
+        }
+        
         const format = yearMonthFormat.split(' ') as (keyof typeof map)[];
 
         return format.map(item => ({

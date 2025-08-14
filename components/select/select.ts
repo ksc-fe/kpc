@@ -21,6 +21,7 @@ export interface SelectProps<T = string, Multipe extends boolean = boolean> exte
     labelMap?: Map<any, Children> 
     card?: boolean
     autoDisableArrow?: boolean
+    keepKeywords?: boolean
 }
 
 export interface SelectEvents extends BaseSelectEvents { }
@@ -37,11 +38,13 @@ const typeDefs: Required<TypeDefs<SelectProps>> = {
     labelMap: Map,
     card: Boolean,
     autoDisableArrow: Boolean,
+    keepKeywords: Boolean,
 };
 
 const defaults = (): Partial<SelectProps> => ({
     ...BaseSelect.defaults(),
     labelMap: new Map(),
+    keepKeywords: true,
 });
 
 export class Select<

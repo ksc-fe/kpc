@@ -7,17 +7,19 @@ import {Button} from '../button';
 import {PanelFlags} from '../datepicker/usePanel';
 import {last} from '../datepicker/helpers';
 import {ScrollSelect} from '../scrollSelect';
+import { makeStyles as makeStylesInheritDatepicker } from '../datepicker/styles';
 
-const {className, range, multiple} = this.get();
+const {className, range, multiple, min, max} = this.get();
 const {
     value: {value},
-    onConfirm,
     onChangeTime,
     onChangeTimeByStep,
     getTimeValue,
+    setMoment,
 } = this.value;
 const lastValue = last(value);
 const { k } = this.config;
+const { onConfirm } = this.confirm;
 
 const classNameObj = {
     [`${k}-time-content`]: true,
@@ -56,7 +58,7 @@ const generatePanel = flag => {
     );
 };
 
-<t:super class={`${k}-timepicker`}>
+<t:super class={`${k}-timepicker ${makeStylesInheritDatepicker(k)}`}>
     <b:base-menu>
         <DropdownMenu class={classNameObj}>
             <div class={`${k}-datepicker-wrapper`}>

@@ -1,0 +1,75 @@
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {makeStyles} from './styles';
+import {TourContext} from './tour';
+import {getRestProps} from '../utils';
+
+const {
+    title,
+    content,
+    className,
+    children,
+    nextText,
+    prevText
+} = this.get();
+
+const { k } = this.config;
+
+const classNameObj = {
+    [`${k}-tour-step`]: true,
+    [className]: className,
+};
+
+<TourContext.Consumer>
+    {({value, total, doneText, onPrev, onNext, onFinish, closable}) => {
+        const isFirst = value === 0;
+        const isLast = value === total - 1;
+        const showHeader = !!title;
+        const displayIndex = value + 1;
+
+        return (
+            <div class={classNameObj} {...getRestProps(this)}>
+                {/* 头部区域 */}
+                <div class={`${k}-tour-step-header`} v-if={!!title || $blocks.header}>
+                    <div class={`${k}-tour-step-title`}>
+                        <b:header>{title}</b:header>
+                    </div>
+                    <div v-if={!closable} class={`${k}-tour-step-close`} ev-click={onFinish}>
+                        <Icon class={`${k}-icon-close`} />
+                    </div>
+                </div>
+                
+                {/* 内容区域 */}
+                <div class={`${k}-tour-step-body`}>
+                    { children || content}
+                </div>
+                
+                {/* 底部区域 */}
+                <div class={`${k}-tour-step-footer`}>
+                    <b:footer>
+                        <div class={`${k}-tour-step-indicator`}>
+                            {displayIndex} / {total}
+                        </div>
+                        <div class={`${k}-tour-step-buttons`}>
+                            <Button
+                                v-if={!isFirst}
+                                size="small"
+                                type="secondary"
+                                ev-click={onPrev}
+                            >
+                                {prevText}
+                            </Button>
+                            <Button
+                                size="small"
+                                type="primary"
+                                ev-click={isLast ? onFinish : onNext}
+                            >
+                                {isLast ? doneText : nextText}
+                            </Button>
+                        </div>
+                    </b:footer>
+                </div>
+            </div>
+        );
+    }}
+</TourContext.Consumer> 
