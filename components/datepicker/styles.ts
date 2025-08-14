@@ -310,7 +310,7 @@ export const makeTimeStyles = cache(function makeTimeStyles(k: string) {
         position: relative;
         .${k}-scroll-select {
             flex: 1;
-            height: 305px;
+            height: 265px;
         }
     `;
 });
