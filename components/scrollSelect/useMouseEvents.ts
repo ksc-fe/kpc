@@ -18,6 +18,7 @@ export function useMouseEvents(
     let y: number;
     let itemHeight: number;
     let deltaY: number;
+    let wheelDeltaY: number = 0;
     const {start, dragging} = useDraggable({
         onStart(e: MouseEvent) {
             dragged = false; 
@@ -67,15 +68,15 @@ export function useMouseEvents(
         itemHeight = getItemHeight();
         
         const threshold = itemHeight * 0.6;
-        deltaY = (deltaY || 0) + e.deltaY;
+        wheelDeltaY += e.deltaY;
         
-        if (Math.abs(deltaY) >= threshold) {
-            if (deltaY > 0) {
+        if (Math.abs(wheelDeltaY) >= threshold) {
+            if (wheelDeltaY > 0) {
                 setByRelativeIndex(1, null, true);
             } else {
                 setByRelativeIndex(-1, null, true);
             }
-            deltaY = 0;
+            wheelDeltaY = 0;
         }
     }
 
