@@ -67,9 +67,6 @@ const generatePanel = flag => {
                     {range ? generatePanel(PanelFlags.End) : null} 
                 </div>
                 <div class={`${k}-datepicker-footer`}>
-                    <Button v-if={!range && !multiple && !max && !min} type="link" size="small"
-                        ev-click={setMoment}
-                    >{_$('此刻')}</Button>
                     <Button type="primary" size="small"
                         disabled={isDisabledConfirm()}
                         ev-click={onConfirm}

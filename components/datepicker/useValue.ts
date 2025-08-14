@@ -77,7 +77,6 @@ export function useValue(
             }
             // fix after selection is completed, refer to the updateValue function in useValueBase
             // (_value as DayjsValueRange).sort((a, b) => a.isAfter(b) ? 1 : -1);
-
         } else {
             _value = fixDatetimeWithMinDate(v);
         }
