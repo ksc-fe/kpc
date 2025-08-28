@@ -2,13 +2,31 @@ import {Component, TypeDefs, useInstance, Children, Blocks, createRef, NonNullab
 import {eachChildren, isComponentVNode, last} from '../utils';
 import {EMPTY_OBJ} from 'intact-shared';
 import {OptionGroup} from './group';
-import {useState} from '../../hooks/useState';
+import {useState, State, watchState} from '../../hooks/useState';
+import type { SelectMenu } from './menu';
 
-export function useCard(defaultActiveIndex: NonNullableRefObject<number[]>) {
-    const children = useInstance()!.get('children');
+export function useCard(
+    defaultActiveIndex: NonNullableRefObject<number[]>,
+    keywords: State<string>
+) {
+    const instance = useInstance() as SelectMenu;
     const activeIndex = useState<number>(last(defaultActiveIndex.value) || 0);
 
-    function process(children: Children) {
+    watchState(keywords, (keywords) => {
+        if (keywords) {
+            activeIndex.set(0);
+        } else {
+            setDefaultActiveIndex();
+        }
+    });
+
+    instance.select.on('show', setDefaultActiveIndex);
+
+    function setDefaultActiveIndex() {
+        activeIndex.set(last(defaultActiveIndex.value) || 0);
+    }
+
+    function process(children: Children, isSearching: boolean) {
         const groupLabels: Children[] | Blocks[string][] = [];
         const _children: Children[] = [];
         let index = 0;
