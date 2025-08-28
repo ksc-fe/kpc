@@ -7324,21 +7324,21 @@ inquirer@^7.3.3:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-intact-shared@^3.0.42-beta.1:
-  version "3.0.42-beta.1"
-  resolved "https://registry.npmmirror.com/intact-shared/-/intact-shared-3.0.42-beta.1.tgz#b52f64869b4cd0aff49f5d8ef9ef218bf50aa041"
-  integrity sha512-g9/uUHDCCCMkmybGeXEaCFFcc42ZCSFnmYnsORTIcnPdB2NFwqOhihoSHTgE0we/ETRZegJIcESEngsS1fYJnQ==
+intact-shared@^3.0.42:
+  version "3.0.42"
+  resolved "https://registry.npmjs.org/intact-shared/-/intact-shared-3.0.42.tgz#1ff105eb4513de9b52e70e4077d29d8e3c21172f"
+  integrity sha512-T2iiYxpBDU2lzQ12sjrWlZ7xWI4wrI7w5XhAPPHlCj8pgFq+BFrjo+nR3c1sHBxSMBUlYCgvhpYMQJS2WRC+gg==
 
-intact@^3.0.42-beta.1:
-  version "3.0.42-beta.1"
-  resolved "https://registry.npmmirror.com/intact/-/intact-3.0.42-beta.1.tgz#b67524512332b104ea7ab3271526e363150139f0"
-  integrity sha512-5s2lcApnUAPYqJKhaF20O/+cw0mKEOG5qJuj+tgIag6poGUigmHEgYI/+f3cspBE1/n2JxFZQLr6zLDzgHn/5w==
+intact@^3.0.42:
+  version "3.0.42"
+  resolved "https://registry.npmjs.org/intact/-/intact-3.0.42.tgz#2c4e2f017fd7b62c34b01409fb9fdb8afe524c39"
+  integrity sha512-R3E8mHGN+ZyzGMmMgoH3RI0GKwasXGJqF1fnO3NPmMtLD61poMC201MJ5b6W69SCLQJJbcFhlwAlO8EgrWG9jg==
   dependencies:
-    intact-shared "^3.0.42-beta.1"
-    misstime "^3.0.42-beta.1"
+    intact-shared "^3.0.42"
+    misstime "^3.0.42"
     tslib "^2.2.0"
-    vdt "^3.0.42-beta.1"
-    vdt-compiler "^3.0.42-beta.1"
+    vdt "^3.0.42"
+    vdt-compiler "^3.0.42"
 
 internal-ip@^4.3.0:
   version "4.3.0"
@@ -9136,12 +9136,12 @@ minizlib@^2.0.0, minizlib@^2.1.1:
     minipass "^3.0.0"
     yallist "^4.0.0"
 
-misstime@^3.0.42-beta.1:
-  version "3.0.42-beta.1"
-  resolved "https://registry.npmmirror.com/misstime/-/misstime-3.0.42-beta.1.tgz#6faf82b57050a01010aa7855e3ca75bb4336771d"
-  integrity sha512-d2gHt2c7TjU0NIej0qxCqQXJb79326mw/oUHQ8htk/cquYN4oJ+Mmj8P+wcDKLVIoM/PCaLdlrwM9JnWYc44PA==
+misstime@^3.0.42:
+  version "3.0.42"
+  resolved "https://registry.npmjs.org/misstime/-/misstime-3.0.42.tgz#90a8f323bc13cc334f9ebbd19398308a8644833f"
+  integrity sha512-vN5xZIW5N3ipvZrBql1kpYZ1YoLGsicgsHF1vtt9SPjQgttEi5c5kmyXG1Du0kOREIQNWmJ6oDu8vxV94ckaQg==
   dependencies:
-    intact-shared "^3.0.42-beta.1"
+    intact-shared "^3.0.42"
 
 mixin-deep@^1.2.0:
   version "1.3.2"
@@ -13342,13 +13342,13 @@ vary@^1, vary@~1.1.2:
   resolved "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
-vdt-compiler@^3.0.42-beta.1:
-  version "3.0.42-beta.1"
-  resolved "https://registry.npmmirror.com/vdt-compiler/-/vdt-compiler-3.0.42-beta.1.tgz#8a6458ba367da837fcf9ec975043c7cf4bd9059c"
-  integrity sha512-FGrTdsPPbFpzifmVdndmGbWlP2MwU7A0KN/gd4RFeiSddrSMXTcL9yAsKO/FXmUOJo5krdmSBXeZLvJTSSkB3A==
+vdt-compiler@^3.0.42:
+  version "3.0.42"
+  resolved "https://registry.npmjs.org/vdt-compiler/-/vdt-compiler-3.0.42.tgz#9bd5a6b363ba84f02e1c632b4dd2320441c5904e"
+  integrity sha512-bYcESlRWPGSxPVgNDB8rG4/sW9RVgqJ1QGkPtcYHSW4BnJgtVB1vXoYbiWNFRBRq0n1JSXfUoypCWlQJW8tMdw==
   dependencies:
-    intact-shared "^3.0.42-beta.1"
-    misstime "^3.0.42-beta.1"
+    intact-shared "^3.0.42"
+    misstime "^3.0.42"
     tslib "^2.2.0"
 
 vdt-loader@^3.0.0-beta.1:
@@ -13360,13 +13360,13 @@ vdt-loader@^3.0.0-beta.1:
     schema-utils "^3.0.0"
     source-map "^0.7.3"
 
-vdt@^3.0.42-beta.1:
-  version "3.0.42-beta.1"
-  resolved "https://registry.npmmirror.com/vdt/-/vdt-3.0.42-beta.1.tgz#19e0648134cbe148f0345acff540dd5ee80e8126"
-  integrity sha512-nYHd372NfzKg2NAE7o0Gh1joiriTkVDq2f6m09EEV1juf14Sdsh3uS5xWWh0GoPpAoaVISQ0lPmopq4Ahfx5DQ==
+vdt@^3.0.42:
+  version "3.0.42"
+  resolved "https://registry.npmjs.org/vdt/-/vdt-3.0.42.tgz#94def099e3b341cc4a58491b9a255877fee997b4"
+  integrity sha512-M2kgdfV0h60sDOUcv4M14z8y/cu2i/H2hXaELoAwYzWLrwfQT48oxpxZbckACgqBlPrfshNU9f+x6CHDH9iqTg==
   dependencies:
-    intact-shared "^3.0.42-beta.1"
-    misstime "^3.0.42-beta.1"
+    intact-shared "^3.0.42"
+    misstime "^3.0.42"
     tslib "^2.2.0"
 
 verror@1.10.0:
