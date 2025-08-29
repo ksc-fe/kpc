@@ -227,6 +227,24 @@ describe('Spinner', () => {
         expect(instance.get('value1')).to.eql(8.4);
     });
 
+    it('forceStep without min value', async () => {
+        class Demo extends Component {
+            static template = `const {Spinner} = this;
+                <Spinner step={1} v-model="value" forceStep />
+            `;
+            static defaults() {
+                return {value: 1};
+            }
+            private Spinner = Spinner;
+        }
+        const [instance, element] = mount(Demo);
+        expect(instance.get('value')).to.eql(1);
+
+        instance.set<number>('value', -1);
+        await wait();
+        expect(instance.get('value')).to.eql(-1);
+    });
+
     it('dynamic step', async () => {
         const [instance, element] = mount(DynamicStepDemo);
 
