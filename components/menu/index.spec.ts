@@ -3,6 +3,7 @@ import BasicDemo from '~/components/menu/demos/basic';
 import CollapseDemo from '~/components/menu/demos/collapse';
 import AccordionDemo from '~/components/menu/demos/accordion';
 import CollapseArrowDemo from '~/components/menu/demos/showCollapseArrow';
+import HorizontalDemo from '~/components/menu/demos/horizontal';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Menu, MenuItem} from './';
 
@@ -189,5 +190,23 @@ describe('Menu', () => {
         await wait();
         expect(element.outerHTML).to.matchSnapshot();
         expect(getElement('.k-menu-arrow-box')).to.be.undefined;
+    });
+
+    it('detecting pop-up position during rapid mouse hover over menus', async () => {
+        const [instance, element] = mount(HorizontalDemo);
+
+        const [, , menu3, menu4] = element.querySelectorAll<HTMLElement>('.k-menu-item-title');
+        dispatchEvent(menu3, 'mouseenter');
+        await wait(500);
+        const dropdownmenu1 = getElement('.k-dropdown-menu')!;
+        const top1 = dropdownmenu1.getBoundingClientRect().top;
+
+        dispatchEvent(menu3, 'mouseleave');
+        dispatchEvent(menu4, 'mouseenter');
+        await wait(1000);
+        const dropdownmenu2 = getElement('.k-dropdown-menu')!;
+        const top2 = dropdownmenu2.getBoundingClientRect().top;
+
+        expect(top1).to.eql(top2);
     });
 });

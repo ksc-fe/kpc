@@ -292,6 +292,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         &.${k}-dropdown-menu {
             width: fit-content;
             min-width: ${menu.dropdown.minWidth};
+            position: absolute;
             .${k}-menu-item-arrow {
                 transform: rotate(-90deg)
             }

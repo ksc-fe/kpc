@@ -27,7 +27,13 @@ import {Menu, MenuItem, Switch, Icon} from 'kpc';
                 </MenuItem>
             </Menu>
         </MenuItem>
-        <MenuItem key="4"><Icon class="ion-gear-b" />menu 4</MenuItem>
+        <MenuItem key="4">
+            <Icon class="ion-gear-b" />menu 4
+            <Menu>
+                <MenuItem key="4-1">sub menu 1</MenuItem>
+                <MenuItem key="4-2">sub menu 2</MenuItem>
+            </Menu>
+        </MenuItem>
     </Menu>
     <br /><br />
     <Switch 
