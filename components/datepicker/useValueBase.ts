@@ -214,8 +214,11 @@ export function useValueBase(
         }
 
         const valueStr = convertToValueString(_value); 
-        instance.set('value', valueStr);
-        instance.resetKeywords();
+        // only trigger change event once
+        if (!isEqualArray(valueStr, instance.get('value'))) {
+            instance.set('value', valueStr);
+            instance.resetKeywords();
+        }
     }
 
     // TODO
