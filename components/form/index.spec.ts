@@ -33,6 +33,8 @@ describe('Form', () => {
         expect(element.innerHTML).to.matchSnapshot();
         const item = form.getFirstInvalidFormItem()!;
         expect(item.get('label')).to.eql('Input');
+        const items = form.getAllInvalidFormItems();
+        expect(items.length).to.eql(10);
 
         instance.reset();
         await wait();
