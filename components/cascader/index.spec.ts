@@ -8,10 +8,10 @@ import {Cascader} from './';
 import {Component} from 'intact';
 
 describe('Cascader', () => {
-    // afterEach(async () => {
-    //     unmount();
-    //     await wait(500);
-    // });
+    afterEach(async () => {
+        unmount();
+        await wait(500);
+    });
 
     it('basic test', async function() {
         const [instance, element] = mount(BasicDemo);

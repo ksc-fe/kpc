@@ -3,7 +3,7 @@
 #### `should handle popover correctly`
 
 ```
-"<div class=\"k-popover-title\">确定删除？</div><div class=\"k-tooltip-footer\"><button class=\"k-btn k-small k-default css-h31bz\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-small k-primary css-h31bz\" tabindex=\"0\" type=\"button\">确定</button></div><i class=\"k-tooltip-arrow k-top\" style=\"left: 24px\"></i>"
+"<div class=\"k-popover-title\">确定删除？</div><div class=\"k-tooltip-footer\"><button class=\"k-btn k-small k-default css-h31bz\" tabindex=\"0\" type=\"button\">取消</button><button class=\"k-btn k-small k-primary css-h31bz\" tabindex=\"0\" type=\"button\">确定</button></div><i class=\"k-tooltip-arrow k-top\" style=\"left: 24.0078125px\"></i>"
 ```
 
 #### `should handle title/content slot correctly`

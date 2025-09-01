@@ -18,7 +18,7 @@ const defaults = {
     item: {
         height: '40px',
         padding: '0 12px',
-        bodyPadding: '0 4px',
+        bodyPadding: '4px',
         color: '#aeaeb9',
         hoverColor: '#fff',
         disabledColor: '#53535a',

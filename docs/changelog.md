@@ -3,6 +3,26 @@ title: 更新日志
 order: 99
 sidebar: doc
 ---
+
+## v3.6.1
+
+1. `Fix` 修复`Select` `card`模式下，搜索不能正确展示搜索结果的问题，以及延迟设置`value`，弹层不能正确高亮的问题 [#1095](https://github.com/ksc-fe/kpc/issues/1095) [#1085](https://github.com/ksc-fe/kpc/issues/1085)
+2. `Fix` 修复`Spinner`在`forceStep`下，`min`没有设置，会将指置为`NaN`的问题 [#1073](https://github.com/ksc-fe/kpc/issues/1073)
+3. `Fix` 修复`Menu`在`horizontal`模式下，菜单展示位置异常的问题 [#1067](https://github.com/ksc-fe/kpc/issues/1067)
+4. `Fix` 修复`Datepicker`选择日期范围会触发两次`change value`事件的问题 [#1054](https://github.com/ksc-fe/kpc/issues/1054)
+
+### @king-design/react
+
+1. `Fix` 修复`Dialog.confirm`在React16下，报错的问题[#1091](https://github.com/ksc-fe/kpc/issues/1091)
+
+### @king-design/vue
+
+1. `Fix` 修复`FormItem`在异步展示的情况下，有时会取不到父组件`Form`，导致的诡异问题 [#1084](https://github.com/ksc-fe/kpc/issues/1084)
+
+### @king-design/vue-legacy
+
+1. `Fix` 修复`Datepicker`在`range`模式下，不能更改日期的问题 [#1092](https://github.com/ksc-fe/kpc/issues/1092)
+
 ## v3.6.0
 
 1. `Add` 新增`Tour`引导式导航组件 [#1079](https://github.com/ksc-fe/kpc/issues/1079)
