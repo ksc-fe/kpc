@@ -6,10 +6,11 @@ sidebar: doc
 
 ## v3.6.1
 
-1. `Fix` 修复`Select` `card`模式下，搜索不能正确展示搜索结果的问题，以及延迟设置`value`，弹层不能正确高亮的问题 [#1095](https://github.com/ksc-fe/kpc/issues/1095) [#1085](https://github.com/ksc-fe/kpc/issues/1085)
-2. `Fix` 修复`Spinner`在`forceStep`下，`min`没有设置，会将指置为`NaN`的问题 [#1073](https://github.com/ksc-fe/kpc/issues/1073)
-3. `Fix` 修复`Menu`在`horizontal`模式下，菜单展示位置异常的问题 [#1067](https://github.com/ksc-fe/kpc/issues/1067)
-4. `Fix` 修复`Datepicker`选择日期范围会触发两次`change value`事件的问题 [#1054](https://github.com/ksc-fe/kpc/issues/1054)
+1. `Add` `Form`新增`getAllInvalidFormItems`方法，用于获取所有检验失败的`FormItem` [#1093](https://github.com/ksc-fe/kpc/issues/1093)
+2. `Fix` 修复`Select` `card`模式下，搜索不能正确展示搜索结果的问题，以及延迟设置`value`，弹层不能正确高亮的问题 [#1095](https://github.com/ksc-fe/kpc/issues/1095) [#1085](https://github.com/ksc-fe/kpc/issues/1085)
+3. `Fix` 修复`Spinner`在`forceStep`下，`min`没有设置，会将指置为`NaN`的问题 [#1073](https://github.com/ksc-fe/kpc/issues/1073)
+4. `Fix` 修复`Menu`在`horizontal`模式下，菜单展示位置异常的问题 [#1067](https://github.com/ksc-fe/kpc/issues/1067)
+5. `Fix` 修复`Datepicker`选择日期范围会触发两次`change value`事件的问题 [#1054](https://github.com/ksc-fe/kpc/issues/1054)
 
 ### @king-design/react
 
