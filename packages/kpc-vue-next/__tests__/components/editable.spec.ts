@@ -35,7 +35,7 @@ describe('Editable', () => {
         container.querySelector<HTMLDivElement>('.k-icon')!.click();
         await wait();
 
-        const input = container.querySelector('.k-input textarea') as HTMLTextAreaElement;
+        const input = container.querySelector('.k-input-inner') as HTMLInputElement;
         expect(input.selectionStart).to.eql(0);
         expect(input.selectionEnd).to.eql(1);
 
