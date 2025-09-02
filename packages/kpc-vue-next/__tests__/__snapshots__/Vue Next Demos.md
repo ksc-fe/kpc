@@ -45,7 +45,7 @@
 ####   `Button basic`
 
 ```
-"<div><button class=\"k-btn k-default css-h31bz\" tabindex=\"0\" type=\"button\">default</button><button class=\"k-btn k-primary css-h31bz\" tabindex=\"0\" type=\"button\">primary</button><button class=\"k-btn k-secondary css-h31bz\" tabindex=\"0\" type=\"button\">secondary</button><button class=\"k-btn k-warning css-h31bz\" tabindex=\"0\" type=\"button\">warning</button><button class=\"k-btn k-danger css-h31bz\" tabindex=\"0\" type=\"button\">danger</button><button class=\"k-btn k-success css-h31bz\" tabindex=\"0\" type=\"button\">success</button><button class=\"k-btn k-none css-h31bz\" tabindex=\"0\" type=\"button\">none</button><button class=\"k-btn k-link css-h31bz\" tabindex=\"0\" type=\"button\">link</button><button class=\"k-btn k-flat css-h31bz\" tabindex=\"0\" type=\"button\">flat</button><button class=\"k-btn k-custom css-989a5g\" tabindex=\"0\" type=\"button\">custom</button><button class=\"k-btn k-custom css-1k0icaw\" tabindex=\"0\" type=\"button\">custom</button><button class=\"k-btn k-custom css-155s4js\" tabindex=\"0\" type=\"button\">custom</button></div>"
+"<div><button class=\"k-btn k-default css-h31bz\" tabindex=\"0\" type=\"button\">default</button><button class=\"k-btn k-primary css-h31bz\" tabindex=\"0\" type=\"button\">primary</button><button class=\"k-btn k-secondary css-h31bz\" tabindex=\"0\" type=\"button\">secondary</button><button class=\"k-btn k-warning css-h31bz\" tabindex=\"0\" type=\"button\">warning</button><button class=\"k-btn k-danger css-h31bz\" tabindex=\"0\" type=\"button\">danger</button><button class=\"k-btn k-success css-h31bz\" tabindex=\"0\" type=\"button\">success</button><button class=\"k-btn k-none css-h31bz\" tabindex=\"0\" type=\"button\">none</button><button class=\"k-btn k-link css-h31bz\" tabindex=\"0\" type=\"button\">link</button><button class=\"k-btn k-flat css-h31bz\" tabindex=\"0\" type=\"button\">flat</button><button class=\"k-btn k-custom css-989a5g\" tabindex=\"0\" type=\"button\">custom</button><button class=\"k-btn k-custom css-1k0icaw\" tabindex=\"0\" type=\"button\">custom</button></div>"
 ```
 
 ####   `Button disabled`
@@ -1959,7 +1959,7 @@
 ####   `Tooltip always`
 
 ```
-"<div style=\"position: relative;\"><span class=\"k-dropdown-open\"> always show this tootip </span><!--portal--><br><br><span> always hide this tootip </span><!--portal--><br><br><span class=\"k-dropdown-open\"> don't show if content is empty </span><!--portal--></div><div class=\"k-dropdown-menu k-tooltip-content k-always k-dark css-o1x0o9 css-7sngro k-fade-enter-from k-fade-enter-active\" style=\"left: 36.6875px; top: 110px;\">hello<i class=\"k-tooltip-arrow k-top\" style=\"left: 19.6796875px\"></i></div><div class=\"k-dropdown-menu k-tooltip-content k-always k-dark css-o1x0o9 css-7sngro\" style=\"display: none;\">hide<i class=\"k-tooltip-arrow\"></i></div>"
+"<div style=\"position: relative;\"><span class=\"k-dropdown-open\"> always show this tootip </span><!--portal--><br><br><span> always hide this tootip </span><!--portal--><br><br><span class=\"k-dropdown-open\"> don't show if content is empty </span><!--portal--></div><div class=\"k-dropdown-menu k-tooltip-content k-always k-dark css-o1x0o9 css-7sngro k-fade-enter-from k-fade-enter-active\" style=\"left: 36.6875px; top: 177px;\">hello<i class=\"k-tooltip-arrow k-top\" style=\"left: 19.6796875px\"></i></div><div class=\"k-dropdown-menu k-tooltip-content k-always k-dark css-o1x0o9 css-7sngro\" style=\"display: none;\">hide<i class=\"k-tooltip-arrow\"></i></div>"
 ```
 
 ####   `Tooltip basic`

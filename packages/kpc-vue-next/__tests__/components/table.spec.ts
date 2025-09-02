@@ -43,6 +43,7 @@ describe('Table', () => {
         dispatchEvent(input, 'focus');
         input.value = 'a';
         dispatchEvent(input, 'input')
+        await wait();
         dispatchEvent(input, 'blur');
 
         await wait();
