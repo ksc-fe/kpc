@@ -41,9 +41,13 @@ export class Dropdown extends BaseDropdown<
     DropdownProps,
     DropdownEvents,
     DropdownBlocks
-> { } 
+> {
+    static readonly __isDropdown = true;
+}
 export class DropdownMenu extends BaseDropdownMenu<
     DropdownMenuProps,
     DropdownMenuEvents,
     DropdownMenuBlocks
-> { }
+> {
+    static readonly __isDropdownMenu = true;
+}

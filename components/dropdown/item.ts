@@ -1,10 +1,9 @@
-import {Component, TypeDefs, inject, VNodeComponentClass} from 'intact';
+import {Component, TypeDefs, inject} from 'intact';
 import template from './item.vdt';
 import {bind} from '../utils';
 import {useItemKeyboard} from './useItemKeyboard';
 import {Dropdown, DROPDOWN} from './dropdown';
 import {type DropdownMenu, DROPDOWN_MENU} from './menu';
-import { Dropdown as ExportDropdown, DropdownMenu as ExportDropdownMenu } from '.';
 import { useConfigContext } from '../config';
 import type { Tooltip } from '../tooltip/tooltip';
 
@@ -75,13 +74,14 @@ export class DropdownItem extends Component<DropdownItemProps, DropdownItemEvent
         let parent = this.$senior;
         while (parent) {
             // Tooltip extends Dropdown, it's also a instance of Dropdown
-            // so use constructor to detect
-            // if (parent instanceof DropdownMenu) {
-            if (parent.constructor === ExportDropdownMenu) {
+            // we should exclude this case, so use constructor to detect
+            // @modify: Check using hasOwnProperty to avoid inheritance issues and circle reference
+            const constructor = parent.constructor as any;
+            if (constructor.hasOwnProperty('__isDropdownMenu')) {
                 return; 
             }
-            if (parent.constructor === ExportDropdown) {
-                return parent;
+            if (constructor.hasOwnProperty('__isDropdown')) {
+                return parent as Dropdown;
             }
             parent = parent.$senior;
         }
