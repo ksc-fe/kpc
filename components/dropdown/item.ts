@@ -1,10 +1,9 @@
 import {Component, TypeDefs, inject, VNodeComponentClass} from 'intact';
 import template from './item.vdt';
 import {bind} from '../utils';
-import {useItemKeyboard, MenuKeyboardMethods} from './useKeyboard';
+import {useItemKeyboard} from './useItemKeyboard';
 import {Dropdown, DROPDOWN} from './dropdown';
 import {type DropdownMenu, DROPDOWN_MENU} from './menu';
-import {IgnoreClickEvent} from '../../hooks/useDocumentClick';
 import { Dropdown as ExportDropdown, DropdownMenu as ExportDropdownMenu } from '.';
 import { useConfigContext } from '../config';
 import type { Tooltip } from '../tooltip/tooltip';
