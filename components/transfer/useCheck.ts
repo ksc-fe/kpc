@@ -1,5 +1,5 @@
 import {useInstance, Key} from 'intact';
-import type {Transfer} from './';
+import type {Transfer, TransferDataItem} from './';
 import type {useFilter, Model} from './useFilter';
 
 export type CheckedKeys = `leftCheckedKeys` | `rightCheckedKeys`
@@ -53,7 +53,7 @@ export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useF
             const lastEndIndex = endIndex;
             const keyName = instance.get('keyName')!;
             endIndex = index;
-            const update = (data: any[], isCheck: boolean) => {
+            const update = (data: TransferDataItem[], isCheck: boolean) => {
                 data.forEach(item => {
                     if (!item.disabled) {
                         const key = item[keyName as 'key'];

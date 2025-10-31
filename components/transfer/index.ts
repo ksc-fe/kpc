@@ -11,15 +11,20 @@ import { useConfigContext } from '../config';
     // [P in keyof T as T[P] extends U ? P : never]: T[P]
 // };
 
-export interface TransferProps {
-    data?: any[],
-    keyName?: string,
-    labelName?: string,
-    value?: any[],
-    leftCheckedKeys?: any[],
-    rightCheckedKeys?: any[],
+export interface TransferProps<
+    K extends string = 'key',
+    L extends string = 'label',
+    T extends TransferDataItem<K, L> = TransferDataItem<K, L>,
+    V extends T[K] = T[K],
+> {
+    data?: T[],
+    keyName?: K,
+    labelName?: L,
+    value?: V[],
+    leftCheckedKeys?: V[],
+    rightCheckedKeys?: V[],
     filterable?: boolean,
-    filter?: (data: any, keywords: string) => boolean
+    filter?: (data: T, keywords: string) => boolean
     placeholder?: string,
     leftKeywords?: string,
     rightKeywords?: string,
@@ -28,16 +33,28 @@ export interface TransferProps {
     enableAdd?: () => boolean,
     enableRemove?: () => boolean,
 }
+
+export type TransferDataItem<
+    A extends string = 'key',
+    B extends string = 'label',
+> = {
+    [K in A]: Key
+} & {
+    [K in B]?: Children
+} & {
+    disabled?: boolean
+}
+
 export interface TransferEvents {
     add: []
     remove: []
 }
 
-export interface TransferBlocks {
+export interface TransferBlocks<T, V> {
     header: Model
     filter: Model
     list: Model
-    label: [any, any, Model]
+    label: [T, V, Model]
 }
 
 const typeDefs: Required<TypeDefs<TransferProps>> = {
@@ -75,7 +92,12 @@ const events: Events<TransferEvents> = {
     remove: true,
 };
 
-export class Transfer extends Component<TransferProps, TransferEvents, TransferBlocks> {
+export class Transfer<
+    K extends string = 'key',
+    L extends string = 'label',
+    T extends TransferDataItem<K, L> = TransferDataItem<K, L>,
+    V extends T[K] = T[K],
+> extends Component<TransferProps<K, L, T, V>, TransferEvents, TransferBlocks<T, V>> {
     static template = template;
     static typeDefs = typeDefs;
     static defaults = defaults;
