@@ -71,13 +71,13 @@ export default class extends Component<Props> {
 ```
 
 ```vue-methods
-_onSort(c, sort) {
+_onSort(sort?: TableSortValue<'name' | 'age'>) {
     console.log(sort);
     const data = this.data.slice(0);
     data.sort((a, b) => {
-        return sort.type === 'desc' ? 
-            (a[sort.key] > b[sort.key] ? -1 : 1) : 
-            (a[sort.key] > b[sort.key] ? 1 : -1);
+        return sort!.type === 'desc' ? 
+            (a[sort!.key!] > b[sort!.key!] ? -1 : 1) : 
+            (a[sort!.key!] > b[sort!.key!] ? 1 : -1);
     });
     this.data = data;
     this.sort = sort;
