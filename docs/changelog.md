@@ -4,6 +4,16 @@ order: 99
 sidebar: doc
 ---
 
+## v3.6.2
+
+1. `Fix` 修复`Table`组件，当第一列`hidden=true`时，依然展示`::before`的问题 [#1098](https://github.com/ksc-fe/kpc/issues/1098)
+2. `Fix` 修复`Dropdown`在某些`webpack`中，打包存在循环依赖问题 [#1099](https://github.com/ksc-fe/kpc/issues/1099)
+
+### @king-design/react
+
+1. `Fix` 修复与AntDesigin Input共用时，不能正常输入的问题 [#1100](https://github.com/ksc-fe/kpc/issues/1100)
+
+
 ## v3.6.1
 
 1. `Add` `Form`新增`getAllInvalidFormItems`方法，用于获取所有检验失败的`FormItem` [#1093](https://github.com/ksc-fe/kpc/issues/1093)
