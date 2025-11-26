@@ -128,7 +128,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
             position: relative;
             background: ${table.thead.bgColor};
             line-height: normal;
+            // hide all :before firstly, then show all :before except first th
             &:before {
+                display: none;
                 content: '';
                 height: ${table.thead.delimiterHeight};
                 position: absolute;
@@ -138,11 +140,11 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 top: 50%;
                 transform: translateY(-50%);
             }
+            &:not(.${k}-hidden) ~ th:not(.${k}-hidden):before {
+                display: block;
+            }
             &.${k}-fixed-right:before {
                 left: -2px;
-            }
-            &:first-of-type:before {
-                display: none;
             }
         }
         .${k}-table-title {
