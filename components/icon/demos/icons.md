@@ -50,6 +50,9 @@ export default class extends Component<Props> {
         return {
             keywords: '',
             fonts: [
+                ["outboundrules"],
+                ["inboundrules"],
+                ["fullscreen"],
                 ["history"],
                 ["correlation"],
                 ["webui"],

@@ -26,6 +26,18 @@ export const makeIconStyles = cache(function _makeIconStyles(k: string) {
           -moz-osx-font-smoothing: grayscale;
         }
 
+        .${k}-icon-outboundrules:before {
+          content: "\\e9cd";
+        }
+
+        .${k}-icon-inboundrules:before {
+          content: "\\e9ce";
+        }
+
+        .${k}-icon-fullscreen:before {
+          content: "\\e9cc";
+        }
+
         .${k}-icon-history:before {
           content: "\\e9cb";
         }
