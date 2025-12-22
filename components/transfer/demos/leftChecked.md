@@ -1,6 +1,6 @@
 ---
 title: 控制选择项
-order: 2
+order: 3
 ---
 
 通过`leftCheckedKeys`属性，我们可以控制左侧已选项，`rightCheckedKeys`同理

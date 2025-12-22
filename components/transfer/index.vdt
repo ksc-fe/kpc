@@ -6,14 +6,21 @@ import {Checkbox} from '../checkbox';
 import {Button} from '../button';
 import {Tree} from '../tree';
 import {Icon} from '../icon';
+import {Pagination} from '../pagination';
+import {isObject, EMPTY_OBJ} from 'intact-shared';
 
 const {
     data, className, keyName, labelName, 
-    filterable, filter, placeholder 
+    filterable, filter, placeholder, pagination
 } = this.get();
 const {getShowedData} = this.filter;
 const {enableAdd, enableRemove, add, remove} = this.transfer;
 const {isCheckAll, toggleCheckAll, onCheckboxChange, isIndeterminate} = this.check;
+const {
+    getPagedData,
+    leftValue, leftLimit, rightValue, rightLimit,
+    onChange: onPageChange
+} = this.paginationState;
 const { k } = this.config;
 
 const classNameObj = {
@@ -24,14 +31,19 @@ const classNameObj = {
 
 const Panel = (model) => {
     const title = this.get(`${model}Title`);
-    const data = getShowedData(model);
+
+    const allData = getShowedData(model) || [];
+    const hasPagination = !!pagination;
+    const displayData = hasPagination 
+        ? getPagedData(model, allData)
+        : allData;
 
     return <div class={`${k}-transfer-panel`}>
         <div class={`${k}-transfer-title`}>
             <b:header params={model}>
                 <div class={`${k}-transfer-count`}>
                     {this.get(`${model}CheckedKeys.length`)} /
-                    {data.length}
+                    {allData.length}
                 </div>
                 <Checkbox class="c-ellipsis" 
                     value={isCheckAll(model)}
@@ -54,7 +66,7 @@ const Panel = (model) => {
         <div class={`${k}-transfer-list`}>
             <b:list params={model}>
                 <TransitionGroup name="k-fade">
-                    <div v-for={data} 
+                    <div v-for={displayData} 
                         class={{[`${k}-transfer-item`]: true, [`${k}-disabled`]: $value.disabled}}
                         key={$value[keyName] || $value[labelName] || $value}
                     >
@@ -72,6 +84,20 @@ const Panel = (model) => {
                     </div>
                 </TransitionGroup>
             </b:list>
+        </div>
+        <div class={`${k}-transfer-pagination-wrapper`} v-if={hasPagination}>
+            <Pagination
+                ref={model === 'left' ? this.paginationState.leftPaginationRef : this.paginationState.rightPaginationRef}
+                total={allData.length}
+                size="mini"
+                flat
+                showTotal={false}
+                showLimits={false}
+                {...(isObject(pagination) ? pagination : EMPTY_OBJ)}
+                value={model === 'left' ? leftValue.value : rightValue.value}
+                limit={model === 'left' ? leftLimit.value : rightLimit.value}
+                ev-change={onPageChange.bind(null, model)}
+            />
         </div>
     </div>
 };

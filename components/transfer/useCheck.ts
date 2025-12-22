@@ -34,10 +34,10 @@ export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useF
     }
 
     function isIndeterminate(model: Model) {
-      const checked = instance.get(`${model}CheckedKeys` as CheckedKeys)!;
-      const data = getEnabledData(model);
+        const checked = instance.get(`${model}CheckedKeys` as CheckedKeys)!;
+        const data = getEnabledData(model);
       
-      return checked.length > 0 && checked.length < data.length;
+        return checked.length > 0 && checked.length < data.length;
     }
 
     function onCheckboxChange(model: Model, index: number, e: MouseEvent) {
@@ -47,8 +47,8 @@ export function useCheck({getEnabledData, getShowedData}: ReturnType<typeof useF
             checked = (e.target as HTMLInputElement).checked;
         } else if (e.shiftKey) {
             e.preventDefault();
-
-            const values = getShowedData(model)!;
+            const allData = getShowedData(model)!;
+            const values = instance.get('pagination') ? instance.paginationState.getPagedData(model, allData) : allData;
             const checkedKeys = instance.get(`${model}CheckedKeys` as CheckedKeys)!.slice(0);
             const lastEndIndex = endIndex;
             const keyName = instance.get('keyName')!;

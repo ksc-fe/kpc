@@ -4,7 +4,9 @@ import {_$} from '../../i18n';
 import {useTransfer} from './useTransfer';
 import {useFilter, Model} from './useFilter';
 import {useCheck, CheckedKeys} from './useCheck';
+import {usePagination} from './usePagination';
 import type {Events} from '../types';
+import type {PaginationProps, PaginationChangeData} from '../pagination';
 import { useConfigContext } from '../config';
 
 // type KeysOfType<T, U> = {
@@ -32,6 +34,7 @@ export interface TransferProps<
     rightTitle?: string | VNode,
     enableAdd?: () => boolean,
     enableRemove?: () => boolean,
+    pagination?: boolean | PaginationProps,
 }
 
 export type TransferDataItem<
@@ -48,6 +51,7 @@ export type TransferDataItem<
 export interface TransferEvents {
     add: []
     remove: []
+    page: [Model, PaginationChangeData]
 }
 
 export interface TransferBlocks<T, V> {
@@ -73,6 +77,7 @@ const typeDefs: Required<TypeDefs<TransferProps>> = {
     rightTitle: [String, VNode],
     enableAdd: Function,
     enableRemove: Function,
+    pagination: [Boolean, Object],
 };
 
 const defaults = (): Partial<TransferProps> => ({
@@ -90,6 +95,7 @@ const defaults = (): Partial<TransferProps> => ({
 const events: Events<TransferEvents> = {
     add: true,
     remove: true,
+    page: true,
 };
 
 export class Transfer<
@@ -105,6 +111,7 @@ export class Transfer<
 
     private transfer = useTransfer();
     private filter = useFilter(this.transfer.rightData);
+    public paginationState = usePagination();
     private check = useCheck(this.filter);
     private config = useConfigContext();
 

@@ -60,7 +60,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             height: ${transfer.panel.height};
             display: inline-flex;
             flex-direction: column;
-            overflow: auto;
+            overflow: hidden;
         }
 
         .${k}-transfer-title {
@@ -117,6 +117,12 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 display: flex;
                 margin: ${transfer.arrow.gap};
             }
+        }
+        .${k}-transfer-pagination-wrapper {
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
     `;
 });
