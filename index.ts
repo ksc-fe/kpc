@@ -41,6 +41,7 @@ export * from './components/input';
 export * from './components/layout';
 export * from './components/menu';
 export * from './components/message';
+export * from './components/notification';
 export * from './components/pagination';
 export * from './components/popover';
 export * from './components/progress';

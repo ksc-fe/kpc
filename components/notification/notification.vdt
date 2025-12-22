@@ -1,0 +1,62 @@
+import {Button} from '../button';
+import {Icon} from '../icon';
+import {getRestProps} from '../utils';
+import {makeNotificationStyles} from './styles';
+import {theme} from '../../styles/theme';
+
+const {type, title, content, children, closable, icon, classNamePrefix, position, className} = this.get();
+const { k } = this.config;
+
+const classNameObj = {
+    [`${k}-notification`]: true,
+    [className]: className,
+    [`${k}-${type}`]: type && (type === 'info' || type === 'error' || type === 'success' || type === 'warning'),
+    [`${k}-position-${position || 'topRight'}`]: true,
+    [makeNotificationStyles(k)]: true,
+};
+
+const iconMap = {
+    info:  `${k}-icon-information-fill`,
+    warning: `${k}-icon-warning-fill`,
+    success: `${k}-icon-success-fill`,
+    error: `${k}-icon-error-fill`,
+};
+
+// type 优先级大于 icon，如果 type 存在且是四种类型之一，使用 type 对应的 icon
+// 否则如果 icon 有值，使用自定义 icon
+const hasIcon = (type && iconMap[type]) || icon;
+const iconName = type && iconMap[type] ? iconMap[type] : (typeof icon === 'string' ? icon : null);
+const iconColor = type ? theme.color[type === 'error' ? 'danger' : type] : 'default';
+
+<div {...getRestProps(this)}
+    class={classNameObj}
+    ev-mouseenter={this.delayClose.onMouseEnter}
+    ev-mouseleave={this.delayClose.onMouseLeave}
+    ev-click={this.onClick}
+>
+    <div class={`${k}-notification-container`}>
+        <div class={{[`${k}-notification-wrapper`]: true, [`${k}-with-icon`]: hasIcon}}>
+            <div v-if={hasIcon && iconName} class={`${k}-notification-icon`}>
+                <Icon class={iconName} color={iconColor}/>
+            </div>
+            <div v-else-if={hasIcon && !iconName} class={`${k}-notification-icon`}>
+                {icon}
+            </div>
+            <div class={`${k}-notification-content`}>
+                <div v-if={title} class={`${k}-notification-title`}>{title}</div>
+                <div v-if={content || children} class={`${k}-notification-body`}>
+                    {content || children}
+                </div>
+            </div>
+        </div>
+        <Button 
+            v-if={closable}
+            type="none"
+            icon
+            class={`${k}-notification-close`}
+            ev-click={this.onCloseClick}
+        >
+            <Icon class={`${k}-icon-close`} hoverable />
+        </Button>
+    </div>
+</div>
