@@ -12,7 +12,7 @@ export class SelectMenu extends Component<{values: any[]}> {
     static template = template;
 
     public select: Select<any, boolean> = inject(SELECT)!;
-    private card = useCard(this.select.label.activeIndices);
+    private card = useCard(this.select.label.activeIndices, this.select.input.keywords);
     private searchable = useSearchable();
     private config = useConfigContext();
 }

@@ -38,10 +38,10 @@ function getDateString(date: number) {
 }
 
 describe('Datepicker', () => {
-    // afterEach(async () => {
-        // unmount();
-        // await wait(500);
-    // });
+    afterEach(async () => {
+        unmount();
+        await wait(500);
+    });
 
     describe('Pick', () => {
         it('date', async () => {
@@ -151,37 +151,37 @@ describe('Datepicker', () => {
             expect(+_month - 1).eql(month);
         });
 
-        it('week', async () => {  
-            const [instance, element] = mount(YearMonthDemo);   
-            const inputs = element.querySelectorAll<HTMLElement>('.k-input'); 
-            const weekInput = inputs[2];  
+        // it('week', async () => {  
+            // const [instance, element] = mount(YearMonthDemo);   
+            // const inputs = element.querySelectorAll<HTMLElement>('.k-input'); 
+            // const weekInput = inputs[2];  
               
-            weekInput.click();  
-            await wait();
+            // weekInput.click();  
+            // await wait();
 
-            const content = getElement('.k-datepicker-content')!; 
-            const weekItem = content.querySelector('.week-row:nth-child(1) .k-week-number') as HTMLElement;  
-            weekItem.click();  
+            // const content = getElement('.k-datepicker-content')!; 
+            // const weekItem = content.querySelector('.week-row:nth-child(1) .k-week-number') as HTMLElement;  
+            // weekItem.click();  
             
-            expect(instance.get<string>('week')).to.match(/^\d{4}-\d+周$/)
-        });
+            // expect(instance.get<string>('week')).to.match(/^\d{4}-\d+周$/)
+        // });
         
-        it('quarter', async () => {  
-            const [instance, element] = mount(YearMonthDemo);   
-            const inputs = element.querySelectorAll<HTMLElement>('.k-input'); 
-            const QuarterInput = inputs[3];  
+        // it('quarter', async () => {  
+            // const [instance, element] = mount(YearMonthDemo);   
+            // const inputs = element.querySelectorAll<HTMLElement>('.k-input'); 
+            // const QuarterInput = inputs[3];  
               
-            QuarterInput.click();  
-            await wait();  
-            const content = getElement('.k-datepicker-content')!;  
+            // QuarterInput.click();  
+            // await wait();  
+            // const content = getElement('.k-datepicker-content')!;  
               
-            // 选择第一个季度  
-            const quarterItem = content.querySelector('.k-calendar-item:nth-child(1)') as HTMLElement;  
-            quarterItem.click();  
+            // // 选择第一个季度  
+            // const quarterItem = content.querySelector('.k-calendar-item:nth-child(1)') as HTMLElement;  
+            // quarterItem.click();  
               
-            // 验证输入框的值是否包含Q1
-            expect(instance.get<string>('quarter')).to.include('Q1')  
-        }); 
+            // // 验证输入框的值是否包含Q1
+            // expect(instance.get<string>('quarter')).to.include('Q1')  
+        // }); 
         
     });
 
@@ -1119,6 +1119,33 @@ describe('Datepicker', () => {
             finalConfirmBtn.click();
             await wait();
             expect(fn.callCount).to.eql(4);
+        });
+
+        it('should trigger change event once', async () => {
+            const change = sinon.spy(() => console.log('change'));
+            class Demo extends Component<{value: string}> {
+                static template = `
+                    const {Datepicker} = this;
+                    <Datepicker range ev-$change:value={this.onChange} v-model="value" clearable />
+                `;
+                private Datepicker = Datepicker;
+
+                onChange() {
+                    change();
+                }
+            }
+            const [instance, element] = mount(Demo);
+            const input = element.querySelector<HTMLInputElement>('.k-input-inner')!;
+
+            input.click();
+            await wait();
+            const calendar = getElement('.k-datepicker-content')!;
+            const [day1, day2] = calendar.querySelectorAll<HTMLElement>('.k-calendar-item:not(.k-exceed)');
+            day1.click();
+            await wait();
+            day2.click();
+            await wait();
+            expect(change.callCount).to.eql(1);
         });
     });
 

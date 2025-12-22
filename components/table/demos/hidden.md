@@ -16,9 +16,15 @@ import {Table, TableColumn} from 'kpc';
     </Table>
     <p>无数据展示</p>
     <Table data={this.get('data2')} resizable>
-        <TableColumn key="a" title="Title 1" />
-        <TableColumn key="b" title="Title 2" hidden/>
+        <TableColumn key="a" title="Title 1" hidden />
+        <TableColumn key="b" title="Title 2" />
         <TableColumn key="c" title="Title 3"/>
+    </Table>
+    <Table data={this.get('data2')} resizable checkType="none">
+        <TableColumn key="a" title="Title 1" hidden />
+        <TableColumn key="b" title="Title 2" />
+        <TableColumn key="c" title="Title 3" hidden />
+        <TableColumn key="d" title="Title 4"/>
     </Table>
 </div>
 ```

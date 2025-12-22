@@ -20,7 +20,6 @@ import {Button} from 'kpc';
     <Button type="flat">flat</Button>
     <Button color="red">custom</Button>
     <Button color="#0000ea">custom</Button>
-    <Button color="rgb(183, 18, 193)">custom</Button>
 </div>
 ```
 

@@ -12,9 +12,9 @@ import SearchableDemo from '~/components/select/demos/searchable';
 import ImmutableDemo from '~/components/select/demos/immutable';
 
 describe('Select', () => {
-    afterEach((done) => {
+    afterEach(async () => {
         unmount();
-        setTimeout(done, 500);
+        await wait(500);
     });
 
     it('should select value correctly', async () => {
@@ -186,6 +186,39 @@ describe('Select', () => {
         await wait();
         const dropdown2 = getElement('.k-select-menu')!;
         expect(dropdown2.innerHTML).to.matchSnapshot();
+    });
+
+    it('should select the first card of group on filtering', async () => {
+        const [instance, element] = mount(GroupDemo);
+
+        instance.set<string>('day', 'Saturday');
+        await wait();
+        const [, trigger] = element.querySelectorAll<HTMLElement>('.k-select');
+        trigger.click();
+        await wait();
+        const dropdown = getElement('.k-select-menu')!;
+        defaultStatusTest();
+
+        // filter
+        const input = trigger.querySelector('.k-input-inner') as HTMLInputElement;
+        input.value = 'm';
+        dispatchEvent(input, 'input');
+        await wait();
+        const firstTab = dropdown.querySelector('.k-tab') as HTMLElement;
+        expect(firstTab.classList.contains('k-active')).to.eql(true);
+
+        // clear
+        input.value = '';
+        dispatchEvent(input, 'input');
+        await wait();
+        defaultStatusTest();
+
+        function defaultStatusTest() {
+            const secondTab = dropdown.querySelector('.k-tab:nth-child(2)') as HTMLElement;
+            const item = dropdown.querySelector('.k-dropdown-item') as HTMLElement;
+            expect(secondTab.classList.contains('k-active')).to.eql(true);
+            expect(item.classList.contains('k-active')).to.eql(true);
+        }
     });
 
     it('keyboard operations', async () => {

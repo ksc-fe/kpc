@@ -71,6 +71,10 @@ export class Form extends Component<FormProps, FormEvents> {
         });
     }
 
+    public getAllInvalidFormItems() {
+        return this.items.filter(item => !item.isValid());
+    }
+
     public submit(e: Event) {
         this.validate().then(valid => {
             if (valid) {

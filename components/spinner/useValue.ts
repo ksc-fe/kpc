@@ -78,7 +78,8 @@ export function minMaxStep(value: number, min: number, max: number, step: number
     if (value >= max) return max;
     if (value <= min) return min;
     if (step) {
-        value = Number((Math.round((value - min) / step) * step + min).toFixed(10))
+        let _min = min === -Infinity ? 0 : min;
+        value = Number((Math.round((value - _min) / step) * step + _min).toFixed(10))
         // value = Number((Math.round(value / step) * step).toFixed(10))
         return minMaxStep(value, min, max, null);
     }

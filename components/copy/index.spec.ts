@@ -10,19 +10,18 @@ describe('Copy', () => {
     });
 
     it('should copy', async function() {
+        const spy = sinon.spy(navigator.clipboard, 'writeText');
         const [instance, element] = mount(BasicDemo);
         
         element.click();
-        try {
-            const text = await navigator.clipboard.readText();
-            expect(text).to.eql('Hello King Desgin!');
-        } catch (e) {
-            // Read permisson denied 
-            console.log(e);
-        }
+        await wait();
+        expect(spy.calledWith('Hello King Desgin!')).to.be.true;
+
+        spy.restore();
     });
 
     it('wrap copy with tooltip', async () => {
+        const spy = sinon.spy(navigator.clipboard, 'writeText');
         class Demo extends Component {
             static template = `
                 const { Tooltip, Copy } = this;
@@ -38,12 +37,8 @@ describe('Copy', () => {
 
         element.click();
         await wait();
-        try {
-            const text = await navigator.clipboard.readText();
-            expect(text).to.eql('test');
-        } catch (e) {
-            // Read permisson denied 
-            console.log(e);
-        }
+        expect(spy.calledWith('test')).to.be.true;
+
+        spy.restore();
     });
 });

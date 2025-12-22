@@ -3,7 +3,7 @@ import template from './menu.vdt';
 import {bind} from '../utils';
 import {Dropdown, DROPDOWN} from './dropdown';
 import {useTransition} from './useTransition';
-import {useMenuKeyboard} from './useKeyboard';
+import {useMenuKeyboard} from './useMenuKeyboard';
 import {useMouseOutsidable} from '../../hooks/useMouseOutsidable';
 import {FeedbackCallback} from './usePosition';
 import { useConfigContext } from '../config';

@@ -5,47 +5,21 @@ import {
     useInstance,
     findDomFromVNode,
     provide,
-    inject,
     Component,
-    Children,
-    VNodeComponentClass,
     isComponentClass,
     isComponentFunction,
     hasVNodeChildren,
     hasMultipleChildren,
     VNode,
 } from 'intact';
-import {useRecordParent, useRecordItem} from '../../hooks/useRecordComponent';
+import {useRecordParent} from '../../hooks/useRecordComponent';
 import {useKeyboard} from '../../hooks/useKeyboard';
-import {useState} from '../../hooks/useState';
-import {eachChildren, isComponentVNode} from '../utils';
+import {isComponentVNode} from '../utils';
 import {DropdownItem} from './item';
 // can not import DropdownMenu from index.ts, otherwise it will cause circle reference
 // import {DropdownMenu} from './';
 import {DropdownMenu} from './menu';
-
-interface ItemEvents {
-    onFocusin: () => void;
-    onFocusout: () => void;
-    onShowMenu: () => void;
-    onHideMenu: () => void;
-    onSelect: () => void;
-}
-
-export enum Direction {
-    Up,
-    Down
-}
-
-export type MenuKeyboardMethods = {
-    reset: () => void;
-    focus: (item: DropdownItem) => void;
-}
-
-type ItemComponent = Component<{disabled: boolean}>
-
-const ITEM_EVENTS = 'ItemEvents';
-const MENU_KEYBOARD = 'MenuKeyboard';
+import { ITEM_EVENTS, ItemEvents, Direction, MenuKeyboardMethods, MENU_KEYBOARD } from './constants';
 
 export function useMenuKeyboard() {
     const items: DropdownItem[] = [];
@@ -176,39 +150,6 @@ export function useMenuKeyboard() {
         focusByIndex,
         reset,
     ] as const;
-}
-
-export function useItemKeyboard(itemEvents: Omit<ItemEvents, 'onFocusin' | 'onFocusout'>) {
-    const isFocus = useState(false);
-    const keyboard = inject<MenuKeyboardMethods>(MENU_KEYBOARD)!;
-    const instance = useInstance() as DropdownItem;
-
-    useRecordItem<DropdownItem, ItemEvents>(ITEM_EVENTS, instance, {
-        ...itemEvents,
-        onFocusin() {
-            isFocus.set(true);
-        },
-        onFocusout() {
-            isFocus.set(false);
-        },
-    });
-
-    return {
-        onMouseEnter(e: MouseEvent) {
-            instance.trigger('mouseenter', e);
-            if (instance.get('disabled')) return;
-            keyboard.focus(instance);
-        },
-
-        onMouseLeave(e: MouseEvent) {
-            instance.trigger('mouseleave', e);
-            keyboard.reset();
-            // If it is a virtual item, it needs to be reset manually because the DOM is reused.
-            isFocus.set(false);
-        },
-
-        isFocus,
-    }
 }
 
 function fixIndex(index: number, max: number) {

@@ -18,7 +18,7 @@ const defaults = {
     item: {
         height: '40px',
         padding: '0 12px',
-        bodyPadding: '0 4px',
+        bodyPadding: '4px',
         color: '#aeaeb9',
         hoverColor: '#fff',
         disabledColor: '#53535a',
@@ -292,6 +292,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
         &.${k}-dropdown-menu {
             width: fit-content;
             min-width: ${menu.dropdown.minWidth};
+            position: absolute;
             .${k}-menu-item-arrow {
                 transform: rotate(-90deg)
             }

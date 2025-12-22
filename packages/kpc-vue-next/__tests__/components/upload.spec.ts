@@ -6,7 +6,7 @@ describe('Upload', () => {
     it('should handle bi-directional data binding for files', async () => {
         const container = document.createElement('div');
         document.body.appendChild(container);
-        const test = shouldNotWarn():
+        const test = shouldNotWarn();
         const Demo = defineComponent({
             setup() {
                 const files = ref([{ name: 'name 1' }]);

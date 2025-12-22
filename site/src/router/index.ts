@@ -75,7 +75,7 @@ export default new Router<RouteResult>({
             // // }
         // // },
         {
-            path: '/demo\/(.*)/',
+            path: /demo\/(.*)/,
             action: async (context) => {
                 return {
                     Page: (await import('../pages/demo')).default,
@@ -134,17 +134,6 @@ export default new Router<RouteResult>({
             action: async (context) => {
                 return {
                     Page: (await import(`../pages/colorProcess/index`)).default,
-                    data: {
-                        path: context.params[0] as string,
-                    }
-                }
-            }
-        },
-        {
-            path: '/demo\/(.*)/',
-            action: async (context) => {
-                return {
-                    Page: (await import('../pages/demo')).default,
                     data: {
                         path: context.params[0] as string,
                     }

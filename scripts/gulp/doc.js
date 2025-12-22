@@ -130,7 +130,7 @@ gulp.task('doc:push', () => {
 
 gulp.task('doc:deploy', gulp.series(
     'doc:build',
-    // 'doc:upload',
+    'doc:upload',
     'doc:push',
 ));
 
