@@ -4,9 +4,11 @@ import template from './index.vdt';
 import {sizes, Sizes} from '../../styles/utils';
 import type {Events, Colors} from '../types';
 import { useConfigContext } from '../config';
+import { useColor } from './useColor';
 
 export interface TagProps {
     type?: Colors 
+    color?: Colors | 'purple' | 'teal' | 'blue' | 'yellow' | string 
     closable?: boolean
     closed?: boolean
     disabled?: boolean
@@ -22,6 +24,7 @@ export interface TagBlocks { }
 
 export const typeDefs: Required<TypeDefs<TagProps>> = {
     type: ['default', 'primary', 'danger', 'success', 'warning'],
+    color: String,
     closable: Boolean,
     closed: Boolean,
     disabled: Boolean,
@@ -50,6 +53,7 @@ export class Tag<
     static events = events;
 
     private config = useConfigContext();
+    private tagColor = useColor();
 
     @bind
     private onClose(e: MouseEvent): void {

@@ -1,18 +1,19 @@
 import {Icon} from '../icon';
-import {getRestProps} from '../utils';
+import {addStyle, getRestProps} from '../utils';
 import {makeStyles} from './styles';
 import {Transition} from 'intact';
 
 const {
     className, children, type, border,
-    disabled, closable, closed, size
+    disabled, closable, closed, size, style
 } = this.get();
 const { k } = this.config;
+const { colorClassName, customStyle, iconColor } = this.tagColor;
 
 const classNameObj = {
     [`${k}-tag`]: !$props.className,
     [className]: className,
-    [`${k}-${type}`]: type !== 'default',
+    [`${k}-${colorClassName.value}`]: colorClassName.value,
     [`${k}-${size}`]: size !== 'default',
     [`${k}-${border}`]: border,
     [`${k}-disabled`]: disabled,
@@ -25,11 +26,12 @@ const classNameObj = {
     <div v-if={!closed}
         class={classNameObj}
         {...getRestProps(this)}
+        style={addStyle(style, customStyle.value)}
     >
         <b:body>{children}</b:body>
         <b:_close>
             <Icon class={`${k}-tag-close ion-ios-close-empty`}
-                color={type}
+                color={iconColor.value}
                 hoverable={!disabled}
                 v-if={closable}
                 ev-click={this.onClose}

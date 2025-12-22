@@ -1,6 +1,6 @@
 ---
 title: 边框
-order: 3
+order: 4
 ---
 
 通过`border`可以定义边框样式: `solid` `dashed` `none`(默认) 
