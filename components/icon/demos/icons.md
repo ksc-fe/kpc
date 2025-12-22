@@ -152,6 +152,9 @@ export default class extends Component<Props> {
                 ["change"],
                 ["subnet"],
                 ["listener"],
+                ["outboundrules"],
+                ["inboundrules"],
+                ["fullscreen"],
             ],
         } as Props
     }
