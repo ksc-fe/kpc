@@ -15,6 +15,7 @@ export {setTheme, theme} from './styles/theme';
 /* generate start */
 
 export * from './components/affix';
+export * from './components/anchor';
 export * from './components/badge';
 export * from './components/breadcrumb';
 export * from './components/button';

@@ -1,0 +1,24 @@
+import {Tabs} from '../tabs';
+import {getRestProps} from '../utils';
+import {makeStyles} from './styles';
+
+const {className, children, vertical, size, value} = this.get();
+const { k } = this.config;
+
+const classNameObj = {
+    [`${k}-anchor`]: true,
+    [className]: className,
+    [`${k}-anchor-vertical`]: vertical,
+    [makeStyles(k, vertical)]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <Tabs 
+        v-model="value"
+        vertical={vertical}
+        size={size}
+    >
+        {children}
+    </Tabs>
+</div>
+
