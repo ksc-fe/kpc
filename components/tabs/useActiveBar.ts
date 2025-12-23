@@ -16,21 +16,21 @@ export function useActiveBar() {
         const element = findDomFromVNode(instance.$lastInput!, true) as HTMLElement;
         const { k } = instance.config;
         const activeTab = element.querySelector(`.${k}-tab.${k}-active`) as HTMLElement | null;
+        const vertical = instance.get('vertical');
 
         if (!activeTab) {
             const oldStyles = styles.value;
             if (oldStyles) {
                 styles.set(oldStyles.left ?
                     {left: oldStyles.left, width: '0'} :
-                    {top: oldStyles.top, width: '0'}
+                    {top: oldStyles.top, height: '0'}
                 );
             } else {
-                styles.set(null);
+                styles.set(vertical ? {height: '0'} : {width: '0'});
             }
             return;
         }
         
-        const vertical = instance.get('vertical');
         if (!vertical) {
             const width = activeTab.offsetWidth;
             const left = activeTab.offsetLeft;
