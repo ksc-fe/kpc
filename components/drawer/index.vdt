@@ -1,6 +1,6 @@
 import {makeStyles} from './styles';
 
-const {placement, overlay} = this.get();
+const {placement, overlay, resizable} = this.get();
 const { k } = this.config;
 const classNameObj = {
     [`${k}-drawer`]: true,
@@ -10,8 +10,21 @@ const classNameObj = {
 
 <t:super class={classNameObj}>
     <b:_content>
-        <div class={`${k}-drawer-content`}>
+        <div 
+            class={`${k}-drawer-content ${this.resizable.isResizing.value ? `${k}-drawer-resizing` : ''}`}
+            style={{
+                height: this.resizable.drawerHeight.value ? `${this.resizable.drawerHeight.value}px` : undefined
+            }}
+        >
             {$super()}
+            <div v-if={this.shouldShowResizeBar()}
+                class={`${k}-drawer-resize ${k}-drawer-resize-${this.getResizeBarPosition()}`}
+                ev-mousedown={this.resizable.startWidth}
+            />
+            <div v-if={this.shouldShowHeightResizeBar()}
+                class={`${k}-drawer-resize-horizontal ${k}-drawer-resize-${this.getHeightResizeBarPosition()}`}
+                ev-mousedown={this.resizable.startHeight}
+            />
         </div>
     </b:_content>
 </t:super>

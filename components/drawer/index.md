@@ -27,6 +27,7 @@ sidebar: doc
 | width | 指定弹窗宽度，`number`类型时，单位为`px`；`string`类型时，需要指定单位 | `number` &#124; `string` | `undefined` |
 | mode | 指定主体元素在关闭状态下的渲染方式，`"destroy"`代表直接销毁，`"hide"`代表只是隐藏 | `"destroy"` &#124; `"hide"` | `"hide"` |
 | placement | 自定义位置 | `"top"` &#124; `"bottom"` &#124;`"left"` &#124;`"right"`|`"right"`|
+| resizable | 是否可调整大小。 | `boolean` &#124; `(width: number) => void` | `false` |
 
 # 扩展点
 
