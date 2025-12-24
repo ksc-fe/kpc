@@ -50,7 +50,8 @@ const defaults = {
         bgColor: '#fff',
         get border() { return `1px solid ${theme.color.disabledBg}` },
         item: {
-            get color() { return theme.color.text }, 
+            get color() { return theme.color.text },
+            get arrowColor() { return theme.color.lightBlack },
             get hoverColor() { return theme.color.primary }, 
             get hoverBg() { return theme.color.hoverBg },
             disabledColor: '#b6bec2',
@@ -183,7 +184,7 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                     }
                 }
                 .${k}-menu-item-arrow {
-                    color: ${menu.light.item.color};
+                    color: ${menu.light.item.arrowColor};
                 }
                 &.${k}-highlighted {
                     > .${k}-menu-item-title {
@@ -234,8 +235,11 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
                 }
             }
             .${k}-sub-menu {
-                .${k}-menu-item-title, .${k}-menu-item-arrow {
+                .${k}-menu-item-title {
                     color: ${menu.light.item.subTitleColor} !important;
+                }
+                .${k}-menu-item-arrow {
+                    color: ${menu.light.item.arrowColor} !important;
                 }
             }
         }
