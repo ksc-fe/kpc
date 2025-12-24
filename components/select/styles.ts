@@ -313,6 +313,8 @@ export const makeMenuStyles = cache(function makeMenuStyles(k: string) {
             height: ${select.card.height};
             .${k}-tabs {
                 border: none;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
                 overflow: auto;
             }
             .${k}-select-group {
