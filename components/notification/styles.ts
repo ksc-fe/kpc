@@ -19,26 +19,26 @@ const defaults = {
     gap: `8px`,
     boxShadow: '0px 4px 32px 4px #00000014',
     padding: `12px`,
-    fontSize: '14px',
+    get fontSize() { return theme.default.fontSize },
     get contentColor() { return theme.color.text },
     get titleColor() { return theme.color.title },
     minWidth: '320px',
     width: '360px',
     maxWidth: '400px',
-    titleFontSize: '16px',
+    titleFontSize: '14px',
     titleFontWeight: '500',
     titleMarginBottom: '8px',
     bodyLineHeight: '1.5',
     
     icon: {
-        fontSize: `24px`,
+        fontSize: `20px`,
     },
     
     close: {
         right: `12px`,
         top: `12px`,
-        width: `24px`,
-        height: `24px`,
+        width: `20px`,
+        height: `20px`,
     },
 };
 
