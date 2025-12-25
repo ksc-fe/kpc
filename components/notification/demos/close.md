@@ -15,34 +15,38 @@ import {ButtonGroup, Button} from 'kpc';
 ```
 
 ```ts
-import {Notification} from 'kpc';
-import {bind} from 'kpc';
+import {Notification, bind} from 'kpc';
 
-export default class extends Component {
+interface Props {
+    notificationId?: number 
+}
+
+export default class extends Component<Props> {
     static template = template;
     
     static defaults() {
         return {
-            notificationId: null
+            notificationId: undefined
         }
     }
     
     @bind
     showNotification() {
-        this.notificationId = Notification.info({
+        const id = Notification.info({
             title: '可关闭的通知',
             content: '点击"关闭通知"按钮可以关闭此通知',
             duration: 0,
         });
+        this.set('notificationId', id);
     }
 
     @bind
     closeNotification() {
-        if (this.notificationId !== null) {
-            Notification.close(this.notificationId);
-            this.notificationId = null;
+        const notificationId = this.get('notificationId');
+        if (notificationId !== undefined) {
+            Notification.close(notificationId as number);
+            this.set('notificationId', undefined);
         }
     }
 }
 ```
-

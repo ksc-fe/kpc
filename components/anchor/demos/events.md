@@ -32,7 +32,7 @@ import {Anchor, AnchorLink, Button} from 'kpc';
         </div>
     </div>
     <div v-if={this.get('logs').length} class="logs-container">
-        <div v-for={this.get('logs')}>{$value}</div>
+        {this.get('logs').map((log, index) => <div key={index}>{log}</div>)}
     </div>
 </div>
 ```
@@ -68,11 +68,11 @@ import {Anchor, AnchorLink, Button} from 'kpc';
 ```
 
 ```ts
-import {bind} from 'kpc';
+import {bind, AnchorLinkProps} from 'kpc';
 
 interface Props {
     activeAnchor?: string
-    logs?: string[]
+    logs: string[]
 }
 
 export default class extends Component<Props> {
@@ -86,13 +86,15 @@ export default class extends Component<Props> {
     }
 
     @bind
-    handleAnchorClick(e: MouseEvent, link) {
-        this.set('logs', [...this.get('logs'), `点击了锚点: title: ${link.title} href: ${link.href}`]);
+    handleAnchorClick(e: MouseEvent, link: AnchorLinkProps) {
+        const logs = this.get('logs') || [];
+        this.set('logs', [...logs, `点击了锚点: title: ${link.title} href: ${link.href}`]);
     }
 
     @bind
     handleAnchorChange(href: string) {
-        this.set('logs', [...this.get('logs'), `锚点改变为: ${href}`])
+        const logs = this.get('logs') || [];
+        this.set('logs', [...logs, `锚点改变为: ${href}`])
     }
 }
 ```
