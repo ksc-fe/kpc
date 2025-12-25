@@ -6,14 +6,13 @@ import {useDrawerResizable} from './useDrawerResizable';
 
 export interface DrawerProps extends BaseDialogProps {
     placement?: Placement
-    // 支持布尔或回调函数，回调用于受控模式下获取最新宽度
-    resizable?: boolean | ((width: number) => void)
+    resizable?: boolean
 }
 
 const typeDefs: Required<TypeDefs<DrawerProps>> = {
     ...BaseDialog.typeDefs,
     placement: placements,
-    resizable: [Boolean, Function] as any,
+    resizable: Boolean,
 };
 
 const defaults = (): Partial<DrawerProps> => ({
@@ -28,7 +27,15 @@ export class Drawer extends BaseDialog<DrawerProps> {
     static typeDefs = typeDefs;
     static defaults = defaults;
 
-    private resizable = useDrawerResizable(this.dialogRef);
+    private _resizable = useDrawerResizable(this.dialogRef);
+
+    init() {
+        super.init();
+        
+        this.watch('width', (v) => {
+            this._resizable.drawerWidth.set(v || null);
+        });
+    }
 
     shouldShowResizeBar(): boolean {
         const {resizable} = this.get();
@@ -36,7 +43,7 @@ export class Drawer extends BaseDialog<DrawerProps> {
     }
 
     getResizeBarPosition(): 'left' | 'right' {
-        return this.resizable.getResizeBarPosition();
+        return this._resizable.getResizeBarPosition();
     }
 
     shouldShowHeightResizeBar(): boolean {
@@ -45,6 +52,6 @@ export class Drawer extends BaseDialog<DrawerProps> {
     }
 
     getHeightResizeBarPosition(): 'top' | 'bottom' {
-        return this.resizable.getHeightResizeBarPosition();
+        return this._resizable.getHeightResizeBarPosition();
     }
 }

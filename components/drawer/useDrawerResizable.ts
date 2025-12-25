@@ -7,10 +7,11 @@ export function useDrawerResizable(
     drawerRef: RefObject<HTMLElement>,
 ) {
     const instance = useInstance() as Drawer;
-    const drawerWidth = useState<number | null>(null);
+    const { width } = instance.get();
+    const drawerWidth = useState<number | string | null>(width || null);
     const drawerHeight = useState<number | null>(null);
     const isResizing = useState(false);
-    
+
     let startX = 0;
     let startWidth = 0;
     let startY = 0;
@@ -75,13 +76,6 @@ export function useDrawerResizable(
             minWidth,
             Math.min(maxWidth, startWidth + widthDelta)
         );
-        if (typeof resizable === 'function') {
-            resizable(newWidth); // 宽度受控
-        } else if (resizable === true) {
-            // 通过组件属性更新宽度
-            // BaseDialog 会使用 width 属性渲染内层 .k-dialog 的 style.width
-            (instance as any).set('width', newWidth);
-        }
         drawerWidth.set(newWidth);
     }
 
@@ -97,10 +91,8 @@ export function useDrawerResizable(
         onMove: onMoveWidth,
         onEnd: onEndWidth,
         disable() {
-            const {resizable, width} = instance.get() as any;
-            if (!resizable) return true;
-            if (resizable === true && width != null && drawerWidth.value == null) return true;
-            return false;
+            const {resizable} = instance.get();
+            return !resizable;
         },
     });
 
@@ -161,11 +153,8 @@ export function useDrawerResizable(
 
     // 重置 resize 状态
     function resetResizeState() {
-        const {resizable} = instance.get() as any;
-        if (typeof resizable !== 'function' && drawerWidth.value != null) {
-            (instance as any).set('width', undefined);
-        }
-        drawerWidth.set(null);
+        const {width} = instance.get();
+        drawerWidth.set(width || null);
         drawerHeight.set(null);
     }
 

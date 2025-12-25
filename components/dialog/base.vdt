@@ -8,11 +8,13 @@ import {makeDialogStyles, makeWrapperStyles} from './styles';
 
 const {
     size, container, hideClose,
-    overlay, value, width,
+    overlay, value,
     mode, className, cancelText,
     okText, loading, disabledOk,
     title, children,
 } = this.get();
+
+const width = $props.width !== undefined ? $props.width : this.get('width');
 
 const isHide = mode === 'hide';
 const { k } = this.config;

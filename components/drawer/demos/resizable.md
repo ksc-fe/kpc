@@ -4,10 +4,6 @@ order: 0.3
 ---
 
 添加`resizable`属性，可以通过拖拽边缘来调整 drawer 的大小。
-`resizable` 支持两种用法：
-**布尔值**：`true`可调整大小，`false`不可调整大小。
-**函数**：如果您同时传入`width`属性，又需要可调整宽度，可传入一个函数，在拖拽时通过回调拿到最新宽度，由外部自行更新 `width`。
-
 
 ```vdt
 import {Drawer, Button, ButtonGroup} from 'kpc';
@@ -20,11 +16,8 @@ import {Drawer, Button, ButtonGroup} from 'kpc';
         <Button value="right">right</Button>
     </ButtonGroup>
     <br /><br />
-    <Button ev-click={() => this.set('show', true)}>打开 Drawer</Button>
-    <br /><br />
-    <Button ev-click={() => this.set('showControlled', true)}>打开 宽度受控Drawer</Button>
+    <Button ev-click={this.showDrawer}>打开 Drawer</Button>
 
-    <!-- 非受控：内部自己维护宽度 -->
     <Drawer v-model='show'
         title='可调整大小的 Drawer' 
         placement={this.get('placement')}
@@ -45,32 +38,15 @@ import {Drawer, Button, ButtonGroup} from 'kpc';
             <p>当前 placement: {this.get('placement')}</p>
         </div>
     </Drawer>
-
-    <br /><br />
-
-    <!-- 受控：通过回调拿到最新宽度，自己维护 state -->
-    <Drawer v-model='showControlled'
-        title='受控宽度 Drawer'
-        placement={this.get('placement')}
-        width={this.get('controlledWidth')}
-        resizable={(w) => this.set('controlledWidth', w)}
-    >
-        <div>
-            <p>这是一个<strong>受控</strong>的可调整大小 Drawer：</p>
-            <p>当前宽度：{this.get('controlledWidth')}px</p>
-        </div>
-    </Drawer>
 </div>
 ```
 
 ```ts
-import {DrawerProps} from 'kpc';
+import {bind, DrawerProps} from 'kpc';
 
 interface Props {
     show?: boolean
-    showControlled?: boolean
     placement: DrawerProps['placement']
-    controlledWidth: number
 }
 
 export default class extends Component<Props> {
@@ -79,11 +55,13 @@ export default class extends Component<Props> {
     static defaults() {
         return {
             show: false,
-            showControlled: false,
-            placement: 'right',
-            controlledWidth: 240,
-        } as Props;
+            placement: 'right' as Props['placement'],
+        };
+    }
+
+    @bind
+    showDrawer() {
+        this.set('show', true);
     }
 }
 ```
-
