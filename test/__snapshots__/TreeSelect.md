@@ -13,7 +13,7 @@
 ```
 
 ```
-"<div class=\"k-select-main\"><input type=\"hidden\" value=\"1\"><div class=\"k-select-values\"><div class=\"k-tags css-czb0gm\"><div class=\"k-tag k-none k-closable css-1weg519\">First floor-1<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty css-16qej3\"></i></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span>"
+"<div class=\"k-select-main\"><input type=\"hidden\" value=\"1\"><div class=\"k-select-values\"><div class=\"k-tags css-czb0gm\"><div class=\"k-tag k-none k-closable css-1blxads\">First floor-1<i class=\"k-icon k-hoverable k-tag-close ion-ios-close-empty css-16qej3\"></i></div></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-select-arrow k-icon-down css-16qej3\"></i></span></span>"
 ```
 
 #### `checkbox`

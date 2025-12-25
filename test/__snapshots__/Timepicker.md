@@ -70,7 +70,7 @@
 ```
 
 ```
-"<div class=\"k-select-main\"><input type=\"hidden\" value=\"02:00 am\"><div class=\"k-input k-fluid k-inline css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"02:00 am\" value=\"02:00 am\" readonly=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-time css-16qej3\"></i></span></span>"
+"<div class=\"k-select-main\"><input type=\"hidden\" value=\"02:00 am\"><div class=\"k-input k-fluid k-inline k-focus css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"02:00 am\" value=\"02:00 am\" readonly=\"\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-time css-16qej3\"></i></span></span>"
 ```
 
 ```
@@ -78,7 +78,7 @@
 ```
 
 ```
-"<div class=\"k-select-main\"><input type=\"hidden\" value=\"00:00:00\"><div class=\"k-input k-fluid k-inline css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"00:00\" readonly=\"\" value=\"00:00\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-time css-16qej3\"></i></span></span>"
+"<div class=\"k-select-main\"><input type=\"hidden\" value=\"00:00:00\"><div class=\"k-input k-fluid k-inline k-focus css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"00:00\" readonly=\"\" value=\"00:00\"></div></div></div><span class=\"k-select-suffix\"><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-time css-16qej3\"></i></span></span>"
 ```
 
 ```
@@ -92,7 +92,7 @@
 ```
 
 ```
-"<div class=\"k-select-main\"><input type=\"hidden\" value=\"00:30:00.000,00:30:00.000\"><div class=\"k-input k-fluid k-inline css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"00:30 ~ 00:30\" value=\"00:30 ~ 00:30\" readonly=\"\"></div></div></div><span class=\"k-select-suffix\"><i class=\"k-icon k-hoverable k-select-clear ion-ios-close k-show css-16qej3\"></i><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-time css-16qej3\"></i></span></span>"
+"<div class=\"k-select-main\"><input type=\"hidden\" value=\"00:30:00.000,00:30:00.000\"><div class=\"k-input k-fluid k-inline k-focus css-1x5beu2\"><div class=\"k-input-wrapper\"><input class=\"k-input-inner\" placeholder=\"00:30 ~ 00:30\" value=\"00:30 ~ 00:30\" readonly=\"\"></div></div></div><span class=\"k-select-suffix\"><i class=\"k-icon k-hoverable k-select-clear ion-ios-close k-show css-16qej3\"></i><span class=\"k-select-suffix-icon\"><i class=\"k-icon k-icon-time css-16qej3\"></i></span></span>"
 ```
 
 #### `range`
