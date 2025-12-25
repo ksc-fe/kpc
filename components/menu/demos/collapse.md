@@ -68,8 +68,8 @@ export default class extends Component<Props> {
             expandedKeys: ['3'],
             selectedKey: '3-2',
             collapse: true,
-            theme: 'dark'
-        } as MenuProps;
+            theme: 'dark' as MenuProps['theme']
+        };
     }
 
     @bind

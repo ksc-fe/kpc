@@ -79,11 +79,11 @@ export default class extends Component {
     static defaults() {
         return {
             expandedKeys: ['3'],
-            size: 'large',
-            theme: 'light',
-            type: 'vertical',
+            size: 'large' as MenuProps['size'],
+            theme: 'light' as MenuProps['theme'],
+            type: 'vertical' as MenuProps['type'],
             collapse: false,
-        } as MenuProps;
+        };
     }
 }
 ```

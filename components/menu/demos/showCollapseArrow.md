@@ -88,11 +88,11 @@ export default class extends Component<Props> {
         return {
             expandedKeys: [],
             selectedKey: '2',
-            size: 'small',
-            theme: 'light',
+            size: 'small' as MenuProps['size'],
+            theme: 'light' as MenuProps['theme'],
             showCollapseArrow: true,
             collapse: false,
-        } as MenuProps;
+        };
     }
 }
 ```
