@@ -27,7 +27,7 @@ describe('Timepicker', () => {
 
         const dropdown = getElement('.k-time-content')!;
         const ok = dropdown.querySelector('.k-btn') as HTMLElement;
-        expect(ok.classList.contains('k-disabled')).eql(true);
+        expect(ok.classList.contains('k-disabled')).eql(false);
         expect(dropdown.innerHTML).to.matchSnapshot();
 
         const next = dropdown.querySelector('.k-scroll-select-item:nth-child(11)') as HTMLElement;
@@ -41,7 +41,7 @@ describe('Timepicker', () => {
         expect(dropdown.innerHTML).to.matchSnapshot();
         ok.click();
         await wait(500);
-        expect(instance.get('time')).to.eql('02:00:00');
+        expect(instance.get('time')).to.eql('03:34:56');
         expect(dropdown.style.display).to.eql('none');
         // set time
         instance.set('time', '03:03:03');
@@ -245,7 +245,18 @@ describe('Timepicker', () => {
         await wait();
         expect(dropdown.innerHTML).to.matchSnapshot();
         dropdown.querySelector<HTMLElement>('.k-btn')!.click();
-        expect(instance.get('time')).to.eql(['00:30:00', '23:30:00']);
+        expect(instance.get('time')).to.eql(['00:30:00', '23:00:00']);
+    });
+
+    it('should not have 23:59:59 in step mode without max', async () => {
+        const [instance, element] = mount(StepRangeDemo);
+        const picker = element.querySelector('.k-select') as HTMLElement;
+        picker.click();
+        await wait();
+        const dropdown = getElement('.k-time-content')!;
+        const options = dropdown.querySelectorAll('k-scroll-select-item');
+        const texts = Array.from(options).map(el => (el as HTMLElement).innerText.trim());
+        expect(texts).to.not.include('23:59:59');
     });
 
     it('format', async () => {
@@ -261,7 +272,7 @@ describe('Timepicker', () => {
         await wait();
         content.querySelector<HTMLElement>('.k-btn')!.click();
         await wait();
-        expect(instance.get('time1')).to.eql('02:00 am');
+        expect(instance.get('time1')).to.eql('03:34 am');
         expect(input1.innerHTML).to.matchSnapshot();
 
         input2.click();
@@ -302,7 +313,7 @@ describe('Timepicker', () => {
             private Timepicker = Timepicker;
         }
 
-        const [instance, element] = mount(Demo);
+        const [instance, element] = mount(Demo as any);
         const [
             basicInput, multipleInput,
             rangeInput, formatInput
