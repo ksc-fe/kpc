@@ -140,11 +140,13 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 top: 50%;
                 transform: translateY(-50%);
             }
-            &:not(.${k}-hidden) ~ th:not(.${k}-hidden):before {
-                display: block;
-            }
             &.${k}-fixed-right:before {
                 left: -2px;
+            }
+        }
+        &:not(.${k}-grid) {
+            th:not(.${k}-hidden) ~ th:not(.${k}-hidden):before {
+                display: block;
             }
         }
         .${k}-table-title {
