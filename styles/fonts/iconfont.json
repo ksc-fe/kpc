@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "46471876",
+      "name": "k-icon-add",
+      "font_class": "tianjia",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "46471822",
+      "name": "k-icon-think",
+      "font_class": "shendusikao",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
       "icon_id": "46085395",
       "name": "outboundrules",
       "font_class": "k-icon-outboundrules",

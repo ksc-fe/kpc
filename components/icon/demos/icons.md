@@ -155,6 +155,8 @@ export default class extends Component<Props> {
                 ["outboundrules"],
                 ["inboundrules"],
                 ["fullscreen"],
+                ["add-circled"],
+                ["think"],
             ],
         } as Props
     }

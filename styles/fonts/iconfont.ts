@@ -26,6 +26,14 @@ export const makeIconStyles = cache(function _makeIconStyles(k: string) {
           -moz-osx-font-smoothing: grayscale;
         }
 
+        .${k}-icon-add-circled:before {
+          content: "\\e60b";
+        }
+
+        .${k}-icon-think:before {
+          content: "\\e60a";
+        }
+
         .${k}-icon-outboundrules:before {
           content: "\\e9cd";
         }
