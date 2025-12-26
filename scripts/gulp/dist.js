@@ -1,27 +1,27 @@
 const gulp = require('gulp');
 const genConfig = require('../webpack');
-const {resolve, handleError, rm, themes} = require('../utils');
+const { resolve, handleError, rm, themes } = require('../utils');
 const webpack = require('webpack');
 const gulpMultiProcess = require('gulp-multi-process');
-const {extractCss, ignoreCss, ignoreFile} = require('../webpack/extract');
+const { extractCss, ignoreCss, ignoreFile } = require('../webpack/extract');
 const path = require('path');
 const tap = require('gulp-tap');
 const uglifyjs = require('gulp-uglify');
-const {addTheme} = require('../webpack/theme');
+const { addTheme } = require('../webpack/theme');
 
 const outputPath = resolve('./dist');
-const frameworks = ['intact', 'vue', 'react'];
+const frameworks = ['intact', 'vue-legacy', 'vue', 'react'];
 
 gulp.task('clean@dist', () => {
     return rm(outputPath);
 });
 
 gulp.task('build:i18n@dist', (done) => {
-    gulp.src(resolve('./i18n/**/*.js'), {base: resolve('./')})
+    gulp.src([resolve('./i18n/**/*.ts')], { base: resolve('./') })
         .pipe(tap((file, t) => {
             const config = genConfig();
             initConfig(config);
-            config.entry(path.basename(file.path, '.js')).add(file.path);
+            config.entry(path.basename(file.path, '.ts')).add(file.path);
             config.output.path(path.resolve(outputPath, './i18n')).library('i18n');
             webpack(config.toConfig(), (err, stats) => {
                 handleError(err, stats);
@@ -30,19 +30,7 @@ gulp.task('build:i18n@dist', (done) => {
         }));
 });
 
-gulp.task('build:vue-next@dist', () => {
-    const config = webpackConfig('default', 'vue');
-    config.output.path(resolve('./packages/kpc-vue-next/dist'));
-    config.resolve.alias.set('intact$', resolve('./packages/kpc-vue-next/node_modules/intact-vue/dist/index.js'));
-    return new Promise((resolve) => {
-        webpack(config.toConfig(),  (err, stats) => {
-            handleError(err, stats);
-            uglify(stats).then(resolve);
-        });
-    });
-});
-
-const parallelTasks = ['build:i18n@dist', 'build:vue-next@dist'];
+const parallelTasks = ['build:i18n@dist'];
 frameworks.forEach(type => {
     themes.forEach(theme => {
         // only build theme once for Intact
@@ -60,7 +48,8 @@ const parallelDist = (cb) => gulpMultiProcess(parallelTasks, cb);
 // const parallelDist = gulp.parallel(...parallelTasks);
 
 const copyTasks = [];
-['vue', 'react', 'vue-next'].forEach(type => {
+// v3.0：vue-legacy -> kpc-vue, vue -> kpc-vue-next, react -> kpc-react
+['vue-legacy', 'vue', 'react'].forEach(type => {
     const name = `copy:${type}@dist`;
     copyTasks.push(name);
     gulp.task(name, () => {
@@ -95,7 +84,7 @@ function buildDistFile(theme, type) {
 function webpackConfig(theme = 'default', type = 'intact') {
     const config = genConfig();
 
-    initConfig(config);
+    initConfig(config, type);
 
     // only extract css once when we build for Intact
     if (type === 'intact') {
@@ -105,21 +94,35 @@ function webpackConfig(theme = 'default', type = 'intact') {
             // ignoreFile(config);
         }
     } else {
-        ignoreCss(config);
+        const rules = config.module.rules;
+        rules.get('stylus').uses.clear().end().use('null').loader('null-loader');
+        rules.get('css').uses.clear().end().use('null').loader('null-loader');
     }
+
 
     addTheme(config, theme);
 
-    // add entry
-    if (!shouldUseTmpFile(type, theme)) {
-        config.entry(`kpc${type !== 'intact' ? `.${type}` : ''}`).add(resolve('./index.js'));
+    let entryFile;
+    if (type === 'vue-legacy') {
+        entryFile = resolve('./packages/kpc-vue/install.js');
+    } else if (type === 'vue') {
+        entryFile = resolve('./packages/kpc-vue-next/install.js');
+    } else if (type === 'react') {
+        entryFile = resolve('./packages/kpc-react/index.js');
     } else {
-        config.entry(tmpJsFile).add(resolve('./index.js'));
+        entryFile = resolve('./index.ts');
+    }
+
+    if (!shouldUseTmpFile(type, theme)) {
+        const entryName = type === 'intact' ? 'kpc' : `kpc.${type}`;
+        config.entry(entryName).add(entryFile);
+    } else {
+        config.entry(tmpJsFile).add(entryFile);
     }
 
     // add alias
-    const alias = type === 'vue' ? 'intact-vue' : type === 'react' ? 'intact-react' : 'intact';
-    config.resolve.alias.set('intact$', alias);
+    // const alias = type === 'vue' ? 'intact-vue' : type === 'react' ? 'intact-react' : 'intact';
+    // config.resolve.alias.set('intact$', alias);
 
     // add externals
     config.externals(type === 'intact' ?
@@ -130,29 +133,29 @@ function webpackConfig(theme = 'default', type = 'intact') {
                 commonjs: 'intact',
                 amd: 'intact',
             }
-        } : type === 'vue' ?
-        {
-            vue: {
-                root: 'Vue',
-                commonjs2: 'vue',
-                commonjs: 'vue',
-                amd: 'vue',
+        } : (type === 'vue-legacy' || type === 'vue') ?
+            {
+                vue: {
+                    root: 'Vue',
+                    commonjs2: 'vue',
+                    commonjs: 'vue',
+                    amd: 'vue',
+                }
+            } :
+            {
+                react: {
+                    root: 'React',
+                    commonjs2: 'react',
+                    commonjs: 'react',
+                    amd: 'react',
+                },
+                'react-dom': {
+                    root: 'ReactDOM',
+                    commonjs2: 'react-dom',
+                    commonjs: 'react-dom',
+                    amd: 'react-dom',
+                }
             }
-        } :
-        {
-            react: {
-                root: 'React',
-                commonjs2: 'react',
-                commonjs: 'react',
-                amd: 'react',
-            },
-            'react-dom': {
-                root: 'ReactDOM',
-                commonjs2: 'react-dom',
-                commonjs: 'react-dom',
-                amd: 'react-dom',
-            }
-        }
     );
 
     // console.dir(config.toConfig(), {depth: null});
@@ -160,7 +163,7 @@ function webpackConfig(theme = 'default', type = 'intact') {
     return config;
 }
 
-function initConfig(config) {
+function initConfig(config, type = 'intact') {
     config.output
         .path(outputPath)
         .filename('[name].js')
@@ -171,16 +174,22 @@ function initConfig(config) {
     config.mode('production');
     config.optimization.minimize(false);
 
+    config.resolve.modules
+        .add(resolve('./node_modules'))
+        .add(resolve('./packages/kpc-vue/node_modules'))
+        .add(resolve('./packages/kpc-vue-next/node_modules'))
+        .add(resolve('./packages/kpc-react/node_modules'));
+
     config
         // disable code spliting
-        .plugin('limitChunk').use(webpack.optimize.LimitChunkCountPlugin, [{maxChunks: 1}]);
+        .plugin('limitChunk').use(webpack.optimize.LimitChunkCountPlugin, [{ maxChunks: 1 }]);
 
     return config;
 }
 
 function uglify(stats) {
     const info = stats.toJson();
-    const {outputPath, assets} = info;
+    const { outputPath, assets } = info;
 
     return Promise.all(assets.map(file => {
         const name = file.name;
@@ -201,16 +210,20 @@ function uglify(stats) {
 }
 
 async function copyDistFileToPackage(type) {
-    const path = `./packages/kpc-${type}`;
-    if (type !== 'vue-next') {
-        await rm(`${path}/dist`);
-    }
+    const packageMap = {
+        'vue-legacy': 'kpc-vue',
+        'vue': 'kpc-vue-next',
+        'react': 'kpc-react'
+    };
+    const packagePath = `./packages/${packageMap[type]}`;
+
+    await rm(`${packagePath}/dist`);
     await gulp.src(
         [
             './dist/fonts/**/*',
             './dist/i18n/**/*',
             `./dist/kpc.${type}.*`,
             './dist/*.css'
-        ], {base: './'}
-    ).pipe(gulp.dest(path));
+        ], { base: './' }
+    ).pipe(gulp.dest(packagePath));
 }
