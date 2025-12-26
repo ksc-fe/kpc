@@ -12,7 +12,9 @@ sidebar: doc
 4. `Add` `Transfer`组件新增`pagination`属性，支持数据分页 [#1103](https://github.com/ksc-fe/kpc/issues/1103)
 5. `Add` `Drawer`组件新增`resizable`属性，支持调整大小 [#1041](https://github.com/ksc-fe/kpc/issues/1041)
 6. `Add` `Icon`新增`history`等16个字体图标 [#1107](https://github.com/ksc-fe/kpc/issues/1107)
-7. `Fix` `Select`、`Menu` UI优化 [#1108](https://github.com/ksc-fe/kpc/issues/1108)
+7. `Fix` `Select`、`Menu`、`Table`、`Tag` UI优化 [#1108](https://github.com/ksc-fe/kpc/issues/1108)
+8. `Fix` `Timepicker` `step` 模式下冗余的 `23:59:59` 选项，以及指定 `max`、`min` 时确认按钮由于默认预览值越界而禁用的问题 [#1102](https://github.com/ksc-fe/kpc/issues/1102)
+9. `Fix` `Tabs` `vertical`模式下初始`value`为空值，高亮线错误显示的问题 [#1109](https://github.com/ksc-fe/kpc/issues/1109)
 
 ## v3.6.2
 
