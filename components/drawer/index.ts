@@ -36,22 +36,4 @@ export class Drawer extends BaseDialog<DrawerProps> {
             this._resizable.drawerWidth.set(v || null);
         });
     }
-
-    shouldShowResizeBar(): boolean {
-        const {resizable} = this.get();
-        return !!resizable;
-    }
-
-    getResizeBarPosition(): 'left' | 'right' {
-        return this._resizable.getResizeBarPosition();
-    }
-
-    shouldShowHeightResizeBar(): boolean {
-        const {resizable, placement} = this.get();
-        return !!(resizable && (placement === 'top' || placement === 'bottom'));
-    }
-
-    getHeightResizeBarPosition(): 'top' | 'bottom' {
-        return this._resizable.getHeightResizeBarPosition();
-    }
 }

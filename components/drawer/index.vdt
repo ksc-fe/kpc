@@ -1,6 +1,12 @@
 import {makeStyles} from './styles';
 
 const {placement, overlay, resizable, width} = this.get();
+const {
+    getResizeBarPosition, getHeightResizeBarPosition, 
+    drawerWidth, isResizing, drawerHeight, startWidth, startHeight
+} = this._resizable;
+const shouldShowHeightResizeBar = !!(resizable && (placement === 'top' || placement === 'bottom'))
+
 const { k } = this.config;
 const classNameObj = {
     [`${k}-drawer`]: true,
@@ -8,20 +14,20 @@ const classNameObj = {
     [makeStyles(overlay, k)]: true
 };
 
-<t:super class={classNameObj} width={resizable ? (this._resizable.drawerWidth.value || width) : width}>
+<t:super class={classNameObj} width={resizable ? (drawerWidth.value || width) : width}>
     <b:_content>
         <div 
-            class={`${k}-drawer-content ${this._resizable.isResizing.value ? `${k}-drawer-resizing` : ''}`}
-            style={this._resizable.drawerHeight.value ? { height: `${this._resizable.drawerHeight.value}px` } : null}
+            class={`${k}-drawer-content ${isResizing.value ? `${k}-drawer-resizing` : ''}`}
+            style={drawerHeight.value ? { height: `${drawerHeight.value}px` } : null}
         >
             {$super()}
-            <div v-if={this.shouldShowResizeBar()}
-                class={`${k}-drawer-resize ${k}-drawer-resize-${this.getResizeBarPosition()}`}
-                ev-mousedown={this._resizable.startWidth}
+            <div v-if={!!resizable}
+                class={`${k}-drawer-resize ${k}-drawer-resize-${getResizeBarPosition()}`}
+                ev-mousedown={startWidth}
             />
-            <div v-if={this.shouldShowHeightResizeBar()}
-                class={`${k}-drawer-resize-horizontal ${k}-drawer-resize-${this.getHeightResizeBarPosition()}`}
-                ev-mousedown={this._resizable.startHeight}
+            <div v-if={shouldShowHeightResizeBar}
+                class={`${k}-drawer-resize-horizontal ${k}-drawer-resize-${getHeightResizeBarPosition()}`}
+                ev-mousedown={startHeight}
             />
         </div>
     </b:_content>
