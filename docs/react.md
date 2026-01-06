@@ -32,6 +32,48 @@ class App extends React.Component {
         return <Button onClick={this.hello}>Hello World</Button>
     }
 }
+
+```
+## CDN引入
+
+通过[https://cdn.jsdelivr.net/npm/@king-design/react](https://cdn.jsdelivr.net/npm/@king-design/react)可以直接引入最新版KingDesign，建议使用锁定版本地址，
+例如：[https://cdn.jsdelivr.net/npm/@king-design/react@3.7.0](https://cdn.jsdelivr.net/npm/@king-design/react@3.7.0)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>kingdesign-react</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-standalone/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@king-design/react"></script>
+
+    <script type="text/babel">
+        const {Button, Message} = Kpc;
+
+        class Demo extends React.Component {
+            hello() {
+                Message.success('Welcome to the world of KingDesign and React!');
+            }
+
+            render() {
+                return <Button onClick={this.hello.bind(this)}>test</Button>
+            }
+        }
+
+        ReactDOM.render(<Demo />, document.getElementById('app'));
+    </script>
+</body>
+</html>
 ```
 
 # 注意事项

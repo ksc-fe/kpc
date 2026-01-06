@@ -15,6 +15,7 @@ sidebar: doc
 7. `Fix` `Select`、`Menu`、`Table`、`Tag` UI优化 [#1108](https://github.com/ksc-fe/kpc/issues/1108)
 8. `Fix` `Timepicker` `step` 模式下冗余的 `23:59:59` 选项（破坏性变更：若需保留，可显式指定 `max="23:59:59"`），以及指定 `max`、`min` 时确认按钮由于默认预览值越界而禁用的问题 [#1102](https://github.com/ksc-fe/kpc/issues/1102)
 9. `Fix` `Tabs` `vertical`模式下初始`value`为空值，高亮线错误显示的问题 [#1109](https://github.com/ksc-fe/kpc/issues/1109)
+10. `Add` 新增 `CDN` 引入方式 [#1110](https://github.com/ksc-fe/kpc/issues/1110)
 
 ## v3.6.2
 

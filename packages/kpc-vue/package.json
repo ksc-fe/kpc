@@ -16,6 +16,8 @@
   "homepage": "https://design.ksyun.com",
   "license": "MIT",
   "main": "index.js",
+  "unpkg": "dist/vue.min.js",
+  "jsdelivr": "dist/index.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ksc-fe/kpc.git"

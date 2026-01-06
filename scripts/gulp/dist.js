@@ -225,5 +225,10 @@ async function copyDistFileToPackage(type) {
             `./dist/kpc.${type}.*`,
             './dist/*.css'
         ], { base: './' }
-    ).pipe(gulp.dest(packagePath));
+    ).pipe(tap(file => {
+        const typeName = `kpc.${type}`;
+        if (file.relative.includes(typeName)) {
+            file.path = file.path.replace(typeName, 'index');
+        }
+    })).pipe(gulp.dest(packagePath));
 }

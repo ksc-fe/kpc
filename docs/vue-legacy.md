@@ -58,6 +58,46 @@ export default {
 }
 </script>
 ```
+## CDN引入
+
+通过[https://cdn.jsdelivr.net/npm/@king-design/vue-legacy](https://cdn.jsdelivr.net/npm/@king-design/vue-legacy)可以直接引入最新版KingDesign，建议使用锁定版本地址，
+例如：[https://cdn.jsdelivr.net/npm/@king-design/vue-legacy@3.7.0](https://cdn.jsdelivr.net/npm/@king-design/vue-legacy@3.7.0)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>kingdesign-vue-legacy</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+</head>
+<body>
+    <div id="app">
+        <k-button type="primary" @click="hello">Hello world</k-button>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@king-design/vue-legacy"></script>
+    <script type="text/javascript">
+        Vue.use(Kpc);
+        new Vue({
+            el: '#app',
+            methods: {
+                hello: function() {
+                    this.$message.success('Welcome to kpc world!');
+                    this.$notification.success({
+                        title: 'test',
+                        content: 'test notification'
+                    })
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+```
 
 # 注意事项
 
