@@ -24,7 +24,7 @@ export function useStep(
     useReceive<StepComponent>(['step', 'min', 'max'], generateOptions);
 
     function generateOptions() {
-        const {step} = instance.get();
+        const {step, max} = instance.get();
 
         if (step) {
             const data: Option[] = [];
@@ -43,7 +43,8 @@ export function useStep(
                 if (value <= maxValue) {
                     push(value);
                     if (+value === +maxValue) break;
-                } else if (data.length) {
+                } else if (data.length && max !== undefined) {
+                    // unless max is undefined, it means the max is not set, so we don't need to add the maxValue to the last
                     // it the last value is less than maxValue,
                     // add the maxValue to the last
                     push(maxValue);

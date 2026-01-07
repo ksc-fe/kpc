@@ -2,6 +2,7 @@ import ClosableDemo from '~/components/tag/demos/closable';
 import {mount, unmount, wait, dispatchEvent, getElement} from '../../test/utils';
 import TagsDemo from '~/components/tag/demos/tags';
 import DraggableDemo from '~/components/tag/demos/draggable';
+import ColorDemo from '~/components/tag/demos/color';
 
 describe('Tag', () => {
     afterEach(() => unmount());
@@ -85,5 +86,12 @@ describe('Tag', () => {
 
         // should not drag to other tags
         await test(tag11, tag2);
+    });
+
+    it('should support color property', async () => {
+        const [instance, element] = mount(ColorDemo);
+        await wait();
+        
+        expect(element.innerHTML).to.matchSnapshot();
     });
 });

@@ -1,0 +1,49 @@
+import {Tab} from '../tabs';
+import {getRestProps, eachChildren, isComponentVNode} from '../utils';
+import {isNullOrUndefined} from 'intact-shared';
+import {AnchorLink} from './link';
+
+const {href, title, children, className, disabled} = this.get();
+const {value: currentValue, vertical} = this.anchor.get();
+const { k } = this.config;
+const level = this.level;
+const verticalMode = vertical !== false; // 默认为 true
+
+// 检查是否有嵌套的 AnchorLink 仅在 vertical 模式下支持嵌套
+const nestedLinks = [];
+const otherChildren = [];
+
+if (children) {
+    eachChildren(children, (vNode) => {
+        if (isComponentVNode(vNode, AnchorLink)) {
+            nestedLinks.push(vNode);
+        } else {
+            otherChildren.push(vNode);
+        }
+    });
+}
+
+const hasNestedLinks = nestedLinks.length > 0 && verticalMode;
+// 如果有嵌套的 AnchorLink，显示 title；否则显示 title 或 children
+const displayTitle = title || (hasNestedLinks ? null : (otherChildren.length > 0 ? otherChildren : null));
+
+const classNameObj = {
+    [`${k}-anchor-link`]: true,
+    [`${k}-anchor-link-nested`]: hasNestedLinks,
+    [`${k}-anchor-link-level-${level}`]: level > 0 && verticalMode,
+    [className]: className,
+};
+
+<template>
+    <Tab 
+        {...getRestProps(this)}
+        class={classNameObj}
+        value={href}
+        disabled={disabled}
+        ev-click={this.onClick}
+    >
+        {displayTitle}
+    </Tab>
+    {hasNestedLinks ? nestedLinks : null}
+</template>
+

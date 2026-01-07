@@ -24,6 +24,7 @@ sidebar: doc
 | rightTitle | 右边顶部展示的标题 | `string` &#124; `VNode` | `"已选择"` |
 | enableAdd | 指定右箭头按钮的可用状态 | `() => boolean` | `undefined` |
 | enableRemove | 指定左箭头按钮的可用状态 | `() => boolean` | `undefined` |
+| pagination | 是否启用分页功能，传入`true`使用默认配置，传入对象可自定义分页配置，详见[Pagination组件](/components/pagination/) | `boolean` &#124; `PaginationProps` | `false` |
 
 ```ts
 export type TransferDataItem<
@@ -60,3 +61,4 @@ export type TransferDataItem<
 | --- | --- | --- |
 | add | 右箭头按钮点击事件 | - |
 | remove | 左箭头按钮点击事件 | - |
+| page | 当内置翻页改变页码或每页数量时触发 | <code>(model: 'left' &#124; 'right', data: {value: number, limit: number}) => void</code> |

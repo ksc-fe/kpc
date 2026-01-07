@@ -1,6 +1,6 @@
 ---
 title: 与树形控件结合 
-order: 4
+order: 6
 ---
 
 与【完全自定义】示例一样，`Transfer`也可以与`Tree`结合使用

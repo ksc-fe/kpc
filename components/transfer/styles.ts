@@ -36,6 +36,10 @@ const defaults = {
 
     arrow: {
         gap: '16px 10px',
+    },
+
+    pagination: {
+        padding: '6px 0',
     }
 };
 
@@ -60,7 +64,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             height: ${transfer.panel.height};
             display: inline-flex;
             flex-direction: column;
-            overflow: auto;
+            overflow: hidden;
         }
 
         .${k}-transfer-title {
@@ -117,6 +121,12 @@ export const makeStyles = cache(function makeStyles(k: string) {
                 display: flex;
                 margin: ${transfer.arrow.gap};
             }
+        }
+        .${k}-transfer-pagination-wrapper {
+            padding: ${transfer.pagination.padding};
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     `;
 });

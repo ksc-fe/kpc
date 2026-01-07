@@ -4,6 +4,19 @@ order: 99
 sidebar: doc
 ---
 
+## v3.7.0
+
+1. `Add` 新增 `Notification` 通知提醒组件 [#1105](https://github.com/ksc-fe/kpc/issues/1105)
+2. `Add` 新增 `Anchor` 锚点组件 [#1036](https://github.com/ksc-fe/kpc/issues/1036)
+3. `Add` `Tag` 组件新增`color`属性，支持使用内置颜色与自定义颜色 [#1104](https://github.com/ksc-fe/kpc/issues/1104)
+4. `Add` `Transfer`组件新增`pagination`属性，支持数据分页 [#1103](https://github.com/ksc-fe/kpc/issues/1103)
+5. `Add` `Drawer`组件新增`resizable`属性，支持调整大小 [#1041](https://github.com/ksc-fe/kpc/issues/1041)
+6. `Add` `Icon`新增`history`等18个字体图标 [#1107](https://github.com/ksc-fe/kpc/issues/1107)
+7. `Fix` `Select`、`Menu`、`Table`、`Tag` UI优化 [#1108](https://github.com/ksc-fe/kpc/issues/1108)
+8. `Fix` `Timepicker` `step` 模式下冗余的 `23:59:59` 选项（破坏性变更：若需保留，可显式指定 `max="23:59:59"`），以及指定 `max`、`min` 时确认按钮由于默认预览值越界而禁用的问题 [#1102](https://github.com/ksc-fe/kpc/issues/1102)
+9. `Fix` `Tabs` `vertical`模式下初始`value`为空值，高亮线错误显示的问题 [#1109](https://github.com/ksc-fe/kpc/issues/1109)
+10. `Add` 新增 `CDN` 引入方式 [#1110](https://github.com/ksc-fe/kpc/issues/1110)
+
 ## v3.6.2
 
 1. `Fix` 修复`Table`组件，当第一列`hidden=true`时，依然展示`::before`的问题 [#1098](https://github.com/ksc-fe/kpc/issues/1098)

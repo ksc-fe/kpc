@@ -12,6 +12,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | type | 组件类型 | `"default"` &#124; `"primary"` &#124; `"success"` &#124; `"warning"` &#124; `"danger"` | `"default"` |
+| color | 颜色 | `"default"` &#124; `"primary"` &#124; `"success"` &#124; `"warning"` &#124; `"danger"` &#124; `"purple"` &#124; `"teal"` &#124; `"blue"` &#124; `"yellow"` | `undefined` | 
 | closable | 是否可关闭 | `boolean` | `false` |
 | closed | 是否已关闭 | `boolean` | `false` |
 | disabled | 是否展示禁用状态 | `boolean` | `false` |

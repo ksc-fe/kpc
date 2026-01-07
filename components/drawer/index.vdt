@@ -1,6 +1,12 @@
 import {makeStyles} from './styles';
 
-const {placement, overlay} = this.get();
+const {placement, overlay, resizable, width} = this.get();
+const {
+    getResizeBarPosition, getHeightResizeBarPosition, 
+    drawerWidth, isResizing, drawerHeight, startWidth, startHeight
+} = this._resizable;
+const shouldShowHeightResizeBar = !!(resizable && (placement === 'top' || placement === 'bottom'))
+
 const { k } = this.config;
 const classNameObj = {
     [`${k}-drawer`]: true,
@@ -8,10 +14,21 @@ const classNameObj = {
     [makeStyles(overlay, k)]: true
 };
 
-<t:super class={classNameObj}>
+<t:super class={classNameObj} width={resizable ? (drawerWidth.value || width) : width}>
     <b:_content>
-        <div class={`${k}-drawer-content`}>
+        <div 
+            class={`${k}-drawer-content ${isResizing.value ? `${k}-drawer-resizing` : ''}`}
+            style={drawerHeight.value ? { height: `${drawerHeight.value}px` } : null}
+        >
             {$super()}
+            <div v-if={!!resizable}
+                class={`${k}-drawer-resize ${k}-drawer-resize-${getResizeBarPosition()}`}
+                ev-mousedown={startWidth}
+            />
+            <div v-if={shouldShowHeightResizeBar}
+                class={`${k}-drawer-resize-horizontal ${k}-drawer-resize-${getHeightResizeBarPosition()}`}
+                ev-mousedown={startHeight}
+            />
         </div>
     </b:_content>
 </t:super>

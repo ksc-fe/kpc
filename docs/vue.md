@@ -63,6 +63,43 @@ export default {
 }
 </script>
 ```
+## CDN引入
+
+通过[https://cdn.jsdelivr.net/npm/@king-design/vue](https://cdn.jsdelivr.net/npm/@king-design/vue)可以直接引入最新版KingDesign，建议使用锁定版本地址，
+例如：[https://cdn.jsdelivr.net/npm/@king-design/vue@3.7.0](https://cdn.jsdelivr.net/npm/@king-design/vue@3.7.0)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>kingdesign-vue</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+</head>
+<body>
+    <div id="app">
+        <k-button type="primary" @click="hello">Hello world</k-button>
+    </div>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@king-design/vue"></script>
+    <script type="text/javascript">
+        const { createApp } = Vue;
+        const app = createApp({
+            methods: {
+                hello: function() {
+                    this.$message.success('Vue 3 测试成功！');
+                }
+            }
+        });
+        app.use(Kpc);
+        app.mount('#app');
+    </script>
+</body>
+</html>
+```
 
 # 注意事项
 

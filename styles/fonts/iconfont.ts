@@ -26,6 +26,82 @@ export const makeIconStyles = cache(function _makeIconStyles(k: string) {
           -moz-osx-font-smoothing: grayscale;
         }
 
+        .${k}-icon-add-circled:before {
+          content: "\\e60b";
+        }
+
+        .${k}-icon-think:before {
+          content: "\\e60a";
+        }
+
+        .${k}-icon-outboundrules:before {
+          content: "\\e9cd";
+        }
+
+        .${k}-icon-inboundrules:before {
+          content: "\\e9ce";
+        }
+
+        .${k}-icon-fullscreen:before {
+          content: "\\e9cc";
+        }
+
+        .${k}-icon-history:before {
+          content: "\\e9cb";
+        }
+
+        .${k}-icon-correlation:before {
+          content: "\\e9c3";
+        }
+
+        .${k}-icon-webui:before {
+          content: "\\e9c4";
+        }
+
+        .${k}-icon-log:before {
+          content: "\\e9c5";
+        }
+
+        .${k}-icon-save:before {
+          content: "\\e9c6";
+        }
+
+        .${k}-icon-memory:before {
+          content: "\\e9c7";
+        }
+
+        .${k}-icon-Physicalport:before {
+          content: "\\e9c8";
+        }
+
+        .${k}-icon-queue:before {
+          content: "\\e9c9";
+        }
+
+        .${k}-icon-channel:before {
+          content: "\\e9ca";
+        }
+
+        .${k}-icon-cpu:before {
+          content: "\\e9be";
+        }
+
+        .${k}-icon-change:before {
+          content: "\\e9bf";
+        }
+
+        .${k}-icon-subnet:before {
+          content: "\\e9c0";
+        }
+
+        .${k}-icon-batchsearch1:before {
+          content: "\\e9c1";
+        }
+
+        .${k}-icon-listener:before {
+          content: "\\e9c2";
+        }
+
         .${k}-icon-heart-fill:before {
           content: "\\e9ba";
         }

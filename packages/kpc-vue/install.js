@@ -19,6 +19,8 @@ export function install(Vue) {
             obj.$message = component;
         } else if (key === 'Dialog') {
             obj.$dialog = component;
+        } else if (key === 'Notification') {
+            obj.$notification = component;
         }
     }
 }

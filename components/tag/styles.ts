@@ -10,8 +10,14 @@ type TypeStyles = {
     color: string
     bgColor: string
 }
+type Colors = ValueOf<typeof colors>
+type ColorStyles = {
+    color: string
+    bgColor: string
+}
 
 const types = ['primary', 'warning', 'danger', 'success', 'disabled'] as const;
+const colors = ['purple', 'teal', 'blue', 'yellow'] as const;
 
 const defaults = deepDefaults(
     {
@@ -79,6 +85,13 @@ const defaults = deepDefaults(
         };
         return memo;
     }, {} as {[key in Exclude<Types, 'disabled'>]: TypeStyles}),
+    colors.reduce((memo, color) => {
+        memo[color] = {
+            get color() { return theme.color[color] },
+            get bgColor() { return palette(theme.color[color], -4)}
+        };
+        return memo;
+    }, {} as {[key in Colors]: ColorStyles}),
 );
 
 let tag: typeof defaults;
@@ -109,6 +122,16 @@ export const makeStyles = cache(function makeStyles(k: string) {
             border: none;
             background: ${tag.none.bgColor};
         }
+
+        ${colors.map(c => {
+            return css`
+                &.${k}-${c} {
+                    color: ${tag[c].color};
+                    border-color: ${tag[c].color};
+                    background: ${tag[c].bgColor};
+                }
+            `;
+        })}
 
         ${types.map(t => {
             const styles = tag[t];

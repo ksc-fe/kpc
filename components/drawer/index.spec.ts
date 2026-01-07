@@ -89,4 +89,47 @@ describe('Drawer', () => {
         const [dialog1, dialog2] = getElements('.k-dialog');
         expect(dialog2.querySelector('.k-dialog-body')!.textContent).to.eql('Dialog');
     });
+
+    it('should show resize bar when resizable is true', async function() {
+        class Demo extends Component {
+            static template = `
+                const {Drawer} = this;
+                <Drawer value={true} resizable={true} placement="right">
+                    <div>Content</div>
+                </Drawer>
+            `;
+            private Drawer = Drawer;
+        }
+        const [instance, element] = mount(Demo);
+        await wait();
+        expect(getElement('.k-drawer-resize')).to.not.be.undefined;
+    });
+
+    it('should update width when dragging', async function() {
+        class Demo extends Component {
+            static template = `
+                const {Drawer} = this;
+                <Drawer value={true} resizable={true} placement="right" ref="drawer">
+                    <div>Content</div>
+                </Drawer>
+            `;
+            private Drawer = Drawer;
+        }
+        const [instance, element] = mount(Demo);
+        await wait();
+
+        const drawer = instance.refs.drawer.dialogRef.value;
+        const initialWidth = drawer.offsetWidth;
+        const resizeBar = getElement('.k-drawer-resize') as HTMLElement;
+
+        const startX = resizeBar.getBoundingClientRect().left;
+        dispatchEvent(resizeBar, 'mousedown', { clientX: startX, which: 1 });
+        await wait();
+        dispatchEvent(document, 'mousemove', { clientX: startX - 50 });
+        await wait();
+        dispatchEvent(document, 'mouseup');
+        await wait(100);
+
+        expect(drawer.offsetWidth).to.be.greaterThan(initialWidth);
+    });
 });

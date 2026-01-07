@@ -1,0 +1,16 @@
+import {TransitionGroup} from 'intact';
+import {makeNotificationsStyles} from './styles';
+import { ConfigProvider } from '../config';
+
+const k = this.get('classNamePrefix') || this.config.k;
+const position = this.get('position') || 'topRight';
+
+<ConfigProvider value={{classNamePrefix: k}}>
+    <div class={{[`${k}-notifications`]: true, [makeNotificationsStyles(k, position)]: true}}>
+        <TransitionGroup onAfterLeave={this.onAfterLeave.bind(this)}>
+            <template v-for={this.notifications} key={$value.key}>
+                {$value}
+            </template>
+        </TransitionGroup>
+    </div>
+</ConfigProvider>
