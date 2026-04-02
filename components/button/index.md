@@ -47,4 +47,3 @@ sidebar: doc
 | hideLoading | 取消loading状态 | - | `undefined` |
 | disable | 禁用按钮 | - | `undefined` |
 | enable | 启用按钮 | - | `undefined` |
-
