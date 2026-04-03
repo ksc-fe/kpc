@@ -15,11 +15,6 @@ if (hasDocumentAvailable && !/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform))
     document.body.classList.add('k-customize-scrollbar');
 }
 
-setDefault(() => {
-    makeGlobalStyles();
-    makeGlobalStyles?.clearCache();
-});
-
 const makeGlobalStyles = cache(function makeGlobalStyles() {
     injectGlobal`
         html {
@@ -184,3 +179,9 @@ const makeGlobalStyles = cache(function makeGlobalStyles() {
         }
     `;
 });
+
+setDefault(() => {
+    makeGlobalStyles();
+    makeGlobalStyles?.clearCache();
+});
+
