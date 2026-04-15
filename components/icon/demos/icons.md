@@ -164,7 +164,7 @@ export default class extends Component<Props> {
                 ["nic"],
                 ["container"],
                 ["bare-metal"],
-                ["menu-arrow"],
+                ["sidebar-toggle"],
                 ["cloud-server"],
                 ["network-node"],
                 ["think"],

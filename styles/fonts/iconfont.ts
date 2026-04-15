@@ -62,7 +62,7 @@ export const makeIconStyles = cache(function _makeIconStyles(k: string) {
           content: "\\e688";
         }
 
-        .${k}-icon-menu-arrow:before {
+        .${k}-icon-sidebar-toggle:before {
           content: "\\e689";
         }
 
