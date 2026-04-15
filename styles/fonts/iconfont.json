@@ -6,6 +6,83 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "47349237",
+      "name": "star",
+      "font_class": "shoucang",
+      "unicode": "e9d2",
+      "unicode_decimal": 59858
+    },
+    {
+      "icon_id": "47348956",
+      "name": "filter",
+      "font_class": "shaixuan",
+      "unicode": "e9cf",
+      "unicode_decimal": 59855
+    },
+    {
+      "icon_id": "47348958",
+      "name": "layer",
+      "font_class": "cengji",
+      "unicode": "e9d0",
+      "unicode_decimal": 59856
+    },
+    {
+      "icon_id": "47348976",
+      "name": "warm up",
+      "font_class": "yure",
+      "unicode": "e9d1",
+      "unicode_decimal": 59857
+    },
+    {
+      "icon_id": "46846727",
+      "name": "k-icon-NIC",
+      "font_class": "wangka",
+      "unicode": "e686",
+      "unicode_decimal": 59014
+    },
+    {
+      "icon_id": "46846728",
+      "name": "k-icon-container",
+      "font_class": "rongqi",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "46846729",
+      "name": "k-icon-bare metal",
+      "font_class": "icon-luojinshufuwuqi",
+      "unicode": "e688",
+      "unicode_decimal": 59016
+    },
+    {
+      "icon_id": "46846730",
+      "name": "k-icon-open drawer",
+      "font_class": "down-small",
+      "unicode": "e689",
+      "unicode_decimal": 59017
+    },
+    {
+      "icon_id": "46846731",
+      "name": "k-icon-cloud server",
+      "font_class": "yunfuwuqi",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    },
+    {
+      "icon_id": "46846691",
+      "name": "k-icon-subnet",
+      "font_class": "k-icon-subnet1",
+      "unicode": "e685",
+      "unicode_decimal": 59013
+    },
+    {
+      "icon_id": "46781143",
+      "name": "k-icon-reduce",
+      "font_class": "k-icon-reduce",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
       "icon_id": "46471876",
       "name": "k-icon-add",
       "font_class": "tianjia",
