@@ -1,13 +1,13 @@
-import {injectGlobal} from '@emotion/css';
-import eot from './iconfont.eot';
-import woff from './iconfont.woff';
-import ttf from './iconfont.ttf';
-import svg from './iconfont.svg';
-import woff2 from './iconfont.woff2';
-import { cache } from '../../components/utils';
+import { injectGlobal } from "@emotion/css";
+import eot from "./iconfont.eot";
+import woff from "./iconfont.woff";
+import ttf from "./iconfont.ttf";
+import svg from "./iconfont.svg";
+import woff2 from "./iconfont.woff2";
+import { cache } from "../../components/utils";
 
 export const makeIconStyles = cache(function _makeIconStyles(k: string) {
-    injectGlobal`
+  injectGlobal`
         @font-face {
           font-family: "kd-font";
           src: url('${eot}'); /* IE9 */
@@ -30,6 +30,14 @@ export const makeIconStyles = cache(function _makeIconStyles(k: string) {
           content: "\\e60b";
         }
 
+        .${k}-icon-expand-all:before {
+          content: "\\e9d3";
+        }
+          
+        .${k}-icon-collapse-all:before {
+          content: "\\e9d4";
+        }
+        
         .${k}-icon-think:before {
           content: "\\e60a";
         }

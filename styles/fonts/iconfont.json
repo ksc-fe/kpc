@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "47353963",
+      "name": "Expandall",
+      "font_class": "quanbuzhankai",
+      "unicode": "e9d3",
+      "unicode_decimal": 59859
+    },
+    {
+      "icon_id": "47353962",
+      "name": "Foldall",
+      "font_class": "quanbushouqi",
+      "unicode": "e9d4",
+      "unicode_decimal": 59860
+    },
+    {
       "icon_id": "47349237",
       "name": "star",
       "font_class": "shoucang",

@@ -168,6 +168,8 @@ export default class extends Component<Props> {
                 ["cloud-server"],
                 ["network-node"],
                 ["think"],
+                ["expand-all"],
+                ["collapse-all"],
             ],
         } as Props
     }
