@@ -1,13 +1,14 @@
 import {Component, TypeDefs} from 'intact';
 import template from './skeleton.vdt';
 import { useConfigContext } from '../config';
+import {Sizes} from '../types';
 
 export interface SkeletonProps {
     loading: boolean
     animated?: boolean
     rows?: number
     avator?: boolean
-    size?: string
+    size?: Sizes
 }
 
 export interface SkeletonEvents {}
@@ -24,7 +25,7 @@ const typeDefs: Required<TypeDefs<SkeletonProps>> = {
 
 const defaults = (): Partial<SkeletonProps> => ({
     rows: 2,
-    size: 'large'
+    size: 'default',
 });
 
 export class Skeleton extends Component<SkeletonProps, SkeletonEvents, SkeletonBlocks> {

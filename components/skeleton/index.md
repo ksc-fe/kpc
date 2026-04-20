@@ -15,7 +15,7 @@ sidebar: doc
 | rows | 完整长度的行数 | `number` | `2` |
 | animated | 是否显示动画 | `boolean` | `false` |
 | avator | 是否显示为头像模式 | `boolean` | `false` |
-| size | 骨架屏尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| size | 骨架屏尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 
 ## SkeletonItem
 
