@@ -12,3 +12,5 @@ sidebar: doc
 | maxLines | 定义多行省略最大行数 | `number` | `undefined` |
 | position | 菜单弹出的位置，默认在触发器正上方向上偏移`10px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'center bottom-10', at: 'center top', collision: 'flipfit'}` |
 | disabled | 定义是否展示tooltip | `boolean` | `false` |
+| theme | 定义 tooltip 主题 | `"light"` &#124; `"dark"` | `"light"` |
+| hoverable | tooltip 是否在鼠标移入时不隐藏 | `boolean` | `false` |
