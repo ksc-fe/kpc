@@ -18,7 +18,7 @@ sidebar: doc
 | loading | 是否为正在加载中的按钮，加载状态的按钮不可点击 | `boolean` | `false` |
 | disabled | 是否禁用状态 | `boolean` | `false` |
 | fluid | 是否宽度100% | `boolean` | `false` |
-| htmlType | 按钮`<button>`元素的`type` | `string` | `"button"` |
+| htmlType | 按钮`<button>`元素的`type` | `"submit"` &#124; `"reset"` &#124; `"button"` | `"button"` |
 | tagName | 按钮渲染后的实际html元素，例如我们可以传入`"a"`来渲染成超链接 | `string` | `button` |
 | value | 对于`radio/checkbox`类型的按钮组，我们可以给每个按钮指定一个选中时的值 | `*` | `undefined` |
 | name | 对于`radio/checkbox`类型的按钮组，我们给`input`指定`name`属性 | `string` | `undefined` |
@@ -26,6 +26,7 @@ sidebar: doc
 | color | 自定义字体、边框、波纹动效颜色 | `string` | `undefined` |
 | href | 超链接的`href`属性，当指定该属性时，按钮渲染为超链接，即`tagName`为`a`，点击后跳转到指定的url | `string` | `undefined` |
 | target | 超链接的`target`属性，`tagName`为`a`时生效，指定链接打开方式 | `string` | `undefined` |
+| download | 超链接的`download`属性，`tagName`为`a`时生效，指定下载文件的文件名 | `string` | `undefined` |
 
 ## ButtonGroup
 
