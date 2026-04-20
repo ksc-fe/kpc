@@ -91,6 +91,7 @@ export class TreeNode<K extends Key> {
 | dragend | 拖拽完成触发 | `DragEndData<K>`，`{srcNode: '源节点', toNode: '目标节点', mode: '插入模式, Before: 插入节点前面, After: 插入节点后面, Inner: 插入节点内部'}` |
 | denydrag | 拖拽不允许拖拽的节点触发 | `TreeNode<K>` |
 | denydrop | 插入到不允许插入的节点时触发 | `(node: TreeNode[K], srcNode: TreeNode[K], mode: TreeMode)`，`node`: 当前要插入的目的节点, `srcNode`: 当前拖拽的节点，`mode`: 插入模式 |
+| transitionEnd | 展开/收起动画结束后触发 | - |
 
 ```ts
 import {Key} from 'intact';
