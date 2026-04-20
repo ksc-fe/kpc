@@ -15,7 +15,7 @@ sidebar: doc
 | size | 按钮尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | icon | 是否为图标按钮（宽高相等）| `boolean` | `false` |
 | circle | 是否为圆角按钮 | `boolean` | `false` |
-| loading | 是否为正在加载中的按钮 | `boolean` | `false` |
+| loading | 是否为正在加载中的按钮，加载状态的按钮不可点击 | `boolean` | `false` |
 | disabled | 是否禁用状态 | `boolean` | `false` |
 | fluid | 是否宽度100% | `boolean` | `false` |
 | htmlType | 按钮`<button>`元素的`type` | `string` | `"button"` |
@@ -24,6 +24,8 @@ sidebar: doc
 | name | 对于`radio/checkbox`类型的按钮组，我们给`input`指定`name`属性 | `string` | `undefined` |
 | ghost | 展示透明背景的按钮 | `boolean` | `false` |
 | color | 自定义字体、边框、波纹动效颜色 | `string` | `undefined` |
+| href | 超链接的`href`属性，当指定该属性时，按钮渲染为超链接，即`tagName`为`a`，点击后跳转到指定的url | `string` | `undefined` |
+| target | 超链接的`target`属性，`tagName`为`a`时生效，指定链接打开方式 | `string` | `undefined` |
 
 ## ButtonGroup
 
