@@ -47,6 +47,11 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 | --- | --- | --- |
 | show | 菜单展示事件 | - |
 | hide | 菜单隐藏事件 | - |
+| mouseenter | 鼠标进入触发器时触发 | `(e: MouseEvent) => void` |
+| mouseleave | 鼠标离开触发器时触发 | `(e: MouseEvent) => void` |
+| click | 点击触发器时触发 | `(e: MouseEvent) => void` |
+| contextmenu | 右键点击触发器时触发 | `(e: MouseEvent) => void` |
+| positioned | 菜单定位完成后触发 | `(feedback: Feedback) => void` |
 
 ## DropdownItem
 

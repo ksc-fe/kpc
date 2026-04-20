@@ -18,4 +18,5 @@ sidebar: doc
 | --- | --- | --- |
 | success | 复制成功时触发 | `(value: string) => void` |
 | error | 复制失败时触发 | `() => void` |
+| click | 点击时触发 | `(e: MouseEvent) => void` |
 
