@@ -1,10 +1,10 @@
 import {Component, ComponentConstructor, TypeDefs, inject, createRef} from 'intact';
 import {bind} from '../utils';
 import template from './index.vdt';
-import type {CommonInputHTMLAttributes, Events} from '../types';
+import type {CommonFormElementAttributes, Events} from '../types';
 import { useConfigContext } from '../config';
 
-export interface RadioProps<Value = false, True = true> extends CommonInputHTMLAttributes {
+export interface RadioProps<Value = false, True = true> extends CommonFormElementAttributes {
     disabled?: boolean
     value?: Value | True
     trueValue?: True 
@@ -15,7 +15,7 @@ export interface RadioEvents<True = true> {
     change: [True, MouseEvent]
 }
 
-const typeDefs: Required<TypeDefs<Omit<RadioProps, keyof CommonInputHTMLAttributes>>> = {
+const typeDefs: Required<TypeDefs<Omit<RadioProps, keyof CommonFormElementAttributes>>> = {
     disabled: Boolean,
     value: null,
     trueValue: null,

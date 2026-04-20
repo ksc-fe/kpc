@@ -2,10 +2,10 @@ import {Component, TypeDefs, createRef} from 'intact';
 import template from './index.vdt';
 import {bind} from '../utils';
 import {isArray} from 'intact-shared';
-import {CommonInputHTMLAttributes, Events} from '../types';
+import {CommonFormElementAttributes, Events} from '../types';
 import { useConfigContext } from '../config';
 
-export interface CheckboxProps<V = boolean> extends CommonInputHTMLAttributes {
+export interface CheckboxProps<V = boolean> extends CommonFormElementAttributes {
     disabled?: boolean
     value?: V
     trueValue?: any
@@ -18,7 +18,7 @@ export interface CheckboxEvents<V = boolean> {
     change: [V, MouseEvent]
 }
 
-const typeDefs: Required<TypeDefs<Omit<CheckboxProps, keyof CommonInputHTMLAttributes>>> = {
+const typeDefs: Required<TypeDefs<Omit<CheckboxProps, keyof CommonFormElementAttributes>>> = {
     disabled: Boolean, 
     value: null, 
     trueValue: null, 
