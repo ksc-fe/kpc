@@ -22,3 +22,15 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 定义内容块选中后的值 | `string` | `"${index}"` |
+
+# 方法
+
+## Carousel
+
+| 方法 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| isActive | 判断指定值的内容块是否为激活状态 | `value: string` | `boolean` |
+| getIndex | 获取当前激活内容的索引 | - | `number` |
+| setIndex | 设置当前激活项 | `index: number` | `void` |
+| prev | 切换到上一项 | - | `void` |
+| next | 切换到下一项 | - | `void` |
