@@ -1,0 +1,23 @@
+{
+  "skill_name": "doc-validator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "检查 input 组件的文档是否有遗漏或错误",
+      "expected_output": "列出 input 组件文档中遗漏或错误的属性、事件、方法",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "校验 dialog 组件的 API 文档",
+      "expected_output": "对比 dialog 组件源码与文档，输出差异",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "table 组件的文档完整吗？",
+      "expected_output": "检查 table 组件文档是否与源码一致",
+      "files": []
+    }
+  ]
+}
