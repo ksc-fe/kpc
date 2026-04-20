@@ -7,6 +7,9 @@
     "node": "^14 || ^16"
   },
   "scripts": {
+    "sft:component": "node scripts/sft/generateComponentSft.js prepare",
+    "sft:component:generate": "node scripts/sft/generateComponentSft.js generate",
+    "sft:component:validate": "node scripts/sft/generateComponentSft.js validate",
     "test": "karma start test/karma.conf.js",
     "snapshots": "cross-env UPDATE=1 npm run test",
     "test:all": "lerna exec -- npm run test",
