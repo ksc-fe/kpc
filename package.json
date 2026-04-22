@@ -1,12 +1,15 @@
 {
   "name": "@king-design/intact",
-  "version": "3.6.2",
+  "version": "3.7.0",
   "description": "A component library written in Intact for Intact, Vue, React and Angular",
   "main": "es/index.js",
   "engines": {
     "node": "^14 || ^16"
   },
   "scripts": {
+    "sft:component": "node scripts/sft/generateComponentSft.js prepare",
+    "sft:component:generate": "node scripts/sft/generateComponentSft.js generate",
+    "sft:component:validate": "node scripts/sft/generateComponentSft.js validate",
     "test": "karma start test/karma.conf.js",
     "snapshots": "cross-env UPDATE=1 npm run test",
     "test:all": "lerna exec -- npm run test",
@@ -180,7 +183,7 @@
     "@emotion/css": "^11.5.0",
     "dayjs": "^1.10.7",
     "enquire.js": "^2.1.6",
-    "intact": "^3.0.45",
+    "intact": "^3.0.46",
     "monaco-editor": "^0.26.1",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.1",

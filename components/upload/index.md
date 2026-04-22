@@ -34,7 +34,7 @@ export type UploadFile = {
     size?: number
     name: string
     percent?: number
-    uid?: number
+    uid?: number | string
     raw?: File | Partial<UploadFile>
     url?: string
     request?: any

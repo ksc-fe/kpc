@@ -41,8 +41,25 @@ export type ExcludeParam = {
 }
 ```
 
+```ts
+type ShouldFixParam = {
+    offsetTop?: number,
+    offsetBottom?: number,
+    viewportHeight?: number
+}
+
+type ExcludeParam = {
+    offsetTop?: number,
+    offsetBottom?: number,
+    top: number,
+    bottom: number,
+    width: number,
+    height: number,
+}
+```
+
 # 事件
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
-| change | 固定状态改变时触发 | `isFixed` |
+| change | 固定状态改变时触发 | `(isFixed: boolean) => void` |

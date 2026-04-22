@@ -86,7 +86,7 @@
     "styles",
     "i18n",
     "typings",
-    "site",
+    "site/src",
     "test",
     "packages/kpc-react",
     "index.ts"

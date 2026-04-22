@@ -26,7 +26,7 @@ sidebar: doc
 | data | 组件要展示的数据 | `CascaderData<V>[]` | `undefined` |
 | trigger | 子菜单触发方式，默认点击触发 | `"click"` &#124; `"hover"` | `"click"` |
 | changeOnSelect | 是否选中父级即改变`value`值  | `boolean` | `false` |
-| format | 自定义结果显示，组件会将当前选择的所有数据项以数组的格式作为参数传入 | `Function` | `(values: string[]) => values.map(value => value.label).join(' / ')` |
+| format | 自定义结果显示，组件会将当前选择的所有数据项的标签以数组的格式作为参数传入 | `(labels: string[]) => string` | `(labels: string[]) => labels.join(' / ')` |
 | loadData | 如果`data`中的`children`属性值为空数组`[]`，则可以使用该属性定义动态加载逻辑，组件会将当前选中的数据项作为参数传入 | `(data: CascaderData<V>) => any` | `undefined` |
 | filter | 如果可搜索，你可以传入`filter`改变搜索逻辑，组件会将搜索关键词和数据项作为参数传入 | `(keywords: string, data: CascaderData<V>) => boolean` | `(keywords: string, data: CascaderData<V>) => data.label.includes(keywords)` |
 | show | 是否展示菜单项 | `boolean` | `false` |
@@ -65,8 +65,8 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| value | 自定义选择结果的展示 | `([value: any, label: Children]) => Children` |
-| values | 自定义多选的选择结果的展示 | `([values: any[], labels: Children[]]) => Children` |
+| value | 自定义选择结果的展示 | `[value: V, label: string]` |
+| values | 自定义多选的选择结果的展示 | `[values: V[], labels: string[]]` |
 | prefix | 自定义输入框前面展示的内容 | - |
 | suffix | 自定义输入框后面展示的内容 | - |
 

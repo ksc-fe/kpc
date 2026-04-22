@@ -113,6 +113,14 @@ export declare type Rules = {
 | getFirstInvalidFormItem | 获取第一条校验失败的`FormItem` | - | `FormItem` | |
 | getAllInvalidFormItems | 获取所有校验失败的`FormItem` | - | `FormItem[]` | 3.6.1 |
 
+## FormItem
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| validate | 验证当前表单项 | - | `Promise<boolean>` |
+| isValid | 当前表单项是否验证通过 | - | `boolean` |
+| reset | 重置表单项验证状态 | - | `void` |
+
 # 静态方法
 
 ## Form

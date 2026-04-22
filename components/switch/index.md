@@ -31,3 +31,19 @@ sidebar: doc
 | --- | --- |
 | on | 扩展开启时的文案 |
 | off | 扩展关闭时的文案 |
+
+# 事件
+
+| 事件名 | 说明 | 参数 |
+| --- | --- | --- |
+| click | 点击时触发 | `(e: MouseEvent) => void` |
+| keypress | 键盘按下时触发 | `(e: KeyboardEvent) => void` |
+
+# 方法
+
+| 方法 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| isChecked | 当前是否开启状态 | - | `boolean` |
+| check | 设为开启状态 | - | `void` |
+| uncheck | 设为关闭状态 | - | `void` |
+| toggle | 切换状态 | `isKeypress: boolean` | `Promise<void>` |
