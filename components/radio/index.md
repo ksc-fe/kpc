@@ -10,8 +10,9 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | disabled | 是否禁用 | `boolean` | `false` |
-| value | 单选框取值，用于`v-model`进行双向绑定 | `any` | `false` |
-| trueValue | 单选框选中后的值 | `any` | `true` |
+| name | 和浏览器原生行为一样，给 `Radio` 指定相同的 `name`，它们便组成了单选框组。 | `string` | `undefined` |
+| value | 单选框当前取值，用于`v-model`进行双向绑定 | `any` | `false` |
+| trueValue | 选中当前项时应取的值；同组各选项应各不相同 | `any` | `true` |
 
 # 事件
 

@@ -9,17 +9,17 @@ sidebar: doc
 
 ## Menu
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| expandedKeys | 定义菜单展开项 | <code>(string &#124; number)[]</code> | `[]` |
-| selectedKey | 定义菜单选中项 | <code>string &#124; number</code> | `undefined` |
-| theme | 定义菜单主题 | `"light"` &#124; `"dark"` &#124; `"white@deprecated"` | `"dark"` |
-| collapse | 菜单是否折叠 | `boolean` | `false` |
-| type | 定义菜单排列方式：垂直，水平 | `"vertical"` &#124; `"horizontal"` | `"vertical"` |
-| size | 定义菜单尺寸 | `"large"` &#124; `"default"` &#124; `"small"` | `"default"` |
-| accordion | 是否每次只能展开一项 | `boolean` | `false` |
-| dot | 是否给菜单项前面添加圆点 | `boolean` | `false` |
-| showCollapseArrow | 是否展示折叠按钮 | `boolean` | `false` |
+| 属性 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| expandedKeys | 定义菜单展开项 | <code>(string &#124; number)[]</code> | `[]` | |
+| selectedKey | 定义菜单选中项 | <code>string &#124; number</code> | `undefined` | |
+| theme | 定义菜单主题 | `"light"` &#124; `"dark"` &#124; `"white@deprecated"` | `"dark"` | |
+| collapse | 菜单是否折叠 | `boolean` | `false` | |
+| type | 定义菜单排列方式：垂直，水平 | `"vertical"` &#124; `"horizontal"` | `"vertical"` | |
+| size | 定义菜单尺寸 | `"large"` &#124; `"default"` &#124; `"small"` | `"default"` | |
+| accordion | 是否每次只能展开一项 | `boolean` | `false` | |
+| dot | 是否给菜单项前面添加圆点 | `boolean` | `false` | |
+| showCollapseArrow | 是否展示折叠按钮 | `boolean` | `false` | 3.2.0 |
 
 ## MenuItem
 
@@ -45,3 +45,21 @@ sidebar: doc
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
 | select | 选中没有子菜单的菜单项触发 | `(menuItem: MenuItem, e: MouseEvent) => void` |
+
+```ts
+export class MenuItem extends Component<MenuItemProps, MenuItemEvents> {
+    /** 获取当前菜单项的属性 */
+    get(): MenuItemProps;
+}
+
+export interface MenuItemProps {
+    /** 唯一标识，必填 */
+    key: string | number;
+    /** 跳转地址 */
+    to?: string | object;
+    /** 是否展示圆点 */
+    dot?: boolean;
+    /** 是否禁用 */
+    disabled?: boolean;
+}
+```

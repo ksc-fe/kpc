@@ -18,7 +18,7 @@ sidebar: doc
 | size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | hideIcon | 是否隐藏后面的图标 | `boolean` | `false` |
 | clearable | 是否可清空 | `boolean` | `false` |
-| fluid | 是否宽度100% | `boolean` | `false` |
+| fluid | 宽度撑满父容器（`width: 100%`）。前提：父元素必须有明确的宽度（块级元素、flex 子项、或显式设置了 `width`/`min-width`），否则无效果。默认宽度 `300px`，如只需固定宽度请用 `width` 属性 | `boolean` | `false` |
 | inline | 展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开 | `boolean` | `false` |
 | placeholder | 占位文案 | `string` | `"请选择"` |
 | container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |

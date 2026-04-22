@@ -17,19 +17,21 @@ sidebar: doc
 | defaultValue | `input`的`defaultValue`，首次渲染使用该值 | `string` | `undefined` |
 | placeholder | 占位文案 | `string` | `undefined` |
 | readonly | 是否只读 | `boolean` | `false` |
-| clearable | 是否展示快速清除按钮 | `boolean` | `false` |
+| clearable | 是否展示快速清除按钮（直接使用此属性即可，不需要自定义清除按钮） | `boolean` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | rows | 当`type = "textarea"`时，默认展示文本行数 | `number` &#124; `string` | `2` |
 | autoWidth | 是否宽度随输入的文本的长度变化而变化 | `boolean` | `false` |
-| fluid | 是否宽度100% | `boolean` | `false` |
+| fluid | 宽度撑满父容器（`width: 100%`）。前提：父元素必须有明确的宽度（块级元素、flex 子项、或显式设置了 `width`/`min-width`），否则无效果。默认宽度 `300px`，如只需固定宽度请用 `width` 属性 | `boolean` | `false` |
 | width | 指定宽度，组件会加上单位`px` | `string`  &#124; `number` | `undefined` |
 | stackClearIcon | 是否将清空按钮覆盖在`suffix`按钮上展示来节省空间 | `boolean` | `false` |
 | frozenOnInput | 是否在输入的过程中冻结`value`更新到视图 | `boolean` | `false` |
-| inline | 是否展示内联模式 | `boolean` | `flase` |
-| resize | 指定textarea输入框拖动调整大小的方向，默认只能垂直方向调整 | `"none"` &#124; `"vertical"` &#124; `"horizontal"` &#124; `"both"`' | `"vertical"` |
+| inline | 是否展示内联模式 | `boolean` | `false` |
+| resize | 指定textarea输入框拖动调整大小的方向，默认只能垂直方向调整 | `"none"` &#124; `"vertical"` &#124; `"horizontal"` &#124; `"both"` | `"vertical"` |
 | flat | 是否展示扁平样式 | `boolean` | `false` |
 | showCount | 是否展示字符长度提示数字 | `boolean` | `false` |
+
+> **原生属性透传**：未在上表列出的属性会透传到内部 `<input>` 或 `<textarea>`，语义与原生一致（是否生效依 HTML 及当前 `type` 而定）。在 React / Vue 等封装中请按各框架对 DOM 属性的写法传递（如 camelCase）。
 
 ## Search
 

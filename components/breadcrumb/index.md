@@ -17,7 +17,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| to | 指定超链接地址 | `string` &#124; `object` | `undefined` |
+| to | 指定跳转的地址。支持字符串路径，也支持 `vue-router` 或 `react-router` 的对象参数格式（如 `{name: '...', params: {...}}`） | `string` &#124; `object` | `undefined` |
 
 # 扩展点
 

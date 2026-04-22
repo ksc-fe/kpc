@@ -5,6 +5,8 @@ order: 99
 sidebar: doc
 ---
 
+> **v3.6.0 新增**
+
 # 属性
 
 ## Tour
