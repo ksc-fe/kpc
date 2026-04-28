@@ -32,6 +32,14 @@ const SECTION_MAP = {
 };
 
 // ─── Table Parsing ───────────────────────────────────────────────────
+function isMarkdownTableRow(line) {
+    return /^\|.+\|?\s*$/.test(line);
+}
+
+function isMarkdownTableSeparator(line) {
+    return /^\|[\s\-:\|]+\|?\s*$/.test(line) && /---/.test(line);
+}
+
 function parseMarkdownTables(text) {
     const tables = [];
     const lines = text.split('\n');
@@ -40,18 +48,18 @@ function parseMarkdownTables(text) {
     while (i < lines.length) {
         // Look for a table row (starts with |, has content, ends with | optionally followed by whitespace)
         const line = lines[i].trimEnd();
-        const matches = /^\|.+\|$/.test(line);
+        const matches = isMarkdownTableRow(line);
         if (matches) {
             const nextLine = i + 1 < lines.length ? lines[i + 1].trimEnd() : '';
             // Separator: starts/ends with |, contains only pipes/dashes/colons/spaces, and has ---
-            const isSeparator = /^\|[\s\-:\|]+\|$/.test(nextLine) && /---/.test(nextLine);
+            const isSeparator = isMarkdownTableSeparator(nextLine);
             if (isSeparator) {
                 const tableBlock = [line, nextLine];
                 i += 2;
                 // Collect body rows (trim trailing whitespace)
                 while (i < lines.length) {
                     const bodyLine = lines[i].trimEnd();
-                    if (/^\|.+\|$/.test(bodyLine)) {
+                    if (isMarkdownTableRow(bodyLine)) {
                         tableBlock.push(bodyLine);
                         i++;
                     } else {
@@ -74,7 +82,11 @@ function parseTableBlock(block) {
     const header = parseRow(block[0]);
     const rows = block.slice(2).map(parseRow);
 
-    return { header, rows };
+    return {
+        header,
+        rows,
+        raw: block.join('\n'),
+    };
 }
 
 function parseRow(line) {
@@ -106,6 +118,45 @@ function cleanCell(text) {
         .trim();
 }
 
+function removeMarkdownTables(text) {
+    const lines = text.split('\n');
+    const kept = [];
+    let i = 0;
+
+    while (i < lines.length) {
+        const line = lines[i].trimEnd();
+        const nextLine = i + 1 < lines.length ? lines[i + 1].trimEnd() : '';
+        const isTableStart = isMarkdownTableRow(line);
+        const isSeparator = isMarkdownTableSeparator(nextLine);
+
+        if (isTableStart && isSeparator) {
+            i += 2;
+            while (i < lines.length && isMarkdownTableRow(lines[i].trimEnd())) {
+                i++;
+            }
+            continue;
+        }
+
+        kept.push(lines[i]);
+        i++;
+    }
+
+    return kept.join('\n');
+}
+
+function normalizeTextBlock(text) {
+    return text
+        .replace(/\n{3,}/g, '\n\n')
+        .trim();
+}
+
+function normalizePlaceholder(value) {
+    if (value == null) return '';
+    const text = String(value).trim();
+    if (text === '-' || text === '—') return '';
+    return text;
+}
+
 // ─── Section-based table collection ─────────────────────────────────
 function mapTableRows(header, rows) {
     return rows.map(row => {
@@ -115,6 +166,23 @@ function mapTableRows(header, rows) {
         });
         return obj;
     });
+}
+
+function isCompatibleTable(type, table) {
+    const headers = new Set(table.header);
+    switch (type) {
+        case 'props':
+            return headers.has('属性');
+        case 'events':
+            return headers.has('事件名') || headers.has('事件');
+        case 'methods':
+        case 'staticMethods':
+            return headers.has('方法名') || headers.has('方法') || headers.has('静态方法名');
+        case 'slots':
+            return headers.has('名称');
+        default:
+            return false;
+    }
 }
 
 // ─── Split by Headings ──────────────────────────────────────────────
@@ -169,11 +237,12 @@ function finalizeSubSection(section, subSection) {
     if (subSection) {
         const text = subSection.content.join('\n').trim();
         const tables = parseMarkdownTables(text);
-        const parsedTables = tables.map(t => mapTableRows(t.header, t.rows));
-        if (parsedTables.length > 0 || subSection.name !== '') {
+        const content = normalizeTextBlock(removeMarkdownTables(text));
+        if (tables.length > 0 || subSection.name !== '' || content) {
             section.subComponents.push({
                 name: subSection.name,
-                tables: parsedTables,
+                tables,
+                content,
             });
         }
     }
@@ -252,14 +321,33 @@ function parseComponentDoc(mdPath) {
                 target[type] = [];
             }
 
+            const markdownParts = [];
+            if (sub.content) {
+                markdownParts.push(sub.content);
+            }
+
             for (const table of sub.tables) {
-                for (const row of table) {
+                if (!isCompatibleTable(type, table)) {
+                    markdownParts.push(table.raw);
+                    continue;
+                }
+
+                const mappedRows = mapTableRows(table.header, table.rows);
+                for (const row of mappedRows) {
                     // Normalize keys
                     const normalized = normalizeRow(type, row);
                     if (normalized) {
                         target[type].push(normalized);
                     }
                 }
+            }
+
+            if (markdownParts.length) {
+                const markdownKey = `${type}Markdown`;
+                const markdown = normalizeTextBlock(markdownParts.join('\n\n'));
+                target[markdownKey] = target[markdownKey]
+                    ? `${target[markdownKey]}\n\n${markdown}`
+                    : markdown;
             }
         }
     }
@@ -280,29 +368,30 @@ function normalizeRow(type, row) {
             return {
                 name: row['事件名'] || row['事件'] || '',
                 description: row['说明'] || '',
-                params: row['参数'] || '',
+                params: normalizePlaceholder(row['参数']),
             };
         case 'methods':
             return {
                 name: row['方法名'] || row['方法'] || '',
                 description: row['说明'] || '',
-                params: row['参数'] || '',
-                returns: row['返回值'] || '',
+                params: normalizePlaceholder(row['参数']),
+                returns: normalizePlaceholder(row['返回值']),
             };
         case 'staticMethods':
             return {
                 name: row['方法名'] || row['方法'] || row['静态方法名'] || '',
                 description: row['说明'] || '',
-                params: row['参数'] || '',
-                returns: row['返回值'] || '',
+                params: normalizePlaceholder(row['参数']),
+                returns: normalizePlaceholder(row['返回值']),
             };
         case 'slots':
             const slot = {
                 name: row['名称'] || '',
                 description: row['说明'] || '',
             };
-            if (row['参数'] !== undefined) {
-                slot.params = row['参数'];
+            const params = normalizePlaceholder(row['参数']);
+            if (params) {
+                slot.params = params;
             }
             return slot;
         default:
@@ -361,6 +450,7 @@ function parseDemoFile(mdPath, componentId) {
             manualVue.push(code);
         } else if (language === 'vue3') {
             hasVue3 = true;
+            manualVue3.push(code);
         } else if (language === 'tsx' || language === 'react') {
             hasReact = true;
             manualReact.push(code);
@@ -406,6 +496,13 @@ function parseDemoFile(mdPath, componentId) {
                 snippets.vueMethods, snippets.vueData,
                 snippets.tsHead, hasStylus
             );
+        } else if (hasVue) {
+            vue2Compiled = manualVue.join('\n');
+        }
+
+        if (hasVue3) {
+            vue3Compiled = manualVue3.join('\n');
+        } else if (vdtCode && tsCode) {
             vue3Compiled = toVue3(
                 vdtCode, tsCode,
                 snippets.vueScript, snippets.vueTemplate,
@@ -413,7 +510,6 @@ function parseDemoFile(mdPath, componentId) {
                 snippets.tsHead, hasStylus
             );
         } else if (hasVue) {
-            vue2Compiled = manualVue.join('\n');
             vue3Compiled = manualVue.join('\n');
         }
 
@@ -446,22 +542,48 @@ function parseDemoFile(mdPath, componentId) {
 }
 
 function extractDescription(body) {
-    // Extract markdown text that is not part of code blocks or YAML or tables
-    let text = body;
+    const lines = body.split('\n');
+    const kept = [];
+    let inFence = false;
+    let fenceQuoted = false;
 
-    // Remove code blocks
-    text = text.replace(/```[\s\S]*?```/g, '');
+    for (const line of lines) {
+        const fenceMatch = line.match(/^(>\s*)?```/);
+        if (fenceMatch) {
+            const isQuoted = !!fenceMatch[1];
+            if (!inFence) {
+                inFence = true;
+                fenceQuoted = isQuoted;
+            } else if (fenceQuoted === isQuoted) {
+                inFence = false;
+                fenceQuoted = false;
+            }
+            continue;
+        }
 
-    // Remove tables (lines starting with |)
-    text = text.replace(/^\|.*\|$/gm, '');
+        if (!inFence) {
+            kept.push(line);
+        }
+    }
 
-    // Remove blockquotes with code
-    text = text.replace(/^>\s*```[\s\S]*?```/gm, '');
+    let result = removeMarkdownTables(kept.join('\n'));
+    let resultLines = result.split('\n');
 
-    // Collapse whitespace and clean
-    text = text.replace(/\n{3,}/g, '\n\n').trim();
+    while (resultLines.length && /^>\s*$/.test(resultLines[0])) {
+        resultLines.shift();
+    }
+    while (resultLines.length && /^>\s*$/.test(resultLines[resultLines.length - 1])) {
+        resultLines.pop();
+    }
 
-    return text;
+    resultLines = resultLines.filter((line, index) => {
+        if (!/^>\s*$/.test(line)) return true;
+        const prev = resultLines[index - 1] || '';
+        const next = resultLines[index + 1] || '';
+        return prev.trim().startsWith('>') && next.trim().startsWith('>');
+    });
+
+    return normalizeTextBlock(resultLines.join('\n'));
 }
 
 // ─── Process Docs File (docs/*.md) ──────────────────────────────────

@@ -39,6 +39,7 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\ntype ShouldFixParam = {\n    offsetTop?: number,\n    offsetBottom?: number,\n    viewportHeight?: number\n}\n\ntype ExcludeParam = {\n    offsetTop?: number,\n    offsetBottom?: number,\n    top: number,\n    bottom: number,\n    width: number,\n    height: number,\n}\n```",
           "events": [
             {
               "name": "change",
@@ -489,25 +490,25 @@
             {
               "name": "showLoading",
               "description": "展示loading状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "hideLoading",
               "description": "取消loading状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "disable",
               "description": "禁用按钮",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "enable",
               "description": "启用按钮",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             }
           ]
@@ -844,7 +845,7 @@
             {
               "name": "getIndex",
               "description": "获取当前激活内容的索引",
-              "params": "-",
+              "params": "",
               "returns": "number"
             },
             {
@@ -856,13 +857,13 @@
             {
               "name": "prev",
               "description": "切换到上一项",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
               "name": "next",
               "description": "切换到下一项",
-              "params": "-",
+              "params": "",
               "returns": "void"
             }
           ]
@@ -1081,6 +1082,7 @@
               "default": "{my: 'left top+8', 'left bottom'}"
             }
           ],
+          "propsMarkdown": "```ts\nexport type CascaderData<V> = {\n    value: V \n    label: string\n    disabled?: boolean\n    loaded?: boolean\n    children?: CascaderData<V>[]\n}\n\nexport type CascaderFields<Data> = {\n    value?: keyof Data,\n    label?: keyof Data,\n    children?: keyof Data,\n    disabled?: keyof Data,\n}\n\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "slots": [
             {
               "name": "value",
@@ -1094,25 +1096,24 @@
             },
             {
               "name": "prefix",
-              "description": "自定义输入框前面展示的内容",
-              "params": "-"
+              "description": "自定义输入框前面展示的内容"
             },
             {
               "name": "suffix",
-              "description": "自定义输入框后面展示的内容",
-              "params": "-"
+              "description": "自定义输入框后面展示的内容"
             }
           ],
+          "slotsMarkdown": "```ts\nimport {Children} from 'intact';\n```",
           "events": [
             {
               "name": "show",
               "description": "菜单弹出时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "菜单隐藏时触发",
-              "params": "-"
+              "params": ""
             }
           ]
         }
@@ -1415,6 +1416,7 @@
               "default": "{}"
             }
           ],
+          "propsMarkdown": "> 例如：通过`options`可以隐藏右侧代码的缩影(minimap): `options = {minimap: {enabled: false}}`",
           "events": [
             {
               "name": "ready",
@@ -1426,7 +1428,7 @@
             {
               "name": "getEditor",
               "description": "获取 Monaco Editor 实例",
-              "params": "-",
+              "params": "",
               "returns": "editor.IStandaloneCodeEditor | null"
             }
           ]
@@ -1436,7 +1438,7 @@
         {
           "title": "基础用法",
           "order": 0,
-          "description": "> `Code`由于基于`Monaco Editor`这个庞大的库，所以没有放入索引文件`index.js`，你只能通过如下方式引入\n>\n> `import {Code} from '@king-design/react/components/code';`\n>\n> 而不能直接引入\n>\n> `import {Code} from '@king-design/react';`\n\n组件可以通过`v-model`双向绑定编辑的代码，通过`height`指定组件的高度（需要带单位），默认`100%`；通过\n`language`可以指定编程语言，默认为`javascript`\n\n> `Code`组件基于[Monaco Editor@0.26](https://github.com/Microsoft/monaco-editor)，使用该组件之前，你需要\n> 安装[monaco-editor-webpack-plugin@4](https://github.com/Microsoft/monaco-editor-webpack-plugin)插件，\n> 并加入`webpack`插件配置中\n> \n> \n> `webpack.config.js`\n>",
+          "description": "> `Code`由于基于`Monaco Editor`这个庞大的库，所以没有放入索引文件`index.js`，你只能通过如下方式引入\n>\n> `import {Code} from '@king-design/react/components/code';`\n>\n> 而不能直接引入\n>\n> `import {Code} from '@king-design/react';`\n\n组件可以通过`v-model`双向绑定编辑的代码，通过`height`指定组件的高度（需要带单位），默认`100%`；通过\n`language`可以指定编程语言，默认为`javascript`\n\n> `Code`组件基于[Monaco Editor@0.26](https://github.com/Microsoft/monaco-editor)，使用该组件之前，你需要\n> 安装[monaco-editor-webpack-plugin@4](https://github.com/Microsoft/monaco-editor-webpack-plugin)插件，\n> 并加入`webpack`插件配置中\n> \n> `webpack.config.js`",
           "codes": {
             "vdt": "import {Code} from 'kpc/components/code';\n\n<Code v-model=\"value\" height=\"200px\" language=\"javascript\" />",
             "ts": "interface Props {\n    value?: string\n}\n\nconst code = `function test() {\n    console.log('hello world');\n}`;\n\nexport default class extends Component<Props> {\n    static template = template;\n\n    static defaults() {\n        return {\n            value: code\n        }\n    }\n}",
@@ -1668,7 +1670,8 @@
               "type": "Position | \"left\" | \"bottom\" | \"right\" | \"top\"",
               "default": "{collision: 'fit'}"
             }
-          ]
+          ],
+          "propsMarkdown": "```ts\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```"
         }
       ],
       "demos": [
@@ -1740,7 +1743,8 @@
               "type": "ConfigProps",
               "default": "undefined"
             }
-          ]
+          ],
+          "propsMarkdown": "```ts\nexport interface ConfigProps {\n    classNamePrefix?: string\n    disableWave?: boolean\n}\n```"
         }
       ],
       "demos": [
@@ -2006,16 +2010,17 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nimport {Dayjs} from 'dayjs';\nimport {VNode} from 'intact';\n\nexport type Value = string | Date | number | Dayjs;\nexport type Shortcut = {\n    label: (() => string | VNode) | string | VNode \n    value: () => Value | [Value, Value]\n}\n\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "events": [
             {
               "name": "show",
               "description": "菜单弹出时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "菜单隐藏时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "selecting",
@@ -2039,15 +2044,14 @@
             },
             {
               "name": "prefix",
-              "description": "自定义输入款前面展示的内容",
-              "params": "-"
+              "description": "自定义输入款前面展示的内容"
             },
             {
               "name": "suffix",
-              "description": "自定义输入框后面展示的内容",
-              "params": "-"
+              "description": "自定义输入框后面展示的内容"
             }
-          ]
+          ],
+          "slotsMarkdown": "```ts\nimport {Children} from 'intact';\n```"
         }
       ],
       "demos": [
@@ -2216,7 +2220,13 @@
               "default": "3"
             }
           ],
-          "slots": []
+          "propsMarkdown": "```ts\nimport {VNode} from 'intact';\n\nexport interface DescriptionItemProps {\n    label?: string | number | VNode\n    content?: string | number | VNode\n    append?: string | number | VNode\n}\n```",
+          "slots": [
+            {
+              "name": "title",
+              "description": "自定义title"
+            }
+          ]
         },
         {
           "name": "DescriptionItem",
@@ -2240,7 +2250,16 @@
               "default": "undefined"
             }
           ],
-          "slots": []
+          "slots": [
+            {
+              "name": "append",
+              "description": "用于超长省略后的操作区自定义内容"
+            },
+            {
+              "name": "label",
+              "description": "自定义label"
+            }
+          ]
         }
       ],
       "demos": [
@@ -2479,7 +2498,8 @@
               "type": "string | number",
               "default": "80"
             }
-          ]
+          ],
+          "propsMarkdown": "图形的通用属性\n\n### DRectangle\n\n### DSquare\n\n### DImage\n\n### DParallelogram\n\n### DHexagon  / DEllipse / DDocument / DCallout / DCloud\n\n### DCircle\n\n### DDiamond \n\n### DTriangle"
         },
         {
           "name": "DLine",
@@ -2747,7 +2767,8 @@
               "type": "number | string",
               "default": "50"
             }
-          ]
+          ],
+          "propsMarkdown": "布局通用属性\n\n### DStackLayout\n\n### DPartitionLayout\n\n### DTreeLayout\n\n### DRadialLayout\n\n### DFlowLayout\n\n### DCircleLayout\n\n### DOrganicLayout"
         },
         {
           "name": "Diagram",
@@ -2762,7 +2783,8 @@
               "description": "当Diagram可选择时selectable，选中的图形改变会触发该事件",
               "params": "(cells: any[]) => void"
             }
-          ]
+          ],
+          "eventsMarkdown": "[1]: https://jgraph.github.io/mxgraph/docs/js-api/files/util/mxConstants-js.html"
         }
       ],
       "demos": [
@@ -2963,6 +2985,7 @@
               "default": "true"
             }
           ],
+          "propsMarkdown": "```ts\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "slots": [
             {
               "name": "content",
@@ -2989,49 +3012,49 @@
             {
               "name": "show",
               "description": "弹出弹窗",
-              "params": "-",
+              "params": "",
               "returns": "Promise"
             },
             {
               "name": "close",
               "description": "关闭弹窗",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "showLoading",
               "description": "“确定”按钮变为加载状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "hideLoading",
               "description": "“确定”按钮变为正常状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "disableOk",
               "description": "“确定”按钮变为禁用状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "enableOk",
               "description": "“确定”按钮变为正常状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "ok",
               "description": "点击“确定”按钮的回调方法，继承Dialog时，可以复写该方法实现自定义需求",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "cancel",
               "description": "点击“取消”按钮的回调方法，继承Dialog时，可以复写该方法实现自定义需求",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             }
           ],
@@ -3059,86 +3082,39 @@
               "description": "确定提示窗口",
               "params": "Options",
               "returns": "Promise"
-            },
-            {
-              "name": "",
-              "description": "弹窗内容",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "弹窗尺寸",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "是否隐藏提示图标",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "是否隐藏底部按钮",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "传入一个函数，组件会调用该函数，将当前Dialog实例传入",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "样式类名",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "指定icon样式名",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "自定义icon内容",
-              "params": "",
-              "returns": ""
             }
           ],
+          "staticMethodsMarkdown": "> 如果你在Vue下全局安装KPC，可以通过`this.$dialog`引用到`Dialog`组件，所以你可以这样调用它的\n> 静态方法：`this.$dialog.success()`\n\n其中`Options`对象常用属性说明如下，除了`Dialog`的属性外，还支持如下属性\n\n其中`Promise`对象会在点击“确定”按钮时`resolve()`，在点击“取消”按钮时`reject()`，你可以在`then()`\n中书写用户点击不同按钮的逻辑\n\n> 只有`confirm`类型的提示窗口才有“取消”按钮\n\n| 属性 | 说明 | 类型 | 默认值 |\n| --- | --- | --- | --- |\n| content | 弹窗内容 | `string` &#124; `VNode` &#124; <code>Array&lt;string &#124; VNode&gt;</code> | `undefined` |\n| size | 弹窗尺寸 | `\"large\"` &#124; `\"default\"` &#124; `\"small\"` &#124; `\"mini\"` | `\"default\"` |\n| hideIcon | 是否隐藏提示图标 | `boolean` | `false` |\n| hideFooter | 是否隐藏底部按钮 | `boolean` | `false` |\n| ref | 传入一个函数，组件会调用该函数，将当前`Dialog`实例传入 | `(i: Dialog) => void` | `undefined` |\n| className | 样式类名 | `string` | `undefined` |\n| iconClassName | 指定icon样式名 | `string` | `undefined` |\n| icon | 自定义icon内容 | `VNode` | `undefined` |",
           "events": [
             {
               "name": "open",
               "description": "弹窗打开后触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "close",
               "description": "弹窗关闭后触发，不管是什么原因导致的关闭",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "ok",
               "description": "点击确定按钮时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "cancel",
               "description": "点击取消按钮时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "terminate",
               "description": "用户强行关闭弹窗时触发，即：点击“关闭”按钮，点击遮罩层，按ESC键",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "afterClose",
               "description": "弹窗退出动画执行完成后触发",
-              "params": "-"
+              "params": ""
             }
           ]
         }
@@ -3508,49 +3484,49 @@
             {
               "name": "show",
               "description": "弹出弹窗",
-              "params": "-",
+              "params": "",
               "returns": "Promise"
             },
             {
               "name": "close",
               "description": "关闭弹窗",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "showLoading",
               "description": "“确定”按钮变为加载状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "hideLoading",
               "description": "“确定”按钮变为正常状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "disableOk",
               "description": "“确定”按钮变为禁用状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "enableOk",
               "description": "“确定”按钮变为正常状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "ok",
               "description": "点击“确定”按钮的回调方法，继承Dialog时，可以复写该方法实现自定义需求",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "cancel",
               "description": "点击“取消”按钮的回调方法，继承Dialog时，可以复写该方法实现自定义需求",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             }
           ],
@@ -3558,32 +3534,32 @@
             {
               "name": "open",
               "description": "弹窗打开后触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "close",
               "description": "弹窗关闭后触发，不管是什么原因导致的关闭",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "ok",
               "description": "点击确定按钮时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "cancel",
               "description": "点击取消按钮时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "terminate",
               "description": "用户强行关闭弹窗时触发，即：点击“关闭”按钮，点击遮罩层，按ESC键",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "afterClose",
               "description": "弹窗退出动画执行完成后触发",
-              "params": "-"
+              "params": ""
             }
           ]
         }
@@ -3707,16 +3683,17 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "events": [
             {
               "name": "show",
               "description": "菜单展示事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "菜单隐藏事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "mouseenter",
@@ -3955,6 +3932,7 @@
               "default": "1"
             }
           ],
+          "propsMarkdown": "```ts\ntype AutoRows = {\n    min?: number\n    max?: number\n} \n```",
           "events": [
             {
               "name": "error",
@@ -4151,13 +4129,13 @@
             {
               "name": "validate",
               "description": "验证表单所有规则",
-              "params": "-",
+              "params": "",
               "returns": "Promise<boolean>: .then(valid => {})，valid为true验证成功，否则失败"
             },
             {
               "name": "reset",
               "description": "重置表单验证状态",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
@@ -4169,13 +4147,13 @@
             {
               "name": "getFirstInvalidFormItem",
               "description": "获取第一条校验失败的FormItem",
-              "params": "-",
+              "params": "",
               "returns": "FormItem"
             },
             {
               "name": "getAllInvalidFormItems",
               "description": "获取所有校验失败的FormItem",
-              "params": "-",
+              "params": "",
               "returns": "FormItem[]"
             }
           ],
@@ -4186,7 +4164,8 @@
               "params": "1. name 指定规则名称，不能重复 \n 2. method 指定该规则的验证函数，该函数返回true或false来标识验证成功或失败，如果返回字符串，则直接当做错误文案展示，该函数将传入2个参数：1. 当前验证的值，2. 当前规则的参数，即使用该规则时指定的值 \n 3. message 验证失败时的错误提示文案，该值可以为字符串或者函数，如果为函数，传入参数同method，用于个性化文案提示 \n 4. className 验证失败时添加的类名",
               "returns": "undefined"
             }
-          ]
+          ],
+          "staticMethodsMarkdown": "`Form`还提供了一个静态方法，用于全局添加验证规则，通过`Form.addMethod()`调用\n\n```ts\nexport declare type Method = (value: any, param: any) => boolean | string | Promise<boolean | string>\nexport declare type Message = string | ((value: any, param: any) => string)\nexport declare type ClassName = string | ((value: any, param: any) => string)\nexport declare const addMethod: (\n    name: string,\n    method: Method,\n    message?: Message | undefined,\n    className?: ClassName | undefined\n) => void;\n```\n\n[1]: https://github.com/ksc-fe/kpc/issues/6"
         },
         {
           "name": "FormItem",
@@ -4252,6 +4231,7 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nexport declare type Method = (value: any, param: any) => boolean | string | Promise<boolean | string>\nexport declare type Message = string | ((value: any, param: any) => string)\nexport declare type ClassName = string | ((value: any, param: any) => string)\n```",
           "slots": [
             {
               "name": "label",
@@ -4270,19 +4250,19 @@
             {
               "name": "validate",
               "description": "验证当前表单项",
-              "params": "-",
+              "params": "",
               "returns": "Promise<boolean>"
             },
             {
               "name": "isValid",
               "description": "当前表单项是否验证通过",
-              "params": "-",
+              "params": "",
               "returns": "boolean"
             },
             {
               "name": "reset",
               "description": "重置表单项验证状态",
-              "params": "-",
+              "params": "",
               "returns": "void"
             }
           ]
@@ -4395,7 +4375,8 @@
               "type": "\"top\" | \"bottom\" | \"middle\" | \"stretch\" | \"baseline\"",
               "default": "undefined"
             }
-          ]
+          ],
+          "propsMarkdown": "```ts\nexport type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs';\nexport type PrimitiveValue = string | number\nexport type BreakpointValue = {\n    [key in Breakpoint]?: PrimitiveValue\n};\nexport type Value = PrimitiveValue | BreakpointValue;\n```"
         },
         {
           "name": "Col",
@@ -4466,7 +4447,8 @@
               "type": "BreakpointValue",
               "default": "undefined"
             }
-          ]
+          ],
+          "propsMarkdown": "```ts\nexport type BaseColProps = {\n    span?: PrimitiveValue, \n    offset?: PrimitiveValue, \n    order?: PrimitiveValue,\n    pull?: PrimitiveValue,\n    push?: PrimitiveValue,\n}\ntype BreakpointValue = \n    | PrimitiveValue\n    | {[key in keyof BaseColProps]?: PrimitiveValue}\n```"
         }
       ],
       "demos": [
@@ -4880,19 +4862,19 @@
             {
               "name": "focus",
               "description": "聚焦输入框",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
               "name": "blur",
               "description": "失焦输入框",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
               "name": "select",
               "description": "选中输入框内容",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
@@ -4904,7 +4886,7 @@
             {
               "name": "getSelectionStart",
               "description": "获取选中起始位置",
-              "params": "-",
+              "params": "",
               "returns": "number"
             }
           ]
@@ -4954,19 +4936,19 @@
             {
               "name": "open",
               "description": "展开搜索框",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
               "name": "hide",
               "description": "隐藏搜索框",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
               "name": "submit",
               "description": "提交搜索",
-              "params": "-",
+              "params": "",
               "returns": "void"
             }
           ]
@@ -5496,7 +5478,7 @@
             "ts": "export default class extends Component {\n    static template = template;\n\n    static defaults() {\n        return {\n            expandedKeys: [],\n            selectedKey: '3-1',\n            menuList: [\n                {\n                    key: '1',\n                    title: 'menu 1'\n                },\n                {\n                    key: '2',\n                    title: 'menu 2'\n                },\n                {\n                    key: '3',\n                    title: 'menu 3',\n                    children: [\n                        {\n                            key: '3-1',\n                            title: 'sub menu 1'\n                        },\n                        {\n                            key: '3-2',\n                            title: 'sub menu 2'\n                        },\n                        {\n                            key: '3-3',\n                            title: 'sub menu 3'\n                        },\n                        {\n                            key: '3-4',\n                            title: 'sub menu 4',\n                            children: [\n                                {\n                                    key: '3-4-1',\n                                    title: 'option 1'\n                                },\n                                {\n                                    key: '3-4-2',\n                                    title: 'option 2'\n                                }\n                            ]\n                        }\n                    ]\n                },\n                {\n                    key: '4',\n                    title: 'menu 4'\n                },\n            ]\n        };\n    }\n}",
             "styl": "",
             "vue2": "<script lang=\"jsx\">\nimport { Menu, MenuItem, Icon } from \"@king-design/vue-legacy\";\nexport default {\n    data() {\n        return {\n            expandedKeys: [],\n            selectedKey: '3-1',\n            menuList: [\n                {\n                    key: '1',\n                    title: 'menu 1'\n                },\n                {\n                    key: '2',\n                    title: 'menu 2'\n                },\n                {\n                    key: '3',\n                    title: 'menu 3',\n                    children: [\n                        {\n                            key: '3-1',\n                            title: 'sub menu 1'\n                        },\n                        {\n                            key: '3-2',\n                            title: 'sub menu 2'\n                        },\n                        {\n                            key: '3-3',\n                            title: 'sub menu 3'\n                        },\n                        {\n                            key: '3-4',\n                            title: 'sub menu 4',\n                            children: [\n                                {\n                                    key: '3-4-1',\n                                    title: 'option 1'\n                                },\n                                {\n                                    key: '3-4-2',\n                                    title: 'option 2'\n                                }\n                            ]\n                        }\n                    ]\n                },\n                {\n                    key: '4',\n                    title: 'menu 4'\n                },\n            ]\n        };\n    },\n    render(h) {\n        const renderMenuItem = (item) => {\n            return <MenuItem key={item.key}>\n                {item.title}\n                {item.children && item.children.length && (\n                    <Menu>\n                        {item.children.map(renderMenuItem)}\n                    </Menu>\n                )}\n            </MenuItem>\n        }\n\n        return (\n            <Menu\n                expandedKeys={this.expandedKeys}\n                onChangeExpandedKeys={(v) => (this.expandedKeys = v)}\n                selectedKey={this.selectedKey}\n                onChangeSelectedKey={(v) => (this.selectedKey = v)}\n            >\n                <template slot=\"header\">\n                    <Icon class=\"ion-star\" />测试\n                </template>\n                {this.menuList.map(renderMenuItem)}\n            </Menu>\n        ) \n    }\n};\n</script>",
-            "vue3": "<script lang=\"jsx\">\nimport { Menu, MenuItem, Icon } from \"@king-design/vue-legacy\";\nexport default {\n    data() {\n        return {\n            expandedKeys: [],\n            selectedKey: '3-1',\n            menuList: [\n                {\n                    key: '1',\n                    title: 'menu 1'\n                },\n                {\n                    key: '2',\n                    title: 'menu 2'\n                },\n                {\n                    key: '3',\n                    title: 'menu 3',\n                    children: [\n                        {\n                            key: '3-1',\n                            title: 'sub menu 1'\n                        },\n                        {\n                            key: '3-2',\n                            title: 'sub menu 2'\n                        },\n                        {\n                            key: '3-3',\n                            title: 'sub menu 3'\n                        },\n                        {\n                            key: '3-4',\n                            title: 'sub menu 4',\n                            children: [\n                                {\n                                    key: '3-4-1',\n                                    title: 'option 1'\n                                },\n                                {\n                                    key: '3-4-2',\n                                    title: 'option 2'\n                                }\n                            ]\n                        }\n                    ]\n                },\n                {\n                    key: '4',\n                    title: 'menu 4'\n                },\n            ]\n        };\n    },\n    render(h) {\n        const renderMenuItem = (item) => {\n            return <MenuItem key={item.key}>\n                {item.title}\n                {item.children && item.children.length && (\n                    <Menu>\n                        {item.children.map(renderMenuItem)}\n                    </Menu>\n                )}\n            </MenuItem>\n        }\n\n        return (\n            <Menu\n                expandedKeys={this.expandedKeys}\n                onChangeExpandedKeys={(v) => (this.expandedKeys = v)}\n                selectedKey={this.selectedKey}\n                onChangeSelectedKey={(v) => (this.selectedKey = v)}\n            >\n                <template slot=\"header\">\n                    <Icon class=\"ion-star\" />测试\n                </template>\n                {this.menuList.map(renderMenuItem)}\n            </Menu>\n        ) \n    }\n};\n</script>",
+            "vue3": "<script lang=\"jsx\">\nimport { Menu, MenuItem, Icon } from \"@king-design/vue\";\nimport { ref, defineComponent } from 'vue';\n\nexport default defineComponent({\n    setup() {\n        const expandedKeys = ref([]);\n        const selectedKey = ref('3-1');\n        const menuList = [\n            {\n                key: '1',\n                title: 'menu 1'\n            },\n            {\n                key: '2',\n                title: 'menu 2'\n            },\n            {\n                key: '3',\n                title: 'menu 3',\n                children: [\n                    {\n                        key: '3-1',\n                        title: 'sub menu 1'\n                    },\n                    {\n                        key: '3-2',\n                        title: 'sub menu 2'\n                    },\n                    {\n                        key: '3-3',\n                        title: 'sub menu 3'\n                    },\n                    {\n                        key: '3-4',\n                        title: 'sub menu 4',\n                        children: [\n                            {\n                                key: '3-4-1',\n                                title: 'option 1'\n                            },\n                            {\n                                key: '3-4-2',\n                                title: 'option 2'\n                            }\n                        ]\n                    }\n                ]\n            },\n            {\n                key: '4',\n                title: 'menu 4'\n            },\n        ];\n        const renderMenuItem = (item) => {\n            return <MenuItem key={item.key}>\n                {item.title}\n                {item.children && item.children.length && (\n                    <Menu>\n                        {item.children.map(renderMenuItem)}\n                    </Menu>\n                )}\n            </MenuItem>\n        }\n\n        return () => (\n            <Menu\n                v-model:expandedKeys={expandedKeys.value}\n                v-model:selectedKey={selectedKey.value}\n                v-slots={{ header() { return <><Icon class=\"ion-star\" />测试</> } }}\n            >\n                {menuList.map(renderMenuItem)}\n            </Menu>\n        );\n    }\n});\n</script>",
             "react": "import { Menu, MenuItem, Icon } from '@king-design/react';\nimport React, { useState } from 'react';\n\ntype MenuItemData = {\n    key: string;\n    title: string;\n    children?: MenuItemData[];\n}\n\nexport default function() {\n    const [expandedKeys, setExpandedKeys] = useState<string[]>([]);\n    const [selectedKey, setSelectedKey] = useState('3-1');\n    const [menuList] = useState<MenuItemData[]>([\n        {\n            key: '1',\n            title: 'menu 1'\n        },\n        {\n            key: '2',\n            title: 'menu 2'\n        },\n        {\n            key: '3',\n            title: 'menu 3',\n            children: [\n                {\n                    key: '3-1',\n                    title: 'sub menu 1'\n                },\n                {\n                    key: '3-2',\n                    title: 'sub menu 2'\n                },\n                {\n                    key: '3-3',\n                    title: 'sub menu 3'\n                },\n                {\n                    key: '3-4',\n                    title: 'sub menu 4',\n                    children: [\n                        {\n                            key: '3-4-1',\n                            title: 'option 1'\n                        },\n                        {\n                            key: '3-4-2',\n                            title: 'option 2'\n                        }\n                    ]\n                }\n            ]\n        },\n        {\n            key: '4',\n            title: 'menu 4'\n        },\n    ]);\n\n    return <Menu\n        expandedKeys={expandedKeys}\n        onChangeExpandedKeys={(v) => setExpandedKeys(v!)}\n        selectedKey={selectedKey}\n        onChangeSelectedKey={(v) => setSelectedKey(v!)}\n        slotHeader={<><Icon className=\"ion-star\" />测试</>}\n    >\n        {menuList.map(renderMenuItem)}\n    </Menu>\n}\n\nfunction renderMenuItem(item: MenuItemData) {\n    return <MenuItem key={item.key}>\n        {item.title}\n        {item.children && item.children.length && (\n            <Menu>\n                {item.children.map(renderMenuItem)}\n            </Menu>\n        )}\n    </MenuItem>\n}"
           }
         },
@@ -5559,39 +5541,28 @@
               "name": "info",
               "description": "普通提示",
               "params": "(content: string | VNode | Partial&lt;MessageProps&gt;, duration?: number) => void",
-              "returns": "-"
+              "returns": ""
             },
             {
               "name": "error",
               "description": "错误提示",
               "params": "(content: string | VNode | Partial&lt;MessageProps&gt;, duration?: number) => void",
-              "returns": "-"
+              "returns": ""
             },
             {
               "name": "success",
               "description": "成功提示",
               "params": "(content: string | VNode | Partial&lt;MessageProps&gt;, duration?: number) => void",
-              "returns": "-"
+              "returns": ""
             },
             {
               "name": "warning",
               "description": "警告提示",
               "params": "(content: string | VNode | Partial&lt;MessageProps&gt;, duration?: number) => void",
-              "returns": "-"
-            },
-            {
-              "name": "",
-              "description": "提示的内容，或者你也可以直接传入类型为Partial&lt;MessageProps&gt;的配置",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "提示展示多长时间后自动关闭，当传入0时，提示将会一直展示。单位ms",
-              "params": "",
               "returns": ""
             }
-          ]
+          ],
+          "staticMethodsMarkdown": "其中`content`和`duration`参数说明如下：\n\n```ts\nimport {VNode} from 'intact';\n\nexport interface MessageProps {\n    content?: string | VNode \n    duration?: number\n    type?: 'info' | 'error' | 'success' | 'warning'\n    closable?: boolean\n    hideIcon?: boolean\n}\n```\n\n| 参数名 | 说明 | 类型 | 默认值 |\n| --- | --- | --- | --- |\n| content | 提示的内容，或者你也可以直接传入类型为<code>Partial&lt;MessageProps&gt;</code>的配置 | `string` &#124; `VNode` &#124; `Partial<MessageProps>` | `undefined` |\n| duration | 提示展示多长时间后自动关闭，当传入`0`时，提示将会一直展示。单位ms | `bumber` | `5000` |"
         }
       ],
       "demos": [
@@ -5705,6 +5676,7 @@
               "default": "undefined"
             }
           ],
+          "propsMarkdown": "> **VNode 使用说明：** `title` 、 `content` 和 `icon` 属性都支持传入 `VNode`，可以实现更丰富的内容展示。需要注意：将 VNode 作为属性传给 KingDesign 组件时，需要使用 `normalize` 方法处理 VNode。详细用法请参考文档中在[各框架中使用的注意事项](/docs/vue/)。",
           "staticMethods": [
             {
               "name": "notice",
@@ -5740,21 +5712,10 @@
               "name": "close",
               "description": "关闭指定 ID 的通知",
               "params": "(id: number) => void",
-              "returns": "-"
-            },
-            {
-              "name": "",
-              "description": "通知配置对象",
-              "params": "",
-              "returns": ""
-            },
-            {
-              "name": "",
-              "description": "通知的唯一 ID，由 notice、info、error、success、warning 方法返回",
-              "params": "",
               "returns": ""
             }
-          ]
+          ],
+          "staticMethodsMarkdown": "参数说明：\n\n```ts\nimport {VNode} from 'intact';\n\nexport interface NotificationProps {\n    title?: string | VNode \n    content?: string | VNode \n    duration?: number\n    type?: 'info' | 'error' | 'success' | 'warning' | ''\n    closable?: boolean\n    icon?: string | VNode\n    position?: 'topRight' | 'topLeft' | 'bottomRight' | 'bottomLeft' | 'top' | 'bottom'\n    className?: string\n    onClick?: (e: MouseEvent) => void\n    onClose?: () => void\n}\n```\n\n| 参数名 | 说明 | 类型 | 默认值 |\n| --- | --- | --- | --- |\n| props | 通知配置对象 | `Partial<NotificationProps>` | - |\n| id | 通知的唯一 ID，由 `notice`、`info`、`error`、`success`、`warning` 方法返回 | `number` | - |"
         }
       ],
       "demos": [
@@ -6154,26 +6115,27 @@
               "default": "\"取消\""
             }
           ],
+          "propsMarkdown": "```ts\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision]\n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "events": [
             {
               "name": "show",
               "description": "弹层展开事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "弹层隐藏事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "ok",
               "description": "点击“确认”按钮触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "cancel",
               "description": "点击“取消”按钮触发",
-              "params": "-"
+              "params": ""
             }
           ],
           "slots": [
@@ -6309,8 +6271,15 @@
               "description": "进度条指示线的宽度，单位px，只对type=\"circle\"圆形进度有效",
               "type": "number",
               "default": "6"
+            },
+            {
+              "name": "color",
+              "description": "进度条背景颜色，支持根据百分比自定义颜色。会覆盖status设置的颜色",
+              "type": "string | Color[] | ((percent: number) => string)",
+              "default": "undefined"
             }
-          ]
+          ],
+          "propsMarkdown": "```ts\ntype Color = {\n    percent: string | number\n    color: string\n}\n```"
         }
       ],
       "demos": [
@@ -6644,6 +6613,7 @@
               "default": "undefined"
             }
           ],
+          "propsMarkdown": "```ts\nexport type DataItem<T = any> = {\n    value: T \n    label: Children \n}\n\ntype Data<T> = DataItem<T>[] | ((v: T) => DataItem<T>[])\n```",
           "slots": [
             {
               "name": "append",
@@ -6865,6 +6835,7 @@
               "default": "flase"
             }
           ],
+          "propsMarkdown": "```ts\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "slots": [
             {
               "name": "value",
@@ -6878,30 +6849,28 @@
             },
             {
               "name": "prefix",
-              "description": "自定义输入框前面展示的内容",
-              "params": "-"
+              "description": "自定义输入框前面展示的内容"
             },
             {
               "name": "suffix",
-              "description": "自定义输入框后面展示的内容",
-              "params": "-"
+              "description": "自定义输入框后面展示的内容"
             },
             {
               "name": "menu",
-              "description": "自定义整个菜单的内容",
-              "params": "-"
+              "description": "自定义整个菜单的内容"
             }
           ],
+          "slotsMarkdown": "```ts\nimport {Children} from 'intact';\n```",
           "events": [
             {
               "name": "show",
               "description": "菜单弹出时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "菜单隐藏时触发",
-              "params": "-"
+              "params": ""
             }
           ]
         },
@@ -7440,6 +7409,7 @@
               "default": "true"
             }
           ],
+          "propsMarkdown": "```ts\nexport type StepObject = {\n    [key in number]: number\n} & {\n    $?: number\n}\nexport type StepFunction = (value: number) => number\n\ntype MarkKey = string | number\ntype MarkValue = MarkKey | [MarkKey] | [MarkKey, MarkKey]\ntype Marks = Record<MarkKey, MarkValue>\n```",
           "slots": [
             {
               "name": "tooltip",
@@ -7720,6 +7690,7 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nexport type StepObject = {\n    [key in number]: number\n} & {\n    $?: number\n}\nexport type StepFunction = (value: number) => number\n```",
           "events": [
             {
               "name": "change",
@@ -7878,18 +7849,15 @@
           "slots": [
             {
               "name": "first",
-              "description": "指定第一个面板的内容",
-              "params": "-"
+              "description": "指定第一个面板的内容"
             },
             {
               "name": "last",
-              "description": "指定第二个面板的内容",
-              "params": "-"
+              "description": "指定第二个面板的内容"
             },
             {
               "name": "drag",
-              "description": "指定分割线的内容",
-              "params": "-"
+              "description": "指定分割线的内容"
             }
           ],
           "events": [
@@ -8219,19 +8187,19 @@
             {
               "name": "isChecked",
               "description": "当前是否开启状态",
-              "params": "-",
+              "params": "",
               "returns": "boolean"
             },
             {
               "name": "check",
               "description": "设为开启状态",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
               "name": "uncheck",
               "description": "设为关闭状态",
-              "params": "-",
+              "params": "",
               "returns": "void"
             },
             {
@@ -8574,11 +8542,11 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nimport {Props} from 'intact';\n\nexport type TableRowKey = string | number;\nexport type TableGroupValue<T extends string | number | symbol = string | number | symbol> = Record<T, any | any[]> \nexport type TableSortValue<T = string> = {\n    key?: T \n    type?: 'desc' | 'asc'\n}\nexport type TableMerge<T = any, CheckType = 'checkbox'> = (\n    row: T,\n    column: CheckType extends 'none' ? Props<TableColumnProps> : Props<TableColumnProps> | null,\n    rowIndex: number,\n    columnIndex: number\n) => TableMergeConfig | undefined\n\nexport type TableMergeConfig = {\n    colspan?: number\n    rowspan?: number\n}\n\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n}\n\ntype Collision = 'left' | 'top' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n\nexport interface PaginationProps {\n    size?: Sizes,\n    counts?: number | string,\n    total?: number,\n    value?: number,\n    limit?: number,\n    limits?: number[],\n    noBorder?: boolean,\n    simple?: boolean,\n    showTotal?: boolean,\n    showGoto?: boolean,\n    showLimits?: boolean,\n    disableBtn?: (page: number, limit: number) => boolean,\n    disablePage?: (page: number, limit: number) => boolean,\n}\n```",
           "slots": [
             {
               "name": "empty",
-              "description": "自定义无数据展示模板",
-              "params": "-"
+              "description": "自定义无数据展示模板"
             },
             {
               "name": "expand",
@@ -8592,33 +8560,32 @@
             },
             {
               "name": "footer",
-              "description": "自定义Table底部",
-              "params": "-"
+              "description": "自定义Table底部"
             }
           ],
           "methods": [
             {
               "name": "getCheckedData",
               "description": "获取选中数据信息",
-              "params": "-",
+              "params": "",
               "returns": "T[]"
             },
             {
               "name": "getSelectedData",
               "description": "获取高亮行数据信息",
-              "params": "-",
+              "params": "",
               "returns": "T[]"
             },
             {
               "name": "checkAll",
               "description": "全部选中",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
               "name": "uncheckAll",
               "description": "全不选中",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             },
             {
@@ -8783,11 +8750,11 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nimport {VNode} from 'intact';\n\nexport type TableColumnGroupItem = {\n    label: string | VNode\n    value: any\n}\n```",
           "slots": [
             {
               "name": "title",
-              "description": "自定义复杂表头内容",
-              "params": "-"
+              "description": "自定义复杂表头内容"
             },
             {
               "name": "template",
@@ -9573,8 +9540,7 @@
           "slots": [
             {
               "name": "append",
-              "description": "追加到后面的元素，不参与到Tags对Tag的管理中",
-              "params": "-"
+              "description": "追加到后面的元素，不参与到Tags对Tag的管理中"
             }
           ],
           "events": [
@@ -9588,7 +9554,8 @@
               "description": "拖动结束",
               "params": "(v: TagsDragEndParam) => void"
             }
-          ]
+          ],
+          "eventsMarkdown": "```ts\ntype Key = string | number\n\nexport type TagsDragStartParam = {\n    key: Key\n    from: number\n}\n\nexport type TagsDragEndParam = TagsDragStartParam & {\n    to: number\n} \n```"
         }
       ],
       "demos": [
@@ -9903,16 +9870,17 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nimport {Dayjs} from 'dayjs';\nimport {VNode} from 'intact';\n\nexport type Value = string | Date | number | Dayjs;\n\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "events": [
             {
               "name": "show",
               "description": "菜单弹出时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "菜单隐藏时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "selecting",
@@ -9941,15 +9909,14 @@
             },
             {
               "name": "prefix",
-              "description": "自定义输入款前面展示的内容",
-              "params": "-"
+              "description": "自定义输入款前面展示的内容"
             },
             {
               "name": "suffix",
-              "description": "自定义输入框后面展示的内容",
-              "params": "-"
+              "description": "自定义输入框后面展示的内容"
             }
-          ]
+          ],
+          "slotsMarkdown": "```ts\nimport {Children} from 'intact';\n```"
         }
       ],
       "demos": [
@@ -10243,26 +10210,27 @@
               "default": "undefined"
             }
           ],
+          "propsMarkdown": "```ts\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision]\n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n```",
           "events": [
             {
               "name": "show",
               "description": "弹层展开事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "弹层隐藏事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "ok",
               "description": "confirm模式下，点击“确认”按钮触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "cancel",
               "description": "confirm模式下，点击“取消”按钮触发",
-              "params": "-"
+              "params": ""
             }
           ],
           "slots": [
@@ -10418,7 +10386,7 @@
             {
               "name": "finish",
               "description": "引导完成时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "positioned",
@@ -10712,6 +10680,7 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nexport type TransferDataItem<\n    A extends string = 'key',\n    B extends string = 'label',\n> = {\n    [K in A]: Key\n} & {\n    [K in B]?: Children\n} & {\n    disabled?: boolean\n}\n```",
           "slots": [
             {
               "name": "header",
@@ -10752,12 +10721,12 @@
             {
               "name": "add",
               "description": "右箭头按钮点击事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "remove",
               "description": "左箭头按钮点击事件",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "page",
@@ -10986,6 +10955,7 @@
               "default": "undefined"
             }
           ],
+          "propsMarkdown": "```ts\nimport {Key, Children} from 'intact';\n\nexport type TreeDataItem<K extends Key> = {\n    label?: Children \n    key?: K\n    disabled?: boolean\n    loaded?: boolean\n    children?: TreeDataItem<K>[]\n}\n\nexport class TreeNode<K extends Key> {\n    data: TreeDataItem<K>;\n    parent: TreeNode<K> | null;\n    key: K;\n    checked: boolean;\n    indeterminate: boolean;\n    children: TreeNode<K>[] | null;\n    loaded: boolean | null | undefined;\n    filter: boolean;\n    constructor(data: TreeDataItem<K>, parent: TreeNode<K> | null, key: K);\n}\n```",
           "slots": [
             {
               "name": "label",
@@ -11003,7 +10973,7 @@
             {
               "name": "getSelectedData",
               "description": "获取选中的节点数据",
-              "params": "-",
+              "params": "",
               "returns": "TreeDataItem<K>[]"
             },
             {
@@ -11050,9 +11020,10 @@
             {
               "name": "transitionEnd",
               "description": "展开/收起动画结束后触发",
-              "params": "-"
+              "params": ""
             }
-          ]
+          ],
+          "eventsMarkdown": "```ts\nimport {Key} from 'intact';\n\ntype DragEndData<K extends Key> = {\n    srcNode: TreeNode<K>\n    toNode: TreeNode<K>\n    mode: TreeMode\n}\n\nexport enum TreeMode {\n    Before,\n    After,\n    Inner\n}\n```"
         },
         {
           "name": "TreeNode对象",
@@ -11105,7 +11076,8 @@
               "type": "boolean",
               "default": ""
             }
-          ]
+          ],
+          "propsMarkdown": "组件内部使用`TreeNode`对象来维护节点的状态\n\n### 属性"
         }
       ],
       "demos": [
@@ -11400,6 +11372,7 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nimport {Key, Children} from 'intact';\n\nexport type Container = string | ((parentDom: Element, anchor: Node | null) => Element)\n\nexport type TreeDataItem<K extends Key> = {\n    label?: Children \n    key?: K\n    disabled?: boolean\n    loaded?: boolean\n    children?: TreeDataItem<K>[]\n}\n\ntype Position = {\n    my?: string | [string, string]\n    at?: string | [string, string]\n    collision?: Collision | [Collision, Collision] \n    collisionDirection?: ['left'] | ['top'] | ['left', 'top']\n}\n\ntype Collision = 'fit' | 'flip' | 'flipfit' | 'none'\n```",
           "slots": [
             {
               "name": "value",
@@ -11413,20 +11386,18 @@
             },
             {
               "name": "prefix",
-              "description": "自定义输入款前面展示的内容",
-              "params": "-"
+              "description": "自定义输入款前面展示的内容"
             },
             {
               "name": "suffix",
-              "description": "自定义输入框后面展示的内容",
-              "params": "-"
+              "description": "自定义输入框后面展示的内容"
             },
             {
               "name": "menu",
-              "description": "自定义整个菜单的内容",
-              "params": "-"
+              "description": "自定义整个菜单的内容"
             }
           ],
+          "slotsMarkdown": "```ts\nimport {Children} from 'intact';\n```",
           "methods": [
             {
               "name": "expandAll",
@@ -11439,12 +11410,12 @@
             {
               "name": "show",
               "description": "菜单弹出时触发",
-              "params": "-"
+              "params": ""
             },
             {
               "name": "hide",
               "description": "菜单隐藏时触发",
-              "params": "-"
+              "params": ""
             }
           ]
         }
@@ -11628,6 +11599,7 @@
               "default": "false"
             }
           ],
+          "propsMarkdown": "```ts\nexport type UploadFile = {\n    status?: UploadFileStatus\n    type?: string\n    size?: number\n    name: string\n    percent?: number\n    uid?: number | string\n    raw?: File | Partial<UploadFile>\n    url?: string\n    request?: any\n}\n\nexport enum UploadFileStatus {\n    Done,\n    Ready,\n    NotReady,\n    Uploading,\n    Error,\n}\n\ntype BeforeCallback = (file: UploadFile, files: UploadFile[]) => Promise<boolean> | boolean\ntype DataObject = Record<string | number, any>\ntype DataFunction = (file: UploadFile) => DataObject\n```",
           "slots": [
             {
               "name": "content",
@@ -11642,7 +11614,7 @@
             {
               "name": "submit",
               "description": "手动上传时，调用该方法开始上传",
-              "params": "-",
+              "params": "",
               "returns": "undefined"
             }
           ],
@@ -11662,7 +11634,8 @@
               "description": "文件超出最大文件数量限制，超出文件大小限制，或者上传失败都会抛出该事件",
               "params": "(err: Error | RequestError, file: File[] | File | UploadFile, files: UploadFile[]) => void"
             }
-          ]
+          ],
+          "eventsMarkdown": "```ts\ninterface RequestError extends Error {\n    status: number\n    method: string\n    url: string\n    response: any\n    xhr: XMLHttpRequest\n}\n```"
         }
       ],
       "demos": [
@@ -11760,7 +11733,8 @@
               "type": "boolean",
               "default": "false"
             }
-          ]
+          ],
+          "propsMarkdown": "<!-- # 方法 -->\n\n<!-- | 方法名 | 说明 | 参数 | -->\n<!-- | --- | --- | --- | -->\n<!-- | scrollToIndex | 滚动到指定索引位置 | `(index: number, behavior?: 'auto' \\| 'smooth') => void` | -->"
         }
       ],
       "demos": [

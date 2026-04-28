@@ -38,13 +38,13 @@ export interface DescriptionItemProps {
 
 ## Descriptions
 
-| 名称 | 说明 
+| 名称 | 说明 |
 | --- | --- | 
 | title | 自定义title | 
 
 ## DescriptionItem
 
-| 名称 | 说明 
+| 名称 | 说明 |
 | --- | --- | 
 | append | 用于超长省略后的操作区自定义内容 | 
 | label | 自定义label | 
