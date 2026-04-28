@@ -26,6 +26,7 @@
     "build:doc": "cross-env NODE_OPTIONS='--max-old-space-size=4096' gulp doc:build",
     "watch:doc": "gulp doc:watch",
     "deploy:doc": "cross-env NODE_OPTIONS='--max-old-space-size=4096' NODE_ENV=production gulp doc:deploy",
+    "parse:structured": "node scripts/doc/structured-parse.js",
     "_prepublishOnly": "npm run build && (git commit -am'chore: build [skip ci]' || echo 'has not files to commit') && git push",
     "_publish": "npm run _prepublishOnly && lerna exec -- npm publish",
     "release": "npm run release-patch",
