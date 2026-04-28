@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "data-designer": {
+      "source": "NVIDIA-NeMo/DataDesigner",
+      "sourceType": "github",
+      "computedHash": "1e9182edcec5969165ba305a43b0e6c2e652b4332d126b450537f56d6b53131f"
+    }
+  }
+}

@@ -52,3 +52,5 @@ packages/kpc-angular/hooks
 es/
 build/
 markdowns/
+.agents/
+.claude/
