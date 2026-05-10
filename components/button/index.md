@@ -21,7 +21,7 @@ sidebar: doc
 | htmlType | 按钮`<button>`元素的`type` | `"submit"` &#124; `"reset"` &#124; `"button"` | `"button"` |
 | tagName | 按钮渲染后的实际html元素，例如我们可以传入`"a"`来渲染成超链接 | `string` | `button` |
 | value | 对于`radio/checkbox`类型的按钮组，我们可以给每个按钮指定一个选中时的值 | `*` | `undefined` |
-| name | 对于`radio/checkbox`类型的按钮组，我们给`input`指定`name`属性 | `string` | `undefined` |
+| name | 对于`radio/checkbox`类型的按钮组，按钮内部会渲染一个原生的`input`元素，该属性将作为`input`的`name`属性值 | `string` | `undefined` |
 | ghost | 展示透明背景的按钮 | `boolean` | `false` |
 | color | 自定义字体、边框、波纹动效颜色 | `string` | `undefined` |
 | href | 超链接的`href`属性，当指定该属性时，按钮渲染为超链接，即`tagName`为`a`，点击后跳转到指定的url | `string` | `undefined` |
