@@ -17,23 +17,23 @@ sidebar: doc
 | loading | 数据加载状态 | `boolean` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | name | 表单元素的`name` | `string` | `undefined` |
-| size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| size | 尺寸 | `"large"` \| `"default"` \| `"small"` \| `"mini"` | `"default"` |
 | hideIcon | 是否隐藏后面的图标 | `boolean` | `false` |
 | clearable | 是否可清空 | `boolean` | `false` |
 | fluid | 是否宽度100% | `boolean` | `false` |
 | inline | 展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开 | `boolean` | `false` |
 | placeholder | 占位文案 | `string` | `"请选择"` |
 | container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
-| width | 指定宽度，组件自动添加单位`px` | `number` &#124; `string` | `undefined` | 
+| width | 指定宽度，组件自动添加单位`px` | `number` \| `string` | `undefined` | 
 | data | 要渲染的数据 | `TreeDataItem<K>[]` | `undefined` |
 | uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `boolean` | `false` |
-| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
+| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> \| void</code> | `undefined` |
 | showLine | 是否展示`Tree`的对齐线 | `boolean` | `true` |
 | defaultExpandAll | 是否默认展开所有节点 | `boolean` | `true` |
 | checkbox | 是否展示复选框 | `boolean` | `false` |
 | filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, data: TreeDataItem<K>) => boolean` | `undefined` |
 | show | 是否展示菜单项 | `boolean` | `false` |
-| position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
+| position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` \| `"left"` \| `"bottom"` \| `"right"` \| `"top"` | `{my: 'left top+8', 'left bottom'}` |
 | flat | 是否展示扁平样式 | `boolean` | `false` |
 | draggable | 多选值是否支持拖动排序 | `boolean` | `false` |
 

@@ -9,7 +9,7 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| size | 尺寸 | `"large"` &#124; `"default"` &#124; `"mini"` &#124; `"small"` | `"default"` |
+| size | 尺寸 | `"large"` \| `"default"` \| `"mini"` \| `"small"` | `"default"` |
 | counts | 展示按钮个数 | `number` | `7` |
 | total | 数据总条数 | `number` | `0` |
 | value | 当前页码 | `number` | `1` |

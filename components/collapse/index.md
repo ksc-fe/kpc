@@ -13,7 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | value | 当前展开的`CollapseItem`取值 | `string[]` | `undefined` |
 | accordion | 是否展示手风琴风格 | `boolean` | `false` |
-| arrow | 指定箭头位置 | `"right"` &#124; `"left"` | `"right"` |
+| arrow | 指定箭头位置 | `"right"` \| `"left"` | `"right"` |
 | noBorder | 是否展示无边框的简洁样式 | `boolean` | `false` |
 
 ## CollapseItem
@@ -21,7 +21,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 当前`CollapseItem`的取值，默认会使用`$` + 索引的组合 | `string` | `$${index}` |
-| title | 标题内容 | `string` &#124; `VNode` | `undefined` |
+| title | 标题内容 | `string` \| `VNode` | `undefined` |
 | disabled | 是否禁用 | `boolean` | `false` |
 
 # 扩展点

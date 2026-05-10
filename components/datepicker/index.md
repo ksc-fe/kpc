@@ -9,18 +9,18 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| value | 当前选择的元素，可用`v-model`双向绑定 | `Value` &#124; `Value[]` &#124; `[Value, Value]`  &#124; `[Value, Value][]` | `""` |
+| value | 当前选择的元素，可用`v-model`双向绑定 | `Value` \| `Value[]` \| `[Value, Value]`  \| `[Value, Value][]` | `""` |
 | multiple | 是否支持多选 | `boolean` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | name | 表单元素的`name` | `string` | `undefined` |
-| size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| size | 尺寸 | `"large"` \| `"default"` \| `"small"` \| `"mini"` | `"default"` |
 | hideIcon | 是否隐藏后面的图标 | `boolean` | `false` |
 | clearable | 是否可清空 | `boolean` | `false` |
 | fluid | 是否宽度100% | `boolean` | `false` |
 | inline | 展示内联模式，该模式下，组件没有边框，宽度和高度如同内联元素一样由内容撑开 | `boolean` | `false` |
 | placeholder | 占位文案 | `string` | `"请选择日期"` |
 | container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
-| width | 指定宽度，组件自动添加单位`px` | `number` &#124; `string` | `undefined` | 
+| width | 指定宽度，组件自动添加单位`px` | `number` \| `string` | `undefined` | 
 | range | 是否选择日期范围 | `boolean` | `false` |
 | format | 指定日期格式化字符串 | `string` | `YYYY-MM-DD HH:mm:ss` |
 | valueFormat | 指定`value`值日期格式化字符串 | `string` | `undefined` |
@@ -28,10 +28,10 @@ sidebar: doc
 | max | 最大可选日期 | `Value` | `undefind` |
 | min | 最小可选日期 | `Value` | `undefind` |
 | disabledDate | 该属性值是一个函数，用于定义那些日期被禁止选择，函数参数为日期字符串，返回`true`则表示禁用该日期 | `(v: Dayjs) => boolean` | `undefined` |
-| type | 组件类型：`"date"` 只选择日期；`"datetime"` 选择日期和时间；`"year"` 选择年份；`"month"` 选择月份；`"week"` 选择周；`"quarter"` 选择季度 |  `"date"` &#124; `"datetime"` &#124; `"year"` &#124; `"month"` &#124; `"week"` &#124; `"quarter"` | `"date"` |
+| type | 组件类型：`"date"` 只选择日期；`"datetime"` 选择日期和时间；`"year"` 选择年份；`"month"` 选择月份；`"week"` 选择周；`"quarter"` 选择季度 |  `"date"` \| `"datetime"` \| `"year"` \| `"month"` \| `"week"` \| `"quarter"` | `"date"` |
 | shortcuts | 指定快捷方式 | `Shortcut[]` | `undefined` |
 | show | 是否展示菜单项 | `boolean` | `false` |
-| position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
+| position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` \| `"left"` \| `"bottom"` \| `"right"` \| `"top"` | `{my: 'left top+8', 'left bottom'}` |
 | flat | 是否展示扁平样式 | `boolean` | `false` |
 | draggable | 多选值是否支持拖动排序 | `boolean` | `false` |
 | nowrap | 日期多选时， 是否换行显示 | `boolean` | `false` |

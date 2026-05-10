@@ -24,7 +24,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | href | 锚点ID（对应页面元素的id），不需要包含`#` | `string` | `undefined` |
-| title | 显示文本 | `string` &#124; `VNode` | `undefined` |
+| title | 显示文本 | `string` \| `VNode` | `undefined` |
 | disabled | 是否禁用 | `boolean` | `false` |
 
 # 事件

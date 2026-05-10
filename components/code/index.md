@@ -13,7 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | value | 组件的值，可通过`v-model`双向绑定 | `string` | `""` |
 | language | 指定编程语言 | `string` | `"javascript"` |
-| theme | 指定主题 | `"vs"` &#124; `"vs-dark"` &#124; `"hc-black"` | `"vs"` |
+| theme | 指定主题 | `"vs"` \| `"vs-dark"` \| `"hc-black"` | `"vs"` |
 | readOnly | 是否只读 | `boolean` | `false` |
 | width | 指定宽度，需要带单位 | `string` | `undefined` |
 | height | 指定高度，需要带单位 | `string` | `undefined` |

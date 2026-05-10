@@ -11,10 +11,10 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| labelWidth | 定义所有子孙`FormItem`组件的`label`宽度 | `string` &#124; `number` | `undefined` |
-| layout | 指定表单布局方式 | `"horizontal"` &#124; `"vertical"` &#124; `"inline"` | `"horizontal"` |
+| labelWidth | 定义所有子孙`FormItem`组件的`label`宽度 | `string` \| `number` | `undefined` |
+| layout | 指定表单布局方式 | `"horizontal"` \| `"vertical"` \| `"inline"` | `"horizontal"` |
 | starOnRequired | 当`FormItem`必填时，是否在`label`前面展示`*` | `boolean` | `false` |
-| size | 定义表单之间的间隔大小 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| size | 定义表单之间的间隔大小 | `"default"` \| `"small"` \| `"mini"` | `"default"` |
 
 ## FormItem
 

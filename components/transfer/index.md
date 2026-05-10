@@ -20,11 +20,11 @@ sidebar: doc
 | placeholder | 当开启过滤功能时，用于输入框展示的占位文案 | `string` | `"请输入"` |
 | leftKeywords | 左边筛选关键字 | `string` | `undefined` |
 | rightKeywords | 右边筛选关键字 | `string` | `undefined` |
-| leftTitle | 左边顶部展示的标题 | `string` &#124; `VNode` | `"请选择"` |
-| rightTitle | 右边顶部展示的标题 | `string` &#124; `VNode` | `"已选择"` |
+| leftTitle | 左边顶部展示的标题 | `string` \| `VNode` | `"请选择"` |
+| rightTitle | 右边顶部展示的标题 | `string` \| `VNode` | `"已选择"` |
 | enableAdd | 指定右箭头按钮的可用状态 | `() => boolean` | `undefined` |
 | enableRemove | 指定左箭头按钮的可用状态 | `() => boolean` | `undefined` |
-| pagination | 是否启用分页功能，传入`true`使用默认配置，传入对象可自定义分页配置，详见[Pagination组件](/components/pagination/) | `boolean` &#124; `PaginationProps` | `false` |
+| pagination | 是否启用分页功能，传入`true`使用默认配置，传入对象可自定义分页配置，详见[Pagination组件](/components/pagination/) | `boolean` \| `PaginationProps` | `false` |
 
 ```ts
 export type TransferDataItem<
@@ -43,17 +43,17 @@ export type TransferDataItem<
 
 | 名称 | 说明 | 参数 |
 | --- | --- | --- |
-| header | 自定义整个头部内容 | <code>(type: 'left' &#124; 'right') => Children</code> |
-| filter | 自定义检索内容 | <code>(type: 'left' &#124; 'right') => Children</code> | 
-| list | 自定义整个列表内容 | <code>(type: 'left' &#124; 'right') => Children</code> |
-| label | 自定义每一项的渲染函数，类似于`label`属性 | <code>(data: TransferDataItem, key: string, type: 'left' &#124; 'right') => Children</code> |
+| header | 自定义整个头部内容 | <code>(type: 'left' \| 'right') => Children</code> |
+| filter | 自定义检索内容 | <code>(type: 'left' \| 'right') => Children</code> | 
+| list | 自定义整个列表内容 | <code>(type: 'left' \| 'right') => Children</code> |
+| label | 自定义每一项的渲染函数，类似于`label`属性 | <code>(data: TransferDataItem, key: string, type: 'left' \| 'right') => Children</code> |
 
 # 方法
 
 | 方法名 | 说明 | 参数 | 返回值 |
 | --- | --- | --- | --- |
 | getData | 获取右边的节点数据 | `() => TransferDataItem[]` | `string[]`: 所有移入右栏的数据 |
-| getCheckedData | 获取勾选的节点数据 | <code>(type: 'left' &#124; 'right') => TransferDataItem[]</code> | `TransferDataItem[]`所有`Checkbox`选中的数据 |
+| getCheckedData | 获取勾选的节点数据 | <code>(type: 'left' \| 'right') => TransferDataItem[]</code> | `TransferDataItem[]`所有`Checkbox`选中的数据 |
 
 # 事件
 
@@ -61,4 +61,4 @@ export type TransferDataItem<
 | --- | --- | --- |
 | add | 右箭头按钮点击事件 | - |
 | remove | 左箭头按钮点击事件 | - |
-| page | 当内置翻页改变页码或每页数量时触发 | <code>(model: 'left' &#124; 'right', data: {value: number, limit: number}) => void</code> |
+| page | 当内置翻页改变页码或每页数量时触发 | <code>(model: 'left' \| 'right', data: {value: number, limit: number}) => void</code> |

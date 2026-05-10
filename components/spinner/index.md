@@ -13,15 +13,15 @@ sidebar: doc
 | disabled | 是否禁用 | `boolean` | `false` |
 | max | 最大值 | `number` | `Number.POSITIVE_INFINITY` |
 | min | 最小值 | `number` | `Number.NEGATIVE_INFINITY` | 
-| step | 步长，支持动态步长，详见示例 | `number` &#124; `StepObject` &#124; `StepFunction` | `1` |
-| size | 尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| step | 步长，支持动态步长，详见示例 | `number` \| `StepObject` \| `StepFunction` | `1` |
+| size | 尺寸 | `"default"` \| `"small"` \| `"mini"` | `"default"` |
 | vertical | 控制按钮是否竖直排列 | `boolean` | `false` |
 | precision | 控制展示精度，该值必须为正整数或0 | `number` | `undefined` |
 | formatter | 定义格式化展示值的函数 | `(value: number) => string` | `undefined` |
 | parser | 与`formatter`结合使用，定义解析格式化的值的函数 | `(value: string) => number` | `undefined` |
 | prefix | 定义展示的值的前缀，优先级低于`formatter` | `string` | `undefined` |
 | suffix | 定义展示的值的后缀，优先级低于`formatter` | `string` | `undefined` |
-| width | 指定`Input`输入框的宽度 | `string` &#124; `number` | `undefined` |
+| width | 指定`Input`输入框的宽度 | `string` \| `number` | `undefined` |
 | forceStep | `value`值除了边界值，都必须被满足`min + step * n`(`n`为整数) | `boolean` | `false` |
 
 ```ts

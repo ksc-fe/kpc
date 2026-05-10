@@ -12,7 +12,7 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | vertical | 垂直排列 | `boolean` | `false` |
-| title | 描述列表的标题，显示在最顶部 | `string` &#124; `number` &#124; `VNode` | `undefined` |
+| title | 描述列表的标题，显示在最顶部 | `string` \| `number` \| `VNode` | `undefined` |
 | items | 描述列表项内容 | `DescriptionItemProps[]` | `[]` |
 | columns | 一行的 DescriptionItem 数量 | `number` | `3` |
 
@@ -30,9 +30,9 @@ export interface DescriptionItemProps {
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| label | 内容的标题 | `string` &#124; `number` &#124; `VNode` | `undefined` |
-| content | 包含内容 | `string` &#124; `number` &#124; `VNode` | `undefined` |
-| append | 自定义内容 | `string` &#124; `number` &#124; `VNode` | `undefined` |
+| label | 内容的标题 | `string` \| `number` \| `VNode` | `undefined` |
+| content | 包含内容 | `string` \| `number` \| `VNode` | `undefined` |
+| append | 自定义内容 | `string` \| `number` \| `VNode` | `undefined` |
 
 # 扩展点
 

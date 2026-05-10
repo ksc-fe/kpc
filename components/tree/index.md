@@ -19,7 +19,7 @@ sidebar: doc
 | selectedKeys | 通过`key`指定选中的数据节点 | `K[]` | `undefined` |
 | multiple | `selectedKeys`是否支持多选 | `boolean` | `false` |
 | checkbox | 是否展示复选框 | `boolean` | `false` |
-| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
+| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> \| void</code> | `undefined` |
 | showLine | 是否展示左侧对齐线 | `boolean` | `true` |
 | draggable | 是否支持拖拽 | `boolean` | `false` |
 | allowDrag | 指定哪些节点可拖拽 | `(node: TreeNode<K>) => boolean` | `undefined` |
@@ -58,12 +58,12 @@ export class TreeNode<K extends Key> {
 | 属性 | 说明 | 类型 |
 | --- | --- | --- |
 | data | 节点的原始数据 | `TreeDataItem<K>` |
-| parent | 节点的父节点 | `TreeDataItem<K>` &#124; `null` |
+| parent | 节点的父节点 | `TreeDataItem<K>` \| `null` |
 | key | 节点的key | `K` |
 | checked | 节点是否已选中 | `boolean` |
 | indeterminate | 节点是否半选中 | `boolean` |
-| children | 节点的子节点 | `TreeNode<K>` &#124; `null` |
-| loaded | 是否已经完成异步加载 | `boolean` &#124; `undefined` |
+| children | 节点的子节点 | `TreeNode<K>` \| `null` |
+| loaded | 是否已经完成异步加载 | `boolean` \| `undefined` |
 | filter | 是否在搜索时被过滤掉了 | `boolean` | `false` |
 
 

@@ -12,8 +12,8 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | value | 标识当前第几步，从`0`开始 | `number` | `0` |
-| status | 步骤条的状态 | `"normal"` &#124; `"error"` &#124; `"done"` | `"normal"` |
-| type | 步骤条样式 | `"default"` &#124; `"line"` &#124; `"simple"` &#124; `"line-compact"` &#124; `"dot"` | `"default"` |
+| status | 步骤条的状态 | `"normal"` \| `"error"` \| `"done"` | `"normal"` |
+| type | 步骤条样式 | `"default"` \| `"line"` \| `"simple"` \| `"line-compact"` \| `"dot"` | `"default"` |
 | clickable | 是否支持快速切换【已完成】的步骤 | `boolean` | `false` |
 | vertical | 是否垂直排列 | `boolean` | `false` |
 

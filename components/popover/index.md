@@ -9,17 +9,17 @@ sidebar: doc
 
 | 属性       | 说明                            | 类型     | 默认值   |
 | ---------- | ------------------------------- | -------- | -------- |
-| title | 指定提示的标题，也可以用`title`扩展点指定 | `string` &#124; `VNode` | `undefined` |
-| type | 指定提示的类型 | `"info"` &#124; `"success"` &#124; `"error"` &#124; `"warning"` | `undefined` |
+| title | 指定提示的标题，也可以用`title`扩展点指定 | `string` \| `VNode` | `undefined` |
+| type | 指定提示的类型 | `"info"` \| `"success"` \| `"error"` \| `"warning"` | `undefined` |
 | disabled | 是否禁用组件 | `boolean` | `false` |
 | value | 是否将弹出菜单展示出来，可通过`v-model`双向绑定 | `boolean` | `false` |
-| position | 菜单弹出的位置，默认在触发器正上方向上偏移`10px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'center bottom-10', at: 'center top', collision: 'flipfit'}` |
-| of | 弹出菜单的位置是相对当前触发元素，还是触发元素所在的菜单元素，这在嵌套菜单中可能会用到，可以使所有子菜单保持统一的对齐方式，例如：级联选择（Cascader）组件 | `"self"` &#124; `"parent"` &#124; `Event` | `"self"` |
+| position | 菜单弹出的位置，默认在触发器正上方向上偏移`10px`的地方 | `Position` \| `"left"` \| `"bottom"` \| `"right"` \| `"top"` | `{my: 'center bottom-10', at: 'center top', collision: 'flipfit'}` |
+| of | 弹出菜单的位置是相对当前触发元素，还是触发元素所在的菜单元素，这在嵌套菜单中可能会用到，可以使所有子菜单保持统一的对齐方式，例如：级联选择（Cascader）组件 | `"self"` \| `"parent"` \| `Event` | `"self"` |
 | container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个 DOM 用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
 | showArrow | 弹层是否展示箭头 | `boolean` | `true` |
 | always | 是否一直保持当前展示/隐藏状态 | `boolean` | `false` |
-| size | 弹层尺寸 | `"default"` &#124; `"small"` | `"default"` |
-| content | 指定提示的内容，当然你也可以用`content`扩展点指定 | `String` &#124; `VNode` | `undefined` |
+| size | 弹层尺寸 | `"default"` \| `"small"` | `"default"` |
+| content | 指定提示的内容，当然你也可以用`content`扩展点指定 | `String` \| `VNode` | `undefined` |
 | okText     | “确认”按钮文案                    | `string` | `"确认"` |
 | cancelText | “取消”按钮文案                    | `string` | `"取消"` |
 

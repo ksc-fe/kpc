@@ -38,7 +38,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | title | 弹窗标题 | `string` | `"提示"` |
 | value | 弹窗是否展示出来 | `boolean` | `false` |
-| size | 弹窗尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| size | 弹窗尺寸 | `"large"` \| `"default"` \| `"small"` \| `"mini"` | `"default"` |
 | loading | “确定”按钮是否为加载状态 | `boolean` | `false` |
 | disabledOk | “确定”按钮是否为禁用状态 | `boolean` | `false` |
 | okText | “确定”按钮文案 | `string` | `"确定"` |
@@ -51,8 +51,8 @@ sidebar: doc
 | closable | 点击遮罩层是否可以关闭弹窗 | `boolean` | `true` |
 | terminate | 指定在用户点击“关闭”按钮，点击遮罩层或者按ESC键时的回调函数 | `() => void` | `undefined` |
 | escClosable | 是否按ESC时关闭弹窗 | `boolean` | `true` |
-| width | 指定弹窗宽度，`number`类型时，单位为`px`；`string`类型时，需要指定单位 | `number` &#124; `string` | `undefined` |
-| mode | 指定主体元素在关闭状态下的渲染方式，`"destroy"`代表直接销毁，`"hide"`代表只是隐藏 | `"destroy"` &#124; `"hide"` | `"hide"` |
+| width | 指定弹窗宽度，`number`类型时，单位为`px`；`string`类型时，需要指定单位 | `number` \| `string` | `undefined` |
+| mode | 指定主体元素在关闭状态下的渲染方式，`"destroy"`代表直接销毁，`"hide"`代表只是隐藏 | `"destroy"` \| `"hide"` | `"hide"` |
 | draggable | 弹窗是否可拖拽 | `boolean` | `true` |
 
 ```ts
@@ -98,8 +98,8 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| content | 弹窗内容 | `string` &#124; `VNode` &#124; <code>Array&lt;string &#124; VNode&gt;</code> | `undefined` |
-| size | 弹窗尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| content | 弹窗内容 | `string` \| `VNode` \| <code>Array&lt;string \| VNode&gt;</code> | `undefined` |
+| size | 弹窗尺寸 | `"large"` \| `"default"` \| `"small"` \| `"mini"` | `"default"` |
 | hideIcon | 是否隐藏提示图标 | `boolean` | `false` |
 | hideFooter | 是否隐藏底部按钮 | `boolean` | `false` |
 | ref | 传入一个函数，组件会调用该函数，将当前`Dialog`实例传入 | `(i: Dialog) => void` | `undefined` |

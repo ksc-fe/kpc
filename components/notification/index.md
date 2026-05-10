@@ -12,13 +12,13 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| title | 通知标题 | `string` &#124; `VNode` | `undefined` |
-| content | 通知内容 | `string` &#124; `VNode` | `undefined` |
+| title | 通知标题 | `string` \| `VNode` | `undefined` |
+| content | 通知内容 | `string` \| `VNode` | `undefined` |
 | duration | 通知展示多长时间后自动关闭，当传入`0`时，通知将会一直展示。单位ms | `number` | `4500` |
-| type | 通知类型 | `"info"` &#124; `"error"` &#124; `"success"` &#124; `"warning"` &#124; `""` | `""` |
+| type | 通知类型 | `"info"` \| `"error"` \| `"success"` \| `"warning"` \| `""` | `""` |
 | closable | 是否显示关闭按钮 | `boolean` | `true` |
-| icon | 自定义图标，可以传入组件库支持的Icon类名（string）或自定义VNode。当指定了四种type之一时，会优先使用type对应的图标 | `string` &#124; `VNode` | `undefined` |
-| position | 通知位置 | `"topRight"` &#124; `"topLeft"` &#124; `"bottomRight"` &#124; `"bottomLeft"` &#124; `"top"` &#124; `"bottom"` | `"topRight"` |
+| icon | 自定义图标，可以传入组件库支持的Icon类名（string）或自定义VNode。当指定了四种type之一时，会优先使用type对应的图标 | `string` \| `VNode` | `undefined` |
+| position | 通知位置 | `"topRight"` \| `"topLeft"` \| `"bottomRight"` \| `"bottomLeft"` \| `"top"` \| `"bottom"` | `"topRight"` |
 | className | 自定义类名 | `string` | `undefined` |
 | onClick | 点击通知的回调函数 | `(e: MouseEvent) => void` | `undefined` |
 | onClose | 通知关闭的回调函数(主动关闭、延时到达关闭都会触发) | `() => void` | `undefined` |

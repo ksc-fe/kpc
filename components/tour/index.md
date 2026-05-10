@@ -18,7 +18,7 @@ sidebar: doc
 | maskClosable | 点击遮罩层是否可关闭 | `boolean` | `true` |
 | closable | 是否展示关闭图标 | `boolean` | `true` |
 | doneText | 完成按钮文本 | `string` | `"完成"` |
-| theme | 指定主题 | `"light"` &#124; `"dark"` | `"light"` |
+| theme | 指定主题 | `"light"` \| `"dark"` | `"light"` |
 | showArrow | 是否展示箭头 | `boolean` | `true` |
 
 ## TourStep

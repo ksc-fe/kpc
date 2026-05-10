@@ -11,8 +11,8 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 轴点颜色类型 | `"primary"` &#124; `"success"` &#124; `"danger"` &#124; `"warning"` | `"primary"` |
-| size | 轴点的大小 | `"default"` &#124; `"large"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| type | 轴点颜色类型 | `"primary"` \| `"success"` \| `"danger"` \| `"warning"` | `"primary"` |
+| size | 轴点的大小 | `"default"` \| `"large"` \| `"small"` \| `"mini"` | `"default"` |
 
 # 扩展点
 

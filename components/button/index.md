@@ -11,14 +11,14 @@ sidebar: doc
 
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| type | 按钮类型 | `"default"` &#124; `"primary"` &#124; `"warning"` &#124; `"danger"` &#124; `"success"` &#124; `"none"` &#124; `"secondary" `&#124; `"link"` &#124; `"flat"` | `"default"` |
-| size | 按钮尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| type | 按钮类型 | `"default"` \| `"primary"` \| `"warning"` \| `"danger"` \| `"success"` \| `"none"` \| `"secondary" `\| `"link"` \| `"flat"` | `"default"` |
+| size | 按钮尺寸 | `"large"` \| `"default"` \| `"small"` \| `"mini"` | `"default"` |
 | icon | 是否为图标按钮（宽高相等）| `boolean` | `false` |
 | circle | 是否为圆角按钮 | `boolean` | `false` |
 | loading | 是否为正在加载中的按钮，加载状态的按钮不可点击 | `boolean` | `false` |
 | disabled | 是否禁用状态 | `boolean` | `false` |
 | fluid | 是否宽度100% | `boolean` | `false` |
-| htmlType | 按钮`<button>`元素的`type` | `"submit"` &#124; `"reset"` &#124; `"button"` | `"button"` |
+| htmlType | 按钮`<button>`元素的`type` | `"submit"` \| `"reset"` \| `"button"` | `"button"` |
 | tagName | 按钮渲染后的实际html元素，例如我们可以传入`"a"`来渲染成超链接 | `string` | `button` |
 | value | 对于`radio/checkbox`类型的按钮组，我们可以给每个按钮指定一个选中时的值 | `*` | `undefined` |
 | name | 对于`radio/checkbox`类型的按钮组，按钮内部会渲染一个原生的`input`元素，该属性将作为`input`的`name`属性值 | `string` | `undefined` |
@@ -33,12 +33,12 @@ sidebar: doc
 | 属性 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | vertical | 是否垂直排列按钮组 | `boolean` | `false` |
-| checkType | 指定按钮组为单选或复选类型，此时需要给每个按钮指定`value`来作为选中的值 | `"radio"` &#124; `"checkbox"` &#124; `"none"` | `"none"` |
+| checkType | 指定按钮组为单选或复选类型，此时需要给每个按钮指定`value`来作为选中的值 | `"radio"` \| `"checkbox"` \| `"none"` | `"none"` |
 | value | 对于`radio`和`checkbox`类型按钮组，该值表示选中的按钮的值，可以使用`v-model`进行双向绑定 | `*` | `undefined` |
 | fluid | 是否宽度100% | `boolean` | `false` |
 | seperate | 是否展示间隔，此属性为错别字，将会在下个版本被删除，请使用正确的属性 `separate`，若两个属性同时使用，则会优先使用`separate`属性 | `boolean` | `false` |
 | separate | 是否展示间隔 | `boolean` | `false` |
-| btnWidth | 指定按钮组每个按钮的固定宽度，默认根据内容撑开 | `number` &#124; `string` | `undefined` |
+| btnWidth | 指定按钮组每个按钮的固定宽度，默认根据内容撑开 | `number` \| `string` | `undefined` |
 
 # 方法
 

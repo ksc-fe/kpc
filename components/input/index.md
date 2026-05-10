@@ -19,15 +19,15 @@ sidebar: doc
 | readonly | 是否只读 | `boolean` | `false` |
 | clearable | 是否展示快速清除按钮 | `boolean` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
-| size | 组件尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
-| rows | 当`type = "textarea"`时，默认展示文本行数 | `number` &#124; `string` | `2` |
+| size | 组件尺寸 | `"large"` \| `"default"` \| `"small"` \| `"mini"` | `"default"` |
+| rows | 当`type = "textarea"`时，默认展示文本行数 | `number` \| `string` | `2` |
 | autoWidth | 是否宽度随输入的文本的长度变化而变化 | `boolean` | `false` |
 | fluid | 是否宽度100% | `boolean` | `false` |
-| width | 指定宽度，组件会加上单位`px` | `string`  &#124; `number` | `undefined` |
+| width | 指定宽度，组件会加上单位`px` | `string`  \| `number` | `undefined` |
 | stackClearIcon | 是否将清空按钮覆盖在`suffix`按钮上展示来节省空间 | `boolean` | `false` |
 | frozenOnInput | 是否在输入的过程中冻结`value`更新到视图 | `boolean` | `false` |
 | inline | 是否展示内联模式 | `boolean` | `false` |
-| resize | 指定textarea输入框拖动调整大小的方向，默认只能垂直方向调整 | `"none"` &#124; `"vertical"` &#124; `"horizontal"` &#124; `"both"`' | `"vertical"` |
+| resize | 指定textarea输入框拖动调整大小的方向，默认只能垂直方向调整 | `"none"` \| `"vertical"` \| `"horizontal"` \| `"both"`' | `"vertical"` |
 | flat | 是否展示扁平样式 | `boolean` | `false` |
 | showCount | 是否展示字符长度提示数字 | `boolean` | `false` |
 | showPassword | 是否显示密码切换按钮（type 为 password 时） | `boolean` | `false` |
@@ -38,8 +38,8 @@ sidebar: doc
 | --- | --- | --- | --- |
 | value | 组件输入的值 | `string` | `""` |
 | placeholder | 展位文案 | `string` | `"请输入关键字"` |
-| type | 类型 | `"default"` &#124; `"line"` | `"default"` |
-| size | 尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| type | 类型 | `"default"` \| `"line"` | `"default"` |
+| size | 尺寸 | `"large"` \| `"default"` \| `"small"` \| `"mini"` | `"default"` |
 | open | 是否展开状态 | `boolean` | `false` |
 
 # 扩展点
