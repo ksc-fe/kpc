@@ -13,7 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | value | 当前选择的元素，可用`v-model`双向绑定 | `any` | `""` |
 | multiple | 是否支持多选 | `boolean` | `false` |
-| filterable | 是否支持筛选 | `boolean` | `false` |
+| filterable | 是否支持筛选，与`searchable`不同的是，`filterable`是直接在当前输入框中输入筛选关键词，而`searchable`是在选择菜单弹出后展示的输入框中输入 | `boolean` | `false` |
 | loading | 数据加载状态 | `boolean` | `false` |
 | disabled | 是否禁用 | `boolean` | `false` |
 | name | 表单元素的`name` | `string` | `undefined` |
@@ -25,7 +25,7 @@ sidebar: doc
 | placeholder | 占位文案 | `string` | `"请选择"` |
 | container | 指定弹出菜单追加的位置，默认：`Dialog`类型的组件会追加到`Dialog`中，其他会追加到`body`中。你可以传入函数返回一个DOM用来作为插入的容器，或者传入字符串用来给`querySelector`进行查询 | `Container` | `undefined` |
 | width | 指定宽度，组件自动添加单位`px` | `number` \| `string` | `undefined` | 
-| filter | 当支持筛选时，可以自定义筛选规则 | `(keywords: string, props: any) => boolean` | `(keywords: string, props: any) => props.label.toLowerCase().includes(keywords) || props.value.toLowerCase().includes(keywords)` |
+| filter | 当支持筛选时，可以自定义筛选规则，默认根据`label`和`value`进行筛选，同时作用于`filterable`和`searchable` | `(keywords: string, props: any) => boolean` | `(keywords: string, props: any) => props.label.toLowerCase().includes(keywords) \|\| props.value.toLowerCase().includes(keywords)` |
 | searchable | 是否将在弹出菜单中展示搜索框 | `boolean` | `false` |
 | creatable | 是否支持创建新的选项，可以配合`filterable`使用 | `boolean` | `false` |
 | labelMap | 建立值`value`到展示标签`label`的映射，可以在`value`不在`Option`集合中时，依然能够正确展示相应的`label` | `Map<any, string>` | `new Map()` |
