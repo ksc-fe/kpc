@@ -37,6 +37,7 @@ sidebar: doc
 | flat | 是否展示扁平样式 | `boolean` | `false` |
 | draggable | 多选值是否支持拖动排序 | `boolean` | `false` |
 | virtual | 是否开启虚拟列表 | `boolean` | `false` |
+| nowrap |  是否单行展示标签组，超出的部分会隐藏，仅展示隐藏数量 | `boolean` | `flase` |
 
 ```ts
 type Position = {

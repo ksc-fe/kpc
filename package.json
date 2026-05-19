@@ -7,6 +7,9 @@
     "node": "^14 || ^16"
   },
   "scripts": {
+    "sft:component": "node scripts/sft/generateComponentSft.js prepare",
+    "sft:component:generate": "node scripts/sft/generateComponentSft.js generate",
+    "sft:component:validate": "node scripts/sft/generateComponentSft.js validate",
     "test": "karma start test/karma.conf.js",
     "snapshots": "cross-env UPDATE=1 npm run test",
     "test:all": "lerna exec -- npm run test",
@@ -183,7 +186,7 @@
     "dompurify": "2.5.8",
     "enquire.js": "^2.1.6",
     "highlight.js": "10.7.3",
-    "intact": "^3.0.45",
+    "intact": "^3.0.46",
     "katex": "^0.16.45",
     "markdown-it": "14.1.0",
     "markdown-it-texmath": "^1.0.0",

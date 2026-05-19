@@ -39,6 +39,7 @@ const typeDefs: Required<TypeDefs<Omit<FormProps, keyof FormHTMLAttributes>>> = 
 const defaults = (): Partial<FormProps> => ({
     layout: 'horizontal',
     size: 'default',
+    starOnRequired: false,
 });
 
 export const FORM = 'Form';

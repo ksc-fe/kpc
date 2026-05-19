@@ -15,9 +15,11 @@ sidebar: doc
 | visible | 是否展示引导组件 | `boolean` | `true` |
 | data | 步骤数据数组，用于数据驱动方式 | `TourStepData[]` | `undefined` |
 | beforeChange | 步骤切换前的回调函数，返回false可阻止切换 | `(current: number) => boolean \| Promise<boolean>` | `undefined` |
-| maskClosable | 点击遮罩层是否可关闭 | `boolean` | `false` |
+| maskClosable | 点击遮罩层是否可关闭 | `boolean` | `true` |
 | closable | 是否展示关闭图标 | `boolean` | `true` |
 | doneText | 完成按钮文本 | `string` | `"完成"` |
+| theme | 指定主题 | `"light"` &#124; `"dark"` | `"light"` |
+| showArrow | 是否展示箭头 | `boolean` | `true` |
 
 ## TourStep
 
@@ -37,6 +39,7 @@ sidebar: doc
 | prev | 点击上一步按钮时触发 | `(index: number)` |
 | next | 点击下一步按钮时触发 | `(index: number)` |
 | finish | 引导完成时触发 | - |
+| positioned | 定位完成后触发 | `(feedback: Feedback) => void` |
 
 # 扩展点
 
@@ -45,4 +48,6 @@ sidebar: doc
 | 名称 | 说明 |
 | --- | --- |
 | title | 自定义标题内容 |
+| header | 自定义头部内容 |
+| content | 自定义内容 |
 | footer | 自定义底部内容 |

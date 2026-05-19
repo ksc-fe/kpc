@@ -40,7 +40,7 @@
     "dompurify": "2.5.8",
     "enquire.js": "^2.1.6",
     "highlight.js": "10.7.3",
-    "intact-react": "3.0.45",
+    "intact-react": "3.0.46",
     "katex": "^0.16.45",
     "markdown-it": "14.1.0",
     "markdown-it-texmath": "^1.0.0",

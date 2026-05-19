@@ -22,7 +22,7 @@ import {VNode} from 'intact';
 export interface DescriptionItemProps {
     label?: string | number | VNode
     content?: string | number | VNode
-    option?: string | number | VNode
+    append?: string | number | VNode
 }
 ```
 
@@ -34,7 +34,7 @@ export interface DescriptionItemProps {
 | content | 包含内容 | `string` &#124; `number` &#124; `VNode` | `undefined` |
 | append | 自定义内容 | `string` &#124; `number` &#124; `VNode` | `undefined` |
 
-# 拓展点
+# 扩展点
 
 ## Descriptions
 

@@ -69,6 +69,7 @@ packages/kpc-angular/hooks
 
 es/
 build/
+markdowns/
 .cursor
 .claude
 play/

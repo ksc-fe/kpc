@@ -63,8 +63,17 @@ export declare type ClassName = string | ((value: any, param: any) => string)
 | --- | --- | --- | --- |
 | validate | 验证表单所有规则 | - | `Promise<boolean>`: `.then(valid => {})`，`valid`为`true`验证成功，否则失败 |
 | reset | 重置表单验证状态 | - | `undefined` |
+| submit | 提交表单并验证 | `(e: Event)` | `void` |
 | getFirstInvalidFormItem | 获取第一条校验失败的`FormItem` | - | `FormItem` |
 | getAllInvalidFormItems | 获取所有校验失败的`FormItem` | - | `FormItem[]` |
+
+## FormItem
+
+| 方法名 | 说明 | 参数 | 返回值 |
+| --- | --- | --- | --- |
+| validate | 验证当前表单项 | - | `Promise<boolean>` |
+| isValid | 当前表单项是否验证通过 | - | `boolean` |
+| reset | 重置表单项验证状态 | - | `void` |
 
 # 静态方法
 

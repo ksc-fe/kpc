@@ -17,4 +17,5 @@ sidebar: doc
 
 | 事件名 | 说明 | 参数 |
 | --- | --- | --- |
+| click | 点击时触发（无论值是否变化） | `(e: MouseEvent) => void` |
 | change | 当点击组件导致值变化时触发 | `(value: any, e: MouseEvent) => void` |
