@@ -1,0 +1,60 @@
+{
+  "name": "@king-design/ai-vue-legacy",
+  "version": "3.7.0",
+  "description": "King-Design AI conversation components for Vue2.",
+  "keywords": [
+    "component",
+    "intact",
+    "vue",
+    "ui",
+    "components",
+    "library",
+    "king-design",
+    "kpc",
+    "ai"
+  ],
+  "author": "Javey <jiawei23716@sina.com>",
+  "homepage": "https://design.ksyun.com",
+  "license": "MIT",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksc-fe/kpc.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "test": "../../node_modules/.bin/karma start ./__tests__/karma.conf.js",
+    "snapshots": "../../node_modules/.bin/cross-env UPDATE=1 npm run test"
+  },
+  "bugs": {
+    "url": "https://github.com/ksc-fe/kpc/issues"
+  },
+  "dependencies": {
+    "@babel/runtime-corejs3": "^7.16.0",
+    "@emotion/css": "^11.5.0",
+    "dayjs": "^1.10.7",
+    "dompurify": "2.5.8",
+    "enquire.js": "^2.1.6",
+    "highlight.js": "10.7.3",
+    "intact-vue": "3.0.45",
+    "katex": "^0.16.45",
+    "markdown-it": "14.1.0",
+    "markdown-it-texmath": "^1.0.0",
+    "mermaid": "^9.1.2",
+    "monaco-editor": "^0.26.1",
+    "mxgraphx": "^4.0.7",
+    "resize-observer-polyfill": "^1.5.1",
+    "tinycolor2": "^1.4.2",
+    "tslib": "^2.3.1"
+  },
+  "sideEffects": [
+    "./styles/**/*"
+  ],
+  "devDependencies": {
+    "vue": "^2.6.14"
+  }
+}

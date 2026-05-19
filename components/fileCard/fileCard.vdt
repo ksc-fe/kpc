@@ -1,0 +1,198 @@
+import {Icon} from '../icon';
+import {Media} from '../media';
+import {getRestProps, isEmptyString} from '../utils';
+import {makeStyles} from './styles';
+import {_$} from '../../i18n';
+import {isInvalid, noop} from 'intact-shared';
+
+const {
+    getRootClassNameObj,
+    getProgressStyle,
+    onClick,
+    isMediaType,
+    shouldShowDeleteButton,
+    onDelete,
+    getValue,
+    onPreview,
+    isError,
+    getMediaLoadingText,
+    getMediaErrorText,
+    getMediaErrorArtworkIconSrc,
+    shouldShowMediaStatusLayer,
+    shouldRenderMediaErrorArtwork,
+    shouldUseMediaErrorArtworkLayout,
+    shouldShowVisualMediaProgressText,
+    getMediaProgressText,
+    getFileBadgeClassName,
+    getFileBadgeText,
+    hasCustomIcon,
+    getIconSource,
+    hasBuiltinIcon,
+    getBuiltinIconSource,
+    getFileName,
+    getFileTitleText,
+    getNamePrefix,
+    hasNameSuffix,
+    getNameSuffix,
+    shouldShowMiniFileStatusTitle,
+    getDisplayDescription,
+    getMediaType,
+    getFileMediaType,
+    getMediaStatus,
+    getMediaShowPreview,
+    onMediaError,
+    getMediaSize,
+    getFileMediaSize,
+    shouldShowFileMedia,
+} = this.model;
+
+const {
+    className, style,
+} = this.get();
+const {k} = this.config;
+const maskBlock = $blocks.mask;
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || isEmptyString(value)) return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const value = getValue();
+const shouldShowFileContent = !isMediaType();
+const descriptionSlot = shouldShowFileContent && $blocks.description ? $blocks.description(noop, value) : undefined;
+const fileMaskSlot = shouldShowFileContent && maskBlock ? maskBlock(noop, value) : undefined;
+const hasDescriptionSlot = !isEmptySlot(descriptionSlot);
+const hasFileMaskSlot = !isEmptySlot(fileMaskSlot);
+const isMini = (this.get('size') || 'default') === 'mini';
+const showDescription = !isMini && (hasDescriptionSlot || !!getDisplayDescription());
+const classNameObj = {
+    [`${k}-file-card`]: true,
+    [className]: className,
+    [makeStyles(k)]: true,
+    ...getRootClassNameObj(),
+};
+
+<div
+    class={classNameObj}
+    {...getRestProps(this)}
+    style={style}
+    ev-click={onClick}
+>
+    <div
+        class={`${k}-file-card-delete`}
+        title={_$('删除')}
+        v-if={shouldShowDeleteButton()}
+        ev-click={onDelete}
+    >
+        <Icon class={`${k}-icon-close-bold`} color="inherit" />
+    </div>
+
+    <template v-if={!shouldShowFileContent}>
+        <div class={`${k}-file-card-media-shell`}>
+            <Media
+                className={`${k}-file-card-media-view`}
+                name={getFileName()}
+                type={getMediaType()}
+                status={getMediaStatus()}
+                src={this.get('src')}
+                poster={this.get('poster')}
+                size={getMediaSize()}
+                showPreview={getMediaShowPreview()}
+                showNameTooltip={this.get('showNameTooltip')}
+                imageProps={this.get('imageProps')}
+                videoProps={this.get('videoProps')}
+                audioProps={this.get('audioProps')}
+                ev-preview={onPreview}
+                ev-loadError={onMediaError}
+            >
+                <b:error>
+                    <div class={`${k}-file-card-media-error-artwork-content`} v-if={shouldRenderMediaErrorArtwork()}>
+                        <img
+                            class={`${k}-file-card-media-error-artwork-icon`}
+                            src={getMediaErrorArtworkIconSrc()}
+                            alt=""
+                            draggable={false}
+                        />
+                        <span class={`${k}-file-card-error-text ${k}-file-card-media-error-artwork-text`}>{getMediaErrorText()}</span>
+                    </div>
+                </b:error>
+                <b:mask args="media">
+                    {maskBlock && maskBlock(noop, media)}
+                </b:mask>
+            </Media>
+            <div class={`${k}-file-card-media-status-layer`} v-if={shouldShowMediaStatusLayer() && !shouldUseMediaErrorArtworkLayout()}>
+                <span
+                    class={{
+                        [`${k}-file-card-media-loading-text`]: !isError(),
+                        [`${k}-file-card-error-text`]: isError(),
+                    }}
+                >{isError() ? getMediaErrorText() : getMediaLoadingText()}</span>
+            </div>
+            <div class={`${k}-file-card-media-progress-text`} v-if={shouldShowVisualMediaProgressText()}>{getMediaProgressText()}</div>
+        </div>
+    </template>
+
+    <template v-else>
+        <div class={`${k}-file-card-file-shell`} style={getProgressStyle()}>
+            <div class={`${k}-file-card-file-main`}>
+                <Media
+                    className={`${k}-file-card-file-media-view`}
+                    name={getFileName()}
+                    type={getFileMediaType()}
+                    src={this.get('src')}
+                    poster={this.get('poster')}
+                    size={getFileMediaSize()}
+                    showPreview={this.get('showPreview')}
+                    showNameTooltip={false}
+                    imageProps={this.get('imageProps')}
+                    videoProps={this.get('videoProps')}
+                    audioProps={this.get('audioProps')}
+                    ev-preview={onPreview}
+                    v-if={shouldShowFileMedia()}
+                />
+                <div class={`${k}-file-card-file-icon ${k}-file-card-file-icon-${getFileBadgeClassName()}`} v-else>
+                    <img
+                        class={`${k}-file-card-file-icon-img`}
+                        src={getIconSource()}
+                        alt={getFileName()}
+                        v-if={hasCustomIcon()}
+                    />
+                    <b:icon v-else-if={$blocks.icon} params={getValue()} />
+                    <img
+                        class={`${k}-file-card-file-icon-img`}
+                        src={getBuiltinIconSource()}
+                        alt={getFileName()}
+                        v-else-if={hasBuiltinIcon()}
+                    />
+                    <span v-else>{getFileBadgeText()}</span>
+                </div>
+
+                <div class={`${k}-file-card-file-content`}>
+                    <div class={`${k}-file-card-title`} title={getFileTitleText()}>
+                        <span
+                            class={{
+                                [`${k}-file-card-title-prefix`]: true,
+                                [`${k}-file-card-title-status`]: true,
+                                [`${k}-file-card-title-status-error`]: isError(),
+                            }}
+                            v-if={shouldShowMiniFileStatusTitle()}
+                        >{getFileTitleText()}</span>
+                        <template v-else>
+                            <span class={`${k}-file-card-title-prefix`}>{getNamePrefix()}</span>
+                            <span class={`${k}-file-card-title-suffix`} v-if={hasNameSuffix()}>{getNameSuffix()}</span>
+                        </template>
+                    </div>
+                    <div class={`${k}-file-card-description`} v-if={showDescription}>
+                        <template v-if={hasDescriptionSlot}>{descriptionSlot}</template>
+                        <span v-else>{getDisplayDescription()}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class={`${k}-file-card-mask ${k}-file-card-file-mask`} v-if={hasFileMaskSlot}>
+                {fileMaskSlot}
+            </div>
+        </div>
+    </template>
+</div>

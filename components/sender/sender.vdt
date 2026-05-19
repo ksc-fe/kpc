@@ -1,0 +1,250 @@
+import {FileCardList} from '../fileCard';
+import {Icon} from '../icon';
+import {addStyle, getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {senderSendIcon, senderStopIcon, senderAttachSvg} from './icons';
+import {_$} from '../../i18n';
+import {isInvalid, isNumber, noop} from 'intact-shared';
+
+const {
+    isFocus,
+    isDisabled,
+    isGenerating,
+    isLoading,
+    isSendButtonDisabled,
+    handleKeydown,
+    handleInput,
+    handleFocus,
+    handleBlur,
+    handleSendClick,
+    send,
+    stopGenerate,
+} = this.input;
+
+const {
+    getAcceptAttr,
+    isMultiple,
+    onInputChange,
+    pickFiles,
+    removeAttachment,
+} = this.upload;
+const dragController = this.dragController;
+const {handlePaste} = this.pasteController;
+
+let {
+    className, style, value, placeholder, readonly,
+    width, maxHeight, type, dragFile: enableDragFile,
+    attachments, showAttachmentsButton, uploadProps,
+} = this.get();
+const {k} = this.config;
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || value === undefined || value === null || value === '') return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const renderSlot = (name) => $blocks[name] ? $blocks[name](noop) : undefined;
+const headerSlot = renderSlot('header');
+const footerSlot = renderSlot('footer');
+const beforeInputSlot = renderSlot('beforeInput');
+const configureSlot = renderSlot('configure');
+const attachmentsButtonSlot = renderSlot('attachmentsButton');
+const hasHeaderSlot = !isEmptySlot(headerSlot);
+const hasFooterSlot = !isEmptySlot(footerSlot);
+const hasBeforeInputSlot = !isEmptySlot(beforeInputSlot);
+const hasConfigureSlot = !isEmptySlot(configureSlot);
+const hasAttachmentsButtonSlot = !isEmptySlot(attachmentsButtonSlot);
+
+const disabled = isDisabled();
+const generating = isGenerating();
+const loading = isLoading();
+const sendDisabled = isSendButtonDisabled();
+const list = attachments || [];
+const hasAttachments = list.length > 0;
+const limit = uploadProps && uploadProps.limit;
+const reachLimit = limit !== undefined && limit !== null && list.length >= Number(limit);
+const isImage = type === 'image';
+const isDirectory = !!(uploadProps && uploadProps.directory);
+
+// 文本模式下，所有附件统一按「文件卡」呈现，避免引入额外的文件夹展示语义。
+// 图片模式下把 type 交给 FileCard 自动识别（基于 name/src），避免业务透传 MIME 干扰媒体类型判断。
+const renderItems = isImage
+    ? list.map(it => ({...it, type: undefined}))
+    : list.map(it => ({...it, type: 'file'}));
+
+// 图片模式即便没有附件也要展示 FileCardList，用来承载末尾的虚线 + 框。
+const showAttachmentsArea = isImage || hasAttachments;
+// 图片模式下不展示左下默认附件按钮，由 FileCardList 末尾的 + 框替代；用户自定义 slot 仍可保留。
+const showDefaultAttachBtn = !isImage && !$blocks.attachmentsButton && showAttachmentsButton !== false;
+const showAttachSlot = !isImage && hasAttachmentsButtonSlot;
+const showToolbarLeft = showAttachSlot || showDefaultAttachBtn;
+const onAttachmentClick = (item, e) => {
+    this.trigger('attachmentClick', item, e);
+};
+const onAttachmentDelete = (item, e) => {
+    this.trigger('attachmentDelete', item, e);
+    removeAttachment(item);
+};
+
+const classNameObj = {
+    [`${k}-sender`]: true,
+    [`${k}-sender-${type}`]: true,
+    [`${k}-sender-disabled`]: disabled,
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+// 整个输入外框 k-sender 的宽度
+if (width != null) {
+    style = addStyle(style, {width: isNumber(width) ? `${width}px` : width});
+}
+
+// 整个输入外框 k-sender-shell 的最大高度（与 props maxHeight 一致）；未传时走 styles 中默认 300
+const shellStyle = maxHeight != null
+    ? {maxHeight: isNumber(maxHeight) ? `${maxHeight}px` : maxHeight}
+    : undefined;
+
+const placeholderText = placeholder != null ? placeholder : _$('输入对话内容（Enter发送， Shift + Enter 换行）');
+
+const defaultSendButton = (
+    <button
+        type="button"
+        class={`${k}-sender-send-btn`}
+        disabled={!generating && sendDisabled}
+        ev-click={handleSendClick}
+        title={generating ? _$('停止生成') : _$('发送')}
+        aria-label={generating ? _$('停止生成') : _$('发送')}
+    >
+        <img
+            class={`${k}-sender-send-icon`}
+            src={generating ? senderStopIcon : senderSendIcon}
+            alt=""
+            draggable={false}
+        />
+    </button>
+);
+
+const defaultAttachButton = (
+    <button
+        type="button"
+        class={`${k}-sender-attach-btn`}
+        disabled={disabled}
+        ev-click={pickFiles}
+        title={isDirectory ? _$('上传文件夹') : _$('上传附件')}
+        aria-label={isDirectory ? _$('上传文件夹') : _$('上传附件')}
+        innerHTML={senderAttachSvg}
+    />
+);
+
+// type='image' 末尾的虚线 + 框，与 Upload 画廊的 + 卡片视觉等效；点击触发文件选择。
+const imageAddBox = (
+    <div
+        class={{
+            [`${k}-sender-image-add`]: true,
+            [`${k}-sender-image-add-disabled`]: disabled,
+        }}
+        ev-click={disabled ? undefined : pickFiles}
+        role="button"
+        title={_$('上传图片')}
+        aria-label={_$('上传图片')}
+    >
+        <Icon class={`${k}-icon-add-bold`} size="large" />
+    </div>
+);
+
+const sendButtonSlotParams = {
+    generating, disabled: sendDisabled, loading, send, stopGenerate,
+};
+
+<div class={classNameObj} {...getRestProps(this)} style={style}>
+    <div class={`${k}-sender-header`} v-if={hasHeaderSlot}>
+        {headerSlot}
+    </div>
+    <div
+        class={{[`${k}-sender-shell`]: true, [`${k}-sender-active`]: isFocus.value && !disabled}}
+        style={shellStyle}
+    >
+        <div class={{
+            [`${k}-sender-attachments`]: true,
+            [`${k}-sender-attachments-${type}`]: true,
+        }} v-if={showAttachmentsArea}>
+            <FileCardList
+                v-if={isImage}
+                items={renderItems}
+                deleteable={true}
+                overflow="scrollY"
+                ev-click={onAttachmentClick}
+                ev-delete={onAttachmentDelete}
+            >
+                <b:extension>
+                    {!disabled && !reachLimit ? imageAddBox : undefined}
+                </b:extension>
+            </FileCardList>
+            <FileCardList
+                v-else
+                items={renderItems}
+                deleteable={true}
+                overflow="scrollY"
+                ev-click={onAttachmentClick}
+                ev-delete={onAttachmentDelete}
+            />
+        </div>
+
+        <div class={`${k}-sender-before-input`} v-if={hasBeforeInputSlot}>
+            {beforeInputSlot}
+        </div>
+
+        <div class={`${k}-sender-input-area`}>
+            <textarea
+                ref={this.textareaRef}
+                class={`${k}-sender-input`}
+                rows={1}
+                value={value}
+                placeholder={placeholderText}
+                disabled={disabled}
+                readOnly={readonly}
+                ev-input={handleInput}
+                ev-keydown={handleKeydown}
+                ev-paste={handlePaste}
+                ev-focus={handleFocus}
+                ev-blur={handleBlur}
+            />
+        </div>
+
+        <div class={`${k}-sender-toolbar`}>
+            <div class={`${k}-sender-toolbar-left`} v-if={showToolbarLeft}>
+                <template v-if={showAttachSlot}>{attachmentsButtonSlot}</template>
+                <template v-else-if={showDefaultAttachBtn}>{defaultAttachButton}</template>
+            </div>
+            <div class={`${k}-sender-toolbar-middle`} v-if={hasConfigureSlot}>
+                {configureSlot}
+            </div>
+            <div class={`${k}-sender-toolbar-right`}>
+                <b:sendButton v-if={$blocks.sendButton} params={sendButtonSlotParams} />
+                <template v-else>{defaultSendButton}</template>
+            </div>
+        </div>
+
+        <!-- 放末尾，避免挡住 attachments + input-area 等相邻选择器，且 absolute 不影响布局 -->
+        <input
+            type="file"
+            class={`${k}-sender-file-input`}
+            ref={this.fileInputRef}
+            accept={getAcceptAttr()}
+            multiple={isMultiple()}
+            directory={isDirectory ? '' : undefined}
+            webkitdirectory={isDirectory ? '' : undefined}
+            ev-change={onInputChange}
+        />
+    </div>
+    <div class={`${k}-sender-footer`} v-if={hasFooterSlot}>
+        {footerSlot}
+    </div>
+    <div class={`${k}-sender-drag-mask`} v-if={enableDragFile && dragController.dragOver.value} aria-hidden="true">
+        <div class={`${k}-sender-drag-card`}>
+            <Icon class={`${k}-icon-upload`} size="large" />
+            <div class={`${k}-sender-drag-text`}>{_$('文件拖动到此处即可上传')}</div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+import {isInvalid, noop} from 'intact-shared';
+import {getRestProps, isEmptyString} from '../utils';
+import {makeStyles} from './styles';
+import {FileCard} from './fileCard';
+
+const {
+    getClassNameObj,
+    getItemKey,
+    getItemSize,
+    shouldShowDelete,
+    shouldShowNameTooltip,
+    onItemPreview,
+    onItemDelete,
+    onItemClick,
+} = this.list;
+
+const {
+    className, items,
+} = this.get();
+const {k} = this.config;
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || isEmptyString(value)) return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const extensionSlot = $blocks.extension ? $blocks.extension(noop, items) : undefined;
+const hasExtensionSlot = !isEmptySlot(extensionSlot);
+const classNameObj = {
+    ...getClassNameObj(),
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <FileCard
+        v-for={items}
+        key={getItemKey($value, $key)}
+        name={$value.name}
+        type={$value.type}
+        status={$value.status}
+        src={$value.src}
+        poster={$value.poster}
+        description={$value.description}
+        errorText={$value.errorText}
+        loadingText={$value.loadingText}
+        byte={$value.byte}
+        percent={$value.percent}
+        showPreview={$value.showPreview}
+        showNameTooltip={shouldShowNameTooltip($value)}
+        showDelIcon={shouldShowDelete($value)}
+        icon={$value.icon}
+        size={getItemSize($value)}
+        imageProps={$value.imageProps}
+        videoProps={$value.videoProps}
+        audioProps={$value.audioProps}
+        ev-click={(value, e) => onItemClick($value, value, e)}
+        ev-preview={(value, e) => onItemPreview($value, value, e)}
+        ev-delete={(value, e) => onItemDelete($value, value, e)}
+    />
+
+    <div class={`${k}-file-card-list-extension`} v-if={hasExtensionSlot}>
+        {extensionSlot}
+    </div>
+</div>

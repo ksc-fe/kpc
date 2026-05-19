@@ -1,0 +1,244 @@
+import {Icon} from '../icon';
+import {Tooltip} from '../tooltip';
+import {isInvalid, noop} from 'intact-shared';
+import {getRestProps, addStyle, isEmptyString} from '../utils';
+import {MediaViewer} from './viewer';
+import {makeMediaStyles, makeMediaViewerStyles} from './styles';
+
+const {
+    getRootClassNameObj,
+    getRootStyle,
+    getFileName,
+    isLoading,
+    shouldShowImage,
+    shouldShowVideo,
+    shouldShowAudioLoader,
+    shouldShowAudioCard,
+    shouldShowErrorCard,
+    imageRef,
+    videoRef,
+    audioRef,
+    getImageProps,
+    getVideoProps,
+    getVideoKey,
+    getAudioLoaderProps,
+    getAudioCardAssetSrc,
+    getErrorCardAssetSrc,
+    getMediaCardIconStyle,
+    shouldShowLoadingIndicator,
+    shouldShowPlaceholder,
+    getPreviewIconClassName,
+    getPlaceholderIconClassName,
+    getPreviewTitle,
+    onClick,
+    onPreview,
+    canPreview,
+    shouldShowVideoPlayTrigger,
+    shouldShowMaskLayer,
+    getViewerItem,
+    getMaskValue,
+    isStandalonePreviewRendered,
+    isStandalonePreviewVisible,
+    closeStandalonePreview,
+    afterStandalonePreviewClose,
+} = this.media;
+
+const {
+    className, style,
+} = this.get();
+const {k} = this.config;
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || isEmptyString(value)) return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const renderSlot = (name, params) => $blocks[name] ? $blocks[name](noop, params) : undefined;
+const viewerItem = getViewerItem();
+const maskValue = getMaskValue();
+const loadingSlot = isLoading() ? renderSlot('loading', viewerItem) : undefined;
+const errorSlot = this.media.isError() ? renderSlot('error', viewerItem) : undefined;
+const maskSlot = shouldShowMaskLayer() ? renderSlot('mask', maskValue) : undefined;
+const hasLoadingSlot = !isEmptySlot(loadingSlot);
+const hasErrorSlot = !isEmptySlot(errorSlot);
+const hasMaskSlot = !isEmptySlot(maskSlot);
+const showCustomLoadingLayer = isLoading() && hasLoadingSlot;
+const showCustomErrorLayer = this.media.isError() && hasErrorSlot;
+const showCustomMaskLayer = hasMaskSlot && shouldShowMaskLayer();
+const showCustomStateLayer = showCustomLoadingLayer || showCustomErrorLayer;
+const showVideoPlayTrigger = shouldShowVideoPlayTrigger() && !showCustomStateLayer;
+const shouldShowOverlay = canPreview() || showCustomMaskLayer || showVideoPlayTrigger;
+const shouldShowDefaultPreviewTrigger = canPreview() || showVideoPlayTrigger;
+const shouldShowPreviewTriggerInOverlay = canPreview() && !showVideoPlayTrigger;
+const shouldShowStandalonePreviewTrigger = shouldShowDefaultPreviewTrigger && showVideoPlayTrigger;
+const showNameTooltip = this.get('showNameTooltip');
+const nameTooltipProps = {
+    theme: 'light',
+    ...(this.get('nameTooltipProps') || {}),
+};
+const mediaName = getFileName();
+const audioCard = (
+    <div class={`${k}-media-audio-card`}>
+        <img
+            class={`${k}-media-card-icon ${k}-media-audio-card-icon`}
+            src={getAudioCardAssetSrc()}
+            alt=""
+            draggable={false}
+            style={getMediaCardIconStyle()}
+        />
+    </div>
+);
+const errorCard = (
+    <div class={`${k}-media-error-card`}>
+        <img
+            class={`${k}-media-card-icon ${k}-media-error-card-icon`}
+            src={getErrorCardAssetSrc()}
+            alt=""
+            draggable={false}
+            style={getMediaCardIconStyle()}
+        />
+    </div>
+);
+const classNameObj = {
+    ...getRootClassNameObj(),
+    [`${k}-media-custom-loading`]: showCustomLoadingLayer,
+    [`${k}-media-custom-error`]: showCustomErrorLayer,
+    [`${k}-media-custom-mask`]: showCustomMaskLayer,
+    [className]: className,
+    [makeMediaStyles(k)]: true,
+};
+
+<div
+    class={classNameObj}
+    style={addStyle(style, getRootStyle())}
+    title={showNameTooltip ? undefined : getFileName()}
+    {...getRestProps(this)}
+    ev-click={onClick}
+>
+    <div class={`${k}-media-shell`}>
+        <img
+            class={`${k}-media-image`}
+            ref={imageRef}
+            {...getImageProps()}
+            v-if={shouldShowImage()}
+        />
+
+        <video
+            key={getVideoKey()}
+            class={`${k}-media-video`}
+            ref={videoRef}
+            {...getVideoProps()}
+            v-else-if={shouldShowVideo()}
+        ></video>
+
+        <audio
+            class={`${k}-media-audio-loader`}
+            ref={audioRef}
+            {...getAudioLoaderProps()}
+            v-if={shouldShowAudioLoader()}
+        ></audio>
+
+        <template v-if={shouldShowErrorCard() && !showCustomErrorLayer}>{errorCard}</template>
+
+        <template v-else-if={shouldShowAudioCard() && !showCustomStateLayer}>{audioCard}</template>
+
+        <div class={`${k}-media-placeholder`} v-else-if={shouldShowPlaceholder() && !showCustomLoadingLayer && !showCustomErrorLayer}>
+            <Icon class={getPlaceholderIconClassName()} />
+        </div>
+
+        <div class={`${k}-media-loading-indicator`} v-if={shouldShowLoadingIndicator() && !showCustomLoadingLayer}>
+            <span class={`${k}-media-loading-spinner`}></span>
+        </div>
+
+        <Tooltip
+            class={`${k}-media-name-tooltip`}
+            {...nameTooltipProps}
+            v-if={showNameTooltip}
+        >
+            <div class={`${k}-media-name-tooltip-trigger`} tabindex="-1"></div>
+            <b:content>
+                <div
+                    class={`${k}-media-name-tooltip-content`}
+                    style={{
+                        maxWidth: '160px',
+                        whiteSpace: 'nowrap',
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                    }}
+                >{mediaName}</div>
+            </b:content>
+        </Tooltip>
+
+        <div class={`${k}-media-state-layer ${k}-media-loading-layer`} v-if={showCustomStateLayer && showCustomLoadingLayer}>
+            {loadingSlot}
+        </div>
+
+        <div class={`${k}-media-state-layer ${k}-media-error-layer`} v-if={showCustomStateLayer && showCustomErrorLayer}>
+            {errorSlot}
+        </div>
+
+        <div class={`${k}-media-overlay`} v-if={shouldShowOverlay}>
+            <template v-if={showCustomMaskLayer}>{maskSlot}</template>
+            <button
+                class={`${k}-media-preview-trigger`}
+                type="button"
+                title={getPreviewTitle()}
+                disabled={!canPreview()}
+                ev-click={onPreview}
+                v-if={shouldShowPreviewTriggerInOverlay && !showCustomMaskLayer}
+            >
+                <Icon class={`${k}-media-preview-icon ${getPreviewIconClassName()}`} size="large" />
+            </button>
+        </div>
+
+        <template v-if={shouldShowStandalonePreviewTrigger && !showCustomMaskLayer}>
+            <Tooltip
+                class={`${k}-media-name-tooltip`}
+                {...nameTooltipProps}
+                v-if={showNameTooltip}
+            >
+                <button
+                    class={`${k}-media-preview-trigger ${k}-media-video-preview-trigger`}
+                    type="button"
+                    title={getPreviewTitle()}
+                    disabled={!canPreview()}
+                    ev-click={onPreview}
+                >
+                    <Icon class={`${k}-media-preview-icon ${getPreviewIconClassName()}`} size="large" />
+                </button>
+                <b:content>
+                    <div
+                        class={`${k}-media-name-tooltip-content`}
+                        style={{
+                            maxWidth: '160px',
+                            whiteSpace: 'nowrap',
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                        }}
+                    >{mediaName}</div>
+                </b:content>
+            </Tooltip>
+            <button
+                class={`${k}-media-preview-trigger ${k}-media-video-preview-trigger`}
+                type="button"
+                title={getPreviewTitle()}
+                disabled={!canPreview()}
+                ev-click={onPreview}
+                v-else
+            >
+                <Icon class={`${k}-media-preview-icon ${getPreviewIconClassName()}`} size="large" />
+            </button>
+        </template>
+    </div>
+
+    <MediaViewer
+        value={isStandalonePreviewVisible()}
+        item={viewerItem}
+        container={this.get('container')}
+        onClose={closeStandalonePreview}
+        onAfterClose={afterStandalonePreviewClose}
+        className={makeMediaViewerStyles(k)}
+        v-if={isStandalonePreviewRendered()}
+    />
+</div>

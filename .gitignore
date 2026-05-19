@@ -37,6 +37,24 @@ packages/kpc-react/styles
 packages/kpc-react/index*
 packages/kpc-react/hooks
 
+packages/kpc-ai-vue/components
+packages/kpc-ai-vue/i18n
+packages/kpc-ai-vue/styles
+packages/kpc-ai-vue/index*
+packages/kpc-ai-vue/hooks
+
+packages/kpc-ai-vue-next/components
+packages/kpc-ai-vue-next/i18n
+packages/kpc-ai-vue-next/styles
+packages/kpc-ai-vue-next/index*
+packages/kpc-ai-vue-next/hooks
+
+packages/kpc-ai-react/components
+packages/kpc-ai-react/i18n
+packages/kpc-ai-react/styles
+packages/kpc-ai-react/index*
+packages/kpc-ai-react/hooks
+
 packages/kpc-angular/@css
 packages/kpc-angular/@stylus
 packages/kpc-angular/kpc
@@ -51,3 +69,7 @@ packages/kpc-angular/hooks
 
 es/
 build/
+.cursor
+.claude
+play/
+AGENTS.md

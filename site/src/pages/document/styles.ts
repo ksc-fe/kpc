@@ -4,14 +4,27 @@ import {makeStyles as makeTableStyles} from 'kpc/components/table/styles';
 
 export function makeStyles(k: string) {
     return css`
-        h1, h2, h3, h4, h5 {
+        .contents > div > h1,
+        .example-desc .desc h1,
+        .example-desc .desc h2,
+        .example-desc .desc h3,
+        .example-desc .desc h4,
+        .example-desc .desc h5,
+        .api h1,
+        .api h2,
+        .api h3,
+        .api h4,
+        .api h5 {
             font-weight: 400;
             color: #000;
         }
-        h1 {
+        .contents > div > h1,
+        .example-desc .desc h1,
+        .api h1 {
             font-size: 2em;
         }
-        blockquote {
+        .example-desc .desc blockquote,
+        .api blockquote {
             margin: 1em 0;
             padding: 1px 2em;
             background: #f8f8f8;
@@ -230,4 +243,3 @@ export function makeStyles(k: string) {
         }
     `;
 }
-

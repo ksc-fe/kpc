@@ -1,0 +1,141 @@
+import {BubbleListItem} from './item';
+import {MemoBlock} from '../split/memo';
+import {addStyle, getRestProps, isEmptyString} from '../utils';
+import {makeStyles} from './styles';
+import {Icon} from '../icon';
+import {isInvalid, isNumber, noop} from 'intact-shared';
+
+const {
+    scrollBoxRef,
+    scrollContentRef,
+    getItems,
+    getItemKey,
+    getItemRef,
+    getSlotParams,
+    handleScroll,
+    shouldShowEmpty,
+    shouldShowHistoryLoading,
+    shouldShowScrollToBottom,
+    getDefaultHistoryLoadingText,
+    onScrollToBottomClick,
+} = this.bubbleList;
+
+let {className, style, maxHeight} = this.get();
+const {k} = this.config;
+const items = getItems();
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || isEmptyString(value)) return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const historyLoadingParams = {
+    loadingHistory: this.get('loadingHistory'),
+    hasMoreHistory: this.get('hasMoreHistory'),
+};
+const headerSlot = $blocks.header ? $blocks.header(noop) : undefined;
+const listFooterSlot = $blocks.listFooter ? $blocks.listFooter(noop) : undefined;
+const historyLoadingSlot = shouldShowHistoryLoading() && $blocks.historyLoading
+    ? $blocks.historyLoading(noop, historyLoadingParams)
+    : undefined;
+const emptySlot = shouldShowEmpty() && $blocks.empty ? $blocks.empty(noop) : undefined;
+const hasHeaderSlot = !isEmptySlot(headerSlot);
+const hasListFooterSlot = !isEmptySlot(listFooterSlot);
+const hasHistoryLoadingSlot = !isEmptySlot(historyLoadingSlot);
+const hasEmptySlot = !isEmptySlot(emptySlot);
+const showDefaultHistoryLoading = !$blocks.historyLoading && this.get('loadingHistory');
+const showHistoryLoading = shouldShowHistoryLoading() && (hasHistoryLoadingSlot || showDefaultHistoryLoading);
+const showEmpty = shouldShowEmpty() && (hasEmptySlot || !$blocks.empty);
+const getSlotRenderers = (item, index) => {
+    const slotParams = getSlotParams(item, index);
+
+    return {
+        avatar: $blocks.avatar ? () => $blocks.avatar(noop, slotParams) : undefined,
+        roleName: $blocks.roleName ? () => $blocks.roleName(noop, slotParams) : undefined,
+        beforeContent: $blocks.beforeContent ? () => $blocks.beforeContent(noop, slotParams) : undefined,
+        attachments: $blocks.attachments ? () => $blocks.attachments(noop, slotParams) : undefined,
+        content: $blocks.content ? () => $blocks.content(noop, slotParams) : undefined,
+        bottom: $blocks.bottom ? () => $blocks.bottom(noop, slotParams) : undefined,
+        footer: $blocks.footer ? () => $blocks.footer(noop, slotParams) : undefined,
+        loading: $blocks.loading ? () => $blocks.loading(noop, slotParams) : undefined,
+        extra: $blocks.extra ? () => $blocks.extra(noop, slotParams) : undefined,
+    };
+};
+
+const classNameObj = {
+    [`${k}-bubble-list`]: true,
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+if (maxHeight != null) {
+    style = addStyle(style, {
+        maxHeight: isNumber(maxHeight) ? `${maxHeight}px` : maxHeight,
+    });
+}
+
+<div class={classNameObj} {...getRestProps(this)} style={style}>
+    <div class={`${k}-bubble-list-header`} v-if={hasHeaderSlot}>
+        {headerSlot}
+    </div>
+
+    <div class={`${k}-bubble-list-scroll`} ref={scrollBoxRef} ev-scroll={handleScroll}>
+        <div class={`${k}-bubble-list-scroll-content`} ref={scrollContentRef}>
+            <div class={`${k}-bubble-list-history`} v-if={showHistoryLoading}>
+                <template v-if={hasHistoryLoadingSlot}>{historyLoadingSlot}</template>
+                <span v-else>{getDefaultHistoryLoadingText()}</span>
+            </div>
+
+            <div class={`${k}-bubble-list-empty`} v-if={showEmpty}>
+                <template v-if={hasEmptySlot}>{emptySlot}</template>
+                <span v-else>暂无消息</span>
+            </div>
+
+            <div class={`${k}-bubble-list-items`} v-else>
+                <div
+                    v-for={items}
+                    key={getItemKey($value, $key)}
+                    ref={getItemRef($value, $key)}
+                >
+                    <MemoBlock v-if={$blocks.item} block={$blocks.item}>
+                        <template>
+                            <b:item params={getSlotParams($value, $key)} />
+                        </template>
+                    </MemoBlock>
+                    <BubbleListItem
+                        v-else
+                        item={$value}
+                        index={$key}
+                        list={this}
+                        slotRenderers={getSlotRenderers($value, $key)}
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class={`${k}-bubble-list-footer`} v-if={hasListFooterSlot}>
+        {listFooterSlot}
+    </div>
+
+    <div class={`${k}-bubble-list-scroll-to-bottom`} v-if={shouldShowScrollToBottom()}>
+        <b:scrollToBottom
+            v-if={$blocks.scrollToBottom}
+            params={{
+                isAtBottom: this.get('$isAtBottom'),
+                scrollToBottom: () => this.scrollToBottom('smooth'),
+            }}
+        />
+        <button
+            v-else
+            type="button"
+            class={`${k}-bubble-list-scroll-to-bottom-button`}
+            title="回到底部"
+            aria-label="回到底部"
+            ev-click={onScrollToBottomClick}
+        >
+            <Icon class={`${k}-bubble-list-scroll-to-bottom-icon k-icon-down-bold`} />
+        </button>
+    </div>
+</div>
