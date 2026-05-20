@@ -451,7 +451,7 @@
             },
             {
               "name": "name",
-              "description": "对于radio/checkbox类型的按钮组，我们给input指定name属性",
+              "description": "对于radio/checkbox类型的按钮组，按钮内部会渲染一个原生的input元素，该属性将作为input的name属性值",
               "type": "string",
               "default": "undefined"
             },
@@ -2327,7 +2327,7 @@
             {
               "name": "style",
               "description": "指定图形的样式，该样式非html元素的样式，而是svg元素的样式，并且只支持Object的方式指定，不支持字符串。支持的属性可以查阅[mxGraph mxConstants][1]的文档（以STYLE_开头的属性)",
-              "type": "Record&#60;string, string | number&#62;",
+              "type": "Record<string, string | number>",
               "default": "undefined"
             },
             {
@@ -2519,7 +2519,7 @@
             {
               "name": "style",
               "description": "指定图形的样式，该样式非html元素的样式，而是svg元素的样式，并且只支持Object的方式指定，不支持字符串。支持的属性可以查阅[mxGraph mxConstants][1]的文档（以STYLE_开头的属性)",
-              "type": "Record&#60;string, string | number&#62;",
+              "type": "Record<string, string | number>",
               "default": "undefined"
             },
             {
@@ -3084,7 +3084,7 @@
               "returns": "Promise"
             }
           ],
-          "staticMethodsMarkdown": "> 如果你在Vue下全局安装KPC，可以通过`this.$dialog`引用到`Dialog`组件，所以你可以这样调用它的\n> 静态方法：`this.$dialog.success()`\n\n其中`Options`对象常用属性说明如下，除了`Dialog`的属性外，还支持如下属性\n\n其中`Promise`对象会在点击“确定”按钮时`resolve()`，在点击“取消”按钮时`reject()`，你可以在`then()`\n中书写用户点击不同按钮的逻辑\n\n> 只有`confirm`类型的提示窗口才有“取消”按钮\n\n| 属性 | 说明 | 类型 | 默认值 |\n| --- | --- | --- | --- |\n| content | 弹窗内容 | `string` &#124; `VNode` &#124; <code>Array&lt;string &#124; VNode&gt;</code> | `undefined` |\n| size | 弹窗尺寸 | `\"large\"` &#124; `\"default\"` &#124; `\"small\"` &#124; `\"mini\"` | `\"default\"` |\n| hideIcon | 是否隐藏提示图标 | `boolean` | `false` |\n| hideFooter | 是否隐藏底部按钮 | `boolean` | `false` |\n| ref | 传入一个函数，组件会调用该函数，将当前`Dialog`实例传入 | `(i: Dialog) => void` | `undefined` |\n| className | 样式类名 | `string` | `undefined` |\n| iconClassName | 指定icon样式名 | `string` | `undefined` |\n| icon | 自定义icon内容 | `VNode` | `undefined` |",
+          "staticMethodsMarkdown": "> 如果你在Vue下全局安装KPC，可以通过`this.$dialog`引用到`Dialog`组件，所以你可以这样调用它的\n> 静态方法：`this.$dialog.success()`\n\n其中`Options`对象常用属性说明如下，除了`Dialog`的属性外，还支持如下属性\n\n其中`Promise`对象会在点击“确定”按钮时`resolve()`，在点击“取消”按钮时`reject()`，你可以在`then()`\n中书写用户点击不同按钮的逻辑\n\n> 只有`confirm`类型的提示窗口才有“取消”按钮\n\n| 属性 | 说明 | 类型 | 默认值 |\n| --- | --- | --- | --- |\n| content | 弹窗内容 | `string` \\| `VNode` \\| <code>Array&lt;string \\| VNode&gt;</code> | `undefined` |\n| size | 弹窗尺寸 | `\"large\"` \\| `\"default\"` \\| `\"small\"` \\| `\"mini\"` | `\"default\"` |\n| hideIcon | 是否隐藏提示图标 | `boolean` | `false` |\n| hideFooter | 是否隐藏底部按钮 | `boolean` | `false` |\n| ref | 传入一个函数，组件会调用该函数，将当前`Dialog`实例传入 | `(i: Dialog) => void` | `undefined` |\n| className | 样式类名 | `string` | `undefined` |\n| iconClassName | 指定icon样式名 | `string` | `undefined` |\n| icon | 自定义icon内容 | `VNode` | `undefined` |",
           "events": [
             {
               "name": "open",
@@ -5562,7 +5562,7 @@
               "returns": ""
             }
           ],
-          "staticMethodsMarkdown": "其中`content`和`duration`参数说明如下：\n\n```ts\nimport {VNode} from 'intact';\n\nexport interface MessageProps {\n    content?: string | VNode \n    duration?: number\n    type?: 'info' | 'error' | 'success' | 'warning'\n    closable?: boolean\n    hideIcon?: boolean\n}\n```\n\n| 参数名 | 说明 | 类型 | 默认值 |\n| --- | --- | --- | --- |\n| content | 提示的内容，或者你也可以直接传入类型为<code>Partial&lt;MessageProps&gt;</code>的配置 | `string` &#124; `VNode` &#124; `Partial<MessageProps>` | `undefined` |\n| duration | 提示展示多长时间后自动关闭，当传入`0`时，提示将会一直展示。单位ms | `bumber` | `5000` |"
+          "staticMethodsMarkdown": "其中`content`和`duration`参数说明如下：\n\n```ts\nimport {VNode} from 'intact';\n\nexport interface MessageProps {\n    content?: string | VNode \n    duration?: number\n    type?: 'info' | 'error' | 'success' | 'warning'\n    closable?: boolean\n    hideIcon?: boolean\n}\n```\n\n| 参数名 | 说明 | 类型 | 默认值 |\n| --- | --- | --- | --- |\n| content | 提示的内容，或者你也可以直接传入类型为<code>Partial&lt;MessageProps&gt;</code>的配置 | `string` \\| `VNode` \\| `Partial<MessageProps>` | `undefined` |\n| duration | 提示展示多长时间后自动关闭，当传入`0`时，提示将会一直展示。单位ms | `bumber` | `5000` |"
         }
       ],
       "demos": [
@@ -6686,7 +6686,7 @@
             },
             {
               "name": "filterable",
-              "description": "是否支持筛选",
+              "description": "是否支持筛选，与searchable不同的是，filterable是直接在当前输入框中输入筛选关键词，而searchable是在选择菜单弹出后展示的输入框中输入",
               "type": "boolean",
               "default": "false"
             },
@@ -6758,9 +6758,9 @@
             },
             {
               "name": "filter",
-              "description": "当支持筛选时，可以自定义筛选规则",
+              "description": "当支持筛选时，可以自定义筛选规则，默认根据label和value进行筛选，同时作用于filterable和searchable",
               "type": "(keywords: string, props: any) => boolean",
-              "default": "`(keywords: string, props: any) => props.label.toLowerCase().includes(keywords)"
+              "default": "(keywords: string, props: any) => props.label.toLowerCase().includes(keywords) || props.value.toLowerCase().includes(keywords)"
             },
             {
               "name": "searchable",
