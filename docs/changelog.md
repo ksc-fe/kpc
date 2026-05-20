@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v3.8.0-beta.0
+
+1. `Add` 新增 AI 对话组件 `Bubble`、`BubbleList`、`FileCard`、`FileCardList`、`Sender`、`Think`、`XMarkdown`。
+2. `Add` 新增基础组件 `Media`，支持图片、视频、音频预览及媒体组能力。
+3. `Add` 新增 AI 对话组件独立包：
+   - `@king-design/ai-vue`
+   - `@king-design/ai-vue-legacy`
+   - `@king-design/ai-react`
+
 ## v3.7.0
 
 1. `Add` 新增 `Notification` 通知提醒组件 [#1105](https://github.com/ksc-fe/kpc/issues/1105)

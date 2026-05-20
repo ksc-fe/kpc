@@ -5,6 +5,8 @@ order: 110
 sidebar: doc
 ---
 
+> **v3.8.0 新增**
+
 # 属性
 
 ## FileCard
