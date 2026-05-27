@@ -6,6 +6,7 @@ import {cache} from '../utils';
 
 const defaults = {
     radius: '4px',
+    mediaRadius: '6px',
     border: '1px solid #E5E8EE',
     titleColor: '#3F3F51',
     descriptionColor: '#868A9C',
@@ -13,31 +14,31 @@ const defaults = {
     file: {
         mini: {
             width: '160px',
-            minHeight: '34px',
+            minHeight: '40px',
             iconSize: '24px',
-            padding: '5px 10px',
+            padding: '8px',
             gap: '8px',
         },
         small: {
             width: '160px',
-            minHeight: '44px',
+            minHeight: '48px',
             iconSize: '32px',
-            padding: '6px 12px',
+            padding: '8px',
             gap: '8px',
         },
         default: {
             width: '160px',
             minHeight: '54px',
             iconSize: '32px',
-            padding: '8px 12px',
+            padding: '8px',
             gap: '8px',
         },
         large: {
             width: '192px',
             minHeight: '64px',
             iconSize: '40px',
-            padding: '12px 14px',
-            gap: '10px',
+            padding: '8px',
+            gap: '8px',
         },
     },
     fileIcon: {
@@ -59,6 +60,7 @@ const defaults = {
         iconGap: '16px',
     },
     errorMaskBg: 'rgba(21, 27, 30, 0.46)',
+    loadingOverlayBg: 'rgba(15, 23, 42, 0.42)',
     errorTextColor: theme.color.danger,
     actionBg: 'rgba(255, 255, 255, 0.18)',
     actionColor: '#FFFFFF',
@@ -142,7 +144,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
         .${k}-file-card-media-shell {
             position: relative;
             min-width: 0;
+            border-radius: ${fileCard.mediaRadius};
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .${k}-file-card-media-view {
@@ -156,6 +160,15 @@ export const makeStyles = cache(function makeStyles(k: string) {
             display: flex;
             align-items: center;
             justify-content: center;
+            pointer-events: none;
+        }
+
+        .${k}-file-card-media-loading-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            border-radius: inherit;
+            background: ${fileCard.loadingOverlayBg};
             pointer-events: none;
         }
 
@@ -466,11 +479,6 @@ export const makeStyles = cache(function makeStyles(k: string) {
             overflow: hidden;
             text-overflow: ellipsis;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
-        }
-
-        &.${k}-file-card.${k}-file-card-type-audio .${k}-file-card-media-loading-text {
-            color: #3A3D52;
-            text-shadow: none;
         }
 
         .${k}-file-card-media-progress-text {

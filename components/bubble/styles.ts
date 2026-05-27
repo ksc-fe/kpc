@@ -475,15 +475,15 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
 
         &.${k}-bubble-corner.${k}-bubble-start .${k}-bubble-content {
-            border-radius: ${bubble.borderRadius} ${bubble.borderRadius} ${bubble.borderRadius} 0;
+            border-radius: 0 ${bubble.borderRadius} ${bubble.borderRadius} ${bubble.borderRadius};
         }
 
         &.${k}-bubble-corner.${k}-bubble-end .${k}-bubble-content {
-            border-radius: ${bubble.borderRadius} ${bubble.borderRadius} 0 ${bubble.borderRadius};
+            border-radius: ${bubble.borderRadius} 0 ${bubble.borderRadius} ${bubble.borderRadius};
         }
 
         &.${k}-bubble-corner.${k}-bubble-middle .${k}-bubble-content {
-            border-radius: ${bubble.borderRadius};
+            border-radius: 0 0 ${bubble.borderRadius} ${bubble.borderRadius};
         }
 
         &.${k}-bubble-square .${k}-bubble-content {

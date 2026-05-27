@@ -144,7 +144,6 @@ export default class extends Component<Props> {
                     key: 'image-error-src',
                     name: '海报封面.png',
                     status: 'error',
-                    errorText: '生成失败',
                     src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80',
                 },
                 {
@@ -187,7 +186,6 @@ export default class extends Component<Props> {
                     name: '预告片.mp4',
                     type: 'video',
                     status: 'error',
-                    errorText: '渲染失败',
                     src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
                 },
                 {
@@ -210,8 +208,22 @@ export default class extends Component<Props> {
                     name: '采访录音.mp3',
                     type: 'audio',
                     status: 'loading',
-                    percent: 36,
                     loadingText: '上传中',
+                    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
+                },
+                {
+                    key: 'audio-loading-progress',
+                    name: '采访录音.mp3',
+                    type: 'audio',
+                    status: 'loading',
+                    percent: 36,
+                    src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
+                },
+                {
+                    key: 'audio-error-src',
+                    name: '采访录音.mp3',
+                    type: 'audio',
+                    status: 'error',
                     src: 'https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3',
                 },
                 {
@@ -220,13 +232,6 @@ export default class extends Component<Props> {
                     type: 'audio',
                     status: 'error',
                     errorText: '上传失败',
-                },
-                {
-                    key: 'audio-error-mini',
-                    name: '小尺寸错误音频.mp3',
-                    type: 'audio',
-                    size: 'mini',
-                    status: 'error',
                 },
             ],
         } as Props;

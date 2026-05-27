@@ -28,6 +28,26 @@ const mediaAudioCardSvg = [
 
 export const mediaAudioCardUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaAudioCardSvg)}`;
 
+const mediaImagePlaceholderSvg = [
+    '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<path d="M4.5 7C5.32842 7 6 6.32842 6 5.5C6 4.67158 5.32842 4 4.5 4C3.67158 4 3 4.67158 3 5.5C3 6.32842 3.67158 7 4.5 7Z" fill="#C2C2CA"/>',
+    '<path d="M8.90229 7.24208C9.17247 6.91269 9.7174 6.9208 9.9756 7.25809L12.8799 11.0521C13.1859 11.4518 12.8719 12 12.3369 12H5L8.90229 7.24208Z" fill="#C2C2CA" stroke="#C2C2CA" stroke-linecap="round" stroke-linejoin="round"/>',
+    '<rect x="1" y="3" width="13" height="9" rx="1" stroke="#C2C2CA" stroke-linejoin="round"/>',
+    '</svg>',
+].join('');
+
+export const mediaImagePlaceholderUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaImagePlaceholderSvg)}`;
+
+const mediaVideoPlaceholderSvg = [
+    '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<path d="M1.33282 4.4165C1.33282 3.86422 1.78054 3.4165 2.33282 3.4165H9.98913C10.5414 3.4165 10.9891 3.86422 10.9891 4.4165V11.5833C10.9891 12.1356 10.5414 12.5833 9.98913 12.5833H2.33282C1.78054 12.5833 1.33282 12.1356 1.33282 11.5833V4.4165Z" fill="#C2C2CA" stroke="#C2C2CA" stroke-linecap="square"/>',
+    '<path d="M14 4.40059V11.5827C14 11.7506 13.8056 11.8438 13.6747 11.7386L11 9.58943V6.25554L13.6798 4.24073C13.8116 4.14163 14 4.23567 14 4.40059Z" fill="#C2C2CA" stroke="#C2C2CA" stroke-linecap="square"/>',
+    '<path d="M8.8 5C8.91046 5 9 5.08954 9 5.2V5.8C9 5.91046 8.91046 6 8.8 6H5.2C5.08954 6 5 5.91046 5 5.8V5.2C5 5.08954 5.08954 5 5.2 5H8.8Z" fill="white"/>',
+    '</svg>',
+].join('');
+
+export const mediaVideoPlaceholderUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaVideoPlaceholderSvg)}`;
+
 const mediaImageCardErrorSvg = [
     '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">',
     '<g clip-path="url(#clip0_25770_6783)">',

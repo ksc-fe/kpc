@@ -109,6 +109,7 @@ const i18n = {
     '查看文件夹': 'View Folder',
     '查看文件': 'View File',
     '上传图片': 'Upload Image',
+    '参考内容': 'Reference',
     '上传文件夹': 'Upload Folder',
     '超出文件数量最大限制：{limit}': 'Exceed the maximum limit of the number of files: {limit}',
     '"{name}" 超出文件最大限制：{maxSize}kb': '"{name}" exceeds the maximum size of file: {maxSize}kb',

@@ -14,6 +14,7 @@ const {
     onDelete,
     getValue,
     onPreview,
+    isLoading,
     isError,
     getMediaLoadingText,
     getMediaErrorText,
@@ -40,7 +41,7 @@ const {
     getFileMediaType,
     getMediaStatus,
     getMediaShowPreview,
-    onMediaError,
+    shouldShowMediaLoadingOverlay,
     getMediaSize,
     getFileMediaSize,
     shouldShowFileMedia,
@@ -61,7 +62,7 @@ const isEmptySlot = (value) => {
 const value = getValue();
 const shouldShowFileContent = !isMediaType();
 const descriptionSlot = shouldShowFileContent && $blocks.description ? $blocks.description(noop, value) : undefined;
-const fileMaskSlot = shouldShowFileContent && maskBlock ? maskBlock(noop, value) : undefined;
+const fileMaskSlot = shouldShowFileContent && !isLoading() && maskBlock ? maskBlock(noop, value) : undefined;
 const hasDescriptionSlot = !isEmptySlot(descriptionSlot);
 const hasFileMaskSlot = !isEmptySlot(fileMaskSlot);
 const isMini = (this.get('size') || 'default') === 'mini';
@@ -104,7 +105,6 @@ const classNameObj = {
                 videoProps={this.get('videoProps')}
                 audioProps={this.get('audioProps')}
                 ev-preview={onPreview}
-                ev-loadError={onMediaError}
             >
                 <b:error>
                     <div class={`${k}-file-card-media-error-artwork-content`} v-if={shouldRenderMediaErrorArtwork()}>
@@ -121,6 +121,7 @@ const classNameObj = {
                     {maskBlock && maskBlock(noop, media)}
                 </b:mask>
             </Media>
+            <div class={`${k}-file-card-media-loading-overlay`} v-if={shouldShowMediaLoadingOverlay()}></div>
             <div class={`${k}-file-card-media-status-layer`} v-if={shouldShowMediaStatusLayer() && !shouldUseMediaErrorArtworkLayout()}>
                 <span
                     class={{

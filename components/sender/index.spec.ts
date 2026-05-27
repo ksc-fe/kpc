@@ -148,14 +148,21 @@ describe('Sender', () => {
 
         const [instance, element] = mount(Demo);
         const textarea = element.querySelector<HTMLTextAreaElement>('.k-sender-input')!;
+        const shell = element.querySelector<HTMLElement>('.k-sender-shell')!;
 
         instance.senderRef!.focus();
         await wait();
         expect(document.activeElement).to.eql(textarea);
+        expect(shell.classList.contains('k-sender-active')).to.be.true;
+        // active 态叠加 backdrop-filter 与多层负 spread 阴影；Headless Chrome 下
+        // getComputedStyle(boxShadow) 会归一化为全零，无法可靠断言具体色值。
+        expect(getComputedStyle(shell).backdropFilter).to.contain('blur(4px)');
 
         instance.senderRef!.blur();
         await wait();
         expect(document.activeElement).not.to.eql(textarea);
+        expect(shell.classList.contains('k-sender-active')).to.be.false;
+        expect(getComputedStyle(shell).backdropFilter).to.eql('none');
     });
 
     it('should expose submit method', async () => {
@@ -585,6 +592,10 @@ describe('Sender', () => {
         expect(element.querySelector('.k-sender-attachments')).not.to.eql(null);
         const addBox = element.querySelector('.k-sender-image-add')!;
         expect(addBox).not.to.eql(null);
+        expect(addBox.getAttribute('title')).to.eql('参考内容');
+        expect(addBox.getAttribute('aria-label')).to.eql('参考内容');
+        expect(addBox.querySelector('.k-sender-image-add-text')!.textContent!.trim()).to.eql('参考内容');
+        expect(addBox.querySelector('.k-icon-add-bold')).not.to.eql(null);
         // 点击 + 框会触发 file input click
         let clicked = 0;
         const fileInput = element.querySelector<HTMLInputElement>('.k-sender-file-input')!;
@@ -674,6 +685,26 @@ describe('Sender', () => {
         const [, element] = mount(Demo);
         // 图片模式下保留 FileCard 的图片渲染（自带 1:1 裁剪），不强制转成 file 卡片
         expect(element.querySelector('.k-file-card-media.k-file-card-type-image')).not.to.eql(null);
+    });
+
+    it('should enable name tooltip for Sender image attachments', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <div>
+                    <Sender type="image" attachments={[
+                        {key: 'a', uid: 'a', name: 'very-long-image-name.png', type: 'image/png', src: 'data:image/png;base64,AAAA'},
+                    ]} />
+                </div>
+            `;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+        const mediaView = element.querySelector('.k-file-card-media-view') as HTMLElement;
+
+        expect(mediaView.querySelector('.k-media-name-tooltip-trigger')).not.to.eql(null);
+        expect(mediaView.getAttribute('title')).to.eql(null);
     });
 
     it('should infer media type from name in image mode when attachment type is generic mime', async () => {

@@ -20,7 +20,7 @@ sidebar: doc
 | src | 图片、视频、音频或文件地址 | `string` | `undefined` |
 | poster | 视频封面地址 | `string` | `undefined` |
 | description | 文件行卡片的副标题。未传时默认展示文件大小；`loading` 状态下会优先展示加载中文案；`error` 状态下会优先展示错误文案 | `string` | `undefined` |
-| errorText | 自定义错误文案。文件行卡片 `status="error"` 且未传时默认显示 `上传失败`；显式媒体卡片仅在指定非空文案时展示。显式图片/视频卡片有 `src` 时保留媒体画面并禁用预览，无 `src` 或媒体加载失败时展示失败底图 | `string` | `undefined` |
+| errorText | 自定义错误文案。文件行卡片 `status="error"` 且未传时默认显示 `上传失败`；显式媒体卡片仅在指定非空文案时展示。显式媒体错误态统一展示失败底图，不保留原始缩略图 | `string` | `undefined` |
 | loadingText | 自定义加载文案。文件行卡片 `status="loading"` 且未传时默认显示 `上传中...`；显式媒体卡片仅在指定非空文案时展示。显式媒体卡片尺寸小于 `64px`（`mini/small`）时不展示该文案 | `string` | `undefined` |
 | status | 状态。 | `"default"` &#124; `"loading"` &#124; `"error"` &#124; `"done"` | `"default"` |
 | percent | 进度百分比 `0–100`。显式媒体卡片会在左上角 loading 圆圈右侧展示进度 | `number` | `undefined` |

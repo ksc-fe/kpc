@@ -14,11 +14,11 @@ const defaults = {
     },
     placeholderBg: 'linear-gradient(180deg, #F5F7FA 0%, #ECEFF4 100%)',
     placeholderColor: '#98A0AF',
-    audioCardBg: '#F3F4F6',
+    audioCardBg: '#F3F5F6',
     audioCardTextColor: '#3A3D52',
     overlayBg: 'rgba(15, 23, 42, 0.42)',
     errorTextColor: theme.color.danger,
-    loadingSpinnerColor: theme.color.primary,
+    get loadingSpinnerColor() { return theme.color.primary },
     loadingSkeletonBase: '#EEF1F5',
     loadingSkeletonTo: '#F7F9FC',
     groupGap: '12px',
@@ -125,6 +125,10 @@ export const makeMediaStyles = cache(function makeMediaStyles(k: string) {
             background: transparent;
         }
 
+        .${k}-media-visual-hidden {
+            display: none;
+        }
+
         .${k}-media-audio-loader {
             display: none;
         }
@@ -166,7 +170,6 @@ export const makeMediaStyles = cache(function makeMediaStyles(k: string) {
             height: 24px;
         }
 
-        &.${k}-media-loading .${k}-media-audio-card,
         .${k}-media-error-card {
             background: transparent;
         }
@@ -184,6 +187,13 @@ export const makeMediaStyles = cache(function makeMediaStyles(k: string) {
 
         .${k}-media-placeholder .${k}-icon {
             font-size: 20px;
+        }
+
+        .${k}-media-placeholder-asset {
+            display: block;
+            width: 16px;
+            height: 16px;
+            flex: 0 0 auto;
         }
 
         &.${k}-media-loading .${k}-media-placeholder {
@@ -206,6 +216,14 @@ export const makeMediaStyles = cache(function makeMediaStyles(k: string) {
             opacity: 0;
             pointer-events: none;
             transition: opacity ${theme.transition.middle};
+        }
+
+        .${k}-media-loading-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: ${media.overlayBg};
+            pointer-events: none;
         }
 
         .${k}-media-preview-trigger,
@@ -244,6 +262,22 @@ export const makeMediaStyles = cache(function makeMediaStyles(k: string) {
             border-radius: 50%;
             box-sizing: border-box;
             animation: ${k}-media-loading-spinner 0.8s linear infinite;
+        }
+
+        .${k}-media-loading-video-icon {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            margin: auto;
+            color: #FFFFFF;
+            font-size: 18px;
+            line-height: 1;
+            pointer-events: none;
         }
 
         @keyframes ${k}-media-loading-spinner {

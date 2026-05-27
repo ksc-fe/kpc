@@ -179,14 +179,6 @@ export function useFileCard() {
         return !!instance.get('src');
     }
 
-    function isMediaLoadError() {
-        return !!(instance as any).get('$mediaLoadError');
-    }
-
-    function setMediaLoadError(value: boolean) {
-        (instance as any).set('$mediaLoadError', value);
-    }
-
     function shouldShowDeleteButton() {
         return !!instance.get('showDelIcon');
     }
@@ -218,26 +210,12 @@ export function useFileCard() {
         return getResolvedType() as MediaType;
     }
 
-    function isImageOrVideoMedia() {
-        const mediaType = getMediaType();
-
-        return mediaType === 'image' || mediaType === 'video';
-    }
-
-    function shouldKeepVisualMediaOnError() {
-        if (!isError() || !hasSource()) return false;
-        if (isMediaLoadError()) return false;
-
-        return isImageOrVideoMedia();
-    }
-
     function getFileMediaType(): MediaType {
         return getResourceType() as MediaType;
     }
 
     function getMediaStatus(): MediaStatus {
         if (!isMediaType()) return 'default';
-        if (shouldKeepVisualMediaOnError()) return 'default';
 
         return getDisplayStatus() as MediaStatus;
     }
@@ -246,6 +224,12 @@ export function useFileCard() {
         if (isError()) return false;
 
         return instance.get('showPreview');
+    }
+
+    function shouldShowMediaLoadingOverlay() {
+        const mediaType = getMediaType();
+
+        return isLoading() && mediaType === 'audio' && (hasSpecifiedMediaLoadingText() || hasPercentProp());
     }
 
     function getMediaSize() {
@@ -299,7 +283,7 @@ export function useFileCard() {
     }
 
     function shouldUseMediaErrorArtworkLayout() {
-        return shouldRenderMediaErrorArtwork() && !shouldKeepVisualMediaOnError();
+        return shouldRenderMediaErrorArtwork();
     }
 
     // 媒体卡片在 loading 且传入 percent 时都展示进度文本（不限制尺寸）。
@@ -385,23 +369,6 @@ export function useFileCard() {
         instance.trigger('delete', getValue(), e);
     }
 
-    function onMediaError() {
-        setMediaLoadError(true);
-    }
-
-    function bootstrap() {
-        (instance as any).set('$mediaLoadError', false, {silent: true});
-
-        ['src', 'type', 'poster'].forEach(key => {
-            instance.watch(key as any, () => setMediaLoadError(false));
-        });
-        instance.watch('status', status => {
-            if (status !== 'error') setMediaLoadError(false);
-        });
-    }
-
-    bootstrap();
-
     return {
         getRootClassNameObj,
         getProgressStyle,
@@ -438,7 +405,7 @@ export function useFileCard() {
         getFileMediaType,
         getMediaStatus,
         getMediaShowPreview,
-        onMediaError,
+        shouldShowMediaLoadingOverlay,
         getMediaSize,
         getFileMediaSize,
         shouldShowFileMedia,

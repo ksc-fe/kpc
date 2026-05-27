@@ -10,6 +10,7 @@ const {
     getRootStyle,
     getFileName,
     isLoading,
+    shouldShowVisualMediaContent,
     shouldShowImage,
     shouldShowVideo,
     shouldShowAudioLoader,
@@ -26,15 +27,18 @@ const {
     getErrorCardAssetSrc,
     getMediaCardIconStyle,
     shouldShowLoadingIndicator,
+    shouldShowLoadingVideoIcon,
     shouldShowPlaceholder,
     getPreviewIconClassName,
     getPlaceholderIconClassName,
+    getPlaceholderAssetSrc,
     getPreviewTitle,
     onClick,
     onPreview,
     canPreview,
     shouldShowVideoPlayTrigger,
     shouldShowMaskLayer,
+    shouldShowLoadingOverlay,
     getViewerItem,
     getMaskValue,
     isStandalonePreviewRendered,
@@ -78,6 +82,7 @@ const nameTooltipProps = {
     ...(this.get('nameTooltipProps') || {}),
 };
 const mediaName = getFileName();
+const placeholderAssetSrc = getPlaceholderAssetSrc();
 const audioCard = (
     <div class={`${k}-media-audio-card`}>
         <img
@@ -117,8 +122,13 @@ const classNameObj = {
     ev-click={onClick}
 >
     <div class={`${k}-media-shell`}>
+        <div class={`${k}-media-loading-overlay`} v-if={shouldShowLoadingOverlay() && !showCustomLoadingLayer}></div>
+
         <img
-            class={`${k}-media-image`}
+            class={{
+                [`${k}-media-image`]: true,
+                [`${k}-media-visual-hidden`]: !shouldShowVisualMediaContent(),
+            }}
             ref={imageRef}
             {...getImageProps()}
             v-if={shouldShowImage()}
@@ -126,7 +136,10 @@ const classNameObj = {
 
         <video
             key={getVideoKey()}
-            class={`${k}-media-video`}
+            class={{
+                [`${k}-media-video`]: true,
+                [`${k}-media-visual-hidden`]: !shouldShowVisualMediaContent(),
+            }}
             ref={videoRef}
             {...getVideoProps()}
             v-else-if={shouldShowVideo()}
@@ -144,12 +157,21 @@ const classNameObj = {
         <template v-else-if={shouldShowAudioCard() && !showCustomStateLayer}>{audioCard}</template>
 
         <div class={`${k}-media-placeholder`} v-else-if={shouldShowPlaceholder() && !showCustomLoadingLayer && !showCustomErrorLayer}>
-            <Icon class={getPlaceholderIconClassName()} />
+            <img
+                class={`${k}-media-placeholder-asset`}
+                src={placeholderAssetSrc}
+                alt=""
+                draggable={false}
+                v-if={placeholderAssetSrc}
+            />
+            <Icon class={getPlaceholderIconClassName()} v-else />
         </div>
 
         <div class={`${k}-media-loading-indicator`} v-if={shouldShowLoadingIndicator() && !showCustomLoadingLayer}>
             <span class={`${k}-media-loading-spinner`}></span>
         </div>
+
+        <Icon class={`${k}-media-loading-video-icon ion-ios-play`} v-if={shouldShowLoadingVideoIcon() && !showCustomLoadingLayer} />
 
         <Tooltip
             class={`${k}-media-name-tooltip`}

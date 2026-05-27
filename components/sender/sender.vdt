@@ -137,7 +137,7 @@ const defaultAttachButton = (
     />
 );
 
-// type='image' 末尾的虚线 + 框，与 Upload 画廊的 + 卡片视觉等效；点击触发文件选择。
+// type='image' 末尾的虚线 + 框
 const imageAddBox = (
     <div
         class={{
@@ -146,10 +146,11 @@ const imageAddBox = (
         }}
         ev-click={disabled ? undefined : pickFiles}
         role="button"
-        title={_$('上传图片')}
-        aria-label={_$('上传图片')}
+        title={_$('参考内容')}
+        aria-label={_$('参考内容')}
     >
-        <Icon class={`${k}-icon-add-bold`} size="large" />
+        <Icon class={`${k}-icon-add-bold`} />
+        <div class={`${k}-sender-image-add-text`}>{_$('参考内容')}</div>
     </div>
 );
 
@@ -174,6 +175,7 @@ const sendButtonSlotParams = {
                 items={renderItems}
                 deleteable={true}
                 overflow="scrollY"
+                showNameTooltip={true}
                 ev-click={onAttachmentClick}
                 ev-delete={onAttachmentDelete}
             >
@@ -186,6 +188,7 @@ const sendButtonSlotParams = {
                 items={renderItems}
                 deleteable={true}
                 overflow="scrollY"
+                showNameTooltip={true}
                 ev-click={onAttachmentClick}
                 ev-delete={onAttachmentDelete}
             />

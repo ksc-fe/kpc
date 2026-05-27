@@ -14,7 +14,9 @@ import {
     mediaAudioCardErrorUrl,
     mediaAudioCardUrl,
     mediaImageCardErrorUrl,
+    mediaImagePlaceholderUrl,
     mediaVideoCardErrorUrl,
+    mediaVideoPlaceholderUrl,
 } from './mediaAssets';
 
 export function useMedia() {
@@ -96,6 +98,10 @@ export function useMedia() {
         return getDisplayStatus() === 'done';
     }
 
+    function isMediaReady() {
+        return getInternalStatus() === 'done' || isDone();
+    }
+
     // 自定义遮罩层仅在 default/done 展示，避免与 loading/error 状态层冲突。
     function shouldShowMaskLayer() {
         const status = getDisplayStatus();
@@ -108,7 +114,7 @@ export function useMedia() {
     }
 
     function shouldShowVideoPlayTrigger() {
-        return !!instance.get('showPreview') && shouldShowVideo();
+        return !!instance.get('showPreview') && shouldShowVideo() && isDone();
     }
 
     // 事件和插槽使用的公共媒体信息。
@@ -195,6 +201,10 @@ export function useMedia() {
         return getResolvedType() === 'video' && hasSource() && !isError();
     }
 
+    function shouldShowVisualMediaContent() {
+        return isMediaReady();
+    }
+
     function shouldShowAudioLoader() {
         return getResolvedType() === 'audio' && hasSource() && !isError();
     }
@@ -208,8 +218,8 @@ export function useMedia() {
     }
 
     function shouldShowPlaceholder() {
-        return !shouldShowImage() &&
-            !shouldShowVideo() &&
+        return (!shouldShowImage() || !shouldShowVisualMediaContent()) &&
+            (!shouldShowVideo() || !shouldShowVisualMediaContent()) &&
             !shouldShowErrorCard();
     }
 
@@ -265,6 +275,16 @@ export function useMedia() {
 
     function shouldShowLoadingIndicator() {
         return isLoading();
+    }
+
+    function shouldShowLoadingOverlay() {
+        const type = getResolvedType();
+
+        return isLoading() && hasSource() && shouldShowVisualMediaContent() && (type === 'image' || type === 'video');
+    }
+
+    function shouldShowLoadingVideoIcon() {
+        return isLoading() && getResolvedType() === 'video' && hasSource() && shouldShowVisualMediaContent();
     }
 
     // 去掉已被组件接管的事件键，避免作为普通 attribute 透传到 DOM。
@@ -371,15 +391,22 @@ export function useMedia() {
     }
 
     function getPreviewIconClassName() {
-        return getResolvedType() === 'image' ? 'ion-ios-eye-outline' : 'ion-ios-play';
+        return getResolvedType() === 'image' ? 'k-icon-visible' : 'ion-ios-play';
     }
 
     function getPlaceholderIconClassName() {
         const resolvedType = getResolvedType();
-        if (resolvedType === 'video') return 'ion-videocamera';
         if (resolvedType === 'audio') return 'ion-ios-musical-note';
 
-        return 'ion-image';
+        return '';
+    }
+
+    function getPlaceholderAssetSrc() {
+        const resolvedType = getResolvedType();
+        if (resolvedType === 'video') return mediaVideoPlaceholderUrl;
+        if (resolvedType === 'image') return mediaImagePlaceholderUrl;
+
+        return '';
     }
 
     function getPreviewTitle() {
@@ -568,6 +595,7 @@ export function useMedia() {
         isLoading,
         isError,
         isDone,
+        shouldShowVisualMediaContent,
         shouldShowLoadingIndicator,
         shouldShowImage,
         shouldShowVideo,
@@ -585,8 +613,11 @@ export function useMedia() {
         getAudioCardAssetSrc,
         getErrorCardAssetSrc,
         getMediaCardIconStyle,
+        shouldShowLoadingOverlay,
+        shouldShowLoadingVideoIcon,
         getPreviewIconClassName,
         getPlaceholderIconClassName,
+        getPlaceholderAssetSrc,
         getPreviewTitle,
         onClick,
         onPreview,

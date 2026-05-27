@@ -1,10 +1,12 @@
 import {Component} from 'intact';
 import {dispatchEvent, getElement, mount, unmount, wait} from '../../test/utils';
 import {Media, MediaGroup} from '.';
+import {setTheme} from '../../styles/theme';
 
 describe('Media', () => {
     afterEach(() => {
         unmount();
+        setTheme({});
     });
 
     function expectViewerClosed() {
@@ -68,6 +70,9 @@ describe('Media', () => {
         expect(element.querySelector('.k-media-video')).not.to.eql(null);
         expect(element.querySelector('.k-media-audio-loader')).not.to.eql(null);
         expect(element.querySelector('.k-media-audio-card')).not.to.eql(null);
+        expect(
+            getComputedStyle(element.querySelector('.k-media-audio-card') as HTMLElement).backgroundColor
+        ).to.eql('rgb(243, 245, 246)');
         expect((element.querySelector('.k-media-audio-card-icon') as HTMLImageElement).src).to.contain('data:image/svg+xml');
         expect(element.querySelector('.k-media-audio-card-name')).to.eql(null);
         expect(element.querySelectorAll('.k-media-loading').length).to.eql(3);
@@ -113,7 +118,34 @@ describe('Media', () => {
         expect(getComputedStyle(trigger).position).to.eql('absolute');
     });
 
-    // 无 poster 的视频需等首帧可用后才进入完成态，默认加载态仍展示播放标识。
+    // 图片完成态展示 Icon 组件内置的可见图标。
+    it('should use visible icon for image preview trigger', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Media } = this;
+                <div>
+                    <Media
+                        type="image"
+                        status="done"
+                        src="https://example.com/cover.png"
+                    />
+                </div>
+            `;
+
+            Media = Media;
+        }
+
+        const [, element] = mount(Demo);
+        const trigger = element.querySelector('.k-media-preview-trigger') as HTMLButtonElement;
+        const icon = trigger.querySelector('.k-media-preview-icon') as HTMLElement;
+
+        expect(trigger).not.to.eql(null);
+        expect(trigger.title).to.eql('查看图片');
+        expect(icon.className).to.contain('k-icon-visible');
+        expect(icon.className).not.to.contain('ion-ios-eye-outline');
+    });
+
+    // 无 poster 的视频需等首帧可用后才进入完成态，loading 时展示静态播放标识和加载蒙层，不展示播放 hover 入口。
     it('should wait for video frame when poster is absent', async () => {
         class Demo extends Component {
             static template = `
@@ -137,22 +169,33 @@ describe('Media', () => {
         expect(video.preload).to.eql('auto');
         expect(media.className).to.contain('k-media-loading');
         expect(media.className).not.to.contain('k-media-previewable');
-        expect(media.querySelector('.k-media-overlay')).not.to.eql(null);
-        expect((media.querySelector('.k-media-preview-trigger') as HTMLButtonElement).disabled).to.eql(true);
+        expect(media.querySelector('.k-media-placeholder-asset')).not.to.eql(null);
+        expect(getComputedStyle(video).display).to.eql('none');
+        expect(media.querySelector('.k-media-loading-video-icon')).to.eql(null);
+        expect(media.querySelector('.k-media-loading-overlay')).to.eql(null);
+        expect(media.querySelector('.k-media-overlay')).to.eql(null);
+        expect(media.querySelector('.k-media-preview-trigger')).to.eql(null);
 
         dispatchMediaEvent(video, 'loadedmetadata');
         await wait();
 
         expect(media.className).to.contain('k-media-loading');
         expect(media.className).not.to.contain('k-media-previewable');
-        expect(media.querySelector('.k-media-overlay')).not.to.eql(null);
-        expect((media.querySelector('.k-media-preview-trigger') as HTMLButtonElement).disabled).to.eql(true);
+        expect(media.querySelector('.k-media-placeholder-asset')).not.to.eql(null);
+        expect(getComputedStyle(video).display).to.eql('none');
+        expect(media.querySelector('.k-media-loading-video-icon')).to.eql(null);
+        expect(media.querySelector('.k-media-loading-overlay')).to.eql(null);
+        expect(media.querySelector('.k-media-overlay')).to.eql(null);
+        expect(media.querySelector('.k-media-preview-trigger')).to.eql(null);
 
         dispatchMediaEvent(video, 'loadeddata');
         await wait();
 
         expect(media.className).to.contain('k-media-done');
         expect(media.className).to.contain('k-media-previewable');
+        expect(getComputedStyle(video).display).not.to.eql('none');
+        expect(media.querySelector('.k-media-placeholder')).to.eql(null);
+        expect(media.querySelector('.k-media-loading-video-icon')).to.eql(null);
         expect((media.querySelector('.k-media-preview-trigger') as HTMLButtonElement).disabled).to.eql(false);
     });
 
@@ -347,6 +390,77 @@ describe('Media', () => {
         });
     });
 
+    // loading 蒙层只覆盖已加载出的真实图片/视频资源；占位图和默认音频 loading 不额外压暗。
+    it('should render loading overlay only for visual media with source', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Media } = this;
+                <div>
+                    <Media className="loading-image" type="image" status="loading" src="https://example.com/cover.png" />
+                    <Media className="loading-video" type="video" status="loading" src="https://example.com/demo.mp4" />
+                    <Media className="placeholder-image" type="image" status="loading" />
+                    <Media className="placeholder-video" type="video" status="loading" />
+                    <Media className="loading-audio" type="audio" status="loading" src="https://example.com/demo.mp3" />
+                </div>
+            `;
+
+            Media = Media;
+        }
+
+        const [, element] = mount(Demo);
+        const image = element.querySelector('.loading-image img.k-media-image') as HTMLImageElement;
+        const video = element.querySelector('.loading-video video.k-media-video') as HTMLVideoElement;
+
+        ['loading-image', 'loading-video', 'placeholder-image', 'placeholder-video', 'loading-audio'].forEach(className => {
+            expect(element.querySelector(`.${className} .k-media-loading-overlay`)).to.eql(null);
+        });
+        expect(getComputedStyle(image).display).to.eql('none');
+        expect(getComputedStyle(video).display).to.eql('none');
+
+        dispatchMediaEvent(image, 'load');
+        dispatchMediaEvent(video, 'loadeddata');
+        await wait();
+
+        ['loading-image', 'loading-video'].forEach(className => {
+            expect(element.querySelector(`.${className} .k-media-loading-overlay`)).not.to.eql(null);
+        });
+        expect(element.querySelector('.loading-audio .k-media-loading-overlay')).to.eql(null);
+        expect(element.querySelector('.loading-image .k-media-placeholder')).to.eql(null);
+        expect(element.querySelector('.loading-video .k-media-placeholder')).to.eql(null);
+        expect(getComputedStyle(image).display).not.to.eql('none');
+        expect(getComputedStyle(video).display).not.to.eql('none');
+    });
+
+    // 外部保持 loading 时，资源未加载出先展示占位图；资源加载出后再展示真实媒体。
+    it('should keep placeholder visible until visual source is loaded under loading status', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Media } = this;
+                <Media type="image" status="loading" src="https://example.com/loading.png" />
+            `;
+
+            Media = Media;
+        }
+
+        const [, element] = mount(Demo);
+        const media = element.classList.contains('k-media') ? element : element.querySelector('.k-media') as HTMLElement;
+        const image = element.querySelector('img.k-media-image') as HTMLImageElement;
+
+        expect(media.className).to.contain('k-media-loading');
+        expect(image).not.to.eql(null);
+        expect(getComputedStyle(image).display).to.eql('none');
+        expect(media.querySelector('.k-media-placeholder-asset')).not.to.eql(null);
+        expect(media.querySelector('.k-media-loading-overlay')).to.eql(null);
+
+        dispatchMediaEvent(image, 'load');
+        await wait();
+
+        expect(media.className).to.contain('k-media-loading');
+        expect(getComputedStyle(image).display).not.to.eql('none');
+        expect(media.querySelector('.k-media-placeholder')).to.eql(null);
+        expect(media.querySelector('.k-media-loading-overlay')).not.to.eql(null);
+    });
+
     // showPreview=false 时完成态也不生成预览入口。
     it('should hide preview overlay when showPreview is false', async () => {
         class Demo extends Component {
@@ -495,13 +609,14 @@ describe('Media', () => {
         expect(getElement('.k-media-viewer-title')?.textContent).to.contain('封面图');
     });
 
-    // 无 src 且无外部状态时展示默认占位，不进入 loading。
+    // 无 src 且无外部状态时展示默认占位，不进入 loading；图片/视频使用内置 SVG 占位图。
     it('should render default placeholder when src and status are absent', async () => {
         class Demo extends Component {
             static template = `
                 const { Media } = this;
                 <div>
                     <Media className="empty-media" />
+                    <Media className="empty-video" type="video" />
                 </div>
             `;
 
@@ -510,12 +625,25 @@ describe('Media', () => {
 
         const [, element] = mount(Demo);
         const media = element.querySelector('.empty-media') as HTMLElement;
+        const video = element.querySelector('.empty-video') as HTMLElement;
+        const imageAsset = media.querySelector('.k-media-placeholder-asset') as HTMLImageElement;
+        const videoAsset = video.querySelector('.k-media-placeholder-asset') as HTMLImageElement;
 
         expect(media.className).to.contain('k-media-image');
         expect(media.className).to.contain('k-media-default');
         expect(media.className).not.to.contain('k-media-previewable');
         expect(media.getAttribute('title')).to.eql('未命名文件');
         expect(media.querySelector('.k-media-placeholder')).not.to.eql(null);
+        expect(imageAsset).not.to.eql(null);
+        expect(imageAsset.src).to.contain('data:image/svg+xml');
+        expect(imageAsset.src).to.contain('M4.5%207');
+        expect(getComputedStyle(imageAsset).width).to.eql('16px');
+        expect(getComputedStyle(imageAsset).height).to.eql('16px');
+        expect(videoAsset).not.to.eql(null);
+        expect(videoAsset.src).to.contain('data:image/svg+xml');
+        expect(videoAsset.src).to.contain('M1.33282%204.4165');
+        expect(getComputedStyle(videoAsset).width).to.eql('16px');
+        expect(getComputedStyle(videoAsset).height).to.eql('16px');
         expect(media.querySelector('.k-media-image')).to.eql(null);
         expect(media.querySelector('.k-media-loading-indicator')).to.eql(null);
         expect(media.querySelector('.k-media-preview-trigger')).to.eql(null);
@@ -919,6 +1047,31 @@ describe('Media', () => {
         expect(getComputedStyle(spinner).height).to.eql('12px');
         expect(getComputedStyle(miniIndicator).top).to.eql('4px');
         expect(getComputedStyle(miniSpinner).width).to.eql('10px');
+    });
+
+    // loading 圆圈颜色跟随主题主色，和 Bubble loading 点一致。
+    it('should use theme primary color for loading spinner', async () => {
+        setTheme({
+            color: {
+                primary: '#7c3aed',
+            },
+        });
+
+        class Demo extends Component {
+            static template = `
+                const { Media } = this;
+                <Media type="image" status="loading" src="https://example.com/loading.png" />
+            `;
+
+            Media = Media;
+        }
+
+        const [, element] = mount(Demo);
+        const spinner = element.querySelector('.k-media-loading-spinner') as HTMLElement;
+        const style = getComputedStyle(spinner);
+
+        expect(style.borderTopColor).to.eql('rgb(124, 58, 237)');
+        expect(style.borderRightColor).to.eql('rgba(124, 58, 237, 0.22)');
     });
 
     // loading/error 插槽可接管默认状态层展示。

@@ -21,10 +21,6 @@ describe('FileCard', () => {
         ).to.be.true;
     }
 
-    function dispatchMediaEvent(target: Element, eventName: string) {
-        target.dispatchEvent(new Event(eventName, {bubbles: false, cancelable: true}));
-    }
-
     // 文件卡片和显式媒体卡片走不同外形，媒体内部复用 Media。
     it('should render file and media card types with Media inside', async () => {
         class Demo extends Component {
@@ -400,8 +396,8 @@ describe('FileCard', () => {
         expect(text).not.to.contain('20 KB');
     });
 
-    // 显式图片上传失败且有 src 时，保留媒体画面、禁用预览，错误文案仅在指定 errorText 时展示。
-    it('should keep visual media visible and show error text only when specified', async () => {
+    // 显式图片/视频上传失败时，有 src 也展示错误占位，错误文案仅在指定 errorText 时展示。
+    it('should render media error state with source and show text only when specified', async () => {
         class Demo extends Component {
             static template = `
                 const { FileCard } = this;
@@ -427,23 +423,25 @@ describe('FileCard', () => {
 
         const [, element] = mount(Demo);
         const cards = element.querySelectorAll('.k-file-card');
-        const image = cards[0].querySelector('img.k-media-image') as HTMLImageElement;
-        const video = cards[1].querySelector('video.k-media-video') as HTMLVideoElement;
+        const artwork = cards[1].querySelector('.k-file-card-media-error-artwork-content') as HTMLElement;
+        const icon = artwork.querySelector('.k-file-card-media-error-artwork-icon') as HTMLImageElement;
 
         expect(cards[0].className).to.contain('k-file-card-error');
-        expect(cards[0].querySelector('.k-media-error-card')).to.eql(null);
+        expect(cards[0].querySelector('img.k-media-image')).to.eql(null);
+        expect(cards[1].querySelector('video.k-media-video')).to.eql(null);
+        expect(cards[0].querySelector('.k-media-error-card')).not.to.eql(null);
         expect(cards[1].querySelector('.k-media-error-card')).to.eql(null);
-        expect(image).not.to.eql(null);
-        expect(video).not.to.eql(null);
         expect(cards[0].querySelector('.k-file-card-error-text')).to.eql(null);
         expect(cards[1].querySelector('.k-file-card-error-text')?.textContent).to.contain('上传失败');
+        expect(cards[1].className).to.contain('k-file-card-media-error-artwork');
+        expect(icon.src).to.contain('ECECEC');
         expect(getComputedStyle(cards[0]).borderColor).not.to.eql('rgb(237, 64, 64)');
         expect(element.querySelector('.k-media-placeholder')).to.eql(null);
         expect(element.querySelector('.k-media-preview-trigger')).to.eql(null);
     });
 
-    // 显式图片上传失败但 src 自身加载失败时，回退到上传失败 artwork。
-    it('should render upload error artwork when visual media src fails to load', async () => {
+    // 显式图片上传失败时，不再等待 src 加载失败，直接展示上传失败 artwork。
+    it('should render upload error artwork immediately for visual media with source', async () => {
         class Demo extends Component {
             static template = `
                 const { FileCard } = this;
@@ -462,22 +460,10 @@ describe('FileCard', () => {
         }
 
         const [, element] = mount(Demo);
-        const image = element.querySelector('img.k-media-image') as HTMLImageElement;
-        const statusLayer = element.querySelector('.k-file-card-media-status-layer') as HTMLElement;
-
-        expect(image, 'visual media should be shown before source fails').not.to.eql(null);
-        expect(statusLayer, 'specified errorText should render status layer while visual media is kept').not.to.eql(null);
-
-        dispatchMediaEvent(image, 'error');
-        await wait();
-        await wait();
-
         const artwork = element.querySelector('.k-file-card-media-error-artwork-content') as HTMLElement;
 
-        expect(
-            artwork,
-            `source failure should switch upload error text into artwork layout: ${element.querySelector('.k-file-card')?.className}`
-        ).not.to.eql(null);
+        expect(artwork).not.to.eql(null);
+        expect(element.querySelector('img.k-media-image')).to.eql(null);
         expect(element.querySelector('.k-file-card-media-status-layer')).to.eql(null);
         expect(artwork.querySelector('.k-file-card-error-text')?.textContent).to.contain('上传失败');
     });
@@ -559,8 +545,8 @@ describe('FileCard', () => {
         expect(element.querySelector('.k-file-card-media-progress-text')?.textContent).to.contain('56%');
     });
 
-    // 文件行卡片在 loading 时也允许自定义 mask 插槽渲染。
-    it('should render file mask slot even when status is loading', async () => {
+    // 文件行卡片 loading 时不展示 hover mask，避免和进度/状态层冲突。
+    it('should not render file mask slot when status is loading', async () => {
         class Demo extends Component {
             static template = `
                 const { FileCard } = this;
@@ -583,8 +569,8 @@ describe('FileCard', () => {
         const [, element] = mount(Demo);
         const mask = element.querySelector('.k-file-card-file-mask') as HTMLElement;
 
-        expect(mask).not.to.eql(null);
-        expect(mask.querySelector('.mask-content')?.textContent).to.contain('操作区');
+        expect(mask).to.eql(null);
+        expect(element.querySelector('.mask-content')).to.eql(null);
     });
 
     // 文件行的 description/mask 插槽为空时，不保留空描述行和空遮罩层。
@@ -664,13 +650,21 @@ describe('FileCard', () => {
         expect(getElement('.k-media-viewer-title')?.textContent).to.contain('cover.png');
     });
 
-    // 显式音频媒体未传 mask 插槽时，loading 文案和进度仍由 FileCard 层展示。
-    it('should render audio loading status and progress without mask slot', async () => {
+    // 显式音频媒体仅在有 loading 文案或进度时展示 loading 蒙层，文案颜色与图片/视频一致。
+    it('should render audio loading overlay only when status text or progress is visible', async () => {
         class Demo extends Component {
             static template = `
                 const { FileCard } = this;
                 <div>
                     <FileCard
+                        className="audio-loading-empty"
+                        name="plain.mp3"
+                        type="audio"
+                        status="loading"
+                        src="https://example.com/plain.mp3"
+                    />
+                    <FileCard
+                        className="audio-loading-text"
                         name="voice.mp3"
                         type="audio"
                         status="loading"
@@ -685,11 +679,18 @@ describe('FileCard', () => {
         }
 
         const [, element] = mount(Demo);
+        const emptyAudio = element.querySelector('.audio-loading-empty') as HTMLElement;
+        const textAudio = element.querySelector('.audio-loading-text') as HTMLElement;
+        const loadingText = textAudio.querySelector('.k-file-card-media-loading-text') as HTMLElement;
 
-        expect(element.querySelector('.k-media-loading-indicator')).not.to.eql(null);
-        expect(element.querySelector('.k-file-card-media-loading-text')?.textContent).to.contain('上传中');
-        expect(element.querySelector('.k-file-card-media-progress-text')?.textContent).to.contain('37%');
-        expect(element.querySelector('.k-media-preview-trigger')).to.eql(null);
+        expect(emptyAudio.querySelector('.k-file-card-media-loading-overlay')).to.eql(null);
+        expect(textAudio.querySelector('.k-file-card-media-loading-overlay')).not.to.eql(null);
+        expect(textAudio.querySelector('.k-media-loading-overlay')).to.eql(null);
+        expect(textAudio.querySelector('.k-media-loading-indicator')).not.to.eql(null);
+        expect(loadingText.textContent).to.contain('上传中');
+        expect(getComputedStyle(loadingText).color).to.eql('rgb(255, 255, 255)');
+        expect(textAudio.querySelector('.k-file-card-media-progress-text')?.textContent).to.contain('37%');
+        expect(textAudio.querySelector('.k-media-preview-trigger')).to.eql(null);
     });
 
     // 小尺寸媒体卡片不展示居中的 loading 文案。

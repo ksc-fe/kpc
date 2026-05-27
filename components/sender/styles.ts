@@ -31,16 +31,25 @@ const defaults = {
     lineHeight: 1.5,
     gradientDefault: SENDER_GRADIENT_DEFAULT,
     gradientActive: SENDER_GRADIENT_ACTIVE,
+    activeBackdropFilter: 'blur(4px)',
+    activeShadow: [
+        '0px 4px 6px -4px rgba(0, 0, 0, 0.102)',
+        '3px -3px 16px -5px rgba(113, 47, 255, 0.102)',
+        '-3px 3px 14px -4px rgba(83, 112, 255, 0.102)',
+    ].join(', '),
     sendButtonSize: '32px',
     attachButtonSize: '16px',
     attachIconColor: '#868A9C',
     attachIconHoverColor: theme.color.primary,
     // type='image' 末尾的 + 框，尺寸和 FileCard image default 对齐
     imageAddSize: '64px',
-    imageAddRadius: '4px',
+    imageAddRadius: '6px',
     imageAddBg: '#FFFFFF',
-    imageAddBorder: '1px dashed #D0D5E0',
+    imageAddBorder: '1px dashed #E5E8EE',
     imageAddColor: '#868A9C',
+    imageAddIconSize: '16px',
+    imageAddTextFontSize: '12px',
+    imageAddIconToTextGap: '8px',
     dragMaskBg: 'rgba(255, 255, 255, 0.72)',
     dragCardColor: '#5370FF',
     dragCardTextColor: theme.color.text,
@@ -85,7 +94,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             padding: ${sender.padding};
             background: ${sender.bg};
             border-radius: ${sender.radius};
-            transition: background ${theme.transition.middle};
+            transition: background ${theme.transition.middle}, box-shadow ${theme.transition.middle};
             min-width: 0;
             overflow: hidden;
         }
@@ -109,6 +118,12 @@ export const makeStyles = cache(function makeStyles(k: string) {
         .${k}-sender-shell:hover::before,
         .${k}-sender-shell.${k}-sender-active::before {
             background: ${sender.gradientActive};
+        }
+
+        .${k}-sender-shell.${k}-sender-active {
+            backdrop-filter: ${sender.activeBackdropFilter};
+            -webkit-backdrop-filter: ${sender.activeBackdropFilter};
+            box-shadow: ${sender.activeShadow};
         }
 
         &.${k}-sender-disabled .${k}-sender-shell::before {
@@ -318,15 +333,18 @@ export const makeStyles = cache(function makeStyles(k: string) {
             filter: drop-shadow(0 4px 8px rgba(83, 112, 255, 0.32));
         }
 
-        // type='image' 末尾的虚线 + 框，与 Upload gallery 的 picture-card 视觉一致
+        // type='image' 末尾的虚线 + 框：加号与文案作为一组垂直居中
         .${k}-sender-image-add {
             display: inline-flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
+            gap: ${sender.imageAddIconToTextGap};
             width: ${sender.imageAddSize};
             height: ${sender.imageAddSize};
             box-sizing: border-box;
             flex: 0 0 auto;
+            padding: 0;
             border-radius: ${sender.imageAddRadius};
             border: ${sender.imageAddBorder};
             background: ${sender.imageAddBg};
@@ -335,9 +353,35 @@ export const makeStyles = cache(function makeStyles(k: string) {
             transition: border-color ${theme.transition.small}, color ${theme.transition.small};
         }
 
+        .${k}-sender-image-add .${k}-icon {
+            flex: 0 0 auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: ${sender.imageAddIconSize};
+            height: ${sender.imageAddIconSize};
+            color: inherit;
+            font-size: ${sender.imageAddIconSize};
+            line-height: 1;
+            transition: color ${theme.transition.small};
+        }
+
+        .${k}-sender-image-add-text {
+            flex: 0 0 auto;
+            font-size: ${sender.imageAddTextFontSize};
+            line-height: 1;
+            color: inherit;
+            transition: color ${theme.transition.small};
+        }
+
         .${k}-sender-image-add:hover {
             border-color: ${theme.color.primary};
             color: ${theme.color.primary};
+        }
+
+        .${k}-sender-image-add:hover .${k}-icon,
+        .${k}-sender-image-add:hover .${k}-sender-image-add-text {
+            color: inherit;
         }
 
         .${k}-sender-image-add-disabled,

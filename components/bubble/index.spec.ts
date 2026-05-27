@@ -59,10 +59,14 @@ describe('Bubble', () => {
         const [, element] = mount(Demo);
         const contents = element.querySelectorAll<HTMLElement>('.k-bubble-content');
 
-        expect(getComputedStyle(contents[0]).borderBottomLeftRadius).to.eql('0px');
-        expect(getComputedStyle(contents[0]).borderBottomRightRadius).not.to.eql('0px');
-        expect(getComputedStyle(contents[1]).borderBottomRightRadius).to.eql('0px');
-        expect(getComputedStyle(contents[1]).borderBottomLeftRadius).not.to.eql('0px');
+        expect(getComputedStyle(contents[0]).borderTopLeftRadius).to.eql('0px');
+        expect(getComputedStyle(contents[0]).borderTopRightRadius).not.to.eql('0px');
+        expect(getComputedStyle(contents[0]).borderBottomLeftRadius).not.to.eql('0px');
+        expect(getComputedStyle(contents[1]).borderTopRightRadius).to.eql('0px');
+        expect(getComputedStyle(contents[1]).borderTopLeftRadius).not.to.eql('0px');
+        expect(getComputedStyle(contents[1]).borderBottomRightRadius).not.to.eql('0px');
+        expect(getComputedStyle(contents[2]).borderTopLeftRadius).to.eql('0px');
+        expect(getComputedStyle(contents[2]).borderTopRightRadius).to.eql('0px');
         expect(getComputedStyle(contents[2]).borderBottomLeftRadius).not.to.eql('0px');
         expect(getComputedStyle(contents[2]).borderBottomRightRadius).not.to.eql('0px');
     });
