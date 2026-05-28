@@ -1,6 +1,8 @@
 import BasicDemo from '~/components/ellipsis/demos/basic';
+import { Component } from 'intact';
 import {mount, unmount, dispatchEvent, getElement, wait} from '../../test/utils';
 import {Ellipsis} from './';
+import { ConfigProvider } from '../config';
 
 describe('Ellipsis', () => {
     afterEach(() => unmount());
@@ -54,5 +56,31 @@ describe('Ellipsis', () => {
         dispatchEvent(children3, 'mouseenter');
         await wait();
         expect(children3.classList.contains('k-dropdown-open')).to.be.true;
+    });
+
+    it('should support multiline ellipsis with custom classname prefix', async () => {
+        class Demo extends Component {
+            static template = `
+                const {ConfigProvider, Ellipsis} = this;
+                <div>
+                    <ConfigProvider value={{classNamePrefix: 'kd'}}>
+                        <Ellipsis maxLines={2}>custom prefix multiline ellipsis custom prefix multiline ellipsis</Ellipsis>
+                    </ConfigProvider>
+                </div>
+            `;
+
+            ConfigProvider = ConfigProvider;
+            Ellipsis = Ellipsis;
+        }
+
+        const [, element] = mount(Demo);
+        const ellipsis = element.querySelector<HTMLElement>('.kd-ellipsis')!;
+        const wrapper = element.querySelector<HTMLElement>('.kd-ellipsis-wrapper')!;
+        const styles = getComputedStyle(wrapper);
+
+        expect(ellipsis.classList.contains('kd-multiline')).to.be.true;
+        expect(wrapper.classList.contains('k-ellipsis-wrapper')).to.be.false;
+        expect(styles.whiteSpace).to.eql('normal');
+        expect(styles.webkitLineClamp).to.eql('2');
     });
 });
