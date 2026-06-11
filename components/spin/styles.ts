@@ -1,13 +1,12 @@
 import {css, keyframes} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
-import {deepDefaults, sizes, Sizes} from '../../styles/utils';
+import {deepDefaults, sizes} from '../../styles/utils';
 import '../../styles/global';
 import { cache } from '../utils';
 
 const defaults = {
     width: `40px`,
     get color() { return theme.color.primary },
-    strokeWidth: 6,
 
     largeWidth: `48px`,
     smallWidth: `32px`,
@@ -21,26 +20,6 @@ setDefault(() => {
 });
 
 export const makeStyles = cache(function makeStyles(k: string) {
-    const width = spin.strokeWidth;
-    const r = 120 - 60 - (width / 2);
-    const c = Math.round(2 * 3.14 * r);
-    const spinDash = keyframes`
-        0% {
-            stroke-dasharray: 1, ${c};
-            stroke-dashoffset: 0
-        }
-
-        50% {
-            stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
-            stroke-dashoffset: ${-c * 0.25};
-        }
-
-        to {
-            stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
-            stroke-dashoffset: ${-c};
-        }
-    `;
-
     return css`
         display: inline-block;
         .${k}-spin-canvas {
@@ -49,13 +28,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
             animation:.${k}-rotate 2s linear infinite;
         }
         .${k}-spin-circle {
-            stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
+            stroke-dasharray: 1, var(--c);
             stroke-dashoffset: 0;
             fill: none;
-            stroke-width: ${width};
-            stroke: ${spin.color};
-            r: ${r};
-            animation: ${spinDash} 1.5s ease-in-out infinite;
+            stroke: var(--stroke, ${spin.color});
         }
 
         // size
@@ -91,4 +67,26 @@ export const makeStyles = cache(function makeStyles(k: string) {
             background: rgba(255, 255, 255, .5);
         }
     `;
+});
+
+export const makeDashAnimation = cache(function makeDashAnimation(
+    c: number, d75: number, o25: number, nc: number
+) {
+    const name = keyframes`
+        0% {
+            stroke-dasharray: 1, ${c};
+            stroke-dashoffset: 0
+        }
+
+        50% {
+            stroke-dasharray: ${d75}, ${c};
+            stroke-dashoffset: ${o25};
+        }
+
+        to {
+            stroke-dasharray: ${d75}, ${c};
+            stroke-dashoffset: ${nc};
+        }
+    `;
+    return `${name} 1.5s ease-in-out infinite`;
 });
