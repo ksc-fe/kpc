@@ -19,6 +19,7 @@ const {
     getDefaultHistoryLoadingText,
     onScrollToBottomClick,
 } = this.bubbleList;
+const hasScrollbar = this.get('$hasScrollbar');
 
 let {className, style, maxHeight} = this.get();
 const {k} = this.config;
@@ -80,7 +81,14 @@ if (maxHeight != null) {
         {headerSlot}
     </div>
 
-    <div class={`${k}-bubble-list-scroll`} ref={scrollBoxRef} ev-scroll={handleScroll}>
+    <div
+        class={{
+            [`${k}-bubble-list-scroll`]: true,
+            [`${k}-bubble-list-scroll-has-scrollbar`]: hasScrollbar,
+        }}
+        ref={scrollBoxRef}
+        ev-scroll={handleScroll}
+    >
         <div class={`${k}-bubble-list-scroll-content`} ref={scrollContentRef}>
             <div class={`${k}-bubble-list-history`} v-if={showHistoryLoading}>
                 <template v-if={hasHistoryLoadingSlot}>{historyLoadingSlot}</template>

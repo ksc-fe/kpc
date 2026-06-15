@@ -667,6 +667,77 @@ describe('XMarkdown', () => {
         expect((stableContainer.querySelector('p') as any).__kpcStableParagraphProbe).to.eql('kept');
     });
 
+    it('should keep spacing before open code block while streaming', async () => {
+        class Demo extends Component<{content: string; streaming: boolean}> {
+            static template = `
+                const { XMarkdown } = this;
+                <XMarkdown
+                    content={this.get('content')}
+                    streaming={this.get('streaming')}
+                />
+            `;
+
+            static defaults() {
+                return {
+                    content: '上一段内容。\n\n```ts\nconst a = 1;',
+                    streaming: true,
+                };
+            }
+
+            XMarkdown = XMarkdown;
+        }
+
+        const [, element] = mount(Demo);
+        const ready = await waitFor(() => !!element.querySelector('.k-xmarkdown-tail > .k-xmarkdown-code-block'));
+        expect(ready).to.be.true;
+
+        const codeBlock = element.querySelector<HTMLElement>('.k-xmarkdown-tail > .k-xmarkdown-code-block')!;
+        expect(getComputedStyle(codeBlock).marginTop).to.eql('12px');
+    });
+
+    it('should progressively fill table cells while streaming a new row', async () => {
+        class Demo extends Component<{content: string; streaming: boolean}> {
+            static template = `
+                const { XMarkdown } = this;
+                <XMarkdown
+                    content={this.get('content')}
+                    streaming={this.get('streaming')}
+                />
+            `;
+
+            static defaults() {
+                return {
+                    content: [
+                        '| A | B | C |',
+                        '| --- | --- | --- |',
+                        '| 1 |',
+                    ].join('\n'),
+                    streaming: true,
+                };
+            }
+
+            XMarkdown = XMarkdown;
+        }
+
+        const [instance, element] = mount(Demo);
+        const ready = await waitFor(() => element.querySelectorAll('.k-xmarkdown-table-wrap td').length === 3);
+        expect(ready).to.be.true;
+
+        instance.set('content', [
+            '| A | B | C |',
+            '| --- | --- | --- |',
+            '| 1 | 2',
+        ].join('\n'));
+
+        const filled = await waitFor(() => {
+            const cells = element.querySelectorAll<HTMLElement>('.k-xmarkdown-table-wrap td');
+            return cells.length === 3 && cells[1].textContent === '2';
+        });
+
+        expect(filled).to.be.true;
+        expect(element.querySelector('.k-xmarkdown-tail [data-kpc-xmarkdown-tail="true"]')).to.eql(null);
+    });
+
     it('should keep previous stable DOM across multiple append-only promotions', async () => {
         class Demo extends Component<{content: string; streaming: boolean}> {
             static template = `
@@ -732,6 +803,42 @@ describe('XMarkdown', () => {
         expect((stableContainer.querySelector('p') as any).__kpcFirstStableParagraph).to.eql('kept');
         expect((stableContainer.querySelectorAll('h1')[1] as any).__kpcSecondStableHeading).to.eql('kept');
         expect((stableContainer.querySelectorAll('p')[1] as any).__kpcSecondStableParagraph).to.eql('kept');
+    });
+
+    it('should render typing suffix only when enabled', async () => {
+        class Demo extends Component {
+            static template = `
+                const { XMarkdown } = this;
+                <div>
+                    <XMarkdown
+                        className="suffix-enabled"
+                        content={this.get('content')}
+                        streaming={true}
+                        typing={{interval: 16, step: 2, suffix: true}}
+                    />
+                    <XMarkdown
+                        className="suffix-default"
+                        content={this.get('content')}
+                        streaming={true}
+                        typing={{interval: 16, step: 2}}
+                    />
+                </div>
+            `;
+
+            static defaults() {
+                return {
+                    content: '# 标题\n\n一段内容',
+                };
+            }
+
+            XMarkdown = XMarkdown;
+        }
+
+        const [, element] = mount(Demo);
+        await waitFor(() => !!element.querySelector('.suffix-enabled .k-xmarkdown-typing-suffix'));
+
+        expect(element.querySelector('.suffix-enabled .k-xmarkdown-typing-suffix')!.querySelectorAll('span').length).to.eql(3);
+        expect(element.querySelector('.suffix-default .k-xmarkdown-typing-suffix')).to.eql(null);
     });
 
     it('should put unclosed block-level formula into tail container during streaming', async () => {

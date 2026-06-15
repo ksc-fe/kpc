@@ -397,6 +397,56 @@ describe('BubbleList', () => {
         expect(scrollBox.scrollHeight).to.be.greaterThan(scrollBox.clientHeight);
     });
 
+    it('should keep scroll content flush and add gap only when scrollbar appears', async () => {
+        class Demo extends Component<{items: any[]}> {
+            static template = `
+                const { BubbleList } = this;
+                <BubbleList
+                    style="height: 120px;"
+                    items={this.get('items')}
+                >
+                    <b:item args="scope">
+                        <div class="scrollbar-gap-row" style="height: 48px;">{scope.item.content}</div>
+                    </b:item>
+                </BubbleList>
+            `;
+
+            BubbleList = BubbleList;
+
+            static defaults() {
+                return {
+                    items: Array.from({length: 6}).map((_, index) => ({
+                        key: index,
+                        content: `row-${index}`,
+                    })),
+                };
+            }
+        }
+
+        const [instance, element] = mount(Demo);
+        await wait(80);
+
+        const scrollBox = element.querySelector<HTMLElement>('.k-bubble-list-scroll')!;
+        const scrollContent = element.querySelector<HTMLElement>('.k-bubble-list-scroll-content')!;
+        let contentStyle = getComputedStyle(scrollContent);
+
+        expect(scrollBox.scrollHeight).to.be.greaterThan(scrollBox.clientHeight);
+        expect(scrollBox.classList.contains('k-bubble-list-scroll-has-scrollbar')).to.be.true;
+        expect(getComputedStyle(scrollBox).paddingInlineEnd).to.eql('6px');
+        expect(contentStyle.paddingInlineStart).to.eql('0px');
+        expect(contentStyle.paddingInlineEnd).to.eql('0px');
+
+        instance.set('items', [{key: 'short', content: 'short'}]);
+        await wait(120);
+        contentStyle = getComputedStyle(scrollContent);
+
+        expect(scrollBox.scrollHeight - scrollBox.clientHeight).to.be.lessThan(2);
+        expect(scrollBox.classList.contains('k-bubble-list-scroll-has-scrollbar')).to.be.false;
+        expect(getComputedStyle(scrollBox).paddingInlineEnd).to.eql('0px');
+        expect(contentStyle.paddingInlineStart).to.eql('0px');
+        expect(contentStyle.paddingInlineEnd).to.eql('0px');
+    });
+
     it('should scroll correctly when using a custom item slot', async () => {
         class Demo extends Component<{items: any[]}> {
             static template = `

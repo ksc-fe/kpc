@@ -24,7 +24,12 @@ export function useSenderPaste(addFiles: AddFiles) {
     const instance = useInstance() as Sender;
 
     function handlePaste(e: ClipboardEvent) {
-        if (!instance.get('pasteFile') || instance.get('disabled') || instance.get('readonly')) return;
+        if (
+            !instance.get('pasteFile') ||
+            instance.get('disabled') ||
+            instance.get('inputDisabled') ||
+            instance.get('readonly')
+        ) return;
 
         const files = getClipboardFiles(e);
         if (!files.length) return;

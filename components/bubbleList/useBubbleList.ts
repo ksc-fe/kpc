@@ -27,6 +27,8 @@ type AnchorSnapshot = {
     top: number;
 };
 
+type InternalStateKey = '$isAtBottom' | '$autoScrollActive' | '$hasScrollbar';
+
 function toItemArray(items?: BubbleListItem[]) {
     return Array.isArray(items) ? items : [];
 }
@@ -122,9 +124,15 @@ export function useBubbleList() {
         return scrollContentRef.value || null;
     }
 
-    function setInternalState(key: '$isAtBottom' | '$autoScrollActive', value: boolean) {
+    function setInternalState(key: InternalStateKey, value: boolean) {
         if ((instance as any).get(key) === value) return;
         (instance as any).set(key, value);
+    }
+
+    function syncScrollbarState() {
+        const scrollBox = getScrollBox();
+        const hasScrollbar = !!scrollBox && scrollBox.scrollHeight - scrollBox.clientHeight > 1;
+        setInternalState('$hasScrollbar', hasScrollbar);
     }
 
     function setIsAtBottom(value: boolean) {
@@ -288,6 +296,8 @@ export function useBubbleList() {
     }
 
     function syncScrollState() {
+        syncScrollbarState();
+
         const atBottom = isAtBottom();
         setIsAtBottom(atBottom);
         setAutoScrollActive(atBottom);
@@ -511,6 +521,7 @@ export function useBubbleList() {
     function onMountedCallback() {
         nextTick(() => {
             mountResizeObserver();
+            syncScrollbarState();
             if (isAutoScrollEnabled()) {
                 scrollToBottom('auto');
                 requestAnimationFrame(() => {

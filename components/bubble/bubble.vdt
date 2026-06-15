@@ -13,6 +13,7 @@ const {
     getAvatarText,
     hasNonEmptyContentProp,
     getDisplayedContent,
+    shouldShowTypingSuffix,
 } = this.display;
 
 const {
@@ -113,6 +114,11 @@ const classNameObj = {
             </template>
             <div v-else-if={hasNonEmptyContentProp() || getDisplayedContent()} class={`${k}-bubble-text`}>
                 {getDisplayedContent()}
+            </div>
+            <div class={`${k}-bubble-typing-suffix`} v-if={shouldShowTypingSuffix()} aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
             <div class={`${k}-bubble-bottom`} v-if={hasBottomSlot}>
                 {bottomSlot}

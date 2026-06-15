@@ -497,7 +497,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             position: absolute;
             top: 2px;
             right: 2px;
-            z-index: 4;
+            z-index: 5;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -635,7 +635,8 @@ export const makeStyles = cache(function makeStyles(k: string) {
             background-clip: content-box;
         }
 
-        .${k}-file-card-list-extension {
+        .${k}-file-card-list-prefix,
+        .${k}-file-card-list-suffix {
             flex: 0 0 auto;
         }
     `;

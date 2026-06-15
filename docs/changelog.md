@@ -4,6 +4,15 @@ order: 99
 sidebar: doc
 ---
 
+## v3.8.0-beta.1
+
+1. `Add` `Sender` 新增 `inputDisabled`、`sendDisabled`、`stopDisabled`，支持生成中禁用输入但保留停止生成按钮可用。
+2. `Add` `Sender` 新增 `prefix`、`uploadButton`、`buttonTooltip`、`fileView` 等能力，支持自定义附件入口、附件弹窗回填、本地文件/URL 混合附件和内置按钮提示。
+3. `Add` `Bubble`、`XMarkdown` 的 `typing.suffix` 支持生成中内容后省略点动态提示，默认关闭。
+4. `Fix` 修复 `FileCard` 媒体卡片点击删除时事件冒泡触发预览的问题。
+5. `Fix` 优化 `XMarkdown` 流式输出代码块间距和表格逐行渲染体验。
+6. `Fix` `BubbleList` 滚动区域去除默认横向内边距，仅在出现滚动条时保留内容与滚动条间距。
+
 ## v3.8.0-beta.0
 
 1. `Add` 新增 AI 对话组件 `Bubble`、`BubbleList`、`FileCard`、`FileCardList`、`Sender`、`Think`、`XMarkdown`。

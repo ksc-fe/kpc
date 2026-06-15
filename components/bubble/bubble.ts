@@ -7,6 +7,7 @@ import {useBubbleDisplay} from './useBubbleDisplay';
 export interface BubbleTyping {
     interval?: number
     step?: number
+    suffix?: boolean
 }
 
 export interface BubbleRenderSlots {

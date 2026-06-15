@@ -230,7 +230,7 @@ function recognizeToken(cache: XMarkdownStreamingTailCache) {
             return;
         }
 
-        if (cache.pending.startsWith('|')) {
+        if (cache.pending.startsWith('|') && !isInTableContext(cache.completeMarkdown)) {
             cache.token = 'table';
             return;
         }
@@ -338,16 +338,55 @@ function isTableIncomplete(markdown: string) {
     if (lines.length <= 1) return true;
 
     const [header, separator] = lines;
-    if (!/^\|.*\|$/.test(header.trim())) return false;
+    if (!isTableRow(header)) return false;
 
     const columns = separator.trim()
         .split('|')
         .map((column) => column.trim())
         .filter(Boolean);
 
+    return isTableSeparatorColumns(columns, true);
+}
+
+/**
+ * 判断当前 pending 是否是在已有表格后继续追加新行。
+ * 这种场景直接进入 stable 渲染，让 markdown-it 增量填充各列，避免整行原样压在 tail 中。
+ */
+function isInTableContext(completeMarkdown: string) {
+    const lines = completeMarkdown.split('\n');
+    const block: string[] = [];
+    let end = lines.length - 1;
+
+    while (end >= 0 && !lines[end].trim()) end--;
+
+    for (let i = end; i >= 0; i--) {
+        const line = lines[i];
+        if (!line.trim()) break;
+        block.unshift(line);
+    }
+
+    if (block.length < 2) return false;
+
+    const [header, separator] = block;
+    if (!isTableRow(header)) return false;
+
+    const columns = separator.trim()
+        .split('|')
+        .map((column) => column.trim())
+        .filter(Boolean);
+
+    return isTableSeparatorColumns(columns, false);
+}
+
+function isTableRow(line: string) {
+    return /^\|.*\|$/.test(line.trim());
+}
+
+function isTableSeparatorColumns(columns: string[], allowTrailingColon: boolean) {
     const separatorRegex = /^:?-+:?$/;
-    return columns.every((column, index) => {
-        return index === columns.length - 1
+
+    return columns.length > 0 && columns.every((column, index) => {
+        return allowTrailingColon && index === columns.length - 1
             ? column === ':' || separatorRegex.test(column)
             : separatorRegex.test(column);
     });

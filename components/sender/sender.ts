@@ -10,7 +10,16 @@ import {useAutoResize} from './useAutoResize';
 import {useSenderDrag} from './useSenderDrag';
 import {useSenderPaste} from './useSenderPaste';
 
-export type SenderType = 'text' | 'image';
+export type SenderFileView = 'card' | 'media';
+export type SenderUploadButton = 'toolbar' | 'list' | 'none';
+export type SenderButtonTooltip = string | false;
+
+export interface SenderButtonTooltipConfig {
+    send?: SenderButtonTooltip
+    stop?: SenderButtonTooltip
+    upload?: SenderButtonTooltip
+    listUpload?: SenderButtonTooltip
+}
 
 // 单个附件结构在 FileCardListItem 之上加一些上传态私有字段；对外仍按 FileCardListItem 序列化。
 export interface SenderAttachment extends FileCardListItem {
@@ -43,9 +52,18 @@ export interface SenderUploadProps {
 export interface SendButtonSlotParams {
     generating: boolean
     disabled: boolean
+    stopDisabled: boolean
     loading: boolean
     send: () => void
     stopGenerate: () => void
+}
+
+export interface UploadButtonSlotParams {
+    disabled: boolean
+    reachLimit: boolean
+    position: SenderUploadButton
+    addFiles: (files: FileList | File[]) => void
+    pickFiles: () => void
 }
 
 export interface MessageSendPayload {
@@ -57,10 +75,15 @@ export interface SenderProps {
     value?: string
     placeholder?: string
     disabled?: boolean
+    inputDisabled?: boolean
+    sendDisabled?: boolean
+    stopDisabled?: boolean
     readonly?: boolean
     generating?: boolean
     loading?: boolean
-    type?: SenderType
+    fileView?: SenderFileView
+    uploadButton?: SenderUploadButton
+    buttonTooltip?: SenderButtonTooltipConfig
     dragFile?: boolean
     pasteFile?: boolean
     /** 整个输入外框 `k-sender` 的宽度，数字会按 `px` 处理 */
@@ -69,7 +92,6 @@ export interface SenderProps {
     maxHeight?: number | string
     attachments?: SenderAttachment[]
     uploadProps?: SenderUploadProps
-    showAttachmentsButton?: boolean
     submitOnEnter?: boolean
     clearOnSend?: boolean
 }
@@ -89,10 +111,11 @@ export interface SenderEvents {
 
 export interface SenderBlocks {
     header: null
+    prefix: null
     beforeInput: null
     footer: null
     configure: null
-    attachmentsButton: null
+    uploadButton: UploadButtonSlotParams
     sendButton: SendButtonSlotParams
 }
 
@@ -100,17 +123,21 @@ const typeDefs: Required<TypeDefs<SenderProps>> = {
     value: String,
     placeholder: String,
     disabled: Boolean,
+    inputDisabled: Boolean,
+    sendDisabled: Boolean,
+    stopDisabled: Boolean,
     readonly: Boolean,
     generating: Boolean,
     loading: Boolean,
-    type: ['text', 'image'],
+    fileView: ['card', 'media'],
+    uploadButton: ['toolbar', 'list', 'none'],
+    buttonTooltip: Object,
     dragFile: Boolean,
     pasteFile: Boolean,
     width: [String, Number],
     maxHeight: [String, Number],
     attachments: Array,
     uploadProps: Object,
-    showAttachmentsButton: Boolean,
     submitOnEnter: Boolean,
     clearOnSend: Boolean,
 };
@@ -119,17 +146,21 @@ const defaults = (): Partial<SenderProps> => ({
     value: '',
     placeholder: undefined,
     disabled: false,
+    inputDisabled: false,
+    sendDisabled: false,
+    stopDisabled: false,
     readonly: false,
     generating: false,
     loading: false,
-    type: 'text',
+    fileView: 'card',
+    uploadButton: 'toolbar',
+    buttonTooltip: undefined,
     dragFile: false,
     pasteFile: false,
     width: 640,
     maxHeight: undefined,
     attachments: undefined,
     uploadProps: undefined,
-    showAttachmentsButton: true,
     submitOnEnter: true,
     clearOnSend: true,
 });
@@ -184,9 +215,13 @@ export class Sender extends Component<SenderProps, SenderEvents, SenderBlocks> {
         }
     }
 
+    /** 复用 Sender 内置上传逻辑添加本地文件，适合自定义附件弹窗确认后调用。 */
+    public addFiles(files: FileList | File[]) {
+        void this.upload.addFiles(files);
+    }
+
     /** 主动触发停止生成，等价于点击生成中的停止按钮。 */
     public stopGenerate() {
-        if (!this.get('generating')) return;
         this.input.stopGenerate();
     }
 }

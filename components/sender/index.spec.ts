@@ -1,5 +1,5 @@
 import {Component} from 'intact';
-import {dispatchEvent, mount, unmount, wait} from '../../test/utils';
+import {dispatchEvent, getElement, mount, unmount, wait} from '../../test/utils';
 import {Sender} from '.';
 
 function getDataTransfer(files: File[]) {
@@ -355,6 +355,47 @@ describe('Sender', () => {
         expect(stopped).to.eql(1);
     });
 
+    it('should respect stopDisabled prop when generating', async () => {
+        let stopped = 0;
+        class Demo extends Component<{stopDisabled: boolean}> {
+            static template = `
+                const { Sender } = this;
+                <Sender
+                    ref={(i) => this.senderRef = i}
+                    generating={true}
+                    stopDisabled={this.get('stopDisabled')}
+                    ev-stopGenerate={this.onStop}
+                />
+            `;
+            static defaults() { return {stopDisabled: true}; }
+            Sender = Sender;
+            senderRef: Sender | null = null;
+            onStop = () => { stopped++; };
+        }
+
+        const [instance, element] = mount(Demo);
+        const sendBtn = element.querySelector<HTMLButtonElement>('.k-sender-send-btn')!;
+
+        expect(sendBtn.title).to.contain('停止');
+        expect(sendBtn.disabled).to.eql(true);
+
+        sendBtn.click();
+        await wait();
+        expect(stopped).to.eql(0);
+
+        instance.senderRef!.stopGenerate();
+        await wait();
+        expect(stopped).to.eql(0);
+
+        instance.set('stopDisabled', false);
+        await wait();
+        expect(sendBtn.disabled).to.eql(false);
+
+        instance.senderRef!.stopGenerate();
+        await wait();
+        expect(stopped).to.eql(1);
+    });
+
     it('should respect disabled prop', async () => {
         class Demo extends Component {
             static template = `const { Sender } = this; <div><Sender disabled={true} value="hi" /></div>`;
@@ -368,6 +409,119 @@ describe('Sender', () => {
         expect(textarea.disabled).to.eql(true);
         const sendBtn = element.querySelector<HTMLButtonElement>('.k-sender-send-btn')!;
         expect(sendBtn.disabled).to.eql(true);
+    });
+
+    it('should respect sendDisabled prop without disabling input and upload', async () => {
+        let sentCount = 0;
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <div>
+                    <Sender
+                        ref={(i) => this.senderRef = i}
+                        sendDisabled={true}
+                        value="hi"
+                        clearOnSend={false}
+                        ev-messageSend={this.onSend}
+                    />
+                </div>
+            `;
+            Sender = Sender;
+            senderRef: Sender | null = null;
+            onSend = () => { sentCount++; };
+        }
+
+        const [instance, element] = mount(Demo);
+
+        const root = element.querySelector('.k-sender')!;
+        expect(root.classList.contains('k-sender-disabled')).to.eql(false);
+
+        const textarea = element.querySelector<HTMLTextAreaElement>('.k-sender-input')!;
+        expect(textarea.disabled).to.eql(false);
+
+        const attachBtn = element.querySelector<HTMLButtonElement>('.k-sender-attach-btn')!;
+        expect(attachBtn.disabled).to.eql(false);
+
+        const sendBtn = element.querySelector<HTMLButtonElement>('.k-sender-send-btn')!;
+        expect(sendBtn.disabled).to.eql(true);
+
+        sendBtn.click();
+        await wait();
+        expect(sentCount).to.eql(0);
+
+        instance.senderRef!.submit();
+        await wait();
+        expect(sentCount).to.eql(0);
+
+        dispatchEvent(textarea, 'keydown', {key: 'Enter', keyCode: 13});
+        await wait();
+        expect(sentCount).to.eql(0);
+    });
+
+    it('should disable input interactions without disabling stop generation', async () => {
+        let sentCount = 0;
+        let stopped = 0;
+        let inputChanged = 0;
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <div>
+                    <Sender
+                        ref={(i) => this.senderRef = i}
+                        value="hi"
+                        generating={true}
+                        inputDisabled={true}
+                        dragFile={true}
+                        pasteFile={true}
+                        clearOnSend={false}
+                        ev-messageSend={this.onSend}
+                        ev-stopGenerate={this.onStop}
+                        ev-$change:value={this.onInputChange}
+                    />
+                </div>
+            `;
+            Sender = Sender;
+            senderRef: Sender | null = null;
+            onSend = () => { sentCount++; };
+            onStop = () => { stopped++; };
+            onInputChange = () => { inputChanged++; };
+        }
+
+        const [instance, element] = mount(Demo);
+        const root = element.querySelector('.k-sender')!;
+        const shell = element.querySelector<HTMLElement>('.k-sender-shell')!;
+        const textarea = element.querySelector<HTMLTextAreaElement>('.k-sender-input')!;
+        const attachBtn = element.querySelector<HTMLButtonElement>('.k-sender-attach-btn')!;
+        const sendBtn = element.querySelector<HTMLButtonElement>('.k-sender-send-btn')!;
+
+        expect(root.classList.contains('k-sender-disabled')).to.eql(false);
+        expect(root.classList.contains('k-sender-input-disabled')).to.eql(true);
+        expect(textarea.disabled).to.eql(true);
+        expect(attachBtn.disabled).to.eql(true);
+        expect(sendBtn.title).to.contain('停止');
+        expect(sendBtn.disabled).to.eql(false);
+        expect(getComputedStyle(shell).backgroundColor).not.to.eql('rgb(255, 255, 255)');
+
+        dispatchEvent(textarea, 'keydown', {key: 'Enter', keyCode: 13});
+        dispatchEvent(textarea, 'input');
+        dispatchEvent(textarea, 'paste', {
+            clipboardData: getClipboardData([new File(['a'], 'a.txt', {type: 'text/plain'})]),
+        });
+        await wait();
+        expect(sentCount).to.eql(0);
+        expect(inputChanged).to.eql(0);
+
+        instance.senderRef!.addFiles([new File(['b'], 'b.txt', {type: 'text/plain'})]);
+        await wait();
+        expect((instance.senderRef as any).get('attachments') || []).to.eql([]);
+
+        sendBtn.click();
+        await wait();
+        expect(stopped).to.eql(1);
+
+        instance.senderRef!.stopGenerate();
+        await wait();
+        expect(stopped).to.eql(2);
     });
 
     it('should render attachments via FileCardList and emit change on delete', async () => {
@@ -446,18 +600,22 @@ describe('Sender', () => {
 
     it('should expose send button slot params', async () => {
         let captured: any = null;
-        class Demo extends Component<{value: string; generating: boolean}> {
+        class Demo extends Component<{value: string; generating: boolean; stopDisabled: boolean}> {
             static template = `
                 const { Sender } = this;
-                <Sender value={this.get('value')} generating={this.get('generating')}>
+                <Sender
+                    value={this.get('value')}
+                    generating={this.get('generating')}
+                    stopDisabled={this.get('stopDisabled')}
+                >
                     <b:sendButton args="scope">
-                        <button class="custom-send" disabled={scope.disabled}>
+                        <button class="custom-send" disabled={scope.generating ? scope.stopDisabled : scope.disabled}>
                             {scope.generating ? 'STOP' : 'SEND'}
                         </button>
                     </b:sendButton>
                 </Sender>
             `;
-            static defaults() { return {value: 'hi', generating: false}; }
+            static defaults() { return {value: 'hi', generating: false, stopDisabled: false}; }
             Sender = Sender;
             capture = (p: any) => { captured = p; };
         }
@@ -469,7 +627,82 @@ describe('Sender', () => {
 
         instance.set('generating', true);
         await wait();
-        expect(element.querySelector('.custom-send')!.textContent!.trim()).to.eql('STOP');
+        const stopBtn = element.querySelector<HTMLButtonElement>('.custom-send')!;
+        expect(stopBtn.textContent!.trim()).to.eql('STOP');
+        expect(stopBtn.disabled).to.eql(false);
+
+        instance.set('stopDisabled', true);
+        await wait();
+        expect(stopBtn.disabled).to.eql(true);
+    });
+
+    it('should render tooltip for default buttons by buttonTooltip', async () => {
+        class Demo extends Component<{generating: boolean}> {
+            static template = `
+                const { Sender } = this;
+                <Sender
+                    value="hello"
+                    generating={this.get('generating')}
+                    uploadButton="list"
+                    buttonTooltip={{
+                        send: '发送提示',
+                        stop: '停止提示',
+                        upload: '上传提示',
+                        listUpload: '参考提示',
+                    }}
+                />
+            `;
+            static defaults() { return {generating: false}; }
+            Sender = Sender;
+        }
+
+        const [instance, element] = mount(Demo);
+        const sendBtn = element.querySelector<HTMLElement>('.k-sender-send-btn')!;
+        expect(sendBtn.getAttribute('title')).to.eql(null);
+        dispatchEvent(sendBtn, 'mouseenter');
+        await wait(0);
+        expect(getElement('.k-tooltip-content')!.textContent).to.contain('发送提示');
+        dispatchEvent(sendBtn, 'mouseleave');
+        await wait(600);
+
+        instance.set('generating', true);
+        await wait();
+        const stopBtn = element.querySelector<HTMLElement>('.k-sender-send-btn')!;
+        dispatchEvent(stopBtn, 'mouseenter');
+        await wait(0);
+        expect(getElement('.k-tooltip-content')!.textContent).to.contain('停止提示');
+        dispatchEvent(stopBtn, 'mouseleave');
+        await wait(600);
+
+        const listUpload = element.querySelector<HTMLElement>('.k-sender-list-upload')!;
+        expect(listUpload.getAttribute('title')).to.eql(null);
+        dispatchEvent(listUpload, 'mouseenter');
+        await wait(0);
+        expect(getElement('.k-tooltip-content')!.textContent).to.contain('参考提示');
+    });
+
+    it('should disable default button tooltip by false value', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <Sender
+                    value="hello"
+                    buttonTooltip={{send: false, upload: false}}
+                />
+            `;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+        const sendBtn = element.querySelector<HTMLElement>('.k-sender-send-btn')!;
+        const uploadBtn = element.querySelector<HTMLElement>('.k-sender-attach-btn')!;
+
+        expect(sendBtn.getAttribute('title')).to.eql(null);
+        expect(uploadBtn.getAttribute('title')).to.eql(null);
+        expect(element.querySelector('.k-sender-send-tooltip')).to.eql(null);
+        expect(element.querySelector('.k-sender-upload-tooltip')).to.eql(null);
+        expect(sendBtn.getAttribute('aria-label')).to.eql('发送');
+        expect(uploadBtn.getAttribute('aria-label')).to.eql('上传附件');
     });
 
     it('should render beforeInput inside shell and configure inside toolbar middle', async () => {
@@ -511,6 +744,31 @@ describe('Sender', () => {
         expect(children.indexOf(middle)).to.be.lessThan(children.indexOf(right));
     });
 
+    it('should render prefix inside input area before textarea', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <Sender>
+                    <b:prefix>
+                        <span class="custom-prefix">AI</span>
+                    </b:prefix>
+                </Sender>
+            `;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+        const inputArea = element.querySelector('.k-sender-input-area')!;
+        const prefix = element.querySelector('.k-sender-prefix')!;
+        const customPrefix = element.querySelector('.custom-prefix')!;
+        const textarea = element.querySelector('.k-sender-input')!;
+        const children = Array.from(inputArea.children);
+
+        expect(prefix).not.to.eql(null);
+        expect(prefix.contains(customPrefix)).to.eql(true);
+        expect(children.indexOf(prefix)).to.be.lessThan(children.indexOf(textarea));
+    });
+
     it('should render header above shell and footer below shell', async () => {
         class Demo extends Component {
             static template = `
@@ -541,22 +799,25 @@ describe('Sender', () => {
         expect(Array.from(element.children)).to.eql([header, shell, footer]);
     });
 
-    // 布局插槽为空时，不保留 header/footer/beforeInput/configure/attachmentsButton 的空壳。
+    // 布局插槽为空时，不保留 header/footer/beforeInput/configure/uploadButton 的空壳。
     it('should not render wrappers for empty layout slots', async () => {
         class Demo extends Component {
             static template = `
                 const { Sender } = this;
                 <div>
-                    <Sender showAttachmentsButton={false}>
+                    <Sender uploadButton="none">
                         <b:header>
                             <span v-if={false} class="empty-header">header</span>
                         </b:header>
                         <b:beforeInput>
                             <span v-if={false} class="empty-before-input">before</span>
                         </b:beforeInput>
-                        <b:attachmentsButton>
-                            <button v-if={false} class="empty-attachments-button" type="button">upload</button>
-                        </b:attachmentsButton>
+                        <b:prefix>
+                            <span v-if={false} class="empty-prefix">prefix</span>
+                        </b:prefix>
+                        <b:uploadButton args="scope">
+                            <button v-if={false} class="empty-upload-button" type="button">upload</button>
+                        </b:uploadButton>
                         <b:configure>
                             <span v-if={false} class="empty-configure">configure</span>
                         </b:configure>
@@ -573,28 +834,41 @@ describe('Sender', () => {
 
         expect(element.querySelector('.k-sender-header')).to.eql(null);
         expect(element.querySelector('.k-sender-before-input')).to.eql(null);
+        expect(element.querySelector('.k-sender-prefix')).to.eql(null);
         expect(element.querySelector('.k-sender-toolbar-left')).to.eql(null);
         expect(element.querySelector('.k-sender-toolbar-middle')).to.eql(null);
         expect(element.querySelector('.k-sender-footer')).to.eql(null);
         expect(element.querySelector('.k-sender-toolbar-right')).not.to.eql(null);
     });
 
-    it('should hide attach button and show dashed + box in image mode', async () => {
+    it('should render default upload button in toolbar by default', async () => {
         class Demo extends Component {
-            static template = `const { Sender } = this; <div><Sender type="image" /></div>`;
+            static template = `const { Sender } = this; <div><Sender /></div>`;
             Sender = Sender;
         }
 
         const [, element] = mount(Demo);
-        // 默认附件按钮隐藏
+
+        expect(element.querySelector('.k-sender-toolbar-left')).not.to.eql(null);
+        expect(element.querySelector('.k-sender-attach-btn')).not.to.eql(null);
+        expect(element.querySelector('.k-sender-list-upload')).to.eql(null);
+    });
+
+    it('should show dashed upload button in attachment list', async () => {
+        class Demo extends Component {
+            static template = `const { Sender } = this; <div><Sender uploadButton="list" /></div>`;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
         expect(element.querySelector('.k-sender-attach-btn')).to.eql(null);
-        // 图片模式即使没有附件也要展示 FileCardList，用来承载末尾 + 框
+        // 列表入口即使没有附件也要展示 FileCardList，用来承载前置 + 框
         expect(element.querySelector('.k-sender-attachments')).not.to.eql(null);
-        const addBox = element.querySelector('.k-sender-image-add')!;
+        const addBox = element.querySelector('.k-sender-list-upload')!;
         expect(addBox).not.to.eql(null);
         expect(addBox.getAttribute('title')).to.eql('参考内容');
         expect(addBox.getAttribute('aria-label')).to.eql('参考内容');
-        expect(addBox.querySelector('.k-sender-image-add-text')!.textContent!.trim()).to.eql('参考内容');
+        expect(addBox.querySelector('.k-sender-list-upload-text')!.textContent!.trim()).to.eql('参考内容');
         expect(addBox.querySelector('.k-icon-add-bold')).not.to.eql(null);
         // 点击 + 框会触发 file input click
         let clicked = 0;
@@ -605,14 +879,14 @@ describe('Sender', () => {
         expect(clicked).to.eql(1);
     });
 
-    it('should let configure start from the left edge in image mode', async () => {
+    it('should let configure start from the left edge when upload button is not in toolbar', async () => {
         class Demo extends Component {
             static template = `
                 const { Sender } = this;
                 <div>
-                    <Sender type="image">
+                    <Sender uploadButton="list">
                         <b:configure>
-                            <div class="image-tools">配置项</div>
+                            <div class="sender-tools">配置项</div>
                         </b:configure>
                     </Sender>
                 </div>
@@ -626,15 +900,15 @@ describe('Sender', () => {
 
         expect(element.querySelector('.k-sender-toolbar-left')).to.eql(null);
         expect(toolbar.firstElementChild).to.eql(middle);
-        expect(middle.querySelector('.image-tools')!.textContent!.trim()).to.eql('配置项');
+        expect(middle.querySelector('.sender-tools')!.textContent!.trim()).to.eql('配置项');
     });
 
-    it('should hide + box when reaching uploadProps.limit in image mode', async () => {
+    it('should hide list upload button when reaching uploadProps.limit', async () => {
         class Demo extends Component {
             static template = `
                 const { Sender } = this;
                 <div>
-                    <Sender type="image"
+                    <Sender uploadButton="list"
                         uploadProps={{limit: 1}}
                         attachments={[{key: 'a', uid: 'a', name: 'p.png', type: 'image/png', src: ''}]}
                     />
@@ -644,12 +918,136 @@ describe('Sender', () => {
         }
 
         const [, element] = mount(Demo);
-        expect(element.querySelector('.k-sender-image-add')).to.eql(null);
+        expect(element.querySelector('.k-sender-list-upload')).to.eql(null);
         // 文件卡片仍然渲染
         expect(element.querySelector('.k-file-card')).not.to.eql(null);
     });
 
-    it('should render text-mode attachments uniformly as file cards', async () => {
+    it('should pass uploadButton slot params and render it in toolbar', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <div>
+                    <Sender uploadProps={{limit: 1}} attachments={[
+                        {key: 'a', uid: 'a', name: 'note.txt'},
+                    ]}>
+                        <b:uploadButton args="scope">
+                            <button
+                                class="custom-upload"
+                                disabled={scope.disabled || scope.reachLimit}
+                                ev-click={scope.pickFiles}
+                            >{scope.position}</button>
+                        </b:uploadButton>
+                    </Sender>
+                </div>
+            `;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+        const button = element.querySelector<HTMLButtonElement>('.custom-upload')!;
+
+        expect(button).not.to.eql(null);
+        expect(button.textContent!.trim()).to.eql('toolbar');
+        expect(button.disabled).to.eql(true);
+        expect(element.querySelector('.k-sender-attach-btn')).to.eql(null);
+    });
+
+    it('should add local files through uploadButton slot params', async () => {
+        let lastAttachments: any[] = [];
+        class Demo extends Component<{attachments: any[]}> {
+            static template = `
+                const { Sender } = this;
+                <Sender
+                    attachments={this.get('attachments')}
+                    uploadProps={{accept: '.txt', autoUpload: false}}
+                    ev-$change:attachments={this.onChange}
+                >
+                    <b:uploadButton args="scope">
+                        <button
+                            class="custom-add-files"
+                            ev-click={() => scope.addFiles([this.file])}
+                        >add</button>
+                    </b:uploadButton>
+                </Sender>
+            `;
+            static defaults() {
+                return {
+                    attachments: [],
+                };
+            }
+            Sender = Sender;
+            file = new File(['hello'], 'hello.txt', {type: 'text/plain'});
+            onChange = (items: any[]) => { lastAttachments = items; };
+        }
+
+        const [, element] = mount(Demo);
+        const button = element.querySelector<HTMLButtonElement>('.custom-add-files')!;
+
+        button.click();
+        await wait();
+
+        expect(lastAttachments.length).to.eql(1);
+        expect(lastAttachments[0].name).to.eql('hello.txt');
+        expect(lastAttachments[0].status).to.eql('default');
+    });
+
+    it('should render uploadButton slot in attachment list when uploadButton is list', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <div>
+                    <Sender uploadButton="list">
+                        <b:uploadButton args="scope">
+                            <button class="custom-list-upload" ev-click={scope.pickFiles}>{scope.position}</button>
+                        </b:uploadButton>
+                    </Sender>
+                </div>
+            `;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+
+        expect(element.querySelector('.k-sender-toolbar-left')).to.eql(null);
+        expect(element.querySelector('.k-sender-list-upload')).to.eql(null);
+        expect(element.querySelector('.k-file-card-list-prefix .custom-list-upload')!.textContent!.trim()).to.eql('list');
+    });
+
+    it('should expose addFiles method', async () => {
+        let lastAttachments: any[] = [];
+        class Demo extends Component<{attachments: any[]}> {
+            static template = `
+                const { Sender } = this;
+                <Sender
+                    ref={(i) => this.senderRef = i}
+                    attachments={this.get('attachments')}
+                    uploadProps={{autoUpload: false}}
+                    ev-$change:attachments={this.onChange}
+                />
+            `;
+            static defaults() {
+                return {
+                    attachments: [],
+                };
+            }
+            Sender = Sender;
+            senderRef: Sender | null = null;
+            onChange = (items: any[]) => { lastAttachments = items; };
+        }
+
+        const [instance] = mount(Demo);
+        const file = new File(['hello'], 'dialog.txt', {type: 'text/plain'});
+
+        instance.senderRef!.addFiles([file]);
+        await wait();
+
+        expect(lastAttachments.length).to.eql(1);
+        expect(lastAttachments[0].name).to.eql('dialog.txt');
+        expect(lastAttachments[0].status).to.eql('default');
+    });
+
+    it('should render card-view attachments uniformly as file cards', async () => {
         class Demo extends Component {
             static template = `
                 const { Sender } = this;
@@ -664,17 +1062,17 @@ describe('Sender', () => {
         }
 
         const [, element] = mount(Demo);
-        // 在 text 模式下，图片附件也应当以「文件卡」形式呈现，而不是图片缩略图
+        // card 视图下，图片附件也应当以「文件卡」形式呈现，而不是图片缩略图
         expect(element.querySelectorAll('.k-file-card-file').length).to.eql(2);
         expect(element.querySelectorAll('.k-file-card-media').length).to.eql(0);
     });
 
-    it('should keep image media cards (square) in image mode', async () => {
+    it('should keep image media cards (square) in media view', async () => {
         class Demo extends Component {
             static template = `
                 const { Sender } = this;
                 <div>
-                    <Sender type="image" attachments={[
+                    <Sender fileView="media" attachments={[
                         {key: 'a', uid: 'a', name: 'pic.png', type: 'image/png', src: 'data:image/png;base64,AAAA'},
                     ]} />
                 </div>
@@ -683,16 +1081,16 @@ describe('Sender', () => {
         }
 
         const [, element] = mount(Demo);
-        // 图片模式下保留 FileCard 的图片渲染（自带 1:1 裁剪），不强制转成 file 卡片
+        // media 视图下保留 FileCard 的图片渲染（自带 1:1 裁剪），不强制转成 file 卡片
         expect(element.querySelector('.k-file-card-media.k-file-card-type-image')).not.to.eql(null);
     });
 
-    it('should enable name tooltip for Sender image attachments', async () => {
+    it('should enable name tooltip for Sender media attachments', async () => {
         class Demo extends Component {
             static template = `
                 const { Sender } = this;
                 <div>
-                    <Sender type="image" attachments={[
+                    <Sender fileView="media" attachments={[
                         {key: 'a', uid: 'a', name: 'very-long-image-name.png', type: 'image/png', src: 'data:image/png;base64,AAAA'},
                     ]} />
                 </div>
@@ -707,12 +1105,12 @@ describe('Sender', () => {
         expect(mediaView.getAttribute('title')).to.eql(null);
     });
 
-    it('should infer media type from name in image mode when attachment type is generic mime', async () => {
+    it('should infer media type from name in media view when attachment type is generic mime', async () => {
         class Demo extends Component {
             static template = `
                 const { Sender } = this;
                 <div>
-                    <Sender type="image" attachments={[
+                    <Sender fileView="media" attachments={[
                         {key: 'a', uid: 'a', name: 'pic.png', type: 'application/octet-stream', src: 'blob:mock'},
                     ]} />
                 </div>
@@ -724,6 +1122,25 @@ describe('Sender', () => {
 
         expect(element.querySelector('.k-file-card-media.k-file-card-type-image')).not.to.eql(null);
         expect(element.querySelector('.k-file-card-file')).to.eql(null);
+    });
+
+    it('should keep explicit image type in media view even when src has no extension', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <div>
+                    <Sender fileView="media" attachments={[
+                        {key: 'a', uid: 'a', name: 'unsplash.jpg', type: 'image', src: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80'},
+                    ]} />
+                </div>
+            `;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+
+        expect(element.querySelector('.k-file-card-media.k-file-card-type-image')).not.to.eql(null);
+        expect(element.querySelector('.k-media-image')).not.to.eql(null);
     });
 
     it('should support directory selection and preserve relative path metadata', async () => {

@@ -25,6 +25,10 @@ export function useSenderInput(textareaRef: RefObject<HTMLTextAreaElement>) {
         return !!instance.get('disabled');
     }
 
+    function isInputDisabled() {
+        return isDisabled() || !!instance.get('inputDisabled');
+    }
+
     function isGenerating() {
         return !!instance.get('generating');
     }
@@ -35,14 +39,25 @@ export function useSenderInput(textareaRef: RefObject<HTMLTextAreaElement>) {
 
     /** 发送按钮的最终禁用态：业务强制 disabled 优先，其余按内容自动判定 */
     function isSendButtonDisabled() {
-        if (isDisabled() || isLoading()) return true;
+        if (isDisabled() || isLoading() || instance.get('sendDisabled') || instance.get('inputDisabled')) return true;
+        if (isGenerating()) return false;
+        return isSendButtonAutoDisabled();
+    }
+
+    /** 生成中的停止按钮禁用态，独立于发送禁用态。 */
+    function isStopButtonDisabled() {
+        return isDisabled() || !!instance.get('stopDisabled');
+    }
+
+    function isSendDisabled() {
+        if (isDisabled() || isLoading() || instance.get('sendDisabled') || instance.get('inputDisabled')) return true;
         if (isGenerating()) return false;
         return isSendButtonAutoDisabled();
     }
 
     // 发送消息
     function send() {
-        if (isGenerating() || isSendButtonDisabled()) return;
+        if (isGenerating() || isSendDisabled()) return;
 
         const value = getValueText();
         const attachments = getCurrentAttachments();
@@ -57,11 +72,13 @@ export function useSenderInput(textareaRef: RefObject<HTMLTextAreaElement>) {
     }
 
     function stopGenerate() {
+        if (!isGenerating() || isStopButtonDisabled()) return;
+
         instance.trigger('stopGenerate');
     }
 
     function handleKeydown(e: KeyboardEvent) {
-        if (e.key !== 'Enter' || !instance.get('submitOnEnter') || isDisabled() || instance.get('readonly')) return;
+        if (e.key !== 'Enter' || !instance.get('submitOnEnter') || isInputDisabled() || instance.get('readonly')) return;
         // Shift / 中文 IME 期间不触发提交
         if (e.shiftKey || (e as any).isComposing || e.keyCode === 229) return;
 
@@ -72,6 +89,8 @@ export function useSenderInput(textareaRef: RefObject<HTMLTextAreaElement>) {
     }
 
     function handleInput(e: Event) {
+        if (isInputDisabled() || instance.get('readonly')) return;
+
         const next = (e.target as HTMLTextAreaElement).value;
         instance.set('value', next);
     }
@@ -97,9 +116,12 @@ export function useSenderInput(textareaRef: RefObject<HTMLTextAreaElement>) {
     return {
         isFocus,
         isDisabled,
+        isInputDisabled,
         isGenerating,
         isLoading,
         isSendButtonDisabled,
+        isStopButtonDisabled,
+        isSendDisabled,
         send,
         stopGenerate,
         handleKeydown,

@@ -16,6 +16,7 @@ import type {
 export interface XMarkdownTyping {
     interval?: number
     step?: number
+    suffix?: boolean
 }
 
 export interface XMarkdownProps {

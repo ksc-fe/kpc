@@ -805,8 +805,58 @@ describe('FileCard', () => {
         expect(button.className).not.to.contain('k-btn');
         expect(style.top).to.eql('2px');
         expect(style.right).to.eql('2px');
+        expect(style.zIndex).to.eql('5');
         expect(style.transform).to.eql('none');
         expect(calls).to.eql(['delete']);
+    });
+
+    // 视频卡片的播放触发器覆盖在卡片中间，删除按钮需要保持更高层级。
+    it('should keep video delete button above preview trigger and not open preview', async () => {
+        const calls: string[] = [];
+
+        class Demo extends Component {
+            static template = `
+                const { FileCard } = this;
+                <div>
+                    <FileCard
+                        name="clip.mp4"
+                        type="video"
+                        status="done"
+                        src="https://example.com/clip.mp4"
+                        showDelIcon
+                        ev-click={this.onClick}
+                        ev-preview={this.onPreview}
+                        ev-delete={this.onDelete}
+                    />
+                </div>
+            `;
+
+            FileCard = FileCard;
+
+            onClick = () => {
+                calls.push('click');
+            };
+
+            onPreview = () => {
+                calls.push('preview');
+            };
+
+            onDelete = () => {
+                calls.push('delete');
+            };
+        }
+
+        const [, element] = mount(Demo);
+        const button = element.querySelector('.k-file-card-delete') as HTMLElement;
+        const previewTrigger = element.querySelector('.k-media-video-preview-trigger') as HTMLElement;
+
+        expect(+getComputedStyle(button).zIndex).to.be.greaterThan(+getComputedStyle(previewTrigger).zIndex);
+
+        button.click();
+        await wait();
+
+        expect(calls).to.eql(['delete']);
+        expectViewerClosed();
     });
 
     // 媒体预览由内部 Media 负责，同时 FileCard 继续抛出 preview 事件。
@@ -901,17 +951,20 @@ describe('FileCard', () => {
         expect(calls).to.eql(['a']);
     });
 
-    // FileCardList 的 extension 插槽为空时，不保留额外 flex item。
-    it('should not render extension wrapper when extension slot is empty', async () => {
+    // FileCardList 的 prefix/suffix 插槽为空时，不保留额外 flex item。
+    it('should not render prefix or suffix wrapper when slots are empty', async () => {
         class Demo extends Component {
             static template = `
                 const { FileCardList } = this;
                 <FileCardList
                     items={[{key: 'a', name: 'a.pdf'}]}
                 >
-                    <b:extension>
-                        <button v-if={false} class="empty-extension" type="button">add</button>
-                    </b:extension>
+                    <b:prefix>
+                        <button v-if={false} class="empty-prefix" type="button">add</button>
+                    </b:prefix>
+                    <b:suffix>
+                        <button v-if={false} class="empty-suffix" type="button">more</button>
+                    </b:suffix>
                 </FileCardList>
             `;
 
@@ -920,7 +973,37 @@ describe('FileCard', () => {
 
         const [, element] = mount(Demo);
 
-        expect(element.querySelector('.k-file-card-list-extension')).to.eql(null);
+        expect(element.querySelector('.k-file-card-list-prefix')).to.eql(null);
+        expect(element.querySelector('.k-file-card-list-suffix')).to.eql(null);
+    });
+
+    it('should render prefix before items and suffix after items', async () => {
+        class Demo extends Component {
+            static template = `
+                const { FileCardList } = this;
+                <FileCardList
+                    items={[{key: 'a', name: 'a.pdf'}]}
+                >
+                    <b:prefix>
+                        <button class="prefix-action" type="button">add</button>
+                    </b:prefix>
+                    <b:suffix>
+                        <button class="suffix-action" type="button">more</button>
+                    </b:suffix>
+                </FileCardList>
+            `;
+
+            FileCardList = FileCardList;
+        }
+
+        const [, element] = mount(Demo);
+        const list = element.classList.contains('k-file-card-list') ?
+            element :
+            element.querySelector('.k-file-card-list')!;
+
+        expect(list.children[0].className).to.contain('k-file-card-list-prefix');
+        expect(list.children[1].className).to.contain('k-file-card');
+        expect(list.children[2].className).to.contain('k-file-card-list-suffix');
     });
 
     // 删除角标回到卡片内后，列表容器不再需要额外顶部留白。

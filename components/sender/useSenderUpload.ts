@@ -8,9 +8,6 @@ import type {Sender, SenderAttachment, SenderUploadProps} from './sender';
 // 用一个递增 id 给本地附件分配 key，与 Upload 组件保持一致策略。
 let uid = 0;
 
-// 视觉模型默认 accept；普通文本模式不限制。
-const IMAGE_ACCEPT = 'image/*';
-
 // 内置的「文件选择 + XHR 上传」逻辑。
 // 不直接复用 Upload 内部 hook，因为它强依赖 useInstance() as Upload 的状态形状；
 // 这里直接复用更底层的 request() 和上传约束规则，避免在 Sender 里渲染额外的 Upload 节点。
@@ -24,7 +21,6 @@ export function useSenderUpload(fileInputRef: RefObject<HTMLInputElement>) {
     function getAcceptAttr() {
         const {accept} = getUploadProps();
         if (accept) return accept;
-        if (instance.get('type') === 'image') return IMAGE_ACCEPT;
         return undefined;
     }
 
@@ -37,6 +33,10 @@ export function useSenderUpload(fileInputRef: RefObject<HTMLInputElement>) {
 
     function getAttachments(): SenderAttachment[] {
         return instance.get('attachments') || [];
+    }
+
+    function isInputDisabled() {
+        return !!instance.get('disabled') || !!instance.get('inputDisabled');
     }
 
     function setAttachments(next: SenderAttachment[]) {
@@ -146,6 +146,8 @@ export function useSenderUpload(fileInputRef: RefObject<HTMLInputElement>) {
     }
 
     async function addFiles(fileList: FileList | File[]) {
+        if (isInputDisabled()) return;
+
         const props = getUploadProps();
         const accept = getAcceptAttr();
         const {limit, maxSize, autoUpload = true, beforeUpload} = props;
@@ -231,7 +233,7 @@ export function useSenderUpload(fileInputRef: RefObject<HTMLInputElement>) {
     /** 从原生 file input 拿到 FileList 后清空它，确保用户重新选择同一个文件也能触发 change */
     function onInputChange(e: Event) {
         const input = e.target as HTMLInputElement;
-        if (input.files && input.files.length) {
+        if (!isInputDisabled() && input.files && input.files.length) {
             addFiles(input.files);
         }
         input.value = '';
@@ -239,7 +241,9 @@ export function useSenderUpload(fileInputRef: RefObject<HTMLInputElement>) {
 
     /** 触发左下角 + 号按钮的文件选择 */
     function pickFiles() {
-        if (instance.get('disabled')) return;
+        if (isInputDisabled()) return;
+        const {limit} = getUploadProps();
+        if (limit !== undefined && limit !== null && getAttachments().length >= Number(limit)) return;
         fileInputRef.value?.click();
     }
 

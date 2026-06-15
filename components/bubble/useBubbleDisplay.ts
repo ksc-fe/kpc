@@ -292,6 +292,14 @@ export function useBubbleDisplay() {
         return !!instance.get<boolean>('$typingActive');
     }
 
+    function shouldShowTypingSuffix() {
+        const typing = instance.get('typing');
+        if (!typing) return false;
+        if (typeof typing === 'boolean') return false;
+        if (typing.suffix !== true) return false;
+        return !instance.get('loading') && (isTypingActive() || !!instance.get('streaming'));
+    }
+
     function getBubbleStyle() {
         const maxWidthString = instance.get('maxWidthString');
         if (!maxWidthString) return;
@@ -332,6 +340,7 @@ export function useBubbleDisplay() {
         shouldShowContentBlock,
         shouldShowLoadingShell,
         getDisplayedContent,
+        shouldShowTypingSuffix,
         isTypingActive,
         getBubbleStyle,
         getRoleNameText,

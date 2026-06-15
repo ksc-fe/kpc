@@ -13,7 +13,7 @@ sidebar: doc
 | --- | --- | --- | --- |
 | content | 要渲染的 Markdown 内容，支持 `string` 和 `number` | `string` &#124; `number` | `undefined` |
 | loading | 展示加载态。适合在内容尚未返回、或希望先占位再展示正文时使用 | `boolean` | `false` |
-| typing | 开启打字动画，也可传入步进配置。适合 AI 输出、演示讲解等需要渐进展示的场景 | `boolean` &#124; `XMarkdownTyping` | `false` |
+| typing | 开启打字动画，也可传入步进配置。适合 AI 输出、演示讲解等需要渐进展示的场景。`suffix` 控制生成中的三点动效，默认 `false`，`true` 时展示 | `boolean` &#124; `XMarkdownTyping` | `false` |
 | streaming | 标记当前内容仍在持续追加。常与 `typing` 配合，用于承接模型流式输出 | `boolean` | `false` |
 | allowHtml | 允许解析 Markdown 中的原始 HTML。适合需要混排少量业务 HTML 片段时使用；处理不可信内容时建议同时关注 `sanitizeOptions` | `boolean` | `false` |
 | showCodeHeader | 控制代码块头部工具栏是否展示。想保留代码块样式但隐藏语言栏和复制入口时可以关闭 | `boolean` | `true` |
@@ -32,6 +32,7 @@ sidebar: doc
 interface XMarkdownTyping {
     interval?: number
     step?: number
+    suffix?: boolean
 }
 
 type XMarkdownFormulaDelimiter =

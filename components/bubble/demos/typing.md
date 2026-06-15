@@ -61,6 +61,7 @@ interface Props {
     typing: boolean | {
         interval: number
         step: number
+        suffix?: boolean
     }
     modeLabel: string
     completeCount: number
@@ -98,7 +99,13 @@ export default class extends Component<Props> {
 
     @bind
     playFast() {
-        this.play(24, 6, '快速播放');
+        this.set({
+            bubbleKey: this.get('bubbleKey') + 1,
+            content: fullText,
+            typing: {interval: 24, step: 6, suffix: true},
+            modeLabel: '快速播放（展示生成态）',
+            completeCount: 0,
+        });
     }
 
     @bind

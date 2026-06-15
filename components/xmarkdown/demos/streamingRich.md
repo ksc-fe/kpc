@@ -18,7 +18,7 @@ import {XMarkdown, Button} from 'kpc';
             <div class="xmarkdown-demo-streaming-rich-title">标准宽度</div>
             <XMarkdown
                 content={this.get('content')}
-                typing={{interval: 24, step: 5}}
+                typing={{interval: 24, step: 5, suffix: true}}
                 streaming={this.get('streaming')}
                 loading={this.get('loading')}
             />
@@ -27,7 +27,7 @@ import {XMarkdown, Button} from 'kpc';
             <div class="xmarkdown-demo-streaming-rich-title">窄容器</div>
             <XMarkdown
                 content={this.get('content')}
-                typing={{interval: 24, step: 5}}
+                typing={{interval: 24, step: 5, suffix: true}}
                 streaming={this.get('streaming')}
                 loading={this.get('loading')}
             />

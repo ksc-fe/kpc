@@ -3,12 +3,13 @@ title: 视觉模型
 order: 3
 ---
 
-设置 `type="image"` 后，会切换到更适合视觉模型的输入形态：默认只接收图片，附件区使用更大的图片预览。下面通过 `configure` 扩展点提供一个小尺寸选择框，可切换为视频上传。
+设置 `fileView="media"` 后，附件会以图片/视频等媒体缩略图展示。`uploadButton="list"` 会把上传入口放到附件列表末尾。下面通过 `configure` 扩展点提供一个小尺寸选择框，可切换为视频上传。
 
 ```vdt
 import {Sender, Select, Option} from 'kpc';
 
-<Sender type="image"
+<Sender fileView="media"
+    uploadButton="list"
     v-model:value="value"
     v-model:attachments="attachments"
     uploadProps={{accept: this.getUploadAccept(), multiple: true, limit: 6}}

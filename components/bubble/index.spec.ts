@@ -649,4 +649,38 @@ describe('Bubble', () => {
         expect(nextText).not.to.eql('');
     });
 
+    it('should render typing suffix only when enabled', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Bubble } = this;
+                <div>
+                    <Bubble
+                        className="suffix-enabled"
+                        content="hello"
+                        typing={{interval: 16, step: 2, suffix: true}}
+                        streaming={true}
+                    />
+                    <Bubble
+                        className="suffix-default"
+                        content="hello"
+                        typing={{interval: 16, step: 2}}
+                        streaming={true}
+                    />
+                </div>
+            `;
+            Bubble = Bubble;
+        }
+
+        const [, element] = mount(Demo);
+        for (let i = 0; i < 10; i++) {
+            if (element.querySelector('.suffix-enabled .k-bubble-typing-suffix')) break;
+            await wait(20);
+        }
+
+        const enabledSuffix = element.querySelector('.suffix-enabled .k-bubble-typing-suffix')!;
+
+        expect(enabledSuffix.querySelectorAll('span').length).to.eql(3);
+        expect(element.querySelector('.suffix-default .k-bubble-typing-suffix')).to.eql(null);
+    });
+
 });

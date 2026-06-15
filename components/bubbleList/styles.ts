@@ -6,7 +6,7 @@ import {cache} from '../utils';
 
 const defaults = {
     gap: '12px',
-    paddingInline: '8px',
+    scrollbarGap: '6px',
     scrollToBottomBg: '#fff',
     scrollToBottomColor: '#97A3B6',
     scrollToBottomBorder: `1px solid ${setAlpha(theme.color.border, 0.72)}`,
@@ -50,6 +50,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
             scrollbar-color: ${bubbleList.scrollThumb} ${bubbleList.scrollbarTrack};
         }
 
+        .${k}-bubble-list-scroll-has-scrollbar {
+            padding-inline-end: ${bubbleList.scrollbarGap};
+        }
+
         .${k}-bubble-list-scroll::-webkit-scrollbar {
             width: 10px;
             height: 10px;
@@ -77,7 +81,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             display: flex;
             flex-direction: column;
             box-sizing: border-box;
-            padding-inline: ${bubbleList.paddingInline};
+            padding-inline: 0;
         }
 
         .${k}-bubble-list-history {

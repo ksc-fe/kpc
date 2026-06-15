@@ -10,6 +10,8 @@ import {Sender} from 'kpc';
 
 <Sender v-model:value="value"
     generating={this.get('generating')}
+    inputDisabled={this.get('generating')}
+    buttonTooltip={{send: '发送消息', stop: '停止生成'}}
     ev-messageSend={this.onMessageSend}
     ev-stopGenerate={this.onStopGenerate}
 />

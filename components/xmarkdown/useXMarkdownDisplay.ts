@@ -638,6 +638,14 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         return !!instance.get<boolean>('$typingActive');
     }
 
+    function shouldShowTypingSuffix() {
+        const typing = instance.get('typing');
+        if (!typing) return false;
+        if (typeof typing === 'boolean') return false;
+        if (typing.suffix !== true) return false;
+        return !instance.get('loading') && (isTypingActive() || !!instance.get('streaming'));
+    }
+
     return {
         onMounted: () => {
             mounted = true;
@@ -668,5 +676,6 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
 
         // 状态查询
         isTypingActive,
+        shouldShowTypingSuffix,
     };
 }

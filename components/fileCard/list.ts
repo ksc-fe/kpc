@@ -18,7 +18,8 @@ export interface FileCardListProps {
 }
 
 export interface FileCardListBlocks {
-    extension: null
+    prefix: null
+    suffix: null
 }
 
 export interface FileCardListEvents {

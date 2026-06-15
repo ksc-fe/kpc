@@ -1,6 +1,6 @@
 import {css} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
-import {deepDefaults} from '../../styles/utils';
+import {deepDefaults, setAlpha} from '../../styles/utils';
 import '../../styles/global';
 import {cache} from '../utils';
 
@@ -116,6 +116,44 @@ export const makeStyles = cache(function makeStyles(k: string) {
         .${k}-xmarkdown-stable,
         .${k}-xmarkdown-tail {
             display: contents;
+        }
+
+        .${k}-xmarkdown-content .${k}-xmarkdown-typing-suffix {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            width: 26px;
+            height: 6px;
+            margin-top: 8px;
+            line-height: 0;
+        }
+
+        .${k}-xmarkdown-content .${k}-xmarkdown-typing-suffix span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, #F8F9FA 0%, #D0D5D9 100%);
+            animation: ${k}-xmarkdown-typing-suffix-pulse 1.2s ease-in-out infinite;
+        }
+
+        .${k}-xmarkdown-content .${k}-xmarkdown-typing-suffix span:nth-child(2) {
+            animation-delay: 0.16s;
+        }
+
+        .${k}-xmarkdown-content .${k}-xmarkdown-typing-suffix span:nth-child(3) {
+            animation-delay: 0.32s;
+        }
+
+        @keyframes ${k}-xmarkdown-typing-suffix-pulse {
+            0%, 80%, 100% {
+                background: radial-gradient(circle at center, #F8F9FA 0%, #D0D5D9 100%);
+                transform: translateY(0);
+            }
+
+            40% {
+                background: radial-gradient(circle at center, ${setAlpha(theme.color.primary, 0.45)} 0%, ${theme.color.primary} 100%);
+                transform: translateY(-1px);
+            }
         }
 
         .${k}-xmarkdown-stable > :first-child {
@@ -256,6 +294,11 @@ export const makeStyles = cache(function makeStyles(k: string) {
             border-radius: 18px;
             background: ${xmarkdown.codeBlockBg};
             box-sizing: border-box;
+        }
+
+        .${k}-xmarkdown-stable:not(:empty) + .${k}-xmarkdown-tail > .${k}-xmarkdown-code-block:first-child,
+        .${k}-xmarkdown-stable:not(:empty) + .${k}-xmarkdown-tail > .${k}-xmarkdown-mermaid-block:first-child {
+            margin-top: 12px;
         }
 
         .${k}-xmarkdown-code-toolbar {

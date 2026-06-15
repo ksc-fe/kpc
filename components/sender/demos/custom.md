@@ -3,7 +3,7 @@ title: 自定义按钮
 order: 10
 ---
 
-通过 `attachmentsButton` 和 `sendButton` 扩展点自定义附件按钮与发送按钮。`sendButton` 会接收当前状态，方便业务接入自己的样式和交互。
+通过 `uploadButton` 和 `sendButton` 扩展点自定义上传按钮与发送按钮。`uploadButton` 会跟随 `uploadButton` 属性的位置渲染，并接收当前上传入口状态。
 
 ```vdt
 import {Sender, Button, Icon} from 'kpc';
@@ -13,15 +13,19 @@ import {Sender, Button, Icon} from 'kpc';
     ev-messageSend={this.onMessageSend}
     ev-stopGenerate={this.onStopGenerate}
 >
-    <b:attachmentsButton>
-        <Button size="small" type="none">
+    <b:uploadButton args="scope">
+        <Button size="small"
+            type="none"
+            disabled={scope.disabled || scope.reachLimit}
+            ev-click={scope.pickFiles}
+        >
             <Icon class="k-icon-paper" />
             上传文件
         </Button>
-    </b:attachmentsButton>
+    </b:uploadButton>
     <b:sendButton args="scope">
         <Button type="primary"
-            disabled={scope.disabled && !scope.generating}
+            disabled={scope.generating ? scope.stopDisabled : scope.disabled}
             loading={scope.loading}
             ev-click={scope.generating ? scope.stopGenerate : scope.send}
         >{scope.generating ? '停止' : '发送'}</Button>

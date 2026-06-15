@@ -25,10 +25,12 @@ const defaults = {
     bg: '#FFFFFF',
     color: theme.color.text,
     placeholderColor: theme.color.placeholder,
-    disabledBg: theme.color.disabledBg,
+    disabledBg: theme.color.bg,
     disabledColor: theme.color.disabled,
     fontSize: theme.fontSize,
     lineHeight: 1.5,
+    prefixGap: '8px',
+    prefixColor: '#868A9C',
     gradientDefault: SENDER_GRADIENT_DEFAULT,
     gradientActive: SENDER_GRADIENT_ACTIVE,
     activeBackdropFilter: 'blur(4px)',
@@ -40,16 +42,16 @@ const defaults = {
     sendButtonSize: '32px',
     attachButtonSize: '16px',
     attachIconColor: '#868A9C',
-    attachIconHoverColor: theme.color.primary,
-    // type='image' 末尾的 + 框，尺寸和 FileCard image default 对齐
-    imageAddSize: '64px',
-    imageAddRadius: '6px',
-    imageAddBg: '#FFFFFF',
-    imageAddBorder: '1px dashed #E5E8EE',
-    imageAddColor: '#868A9C',
-    imageAddIconSize: '16px',
-    imageAddTextFontSize: '12px',
-    imageAddIconToTextGap: '8px',
+    get attachIconHoverColor() { return theme.color.primary },
+    // 附件列表末尾上传入口，尺寸和 FileCard media default 对齐
+    listUploadSize: '64px',
+    listUploadRadius: '6px',
+    listUploadBg: '#FFFFFF',
+    listUploadBorder: '1px dashed #E5E8EE',
+    listUploadColor: '#868A9C',
+    listUploadIconSize: '16px',
+    listUploadTextFontSize: '12px',
+    listUploadIconToTextGap: '8px',
     dragMaskBg: 'rgba(255, 255, 255, 0.72)',
     dragCardColor: '#5370FF',
     dragCardTextColor: theme.color.text,
@@ -115,7 +117,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             transition: background ${theme.transition.middle}, opacity ${theme.transition.middle};
         }
 
-        .${k}-sender-shell:hover::before,
+        &:not(.${k}-sender-disabled) .${k}-sender-shell:hover::before,
         .${k}-sender-shell.${k}-sender-active::before {
             background: ${sender.gradientActive};
         }
@@ -134,6 +136,10 @@ export const makeStyles = cache(function makeStyles(k: string) {
             background: ${sender.disabledBg};
         }
 
+        &.${k}-sender-input-disabled .${k}-sender-shell {
+            background: ${sender.disabledBg};
+        }
+
         // 附件区本身不带默认下边距，按后续相邻块决定间距
         .${k}-sender-attachments {
             padding: 0;
@@ -142,9 +148,9 @@ export const makeStyles = cache(function makeStyles(k: string) {
             flex: 0 0 auto;
         }
 
-        // type='image' 模式下的横向附件区，把 FileCardList 强制成 nowrap 横向布局；
+        // media 视图下的横向附件区，把 FileCardList 强制成 nowrap 横向布局；
         // 视觉上不希望折行，缩略图溢出时由 FileCardList 自己滚动。
-        .${k}-sender-attachments-image .${k}-file-card-list {
+        .${k}-sender-attachments-media .${k}-file-card-list {
             min-width: 0;
         }
 
@@ -170,6 +176,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         .${k}-sender-input-area {
             position: relative;
             display: flex;
+            align-items: flex-start;
             flex: 0 0 auto;
             min-height: 0;
             margin-bottom: ${sender.gapInputToToolbar};
@@ -177,9 +184,19 @@ export const makeStyles = cache(function makeStyles(k: string) {
             box-sizing: border-box;
         }
 
+        .${k}-sender-prefix {
+            display: inline-flex;
+            align-items: center;
+            flex: 0 0 auto;
+            min-height: calc(${sender.fontSize} * ${sender.lineHeight});
+            margin-right: ${sender.prefixGap};
+            color: ${sender.prefixColor};
+            line-height: ${sender.lineHeight};
+        }
+
         .${k}-sender-input {
             flex: 1 1 auto;
-            width: 100%;
+            width: 0;
             min-width: 0;
             min-height: 0;
             border: none;
@@ -229,7 +246,8 @@ export const makeStyles = cache(function makeStyles(k: string) {
             color: ${sender.placeholderColor};
         }
 
-        &.${k}-sender-disabled .${k}-sender-input {
+        &.${k}-sender-disabled .${k}-sender-input,
+        &.${k}-sender-input-disabled .${k}-sender-input {
             color: ${sender.disabledColor};
             cursor: not-allowed;
         }
@@ -291,7 +309,8 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
 
         .${k}-sender-attach-btn:disabled,
-        &.${k}-sender-disabled .${k}-sender-attach-btn {
+        &.${k}-sender-disabled .${k}-sender-attach-btn,
+        &.${k}-sender-input-disabled .${k}-sender-attach-btn {
             color: ${theme.color.disabled};
             cursor: not-allowed;
             background: transparent;
@@ -333,61 +352,61 @@ export const makeStyles = cache(function makeStyles(k: string) {
             filter: drop-shadow(0 4px 8px rgba(83, 112, 255, 0.32));
         }
 
-        // type='image' 末尾的虚线 + 框：加号与文案作为一组垂直居中
-        .${k}-sender-image-add {
+        // 附件列表末尾的虚线 + 框：加号与文案作为一组垂直居中
+        .${k}-sender-list-upload {
             display: inline-flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: ${sender.imageAddIconToTextGap};
-            width: ${sender.imageAddSize};
-            height: ${sender.imageAddSize};
+            gap: ${sender.listUploadIconToTextGap};
+            width: ${sender.listUploadSize};
+            height: ${sender.listUploadSize};
             box-sizing: border-box;
             flex: 0 0 auto;
             padding: 0;
-            border-radius: ${sender.imageAddRadius};
-            border: ${sender.imageAddBorder};
-            background: ${sender.imageAddBg};
-            color: ${sender.imageAddColor};
+            border-radius: ${sender.listUploadRadius};
+            border: ${sender.listUploadBorder};
+            background: ${sender.listUploadBg};
+            color: ${sender.listUploadColor};
             cursor: pointer;
             transition: border-color ${theme.transition.small}, color ${theme.transition.small};
         }
 
-        .${k}-sender-image-add .${k}-icon {
+        .${k}-sender-list-upload .${k}-icon {
             flex: 0 0 auto;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: ${sender.imageAddIconSize};
-            height: ${sender.imageAddIconSize};
+            width: ${sender.listUploadIconSize};
+            height: ${sender.listUploadIconSize};
             color: inherit;
-            font-size: ${sender.imageAddIconSize};
+            font-size: ${sender.listUploadIconSize};
             line-height: 1;
             transition: color ${theme.transition.small};
         }
 
-        .${k}-sender-image-add-text {
+        .${k}-sender-list-upload-text {
             flex: 0 0 auto;
-            font-size: ${sender.imageAddTextFontSize};
+            font-size: ${sender.listUploadTextFontSize};
             line-height: 1;
             color: inherit;
             transition: color ${theme.transition.small};
         }
 
-        .${k}-sender-image-add:hover {
+        .${k}-sender-list-upload:hover {
             border-color: ${theme.color.primary};
             color: ${theme.color.primary};
         }
 
-        .${k}-sender-image-add:hover .${k}-icon,
-        .${k}-sender-image-add:hover .${k}-sender-image-add-text {
+        .${k}-sender-list-upload:hover .${k}-icon,
+        .${k}-sender-list-upload:hover .${k}-sender-list-upload-text {
             color: inherit;
         }
 
-        .${k}-sender-image-add-disabled,
-        .${k}-sender-image-add-disabled:hover {
+        .${k}-sender-list-upload-disabled,
+        .${k}-sender-list-upload-disabled:hover {
             cursor: not-allowed;
-            border-color: ${theme.color.border};
+            border: ${sender.listUploadBorder};
             color: ${theme.color.disabled};
         }
 

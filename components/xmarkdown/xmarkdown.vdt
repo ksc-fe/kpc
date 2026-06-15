@@ -11,6 +11,7 @@ const {
 const {
     shouldShowLoadingShell,
     shouldShowEmpty,
+    shouldShowTypingSuffix,
 } = this.display;
 const stableNodes = this.display.getRenderedStableNodes();
 const tailNodes = this.display.getRenderedTailNodes();
@@ -53,7 +54,14 @@ const classNameObj = {
         </div>
     </template>
     <div v-else class={`${k}-xmarkdown-content`} ref={contentRef}>
-        <div class={`${k}-xmarkdown-stable`}>{stableNodes}</div>
-        <div class={`${k}-xmarkdown-tail`}>{tailNodes}</div>
+        <div class={`${k}-xmarkdown-body`}>
+            <div class={`${k}-xmarkdown-stable`}>{stableNodes}</div>
+            <div class={`${k}-xmarkdown-tail`}>{tailNodes}</div>
+        </div>
+        <div class={`${k}-xmarkdown-typing-suffix`} v-if={shouldShowTypingSuffix()} aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
 </div>

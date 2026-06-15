@@ -228,8 +228,12 @@ export function useSenderDrag(addFiles: AddFiles) {
     const instance = useInstance() as Sender;
     const dragOver = useState(false);
 
+    function isInputDisabled() {
+        return !!instance.get('disabled') || !!instance.get('inputDisabled');
+    }
+
     function isEnabled() {
-        return !!instance.get('dragFile') && !instance.get('disabled');
+        return !!instance.get('dragFile') && !isInputDisabled();
     }
 
     const controller: SenderDragController = {
@@ -241,7 +245,7 @@ export function useSenderDrag(addFiles: AddFiles) {
             e.stopPropagation();
         },
         onDragEnter() {
-            if (instance.get('disabled')) return;
+            if (isInputDisabled()) return;
 
             controller.counter++;
             if (!dragOver.value) {
@@ -259,7 +263,7 @@ export function useSenderDrag(addFiles: AddFiles) {
         onDrop(e: DragEvent) {
             controller.stopEvent(e);
             controller.reset();
-            if (instance.get('disabled')) return;
+            if (isInputDisabled()) return;
 
             const directoryEnabled = !!instance.get('uploadProps')?.directory;
             const directFiles = e.dataTransfer?.files;
@@ -300,6 +304,12 @@ export function useSenderDrag(addFiles: AddFiles) {
 
     instance.watch('dragFile', syncController);
     instance.watch('disabled', (disabled) => {
+        if (disabled) {
+            controller.reset();
+        }
+        syncController();
+    });
+    instance.watch('inputDisabled', (disabled) => {
         if (disabled) {
             controller.reset();
         }
