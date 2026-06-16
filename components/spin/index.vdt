@@ -1,12 +1,8 @@
 import {getRestProps} from '../utils';
 import {makeStyles, makeDashAnimation} from './styles';
 
-const {size, center, className, overlay, color, gradientFrom, gradientTo, gradientX1, gradientY1, gradientX2, gradientY2, strokeWidth} = this.get();
+const {size, center, className, overlay, color, strokeWidth} = this.get();
 const { k } = this.config;
-const _gradientId = this._gradientId;
-
-const useGradient = gradientFrom?.trim() && gradientTo?.trim();
-const strokePaint = useGradient ? `url(#k-spin-grad-${_gradientId})` : color;
 
 const VIEWBOX = 120;
 const HALF = VIEWBOX / 2;
@@ -21,7 +17,7 @@ const dashAnimation = makeDashAnimation(circumference, dashLength, dashOffset25,
 
 const isNumericSize = typeof size === 'number';
 const canvasStyle = isNumericSize ? `width: ${size}px; height: ${size}px` : undefined;
-const circleStyle = `--c: ${circumference}; ${color || useGradient ? `--stroke: ${strokePaint};` : ''} animation: ${dashAnimation}`;
+const circleStyle = `--c: ${circumference}; ${color ? `--stroke: ${color};` : ''} animation: ${dashAnimation}`;
 
 const classNameObj = {
     [`${k}-spin`]: true,
@@ -36,19 +32,6 @@ const canvas = (
     <div class={`${k}-spin-canvas`} style={canvasStyle}>
         <b:canvas>
             <svg viewBox={`0 0 ${VIEWBOX} ${VIEWBOX}`} fill="none">
-                <defs v-if={useGradient}>
-                    <linearGradient
-                        id={`k-spin-grad-${_gradientId}`}
-                        x1={gradientX1}
-                        y1={gradientY1}
-                        x2={gradientX2}
-                        y2={gradientY2}
-                        gradientUnits="objectBoundingBox"
-                    >
-                        <stop offset="0%" stop-color={gradientFrom} />
-                        <stop offset="100%" stop-color={gradientTo} />
-                    </linearGradient>
-                </defs>
                 <circle
                     cx={HALF}
                     cy={HALF}
