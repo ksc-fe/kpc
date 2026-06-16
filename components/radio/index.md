@@ -12,8 +12,6 @@ sidebar: doc
 | disabled | 是否禁用 | `boolean` | `false` |
 | value | 单选框取值，用于`v-model`进行双向绑定 | `any` | `false` |
 | trueValue | 单选框选中后的值 | `any` | `true` |
-| falseValue | 单选框取消选中后的值，仅在`cancelable`为`true`时有效 | `any` | `undefined` |
-| cancelable | 是否允许再次点击取消选中 | `boolean` | `false` |
 
 # 事件
 
