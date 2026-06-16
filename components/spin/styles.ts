@@ -7,6 +7,7 @@ import { cache } from '../utils';
 const defaults = {
     width: `40px`,
     get color() { return theme.color.primary },
+    strokeWidth: 6,
 
     largeWidth: `48px`,
     smallWidth: `32px`,
@@ -19,7 +20,27 @@ setDefault(() => {
     makeStyles?.clearCache();
 });
 
-export const makeStyles = cache(function makeStyles(k: string) {
+export const makeStyles = cache(function makeStyles(k: string, strokeWidth?: number, color?: string) {
+    const width = strokeWidth || spin.strokeWidth;
+    const r = 60 - (width / 2);
+    const c = Math.round(2 * Math.PI * r);
+    const spinDash = keyframes`
+        0% {
+            stroke-dasharray: 1, ${c};
+            stroke-dashoffset: 0
+        }
+
+        50% {
+            stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
+            stroke-dashoffset: ${-c * 0.25};
+        }
+
+        to {
+            stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
+            stroke-dashoffset: ${-c};
+        }
+    `;
+
     return css`
         display: inline-block;
         .${k}-spin-canvas {
@@ -28,10 +49,12 @@ export const makeStyles = cache(function makeStyles(k: string) {
             animation:.${k}-rotate 2s linear infinite;
         }
         .${k}-spin-circle {
-            stroke-dasharray: 1, var(--c);
+            stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
             stroke-dashoffset: 0;
             fill: none;
-            stroke: var(--stroke, ${spin.color});
+            stroke: ${color || spin.color};
+            stroke-width: ${width};
+            animation: ${spinDash} 1.5s ease-in-out infinite;
         }
 
         // size
@@ -67,26 +90,4 @@ export const makeStyles = cache(function makeStyles(k: string) {
             background: rgba(255, 255, 255, .5);
         }
     `;
-});
-
-export const makeDashAnimation = cache(function makeDashAnimation(
-    c: number, d75: number, o25: number, nc: number
-) {
-    const name = keyframes`
-        0% {
-            stroke-dasharray: 1, ${c};
-            stroke-dashoffset: 0
-        }
-
-        50% {
-            stroke-dasharray: ${d75}, ${c};
-            stroke-dashoffset: ${o25};
-        }
-
-        to {
-            stroke-dasharray: ${d75}, ${c};
-            stroke-dashoffset: ${nc};
-        }
-    `;
-    return `${name} 1.5s ease-in-out infinite`;
 });
