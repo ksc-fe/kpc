@@ -2067,6 +2067,12 @@
 "<div><div class=\"k-spin k-large css-7spqir\"><div class=\"k-spin-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div><div class=\"k-spin css-7spqir\"><div class=\"k-spin-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div><div class=\"k-spin k-small css-7spqir\"><div class=\"k-spin-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div><div class=\"k-spin k-mini css-7spqir\"><div class=\"k-spin-canvas\"><svg viewBox=\"0 0 120 120\"><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"57\"></circle></svg></div></div></div>"
 ```
 
+####     `Spin custom`
+
+```
+"<div><div class=\"k-spin css-nn86xa\"><div class=\"k-spin-canvas\"><svg viewBox=\"0 0 120 120\" fill=\"none\"><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"57\" stroke-width=\"6\" style=\"--c: 358; --stroke: #f0b; animation: 1.5s ease-in-out infinite animation-e57m82;\"></circle></svg></div></div><div class=\"k-spin css-nn86xa\"><div class=\"k-spin-canvas\"><svg viewBox=\"0 0 120 120\" fill=\"none\"><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"52\" stroke-width=\"16\" style=\"--c: 327; --stroke: #0fb; animation: 1.5s ease-in-out infinite animation-1dlffk5;\"></circle></svg></div></div><div class=\"k-spin css-nn86xa\"><div class=\"k-spin-canvas\" style=\"width: 64px; height: 64px;\"><svg viewBox=\"0 0 120 120\" fill=\"none\"><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"57\" stroke-width=\"6\" style=\"--c: 358; animation: 1.5s ease-in-out infinite animation-e57m82;\"></circle></svg></div></div><div class=\"k-spin css-nn86xa\"><div class=\"k-spin-canvas\"><svg viewBox=\"0 0 120 120\" fill=\"none\"><defs><linearGradient id=\"k-spin-grad-0px1h2u\" x1=\"0%\" y1=\"0%\" x2=\"100%\" y2=\"0%\" gradientUnits=\"objectBoundingBox\"><stop offset=\"0%\" stop-color=\"#3C7EFF\"></stop><stop offset=\"100%\" stop-color=\"#8B5CF6\"></stop></linearGradient></defs><circle class=\"k-spin-circle\" cx=\"60\" cy=\"60\" r=\"57\" stroke-width=\"6\" style=\"--c: 358; --stroke: url(#k-spin-grad-0px1h2u); animation: 1.5s ease-in-out infinite animation-e57m82;\"></circle></svg></div></div></div>"
+```
+
 ####     `Spin overlay`
 
 ```

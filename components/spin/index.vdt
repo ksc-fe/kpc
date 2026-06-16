@@ -1,24 +1,27 @@
-import {Transition} from 'intact';
 import {getRestProps} from '../utils';
 import {makeStyles} from './styles';
 
-const {size, center, className, overlay} = this.get();
+const {size, center, className, overlay, color, strokeWidth} = this.get();
 const { k } = this.config;
+
+const sw = strokeWidth || 6;
+const isNumericSize = typeof size === 'number';
+const canvasStyle = isNumericSize ? `width: ${size}px; height: ${size}px` : undefined;
 
 const classNameObj = {
     [`${k}-spin`]: true,
-    [`${k}-${size}`]: size !== 'default',
+    [`${k}-${size}`]: !isNumericSize && size !== 'default',
     [`${k}-center`]: !overlay && center,
     [`${k}-overlay`]: overlay,
     [className]: className,
-    [makeStyles(k)]: true,
+    [makeStyles(k, sw, color)]: true,
 };
 
 const canvas = (
-    <div class={`${k}-spin-canvas`}>
+    <div class={`${k}-spin-canvas`} style={canvasStyle}>
         <b:canvas>
             <svg viewBox="0 0 120 120">
-                <circle cx="60" cy="60" class={`${k}-spin-circle`} r="57"></circle>
+                <circle cx="60" cy="60" r={60 - sw / 2} class={`${k}-spin-circle`}></circle>
             </svg>
         </b:canvas>
     </div>

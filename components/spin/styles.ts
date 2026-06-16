@@ -1,6 +1,6 @@
 import {css, keyframes} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
-import {deepDefaults, sizes, Sizes} from '../../styles/utils';
+import {deepDefaults, sizes} from '../../styles/utils';
 import '../../styles/global';
 import { cache } from '../utils';
 
@@ -20,10 +20,10 @@ setDefault(() => {
     makeStyles?.clearCache();
 });
 
-export const makeStyles = cache(function makeStyles(k: string) {
-    const width = spin.strokeWidth;
-    const r = 120 - 60 - (width / 2);
-    const c = Math.round(2 * 3.14 * r);
+export const makeStyles = cache(function makeStyles(k: string, strokeWidth?: number, color?: string) {
+    const width = strokeWidth || spin.strokeWidth;
+    const r = 60 - (width / 2);
+    const c = Math.round(2 * Math.PI * r);
     const spinDash = keyframes`
         0% {
             stroke-dasharray: 1, ${c};
@@ -52,9 +52,8 @@ export const makeStyles = cache(function makeStyles(k: string) {
             stroke-dasharray: ${Math.round(c * 0.75)}, ${c};
             stroke-dashoffset: 0;
             fill: none;
+            stroke: ${color || spin.color};
             stroke-width: ${width};
-            stroke: ${spin.color};
-            r: ${r};
             animation: ${spinDash} 1.5s ease-in-out infinite;
         }
 
