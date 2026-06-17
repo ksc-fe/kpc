@@ -26,7 +26,7 @@ sidebar: doc
 | dragFile | 是否开启全屏拖拽上传 | `boolean` | `false` |
 | pasteFile | 是否开启粘贴上传；粘贴普通文本时仍保持原生行为 | `boolean` | `false` |
 | width | 组件宽度；传数字时按 `px` 处理 | `number` &#124; `string` | `640` |
-| maxHeight | 组件最大高度；超出后输入区和附件区内部滚动 | `number` &#124; `string` | `undefined` |
+| maxHeight | `k-sender-shell` 的最大高度，包含附件区、`beforeInput`、输入区和工具栏，不包含外部 `header/footer`；超出后输入区和附件区内部滚动 | `number` &#124; `string` | `300` |
 | attachments | 附件列表，通过 `v-model` 双向绑定 | `SenderAttachment[]` | `undefined` |
 | uploadProps | 上传配置，参考 `Upload`；支持限制类型、数量、大小，以及文件夹选择和自动上传 | `SenderUploadProps` | `undefined` |
 | submitOnEnter | 是否启用 `Enter` 直接发送（`Shift + Enter` 始终换行） | `boolean` | `true` |

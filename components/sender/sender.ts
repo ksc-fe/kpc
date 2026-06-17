@@ -88,7 +88,7 @@ export interface SenderProps {
     pasteFile?: boolean
     /** 整个输入外框 `k-sender` 的宽度，数字会按 `px` 处理 */
     width?: number | string
-    /** 整个输入外框 `k-sender-shell` 的最大高度（非文本域单宽），未传时默认 300 */
+    /** 整个输入外框 `k-sender-shell` 的最大高度，包含附件区、beforeInput、输入区和工具栏，不包含 header/footer。 */
     maxHeight?: number | string
     attachments?: SenderAttachment[]
     uploadProps?: SenderUploadProps
@@ -158,7 +158,7 @@ const defaults = (): Partial<SenderProps> => ({
     dragFile: false,
     pasteFile: false,
     width: 640,
-    maxHeight: undefined,
+    maxHeight: 300,
     attachments: undefined,
     uploadProps: undefined,
     submitOnEnter: true,

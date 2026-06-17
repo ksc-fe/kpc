@@ -923,6 +923,41 @@ describe('Sender', () => {
         expect(element.querySelector('.k-file-card')).not.to.eql(null);
     });
 
+    it('should shrink textarea min height only when uploadButton is list', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Sender } = this;
+                <div>
+                    <Sender className="sender-toolbar-media" fileView="media" />
+                    <Sender className="sender-list-card" uploadButton="list" />
+                </div>
+            `;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+        await wait();
+
+        const toolbarTextarea = element.querySelector<HTMLTextAreaElement>('.sender-toolbar-media .k-sender-input')!;
+        const listTextarea = element.querySelector<HTMLTextAreaElement>('.sender-list-card .k-sender-input')!;
+
+        expect(toolbarTextarea.style.height).to.eql('64px');
+        expect(listTextarea.style.height).to.eql('20px');
+    });
+
+    it('should use 300px as the default shell maxHeight', async () => {
+        class Demo extends Component {
+            static template = `const { Sender } = this; <div><Sender /></div>`;
+            Sender = Sender;
+        }
+
+        const [, element] = mount(Demo);
+        await wait();
+
+        const shell = element.querySelector<HTMLElement>('.k-sender-shell')!;
+        expect(shell.style.maxHeight).to.eql('300px');
+    });
+
     it('should pass uploadButton slot params and render it in toolbar', async () => {
         class Demo extends Component {
             static template = `

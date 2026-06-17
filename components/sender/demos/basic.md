@@ -10,6 +10,7 @@ import {Sender} from 'kpc';
 
 <Sender v-model:value="value"
     ev-messageSend={this.onMessageSend}
+    fileView="media"
 />
 ```
 

@@ -17,6 +17,8 @@ export interface XMarkdownTyping {
     interval?: number
     step?: number
     suffix?: boolean
+    keepPrefix?: boolean
+    resumeFrom?: string | number | 'content'
 }
 
 export interface XMarkdownProps {

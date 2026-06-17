@@ -16,7 +16,7 @@ sidebar: doc
 | avatar | 头像配置。传入图片地址时展示图片，传入 `true` 时展示默认头像，传入 `false` 时隐藏头像 | `boolean` &#124; `string` | `false` |
 | roleName | 角色名称 | `string` | `undefined` |
 | loading | 是否展示加载态。可通过 `loading` 插槽自定义加载效果。 | `boolean` | `false` |
-| typing | 是否启用打字效果，可传入配置对象。适合非流式整段内容，或配合 `streaming` 为流式内容补充稳定的动画与完成态通知。`suffix` 控制生成中的三点动效，默认 `false`，`true` 时展示 | `boolean` &#124; `{ interval?: number; step?: number; suffix?: boolean }` | `false` |
+| typing | 是否启用打字效果，可传入配置对象。适合非流式整段内容，或配合 `streaming` 为流式内容补充稳定的动画与完成态通知。`suffix` 控制生成中的三点动效；`keepPrefix` 控制内容修订时是否保留公共前缀，默认 `true`；`resumeFrom` 可指定断线重连后的已渲染起点 | `boolean` &#124; `{ interval?: number; step?: number; suffix?: boolean; keepPrefix?: boolean; resumeFrom?: string \| number \| "content" }` | `false` |
 | streaming | 是否处于流式输出中。开启后，即使当前已追平最新 `content`，也不会立即触发完成事件；只有在 `streaming` 变为 `false` 且文本全部显示后，才会触发一次完成事件 | `boolean` | `false` |
 | variant | 气泡内置样式风格，仅控制气泡视觉风格 | `"filled"` &#124; `"outlined"` &#124; `"plain"` | `"filled"` |
 | shape | 气泡形状，仅控制气泡圆角形态 | `"round"` &#124; `"square"` &#124; `"corner"` | `"square"` |

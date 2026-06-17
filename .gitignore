@@ -74,3 +74,4 @@ markdowns/
 .claude
 play/
 AGENTS.md
+.env

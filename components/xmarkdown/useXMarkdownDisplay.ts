@@ -36,6 +36,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
     let previousContent = instance.get('content');
     let previousLoading = !!instance.get('loading');
     let previousStreaming = !!instance.get('streaming');
+    let typingTargetKey = '';
 
     // Markdown 渲染缓存
     let lastStableMarkdownSource = '';
@@ -160,9 +161,16 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
             return {
                 interval: Math.max(typing.interval || 24, 16),
                 step: Math.max(typing.step || 2, 1),
+                keepPrefix: typing.keepPrefix !== false,
+                resumeFrom: typing.resumeFrom,
             };
         }
-        return {interval: 24, step: 2};
+        return {
+            interval: 24,
+            step: 2,
+            keepPrefix: true,
+            resumeFrom: undefined,
+        };
     }
 
     /**
@@ -243,20 +251,59 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         return instance.get<string>('$displayContent') || '';
     }
 
+    function getSafeContentPrefix(content: string, prefix: string) {
+        if (!prefix) return '';
+        if (content.startsWith(prefix)) return prefix;
+
+        let i = 0;
+        while (i < prefix.length && i < content.length && prefix[i] === content[i]) {
+            i++;
+        }
+
+        return prefix.slice(0, i);
+    }
+
+    function getResumePrefix(content: string) {
+        const {resumeFrom} = getTypingOptions();
+        if (resumeFrom === undefined || resumeFrom === null) return '';
+
+        if (resumeFrom === 'content') return content;
+        if (typeof resumeFrom === 'number') return content.slice(0, Math.max(0, resumeFrom));
+
+        return getSafeContentPrefix(content, String(resumeFrom));
+    }
+
+    function getTypingTargetKey(content: string) {
+        const {keepPrefix, resumeFrom} = getTypingOptions();
+        return `${keepPrefix ? '1' : '0'}\0${String(resumeFrom)}\0${content}`;
+    }
+
+    function syncTypingStart(content: string) {
+        const targetKey = getTypingTargetKey(content);
+        if (targetKey === typingTargetKey) return;
+
+        typingTargetKey = targetKey;
+        const sharedPrefix = getSharedPrefix(content);
+        if (sharedPrefix !== getDisplayedContent()) {
+            resetTypingComplete();
+            setDisplayContent(sharedPrefix);
+        }
+    }
+
     /**
      * 获取共享前缀
      */
     function getSharedPrefix(content: string) {
         const displayedContent = getDisplayedContent();
-        if (!displayedContent || content.startsWith(displayedContent)) {
+
+        if (!displayedContent) return getResumePrefix(content);
+        if (!getTypingOptions().keepPrefix) return '';
+
+        if (content.startsWith(displayedContent)) {
             return displayedContent;
         }
 
-        let i = 0;
-        while (i < displayedContent.length && i < content.length && displayedContent[i] === content[i]) {
-            i++;
-        }
-        return displayedContent.slice(0, i);
+        return getSafeContentPrefix(content, displayedContent);
     }
 
     /**
@@ -425,6 +472,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         if (instance.get('loading')) {
             stopTyping();
             resetTypingComplete();
+            typingTargetKey = '';
             if (!setDisplayContent('')) {
                 syncRenderedMarkdown();
             }
@@ -434,6 +482,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         // 无内容或禁用打字
         if (!instance.get('typing') || !nextValue) {
             stopTyping();
+            typingTargetKey = '';
             if (!setDisplayContent(nextValue)) {
                 syncRenderedMarkdown();
             }
@@ -444,11 +493,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         }
 
         // 内容变化检测
-        const sharedPrefix = getSharedPrefix(nextValue);
-        if (sharedPrefix !== getDisplayedContent()) {
-            resetTypingComplete();
-            setDisplayContent(sharedPrefix);
-        }
+        syncTypingStart(nextValue);
 
         const currentValue = getDisplayedContent();
         const {interval, step} = getTypingOptions();
@@ -490,6 +535,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         if (instance.get('loading')) {
             stopTyping();
             resetTypingComplete();
+            typingTargetKey = '';
             if (!setDisplayContent('')) {
                 syncRenderedMarkdown();
             }
@@ -504,6 +550,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         // 空内容或禁用打字效果，直接显示
         if (!nextValue || !typing) {
             stopTyping();
+            typingTargetKey = '';
             if (!setDisplayContent(nextValue)) {
                 syncRenderedMarkdown();
             }
@@ -514,12 +561,11 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         }
 
         // 内容变化检测
-        const sharedPrefix = getSharedPrefix(nextValue);
+        const previousDisplayContent = getDisplayedContent();
+        syncTypingStart(nextValue);
         // 内容发生"非追加"变化时
-        if (sharedPrefix !== getDisplayedContent()) {
+        if (getDisplayedContent() !== previousDisplayContent) {
             stopTyping();
-            resetTypingComplete();
-            setDisplayContent(sharedPrefix);
         }
 
         // 已完成
@@ -541,12 +587,12 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
      */
     function bootstrap() {
         const content = instance.get('content');
+        const nextValue = content === undefined || content === null ? '' : String(content);
         setTypingActive(false);
-        setDisplayContent(
-            !instance.get('loading') && !instance.get('typing') && content !== undefined && content !== null
-                ? String(content)
-                : ''
-        );
+        const initialDisplayContent = !instance.get('loading') && nextValue
+            ? instance.get('typing') ? getResumePrefix(nextValue) : nextValue
+            : '';
+        setDisplayContent(initialDisplayContent);
 
         // 监听核心属性变化
         ['content', 'loading', 'streaming', 'typing'].forEach((key) => {

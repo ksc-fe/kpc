@@ -4,6 +4,11 @@ order: 99
 sidebar: doc
 ---
 
+## v3.8.0-beta.2
+
+1. `Add` `Bubble`、`XMarkdown` 的 `typing` 新增 `keepPrefix`、`resumeFrom`，支持流式重连后接着已有输出继续打字。
+2. `Fix` `Sender` 默认 `maxHeight` 调整为 `300`，并优化 `uploadButton="list"` 场景下的输入区自适应高度。
+
 ## v3.8.0-beta.1
 
 1. `Add` `Sender` 新增 `inputDisabled`、`sendDisabled`、`stopDisabled`，支持生成中禁用输入但保留停止生成按钮可用。

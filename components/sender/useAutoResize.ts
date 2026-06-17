@@ -1,11 +1,12 @@
 import {useInstance, onMounted, onUpdated, RefObject, nextTick} from 'intact';
 import {useConfigContext} from '../config';
 import type {Sender} from './sender';
-// textarea 高度自适应：文件卡视图默认 64，媒体缩略图视图默认 20；maxHeight 约束整个输入外框而非 textarea 本身。
+// textarea 高度自适应：默认保留 64 的输入区高度；当上传入口放进附件列表时压缩为单行输入。
+// maxHeight 约束整个输入外框而非 textarea 本身。
 
 const SHELL_MAX_FALLBACK = 300;
-const TEXTAREA_MIN_CARD = 64;
-const TEXTAREA_MIN_MEDIA = 20;
+const TEXTAREA_MIN_DEFAULT = 64;
+const TEXTAREA_MIN_LIST_UPLOAD = 20;
 
 export function useAutoResize(textareaRef: RefObject<HTMLTextAreaElement>) {
     const instance = useInstance() as Sender;
@@ -56,8 +57,8 @@ export function useAutoResize(textareaRef: RefObject<HTMLTextAreaElement>) {
         const shell = getShell(el);
         if (!shell) return;
 
-        const isMediaView = instance.get('fileView') === 'media';
-        const min = isMediaView ? TEXTAREA_MIN_MEDIA : TEXTAREA_MIN_CARD;
+        const isListUpload = instance.get('uploadButton') === 'list';
+        const min = isListUpload ? TEXTAREA_MIN_LIST_UPLOAD : TEXTAREA_MIN_DEFAULT;
         /** 整框最大高度（props 或默认 300），从实际 CSS 读取，支持 50vh 等合法 CSS 值 */
         const shellMax = getShellMaxHeight(shell);
 
@@ -97,7 +98,7 @@ export function useAutoResize(textareaRef: RefObject<HTMLTextAreaElement>) {
 
     instance.watch('value', scheduleAdjust, {inited: true, presented: true});
     instance.watch('maxHeight', scheduleAdjust, {inited: true, presented: true});
-    instance.watch('fileView', scheduleAdjust, {inited: true, presented: true});
+    instance.watch('uploadButton', scheduleAdjust, {inited: true, presented: true});
     instance.watch('attachments', scheduleAdjust, {inited: true, presented: true});
 
     return {adjust};

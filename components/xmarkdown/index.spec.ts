@@ -607,6 +607,80 @@ describe('XMarkdown', () => {
         expect(element.querySelectorAll('.k-xmarkdown-content li').length).to.eql(2);
     });
 
+    it('should resume typing from previous rendered markdown after remount', async () => {
+        const resumedContent = '# 标题\n\n一段稳定内容。';
+
+        class Demo extends Component {
+            static template = `
+                const { XMarkdown } = this;
+                <XMarkdown
+                    content={this.get('content')}
+                    streaming={true}
+                    typing={{interval: 16, step: 2, resumeFrom: this.get('resumedContent')}}
+                />
+            `;
+
+            static defaults() {
+                return {
+                    resumedContent,
+                    content: resumedContent,
+                };
+            }
+
+            XMarkdown = XMarkdown;
+        }
+
+        const [instance, element] = mount(Demo);
+        const contentElement = element.querySelector('.k-xmarkdown-content')!;
+        const initialText = contentElement.textContent || '';
+
+        expect(initialText).to.contain('标题');
+        expect(initialText).to.contain('一段稳定内容');
+        expect(initialText).not.to.contain('继续生成中');
+
+        instance.set({content: `${resumedContent}\n\n继续生成中`});
+        const continued = await waitFor(() => contentElement.textContent!.includes('继续'));
+
+        expect(continued).to.be.true;
+        expect(contentElement.textContent).to.contain('继续');
+    });
+
+    it('should support content resume mode before appending new markdown text', async () => {
+        class Demo extends Component<{
+            content: string
+        }> {
+            static template = `
+                const { XMarkdown } = this;
+                <XMarkdown
+                    content={this.get('content')}
+                    streaming={true}
+                    typing={{interval: 16, step: 2, resumeFrom: 'content'}}
+                />
+            `;
+
+            static defaults() {
+                return {
+                    content: '# 标题\n\n已经渲染',
+                };
+            }
+
+            XMarkdown = XMarkdown;
+        }
+
+        const [instance, element] = mount(Demo);
+        const ready = await waitFor(() => !!element.querySelector('.k-xmarkdown-stable h1'));
+
+        expect(ready).to.be.true;
+        expect(element.querySelector('.k-xmarkdown-content')!.textContent).to.contain('已经渲染');
+
+        instance.set('content', '# 标题\n\n已经渲染，继续生成');
+        await wait(20);
+
+        const text = element.querySelector('.k-xmarkdown-content')!.textContent || '';
+        expect(text).to.contain('已经渲染');
+        expect(text).not.to.contain('继续生成');
+    });
+
     it('should split rendered content into stable and tail containers and reuse stable DOM on streaming updates', async () => {
         class Demo extends Component<{content: string; streaming: boolean}> {
             static template = `

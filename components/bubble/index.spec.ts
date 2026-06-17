@@ -649,6 +649,122 @@ describe('Bubble', () => {
         expect(nextText).not.to.eql('');
     });
 
+    it('should resume typing from previous rendered content after remount', async () => {
+        class Demo extends Component {
+            static template = `
+                const { Bubble } = this;
+                <div>
+                    <Bubble
+                        content="hello world"
+                        streaming={true}
+                        typing={{interval: 16, step: 2, resumeFrom: 'hello'}}
+                    />
+                </div>
+            `;
+
+            Bubble = Bubble;
+        }
+
+        const [, element] = mount(Demo);
+        const text = element.querySelector('.k-bubble-text')!.textContent || '';
+
+        expect(text).to.eql('hello');
+
+        let nextText = text;
+        for (let i = 0; i < 6; i++) {
+            await wait(20);
+            nextText = element.querySelector('.k-bubble-text')!.textContent || '';
+            if (nextText.length > text.length) break;
+        }
+
+        expect(nextText.startsWith('hello')).to.be.true;
+        expect(nextText.length).to.be.greaterThan(text.length);
+    });
+
+    it('should support content resume mode without replaying existing content', async () => {
+        class Demo extends Component<{
+            content: string
+        }> {
+            static template = `
+                const { Bubble } = this;
+                <div>
+                    <Bubble
+                        content={this.get('content')}
+                        streaming={true}
+                        typing={{interval: 16, step: 2, resumeFrom: 'content'}}
+                    />
+                </div>
+            `;
+
+            static defaults() {
+                return {
+                    content: 'already rendered',
+                };
+            }
+
+            Bubble = Bubble;
+        }
+
+        const [instance, element] = mount(Demo);
+
+        expect(element.querySelector('.k-bubble-text')!.textContent).to.eql('already rendered');
+
+        instance.set('content', 'already rendered and more');
+        await wait(20);
+
+        const text = element.querySelector('.k-bubble-text')!.textContent || '';
+        expect(text.startsWith('already rendered')).to.be.true;
+        expect(text.length).to.be.lessThan('already rendered and more'.length);
+    });
+
+    it('should restart typing from empty when keepPrefix is false', async () => {
+        class Demo extends Component<{
+            content: string
+        }> {
+            static template = `
+                const { Bubble } = this;
+                <div>
+                    <Bubble
+                        content={this.get('content')}
+                        streaming={true}
+                        typing={{interval: 16, step: 2, keepPrefix: false}}
+                    />
+                </div>
+            `;
+
+            static defaults() {
+                return {
+                    content: 'hello world',
+                };
+            }
+
+            Bubble = Bubble;
+        }
+
+        const [instance, element] = mount(Demo);
+
+        let initialText = '';
+        for (let i = 0; i < 12; i++) {
+            initialText = element.querySelector('.k-bubble-text')?.textContent || '';
+            if (initialText.includes('hello')) break;
+            await wait(20);
+        }
+        expect(initialText).to.contain('hello');
+
+        instance.set('content', 'hello there');
+        await wait();
+
+        let text = '';
+        for (let i = 0; i < 6; i++) {
+            await wait(20);
+            text = element.querySelector('.k-bubble-text')?.textContent || '';
+            if (text) break;
+        }
+
+        expect(text).not.to.contain('hello');
+        expect(text.length).to.be.lessThan('hello'.length);
+    });
+
     it('should render typing suffix only when enabled', async () => {
         class Demo extends Component {
             static template = `

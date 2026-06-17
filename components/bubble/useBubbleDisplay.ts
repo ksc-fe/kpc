@@ -10,6 +10,7 @@ export function useBubbleDisplay() {
     let previousLoading = !!instance.get('loading');
     let previousStreaming = !!instance.get('streaming');
     let hasPendingCompletion = previousLoading || previousStreaming;
+    let typingTargetKey = '';
 
     function setDisplayContent(value: string) {
         if ((instance as any).get('$displayContent') === value) return false;
@@ -30,12 +31,16 @@ export function useBubbleDisplay() {
             return {
                 interval: Math.max(typing.interval || 24, 16),
                 step: Math.max(typing.step || 2, 1),
+                keepPrefix: typing.keepPrefix !== false,
+                resumeFrom: typing.resumeFrom,
             };
         }
 
         return {
             interval: 24,
             step: 2,
+            keepPrefix: true,
+            resumeFrom: undefined,
         };
     }
 
@@ -88,21 +93,58 @@ export function useBubbleDisplay() {
         return instance.get<string>('$displayContent') || '';
     }
 
+    function getSafeContentPrefix(content: string, prefix: string) {
+        if (!prefix) return '';
+        if (content.slice(0, prefix.length) === prefix) return prefix;
+
+        let i = 0;
+        while (i < prefix.length && i < content.length && prefix[i] === content[i]) {
+            i++;
+        }
+
+        return prefix.slice(0, i);
+    }
+
+    function getResumePrefix(content: string) {
+        const {resumeFrom} = getTypingOptions();
+        if (resumeFrom === undefined || resumeFrom === null) return '';
+
+        if (resumeFrom === 'content') return content;
+        if (typeof resumeFrom === 'number') return content.slice(0, Math.max(0, resumeFrom));
+
+        return getSafeContentPrefix(content, String(resumeFrom));
+    }
+
+    function getTypingTargetKey(content: string) {
+        const {keepPrefix, resumeFrom} = getTypingOptions();
+        return `${keepPrefix ? '1' : '0'}\0${String(resumeFrom)}\0${content}`;
+    }
+
+    function syncTypingStart(content: string) {
+        const targetKey = getTypingTargetKey(content);
+        if (targetKey === typingTargetKey) return;
+
+        typingTargetKey = targetKey;
+        const sharedPrefix = getSharedPrefix(content);
+        if (sharedPrefix !== getDisplayedContent()) {
+            resetTypingComplete();
+            setDisplayContent(sharedPrefix);
+        }
+    }
+
     // 获取共享前缀
     function getSharedPrefix(content: string) {
         const displayedContent = getDisplayedContent();
+
+        if (!displayedContent) return getResumePrefix(content);
+        if (!getTypingOptions().keepPrefix) return '';
 
         // 避免 startsWith 依赖，兼容旧运行环境。
         if (!displayedContent || content.slice(0, displayedContent.length) === displayedContent) {
             return displayedContent;
         }
 
-        let i = 0;
-        while (i < displayedContent.length && i < content.length && displayedContent[i] === content[i]) {
-            i++;
-        }
-
-        return displayedContent.slice(0, i);
+        return getSafeContentPrefix(content, displayedContent);
     }
 
     // 开始打字动画
@@ -133,12 +175,14 @@ export function useBubbleDisplay() {
         if (instance.get('loading')) {
             stopTyping();
             resetTypingComplete();
+            typingTargetKey = '';
             setDisplayContent('');
             return;
         }
 
         if (!instance.get('typing') || !nextValue) {
             stopTyping();
+            typingTargetKey = '';
             setDisplayContent(nextValue);
             if (!instance.get('streaming') && shouldEmitTypingComplete(nextValue)) {
                 triggerTypingComplete(nextValue);
@@ -146,11 +190,7 @@ export function useBubbleDisplay() {
             return;
         }
 
-        const sharedPrefix = getSharedPrefix(nextValue);
-        if (sharedPrefix !== getDisplayedContent()) {
-            resetTypingComplete();
-            setDisplayContent(sharedPrefix);
-        }
+        syncTypingStart(nextValue);
 
         const currentValue = getDisplayedContent();
         const {interval, step} = getTypingOptions();
@@ -185,6 +225,7 @@ export function useBubbleDisplay() {
         if (instance.get('loading')) {
             stopTyping();
             resetTypingComplete();
+            typingTargetKey = '';
             setDisplayContent('');
             return;
         }
@@ -196,6 +237,7 @@ export function useBubbleDisplay() {
 
         if (!nextValue) {
             stopTyping();
+            typingTargetKey = '';
             setDisplayContent(nextValue);
             if (!streaming && shouldEmitTypingComplete(nextValue)) {
                 triggerTypingComplete(nextValue);
@@ -205,6 +247,7 @@ export function useBubbleDisplay() {
 
         if (!typing) {
             stopTyping();
+            typingTargetKey = '';
             setDisplayContent(nextValue);
             if (!streaming && shouldEmitTypingComplete(nextValue)) {
                 triggerTypingComplete(nextValue);
@@ -212,12 +255,11 @@ export function useBubbleDisplay() {
             return;
         }
 
-        const sharedPrefix = getSharedPrefix(nextValue);
-        if (sharedPrefix !== getDisplayedContent()) {
+        const previousDisplayContent = getDisplayedContent();
+        syncTypingStart(nextValue);
+        if (getDisplayedContent() !== previousDisplayContent) {
             // 内容被修订时保留共享前缀，避免流式修正时整段闪烁。
             stopTyping();
-            resetTypingComplete();
-            setDisplayContent(sharedPrefix);
         }
 
         if (getDisplayedContent() === nextValue) {
@@ -235,12 +277,12 @@ export function useBubbleDisplay() {
     // 初始化状态和绑定监听器
     function bootstrap() {
         const content = instance.get('content');
+        const nextValue = content === undefined || content === null ? '' : String(content);
         setTypingActive(false);
-        setDisplayContent(
-            !instance.get('loading') && !instance.get('typing') && content !== undefined && content !== null
-                ? String(content)
-                : ''
-        );
+        const initialDisplayContent = !instance.get('loading') && nextValue
+            ? instance.get('typing') ? getResumePrefix(nextValue) : nextValue
+            : '';
+        setDisplayContent(initialDisplayContent);
         instance.watch('content', () => syncDisplayContent(), {inited: true});
         instance.watch('loading', () => syncDisplayContent(), {inited: true});
         instance.watch('streaming', () => syncDisplayContent(), {inited: true});

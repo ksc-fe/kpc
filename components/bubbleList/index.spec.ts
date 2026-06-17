@@ -1035,4 +1035,51 @@ describe('BubbleList', () => {
         expect(roleTypingCompletePayload.item.key).to.eql(1);
         expect(roleTypingCompletePayload.index).to.eql(0);
     });
+
+    it('should pass typing resume options to rendered bubbles', async () => {
+        class Demo extends Component {
+            static template = `
+                const { BubbleList } = this;
+                <BubbleList
+                    items={this.get('items')}
+                    roles={this.get('roles')}
+                />
+            `;
+
+            BubbleList = BubbleList;
+
+            static defaults() {
+                return {
+                    roles: {
+                        ai: {
+                            placement: 'start',
+                            typing: {interval: 16, step: 1},
+                        },
+                    },
+                    items: [{
+                        key: 1,
+                        role: 'ai',
+                        content: 'hello world',
+                        streaming: true,
+                        typing: {interval: 16, step: 2, resumeFrom: 'hello'},
+                    }],
+                };
+            }
+        }
+
+        const [, element] = mount(Demo);
+        const text = element.querySelector('.k-bubble-text')!.textContent || '';
+
+        expect(text).to.eql('hello');
+
+        let nextText = text;
+        for (let i = 0; i < 6; i++) {
+            await wait(20);
+            nextText = element.querySelector('.k-bubble-text')!.textContent || '';
+            if (nextText.length > text.length) break;
+        }
+
+        expect(nextText.startsWith('hello')).to.be.true;
+        expect(nextText.length).to.be.greaterThan(text.length);
+    });
 });
