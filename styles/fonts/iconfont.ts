@@ -1,13 +1,13 @@
-import {injectGlobal} from '@emotion/css';
-import eot from './iconfont.eot';
-import woff from './iconfont.woff';
-import ttf from './iconfont.ttf';
-import svg from './iconfont.svg';
-import woff2 from './iconfont.woff2';
-import { cache } from '../../components/utils';
+import { injectGlobal } from "@emotion/css";
+import eot from "./iconfont.eot";
+import woff from "./iconfont.woff";
+import ttf from "./iconfont.ttf";
+import svg from "./iconfont.svg";
+import woff2 from "./iconfont.woff2";
+import { cache } from "../../components/utils";
 
 export const makeIconStyles = cache(function _makeIconStyles(k: string) {
-    injectGlobal`
+  injectGlobal`
         @font-face {
           font-family: "kd-font";
           src: url('${eot}'); /* IE9 */
@@ -30,8 +30,60 @@ export const makeIconStyles = cache(function _makeIconStyles(k: string) {
           content: "\\e60b";
         }
 
+        .${k}-icon-expand-all:before {
+          content: "\\e9d3";
+        }
+          
+        .${k}-icon-collapse-all:before {
+          content: "\\e9d4";
+        }
+        
         .${k}-icon-think:before {
           content: "\\e60a";
+        }
+
+        .${k}-icon-star:before {
+          content: "\\e9d2";
+        }
+
+        .${k}-icon-filter:before {
+          content: "\\e9cf";
+        }
+
+        .${k}-icon-layer:before {
+          content: "\\e9d0";
+        }
+
+        .${k}-icon-warm-up:before {
+          content: "\\e9d1";
+        }
+
+        .${k}-icon-nic:before {
+          content: "\\e686";
+        }
+
+        .${k}-icon-container:before {
+          content: "\\e687";
+        }
+
+        .${k}-icon-bare-metal:before {
+          content: "\\e688";
+        }
+
+        .${k}-icon-sidebar-toggle:before {
+          content: "\\e689";
+        }
+
+        .${k}-icon-cloud-server:before {
+          content: "\\e68a";
+        }
+
+        .${k}-icon-network-node:before {
+          content: "\\e685";
+        }
+
+        .${k}-icon-minus-circled:before {
+          content: "\\e61c";
         }
 
         .${k}-icon-outboundrules:before {
