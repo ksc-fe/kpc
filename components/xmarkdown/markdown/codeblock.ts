@@ -30,7 +30,7 @@ export function renderCodeBlock(source: string, info: string, options: XMarkdown
     const shouldShowToolbar = options.showCodeHeader !== false;
     const prefixCls = options.prefixCls || 'k';
     const blockId = registerRenderedBlock(env, 'code', source, label);
-    const nextKey = createKeyGenerator(`xmarkdown-code-${blockId || 'tail'}`);
+    const nextKey = createKeyGenerator(env?.keySeed || 'xmarkdown-code');
 
     const bodyChildren = parseHtmlFragment(highlightCode(source, normalizedLanguage), nextKey);
 

@@ -11,6 +11,7 @@ import {FileCard} from 'kpc';
 <div class="file-card-demo-media">
     <FileCard
         name="模型预览.mp4"
+        status="done"
         src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
         poster="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80"
         byte={1024 * 1024 * 18}
@@ -19,6 +20,7 @@ import {FileCard} from 'kpc';
 
     <FileCard
         name="品牌旁白.mp3"
+        status="done"
         src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
         byte={1024 * 640}
         audioProps={{preload: 'auto'}}

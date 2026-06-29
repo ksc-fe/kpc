@@ -13,8 +13,7 @@ const {
     shouldShowEmpty,
     shouldShowTypingSuffix,
 } = this.display;
-const stableNodes = this.display.getRenderedStableNodes();
-const tailNodes = this.display.getRenderedTailNodes();
+const renderedNodes = this.display.getRenderedNodes();
 const showLoadingShell = shouldShowLoadingShell();
 const showEmpty = shouldShowEmpty();
 const isEmptySlot = (value) => {
@@ -55,8 +54,7 @@ const classNameObj = {
     </template>
     <div v-else class={`${k}-xmarkdown-content`} ref={contentRef}>
         <div class={`${k}-xmarkdown-body`}>
-            <div class={`${k}-xmarkdown-stable`}>{stableNodes}</div>
-            <div class={`${k}-xmarkdown-tail`}>{tailNodes}</div>
+            {renderedNodes}
         </div>
         <div class={`${k}-xmarkdown-typing-suffix`} v-if={shouldShowTypingSuffix()} aria-hidden="true">
             <span></span>

@@ -122,7 +122,7 @@ export function createMarkdownRenderer(options: XMarkdownRenderOptions = {}) {
 
         if (!ranges.length) {
             return [{
-                key: createBlockKey('document', 0, normalized),
+                key: createBlockKey('document', 0),
                 source: normalized,
             }];
         }
@@ -131,7 +131,7 @@ export function createMarkdownRenderer(options: XMarkdownRenderOptions = {}) {
         return ranges.map(({type, start, end}, index) => {
             const blockSource = lines.slice(start, end).join('\n');
             return {
-                key: createBlockKey(type, index, blockSource),
+                key: createBlockKey(type, index),
                 source: blockSource,
             };
         });
@@ -162,10 +162,16 @@ export function createMarkdownRenderer(options: XMarkdownRenderOptions = {}) {
                 const info = String(token.info || '');
                 const language = normalizeLanguage(info);
                 const source = String(token.content || '').replace(/\n$/, '');
+                const blockEnv = {
+                    ...env,
+                    keySeed: nextNodeKey(language === 'mermaid' && rendererOptions.enableMermaid !== false
+                        ? 'mermaid-block'
+                        : 'code-block'),
+                };
                 parent.children.push(
                     language === 'mermaid' && rendererOptions.enableMermaid !== false
-                        ? renderMermaidBlock(source, info, rendererOptions, env)
-                        : renderCodeBlock(source, info, rendererOptions, env)
+                        ? renderMermaidBlock(source, info, rendererOptions, blockEnv)
+                        : renderCodeBlock(source, info, rendererOptions, blockEnv)
                 );
                 continue;
             }
@@ -553,10 +559,12 @@ function createDocumentKey(source: string) {
 }
 
 /**
- * 生成顶层 block 的稳定 key
+ * 生成顶层 block 的稳定 key。
+ *
+ * key 只表达块在当前文档中的结构位置；内容是否变化由 source 对比控制。
  */
-function createBlockKey(type: string, index: number, source: string) {
-    return `${type}-${index}-${hashString(source)}`;
+function createBlockKey(type: string, index: number) {
+    return `${type}-${index}`;
 }
 
 /**

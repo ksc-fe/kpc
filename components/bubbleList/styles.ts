@@ -121,7 +121,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             position: absolute;
             right: 16px;
             bottom: 16px;
-            z-index: 1;
+            z-index: 6;
         }
 
         .${k}-bubble-list-scroll-to-bottom-button {

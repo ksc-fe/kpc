@@ -2,8 +2,9 @@ import {Component, TypeDefs} from 'intact';
 import template from './list.vdt';
 import {useConfigContext} from '../config';
 import type {Events} from '../types';
-import type {FileCardProps, FileCardSize, FileCardValue} from './fileCard';
+import type {FileCardLoadingVariant, FileCardProps, FileCardSize, FileCardValue} from './fileCard';
 import {useFileCardList} from './useFileCardList';
+import type {TooltipProps} from '../tooltip';
 
 export interface FileCardListItem extends FileCardProps {
     key?: string | number
@@ -15,6 +16,9 @@ export interface FileCardListProps {
     overflow?: 'wrap' | 'scrollX' | 'scrollY'
     deleteable?: boolean
     showNameTooltip?: boolean
+    nameTooltipProps?: TooltipProps
+    lazy?: boolean
+    loadingVariant?: FileCardLoadingVariant
 }
 
 export interface FileCardListBlocks {
@@ -34,6 +38,9 @@ const typeDefs: Required<TypeDefs<FileCardListProps>> = {
     overflow: ['wrap', 'scrollX', 'scrollY'],
     deleteable: Boolean,
     showNameTooltip: Boolean,
+    nameTooltipProps: Object,
+    lazy: Boolean,
+    loadingVariant: ['default', 'flow'],
 };
 
 const defaults = (): Partial<FileCardListProps> => ({
@@ -42,6 +49,9 @@ const defaults = (): Partial<FileCardListProps> => ({
     overflow: 'wrap',
     deleteable: false,
     showNameTooltip: false,
+    nameTooltipProps: undefined,
+    lazy: false,
+    loadingVariant: 'default',
 });
 
 const events: Events<FileCardListEvents> = {

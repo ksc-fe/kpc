@@ -93,13 +93,19 @@ export function sum(a: number, b: number) {
 \`\`\`
 
 \`\`\`mermaid
-flowchart LR
-    A[需求输入] --> B{方案评审}
-    B -->|通过| C[方案实现]
-    B -->|补充信息| D[补充需求]
-    D --> B
-    C --> E[联调验证]
-    E --> F[发版验证]
+sequenceDiagram
+    participant 用户
+    participant 前端
+    participant 后端
+    participant 数据库
+
+    用户->>前端: 输入账号密码
+    前端->>后端: 发送登录请求
+    后端->>数据库: 查询用户信息
+    数据库-->>后端: 返回结果
+    后端-->>前端: 返回token
+    前端-->>用户: 登录成功
+
 \`\`\`
 
 行内公式：$e^{i\\pi} + 1 = 0$。

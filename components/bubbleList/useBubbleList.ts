@@ -44,6 +44,7 @@ export function useBubbleList() {
 
     let resizeObserver: ResizeObserver | null = null;
     let resizeFrame = 0;
+    let mountScrollFrame = 0;
     let historyRequestLocked = false;
     let anchorSnapshot: AnchorSnapshot | null = null;
     let internalItemKeySeed = 0;
@@ -354,6 +355,7 @@ export function useBubbleList() {
 
     function scrollToTop(behavior: ScrollBehavior = getScrollBehavior()) {
         setAutoScrollActive(false);
+        cancelMountScrollFrame();
         scrollTo(0, behavior);
         nextTick(syncScrollState);
     }
@@ -383,6 +385,7 @@ export function useBubbleList() {
             setAutoScrollActive(false);
         }
 
+        cancelMountScrollFrame();
         scrollTo(Math.max(targetTop, 0), behavior);
         nextTick(syncScrollState);
     }
@@ -524,7 +527,8 @@ export function useBubbleList() {
             syncScrollbarState();
             if (isAutoScrollEnabled()) {
                 scrollToBottom('auto');
-                requestAnimationFrame(() => {
+                mountScrollFrame = requestAnimationFrame(() => {
+                    mountScrollFrame = 0;
                     if (instance.$unmounted) return;
                     scrollToBottom('auto');
                 });
@@ -535,6 +539,8 @@ export function useBubbleList() {
     }
 
     function onBeforeUnmountCallback() {
+        cancelMountScrollFrame();
+
         if (resizeFrame) {
             cancelAnimationFrame(resizeFrame);
             resizeFrame = 0;
@@ -544,6 +550,13 @@ export function useBubbleList() {
             resizeObserver.disconnect();
             resizeObserver = null;
         }
+    }
+
+    function cancelMountScrollFrame() {
+        if (!mountScrollFrame) return;
+
+        cancelAnimationFrame(mountScrollFrame);
+        mountScrollFrame = 0;
     }
 
     watchItems();

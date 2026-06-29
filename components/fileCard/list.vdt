@@ -9,6 +9,9 @@ const {
     getItemSize,
     shouldShowDelete,
     shouldShowNameTooltip,
+    getItemNameTooltipProps,
+    shouldLazyLoad,
+    getItemLoadingVariant,
     onItemPreview,
     onItemDelete,
     onItemClick,
@@ -48,16 +51,21 @@ const classNameObj = {
         status={$value.status}
         src={$value.src}
         poster={$value.poster}
+        width={$value.width}
+        height={$value.height}
         description={$value.description}
         errorText={$value.errorText}
         loadingText={$value.loadingText}
         byte={$value.byte}
         percent={$value.percent}
+        loadingVariant={getItemLoadingVariant($value)}
         showPreview={$value.showPreview}
         showNameTooltip={shouldShowNameTooltip($value)}
+        nameTooltipProps={getItemNameTooltipProps($value)}
         showDelIcon={shouldShowDelete($value)}
         icon={$value.icon}
         size={getItemSize($value)}
+        lazy={shouldLazyLoad($value)}
         imageProps={$value.imageProps}
         videoProps={$value.videoProps}
         audioProps={$value.audioProps}

@@ -138,24 +138,8 @@ export interface XMarkdownRenderedStableBlock extends XMarkdownSourceBlock {
     blocks: Record<string, XMarkdownRenderedBlock>
 }
 
-/** 未闭合代码块围栏信息 */
-export interface OpenFenceInfo {
-    marker: string
-    size: number
-    start: number
-    language?: string
-}
-
-/** 流式渲染分段结果 */
-export interface StreamingMarkdownSegments {
-    stableSource: string
-    tailText: string
-    openFence: OpenFenceInfo | null
-}
-
-export interface XMarkdownStreamingTailCache {
-    processedLength: number
-    completeMarkdown: string
-    pending: string
-    token: 'text' | 'link' | 'image' | 'html' | 'emphasis' | 'list' | 'table' | 'inline-code'
+/** 流式渲染结果 */
+export interface XMarkdownStreamingRenderResult {
+    source: string
+    trailingNodes: any[]
 }

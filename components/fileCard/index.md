@@ -19,15 +19,20 @@ sidebar: doc
 | type | 文件类型。显式支持 `file / image / video / audio`；未传时会根据 `src / name` 自动识别为 `image / video / audio`；显式传 `type="file"` 时保持文件行卡片外形，若资源实际为图片/视频/音频，左侧会使用媒体缩略图 | `string` | `undefined` |
 | src | 图片、视频、音频或文件地址 | `string` | `undefined` |
 | poster | 视频封面地址 | `string` | `undefined` |
+| width | 卡片宽度。显式媒体类型会透传给内部 `Media`；文件行卡片会作为根节点宽度 | `string` &#124; `number` | `undefined` |
+| height | 卡片高度。显式媒体类型会透传给内部 `Media`；文件行卡片会作为根节点高度 | `string` &#124; `number` | `undefined` |
 | description | 文件行卡片的副标题。未传时默认展示文件大小；`loading` 状态下会优先展示加载中文案；`error` 状态下会优先展示错误文案 | `string` | `undefined` |
 | errorText | 自定义错误文案。文件行卡片 `status="error"` 且未传时默认显示 `上传失败`；显式媒体卡片仅在指定非空文案时展示。显式媒体错误态统一展示失败底图，不保留原始缩略图 | `string` | `undefined` |
 | loadingText | 自定义加载文案。文件行卡片 `status="loading"` 且未传时默认显示 `上传中...`；显式媒体卡片仅在指定非空文案时展示。显式媒体卡片尺寸小于 `64px`（`mini/small`）时不展示该文案 | `string` | `undefined` |
 | status | 状态。 | `"default"` &#124; `"loading"` &#124; `"error"` &#124; `"done"` | `"default"` |
 | percent | 进度百分比 `0–100`。显式媒体卡片会在左上角 loading 圆圈右侧展示进度 | `number` | `undefined` |
+| loadingVariant | `loading` 加载层样式。`default` 为默认样式；`flow` 仅切换为内置炫彩流动背景。仅对显式 `image / video` 或自动识别为图片、视频的卡片生效，音频与文件行卡片不受影响 | `"default"` &#124; `"flow"` | `"default"` |
 | showPreview | 是否展示媒体预览入口。显式媒体类型和文件行卡片中的媒体缩略图均默认支持预览；当 `type="file"` 且识别为图片/视频/音频时，将此属性设为 `false` 时，左侧不再展示媒体缩略图，会展示为对应文件图标 | `boolean` | `true` |
 | showNameTooltip | 显式媒体卡片是否在缩略图 hover 时展示名称 Tooltip；文件行卡片左侧媒体缩略图固定不展示 | `boolean` | `false` |
+| nameTooltipProps | 透传给显式媒体卡片名称 `Tooltip` 的属性，可结合 `container` 调整挂载容器 | `TooltipProps` | `undefined` |
 | showDelIcon | 是否展示右上角删除角标 | `boolean` | `false` |
 | icon | 自定义文件行卡片左侧图标地址 | `string` | `undefined` |
+| lazy | 是否启用卡片内 `Media` 缩略图懒加载。开启后会优先在媒体接近浏览器可视区时再挂载图片、视频封面和音频 metadata 加载器。默认使用浏览器视口作为判断基准，不自动推断内部滚动容器；若浏览器不支持 `IntersectionObserver`，图片会退回原生 `loading="lazy"`。可通过 `imageProps.loading / videoProps.preload / audioProps.preload` 覆盖 | `boolean` | `false` |
 | imageProps | 透传给卡片内 `Media` 缩略图原生 `<img>` 的属性（不作用于预览层） | `Record<string, any>` | `undefined` |
 | videoProps | 透传给卡片内 `Media` 缩略图原生 `<video>` 的属性（不作用于预览层） | `Record<string, any>` | `undefined` |
 | audioProps | 透传给卡片内 `Media` 音频 metadata 加载器原生 `<audio>` 的属性（不作用于预览层） | `Record<string, any>` | `undefined` |
@@ -43,6 +48,9 @@ sidebar: doc
 | size | 列表项默认尺寸，可被单项 `size` 覆盖 | `"mini"` &#124; `"small"` &#124; `"default"` &#124; `"large"` | `"default"` |
 | deleteable | 是否默认给所有项展示删除图标；单项 `showDelIcon` 优先级更高 | `boolean` | `false` |
 | showNameTooltip | 是否默认给显式媒体类型列表项开启名称 Tooltip；单项 `showNameTooltip` 优先级更高，文件行卡片左侧媒体缩略图固定不展示 | `boolean` | `false` |
+| nameTooltipProps | 是否默认给显式媒体类型列表项透传名称 `Tooltip` 属性；单项 `nameTooltipProps` 优先级更高 | `TooltipProps` | `undefined` |
+| lazy | 是否默认给列表项开启 `Media` 缩略图懒加载；单项 `lazy` 优先级更高 | `boolean` | `false` |
+| loadingVariant | 是否默认给图片、视频列表项使用内置炫彩流动加载样式；单项 `loadingVariant` 优先级更高，音频与文件行列表项会忽略该属性 | `"default"` &#124; `"flow"` | `"default"` |
 | overflow | 超出展示方式。 | `"scrollX"` &#124; `"scrollY"` &#124; `"wrap"` | `"wrap"` |
 
 ```ts
@@ -73,6 +81,8 @@ type FileCardValue = {
     status: 'default' | 'loading' | 'error' | 'done'
     src?: string
     poster?: string
+    width?: string | number
+    height?: string | number
     description?: string
     errorText?: string
     loadingText?: string
@@ -97,6 +107,7 @@ type FileCardValue = {
 | 名称 | 说明 |
 | --- | --- |
 | icon | 自定义普通文件图标区域 |
+| loading | 仅显式媒体类型卡片支持。会透传给内部 `Media` 的 `loading` 扩展点，接管默认 loading 圆圈、文案、进度层 |
 | description | 自定义描述区，默认展示大小或状态文案 |
 | mask | 自定义遮罩层。文件行卡片透出 `FileCardValue`；显式媒体类型卡片透出 `Media` 的 mask 参数（包含 `canPreview` 与 `preview(event)`） |
 

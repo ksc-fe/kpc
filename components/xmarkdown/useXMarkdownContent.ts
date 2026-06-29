@@ -177,7 +177,7 @@ export function useXMarkdownContent(
 
         onBeforeUnmount: () => {
             unbindContentElement();
-            mermaid.clearFeedbackTimers();
+            mermaid.clearTimers();
         },
     };
 }

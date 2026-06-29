@@ -720,6 +720,7 @@ describe('Bubble', () => {
     it('should restart typing from empty when keepPrefix is false', async () => {
         class Demo extends Component<{
             content: string
+            typingFrames: string[]
         }> {
             static template = `
                 const { Bubble } = this;
@@ -728,6 +729,10 @@ describe('Bubble', () => {
                         content={this.get('content')}
                         streaming={true}
                         typing={{interval: 16, step: 2, keepPrefix: false}}
+                        ev-typing={(renderedContent) => this.set('typingFrames', [
+                            ...this.get('typingFrames'),
+                            renderedContent,
+                        ])}
                     />
                 </div>
             `;
@@ -735,6 +740,7 @@ describe('Bubble', () => {
             static defaults() {
                 return {
                     content: 'hello world',
+                    typingFrames: [],
                 };
             }
 
@@ -751,18 +757,20 @@ describe('Bubble', () => {
         }
         expect(initialText).to.contain('hello');
 
+        const frameCountBeforeChange = instance.get('typingFrames').length;
         instance.set('content', 'hello there');
         await wait();
 
-        let text = '';
-        for (let i = 0; i < 6; i++) {
+        let frames: string[] = [];
+        for (let i = 0; i < 12; i++) {
             await wait(20);
-            text = element.querySelector('.k-bubble-text')?.textContent || '';
-            if (text) break;
+            frames = instance.get('typingFrames').slice(frameCountBeforeChange);
+            if (frames.length) break;
         }
 
-        expect(text).not.to.contain('hello');
-        expect(text.length).to.be.lessThan('hello'.length);
+        expect(frames.length).to.be.greaterThan(0);
+        expect(frames[0]).not.to.contain('hello');
+        expect(frames[0].length).to.be.lessThan('hello'.length);
     });
 
     it('should render typing suffix only when enabled', async () => {

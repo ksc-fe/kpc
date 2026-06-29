@@ -41,6 +41,28 @@ export function useFileCardList() {
         return !!instance.get('showNameTooltip');
     }
 
+    function getItemNameTooltipProps(item: FileCardListItem) {
+        return item.nameTooltipProps !== undefined ?
+            item.nameTooltipProps :
+            instance.get('nameTooltipProps');
+    }
+
+    function shouldLazyLoad(item: FileCardListItem) {
+        if (item.lazy !== undefined) {
+            return !!item.lazy;
+        }
+
+        return !!instance.get('lazy');
+    }
+
+    function getItemLoadingVariant(item: FileCardListItem) {
+        if (item.loadingVariant !== undefined) {
+            return item.loadingVariant;
+        }
+
+        return instance.get('loadingVariant') || 'default';
+    }
+
     function onItemPreview(item: FileCardListItem, _value: FileCardValue, e: MouseEvent) {
         instance.trigger('preview', item, e);
     }
@@ -59,6 +81,9 @@ export function useFileCardList() {
         getItemSize,
         shouldShowDelete,
         shouldShowNameTooltip,
+        getItemNameTooltipProps,
+        shouldLazyLoad,
+        getItemLoadingVariant,
         onItemPreview,
         onItemDelete,
         onItemClick,

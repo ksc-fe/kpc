@@ -55,7 +55,7 @@ export default class extends Component<Props> {
         return {
             content: MERMAID_CONTENT,
             enableMermaid: true,
-            brandTheme: true,
+            brandTheme: false,
         };
     }
 

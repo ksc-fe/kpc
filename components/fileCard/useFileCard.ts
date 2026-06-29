@@ -1,6 +1,7 @@
 import {useInstance} from 'intact';
 import {useConfigContext} from '../config';
 import {_$} from '../../i18n';
+import {normalizeMediaLength} from '../media/mediaUtils';
 import type {MediaStatus, MediaType} from '../media';
 import type {FileCard, FileCardStatus, FileCardValue} from './fileCard';
 import {
@@ -92,6 +93,19 @@ export function useFileCard() {
         return `--file-card-progress-percent: ${getProgressPercent()}%;`;
     }
 
+    function getRootStyle() {
+        if (isMediaType()) return;
+
+        const width = normalizeMediaLength(instance.get('width'));
+        const height = normalizeMediaLength(instance.get('height'));
+        const style: Record<string, string> = {};
+
+        if (width) style.width = width;
+        if (height) style.height = height;
+
+        return width || height ? style : undefined;
+    }
+
     // 文件行状态文案统一带省略号和进度。
     function getInlineStatusText() {
         const status = getDisplayStatus();
@@ -138,6 +152,8 @@ export function useFileCard() {
             status: getDisplayStatus(),
             src: instance.get('src'),
             poster: instance.get('poster'),
+            width: instance.get('width'),
+            height: instance.get('height'),
             description: getDisplayDescription(),
             errorText: isError() ? getErrorText() : undefined,
             loadingText: instance.get('loadingText'),
@@ -227,9 +243,7 @@ export function useFileCard() {
     }
 
     function shouldShowMediaLoadingOverlay() {
-        const mediaType = getMediaType();
-
-        return isLoading() && mediaType === 'audio' && (hasSpecifiedMediaLoadingText() || hasPercentProp());
+        return isLoading() && shouldShowMediaStatusLayer();
     }
 
     function getMediaSize() {
@@ -334,6 +348,16 @@ export function useFileCard() {
         return instance.get('showPreview') !== false;
     }
 
+    function getLoadingVariant() {
+        return instance.get('loadingVariant') || 'default';
+    }
+
+    function isFlowLoading() {
+        const mediaType = getMediaType();
+
+        return (mediaType === 'image' || mediaType === 'video') && isLoading() && getLoadingVariant() === 'flow';
+    }
+
     // 根节点类名集中描述类型、尺寸与状态，样式层只消费类名。
     function getRootClassNameObj() {
         const {k} = config;
@@ -350,6 +374,7 @@ export function useFileCard() {
             [`${k}-file-card-error`]: isError(),
             [`${k}-file-card-done`]: isDone(),
             [`${k}-file-card-media-error-artwork`]: shouldUseMediaErrorArtworkLayout(),
+            [`${k}-file-card-loading-flow`]: isFlowLoading(),
             [`${k}-file-card-progressing`]: isLoading() && hasPercentProp(),
             [`${k}-file-card-deletable`]: shouldShowDeleteButton(),
         };
@@ -371,6 +396,7 @@ export function useFileCard() {
 
     return {
         getRootClassNameObj,
+        getRootStyle,
         getProgressStyle,
         onClick,
         isMediaType,
@@ -409,5 +435,7 @@ export function useFileCard() {
         getMediaSize,
         getFileMediaSize,
         shouldShowFileMedia,
+        getLoadingVariant,
+        isFlowLoading,
     };
 }

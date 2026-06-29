@@ -42,6 +42,7 @@ export interface MediaProps {
     showNameTooltip?: boolean
     nameTooltipProps?: TooltipProps
     container?: Container
+    lazy?: boolean
     imageProps?: MediaNativeProps
     videoProps?: MediaNativeProps
     audioProps?: MediaNativeProps
@@ -67,6 +68,7 @@ const typeDefs: Required<TypeDefs<MediaProps>> = {
     showNameTooltip: Boolean,
     nameTooltipProps: Object,
     container: [String, Function],
+    lazy: Boolean,
     imageProps: Object,
     videoProps: Object,
     audioProps: Object,
@@ -85,6 +87,7 @@ const defaults = (): Partial<MediaProps> => ({
     showNameTooltip: false,
     nameTooltipProps: undefined,
     container: undefined,
+    lazy: false,
     imageProps: undefined,
     videoProps: undefined,
     audioProps: undefined,

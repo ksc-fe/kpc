@@ -30,12 +30,11 @@ export function renderMermaidBlock(source: string, info: string, options: XMarkd
     const label = normalizeLanguage(info) || 'mermaid';
     const prefixCls = options.prefixCls || 'k';
     const blockId = registerRenderedBlock(env, 'mermaid', source, label);
-    const nextKey = createKeyGenerator(`xmarkdown-mermaid-${blockId || 'tail'}`);
+    const nextKey = createKeyGenerator(env?.keySeed || 'xmarkdown-mermaid');
 
     return createElementNode('div', {
         className: `${prefixCls}-xmarkdown-mermaid-block`,
         'data-kpc-mermaid': 'true',
-        'data-kpc-render-state': 'idle',
         'data-kpc-view': 'diagram',
         'data-kpc-language': label,
         'data-kpc-block-id': blockId,
@@ -82,7 +81,7 @@ export function renderMermaidBlock(source: string, info: string, options: XMarkd
                     createElementNode('div', {
                         className: `${prefixCls}-xmarkdown-mermaid-stage`,
                         'data-kpc-mermaid-stage': 'true',
-                    }, [createTextNode(_$('Mermaid 渲染中...'))], nextKey('stage')),
+                    }, [], nextKey('stage')),
                 ], nextKey('viewport')),
             ], nextKey('canvas')),
             createElementNode('pre', {

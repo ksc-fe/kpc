@@ -23,21 +23,27 @@ export function useMedia() {
     const instance = useInstance() as Media;
     const config = useConfigContext();
     const group = MediaGroupContext.useContext();
+    const rootRef = createRef<HTMLElement>();
     const imageRef = createRef<HTMLImageElement>();
     const videoRef = createRef<HTMLVideoElement>();
     const audioRef = createRef<HTMLAudioElement>();
     let syncTimer: number | undefined;
+    let lazyObserver: IntersectionObserver | undefined;
 
     onMounted(() => {
         group.value?.register(instance, {
             canPreview,
             getViewerItem,
         });
-        nextTick(scheduleNativeStatusSync);
+        nextTick(() => {
+            syncLazyReadyState();
+            scheduleNativeStatusSync();
+        });
     });
 
     onUnmounted(() => {
         group.value?.unregister(instance);
+        clearLazyObserver();
         clearNativeStatusSync();
     });
 
@@ -57,6 +63,79 @@ export function useMedia() {
 
     function hasSource() {
         return !!instance.get('src');
+    }
+
+    function shouldUseLazyObserver() {
+        return !!instance.get('lazy') && hasSource();
+    }
+
+    function isLazyReady() {
+        return !!(instance as any).get('$lazyReady');
+    }
+
+    function hasActiveSource() {
+        return hasSource() && isLazyReady();
+    }
+
+    function shouldUseNativeImageLazyHint() {
+        return !!instance.get('lazy') &&
+            typeof window.IntersectionObserver !== 'function';
+    }
+
+    function clearLazyObserver() {
+        if (!lazyObserver) return;
+
+        lazyObserver.disconnect();
+        lazyObserver = undefined;
+    }
+
+    function setLazyReady(ready: boolean) {
+        if (isLazyReady() === ready) return;
+
+        (instance as any).set('$lazyReady', ready);
+        if (ready) {
+            clearLazyObserver();
+            nextTick(scheduleNativeStatusSync);
+        }
+    }
+
+    function getInitialLazyReady() {
+        if (!shouldUseLazyObserver()) return true;
+
+        return typeof window.IntersectionObserver !== 'function';
+    }
+
+    function syncLazyReadyState() {
+        if (!shouldUseLazyObserver()) {
+            clearLazyObserver();
+            setLazyReady(true);
+            return;
+        }
+
+        if (isLazyReady()) {
+            clearLazyObserver();
+            return;
+        }
+
+        const Observer = window.IntersectionObserver;
+        const root = rootRef.value;
+
+        if (typeof Observer !== 'function' || !root) {
+            setLazyReady(true);
+            return;
+        }
+
+        clearLazyObserver();
+        lazyObserver = new Observer(entries => {
+            if (entries.some(entry => entry.isIntersecting || entry.intersectionRatio > 0)) {
+                setLazyReady(true);
+            }
+        }, {
+            root: null,
+            rootMargin: '240px 0px',
+            threshold: 0.01,
+        });
+        lazyObserver.observe(root);
     }
 
     function getInternalStatus(): MediaStatus {
@@ -99,7 +178,7 @@ export function useMedia() {
     }
 
     function isMediaReady() {
-        return getInternalStatus() === 'done' || isDone();
+        return hasActiveSource() && (getInternalStatus() === 'done' || isDone());
     }
 
     // 自定义遮罩层仅在 default/done 展示，避免与 loading/error 状态层冲突。
@@ -110,7 +189,7 @@ export function useMedia() {
     }
 
     function canPreview() {
-        return !!instance.get('showPreview') && hasSource() && isDone();
+        return !!instance.get('showPreview') && hasActiveSource() && isDone();
     }
 
     function shouldShowVideoPlayTrigger() {
@@ -194,11 +273,11 @@ export function useMedia() {
     }
 
     function shouldShowImage() {
-        return getResolvedType() === 'image' && hasSource() && !isError();
+        return getResolvedType() === 'image' && hasActiveSource() && !isError();
     }
 
     function shouldShowVideo() {
-        return getResolvedType() === 'video' && hasSource() && !isError();
+        return getResolvedType() === 'video' && hasActiveSource() && !isError();
     }
 
     function shouldShowVisualMediaContent() {
@@ -206,7 +285,7 @@ export function useMedia() {
     }
 
     function shouldShowAudioLoader() {
-        return getResolvedType() === 'audio' && hasSource() && !isError();
+        return getResolvedType() === 'audio' && hasActiveSource() && !isError();
     }
 
     function shouldShowAudioCard() {
@@ -273,18 +352,56 @@ export function useMedia() {
         return undefined;
     }
 
+    function getResolvedMediaShortestLength() {
+        const {size, width, height} = instance.get();
+        const widthPx = parseMediaPixelLength(width);
+        const heightPx = parseMediaPixelLength(height);
+
+        if (widthPx !== undefined || heightPx !== undefined) {
+            const resolvedWidth = widthPx === undefined ? heightPx : widthPx;
+            const resolvedHeight = heightPx === undefined ? widthPx : heightPx;
+
+            return Math.min(resolvedWidth!, resolvedHeight!);
+        }
+
+        if (typeof size === 'number') return size;
+        if (typeof size === 'string') {
+            if (size === 'mini') return 24;
+            if (size === 'small') return 32;
+            if (size === 'default') return 64;
+            if (size === 'large') return 96;
+
+            return parseMediaPixelLength(size);
+        }
+
+        return undefined;
+    }
+
+    function getPlaceholderAssetStyle() {
+        const shortest = getResolvedMediaShortestLength();
+        if (shortest === undefined || shortest <= 0) return undefined;
+
+        const length = Math.max(16, Math.min(28, Math.round(shortest * 0.28)));
+        if (length === 16) return undefined;
+
+        return {
+            width: `${length}px`,
+            height: `${length}px`,
+        };
+    }
+
     function shouldShowLoadingIndicator() {
-        return isLoading();
+        return isLoading() && (!shouldUseLazyObserver() || hasActiveSource() || !hasSource());
     }
 
     function shouldShowLoadingOverlay() {
         const type = getResolvedType();
 
-        return isLoading() && hasSource() && shouldShowVisualMediaContent() && (type === 'image' || type === 'video');
+        return isLoading() && hasActiveSource() && shouldShowVisualMediaContent() && (type === 'image' || type === 'video');
     }
 
     function shouldShowLoadingVideoIcon() {
-        return isLoading() && getResolvedType() === 'video' && hasSource() && shouldShowVisualMediaContent();
+        return isLoading() && getResolvedType() === 'video' && hasActiveSource() && shouldShowVisualMediaContent();
     }
 
     // 去掉已被组件接管的事件键，避免作为普通 attribute 透传到 DOM。
@@ -316,11 +433,15 @@ export function useMedia() {
         const imageProps = instance.get('imageProps') || {};
         const loadKey = 'onload';
         const errorKey = 'onerror';
+        const lazyProps = shouldUseNativeImageLazyHint() && imageProps.loading === undefined ?
+            {loading: 'lazy'} :
+            {};
 
         return {
+            ...lazyProps,
             ...omitNativeHandlers(imageProps, [loadKey, errorKey]),
             alt: getFileName(),
-            src: instance.get('src') || '',
+            src: hasActiveSource() ? (instance.get('src') || '') : '',
             draggable: false,
             'ev-load': getMergedNativeHandler(imageProps, loadKey, onImageLoad),
             'ev-error': getMergedNativeHandler(imageProps, errorKey, onImageError),
@@ -334,16 +455,19 @@ export function useMedia() {
         const loadeddataKey = 'onloadeddata';
         const canplayKey = 'oncanplay';
         const errorKey = 'onerror';
+        const preload = videoProps.preload === undefined ?
+            (hasVideoPoster() ? 'metadata' : 'auto') :
+            videoProps.preload;
 
         return {
-            preload: hasVideoPoster() ? 'metadata' : 'auto',
+            preload,
             muted: true,
             playsinline: true,
             controls: false,
             tabindex: -1,
             ...omitNativeHandlers(videoProps, [loadedmetadataKey, loadeddataKey, canplayKey, errorKey]),
-            src: instance.get('src') || '',
-            poster: getPosterSource() || undefined,
+            src: hasActiveSource() ? (instance.get('src') || '') : '',
+            poster: hasActiveSource() ? (getPosterSource() || undefined) : undefined,
             'ev-loadedmetadata': getMergedNativeHandler(
                 videoProps,
                 loadedmetadataKey,
@@ -366,8 +490,8 @@ export function useMedia() {
     // src/poster 改变时重建 video，避免浏览器保留旧封面或首帧。
     function getVideoKey() {
         return [
-            instance.get('src') || '',
-            getPosterSource() || '',
+            hasActiveSource() ? (instance.get('src') || '') : '',
+            hasActiveSource() ? (getPosterSource() || '') : '',
         ].join('|');
     }
 
@@ -376,11 +500,12 @@ export function useMedia() {
         const audioProps = instance.get('audioProps') || {};
         const loadedmetadataKey = 'onloadedmetadata';
         const errorKey = 'onerror';
+        const preload = audioProps.preload === undefined ? 'metadata' : audioProps.preload;
 
         return {
-            preload: 'metadata',
+            preload,
             ...omitNativeHandlers(audioProps, [loadedmetadataKey, errorKey]),
-            src: instance.get('src') || '',
+            src: hasActiveSource() ? (instance.get('src') || '') : '',
             'ev-loadedmetadata': getMergedNativeHandler(
                 audioProps,
                 loadedmetadataKey,
@@ -522,14 +647,14 @@ export function useMedia() {
     function scheduleNativeStatusSync() {
         clearNativeStatusSync();
         syncNativeStatus();
-        if (!hasSource() || getInternalStatus() !== 'loading') return;
+        if (!hasActiveSource() || getInternalStatus() !== 'loading') return;
 
         syncTimer = window.setTimeout(scheduleNativeStatusSync, 120);
     }
 
     // 将自动状态同步到原生媒体元素的当前 ready/error 状态。
     function syncNativeStatus() {
-        if (!hasSource() || getInternalStatus() !== 'loading') return;
+        if (!hasActiveSource() || getInternalStatus() !== 'loading') return;
 
         const resolvedType = getResolvedType();
 
@@ -574,12 +699,25 @@ export function useMedia() {
         (instance as any).set({
             $previewRendered: false,
             $previewVisible: false,
+            $lazyReady: getInitialLazyReady(),
             $status: hasSource() ? 'loading' : 'default',
         }, {silent: true});
 
-        instance.watch('src', resetInternalStatus, {inited: true});
-        instance.watch('type', resetInternalStatus, {inited: true});
+        instance.watch('src', () => {
+            (instance as any).set('$lazyReady', getInitialLazyReady());
+            syncLazyReadyState();
+            resetInternalStatus();
+        }, {inited: true});
+        instance.watch('type', () => {
+            syncLazyReadyState();
+            resetInternalStatus();
+        }, {inited: true});
         instance.watch('poster', resetInternalStatus, {inited: true});
+        instance.watch('lazy', () => {
+            (instance as any).set('$lazyReady', getInitialLazyReady());
+            syncLazyReadyState();
+            resetInternalStatus();
+        }, {inited: true});
     }
 
     bootstrap();
@@ -603,6 +741,7 @@ export function useMedia() {
         shouldShowAudioLoader,
         shouldShowAudioCard,
         shouldShowErrorCard,
+        rootRef,
         imageRef,
         videoRef,
         audioRef,
@@ -613,6 +752,7 @@ export function useMedia() {
         getAudioCardAssetSrc,
         getErrorCardAssetSrc,
         getMediaCardIconStyle,
+        getPlaceholderAssetStyle,
         shouldShowLoadingOverlay,
         shouldShowLoadingVideoIcon,
         getPreviewIconClassName,

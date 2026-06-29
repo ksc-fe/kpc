@@ -1,6 +1,7 @@
 import {Component} from 'intact';
-import {dispatchEvent, mount, unmount, wait} from '../../test/utils';
+import {dispatchEvent, mount, nextFrame, unmount, wait} from '../../test/utils';
 import {BubbleList} from '.';
+import {FileCardList} from '../fileCard';
 
 describe('BubbleList', () => {
     afterEach(() => {
@@ -241,10 +242,13 @@ describe('BubbleList', () => {
 
         const [instance, element] = mount(Demo);
         await wait(80);
+        await nextFrame();
+        await nextFrame();
 
         const scrollBox = element.querySelector<HTMLElement>('.k-bubble-list-scroll')!;
         scrollBox.scrollTop = 40;
         dispatchEvent(scrollBox, 'scroll');
+        await nextFrame();
         await wait(30);
 
         expect(instance.listRef!.isAtBottom()).to.be.false;
@@ -804,6 +808,60 @@ describe('BubbleList', () => {
         await wait(50);
 
         expect(element.querySelector('.history-status')!.textContent).to.eql('done');
+    });
+
+    it('should keep the scroll-to-bottom button above file card media overlays', async () => {
+        class Demo extends Component {
+            static template = `
+                const { BubbleList, FileCardList } = this;
+                <BubbleList
+                    style="height: 220px;"
+                    autoScrollThreshold={0}
+                    items={this.get('items')}
+                >
+                    <b:item args="scope">
+                        <div style="display: flex; justify-content: flex-start;">
+                            <FileCardList items={scope.item.attachments} />
+                        </div>
+                    </b:item>
+                </BubbleList>
+            `;
+
+            BubbleList = BubbleList;
+            FileCardList = FileCardList;
+
+            static defaults() {
+                return {
+                    items: Array.from({length: 8}).map((_, index) => ({
+                        key: index,
+                        attachments: [{
+                            key: `image-${index}`,
+                            name: `image-${index}.png`,
+                            type: 'image',
+                            status: 'done',
+                            src: `https://example.com/image-${index}.png`,
+                        }],
+                    })),
+                };
+            }
+        }
+
+        const [, element] = mount(Demo);
+        await wait(80);
+
+        const scrollBox = element.querySelector<HTMLElement>('.k-bubble-list-scroll')!;
+        scrollBox.scrollTop = 0;
+        dispatchEvent(scrollBox, 'scroll');
+        await wait(50);
+
+        const button = element.querySelector<HTMLElement>('.k-bubble-list-scroll-to-bottom')!;
+        const overlay = element.querySelector<HTMLElement>('.k-media-overlay')!;
+
+        expect(button).not.to.eql(null);
+        expect(overlay).not.to.eql(null);
+        expect(Number.parseInt(getComputedStyle(button).zIndex, 10)).to.be.greaterThan(
+            Number.parseInt(getComputedStyle(overlay).zIndex, 10)
+        );
     });
 
     it('should not render bubble wrappers for empty scoped slots', async () => {

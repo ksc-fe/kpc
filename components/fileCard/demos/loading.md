@@ -6,6 +6,7 @@ order: 3
 支持四种状态：`default / loading / error / done`。  
 `loading` 状态可传 `loadingText`；`error` 状态可传 `errorText`。
 支持 `percent` 百分比进度；图片、视频、音频类型会在左上方 loading 圆圈旁展示进度。
+图片、视频卡片可设置 `loadingVariant="flow"`，在加载时使用内置的炫彩流动背景；`FileCardList` 可统一透传，方便和默认背景直接对比。
 
 ```vdt
 import {FileCardList} from 'kpc';
@@ -62,6 +63,7 @@ import {FileCardList} from 'kpc';
     line-height 20px
     color #3F3F51
     font-weight 500
+
 ```
 
 ```ts
@@ -122,6 +124,13 @@ export default class extends Component<Props> {
             ],
             imageItems: [
                 {
+                    key: 'image-loading-flow',
+                    name: '生成结果.png',
+                    status: 'loading',
+                    loadingVariant: 'flow',
+                    percent: 42,
+                },
+                {
                     key: 'image-loading-empty',
                     name: '封面草图.png',
                     status: 'loading',
@@ -155,11 +164,18 @@ export default class extends Component<Props> {
             ],
             videoItems: [
                 {
+                    key: 'video-loading-flow',
+                    name: '生成预览.mp4',
+                    type: 'video',
+                    status: 'loading',
+                    loadingVariant: 'flow',
+                    percent: 68,
+                },
+                {
                     key: 'video-loading-empty',
                     name: '模型生成视频.mp4',
                     type: 'video',
                     status: 'loading',
-                    poster: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=1200&q=80',
                 },
                 {
                     key: 'video-loading-src',

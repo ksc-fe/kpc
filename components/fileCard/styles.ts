@@ -1,8 +1,47 @@
-import {css} from '@emotion/css';
+import {css, keyframes} from '@emotion/css';
 import {theme, setDefault} from '../../styles/theme';
 import {deepDefaults, setAlpha} from '../../styles/utils';
 import '../../styles/global';
 import {cache} from '../utils';
+
+const flowCanvasLoading = keyframes`
+    0%, 100% {
+        background-position: 10% 12%, 90% 10%, 15% 90%, 82% 18%, 30% 12%, 0 0;
+        filter: saturate(1.08) contrast(1.03) hue-rotate(0deg);
+    }
+    20% {
+        background-position: 68% 22%, 34% 86%, 82% 42%, 28% 64%, 76% 32%, 0 0;
+        filter: saturate(1.15) contrast(1.06) hue-rotate(2deg);
+    }
+    40% {
+        background-position: 76% 70%, 12% 76%, 78% 18%, 18% 78%, 38% 82%, 0 0;
+        filter: saturate(1.2) contrast(1.07) hue-rotate(-3deg);
+    }
+    60% {
+        background-position: 38% 82%, 76% 36%, 24% 28%, 70% 82%, 18% 46%, 0 0;
+        filter: saturate(1.16) contrast(1.06) hue-rotate(3deg);
+    }
+    80% {
+        background-position: 20% 48%, 62% 16%, 46% 76%, 88% 44%, 54% 24%, 0 0;
+        filter: saturate(1.12) contrast(1.05) hue-rotate(-2deg);
+    }
+`;
+
+const flowDriftA = keyframes`
+    0%, 100% { transform: translate3d(-16%, -9%, 0) scale(1.04, 1.12) rotate(-6deg); opacity: .9; }
+    20% { transform: translate3d(5%, -15%, 0) scale(1.16, 1.01) rotate(2deg); opacity: .98; }
+    40% { transform: translate3d(16%, 2%, 0) scale(1.1, 1.15) rotate(7deg); opacity: .9; }
+    60% { transform: translate3d(7%, 15%, 0) scale(1.17, 1.06) rotate(4deg); opacity: .96; }
+    80% { transform: translate3d(-12%, 10%, 0) scale(1.08, 1.17) rotate(-4deg); opacity: .92; }
+`;
+
+const flowDriftB = keyframes`
+    0%, 100% { transform: translate3d(16%, 12%, 0) scale(1.14, 1.03) rotate(5deg); opacity: .7; }
+    20% { transform: translate3d(1%, 17%, 0) scale(1.04, 1.17) rotate(-1deg); opacity: .62; }
+    40% { transform: translate3d(-16%, 5%, 0) scale(1, 1.14) rotate(-7deg); opacity: .72; }
+    60% { transform: translate3d(-12%, -13%, 0) scale(1.11, 1.04) rotate(-5deg); opacity: .66; }
+    80% { transform: translate3d(8%, -14%, 0) scale(1.18, 1.02) rotate(3deg); opacity: .7; }
+`;
 
 const defaults = {
     radius: '4px',
@@ -491,6 +530,98 @@ export const makeStyles = cache(function makeStyles(k: string) {
             line-height: 14px;
             white-space: nowrap;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-shell {
+            isolation: isolate;
+            background:
+                radial-gradient(ellipse 54% 50% at 4% 38%, #cfdef3 0 9%, #9fbee8 34%, #98aee8 53%, transparent 68%),
+                radial-gradient(ellipse 54% 52% at 98% 22%, #8fdfe2 0 9%, #8bc8e5 29%, #9b9fe3 50%, transparent 71%),
+                radial-gradient(ellipse 78% 72% at 42% 108%, #5368db 0 19%, #7384dc 37%, #9d99df 56%, transparent 78%),
+                radial-gradient(ellipse 80% 72% at 68% 25%, #dfd2f3 0 12%, #b8ace4 31%, #929edc 54%, transparent 80%),
+                radial-gradient(ellipse 46% 43% at 34% 18%, #afe4e4 0 10%, #9fc8e1 35%, transparent 67%),
+                linear-gradient(135deg, #bad9ee 0%, #86a9e3 25%, #7d89dc 50%, #ad9de3 74%, #91c5e2 100%);
+            background-size: 195% 195%, 205% 205%, 175% 175%, 185% 185%, 210% 210%, 100% 100%;
+            background-repeat: no-repeat;
+            background-color: #889be0;
+            box-shadow: none;
+            animation: ${flowCanvasLoading} 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-shell::before {
+            content: '';
+            position: absolute;
+            inset: -60%;
+            pointer-events: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            background:
+                radial-gradient(ellipse 22% 30% at 20% 42%, rgba(213, 224, 247, 0.68) 0 24%, transparent 70%),
+                radial-gradient(ellipse 27% 33% at 62% 34%, rgba(89, 211, 217, 0.68) 0 22%, transparent 70%),
+                radial-gradient(ellipse 38% 36% at 82% 70%, rgba(178, 156, 236, 0.86) 0 25%, transparent 72%),
+                radial-gradient(ellipse 30% 34% at 46% 80%, rgba(104, 141, 224, 0.72) 0 23%, transparent 72%),
+                linear-gradient(118deg, transparent 27%, rgba(205, 216, 244, 0.3) 42%, rgba(144, 183, 224, 0.22) 52%, transparent 68%);
+            background-size: auto, auto, auto, auto, 130% 130%;
+            filter: blur(12px) saturate(1.22) contrast(1.04);
+            animation: ${flowDriftA} 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-shell::after {
+            content: '';
+            position: absolute;
+            inset: -60%;
+            pointer-events: none;
+            will-change: transform;
+            backface-visibility: hidden;
+            background:
+                radial-gradient(ellipse 34% 35% at 28% 75%, rgba(50, 75, 236, 0.88) 0 23%, transparent 70%),
+                radial-gradient(ellipse 28% 35% at 74% 22%, rgba(206, 190, 238, 0.76) 0 25%, transparent 72%),
+                radial-gradient(ellipse 29% 33% at 90% 76%, rgba(77, 199, 214, 0.62) 0 22%, transparent 71%),
+                radial-gradient(ellipse 28% 31% at 52% 52%, rgba(105, 134, 231, 0.68) 0 22%, transparent 70%),
+                linear-gradient(52deg, transparent 31%, rgba(98, 109, 238, 0.4) 45%, rgba(222, 205, 250, 0.38) 56%, transparent 70%);
+            background-size: auto, auto, auto, auto, 145% 145%;
+            filter: blur(14px) saturate(1.24) contrast(1.05);
+            mix-blend-mode: screen;
+            opacity: 0.68;
+            animation: ${flowDriftB} 10s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-loading-overlay {
+            background: linear-gradient(180deg, rgba(20, 27, 52, 0.12), rgba(20, 27, 52, 0.34));
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-loading-indicator {
+            width: 16px;
+            height: 16px;
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-placeholder,
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-audio-card {
+            background: transparent;
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-placeholder-asset,
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-placeholder .${k}-icon {
+            display: block;
+            filter: brightness(0) invert(1);
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-placeholder .${k}-icon {
+            color: #FFFFFF;
+            font-size: clamp(18px, 32%, 30px);
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-audio-card {
+            align-items: center;
+            justify-content: center;
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-media-loading-video-icon {
+            color: #FFFFFF;
+        }
+
+        &.${k}-file-card.${k}-file-card-loading-flow .${k}-file-card-media-status-layer {
+            color: #FFFFFF;
         }
 
         &.${k}-file-card > .${k}-file-card-delete {

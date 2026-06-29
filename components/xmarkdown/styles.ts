@@ -33,7 +33,7 @@ const defaults = {
     scrollbarThumb: '#c7d2e3',
     scrollbarThumbHover: '#afbdd3',
     mermaidBg: '#fff',
-    mermaidCanvasBg: 'linear-gradient(180deg, #ffffff 0%, #fafbfd 100%)',
+    mermaidCanvasBg: '#fff',
     mermaidErrorBg: '#fff3f3',
     mermaidErrorColor: theme.color.danger,
 };
@@ -113,11 +113,6 @@ export const makeStyles = cache(function makeStyles(k: string) {
             font-size: 12px;
         }
 
-        .${k}-xmarkdown-stable,
-        .${k}-xmarkdown-tail {
-            display: contents;
-        }
-
         .${k}-xmarkdown-content .${k}-xmarkdown-typing-suffix {
             display: inline-flex;
             align-items: center;
@@ -156,34 +151,33 @@ export const makeStyles = cache(function makeStyles(k: string) {
             }
         }
 
-        .${k}-xmarkdown-stable > :first-child {
+        .${k}-xmarkdown-body > :first-child {
             margin-top: 0;
         }
 
-        .${k}-xmarkdown-stable > :last-child,
-        .${k}-xmarkdown-tail > :last-child {
+        .${k}-xmarkdown-body > :last-child {
             margin-bottom: 0;
         }
 
-        .${k}-xmarkdown-content [data-kpc-xmarkdown-tail="true"] {
+        .${k}-xmarkdown-content [data-kpc-xmarkdown-streaming-text="true"] {
             display: inline;
             white-space: pre-wrap;
             word-break: break-word;
         }
 
-        .${k}-xmarkdown-stable > p,
-        .${k}-xmarkdown-stable > ul,
-        .${k}-xmarkdown-stable > ol,
-        .${k}-xmarkdown-stable > blockquote,
-        .${k}-xmarkdown-stable > pre,
-        .${k}-xmarkdown-stable > table,
-        .${k}-xmarkdown-stable > hr,
-        .${k}-xmarkdown-stable > h1,
-        .${k}-xmarkdown-stable > h2,
-        .${k}-xmarkdown-stable > h3,
-        .${k}-xmarkdown-stable > h4,
-        .${k}-xmarkdown-stable > h5,
-        .${k}-xmarkdown-stable > h6 {
+        .${k}-xmarkdown-body > p,
+        .${k}-xmarkdown-body > ul,
+        .${k}-xmarkdown-body > ol,
+        .${k}-xmarkdown-body > blockquote,
+        .${k}-xmarkdown-body > pre,
+        .${k}-xmarkdown-body > table,
+        .${k}-xmarkdown-body > hr,
+        .${k}-xmarkdown-body > h1,
+        .${k}-xmarkdown-body > h2,
+        .${k}-xmarkdown-body > h3,
+        .${k}-xmarkdown-body > h4,
+        .${k}-xmarkdown-body > h5,
+        .${k}-xmarkdown-body > h6 {
             margin: 0 0 12px;
         }
 
@@ -294,11 +288,6 @@ export const makeStyles = cache(function makeStyles(k: string) {
             border-radius: 18px;
             background: ${xmarkdown.codeBlockBg};
             box-sizing: border-box;
-        }
-
-        .${k}-xmarkdown-stable:not(:empty) + .${k}-xmarkdown-tail > .${k}-xmarkdown-code-block:first-child,
-        .${k}-xmarkdown-stable:not(:empty) + .${k}-xmarkdown-tail > .${k}-xmarkdown-mermaid-block:first-child {
-            margin-top: 12px;
         }
 
         .${k}-xmarkdown-code-toolbar {
@@ -525,19 +514,26 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
 
         .${k}-xmarkdown-mermaid-viewport {
-            overflow: auto;
-            min-height: 120px;
+            overflow: hidden;
+            height: 320px;
             min-width: 0;
             max-width: 100%;
             width: 100%;
             box-sizing: border-box;
-            max-height: 480px;
             border-radius: 12px;
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(247, 249, 252, 0.96) 100%);
+            background: #fff;
             cursor: default;
             user-select: none;
             scrollbar-width: thin;
             scrollbar-color: ${xmarkdown.scrollbarThumb} transparent;
+        }
+
+        .${k}-xmarkdown-mermaid-viewport[data-kpc-scroll-x="true"] {
+            overflow-x: auto;
+        }
+
+        .${k}-xmarkdown-mermaid-viewport[data-kpc-scroll-y="true"] {
+            overflow-y: auto;
         }
 
         .${k}-xmarkdown-mermaid-viewport[data-kpc-can-drag="true"] {
@@ -578,7 +574,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
             justify-content: center;
             align-items: center;
             min-width: 100%;
-            min-height: 120px;
+            min-height: 100%;
             padding: 8px;
             box-sizing: border-box;
         }
@@ -586,8 +582,6 @@ export const makeStyles = cache(function makeStyles(k: string) {
         .${k}-xmarkdown-mermaid-stage svg {
             display: block;
             margin: 0 auto;
-            transition: width ${theme.transition.small}, height ${theme.transition.small};
-            will-change: width, height;
         }
 
         .${k}-xmarkdown-mermaid-source {

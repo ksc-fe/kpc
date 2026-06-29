@@ -4,7 +4,11 @@ module.exports = (config) => {
     // ['babel', 'vdt', 'stylus', 'css', 'vue'].forEach(rule => {
     rules.store.forEach(rule => {
         // const uses = rules.get(rule).uses;
-        if (rule.name === 'gif' || rule.name === 'file') return;
+        if (rule.name === 'gif'
+            || rule.name === 'file'
+            || rule.name === 'mjs'
+            || rule.name === 'mermaidMjs'
+        ) return;
         const uses = rule.uses;
         const entries = uses.entries();
         uses.clear().end().use('thread').loader('thread-loader');

@@ -25,6 +25,7 @@ sidebar: doc
 | showNameTooltip | 是否在缩略图 hover 时展示名称 Tooltip，内容最大宽度为 `160px`，超出省略 | `boolean` | `false` |
 | nameTooltipProps | 透传给名称 `Tooltip` 的属性 | `TooltipProps` | `undefined` |
 | container | 预览层挂载容器 | `string \| ((parentDom, anchor) => Element)` | `undefined` |
+| lazy | 是否启用缩略图懒加载。开启后会优先在媒体接近浏览器可视区时再挂载图片、视频封面和音频 metadata 加载器。默认使用浏览器视口作为判断基准，不自动推断内部滚动容器；若浏览器不支持 `IntersectionObserver`，图片会退回原生 `loading="lazy"`。可通过 `imageProps.loading / videoProps.preload / audioProps.preload` 覆盖 | `boolean` | `false` |
 | imageProps | 透传给缩略图原生 `<img>` 的属性（不作用于预览层） | `Record<string, any>` | `undefined` |
 | videoProps | 透传给缩略图原生 `<video>` 的属性（不作用于预览层） | `Record<string, any>` | `undefined` |
 | audioProps | 透传给音频 metadata 加载器原生 `<audio>` 的属性（不作用于预览层） | `Record<string, any>` | `undefined` |

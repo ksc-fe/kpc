@@ -15,7 +15,7 @@ import {Bubble, Copy, Icon} from 'kpc';
         shape="corner"
     />
     <Bubble
-        avatar="https://dummyimage.com/64x64/1677ff/ffffff&text=A"
+        avatar={true}
         roleName="AI 助手"
         content={this.get('content')}
         variant="plain"

@@ -45,7 +45,7 @@
     "katex": "^0.16.45",
     "markdown-it": "14.1.0",
     "markdown-it-texmath": "^1.0.0",
-    "mermaid": "^9.1.2",
+    "mermaid": "^11.16.0",
     "monaco-editor": "^0.26.1",
     "mxgraphx": "^4.0.7",
     "resize-observer-polyfill": "^1.5.1",

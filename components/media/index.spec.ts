@@ -48,6 +48,67 @@ describe('Media', () => {
         };
     }
 
+    function stubIntersectionObserver() {
+        const OriginalObserver = window.IntersectionObserver;
+        const instances: Array<{
+            callback: IntersectionObserverCallback
+            options?: IntersectionObserverInit
+            elements: Element[]
+            disconnect: () => void
+        }> = [];
+
+        class FakeIntersectionObserver {
+            private readonly entry: typeof instances[number];
+
+            constructor(callback: IntersectionObserverCallback, options?: IntersectionObserverInit) {
+                this.entry = {
+                    callback,
+                    options,
+                    elements: [],
+                    disconnect: sinon.spy(),
+                };
+                instances.push(this.entry);
+            }
+
+            observe = (element: Element) => {
+                this.entry.elements.push(element);
+            };
+
+            unobserve = (element: Element) => {
+                this.entry.elements = this.entry.elements.filter(item => item !== element);
+            };
+
+            disconnect = () => {
+                this.entry.disconnect();
+                this.entry.elements = [];
+            };
+
+            takeRecords = () => [];
+        }
+
+        (window as any).IntersectionObserver = FakeIntersectionObserver;
+
+        return {
+            instances,
+            trigger(index: number, entries: Partial<IntersectionObserverEntry>[]) {
+                const target = instances[index];
+                target.callback(entries.map(entry => ({
+                    boundingClientRect: {} as DOMRectReadOnly,
+                    intersectionRatio: 0,
+                    intersectionRect: {} as DOMRectReadOnly,
+                    isIntersecting: false,
+                    rootBounds: null,
+                    target: target.elements[0],
+                    time: Date.now(),
+                    ...entry,
+                })) as IntersectionObserverEntry[], {} as IntersectionObserver);
+            },
+            restore() {
+                (window as any).IntersectionObserver = OriginalObserver;
+            },
+        };
+    }
+
     // 覆盖图片、视频、音频三类基础缩略图。
     it('should render image, video and audio thumbnails', async () => {
         class Demo extends Component {
@@ -637,13 +698,13 @@ describe('Media', () => {
         expect(imageAsset).not.to.eql(null);
         expect(imageAsset.src).to.contain('data:image/svg+xml');
         expect(imageAsset.src).to.contain('M4.5%207');
-        expect(getComputedStyle(imageAsset).width).to.eql('16px');
-        expect(getComputedStyle(imageAsset).height).to.eql('16px');
+        expect(getComputedStyle(imageAsset).width).to.eql('18px');
+        expect(getComputedStyle(imageAsset).height).to.eql('18px');
         expect(videoAsset).not.to.eql(null);
         expect(videoAsset.src).to.contain('data:image/svg+xml');
         expect(videoAsset.src).to.contain('M1.33282%204.4165');
-        expect(getComputedStyle(videoAsset).width).to.eql('16px');
-        expect(getComputedStyle(videoAsset).height).to.eql('16px');
+        expect(getComputedStyle(videoAsset).width).to.eql('18px');
+        expect(getComputedStyle(videoAsset).height).to.eql('18px');
         expect(media.querySelector('.k-media-image')).to.eql(null);
         expect(media.querySelector('.k-media-loading-indicator')).to.eql(null);
         expect(media.querySelector('.k-media-preview-trigger')).to.eql(null);
@@ -798,6 +859,117 @@ describe('Media', () => {
         await wait();
 
         expect(calls).to.eql(['image-error', 'audio-load']);
+    });
+
+    // lazy 会先延迟资源挂载，进入可视区附近后再按媒体类型加载，并允许原生属性覆盖。
+    it('should lazy mount media sources when they approach viewport', async () => {
+        const observer = stubIntersectionObserver();
+
+        class Demo extends Component {
+            static template = `
+                const { Media } = this;
+                <div>
+                    <div style="height: 1400px;"></div>
+                    <Media className="lazy-image" type="image" src="https://example.com/cover.png" lazy />
+                    <Media className="lazy-video" type="video" src="https://example.com/demo.mp4" poster="https://example.com/poster.png" lazy />
+                    <Media className="lazy-audio" type="audio" src="https://example.com/demo.mp3" lazy />
+                    <Media
+                        className="override-image"
+                        type="image"
+                        src="https://example.com/eager.png"
+                        lazy
+                        imageProps={{loading: 'eager'}}
+                    />
+                    <Media
+                        className="override-video"
+                        type="video"
+                        src="https://example.com/meta.mp4"
+                        lazy
+                        videoProps={{preload: 'metadata'}}
+                    />
+                    <Media
+                        className="override-audio"
+                        type="audio"
+                        src="https://example.com/auto.mp3"
+                        lazy
+                        audioProps={{preload: 'auto'}}
+                    />
+                </div>
+            `;
+
+            Media = Media;
+        }
+
+        try {
+            const [, element] = mount(Demo);
+            await wait();
+
+            expect(observer.instances.length).to.eql(6);
+            expect(observer.instances[0].options?.root).to.eql(null);
+            expect(element.querySelector('.lazy-image img.k-media-image')).to.eql(null);
+            expect(element.querySelector('.lazy-video video.k-media-video')).to.eql(null);
+            expect(element.querySelector('.lazy-audio audio.k-media-audio-loader')).to.eql(null);
+            expect((element.querySelector('.lazy-image') as HTMLElement).querySelector('.k-media-loading-indicator')).to.eql(null);
+
+            observer.trigger(0, [{target: observer.instances[0].elements[0], isIntersecting: true, intersectionRatio: 1}]);
+            observer.trigger(1, [{target: observer.instances[1].elements[0], isIntersecting: true, intersectionRatio: 1}]);
+            observer.trigger(2, [{target: observer.instances[2].elements[0], isIntersecting: true, intersectionRatio: 1}]);
+            observer.trigger(3, [{target: observer.instances[3].elements[0], isIntersecting: true, intersectionRatio: 1}]);
+            observer.trigger(4, [{target: observer.instances[4].elements[0], isIntersecting: true, intersectionRatio: 1}]);
+            observer.trigger(5, [{target: observer.instances[5].elements[0], isIntersecting: true, intersectionRatio: 1}]);
+            await wait();
+
+            const image = element.querySelector('.lazy-image img.k-media-image') as HTMLImageElement;
+            const video = element.querySelector('.lazy-video video.k-media-video') as HTMLVideoElement;
+            const audio = element.querySelector('.lazy-audio audio.k-media-audio-loader') as HTMLAudioElement;
+            const overrideImage = element.querySelector('.override-image img.k-media-image') as HTMLImageElement;
+            const overrideVideo = element.querySelector('.override-video video.k-media-video') as HTMLVideoElement;
+            const overrideAudio = element.querySelector('.override-audio audio.k-media-audio-loader') as HTMLAudioElement;
+
+            expect(image.loading).to.not.eql('lazy');
+            expect(image.getAttribute('src')).to.eql('https://example.com/cover.png');
+            expect(video.preload).to.eql('metadata');
+            expect(video.getAttribute('src')).to.eql('https://example.com/demo.mp4');
+            expect(video.getAttribute('poster')).to.eql('https://example.com/poster.png');
+            expect(audio.preload).to.eql('metadata');
+            expect(audio.getAttribute('src')).to.eql('https://example.com/demo.mp3');
+            expect(overrideImage.loading).to.eql('eager');
+            expect(overrideVideo.preload).to.eql('metadata');
+            expect(overrideAudio.preload).to.eql('auto');
+        } finally {
+            observer.restore();
+        }
+    });
+
+    // 无 IntersectionObserver 时退回到立即挂载，图片继续保留原生 lazy hint。
+    it('should fall back to immediate lazy image hints when IntersectionObserver is unavailable', async () => {
+        const OriginalObserver = window.IntersectionObserver;
+        (window as any).IntersectionObserver = undefined;
+
+        class Demo extends Component {
+            static template = `
+                const { Media } = this;
+                <div>
+                    <Media className="lazy-image" type="image" src="https://example.com/cover.png" lazy />
+                    <Media className="lazy-video" type="video" src="https://example.com/demo.mp4" poster="https://example.com/poster.png" lazy />
+                    <Media className="lazy-audio" type="audio" src="https://example.com/demo.mp3" lazy />
+                </div>
+            `;
+
+            Media = Media;
+        }
+
+        const [, element] = mount(Demo);
+
+        expect((element.querySelector('.lazy-image img.k-media-image') as HTMLImageElement).getAttribute('src')).to.eql('https://example.com/cover.png');
+        expect((element.querySelector('.lazy-image img.k-media-image') as HTMLImageElement).loading).to.eql('lazy');
+        expect((element.querySelector('.lazy-video video.k-media-video') as HTMLVideoElement).getAttribute('src')).to.eql('https://example.com/demo.mp4');
+        expect((element.querySelector('.lazy-video video.k-media-video') as HTMLVideoElement).preload).to.eql('metadata');
+        expect((element.querySelector('.lazy-video video.k-media-video') as HTMLVideoElement).getAttribute('poster')).to.eql('https://example.com/poster.png');
+        expect((element.querySelector('.lazy-audio audio.k-media-audio-loader') as HTMLAudioElement).getAttribute('src')).to.eql('https://example.com/demo.mp3');
+        expect((element.querySelector('.lazy-audio audio.k-media-audio-loader') as HTMLAudioElement).preload).to.eql('metadata');
+
+        (window as any).IntersectionObserver = OriginalObserver;
     });
 
     // 原生媒体事件驱动内部自动状态切换。

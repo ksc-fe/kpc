@@ -9,7 +9,7 @@ const defaults = {
     padding: '12px',
     avatarSize: '32px',
     avatarFontSize: '12px',
-    avatarBg: '#dce6ee',
+    avatarBg: theme.color.bg,
     avatarColor: theme.color.text,
     roundBorderRadius: '30px',
     borderRadius: '8px',
@@ -190,8 +190,8 @@ export const makeStyles = cache(function makeStyles(k: string) {
         }
 
         .${k}-bubble-avatar-image {
-            width: 100%;
-            height: 100%;
+            width: 20px;
+            height: 20px;
             object-fit: cover;
             display: block;
         }

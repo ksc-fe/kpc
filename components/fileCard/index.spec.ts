@@ -1,5 +1,5 @@
 import {Component} from 'intact';
-import {getElement, mount, unmount, wait} from '../../test/utils';
+import {dispatchEvent, getElement, mount, unmount, wait} from '../../test/utils';
 import {FileCard, FileCardList} from '.';
 
 describe('FileCard', () => {
@@ -61,12 +61,18 @@ describe('FileCard', () => {
                     <FileCard className="audio-tooltip" name="voice.mp3" type="audio" src="https://example.com/voice.mp3" showNameTooltip />
                     <FileCard className="default-media-tooltip" name="default.png" type="image" src="https://example.com/default.png" />
                     <FileCard className="file-row-tooltip" name="row.png" type="file" src="https://example.com/row.png" showNameTooltip />
-                    <FileCardList className="list-tooltip" showNameTooltip items={[
+                    <FileCardList
+                        className="list-tooltip"
+                        showNameTooltip
+                        nameTooltipProps={{position: 'bottom'}}
+                        overflow="scrollY"
+                        items={[
                         {key: 'audio', name: 'list.mp3', type: 'audio', src: 'https://example.com/list.mp3'},
                         {key: 'image', name: 'list.png', type: 'image', src: 'https://example.com/list.png'},
                         {key: 'video-off', name: 'off.mp4', type: 'video', src: 'https://example.com/off.mp4', showNameTooltip: false},
                         {key: 'file-row', name: 'row-list.png', type: 'file', src: 'https://example.com/row-list.png'},
-                    ]} />
+                    ]}
+                    />
                 </div>
             `;
 
@@ -97,6 +103,109 @@ describe('FileCard', () => {
         expect(defaultMedia.getAttribute('title')).to.eql('default.png');
         expect(fileRowMedia.querySelector('.k-media-name-tooltip-trigger')).to.eql(null);
         expect(fileRowMedia.getAttribute('title')).to.eql('row.png');
+
+        const listTooltipTrigger = listMediaViews[1].querySelector('.k-media-name-tooltip-trigger') as HTMLElement;
+        dispatchEvent(listTooltipTrigger, 'mouseenter');
+        await wait(0);
+
+        const tooltipArrow = getElement('.k-tooltip-content .k-tooltip-arrow') as HTMLElement;
+        expect(tooltipArrow.classList.contains('k-top')).to.be.true;
+    });
+
+    // FileCard/FileCardList 的 lazy 会传递给内部 Media；无 IntersectionObserver 时图片保留原生 lazy hint。
+    it('should pass lazy loading setting to inner media', async () => {
+        const OriginalObserver = window.IntersectionObserver;
+        (window as any).IntersectionObserver = undefined;
+
+        class Demo extends Component {
+            static template = `
+                const { FileCard, FileCardList } = this;
+                <div>
+                    <FileCard className="card-image" name="cover.png" type="image" src="https://example.com/cover.png" lazy />
+                    <FileCard className="card-file" name="row.mp4" type="file" src="https://example.com/row.mp4" poster="https://example.com/row.png" lazy />
+                    <FileCardList className="list-lazy" lazy items={[
+                        {key: 'image', name: 'list.png', type: 'image', src: 'https://example.com/list.png'},
+                        {key: 'video', name: 'video.mp4', type: 'video', src: 'https://example.com/video.mp4', poster: 'https://example.com/video.png'},
+                        {key: 'audio-off', name: 'off.mp3', type: 'audio', src: 'https://example.com/off.mp3', lazy: false},
+                        {key: 'audio-override', name: 'auto.mp3', type: 'audio', src: 'https://example.com/auto.mp3', audioProps: {preload: 'auto'}},
+                    ]} />
+                </div>
+            `;
+
+            FileCard = FileCard;
+            FileCardList = FileCardList;
+        }
+
+        try {
+            const [, element] = mount(Demo);
+
+            expect((element.querySelector('.card-image img.k-media-image') as HTMLImageElement).loading).to.eql('lazy');
+            expect((element.querySelector('.card-image img.k-media-image') as HTMLImageElement).getAttribute('src')).to.eql('https://example.com/cover.png');
+            expect((element.querySelector('.card-file video.k-media-video') as HTMLVideoElement).preload).to.eql('metadata');
+            expect((element.querySelector('.card-file video.k-media-video') as HTMLVideoElement).getAttribute('src')).to.eql('https://example.com/row.mp4');
+            expect((element.querySelector('.card-file video.k-media-video') as HTMLVideoElement).getAttribute('poster')).to.eql('https://example.com/row.png');
+            expect((element.querySelector('.list-lazy img.k-media-image') as HTMLImageElement).loading).to.eql('lazy');
+            expect((element.querySelector('.list-lazy img.k-media-image') as HTMLImageElement).getAttribute('src')).to.eql('https://example.com/list.png');
+            expect((element.querySelector('.list-lazy video.k-media-video') as HTMLVideoElement).preload).to.eql('metadata');
+            expect((element.querySelector('.list-lazy video.k-media-video') as HTMLVideoElement).getAttribute('src')).to.eql('https://example.com/video.mp4');
+            expect((element.querySelector('.list-lazy video.k-media-video') as HTMLVideoElement).getAttribute('poster')).to.eql('https://example.com/video.png');
+
+            const audioLoaders = element.querySelectorAll('.list-lazy audio.k-media-audio-loader');
+            expect((audioLoaders[0] as HTMLAudioElement).preload).to.eql('metadata');
+            expect((audioLoaders[0] as HTMLAudioElement).getAttribute('src')).to.eql('https://example.com/off.mp3');
+            expect((audioLoaders[1] as HTMLAudioElement).preload).to.eql('auto');
+            expect((audioLoaders[1] as HTMLAudioElement).getAttribute('src')).to.eql('https://example.com/auto.mp3');
+        } finally {
+            (window as any).IntersectionObserver = OriginalObserver;
+        }
+    });
+
+    // 显式媒体卡片的 width/height 透传给内部 Media；文件行卡片作为根节点尺寸使用。
+    it('should apply width and height to media cards and file row root', async () => {
+        class Demo extends Component {
+            static template = `
+                const { FileCard, FileCardList } = this;
+                <div>
+                    <FileCard
+                        className="media-size"
+                        name="cover.png"
+                        type="image"
+                        width={120}
+                        height="90px"
+                    />
+                    <FileCard
+                        className="file-size"
+                        name="report.pdf"
+                        type="file"
+                        width={220}
+                        height={72}
+                    />
+                    <FileCardList className="list-size" items={[
+                        {key: 'image', name: 'list.png', type: 'image', width: 144, height: 120},
+                        {key: 'file', name: 'list.pdf', type: 'file', width: 240, height: 80},
+                    ]} />
+                </div>
+            `;
+
+            FileCard = FileCard;
+            FileCardList = FileCardList;
+        }
+
+        const [, element] = mount(Demo);
+        const media = element.querySelector('.media-size .k-file-card-media-view') as HTMLElement;
+        const file = element.querySelector('.file-size') as HTMLElement;
+        const listMedia = element.querySelector('.list-size .k-file-card-media-view') as HTMLElement;
+        const listFile = element.querySelector('.list-size .k-file-card-file') as HTMLElement;
+
+        expect(media.style.width).to.eql('120px');
+        expect(media.style.height).to.eql('90px');
+        expect((element.querySelector('.media-size') as HTMLElement).style.width).to.eql('');
+        expect(file.style.width).to.eql('220px');
+        expect(file.style.height).to.eql('72px');
+        expect(listMedia.style.width).to.eql('144px');
+        expect(listMedia.style.height).to.eql('120px');
+        expect(listFile.style.width).to.eql('240px');
+        expect(listFile.style.height).to.eql('80px');
     });
 
     // 普通文件按扩展名使用内置设计图标。
@@ -648,6 +757,127 @@ describe('FileCard', () => {
         expect(instance.get('previewCount')).to.eql(1);
         expect(getElement('.k-media-viewer')).not.to.eql(null);
         expect(getElement('.k-media-viewer-title')?.textContent).to.contain('cover.png');
+    });
+
+    // loadingVariant=flow 仅对图片/视频生效，只切换加载背景，其他 loading 结构保持一致。
+    it('should render builtin flow loading variant for media card', async () => {
+        class Demo extends Component {
+            static template = `
+                const { FileCard, FileCardList } = this;
+                <div>
+                    <FileCard
+                        className="default-image"
+                        name="default.png"
+                        type="image"
+                        status="loading"
+                        width={120}
+                        height={120}
+                        src="https://example.com/default.png"
+                    />
+                    <FileCard
+                        className="flow-image"
+                        name="generating.png"
+                        type="image"
+                        status="loading"
+                        loadingVariant="flow"
+                        width={120}
+                        height={120}
+                        loadingText="生成中"
+                        percent={40}
+                        src="https://example.com/generating.png"
+                    />
+                    <FileCard
+                        className="flow-file"
+                        name="generating.pdf"
+                        type="file"
+                        status="loading"
+                        loadingVariant="flow"
+                        percent={40}
+                    />
+                    <FileCardList className="flow-list" loadingVariant="flow" items={[
+                        {key: 'video', name: 'clip.mp4', type: 'video', status: 'loading', percent: 60, src: 'https://example.com/clip.mp4'},
+                        {key: 'audio', name: 'voice.mp3', type: 'audio', status: 'loading', percent: 28, src: 'https://example.com/voice.mp3'},
+                    ]} />
+                </div>
+            `;
+
+            FileCard = FileCard;
+            FileCardList = FileCardList;
+        }
+
+        const [, element] = mount(Demo);
+        const defaultAsset = element.querySelector('.default-image .k-media-placeholder-asset') as HTMLImageElement;
+        const flowAsset = element.querySelector('.flow-image .k-media-placeholder-asset') as HTMLImageElement;
+        const imageMedia = element.querySelector('.flow-image .k-media') as HTMLElement;
+        const imageCard = element.querySelector('.flow-image') as HTMLElement;
+        const fileCard = element.querySelector('.flow-file') as HTMLElement;
+        const listMedia = element.querySelector('.flow-list .k-media') as HTMLElement;
+        const listCard = element.querySelector('.flow-list .k-file-card') as HTMLElement;
+        const listAudioCard = element.querySelectorAll('.flow-list .k-file-card')[1] as HTMLElement;
+
+        expect(defaultAsset).not.to.eql(null);
+        expect(flowAsset).not.to.eql(null);
+        expect(imageMedia.className).to.contain('k-media-loading');
+        expect(imageCard.className).to.contain('k-file-card-loading-flow');
+        expect(fileCard.className).to.not.contain('k-file-card-loading-flow');
+        expect(listMedia.className).to.contain('k-media-loading');
+        expect(listCard.className).to.contain('k-file-card-loading-flow');
+        expect(listAudioCard.className).to.not.contain('k-file-card-loading-flow');
+        expect(getComputedStyle(defaultAsset).width).to.eql(getComputedStyle(flowAsset).width);
+        expect(getComputedStyle(defaultAsset).height).to.eql(getComputedStyle(flowAsset).height);
+        expect(element.querySelector('.flow-image .k-media-loading-indicator')).not.to.eql(null);
+        expect(element.querySelector('.flow-image .k-file-card-media-status-layer')).not.to.eql(null);
+        expect(element.querySelector('.flow-image .k-file-card-media-progress-text')).not.to.eql(null);
+        expect(element.querySelector('.flow-image .k-file-card-media-loading-overlay')).not.to.eql(null);
+        expect(element.querySelector('.flow-image .k-media-loading-overlay')).to.eql(null);
+        expect(element.querySelector('.flow-list .k-file-card-media-status-layer')).to.eql(null);
+        expect(element.querySelector('.flow-list .k-file-card-media-progress-text')).not.to.eql(null);
+    });
+
+    // FileCard 的 loading 扩展点仅对显式媒体卡片生效，并接管默认 loading 层。
+    it('should render loading slot for media card only', async () => {
+        class Demo extends Component {
+            static template = `
+                const { FileCard } = this;
+                <div>
+                    <FileCard
+                        className="media-loading-slot-card"
+                        name="generating.png"
+                        type="image"
+                        status="loading"
+                        percent={40}
+                        src="https://example.com/generating.png"
+                    >
+                        <b:loading args="card">
+                            <div class="media-loading-slot">{card.name}</div>
+                        </b:loading>
+                    </FileCard>
+                    <FileCard
+                        className="file-loading-slot-card"
+                        name="generating.pdf"
+                        type="file"
+                        status="loading"
+                        percent={40}
+                    >
+                        <b:loading args="card">
+                            <div class="file-row-loading-slot">{card.name}</div>
+                        </b:loading>
+                    </FileCard>
+                </div>
+            `;
+
+            FileCard = FileCard;
+        }
+
+        const [, element] = mount(Demo);
+
+        expect(element.querySelector('.media-loading-slot')?.textContent).to.contain('generating.png');
+        expect(element.querySelector('.media-loading-slot-card .k-media-custom-loading')).not.to.eql(null);
+        expect(element.querySelector('.media-loading-slot-card .k-file-card-media-status-layer')).to.eql(null);
+        expect(element.querySelector('.media-loading-slot-card .k-file-card-media-progress-text')).to.eql(null);
+        expect(element.querySelector('.file-row-loading-slot')).to.eql(null);
+        expect(element.querySelector('.file-loading-slot-card .k-file-card-mask')).to.eql(null);
+        expect(element.querySelector('.file-loading-slot-card .k-file-card-description')?.textContent).to.contain('上传中... 40%');
     });
 
     // 显式音频媒体仅在有 loading 文案或进度时展示 loading 蒙层，文案颜色与图片/视频一致。

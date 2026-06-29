@@ -4,6 +4,14 @@ order: 99
 sidebar: doc
 ---
 
+## v3.8.0-beta.3
+
+1. `Add` `Media`、`FileCard`、`FileCardList` 新增 `lazy`，支持在对话文件列表场景中按需启用图片懒加载和音视频低预加载。
+2. `Fix` 优化 `XMarkdown` 流式表格、引用块、列表等块级内容渲染时机，避免尾部内容先以 Markdown 原文展示后再切换为结构化内容。
+3. `Fix` `XMarkdown` 升级 `Mermaid` 至 11.x，并优化图表流式渲染、主题隔离、缩放适配和滚动条判断。
+4. `Add` `FileCard` 新增 `width`、`height`、`loadingVariant` 和显式媒体类型 `loading` 扩展点，支持自定义图片、视频、音频生成中的尺寸和加载层。
+5. `Fix` 优化 `BubbleList` 回到底部按钮层级，避免被媒体卡片状态层遮挡。
+
 ## v3.8.0-beta.2
 
 1. `Add` `Bubble`、`XMarkdown` 的 `typing` 新增 `keepPrefix`、`resumeFrom`，支持流式重连后接着已有输出继续打字。

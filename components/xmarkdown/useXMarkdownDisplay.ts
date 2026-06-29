@@ -12,10 +12,8 @@ import {useInstance} from 'intact';
 import type {XMarkdown} from './xmarkdown';
 import {
     containsFormulaSyntax,
-    createStreamingTailCache,
     createMarkdownRenderer,
-    renderMarkdownTail,
-    splitMarkdownForStreaming,
+    resolveStreamingRenderResult,
     type XMarkdownFormulaRuntime,
     type XMarkdownRenderedBlock,
     type XMarkdownRenderedStableBlock,
@@ -45,7 +43,6 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         nodes: [],
         blocks: {},
     };
-    let streamingTailCache = createStreamingTailCache();
     let renderedBlockId = 0;
 
     // 数学公式运行时
@@ -111,13 +108,11 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
     /**
      * 设置渲染结果
      */
-    function setRenderedResult(stable: XMarkdownRenderResult, tailNodes: any[], source: string) {
+    function setRenderedResult(result: XMarkdownRenderResult, source: string) {
         (instance as any).set({
-            $renderedStableNodes: stable.nodes,
-            $renderedTailNodes: tailNodes,
             $renderedMarkdownSource: source,
-            $renderedBlocks: stable.blocks,
-            $renderedNodes: [...stable.nodes, ...tailNodes],
+            $renderedBlocks: result.blocks,
+            $renderedNodes: result.nodes,
         });
     }
 
@@ -191,7 +186,6 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         lastStableMarkdownSource = '';
         lastStableMarkdownBlocks = [];
         lastStableMarkdownResult = {nodes: [], blocks: {}};
-        streamingTailCache = createStreamingTailCache();
     }
 
     /**
@@ -311,7 +305,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
      */
     function renderMarkdownImmediately(source: string) {
         lastStableMarkdownResult = renderStableMarkdown(source);
-        setRenderedResult(lastStableMarkdownResult, [], source);
+        setRenderedResult(lastStableMarkdownResult, source);
     }
 
     /**
@@ -337,19 +331,18 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
      */
     function reuseStableMarkdownBlocks(sourceBlocks: XMarkdownSourceBlock[]) {
         const renderedBlocks: XMarkdownRenderedStableBlock[] = [];
-
         let index = 0;
-        // 匹配复用的 block
+
         while (index < sourceBlocks.length && index < lastStableMarkdownBlocks.length) {
             const sourceBlock = sourceBlocks[index];
             const renderedBlock = lastStableMarkdownBlocks[index];
 
-            if (!canReuseStableBlock(sourceBlock, renderedBlock)) break; // 如果不能复用，则跳出循环
+            if (!canReuseStableBlock(sourceBlock, renderedBlock)) break;
 
             renderedBlocks.push(renderedBlock);
             index++;
         }
-        // 渲染新增的 block
+
         for (; index < sourceBlocks.length; index++) {
             renderedBlocks.push(renderer.renderBlock(sourceBlocks[index], registerRenderedBlock));
         }
@@ -403,19 +396,36 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
     }
 
     /**
-     * 渐进式渲染 Markdown
+     * 渐进式渲染 Markdown。
+     *
+     * 主体内容始终走正常 Markdown 渲染链路，保留块级复用缓存。
+     * 只有未闭合的块级公式额外作为纯文本尾部补充，避免在流式阶段被公式插件提前消费。
      */
     function renderMarkdownProgressively(source: string) {
-        const {stableSource, tailText, openFence} = splitMarkdownForStreaming(source, streamingTailCache);
-        let renderedStableResult: XMarkdownRenderResult = {nodes: [], blocks: {}};
+        const {source: markdownSource, trailingNodes} = resolveStreamingRenderResult(source, getRenderOptions());
 
-        if (stableSource) {
-            renderedStableResult = renderStableMarkdown(stableSource);
-        } else if (lastStableMarkdownSource || lastStableMarkdownResult.nodes.length) {
+        if (!markdownSource) {
+            if (lastStableMarkdownSource || lastStableMarkdownResult.nodes.length) {
+                resetMarkdownCache();
+            }
+            setRenderedResult({nodes: trailingNodes, blocks: {}}, source);
+            return;
+        }
+
+        const renderedResult = renderStableMarkdown(markdownSource);
+        if (!trailingNodes.length) {
+            setRenderedResult(renderedResult, source);
+            return;
+        }
+
+        if (markdownSource !== lastStableMarkdownSource && !renderedResult.nodes.length) {
             resetMarkdownCache();
         }
 
-        setRenderedResult(renderedStableResult, renderMarkdownTail(tailText, openFence, getRenderOptions()), source);
+        setRenderedResult({
+            nodes: [...renderedResult.nodes, ...trailingNodes],
+            blocks: renderedResult.blocks,
+        }, source);
     }
 
     /**
@@ -427,7 +437,7 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
 
         if (!source) {
             resetMarkdownCache();
-            setRenderedResult({nodes: [], blocks: {}}, [], '');
+            setRenderedResult({nodes: [], blocks: {}}, '');
             return;
         }
 
@@ -663,16 +673,8 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         return (instance as any).get('$renderedNodes') || [];
     }
 
-    function getRenderedStableNodes() {
-        return (instance as any).get('$renderedStableNodes') || [];
-    }
-
-    function getRenderedTailNodes() {
-        return (instance as any).get('$renderedTailNodes') || [];
-    }
-
     function getRenderedContent() {
-        return [...getRenderedStableNodes(), ...getRenderedTailNodes()];
+        return getRenderedNodes();
     }
 
     function getRenderedBlockData(id: string) {
@@ -715,8 +717,6 @@ export function useXMarkdownDisplay(getPrefixCls: () => string) {
         // 内容获取
         getDisplayedContent,
         getRenderedContent,
-        getRenderedStableNodes,
-        getRenderedTailNodes,
         getRenderedBlockData,
         getRenderedNodes,
 

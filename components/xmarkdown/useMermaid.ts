@@ -23,7 +23,12 @@ interface DragState {
 // 模块级常量
 const SCALE_STEP = 0.2;
 const WHEEL_STEP = 0.1;
-const VIEWPORT_MAX_HEIGHT = 480;
+const VIEWPORT_HEIGHT = 320;
+const SCROLLBAR_SIZE = 10;
+const MIN_SCALE = 0.1;
+const FIT_PADDING = 20;
+const STAGE_PADDING = 16;
+const STREAMING_RENDER_DELAY = 100;
 
 // 模块级状态
 let mermaidPromise: Promise<any> | null = null;
@@ -40,22 +45,42 @@ export function useMermaid(
     let renderSeed = 0;
     let syncing = false;
     let pendingSync = false;
+    let trailingSyncTimer: number | null = null;
+    let trailingSyncContainer: HTMLElement | null = null;
     let dragState: DragState | null = null;
     const feedbackTimers = new Set<number>();
 
     /**
      * 同步渲染 Mermaid 图表
      */
-    async function syncBlocks(container: HTMLElement) {
+    function syncBlocks(container: HTMLElement) {
         if (!instance.get('enableMermaid')) return;
 
+        if (shouldDeferRenderError()) {
+            trailingSyncContainer = container;
+            if (trailingSyncTimer !== null) return;
+
+            trailingSyncTimer = window.setTimeout(() => {
+                trailingSyncTimer = null;
+                const nextContainer = trailingSyncContainer;
+                trailingSyncContainer = null;
+                if (nextContainer) void syncBlocksNow(nextContainer);
+            }, STREAMING_RENDER_DELAY);
+            return;
+        }
+
+        flushTrailingSync();
+        void syncBlocksNow(container);
+    }
+
+    async function syncBlocksNow(container: HTMLElement) {
         if (syncing) {
             pendingSync = true;
             return;
         }
         // 获取所有需要渲染的 Mermaid 块
         const blocks = Array.from(container.querySelectorAll<HTMLElement>('[data-kpc-mermaid="true"]'))
-            .filter((block) => block.dataset.kpcRenderState !== 'done');
+            .filter((block) => shouldRenderBlock(block, container));
 
         if (!blocks.length) return;
 
@@ -64,11 +89,13 @@ export function useMermaid(
             const mermaid = await loadMermaid();
             if (!mermaid) return;
 
+            mermaid.mermaidAPI?.reset?.();
             mermaid.initialize({
                 startOnLoad: false,
                 securityLevel: 'strict' as const,
                 theme: 'default' as const,
                 ...instance.get('mermaidConfig'),
+                suppressErrorRendering: true,
             });
 
             for (const block of blocks) {
@@ -83,23 +110,48 @@ export function useMermaid(
         }
     }
 
+    function flushTrailingSync() {
+        if (trailingSyncTimer === null) return;
+
+        clearTimeout(trailingSyncTimer);
+        trailingSyncTimer = null;
+        const nextContainer = trailingSyncContainer;
+        trailingSyncContainer = null;
+        if (nextContainer) void syncBlocksNow(nextContainer);
+    }
+
+    function clearTrailingSync() {
+        if (trailingSyncTimer !== null) {
+            clearTimeout(trailingSyncTimer);
+            trailingSyncTimer = null;
+        }
+        trailingSyncContainer = null;
+    }
+
     /**
      * 渲染单个 Mermaid 块
      */
     async function renderBlock(block: HTMLElement, mermaid: any, container: HTMLElement) {
-        const state = block.dataset.kpcRenderState;
-        if (state === 'loading' || state === 'done') return;
-
         const stage = block.querySelector<HTMLElement>('[data-kpc-mermaid-stage="true"]');
         const blockId = block.dataset.kpcBlockId || '';
         const renderedBlock = getRenderedBlockData(blockId);
         const source = renderedBlock?.source || '';
+        const fingerprint = getRenderFingerprint(source, instance.get('mermaidConfig'));
 
         if (!stage || !source) return;
 
+        restoreCachedSvg(block, stage);
+
+        const hasRenderedDiagram = hasRenderedSvg(stage);
+        const hasPreviousError = block.dataset.kpcRenderState === 'error';
         block.dataset.kpcRenderState = 'loading';
-        stage.textContent = _$('Mermaid 渲染中...');
-        updateToolbarState(block);
+        block.dataset.kpcPendingFingerprint = fingerprint;
+        delete block.dataset.kpcDeferredFingerprint;
+
+        if (!hasRenderedDiagram && hasPreviousError) {
+            stage.textContent = '';
+        }
+        updateToolbarState(block, hasRenderedDiagram);
 
         try {
             const renderId = createMermaidRenderId(
@@ -109,31 +161,90 @@ export function useMermaid(
                 renderSeed++,
                 getPrefixCls()
             );
-            const svg = await mermaid.renderAsync(
+            const {svg, bindFunctions} = await renderMermaidSvg(
+                mermaid,
                 renderId,
-                source
+                source,
+                stage,
+                shouldDeferRenderError()
             );
 
             if (!container.contains(block)) return;
+            if (!isCurrentRender(block, fingerprint)) return;
 
             stage.innerHTML = svg;
+            bindFunctions?.(stage);
+            cacheRenderedSvg(block, svg);
             block.dataset.kpcRenderState = 'done';
-            prepareStage(block);
+            block.dataset.kpcRenderedFingerprint = fingerprint;
+            delete block.dataset.kpcPendingFingerprint;
+            delete block.dataset.kpcDeferredFingerprint;
+            delete block.dataset.kpcErrorFingerprint;
+            prepareStage(block, hasRenderedDiagram && shouldDeferRenderError());
         } catch (e) {
             if (!container.contains(block)) return;
 
             const error = e instanceof Error ? e : new Error(String(e));
+            if (isDeferredMermaidParseError(error)) {
+                block.dataset.kpcRenderState = 'idle';
+                block.dataset.kpcDeferredFingerprint = fingerprint;
+                delete block.dataset.kpcPendingFingerprint;
+                delete block.dataset.kpcErrorFingerprint;
+
+                if (!hasRenderedDiagram) {
+                    stage.textContent = '';
+                }
+                updateToolbarState(block, hasRenderedDiagram);
+                return;
+            }
+
             stage.innerHTML = `<div class="${getPrefixCls()}-xmarkdown-mermaid-error">${escapeHtml(error.message)}</div>`;
+            clearCachedSvg(block);
             block.dataset.kpcRenderState = 'error';
+            block.dataset.kpcErrorFingerprint = fingerprint;
+            delete block.dataset.kpcPendingFingerprint;
+            delete block.dataset.kpcDeferredFingerprint;
+            delete block.dataset.kpcRenderedFingerprint;
             updateToolbarState(block, false);
             instance.trigger('mermaidError', error, source);
         }
     }
 
+    function shouldRenderBlock(block: HTMLElement, container: HTMLElement) {
+        const stage = block.querySelector<HTMLElement>('[data-kpc-mermaid-stage="true"]');
+        const blockId = block.dataset.kpcBlockId || '';
+        const renderedBlock = getRenderedBlockData(blockId);
+        const source = renderedBlock?.source || '';
+
+        if (!stage || !source || !container.contains(block)) return false;
+
+        const fingerprint = getRenderFingerprint(source, instance.get('mermaidConfig'));
+        const state = block.dataset.kpcRenderState;
+        if (state === 'loading') {
+            return block.dataset.kpcPendingFingerprint !== fingerprint;
+        }
+
+        if (block.dataset.kpcRenderedFingerprint === fingerprint) {
+            return false;
+        }
+
+        return shouldDeferRenderError()
+            ? block.dataset.kpcDeferredFingerprint !== fingerprint
+            : block.dataset.kpcErrorFingerprint !== fingerprint;
+    }
+
+    function isCurrentRender(block: HTMLElement, fingerprint: string) {
+        const blockId = block.dataset.kpcBlockId || '';
+        const renderedBlock = getRenderedBlockData(blockId);
+        const source = renderedBlock?.source || '';
+
+        return !!source && getRenderFingerprint(source, instance.get('mermaidConfig')) === fingerprint;
+    }
+
     /**
      * 初始化图表尺寸和缩放
      */
-    function prepareStage(block: HTMLElement) {
+    function prepareStage(block: HTMLElement, preserveScale = false) {
         const stage = block.querySelector<HTMLElement>('[data-kpc-mermaid-stage="true"]');
         const svg = stage?.querySelector<SVGSVGElement>('svg');
         const viewport = block.querySelector<HTMLElement>('[data-kpc-mermaid-viewport="true"]');
@@ -147,11 +258,23 @@ export function useMermaid(
         if (width > 0) block.dataset.kpcMermaidBaseWidth = String(width);
         if (height > 0) block.dataset.kpcMermaidBaseHeight = String(height);
 
-        block.dataset.kpcScale = '1';
+        const currentScale = getScale(block);
+        const previousInitialScale = getInitialScale(block);
         svg.style.maxWidth = '100%';
         svg.style.height = 'auto';
-        block.dataset.kpcInitialScale = String(getFittedScale(block, viewport));
-        block.dataset.kpcScale = block.dataset.kpcInitialScale;
+        const nextInitialScale = getFittedScale(block, viewport);
+        block.dataset.kpcInitialScale = String(nextInitialScale);
+        if (preserveScale) {
+            const preservedScale = clamp(currentScale, getMinScale(block), getMaxScale(block));
+            const isUserZoomed = currentScale > previousInitialScale + 0.01;
+            block.dataset.kpcScale = String(
+                !isUserZoomed && !doesScaleFit(block, viewport, preservedScale)
+                    ? nextInitialScale
+                    : preservedScale
+            );
+        } else {
+            block.dataset.kpcScale = block.dataset.kpcInitialScale;
+        }
 
         applyTransform(block);
     }
@@ -183,7 +306,7 @@ export function useMermaid(
      * 计算最小缩放比例
      */
     function getMinScale(block: HTMLElement): number {
-        return Math.max(0.25, Math.min(getInitialScale(block), 1) * 0.6);
+        return Math.max(MIN_SCALE, Math.min(getInitialScale(block), 1) * 0.6);
     }
 
     /**
@@ -219,6 +342,23 @@ export function useMermaid(
     }
 
     /**
+     * 图表从隐藏态切回可见后，重新按当前画布计算一次初始适配缩放。
+     * 仅在用户仍停留在初始缩放附近时同步更新，避免覆盖手动缩放结果。
+     */
+    function refreshFittedScale(block: HTMLElement) {
+        const viewport = block.querySelector<HTMLElement>('[data-kpc-mermaid-viewport="true"]');
+        const nextInitialScale = getFittedScale(block, viewport);
+        const currentInitialScale = getInitialScale(block);
+        const currentScale = getScale(block);
+        const shouldSyncScale = Math.abs(currentScale - currentInitialScale) < 0.01;
+
+        block.dataset.kpcInitialScale = String(nextInitialScale);
+        if (shouldSyncScale) {
+            block.dataset.kpcScale = String(nextInitialScale);
+        }
+    }
+
+    /**
      * 应用缩放变换
      */
     function applyTransform(block: HTMLElement) {
@@ -235,13 +375,17 @@ export function useMermaid(
         const baseWidth = Number(block.dataset.kpcMermaidBaseWidth || '0');
         const baseHeight = Number(block.dataset.kpcMermaidBaseHeight || '0');
         const viewportWidth = Math.max(viewport.clientWidth, 1);
-        const viewportHeight = Math.max(viewport.clientHeight, 1);
         const scaledWidth = Math.max(baseWidth * scale, 1);
         const scaledHeight = Math.max(baseHeight * scale, 1);
-        const needsHorizontalScroll = scaledWidth + 16 > viewportWidth;
-        const needsVerticalScroll = scaledHeight + 16 > viewportHeight;
-        const stageWidth = needsHorizontalScroll ? scaledWidth + 16 : viewportWidth;
-        const stageHeight = needsVerticalScroll ? scaledHeight + 16 : viewportHeight;
+        const scrollState = getScrollState(viewportWidth, scaledWidth, scaledHeight);
+        const needsHorizontalScroll = scrollState.x;
+        const needsVerticalScroll = scrollState.y;
+        const stageWidth = needsHorizontalScroll
+            ? scaledWidth + STAGE_PADDING
+            : Math.max(viewportWidth - (needsVerticalScroll ? SCROLLBAR_SIZE : 0), 1);
+        const stageHeight = needsVerticalScroll
+            ? scaledHeight + STAGE_PADDING
+            : Math.max(VIEWPORT_HEIGHT - (needsHorizontalScroll ? SCROLLBAR_SIZE : 0), 1);
 
         block.dataset.kpcScale = String(scale);
 
@@ -257,6 +401,8 @@ export function useMermaid(
         svg.style.maxWidth = 'none';
         svg.style.cursor = 'default';
 
+        viewport.dataset.kpcScrollX = needsHorizontalScroll ? 'true' : 'false';
+        viewport.dataset.kpcScrollY = needsVerticalScroll ? 'true' : 'false';
         viewport.dataset.kpcCanDrag = needsHorizontalScroll || needsVerticalScroll ? 'true' : 'false';
         updateToolbarState(block);
     }
@@ -272,12 +418,29 @@ export function useMermaid(
         if (!targetViewport || baseWidth <= 0 || baseHeight <= 0) return 1;
 
         const rect = targetViewport.getBoundingClientRect();
-        const availableWidth = Math.max(rect.width - 16, 1);
-        const viewportMaxHeight = Number.parseFloat(window.getComputedStyle(targetViewport).maxHeight || '') || VIEWPORT_MAX_HEIGHT;
-        const availableHeight = Math.max(viewportMaxHeight - 16, 1);
+        const viewportWidth = targetViewport.clientWidth || rect.width;
+        const availableWidth = Math.max(viewportWidth - FIT_PADDING, 1);
+        const availableHeight = Math.max(VIEWPORT_HEIGHT - FIT_PADDING, 1);
         const fittedScale = Math.min(1, availableWidth / baseWidth, availableHeight / baseHeight);
 
-        return clamp(fittedScale, 0.25, 1);
+        return clamp(fittedScale, MIN_SCALE, 1);
+    }
+
+    function doesScaleFit(block: HTMLElement, viewport: HTMLElement | null | undefined, scale: number) {
+        if (!viewport) return true;
+
+        const baseWidth = Number(block.dataset.kpcMermaidBaseWidth || '0');
+        const baseHeight = Number(block.dataset.kpcMermaidBaseHeight || '0');
+        if (baseWidth <= 0 || baseHeight <= 0) return true;
+
+        const viewportWidth = Math.max(viewport.clientWidth, 1);
+        const scrollState = getScrollState(
+            viewportWidth,
+            Math.max(baseWidth * scale, 1),
+            Math.max(baseHeight * scale, 1)
+        );
+
+        return !scrollState.x && !scrollState.y;
     }
 
     /**
@@ -301,6 +464,14 @@ export function useMermaid(
     }
 
     /**
+     * 流式输出中的 Mermaid 片段在语法尚未闭合前可能短暂不可解析。
+     * 这类中间态错误不直接暴露给用户，等后续 chunk 到达后再继续尝试。
+     */
+    function shouldDeferRenderError() {
+        return !!instance.get('streaming') || !!(instance as any).get('$typingActive');
+    }
+
+    /**
      * 切换视图（图表/源码）
      */
     function setView(actionElement: HTMLElement, view: 'diagram' | 'source') {
@@ -308,6 +479,9 @@ export function useMermaid(
         if (!block) return;
 
         block.dataset.kpcView = view;
+        if (view === 'diagram') {
+            refreshFittedScale(block);
+        }
         applyTransform(block);
 
         block.querySelectorAll<HTMLElement>('[data-kpc-action="set-mermaid-view-diagram"], [data-kpc-action="set-mermaid-view-source"]')
@@ -452,6 +626,11 @@ export function useMermaid(
         feedbackTimers.clear();
     }
 
+    function clearTimers() {
+        clearTrailingSync();
+        clearFeedbackTimers();
+    }
+
     return {
         syncBlocks,
         setView,
@@ -464,7 +643,7 @@ export function useMermaid(
         handleWheel,
         showFeedback,
         finishDrag,
-        clearFeedbackTimers,
+        clearTimers,
     };
 }
 
@@ -473,7 +652,7 @@ export function useMermaid(
  */
 function loadMermaid(): Promise<any> {
     if (!mermaidPromise) {
-        mermaidPromise = import('mermaid/dist/mermaid.min.js')
+        mermaidPromise = import('mermaid')
             .then((module) => module.default || module)
             .catch(() => {
                 mermaidPromise = null;
@@ -481,6 +660,48 @@ function loadMermaid(): Promise<any> {
             });
     }
     return mermaidPromise;
+}
+
+async function renderMermaidSvg(
+    mermaid: any,
+    renderId: string,
+    source: string,
+    container: HTMLElement,
+    suppressParseErrors: boolean
+): Promise<{svg: string; bindFunctions?: (element: Element) => void}> {
+    if (typeof mermaid.render === 'function') {
+        await parseMermaidSource(mermaid, source, suppressParseErrors);
+        const result = await mermaid.render(renderId, source, container);
+        if (typeof result === 'string') {
+            return {svg: result};
+        }
+        const svg = result?.svg || '';
+        return {
+            svg,
+            bindFunctions: result?.bindFunctions,
+        };
+    }
+
+    throw new Error('Mermaid render API is unavailable');
+}
+
+async function parseMermaidSource(mermaid: any, source: string, suppressErrors: boolean) {
+    if (typeof mermaid.parse !== 'function') return;
+
+    const valid = await mermaid.parse(source, {suppressErrors});
+    if (suppressErrors && valid === false) {
+        throw new DeferredMermaidParseError();
+    }
+}
+
+class DeferredMermaidParseError extends Error {
+    constructor() {
+        super('Mermaid syntax error');
+    }
+}
+
+function isDeferredMermaidParseError(error: Error) {
+    return error instanceof DeferredMermaidParseError;
 }
 
 /**
@@ -535,6 +756,43 @@ function hashText(text: string) {
     return (hash >>> 0).toString(36);
 }
 
+function hasRenderedSvg(stage: HTMLElement) {
+    return !!stage.querySelector('svg');
+}
+
+function cacheRenderedSvg(block: HTMLElement, svg: string) {
+    (block as any).__kpcMermaidSvg = svg;
+}
+
+function clearCachedSvg(block: HTMLElement) {
+    delete (block as any).__kpcMermaidSvg;
+}
+
+function restoreCachedSvg(block: HTMLElement, stage: HTMLElement) {
+    if (hasRenderedSvg(stage)) return;
+
+    const svg = (block as any).__kpcMermaidSvg;
+    if (typeof svg === 'string' && svg) {
+        stage.innerHTML = svg;
+    }
+}
+
+function getRenderFingerprint(source: string, mermaidConfig: any) {
+    return hashText(`${source}\n${stableSerialize(mermaidConfig)}`);
+}
+
+function stableSerialize(value: any): string {
+    if (value === null || value === undefined) return '';
+    if (Array.isArray(value)) {
+        return `[${value.map(stableSerialize).join(',')}]`;
+    }
+    if (typeof value === 'object') {
+        return `{${Object.keys(value).sort().map((key) => `${JSON.stringify(key)}:${stableSerialize(value[key])}`).join(',')}}`;
+    }
+
+    return JSON.stringify(value);
+}
+
 /**
  * 获取 SVG 基础尺寸
  */
@@ -560,6 +818,18 @@ function parseSvgSize(value: string | null): number {
     if (!value || value.includes('%')) return 0;
     const parsed = Number.parseFloat(value);
     return Number.isFinite(parsed) ? parsed : 0;
+}
+
+function getScrollState(viewportWidth: number, contentWidth: number, contentHeight: number) {
+    const baseAvailableWidth = Math.max(viewportWidth - STAGE_PADDING, 1);
+    const baseAvailableHeight = Math.max(VIEWPORT_HEIGHT - STAGE_PADDING, 1);
+    const needsX = contentWidth > baseAvailableWidth + 0.5;
+    const needsY = contentHeight > baseAvailableHeight + 0.5;
+
+    return {
+        x: needsX || (needsY && contentWidth > baseAvailableWidth - SCROLLBAR_SIZE + 0.5),
+        y: needsY || (needsX && contentHeight > baseAvailableHeight - SCROLLBAR_SIZE + 0.5),
+    };
 }
 
 /**

@@ -1,5 +1,4 @@
 import {Component, TypeDefs} from 'intact';
-import type {MermaidConfig} from 'mermaid';
 import template from './xmarkdown.vdt';
 import {useConfigContext} from '../config';
 import type {Events} from '../types';
@@ -12,6 +11,8 @@ import type {
     XMarkdownTagAttrs,
     XMarkdownTagRenderers,
 } from './markdown';
+
+export type XMarkdownMermaidConfig = Record<string, any>;
 
 export interface XMarkdownTyping {
     interval?: number
@@ -29,7 +30,7 @@ export interface XMarkdownProps {
     allowHtml?: boolean
     showCodeHeader?: boolean
     enableMermaid?: boolean
-    mermaidConfig?: Partial<MermaidConfig>
+    mermaidConfig?: XMarkdownMermaidConfig
     enableFormula?: boolean
     formulaDelimiters?: XMarkdownFormulaDelimiter | XMarkdownFormulaDelimiter[]
     formulaMacros?: Record<string, string>

@@ -1,6 +1,5 @@
 const {resolve, root, destData} = require('../utils');
 const TerserPlugin = require('terser-webpack-plugin');
-const webpack = require('webpack');
 // const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = (config) => {
@@ -21,6 +20,11 @@ module.exports = (config) => {
                 .set('@king-design/vue', resolve('packages/kpc-vue-next'))
                 .set('@king-design/react', resolve('packages/kpc-react'))
                 .set('@', root)
+                .set('dayjs/plugin/advancedFormat.js$', resolve('node_modules/dayjs/plugin/advancedFormat.js'))
+                .set('dayjs/plugin/customParseFormat.js$', resolve('node_modules/dayjs/plugin/customParseFormat.js'))
+                .set('dayjs/plugin/duration.js$', resolve('node_modules/dayjs/plugin/duration.js'))
+                .set('dayjs/plugin/isoWeek.js$', resolve('node_modules/dayjs/plugin/isoWeek.js'))
+                .set('cytoscape/dist/cytoscape.umd.js$', resolve('node_modules/cytoscape/dist/cytoscape.umd.js'))
                 .set('dayjs', 'dayjs/esm')
                 .set('~', destData)
                 .end()

@@ -16,6 +16,7 @@ const {
     shouldShowAudioLoader,
     shouldShowAudioCard,
     shouldShowErrorCard,
+    rootRef,
     imageRef,
     videoRef,
     audioRef,
@@ -26,6 +27,7 @@ const {
     getAudioCardAssetSrc,
     getErrorCardAssetSrc,
     getMediaCardIconStyle,
+    getPlaceholderAssetStyle,
     shouldShowLoadingIndicator,
     shouldShowLoadingVideoIcon,
     shouldShowPlaceholder,
@@ -118,6 +120,7 @@ const classNameObj = {
     class={classNameObj}
     style={addStyle(style, getRootStyle())}
     title={showNameTooltip ? undefined : getFileName()}
+    ref={rootRef}
     {...getRestProps(this)}
     ev-click={onClick}
 >
@@ -162,6 +165,7 @@ const classNameObj = {
                 src={placeholderAssetSrc}
                 alt=""
                 draggable={false}
+                style={getPlaceholderAssetStyle()}
                 v-if={placeholderAssetSrc}
             />
             <Icon class={getPlaceholderIconClassName()} v-else />

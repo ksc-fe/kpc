@@ -32,9 +32,7 @@ export type {
     XMarkdownRenderedStableBlock,
     XMarkdownRegisterRenderedBlock,
     XMarkdownSourceBlock,
-    StreamingMarkdownSegments,
-    OpenFenceInfo,
-    XMarkdownStreamingTailCache,
+    XMarkdownStreamingRenderResult,
 } from './types';
 export type {
     XMarkdownRenderTreeNode,
@@ -49,8 +47,5 @@ export {createMarkdownRenderer} from './renderer';
 // 流式渲染
 export {
     containsFormulaSyntax,
-    createStreamingTailCache,
-    splitMarkdownForStreaming,
-    renderMarkdownTail,
-    escapeMarkdownHtml,
+    resolveStreamingRenderResult,
 } from './streaming';

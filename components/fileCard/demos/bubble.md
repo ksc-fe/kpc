@@ -39,7 +39,9 @@ import {Bubble, FileCard, FileCardList} from 'kpc';
                 name="封面图.png"
                 type="image"
                 status="loading"
-                size="large"
+                width={160}
+                height={160}
+                loadingVariant="flow"
             />
         </b:attachments>
     </Bubble>

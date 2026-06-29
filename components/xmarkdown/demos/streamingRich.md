@@ -123,13 +123,10 @@ const FULL_CONTENT = [
     '## 5. Mermaid',
     '',
     '```mermaid',
-    'flowchart LR',
-    '    A[需求收集] --> B{方案评审}',
-    '    B -->|通过| C[开发实现]',
-    '    B -->|补充信息| D[补充需求]',
-    '    D --> B',
-    '    C --> E[联调验证]',
-    '    E --> F[发布上线]',
+    'erDiagram',
+    '   CUSTOMER ||--o{ ORDER : places',
+    '   ORDER ||--|{ ORDER_ITEM : contains',
+    '   PRODUCT ||--o{ ORDER_ITEM : includes',
     '```',
 ].join('\n');
 
