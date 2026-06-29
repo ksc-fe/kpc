@@ -62,18 +62,29 @@ if (sidebar) {
             value: sidebar.undefined
         });
     }
-    for (let key in sidebar) {
-        if (key !== 'undefined') {
-            _sidebar.push({
-                key,
-                value: key !== '组件' ? 
-                    sidebar[key] :
-                    sidebar[key].sort((a, b) => {
-                        return a.path > b.path ? 1 : -1;
-                    })
-            });
-        }
-    }
+    const categoryOrders = {
+        'AI对话组件': 0,
+        '组件': 1,
+    };
+    const keys = Object.keys(sidebar)
+        .filter((key) => key !== 'undefined')
+        .sort((a, b) => {
+            const orderA = categoryOrders[a] ?? 100;
+            const orderB = categoryOrders[b] ?? 100;
+            if (orderA !== orderB) return orderA - orderB;
+            return a > b ? 1 : -1;
+        });
+
+    keys.forEach((key) => {
+        _sidebar.push({
+            key,
+            value: key !== '组件' ? 
+                sidebar[key] :
+                sidebar[key].sort((a, b) => {
+                    return a.path > b.path ? 1 : -1;
+                })
+        });
+    });
 }
 
 <t:super navIndex="document" {...$props} class={{

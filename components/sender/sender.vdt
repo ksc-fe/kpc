@@ -1,0 +1,336 @@
+import {FileCardList} from '../fileCard';
+import {Icon} from '../icon';
+import {Tooltip} from '../tooltip';
+import {addStyle, getRestProps} from '../utils';
+import {makeStyles} from './styles';
+import {senderSendIcon, senderStopIcon, senderAttachSvg} from './icons';
+import {_$} from '../../i18n';
+import {isInvalid, isNumber, noop} from 'intact-shared';
+
+const {
+    isFocus,
+    isDisabled,
+    isInputDisabled,
+    isGenerating,
+    isLoading,
+    isSendButtonDisabled,
+    isStopButtonDisabled,
+    handleKeydown,
+    handleInput,
+    handleFocus,
+    handleBlur,
+    handleSendClick,
+    send,
+    stopGenerate,
+} = this.input;
+
+const {
+    getAcceptAttr,
+    isMultiple,
+    addFiles,
+    onInputChange,
+    pickFiles,
+    removeAttachment,
+} = this.upload;
+const dragController = this.dragController;
+const {handlePaste} = this.pasteController;
+
+let {
+    className, style, value, placeholder, readonly,
+    width, maxHeight, fileView, uploadButton, dragFile: enableDragFile,
+    attachments, uploadProps, buttonTooltip,
+} = this.get();
+const {k} = this.config;
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || value === undefined || value === null || value === '') return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const renderSlot = (name, params) => $blocks[name] ? $blocks[name](noop, params) : undefined;
+const headerSlot = renderSlot('header');
+const footerSlot = renderSlot('footer');
+const prefixSlot = renderSlot('prefix');
+const beforeInputSlot = renderSlot('beforeInput');
+const configureSlot = renderSlot('configure');
+const hasHeaderSlot = !isEmptySlot(headerSlot);
+const hasFooterSlot = !isEmptySlot(footerSlot);
+const hasPrefixSlot = !isEmptySlot(prefixSlot);
+const hasBeforeInputSlot = !isEmptySlot(beforeInputSlot);
+const hasConfigureSlot = !isEmptySlot(configureSlot);
+
+const disabled = isDisabled();
+const inputDisabled = isInputDisabled();
+const generating = isGenerating();
+const loading = isLoading();
+const sendButtonDisabled = isSendButtonDisabled();
+const stopButtonDisabled = isStopButtonDisabled();
+const list = attachments || [];
+const hasAttachments = list.length > 0;
+const limit = uploadProps && uploadProps.limit;
+const reachLimit = limit !== undefined && limit !== null && list.length >= Number(limit);
+const isMediaView = fileView === 'media';
+const isDirectory = !!(uploadProps && uploadProps.directory);
+const showToolbarUploadButton = uploadButton === 'toolbar';
+const showListUploadButton = uploadButton === 'list';
+
+const getMediaItemType = (type) => {
+    const value = (type || '').toLowerCase().trim();
+    if (
+        value === 'image' || value === 'video' || value === 'audio' ||
+        value.startsWith('image/') || value.startsWith('video/') || value.startsWith('audio/')
+    ) {
+        return type;
+    }
+    return undefined;
+};
+
+// card 视图下，所有附件统一按「文件卡」呈现，避免引入额外的文件夹展示语义。
+// media 视图下保留明确媒体类型，但忽略 application/octet-stream 等泛 MIME，继续交给 FileCard 基于 name/src 识别。
+const renderItems = isMediaView
+    ? list.map(it => ({...it, type: getMediaItemType(it.type)}))
+    : list.map(it => ({...it, type: 'file'}));
+
+// 列表入口即便没有附件也要展示 FileCardList，用来承载前置上传按钮。
+const showAttachmentsArea = showListUploadButton || hasAttachments;
+const onAttachmentClick = (item, e) => {
+    this.trigger('attachmentClick', item, e);
+};
+const onAttachmentDelete = (item, e) => {
+    this.trigger('attachmentDelete', item, e);
+    removeAttachment(item);
+};
+
+const classNameObj = {
+    [`${k}-sender`]: true,
+    [`${k}-sender-file-view-${fileView}`]: true,
+    [`${k}-sender-disabled`]: disabled,
+    [`${k}-sender-input-disabled`]: inputDisabled,
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+// 整个输入外框 k-sender 的宽度
+if (width != null) {
+    style = addStyle(style, {width: isNumber(width) ? `${width}px` : width});
+}
+
+// 整个输入外框 k-sender-shell 的最大高度（与 props maxHeight 一致）；未传时走 styles 中默认 300
+const shellStyle = maxHeight != null
+    ? {maxHeight: isNumber(maxHeight) ? `${maxHeight}px` : maxHeight}
+    : undefined;
+
+const placeholderText = placeholder != null ? placeholder : _$('输入对话内容（Enter发送， Shift + Enter 换行）');
+
+const getButtonTooltip = (name) => {
+    const value = buttonTooltip && buttonTooltip[name];
+    return value;
+};
+
+const renderButtonWithTooltip = (button, content, className) => {
+    return (
+        <Tooltip content={content} class={className}>
+            {button}
+        </Tooltip>
+    );
+};
+
+const sendButtonText = _$('发送');
+const stopButtonText = _$('停止生成');
+const uploadButtonText = isDirectory ? _$('上传文件夹') : _$('上传附件');
+const listUploadButtonText = _$('参考内容');
+const currentSendButtonTooltip = getButtonTooltip(generating ? 'stop' : 'send');
+const currentSendButtonAriaLabel = generating ? stopButtonText : sendButtonText;
+const currentUploadButtonTooltip = getButtonTooltip('upload');
+const currentListUploadButtonTooltip = getButtonTooltip('listUpload');
+const sendButtonTitle = currentSendButtonTooltip === undefined ? currentSendButtonAriaLabel : undefined;
+const uploadButtonTitle = currentUploadButtonTooltip === undefined ? uploadButtonText : undefined;
+const listUploadButtonTitle = currentListUploadButtonTooltip === undefined ? listUploadButtonText : undefined;
+
+const defaultSendButtonInner = (
+    <button
+        type="button"
+        class={`${k}-sender-send-btn`}
+        disabled={generating ? stopButtonDisabled : sendButtonDisabled}
+        ev-click={handleSendClick}
+        title={sendButtonTitle}
+        aria-label={currentSendButtonAriaLabel}
+    >
+        <img
+            class={`${k}-sender-send-icon`}
+            src={generating ? senderStopIcon : senderSendIcon}
+            alt=""
+            draggable={false}
+        />
+    </button>
+);
+
+const defaultSendButton = typeof currentSendButtonTooltip === 'string'
+    ? renderButtonWithTooltip(defaultSendButtonInner, currentSendButtonTooltip, `${k}-sender-send-tooltip`)
+    : defaultSendButtonInner;
+
+const defaultAttachButtonInner = (
+    <button
+        type="button"
+        class={`${k}-sender-attach-btn`}
+        disabled={inputDisabled || reachLimit}
+        ev-click={pickFiles}
+        title={uploadButtonTitle}
+        aria-label={uploadButtonText}
+        innerHTML={senderAttachSvg}
+    />
+);
+
+const defaultAttachButton = typeof currentUploadButtonTooltip === 'string'
+    ? renderButtonWithTooltip(defaultAttachButtonInner, currentUploadButtonTooltip, `${k}-sender-upload-tooltip`)
+    : defaultAttachButtonInner;
+
+const getUploadButtonSlotParams = (position) => ({
+    disabled: inputDisabled,
+    reachLimit,
+    position,
+    addFiles,
+    pickFiles,
+});
+
+const renderUploadButtonSlot = (position) => {
+    const slot = renderSlot('uploadButton', getUploadButtonSlotParams(position));
+    return isEmptySlot(slot) ? undefined : slot;
+};
+
+// 附件列表末尾的虚线 + 框
+const listUploadButtonInner = (
+    <div
+        class={{
+            [`${k}-sender-list-upload`]: true,
+            [`${k}-sender-list-upload-disabled`]: inputDisabled,
+        }}
+        ev-click={inputDisabled ? undefined : pickFiles}
+        role="button"
+        title={listUploadButtonTitle}
+        aria-label={listUploadButtonText}
+    >
+        <Icon class={`${k}-icon-add-bold`} />
+        <div class={`${k}-sender-list-upload-text`}>{listUploadButtonText}</div>
+    </div>
+);
+
+const listUploadButton = typeof currentListUploadButtonTooltip === 'string'
+    ? renderButtonWithTooltip(listUploadButtonInner, currentListUploadButtonTooltip, `${k}-sender-list-upload-tooltip`)
+    : listUploadButtonInner;
+
+const toolbarUploadButtonSlot = showToolbarUploadButton ? renderUploadButtonSlot('toolbar') : undefined;
+const listUploadButtonSlot = showListUploadButton ? renderUploadButtonSlot('list') : undefined;
+const showDefaultToolbarUploadButton = showToolbarUploadButton && !toolbarUploadButtonSlot;
+const showToolbarLeft = showToolbarUploadButton;
+
+const sendButtonSlotParams = {
+    generating,
+    disabled: sendButtonDisabled,
+    stopDisabled: stopButtonDisabled,
+    loading,
+    send,
+    stopGenerate,
+};
+
+<div class={classNameObj} {...getRestProps(this)} style={style}>
+    <div class={`${k}-sender-header`} v-if={hasHeaderSlot}>
+        {headerSlot}
+    </div>
+    <div
+        class={{[`${k}-sender-shell`]: true, [`${k}-sender-active`]: isFocus.value && !inputDisabled}}
+        style={shellStyle}
+    >
+        <div class={{
+            [`${k}-sender-attachments`]: true,
+            [`${k}-sender-attachments-${fileView}`]: true,
+        }} v-if={showAttachmentsArea}>
+            <FileCardList
+                v-if={isMediaView}
+                items={renderItems}
+                deleteable={true}
+                overflow="scrollY"
+                showNameTooltip={true}
+                ev-click={onAttachmentClick}
+                ev-delete={onAttachmentDelete}
+            >
+                <b:prefix>
+                    {showListUploadButton && !reachLimit ? (listUploadButtonSlot || listUploadButton) : undefined}
+                </b:prefix>
+            </FileCardList>
+            <FileCardList
+                v-else
+                items={renderItems}
+                deleteable={true}
+                overflow="scrollY"
+                showNameTooltip={true}
+                ev-click={onAttachmentClick}
+                ev-delete={onAttachmentDelete}
+            >
+                <b:prefix>
+                    {showListUploadButton && !reachLimit ? (listUploadButtonSlot || listUploadButton) : undefined}
+                </b:prefix>
+            </FileCardList>
+        </div>
+
+        <div class={`${k}-sender-before-input`} v-if={hasBeforeInputSlot}>
+            {beforeInputSlot}
+        </div>
+
+        <div class={`${k}-sender-input-area`}>
+            <div class={`${k}-sender-prefix`} v-if={hasPrefixSlot}>
+                {prefixSlot}
+            </div>
+            <textarea
+                ref={this.textareaRef}
+                class={`${k}-sender-input`}
+                rows={1}
+                value={value}
+                placeholder={placeholderText}
+                disabled={inputDisabled}
+                readOnly={readonly}
+                ev-input={handleInput}
+                ev-keydown={handleKeydown}
+                ev-paste={handlePaste}
+                ev-focus={handleFocus}
+                ev-blur={handleBlur}
+            />
+        </div>
+
+        <div class={`${k}-sender-toolbar`}>
+            <div class={`${k}-sender-toolbar-left`} v-if={showToolbarLeft}>
+                <template v-if={toolbarUploadButtonSlot}>{toolbarUploadButtonSlot}</template>
+                <template v-else-if={showDefaultToolbarUploadButton}>{defaultAttachButton}</template>
+            </div>
+            <div class={`${k}-sender-toolbar-middle`} v-if={hasConfigureSlot}>
+                {configureSlot}
+            </div>
+            <div class={`${k}-sender-toolbar-right`}>
+                <b:sendButton v-if={$blocks.sendButton} params={sendButtonSlotParams} />
+                <template v-else>{defaultSendButton}</template>
+            </div>
+        </div>
+
+        <!-- 放末尾，避免挡住 attachments + input-area 等相邻选择器，且 absolute 不影响布局 -->
+        <input
+            type="file"
+            class={`${k}-sender-file-input`}
+            ref={this.fileInputRef}
+            accept={getAcceptAttr()}
+            multiple={isMultiple()}
+            directory={isDirectory ? '' : undefined}
+            webkitdirectory={isDirectory ? '' : undefined}
+            ev-change={onInputChange}
+        />
+    </div>
+    <div class={`${k}-sender-footer`} v-if={hasFooterSlot}>
+        {footerSlot}
+    </div>
+    <div class={`${k}-sender-drag-mask`} v-if={enableDragFile && dragController.dragOver.value} aria-hidden="true">
+        <div class={`${k}-sender-drag-card`}>
+            <Icon class={`${k}-icon-upload`} size="large" />
+            <div class={`${k}-sender-drag-text`}>{_$('文件拖动到此处即可上传')}</div>
+        </div>
+    </div>
+</div>

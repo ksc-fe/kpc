@@ -2,6 +2,7 @@ import {isNullOrUndefined} from 'intact-shared';
 
 export type Options = {
     action?: string
+    timeout?: number
     headers?: Record<string | number, string>
     data: any
     withCredentials?: boolean
@@ -43,6 +44,7 @@ export function request(options: Options) {
     }
 
     xhr.onerror = (e: ProgressEvent) => options.onError(getError(options, xhr), xhr);
+    xhr.ontimeout = () => options.onError(getError(options, xhr), xhr);
     xhr.onload = () => {
         if (xhr.status < 200 || xhr.status >= 300) {
             return options.onError(getError(options, xhr), xhr);
@@ -51,6 +53,9 @@ export function request(options: Options) {
     }
 
     xhr.open('post', options.action || '', true);
+    if (options.timeout && options.timeout > 0) {
+        xhr.timeout = options.timeout;
+    }
 
     if (options.withCredentials && 'withCredentials' in xhr) {
         xhr.withCredentials = true;

@@ -1,0 +1,123 @@
+import {Portal} from '../portal';
+import {Icon} from '../icon';
+import {Transition} from 'intact';
+import {stopPropagation} from '../utils';
+
+const {
+    onMaskClick,
+    onCloseClick,
+    onPrevClick,
+    onNextClick,
+    onAfterLeave,
+    isImage,
+    isVideo,
+    isAudio,
+    getTitle,
+    getCounterText,
+    shouldShowNavigation,
+    getAudioCardAssetSrc,
+} = this.viewer;
+
+const {item, hasPrev, hasNext, container, value} = this.get();
+const {k} = this.config;
+const currentItem = item || {
+    name: '',
+    src: '',
+    poster: '',
+};
+
+<Portal container={container}>
+    <Transition
+        show={value}
+        appear={value}
+        name="k-fade"
+        onAfterLeave={onAfterLeave}
+    >
+        <div class={{
+            [`${k}-media-viewer`]: true,
+            [this.get('className')]: this.get('className'),
+        }} ev-click={onMaskClick} v-if={value}>
+            <div class={`${k}-media-viewer-header`} ev-click={stopPropagation}>
+                <div class={`${k}-media-viewer-heading`}>
+                    <div class={`${k}-media-viewer-title`} title={getTitle()}>{getTitle()}</div>
+                    <div class={`${k}-media-viewer-counter`} v-if={getCounterText()}>{getCounterText()}</div>
+                </div>
+                <button
+                    class={`${k}-media-viewer-close`}
+                    type="button"
+                    title="关闭预览"
+                    aria-label="关闭预览"
+                    ev-click={onCloseClick}
+                >
+                    <Icon class={`${k}-icon-close-bold`} />
+                </button>
+            </div>
+
+            <button
+                class={`${k}-media-viewer-prev`}
+                type="button"
+                title="上一个"
+                aria-label="上一个"
+                disabled={!hasPrev}
+                ev-click={onPrevClick}
+                v-if={shouldShowNavigation()}
+            >
+                <Icon class={`${k}-icon-left`} />
+            </button>
+
+            <button
+                class={`${k}-media-viewer-next`}
+                type="button"
+                title="下一个"
+                aria-label="下一个"
+                disabled={!hasNext}
+                ev-click={onNextClick}
+                v-if={shouldShowNavigation()}
+            >
+                <Icon class={`${k}-icon-right`} />
+            </button>
+
+            <div class={`${k}-media-viewer-stage`}>
+                <img
+                    class={`${k}-media-viewer-image`}
+                    src={currentItem.src}
+                    alt={currentItem.name}
+                    draggable={false}
+                    ev-click={stopPropagation}
+                    v-if={isImage()}
+                />
+
+                <video
+                    class={`${k}-media-viewer-video`}
+                    src={currentItem.src}
+                    poster={currentItem.poster || undefined}
+                    controls
+                    autoplay
+                    preload="metadata"
+                    playsinline
+                    ev-click={stopPropagation}
+                    v-else-if={isVideo()}
+                ></video>
+
+                <div class={`${k}-media-viewer-audio`} ev-click={stopPropagation} v-else-if={isAudio()}>
+                    <div class={`${k}-media-viewer-audio-cover`}>
+                        <img
+                            class={`${k}-media-viewer-audio-cover-image`}
+                            src={getAudioCardAssetSrc()}
+                            alt=""
+                            draggable={false}
+                        />
+                    </div>
+                    <div class={`${k}-media-viewer-audio-title`}>{currentItem.name}</div>
+                    <audio
+                        class={`${k}-media-viewer-audio-player`}
+                        src={currentItem.src}
+                        controls
+                        autoplay
+                        preload="metadata"
+                    ></audio>
+                </div>
+            </div>
+        </div>
+    </Transition>
+</Portal>
