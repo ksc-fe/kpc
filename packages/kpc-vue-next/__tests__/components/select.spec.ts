@@ -27,6 +27,57 @@ describe('Select', () => {
         document.body.removeChild(container);
     });
 
+    it('should delete tree select values with duplicated labels', async function () {
+        this.timeout(10000);
+
+        const container = document.createElement('div');
+        document.body.appendChild(container);
+        const warn = sinon.spy(console, 'warn');
+        const error = sinon.spy(console, 'error');
+        const vue = createApp({
+            template: `
+                <TreeSelect
+                    v-model="values"
+                    :data="data"
+                    multiple
+                />
+            `,
+            components: {
+                TreeSelect,
+            },
+            data() {
+                return {
+                    values: ['node-1', 'node-2'],
+                    data: [
+                        {label: '同名节点', key: 'node-1'},
+                        {label: '同名节点', key: 'node-2'},
+                    ],
+                };
+            },
+        }).mount(container) as any;
+
+        try {
+            const closes = container.querySelectorAll<HTMLElement>('.k-tag-close');
+            expect(closes.length).to.eql(2);
+            closes[0].click();
+            await wait(500);
+
+            const hasRuntimeError = [...warn.args, ...error.args].some(args => {
+                return args.some(arg => {
+                    return String(arg).includes('Unhandled error during execution');
+                });
+            });
+            expect(vue.values).to.eql(['node-2']);
+            expect(hasRuntimeError).to.be.false;
+        } finally {
+            warn.restore();
+            error.restore();
+
+            render(null, container);
+            document.body.removeChild(container);
+        }
+    });
+
     it('should control value move animation when select list shifts', async function () {
         this.timeout(30000);
 
