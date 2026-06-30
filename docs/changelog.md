@@ -15,6 +15,7 @@ sidebar: doc
 7. `Fix` 修复 `Select` 多选存在相同展示名称时，删除选中值可能触发标签动画异常的问题。[#1111](https://github.com/ksc-fe/kpc/issues/1111)
 8. `Add` `Spin` 新增 `color`、`strokeWidth` 属性，`size` 可传入 `number`，支持自定义加载动画的外观。[#1115](https://github.com/ksc-fe/kpc/issues/1115)
 9. `Fix` `Elliplise` 被 `ConfigProvider` 组件包裹时省略不生效的问题。[#1114](https://github.com/ksc-fe/kpc/issues/1114)
+10. `Add` `Icon`新增`like`等18个字体图标 [#1121](https://github.com/ksc-fe/kpc/issues/1121)
 
 ## v3.8.0-beta.2
 
