@@ -32,6 +32,7 @@ sidebar: doc
 | show | 是否展示菜单项 | `boolean` | `false` |
 | fields | 指定`value` `label` `children` `disabled`字段名 | `CascaderFields<CascaderData<any>>` | `{ value: 'value', label: 'label', children: 'children', disabled: 'disabled' }` |
 | position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
+| valueAnimation | 是否启用选择值位移动画 | `boolean` | `true` |
 
 ```ts
 export type CascaderData<V> = {

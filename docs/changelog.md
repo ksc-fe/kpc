@@ -11,6 +11,7 @@ sidebar: doc
 3. `Fix` `XMarkdown` 升级 `Mermaid` 至 11.x，并优化图表流式渲染、主题隔离、缩放适配和滚动条判断。
 4. `Add` `FileCard` 新增 `width`、`height`、`loadingVariant` 和显式媒体类型 `loading` 扩展点，支持自定义图片、视频、音频生成中的尺寸和加载层。
 5. `Fix` 优化 `BubbleList` 回到底部按钮层级，避免被媒体卡片状态层遮挡。
+6. `Add` `Select`、`TreeSelect`、`Cascader`、`Datepicker` 新增 `valueAnimation` 属性，支持关闭选择值位移动画。[#1116](https://github.com/ksc-fe/kpc/issues/1116)
 
 ## v3.8.0-beta.2
 

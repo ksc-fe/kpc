@@ -10,6 +10,7 @@ import { useConfigContext } from '../config';
 export interface TagsProps extends Pick<TagProps, 'size' | 'border'> {
     nowrap?: boolean 
     draggable?: boolean
+    moveAnimation?: boolean
 }
 
 export type TagsDragStartParam = {
@@ -29,6 +30,7 @@ export interface TagsEvents {
 const typeDefs: Required<TypeDefs<TagsProps>> = {
     nowrap: Boolean,
     draggable: Boolean,
+    moveAnimation: Boolean,
     size: tagTypeDefs.size,
     border: tagTypeDefs.border,
 };
@@ -36,6 +38,7 @@ const typeDefs: Required<TypeDefs<TagsProps>> = {
 const defaults = (): Partial<TagsProps> => ({
     size: 'default',
     border: 'none',
+    moveAnimation: true,
 });
 
 const events: Events<TagsEvents> = {

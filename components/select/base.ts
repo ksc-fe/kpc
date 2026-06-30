@@ -42,6 +42,7 @@ export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = 
     flat?: boolean
     nowrap?: boolean
     draggable?: boolean
+    valueAnimation?: boolean
     virtual?: boolean
 }
 
@@ -79,11 +80,13 @@ const typeDefs: Required<TypeDefs<BaseSelectProps<any>>> = {
     flat: Boolean,
     nowrap: Boolean,
     draggable: Boolean,
+    valueAnimation: Boolean,
     virtual: Boolean,
 };
 
 const defaults = (): Partial<BaseSelectProps<any>> => ({
     size: 'default',
+    valueAnimation: true,
 });
 
 const events: Events<BaseSelectEvents> = {

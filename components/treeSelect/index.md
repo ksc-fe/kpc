@@ -36,6 +36,7 @@ sidebar: doc
 | position | 菜单弹出的位置，默认与触发器左侧对齐向下偏移`8px`的地方 | `Position` &#124; `"left"` &#124; `"bottom"` &#124; `"right"` &#124; `"top"` | `{my: 'left top+8', 'left bottom'}` |
 | flat | 是否展示扁平样式 | `boolean` | `false` |
 | draggable | 多选值是否支持拖动排序 | `boolean` | `false` |
+| valueAnimation | 是否启用选择值位移动画 | `boolean` | `true` |
 
 ```ts
 import {Key, Children} from 'intact';

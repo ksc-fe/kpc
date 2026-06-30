@@ -17,7 +17,7 @@ const {
     className, container,
     inline, style, width, show,
     position, flat, nowrap,
-    draggable, range,
+    draggable, valueAnimation, range,
 } = this.get();
 const { k } = this.config;
 
@@ -82,8 +82,11 @@ const filterInput = <Input v-if={filterable}
                     </div>
                     <div class={`${k}-select-main`}>
                         <input type="hidden" value={value} name={name} key="hidden-input" />
-                        {/* TODO: Need mode on Transition */}
-                        <TransitionGroup name="k-fade" appear={false}>
+                        <TransitionGroup
+                            name="k-fade"
+                            appear={false}
+                            move={valueAnimation}
+                        >
                             <Input v-if={!multiple && filterable}
                                 value={show ? keywords : label}
                                 ev-$change:value={onInput}
@@ -113,6 +116,7 @@ const filterInput = <Input v-if={filterable}
                                         nowrap={nowrap}
                                         size={size}
                                         draggable={draggable}
+                                        moveAnimation={valueAnimation}
                                         ev-dragend={this.draggable}
                                     >
                                         <Tag

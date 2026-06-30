@@ -35,6 +35,7 @@ sidebar: doc
 | flat | 是否展示扁平样式 | `boolean` | `false` |
 | draggable | 多选值是否支持拖动排序 | `boolean` | `false` |
 | nowrap | 日期多选时， 是否换行显示 | `boolean` | `false` |
+| valueAnimation | 是否启用选择值位移动画 | `boolean` | `true` |
 ```ts
 import {Dayjs} from 'dayjs';
 import {VNode} from 'intact';
