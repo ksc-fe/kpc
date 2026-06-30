@@ -13,6 +13,8 @@ sidebar: doc
 5. `Fix` 优化 `BubbleList` 回到底部按钮层级，避免被媒体卡片状态层遮挡。
 6. `Add` `Select`、`TreeSelect`、`Cascader`、`Datepicker` 新增 `valueAnimation` 属性，支持关闭选择值位移动画。[#1116](https://github.com/ksc-fe/kpc/issues/1116)
 7. `Fix` 修复 `Select` 多选存在相同展示名称时，删除选中值可能触发标签动画异常的问题。[#1111](https://github.com/ksc-fe/kpc/issues/1111)
+8. `Add` `Spin` 新增 `color`、`strokeWidth` 属性，`size` 可传入 `number`，支持自定义加载动画的外观。[#1115](https://github.com/ksc-fe/kpc/issues/1115)
+9. `Fix` `Elliplise` 被 `ConfigProvider` 组件包裹时省略不生效的问题。[#1114](https://github.com/ksc-fe/kpc/issues/1114)
 
 ## v3.8.0-beta.2
 
