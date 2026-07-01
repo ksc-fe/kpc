@@ -31,6 +31,7 @@ COMPONENTS=(
   radio rate scrollSelect select skeleton slider spin spinner split
   steps switch table tabs tag timeline timepicker tip tooltip tour
   transfer tree treeSelect upload virtualList
+  bubble bubbleList fileCard sender think xmarkdown media
 )
 
 GUIDES_FILES=(
@@ -49,24 +50,26 @@ strip_frontmatter() {
 }
 
 append_icon_supplement() {
-  local ICON_JSON_CONTENT="$1"
+  local ICON_TS="$1"
   local ICON_FILE="$REF_DIR/icon.md"
 
   [ ! -f "$ICON_FILE" ] && return
-  [ -z "$ICON_JSON_CONTENT" ] && return
+  [ ! -f "$ICON_TS" ] && return
 
   local ICON_NAMES
-  ICON_NAMES=$(echo "$ICON_JSON_CONTENT" | node -e "
-    const chunks = [];
-    process.stdin.on('data', c => chunks.push(c));
-    process.stdin.on('end', () => {
-      const data = JSON.parse(Buffer.concat(chunks).toString());
-      const names = [...new Set(data.glyphs.map(g =>
-        g.name.replace(/^k-icon-/, '').replace(/^icon-/, '')
-      ))].sort();
-      console.log(names.join(', '));
-    });
-  " 2>/dev/null) || return
+  ICON_NAMES=$(node -e "
+    const fs = require('fs');
+    const content = fs.readFileSync(process.argv[1], 'utf8');
+    const names = [];
+    const re = /-icon-([a-zA-Z0-9-]+):before/g;
+    let m;
+    while ((m = re.exec(content)) !== null) {
+      names.push(m[1]);
+    }
+    console.log(names.join(', '));
+  " "$ICON_TS" 2>/dev/null) || return
+
+  [ -z "$ICON_NAMES" ] && return
 
   cat >> "$ICON_FILE" << 'ICON_USAGE'
 
@@ -163,9 +166,11 @@ generate_from_local() {
   echo ""
   echo "Done: $SUCCESS success, $FAIL failed"
 
-  local ICONFONT="$KPC_ROOT/styles/fonts/iconfont.json"
-  if [ -f "$ICONFONT" ]; then
-    append_icon_supplement "$(cat "$ICONFONT")"
+  local ICON_TS="$KPC_ROOT/styles/fonts/iconfont.ts"
+  if [ -f "$ICON_TS" ]; then
+    append_icon_supplement "$ICON_TS"
+  else
+    echo "  ⚠ icon supplement skipped (iconfont.ts not found)"
   fi
 }
 
@@ -216,12 +221,15 @@ generate_from_github() {
   echo ""
   echo "Done: $SUCCESS success, $FAIL failed"
 
-  local ICONFONT_URL="$BASE_URL/styles/fonts/iconfont.json"
-  local ICONFONT_CONTENT
-  if ICONFONT_CONTENT=$(curl -sf "$ICONFONT_URL"); then
-    append_icon_supplement "$ICONFONT_CONTENT"
+  local ICON_TS_URL="$BASE_URL/styles/fonts/iconfont.ts"
+  local ICON_TS_TMP
+  ICON_TS_TMP=$(mktemp)
+  if curl -sf "$ICON_TS_URL" -o "$ICON_TS_TMP"; then
+    append_icon_supplement "$ICON_TS_TMP"
+    rm -f "$ICON_TS_TMP"
   else
-    echo "  ⚠ icon supplement skipped (iconfont.json fetch failed)"
+    rm -f "$ICON_TS_TMP"
+    echo "  ⚠ icon supplement skipped (iconfont.ts fetch failed)"
   fi
 }
 
