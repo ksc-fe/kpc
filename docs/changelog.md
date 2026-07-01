@@ -4,6 +4,21 @@ order: 99
 sidebar: doc
 ---
 
+## v3.8.0
+
+1. `Add` 新增 AI 对话组件 `Bubble`、`BubbleList`、`FileCard`、`FileCardList`、`Sender`、`Think`、`XMarkdown`。[#1123](https://github.com/ksc-fe/kpc/issues/1123)
+2. `Add` 新增基础组件 `Media`，支持图片、视频、音频预览及媒体组能力。[#1124](https://github.com/ksc-fe/kpc/issues/1124)
+3. `Add` 新增 AI 对话组件独立包：[#1125](https://github.com/ksc-fe/kpc/issues/1125)
+   - `@king-design/ai-vue`
+   - `@king-design/ai-vue-legacy`
+   - `@king-design/ai-react`
+4. `Add` `Select`、`TreeSelect`、`Cascader`、`Datepicker` 新增 `valueAnimation` 属性，支持关闭选择值位移动画。[#1116](https://github.com/ksc-fe/kpc/issues/1116)
+5. `Fix` `Select` 多选存在相同展示名称时，删除选中值可能触发标签动画异常的问题。[#1111](https://github.com/ksc-fe/kpc/issues/1111)
+6. `Add` `Spin` 新增 `color`、`strokeWidth` 属性，`size` 可传入 `number`，支持自定义加载动画的外观。[#1115](https://github.com/ksc-fe/kpc/issues/1115)
+7. `Fix` `Elliplise` 被 `ConfigProvider` 组件包裹时省略不生效的问题。[#1114](https://github.com/ksc-fe/kpc/issues/1114)
+8. `Add` `Icon` 新增 `like` 等18个字体图标。 [#1121](https://github.com/ksc-fe/kpc/issues/1121)
+9. `Fix` `Steps`、`Table` UI优化。 [#1122](https://github.com/ksc-fe/kpc/issues/1122)
+
 ## v3.8.0-beta.3
 
 1. `Add` `Media`、`FileCard`、`FileCardList` 新增 `lazy`，支持在对话文件列表场景中按需启用图片懒加载和音视频低预加载。
