@@ -39,6 +39,7 @@ GUIDES_FILES=(
   react.md
   vue.md
   vue-legacy.md
+  ai.md
 )
 
 strip_frontmatter() {
