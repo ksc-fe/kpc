@@ -1,6 +1,6 @@
 {
   "name": "@king-design/ai-vue",
-  "version": "3.8.0-beta.3",
+  "version": "3.8.0",
   "description": "King-Design AI conversation components for Vue3.",
   "keywords": [
     "component",
