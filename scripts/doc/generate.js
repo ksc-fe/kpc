@@ -13,6 +13,10 @@ const globExp = resolvePath('./@(docs|components)/**/*.md');
 // const globExp = resolvePath('./@(docs|components)/menu/demos/recursive.md');
 // const globExp = resolvePath('./@(docs|components)/design_new/about.md');
 
+const sidebarCategoryOrders = {
+    doc: ['AI', '组件'],
+};
+
 function prepare() {
     return new Promise(resolve => {
         glob(globExp, null, (err, files) => {
@@ -82,12 +86,27 @@ function genereateSideBar(items) {
 
     return Promise.all(Object.keys(sidebars).map(name => {
         const data = sidebars[name];
-        Object.keys(data).forEach(key => {
+        const categories = Object.keys(data);
+        const categoryOrders = sidebarCategoryOrders[name];
+        if (categoryOrders) {
+            categories.sort((a, b) => {
+                const indexA = categoryOrders.indexOf(a);
+                const indexB = categoryOrders.indexOf(b);
+                if (indexA === -1 && indexB === -1) return 0;
+                if (indexA === -1) return 1;
+                if (indexB === -1) return -1;
+                return indexA - indexB;
+            });
+        }
+
+        const sortedData = {};
+        categories.forEach(key => {
             data[key].sort((a, b) => {
                 return (a.order || 0) - (b.order || 0);
             });
+            sortedData[key] = data[key];
         });
-        return writeFile(path.join(destData, `${name}.json`), JSON.stringify(data, null, 4));
+        return writeFile(path.join(destData, `${name}.json`), JSON.stringify(sortedData, null, 4));
     }));
 }
 
