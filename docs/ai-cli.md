@@ -105,6 +105,7 @@ kpc-ai setup --client cursor --mode both
 kpc-ai setup --client claude --mode both
 kpc-ai setup --client vscode --mode mcp
 kpc-ai setup --client codex --mode both
+kpc-ai setup --client opencode --mode mcp
 ```
 
 写入前可以先预览：

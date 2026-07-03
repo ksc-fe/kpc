@@ -58,12 +58,28 @@ kpc-ai setup --client cursor --mode mcp
 kpc-ai setup --client vscode --mode mcp
 kpc-ai setup --client claude --mode mcp
 kpc-ai setup --client codex --mode mcp
+kpc-ai setup --client opencode --mode mcp
 ```
 
 执行前预览将要写入的内容：
 
 ```shell
 kpc-ai setup --client cursor --mode mcp --dry-run
+```
+
+OpenCode 会写入项目根目录的 `opencode.json`：
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "kpc": {
+      "type": "local",
+      "command": ["npx", "-y", "kpc-ai-cli", "mcp"],
+      "enabled": true
+    }
+  }
+}
 ```
 
 ## Tools

@@ -78,6 +78,7 @@ kpc-ai doc Table --framework intact --format markdown
 kpc-ai setup --client cursor --mode both
 kpc-ai setup --client codex --mode both
 kpc-ai setup --client claude --mode both
+kpc-ai setup --client opencode --mode mcp
 ```
 
 ## 注意事项
