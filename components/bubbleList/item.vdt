@@ -1,0 +1,34 @@
+import {Bubble} from '../bubble';
+
+const {
+    item,
+    index,
+    list,
+    slotRenderers,
+} = this.get();
+const {
+    getBubbleProps,
+    getBubbleTypingHandler,
+    getBubbleTypingCompleteHandler,
+} = list.bubbleList;
+const {k} = this.config;
+const bubbleProps = getBubbleProps(item, index);
+<div class={`${k}-bubble-list-item`}>
+    <Bubble
+        className={bubbleProps.className}
+        style={bubbleProps.style}
+        content={bubbleProps.content}
+        placement={bubbleProps.placement}
+        avatar={bubbleProps.avatar}
+        roleName={bubbleProps.roleName}
+        loading={bubbleProps.loading}
+        streaming={bubbleProps.streaming}
+        variant={bubbleProps.variant}
+        shape={bubbleProps.shape}
+        maxWidthString={bubbleProps.maxWidthString}
+        typing={bubbleProps.typing}
+        slotRenderers={slotRenderers}
+        ev-typing={getBubbleTypingHandler(item, index)}
+        ev-typingComplete={getBubbleTypingCompleteHandler(item, index)}
+    />
+</div>

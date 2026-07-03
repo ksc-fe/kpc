@@ -55,7 +55,7 @@ const defaults = {
         get enabledColor() { return theme.color.primary },
     },
 
-    expandBgColor: '#fdfcff',
+    expandBgColor: '#F8F9FA',
     get selectedBgColor() { return palette(theme.color.primary, -4) },
 
     // tree
@@ -306,7 +306,7 @@ export const makeStyles = cache(function makeStyles(k: string) {
         tr.${k}-expand {
             td {
                 padding: 0;
-                background: #fdfcff;
+                background: ${table.expandBgColor};
             }
         }
         &.${k}-with-expand {

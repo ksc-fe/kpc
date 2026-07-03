@@ -1,0 +1,134 @@
+import {Icon} from '../icon';
+import {isInvalid} from 'intact-shared';
+import {getRestProps, isEmptyString} from '../utils';
+import {makeStyles} from './styles';
+
+const {
+    shouldShowLoadingShell,
+    shouldShowAvatar,
+    hasRoleName,
+    shouldShowContentBlock,
+    getBubbleStyle,
+    getRoleNameText,
+    getAvatarText,
+    hasNonEmptyContentProp,
+    getDisplayedContent,
+    shouldShowTypingSuffix,
+} = this.display;
+
+const {
+    className, placement, avatar, variant, shape, children,
+} = this.get();
+const {k} = this.config;
+const showLoadingShell = shouldShowLoadingShell();
+const slotRenderers = this.getSlotRenderers();
+const renderSlot = (name) => {
+    if (slotRenderers[name]) return slotRenderers[name]();
+    if ($blocks[name]) return $blocks[name](() => undefined);
+};
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || isEmptyString(value)) return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+
+const avatarSlot = renderSlot('avatar');
+const roleNameSlot = renderSlot('roleName');
+const beforeContentSlot = renderSlot('beforeContent');
+const attachmentsSlot = renderSlot('attachments');
+const contentSlot = showLoadingShell ? undefined : renderSlot('content');
+const bottomSlot = renderSlot('bottom');
+const footerSlot = renderSlot('footer');
+const loadingSlot = showLoadingShell ? renderSlot('loading') : undefined;
+const extraSlot = renderSlot('extra');
+
+const hasAvatarSlot = !isEmptySlot(avatarSlot);
+const hasRoleNameSlot = !isEmptySlot(roleNameSlot);
+const hasBeforeContentSlot = !isEmptySlot(beforeContentSlot);
+const hasAttachmentsSlot = !isEmptySlot(attachmentsSlot);
+const hasContentSlot = !isEmptySlot(contentSlot);
+const hasBottomSlot = !isEmptySlot(bottomSlot);
+const hasFooterSlot = !isEmptySlot(footerSlot);
+const hasLoadingSlot = !isEmptySlot(loadingSlot);
+const hasExtraSlot = !isEmptySlot(extraSlot);
+
+const showAvatar = hasAvatarSlot || shouldShowAvatar();
+const showHeader = hasRoleNameSlot || hasRoleName();
+const showBeforeContent = hasBeforeContentSlot;
+const showAttachments = hasAttachmentsSlot;
+const showContent = showAttachments || hasContentSlot || !!children || shouldShowContentBlock();
+const showFooter = hasFooterSlot;
+const showBubble = showBeforeContent || showContent || showFooter;
+const showMeta = (showBeforeContent || showContent) && (showAvatar || showHeader);
+
+const classNameObj = {
+    [`${k}-bubble`]: true,
+    [`${k}-bubble-${placement}`]: true,
+    [`${k}-bubble-${variant}`]: true,
+    [`${k}-bubble-${shape}`]: true,
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)} v-if={showBubble}>
+    <div class={`${k}-bubble-main`} style={getBubbleStyle()}>
+        <div class={`${k}-bubble-meta`} v-if={showMeta}>
+            <div class={`${k}-bubble-avatar`} v-if={showAvatar}>
+                <template v-if={hasAvatarSlot}>{avatarSlot}</template>
+                <img
+                    v-else-if={typeof avatar === 'string' && avatar}
+                    class={`${k}-bubble-avatar-image`}
+                    src={avatar}
+                    alt={getRoleNameText() || 'avatar'}
+                />
+                <span v-else-if={getAvatarText()}>{getAvatarText()}</span>
+                <Icon v-else class="ion-person" />
+            </div>
+            <div class={`${k}-bubble-header`} v-if={showHeader}>
+                <template v-if={hasRoleNameSlot}>{roleNameSlot}</template>
+                <span v-else>{getRoleNameText()}</span>
+            </div>
+        </div>
+        <div class={`${k}-bubble-before-content`} v-if={showBeforeContent}>
+            {beforeContentSlot}
+        </div>
+        <div class={`${k}-bubble-content`} v-if={showContent}>
+            <div class={`${k}-bubble-attachments`} v-if={showAttachments}>
+                {attachmentsSlot}
+            </div>
+            <template v-if={showLoadingShell}>
+                <template v-if={hasLoadingSlot}>{loadingSlot}</template>
+                <div v-else class={`${k}-bubble-loading`}>
+                    <span class={`${k}-bubble-loading-dot`}></span>
+                    <span class={`${k}-bubble-loading-dot`}></span>
+                    <span class={`${k}-bubble-loading-dot`}></span>
+                </div>
+            </template>
+            <template v-else-if={hasContentSlot}>
+                {contentSlot}
+            </template>
+            <template v-else-if={children}>
+                {children}
+            </template>
+            <div v-else-if={hasNonEmptyContentProp() || getDisplayedContent()} class={`${k}-bubble-text`}>
+                {getDisplayedContent()}
+            </div>
+            <div class={`${k}-bubble-typing-suffix`} v-if={shouldShowTypingSuffix()} aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class={`${k}-bubble-bottom`} v-if={hasBottomSlot}>
+                {bottomSlot}
+            </div>
+        </div>
+        <div class={`${k}-bubble-footer`} v-if={showFooter}>
+            {footerSlot}
+        </div>
+        <div class={`${k}-bubble-extra`} v-if={hasExtraSlot}>
+            {extraSlot}
+        </div>
+    </div>
+</div>

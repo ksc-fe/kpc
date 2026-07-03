@@ -5,6 +5,8 @@ order: 99
 sidebar: doc
 ---
 
+> **v3.1.0 新增**
+
 # 属性
 
 ## ConfigProvider
@@ -15,7 +17,7 @@ sidebar: doc
 
 ```ts
 export interface ConfigProps {
-    classNamePrefix?: string
-    disableWave?: boolean
+    classNamePrefix?: string // 改变组件样式名className的前缀，组件默认是k开头，如: k-datepicker
+    disableWave?: boolean // v3.3.2 新增，控制是否禁止水波纹动效，默认false
 }
 ```

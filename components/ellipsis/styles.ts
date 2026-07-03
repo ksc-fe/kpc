@@ -11,7 +11,7 @@ export const makeStyles = cache(function makeStyles(k: string, maxLines: number)
     return css`
         width: 100%;
         &.${k}-multiline {
-            .k-ellipsis-wrapper {
+            .${k}-ellipsis-wrapper {
                 white-space: normal;
                 display: -webkit-box;
                 -webkit-line-clamp: ${maxLines};

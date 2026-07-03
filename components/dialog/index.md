@@ -67,7 +67,7 @@ export type Container = string | ((parentDom: Element, anchor: Node | null) => E
 | header | 扩展弹窗头部 |
 | body | 扩展弹窗主体部分 |
 | footer | 扩展弹窗底部 |
-| footerWrapper | 扩展弹窗整个底部，上述`footer`是它下面一个子扩展点 |
+| footerWrapper | 扩展弹窗整个底部，上述`footer`是它下面一个子扩展点；传入空 `div` 可隐藏默认底部区域 |
 
 # 方法
 

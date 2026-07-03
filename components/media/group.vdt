@@ -1,0 +1,49 @@
+import {getRestProps} from '../utils';
+import {MediaGroupContext} from './context';
+import {MediaViewer} from './viewer';
+import {makeMediaGroupStyles, makeMediaViewerStyles} from './styles';
+
+const {
+    getContextValue,
+    isPreviewRendered,
+    isPreviewVisible,
+    getActiveViewerItem,
+    getActiveIndex,
+    getPreviewCount,
+    hasPrev,
+    hasNext,
+    close,
+    afterClose,
+    prev,
+    next,
+} = this.group;
+
+const {className, children} = this.get();
+const {k} = this.config;
+const classNameObj = {
+    [`${k}-media-group`]: true,
+    [className]: className,
+    [makeMediaGroupStyles(k)]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)}>
+    <MediaGroupContext.Provider value={getContextValue()}>
+        {children}
+    </MediaGroupContext.Provider>
+
+    <MediaViewer
+        value={isPreviewVisible()}
+        item={getActiveViewerItem()}
+        index={getActiveIndex()}
+        total={getPreviewCount()}
+        hasPrev={hasPrev()}
+        hasNext={hasNext()}
+        container={this.get('container')}
+        onClose={close}
+        onAfterClose={afterClose}
+        onPrev={prev}
+        onNext={next}
+        className={makeMediaViewerStyles(k)}
+        v-if={isPreviewRendered() && getActiveViewerItem()}
+    />
+</div>

@@ -1,0 +1,65 @@
+import {isInvalid, noop} from 'intact-shared';
+import {getRestProps, isEmptyString} from '../utils';
+import {makeStyles} from './styles';
+
+const {className} = this.get();
+const {k} = this.config;
+const {
+    rootRef,
+    contentRef,
+} = this.contentModel;
+const {
+    shouldShowLoadingShell,
+    shouldShowEmpty,
+    shouldShowTypingSuffix,
+} = this.display;
+const renderedNodes = this.display.getRenderedNodes();
+const showLoadingShell = shouldShowLoadingShell();
+const showEmpty = shouldShowEmpty();
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || isEmptyString(value)) return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const loadingSlot = showLoadingShell && $blocks.loading ? $blocks.loading(noop) : undefined;
+const emptySlot = showEmpty && $blocks.empty ? $blocks.empty(noop) : undefined;
+const hasLoadingSlot = !isEmptySlot(loadingSlot);
+const hasEmptySlot = !isEmptySlot(emptySlot);
+
+const classNameObj = {
+    [`${k}-xmarkdown`]: true,
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+<div class={classNameObj} {...getRestProps(this)} ref={rootRef}>
+    <template v-if={showLoadingShell}>
+        <template v-if={hasLoadingSlot}>
+            {loadingSlot}
+        </template>
+        <div v-else class={`${k}-xmarkdown-loading`}>
+            <div class={`${k}-xmarkdown-loading-dots`}>
+                <div class={`${k}-xmarkdown-loading-dot`} />
+                <div class={`${k}-xmarkdown-loading-dot`} />
+                <div class={`${k}-xmarkdown-loading-dot`} />
+            </div>
+        </div>
+    </template>
+    <template v-else-if={showEmpty}>
+        <div class={`${k}-xmarkdown-empty`} v-if={hasEmptySlot}>
+            {emptySlot}
+        </div>
+    </template>
+    <div v-else class={`${k}-xmarkdown-content`} ref={contentRef}>
+        <div class={`${k}-xmarkdown-body`}>
+            {renderedNodes}
+        </div>
+        <div class={`${k}-xmarkdown-typing-suffix`} v-if={shouldShowTypingSuffix()} aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>

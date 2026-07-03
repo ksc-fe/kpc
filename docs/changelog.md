@@ -4,6 +4,58 @@ order: 99
 sidebar: doc
 ---
 
+## v3.8.0
+
+1. `Add` 新增 AI 对话组件 `Bubble`、`BubbleList`、`FileCard`、`FileCardList`、`Sender`、`Think`、`XMarkdown`。[#1123](https://github.com/ksc-fe/kpc/issues/1123)
+2. `Add` 新增基础组件 `Media`，支持图片、视频、音频预览及媒体组能力。[#1124](https://github.com/ksc-fe/kpc/issues/1124)
+3. `Add` 新增 AI 对话组件独立包：[#1125](https://github.com/ksc-fe/kpc/issues/1125)
+   - `@king-design/ai-vue`
+   - `@king-design/ai-vue-legacy`
+   - `@king-design/ai-react`
+4. `Add` `Select`、`TreeSelect`、`Cascader`、`Datepicker` 新增 `valueAnimation` 属性，支持关闭选择值位移动画。[#1116](https://github.com/ksc-fe/kpc/issues/1116)
+5. `Fix` `Select` 多选存在相同展示名称时，删除选中值可能触发标签动画异常的问题。[#1111](https://github.com/ksc-fe/kpc/issues/1111)
+6. `Add` `Spin` 新增 `color`、`strokeWidth` 属性，`size` 可传入 `number`，支持自定义加载动画的外观。[#1115](https://github.com/ksc-fe/kpc/issues/1115)
+7. `Fix` `Ellipsis` 被 `ConfigProvider` 组件包裹时省略不生效的问题。[#1114](https://github.com/ksc-fe/kpc/issues/1114)
+8. `Add` `Icon` 新增 `like` 等18个字体图标。 [#1121](https://github.com/ksc-fe/kpc/issues/1121)
+9. `Fix` `Steps`、`Table` UI优化。 [#1122](https://github.com/ksc-fe/kpc/issues/1122)
+
+## v3.8.0-beta.3
+
+1. `Add` `Media`、`FileCard`、`FileCardList` 新增 `lazy`，支持在对话文件列表场景中按需启用图片懒加载和音视频低预加载。
+2. `Fix` 优化 `XMarkdown` 流式表格、引用块、列表等块级内容渲染时机，避免尾部内容先以 Markdown 原文展示后再切换为结构化内容。
+3. `Fix` `XMarkdown` 升级 `Mermaid` 至 11.x，并优化图表流式渲染、主题隔离、缩放适配和滚动条判断。
+4. `Add` `FileCard` 新增 `width`、`height`、`loadingVariant` 和显式媒体类型 `loading` 扩展点，支持自定义图片、视频、音频生成中的尺寸和加载层。
+5. `Fix` 优化 `BubbleList` 回到底部按钮层级，避免被媒体卡片状态层遮挡。
+6. `Add` `Select`、`TreeSelect`、`Cascader`、`Datepicker` 新增 `valueAnimation` 属性，支持关闭选择值位移动画。[#1116](https://github.com/ksc-fe/kpc/issues/1116)
+7. `Fix` `Select` 多选存在相同展示名称时，删除选中值可能触发标签动画异常的问题。[#1111](https://github.com/ksc-fe/kpc/issues/1111)
+8. `Add` `Spin` 新增 `color`、`strokeWidth` 属性，`size` 可传入 `number`，支持自定义加载动画的外观。[#1115](https://github.com/ksc-fe/kpc/issues/1115)
+9. `Fix` `Ellipsis` 被 `ConfigProvider` 组件包裹时省略不生效的问题。[#1114](https://github.com/ksc-fe/kpc/issues/1114)
+10. `Add` `Icon`新增`like`等18个字体图标 [#1121](https://github.com/ksc-fe/kpc/issues/1121)
+11. `Fix` `Steps`、`Table` UI优化 [#1122](https://github.com/ksc-fe/kpc/issues/1122)
+
+## v3.8.0-beta.2
+
+1. `Add` `Bubble`、`XMarkdown` 的 `typing` 新增 `keepPrefix`、`resumeFrom`，支持流式重连后接着已有输出继续打字。
+2. `Fix` `Sender` 默认 `maxHeight` 调整为 `300`，并优化 `uploadButton="list"` 场景下的输入区自适应高度。
+
+## v3.8.0-beta.1
+
+1. `Add` `Sender` 新增 `inputDisabled`、`sendDisabled`、`stopDisabled`，支持生成中禁用输入但保留停止生成按钮可用。
+2. `Add` `Sender` 新增 `prefix`、`uploadButton`、`buttonTooltip`、`fileView` 等能力，支持自定义附件入口、附件弹窗回填、本地文件/URL 混合附件和内置按钮提示。
+3. `Add` `Bubble`、`XMarkdown` 的 `typing.suffix` 支持生成中内容后省略点动态提示，默认关闭。
+4. `Fix` 修复 `FileCard` 媒体卡片点击删除时事件冒泡触发预览的问题。
+5. `Fix` 优化 `XMarkdown` 流式输出代码块间距和表格逐行渲染体验。
+6. `Fix` `BubbleList` 滚动区域去除默认横向内边距，仅在出现滚动条时保留内容与滚动条间距。
+
+## v3.8.0-beta.0
+
+1. `Add` 新增 AI 对话组件 `Bubble`、`BubbleList`、`FileCard`、`FileCardList`、`Sender`、`Think`、`XMarkdown`。
+2. `Add` 新增基础组件 `Media`，支持图片、视频、音频预览及媒体组能力。
+3. `Add` 新增 AI 对话组件独立包：
+   - `@king-design/ai-vue`
+   - `@king-design/ai-vue-legacy`
+   - `@king-design/ai-react`
+
 ## v3.7.0
 
 1. `Add` 新增 `Notification` 通知提醒组件 [#1105](https://github.com/ksc-fe/kpc/issues/1105)

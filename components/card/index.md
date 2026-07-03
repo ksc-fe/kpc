@@ -9,11 +9,11 @@ sidebar: doc
 
 ## Card
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| title | 卡片标题 | `string` &#124; `VNode` | `undefined` | 
-| type | 卡片类型 | `"shadow"` &#124; `"border"` &#124; `"none"` | `"shadow"` |
-| size | 卡片尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
+| 属性 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| title | 卡片标题 | `string` &#124; `VNode` | `undefined` | |
+| type | 卡片类型 | `"shadow"` &#124; `"border"` &#124; `"none"` | `"shadow"` | |
+| size | 卡片尺寸 | `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` | 3.1.4 |
 
 ## CardColumn
 

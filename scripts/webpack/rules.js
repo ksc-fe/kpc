@@ -1,6 +1,8 @@
 const {resolve} = require('../utils');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
+const corejs = {version: 3, proposals: true};
+
 const noParse = [
     // 'intact',
     'vue',
@@ -33,6 +35,42 @@ module.exports = (config) => {
                     cacheDirectory: resolve('./.cache'),
                     // rootMode: 'upward',
                 })
+                .end()
+            .end()
+        .rule('mjs')
+            .test(/\.mjs$/)
+            .type('javascript/auto')
+            .resolve
+                .set('fullySpecified', false)
+                .end()
+            .end()
+        .rule('mermaidMjs')
+            .test(/\.mjs$/)
+            .include
+                .add(resolve('./node_modules/mermaid'))
+                .add(resolve('./node_modules/@mermaid-js/parser'))
+                .end()
+            .type('javascript/auto')
+            .use('babel')
+                .loader('babel-loader')
+                .options({
+                    babelrc: false,
+                    cacheDirectory: resolve('./.cache'),
+                    configFile: false,
+                    presets: [
+                        ['@babel/preset-env', {
+                            modules: false,
+                        }],
+                    ],
+                    plugins: [
+                        ['@babel/plugin-transform-runtime', {
+                            corejs,
+                        }],
+                    ],
+                })
+                .end()
+            .resolve
+                .set('fullySpecified', false)
                 .end()
             .end()
         .rule('vdt')
