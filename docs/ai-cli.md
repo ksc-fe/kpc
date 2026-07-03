@@ -31,7 +31,6 @@ npx -y kpc-ai-cli list
 | `react` | `@king-design/react` | React 版本 |
 | `vue` | `@king-design/vue` | Vue 3 版本 |
 | `vue-legacy` | `@king-design/vue-legacy` | Vue 2 版本 |
-| `angular` | `kpc-angular` | Angular 示例查询目标 |
 
 ## 常用命令
 

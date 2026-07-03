@@ -79,4 +79,4 @@ data/llms-full.txt
 - 在 Agent 中注入 KPC 组件知识。
 - 为内部问答系统建立 KPC 文档索引。
 - 生成跨框架组件示例。
-- 在迁移代码时对比 Intact、React、Vue、Angular 的组件写法。
+- 在迁移代码时对比 Intact、React、Vue 的组件写法。

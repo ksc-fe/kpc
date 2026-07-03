@@ -99,7 +99,7 @@ OpenCode 会写入项目根目录的 `opencode.json`：
 | --- | --- |
 | `kpc-expert` | 编写或修改 KPC 组件代码前查询组件约束 |
 | `kpc-page-generator` | 根据需求生成 KPC 页面 |
-| `kpc-framework-migrator` | 在 Intact、React、Vue、Angular 之间迁移示例和写法 |
+| `kpc-framework-migrator` | 在 Intact、React、Vue 之间迁移示例和写法 |
 
 ## 示例请求
 

@@ -11,7 +11,7 @@ category: AI
 
 ## 推荐工作流
 
-1. 确认目标框架，例如 `react`、`vue`、`vue-legacy`、`intact` 或 `angular`。
+1. 确认目标框架，例如 `react`、`vue`、`vue-legacy` 或 `intact`。
 2. 使用 `kpc_list` 或 `kpc-ai list` 确认组件是否存在。
 3. 使用 `kpc_info` 或 `kpc-ai info` 查询组件 API。
 4. 使用 `kpc_demo` 或 `kpc-ai demo` 查询相近示例。
