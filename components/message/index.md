@@ -32,7 +32,7 @@ sidebar: doc
 | 参数名 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
 | content | 提示的内容，或者你也可以直接传入类型为<code>Partial&lt;MessageProps&gt;</code>的配置 | `string` &#124; `VNode` &#124; `Partial<MessageProps>` | `undefined` |
-| duration | 提示展示多长时间后自动关闭，当传入`0`时，提示将会一直展示。单位ms | `bumber` | `5000` |
+| duration | 提示展示多长时间后自动关闭，当传入`0`时，提示将会一直展示。单位ms | `number` | `5000` |
 
 ```ts
 import {VNode} from 'intact';

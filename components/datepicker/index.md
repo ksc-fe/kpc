@@ -25,8 +25,8 @@ sidebar: doc
 | format | 指定日期格式化字符串 | `string` | `YYYY-MM-DD HH:mm:ss` |
 | valueFormat | 指定`value`值日期格式化字符串 | `string` | `undefined` |
 | showFormat | 指定展示的日期格式化字符串 | `string` | `undefined` |
-| max | 最大可选日期 | `Value` | `undefind` |
-| min | 最小可选日期 | `Value` | `undefind` |
+| max | 最大可选日期 | `Value` | `undefined` |
+| min | 最小可选日期 | `Value` | `undefined` |
 | disabledDate | 该属性值是一个函数，用于定义那些日期被禁止选择，函数参数为日期字符串，返回`true`则表示禁用该日期 | `(v: Dayjs) => boolean` | `undefined` |
 | type | 组件类型：`"date"` 只选择日期；`"datetime"` 选择日期和时间；`"year"` 选择年份；`"month"` 选择月份；`"week"` 选择周；`"quarter"` 选择季度 |  `"date"` &#124; `"datetime"` &#124; `"year"` &#124; `"month"` &#124; `"week"` &#124; `"quarter"` | `"date"` |
 | shortcuts | 指定快捷方式 | `Shortcut[]` | `undefined` |
