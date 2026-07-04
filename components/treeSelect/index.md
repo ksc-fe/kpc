@@ -27,7 +27,7 @@ sidebar: doc
 | width | 指定宽度，组件自动添加单位`px` | `number` &#124; `string` | `undefined` | 
 | data | 要渲染的数据 | `TreeDataItem<K>[]` | `undefined` |
 | uncorrelated | 是否让父子`checkbox`选中状态互不关联 | `boolean` | `false` |
-| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
+| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Promise<void> &#124; void</code> | `undefined` |
 | showLine | 是否展示`Tree`的对齐线 | `boolean` | `true` |
 | defaultExpandAll | 是否默认展开所有节点 | `boolean` | `true` |
 | checkbox | 是否展示复选框 | `boolean` | `false` |

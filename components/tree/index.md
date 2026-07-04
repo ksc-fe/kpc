@@ -19,7 +19,7 @@ sidebar: doc
 | selectedKeys | 通过`key`指定选中的数据节点 | `K[]` | `undefined` |
 | multiple | `selectedKeys`是否支持多选 | `boolean` | `false` |
 | checkbox | 是否展示复选框 | `boolean` | `false` |
-| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Proomise<void> &#124; void</code> | `undefined` |
+| load | 指定异步加载节点数据的函数，该函数通过`Promise`返回数组来添加子节点数据 | <code>(node: TreeNode<K>) => Promise<void> &#124; void</code> | `undefined` |
 | showLine | 是否展示左侧对齐线 | `boolean` | `true` |
 | draggable | 是否支持拖拽 | `boolean` | `false` |
 | allowDrag | 指定哪些节点可拖拽 | `(node: TreeNode<K>) => boolean` | `undefined` |
