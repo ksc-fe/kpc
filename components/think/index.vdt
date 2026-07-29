@@ -1,0 +1,86 @@
+import {Transition} from 'intact';
+import {Icon} from '../icon';
+import {isInvalid, noop} from 'intact-shared';
+import {expandAnimationCallbacks, getRestProps, isEmptyString} from '../utils';
+import {makeStyles} from './styles';
+
+const {
+    hasContentProp,
+    isExpanded,
+    getRootStyle,
+    getTitleText,
+    getContentText,
+    onToggle,
+} = this.think;
+
+const {
+    className, loading, blink, children,
+} = this.get();
+const {k} = this.config;
+const isEmptySlot = (value) => {
+    if (isInvalid(value) || isEmptyString(value)) return true;
+    if (Array.isArray(value)) return value.every(item => isEmptySlot(item));
+    if (value && value.type === 1) return isEmptySlot(value.children);
+
+    return false;
+};
+const extraSlot = $blocks.extra ? $blocks.extra(noop) : undefined;
+const contentSlot = $blocks.content ? $blocks.content(noop) : undefined;
+const hasExtraSlot = !isEmptySlot(extraSlot);
+const hasContentSlot = !isEmptySlot(contentSlot);
+const hasContent = hasContentSlot || !!children || hasContentProp();
+const expanded = isExpanded();
+const classNameObj = {
+    [`${k}-think`]: true,
+    [`${k}-think-expanded`]: expanded,
+    [`${k}-think-loading`]: loading,
+    [`${k}-think-blink`]: blink,
+    [className]: className,
+    [makeStyles(k)]: true,
+};
+
+<div class={classNameObj} style={getRootStyle()} {...getRestProps(this)}>
+    <button class={`${k}-think-status`} type="button" ev-click={onToggle}>
+        <div class={`${k}-think-status-main`}>
+            <span class={`${k}-think-icon`}>
+                <b:icon v-if={$blocks.icon} />
+                <Icon v-else class={loading ? 'ion-load-c' : 'k-icon-think'} rotate={loading} />
+            </span>
+            <span class={`${k}-think-title`}>
+                <b:title v-if={$blocks.title} />
+                <span v-else>{getTitleText()}</span>
+            </span>
+        </div>
+        <div class={`${k}-think-status-side`}>
+            <div class={`${k}-think-extra`} v-if={hasExtraSlot}>
+                {extraSlot}
+            </div>
+            <Icon class={`${k}-think-arrow k-icon-right`} v-if={hasContent} />
+        </div>
+    </button>
+    <Transition
+        v-if={hasContent}
+        show={expanded}
+        {...expandAnimationCallbacks}
+        onEnter={
+            el => {
+                expandAnimationCallbacks.onEnter(el);
+            }
+        }
+        onAfterLeave={
+            el => {
+                expandAnimationCallbacks.onAfterLeave(el);
+            }
+        }
+    >
+        <div class={`${k}-think-wrapper`}>
+            <div class={`${k}-think-content`}>
+                <template v-if={hasContentSlot}>{contentSlot}</template>
+                <template v-else-if={children}>
+                    {children}
+                </template>
+                <div v-else class={`${k}-think-text`}>{getContentText()}</div>
+            </div>
+        </div>
+    </Transition>
+</div>

@@ -1,0 +1,137 @@
+// 资源内联，避免框架包构建时依赖额外图片文件复制。
+const mediaAudioCardSvg = [
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<g clip-path="url(#clip0_24923_23617)">',
+    '<path d="M1.19995 2.4C1.19995 1.07452 2.27447 0 3.59995 0H14.4017L22.8 8.39355V21.6C22.8 22.9255 21.7254 24 20.4 24H3.59995C2.27447 24 1.19995 22.9255 1.19995 21.6V2.4Z" fill="url(#paint0_linear_24923_23617)"/>',
+    '<path d="M15.7916 10.2829C15.1728 10.2829 14.5793 10.037 14.1417 9.59944C13.7041 9.16185 13.4583 8.56836 13.4583 7.94952H12.2916V13.6429C11.805 13.3177 11.2236 13.1645 10.64 13.2076C10.0563 13.2507 9.50381 13.4876 9.07021 13.8807C8.63661 14.2738 8.3468 14.8005 8.24683 15.3771C8.14687 15.9537 8.24247 16.5473 8.51845 17.0634C8.79444 17.5794 9.23497 17.9885 9.77007 18.2255C10.3052 18.4626 10.9041 18.514 11.4718 18.3716C12.0395 18.2293 12.5433 17.9013 12.9032 17.4398C13.2631 16.9783 13.4585 16.4098 13.4583 15.8245V10.5541C14.0993 11.1296 14.9301 11.4484 15.7916 11.4495V10.2829Z" fill="white"/>',
+    '<g filter="url(#filter0_f_24923_23617)">',
+    '<path d="M13.8 0L22.8 9H16.2C14.8746 9 13.8 7.92548 13.8 6.6V0Z" fill="#FA655E"/>',
+    '</g>',
+    '<path d="M14.3999 0L22.7999 8.4H16.7999C15.4744 8.4 14.3999 7.32548 14.3999 6V0Z" fill="#FEC6C2"/>',
+    '</g>',
+    '<defs>',
+    '<filter id="filter0_f_24923_23617" x="10.8" y="-3" width="15" height="15" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">',
+    '<feFlood flood-opacity="0" result="BackgroundImageFix"/>',
+    '<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>',
+    '<feGaussianBlur stdDeviation="1.5" result="effect1_foregroundBlur_24923_23617"/>',
+    '</filter>',
+    '<linearGradient id="paint0_linear_24923_23617" x1="1.19995" y1="0" x2="25.2" y2="24" gradientUnits="userSpaceOnUse">',
+    '<stop stop-color="#FDA79C"/>',
+    '<stop offset="1" stop-color="#FF8787"/>',
+    '</linearGradient>',
+    '<clipPath id="clip0_24923_23617">',
+    '<rect width="24" height="24" fill="white"/>',
+    '</clipPath>',
+    '</defs>',
+    '</svg>',
+].join('');
+
+export const mediaAudioCardUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaAudioCardSvg)}`;
+
+const mediaImagePlaceholderSvg = [
+    '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<path d="M4.5 7C5.32842 7 6 6.32842 6 5.5C6 4.67158 5.32842 4 4.5 4C3.67158 4 3 4.67158 3 5.5C3 6.32842 3.67158 7 4.5 7Z" fill="#C2C2CA"/>',
+    '<path d="M8.90229 7.24208C9.17247 6.91269 9.7174 6.9208 9.9756 7.25809L12.8799 11.0521C13.1859 11.4518 12.8719 12 12.3369 12H5L8.90229 7.24208Z" fill="#C2C2CA" stroke="#C2C2CA" stroke-linecap="round" stroke-linejoin="round"/>',
+    '<rect x="1" y="3" width="13" height="9" rx="1" stroke="#C2C2CA" stroke-linejoin="round"/>',
+    '</svg>',
+].join('');
+
+export const mediaImagePlaceholderUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaImagePlaceholderSvg)}`;
+
+const mediaVideoPlaceholderSvg = [
+    '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<path d="M1.33282 4.4165C1.33282 3.86422 1.78054 3.4165 2.33282 3.4165H9.98913C10.5414 3.4165 10.9891 3.86422 10.9891 4.4165V11.5833C10.9891 12.1356 10.5414 12.5833 9.98913 12.5833H2.33282C1.78054 12.5833 1.33282 12.1356 1.33282 11.5833V4.4165Z" fill="#C2C2CA" stroke="#C2C2CA" stroke-linecap="square"/>',
+    '<path d="M14 4.40059V11.5827C14 11.7506 13.8056 11.8438 13.6747 11.7386L11 9.58943V6.25554L13.6798 4.24073C13.8116 4.14163 14 4.23567 14 4.40059Z" fill="#C2C2CA" stroke="#C2C2CA" stroke-linecap="square"/>',
+    '<path d="M8.8 5C8.91046 5 9 5.08954 9 5.2V5.8C9 5.91046 8.91046 6 8.8 6H5.2C5.08954 6 5 5.91046 5 5.8V5.2C5 5.08954 5.08954 5 5.2 5H8.8Z" fill="white"/>',
+    '</svg>',
+].join('');
+
+export const mediaVideoPlaceholderUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaVideoPlaceholderSvg)}`;
+
+const mediaImageCardErrorSvg = [
+    '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<g clip-path="url(#clip0_25770_6783)">',
+    '<path d="M1.6001 3.2C1.6001 1.43269 3.03279 0 4.8001 0H19.2024L30.4001 11.1914V28.8C30.4001 30.5673 28.9674 32 27.2001 32H4.8001C3.03279 32 1.6001 30.5673 1.6001 28.8V3.2Z" fill="url(#paint0_linear_25770_6783)"/>',
+    '<path d="M8.24289 22.3474L11.1107 18.1323C11.1475 18.0783 11.1956 18.033 11.2518 17.9996C11.3079 17.9663 11.3707 17.9457 11.4357 17.9393C11.5007 17.9329 11.5664 17.9408 11.628 17.9626C11.6895 17.9844 11.7456 18.0194 11.7921 18.0652L13.6875 19.9222L17.8459 13.4042C17.8871 13.3395 17.9442 13.2865 18.0119 13.2504C18.0795 13.2142 18.1553 13.1961 18.232 13.1979C18.3086 13.1996 18.3835 13.2211 18.4495 13.2602C18.5154 13.2993 18.5701 13.3548 18.6084 13.4213L23.7752 22.3756C23.8144 22.4434 23.8351 22.5203 23.8351 22.5986C23.8352 22.6769 23.8146 22.7539 23.7754 22.8217C23.7362 22.8896 23.6799 22.9459 23.612 22.985C23.5441 23.0241 23.4672 23.0447 23.3888 23.0446H8.61173C8.53054 23.0447 8.45085 23.0227 8.38126 22.9809C8.31167 22.9391 8.25481 22.8791 8.21683 22.8074C8.17885 22.7356 8.16118 22.6548 8.16574 22.5738C8.1703 22.4927 8.19691 22.4145 8.2427 22.3474H8.24289Z" fill="white"/>',
+    '<path d="M9.10168 12.8034C9.10168 13.3996 9.33855 13.9715 9.76017 14.3931C10.1818 14.8147 10.7536 15.0516 11.3499 15.0516C11.9462 15.0516 12.518 14.8147 12.9396 14.3931C13.3612 13.9715 13.5981 13.3996 13.5981 12.8034C13.5981 12.2071 13.3612 11.6353 12.9396 11.2137C12.518 10.792 11.9462 10.5552 11.3499 10.5552C10.7536 10.5552 10.1818 10.792 9.76017 11.2137C9.33855 11.6353 9.10168 12.2071 9.10168 12.8034Z" fill="white"/>',
+    '<g filter="url(#filter0_f_25770_6783)">',
+    '<path d="M18.4001 0L30.4001 12H21.6001C19.8328 12 18.4001 10.5673 18.4001 8.8V0Z" fill="#C9CAD6"/>',
+    '</g>',
+    '<path d="M19.2001 0L30.4001 11.2H22.4001C20.6328 11.2 19.2001 9.76731 19.2001 8V0Z" fill="#F2F2F3"/>',
+    '</g>',
+    '<defs>',
+    '<filter id="filter0_f_25770_6783" x="14.4001" y="-4" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">',
+    '<feFlood flood-opacity="0" result="BackgroundImageFix"/>',
+    '<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>',
+    '<feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_25770_6783"/>',
+    '</filter>',
+    '<linearGradient id="paint0_linear_25770_6783" x1="1.6001" y1="0" x2="33.6001" y2="32" gradientUnits="userSpaceOnUse">',
+    '<stop stop-color="#ECECEC"/>',
+    '<stop offset="1" stop-color="#D6DCE7"/>',
+    '</linearGradient>',
+    '<clipPath id="clip0_25770_6783">',
+    '<rect width="32" height="32" fill="white"/>',
+    '</clipPath>',
+    '</defs>',
+    '</svg>',
+].join('');
+
+export const mediaImageCardErrorUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaImageCardErrorSvg)}`;
+
+const mediaVideoCardErrorSvg = [
+    '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<g clip-path="url(#clip0_25770_6789)">',
+    '<path d="M1.6001 3.2C1.6001 1.43269 3.03279 0 4.8001 0H19.2024L30.4001 11.1914V28.8C30.4001 30.5673 28.9674 32 27.2001 32H4.8001C3.03279 32 1.6001 30.5673 1.6001 28.8V3.2Z" fill="url(#paint0_linear_25770_6789)"/>',
+    '<path d="M13.4815 12.9907C13.2152 12.8215 12.8669 13.0128 12.8669 13.3283V21.8719C12.8669 22.1874 13.2152 22.3787 13.4815 22.2095L20.2025 17.9377C20.4497 17.7805 20.4497 17.4197 20.2025 17.2625L13.4815 12.9907Z" fill="white"/>',
+    '<g filter="url(#filter0_f_25770_6789)">',
+    '<path d="M18.4001 0L30.4001 12H21.6001C19.8328 12 18.4001 10.5673 18.4001 8.8V0Z" fill="#C9CAD6"/>',
+    '</g>',
+    '<path d="M19.2001 0L30.4001 11.2H22.4001C20.6328 11.2 19.2001 9.76731 19.2001 8V0Z" fill="#F2F2F3"/>',
+    '</g>',
+    '<defs>',
+    '<filter id="filter0_f_25770_6789" x="14.4001" y="-4" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">',
+    '<feFlood flood-opacity="0" result="BackgroundImageFix"/>',
+    '<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>',
+    '<feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_25770_6789"/>',
+    '</filter>',
+    '<linearGradient id="paint0_linear_25770_6789" x1="1.6001" y1="0" x2="33.6001" y2="32" gradientUnits="userSpaceOnUse">',
+    '<stop stop-color="#ECECEC"/>',
+    '<stop offset="1" stop-color="#D6DCE7"/>',
+    '</linearGradient>',
+    '<clipPath id="clip0_25770_6789">',
+    '<rect width="32" height="32" fill="white"/>',
+    '</clipPath>',
+    '</defs>',
+    '</svg>',
+].join('');
+
+export const mediaVideoCardErrorUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaVideoCardErrorSvg)}`;
+
+const mediaAudioCardErrorSvg = [
+    '<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">',
+    '<g clip-path="url(#clip0_25770_6777)">',
+    '<path d="M1.6001 3.2C1.6001 1.43269 3.03279 0 4.8001 0H19.2024L30.4001 11.1914V28.8C30.4001 30.5673 28.9674 32 27.2001 32H4.8001C3.03279 32 1.6001 30.5673 1.6001 28.8V3.2Z" fill="url(#paint0_linear_25770_6777)"/>',
+    '<path d="M21.0556 13.7107C20.2305 13.7107 19.4391 13.3829 18.8557 12.7995C18.2722 12.2161 17.9445 11.4247 17.9445 10.5996H16.3889V18.1907C15.7401 17.7572 14.965 17.5529 14.1868 17.6104C13.4086 17.6679 12.6719 17.9837 12.0937 18.5078C11.5156 19.0319 11.1292 19.7342 10.9959 20.503C10.8626 21.2719 10.9901 22.0633 11.3581 22.7514C11.726 23.4395 12.3134 23.9849 13.0269 24.301C13.7403 24.617 14.539 24.6856 15.2958 24.4958C16.0527 24.306 16.7245 23.8686 17.2044 23.2533C17.6843 22.638 17.9448 21.8799 17.9445 21.0996V14.0724C18.7992 14.8397 19.9069 15.2648 21.0556 15.2663V13.7107Z" fill="white"/>',
+    '<g filter="url(#filter0_f_25770_6777)">',
+    '<path d="M18.4001 0L30.4001 12H21.6001C19.8328 12 18.4001 10.5673 18.4001 8.8V0Z" fill="#C9CAD6"/>',
+    '</g>',
+    '<path d="M19.2001 0L30.4001 11.2H22.4001C20.6328 11.2 19.2001 9.76731 19.2001 8V0Z" fill="#F2F2F3"/>',
+    '</g>',
+    '<defs>',
+    '<filter id="filter0_f_25770_6777" x="14.4001" y="-4" width="20" height="20" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">',
+    '<feFlood flood-opacity="0" result="BackgroundImageFix"/>',
+    '<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>',
+    '<feGaussianBlur stdDeviation="2" result="effect1_foregroundBlur_25770_6777"/>',
+    '</filter>',
+    '<linearGradient id="paint0_linear_25770_6777" x1="1.6001" y1="0" x2="33.6001" y2="32" gradientUnits="userSpaceOnUse">',
+    '<stop stop-color="#ECECEC"/>',
+    '<stop offset="1" stop-color="#D6DCE7"/>',
+    '</linearGradient>',
+    '<clipPath id="clip0_25770_6777">',
+    '<rect width="32" height="32" fill="white"/>',
+    '</clipPath>',
+    '</defs>',
+    '</svg>',
+].join('');
+
+export const mediaAudioCardErrorUrl = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(mediaAudioCardErrorSvg)}`;

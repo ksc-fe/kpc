@@ -104,18 +104,48 @@ const i18n = {
     '点击上传': 'Click to Upload',
     '将文件拖到此处，或<a>点击上传</a>': 'Drag file to this area or <a>click to upload</a>',
     '查看图片': 'View Image',
+    '查看视频': 'View Video',
+    '查看音频': 'View Audio',
+    '查看文件夹': 'View Folder',
+    '查看文件': 'View File',
     '上传图片': 'Upload Image',
+    '参考内容': 'Reference',
+    '上传文件夹': 'Upload Folder',
     '超出文件数量最大限制：{limit}': 'Exceed the maximum limit of the number of files: {limit}',
     '"{name}" 超出文件最大限制：{maxSize}kb': '"{name}" exceeds the maximum size of file: {maxSize}kb',
     '"{name}" 文件类型不合法': '"{name}" invalid file type',
+    '查看': 'Preview',
+    '下载': 'Download',
+    '删除': 'Delete',
+    '上传中': 'Uploading',
+    '处理中': 'Processing',
+    '生成中': 'Generating',
+    '上传失败': 'Upload failed',
+    '已完成': 'Completed',
+    '在新窗口中打开': 'Open in a new window',
+    '未命名文件': 'Untitled file',
 
     // search
     '请输入关键字': 'Please enter keywords',
+
+    // sender
+    '请输入...': 'Please enter...',
+    '输入对话内容（Enter发送， Shift + Enter 换行）': 'Enter your message (Enter to send, Shift + Enter for newline)',
+    '发送': 'Send',
+    '停止生成': 'Stop generating',
+    '释放文件以上传': 'Release files to upload',
+    '文件拖动到此处即可上传': 'Drag files here to upload',
+    '上传附件': 'Upload attachments',
 
     // copy
     '复制成功': 'Copy successfully!',
     '复制失败': 'Copy failed!',
     '复制': 'Copy',
+    '刷新': 'Refresh',
+    '重试': 'Retry',
+    '加载中': 'Loading',
+    '加载失败': 'Load failed',
+    '思考中': 'Thinking',
 };
 
 export default i18n; 

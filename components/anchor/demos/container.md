@@ -7,7 +7,6 @@ order: 2
 
 ```vdt
 import {Anchor, AnchorLink} from 'kpc';
-import {createVNode as h} from 'intact';
 
 <div class="anchor-demo">
     <Anchor value={this.get('activeAnchor')} container="#scroll-container1">
