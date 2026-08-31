@@ -3,7 +3,7 @@ import { MemoBlock } from './memo';
 import { getRestProps } from '../utils';
 
 const {mode} = this.get();
-const {firstSize, lastSize} = this.size;
+const {firstSize, lastSize, className} = this.size;
 const {firstRef, lastRef, elementRef, start, dragging} = this.drag;
 const { k } = this.config;
 const classNameObj = {
@@ -13,6 +13,7 @@ const classNameObj = {
     [[`${k}-first-auto`]]: firstSize.value === 'auto',
     [[`${k}-last-auto`]]: lastSize.value === 'auto',
     [[`${k}-resizing`]]: dragging.value,
+    [className]: className,
 };
 
 const stylePropName = mode === 'horizontal' ? 'width' : 'height';
