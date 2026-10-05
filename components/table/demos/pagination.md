@@ -4,7 +4,7 @@ order: 30
 ---
 
 给组件添加`pagination`属性即可开启分页功能，`pagination`支持`Pagination`组件的全部属性，当分页信息改变时
-会触发`changePage`事件
+会触发`page`事件
 
 > 需要给Table设置rowKey属性，否则选择的行翻页后依然会保留选中状态，因为不设置key，则使用索引当key，
 > 只要当前选中的索引在下一页存在，则会依然选中

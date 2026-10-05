@@ -3,7 +3,7 @@ title: 在进度条上展示百分比
 order: 1.1
 ---
 
-添加`inInnerText`属性，可以在进度条上展示百分比
+添加`showInnerText`属性，可以在进度条上展示百分比
 
 ```vdt
 import {Progress} from 'kpc';
