@@ -26,6 +26,78 @@ export const makeIconStyles = cache(function _makeIconStyles(k: string) {
           -moz-osx-font-smoothing: grayscale;
         }
 
+        .${k}-icon-dislike:before {
+          content: "\\e61e";
+        }
+
+        .${k}-icon-like:before {
+          content: "\\e61f";
+        }
+
+        .${k}-icon-security:before {
+          content: "\\e6a8";
+        }
+
+        .${k}-icon-monitor:before {
+          content: "\\e6a9";
+        }
+
+        .${k}-icon-equal:before {
+          content: "\\e68b";
+        }
+
+        .${k}-icon-expandall:before {
+          content: "\\e9d3";
+        }
+
+        .${k}-icon-foldall:before {
+          content: "\\e9d4";
+        }
+
+        .${k}-icon-star:before {
+          content: "\\e9d2";
+        }
+
+        .${k}-icon-filter:before {
+          content: "\\e9cf";
+        }
+
+        .${k}-icon-layer:before {
+          content: "\\e9d0";
+        }
+
+        .${k}-icon-warmup:before {
+          content: "\\e9d1";
+        }
+
+        .${k}-icon-nic:before {
+          content: "\\e686";
+        }
+
+        .${k}-icon-container:before {
+          content: "\\e687";
+        }
+
+        .${k}-icon-baremetal:before {
+          content: "\\e688";
+        }
+
+        .${k}-icon-opendrawer:before {
+          content: "\\e689";
+        }
+
+        .${k}-icon-cloudserver:before {
+          content: "\\e68a";
+        }
+
+        .${k}-icon-subnet1:before {
+          content: "\\e685";
+        }
+
+        .${k}-icon-reduce:before {
+          content: "\\e61c";
+        }
+
         .${k}-icon-add-circled:before {
           content: "\\e60b";
         }

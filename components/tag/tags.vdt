@@ -6,7 +6,7 @@ import { Tooltip } from '../tooltip';
 import { Tags } from './tags';
 import { Virtual } from '../virtual';
 
-const { className, nowrap, size, border, draggable } = this.get();
+const { className, nowrap, size, border, draggable, moveAnimation } = this.get();
 const { k } = this.config;
 
 const classNameObj = {
@@ -25,7 +25,7 @@ const vNodes = children.value;
  * Because we will render all tags to calculate the width
  */
 <div class={classNameObj} {...getRestProps(this)} ref={containerRef}>
-    <TransitionGroup name="k-fade" v-if={!nowrap}>
+    <TransitionGroup name="k-fade" move={moveAnimation} v-if={!nowrap}>
         {vNodes}
     </TransitionGroup>
     <template v-else>{vNodes}</template>

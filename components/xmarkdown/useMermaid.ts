@@ -29,6 +29,7 @@ const MIN_SCALE = 0.1;
 const FIT_PADDING = 20;
 const STAGE_PADDING = 16;
 const STREAMING_RENDER_DELAY = 100;
+const MERMAID_TOOLTIP_STYLE_ID = 'kpc-xmarkdown-mermaid-tooltip-style';
 
 // 模块级状态
 let mermaidPromise: Promise<any> | null = null;
@@ -184,8 +185,7 @@ export function useMermaid(
         } catch (e) {
             if (!container.contains(block)) return;
 
-            const error = e instanceof Error ? e : new Error(String(e));
-            if (isDeferredMermaidParseError(error)) {
+            if (isDeferredMermaidParseError(e)) {
                 block.dataset.kpcRenderState = 'idle';
                 block.dataset.kpcDeferredFingerprint = fingerprint;
                 delete block.dataset.kpcPendingFingerprint;
@@ -198,6 +198,7 @@ export function useMermaid(
                 return;
             }
 
+            const error = normalizeError(e);
             stage.innerHTML = `<div class="${getPrefixCls()}-xmarkdown-mermaid-error">${escapeHtml(error.message)}</div>`;
             clearCachedSvg(block);
             block.dataset.kpcRenderState = 'error';
@@ -662,6 +663,29 @@ function loadMermaid(): Promise<any> {
     return mermaidPromise;
 }
 
+function ensureMermaidTooltipStyle() {
+    if (typeof document === 'undefined' || document.getElementById(MERMAID_TOOLTIP_STYLE_ID)) {
+        return;
+    }
+
+    const style = document.createElement('style');
+    style.id = MERMAID_TOOLTIP_STYLE_ID;
+    style.textContent = [
+        'body > .mermaidTooltip:empty,',
+        'body > .mermaidTooltip[style*="opacity: 0;"] {',
+        'position: fixed !important;',
+        'top: 0 !important;',
+        'left: 0 !important;',
+        'width: 0 !important;',
+        'height: 0 !important;',
+        'padding: 0 !important;',
+        'border: 0 !important;',
+        'overflow: hidden !important;',
+        '}',
+    ].join('');
+    document.head.appendChild(style);
+}
+
 async function renderMermaidSvg(
     mermaid: any,
     renderId: string,
@@ -670,6 +694,7 @@ async function renderMermaidSvg(
     suppressParseErrors: boolean
 ): Promise<{svg: string; bindFunctions?: (element: Element) => void}> {
     if (typeof mermaid.render === 'function') {
+        ensureMermaidTooltipStyle();
         await parseMermaidSource(mermaid, source, suppressParseErrors);
         const result = await mermaid.render(renderId, source, container);
         if (typeof result === 'string') {
@@ -700,8 +725,12 @@ class DeferredMermaidParseError extends Error {
     }
 }
 
-function isDeferredMermaidParseError(error: Error) {
+function isDeferredMermaidParseError(error: unknown): error is DeferredMermaidParseError {
     return error instanceof DeferredMermaidParseError;
+}
+
+function normalizeError(error: unknown): Error {
+    return error instanceof Error ? error : new Error(String(error));
 }
 
 /**

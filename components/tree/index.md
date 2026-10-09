@@ -75,14 +75,14 @@ export class TreeNode<K extends Key> {
 
 # 方法
 
-| 方法名 | 说明 | 参数 | 返回值 |
-| --- | --- | --- | --- |
-| getCheckedData | 获取勾选的节点数据 |  `(leafOnly: boolean = false) => TreeDataItem<K>[]`: `onlyLeaf` 是否只返回叶子节点 | `TreeDataItem<K>[]` |
-| getSelectedData | 获取选中的节点数据 | - | `TreeDataItem<K>[]` |
-| expand | 展开节点 | `(key: K) => void`，`key` 要展开的节点的key | `undefined` |
-| shrink | 收起节点 | `(key: K) => void`，`key` 要收起的节点的key | `undefined` |
-| getNodes | 返回一级节点  | `() => TreeNode<K>[]` | `TreeNode<K>[]` 一级节点数组 |
-| expandAll | 展开所有节点 | `() => void` | `undefined` |
+| 方法名 | 说明 | 参数 | 返回值 | 版本 |
+| --- | --- | --- | --- | --- |
+| getCheckedData | 获取勾选的节点数据 |  `(leafOnly: boolean = false) => TreeDataItem<K>[]`: `onlyLeaf` 是否只返回叶子节点 | `TreeDataItem<K>[]` | |
+| getSelectedData | 获取选中的节点数据 | - | `TreeDataItem<K>[]` | |
+| expand | 展开节点 | `(key: K) => void`，`key` 要展开的节点的key | `undefined` | |
+| shrink | 收起节点 | `(key: K) => void`，`key` 要收起的节点的key | `undefined` | |
+| getNodes | 返回一级节点  | `() => TreeNode<K>[]` | `TreeNode<K>[]` 一级节点数组 | |
+| expandAll | 展开所有节点 | `() => void` | `undefined` | 3.1.0 |
 
 # 事件
 

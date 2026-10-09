@@ -5,6 +5,8 @@ order: 91
 sidebar: doc
 ---
 
+> **v3.7.0 新增**
+
 # 属性
 
 ## Anchor

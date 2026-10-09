@@ -14,7 +14,7 @@ const defaults = {
     default: {
         get height() { return theme.default.height }, 
         get bgColor() { return theme.color.bg },
-        get markborder() { return `1px solid ${theme.color.placeholder}` },
+        get markborder() { return `1px solid ${theme.color.border}` },
         markWidth: '16px',
         padding: '16px',
     },
@@ -46,11 +46,11 @@ const defaults = {
 
     // line
     line: {
-        get markborder() { return `2px solid ${theme.color.placeholder}` },
+        get markborder() { return `1px solid ${theme.color.border}` },
         markWidth: '32px',
         markFontSize: '18px',
         get lineColor() { return theme.color.border},
-        lineWidth: '2px',
+        lineWidth: '1px',
         titleGap: '16px',
         descGap: '4px',
         contentWidth: '200px',
@@ -59,7 +59,7 @@ const defaults = {
     // simple
     simple: {
         markWidth: '12px',
-        get markBgColor() { return theme.color.placeholder },
+        get markBgColor() { return theme.color.border },
         get doneMarkBgColor() { return theme.color.primary },
         get errorMarkBgColor() { return theme.color.danger },
     },

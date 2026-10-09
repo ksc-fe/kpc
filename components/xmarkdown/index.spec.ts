@@ -24,6 +24,8 @@ describe('XMarkdown', () => {
     afterEach(() => {
         sinon.restore();
         unmount();
+        document.getElementById('kpc-xmarkdown-mermaid-tooltip-style')?.remove();
+        document.querySelector('.mermaidTooltip')?.remove();
     });
 
     it('should render markdown blocks, code toolbar and formula', async () => {
@@ -671,6 +673,56 @@ describe('XMarkdown', () => {
         expect(getComputedStyle(viewport).overflowY).to.eql('hidden');
         expect(viewport.scrollHeight).to.eql(viewport.clientHeight);
         expect(viewport.scrollWidth).to.eql(viewport.clientWidth);
+    });
+
+    it('should prevent empty mermaid tooltips from increasing the document height', async () => {
+        sinon.stub(mermaid, 'initialize');
+        sinon.stub(mermaid, 'parse').resolves(true as any);
+        sinon.stub(mermaid, 'render').callsFake(() => {
+            const tooltip = document.createElement('div');
+            tooltip.className = 'mermaidTooltip';
+            tooltip.style.opacity = '0';
+            tooltip.style.position = 'absolute';
+            tooltip.style.top = `${window.innerHeight}px`;
+            tooltip.style.left = '0';
+            tooltip.style.padding = '2px';
+            tooltip.style.border = '1px solid #333';
+            document.body.appendChild(tooltip);
+
+            return Promise.resolve({
+                svg: '<svg class="mock-mermaid-tooltip" viewBox="0 0 200 120"><text>diagram</text></svg>',
+            } as any);
+        });
+
+        class Demo extends Component {
+            static template = `
+                const { XMarkdown } = this;
+                <XMarkdown content={this.get('content')} />
+            `;
+
+            static defaults() {
+                return {
+                    content: '```mermaid\nflowchart TD\nA-->B\n```',
+                };
+            }
+
+            XMarkdown = XMarkdown;
+        }
+
+        const [, element] = mount(Demo);
+        const ready = await waitFor(() => !!element.querySelector('.mock-mermaid-tooltip'));
+
+        expect(ready).to.be.true;
+        const tooltip = document.querySelector<HTMLElement>('.mermaidTooltip')!;
+        const tooltipStyle = getComputedStyle(tooltip);
+        const tooltipRect = tooltip.getBoundingClientRect();
+
+        expect(tooltipStyle.position).to.eql('fixed');
+        expect(tooltipStyle.paddingTop).to.eql('0px');
+        expect(tooltipStyle.borderTopWidth).to.eql('0px');
+        expect(tooltipRect.height).to.eql(0);
+        expect(tooltipRect.bottom).to.be.at.most(window.innerHeight);
+        expect(document.getElementById('kpc-xmarkdown-mermaid-tooltip-style')).not.to.eql(null);
     });
 
     it('should show only the needed mermaid scrollbar direction after zooming in', async () => {

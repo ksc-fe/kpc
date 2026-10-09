@@ -5,6 +5,8 @@ order: 13
 sidebar: doc
 ---
 
+> **v3.7.0 新增**
+
 > 如果你在Vue下全局安装@king-design，可以通过`this.$notification`引用到`Notification`组件，所以你可以这样调用它的
 > 方法：`this.$notification.success({ title: 'Test', content: 'test' })`
 

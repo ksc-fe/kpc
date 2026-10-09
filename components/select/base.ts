@@ -17,7 +17,7 @@ import {useInput} from './useInput';
 import {Container} from '../portal';
 import {useFocusout} from './useFocusout';
 import type {Events} from '../types';
-import {isNullOrUndefined} from 'intact-shared';
+import {isNullOrUndefined, isStringOrNumber} from 'intact-shared';
 import { useDraggable } from './useDraggble';
 import { useImmutable } from './useImmutable';
 import { useConfigContext } from '../config';
@@ -42,6 +42,7 @@ export interface BaseSelectProps<V, Multipe extends boolean = boolean, Attach = 
     flat?: boolean
     nowrap?: boolean
     draggable?: boolean
+    valueAnimation?: boolean
     virtual?: boolean
 }
 
@@ -79,11 +80,13 @@ const typeDefs: Required<TypeDefs<BaseSelectProps<any>>> = {
     flat: Boolean,
     nowrap: Boolean,
     draggable: Boolean,
+    valueAnimation: Boolean,
     virtual: Boolean,
 };
 
 const defaults = (): Partial<BaseSelectProps<any>> => ({
     size: 'default',
+    valueAnimation: true,
 });
 
 const events: Events<BaseSelectEvents> = {
@@ -147,6 +150,11 @@ export abstract class BaseSelect<
         this.input.keywords.set('');
     }
 
+    private getValueKey(value: any, index: number) {
+        const key = getValueKey(value);
+        return isNullOrUndefined(key) ? index : key;
+    }
+
     protected hasValue() {
         const {value, multiple} = this.get();
         return !isNullOrUndefined(value) && (multiple ? value.length : value !== '');
@@ -184,4 +192,33 @@ export abstract class BaseSelect<
                 break;
         }
     }
+}
+
+function getValueKey(value: any): string | number | null {
+    if (isNullOrUndefined(value)) return null;
+    if (isStringOrNumber(value)) return value;
+
+    const type = typeof value;
+    if (type === 'boolean') return `boolean:${value}`;
+    if (type === 'bigint') return `bigint:${String(value)}`;
+
+    if (Array.isArray(value)) {
+        return `array:${JSON.stringify(value.map(item => {
+            const key = getValueKey(item);
+            return isNullOrUndefined(key) ? null : key;
+        }))}`;
+    }
+
+    if (value instanceof Date) {
+        return `date:${value.getTime()}`;
+    }
+
+    if (type === 'object') {
+        const primitiveValue = value.valueOf();
+        if (primitiveValue !== value) {
+            return getValueKey(primitiveValue);
+        }
+    }
+
+    return null;
 }

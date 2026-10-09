@@ -7,9 +7,9 @@ sidebar: doc
 
 # 属性
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| title | 弹窗标题 | `string` | `"提示"` |
+| 属性 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| title | 弹窗标题 | `string` | `"提示"` | |
 | value | 弹窗是否展示出来 | `boolean` | `false` |
 | size | 弹窗尺寸 | `"large"` &#124; `"default"` &#124; `"small"` &#124; `"mini"` | `"default"` |
 | loading | “确定”按钮是否为加载状态 | `boolean` | `false` |
@@ -27,7 +27,7 @@ sidebar: doc
 | width | 指定弹窗宽度，`number`类型时，单位为`px`；`string`类型时，需要指定单位 | `number` &#124; `string` | `undefined` |
 | mode | 指定主体元素在关闭状态下的渲染方式，`"destroy"`代表直接销毁，`"hide"`代表只是隐藏 | `"destroy"` &#124; `"hide"` | `"hide"` |
 | placement | 自定义位置 | `"top"` &#124; `"bottom"` &#124;`"left"` &#124;`"right"`|`"right"`|
-| resizable | 是否可调整大小。 | `boolean` | `false` |
+| resizable | 是否可调整大小。 | `boolean` | `false` | 3.7.0 |
 
 # 扩展点
 
@@ -37,7 +37,7 @@ sidebar: doc
 | header | 扩展弹窗头部 |
 | body | 扩展弹窗主体部分 |
 | footer | 扩展弹窗底部 |
-| footer-wrapper | 扩展弹窗整个底部，上述`footer`是它下面一个子扩展点 |
+| footer-wrapper | 扩展弹窗整个底部，上述`footer`是它下面一个子扩展点；传入空 `div` 可隐藏默认底部区域 |
 
 # 方法
 

@@ -7,9 +7,9 @@ sidebar: doc
 
 # 属性
 
-| 属性 | 说明 | 类型 | 默认值 |
-| --- | --- | --- | --- |
-| data | 需要展示的列表数据, 其中`label`会默认当做列表文案展示，`disabled`用于指定是否禁用该行选择 | `TransferDataItem[]` | `[]` |
+| 属性 | 说明 | 类型 | 默认值 | 版本 |
+| --- | --- | --- | --- | --- |
+| data | 需要展示的列表数据, 其中`label`会默认当做列表文案展示，`disabled`用于指定是否禁用该行选择 | `TransferDataItem[]` | `[]` | |
 | keyName | 指定每一行数据的哪个属性当做列表的`key`属性，默认会取`key`属性 | `string` | `"key"` |
 | labelName | 指定每一行数据的哪个属性当做列表的`label`属性，默认会取`label`属性 | `string` | `"label"` |
 | value | 已选择key的数据项，可用`v-model`进行双向绑定 | `string[]` | `[]` |
@@ -24,7 +24,7 @@ sidebar: doc
 | rightTitle | 右边顶部展示的标题 | `string` &#124; `VNode` | `"已选择"` |
 | enableAdd | 指定右箭头按钮的可用状态 | `() => boolean` | `undefined` |
 | enableRemove | 指定左箭头按钮的可用状态 | `() => boolean` | `undefined` |
-| pagination | 是否启用分页功能，传入`true`使用默认配置，传入对象可自定义分页配置，详见[Pagination组件](/components/pagination/) | `boolean` &#124; `PaginationProps` | `false` |
+| pagination | 是否启用分页功能，传入`true`使用默认配置，传入对象可自定义分页配置，详见[Pagination组件](/components/pagination/) | `boolean` &#124; `PaginationProps` | `false` | 3.7.0 |
 
 ```ts
 export type TransferDataItem<
